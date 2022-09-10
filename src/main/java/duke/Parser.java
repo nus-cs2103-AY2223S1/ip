@@ -86,7 +86,7 @@ public class Parser {
             return new FindCommand(keyword);
         case "DELETE":
             try {
-                // Delete now supports batch operations.
+                // Delete now supports batch operations
                 String[] indexStrings = restOfCommand.split(",");
                 List<Integer> indices = new ArrayList<>();
 
@@ -99,15 +99,27 @@ public class Parser {
             }
         case "MARK":
             try {
-                int index = Integer.valueOf(restOfCommand) - 1;
-                return new MarkCommand(index);
+                // Mark now supports batch operations
+                String[] indexStrings = restOfCommand.split(",");
+                List<Integer> indices = new ArrayList<>();
+
+                for (String i : indexStrings) {
+                    indices.add(Integer.valueOf(i.strip()) - 1);
+                }
+                return new MarkCommand(indices);
             } catch (NumberFormatException e) {
                 throw new DukeException("Task ID supplied is not a number.");
             }
         case "UNMARK":
             try {
-                int index = Integer.valueOf(restOfCommand) - 1;
-                return new UnmarkCommand(index);
+                // Unmark now supports batch operations
+                String[] indexStrings = restOfCommand.split(",");
+                List<Integer> indices = new ArrayList<>();
+
+                for (String i : indexStrings) {
+                    indices.add(Integer.valueOf(i.strip()) - 1);
+                }
+                return new UnmarkCommand(indices);
             } catch (NumberFormatException e) {
                 throw new DukeException("Task ID supplied is not a number.");
             }

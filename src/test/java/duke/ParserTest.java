@@ -45,8 +45,11 @@ public class ParserTest {
 
     @Test
     public void parse_markCommand() {
-        Command expected = new MarkCommand(3);
-        String inputCommand = "mark 4";
+        List<Integer> indices = new ArrayList<>();
+        indices.add(1);
+        indices.add(2);
+        Command expected = new MarkCommand(indices);
+        String inputCommand = "mark 2,               3";
         try {
             Command actual = Parser.parse(inputCommand);
             assertEquals(expected, actual);

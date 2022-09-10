@@ -7,7 +7,7 @@ import duke.TaskList;
 import duke.ui.Ui;
 
 /**
- * Encapsulates a command to delete a task from the list.
+ * Encapsulates a command to delete one or more tasks from the list.
  */
 public class DeleteCommand extends Command {
     private List<Integer> indices;
@@ -24,9 +24,9 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Executes the DeleteCommand to delete a Task(s) from the list.
+     * Executes the DeleteCommand to delete tasks identified by {@code}indices{@code} from the list.
      *
-     * @param tasks TaskList that task(s) will be deleted from.
+     * @param tasks TaskList that the task(s) will be deleted from.
      * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.
      */

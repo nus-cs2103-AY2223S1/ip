@@ -1,36 +1,44 @@
 package duke.command;
 
+import java.util.List;
 import duke.Storage;
 import duke.TaskList;
 import duke.ui.Ui;
 
 /**
- * Encapsulates a command to mark a task as done.
+ * Encapsulates a command to mark one or more tasks as done.
  */
 public class MarkCommand extends Command {
-    private int index;
+    private List<Integer> indices;
 
     /**
      * Creates a MarkCommand.
      *
-     * @param index Task ID of task to be marked as done.
+     * @param indices List of task IDs of tasks to be marked as done.
      */
-    public MarkCommand(int index) {
-        this.index = index;
+    public MarkCommand(List<Integer> indices) {
+        // sort from smallest to largest, so output is prettier
+        indices.sort((c1, c2) -> c1 > c2 ? 1 : -1);
+        this.indices = indices;
     }
 
     /**
-     * Executes the MarkCommand to mark a Task as done.
+     * Executes the MarkCommand to mark tasks identified by {@code}indices{@code} as done.
      *
-     * @param tasks TaskList containing task to be marked as done.
+     * @param tasks TaskList containing the task(s) to be marked as done.
      * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String doneTask = tasks.markAsDone(index);
+        String doneTasks = "";
+        for (int index : indices) {
+            String doneTask = tasks.markAsDone(index);
+            doneTasks += doneTask + "\n";
+        }
         storage.save(tasks);
-        return "Task marked as done:\n" + doneTask;
+        String plurality = indices.size() > 1 ? "these tasks" : "this task";
+        return "I've marked " + plurality + " as done:\n" + doneTasks;
     }
 
     /**
@@ -45,6 +53,6 @@ public class MarkCommand extends Command {
             return false;
         }
         MarkCommand otherCommand = (MarkCommand) o;
-        return this.index == otherCommand.index;
+        return this.indices.equals(otherCommand.indices);
     }
 }
