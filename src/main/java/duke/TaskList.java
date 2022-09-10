@@ -79,6 +79,17 @@ public class TaskList {
         }
     }
 
+    public void find(String keyword) {
+        System.out.println(SPACING + "Here are the matching tasks in your list:");
+        for (int i = 0; i < numTasks; i++) {
+            Task task = taskList.get(i);
+            String taskDescription = taskList.get(i).getTask();
+            if (taskDescription.contains(keyword)) {
+                System.out.println(SPACING + Integer.toString(i+1) + "." + task.toString());
+            }
+        }
+    }
+
     public void printList() {
         System.out.println(SPACING + "Here are the tasks in your list:");
         for (int i = 0; i < numTasks; i++) {

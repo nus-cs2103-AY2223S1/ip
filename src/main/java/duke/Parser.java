@@ -69,6 +69,12 @@ public class Parser {
             taskList.deleteTask(taskIndex);
         }
 
+        // 7. Finding tasks
+        else if (request.startsWith("find ")) {
+            String matchWith = request.replace("find ", "");
+            taskList.find(matchWith);
+        }
+
         // Inappropriate input
         else {
             System.out.println("    OOPS!!! I'm sorry, but I don't know what that means :-(\n");
