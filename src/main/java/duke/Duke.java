@@ -21,7 +21,7 @@ public class Duke {
      *
      * @param filePath the file path for storage
      */
-    public Duke (String filePath) {
+    public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         this.tasklist = new TaskList(storage.loadFromFile());

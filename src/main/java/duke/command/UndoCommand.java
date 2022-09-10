@@ -4,6 +4,9 @@ import duke.model.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
+/**
+ * A command to undo a previous change in the state of the tasklist.
+ */
 public class UndoCommand extends Command {
 
     private String lastUserInput;

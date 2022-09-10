@@ -57,6 +57,6 @@ run{
     standardInput = System.in
 }
 
-checkstyle {
-    toolVersion = '10.2'
-}
+//checkstyle {
+//    toolVersion = '10.2'
+//}
