@@ -150,7 +150,7 @@ public class Parser {
             break;
         default:
             assert false;
-            return Ui.showUnknownError();
+            Ui.showUnknownError();
         }
         if (mark != null && mark.equals("X")) {
             list.markAsDone(list.getSize() - 1);
