@@ -11,7 +11,7 @@ public class Duke {
     }
 
     /**
-     * Prints out the greeting message.
+     * Prints out the greeting message.de
      */
     private static void greetUser() {
         System.out.println("Hello! I'm Jukebox :)\n" + "What can I do for you today?\n");
