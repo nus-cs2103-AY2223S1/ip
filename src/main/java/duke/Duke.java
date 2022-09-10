@@ -1,5 +1,10 @@
 package duke;
 
+import duke.command.Command;
+import duke.exception.DukeException;
+
+import java.io.FileNotFoundException;
+
 /**
  * The Duke class encapsulates a Personal Assistant Chatbot named Duke to help keep track of various tasks.
  *
@@ -29,26 +34,34 @@ public class Duke {
         }
     }
 
-    /**
-     * Starts the Duke chatbot.
-     */
-    public void run() {
-        ui.greeting();
-        while (true) {
-            String fullCommand = ui.readCommand();
-            Parser p = new Parser(fullCommand, ui);
+    public void save() {
+        this.storage.save(tasks);
+    }
 
-            if (p.readCommand(tasks)) {
-                continue;
-            }
-
-            ui.exit();
-            storage.save(tasks);
-            break;
+    public String load() {
+        try {
+            return this.storage.printFileContents(storage.getFilePath());
+        } catch (FileNotFoundException e) {
+            return e.getMessage();
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
+    public String greeting() {
+        return ui.greeting();
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui);
+            storage.save(tasks);
+            return c.response();
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 }

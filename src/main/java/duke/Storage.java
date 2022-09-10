@@ -1,4 +1,10 @@
 package duke;
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -25,19 +31,25 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    public String getFilePath() {
+        return this.filePath;
+    }
+
     /**
      * Prints the contents of the file onto the console.
      *
      * @param filePath Relative path of the file to be loaded from.
      * @throws FileNotFoundException If filePath is invalid.
      */
-    public static void printFileContents(String filePath) throws FileNotFoundException {
+    public static String printFileContents(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
+        String response  = "";
 
         while (s.hasNextLine()) {
-            System.out.println(s.nextLine());
+            response += s.nextLine() + "\n";
         }
+        return response;
     }
 
     /**

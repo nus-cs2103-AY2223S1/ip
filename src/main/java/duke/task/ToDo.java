@@ -1,4 +1,6 @@
-package duke;
+package duke.task;
+
+import duke.task.Task;
 
 /**
  * The ToDo class encapsulates a ToDo task.
