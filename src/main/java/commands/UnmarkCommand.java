@@ -41,9 +41,6 @@ public class UnmarkCommand extends Command {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

@@ -40,9 +40,6 @@ public class MarkCommand extends Command {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

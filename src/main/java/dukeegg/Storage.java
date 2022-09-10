@@ -57,30 +57,34 @@ public class Storage {
      */
     public static Task decodeTask(String taskData) throws DukeException {
         // Backslashes in split method is necessary as | is a metacharacter in regex.
-        String[] taskValues = taskData.split("\\|", 4);
+        String[] taskValues = taskData.split("\\|", 5);
+
         Task decodedTask;
         switch (taskValues[0]) {
         case "T": {
-            if (taskValues.length != 3) {
+            if (taskValues.length != 4) {
                 throw new InvalidTaskDecodedException(TaskType.T, taskData);
             }
-            decodedTask = new Todo(taskValues[2], taskValues[1].equals("1"));
+            decodedTask = new Todo(taskValues[3], taskValues[1].equals("1"),
+                    filterStringIfNull(taskValues[2]));
             break;
         }
         case "D": {
-            if (taskValues.length != 4) {
+            if (taskValues.length != 5) {
                 throw new InvalidTaskDecodedException(TaskType.D, taskData);
             }
-            decodedTask = new Deadline(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
-                    Task.DATE_TIME_PARSER));
+            decodedTask = new Deadline(taskValues[3], taskValues[1].equals("1"),
+                    filterStringIfNull(taskValues[2]),
+                    LocalDateTime.parse(taskValues[4], Task.DATE_TIME_PARSER));
             break;
         }
         case "E": {
-            if (taskValues.length != 4) {
+            if (taskValues.length != 5) {
                 throw new InvalidTaskDecodedException(TaskType.E, taskData);
             }
-            decodedTask = new Event(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
-                    Task.DATE_TIME_PARSER));
+            decodedTask = new Event(taskValues[3], taskValues[1].equals("1"),
+                    filterStringIfNull(taskValues[2]),
+                    LocalDateTime.parse(taskValues[4], Task.DATE_TIME_PARSER));
             break;
         }
         default:
@@ -130,5 +134,18 @@ public class Storage {
         } catch (DukeException exception) {
             System.out.println(exception.toString());
         }
+    }
+
+    /**
+     * Returns the specified string if it is not null and if the string is not equals to null.
+     *
+     * @param value The specified string.
+     * @return The specified string if it is not null, otherwise null is returned.
+     */
+    public static String filterStringIfNull(String value) {
+        if (value == null || value.equals("null")) {
+            return null;
+        }
+        return value;
     }
 }

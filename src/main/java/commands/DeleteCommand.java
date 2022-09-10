@@ -39,9 +39,6 @@ public class DeleteCommand extends Command {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

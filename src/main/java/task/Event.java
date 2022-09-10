@@ -9,7 +9,8 @@ public class Event extends Task {
     private final LocalDateTime timing;
 
     /**
-     * Constructs an event with some description and datetime for the event's start time.
+     * Constructs an event with description, a boolean indicating isDone, a datetime for the event's start
+     * time.
      *
      * @param description The specified description.
      * @param isDone      The boolean indicating whether the task is done.
@@ -19,6 +20,20 @@ public class Event extends Task {
         super(description, isDone);
         this.timing = timing;
         this.taskType = TaskType.E;
+    }
+
+    /**
+     * Constructs an event with description, a boolean indicating isDone, a datetime for the event's start
+     * time, and a tag.
+     *
+     * @param description The specified description.
+     * @param isDone      The boolean indicating whether the task is done.
+     * @param tag         The specified tag.
+     * @param timing      The specified datetime string for the start time.
+     */
+    public Event(String description, boolean isDone, String tag, LocalDateTime timing) {
+        this(description, isDone, timing);
+        this.tag = tag;
     }
 
     /**

@@ -55,9 +55,6 @@ public class DeadlineCommand extends Command {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

@@ -38,10 +38,12 @@ public class EventCommand extends Command {
         if (this.inputStrings.length == 1 || this.inputStrings[1].trim().isEmpty()) {
             throw new EmptyDescriptionException(TaskType.E);
         }
+
         String[] eventStrings = inputStrings[1].split(" /at ", 2);
         if (eventStrings.length == 1 || eventStrings[1].trim().isEmpty()) {
             throw new EmptyDateTimeException(TaskType.E);
         }
+
         try {
             Event event = new Event(eventStrings[0], false, LocalDateTime.parse(eventStrings[1],
                     Task.DATE_TIME_PARSER));
@@ -53,9 +55,6 @@ public class EventCommand extends Command {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

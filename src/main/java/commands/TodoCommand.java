@@ -39,9 +39,6 @@ public class TodoCommand extends Command {
         return ui.showAddTask(todo, tasks.size());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

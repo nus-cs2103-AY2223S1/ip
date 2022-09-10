@@ -19,9 +19,6 @@ public class ByeCommand extends Command {
         return ui.showGoodbye();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return true;
     }
