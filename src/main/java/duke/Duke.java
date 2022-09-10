@@ -96,6 +96,9 @@ public class Duke {
             storage.save(tasklist);
             System.out.println("added event: " + event.getName());
             break;
+        case FIND:
+            tasklist.findList(s);
+            break;
         }
     }
 
@@ -115,7 +118,8 @@ public class Duke {
         DELETE,
         TODO,
         DEADLINE,
-        EVENT
+        EVENT,
+        FIND
     }
 }
 
