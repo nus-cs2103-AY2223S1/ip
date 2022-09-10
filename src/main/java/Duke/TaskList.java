@@ -120,4 +120,14 @@ public class TaskList {
         this.tasks.remove(this.tasks.size() - 1);
         return lastTask;
     }
+
+    /**
+     * Gets task in string format.
+     *
+     * @param index position of task.
+     * @return string form of task.
+     */
+    public String getTaskAsString(int index) {
+        return this.tasks.get(index).toString();
+    }
 }
