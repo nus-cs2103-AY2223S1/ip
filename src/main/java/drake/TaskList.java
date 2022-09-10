@@ -2,6 +2,7 @@ package drake;
 
 import drake.tasks.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
@@ -40,5 +41,17 @@ public class TaskList {
     public Task addTask(Task task) {
         list.add(task);
         return task;
+    }
+
+    public TaskList filter(List<String> searchKeywords) {
+        TaskList result = new TaskList(new ArrayList<>());
+
+        for (Task task : list) {
+            if (task.isMatch(searchKeywords)) {
+                result.addTask(task);
+            }
+        }
+
+        return result;
     }
 }

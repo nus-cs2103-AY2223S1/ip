@@ -28,6 +28,9 @@ public abstract class Task {
         return Arrays.asList(description, getStatusIcon());
     }
 
+    public boolean isMatch(List<String> searchKeywords) {
+        return searchKeywords.stream().allMatch(description::contains);
+    }
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
