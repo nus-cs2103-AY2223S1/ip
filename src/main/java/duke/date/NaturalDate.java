@@ -1,6 +1,9 @@
 package duke.date;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -22,10 +25,10 @@ public class NaturalDate {
         return new HashMap<>() {
             {
                 put("now", LocalDateTime::now);
-                put("today|tdy", () -> LocalDateTime.now().toLocalDate().atTime(23, 59));
-                put("morning", () -> LocalDateTime.now().toLocalDate().atTime(8, 0));
-                put("evening", () -> LocalDateTime.now().toLocalDate().atTime(18, 0));
-                put("night", () -> LocalDateTime.now().toLocalDate().atTime(20, 0));
+                put("today|tdy", () -> LocalDate.now().atTime(23, 59));
+                put("morning", () -> LocalDate.now().atTime(8, 0));
+                put("evening", () -> LocalDate.now().atTime(18, 0));
+                put("night", () -> LocalDate.now().atTime(20, 0));
                 put("tomorrow|tmr", () -> LocalDateTime.now().plusDays(1));
                 put("yesterday|yst", () -> LocalDateTime.now().minusDays(1));
                 put("next week|next wk", () -> LocalDateTime.now().plusDays(7));
@@ -34,6 +37,13 @@ public class NaturalDate {
                 put("last month|last mth", () -> LocalDateTime.now().minusMonths(1));
                 put("next year|next yr", () -> LocalDateTime.now().plusYears(1));
                 put("last year|last yr", () -> LocalDateTime.now().minusYears(1));
+                put("mon|monday", () -> LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY)));
+                put("tues|tuesday", () -> LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.TUESDAY)));
+                put("wed|weds|wednesday", () -> LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY)));
+                put("thur|thurs|thursday", () -> LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.THURSDAY)));
+                put("fri|friday", () -> LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.FRIDAY)));
+                put("sat|saturday", () -> LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.SATURDAY)));
+                put("sun|sunday", () -> LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY)));
             }
         };
     }
