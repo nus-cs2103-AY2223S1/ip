@@ -31,7 +31,7 @@ public class Ui {
      * @return The string containing the intended message.
      */
     public String getMarkDoneMessage(Task task) {
-        return "Nice! I've marked this task as done:" + "\n  " + task;
+        return "Acknowledged. This task is done:" + "\n  " + task;
     }
 
     /**
@@ -41,8 +41,7 @@ public class Ui {
      * @return The string containing the intended message.
      */
     public String getMarkUndoneMessage(Task task) {
-        return "OK, I've marked this task as not done yet:" + "\n  " + task;
-
+        return "Acknowledged. This task is undone:" + "\n  " + task;
     }
 
     /**
@@ -52,7 +51,7 @@ public class Ui {
      * @return The string containing the intended message.
      */
     public String getPrioritySetMessage(Task task) {
-        return "OK, I've changed the priority of this task:" + "\n  " + task;
+        return "Acknowledged. Priority has changed for this task:" + "\n  " + task;
     }
 
     /**
@@ -63,7 +62,7 @@ public class Ui {
      * @return The string containing the intended message.
      */
     public String getDeletedTaskMessage(TaskList list, Task task) {
-        return "Noted. I've removed this task:" + "\n  " + task
+        return "Acknowledged. This task is gone, reduced to atoms:" + "\n  " + task
                 + "\nNow you have " + list.getListSize() + " tasks in the list.";
     }
 
@@ -75,7 +74,7 @@ public class Ui {
      * @return The string containing the intended message.
      */
     public String getAddedTaskMessage(TaskList list, Task task) {
-        return "Got it. I've added this task:\n  " + task
+        return "Acknowledged. Task added:\n  " + task
                 + "\nNow you have " + list.getListSize() + " tasks in the list.";
 
     }
@@ -87,7 +86,7 @@ public class Ui {
      * @return The string containing the intended message.
      */
     public String getActiveTasksMessage(TaskList list) {
-        StringBuilder strBuilder = new StringBuilder("Here are the tasks in your list:");
+        StringBuilder strBuilder = new StringBuilder("Here are all the tasks:");
         list.getList().sort(Comparator.comparing(Task::getPriority));
         for (int i = 0; i < list.getListSize(); i++) {
             strBuilder.append("\n").append(i + 1).append(".").append(list.retrieveTask(i));
@@ -102,7 +101,7 @@ public class Ui {
      * @return The string containing the intended message.
      */
     public String getDueTasksMessage(List<Task> list) {
-        StringBuilder strBuilder = new StringBuilder("Here are the tasks due at this date:");
+        StringBuilder strBuilder = new StringBuilder("I found these due tasks:");
         for (int i = 0; i < list.size(); i++) {
             strBuilder.append("\n").append(i + 1).append(".").append(list.get(i));
         }
@@ -117,7 +116,7 @@ public class Ui {
      * @return The string containing the intended message.
      */
     public String getFoundTasksMessage(List<Task> list) {
-        StringBuilder strBuilder = new StringBuilder("Here are the matching tasks in your list:");
+        StringBuilder strBuilder = new StringBuilder("I found these tasks:");
         for (int i = 0; i < list.size(); i++) {
             strBuilder.append("\n").append(i + 1).append(".").append(list.get(i));
         }
