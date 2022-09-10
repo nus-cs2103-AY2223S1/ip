@@ -50,7 +50,8 @@ public class Storage {
         String taskType = currLineArr[0];
         String taskDone = currLineArr[1];
         Task decodeTask;
-        assert (taskType.equals("T") || taskType.equals("D") || taskType.equals("E")) : "Type of task is invalid in data file";
+        assert (taskType.equals("T") || taskType.equals("D") || taskType.equals("E"))
+                : "Type of task is invalid in data file";
         assert (taskDone.equals("1") || taskDone.equals("0")) : "Flag for done is invalid in data file!";
 
         if (taskType.equals("T")) {
@@ -83,7 +84,8 @@ public class Storage {
         String taskDone = taskArr[1];
         String taskDescription = taskArr[2];
         String taskWritten = "";
-        assert (taskType.equals("[T") || taskType.equals("[D") || taskType.equals("[E")) : "Type of task is invalid in data file";
+        assert (taskType.equals("[T") || taskType.equals("[D") || taskType.equals("[E"))
+                : "Type of task is invalid in data file";
         assert (taskDone.equals("[X") || taskDone.equals("[ ")) : "Flag for done is invalid in data file!";
 
         if (taskType.equals("[T")) {
