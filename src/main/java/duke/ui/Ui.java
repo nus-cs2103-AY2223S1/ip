@@ -180,18 +180,6 @@ public class Ui {
     }
 
     /**
-     * Prints the string.
-     *
-     * @param s The string to be printed.
-     */
-    public void echo(String s) {
-        showLine();
-        printTab(s);
-        showLine();
-        System.out.println();
-    }
-
-    /**
      * Prints the message when a task is deleted from a tasklist.
      *
      * @param t The tasks to be deleted.
