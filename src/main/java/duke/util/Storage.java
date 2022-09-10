@@ -39,6 +39,7 @@ public class Storage {
             save.createNewFile();
         } catch (IOException f) {
             System.out.println("something went wrong while creating save file\n" + f);
+
         }
         try {
             FileWriter fw = new FileWriter(FILE_PATH);

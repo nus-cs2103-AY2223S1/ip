@@ -28,6 +28,7 @@ public class TaskList {
                     } catch (FileParseException e) {
                         Ui.warnCorruptedLine(e);
                     } catch (DukeException e) {
+                        assert false;
                         Ui.showUnknownError();
                     }
                 }

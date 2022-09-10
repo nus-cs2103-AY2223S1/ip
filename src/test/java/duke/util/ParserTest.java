@@ -5,7 +5,6 @@ import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ParserTest {
     Parser p = new Parser(new TaskList());

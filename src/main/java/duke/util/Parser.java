@@ -107,6 +107,7 @@ public class Parser {
             throw new WrongArgumentException(arr[1], e);
         }
 
+        assert arr.length > 1;
         switch (command) {
         case todo:
             try {
@@ -139,16 +140,17 @@ public class Parser {
             } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                 if (fromSave) {
                     throw new FileParseException(input, e);
+                }
+                if (e instanceof ArrayIndexOutOfBoundsException) {
+                    throw new NoArgumentException(2, e);
                 } else {
-                    if (e instanceof ArrayIndexOutOfBoundsException) {
-                        throw new NoArgumentException(2, e);
-                    } else {
-                        //e will definitely be a DateTimeParseException
-                        throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
-                    }
+                    throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
                 }
             }
             break;
+        default:
+            assert false;
+            return Ui.showUnknownError();
         }
         if (mark != null && mark.equals("X")) {
             list.markAsDone(list.getSize() - 1);
