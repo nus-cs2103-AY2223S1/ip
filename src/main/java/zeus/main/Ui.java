@@ -26,9 +26,9 @@ public class Ui {
     }
 
     /**
-     * Returns String of output.
+     * Returns String of response.
      *
-     * @return String of output
+     * @return String representing the output.
      */
     public String getResponse() {
         return this.response.toString();
@@ -41,8 +41,8 @@ public class Ui {
     /**
      * Prints message to indicate task is added and size of task list.
      *
-     * @param task Task to be added
-     * @param size Size of list after task is added
+     * @param task Task to be added.
+     * @param size Size of list after task is added.
      */
     public void printAddTask(Task task, int size) {
         addToResponse("Very well. Your task has been added:\n");
@@ -53,8 +53,8 @@ public class Ui {
     /**
      * Prints message to indicated task is deleted and size of task list.
      *
-     * @param task Task to be deleted
-     * @param size Size of list after task is deleted
+     * @param task Task to be deleted.
+     * @param size Size of list after task is deleted.
      */
     public void printDeleteTask(Task task, int size) {
         addToResponse("Very well. I've removed this task:\n");
@@ -79,7 +79,7 @@ public class Ui {
     /**
      * Print tasks when user uses find command.
      *
-     * @param taskList ArrayList of tasks matching user search
+     * @param taskList ArrayList of tasks matching user search.
      */
     public void printMatchingTasks(ArrayList<Task> taskList) {
         addToResponse("These are the matching tasks in your list:\n");
@@ -90,7 +90,6 @@ public class Ui {
         }
     }
 
-
     /**
      * Adds exit message to response.
      */
@@ -99,7 +98,9 @@ public class Ui {
     }
 
     /**
-     * Adds message to response.
+     * Adds input message to response.
+     *
+     * @param message String of message to add to response.
      */
     public void addMessageToResponse(String message) {
         addToResponse(message);

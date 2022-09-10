@@ -6,7 +6,7 @@ import zeus.main.TaskList;
 import zeus.main.Ui;
 
 /**
- * Class that handles undoing commands.
+ * Handles undoing commands.
  */
 public class UndoCommand extends Command {
 
@@ -19,10 +19,10 @@ public class UndoCommand extends Command {
     /**
      * Executes the command to undo a command.
      *
-     * @param taskList List of tasks
-     * @param ui The Ui
-     * @param storage The Storage
-     * @throws ZeusException If last version reached and undo not possible
+     * @param taskList List of tasks.
+     * @param ui The Ui.
+     * @param storage The Storage.
+     * @throws ZeusException If last version reached and undo not possible.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {

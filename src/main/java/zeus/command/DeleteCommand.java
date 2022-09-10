@@ -7,7 +7,7 @@ import zeus.main.Ui;
 import zeus.task.Task;
 
 /**
- * Command that handles deleting a Task.
+ * Handles deleting a Task.
  */
 public class DeleteCommand extends Command {
 
@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
     /**
      * Constructor of DeleteCommand class.
      *
-     * @param idx Index of Task to be deleted in task list
+     * @param idx Index of Task to be deleted in task list.
      */
 
     public DeleteCommand(int idx) {
@@ -26,10 +26,10 @@ public class DeleteCommand extends Command {
     /**
      * Executes deletion of Task from task list.
      *
-     * @param taskList List of tasks
-     * @param ui The Ui
-     * @param storage The Storage
-     * @throws ZeusException If input is invalid
+     * @param taskList List of tasks.
+     * @param ui The Ui.
+     * @param storage The Storage.
+     * @throws ZeusException If input is invalid.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {

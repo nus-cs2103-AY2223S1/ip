@@ -6,7 +6,7 @@ import zeus.main.TaskList;
 import zeus.main.Ui;
 
 /**
- * Class that handles the case of marking a Task as not done.
+ * Handles the case of marking a Task as not done.
  */
 
 public class TaskNotDoneCommand extends Command {
@@ -16,7 +16,7 @@ public class TaskNotDoneCommand extends Command {
     /**
      * Constructor for TaskNotDoneCommand.
      *
-     * @param idx Index of task in task list to be marked as not done
+     * @param idx Index of task in task list to be marked as not done.
      */
     public TaskNotDoneCommand(int idx) {
         this.idx = idx;
@@ -25,10 +25,10 @@ public class TaskNotDoneCommand extends Command {
     /**
      * Executes the command to mark task as not done.
      *
-     * @param taskList List of tasks
-     * @param ui The Ui
-     * @param storage The Storage
-     * @throws ZeusException If user input is invalid
+     * @param taskList List of tasks.
+     * @param ui The Ui.
+     * @param storage The Storage.
+     * @throws ZeusException If user input is invalid.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {

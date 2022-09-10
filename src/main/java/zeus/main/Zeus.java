@@ -28,6 +28,12 @@ public class Zeus {
         }
     }
 
+    /**
+     * Returns String of response based on input.
+     *
+     * @param input A string of input message.
+     * @return A string representing the response to the input message.
+     */
     public String getResponse(String input) {
         if (isExit) {
             return "You have exited.";

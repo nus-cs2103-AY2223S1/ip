@@ -15,26 +15,26 @@ import zeus.task.Todo;
 
 
 /**
- * Class that deals with loading tasks from the file and saving tasks in the file.
+ * Deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
 
     private String filePath;
 
     /**
-     * Constructor of Storage class
+     * Constructor of Storage class.
      *
-     * @param filePath relative file path to file containing tasks
+     * @param filePath Relative file path to file containing tasks.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
     /**
-     * Load the data from the hard disk when Zeus starts up.
+     * Loads the data from the hard disk when Zeus starts up.
      *
-     * @return ArrayList of tasks
-     * @throws ZeusException If error encountered when loading data
+     * @return ArrayList of tasks.
+     * @throws ZeusException If error encountered when loading data.
      */
     public ArrayList<Task> load() throws ZeusException {
 
@@ -78,10 +78,10 @@ public class Storage {
 
 
     /**
-     * Save the tasks in the hard disk automatically whenever the task list changes.
+     * Saves the tasks in the hard disk automatically whenever the task list changes.
      *
-     * @param taskList List of tasks to be saved
-     * @throws ZeusException If error is encountered while saving to file
+     * @param taskList List of tasks to be saved.
+     * @throws ZeusException If error is encountered while saving to file.
      */
     public void saveTasksToDisk(ArrayList<Task> taskList) throws ZeusException {
 

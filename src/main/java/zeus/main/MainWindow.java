@@ -35,9 +35,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Initialise chatbot for MainWindow.
+     * Initialises the chatbot for MainWindow.
      *
-     * @param z Chatbot to be used for MainWindow
+     * @param z The chatbot to be used for MainWindow.
      */
     public void setZeus(Zeus z) {
         zeus = z;

@@ -10,7 +10,7 @@ import zeus.task.Event;
 
 
 /**
- * Command that handles adding Event.
+ * Handles adding Event.
  */
 public class AddEventCommand extends Command {
 
@@ -21,8 +21,8 @@ public class AddEventCommand extends Command {
     /**
      * Constructor of AddEventCommand class.
      *
-     * @param description Description of Event
-     * @param datetimeDescription String that represents event date
+     * @param description Description of Event.
+     * @param datetimeDescription String that represents event date.
      */
     public AddEventCommand(String description, String datetimeDescription) {
         this.description = description;
@@ -32,8 +32,8 @@ public class AddEventCommand extends Command {
     /**
      * Constructor of AddEventCommand class.
      *
-     * @param description Description of Event
-     * @param datetime LocalDate that represents event date
+     * @param description Description of Event.
+     * @param datetime LocalDate that represents event date.
      */
     public AddEventCommand(String description, LocalDate datetime) {
         this.description = description;
@@ -41,12 +41,12 @@ public class AddEventCommand extends Command {
     }
 
     /**
-     * Executes the command of adding the Evemt.
+     * Executes the command of adding the Event.
      *
-     * @param taskList List of tasks
-     * @param ui The Ui
-     * @param storage The Storage
-     * @throws ZeusException If input is invalid
+     * @param taskList List of tasks.
+     * @param ui The Ui.
+     * @param storage The Storage.
+     * @throws ZeusException If input is invalid.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {

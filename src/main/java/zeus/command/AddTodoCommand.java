@@ -7,7 +7,7 @@ import zeus.main.Ui;
 import zeus.task.Todo;
 
 /**
- * Command that handles adding Todo to tasks.
+ * Handles adding Todo to tasks.
  */
 public class AddTodoCommand extends Command {
     private String description;

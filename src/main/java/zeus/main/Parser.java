@@ -23,11 +23,11 @@ public class Parser {
 
 
     /**
-     * Static method that parses a String and returns the corresponding Command.
+     * Returns the corresponding Command from parsing the input String.
      *
-     * @param fullCommand A String of input
-     * @return The corresponding Command
-     * @throws ZeusException If input is not in acceptable format
+     * @param fullCommand A String of input.
+     * @return The corresponding Command.
+     * @throws ZeusException If input is not in acceptable format.
      */
     public static Command parse(String fullCommand) throws ZeusException {
 
@@ -85,10 +85,10 @@ public class Parser {
     }
 
     /**
-     * Check if input is in the required format to be converted to a Date.
+     * Returns true if input is in the required format to be converted to a Date, returns false otherwise.
      *
-     * @param dateInfo String representing date
-     * @return boolean representing whether input string is in a specific format
+     * @param dateInfo String representing date.
+     * @return A boolean representing whether input string is in a specific format.
      */
     private static boolean isSpecificDateFormat(String dateInfo) {
         String[] dateAndTime = dateInfo.split(" ");

@@ -14,8 +14,8 @@ public class Event extends Task {
     /**
      * Constructor of Event class.
      *
-     * @param description a String that describes the Event
-     * @param datetime    a String that represents the datetime of the Event
+     * @param description A String that describes the Event.
+     * @param datetime A String that represents the datetime of the Event.
      */
     public Event(String description, String datetime) {
         super(description);
@@ -25,8 +25,8 @@ public class Event extends Task {
     /**
      * Constructor of Event class with formatted datetime as LocalDate.
      *
-     * @param description a String that describes the Event
-     * @param datetimeFormatted    a LocalDate that represents the datetime of the Event
+     * @param description A String that describes the Event.
+     * @param datetimeFormatted A LocalDate that represents the datetime of the Event.
      */
     public Event(String description, LocalDate datetimeFormatted) {
         super(description);
@@ -36,7 +36,7 @@ public class Event extends Task {
     /**
      * Copy constructor of Event class.
      *
-     * @param event Event to copy
+     * @param event Event to copy.
      */
     public Event(Event event) {
         super(event.getDescription(), event.isDone);
@@ -57,7 +57,7 @@ public class Event extends Task {
     /**
      * Returns Task that represents this Event to avoid casting in the copy constructor.
      *
-     * @return Task that represents this Event
+     * @return Task that represents this Event.
      */
     @Override
     public Task copy() {
@@ -67,7 +67,7 @@ public class Event extends Task {
     /**
      * Returns a String that represents the Event.
      *
-     * @return a String that represents the Event
+     * @return String that represents the Event.
      */
     @Override
     public String toString() {

@@ -8,7 +8,7 @@ public class Todo extends Task {
     /**
      * Constructor of Todo class.
      *
-     * @param description a String that represents the description for the Todo task
+     * @param description A String that represents the description for the Todo task.
      */
     public Todo(String description) {
         super(description);
@@ -17,7 +17,7 @@ public class Todo extends Task {
     /**
      * Copy constructor of Todo class.
      *
-     * @param todo Todo to copy
+     * @param todo Todo to copy.
      */
     public Todo(Todo todo) {
         super(todo.getDescription(), todo.isDone);
@@ -26,7 +26,7 @@ public class Todo extends Task {
     /**
      * Returns Todo as a String formatted to be a line in file.
      *
-     * @return String representing todo.
+     * @return String representing Todo.
      */
     @Override
     public String getFileFormat() {
@@ -36,7 +36,7 @@ public class Todo extends Task {
     /**
      * Returns Task that represents this Todo to avoid casting in the copy constructor.
      *
-     * @return Task that represents this Todo
+     * @return Task that represents this Todo.
      */
     @Override
     public Task copy() {

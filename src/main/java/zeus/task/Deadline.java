@@ -14,8 +14,8 @@ public class Deadline extends Task {
     /**
      * Constructor of Deadline class.
      *
-     * @param description the description of the deadline task
-     * @param by          a String that represents date of deadline
+     * @param description The description of the deadline task.
+     * @param by A String that represents date of deadline.
      */
     public Deadline(String description, String by) {
         super(description);
@@ -25,8 +25,8 @@ public class Deadline extends Task {
     /**
      * Constructor of Deadline class with datetime.
      *
-     * @param description the description of the deadline task
-     * @param date          a LocalDate that represents date of deadline
+     * @param description The description of the deadline task.
+     * @param date A LocalDate that represents date of deadline.
      */
     public Deadline(String description, LocalDate date) {
         super(description);
@@ -36,7 +36,7 @@ public class Deadline extends Task {
     /**
      * Copy constructor of Deadline class.
      *
-     * @param deadline Deadline to copy
+     * @param deadline Deadline to copy.
      */
     public Deadline(Deadline deadline) {
         super(deadline.getDescription(), deadline.isDone);
@@ -57,7 +57,7 @@ public class Deadline extends Task {
     /**
      * Returns Task that represents this Deadline to avoid casting in the copy constructor.
      *
-     * @return Task that represents this Deadline
+     * @return Task that represents this Deadline.
      */
     @Override
     public Task copy() {
@@ -67,7 +67,7 @@ public class Deadline extends Task {
     /**
      * Returns a String that represents the Deadline.
      *
-     * @return a String that represents the Deadline
+     * @return A String representing the Deadline.
      */
     @Override
     public String toString() {

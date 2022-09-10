@@ -10,7 +10,7 @@ import zeus.task.Deadline;
 
 
 /**
- * Command that handles adding Deadline.
+ * Handles adding Deadline.
  */
 public class AddDeadlineCommand extends Command {
 
@@ -21,8 +21,8 @@ public class AddDeadlineCommand extends Command {
     /**
      * Constructor of AddDeadlineCommand class.
      *
-     * @param description Description of Deadline task
-     * @param by String that represents due date
+     * @param description Description of Deadline task.
+     * @param by String that represents due date.
      */
     public AddDeadlineCommand(String description, String by) {
         this.description = description;
@@ -32,8 +32,8 @@ public class AddDeadlineCommand extends Command {
     /**
      * Constructor of AddDeadlineCommand class.
      *
-     * @param description Description of Deadline task
-     * @param localDate LocalDate that represents due date
+     * @param description Description of Deadline task.
+     * @param localDate LocalDate that represents due date.
      */
     public AddDeadlineCommand(String description, LocalDate localDate) {
         this.description = description;
@@ -43,10 +43,10 @@ public class AddDeadlineCommand extends Command {
     /**
      * Executes the command of adding the Deadline.
      *
-     * @param taskList List of tasks
-     * @param ui The Ui
-     * @param storage The Storage
-     * @throws ZeusException If input is invalid
+     * @param taskList List of tasks.
+     * @param ui The Ui.
+     * @param storage The Storage.
+     * @throws ZeusException If input is invalid.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {
