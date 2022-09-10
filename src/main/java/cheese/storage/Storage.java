@@ -35,16 +35,11 @@ public class Storage {
      * @throws CheeseException If save file contains corrupted data.
      */
     public TaskList load() throws CheeseException {
+        createSaveFileIfNonexistent();
+
         TaskList taskList = new TaskList();
         try {
             File file = new File(filePath);
-            if (!file.getParentFile().exists()) {
-                file.getParentFile().mkdirs();
-            }
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNext()) {
@@ -63,7 +58,9 @@ public class Storage {
      *
      * @param taskList Task list to save.
      */
-    public void save(TaskList taskList) {
+    public void save(TaskList taskList) throws CheeseException {
+        createSaveFileIfNonexistent();
+
         String toSave = taskList.toFileString();
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -71,6 +68,25 @@ public class Storage {
             fw.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Creates save file and directory if they do not exist.
+     *
+     * @throws CheeseException If unable to create save file.
+     */
+    private void createSaveFileIfNonexistent() throws CheeseException {
+        try {
+            File file = new File(filePath);
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            throw new CheeseException("Unable to create save file");
         }
     }
 
