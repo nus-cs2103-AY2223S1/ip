@@ -34,6 +34,15 @@ public class Deadline extends Task {
     }
 
     /**
+     * @param newByTime new by time stated
+     */
+    public void setByTime(String newByTime) {
+        String format = "HHmm, d/MM/yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        this.byTime = LocalDateTime.parse(newByTime, formatter);
+    }
+
+    /**
      * {@inheritDoc}
      * @return String of deadline with details, TaskType, name, isMarked and time.
      */
@@ -43,12 +52,6 @@ public class Deadline extends Task {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return "[D]" + super.toString()
                 + " (by: " + byTime.format(formatter) + ")";
-    }
-
-    public void setByTime(String newByTime) {
-        String format = "HHmm, d/MM/yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        this.byTime = LocalDateTime.parse(newByTime, formatter);
     }
 }
 

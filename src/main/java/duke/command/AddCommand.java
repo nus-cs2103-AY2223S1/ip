@@ -35,7 +35,6 @@ public class AddCommand extends Command {
         assert(ui != null && taskList != null);
         Task newTask;
         String[] commands = getInfo().split(" ", 2);
-
         try {
             switch (commands[0]) {
             case "todo":
@@ -53,11 +52,15 @@ public class AddCommand extends Command {
         } catch (DukeException e) {
             return e.getMessage();
         }
-
         taskList.addTask(newTask);
         return ui.showAddMessage(newTask, taskList.getSize());
     }
 
+    /**
+     * @param commands Information of todo
+     * @return A new todo task
+     * @throws DukeException If there is invalid commands or arguments
+     */
     private Task getTodoTask(String[] commands) throws DukeException {
         Task newTask;
         if (commands.length < 2 || commands[1].length() == 0) {
@@ -68,6 +71,11 @@ public class AddCommand extends Command {
         return newTask;
     }
 
+    /**
+     * @param commands Information of deadline
+     * @return A new deadline task
+     * @throws DukeException If there is invalid commands or arguments
+     */
     private Task getDeadlineTask(String[] commands) throws DukeException {
         String[] splitDate;
         Task newTask;
@@ -88,6 +96,11 @@ public class AddCommand extends Command {
         return newTask;
     }
 
+    /**
+     * @param commands Information of event
+     * @return A new event task
+     * @throws DukeException If there is invalid commands or arguments
+     */
     private Task getEventTask(String[] commands) throws DukeException {
         String[] splitDate;
         Task newTask;

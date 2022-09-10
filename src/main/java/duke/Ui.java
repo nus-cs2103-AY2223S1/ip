@@ -8,7 +8,9 @@ import duke.task.Task;
  */
 public class Ui {
     /**
-     * Show unknown command messages.
+     * Shows unknown message.
+     *
+     * @return unknown message
      */
     public String showUnknownMessage() {
         return ("I'm sorry, "
@@ -16,10 +18,11 @@ public class Ui {
     }
 
     /**
-     * Show add messages.
+     * Shows add messages.
      *
      * @param task Task added
      * @param size Size of TaskList
+     * @return add message
      */
     public String showAddMessage(Task task, int size) {
         String plural = size == 1
@@ -31,10 +34,11 @@ public class Ui {
     }
 
     /**
-     * Show delete messages.
+     * Shows delete messages.
      *
      * @param task Task that is going to be deleted
      * @param size Size of TaskList
+     * @return delete message
      */
     public String showDeleteMessage(Task task, int size) {
         String info = task.toString();
@@ -47,24 +51,29 @@ public class Ui {
     }
 
     /**
-     * Show exit messages when the program is going to end.
+     * Shows exit messages when the program is going to end.
+     *
+     * @return exit message
      */
     public String showExitMessage() {
         return ("Bye. Hope to see you again soon!");
     }
 
     /**
-     * Show header of list command.
+     * Shows header of list command.
+     *
+     * @return header of list command
      */
     public String showList() {
         return ("Your List :");
     }
 
     /**
-     * Show the details of task.
+     * Shows the details of task.
      *
      * @param index Index of task
      * @param task Task to print
+     * @return task details
      */
     public String showTask(int index, Task task) {
         assert(index > 0);
@@ -72,7 +81,7 @@ public class Ui {
     }
 
     /**
-     * Show the details of taskList.
+     * Shows the details of taskList.
      *
      * @param taskList TaskList to print
      * @return string of taskList
@@ -88,38 +97,59 @@ public class Ui {
     }
 
     /**
-     * Show mark messages.
+     * Shows mark messages.
      *
      * @param task Task marked as done
+     * @return mark message
      */
     public String showMarkMessage(Task task) {
         return "Nice! I've marked this task as done:\n  " + task.toString();
     }
 
     /**
-     * Show unmark messages.
+     * Shows unmark messages.
      *
      * @param task Task unMarked as done.
+     * @return unmark message
      */
     public String showUnmarkMessage(Task task) {
         return "OK, I've marked this task as not done yet:\n  " + task.toString();
     }
 
     /**
-     * Show find message when tasks are found.
+     * Shows find message when tasks are found.
+     *
+     * @return task found message
      */
     public String showFindMessage() {
         return ("Here are the matching tasks in your list:\n");
     }
 
     /**
-     * Show find message when no task is found.
+     * Shows find message when no task is found.
+     *
+     * @return task not found message
      */
     public String showFindEmptyMessage() {
         return ("There are no matching task in your list\n");
     }
 
+    /**
+     * Shows snooze message when task is snoozed.
+     *
+     * @param task task to snooze
+     * @return snooze message
+     */
     public String showSnoozeMessage(Task task) {
         return "OK, I've snoozed this task:\n  " + task.toString();
+    }
+
+    /**
+     * Shows invalid index message.
+     *
+     * @return invalid index message
+     */
+    public String showInvalidIndexMessage() {
+        return "Invalid index! \nPlease enter a valid index.";
     }
 }

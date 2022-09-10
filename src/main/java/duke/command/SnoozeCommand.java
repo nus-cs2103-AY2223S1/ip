@@ -49,7 +49,6 @@ public class SnoozeCommand extends Command {
         } else {
             ui.showUnknownMessage();
         }
-
         return ui.showSnoozeMessage(task);
     }
 }

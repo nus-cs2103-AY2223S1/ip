@@ -11,7 +11,7 @@ public class FindCommand extends Command {
     private String keyword;
     
     /**
-     * Constructor of FindCommand
+     * Constructor of FindCommand.
      *
      * @param info Type of command
      * @param keyword Keyword to find
@@ -22,7 +22,7 @@ public class FindCommand extends Command {
     }
     
     /**
-     * Executes find command
+     * Executes find command.
      *
      * @param ui Ui to show find messages.
      * @param taskList TaskList to find tasks with name that has keywords in it.

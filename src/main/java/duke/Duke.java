@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.Command;
 import duke.ui.Launcher;
 
 /**
@@ -27,7 +28,11 @@ public class Duke {
      */
     public String getResponse(String input) {
         assert(ui != null && taskList != null && input != null);
-        return Parser.parse(input).execute(ui, taskList);
+        Command command = Parser.parse(input);
+        if (command == null) {
+            return "Invalid arguments for this command!";
+        }
+        return command.execute(ui, taskList);
     }
 
     public static void main(String[] args) {

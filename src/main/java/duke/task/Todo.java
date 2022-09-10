@@ -11,7 +11,7 @@ public class Todo extends Task {
 
     /**
      * {@inheritDoc}
-     * @return String of todo with details, TaskType, name and isMarked.
+     * @return String of todo with details, TaskType, name and isMarked
      */
     @Override
     public String toString() {

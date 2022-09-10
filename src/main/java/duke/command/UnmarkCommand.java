@@ -12,7 +12,7 @@ public class UnmarkCommand extends Command {
     private int num;
 
     /**
-     * Constructor for UnmarkCommand
+     * Constructor for UnmarkCommand.
      *
      * @param info Type of command
      * @param num Index of task
@@ -32,8 +32,10 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(Ui ui, TaskList taskList) {
         assert(ui != null && taskList != null);
-        Task task;
-        task = taskList.getTask(num);
+        if (num >= taskList.getSize() || num < 0) {
+            return ui.showInvalidIndexMessage();
+        }
+        Task task = taskList.getTask(num);
         task.setUnmarked();
         return ui.showUnmarkMessage(task);
     }
