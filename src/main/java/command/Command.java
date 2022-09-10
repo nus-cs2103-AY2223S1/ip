@@ -3,6 +3,7 @@ package command;
 import main.Storage;
 import main.TaskList;
 import main.Ui;
+import task.Task;
 
 public abstract class Command {
 
@@ -12,6 +13,13 @@ public abstract class Command {
         this.commandArgs = commandArgs;
     }
 
-    abstract void execute(TaskList tasks, Ui ui, Storage storage); //Referenced from Marcus Ong Wee's code
+    public boolean isEnd() {
+        return false;
+    }
+
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage); //Referenced from Marcus Ong Wee's code
+
+    public abstract Task getTask();
+
     
 }

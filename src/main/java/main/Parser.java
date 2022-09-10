@@ -1,5 +1,15 @@
 package main;
 
+import command.ByeCommand;
+import command.Command;
+import command.DeadlineCommand;
+import command.DeleteCommand;
+import command.EventCommand;
+import command.ListCommand;
+import command.LoadCommand;
+import command.MarkCommand;
+import command.TodoCommand;
+import command.UnmarkCommand;
 import exception.InvalidCommandException;
 
 public class Parser {
@@ -14,62 +24,37 @@ public class Parser {
     private static final String COMMAND_MARK = "mark";
     private static final String COMMAND_UNMARK = "unmark";
 
-    Parser() {
-        ;
+    Duke chatbot;
+
+    Parser(Duke chatbot) {
+        this.chatbot = chatbot;
     }
 
-    public String[] parseCommand(String userCommand) throws InvalidCommandException {
-        String[] parsedCommand = {"","",""};
+    public Command parseCommand(String userCommand) throws InvalidCommandException {
         String splitUserStatement[] = userCommand.split(" ", 2);
-        if (!isValidCommand(splitUserStatement[0])) {
-            throw new InvalidCommandException("Thats not an available command.");
-        }
         String command = splitUserStatement[0];
-        parsedCommand[0] = command;
-        String userArgs = "";
-        if (splitUserStatement.length > 1) {
-            userArgs = splitUserStatement[1];
-        }
-        String[] splitUserArgs = {"",""};
-        if (command.equals(COMMAND_DEADLINE)) {
-            splitUserArgs = userArgs.split("/by", 2);
-        }
-        else if (command.equals(COMMAND_EVENT)) {
-            splitUserArgs = userArgs.split("/at", 2);
-        } else {
-            splitUserArgs = userArgs.split("/", 2);
-        }
-        parsedCommand[1] = splitUserArgs[0];
-        if (splitUserArgs.length > 1) {
-            parsedCommand[2] = splitUserArgs[1];
-        }
-        return parsedCommand;
-
-    }
-
-    public boolean isValidCommand(String command) {
+        String commandArgs = splitUserStatement[1];
         switch(command) { //no breaks as all cases lead to return
-            case COMMAND_LOAD:
-                return true;
-            case COMMAND_LIST:
-                return true;
-            case COMMAND_BYE:
-                return true;
-            case COMMAND_TODO:
-                return true;
-            case COMMAND_DEADLINE:            
-                return true;
-            case COMMAND_EVENT:          
-                return true;
-            case COMMAND_MARK:
-                return true;
-            case COMMAND_UNMARK:
-                return true;
-            case COMMAND_DELETE:
-                return true;
-            default:
-                return false;
-            }
-    }    
-
+        case COMMAND_LOAD:
+            return new LoadCommand(commandArgs);
+        case COMMAND_LIST:
+            return new ListCommand(commandArgs);
+        case COMMAND_BYE:
+            return new ByeCommand(commandArgs);
+        case COMMAND_TODO:
+            return new TodoCommand(commandArgs);
+        case COMMAND_DEADLINE:            
+            return new DeadlineCommand(commandArgs);
+        case COMMAND_EVENT:          
+            return new EventCommand(commandArgs);
+        case COMMAND_MARK:
+            return new MarkCommand(commandArgs);
+        case COMMAND_UNMARK:
+            return new UnmarkCommand(commandArgs);
+        case COMMAND_DELETE:
+            return new DeleteCommand(commandArgs);
+        default:
+            throw new InvalidCommandException("Command entered is invalid");
+        }
+    }
 }

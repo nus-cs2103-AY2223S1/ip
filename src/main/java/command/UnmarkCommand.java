@@ -5,15 +5,15 @@ import main.TaskList;
 import main.Ui;
 import task.Task;
 
-public class ByeCommand extends Command{
+public class UnmarkCommand extends Command{
     
-    public ByeCommand(String commandArgs) {
+    public UnmarkCommand(String commandArgs) {
         super(commandArgs);
     }
 
     @Override
     public boolean isEnd() {
-        return true;
+        return false;
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) {

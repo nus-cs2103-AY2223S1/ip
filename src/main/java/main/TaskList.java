@@ -1,4 +1,5 @@
 package main;
+
 import java.util.ArrayList;
 
 import task.Task;
@@ -13,6 +14,18 @@ public class TaskList {
     TaskList(TaskList tasklist) {
         this.tasks = new ArrayList<Task>();
         this.tasks.addAll(tasklist.tasks); //deep copy ArrayList
+    }
+
+    public void add(Task newTask) {
+        this.tasks.add(newTask);
+    }
+
+    public ArrayList<Task> getTasks() {
+        return this.tasks;
+    }
+
+    public int size() {
+        return this.tasks.size();
     }
 
     @Override

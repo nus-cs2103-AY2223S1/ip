@@ -5,15 +5,15 @@ import main.TaskList;
 import main.Ui;
 import task.Task;
 
-public class ByeCommand extends Command{
-    
-    public ByeCommand(String commandArgs) {
+public class DeadlineCommand extends Command {
+
+    public DeadlineCommand(String commandArgs) {
         super(commandArgs);
     }
 
     @Override
     public boolean isEnd() {
-        return true;
+        return false;
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
@@ -25,5 +25,5 @@ public class ByeCommand extends Command{
         // TODO Auto-generated method stub
         return null;
     }
-
+    
 }
