@@ -47,6 +47,7 @@ public class Parser {
         throw new DukeException("☹ OOPS!!! The description of a mark cannot be empty.");
       } else {
         int num = Integer.parseInt(line.substring(7));
+        assert num >= 0;
         taskList.setTaskStatus(num - 1, false);
       }
     } else if (line.contains("mark")) {
