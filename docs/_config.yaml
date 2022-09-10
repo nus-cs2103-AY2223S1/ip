@@ -1,0 +1,10 @@
+title: Duke
+description: I am Duke.
+
+remote_theme: just-the-docs/just-the-docs
+
+color_scheme: "light"
+
+aux_links:
+  "Duke on GitHub":
+    - "//github.com/nerbnerb/ip"
