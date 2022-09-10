@@ -8,7 +8,7 @@ import java.util.function.Predicate;
  * This class serves as a way to abstract the idea of making a command
  * as a matching process and an action.
  */
-public class CommandMatcher {
+public class CommandMatcher extends StringMatcher<DukeResponse> {
     private Predicate<String> shouldRunAction;
     private Function<String, DukeResponse> action;
 
@@ -19,10 +19,9 @@ public class CommandMatcher {
      * @param action Action to run.
      */
     public CommandMatcher(Predicate<String> shouldRunAction, Function<String, DukeResponse> action) {
+        super(shouldRunAction, action);
         assert shouldRunAction != null;
         assert action != null;
-        this.shouldRunAction = shouldRunAction;
-        this.action = action;
     }
 
     /**
@@ -48,22 +47,5 @@ public class CommandMatcher {
         assert action != null;
         return new CommandMatcher((cmd) -> cmd.strip().startsWith(prefix),
                 DukeExceptionFunction.toFunction(action));
-    }
-
-    /**
-     * Checks if the string matches.
-     * If it does, it would execute the action.
-     *
-     * @param input String to check if it is for this command.
-     * @return A DukeResponse if the string matches.
-     */
-    public Optional<DukeResponse> run(String input) {
-        assert input != null;
-        if (shouldRunAction.test(input)) {
-            DukeResponse result = action.apply(input);
-            assert result != null;
-            return Optional.of(result);
-        }
-        return Optional.empty();
     }
 }
