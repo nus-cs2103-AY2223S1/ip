@@ -37,7 +37,7 @@ public class Duke {
         boolean isExit = false;
         while (!isExit) {
             try {
-                String fullCommand = this.ui.readCommand();
+                String fullCommand = this.ui.readUserInput();
                 Command c = Parser.parse(fullCommand);
                 c.execute(this.tasks, this.ui, this.storage);
                 isExit = c.isExit();

@@ -60,6 +60,15 @@ public class TextUi {
     }
 
     /**
+     * Reads user input and return the string value of the input.
+     *
+     * @return The string representation of user input.
+     */
+    public String readUserInput() {
+        return this.scanner.nextLine();
+    }
+
+    /**
      * Prints the successful message after a task is added.
      *
      * @param task The task to be added.
