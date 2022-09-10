@@ -112,6 +112,7 @@ public class Duke {
         if (splitInput.length < 2) {
             throw new DukeException("Please specify the number of the task to delete");
         }
+        assert splitInput.length >= 2;
         try {
             int taskIdx = Integer.parseInt(splitInput[1]);
             Task task = tasks.remove(taskIdx - 1);
