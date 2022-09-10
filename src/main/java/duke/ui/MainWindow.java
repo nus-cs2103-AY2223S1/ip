@@ -2,7 +2,6 @@ package duke.ui;
 
 import duke.Duke;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -23,8 +22,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
 
     private Duke duke;
 
@@ -37,9 +34,11 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    public void setDuke(Duke duke) {
+        this.duke = duke;
+        assert dialogContainer.getChildren().isEmpty();
         dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(WELCOME_MSG, dukeImage));
+        assert !dialogContainer.getChildren().isEmpty();
     }
 
     /**
