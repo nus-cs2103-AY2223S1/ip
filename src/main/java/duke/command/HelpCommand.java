@@ -17,13 +17,13 @@ public class HelpCommand extends Command {
     public String execute(TaskList tasks, Storage storage) {
         String help = "help - shows all commands\n";
         String list = "list - lists tasks\n";
-        String mark = "mark [index] - mark task as complete\n";
-        String unmark = "unmark [index] - mark task as incomplete\n";
-        String todo = "todo [description] - creates a todo task\n";
-        String event = "event [description] /at [date] - creates an event task\n";
-        String deadline = "deadline [description] /by [date] - creates a deadline task\n";
-        String find = "find [query] - finds task with query\n";
-        String delete = "delete [index] - deletes a task\n";
+        String mark = "mark <index> - mark task as complete\n";
+        String unmark = "unmark <index> - mark task as incomplete\n";
+        String todo = "todo <description> - creates a todo task\n";
+        String event = "event <description> /at <date> - creates an event task\n";
+        String deadline = "deadline <description> /by <date> - creates a deadline task\n";
+        String find = "find <query> - finds task with query\n";
+        String delete = "delete <index> - deletes a task\n";
         String bye = "bye - exits the program\n";
         return "List of commands:\n" + help + list + mark + unmark + todo
                 + event + deadline + find + delete + bye;
