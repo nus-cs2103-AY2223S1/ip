@@ -1,5 +1,7 @@
 package roofus;
 
+import java.time.LocalDate;
+
 import roofus.command.ByeCommand;
 import roofus.command.ClearCommand;
 import roofus.command.Command;
@@ -163,7 +165,12 @@ public class Parser {
         if (separate.length < 2) {
             throw new RoofusException("Wrong format for deadline!!");
         }
-        return new DeadlineCommand(new Deadline(separate[0], separate[1]));
+        try {
+            LocalDate.parse(separate[1]);
+            return new DeadlineCommand(new Deadline(separate[0], separate[1]));
+        } catch (Exception err) {
+            throw new RoofusException("Date is in wrong format!!!");
+        }
     }
 
     /**
@@ -182,7 +189,12 @@ public class Parser {
         if (separate.length < 2) {
             throw new RoofusException("Wrong format for event!!");
         }
-        return new EventCommand(new Event(separate[0], separate[1]));
+        try {
+            LocalDate.parse(separate[1]);
+            return new EventCommand(new Event(separate[0], separate[1]));
+        } catch (Exception err) {
+            throw new RoofusException("Date is in wrong format!!!");
+        }
     }
 
     /**
