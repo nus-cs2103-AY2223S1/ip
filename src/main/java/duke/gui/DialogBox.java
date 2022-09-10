@@ -19,11 +19,10 @@ import javafx.scene.text.TextFlow;
 /**
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.
- * <p>
- * @@author Jeffry Lum-reused
- * Reused from <a href="https://se-education.org/guides/tutorials/javaFxPart4.html">se-education</a>
- * with minor modifications
  */
+// @@author Jeffry Lum-reused
+// Reused from <a href="https://se-education.org/guides/tutorials/javaFxPart4.html">se-education</a>
+// with minor modifications
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;

@@ -94,6 +94,7 @@ public class Duke {
 
     /**
      * Gets the greeting message.
+     * @return the greeting message
      */
     public String getGreetings() {
         outputStream.reset();
@@ -103,6 +104,7 @@ public class Duke {
 
     /**
      * Gets the help message.
+     * @return the help message
      */
     public String getHelp() {
         outputStream.reset();

@@ -39,6 +39,7 @@ public class Ui {
     /**
      * Handles the user input passed in and calls the appropriate method.
      *
+     * @param input the input
      * @return true if the user wants to continue, false otherwise
      */
     public String readCommand(String input) {

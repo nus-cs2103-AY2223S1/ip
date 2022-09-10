@@ -11,11 +11,10 @@ import javafx.stage.Stage;
 
 /**
  * A GUI for Duke using FXML.
- * <p>
- * @@author Jeffry Lum-reused
- * Reused from <a href="https://se-education.org/guides/tutorials/javaFxPart4.html">se-education</a>
- * with minor modifications
  */
+// @@author Jeffry Lum-reused
+// Reused from <a href="https://se-education.org/guides/tutorials/javaFxPart4.html">se-education</a>
+// with minor modifications
 public class Main extends Application {
     private Duke duke = new Duke();
 
