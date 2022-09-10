@@ -49,6 +49,7 @@ public class Storage {
                 // read next line
                 line = reader.readLine();
             }
+            assert(line == null);
             reader.close();
         } catch(FileNotFoundException e){
             File file = new File(this.filePath);
