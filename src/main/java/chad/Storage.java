@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -87,7 +86,7 @@ public class Storage {
     /**
      * Writes task to text file
      * @param str formatted string
-     * @throws IOException Thrown when file cannot be opened
+     * @throws ChadException Thrown when file cannot be opened
      */
     public static void writeToFile(String str) throws ChadException {
         try {
@@ -104,7 +103,7 @@ public class Storage {
     /**
      * Delete task in text file
      * @param index index of text to be deleted
-     * @throws IOException Thrown when file cannot be opened
+     * @throws ChadException Thrown when file cannot be opened
      */
     public static void deleteTaskInFile(int index) throws ChadException {
         try {
@@ -137,7 +136,7 @@ public class Storage {
     /**
      * Toggles done attribute in task list based on index
      * @param index index of task
-     * @throws IOException Thrown when file cannot be opened
+     * @throws ChadException Thrown when file cannot be opened
      */
     public static void toggleMarkTaskInFile(int index) throws ChadException {
         try {
@@ -158,6 +157,7 @@ public class Storage {
                 } else {
                     String[] tempArr = currentLine.split("\\|");
                     String markIndex = tempArr[1].trim();
+                    assert (markIndex.equals("0") || markIndex.equals("1"));
                     markIndex = markIndex.equals("0") ? "1" : "0";
                     tempArr[1] = markIndex;
                     StringBuilder line = new StringBuilder();

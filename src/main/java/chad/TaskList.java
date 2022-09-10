@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import chad.exception.ChadException;
 import chad.task.Deadline;
@@ -78,10 +77,6 @@ public class TaskList {
             throw new ChadException("The description of a deadline cannot be empty.");
         }
 
-//        if (dateTime.isEmpty()) {
-//            throw new ChadException("The date of a deadline cannot be empty.");
-//        }
-
         Deadline newTask = new Deadline(taskDescription, dateTime);
         tasks.add(newTask);
 
@@ -112,10 +107,6 @@ public class TaskList {
         if (taskDescription.isEmpty()) {
             throw new ChadException("The description of a event cannot be empty.");
         }
-
-//        if (dateTime.isEmpty()) {
-//            throw new ChadException("The datetime of a event cannot be empty.");
-//        }
 
         Event newTask = new Event(taskDescription, dateTime);
         tasks.add(newTask);

@@ -13,4 +13,12 @@ public class Utility {
         String output = line + "\n" + text + "\n" + line;
         return output;
     }
+
+    /**
+     * Prints text to console
+     * @param text
+     */
+    public static void printToConsole(String text) {
+        System.out.println(text);
+    }
 }

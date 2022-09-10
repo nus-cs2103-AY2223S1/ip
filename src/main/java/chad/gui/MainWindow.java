@@ -54,6 +54,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = chad.getResponse(input);
 
+        assert !response.equals("");
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getChadDialog(response, chadImage)
