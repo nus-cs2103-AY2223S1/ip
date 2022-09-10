@@ -4,6 +4,17 @@ package duke;
  * A class that handles user input.
  */
 public class Parser {
+    private static final String GREET_COMMAND = "hello";
+    private static final String EXIT_COMMAND = "bye";
+    private static final String DISPLAY_COMMAND = "list";
+    private static final String MARK_COMMAND = "mark";
+    private static final String UNMARK_COMMAND = "unmark";
+    private static final String CREATE_TODO_COMMAND = "todo";
+    private static final String CREATE_DEADLINE_COMMAND = "deadline";
+    private static final String CREATE_EVENT_COMMAND = "event";
+    private static final String DELETE_COMMAND = "delete";
+    private static final String FIND_COMMAND = "find";
+
     /**
      * Parses an input string and calls the relevant method (if any).
      *
@@ -18,33 +29,33 @@ public class Parser {
         }
 
         switch (command) {
-        case "hello":
+        case GREET_COMMAND:
             Ui.displayGreeting();
             break;
-        case "bye":
+        case EXIT_COMMAND:
             Duke.exit();
             break;
-        case "list":
+        case DISPLAY_COMMAND:
             Ui.displayTasks();
             break;
-        case "mark":
-        case "unmark":
+        case MARK_COMMAND:
+        case UNMARK_COMMAND:
             boolean isDone = command.equals("mark");
             Ui.displayMarkTaskMessage(TaskList.markTask(isDone, args), isDone);
             break;
-        case "todo":
+        case CREATE_TODO_COMMAND:
             Ui.displayAddTaskMessage(TaskList.addToDo(args));
             break;
-        case "deadline":
+        case CREATE_DEADLINE_COMMAND:
             Ui.displayAddTaskMessage(TaskList.addDeadline(args));
             break;
-        case "event":
+        case CREATE_EVENT_COMMAND:
             Ui.displayAddTaskMessage(TaskList.addEvent(args));
             break;
-        case "delete":
+        case DELETE_COMMAND:
             Ui.displayDeleteTaskMessage(TaskList.deleteTask(args));
             break;
-        case "find":
+        case FIND_COMMAND:
             Ui.displaySearchTasksMessage(TaskList.searchTasks(args), args);
             break;
         default:

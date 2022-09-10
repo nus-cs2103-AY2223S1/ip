@@ -41,7 +41,7 @@ public class Storage {
             String saveFormatString = scanner.nextLine();
             String[] args = saveFormatString.split("\\|", 4);
             if (args.length < 3) {
-                System.out.println("Invalid task save string, task not added");
+                Duke.addToResponse("Invalid task save string, task not added");
                 continue;
             }
 
@@ -49,7 +49,7 @@ public class Storage {
             boolean marked = args[1].strip().equals("1") ? true : false;
             String taskName = args[2].strip();
             if (taskName == "") {
-                System.out.println("Invalid task save string, task not added");
+                Duke.addToResponse("Invalid task save string, task not added");
                 continue;
             }
 
@@ -58,20 +58,20 @@ public class Storage {
                 try {
                     date = LocalDate.parse(args[3].strip());
                 } catch (DateTimeParseException e) {
-                    System.out.println("Invalid date in task save string, task not added");
+                    Duke.addToResponse("Invalid date in task save string, task not added");
                 }
             }
 
             switch (taskType) {
-            case "T":
+            case ToDo.TASK_TYPE_CHARACTER:
                 TaskList.addToList(new ToDo(taskName, marked));
                 break;
-            case "D":
+            case Deadline.TASK_TYPE_CHARACTER:
                 if (date != null) {
                     TaskList.addToList(new Deadline(taskName, marked, date));
                 }
                 break;
-            case "E":
+            case Event.TASK_TYPE_CHARACTER:
                 if (date != null) {
                     TaskList.addToList(new Event(taskName, marked, date));
                 }
@@ -108,7 +108,7 @@ public class Storage {
 
             dataFileWriter.close();
         } catch (IOException e) {
-            System.out.println("Error: Failed to save tasks");
+            Duke.addToResponse("Error: Failed to save tasks");
         }
     }
 }

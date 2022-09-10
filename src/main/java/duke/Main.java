@@ -30,6 +30,7 @@ public class Main extends Application {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+
         }
     }
 }
