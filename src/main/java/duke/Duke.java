@@ -19,7 +19,7 @@ public class Duke {
 
     private final Storage storage;
     private final TaskList tasks;
-    private boolean running;
+    private boolean isRunning;
 
     /**
      * Constructor for Duke.
@@ -28,7 +28,7 @@ public class Duke {
     public Duke(Path filePath) {
         storage = new Storage(filePath);
         tasks = new TaskList();
-        running = true;
+        isRunning = true;
     }
 
     public Duke() {
@@ -60,7 +60,7 @@ public class Duke {
             Command c = Parser.parseCommand(input);
             out = c.execute(tasks, storage);
             if (c.isExit()) {
-                running = false;
+                isRunning = false;
             }
         } catch (DukeException e) {
             out = "Error: " + e.getMessage();
@@ -68,7 +68,7 @@ public class Duke {
         return out;
     }
 
-    public boolean isRunning() {
-        return running;
+    public boolean getIsRunning() {
+        return isRunning;
     }
 }

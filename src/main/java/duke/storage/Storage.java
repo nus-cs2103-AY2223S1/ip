@@ -33,7 +33,7 @@ public class Storage {
     }
 
     /**
-     * Read tasks from storage.
+     * Reads tasks from storage.
      * @return A List of Strings, each representing a task.
      */
     public List<String> read() {
@@ -47,7 +47,7 @@ public class Storage {
     }
 
     /**
-     * Write the list of tasks to the hard disk.
+     * Writes the list of tasks to the hard disk.
      * @param tasks Tasks to write.
      */
     public void write(TaskList tasks) {
