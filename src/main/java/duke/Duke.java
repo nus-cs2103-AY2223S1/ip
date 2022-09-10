@@ -9,7 +9,6 @@ public class Duke {
             new Duke("data/tasks.txt").run();
         }
 
-    private String filePath;
     private Ui ui;
     private Storage storage;
     private Parser parser;
@@ -18,7 +17,6 @@ public class Duke {
     private boolean isRunning = false;
 
     public Duke(String filePath) {
-        this.filePath = filePath;
         ui = new Ui();
         storage = new Storage(filePath);
         parser = new Parser();
@@ -59,6 +57,7 @@ public class Duke {
     private void execute(Command c, String s) throws IOException, DukeTaskException {
         switch(c) {
         case BYE:
+            stop();
             ui.end();
             System.out.println("Bye. Hope to see you again soon!");
             isRunning = false;
@@ -122,60 +121,3 @@ public class Duke {
         FIND
     }
 }
-
-
-
-
-
-
-
-
-
-/*
-       //Unused:
-
-            try {
-                String s = scan.nextLine();
-                int indexOfSpace = s.indexOf(' ');
-                isMultipleWords = indexOfSpace > -1;
-                firstWord = s;
-                restWord = "";
-                if (isMultipleWords) {
-                    firstWord = s.substring(0, indexOfSpace);
-                    restWord = s.substring(indexOfSpace).trim();
-                }
-                System.out.println("--------------------------------------");
-
-                switch(firstWord) {
-                    case "bye":
-                        scan.close();
-                        System.out.println("Bye. Hope to see you again soon!");
-                        break LOOP;
-                    case "list":
-                        int count = 1;
-                        System.out.println("Here are the tasks in your list:");
-                        for (Task item : log) {
-                            System.out.println(count + ". " + item.toString());
-                            count++;
-                        }
-                        break;
-                    case "mark":
-                        if (!isMultipleWords) {
-                            throw new DukeException("Index of task to mark required");
-                        }
-                    {
-                        int index = Integer.parseInt(restWord) - 1; //array starts from 0
-                        Task temp = log.get(index);
-                        temp.Mark();
-                        System.out.println("This task is now done: \n" + temp);
-                    }
-                    case "unmark":
-                        if (!isMultipleWords) {
-                            throw new DukeException("Index of task to unmark required");
-                        }
-                        int index = Integer.parseInt(restWord) - 1; //array starts from 0
-                        Task temp = log.get(index);
-                        temp.Unmark();
-                        System.out.println("This task is now not done: \n" + temp);
-                }
-*/
