@@ -76,14 +76,20 @@ public class Parser {
      */
     private static Command parseDeadlineCommand(String[] fullCommandArray) throws CheeseException {
         validateCommandHasNArguments(fullCommandArray, 1);
+
         String deadlineArgument = fullCommandArray[1];
-        if (!deadlineArgument.contains("/by")) {
+        boolean hasNoFlag = !deadlineArgument.contains("by");
+        if (hasNoFlag) {
             throw new CheeseException("A deadline requires a /by flag.");
         }
+
         String[] deadlineArgumentArray = deadlineArgument.split("/by", 2);
-        if (deadlineArgumentArray[0].length() == 0 || deadlineArgumentArray[1].length() == 0) {
+        boolean hasNoDescription = deadlineArgumentArray[0].length() == 0;
+        boolean hasNoDeadline = deadlineArgumentArray[1].length() == 0;
+        if (hasNoDescription || hasNoDeadline) {
             throw new CheeseException("A deadline requires both a description and deadline.");
         }
+
         String description = deadlineArgumentArray[0].trim();
         String deadline = deadlineArgumentArray[1].trim();
         return new DeadlineCommand(description, deadline);
@@ -99,14 +105,20 @@ public class Parser {
      */
     private static Command parseEventCommand(String[] fullCommandArray) throws CheeseException {
         validateCommandHasNArguments(fullCommandArray, 1);
+
         String eventArgument = fullCommandArray[1];
-        if (!eventArgument.contains("/at")) {
+        boolean hasNoFlag = !eventArgument.contains("/at");
+        if (hasNoFlag) {
             throw new CheeseException("A deadline requires an /at flag.");
         }
+
         String[] eventArgumentArray = eventArgument.split("/at", 2);
-        if (eventArgumentArray[0].length() == 0 || eventArgumentArray[1].length() == 0) {
+        boolean hasNoDescription = eventArgumentArray[0].length() == 0;
+        boolean hasNoEventTime = eventArgumentArray[1].length() == 0;
+        if (hasNoDescription || hasNoEventTime) {
             throw new CheeseException("An event requires both a description and event time.");
         }
+
         String description = eventArgumentArray[0].trim();
         String timeInterval = eventArgumentArray[1].trim();
         return new DeadlineCommand(description, timeInterval);
@@ -121,7 +133,8 @@ public class Parser {
      */
     private static void validateCommandHasNArguments(String[] fullCommandArray, int n)
             throws CheeseException {
-        if (fullCommandArray.length != n + 1) {
+        boolean hasNArguments = fullCommandArray.length == n + 1;
+        if (!hasNArguments) {
             throw new CheeseException();
         }
     }

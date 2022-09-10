@@ -5,7 +5,7 @@ package cheese.exception;
  */
 public class CheeseException extends Exception {
     /**
-     * Consructs an instance of <code>CheeseException</code> with default message.
+     * Constructs an instance of <code>CheeseException</code> with default message.
      */
     public CheeseException() {
         super("Sowwy, I don't understand");
@@ -13,7 +13,7 @@ public class CheeseException extends Exception {
 
     /**
      * Constructs an instance of <code>CheeseException</code>.
-     * 
+     *
      * @param message Message of exception.
      */
     public CheeseException(String message) {

@@ -44,7 +44,7 @@ public class Deadline extends Task {
     @Override
     public String toFileString() {
         String formattedDeadline = DateTimeUtils.parseLocalDateTimeToInput(deadline);
-        return "deadline" + Storage.delimiter + super.toFileString() + Storage.delimiter + formattedDeadline;
+        return "deadline" + Storage.DELIMITER + super.toFileString() + Storage.DELIMITER + formattedDeadline;
     }
 
     /**

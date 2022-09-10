@@ -44,7 +44,7 @@ public class Event extends Task {
     @Override
     public String toFileString() {
         String formattedTimeInterval = DateTimeUtils.parseLocalDateTimeToInput(timeInterval);
-        return "event" + Storage.delimiter + super.toFileString() + Storage.delimiter + formattedTimeInterval;
+        return "event" + Storage.DELIMITER + super.toFileString() + Storage.DELIMITER + formattedTimeInterval;
     }
 
     /**

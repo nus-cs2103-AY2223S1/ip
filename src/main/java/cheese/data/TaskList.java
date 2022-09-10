@@ -146,7 +146,8 @@ public class TaskList {
      * @throws CheeseException If index is not in the range of task list.
      */
     private void validateTaskIndexInRange(int taskIndex) throws CheeseException {
-        if (taskIndex < 0 || taskIndex >= taskList.size()) {
+        boolean isOutOfRange = taskIndex < 0 || taskIndex >= taskList.size();
+        if (isOutOfRange) {
             throw new CheeseException("Item number is not in list range.");
         }
     }

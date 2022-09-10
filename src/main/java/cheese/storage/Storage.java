@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public class Storage {
     /** Delimiter of storage file */
-    public static final String delimiter = " // ";
+    public static final String DELIMITER = " // ";
 
     /** File path of save file. */
     private String filePath;
@@ -79,7 +79,6 @@ public class Storage {
      * @throws CheeseException If string from save file is corrupted.
      */
     private Task decodeStringToTask(String taskString) throws CheeseException {
-        final String DELIMITER = " // ";
         String[] taskStringArray = taskString.split(DELIMITER);
 
         String taskType = taskStringArray[0];

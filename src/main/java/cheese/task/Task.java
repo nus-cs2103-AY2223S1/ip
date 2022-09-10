@@ -58,7 +58,7 @@ public class Task {
      */
     public String toFileString() {
         String isDoneString = isDone ? "T" : "F";
-        return isDoneString + Storage.delimiter + description;
+        return isDoneString + Storage.DELIMITER + description;
     }
 
     /**

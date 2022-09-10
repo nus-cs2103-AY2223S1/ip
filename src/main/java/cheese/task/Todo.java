@@ -32,7 +32,7 @@ public class Todo extends Task {
      */
     @Override
     public String toFileString() {
-        return "todo" + Storage.delimiter + super.toFileString();
+        return "todo" + Storage.DELIMITER + super.toFileString();
     }
 
     /**
