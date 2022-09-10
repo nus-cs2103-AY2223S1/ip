@@ -15,7 +15,7 @@
                 <Insets left="10.0" top="5.0" bottom="5.0"/>
             </padding>
             <font>
-                <Font name="Baskerville" size="15.0" />
+                <Font name="Palatino" size="15.0" />
             </font>
         </Label>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />

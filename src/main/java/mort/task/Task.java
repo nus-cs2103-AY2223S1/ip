@@ -1,5 +1,7 @@
 package mort.task;
 
+import java.time.LocalDate;
+
 /**
  * Class that represents a task.
  */
@@ -68,14 +70,6 @@ public abstract class Task {
     }
 
     /**
-     * Returns the task as a string in its saved format.
-     * @return The string representation of the saved format of the task.
-     */
-    public String getSaveFormat() {
-        return "| " + (isDone ? 1 : 0) + " | " + this.desc;
-    }
-
-    /**
      * Checks if the given keyword is contained within the task.
      * @param keyword The given keyword to be matched.
      * @return True if there is a match; false otherwise.
@@ -84,6 +78,22 @@ public abstract class Task {
         return this.toString().toLowerCase().contains(keyword.toLowerCase());
     }
 
+    /**
+     * Returns the task as a string in its saved format.
+     * @return The string representation of the saved format of the task.
+     */
+    public String getSaveFormat() {
+        return "| " + (isDone ? 1 : 0) + " | " + this.desc;
+    }
+    
+
+    /**
+     * Checks if a given date matches date of the task.
+     * @param date
+     * @return True if there is a match; false otherwise.
+     */
+    public abstract boolean isDateMatch(LocalDate date);
+    
     /**
      * Returns the string representation of the task.
      * @return The string representation of the task.

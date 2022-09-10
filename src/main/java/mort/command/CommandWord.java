@@ -4,5 +4,5 @@ package mort.command;
  * Command words that can be ysed
  */
 public enum CommandWord {
-    TODO, DEADLINE, EVENT, MARK, UNMARK, DELETE, FIND
+    TODO, DEADLINE, EVENT, MARK, UNMARK, DELETE, FIND, VIEW
 }

@@ -35,6 +35,7 @@ public class Deadline extends Task {
      */
     public Deadline(String desc, LocalDateTime byDateTime) {
         super(desc);
+        this.byDate = byDateTime.toLocalDate();
         this.byDateTime = byDateTime;
         this.hasTime = true;
     }
@@ -50,6 +51,7 @@ public class Deadline extends Task {
         super(desc, isDone);
         this.byDate = byDate;
         this.hasTime = false;
+        this.isDone = isDone;
     }
 
     /**
@@ -61,9 +63,12 @@ public class Deadline extends Task {
      */
     public Deadline(String desc, LocalDateTime byDateTime, boolean isDone) {
         super(desc, isDone);
+        this.byDate = byDateTime.toLocalDate();
         this.byDateTime = byDateTime;
         this.hasTime = true;
+        this.isDone = isDone;
     }
+    
     private String formatBy() {
         if (this.hasTime) {
             return this.byDateTime.format(DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a"));
@@ -71,12 +76,23 @@ public class Deadline extends Task {
             return this.byDate.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
         }
     }
+    
     private String saveFormatBy() {
         if (this.hasTime) {
             return this.byDateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
         } else {
             return this.byDate.format(DateTimeFormatter.ofPattern("d/M/yyyy"));
         }
+    }
+
+    /**
+     * Checks if a given date matches due date of the deadline.
+     * @param date
+     * @return True if there is a match; false otherwise.
+     */
+    @Override
+    public boolean isDateMatch(LocalDate date) {
+        return this.byDate.isEqual(date);
     }
 
     /**
