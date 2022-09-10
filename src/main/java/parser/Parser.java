@@ -114,10 +114,10 @@ public class Parser {
             String[] sp = text.split("] ");
             String [] desSplit = sp[1].split(" BY ");
             String des = desSplit[0];
-            String by = desSplit[1].substring(0, 10);
+            String by = desSplit[1].substring(0, 11);
 
             // Create date
-            LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+            LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd MMM yyyy"));
 
             // Create new Deadline
             Task task = new Deadline(des, date);
@@ -132,10 +132,10 @@ public class Parser {
             String[] sp = text.split("] ");
             String [] desSplit = sp[1].split(" AT ");
             String des = desSplit[0];
-            String at = desSplit[1].substring(0, 10);
+            String at = desSplit[1].substring(0, 11);
 
             // Create date
-            LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+            LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd MMM yyyy"));
 
             // Create new Event
             Task task = new Event(des, date);
