@@ -22,8 +22,13 @@ public abstract class Task {
         this.priority = Priority.MEDIUM;
     }
 
-    public String getPriorityString() {
-        return this.priority.name();
+    /**
+     * Retrieves the priority of this task.
+     *
+     * @return The priority of the task.
+     */
+    public Priority getPriority() {
+        return this.priority;
     }
 
     /**
@@ -97,7 +102,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s", this.getStatusIcon(), this.getPriorityString(), this.description);
+        return String.format("[%s][%s] %s", this.getStatusIcon(), this.getPriority().name(), this.description);
     }
 
 

@@ -38,7 +38,7 @@ public class Storage {
      * Loads the .txt file containing the tasks.
      *
      * @return Task list containing all the tasks in the .txt file.
-     * @throws DukeException
+     * @throws DukeException If file can't be read, DukeException is thrown
      */
     public TaskList load() throws DukeException {
         assert file != null;
@@ -100,10 +100,15 @@ public class Storage {
         switch (priority) {
         case "L":
             newTask.setPriority(Priority.LOW);
+            break;
         case "M":
             newTask.setPriority(Priority.MEDIUM);
+            break;
         case "H":
             newTask.setPriority(Priority.HIGH);
+            break;
+        default:
+            throw new DukeException("D,1,Read book,2000-12-31,H");
         }
         taskList.addTask(newTask);
     }

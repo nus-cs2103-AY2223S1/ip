@@ -50,6 +50,7 @@ public class TaskList extends ArrayList<Task> {
             if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
                 command = command + "," + task.getTime();
             }
+            command += "," + task.getPriority().name().charAt(0);
             commandToWrite.add(command);
         }
         return commandToWrite;
