@@ -7,22 +7,22 @@ import java.util.List;
  * A list to store the tasks.
  */
 public class TaskList {
-    private List<Task> tasks;
+    private List<Task> taskList;
 
     /**
      * An empty constructor for a TaskList.
      */
     public TaskList() {
-        tasks = new ArrayList<>();
+        taskList = new ArrayList<>();
     }
 
     /**
      * A constructor for a TaskList that uses a list of tasks.
      *
-     * @param tasks the list of tasks to initialise a TaskList
+     * @param taskList the list of tasks to initialise a TaskList
      */
-    public TaskList(List<Task> tasks) {
-        this.tasks = tasks;
+    public TaskList(List<Task> taskList) {
+        this.taskList = taskList;
     }
 
     /**
@@ -32,7 +32,7 @@ public class TaskList {
      * @return a Task with respect to the task number
      */
     public Task getTask(int taskNumber) {
-        return tasks.get(taskNumber - 1);
+        return taskList.get(taskNumber - 1);
     }
 
     /**
@@ -41,8 +41,10 @@ public class TaskList {
      * @param task the Task to be added into the TaskList
      */
     public void add(Task task) {
-        tasks.add(task);
+        taskList.add(task);
         Task.incrementNumOfTasks();
+        System.out.println(taskList);
+        System.out.println(taskList.size());
     }
 
     /**
@@ -52,7 +54,7 @@ public class TaskList {
      * @return the Task that was deleted
      */
     public Task delete(int taskNumber) {
-        Task task = tasks.remove(taskNumber - 1);
+        Task task = taskList.remove(taskNumber - 1);
         Task.decrementNumOfTasks();
         return task;
     }
@@ -63,7 +65,7 @@ public class TaskList {
      * @param taskNumber an integer representing the task number
      */
     public void mark(int taskNumber) {
-        tasks.get(taskNumber - 1).mark();
+        taskList.get(taskNumber - 1).mark();
     }
 
     /**
@@ -72,7 +74,7 @@ public class TaskList {
      * @param taskNumber an integer representing the task number
      */
     public void unmark(int taskNumber) {
-        tasks.get(taskNumber - 1).unmark();
+        taskList.get(taskNumber - 1).unmark();
     }
 
     /**
@@ -82,8 +84,8 @@ public class TaskList {
      */
     public String toStorage() {
         String res = "";
-        for (int i = 0; i < tasks.size(); i++) {
-            res += tasks.get(i).toStorage();
+        for (int i = 0; i < taskList.size(); i++) {
+            res += taskList.get(i).toStorage();
         }
         return res;
     }
@@ -96,14 +98,15 @@ public class TaskList {
     @Override
     public String toString() {
         String str = "";
-        if (tasks.size() == 0) {
+        if (taskList.size() == 0) {
             str = "\tYou do not have any tasks!";
         } else {
             str = "\tHere are the tasks in your list:";
-            for (int i = 0; i < tasks.size(); i++) {
-                str += "\n\t" + (i + 1) + ". " + tasks.get(i);
+            for (int i = 0; i < taskList.size(); i++) {
+                str += "\n\t" + (i + 1) + ". " + taskList.get(i);
             }
         }
+        System.out.println(str);
         return str;
     }
 }
