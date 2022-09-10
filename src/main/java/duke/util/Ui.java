@@ -6,19 +6,24 @@ import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
 import duke.task.Task;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * For anything related to printing statements in Duke.
  */
 public class Ui {
-    public static final String[] COMMAND_HELP = new String[] { "todo [description]",
-                                                                "deadline [description] /by [dd/MM/yy] <24hr time>",
-                                                                "event [description] /at [dd/MM/yy] <24hr time>",
-                                                                "mark [index]",
-                                                                "unmark [index]",
-                                                                "delete [index]",
-                                                                "list",
-                                                                "bye" };
+    public static final Map<String, String> COMMAND_HELP = Map.of(
+            "todo", "todo [description]",
+            "deadline", "deadline [description] /by [dd/MM/yy] <24hr time>",
+            "event", "event [description] /at [dd/MM/yy] <24hr time>",
+            "find", "find [String]",
+            "mark", "mark [index]",
+            "unmark", "unmark [index]",
+            "delete", "delete [index]",
+            "list", "list",
+            "bye", "bye");
 
     public static String showHello() {
         return "Hello! What plans do you currently have?" + "\nUse /? for help";
@@ -31,7 +36,7 @@ public class Ui {
     public static String showHelp() {
         StringBuilder str = new StringBuilder();
         str.append("These are the commands available:\n");
-        for (String desc : COMMAND_HELP) {
+        for (String desc : COMMAND_HELP.values()) {
             str.append("\n\t").append(desc);
         }
         str.append("\n");
@@ -117,6 +122,6 @@ public class Ui {
     }
 
     public static String showUnknownError() {
-         return "A particular error occurred where it's impossible for the error to occur";
+        return "A particular error occurred where it's impossible for the error to occur";
     }
 }
