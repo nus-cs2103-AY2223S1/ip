@@ -62,6 +62,7 @@ public class TaskList {
      * Marks a task.
      *
      * @param in Input of the user.
+     * @return message for user
      */
     public String markTask(String in) {
         char n = in.charAt(5);
@@ -79,6 +80,7 @@ public class TaskList {
      * Unmarks a task.
      *
      * @param in Input of the user.
+     * @return message for user
      */
     public String unmarkTask(String in) {
         char n = in.charAt(7);
@@ -94,6 +96,8 @@ public class TaskList {
 
     /**
      * Lists the inputs of the user.
+     *
+     * @return message for user
      */
     public String list() {
         int count = 1;
@@ -110,6 +114,7 @@ public class TaskList {
      * Deletes a task.
      *
      * @param in Input of the user.
+     * @return message for user
      */
     public String delete(String in) {
         char n = in.charAt(7);
@@ -123,9 +128,10 @@ public class TaskList {
     }
 
     /**
-     * Adds a deadline event to the list.
+     * Returns a message for deadline input.
      *
      * @param in Input of the user.
+     * @return message for user
      * @throws DukeException An exception unique to duke.Duke.
      */
     public String deadline(String in) throws DukeException {
@@ -133,25 +139,35 @@ public class TaskList {
         if (deadLine.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         } else {
-            String[] aStr = deadLine.split("/by ", 2);
-            String desc = aStr[0];
-            assert desc.length() > 0 : "description should not be empty";
-            String by = aStr[1];
-            Deadline d = new Deadline(desc, LocalDate.parse(by));
-            tasks.add(d);
-            size += 1;
-            String line1 = "Got it. I've added this task:";
-            String line2 = "  " + d.toString();
-            String line3 = "Now you have " + size + " tasks in the list";
-            String message = line1 + "\n" + line2 + "\n" + line3;
-            return message;
+            return addDeadline(deadLine);
         }
     }
 
     /**
-     * Adds an event task to the list.
+     * Adds a deadline event to the list.
+     *
+     * @param deadLine Input of the user.
+     * @return message for user.
+     */
+    public String addDeadline(String deadLine) {
+        String[] aStr = deadLine.split("/by ", 2);
+        String desc = aStr[0];
+        String by = aStr[1];
+        Deadline d = new Deadline(desc, LocalDate.parse(by));
+        tasks.add(d);
+        size += 1;
+        String line1 = "Got it. I've added this task:";
+        String line2 = "  " + d.toString();
+        String line3 = "Now you have " + size + " tasks in the list";
+        String message = line1 + "\n" + line2 + "\n" + line3;
+        return message;
+    }
+
+    /**
+     * Returns a message for event input.
      *
      * @param in Input of the user.
+     * @return Message for the user.
      * @throws DukeException An exception unique to duke.Duke.
      */
     public String event(String in) throws DukeException {
@@ -159,25 +175,35 @@ public class TaskList {
         if (event.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
         } else {
-            String[] aStr = event.split("/at ", 2);
-            String desc = aStr[0];
-            assert desc.length() > 0 : "description should not be empty";
-            String by = aStr[1];
-            Event e = new Event(desc, LocalDate.parse(by));
-            tasks.add(e);
-            size += 1;
-            String line1 = "Got it. I've added this task:";
-            String line2 = "  " + e.toString();
-            String line3 = "Now you have " + size + " tasks in the list";
-            String message = line1 + "\n" + line2 + "\n" + line3;
-            return message;
+            return addEvent(event);
         }
+    }
+
+    /**
+     * Adds an event task to the list.
+     *
+     * @param event Input of the user.
+     * @return Message for the user
+     */
+    public String addEvent(String event) {
+        String[] aStr = event.split("/at ", 2);
+        String desc = aStr[0];
+        String by = aStr[1];
+        Event e = new Event(desc, LocalDate.parse(by));
+        tasks.add(e);
+        size += 1;
+        String line1 = "Got it. I've added this task:";
+        String line2 = "  " + e.toString();
+        String line3 = "Now you have " + size + " tasks in the list";
+        String message = line1 + "\n" + line2 + "\n" + line3;
+        return message;
     }
 
     /**
      * Adds a to-do task to the list.
      *
      * @param in Input of the user.
+     * @return message for user
      * @throws DukeException An exception unique to duke.Duke.
      */
     public String todo(String in) throws DukeException {
@@ -199,6 +225,7 @@ public class TaskList {
     /**
      * Finds tasks in list
      * @param in Input of the user
+     * @return message for user
      * @throws DukeException If there is an error in the input
      */
     public String find(String in) throws DukeException {
