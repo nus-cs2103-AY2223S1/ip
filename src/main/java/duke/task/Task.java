@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public abstract class Task implements Serializable {
     private String description;
-    private boolean done;
+    private boolean isDone;
 
     /**
      * Constructor for {@code Task}
@@ -30,21 +30,21 @@ public abstract class Task implements Serializable {
      * @return true if it is done, and false if it is not
      */
     public boolean isDone() {
-        return this.done;
+        return this.isDone;
     }
 
     /**
      * To mark the {@code Task} as done
      */
     public void markAsDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     /**
      * To mark the {@code Task} as undone
      */
     public void markAsNotDone() {
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
