@@ -5,12 +5,14 @@ import cheese.storage.Storage;
 /**
  * Represents a task with a description and complete/incomplete status.
  */
-public class Task {
+public abstract class Task {
     /** Description of task. */
     private String description;
 
     /** Whether task is complete or incomplete. */
     private boolean isDone;
+
+    public abstract void snooze();
 
     /**
      * Constructs an instance of <code>Task</code>.

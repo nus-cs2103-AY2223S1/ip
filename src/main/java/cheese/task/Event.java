@@ -36,6 +36,14 @@ public class Event extends Task {
     }
 
     /**
+     * Postpones the event by 1 day.
+     */
+    @Override
+    public void snooze() {
+        timeInterval = timeInterval.plusDays(1);
+    }
+
+    /**
      * Returns string representation of event to save in file (eg. event // T // Concert night //
      * 2022-12-07 18:00).
      *

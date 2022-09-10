@@ -36,6 +36,14 @@ public class Deadline extends Task {
     }
 
     /**
+     * Postpones the deadline by 1 day.
+     */
+    @Override
+    public void snooze() {
+        deadline = deadline.plusDays(1);
+    }
+
+    /**
      * Returns string representation of deadline to save in file (eg. deadline // T // Do homework
      * // 2022-12-07 12:00).
      *
