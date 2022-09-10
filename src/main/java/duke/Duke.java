@@ -49,12 +49,6 @@ public class Duke {
             return e.getMessage();
         }
     }
-<<<<<<< HEAD
 
-    public static void main(String[] args) {
-        new Duke(System.getProperty("user.dir") + "/data/duke.txt").run();
-    }
-=======
->>>>>>> branch-Level-10
 }
 
