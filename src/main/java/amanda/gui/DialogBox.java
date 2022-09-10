@@ -49,7 +49,7 @@ public class DialogBox extends HBox {
 		}
 
 		dialog.setText(text);
-		dialog.setFont(Font.font("Times New Roman",15));
+		dialog.setFont(Font.font("Times New Roman",13));
 		displayPicture.setImage(img);
 	}
 
@@ -66,7 +66,6 @@ public class DialogBox extends HBox {
 	public static DialogBox getUserDialog(String text, Image img) {
 		var db = new DialogBox(text, img);
 		db.displayPicture.setClip(db.clip);
-		db.setMaxHeight(100);
 		db.setBackground(userBg);
 		return new DialogBox(text, img);
 	}

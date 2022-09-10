@@ -2,18 +2,9 @@ package amanda.manager;
 
 import java.util.StringTokenizer;
 
-import amanda.command.Command;
-import amanda.command.AddCommand;
-import amanda.command.DeleteCommand;
-import amanda.command.FindCommand;
-import amanda.command.ListCommand;
-import amanda.command.MarkCommand;
-import amanda.command.UnMarkCommand;
-import amanda.exception.EmptyDateException;
-import amanda.exception.InvalidCommandException;
-import amanda.exception.InvalidDateFormatException;
-import amanda.exception.InvalidDescriptionException;
-import amanda.exception.InvalidIndexException;
+import amanda.command.*;
+import amanda.exception.*;
+import amanda.task.Tag;
 
 
 /**
@@ -27,7 +18,7 @@ public class QueryInterpreter {
      *      and cannot be interpreted by the method.
      */
     public static Command interpret(String input) throws InvalidCommandException, InvalidDateFormatException,
-            EmptyDateException, InvalidDescriptionException, InvalidIndexException {
+            EmptyDateException, InvalidDescriptionException, InvalidIndexException, InvalidTagException {
 
         TaskMaker taskMaker = new TaskMaker();
         String type = getType(input);
@@ -37,6 +28,10 @@ public class QueryInterpreter {
             return new AddCommand(taskMaker.make(input));
         case "list":
             return new ListCommand();
+        case "tag" :
+            return new TagCommand(TaskList.getList().get(getIndex(input) - 1), getTag(input), getIndex(input));
+        case "listtag" :
+            return new ListTagCommand(TaskList.getList().get(getIndex(input) - 1), getIndex(input));
         case "find":
             return new FindCommand(input);
         case "mark":
@@ -63,11 +58,9 @@ public class QueryInterpreter {
         String type = tokens.nextToken(); // type is the first word entered by the user
         if (type.equals("todo") | type.equals("deadline") | type.equals("event")) {
             return "task";
-        } else if (type.equals("list") | type.equals("mark") | type.equals("unmark")
-                | type.equals("delete") | type.equals("bye") | type.equals("find")) {
+        } else {
             return type;
         }
-        throw new InvalidCommandException();
     }
 
     /**
@@ -86,6 +79,25 @@ public class QueryInterpreter {
             return Integer.parseInt(tokens.nextToken());
         } catch (NumberFormatException e) {
             throw new InvalidIndexException();
+        }
+    }
+
+    public static Tag getTag(String input) throws InvalidIndexException, InvalidTagException {
+        assert !input.isEmpty() : "Input is empty.";
+        StringTokenizer tokens = new StringTokenizer(input, " ");
+        tokens.nextToken();
+        if (!tokens.hasMoreTokens()) {
+            throw new InvalidIndexException();
+        }
+        tokens.nextToken();
+        if (!tokens.hasMoreTokens()) {
+            throw new InvalidTagException();
+        }
+        String tag = tokens.nextToken();
+        if (tokens.hasMoreTokens()) {
+            throw new InvalidTagException();
+        } else {
+            return new Tag(tag);
         }
     }
 }

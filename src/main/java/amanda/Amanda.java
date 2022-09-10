@@ -1,11 +1,7 @@
 package amanda;
 
 import amanda.command.Command;
-import amanda.exception.EmptyDateException;
-import amanda.exception.InvalidCommandException;
-import amanda.exception.InvalidDateFormatException;
-import amanda.exception.InvalidDescriptionException;
-import amanda.exception.InvalidIndexException;
+import amanda.exception.*;
 import amanda.manager.QueryInterpreter;
 import amanda.manager.StoreManager;
 import amanda.manager.TaskList;
@@ -36,8 +32,8 @@ public class Amanda {
 		try {
 			Command c = QueryInterpreter.interpret(input);
 			c.execute(tasks, store); // executes the command
-		} catch (InvalidCommandException | InvalidIndexException
-				| InvalidDescriptionException | InvalidDateFormatException | EmptyDateException e) {
+		} catch (InvalidCommandException | InvalidIndexException | InvalidDescriptionException
+				| InvalidDateFormatException | EmptyDateException | InvalidTagException e) {
 			Ui.addResponse(e.getMessage());
 		}
 		return Ui.getAmandaResponse();

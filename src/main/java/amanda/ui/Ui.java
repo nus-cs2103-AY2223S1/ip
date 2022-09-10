@@ -1,6 +1,7 @@
 package amanda.ui;
 
 import amanda.manager.TaskList;
+import amanda.task.Tag;
 import amanda.task.Task;
 import amanda.task.TaskState;
 
@@ -61,6 +62,10 @@ public class Ui {
     public static void deleteResponse(Task task) {
         amandaResponse += "It's fine! Out of sight, out of mind. Am i right?\n"
                 + task + "\nNow you have " + TaskList.getList().size() + " tasks in the list.";
+    }
+
+    public static void tagResponse(Task task, Tag tag) {
+        amandaResponse += "Tagging " + task + " as " + tag.getDesc() + " is not going to help you finish it faster.";
     }
 
     public static void addResponse(String input) {

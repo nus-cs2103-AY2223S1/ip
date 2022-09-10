@@ -1,11 +1,14 @@
 package amanda.task;
 
+import java.util.ArrayList;
+
 /**
  * Task is something that the user wants to get done.
  */
 public class Task {
     protected String description;
     protected TaskState state;
+    protected ArrayList<Tag> tags;
 
     /**
      * Constructor for Task class.
@@ -15,6 +18,7 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.state = TaskState.NOT_DONE;
+        this.tags = new ArrayList<>();
     }
 
     /**
@@ -54,6 +58,18 @@ public class Task {
      */
     public TaskState getState() {
         return state;
+    }
+
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
+    }
+
+    public String listTags() {
+        String res = "";
+        for (Tag t : tags) {
+            res += t + "\n";
+        }
+        return res;
     }
 
     /**
