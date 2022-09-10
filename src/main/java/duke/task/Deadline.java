@@ -3,6 +3,9 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import duke.date.DateTimeParse;
+import duke.exception.DukeException;
+
 /**
  * A deadline is a task that needs to be done before a specific date/time.
  */
@@ -34,6 +37,28 @@ public class Deadline extends Task {
     }
 
     /**
+     * Constructs a deadline from a given string in the format: {description} /by {deadline}.
+     *
+     * @param cmd The string to construct the deadline from.
+     * @return The constructed event based on the specifications of the command.
+     * @throws DukeException If the command is invalid.
+     */
+    public static Deadline construct(String cmd) throws DukeException {
+        if (!cmd.matches("(?i)^.+\\s/(by)\\s.+")) {
+            String errorMessage = "hmm are you trying to edit a deadline?"
+                    + " make sure the command is in the format: deadline {description}"
+                    + " /by {due date}";
+            throw new DukeException(errorMessage);
+        }
+
+        String[] sp = cmd.split("/(by)\\s", 2);
+        String description = sp[0];
+        String dateTimeString = sp[1];
+        LocalDateTime datetime = DateTimeParse.parseDateTime(dateTimeString);
+        return new Deadline(description, datetime);
+    }
+
+    /**
      * Returns a String representation of the due date datetime object associated to the
      * deadline task in EEEE, dd MMM yyyy HH:mm format.
      *
@@ -42,6 +67,20 @@ public class Deadline extends Task {
     public String getDueDatetimeString() {
         DateTimeFormatter dayDateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm");
         return dueDate.format(dayDateTimeFormatter);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Deadline edit(String userEditInput) throws DukeException {
+        // this kind of stupidly edits the deadline by constructing a dummy deadline in
+        // order to reuse the validation method, to look into whether there might
+        // be better ways of going about this
+        Deadline editedDeadline = construct(userEditInput);
+        description = editedDeadline.description;
+        dueDate = editedDeadline.dueDate;
+        return this;
     }
 
     /**

@@ -1,5 +1,9 @@
 package duke.task;
 
+import duke.exception.DukeException;
+import duke.gui.Response;
+import duke.gui.ResponseType;
+
 /**
  * A to do task is a task that does not have any date/time attached to it.
  */
@@ -21,6 +25,12 @@ public class ToDo extends Task {
      */
     public ToDo(String description, boolean completion) {
         super(description, completion);
+    }
+
+    @Override
+    public ToDo edit(String userEditInput) {
+        description = userEditInput;
+        return this;
     }
 
     /**

@@ -25,15 +25,13 @@ public class AddTaskCommand extends Command {
      * @param userInput The command input by the user.
      */
     public AddTaskCommand(String userInput) {
-        assert userInput.matches("((?i)^(todo)(.*))|((?i)^(deadline)(.*))|((?i)^(event)(.*))")
-                : "userInput should match a task regex";
         this.userInput = userInput;
         if (userInput.matches("(?i)^(todo)(.*)")) {
             taskType = TaskType.TODO;
         } else if (userInput.matches("(?i)^(deadline)(.*)")) {
             taskType = TaskType.DEADLINE;
         } else {
-            // should have regex (?i)^(event)(.*)
+            assert userInput.matches("((?i)^(event)(.*))") : "userInput should match an event regex";
             taskType = TaskType.EVENT;
         }
     }
