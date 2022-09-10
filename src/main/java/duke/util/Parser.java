@@ -5,6 +5,7 @@ import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Recurring;
 import duke.task.ToDo;
 import java.time.format.DateTimeParseException;
 
@@ -18,7 +19,7 @@ public class Parser {
      * Valid commands as datatype
      */
     public enum ListCommands {
-        todo, deadline, event, mark, unmark, delete, find
+        todo, deadline, event, recurring, mark, unmark, delete, find
     }
 
     public Parser(TaskList list) {
@@ -173,6 +174,23 @@ public class Parser {
                 }
             }
             break;
+        case recurring:
+            try {
+                String[] desc = arg.split(" /every ");
+                String[] arr = desc[1].split(" \\*");
+                list.add(new Recurring(desc[0], arr[0], Integer.parseInt(arr[1])));
+            } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+                if (fromSave) {
+                    throw new FileParseException(command + arg, e);
+                } else {
+                    if (e instanceof ArrayIndexOutOfBoundsException) {
+                        throw new NoArgumentException("recurring", e);
+                    } else {
+                        //e will definitely be a DateTimeParseException
+                        throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
+                    }
+                }
+            }
         default:
             assert false;
         }

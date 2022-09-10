@@ -18,6 +18,7 @@ public class Ui {
             "todo", "todo [description]",
             "deadline", "deadline [description] /by [dd/MM/yy] <24hr time>",
             "event", "event [description] /at [dd/MM/yy] <24hr time>",
+            "recurring", "recurring [description] /every [d/M or d or day or time] </at 24hr time> *[times]",
             "find", "find [String]",
             "mark", "mark [index]",
             "unmark", "unmark [index]",
