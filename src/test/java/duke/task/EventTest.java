@@ -1,7 +1,11 @@
 package duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +41,17 @@ public class EventTest {
             fail("Should have thrown EventException");
         } catch (EventException error) {
             return;
+        }
+    }
+
+    @Test
+    public void checkIsOnGivenDate_returnAsExpected() {
+        try {
+            Event sampleEvent = new Event("cs2103t meeting", "2022-09-10");
+            assertTrue(sampleEvent.isOnGivenDate(LocalDate.parse("2022-09-10")));
+            assertFalse(sampleEvent.isOnGivenDate(LocalDate.parse("2022-09-11")));
+        } catch (EventException error) {
+            fail("Should not have thrown any exception");
         }
     }
 }

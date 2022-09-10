@@ -9,7 +9,7 @@ import java.time.LocalDate;
  */
 public class TaskStub extends Task {
     protected TaskStub() {
-        super("sample");
+        super("sample", "tag1", "tag2");
     }
 
     @Override

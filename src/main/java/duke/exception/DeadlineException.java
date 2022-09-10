@@ -10,7 +10,7 @@ public class DeadlineException extends DukeException {
      * Constructs a new default DeadlineException.
      */
     public DeadlineException() {
-        super("The description and time limit of deadline cannot be empty");
+        super("The description and time limit of deadline cannot be empty.");
     }
 
     /**

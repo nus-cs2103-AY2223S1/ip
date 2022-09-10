@@ -10,7 +10,7 @@ public class EventException extends DukeException {
      * Constructs a new default EventException.
      */
     public EventException() {
-        super("The description and time of event cannot be empty");
+        super("The description and time of event cannot be empty.");
     }
 
     /**
