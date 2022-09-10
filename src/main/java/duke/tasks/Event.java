@@ -24,7 +24,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
-        String date = this.at.format(formatter);
+        String date = at.format(formatter);
         return "[E]" + super.toString() + String.format(" (at: %s)", date);
     }
 
@@ -34,7 +34,7 @@ public class Event extends Task {
      */
     @Override
     public LocalDate getDate() {
-        return this.at;
+        return at;
     }
 
     /**

@@ -30,7 +30,7 @@ public class TaskList {
      * @return A list of all the tasks added.
      */
     public ArrayList<Task> list() {
-        return this.tasks;
+        return tasks;
     }
 
     /**
@@ -56,7 +56,7 @@ public class TaskList {
      * @param task The task to be added
      */
     public void addToList(Task task) {
-        this.tasks.add(task);
+        tasks.add(task);
     }
 
     /**
@@ -64,7 +64,7 @@ public class TaskList {
      * @return The number of tasks in the list
      */
     public int getSize() {
-        return this.tasks.size();
+        return tasks.size();
     }
 
     /**
@@ -74,11 +74,11 @@ public class TaskList {
      * @throws DukeException If the task does not exist
      */
     public Task getTask(int i) throws DukeException {
-        if (i > this.tasks.size() || i < 0) {
+        if (i > tasks.size() || i < 0) {
             throw new DukeException("No such task exists!");
         }
 
-        return this.tasks.get(i);
+        return tasks.get(i);
     }
 
     /**
@@ -88,12 +88,12 @@ public class TaskList {
      * @throws DukeException If the task does not exist
      */
     public Task deleteTask(int i) throws DukeException {
-        if (i > this.tasks.size() || i <= 0) {
+        if (i > tasks.size() || i <= 0) {
             throw new DukeException("No such task exist!");
         }
 
-        Task task = this.tasks.get(i - 1);
-        this.tasks.remove(i - 1);
+        Task task = tasks.get(i - 1);
+        tasks.remove(i - 1);
         return task;
     }
 

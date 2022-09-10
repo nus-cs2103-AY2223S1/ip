@@ -1,22 +1,25 @@
 package duke.ui;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
-import java.io.IOException;
-
-
+/**
+ * This class encapsulates the header of the chatbot, where
+ * the chatbot's name is displayed
+ */
 public class Header extends VBox {
 
     @FXML
     private Label name;
 
+    /**
+     * Constructs the header for the chatbot
+     * @param name
+     */
     public Header(String name) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/Header.fxml"));

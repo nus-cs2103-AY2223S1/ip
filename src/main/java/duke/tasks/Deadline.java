@@ -24,7 +24,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
-        String date = this.by.format(formatter);
+        String date = by.format(formatter);
         return "[D]" + super.toString() + String.format(" (by: %s)", date);
     }
 
@@ -34,7 +34,7 @@ public class Deadline extends Task {
      */
     @Override
     public LocalDate getDate() {
-        return this.by;
+        return by;
     }
 
     /**

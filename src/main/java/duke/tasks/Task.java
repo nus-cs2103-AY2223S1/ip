@@ -17,9 +17,9 @@ public abstract class Task {
      * @param description The task description.
      */
     public Task(String description) {
-        this.dateMarked = null;
+        dateMarked = null;
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -48,7 +48,7 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s] %s", getStatusIcon(), description);
     }
 
     /**
@@ -56,7 +56,7 @@ public abstract class Task {
      * @param value The completion status
      */
     public void setIsDone(boolean value) {
-        this.isDone = value;
+        isDone = value;
     }
 
     /**
@@ -64,7 +64,7 @@ public abstract class Task {
      * @return True if the task is completed
      */
     public boolean getIsDone() {
-        return this.isDone;
+        return isDone;
     }
 
     /**
@@ -72,7 +72,7 @@ public abstract class Task {
      * @return The task's description
      */
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     /**

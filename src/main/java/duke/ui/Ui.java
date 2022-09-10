@@ -28,7 +28,7 @@ public class Ui {
      * Constructs a new Ui
      */
     public Ui() {
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
     /**
@@ -44,7 +44,7 @@ public class Ui {
      * @return The exit message
      */
     public String printExit() {
-        this.scanner.close();
+        scanner.close();
         return EXIT_MESSAGE;
     }
 
@@ -104,7 +104,7 @@ public class Ui {
      * @return The input provided
      */
     public String input() {
-        return this.scanner.nextLine();
+        return scanner.nextLine();
     }
 
     /**

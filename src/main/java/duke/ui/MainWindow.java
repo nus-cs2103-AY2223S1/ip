@@ -41,7 +41,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         DialogBox greeting = DialogBox.getDukeDialog(dukeImage, "Hello! I'm Pixel\nWhat can I do for you? ^_^");
         dialogContainer.getChildren().add(greeting);
-        header.getChildren().add(new Header("Duke"));
+        header.getChildren().add(new Header("Pixel"));
         userInput.setPromptText("Enter a command!");
     }
 

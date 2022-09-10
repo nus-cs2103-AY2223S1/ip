@@ -51,7 +51,7 @@ public class Storage {
      * @return A list of tasks
      */
     public ArrayList<Task> load() {
-        File file = new File(this.filePath);
+        File file = new File(filePath);
         BufferedReader reader = null;
         ArrayList<Task> tasks = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -135,14 +135,14 @@ public class Storage {
      * @throws DukeException If there are invalid inputs
      */
     public void save(TaskList tasks) throws DukeException {
-        File file = new File(this.filePath);
+        File file = new File(filePath);
         FileWriter fileWriter = null;
 
         try {
             fileWriter = new FileWriter(file);
             int len = tasks.getSize();
             for (int i = 0; i < len; i++) {
-                fileWriter.write(this.convertToString(tasks.getTask(i)));
+                fileWriter.write(convertToString(tasks.getTask(i)));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
