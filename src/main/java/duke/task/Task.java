@@ -5,42 +5,32 @@ package duke.task;
  */
 public class Task {
     private String task;
-    private boolean done;
+    private boolean isDone;
 
-<<<<<<< HEAD
-=======
     /**
      * Creates a Task object.
      * @param task Short description of the task.
      */
->>>>>>> 4dd3ea8 (add JavaDocs to some classes for A-JavaDocs)
     public Task(String task) {
         this.task = task;
-        this.done = false;
+        this.isDone = false;
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Marks a task as completed.
      * @return The new completion status of the task: true.
      */
->>>>>>> 4dd3ea8 (add JavaDocs to some classes for A-JavaDocs)
-    public boolean done() {
-        done = true;
+    public boolean markAsDone() {
+        isDone = true;
         return true;
     }
 
-<<<<<<< HEAD
-    public boolean notDone() {
-=======
     /**
      * Marks a task as not completed.
      * @return The new completion status of the task: false.
      */
-    public boolean notDone(){
->>>>>>> 4dd3ea8 (add JavaDocs to some classes for A-JavaDocs)
-        done = false;
+    public boolean markAsNotDone() {
+        isDone = false;
         return false;
     }
 
@@ -50,14 +40,12 @@ public class Task {
      */
     @Override
     public String toString() {
-        if (done) {
+        if (isDone) {
             return " | X | " + task;
         } else {
             return " |   |  " + task;
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     /**
      * Returns true if the description is contained in the task desc, false otherwise.
@@ -67,13 +55,4 @@ public class Task {
     public boolean contains(String desc) {
         return task.contains(desc);
     }
-
-    public Task(String task) {
-        this.task = task;
-        this.done = false;
-    }
-=======
->>>>>>> b68d198 (amend code based on coding style for A-CodingStyle, and integrate stylechecks for A-Stylecheck)
-=======
->>>>>>> 4dd3ea8 (add JavaDocs to some classes for A-JavaDocs)
 }

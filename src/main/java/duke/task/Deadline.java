@@ -19,7 +19,7 @@ public class Deadline extends Task {
             DateTime date = new DateTime(detailArr[2]);
             Deadline deadline = new Deadline(detailArr[1], date);
             if (detailArr[0].contains("X")) {
-                deadline.done();
+                deadline.markAsDone();
             }
             return deadline;
         } else {
