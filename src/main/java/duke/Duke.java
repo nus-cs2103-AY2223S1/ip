@@ -29,7 +29,7 @@ public class Duke {
      */
     public String getResponse(String input) throws DukeException {
         assert(ui != null && taskList != null && input != null);
-        return Parser.parse(input).execute(ui, taskList);
+        return Parser.parse(input).execute(ui, taskList, storage);
     }
 
     public static void main(String[] args) {

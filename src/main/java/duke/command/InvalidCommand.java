@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
@@ -25,7 +26,7 @@ public class InvalidCommand extends Command {
      * @return invalid message
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList, Storage storage) {
         return "Please enter command with valid arguments!";
     }
 }

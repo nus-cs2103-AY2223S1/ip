@@ -25,14 +25,8 @@ public class ExitCommand extends Command {
      * @param taskList TaskList to execute command
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList, Storage storage) {
         assert(ui != null && taskList != null);
-        Storage storage = new Storage(ui, getFilePath());
-        storage.writeFile(taskList);
         return ui.showExitMessage();
-    }
-
-    private String getFilePath() {
-        return "./data/duke.txt";
     }
 }

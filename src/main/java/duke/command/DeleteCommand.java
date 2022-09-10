@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
@@ -33,7 +34,7 @@ public class DeleteCommand extends Command {
      * @param taskList TaskList to execute delete command
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList, Storage storage) {
         assert(ui != null && taskList != null);
         if (num >= taskList.getSize() || num < 0) {
             return ui.showInvalidIndexMessage();
@@ -41,6 +42,7 @@ public class DeleteCommand extends Command {
         Task task = taskList.getTask(this.num);
         taskList.removeTask(this.num);
         int size = taskList.getSize();
+        storage.writeFile(taskList);
         return ui.showDeleteMessage(task, size);
     }
 }

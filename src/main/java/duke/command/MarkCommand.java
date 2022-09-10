@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
@@ -30,13 +31,14 @@ public class MarkCommand extends Command {
      * @param taskList TaskList to execute mark command
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList, Storage storage) {
         assert(ui != null && taskList != null);
         if (num >= taskList.getSize() || num < 0) {
             return ui.showInvalidIndexMessage();
         }
         Task task = taskList.getTask(num);
         task.setMarked();
+        storage.writeFile(taskList);
         return ui.showMarkMessage(task);
     }
 }

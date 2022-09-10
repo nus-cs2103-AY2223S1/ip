@@ -124,10 +124,8 @@ public class Storage {
      */
     public void writeFile(TaskList taskList) {
         try {
-            FileWriter fw = getFileWriter();
             ArrayList<Task> tasks = taskList.getTasks();
-            writeTasks(fw, tasks);
-            fw.close();
+            writeTasks(tasks);
         } catch (IOException | DukeException msg) {
             System.out.println("Failed to save file.");
             System.out.println(msg);
@@ -137,11 +135,11 @@ public class Storage {
     /**
      * Writes task into the file.
      *
-     * @param fw file writer
      * @param tasks task to write
      * @throws IOException If unable to write task into file.
      */
-    private void writeTasks(FileWriter fw, ArrayList<Task> tasks) throws IOException, DukeException {
+    private void writeTasks(ArrayList<Task> tasks) throws IOException, DukeException {
+        FileWriter fw = getFileWriter();
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
 
@@ -155,6 +153,7 @@ public class Storage {
             String line = getWriteText(type, marked, name, time);
             fw.write(line);
         }
+        fw.close();
     }
 
     /**

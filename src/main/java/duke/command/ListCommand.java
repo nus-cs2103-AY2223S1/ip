@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
@@ -26,7 +27,7 @@ public class ListCommand extends Command {
      * @param taskList TaskList to execute List command
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList, Storage storage) {
         assert(ui != null && taskList != null);
         String output = ui.showList() + "\n";
         return output + ui.showTaskList(taskList);
