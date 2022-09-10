@@ -67,9 +67,11 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         if (dueTime == null) {
-            return "[D]" + super.toString() + " (by: " + dueDate.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")";
+            return "[D]" + super.toString() + " (by: "
+                    + dueDate.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")";
         } else {
-            return "[D]" + super.toString() + " (by: " + dueDate.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + dueTime + ")";
+            return "[D]" + super.toString() + " (by: "
+                    + dueDate.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + dueTime + ")";
         }
     }
 }

@@ -1,13 +1,13 @@
 package duke;
 
+import duke.ui.MainWindow;
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import duke.ui.MainWindow;
+
 
 public class Main extends Application {
     private Duke duke = new Duke("./data/duke.txt");
