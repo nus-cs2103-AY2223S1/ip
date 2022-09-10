@@ -40,24 +40,32 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         try {
-            Command c = Parser.parse(input);
-            String response = justinBot.getResponse(input);
-            DialogBox userBox = DialogBox.getUserDialog(input, user, YOUR_DESCRIPTION);
-            DialogBox justinBox = DialogBox.getJustinDialog(response, justin, JUSTIN_DESCRIPTION);
-            dialogContainer.getChildren().addAll(userBox, justinBox);
-            if (c instanceof ExitCommand) {
-                System.exit(0);
-            }
+            printDialog(input);
         } catch (DukeException e) {
-            DialogBox userBox = DialogBox.getUserDialog(input, user, YOUR_DESCRIPTION);
-            DialogBox justinBox = DialogBox.getJustinDialog(e.getMessage(), justin, JUSTIN_DESCRIPTION);
-            dialogContainer.getChildren().addAll(userBox, justinBox);
+            handleException(e.getMessage(), input);
         }
         userInput.clear();
     }
 
-    public void printMessage(String msg) {
+    public void printWelcome(String msg) {
         DialogBox justinBox = DialogBox.getJustinDialog(msg, justin, JUSTIN_DESCRIPTION);
         dialogContainer.getChildren().add(justinBox);
+    }
+    
+    public void handleException(String exception, String input) {
+        DialogBox userBox = DialogBox.getUserDialog(input, user, YOUR_DESCRIPTION);
+        DialogBox justinBox = DialogBox.getJustinDialog(exception, justin, JUSTIN_DESCRIPTION);
+        dialogContainer.getChildren().addAll(userBox, justinBox);
+    }
+
+    public void printDialog(String userInput) throws DukeException {
+        Command c = Parser.parse(userInput);
+        String response = justinBot.getResponse(userInput);
+        DialogBox userBox = DialogBox.getUserDialog(userInput, user, YOUR_DESCRIPTION);
+        DialogBox justinBox = DialogBox.getJustinDialog(response, justin, JUSTIN_DESCRIPTION);
+        dialogContainer.getChildren().addAll(userBox, justinBox);
+        if (c instanceof ExitCommand) {
+            System.exit(0);
+        }
     }
 }

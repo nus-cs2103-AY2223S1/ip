@@ -33,7 +33,7 @@ public class Main extends Application {
             Command newCommand = new NewCommand();
             String welcome = newCommand.execute(justinBot.getTasks(), justinBot.getUi(), justinBot.getStorage());
             fxmlLoader.<MainWindow>getController().setJustinBot(justinBot);
-            fxmlLoader.<MainWindow>getController().printMessage(welcome);
+            fxmlLoader.<MainWindow>getController().printWelcome(welcome);
             stage.show();
         } catch (DukeException e) {
             e.printStackTrace();
