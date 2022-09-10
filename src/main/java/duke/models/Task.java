@@ -30,14 +30,37 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the status icon representing the isDone state of the task
+     * @return "X" if task is done, " " if task is not done
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Returns the string representation of the {@code Task} object
+     * @return String representing the {@code Task} object
+     */
     public abstract String getSymbol();
+
+    /**
+     * Returns the description of the {@code Task} object
+     * @return
+     */
     public abstract String getDescription();
+
+    /**
+     * Returns the string to write to file for the {@code Task} object
+     * in a format that is convenient to save and load files
+     * @return String to write to the file
+     */
     public abstract String stringToWrite();
 
+    /**
+     * Returns the string representation of the {@code Task} object
+     * @return
+     */
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;

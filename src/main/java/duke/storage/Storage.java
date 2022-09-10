@@ -19,8 +19,6 @@ import duke.models.Event;
 import duke.models.Task;
 import duke.models.Todo;
 
-
-
 /**
  * Storage class to handle file operations
  */
@@ -32,7 +30,8 @@ public class Storage {
     }
 
     /**
-     * Checks if saved folder exists.
+     * Checks if saved folder exists. Run at the start of the program
+     * to initialize data from saved file
      */
     public void run() {
         try {
@@ -40,14 +39,11 @@ public class Storage {
             String home = System.getProperty("user.dir");
 
             // inserts correct file path separator on *nix and Windows
-            // works on *nix
-            // works on Windows
             Path currentRelativePath = Paths.get("");
             String s = currentRelativePath.toAbsolutePath().toString();
 
             Path path = java.nio.file.Paths.get(home, "./data");
             boolean directoryExists = java.nio.file.Files.exists(path);
-            System.out.println(s);
             if (!directoryExists) {
                 try {
                     File newDirectory = new File("./data");
@@ -96,7 +92,6 @@ public class Storage {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
         return result;
@@ -137,5 +132,4 @@ public class Storage {
             e.printStackTrace();
         }
     }
-
 }

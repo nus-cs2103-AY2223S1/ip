@@ -7,7 +7,7 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * Duke class to initialise application
+ * Duke class to initialise application.
  */
 public class Duke {
 
@@ -56,6 +56,7 @@ public class Duke {
 
     /**
      * Starts the Terminal application
+     *
      * @param args
      * @throws DukeException
      */

@@ -2,7 +2,15 @@ package duke;
 
 import java.time.LocalDate;
 
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
+import duke.command.InvalidCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.QuackCommand;
+import duke.command.UnmarkCommand;
 import duke.models.Deadline;
 import duke.models.Event;
 import duke.models.Task;
@@ -10,7 +18,7 @@ import duke.models.Todo;
 
 
 /**
- * This class returns a command based on the user input
+ * This class returns a command based on the user input.
  */
 public class Parser {
     private TaskList taskList;
@@ -30,7 +38,7 @@ public class Parser {
      * and translates it into a command
      *
      * @param command
-     * @return
+     * @return Command object corresponding to the specified command
      */
     public static Command parse(String command) {
         assert command != null : "Command cannot be null";
