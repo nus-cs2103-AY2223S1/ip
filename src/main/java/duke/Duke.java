@@ -1,7 +1,8 @@
 package duke;
 
 import java.io.IOException;
-import java.util.Scanner;
+
+import javafx.application.Application;
 
 /**
  * The main class for the Duke program.
@@ -18,8 +19,6 @@ public class Duke {
         try {
             Storage.loadData();
         } catch (IOException e) {
-            System.out.println("Error: Failed to access data");
-
             addToResponse("Error: Failed to access data");
         }
 
@@ -36,8 +35,6 @@ public class Duke {
         try {
             Storage.saveData();
         } catch (IOException e) {
-            System.out.println("Error: Failed to access data");
-
             addToResponse("Error: Failed to access data");
         }
 
@@ -58,15 +55,21 @@ public class Duke {
         try {
             Parser.parseInput(input);
         } catch (DukeException e) {
-            System.out.println(e.getMessage());
-
             addToResponse(e.getMessage() + "\n");
         }
         Ui.generateLine();
     }
 
+    /**
+     * Gives Duke a string store as a response to the user.
+     * When getResponse is called, the string is retrieved for displaying.
+     *
+     * @param output The response string to be stored.
+     */
     public static void addToResponse(String output) {
         response.append(output);
+
+        System.out.print(output);
     }
 
     /**
@@ -100,20 +103,6 @@ public class Duke {
      * @param args The command line arguments.
      */
     public static void main(String[] args) {
-        initialize();
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (isRunning) {
-            Ui.generateLine();
-            String input = scanner.nextLine();
-            Ui.generateLine();
-
-            try {
-                Parser.parseInput(input);
-            } catch (DukeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        Application.launch(Main.class, args);
     }
 }
