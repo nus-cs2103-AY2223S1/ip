@@ -7,15 +7,31 @@ import duke.ui.TextUi;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a deadline command.
+ */
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
 
     private Deadline deadlineTask;
 
+    /**
+     * Creates a new instance of deadline command and deadline task.
+     *
+     * @param description The description of the deadline task.
+     * @param deadlineTiming The datetime of when the deadline is due.
+     */
     public DeadlineCommand(String description, LocalDateTime deadlineTiming) {
         this.deadlineTask = new Deadline(description, deadlineTiming);
     }
 
+    /**
+     * Adds the deadline task to the task list and save it to the file.
+     *
+     * @param tasks The list of tasks in Duke.
+     * @param ui The TextUi class used to print message in Duke.
+     * @param storage The storage used to save the tasks in the local file.
+     */
     @Override
     public void execute(TaskList tasks, TextUi ui, Storage storage) {
         tasks.addTask(this.deadlineTask);
