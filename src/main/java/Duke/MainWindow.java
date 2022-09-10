@@ -122,6 +122,19 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
+     * The method is a static and takes in two parameter
+     * @param task of type Task
+     * @param size of type int
+     */
+    public void printUpdateSuccessfulMsg(Task task) {
+        Label dukeText = new Label("Kk. Updated:\n" + task.toString() +
+                "\nStop ordering me around");
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(dukeText.getText(), new ImageView(dukeImage).getImage())
+        );
+    }
+
+    /**
      * The method is a static and takes in a parameter
      * @param task The input to be received
      */

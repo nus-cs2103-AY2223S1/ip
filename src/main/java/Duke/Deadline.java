@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * @author LimWeiJun
  */
 public class Deadline extends Task {
-    private final LocalDateTime by;
+    private LocalDateTime by;
 
     /**
      * The method takes in three parameters
@@ -52,5 +52,14 @@ public class Deadline extends Task {
     @Override
     public String getFormattedDetail() {
         return by.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
+    }
+
+    /**
+     * The method takes in a parameter
+     * @param newDateStr of type String
+     */
+    @Override
+    public void updateDateTime(String newDateStr) {
+        this.by = LocalDateTime.parse(newDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 }

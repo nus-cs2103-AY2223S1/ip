@@ -66,4 +66,6 @@ abstract public class Task {
     abstract String getOriginalDetail();
 
     abstract String getFormattedDetail();
+
+    abstract void updateDateTime(String newDateStr);
 }

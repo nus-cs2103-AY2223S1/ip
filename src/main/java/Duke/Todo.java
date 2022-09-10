@@ -40,4 +40,9 @@ public class Todo extends Task {
     public String getFormattedDetail() {
         return null;
     }
+
+    @Override
+    void updateDateTime(String newDateStr) {
+
+    }
 }

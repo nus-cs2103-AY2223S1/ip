@@ -28,10 +28,34 @@ public class TaskList {
      * The method takes in a parameter
      * @param task of type Task
      */
-    public void add(Task task) {
+    public void addTask(Task task) {
         if (storage.updateFile(task)) {
             tasks.add(task);
             mainWindow.printAddSuccessfulMsg(task, tasks.size());
+        }
+    }
+
+    /**
+     * The method takes in a parameter of type int
+     * @param i of type int
+     */
+    public void updateTask(int i, String newDateStr) {
+        Task task = tasks.get(i);
+        task.updateDateTime(newDateStr);
+        if (storage.rewriteEntireFile(tasks)) {
+            mainWindow.printUpdateSuccessfulMsg(task);
+        }
+    }
+
+    /**
+     * The method takes in a parameter of type int
+     * @param i of type int
+     */
+    public void deleteTask(int i) {
+        Task task = tasks.get(i);
+        tasks.remove(i);
+        if (storage.rewriteEntireFile(tasks)) {
+            mainWindow.printDeleteSuccessfulMsg(task, tasks.size());
         }
     }
 
@@ -73,18 +97,6 @@ public class TaskList {
         task.setTaskAsUnDone();
         if (storage.rewriteEntireFile(tasks)) {
             mainWindow.printUnMarkTaskSuccessfulMsg(task);
-        }
-    }
-
-    /**
-     * The method takes in a parameter of type int
-     * @param i of type int
-     */
-    public void delete(int i) {
-        Task task = tasks.get(i);
-        tasks.remove(i);
-        if (storage.rewriteEntireFile(tasks)) {
-            mainWindow.printDeleteSuccessfulMsg(task, tasks.size());
         }
     }
 }

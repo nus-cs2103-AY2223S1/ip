@@ -1,7 +1,6 @@
 package Duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * The class make sense of the user command
@@ -29,7 +28,7 @@ public class Parser {
             }
         } else if (strs.length == 2 && (strs[0].equals("delete"))) {
             int index = Integer.parseInt(strs[1]) - 1;
-            tasks.delete(index);
+            tasks.deleteTask(index);
         } else if (strs.length == 2 && (strs[0].equals("find"))) {
             ArrayList<Task> tempTasks = new ArrayList<>();
             for (int i = 0; i < tasks.getSize(); i++) {
@@ -38,6 +37,10 @@ public class Parser {
                 }
             }
             mainWindow.printFindTasks(tempTasks);
+        } else if (strs.length == 5 && (strs[0].equals("update") && strs[1].equals("datetime"))) {
+            int index = Integer.parseInt(strs[2]) - 1;
+            String newDateStr = strs[3] + " " + strs[4];
+            tasks.updateTask(index, newDateStr);
         } else {
             try {
                 String[] details;
@@ -46,17 +49,17 @@ public class Parser {
                 case "deadline":
                     details = command.split(" ", 2)[1].split(" /by ");
                     task = new Deadline(details[0], false, details[1]);
-                    tasks.add(task);
+                    tasks.addTask(task);
                     break;
                 case "event":
                     details = command.split(" ", 2)[1].split(" /at ");
                     task = new Event(details[0], false, details[1]);
-                    tasks.add(task);
+                    tasks.addTask(task);
                     break;
                 case "todo":
                     String detail = command.split(" ", 2)[1];
                     task = new Todo(detail, false);
-                    tasks.add(task);
+                    tasks.addTask(task);
                     break;
                 default:
                     mainWindow.printDontUnderstandMsg();

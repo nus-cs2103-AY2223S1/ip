@@ -46,4 +46,9 @@ public class Event extends Task {
     public String getFormattedDetail() {
         return at.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
     }
+
+    @Override
+    void updateDateTime(String newDateStr) {
+        this.at = LocalDateTime.parse(newDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
 }
