@@ -31,6 +31,6 @@ public class FileEncoder {
      * @throws IOException If error occurs when trying to write to file.
      */
     private static void encodeLine(FileWriter fileWriter, Task task) throws IOException {
-        fileWriter.write(task.fileFormat() + System.lineSeparator());
+        fileWriter.write(task.convertToFileFormat() + System.lineSeparator());
     }
 }

@@ -11,7 +11,7 @@ public class Ui {
     /**
      * Prints welcome message.
      */
-    public void welcomeMessage() {
+    public void showWelcomeMessage() {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
     }
 

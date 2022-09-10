@@ -9,7 +9,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String fileFormat() {
+    public String convertToFileFormat() {
         return String.format("event | %s | %s | %b", super.description, at, super.isDone);
     }
 

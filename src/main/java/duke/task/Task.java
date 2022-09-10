@@ -46,7 +46,7 @@ public abstract class Task {
         }
     }
 
-    public abstract String fileFormat();
+    public abstract String convertToFileFormat();
 
     /**
      * Returns string representation of this task.
