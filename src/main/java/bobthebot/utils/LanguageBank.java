@@ -66,4 +66,5 @@ public class LanguageBank {
             + "\tBut alright, marking this task as undone: \n";
     public static final String NO_TASKS_LEFT_MESSAGE = "\tYAY! There are no items in your list!";
     public static final String TASKS_LEFT_MESSAGE = "\tHere are your tasks:\n";
+    public static final String UPCOMING_TASKS_MESSAGE = "\tWatch out! These tasks are due soon!\n";
 }

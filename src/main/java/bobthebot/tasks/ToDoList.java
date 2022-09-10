@@ -96,6 +96,22 @@ public class ToDoList {
         return listWithMatchingTasks;
     }
 
+    public ToDoList tasksDueSoon() {
+        ArrayList<Task> taskList = new ArrayList<>();
+        for (Task t : list) {
+            if ((t instanceof Deadline) && ((Deadline) t).isWithinWeekOfDeadline()) {
+                taskList.add(t);
+            }
+
+            if ((t instanceof Event) && ((Event) t).isWithinWeekOfEvent()) {
+                taskList.add(t);
+            }
+        }
+
+        ToDoList tasksDueSoon = new ToDoList(taskList, storage);
+        return tasksDueSoon;
+    }
+
     /**
      * Returns a String containing all the elements in the list.
      *

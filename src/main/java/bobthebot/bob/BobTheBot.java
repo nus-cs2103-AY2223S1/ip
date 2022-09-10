@@ -2,6 +2,8 @@ package bobthebot.bob;
 
 import java.util.Scanner;
 
+import bobthebot.command.GoodbyeCommand;
+import bobthebot.command.ReminderCommand;
 import bobthebot.exceptions.BobException;
 import bobthebot.tasks.ToDoList;
 import bobthebot.utils.Parser;
@@ -38,7 +40,10 @@ public class BobTheBot {
             String command = scanner.nextLine();
             if (command.equals("bye")) {
                 assert command == "bye" : "BobTheBot.java: command should be bye";
-                Ui.sayGoodbye(list);
+                ReminderCommand reminderCommand = new ReminderCommand(list);
+                GoodbyeCommand goodbyeCommand = new GoodbyeCommand(list);
+                reminderCommand.execute();
+                goodbyeCommand.execute();
                 break;
             }
 
