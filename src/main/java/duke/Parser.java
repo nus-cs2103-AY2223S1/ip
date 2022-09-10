@@ -13,6 +13,7 @@ public class Parser {
     private TaskList taskList;
     private Ui ui;
     private Storage storage;
+    private String response = "";
 
     /**
      * Constructs a new parser object with given
@@ -32,20 +33,21 @@ public class Parser {
      * Checks whether command is valid and executes the command.
      *
      * @param input command input by user.
-     * @throws DukeException if command is invalid.
+     * @return response.
      */
-    public void checkAndExecuteCommand(String input) throws DukeException {
+    public String checkAndExecuteCommand(String input) {
         String userInput = input.trim();
         if (userInput.equals("list")) {
-            ui.printTaskList(taskList);
+            response = ui.taskListString(taskList);
         } else if (containsOperationWord(userInput)) {
-            executeCommand(userInput.trim());
+            response = executeCommand(userInput.trim());
         } else {
-            throw new DukeException();
+            response = ui.invalidCommandErrorString();
         }
+        return response;
     }
 
-    private void executeCommand(String userInput) {
+    private String executeCommand(String userInput) {
         try {
             String[] tokens = userInput.split("\\s+", 2);
             String firstWord = tokens[0];
@@ -54,30 +56,36 @@ public class Parser {
             case "find":
                 String wordToFind = tokens[1];
                 String filteredListString = taskList.getTaskStringFiltered(wordToFind);
-                ui.printFilteredList(filteredListString);
+                response = ui.printFilteredList(filteredListString);
                 break;
             case "mark":
-            case "unmark":
                 int taskNumber = Integer.parseInt(tokens[1]);
-                markingOfTasks(firstWord, taskNumber); //and print
+                Task task = taskList.getTask(taskNumber);
+                markingOfTasks(firstWord, taskNumber);
                 storage.save(taskList);
+                response = ui.taskMarkedMsgString(task);
+                break;
+            case "unmark":
+                int taskNumber2 = Integer.parseInt(tokens[1]);
+                Task task2 = taskList.getTask(taskNumber2);
+                markingOfTasks(firstWord, taskNumber2);
+                storage.save(taskList);
+                response = ui.taskUnmarkedMsgString(task2);
                 break;
             case "delete":
                 int taskNo = Integer.parseInt(tokens[1]);
-                Task task = taskList.getTask(taskNo);
+                Task task3 = taskList.getTask(taskNo);
                 this.taskList.deleteTask(taskNo);
-                ui.printDeleteTaskMsg(task, taskList);
                 storage.save(taskList);
+                response = ui.deleteTaskMsgString(task3, taskList);
                 break;
-
             case "todo":
                 String taskContent = tokens[1];
                 ToDos toDos = new ToDos(taskContent);
                 this.taskList.addTask(toDos);
-                ui.printAddTaskMsg(toDos, taskList);
                 storage.save(taskList);
+                response = ui.addTaskMsgString(toDos, taskList);
                 break;
-
             case "deadline":
                 String[] deadlineToken = splitDeadlineInput(userInput);
                 String deadlineContent = deadlineToken[0];
@@ -85,10 +93,9 @@ public class Parser {
 
                 Deadline deadline = new Deadline(deadlineContent, date);
                 this.taskList.addTask(deadline);
-                ui.printAddTaskMsg(deadline, taskList);
                 storage.save(taskList);
+                response = ui.addTaskMsgString(deadline, taskList);
                 break;
-
             case "event":
                 String[] eventToken = splitEventInput(userInput);
                 String eventContent = eventToken[0];
@@ -96,13 +103,14 @@ public class Parser {
 
                 Event event = new Event(eventContent, eventDate);
                 this.taskList.addTask(event);
-                ui.printAddTaskMsg(event, taskList);
                 storage.save(taskList);
+                response = ui.addTaskMsgString(event, taskList);
                 break;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            ui.showNoDescriptionError(userInput);
+            return ui.showNoDescriptionError(userInput);
         }
+        return response;
     }
 
     private boolean containsOperationWord(String userInput) {
@@ -147,10 +155,10 @@ public class Parser {
         Task task = this.taskList.getTask(taskNumber);
         if (firstWord.equals("mark")) {
             task.setDone(true);
-            this.ui.printTaskMarkedMsg(task);
+            this.ui.taskMarkedMsgString(task);
         } else {
             task.setDone(false);
-            this.ui.printTaskUnmarkedMsg(task);
+            this.ui.taskUnmarkedMsgString(task);
         }
     }
 }

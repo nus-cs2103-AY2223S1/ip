@@ -25,10 +25,12 @@ public class Ui {
     }
 
     /**
-     * Prints a welcome message with instructions on how to use Duke.
+     * Returns a welcome message with instructions on how to use Duke.
+     *
+     * @return a welcome message.
      */
-    public void printWelcomeMsg() {
-        String welcomeMsg = "Hello! I'm Duke\n\n     "
+    public String welcomeMsg() {
+        String msg = "Hello! I'm Duke\n\n     "
                 + "I'm capable of doing the following:\n     "
                 + "   todo <your task>\n     "
                 + "   deadline <your deadline> /by <2022-01-02>\n     "
@@ -36,110 +38,119 @@ public class Ui {
                 + "   find <content>\n     "
                 + "   bye (to exit the program)\n\n     "
                 + "What can I do for you?";
-        printWithFormat(welcomeMsg);
+        return msg;
     }
 
     /**
-     * Prints an ending message with format when user exit Duke.
+     * Returns an ending message with format when user exit Duke.
+     *
+     * @return an ending message.
      */
-    public void printEndingMsg() {
-        String endingMsg = "Bye. Hope to see you again soon!";
-        printWithFormat(endingMsg);
+    public String endingMsg() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
-     * Prints a numbered task list with format.
+     * Returns a numbered task list with format.
      *
      * @param list to be printed.
+     * @return strings representation of the lists.
      */
-    public void printTaskList(TaskList list) {
-        String text = "Here are the tasks in your list:\n     " + list.getAllTask();
-        printWithFormat(text);
+    public String taskListString(TaskList list) {
+        return "Here are the tasks in your list:\n     " + list.getAllTask();
     }
 
     /**
-     * Prints a message to indicate a task is done.
+     * Returns a message to indicate a task is done.
      *
      * @param task to be marked done.
+     * @return a message to indicate a task is done.
      */
-    public void printTaskMarkedMsg(Task task) {
-        String markedMsg = "Nice! I've marked this task as done:\n     "
+    public String taskMarkedMsgString(Task task) {
+        return "Nice! I've marked this task as done:\n     "
                 + task;
-        printWithFormat(markedMsg);
     }
 
     /**
-     * Prints a message to indicate a task is not done yet.
+     * Returns a message to indicate a task is not done yet.
      *
      * @param task to be marked un-done.
+     * @return a message to indicate the task is not done yet.
      */
-    public void printTaskUnmarkedMsg(Task task) {
-        String unmarkedMsg = "OK, I've marked this task as not done yet:\n     "
+    public String taskUnmarkedMsgString(Task task) {
+        return "OK, I've marked this task as not done yet:\n     "
                 + task;
-        printWithFormat(unmarkedMsg);
     }
 
     /**
-     * Prints a message to indicate a task is deleted from the task list.
+     * Returns a message to indicate a task is deleted from the task list.
      *
      * @param task        to be deleted.
      * @param listOfTasks task list that the task will be removed from.
+     * @return a messageto indicate a task is deleted from the task list.
      */
-    public void printDeleteTaskMsg(Task task, TaskList listOfTasks) {
-        printWithFormat("Noted. I've removed this task:\n     "
+    public String deleteTaskMsgString(Task task, TaskList listOfTasks) {
+        return "Noted. I've removed this task:\n     "
                 + task
                 + "\n     Now you have "
                 + listOfTasks.getListSize()
-                + " task(s) in the list.");
+                + " task(s) in the list.";
     }
 
     /**
-     * Prints a message to indicate a task is added to the task list.
+     * Returns a message to indicate a task is added to the task list.
      *
      * @param task        to be added.
      * @param listOfTasks task list that the task will be added to.
+     * @return a message to indicate a task is added to the task list.
      */
-    public void printAddTaskMsg(Task task, TaskList listOfTasks) {
-        printWithFormat("Got it, I've added this task:\n       "
+    public String addTaskMsgString(Task task, TaskList listOfTasks) {
+        return "Got it, I've added this task:\n       "
                 + task.toString()
                 + "\n     Now you have "
                 + listOfTasks.getListSize()
-                + " task(s) in the list.");
+                + " task(s) in the list.";
     }
 
     /**
-     * Prints a message to indicate loading error.
+     * Returns a message to indicate loading error.
+     *
+     * @return string representation of loading error.
      */
-    public void showLoadingError() {
-        printWithFormat("There is some problem loading your task(s) ☹");
+    public String loadingErrorString() {
+        return"There is some problem loading your task(s) ☹";
     }
 
     /**
-     * Prints a message to indicate unknown commands
+     * Returns a message to indicate unknown commands
+     *
+     * @return a message to indicate unknown commands.
      */
-    public void showInvalidCommandError() {
-        printWithFormat("Invalid command!");
+    public String invalidCommandErrorString() {
+        return "Invalid command!";
     }
 
     /**
-     * Prints a message to indicate that missing description of a command.
+     * Returns a message to indicate that there is missing description of a command.
      *
      * @param command with missing description.
+     * @return a message to indicate missing decription.
      */
-    public void showNoDescriptionError(String command) {
-        printWithFormat("☹ OOPS!!! The description of a "
+    public String showNoDescriptionError(String command) {
+       return "☹ OOPS!!! The description of a "
                 + command
-                + " cannot be empty.");
+                + " cannot be empty.";
     }
 
     /**
-     * Prints a filtered numbered task list with format.
+     * Returns a filtered numbered task list with format.
      *
      * @param filteredListString list of filtered tasks in strings.
+     * @return filtered numbered task list with format.
      */
-    public void printFilteredList(String filteredListString) {
+    public String printFilteredList(String filteredListString) {
         String text = "Here are the matching tasks in your list:\n     "
                 + filteredListString;
-        printWithFormat(text);
+        return text;
     }
 }

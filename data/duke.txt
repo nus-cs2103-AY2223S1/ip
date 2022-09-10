@@ -1,5 +1,4 @@
-E | 0 | book festival | 2022-10-10 1000
+T | 0 | g
+D | 1 | djdfjf | 2020-10-10
 T | 0 | borrow books
-D | 1 | iP | 2022-10-10
-E | 0 | OP1 | 2022-11-11 1500
-T | 0 | go home
+E | 1 | book fair | 2020-10-10 1400
