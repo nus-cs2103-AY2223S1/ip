@@ -45,32 +45,36 @@ public class Storage {
             TaskList result = new TaskList();
             BufferedReader reader = new BufferedReader(new FileReader("./data/duke.txt"));
             String line = reader.readLine();
-            while (line != null) {
-                String[] raw = line.split(" \\| ");
-                TaskList.Task curr = null;
-                switch (raw[0]) {
-                case "T":
-                    curr = result.addTask(raw[2]);
-                    break;
-                case "D":
-                    curr = result.addDeadline(raw[2], raw[3]);
-                    break;
-                case "E":
-                    curr = result.addEvent(raw[2], raw[3]);
-                    break;
-                default:
-                    break;
-                }
-                if (raw[1].equals("true") && curr != null) {
-                    curr.mark();
-                }
-                line = reader.readLine();
-            }
+            parseLine(result, reader, line);
             result.printData();
             return result;
         } catch (IOException e) {
             System.out.println("No save file found.");
             return new TaskList();
+        }
+    }
+
+    private static void parseLine(TaskList result, BufferedReader reader, String line) throws IOException {
+        while (line != null) {
+            String[] raw = line.split(" \\| ");
+            TaskList.Task curr = null;
+            switch (raw[0]) {
+            case "T":
+                curr = result.addTask(raw[2]);
+                break;
+            case "D":
+                curr = result.addDeadline(raw[2], raw[3]);
+                break;
+            case "E":
+                curr = result.addEvent(raw[2], raw[3]);
+                break;
+            default:
+                break;
+            }
+            if (raw[1].equals("true") && curr != null) {
+                curr.mark();
+            }
+            line = reader.readLine();
         }
     }
 }
