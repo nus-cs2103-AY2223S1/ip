@@ -33,6 +33,7 @@ public class Duke {
     public String start() {
         return Ui.greet();
     }
+
     public String getResponse(String input) {
         String output = " ";
         try {
@@ -43,7 +44,7 @@ public class Duke {
                 output += Ui.saved(list);
             }
         } catch (DukeException e) {
-            return String.valueOf(e);
+            return e.getMessage();
         } catch (NullPointerException e) {
             System.out.println(e);
         } catch (IOException e) {
