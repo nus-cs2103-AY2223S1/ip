@@ -38,9 +38,9 @@ shadowJar {
     archiveClassifier = null
 }
 
-//checkstyle {
-//    toolVersion = '10.3.2'
-//}
+checkstyle {
+    toolVersion = '10.3.2'
+}
 
 javafx {
     version = "11.0.2"
