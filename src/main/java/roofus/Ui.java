@@ -11,7 +11,7 @@ public class Ui {
      * Formats and prints Roofus's greetings.
      */
     public String greet() {
-        return "Hello I'm Roofus\n"
+        return "Hello I'm ROOOOFUS!!!\n"
                 + "What can I do for you?";
     }
 
