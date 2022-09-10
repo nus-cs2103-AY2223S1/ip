@@ -4,6 +4,9 @@ import justin.*;
 import justin.task.Event;
 import justin.task.Task;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 /**
  * Represents a command that is called to add an event
  * task in the TaskList, and save changes.
@@ -15,6 +18,7 @@ public class AddEventCommand extends Command {
     private String at;
     private String time;
     private Event task;
+    private ArrayList<Task> overlappedTasks;
 
     /**
      * Constructor for the AddEventCommand class
@@ -54,9 +58,25 @@ public class AddEventCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
-        this.task = new Event(description, isDone, at, time);
-        list.addTask(task);
-        storage.save(list);
-        return ui.addMessage() + ui.showLine() + task + ui.showLine() + ui.countMessage(list);
+        task = new Event(description, isDone, at, time);
+        if (task.isOverlap(list)) {
+            setOverlappedTasks(task, list);
+            return ui.getOverlapMessage(overlappedTasks);
+        } else {
+            list.addTask(task);
+            storage.save(list);
+            return ui.addMessage() + ui.showLine() + task + ui.showLine() + ui.countMessage(list);
+        }
     }
+
+    public void setOverlappedTasks(Event event, TaskList tasks) {
+        overlappedTasks = new ArrayList<>();
+        for (Task t: tasks.getTasks()) {
+            Event curr = (Event) t;
+            if (event.isEqualDateAndTime(curr)) {
+                overlappedTasks.add(curr);
+            }
+        }
+    }
+
 }

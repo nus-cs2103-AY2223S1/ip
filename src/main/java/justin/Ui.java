@@ -25,6 +25,7 @@ public class Ui {
     private final static String DELETE_MESSAGE = "OK, I have removed the following task(s) from the list: ";
     private final static String ADD_MESSAGE = "Got it, I have added the following into the list: ";
     private final static String FIND_MESSAGE = "Here are the matching tasks in your list: ";
+    private final static String OVERLAP_MESSAGE = "You have some tasks overlapping! ";
     private final static String TODO_HELP = "Type in todo <task name> to add ToDo task";
     private final static String DEADLINE_HELP = "Type in deadline <task name> /by YYYY-MM-DD HH:MM to add Deadline task";
     private final static String EVENT_HELP = "Type in event <task name> /by YYYY-MM-DD HH:MM to add Event task";
@@ -135,6 +136,14 @@ public class Ui {
     public String countMessage(TaskList list) {
         int size = list.getTasks().size();
         return "You now have " + size + " tasks in your list";
+    }
+
+    public String getOverlapMessage(ArrayList<Task> overlappedTasks) {
+        String msg = OVERLAP_MESSAGE;
+        for (Task task: overlappedTasks) {
+            msg += SEPARATOR + task.toString();
+        }
+        return msg;
     }
 
     /**

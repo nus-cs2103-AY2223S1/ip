@@ -1,8 +1,12 @@
 package justin.task;
 
+import justin.TaskList;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Represents a task that has a date and a time
@@ -12,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
     protected LocalDate at;
     protected LocalTime time;
+    protected LocalDateTime dateAndTime;
 
     /**
      * Constructor for the Event class
@@ -24,6 +29,7 @@ public class Event extends Task {
         super(description, isDone);
         this.at = LocalDate.parse(at);
         this.time = LocalTime.parse(time);
+        setDateAndTime(this.at, this.time);
     }
 
     /**
@@ -33,5 +39,32 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "E | " + this.getStatusIcon() + " | " + this.getDescription() + " | " + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + this.time.format(DateTimeFormatter.ofPattern("hhmma"));
+    }
+
+    public void setDateAndTime(LocalDate date, LocalTime time) {
+        dateAndTime = date.atTime(time);
+    }
+
+    public LocalDateTime getDateAndTime() {
+        return dateAndTime;
+    }
+
+    public boolean isOverlap(TaskList list) {
+        ArrayList<Task> tasks = list.getTasks();
+        boolean result = false;
+        for (Task t: tasks) {
+            if (t instanceof Event) {
+                Event curr = (Event) t;
+                result |= isEqualDateAndTime(curr);
+            }
+        }
+        return result;
+    }
+
+    public boolean isEqualDateAndTime(Event anotherEvent) {
+        if (getDateAndTime().equals(anotherEvent.getDateAndTime())) {
+            return true;
+        }
+        return false;
     }
 }
