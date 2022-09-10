@@ -21,7 +21,7 @@ public class Task {
     }
 
     /**
-     * Return the String representing whether the task is done or not.
+     * Returns the String representing whether the task is done or not.
      *
      * @return the String representing whether the task is done or not.
      */
@@ -51,7 +51,7 @@ public class Task {
     }
 
     /**
-     * Return the description of the Task.
+     * Returns the description of the Task.
      *
      * @return the description of the Task.
      */
@@ -69,7 +69,7 @@ public class Task {
     }
 
     /**
-     * Return the isDone value representing whether the Task is done.
+     * Returns the isDone value representing whether the Task is done.
      *
      * @return the isDone value.
      */

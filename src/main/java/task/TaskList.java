@@ -35,7 +35,7 @@ public class TaskList {
     }
 
     /**
-     * Return the String representation of the Task at the index.
+     * Returns the String representation of the Task at the index.
      *
      * @param index the index of the Task to be represented as a String.
      * @return String representation of the Task at the index.
@@ -63,7 +63,7 @@ public class TaskList {
     }
 
     /**
-     * Return the Task from the Task list at the input index.
+     * Returns the Task from the Task list at the input index.
      *
      * @param index Index of the Task to be returned.
      * @return the Task at the input index.

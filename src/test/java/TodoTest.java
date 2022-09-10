@@ -14,50 +14,32 @@ public class TodoTest {
     @Test
     public void testChangeIsDone() {
         Todo todo = new Todo("test", false);
-
         todo.changeIsDone(true);
         assertEquals(true, todo.getIsDone());
-
-        todo.changeIsDone(false);
-        assertEquals(false, todo.getIsDone());
     }
 
     @Test
     public void testSuccessfulCanChangeIsDone() {
         Todo todo = new Todo("test", false);
-
         assertEquals(true, todo.canChangeIsDone(true));
-
-        assertEquals(false, todo.canChangeIsDone(false));
-
-        todo.changeIsDone(true);
-
-        assertEquals(false, todo.canChangeIsDone(true));
-
-        assertEquals(true, todo.canChangeIsDone(false));
     }
 
     @Test
-    public void testToString() {
+    public void testFailedCanChangeIsDone() {
+        Todo todo = new Todo("test", false);
+        assertEquals(false, todo.canChangeIsDone(false));
+    }
+
+    @Test
+    public void testEmptyToString() {
         Todo todo = new Todo("", false);
-
         assertEquals("[T][ ] ", todo.toString());
+    }
 
-        todo.changeIsDone(true);
-
-        assertEquals("[T][X] ", todo.toString());
-
-        todo.changeIsDone(false);
-
-        assertEquals("[T][ ] ", todo.toString());
-
-        todo.setDescription("Eat food");
-
-        assertEquals("[T][ ] Eat food", todo.toString());
-
-        todo.changeIsDone(true);
-
-        assertEquals("[T][X] Eat food", todo.toString());
+    @Test
+    public void testTodoWithDescriptionToString() {
+        Todo todo = new Todo("eat", false);
+        assertEquals("[T][ ] eat", todo.toString());
     }
 }
 
