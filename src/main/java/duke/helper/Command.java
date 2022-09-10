@@ -27,6 +27,7 @@ public class Command {
 
     /**
      * Method to clear the list given
+     *
      * @param list the list to be cleared
      * @return the string message of clear
      */
@@ -36,6 +37,7 @@ public class Command {
 
     /**
      * Method to list out the tasks in the list given
+     *
      * @param list the list to be listed out
      * @return the string of the list
      */

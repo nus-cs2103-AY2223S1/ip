@@ -49,63 +49,18 @@ public class TaskCreator {
             type = Type.EVENT;
         }
 
-        int indexOfSplit;
-        String description;
-
         switch (type) {
         case TODO:
-            task = new Todo(info);
+            task = createTodo(info);
             break;
 
         case DEADLINE:
-            indexOfSplit = info.indexOf("/by");
-            if (indexOfSplit == -1) {
-                return new ErrorTask();
-            }
-            try {
-                description = info.substring(0, indexOfSplit - 1);
-                String[] dateTimeDeadline = info.substring(indexOfSplit
-                        + SIZE_OF_PREPOSITION)
-                                .split(" ");
-
-                DateTimeFormatter formatter = DateTimeFormatter
-                        .ofPattern("uuuu-M-d");
-
-                DateTimeConverter converter = new DateTimeConverter(formatter);
-                String date;
-
-                if (converter.isValidDate(dateTimeDeadline[0])) {
-                    date = converter.convert(dateTimeDeadline);
-                    task = new Deadline(description, date,
-                            LocalDate.parse(dateTimeDeadline[0], formatter));
-                } else {
-                    date = info.substring(indexOfSplit
-                            + SIZE_OF_PREPOSITION);
-
-                    task = new Deadline(description, date, null);
-                }
-
-                break;
-            } catch (StringIndexOutOfBoundsException e) {
-                return new Task("", "[]");
-            }
+            task = createDeadline(info);
+            break;
 
         case EVENT:
-            try {
-                indexOfSplit = info.indexOf("/at");
-                if (indexOfSplit == -1) {
-                    return new ErrorTask();
-                }
-
-                description = info.substring(0, indexOfSplit - 1);
-                String dateTimeEvent = info.substring(indexOfSplit
-                        + SIZE_OF_PREPOSITION);
-
-                task = new Event(description, dateTimeEvent);
-                break;
-            } catch (StringIndexOutOfBoundsException e) {
-                return new Task("", "[]");
-            }
+            task = createEvent(info);
+            break;
         default:
             return new Task("", "[]");
         }
@@ -143,5 +98,58 @@ public class TaskCreator {
         }
 
         return task;
+    }
+
+    private static Task createTodo(String info) {
+        return new Todo(info);
+    }
+
+    private static Task createDeadline(String info) {
+        int indexOfSplit = info.indexOf("/by");
+        if (indexOfSplit == -1) {
+            return new ErrorTask();
+        }
+        try {
+            String description = info.substring(0, indexOfSplit - 1);
+            String[] dateTimeDeadline = info.substring(indexOfSplit
+                            + SIZE_OF_PREPOSITION)
+                    .split(" ");
+
+            DateTimeFormatter formatter = DateTimeFormatter
+                    .ofPattern("uuuu-M-d");
+
+            DateTimeConverter converter = new DateTimeConverter(formatter);
+            String date;
+
+            if (converter.isValidDate(dateTimeDeadline[0])) {
+                date = converter.convert(dateTimeDeadline);
+                return new Deadline(description, date,
+                        LocalDate.parse(dateTimeDeadline[0], formatter));
+            } else {
+                date = info.substring(indexOfSplit
+                        + SIZE_OF_PREPOSITION);
+
+                return new Deadline(description, date, null);
+            }
+        } catch (StringIndexOutOfBoundsException e) {
+            return new Task("", "[]");
+        }
+    }
+
+    private static Task createEvent(String info) {
+        try {
+            int indexOfSplit = info.indexOf("/at");
+            if (indexOfSplit == -1) {
+                return new ErrorTask();
+            }
+
+            String description = info.substring(0, indexOfSplit - 1);
+            String dateTimeEvent = info.substring(indexOfSplit
+                    + SIZE_OF_PREPOSITION);
+
+            return new Event(description, dateTimeEvent);
+        } catch (StringIndexOutOfBoundsException e) {
+            return new Task("", "[]");
+        }
     }
 }

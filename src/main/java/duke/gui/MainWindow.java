@@ -57,8 +57,7 @@ public class MainWindow extends AnchorPane {
         String response;
         try {
             response = duke.getResponse(input);
-        }
-        catch (AssertionError e) {
+        } catch (AssertionError e) {
             response = e.getMessage();
         }
         dialogContainer.getChildren().addAll(
