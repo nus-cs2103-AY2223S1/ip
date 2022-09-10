@@ -16,21 +16,21 @@ import javafx.scene.shape.Circle;
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.
  */
-public class HenryDialogBox extends HBox {
+public class ErrorDialogBox extends HBox {
 
-    private final Image henryImage = new Image(
-        Objects.requireNonNull(this.getClass().getResourceAsStream("/images/henry.png")));
+    private final Image warningImage = new Image(
+        Objects.requireNonNull(this.getClass().getResourceAsStream("/images/warning.png")));
 
     @FXML
     private Label dialog;
     @FXML
     private Circle displayPicture;
 
-    // We will never initialise HenryDialogBox with a constructor.
-    // Use the static methods instead to get relevant HenryDialogBox objects.
-    private HenryDialogBox(String text) {
+    // We will never initialise ErrorDialogBox with a constructor.
+    // Use the static methods instead to get relevant ErrorDialogBox objects.
+    private ErrorDialogBox(String text) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/HenryDialogBox.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/ErrorDialogBox.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
@@ -38,16 +38,16 @@ public class HenryDialogBox extends HBox {
             e.printStackTrace();
         }
         dialog.setText(text);
-        displayPicture.setFill(new ImagePattern(henryImage));
+        displayPicture.setFill(new ImagePattern(warningImage));
     }
 
     /**
-     * Gets the dialog box representing text from Henry.
+     * Gets the dialog box representing text from the error.
      *
      * @param text the text to be displayed
-     * @return a HenryDialogBox object with the given text
+     * @return an ErrorDialogBox object with the given text
      */
-    public static HenryDialogBox getHenryDialog(String text) {
-        return new HenryDialogBox(text);
+    public static ErrorDialogBox getErrorDialog(String text) {
+        return new ErrorDialogBox(text);
     }
 }

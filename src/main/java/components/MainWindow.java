@@ -1,14 +1,11 @@
 package components;
 
-import java.util.Objects;
-
 import exceptions.HenryException;
 import henry.Henry;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -18,10 +15,6 @@ import javafx.scene.layout.VBox;
 public class MainWindow extends AnchorPane {
 
     private static final String GREETING = "HELLO. I AM HENRY. HOW MAY I ASSIST YOU TODAY?";
-    private final Image userImage = new Image(
-        Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
-    private final Image henryImage = new Image(
-        Objects.requireNonNull(this.getClass().getResourceAsStream("/images/henry.png")));
 
     // FXML
     @FXML
@@ -41,7 +34,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(
-            HenryDialogBox.getHenryDialog(GREETING, henryImage)
+            HenryDialogBox.getHenryDialog(GREETING)
         );
     }
 
@@ -64,13 +57,13 @@ public class MainWindow extends AnchorPane {
         try {
             String response = henry.getResponse(input);
             dialogContainer.getChildren().addAll(
-                UserDialogBox.getUserDialog(input, userImage),
-                HenryDialogBox.getHenryDialog(response, henryImage)
+                UserDialogBox.getUserDialog(input),
+                HenryDialogBox.getHenryDialog(response)
             );
         } catch (HenryException e) {
             dialogContainer.getChildren().addAll(
-                UserDialogBox.getUserDialog(input, userImage),
-                HenryDialogBox.getHenryDialog(e.getMessage(), henryImage)
+                UserDialogBox.getUserDialog(input),
+                ErrorDialogBox.getErrorDialog(e.getMessage())
             );
         }
         userInput.clear();
