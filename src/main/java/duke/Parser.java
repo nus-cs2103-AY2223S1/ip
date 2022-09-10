@@ -3,7 +3,8 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
+import java.util.ArrayList;
+import java.util.List;
 import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
@@ -85,8 +86,14 @@ public class Parser {
             return new FindCommand(keyword);
         case "DELETE":
             try {
-                int index = Integer.valueOf(restOfCommand) - 1;
-                return new DeleteCommand(index);
+                // Delete now supports batch operations.
+                String[] indexStrings = restOfCommand.split(",");
+                List<Integer> indices = new ArrayList<>();
+
+                for (String i : indexStrings) {
+                    indices.add(Integer.valueOf(i.strip()) - 1);
+                }
+                return new DeleteCommand(indices);
             } catch (NumberFormatException e) {
                 throw new DukeException("Task ID supplied is not a number.");
             }

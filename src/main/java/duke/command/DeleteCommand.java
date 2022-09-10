@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.List;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.ui.Ui;
@@ -8,29 +10,36 @@ import duke.ui.Ui;
  * Encapsulates a command to delete a task from the list.
  */
 public class DeleteCommand extends Command {
-    private int index;
+    private List<Integer> indices;
 
     /**
      * Creates a DeleteCommand.
      *
-     * @param index Task ID of task to be deleted.
+     * @param indices List of task IDs of tasks to be deleted.
      */
-    public DeleteCommand(int index) {
-        this.index = index;
+    public DeleteCommand(List<Integer> indices) {
+        // sort from largest to smallest, else deleting will fail due to decreasing array size.
+        indices.sort((c1, c2) -> c1 > c2 ? -1 : 1);
+        this.indices = indices;
     }
 
     /**
-     * Executes the DeleteCommand to delete a Task from the list.
+     * Executes the DeleteCommand to delete a Task(s) from the list.
      *
-     * @param tasks TaskList that task will be deleted from.
+     * @param tasks TaskList that task(s) will be deleted from.
      * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String deletedTask = tasks.delete(index);
+        String deletedTasks = "";
+        for (int index : indices) {
+            String deletedTask = tasks.delete(index);
+            deletedTasks = deletedTask + "\n" + deletedTasks;
+        }
         storage.save(tasks);
-        return "I've removed this task:\n" + deletedTask;
+        String plurality = indices.size() > 1 ? "these tasks" : "this task";
+        return "I've removed " + plurality + ":\n" + deletedTasks;
     }
 
     /**
@@ -45,6 +54,6 @@ public class DeleteCommand extends Command {
             return false;
         }
         DeleteCommand otherCommand = (DeleteCommand) o;
-        return this.index == otherCommand.index;
+        return this.indices.equals(otherCommand.indices);
     }
 }

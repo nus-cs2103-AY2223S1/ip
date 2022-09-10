@@ -9,12 +9,19 @@ import duke.exception.DukeException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParserTest {
     @Test
     public void parse_deleteCommand() {
-        Command expected = new DeleteCommand(1);
-        String inputCommand = "delete 2";
+        List<Integer> indices = new ArrayList<>();
+        indices.add(4);
+        indices.add(3);
+        indices.add(2);
+        indices.add(1);
+        Command expected = new DeleteCommand(indices);
+        String inputCommand = "delete 2, 3,4,        5";
         try {
             Command actual = Parser.parse(inputCommand);
             assertEquals(expected, actual);
