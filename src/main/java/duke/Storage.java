@@ -92,8 +92,8 @@ public class Storage {
         try {
             FileWriter filewriter = new FileWriter(dataFile.getPath());
 
-            for (int i = 0; i < taskList.getListSize(); i++) {
-                Task task = taskList.getTask(0);
+            for (int i = 1; i <= taskList.getListSize(); i++) {
+                Task task = taskList.getTask(i);
                 filewriter.write(task.toMemoryString() + System.lineSeparator());
             }
             filewriter.close();
