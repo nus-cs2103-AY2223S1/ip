@@ -1,7 +1,5 @@
 package duke;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
@@ -25,7 +23,7 @@ public class Duke {
     /**
      * Empty Constructor for the Duke class for JavaFX.
      */
-    public Duke(){
+    public Duke() {
         tasks = new TaskList();
         parser = new Parser();
     };
@@ -61,16 +59,14 @@ public class Duke {
         try {
             String response = this.parser.execute(input, tasks);
             return response;
-        }
-        catch (Parser.EmptyInputException e) {
+        } catch (Parser.EmptyInputException e) {
             return e.getMessage();
-        }
-        catch (Parser.InvalidInputException e) {
+        } catch (Parser.InvalidInputException e) {
             return e.getMessage();
         }
     }
 
     public static void main(String[] args) {
-         new Duke("./data/duke.txt").run();
+        new Duke("./data/duke.txt").run();
     }
 }

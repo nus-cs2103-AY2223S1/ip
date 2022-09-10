@@ -43,97 +43,103 @@ public class Parser {
         return 0;
     }
 
+    /**
+     * Executes a command.
+     * @param line - the command to execute
+     * @param todolist - the task list to modify
+     * @return the response to the command
+     */
     public String execute(String line, TaskList todolist) {
         switch (line) {
-            case "":
-                throw new EmptyInputException();
+        case "":
+            throw new EmptyInputException();
 
-            case "bye":
-                return "See you again!";
+        case "bye":
+            return "See you again!";
 
-            case "list":
+        case "list":
+            return todolist.getData();
+
+        case "save":
+            Storage.save(todolist);
+            return "Saved!";
+
+        default:
+            // We can't use switch statements since we want regex matching
+            if (line.matches("mark \\d+")) {
+                int index = Integer.parseInt(line.split(" ")[1]);
+                if (index > todolist.getLength()) {
+                    break;
+                }
+
+                todolist.mark(index - 1);
                 return todolist.getData();
+            }
 
-            case "save":
-                Storage.save(todolist);
-                return "Saved!";
-
-            default:
-                // We can't use switch statements since we want regex matching
-                if (line.matches("mark \\d+")) {
-                    int index = Integer.parseInt(line.split(" ")[1]);
-                    if (index > todolist.getLength()) {
-                        break;
-                    }
-
-                    todolist.mark(index - 1);
-                    return todolist.getData();
+            if (line.matches("unmark \\d+")) {
+                int index = Integer.parseInt(line.split(" ")[1]);
+                if (index > todolist.getLength()) {
+                    break;
                 }
 
-                if (line.matches("unmark \\d+")) {
-                    int index = Integer.parseInt(line.split(" ")[1]);
-                    if (index > todolist.getLength()) {
-                        break;
-                    }
+                todolist.unmark(index - 1);
+                return todolist.getData();
+            }
 
-                    todolist.unmark(index - 1);
-                    return todolist.getData();
+            if (line.matches("deadline .* by .*")) {
+                assert line.startsWith("deadline ");
+                String[] res = line.substring(9).split(" by ");
+                String desc = res[0];
+                String deadline = res[1];
+
+                todolist.addDeadline(desc, deadline);
+                return String.format("Added: %s (by: %s)", desc, deadline);
+            }
+
+            if (line.matches("deadline .* /by .*")) {
+                assert line.startsWith("deadline ");
+                String[] res = line.substring(9).split(" /by ");
+                String desc = res[0];
+                LocalDate date = LocalDate.parse(res[1]);
+
+                todolist.addDeadline(desc, date);
+                return String.format(
+                        "Added: %s (by: %s)", desc, date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                );
+            }
+
+            if (line.matches("event .* at .*")) {
+                assert line.startsWith("event ");
+                String[] res = line.substring(6).split(" at ");
+                String desc = res[0];
+                String time = res[1];
+
+                todolist.addEvent(desc, time);
+                return String.format("Added: %s (at: %s)", desc, time);
+            }
+
+            if (line.matches("todo .*")) {
+                assert line.startsWith("todo ");
+                line = line.substring(5);
+                todolist.addTask(line);
+                return "Added: " + line;
+            }
+
+            if (line.matches("delete \\d+")) {
+                int index = Integer.parseInt(line.split(" ")[1]);
+                if (index > todolist.getLength()) {
+                    break;
                 }
+                todolist.delete(index - 1);
+                return "Noted. I've removed this task";
+            }
 
-                if (line.matches("deadline .* by .*")) {
-                    assert line.startsWith("deadline ");
-                    String[] res = line.substring(9).split(" by ");
-                    String desc = res[0];
-                    String deadline = res[1];
-
-                    todolist.addDeadline(desc, deadline);
-                    return String.format("Added: %s (by: %s)", desc, deadline);
-                }
-
-                if (line.matches("deadline .* /by .*")) {
-                    assert line.startsWith("deadline ");
-                    String[] res = line.substring(9).split(" /by ");
-                    String desc = res[0];
-                    LocalDate date = LocalDate.parse(res[1]);
-
-                    todolist.addDeadline(desc, date);
-                    return String.format(
-                            "Added: %s (by: %s)", desc, date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                    );
-                }
-
-                if (line.matches("event .* at .*")) {
-                    assert line.startsWith("event ");
-                    String[] res = line.substring(6).split(" at ");
-                    String desc = res[0];
-                    String time = res[1];
-
-                    todolist.addEvent(desc, time);
-                    return String.format("Added: %s (at: %s)", desc, time);
-                }
-
-                if (line.matches("todo .*")) {
-                    assert line.startsWith("todo ");
-                    line = line.substring(5);
-                    todolist.addTask(line);
-                    return "Added: " + line;
-                }
-
-                if (line.matches("delete \\d+")) {
-                    int index = Integer.parseInt(line.split(" ")[1]);
-                    if (index > todolist.getLength()) {
-                        break;
-                    }
-                    todolist.delete(index - 1);
-                    return "Noted. I've removed this task";
-                }
-
-                if (line.matches("find .*")) {
-                    assert line.startsWith("find ");
-                    String search = line.substring(5);
-                    TaskList results = todolist.find(search);
-                    return "These are the matching results I could find:" + results.getData();
-                }
+            if (line.matches("find .*")) {
+                assert line.startsWith("find ");
+                String search = line.substring(5);
+                TaskList results = todolist.find(search);
+                return "These are the matching results I could find:" + results.getData();
+            }
         }
         throw new InvalidInputException();
     }
