@@ -76,12 +76,10 @@ public class Ui {
     public String filterList(TaskList taskList, String key) {
         assert key.length() > 0 : "key should not be empty";
         String finalString = "Here are the matching tasks in your list:\n";
-        int count = 1;
         for (int i = 0; i < taskList.length(); i++) {
             String taskString = taskList.getTask(i).toString();
             if (taskString.contains(key)) {
-                finalString += String.format("%d. %s", count, taskString);
-                count++;
+                finalString += String.format("%d. %s", i + 1, taskString);
             }
         }
         return finalString;
