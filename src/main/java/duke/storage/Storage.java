@@ -1,12 +1,5 @@
 package duke.storage;
 
-import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.Todo;
-import duke.task.Event;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +8,13 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 /**
  * A storage in Duke that deals with loading tasks from the file and saving tasks in the file.
@@ -137,7 +137,7 @@ public class Storage {
             task = new Todo(components[2]);
             break;
         case "D":
-            String[] deadlineInputs = components[2].split(" \\| ",2);
+            String[] deadlineInputs = components[2].split(" \\| ", 2);
             task = new Deadline(deadlineInputs[0], LocalDateTime.parse(deadlineInputs[1]));
             break;
         case "E":

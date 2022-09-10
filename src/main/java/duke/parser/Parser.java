@@ -1,12 +1,21 @@
 package duke.parser;
 
 
-import duke.commands.*;
-import duke.exception.DukeException;
-import duke.task.Task;
-
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
+
+import duke.commands.ByeCommand;
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
+import duke.commands.FindCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.TodoCommand;
+import duke.commands.UnmarkCommand;
+import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
  * A parser to deal with making sense of the user command.
@@ -84,8 +93,8 @@ public class Parser {
             LocalDateTime eventTiming = LocalDateTime.parse(deadlineInputs[1], Task.DATE_TIME_FORMATTER);
             return new DeadlineCommand(deadlineInputs[0], eventTiming);
         } catch (DateTimeException e) {
-            throw new DukeException("OOPS!!! Invalid datetime format, input a valid date and time in the format " +
-                    "YYYY-MM-DD HH:MM. \n");
+            throw new DukeException("OOPS!!! Invalid datetime format, input a valid date and time in the format "
+                    + "YYYY-MM-DD HH:MM. \n");
         }
     }
 
@@ -104,8 +113,8 @@ public class Parser {
             LocalDateTime eventTiming = LocalDateTime.parse(eventInputs[1], Task.DATE_TIME_FORMATTER);
             return new EventCommand(eventInputs[0], eventTiming);
         } catch (DateTimeException e) {
-            throw new DukeException("OOPS!!! Invalid datetime format, input a valid date and time in the format " +
-                    "YYYY-MM-DD HH:MM. \n");
+            throw new DukeException("OOPS!!! Invalid datetime format, input a valid date and time in the format "
+                    + "YYYY-MM-DD HH:MM. \n");
         }
     }
 
