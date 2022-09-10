@@ -2,6 +2,7 @@ package duke;
 
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import duke.tasks.Deadline;
 import duke.tasks.Event;
@@ -94,6 +95,8 @@ public class Parser {
                     result = tasks.add(d);
                 } catch (ArrayIndexOutOfBoundsException arrException) {
                     return "Invalid Format for deadline";
+                } catch (DateTimeParseException dte) {
+                    return "Invalid Date Entered";
                 }
                 break;
             case find:
