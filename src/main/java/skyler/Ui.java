@@ -7,7 +7,7 @@ public class Ui {
     protected static final String GREETING = "Hello! I'm Skyler\nHow can I help you?\n";
 
     public String showEmptyDescriptionError() {
-        return "Oh no! Cannot insert task without description.";
+        return "Oh no! Cannot execute command without description.";
     }
 
     public String showTaskNotRecognisedError() {

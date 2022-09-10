@@ -50,16 +50,20 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
 
-        if (input.equals("bye")) {
-            this.stage.close();
-        }
+        closeStageIfByeInput(input, this.stage);
 
         String response = skyler.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getSkylerDialog(response, skylerImage)
         );
+
         userInput.clear();
     }
 
+    private void closeStageIfByeInput(String input, Stage stage) {
+        if (input.equals("bye")) {
+            stage.close();
+        }
+    }
 }
