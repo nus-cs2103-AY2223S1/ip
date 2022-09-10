@@ -177,6 +177,16 @@ public class Duke {
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
     }
 
+    private static void searchTask(String input) {
+        String searchString = input.split("find ")[1];
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task task : tasks) {
+            if (task.description.contains(searchString)) {
+                System.out.println(task.toString());
+            }
+        }
+    }
+
     public static void main(String[] args) {
         readDataFile();
         System.out.println("Hello! I'm Duke\n" +
@@ -202,7 +212,9 @@ public class Duke {
                     addTask(input, TaskType.DEADLINE);
                 } else if (input.startsWith("event ")) {
                     addTask(input, TaskType.EVENT);
-                } else {
+                } else if (input.startsWith("find ")) {
+                    searchTask(input);
+                }else {
                     throw new DukeException("what");
                 }
             } catch (Exception e) {
