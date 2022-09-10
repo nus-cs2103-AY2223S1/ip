@@ -1,8 +1,10 @@
 package duke.date;
 
-import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represents the date deliminators separating the date fields supported by the program.
+ */
 public enum Deliminator {
     noDeliminator {
         @Override

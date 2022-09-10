@@ -27,8 +27,7 @@ public class NumericalDateFormat extends DateFormat {
     }
 
     /**
-     * Adds the regex and numerical date format pairs handled by
-     * the program into the specified map.
+     * Adds the regex and numerical date format pairs handled by the program into the specified map.
      */
     public void addNumericalDateFormats() {
         add8DigitDateFormat();

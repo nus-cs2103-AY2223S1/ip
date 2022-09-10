@@ -2,6 +2,12 @@ package duke.date;
 
 import java.util.Map;
 
+/**
+ * Handles text date formats. Tries to match the string to the closest format by
+ * detecting trying to guess if a field is a day, month, or year field. The order
+ * in which these formats are inserted into the linked hashtable is important to ensure
+ * that the closest regex and thus, date format match can be given.
+ */
 public class TextDateFormat extends DateFormat {
     private static final String ABBREVIATED_MONTH_REGEX = "(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)";
     private static final String LONG_MONTH_REGEX = "(january|february|march|april|may|"
@@ -18,6 +24,9 @@ public class TextDateFormat extends DateFormat {
         super(deliminator, dateFormats);
     }
 
+    /**
+     * Adds the regex and numerical date format pairs handled by the program into the specified map.
+     */
     public void addTextDateFormats() {
         // add abbreviated months
         addTextMonth(ABBREVIATED_MONTH_REGEX, THREE_CHAR_MONTH);
@@ -25,6 +34,12 @@ public class TextDateFormat extends DateFormat {
         addTextMonth(LONG_MONTH_REGEX, FOUR_CHAR_MONTH);
     }
 
+    /**
+     * Handles dates with text-represented months in the specified format.
+     *
+     * @param monthRegex The regex of the text-month to be supported.
+     * @param monthFormat The month field of the date format sequence to be supported.
+     */
     private void addTextMonth(String monthRegex, String monthFormat) {
         // d MMM yyyy
         String regexDayMonthYear = dateRegexDeliminator(DAY_REGEX, monthRegex,

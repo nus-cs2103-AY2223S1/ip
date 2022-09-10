@@ -2,6 +2,9 @@ package duke.date;
 
 import java.util.Map;
 
+/**
+ * Represents a date format to be supported by the program.
+ */
 public abstract class DateFormat {
     protected static final String FOUR_CHAR_YEAR = "yyyy";
     protected static final String TWO_CHAR_YEAR = "yy";

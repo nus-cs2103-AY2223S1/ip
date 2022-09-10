@@ -29,11 +29,11 @@ public class Event extends Task {
      * @param description Description of the event task.
      * @param eventStartDatetime The start datetime of the event.
      * @param eventEndDatetime The end datetime of the event.
-     * @param completion Whether the event task is done or not.
+     * @param isCompleted Whether the event task is done or not.
      */
     public Event(String description, LocalDateTime eventStartDatetime,
-                 LocalDateTime eventEndDatetime, boolean completion) {
-        super(description, completion);
+                 LocalDateTime eventEndDatetime, boolean isCompleted) {
+        super(description, isCompleted);
         this.eventStartDatetime = eventStartDatetime;
         this.eventEndDatetime = eventEndDatetime;
     }
