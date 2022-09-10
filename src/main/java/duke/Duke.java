@@ -81,6 +81,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Marks task as complete.
+     * @param input
+     * @param done
+     * @throws DukeException
+     */
     private static void markTask(String input, boolean done) throws DukeException {
         String[] splitInput = input.split(" ");
         if (splitInput.length < 2) {
