@@ -10,7 +10,7 @@ import javafx.application.Application;
 public class Launcher {
 
     /**
-     * The driver method.
+     * Drives the application
      * @param args Launch arguments.
      */
     public static void main(String[] args) {
