@@ -1,6 +1,8 @@
 package duke;
 
 import duke.task.Task;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 /**
  * Ui acts as the control center for interacting with the user.
@@ -151,6 +153,17 @@ public class Ui {
      */
     public String showInvalidIndexMessage() {
         return "Invalid index! \nPlease enter a valid index.";
+    }
+
+    /**
+     * Solution to delay exiting the program below is adapted from
+     * https://stackoverflow.com/questions/27334455/how-to-close-a-stage-after-a-certain-amount-of-time-javafx.
+     * Exits the program after 2.5 seconds.
+     */
+    public static void exitProgram() {
+        PauseTransition delay = new PauseTransition(Duration.seconds(2.5));
+        delay.setOnFinished(event -> javafx.application.Platform.exit());
+        delay.play();
     }
 
     /**

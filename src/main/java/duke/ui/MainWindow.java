@@ -1,6 +1,8 @@
 package duke.ui;
 
 import duke.Duke;
+import duke.Ui;
+import duke.exception.DukeException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -56,9 +58,15 @@ public class MainWindow extends AnchorPane {
         if (userInput.getText().length() == 0) {
             return;
         }
-
         Label input = new Label(userInput.getText());
-        Label response = new Label(duke.getResponse(userInput.getText()));
+        Label response;
+        String responseString = "";
+        try {
+            responseString = duke.getResponse(userInput.getText());
+            response = new Label(responseString);
+        } catch (DukeException e) {
+            response = new Label(e.getMessage());
+        }
         ImageView userImageView = new ImageView(userImage);
         ImageView dukeImageView = new ImageView(dukeImage);
         dialogContainer.getChildren().addAll(
@@ -66,5 +74,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImageView)
         );
         userInput.clear();
+
+        if (responseString == Ui.showExitMessage()) {
+            Ui.exitProgram();
+        }
     }
 }
