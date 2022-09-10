@@ -19,10 +19,10 @@ public class Duke {
     private TaskList tasks;
 
     /** The friendly name of the Duke bot. */
-    private static String BOT_NAME = "DIGITAL DADDY";
+    public static String BOT_NAME = "DIGITAL DAD";
 
     /** The friendly emoji associated with the Duke bot. */
-    private static String EMOJI = "\uD83E\uDD16";
+    public static String EMOJI = "\uD83E\uDD16";
 
     /** The greeting to show on booting up the task manager. */
     public static String GREETING = String.format("Hello! I'm %s %s.\nWhat can I do for you?", BOT_NAME, EMOJI);

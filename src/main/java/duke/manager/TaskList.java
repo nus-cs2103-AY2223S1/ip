@@ -7,8 +7,6 @@ import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Task;
 
-import static java.time.temporal.ChronoUnit.DAYS;
-
 /**
  * Represents the list of current tasks.
  */
