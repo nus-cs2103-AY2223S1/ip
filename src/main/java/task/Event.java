@@ -32,6 +32,14 @@ public class Event extends Task {
         at = date;
     }
 
+    /**
+     * Set date of event to given date
+     * @param date Date that the event is to be set to
+     */
+    public void setAt(LocalDate date) {
+        at = date;
+    }
+
     @Override
     public String getSaveFormat() {
         return "E"

@@ -12,6 +12,7 @@ import commands.FindCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
 import commands.SaveCommand;
+import commands.SnoozeCommand;
 import commands.UnmarkCommand;
 import exception.FredException;
 import task.TaskType;
@@ -49,6 +50,8 @@ public class Parser {
             return parseSaveCommand();
         } else if (command.startsWith("find")) {
             return parseFindCommand(command);
+        } else if (command.startsWith("snooze")) {
+            return parseSnoozeCommand(command);
         } else {
             throw new FredException("I'm sorry, but I don't know what that means :(");
         }
@@ -243,5 +246,37 @@ public class Parser {
         int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
         String commandArgument = command.substring(indexOfCommandArgument).trim();
         return new FindCommand(commandArgument);
+    }
+
+    /**
+     * Parse snooze
+     */
+    private static Command parseSnoozeCommand(String command) throws FredException {
+        if (command.trim().equals("snooze")) {
+            throw new FredException("The input of snooze cannot be empty!");
+        } else if (!command.contains("/to")) {
+            throw new FredException("Wrong format! Usage: \"snooze TASKINDEX /to DATE\"");
+        }
+
+        String commandWord = "snooze";
+        int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+        String commandArgument = command.substring(indexOfCommandArgument).trim();
+
+        String[] commandArgumentParts = commandArgument.split(" /to ");
+        String taskIndexString = commandArgumentParts[0].trim();
+        String snoozeDateString = commandArgumentParts[1].trim();
+
+        int taskIndex;
+        LocalDate date;
+        try {
+            taskIndex = Integer.parseInt(taskIndexString);
+            date = LocalDate.parse(snoozeDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (NumberFormatException e) {
+            throw new FredException("TASKINDEX must be an integer");
+        } catch (DateTimeParseException e) {
+            throw new FredException("Input date as yyyy-MM-dd!");
+        }
+
+        return new SnoozeCommand(taskIndex, date);
     }
 }
