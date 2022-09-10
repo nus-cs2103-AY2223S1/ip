@@ -7,25 +7,27 @@ import duke.exception.WrongArgumentException;
 import duke.task.Recurring;
 import duke.task.Task;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * For anything related to printing statements in Duke.
  */
 public class Ui {
-    public static final Map<String, String> COMMAND_HELP = Map.of(
-            "todo", "todo [description]",
-            "deadline", "deadline [description] /by [dd/MM/yy] <24hr time>",
-            "event", "event [description] /at [dd/MM/yy] <24hr time>",
-            "recurring", "recurring [description] /every [d/M or d or day or time] </at 24hr time> *[times]",
-            "find", "find [String]",
-            "mark", "mark [index]",
-            "unmark", "unmark [index]",
-            "delete", "delete [index]",
-            "list", "list",
-            "bye", "bye");
+    public static final Map<String, String> COMMAND_HELP = Stream.of(new String[][] {
+            { "todo", "todo [description]" },
+            { "deadline", "deadline [description] /by [dd/MM/yy] <24hr time>" },
+            { "event", "event [description] /at [dd/MM/yy] <24hr time>" },
+            { "recurring", "recurring [description] /every [d/M or d or day or time] </at 24hr time> *[times]" },
+            { "find", "find [String]" },
+            { "mark", "mark [index]" },
+            { "unmark", "unmark [index]" },
+            { "delete", "delete [index]" },
+            { "remaining", "remaining [index]" },
+            { "list", "list" },
+            { "bye", "bye" },
+            }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
 
     public static String showHello() {
         return "Hello! What plans do you currently have?" + "\nUse /? for help";
