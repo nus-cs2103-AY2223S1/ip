@@ -1,7 +1,9 @@
-public class Event extends Task {
-    protected String at;
+import java.time.LocalDate;
 
-    public Event(String description, String at) {
+public class Event extends Task {
+    protected LocalDate at;
+
+    public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
     }
@@ -13,6 +15,6 @@ public class Event extends Task {
 
     @Override
     public String toFileString() {
-        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, at);
+        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, at.toString());
     }
 }

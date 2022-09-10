@@ -2,7 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -32,10 +34,12 @@ public class Duke {
                         task = new Todo(taskInfo[2]);
                         break;
                     case "E":
-                        task = new Event(taskInfo[2], taskInfo[3]);
+                        LocalDate date = LocalDate.parse(taskInfo[3]);
+                        task = new Event(taskInfo[2], date);
                         break;
                     case "D":
-                        task = new Deadline(taskInfo[2], taskInfo[3]);
+                        date = LocalDate.parse(taskInfo[3]);
+                        task = new Deadline(taskInfo[2], date);
                         break;
                     default:
                         throw new DukeException("Corrupt file");
@@ -157,9 +161,10 @@ public class Duke {
             if (splitInput.length < 2) {
                 throw new DukeException(String.format(errorMessage, type.string));
             }
+            LocalDate date = LocalDate.parse(splitInput[1]);
             task = type == TaskType.DEADLINE
-                    ? new Deadline(splitInput[0], splitInput[1])
-                    : new Event(splitInput[0], splitInput[1]);
+                    ? new Deadline(splitInput[0], date)
+                    : new Event(splitInput[0], date);
         }
         tasks.add(task);
         syncTasksToFile();
