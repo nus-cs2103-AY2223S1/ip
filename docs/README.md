@@ -25,33 +25,51 @@ following to navigate to the relevant section you are looking for:
 ### 1.1. Adding tasks
 There are three possible tasks you can add:
  #### 1.1.1 `deadline`: a task with a due date
-![alt text](images/add-deadline.png)
+   <p align="center">
+      <img src="images/add-deadline.png" />
+   </p>
+
  #### 1.1.2. `event`   : a task with a venue
- ![alt text](images/add-event.png)
+   <p align="center">
+      <img src="images/add-event.png" />
+   </p>
+
  #### 1.1.3. `todo`    : a basic task to be completed
-![alt text](images/add-todo.png)
+   <p align="center">
+      <img src="images/add-todo.png" />
+   </p>
 
 ### 1.2. Deleting tasks
 Tasks can be deleted:
-![alt text](images/delete-task.png)
+   <p align="center">
+      <img src="images/delete-task.png" />
+   </p>
 
 ### 1.3. Listing all tasks
 You can list all available tasks:
-![alt text](images/list-tasks.png)
+   <p align="center">
+      <img src="images/list-tasks.png" />
+   </p>
 
 ### 1.4. Marking tasks as done
 Tasks can be marked as done:
-![alt text](images/mark-tasks.png)
+   <p align="center">
+      <img src="images/mark-tasks.png" />
+   </p>
 The task marked as done will now be marked with a `[X]`:
-![alt text](images/show-marked.png)
+   <p align="center">
+      <img src="images/show-marked.png" />
+   </p>
 
 ### 1.5. Marking tasks as undone
 Tasks can be marked as undone:
-![alt text](images/unmark-task.png)
+   <p align="center">
+      <img src="images/unmark-task.png" />
+   </p>
 The check mark `[X]` will now be removed:
-![alt text](images/show-unmarked.png)
-
-
+   <p align="center">
+      <img src="images/show-unmarked.png" />
+   </p>
 
 ## 2. Usage
 ### 2.1. `deadline` - How to add a "deadline" task.
@@ -98,14 +116,14 @@ list
 
 ### 2.5. `delete` - How to delete a task.
 Before you delete a task, you need to know the task number using the [`list` 
-command](#list---how-to-list-all-tasks). You can then use the `delete` command:
+command](#24-list---how-to-list-all-tasks). You can then use the `delete` command:
 ```
 delete TASK NUMBER
 ```
 
 ### 2.6. `mark` - How to mark a task as done.
 Before you mark a task as done, you need to know the task number using the 
-[`list` command](#list---how-to-list-all-tasks). You can then use the `mark` 
+[`list` command](#24-list---how-to-list-all-tasks). You can then use the `mark` 
 command:
 ```
 mark TASK NUMBER
@@ -113,7 +131,7 @@ mark TASK NUMBER
 
 ### 2.7. `unmark` - How to mark a task as undone.
 Before you mark a task as undone, you need to know the task number using the
-[`list` command](#list---how-to-list-all-tasks). You can then use the `unmark`
+[`list` command](#24-list---how-to-list-all-tasks). You can then use the `unmark`
 command:
 ```
 unmark TASK NUMBER
