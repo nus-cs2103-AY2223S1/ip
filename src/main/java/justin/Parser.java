@@ -15,6 +15,7 @@ import justin.command.UnmarkCommand;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -162,7 +163,9 @@ public class Parser {
      */
     public static Command parseCommand(String message) throws DukeException {
         String[] arr = message.split("\\s\\|\\s");
-        if (arr.length == 1) {
+        try {
+            assert arr.length > 1;
+        } catch (AssertionError e) {
             return new NewCommand();
         }
         String task = arr[0];
@@ -171,19 +174,23 @@ public class Parser {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy hhmma");
         LocalDate ld = null;
         LocalTime lt = null;
-        switch (task) {
-            case "T":
-                return new AddToDoCommand(isDone, description);
-            case "D":
-                ld = LocalDate.parse(arr[3], formatter);
-                lt = LocalTime.parse(arr[3], formatter);
-                return new AddDeadlineCommand(description, isDone, ld.toString(), lt.toString());
-            case "E":
-                ld = LocalDate.parse(arr[3], formatter);
-                lt = LocalTime.parse(arr[3], formatter);
-                return new AddEventCommand(description, isDone, ld.toString(), lt.toString());
-            default:
-                throw new DukeException("OOPS, looks like the file has been corrupted. Please delete the file and try again.");
+        try {
+            switch (task) {
+                case "T":
+                    return new AddToDoCommand(isDone, description);
+                case "D":
+                    ld = LocalDate.parse(arr[3], formatter);
+                    lt = LocalTime.parse(arr[3], formatter);
+                    return new AddDeadlineCommand(description, isDone, ld.toString(), lt.toString());
+                case "E":
+                    ld = LocalDate.parse(arr[3], formatter);
+                    lt = LocalTime.parse(arr[3], formatter);
+                    return new AddEventCommand(description, isDone, ld.toString(), lt.toString());
+                default:
+                    throw new DukeException("OOPS, looks like the file has been corrupted. Please delete the file and try again.");
+            }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Dates and times have been corrupted in the file. Please delete the file and try again.");
         }
     }
 
