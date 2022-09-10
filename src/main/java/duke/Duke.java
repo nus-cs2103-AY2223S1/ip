@@ -27,6 +27,9 @@ public class Duke {
                 hasTerminated = true;
                 return "Bye! Enter any key to exit :)";
         }
+
+        assert !hasTerminated : "hasTerminated should be false";
+
         return COMMAND_PARSER.handle(command);
     }
 

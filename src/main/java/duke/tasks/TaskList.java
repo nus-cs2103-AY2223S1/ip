@@ -1,6 +1,9 @@
 package duke.tasks;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyCommandException;
@@ -10,10 +13,14 @@ import duke.exceptions.OutOfRangeException;
 
 public class TaskList {
 
-    private final ArrayList<Task> tasks;
+    private final List<Task> tasks;
 
     public TaskList() {
         this.tasks = new ArrayList<>();
+    }
+
+    private TaskList(List<Task> list) {
+        this.tasks = list;
     }
 
     private String printTask(int index) {
@@ -125,22 +132,14 @@ public class TaskList {
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("find");
         }
-        int i = 1;
-        StringBuilder sb = new StringBuilder();
-        for (Task t : tasks) {
-            if (t.hasDescription(desc)) {
-                sb.append(i + "." + t + "\n");
-                i++;
-            }
-        }
-        return sb.toString();
+        return filterTasks(t -> t.hasDescription(desc)).toString();
     }
 
     /**
      * Prints current list.
      */
     public String printList() {
-        return "Here are the tasks in your list:\n" + this.toString();
+        return "Here are the tasks in your list:\n" + this;
     }
 
     /**
@@ -153,15 +152,12 @@ public class TaskList {
         if (deadline == null || deadline.isBlank()) {
             throw new NoBeforeException();
         }
-        int i = 1;
-        StringBuilder sb = new StringBuilder();
-        for (Task t : tasks) {
-            if (t.isBefore(deadline)) {
-                sb.append(i + "." + t + "\n");
-                i++;
-            }
-        }
-        return sb.toString();
+        return filterTasks(t -> t.isBefore(deadline)).toString();
+    }
+
+    private TaskList filterTasks(Predicate<? super Task> cond) {
+        return new TaskList(tasks.stream().filter(cond).collect(Collectors.toList()));
+
     }
 
     /**
@@ -175,7 +171,7 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             int j = i + 1;
             Task item = tasks.get(i);
-            sb.append(j + "." + item.toString() + "\n");
+            sb.append(j).append(".").append(item.toString()).append("\n");
         }
         return sb.toString();
     }
