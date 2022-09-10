@@ -4,6 +4,7 @@ import duke.exception.DukeException;
 import duke.exception.FileParseException;
 import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
+import duke.task.Recurring;
 import duke.task.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,6 +88,13 @@ public class Ui {
         return "You currently have " + list.getSize() + " tasks in the list\n";
     }
 
+    public static String showRemaining(Recurring task) {
+        StringBuilder str = new StringBuilder("Dates for the task: ");
+        str.append(task.getDescription()).append("\n");
+        str.append(task.showDates());
+        return str.toString();
+    }
+
     public static String findKeyword(String keyword, ArrayList<Task> list) {
         StringBuilder str = new StringBuilder();
         str.append("I have found the following tasks containing '").append(keyword).append("'\n");
@@ -117,6 +125,10 @@ public class Ui {
             str.append(Ui.tryAgain());
         }
         return str.toString();
+    }
+
+    public static String sendMessage(String msg) {
+        return msg;
     }
 
     public static String tryAgain() {

@@ -21,7 +21,7 @@ public class Parser {
      * Valid commands as datatype
      */
     public enum ListCommands {
-        todo, deadline, event, recurring, mark, unmark, delete, find
+        todo, deadline, event, recurring, mark, unmark, delete, find, remaining
     }
 
     public Parser(TaskList list) {
@@ -40,7 +40,7 @@ public class Parser {
      * @throws NoArgumentException If only the command is given without any arguments.
      */
     public String parseInput(String userInput, boolean fromSave)
-            throws WrongArgumentException, FileParseException, NoArgumentException {
+            throws WrongArgumentException, FileParseException, NoArgumentException, ClassCastException {
         if (isListCommand(userInput.split(" ")[0])) {
             return this.parseListCommands(userInput, fromSave);
         } else if (userInput.equals("bye")) {
@@ -76,7 +76,7 @@ public class Parser {
      * @throws NoArgumentException If only the command is given without any arguments.
      */
     private String parseListCommands(String input, boolean fromSave)
-            throws WrongArgumentException, FileParseException, NoArgumentException {
+            throws WrongArgumentException, FileParseException, NoArgumentException, ClassCastException {
         String mark = null;
         String response;
         String[] arr;
@@ -112,7 +112,8 @@ public class Parser {
         return "";
     }
 
-    private String parseTaskCommand(ListCommands command, String index) throws WrongArgumentException {
+    private String parseTaskCommand(ListCommands command, String index)
+            throws WrongArgumentException, ClassCastException {
         try {
             switch (command) {
             case mark: {
@@ -129,11 +130,18 @@ public class Parser {
             }
             case find:
                 return Ui.findKeyword(index, list.searchFor(index));
+            case remaining: {
+                int n = Integer.parseInt(index) - 1;
+                Recurring t = (Recurring) list.getTask(n);
+                return Ui.showRemaining(t);
+            }
             default:
                 return null;
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new WrongArgumentException(index, e);
+        } catch (ClassCastException f) {
+            throw new ClassCastException("Task " + index + " is not a Recurring Task");
         }
     }
 

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class Recurring extends Task {
+    private final static DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yy h:mma");
     private enum PERIOD { yearly, monthly, weekly, daily }
     private PERIOD period;
     private String dateKeyedIn;
@@ -148,6 +149,15 @@ public class Recurring extends Task {
         this.timesRemaining = this.originalTimes - alreadyHappened;
     }
 
+    public String showDates() {
+        StringBuilder str = new StringBuilder();
+        for (LocalDateTime l : dates) {
+            str.append("\n");
+            str.append(l.format(OUTPUT));
+        }
+        return str.toString();
+    }
+
     @Override
     public String format() {
         return "recurring " + this.description + " /every " + this.dateKeyedIn + " *" + this.timesRemaining
@@ -158,13 +168,8 @@ public class Recurring extends Task {
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("[R]" + super.toString() + " (next: ");
-        str.append(dates.get(this.originalTimes - this.timesRemaining)
-                .format(DateTimeFormatter.ofPattern("dd MMM yy h:mma")));
+        str.append(dates.get(this.originalTimes - this.timesRemaining).format(OUTPUT));
         str.append("; remaining: " + this.timesRemaining + ")");
-//        for (LocalDateTime l : dates) {
-//            str.append("\n");
-//            str.append(l);
-//        }
         return str.toString();
     }
 }
