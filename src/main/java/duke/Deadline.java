@@ -95,4 +95,8 @@ public class Deadline extends Task {
                         ? ""
                         : " | " + this.byTime.toString()));
     }
+
+    public static void main(String[] args) {
+
+    }
 }

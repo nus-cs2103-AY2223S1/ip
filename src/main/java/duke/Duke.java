@@ -20,7 +20,7 @@ import javafx.scene.image.ImageView;
 /**
  * Main class of the Duke chat-bot.
  */
-public class Duke extends Application {
+public class Duke {
 
     private Storage storage;
     private TaskList tasks;
@@ -35,7 +35,7 @@ public class Duke extends Application {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
-    @Override
+    /*@Override
     public void start(Stage stage) {
         //Step 1. Setting up required components
 
@@ -96,7 +96,7 @@ public class Duke extends Application {
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-    }
+    }*/
 
     /**
      * Iteration 1:
@@ -105,34 +105,34 @@ public class Duke extends Application {
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
      */
-    private Label getDialogLabel(String text) {
+    /*private Label getDialogLabel(String text) {
         // You will need to import `javafx.scene.control.Label`.
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
 
         return textToAdd;
-    }
+    }*/
 
     /**
      * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
-    private void handleUserInput() {
+    /*private void handleUserInput() {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
         );
         userInput.clear();
-    }
+    }*/
 
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    protected String getResponse(String input) {
+    /*protected String getResponse(String input) {
         return "Duke heard: " + input;
-    }
+    }*/
 
     /**
      * Constructor for the Duke class.
@@ -159,7 +159,7 @@ public class Duke extends Application {
     /**
      * Starts the Duke chat-bot.
      */
-    public void run() {
+    /*public void run() {
         Parser parser = new Parser();
         this.ui.start();
         for (Task t : this.tasks.getTasks()) {
@@ -171,7 +171,7 @@ public class Duke extends Application {
         }
         storage.save(tasks);
         System.out.println("     Sad to see you go! Visit me again soon!");
-    }
+    }*/
 
     /**
      * Shows a welcome message in the chat.
@@ -194,12 +194,11 @@ public class Duke extends Application {
      * Parses the user input and shows a message with a suitable response in the chat.
      *
      * @param input The user input.
-     * @param response The response from Duke.
      * @param dialogContainer The VBox object that contains the chat messages and images.
      * @param userImage The image of the user.
      * @param dukeImage The image of Duke.
      */
-    public void handleUserInput(String input, String response, VBox dialogContainer, Image userImage, Image dukeImage) {
+    public void handleUserInput(String input, VBox dialogContainer, Image userImage, Image dukeImage) {
         dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImage));
 
         Parser parser = new Parser();
