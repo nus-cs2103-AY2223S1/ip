@@ -1,7 +1,9 @@
 package cheese.task;
 
-import java.time.LocalDateTime;
+import cheese.storage.Storage;
 import cheese.utils.DateTimeUtils;
+
+import java.time.LocalDateTime;
 
 /**
  * Represents a deadline with description, complete/incomplete status, and deadline.
@@ -12,9 +14,9 @@ public class Deadline extends Task {
 
     /**
      * Constructs an instance of <code>Deadline</code>.
-     * 
+     *
      * @param description Description of deadline.
-     * @param deadline Deadline of deadline.
+     * @param deadline    Deadline of deadline.
      */
     public Deadline(String description, String deadline) {
         super(description);
@@ -23,10 +25,10 @@ public class Deadline extends Task {
 
     /**
      * Constructs an instance of <code>Deadline</code>.
-     * 
-     * @param isDone Whether deadline is complete or incomplete.
+     *
+     * @param isDone      Whether deadline is complete or incomplete.
      * @param description Description of deadline.
-     * @param deadline Deadline of deadline.
+     * @param deadline    Deadline of deadline.
      */
     public Deadline(boolean isDone, String description, String deadline) {
         super(isDone, description);
@@ -36,18 +38,18 @@ public class Deadline extends Task {
     /**
      * Returns string representation of deadline to save in file (eg. deadline // T // Do homework
      * // 2022-12-07 12:00).
-     * 
+     *
      * @return String representation of deadline to save in file.
      */
     @Override
     public String toFileString() {
         String formattedDeadline = DateTimeUtils.parseLocalDateTimeToInput(deadline);
-        return "deadline // " + super.toFileString() + " // " + formattedDeadline;
+        return "deadline" + Storage.DELIMITER + super.toFileString() + Storage.DELIMITER + formattedDeadline;
     }
 
     /**
      * Returns string representation of deadline.
-     * 
+     *
      * @return string representation of deadline.
      */
     @Override

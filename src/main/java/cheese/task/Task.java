@@ -1,5 +1,7 @@
 package cheese.task;
 
+import cheese.storage.Storage;
+
 /**
  * Represents a task with a description and complete/incomplete status.
  */
@@ -12,7 +14,7 @@ public class Task {
 
     /**
      * Constructs an instance of <code>Task</code>.
-     * 
+     *
      * @param description Description of task.
      */
     protected Task(String description) {
@@ -22,8 +24,8 @@ public class Task {
 
     /**
      * Constructs an instance of <code>Task</code>.
-     * 
-     * @param isDone Whether task is complete or incomplete.
+     *
+     * @param isDone      Whether task is complete or incomplete.
      * @param description Description of task.
      */
     protected Task(boolean isDone, String description) {
@@ -40,8 +42,8 @@ public class Task {
     }
 
     /**
-     * Checks if task description contains given keyword, case insensitive.
-     * 
+     * Checks if task description contains given keyword, case-insensitive.
+     *
      * @param keyword Keyword to search for.
      * @return True, if description contains given keyword. False otherwise.
      */
@@ -51,17 +53,17 @@ public class Task {
 
     /**
      * Returns string representation of task to save in file.
-     * 
+     *
      * @return String representation of task to save in file.
      */
     public String toFileString() {
         String isDoneString = isDone ? "T" : "F";
-        return isDoneString + " // " + description;
+        return isDoneString + Storage.DELIMITER + description;
     }
 
     /**
      * Returns string representation of task.
-     * 
+     *
      * @return String representation of task.
      */
     @Override

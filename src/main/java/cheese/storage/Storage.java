@@ -16,6 +16,9 @@ import java.util.Scanner;
  * Represents a storage that interacts with <code>Cheese</code>'s save file.
  */
 public class Storage {
+    /** Delimiter of storage file */
+    public static final String DELIMITER = " // ";
+
     /** File path of save file. */
     private String filePath;
 
@@ -100,10 +103,12 @@ public class Storage {
      * @throws CheeseException If string from save file is corrupted.
      */
     private Task decodeStringToTask(String taskString) throws CheeseException {
-        String[] taskStringArray = taskString.split(" // ");
+        String[] taskStringArray = taskString.split(DELIMITER);
+
         String taskType = taskStringArray[0];
         boolean isDone = taskStringArray[1].equals("T");
         String description = taskStringArray[2];
+
         switch (taskType) {
         case "todo":
             return new Todo(isDone, description);

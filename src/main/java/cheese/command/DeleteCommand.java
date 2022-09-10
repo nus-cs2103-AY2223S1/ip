@@ -16,16 +16,15 @@ public class DeleteCommand extends Command {
     /**
      * Constructs an instance of <code>DeleteCommand</code>.
      *
-     * @param givenIndex Index of task to delete using 1-based indexing.
+     * @param taskIndex Index of task to delete using 1-based indexing.
      */
-    public DeleteCommand(int givenIndex) {
-        taskIndex = givenIndex - 1;
+    public DeleteCommand(int taskIndex) {
+        this.taskIndex = taskIndex;
     }
 
     /**
      * Executes operations to delete task from list and save the list.
      *
-     * @param {@inheritDoc}
      * @throws CheeseException If given index of task to delete does not match a task from
      *                         <code>taskList</code>.
      */

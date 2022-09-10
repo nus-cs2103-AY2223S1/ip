@@ -1,8 +1,10 @@
 package cheese.data;
 
-import java.util.ArrayList;
 import cheese.exception.CheeseException;
+import cheese.parser.Parser;
 import cheese.task.Task;
+
+import java.util.ArrayList;
 
 /**
  * Represents a list of tasks that supports adding tasks, deleting tasks, and marking tasks as
@@ -21,7 +23,7 @@ public class TaskList {
 
     /**
      * Gets task from the list at given index.
-     * 
+     *
      * @param taskIndex Index of task to retrieve.
      * @return Task specified by given index.
      * @throws CheeseException If index is not in the range of task list.
@@ -33,7 +35,7 @@ public class TaskList {
 
     /**
      * Deletes task from the list at given index.
-     * 
+     *
      * @param taskIndex Index of task to delete.
      * @return Task specified by given index.
      * @throws CheeseException If index is not in the range of task list.
@@ -46,7 +48,7 @@ public class TaskList {
 
     /**
      * Adds task to end of the list.
-     * 
+     *
      * @param task Task to add.
      * @return Task that is added to the list.
      */
@@ -57,7 +59,7 @@ public class TaskList {
 
     /**
      * Marks task in the list at given index as complete.
-     * 
+     *
      * @param taskIndex Index of task to mark as complete
      * @return Task that is marked as complete.
      * @throws CheeseException If index is not in the range of task list.
@@ -70,7 +72,7 @@ public class TaskList {
 
     /**
      * Marks task in the list at given index as incomplete.
-     * 
+     *
      * @param taskIndex Index of task to mark as incomplete
      * @return Task that is marked as incomplete.
      * @throws CheeseException If index is not in the range of task list.
@@ -83,7 +85,7 @@ public class TaskList {
 
     /**
      * Gets size of task list.
-     * 
+     *
      * @return Size of task list.
      */
     public int getSize() {
@@ -92,7 +94,7 @@ public class TaskList {
 
     /**
      * Returns list of tasks containing given keyword.
-     * 
+     *
      * @param keyword Keyword to search for.
      * @return List of tasks containing given keyword.
      */
@@ -108,7 +110,7 @@ public class TaskList {
 
     /**
      * Returns String representation of task list to save in file.
-     * 
+     *
      * @return String representation of task list to save in file.
      */
     public String toFileString() {
@@ -122,7 +124,7 @@ public class TaskList {
 
     /**
      * Returns String representation of task list.
-     * 
+     *
      * @return String representation of task list.
      */
     @Override
@@ -130,7 +132,7 @@ public class TaskList {
         String taskListString = "";
         for (int i = 0; i < taskList.size(); i++) {
             Task task = taskList.get(i);
-            int displayIndex = i + 1;
+            int displayIndex = i - Parser.INDEX_OFFSET;
             taskListString += displayIndex + ". " + task;
             taskListString += System.lineSeparator();
         }
@@ -139,12 +141,13 @@ public class TaskList {
 
     /**
      * Validates if index given is within range of task list.
-     * 
+     *
      * @param taskIndex Index of task to validate.
      * @throws CheeseException If index is not in the range of task list.
      */
     private void validateTaskIndexInRange(int taskIndex) throws CheeseException {
-        if (taskIndex < 0 || taskIndex >= taskList.size()) {
+        boolean isOutOfRange = taskIndex < 0 || taskIndex >= taskList.size();
+        if (isOutOfRange) {
             throw new CheeseException("Item number is not in list range.");
         }
     }
