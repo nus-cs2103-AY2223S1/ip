@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for duke.ui.MainWindow. Provides the layout for the other controls.
  */
@@ -73,7 +74,6 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImageView)
         );
         userInput.clear();
-
         if (responseString == Ui.showExitMessage()) {
             Ui.exitProgram();
         }

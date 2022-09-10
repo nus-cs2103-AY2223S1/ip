@@ -35,7 +35,7 @@ public class DialogBox extends HBox {
         Circle c1 = new Circle(50, 50, 50);
         iv.setClip(c1);
 
-        l.setFont(new Font("Arial", 12));
+        l.setFont(new Font("Arial", 12.5));
         text.setBackground(new Background(
                 new BackgroundFill(
                         new Color(0.1, 0.1, 0.1, 0.2),

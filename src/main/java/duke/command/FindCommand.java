@@ -34,7 +34,6 @@ public class FindCommand extends Command {
         int count = 1;
         String output = "";
         boolean isEmpty = true;
-
         for (int i = 0; i < taskList.getSize(); i++) {
             Task task = taskList.getTask(i);
             if (task.getName().contains(keyword)) {
@@ -46,7 +45,6 @@ public class FindCommand extends Command {
                 count++;
             }
         }
-
         if (isEmpty) {
             return ui.showFindEmptyMessage();
         } else {
