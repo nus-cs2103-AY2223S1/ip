@@ -18,7 +18,6 @@ public class Duke {
             tasks = storage.load();
         } catch (DukeException e) {
             Ui.showError(e);
-            System.out.println("Creating new file.");
             tasks = new TaskList();
         }
         p = new Parser(tasks);

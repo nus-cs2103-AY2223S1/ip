@@ -49,27 +49,38 @@ public class Storage {
             throw new DukeException("Unable to read file.");
         }
         while (scanner.hasNext()) {
-            String[] command = scanner.nextLine().split(",");
-            Task newTask;
-            switch (command[0]) {
-            case "T":
-                newTask = new ToDo(command[2]);
-                break;
-            case "D":
-                newTask = new Deadline(command[2], command[3]);
-                break;
-            case "E":
-                newTask = new Event(command[2], command[3]);
-                break;
-            default:
-                throw new DukeException("    Ensure Task is in this format\n    \"D,1,Read book,Sunday");
-            }
-            if (command[1].equals("1")) {
-                newTask.markComplete();
-            }
-            taskList.addTask(newTask);
+            loadLineToDuke(scanner, taskList);
         }
         return taskList;
+    }
+
+    /**
+     * Loads a line in the storage file to Duke bot.
+     *
+     * @param scanner Scanner object that scans the storage file.
+     * @param taskList TaskList object that carries all the tasks in bot.
+     * @throws DukeException When a line in the storage file is not valid, DukeException is thrown
+     */
+    private void loadLineToDuke(Scanner scanner, TaskList taskList) throws DukeException {
+        String[] command = scanner.nextLine().split(",");
+        Task newTask;
+        switch (command[0]) {
+        case "T":
+            newTask = new ToDo(command[2]);
+            break;
+        case "D":
+            newTask = new Deadline(command[2], command[3]);
+            break;
+        case "E":
+            newTask = new Event(command[2], command[3]);
+            break;
+        default:
+            throw new DukeException("Ensure Task is in this format\n\"D,1,Read book,Sunday");
+        }
+        if (command[1].equals("1")) {
+            newTask.markComplete();
+        }
+        taskList.addTask(newTask);
     }
 
     /**
@@ -79,20 +90,7 @@ public class Storage {
      */
     public void write(TaskList tasksToWrite) {
         try {
-            ArrayList<String> commandToWrite = new ArrayList<>();
-            for (Task task : tasksToWrite) {
-                String command = task.getTaskType() + ",";
-                if (task.getStatusIcon().equals("X")) {
-                    command += "1,";
-                } else {
-                    command += "0,";
-                }
-                command += task.getDescription();
-                if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
-                    command = command + "," + task.getTime();
-                }
-                commandToWrite.add(command);
-            }
+            ArrayList<String> commandToWrite = tasksToWrite.convertTasksToList();
             Files.write(path, commandToWrite);
         } catch (IOException e) {
             System.out.println("Error saving tasks to file.");
