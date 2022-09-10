@@ -35,6 +35,6 @@ public class ToDo extends Task {
         } else {
             status = "0 | ";
         }
-        return TASK_TYPE + " | " + status + getDescription() + "\n";
+        return TASK_TYPE + " | " + status + getDescription() + " | " + getPriorityLevel() + "\n";
     }
 }

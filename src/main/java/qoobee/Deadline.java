@@ -37,7 +37,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[" + TASK_TYPE + "]" + super.toString()
-                + "(by: " + DateTimeParser.getDateTimeString(dateTime) + ")";
+                + " (by: " + DateTimeParser.getDateTimeString(dateTime) + ")";
     }
 
     /**
@@ -53,7 +53,8 @@ public class Deadline extends Task {
             status = "0 | ";
         }
         return TASK_TYPE + " | " + status + getDescription()
-                + " | " + DateTimeParser.getDateTimeStorage(dateTime) + "\n";
+                + " | " + DateTimeParser.getDateTimeStorage(dateTime) + " | " + getPriorityLevel()
+                + "\n";
     }
 
 }

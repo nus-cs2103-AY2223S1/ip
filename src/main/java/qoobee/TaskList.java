@@ -33,8 +33,12 @@ public class TaskList {
      * @param index The index of the task identified.
      * @return Returns a task.
      */
-    public Task getTask(int index) {
-        return this.taskList.get(index);
+    public Task getTask(int index) throws QoobeeException {
+        if (index >= taskListSize()) {
+            throw new QoobeeException("Invalid task number!");
+        } else {
+            return this.taskList.get(index);
+        }
     }
 
     /**
@@ -47,7 +51,7 @@ public class TaskList {
             StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
             for (int i = 0; i < taskListSize(); i++) {
                 Task currentTask = taskList.get(i);
-                sb.append((i + 1) + "." + currentTask + "\n");
+                sb.append((i + 1) + ". " + currentTask + " " + currentTask.getPriorityLevel() + "\n");
             }
             return sb.toString();
         }
@@ -76,7 +80,7 @@ public class TaskList {
         if (commands.length == 1 || commands[1].isBlank()) {
             throw new QoobeeException("The description of a todo cannot be empty :^(");
         } else {
-            Task todo = new ToDo(commands[1]);
+            Task todo = new ToDo(commands[1].trim());
             return addTask(todo);
         }
     }
@@ -94,7 +98,7 @@ public class TaskList {
             throw new QoobeeException("Please use /by to specify a deadline :]");
         }
         String[] deadlineArray = commands[1].split("/by", 2);
-        Task deadline = new Deadline(deadlineArray[0], deadlineArray[1].trim());
+        Task deadline = new Deadline(deadlineArray[0].trim(), deadlineArray[1].trim());
         return addTask(deadline);
     }
 
@@ -111,7 +115,7 @@ public class TaskList {
             throw new QoobeeException("Please use /at to specify a deadline :]");
         }
         String[] eventArray = commands[1].split("/at", 2);
-        Task event = new Event(eventArray[0], eventArray[1]);
+        Task event = new Event(eventArray[0].trim(), eventArray[1].trim());
         return addTask(event);
     }
 
@@ -180,4 +184,15 @@ public class TaskList {
             return sb.toString();
         }
     }
+
+    public String setPriority(Task task, String priorityLevel) throws QoobeeException {
+        try {
+            task.setPriorityLevel(priorityLevel);
+        } catch (QoobeeException e) {
+            throw new QoobeeException("Please enter a valid priority!");
+        }
+        storage.save(taskList);
+        return "Got it, marking priority level as " + priorityLevel;
+    }
+
 }

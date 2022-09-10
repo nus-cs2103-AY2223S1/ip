@@ -39,34 +39,31 @@ public class Storage {
             while (myReader.hasNextLine()) {
                 String curr = myReader.nextLine();
                 String[] stringArray = curr.split(" \\| ");
-                if (stringArray[0].equals("T")) {
-                    Task todo = new ToDo(stringArray[2]);
-                    if (stringArray[1].equals("1")) {
-                        todo.markAsDone();
-                    }
-                    this.list.add(todo);
-                    save(list);
-                } else if (stringArray[0].equals("D")) {
-                    Task deadline = new Deadline(stringArray[2], DateTimeParser.getDateTime(stringArray[3]));
-                    if (stringArray[1].equals("1")) {
-                        deadline.markAsDone();
-                    }
-                    this.list.add(deadline);
-                    save(list);
-                } else if (stringArray[0].equals("E")) {
-                    Task event = new Event(stringArray[2], stringArray[3]);
-                    if (stringArray[1].equals("1")) {
-                        event.markAsDone();
-                    }
-                    this.list.add(event);
-                    save(list);
+                String taskName = stringArray[0];
+                String taskStatus = stringArray[1];
+                String taskDescription = stringArray[2];
+                Task currTask = null;
+                if (taskName.equals("T")) {
+                    currTask = new ToDo(taskDescription);
+                } else if (taskName.equals("D")) {
+                    String taskBy = stringArray[3];
+                    currTask = new Deadline(taskDescription, DateTimeParser.getDateTime(taskBy));
+                } else if (taskName.equals("E")) {
+                    String taskAt = stringArray[3];
+                    currTask = new Event(taskDescription, taskAt);
                 }
+                if (taskStatus.equals("1")) {
+                    currTask.markAsDone();
+                }
+                currTask.setPriorityLevel(stringArray[stringArray.length - 1]);
+                this.list.add(currTask);
+                save(list);
             }
         } catch (FileNotFoundException e) {
             // Create the empty file if there is no existing file.
             File file = new File(filePath);
         } catch (QoobeeException e) {
-            System.out.println("Unable to save task");
+            System.out.println("Unable to load task");
         }
     }
 

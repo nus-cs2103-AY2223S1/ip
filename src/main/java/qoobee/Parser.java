@@ -51,6 +51,14 @@ public class Parser {
                 return tasks.removeTask(commands);
             case "find":
                 return tasks.findTask(commands[1]);
+            case "priority":
+                String[] priorityString = commands[1].split(" ", 2);
+                if (priorityString.length != 2) {
+                    throw new QoobeeException("Select a valid task and priority :(");
+                } else {
+                    Task taskToSetPriority = tasks.getTask(Integer.parseInt(priorityString[0]) - 1);
+                    return tasks.setPriority(taskToSetPriority, priorityString[1]);
+                }
             default:
                 return "I'm sorry, but I don't know what that means :^(";
             }

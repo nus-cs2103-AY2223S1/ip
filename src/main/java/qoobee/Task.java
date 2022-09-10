@@ -6,6 +6,7 @@ package qoobee;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected String priorityLevel;
 
     /**
      * Creates a task given a description.
@@ -14,6 +15,8 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        //default priority
+        this.priorityLevel = "NA";
     }
 
     /**
@@ -56,6 +59,39 @@ public class Task {
     }
 
     public String storageToString() {
-        return " ";
+        return "";
     }
+
+    /**
+     * Sets the priority level of the task.
+     * @param priorityLevel The priority level represented as low, medium or high.
+     */
+    public void setPriorityLevel(String priorityLevel) throws QoobeeException {
+        String priority = priorityLevel.toLowerCase();
+        switch (priority) {
+        case "low":
+            this.priorityLevel = "LOW";
+            break;
+        case "medium":
+            this.priorityLevel = "MEDIUM";
+            break;
+        case "high":
+            this.priorityLevel = "HIGH";
+            break;
+        case "na":
+            this.priorityLevel = "NA";
+            break;
+        default:
+            throw new QoobeeException("Please enter a valid priority (low,medium,high)");
+        }
+    }
+
+    /**
+     * Gets the priority level of the task.
+     * @return The String representation of the priority level.
+     */
+    public String getPriorityLevel() {
+        return this.priorityLevel;
+    }
+
 }

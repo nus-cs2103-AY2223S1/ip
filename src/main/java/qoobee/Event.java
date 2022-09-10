@@ -32,7 +32,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString() + "(at:" + at + ")";
+        return "[" + TASK_TYPE + "]" + super.toString() + " (at:" + at + ")";
     }
 
     /**
@@ -47,7 +47,8 @@ public class Event extends Task {
         } else {
             status = "0 | ";
         }
-        return TASK_TYPE + " | " + status + getDescription() + " | " + getAt() + "\n";
+        return TASK_TYPE + " | " + status + " | " + getDescription() + " | " + getAt()
+                + " | " + getPriorityLevel() + "\n";
     }
 
 }
