@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
-    @Test
+    /*@Test
     public void parse_addAnEvent_success() {
         Parser parser = new Parser();
         TaskList tl = new TaskList();
@@ -13,9 +13,9 @@ public class ParserTest {
         parser.parse("event attend wedding /at 2022-10-28 18:00", tl);
         String expected = "E | O | attend wedding | Oct 28 2022 | 18:00";
         assertEquals(expected, tl.getTasks().get(0).toString());
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void parse_markTaskAsDone_success() {
         Parser parser = new Parser();
         TaskList tl = new TaskList();
@@ -25,5 +25,5 @@ public class ParserTest {
         tl.addTask(deadlineTask);
         parser.parse("mark 1", tl);
         assertEquals("X", tl.getTasks().get(0).getStatusIcon());
-    }
+    }*/
 }
