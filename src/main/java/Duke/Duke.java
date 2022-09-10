@@ -16,10 +16,10 @@ public class Duke {
     public Duke(String filePath, FXMLLoader fxmlLoader) {
         ui = new Ui();
         mainWindow = fxmlLoader.<MainWindow>getController();
-        String[] seperates = filePath.split("/");
-        storage = new Storage(ui, seperates[0], seperates[1], mainWindow);
+        String[] strArr = filePath.split("/");
+        storage = new Storage(strArr[0], strArr[1], mainWindow);
         try {
-            tasks = new TaskList(ui, storage, mainWindow);
+            tasks = new TaskList(storage, mainWindow);
         } catch (Exception e) {
             mainWindow.printErrorMessage(e.toString());
         }
