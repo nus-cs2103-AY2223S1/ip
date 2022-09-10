@@ -176,12 +176,15 @@ public class Parser {
         try {
             String[] components = input.split("\\s+", 2);
             int index = parseIntegerString(components[0]);
+            if (components[1].equals("")) {
+                throw new MissingDescriptionException("priority", " is incomplete");
+            }
             Priority priority = Priority.valueOf(components[1].toUpperCase());
             return new PriorityCommand(index, priority);
         } catch (IllegalArgumentException e) {
             throw new InvalidPriorityException();
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new InvalidInputException();
+            throw new MissingDescriptionException("priority", " is incomplete");
         }
     }
 
