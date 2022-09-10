@@ -12,4 +12,13 @@ public class EmptyTask extends Task {
     public EmptyTask() throws EmptyTaskException {
         super("", "");
     }
+
+    /**
+     * Does nothing
+     * @param arguments
+     * @throws Exception
+     */
+    @Override
+    public void update(String arguments) throws Exception {
+    }
 }
