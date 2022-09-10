@@ -60,6 +60,17 @@ public enum Deliminator {
         public String getDeliminatorRegex() {
             return "\\s";
         }
+    },
+    colonDeliminator {
+        @Override
+        public String getDeliminator() {
+            return ":";
+        }
+
+        @Override
+        public String getDeliminatorRegex() {
+            return ":";
+        }
     };
 
     public abstract String getDeliminator();
@@ -67,6 +78,6 @@ public enum Deliminator {
 
     public static List<Deliminator> getAllDeliminators() {
         return List.of(noDeliminator, dashDeliminator, slashDeliminator,
-                dotDeliminator, whitespaceDeliminator);
+                dotDeliminator, whitespaceDeliminator, colonDeliminator);
     }
 }
