@@ -47,6 +47,9 @@ public class MainWindow extends AnchorPane {
         return new MainWindow();
     }
 
+    /**
+     * Ensures scrollbar is responsive to height of child DialogBox.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

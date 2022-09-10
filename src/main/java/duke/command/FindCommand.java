@@ -4,7 +4,7 @@ import duke.Storage;
 import duke.TaskList;
 import duke.ui.Ui;
 
-/*
+/**
  * Encapsulates a command to find tasks from the list.
  */
 public class FindCommand extends Command {

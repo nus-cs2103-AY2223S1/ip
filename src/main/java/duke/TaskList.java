@@ -37,6 +37,11 @@ public class TaskList {
         tasks.add(task);
     }
 
+    /**
+     * Finds Tasks that contain a keyword.
+     * @param keyword
+     * @return The String representation of all the Tasks that contain the keyword, or the empty String if there are no such Tasks.
+     */
     public String find(String keyword) {
         String result = "";
         for (int i = 0; i < tasks.size(); i++) {

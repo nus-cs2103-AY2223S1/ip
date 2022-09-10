@@ -6,7 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * A GUI for Duke using FXML.
+ * Entry point for Duke.
+ * Initializes Root Node and sets the Scene.
  */
 public class Main extends Application {
 
