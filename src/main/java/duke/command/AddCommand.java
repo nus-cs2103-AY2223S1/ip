@@ -11,7 +11,7 @@ import duke.task.TaskType;
 import duke.task.Todo;
 import duke.ui.Ui;
 
-/*
+/**
  * Encapsulates a command to add a task to the list.
  */
 public class AddCommand extends Command {

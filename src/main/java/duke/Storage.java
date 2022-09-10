@@ -27,7 +27,7 @@ public class Storage {
     /**
      * Loads tasks from duke.txt file.
      *
-     * @return
+     * @return {@code}List&lt;Task&gt;{@code} from duke.txt file or an empty {@code}List{@code} if duke.txt does not exist.
      * @throws DukeException If duke.txt was not found or if there was an error during processing.
      */
     public List<Task> load() throws DukeException {
