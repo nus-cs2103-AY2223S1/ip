@@ -26,7 +26,7 @@ public class Storage {
     }
 
     /**
-     * Extracts data in Roofus's memory into a list.
+     * Extracts data in Roofus' memory into a list.
      *
      * @return List Returns lists containing saved data in Storage.
      * @throws FileNotFoundException If storage path is invalid.

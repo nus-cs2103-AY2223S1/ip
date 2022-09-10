@@ -15,6 +15,11 @@ public class TaskList {
     private List<Task> tasks = new ArrayList<>();
 
     /**
+     * Constructs an instance of TaskList without storage file
+     */
+    public TaskList() {}
+
+    /**
      * Constructs an instance of TaskList.
      *
      * @param taskString List of strings to be saved as Tasks.
@@ -48,7 +53,7 @@ public class TaskList {
     }
 
     /**
-     * Sort the taskLists based the dates of the tasks in ascending order.
+     * Sorts the taskLists based the dates of the tasks in ascending order.
      *
      * @see Task
      */

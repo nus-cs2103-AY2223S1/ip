@@ -33,25 +33,24 @@ public class Roofus {
         try {
             this.taskList = new TaskList(this.storage.load());
         } catch (FileNotFoundException err) {
-            ui.printErrMessage("Required file not found\n"
-                    + "Roofus did not load storage data");
+            taskList = new TaskList();
         }
     }
 
     /**
-     * Formats and returns Roofus's greetings.
+     * Formats and returns Roofus' greetings.
      *
-     * @return String Returns Roofus's greetings in a string.
+     * @return String Returns Roofus' greetings in a string.
      */
     public String greet() {
         return ui.greet();
     }
 
     /**
-     * A method to get Roofus's response.
+     * A method to get Roofus' response.
      *
      * @param fullCommand The string representation of user's input.
-     * @return String Returns Roofus's response to user's input.
+     * @return String Returns Roofus' response to user's input.
      */
     public String getResponse(String fullCommand) {
         try {
