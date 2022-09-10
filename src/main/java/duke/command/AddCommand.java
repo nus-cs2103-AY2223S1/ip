@@ -39,13 +39,22 @@ public class AddCommand extends Command {
         String taskDetails = userInput.split(" ", 2)[1];
 
         if (command.equals(Duke.Keyword.TODO.getKeyword())) {
-            task = new Todo(taskDetails);
+            task = new Todo(taskDetails.split("/")[0]);
+            if (taskDetails.split("/").length > 1) {
+                task.setPriority(taskDetails.split("/")[1].split(" ", 2)[1]);
+            }
             taskList.addTask(task);
         } else if (command.equals(Duke.Keyword.EVENT.getKeyword())) {
             task = new Event(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
+            if (taskDetails.split("/").length > 2) {
+                task.setPriority(taskDetails.split("/")[2].split(" ", 2)[1]);
+            }
             taskList.addTask(task);
         } else if (command.equals(Duke.Keyword.DEADLINE.getKeyword())) {
             task = new Deadline(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
+            if (taskDetails.split("/").length > 2) {
+                task.setPriority(taskDetails.split("/")[2].split(" ", 2)[1]);
+            }
             taskList.addTask(task);
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");

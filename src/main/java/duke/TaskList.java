@@ -7,7 +7,6 @@ import duke.task.Task;
 /** Represents a list of Tasks objects */
 public class TaskList {
     private final ArrayList<Task> taskList;
-    private Ui ui;
 
     /**
      * Represents a TaskList object.
@@ -16,7 +15,6 @@ public class TaskList {
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
-        this.ui = new Ui();
     }
 
     /**
@@ -28,7 +26,6 @@ public class TaskList {
      */
     public TaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
-        this.ui = new Ui();
     }
 
     public ArrayList<Task> getTaskList() {

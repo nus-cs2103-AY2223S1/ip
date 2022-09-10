@@ -1,8 +1,11 @@
 package duke.task;
 
+import java.util.Locale;
+
 public abstract class Task {
     private String taskName;
     private boolean isDone;
+    private Priority priority;
 
     /**
      * Returns a Task object.
@@ -13,6 +16,60 @@ public abstract class Task {
     public Task(String taskName) {
         this.taskName = taskName;
         this.isDone = false;
+        this.priority = Priority.LOW;
+    }
+
+    public enum Priority {
+        HIGH(1), LOW(3), MEDIUM(2);
+        private int value;
+        Priority (int value) {
+            this.value = value;
+        }
+        public int getValue() {
+            return value;
+        }
+        public String getName() {
+            if (this.value == 1) {
+                return "High";
+            } else if (this.value == 2) {
+                return "Medium";
+            } else {
+                return "Low";
+            }
+        }
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public void setPriority(int priorityNum) {
+        if (priorityNum == 1) {
+            this.priority = Priority.HIGH;
+        } else if (priorityNum == 2) {
+            this.priority = Priority.MEDIUM;
+        } else if (priorityNum == 3) {
+            this.priority = Priority.LOW;
+        }
+    }
+
+    public void setPriority(String priorityString) {
+        String name = priorityString.toLowerCase().replaceAll(" ", "");
+        if(name.equals("high")) {
+            this.priority = Priority.HIGH;
+        } else if (name.equals("medium")) {
+            this.priority = Priority.MEDIUM;
+        } else if (name.equals("low")) {
+            this.priority = Priority.LOW;
+        }
+    }
+
+    public String getPriorityString() {
+        return this.priority.getName();
+    }
+
+    public int getPriorityNumber() {
+        return this.priority.value;
     }
 
     /**
@@ -49,7 +106,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return (this.getTaskStatus() ? "[X]" : "[ ]") + " " + this.getTaskName();
+        return (this.getTaskStatus() ? "[X]" : "[ ]") + "["+ this.getPriorityString() + "] " + this.getTaskName();
     }
 
     /**
@@ -58,4 +115,5 @@ public abstract class Task {
      * @return String representation of the task that is used to save into text file.
      */
     public abstract String toFileString();
+
 }
