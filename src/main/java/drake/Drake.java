@@ -4,19 +4,22 @@ import drake.commands.Command;
 
 import java.io.IOException;
 
+/**
+ * Entrypoint for the Drake to-do list chatbot.
+ */
 public class Drake {
 
     private final Storage storage;
     private final TaskList tasks;
     private final Ui ui;
 
-    public Drake() throws IOException, DrakeException {
+    private Drake() throws IOException, DrakeException {
         ui = new Ui();
         storage = new Storage();
         tasks = new TaskList(storage.fileToList());
     }
 
-    public void run() {
+    private void run() {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
@@ -34,6 +37,11 @@ public class Drake {
         }
     }
 
+    /**
+     * Entrypoint.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         try {
             new Drake().run();

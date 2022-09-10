@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Task list saving and loading functionalities.
+ */
 public class Storage {
 
     List<List<String>> tasks;
@@ -21,12 +24,21 @@ public class Storage {
     private static final String TASK_FILE_DIR = "data";
     private final File taskFile;
 
+    /**
+     * Constructor using the default savefile location.
+     *
+     */
     public Storage() throws IOException, DrakeException {
         taskFile = new File(TASK_FILE_PATH);
         tasks = new ArrayList<>();
         addTasks(fileToList());
     }
 
+    /**
+     * Reads tasks from the task file into a list of Tasks.
+     *
+     * @return A list of Tasks present in the task file.
+     */
     public List<Task> fileToList() {
         ArrayList<Task> list = new ArrayList<>();
         Scanner fileReader;
@@ -64,6 +76,13 @@ public class Storage {
         return list;
     }
 
+    /**
+     * Updates the task in the task list.
+     *
+     * @param taskNumber The task number of the task to update.
+     * @param command The update demanded by the user.
+     * @throws DrakeException when saving fails.
+     */
     public void updateTask(int taskNumber, CommandType command) throws DrakeException {
         switch (command) {
         case MARK:
@@ -81,8 +100,13 @@ public class Storage {
         updateFile();
     }
 
-    //Inspired by parnikkapore's PR
+    /**
+     * Updates the task file to the current state of the task list.
+     *
+     * @throws DrakeException when saving fails
+     */
     private void updateFile() throws DrakeException {
+        //Inspired by parnikkapore's PR
         try {
             File fileDir = new File(TASK_FILE_DIR);
             if (!fileDir.isDirectory() && !fileDir.mkdirs()) {
@@ -100,6 +124,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds a task to the task file.
+     *
+     * @param addedTask The task to be added to the file.
+     * @throws DrakeException when saving fails.
+     */
     public void addTask(Task addedTask) throws DrakeException {
         tasks.add(addedTask.toList());
         updateFile();

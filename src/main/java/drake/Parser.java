@@ -2,8 +2,16 @@ package drake;
 
 import drake.commands.*;
 
+/**
+ * Command parser.
+ */
 public class Parser {
 
+    /**
+     * Parses and executes the given input using the given module instances.
+     * @param fullInput The input given to the bot.
+     * @return The Command parsed from the user input.
+     */
     public static Command parse(String fullInput) throws UnknownCommandException,
             IncompatibleCommandException, EmptyDescriptionException {
         int firstSpace = fullInput.indexOf(' ');
