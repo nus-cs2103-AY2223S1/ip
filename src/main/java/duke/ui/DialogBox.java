@@ -41,15 +41,36 @@ public class DialogBox extends HBox {
                         new Color(0.1, 0.1, 0.1, 0.2),
                         new CornerRadii(7.5),
                         new Insets(-5, -5, -5, -5))));
-        text.setMinWidth(50);
-        text.setMinHeight(25);
         text.setWrapText(true);
+        setTextSize(150, 100);
         setDisplayPictureSize(100, 125);
+        dialogBoxDesign();
+    }
 
-        this.setPadding(new Insets(10, 10, 10, 10));
+    /**
+     * Designs the dialog box.
+     */
+    private void dialogBoxDesign() {
+        this.setPadding(new Insets(20, 10, 10, 10));
         this.setAlignment(Pos.TOP_RIGHT);
         this.getChildren().addAll(text, displayPicture);
         this.setSpacing(10);
+        this.setBackground(new Background(
+                new BackgroundFill(
+                        new Color(0.3, 0.3, 1, 0.3),
+                        new CornerRadii(7.5),
+                        new Insets(-5, -5, -5, -5))));
+    }
+
+    /**
+     * Sets the text to specified size.
+     *
+     * @param width width of text
+     * @param height height of text
+     */
+    private void setTextSize(int width, int height) {
+        text.setMinWidth(width);
+        text.setMinHeight(height);
     }
 
     /**
@@ -71,6 +92,11 @@ public class DialogBox extends HBox {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         FXCollections.reverse(tmp);
         this.getChildren().setAll(tmp);
+        this.setBackground(new Background(
+                new BackgroundFill(
+                        new Color(0, 0.5, 0.0, 0.2),
+                        new CornerRadii(7.5),
+                        new Insets(-5, -5, -5, -5))));
     }
 
     public static DialogBox getUserDialog(Label l, ImageView iv) {
