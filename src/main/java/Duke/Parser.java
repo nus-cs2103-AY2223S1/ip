@@ -31,7 +31,10 @@ public class Parser {
     }
 
     private static void markUnmarkTask(String[] strArr, TaskList tasks) {
+        assert java.util.regex.Pattern.matches("\\d+", strArr[1]) : "The 2nd parameter should be a " +
+                                                                    "positive integer";
         int index = Integer.parseInt(strArr[1]) - 1;
+        assert index < tasks.getSize() : "the index to be deleted should be less than " + tasksSize;
         if (strArr[0].equals("mark")) {
             tasks.markTaskAsDone(index);
         } else if (strArr[0].equals("unmark")) {
@@ -40,7 +43,10 @@ public class Parser {
     }
 
     private static void deleteTask(String[] strArr, TaskList tasks) {
+        assert java.util.regex.Pattern.matches("\\d+", strArr[1]) : "The 2nd parameter should be a " +
+                                                                     "positive integer";
         int index = Integer.parseInt(strArr[1]) - 1;
+        assert index < tasks.getSize() : "the index to be deleted should be less than " + tasksSize;
         tasks.delete(index);
     }
 
