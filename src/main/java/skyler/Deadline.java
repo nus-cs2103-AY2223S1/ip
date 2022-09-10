@@ -33,6 +33,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public void changeDateTime(LocalDateTime dateTime) {
+        this.deadline = dateTime;
+    }
+
+    @Override
     public String toStringUnformatted() {
         String unformatted = deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
         return String.format("[D]%s (by: %s)", super.toString(), unformatted);

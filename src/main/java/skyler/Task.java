@@ -1,5 +1,7 @@
 package skyler;
 
+import java.time.LocalDateTime;
+
 /**
  * Represents a generic task
  */
@@ -34,6 +36,8 @@ public abstract class Task {
     public void markAsNotDone() {
         this.isDone = false;
     }
+
+    public abstract void changeDateTime(LocalDateTime dateTime);
 
     public abstract String toStringUnformatted();
 

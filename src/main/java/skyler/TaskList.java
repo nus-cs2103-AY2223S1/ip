@@ -190,6 +190,25 @@ public class TaskList {
         }
     }
 
+    public String rescheduleTask(int itemID, String dateTime) {
+        Task currTask = tasks.get(itemID - 1);
+        LocalDateTime dt = formatDateTime(dateTime);
+
+        currTask.changeDateTime(dt);
+
+        StringBuilder response = new StringBuilder("The following task has been rescheduled:\n");
+        String rescheduledTask = String.format("  %s\n", currTask);
+        response.append(rescheduledTask);
+
+        try {
+            // task list changes
+            storage.saveTask(tasks);
+            return response.toString();
+        } catch (IOException ie) {
+            return ie.getMessage();
+        }
+    }
+
     /**
      * Prints tasks containing the given keyword
      *

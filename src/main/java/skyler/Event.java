@@ -33,6 +33,11 @@ public class Event extends Task {
     }
 
     @Override
+    public void changeDateTime(LocalDateTime dateTime) {
+        this.time = dateTime;
+    }
+
+    @Override
     public String toStringUnformatted() {
         String unformatted = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
         return String.format("[E]%s (at: %s)", super.toString(), unformatted);

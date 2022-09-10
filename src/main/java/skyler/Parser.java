@@ -49,6 +49,9 @@ public class Parser {
         } else if (checkIsCommandType(command, "find")) {
             String[] commandArguments = getCommandArguments(command);
             return taskList.findTask(commandArguments[1]);
+        } else if (checkIsCommandType(command, "reschedule")) {
+            String[] commandArguments = getMultipleCommandArguments(command);
+            return taskList.rescheduleTask(Integer.parseInt(commandArguments[1]), commandArguments[2]);
         } else {
             throw new TaskNotRecognisedException();
         }
@@ -67,5 +70,9 @@ public class Parser {
 
     private String[] getCommandArguments(String command) {
         return command.split(" ", 2);
+    }
+
+    private String[] getMultipleCommandArguments(String command) {
+        return command.split(" ", 3);
     }
 }
