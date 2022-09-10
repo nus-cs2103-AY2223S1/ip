@@ -8,5 +8,6 @@ import duke.util.Ui;
 public class NoArgumentException extends DukeException {
     public NoArgumentException(String command, Throwable e) {
         super("The proper command is: \n" + Ui.COMMAND_HELP.get(command), e);
+        //test test
     }
 }
