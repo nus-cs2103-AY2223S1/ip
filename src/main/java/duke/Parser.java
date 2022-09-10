@@ -39,6 +39,8 @@ public class Parser {
             return CommandType.MARK_AS_UNDONE;
         } else if (userCommand.startsWith("list")) {
             return CommandType.LIST;
+        } else if (userCommand.startsWith("sort")) {
+            return CommandType.SORT;
         } else if (userCommand.startsWith("search")) {
             return CommandType.SEARCH;
         } else {
@@ -60,6 +62,8 @@ public class Parser {
             return handleMarkAsUndoneCommand(userCommand);
         case LIST:
             return handleListCommand();
+        case SORT:
+            return handleSortCommand();
         case SEARCH:
             return handleSearchCommand(userCommand);
         case NONSENSE:
@@ -123,6 +127,15 @@ public class Parser {
     }
 
     private String handleListCommand() {
+        String stringToReturn = "Duke: Here are your tasks.";
+        for (int i = 0; i < taskList.size(); i++) {
+            stringToReturn = stringToReturn + (String.format("\n%3d: %s", i + 1, taskList.get(i).toString()));
+        }
+        return stringToReturn;
+    }
+
+    private String handleSortCommand() {
+        taskList.sortTasksByName();
         String stringToReturn = "Duke: Here are your tasks.";
         for (int i = 0; i < taskList.size(); i++) {
             stringToReturn = stringToReturn + (String.format("\n%3d: %s", i + 1, taskList.get(i).toString()));

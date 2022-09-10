@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -82,5 +83,13 @@ public class TaskList {
      */
     public Stream<Task> stream() {
         return this.tasks.stream();
+    }
+
+    /**
+     * Sorts the tasks by their name.
+     */
+    public void sortTasksByName() {
+        Comparator<Task> nameComparator = Comparator.comparing(Task::getName);
+        tasks.sort(nameComparator);
     }
 }

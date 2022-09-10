@@ -7,6 +7,7 @@ public enum CommandType {
     MARK_AS_DONE,
     MARK_AS_UNDONE,
     SEARCH,
+    SORT,
     LIST,
     NONSENSE
 }
