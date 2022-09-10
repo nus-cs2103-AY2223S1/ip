@@ -12,7 +12,7 @@ public class TaskListTest {
         Todo todo = new Todo("feed cat");
         TaskList taskList = new TaskList();
         taskList.addTask(todo);
-        assertEquals("[T][ ] feed cat", taskList.getTaskAtIndex(1).toString());
+        assertEquals("[T][ ][Low] feed cat", taskList.getTaskAtIndex(1).toString());
     }
 
     @Test

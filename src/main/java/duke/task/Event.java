@@ -35,8 +35,8 @@ public class Event extends Task {
 
     @Override
     public String toFileString() {
-        return "E" + "|" + (this.getTaskStatus() ? "1" : "0") + "|" + this.getTaskName() + "|"
-                + this.getPriorityNumber() + "|"
+        return "E" + "|" + (this.getTaskStatus() ? "1" : "0") + "|" + this.getPriorityNumber() + "|"
+                + this.getTaskName() + "|"
                 + this.dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
     }
 }
