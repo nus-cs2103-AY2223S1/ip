@@ -4,7 +4,7 @@ package duke;
  * Abstract class which encapsulates a Task inputted by the user.
  *
  */
-public abstract class Task {
+public abstract class Task implements Comparable<Task> {
     private String name;
     private boolean isDone;
 
@@ -67,5 +67,8 @@ public abstract class Task {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public abstract int compareTo(Task other);
 
 }

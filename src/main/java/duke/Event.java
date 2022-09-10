@@ -1,11 +1,14 @@
 package duke;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Encapsulates a Task which has a duration.
  *
  */
 public class Event extends Task {
-    private String duration;
+    private LocalDate duration;
 
     /**
      * Constructor.
@@ -15,7 +18,7 @@ public class Event extends Task {
      */
     public Event(String name, String duration) {
         super(name);
-        this.duration = duration;
+        this.duration = LocalDate.parse(duration);
     }
 
     /**
@@ -25,7 +28,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.duration + ")";
+        return "[E]" + super.toString() + " (at: " + this.duration.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     /**
@@ -34,6 +37,18 @@ public class Event extends Task {
      * @return duration of the Event object
      */
     public String getDuration() {
-        return this.duration;
+        return this.duration.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    @Override
+    public int compareTo(Task task) {
+        if (task instanceof ToDo) {
+            return -1;
+        } else if (task instanceof Deadline) {
+            return 1;
+        } else {
+            Event otherEvent = (Event) task;
+            return this.duration.compareTo(otherEvent.duration);
+        }
     }
 }

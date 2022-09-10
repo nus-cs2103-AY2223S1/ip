@@ -16,11 +16,7 @@ public class Ui {
      * @return all tasks
      */
     public String getTasks(TaskList taskList) {
-        StringBuilder str = new StringBuilder();
-        for (int i = 0; i < taskList.size(); i++) {
-            str.append(String.format("%d. %s\n", i + 1, taskList.getTask(i).toString()));
-        }
-        return str.toString();
+        return taskList.toString();
     }
 
     /**
