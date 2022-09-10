@@ -16,11 +16,10 @@ public class DeleteCommand extends Command {
     public void execute(TaskList taskList, Ui ui) throws DukeException {
         String deletionIndex = input.substring(7);
         int index = Integer.parseInt(deletionIndex);
-
+        assert index > 0 : "index must be > 0";
         if (index <= 0 || index > taskList.size()) {
             throw new DukeException("OOPS!!! I can't remove this if it does not exist\n");
         }
-
         Task task = taskList.remove(index - 1);
         this.response = "Noted. I've removed this task:" + task.toString() + "\n" + "Now you have "
                 + taskList.size() + " tasks in the list.";
