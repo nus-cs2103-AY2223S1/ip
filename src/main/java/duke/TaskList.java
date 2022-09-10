@@ -246,4 +246,37 @@ public class TaskList {
             return find;
         }
     }
+
+    public String tag(String in) throws DukeException {
+        String tag = in.replaceFirst("tag", "");
+        if (tag.trim().isEmpty()) {
+            throw new DukeException("☹ OOPS!!! The description of what is to tag cannot be empty.");
+        } else {
+            return addTag(tag.trim());
+        }
+    }
+
+    public String addTag(String tag) {
+        char n = tag.charAt(0);
+        int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "idx should be >= 0";
+        Task task = tasks.get(number);
+        String[] aStr = tag.split("#", 2);
+        String desc = aStr[1];
+        System.out.println("hi");
+        task.tagWith(desc);
+        String line1 = "Got it. I've tagged this task:";
+        String line2 = "  " + task.toString();
+        String line3 = "with #" + desc;
+        String message = line1 + "\n" + line2 + "\n" + line3;
+        return message;
+    }
+
+    public String listTag(String in) throws DukeException {
+        char n = in.charAt(8);
+        int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "idx should be >= 0";
+        Task task = tasks.get(number);
+        return task.listTheTags();
+    }
 }
