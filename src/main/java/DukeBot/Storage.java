@@ -41,6 +41,8 @@ public class Storage {
      * @throws DukeException
      */
     public TaskList load() throws DukeException {
+        assert file != null;
+        assert path != null;
         Scanner scanner;
         TaskList taskList = new TaskList();
         try {
@@ -89,6 +91,8 @@ public class Storage {
      * @param tasksToWrite The list of tasks to write.
      */
     public void write(TaskList tasksToWrite) {
+        assert file != null;
+        assert path != null;
         try {
             ArrayList<String> commandToWrite = tasksToWrite.convertTasksToList();
             Files.write(path, commandToWrite);
