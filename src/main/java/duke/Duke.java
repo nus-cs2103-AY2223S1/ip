@@ -12,8 +12,7 @@ public class Duke {
     public Duke() {
 
         ui = new Ui();
-
-        //ui.printGreeting();
+        
         storage = new Storage("./src/main/KiwiList.txt");
 
         taskList = storage.load();

@@ -23,14 +23,18 @@ public class Deadline extends Task {
     }
 
     /**
-     * Updates the deadline from incomplete to complete.
+     * Changes the Deadline from undone to done.
+     *
+     * @return A String representation on details of the Deadline done.
      */
     public String markDone() {
         return super.markDone();
     }
 
     /**
-     * Updates the deadline from complete to incomplete.
+     * Changes the Deadline from done to undone.
+     *
+     * @return A String representation on details of the Deadline undone.
      */
     public String markUndone() {
         return super.markUndone();
@@ -47,7 +51,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Outputs the deadline added to the list of tasks in the console.
+     * Returns a string describing the Deadline added to the list of tasks.
+     *
+     * @return A String representation of Deadline added.
      */
     @Override
     public String printAdded() {
@@ -57,7 +63,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Outputs the full details of the deadline in the console.
+     * Returns a string on the full details of the Deadline.
+     *
+     * @return A String representation of task details.
      */
     @Override
     public String printTask() {
@@ -73,7 +81,7 @@ public class Deadline extends Task {
     /**
      * Returns a string representation of the duke.Deadline.
      *
-     * @return string describing the duke.Deadline.
+     * @return a String describing the duke.Deadline.
      */
     @Override
     public String toString() {
@@ -89,7 +97,7 @@ public class Deadline extends Task {
     /**
      * Returns a string to be saved in the hard disk.
      *
-     * @return A string representation of deadline to be saved in the hard disk.
+     * @return a String representation of deadline to be saved in the hard disk.
      */
     @Override
     public String savedString() {
@@ -103,7 +111,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Outputs the full details of the deadline being deleted in the console.
+     * Returns a string describing the Deadline deleted from the list of tasks.
+     *
+     * @return a String representation of the Deadline deleted.
      */
     public String printDeleted() {
         if (!this.getStatus()) {

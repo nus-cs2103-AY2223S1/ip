@@ -31,9 +31,11 @@ public class Task {
     /**
      * Returns the task description.
      *
-     * @return A String description of the task.
+     * @return a String description of the task.
      */
     public String getDescription() {
+        assert taskDescription != null && taskDescription != "";
+
         return taskDescription;
     }
 
@@ -43,12 +45,14 @@ public class Task {
      * @return The integer index of the task in list of tasks.
      */
     public int getIndex() {
+        assert index > 0;
         return index;
     }
 
     /**
-     * Changes the task from undone to done. Output in the console
-     * details of the task done to inform the user about the change.
+     * Changes the task from undone to done.
+     *
+     * @return a String representation on details of the task done.
      */
     public String markDone() {
 
@@ -58,8 +62,9 @@ public class Task {
     }
 
     /**
-     * Changes the task from done to undone. Output in the console
-     * details of the task undone to inform user about the change.
+     * Changes the task from done to undone.
+     *
+     * @return a String representation on details of the task undone.
      */
     public String markUndone() {
 
@@ -80,14 +85,18 @@ public class Task {
     }
 
     /**
-     * Outputs in the console the task added to the list of tasks.
+     * Returns a string describing the task added to the list of tasks.
+     *
+     * @return a String representation of task added.
      */
     public String printAdded() {
         return "\n added: " + taskDescription + "\n";
     }
 
     /**
-     * Outputs in the console the full details of the task.
+     * Returns a string on the full details of the task.
+     *
+     * @return a String representation of task details.
      */
     public String printTask() {
         if (!isDone) {
@@ -99,9 +108,9 @@ public class Task {
     }
 
     /**
-     * Returns a string representation of the duke.Task.
+     * Returns a string representation of the Task.
      *
-     * @return string describing the task.
+     * @return a String describing the task.
      */
     public String toString() {
         if (!isDone) {
@@ -114,7 +123,7 @@ public class Task {
     /**
      * Returns a string to be saved in the hard disk.
      *
-     * @return A string representation of task to be saved in the hard disk.
+     * @return a String representation of task to be saved in the hard disk.
      */
     public String savedString() {
         if (!isDone) {
@@ -125,7 +134,9 @@ public class Task {
     }
 
     /**
-     * Outputs in the console the task deleted from the list of tasks.
+     * Returns a string describing the task deleted from the list of tasks.
+     *
+     * @return a String representation of the task deleted.
      */
     public String printDeleted() {
         return "\n  duke.Task deleted!\n";
