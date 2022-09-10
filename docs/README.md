@@ -1,29 +1,75 @@
-# User Guide
+# User Guide for Duke
+
+![Ui](Ui.png)
+
+## Quick start
+
+1. Ensure you have Java `11` or above installed.
+
+
+2. Download the latest `duke.jar` from [here](https://github.com/dexter-sim/ip/releases).
+
+
+3. Copy the file to the folder you want to use as the home folder for Duke.
+
+
+4. Double-click the file to start the app.
+
+
+5. Enter a command in the command box to execute it.
 
 ## Features 
 
-### Feature-ABC
+### Feature-Bye
 
-Description of the feature.
+Exits the program.
 
-### Feature-XYZ
+Command Format: `bye`
 
-Description of the feature.
+### Feature-ToDo
 
-## Usage
+Creates a ToDo task and adds it to task list.
 
-### `Keyword` - Describe action
+Command Format: `todo <description>`
 
-Describe the action and its outcome.
+### Feature-Deadline
 
-Example of usage: 
+Creates a Deadline task and adds it to task list.
 
-`keyword (optional arguments)`
+Command Format: `deadline <description> /by YYYY-MM-DD`
 
-Expected outcome:
+### Feature-Event
 
-Description of the outcome.
+Creates an Event task and adds it to task list.
 
-```
-expected output
-```
+Command Format: `event <description> /at YYYY-MM-DD`
+
+### Feature-List
+
+Displays all the tasks.
+
+Command Format: `list`
+
+### Feature-Find
+
+Searches and displays all the tasks that contain specified task description.
+
+Command Format: `find <description>`
+
+### Feature-Mark
+
+Marks a task as complete.
+
+Command Format: `mark <task_number>`
+
+### Feature-Unmark
+
+Marks a task as incomplete.
+
+Command Format: `unmark <task_number>`
+
+### Feature-Delete
+
+Deletes a task.
+
+Command Format: `delete <task_number>`
