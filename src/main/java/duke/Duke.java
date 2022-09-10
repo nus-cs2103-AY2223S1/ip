@@ -16,6 +16,7 @@ public class Duke {
     }
 
     private void readDataFile() {
+        // reset tasks
         tasks = new ArrayList<>();
 
         try {
