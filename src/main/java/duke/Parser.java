@@ -1,16 +1,10 @@
 package duke;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.FindCommand;
-import duke.command.InvalidCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.QuackCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.models.Deadline;
 import duke.models.Event;
 import duke.models.Task;
@@ -51,8 +45,11 @@ public class Parser {
             Task event = new Event(eventDescription, eventDate);
             return new AddCommand(event);
         case Constants.TODO_STRING:
-            String todoDescription = command.split(Constants.EMPTY_SPACE)[1];
-            Task todo = new Todo(todoDescription);
+            Pattern pattern = Pattern.compile("(?<=todo ).*");
+            Matcher matcher = pattern.matcher(command);
+//            String todoDescription = command.split(Constants.EMPTY_SPACE)[1];
+            System.out.println(matcher.toString());
+            Task todo = new Todo(matcher.toString());
             return new AddCommand(todo);
         case Constants.DEADLINE_STRING:
             String deadlineDescription = command.split(Constants.EMPTY_SPACE)[1];
@@ -76,9 +73,11 @@ public class Parser {
             return new FindCommand(query);
         case Constants.QUACK_STRING:
             return new QuackCommand();
+        case Constants.POSTPONE:
+            int postponeIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
+            return new PostponeCommand(postponeIndex);
         default:
             return new InvalidCommand();
-
         }
     }
 }

@@ -18,5 +18,7 @@ public final class Constants {
     public static final String DELETE_STRING = "delete";
     public static final String QUACK_STRING = "quack";
     public static final String INVALID_COMMAND_MESSAGE = "INVALID COMMAND";
+    public static final String POSTPONE = "postpone";
+
 }
 
