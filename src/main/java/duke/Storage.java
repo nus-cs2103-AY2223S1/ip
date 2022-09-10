@@ -88,6 +88,7 @@ public class Storage {
         toAdd.setDate(LocalDate.parse(dateArr[0]));
         if(dateArr.length > 1) {
             toAdd.setTime(dateArr[1]);
+            toAdd.setIsConvertedTime();
         }
         if (Integer.parseInt(info[1]) == 1) {
             toAdd.setComplete();
@@ -101,6 +102,7 @@ public class Storage {
         toAdd.setDate(LocalDate.parse(dateArrEvent[0]));
         if(dateArrEvent.length > 1) {
             toAdd.setTime(dateArrEvent[1]);
+            toAdd.setIsConvertedTime();
         }
         if (Integer.parseInt(info[1]) == 1) {
             toAdd.setComplete();
