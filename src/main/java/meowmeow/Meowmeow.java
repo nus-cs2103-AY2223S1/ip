@@ -77,6 +77,7 @@ public class Meowmeow {
      * Replace this stub with your completed method.
      */
     public String getResponse(String input) {
+        assert input != null : "Input cannot be null";
         String fullCommand = input;
         Command c = Parser.parse(fullCommand);
         String output = c.execute(tasks, ui, storage);

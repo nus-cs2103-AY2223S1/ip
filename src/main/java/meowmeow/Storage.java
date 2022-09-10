@@ -72,7 +72,9 @@ public class Storage {
                 String text = sc.nextLine();
 
                 String[] split = text.split(" \\| ");
+                assert split.length > 0 : "Save file is empty";
                 String firstChar = split[0];
+                assert firstChar == "T" || firstChar == "D" || firstChar == "E" : "Save file is corrupted";
 
                 switch (firstChar) {
                 case "T":
