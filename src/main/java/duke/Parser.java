@@ -127,20 +127,12 @@ public class Parser {
     }
 
     private String handleListCommand() {
-        String stringToReturn = "Duke: Here are your tasks.";
-        for (int i = 0; i < taskList.size(); i++) {
-            stringToReturn = stringToReturn + (String.format("\n%3d: %s", i + 1, taskList.get(i).toString()));
-        }
-        return stringToReturn;
+        return ("Duke: Here are your tasks.\n" + taskList.toDisplayString());
     }
 
     private String handleSortCommand() {
         taskList.sortTasksByName();
-        String stringToReturn = "Duke: Here are your tasks.";
-        for (int i = 0; i < taskList.size(); i++) {
-            stringToReturn = stringToReturn + (String.format("\n%3d: %s", i + 1, taskList.get(i).toString()));
-        }
-        return stringToReturn;
+        return ("Duke: Here are your sorted tasks.\n" + taskList.toDisplayString());
     }
 
     private String handleSearchCommand(String userCommand) {

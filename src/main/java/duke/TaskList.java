@@ -69,6 +69,16 @@ public class TaskList {
         return tasks.toString();
     }
 
+    public String toDisplayString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < tasks.size(); i++) {
+            stringBuilder.append((String.format("\n%3d: %s", i + 1, tasks.get(i).toString())));
+        }
+
+        return stringBuilder.toString();
+    }
+
     /**
      * Returns the number of tasks in the list.
      * @return the number of tasks in the list
