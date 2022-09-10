@@ -47,6 +47,8 @@ public class Parser {
                     Pattern.CASE_INSENSITIVE);
             Pattern deadlineRegex = Pattern.compile("deadline|d",
                     Pattern.CASE_INSENSITIVE);
+            Pattern eventRegex = Pattern.compile("event|e",
+                    Pattern.CASE_INSENSITIVE);
             Pattern markRegex = Pattern.compile("mark|m",
                     Pattern.CASE_INSENSITIVE);
             Pattern unmarkRegex = Pattern.compile("unmark|um",
@@ -61,9 +63,12 @@ public class Parser {
                     Pattern.CASE_INSENSITIVE);
             Pattern helpRegex = Pattern.compile("help|h",
                     Pattern.CASE_INSENSITIVE);
+            Pattern deleteRegex = Pattern.compile("delete|remove|r",
+                    Pattern.CASE_INSENSITIVE);
             commandAliases.put("todo", todoRegex);
             commandAliases.put("list", listRegex);
             commandAliases.put("deadline", deadlineRegex);
+            commandAliases.put("event", eventRegex);
             commandAliases.put("mark", markRegex);
             commandAliases.put("unmark", unmarkRegex);
             commandAliases.put("bye", byeRegex);
@@ -71,6 +76,7 @@ public class Parser {
             commandAliases.put("longdesc", longdescRegex);
             commandAliases.put("istoday", istodayRegex);
             commandAliases.put("help", helpRegex);
+            commandAliases.put("delete", deleteRegex);
             commandAliasesHashMap = commandAliases;
         }
     }
@@ -88,7 +94,7 @@ public class Parser {
     public static Command parse(String userInput) throws DukeException {
         String[] inputSections = userInput.split(" ");
         String stringCommand = extractCommand(inputSections[0]);
-        assert !stringCommand.equals(" ");
+        assert !stringCommand.equals("");
         switch (stringCommand) {
         case "todo":
             return new AddTaskCommand(inputSections);

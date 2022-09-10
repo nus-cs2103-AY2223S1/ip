@@ -30,7 +30,7 @@ public class AddDeadlineCommand extends Command {
         Deadline deadlineToAdd = Parser.stringToDeadline(slicedUserCommands[1], slicedUserCommands[2]);
         String storableLine = deadlineToAdd + "\n";
         if (storage.isLineAppended(storableLine)) {
-            taskList.addDeadline(deadlineToAdd);
+            taskList.addTask(deadlineToAdd);
             ui.showMessage("added deadline");
         }
     }
