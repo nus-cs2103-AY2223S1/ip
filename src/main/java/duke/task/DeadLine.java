@@ -27,6 +27,8 @@ public class DeadLine extends Task {
         } catch (IndexOutOfBoundsException ie) {
             throw (new DukeException("OOPS!!! The description of a deadline is still not correct."));
         }
+        int ddlDescriptionLength = description.split(" ").length;
+        assert ddlDescriptionLength > 3 : "deadline description should have 4 words or more";
         this.description = description;
     }
 
