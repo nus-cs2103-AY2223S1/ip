@@ -23,8 +23,12 @@ public class Deadline extends Task {
         this.dateTime = LocalDateTime.parse(by.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));;
     }
 
-    public String getDateTime() {
+    public String getFormattedDateTime() {
         return formatDateTime(dateTime);
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     public String getBy() {
@@ -37,6 +41,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + getDateTime() + ")";
+        return "[D]" + super.toString() + "(by: " + getFormattedDateTime() + ")";
     }
 }

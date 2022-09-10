@@ -2,6 +2,7 @@ package bloop;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Operations related to the list of tasks.
@@ -90,7 +91,7 @@ public class TaskList {
      *
      * @return message.
      */
-    public String listOut() {
+    public String listOut(ArrayList<? extends Task> tasks) {
         String list = "Tasks in your list -";
         for (int i = 0; i < tasks.size(); i++) {
             list += "\n\t" + (i + 1) + ". " + tasks.get(i);
@@ -153,6 +154,19 @@ public class TaskList {
             }
         }
         return list;
+    }
+
+    public String sortDeadlines() {
+        String list = "Deadlines sorted by time -";
+        ArrayList<Deadline> deadlines = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.getType() == 'D') {
+                deadlines.add((Deadline) task);
+            }
+        }
+        deadlines.sort(Comparator.comparing(Deadline::getDateTime));
+        return listOut(deadlines);
     }
 
 }

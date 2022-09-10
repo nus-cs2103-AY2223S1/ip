@@ -27,7 +27,7 @@ public class Event extends Task {
         return at;
     }
 
-    public String getDateTime() {
+    public String getFormattedDateTime() {
         return formatDateTime(dateTime);
     }
 
@@ -37,6 +37,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + getDateTime() + ")";
+        return "[E]" + super.toString() + "(at: " + getFormattedDateTime() + ")";
     }
 }

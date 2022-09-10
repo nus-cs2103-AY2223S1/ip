@@ -31,7 +31,7 @@ public class Parser {
         String response = "";
         switch (command) {
         case "list":
-            response = tasks.listOut();
+            response = tasks.listOut(tasks.getList());
             break;
         case "unmark":
             response = tasks.unmark(tasks.get(Integer.parseInt(textArr[1]) - 1));
@@ -54,6 +54,9 @@ public class Parser {
             break;
         case "find":
             response = tasks.findTasks(textArr[1]);
+            break;
+        case "sort":
+            response = tasks.sortDeadlines();
             break;
         case "bye":
             response = "Until next time :)";
