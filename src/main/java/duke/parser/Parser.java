@@ -36,7 +36,7 @@ import duke.task.ToDo;
  * A component of the chatBot Duke that deciphers the user inputs.
  */
 public class Parser {
-    private static final String INVALID_INTEGER_MESSAGE = "please input a valid integer";
+    private static final String INVALID_INTEGER_MESSAGE = "input a valid integer";
     private static final String INVALID_FIND_DATE_MESSAGE = "Input a valid date in the format YYYY-MM-DD";
     private static final String INVALID_DATE_MESSAGE = "Input valid date in the format YYYY-MM-DD "
             + "HH:mm\nor YYYY-MM-DD for deadlines\nand YYYY-MM-DD HH:mm-HH:mm for events";
