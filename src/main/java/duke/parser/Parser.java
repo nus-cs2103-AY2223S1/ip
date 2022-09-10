@@ -162,7 +162,7 @@ public class Parser {
         return new ByeCommand();
     }
 
-    public static FindCommand prepareFindCommand(String[] inputs) {
+    private static FindCommand prepareFindCommand(String[] inputs) {
         if (inputs.length == 1 || inputs[1].equals("")) {
             throw new DukeException("OOPS!!! The task description cannot be empty\n");
         }
