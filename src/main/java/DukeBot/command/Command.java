@@ -1,7 +1,6 @@
 package DukeBot.command;
 
 import DukeBot.DukeException;
-import DukeBot.Ui;
 
 /**
  * Abstract class that encapsulates a command.

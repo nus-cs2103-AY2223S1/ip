@@ -1,18 +1,9 @@
 package DukeBot;
 
-import java.util.Scanner;
-
 /**
  * Encapsulates the User Interface.
  */
 public class Ui {
-
-    /**
-     * Prints a line onto the output.
-     */
-    public static void showLine() {
-        System.out.println("-----------------------------------------------");
-    }
 
     /**
      * Returns the new task as a string.
@@ -21,11 +12,10 @@ public class Ui {
      * @return New task in string format.
      */
     public static String showNewTask(Task newTask) {
-        StringBuilder toReturn = new StringBuilder();
-        toReturn.append("Got it. I've added this task:\n");
-        toReturn.append(newTask);
-        toReturn.append(String.format("Now you have %d tasks in the list.", Task.getTaskCount()));
-        return toReturn.toString();
+        String toReturn = "Got it. I've added this task:\n" +
+                newTask +
+                String.format("Now you have %d tasks in the list.", Task.getTaskCount());
+        return toReturn;
     }
 
     /**
@@ -82,11 +72,10 @@ public class Ui {
      * @return A message saying task is deleted.
      */
     public static String showDelete(Task deletedTask) {
-        StringBuilder toReturn = new StringBuilder();
-        toReturn.append("Noted. I've removed this task:\n");
-        toReturn.append(String.format("      %s\n", deletedTask));
-        toReturn.append(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
-        return toReturn.toString();
+        String toReturn = "Noted. I've removed this task:\n" +
+                String.format("      %s\n", deletedTask) +
+                String.format("    Now you have %d tasks in the list.", Task.getTaskCount());
+        return toReturn;
     }
 
 }

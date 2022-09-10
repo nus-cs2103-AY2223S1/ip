@@ -55,8 +55,12 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
         if (duke.isExit()) {
-            Platform.exit();
-            System.exit(0);
+            exit();
         }
+    }
+
+    private void exit() {
+        Platform.exit();
+        System.exit(0);
     }
 }
