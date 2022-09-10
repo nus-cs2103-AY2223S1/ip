@@ -4,9 +4,9 @@ package duke.model;
  * A class representing the Task to be tracked.
  */
 public class Task implements Cloneable {
+    private static int numOfTasks;
     protected String description;
     protected boolean isDone;
-    private static int numOfTasks;
 
     /**
      * The constructor for a Task.

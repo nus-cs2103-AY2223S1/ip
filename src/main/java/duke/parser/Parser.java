@@ -1,14 +1,21 @@
 package duke.parser;
 
-import duke.Duke;
-import duke.command.*;
+import duke.command.Command;
+import duke.command.AddCommand;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+import duke.command.UndoCommand;
 import duke.exception.DukeException;
 import duke.model.Deadline;
 import duke.model.Event;
 import duke.model.ToDo;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
 
 import static java.lang.Integer.parseInt;
 
@@ -158,6 +165,12 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Checks if input date is in the valid format.
+     *
+     * @param date The input date.
+     * @return A boolean representing if the input date is in the valid format.
+     */
     public static boolean isValid(String date) {
         try {
             LocalDate.parse(date);
@@ -167,11 +180,12 @@ public class Parser {
         return true;
     }
 
+    /**
+     * Updates the last user input given.
+     *
+     * @param input The last input given by the user.
+     */
     public static void updateLastUserInput(String input) {
         Parser.lastUserInput = input;
-    }
-
-    public static String getLastUserInput() {
-        return Parser.lastUserInput;
     }
 }

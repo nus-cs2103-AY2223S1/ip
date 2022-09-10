@@ -2,8 +2,8 @@ package duke.model;
 
 import duke.exception.DukeException;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A list to store the tasks.

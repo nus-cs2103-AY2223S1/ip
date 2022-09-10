@@ -1,14 +1,17 @@
 package duke.storage;
 
-import duke.model.*;
+import duke.model.Task;
+import duke.model.TaskList;
+import duke.model.ToDo;
+import duke.model.Deadline;
+import duke.model.Event;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
