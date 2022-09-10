@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Parser to parse user inputs
@@ -24,24 +25,26 @@ public class Parser {
         throws DukeException {
         if (!withinScope(in)) {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-( ");
-        } else if (in.equals("list")) {
-            return tasks.list();
-        } else if (in.startsWith("delete")) {
-            return tasks.delete(in);
-        } else if (in.startsWith("find")) {
-            return tasks.find(in);
-        } else if (in.startsWith("unmark")) {
-            return tasks.unmarkTask(in);
-        } else if (in.startsWith("mark")) {
-            return tasks.markTask(in);
-        } else if (in.startsWith("deadline")) {
-            return tasks.deadline(in);
-        } else if (in.startsWith("event")) {
-            return tasks.event(in);
-        } else if (in.startsWith("todo")) {
-            return tasks.todo(in);
         } else {
-            throw new DukeException("☹ OOPS!!! I'm sorry but please check spelling :-(");
+            if (in.equals("list")) {
+                return tasks.list();
+            } else if (in.startsWith("delete")) {
+                return tasks.delete(in);
+            } else if (in.startsWith("find")) {
+                return tasks.find(in);
+            } else if (in.startsWith("unmark")) {
+                return tasks.unmarkTask(in);
+            } else if (in.startsWith("mark")) {
+                return tasks.markTask(in);
+            } else if (in.startsWith("deadline")) {
+                return tasks.deadline(in);
+            } else if (in.startsWith("event")) {
+                return tasks.event(in);
+            } else if (in.startsWith("todo")) {
+                return tasks.todo(in);
+            } else {
+                throw new DukeException("☹ OOPS!!! I'm sorry but please check spelling :-(");
+            }
         }
     }
 
