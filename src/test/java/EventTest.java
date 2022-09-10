@@ -15,7 +15,6 @@ public class EventTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
         LocalDateTime eventDateTime = LocalDateTime.parse("Sep 2 2022 06:54 AM", formatter);
         Event event = new Event("", false, eventDateTime);
-        
         assertEquals("", event.getDescription());
     }
 
