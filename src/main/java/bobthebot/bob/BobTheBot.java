@@ -50,9 +50,7 @@ public class BobTheBot {
         scanner.close();
     }
 
-    /*
     public static void main(String[] args) {
         new BobTheBot("./../../data/data.txt").run();
     }
-    */
 }

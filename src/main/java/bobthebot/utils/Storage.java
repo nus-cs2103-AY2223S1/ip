@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import bobthebot.exceptions.BobException;
 import bobthebot.tasks.Deadline;
 import bobthebot.tasks.Event;
 import bobthebot.tasks.Task;
@@ -46,7 +47,7 @@ public class Storage {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                System.err.println("Not sure what an IOException is but it has occurred.");
+                System.err.println(LanguageBank.IOEXCEPTION_ERROR_MESSAGE);
             }
         }
 
@@ -70,7 +71,7 @@ public class Storage {
                     break;
                 default:
                     task = null;
-                    System.err.println("Error occurred during file loading. I do not process this task type.");
+                    System.err.println(LanguageBank.FILE_LOADING_ERROR_MESSAGE);
                     break;
                 }
 
@@ -107,7 +108,7 @@ public class Storage {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                System.err.println("Not sure what an IOException is but it has occurred.");
+                System.err.println(LanguageBank.IOEXCEPTION_ERROR_MESSAGE);
             }
         }
 
@@ -119,7 +120,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            System.err.println("Error occurred during file storage. I do not process this task type.");
+            System.err.println(LanguageBank.FILE_LOADING_ERROR_MESSAGE);
         }
     }
 }

@@ -1,6 +1,7 @@
 package bobthebot.command;
 
 import bobthebot.tasks.ToDoList;
+import bobthebot.utils.LanguageBank;
 import bobthebot.utils.Ui;
 
 public class FindCommand extends Command{
@@ -16,7 +17,7 @@ public class FindCommand extends Command{
     @Override
     public String execute() {
         ToDoList matchingTasks = list.findTasks(keyword);
-        String result = "\tHere are the matching items on your list: \n";
+        String result = LanguageBank.MATCHING_ITEMS_MESSAGE;
         result += matchingTasks.toString();
         Ui.formatMessage(result);
         return result;

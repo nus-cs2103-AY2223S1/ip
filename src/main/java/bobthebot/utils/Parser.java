@@ -2,7 +2,12 @@ package bobthebot.utils;
 
 import bobthebot.command.*;
 import bobthebot.exceptions.BobException;
+import bobthebot.exceptions.InvalidDateTimeException;
 import bobthebot.tasks.ToDoList;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Parser class which primarily handles the logic of how the handle the input.
@@ -28,8 +33,14 @@ public class Parser {
             return parseDelete(splitCommand, list);
         case "find":
             return parseFind(splitCommand, list);
+        case "todo":
+            return parseTodo(splitCommand, list);
+        case "deadline":
+             return parseDeadline(splitCommand, list);
+        case "event":
+             return parseEvent(splitCommand, list);
         default:
-            throw new BobException("whoops invalid");
+            throw new BobException(LanguageBank.INVALID_INPUT_ERROR_MESSAGE);
         }
     }
 
@@ -53,13 +64,11 @@ public class Parser {
      */
     private String parseMark(String[] splitCommand, ToDoList list) throws BobException {
         if (list.getLength() == 0) {
-            String errorString = "\tPlease add items to your list before wanting to mark them as done!";
-            throw new BobException(errorString);
+            throw new BobException(LanguageBank.MARK_DONE_EMPTY_LIST_ERROR_MESSAGE);
         }
 
         if (splitCommand.length < 2) {
-            String errorString = "\tPlease input an index to mark as done!";
-            throw new BobException(errorString);
+            throw new BobException(LanguageBank.MARK_DONE_INVALID_INDEX_ERROR_MESSAGE);
         }
 
         int index = Integer.parseInt(splitCommand[1]);
@@ -76,18 +85,11 @@ public class Parser {
      */
     private String parseUnmark(String[] splitCommand, ToDoList list) throws BobException {
         if (splitCommand.length < 2) {
-            String errorString = "\tPlease input an index to delete!";
-            throw new BobException(errorString);
+            throw new BobException(LanguageBank.MARK_UNDONE_INVALID_INDEX_ERROR_MESSAGE);
         }
 
         if (list.getLength() == 0) {
-            String errorString = "\tPlease add items to your list before wanting to mark them as undone!";
-            throw new BobException(errorString);
-        }
-
-        if (splitCommand.length < 2) {
-            String errorString = "\tPlease input an index to mark as undone!";
-            throw new BobException(errorString);
+            throw new BobException(LanguageBank.MARK_UNDONE_EMPTY_LIST_ERROR_MESSAGE);
         }
 
         int index = Integer.parseInt(splitCommand[1]);
@@ -104,14 +106,12 @@ public class Parser {
      */
     private String parseDelete(String[] splitCommand, ToDoList list) throws BobException {
         if (splitCommand.length < 2) {
-            String errorString = "\tPlease input an index to delete!";
-            throw new BobException(errorString);
+            throw new BobException(LanguageBank.DELETE_INVALID_INDEX_ERROR_MESSAGE);
         }
 
         int index = Integer.parseInt(splitCommand[1]);
         if (index > list.getLength() || index <= 0) {
-            String errorString = "\tPlease input an index of an existing task!";
-            throw new BobException(errorString);
+            throw new BobException(LanguageBank.DELETE_EMPTY_LIST_ERROR_MESSAGE);
         }
 
         DeleteCommand deleteCommand = new DeleteCommand(index, list);
@@ -129,5 +129,86 @@ public class Parser {
     private String parseFind(String[] splitCommand, ToDoList list) {
         FindCommand findCommand = new FindCommand(list, splitCommand[1]);
         return findCommand.execute();
+    }
+
+    private String parseTodo(String[] splitCommand, ToDoList list) throws BobException {
+        if (splitCommand.length < 2) {
+            throw new BobException(LanguageBank.TODO_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        TodoCommand todoCommand = new TodoCommand(splitCommand[1], list);
+        return todoCommand.execute();
+    }
+
+    private String parseDeadline(String[] splitCommand, ToDoList list) throws BobException {
+        if (splitCommand.length < 2) {
+            throw new BobException(LanguageBank.DEADLINE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        String[] splitDeadline = splitCommand[1].split(" /by ");
+
+        if (splitDeadline.length < 2) {
+            throw new BobException(LanguageBank.DATE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        String dueDate = splitDeadline[1];
+
+        try {
+            parseDateTime(dueDate);
+        } catch (InvalidDateTimeException exception) {
+            throw new BobException(exception.getMessage());
+        }
+
+        DeadlineCommand deadlineCommand = new DeadlineCommand(splitDeadline[0], splitDeadline[1], list);
+        return deadlineCommand.execute();
+    }
+
+    private String parseEvent(String[] splitCommand, ToDoList list) throws BobException {
+        if (splitCommand.length < 2) {
+            throw new BobException(LanguageBank.EVENT_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        String[] splitEvent = splitCommand[1].split(" /at ");
+
+        if (splitEvent.length < 2) {
+            throw new BobException(LanguageBank.DATE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        String eventDate = splitEvent[1];
+
+        try {
+            parseDateTime(eventDate);
+        } catch (InvalidDateTimeException exception) {
+            throw new BobException(exception.getMessage());
+        }
+
+        EventCommand eventCommand = new EventCommand(splitEvent[0], splitEvent[1], list);
+        return eventCommand.execute();
+    }
+
+    private void parseDateTime(String dateTime) throws InvalidDateTimeException {
+        LocalDateTime currDate = LocalDateTime.now();
+
+        DateTimeFormatter format = null;
+        LocalDateTime deadlineDate = null;
+        try {
+            format = DateTimeFormatter.ofPattern("uuuu-MM-dd kkmm");
+            deadlineDate = LocalDateTime.parse(dateTime, format);
+        } catch (DateTimeParseException exception) {
+            throw new InvalidDateTimeException(LanguageBank.DATE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        Boolean isAfter = deadlineDate.isAfter(currDate);
+
+        dateTime = dateTime.trim();
+        String regex = "(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2})(\\d{2})";
+
+        if (!dateTime.matches(regex)) {
+            throw new InvalidDateTimeException(LanguageBank.DATE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        if (dateTime.matches(regex) && !isAfter) {
+            throw new InvalidDateTimeException(LanguageBank.DATE_BEFORE_PRESENT_ERROR_MESSAGE);
+        }
     }
 }
