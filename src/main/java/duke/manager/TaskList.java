@@ -53,7 +53,7 @@ public class TaskList {
             task = this.list.get(taskIndex);
             this.list.remove(taskIndex);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("duke.task.Task number doesn't exist!");
+            throw new DukeException("Task number doesn't exist!");
         }
         return task.toString();
     }
@@ -72,7 +72,7 @@ public class TaskList {
             task = this.list.get(taskIndex);
             task.markTask(done);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("duke.task.Task number doesn't exist!");
+            throw new DukeException("Task number doesn't exist!");
         }
         assert task != null;
         return task.toString();
@@ -118,7 +118,7 @@ public class TaskList {
      */
     public String getTaskReminders(long maxDaysTo) {
         if (list.isEmpty()) {
-            return "";
+            return "No upcoming deadlines!";
         }
 
         String remindersString = "Your reminders:\n";
