@@ -46,11 +46,7 @@ public class Task {
      * @param status Takes in a 0 to set Task to not done, and any other integer to set as done.
      */
     public void setStatus(int status) {
-        if (status == 0) {
-            this.isDone = false;
-        } else {
-            this.isDone = true;
-        }
+        this.isDone = status != 0;
     }
 
     /**

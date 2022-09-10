@@ -71,7 +71,7 @@ public class Storage {
                     tasks.add(newTask);
                 }
                 if (strSplit[1].equals("1")) {
-                    tasks.get(tasks.size()-1).setStatus(1);
+                    tasks.get(tasks.size() - 1).setStatus(1);
                 }
             }
             fileRead.close();
@@ -90,9 +90,11 @@ public class Storage {
         for (int i = 0; i < numTasks; i++) {
             Task t = tasks.get(i);
             if (t instanceof Deadline || t instanceof Event) {
-                myWriter.write(t.getTaskType() + " | " +  t.getBinaryStatus() + " | " + t.getTask() + " | " + t.getDue() + "\n");
+                myWriter.write(t.getTaskType() + " | " + t.getBinaryStatus() + " | "
+                        + t.getTask() + " | " + t.getDue() + "\n");
             } else {
-                myWriter.write(t.getTaskType() + " | " +  t.getBinaryStatus() + " | " + t.getTask() + "\n");
+                myWriter.write(t.getTaskType() + " | " + t.getBinaryStatus() + " | "
+                        + t.getTask() + "\n");
             }
         }
         myWriter.close();

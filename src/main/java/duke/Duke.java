@@ -13,16 +13,6 @@ public class Duke {
     private Storage storage;
     private Parser parser;
 
-    public String getResponse(String input) {
-        String reply = parser.parse(input);
-        try {
-            storage.store(tasks.getList());
-        } catch (Exception e) {
-            System.out.println();
-        }
-        return "Greg says: " + reply;
-    }
-
     /**
      * Constructor for Duke.
      * @param filepath This is the filepath where the data file duke.txt would be stored.
@@ -36,5 +26,15 @@ public class Duke {
             this.tasks = new TaskList();
         }
         this.parser = new Parser(tasks);
+    }
+
+    public String getResponse(String input) {
+        String reply = parser.parse(input);
+        try {
+            storage.store(tasks.getList());
+        } catch (Exception e) {
+            System.out.println();
+        }
+        return "Greg says: " + reply;
     }
 }

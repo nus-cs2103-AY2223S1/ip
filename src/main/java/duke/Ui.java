@@ -17,7 +17,7 @@ public class Ui {
     /**
      * BufferedReader to read in inputs from the user.
      */
-    BufferedReader br;
+    private BufferedReader br;
 
     /**
      * Constructor of Ui class.

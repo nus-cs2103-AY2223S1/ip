@@ -84,7 +84,7 @@ public class TaskList {
             Task task = taskList.get(position);
             task.setStatus(1);
             String output = "Nice! I have marked this task as done:\n";
-            output += "[" + task.getStatusIcon() +"] " + task.getTask();
+            output += "[" + task.getStatusIcon() + "] " + task.getTask();
             return output;
         } else {
             return "No task at position " + Integer.toString(position + 1) + "!\n";
@@ -100,7 +100,7 @@ public class TaskList {
             Task task = taskList.get(position);
             task.setStatus(0);
             String output = "Nice! I have marked this task as undone:\n";
-            output += "[" + task.getStatusIcon() +"] " + task.getTask();
+            output += "[" + task.getStatusIcon() + "] " + task.getTask();
             return output;
         } else {
             return "No task at position " + Integer.toString(position + 1) + "!\n";
@@ -138,7 +138,7 @@ public class TaskList {
             Task task = taskList.get(i);
             String taskDescription = taskList.get(i).getTask();
             if (taskDescription.contains(keyword)) {
-                output += "\n" + Integer.toString(i+1) + "." + task.toString();
+                output += "\n" + Integer.toString(i + 1) + "." + task.toString();
                 matchesFound += 1;
             }
         }
@@ -156,7 +156,7 @@ public class TaskList {
     public String printList() {
         String output = "Here are the tasks in your list:\n";
         for (int i = 0; i < numTasks; i++) {
-            output += Integer.toString(i+1) + "." + taskList.get(i).toString() + "\n";
+            output += Integer.toString(i + 1) + "." + taskList.get(i).toString() + "\n";
         }
         return output;
     }
