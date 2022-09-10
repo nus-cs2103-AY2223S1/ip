@@ -22,9 +22,8 @@ public class Duke {
     }
 
     /**
-     * Gets the response from Duke.
-     * @param input the input command.
-     * @return the corresponding response.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
     String getResponse(String input) {
         TaskHandler taskHandler = new TaskHandler(tasklist, ui);

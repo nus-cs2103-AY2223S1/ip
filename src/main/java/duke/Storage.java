@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Represents the file storing the list.
  */
 public class Storage {
-    private final String filePath;
+    private String filePath;
 
     /**
      * Default constructor for Storage given a filePath.
