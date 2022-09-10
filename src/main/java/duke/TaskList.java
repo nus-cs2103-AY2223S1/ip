@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Encapsulates the list of tasks inputted by the user.
@@ -64,9 +65,11 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        Collections.sort(this.tasks);
         String str = "";
         for (int i = 0; i < this.tasks.size(); i++) {
             str += String.format("%d. %s \n", i + 1, this.tasks.get(i).toString());
+            System.out.println(this.tasks.get(i).toString());
         }
         return str.trim();
     }

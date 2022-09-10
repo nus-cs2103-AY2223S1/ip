@@ -1,6 +1,0 @@
-ToDo#math #false
-ToDo#science #false
-ToDo#chemistry #false
-ToDo#pop #false
-ToDo#ijo #false
-ToDo#pop #false

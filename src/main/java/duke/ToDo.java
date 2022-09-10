@@ -22,4 +22,13 @@ public class ToDo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    @Override
+    public int compareTo(Task task) {
+        if (task instanceof Deadline || task instanceof Event) {
+            return 1;
+        } else {
+            return this.getName().compareTo(task.getName());
+        }
+    }
 }

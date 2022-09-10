@@ -1,11 +1,14 @@
 package duke;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Class which encapsulates a task which has a deadline.
  *
  */
 public class Deadline extends Task {
-    private String deadline;
+    private LocalDate deadline;
 
     /**
      * Constructor.
@@ -15,7 +18,8 @@ public class Deadline extends Task {
      */
     public Deadline(String name, String deadline) {
         super(name);
-        this.deadline = deadline;
+        this.deadline = LocalDate.parse(deadline);
+        ;
     }
 
     /**
@@ -25,7 +29,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.deadline + ")";
+        return "[D]" + super.toString() + " (by: " + this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     /**
@@ -33,6 +37,16 @@ public class Deadline extends Task {
      * @return the deadline in String format
      */
     public String getDeadline() {
-        return this.deadline;
+        return this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    @Override
+    public int compareTo(Task task) {
+        if (task instanceof ToDo || task instanceof Event) {
+            return -1;
+        } else {
+            Deadline otherDeadline = (Deadline) task;
+            return this.deadline.compareTo(otherDeadline.deadline);
+        }
     }
 }

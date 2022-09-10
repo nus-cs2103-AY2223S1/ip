@@ -8,18 +8,6 @@ import java.time.format.DateTimeFormatter;
  *
  */
 public class Parser {
-
-    /**
-     * Returns String date in a nicer format.
-     *
-     * @param date
-     * @return String date in nicer format
-     */
-    public String getDate(String date) {
-        LocalDate localDate = LocalDate.parse(date);
-        return localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-    }
-
     /**
      * Fetches and returns all the tasks.
      *
@@ -107,8 +95,8 @@ public class Parser {
      */
     public String executeDeadline(String fullCommand, TaskList taskList, Ui ui) {
         String[] deadlineSplit = fullCommand.split(" /by ");
-        String formattedDate = this.getDate(deadlineSplit[1]);
-        Deadline deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), formattedDate);
+        String date = deadlineSplit[1];
+        Deadline deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), date);
         taskList.addTask(deadline);
         return ui.taskAdded(deadline, taskList);
     }
@@ -123,8 +111,8 @@ public class Parser {
      */
     public String executeEvent(String fullCommand, TaskList taskList, Ui ui) {
         String[] eventSplit = fullCommand.split(" /at ");
-        String formattedDate = this.getDate(eventSplit[1]);
-        Event event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), formattedDate);
+        String date = eventSplit[1];
+        Event event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), date);
         taskList.addTask(event);
         return ui.taskAdded(event, taskList);
     }
