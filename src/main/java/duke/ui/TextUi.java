@@ -10,7 +10,7 @@ import java.util.Scanner;
  * A TextUI class to deal with the interactions with the user.
  */
 public class TextUi {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public TextUi() {
         this.scanner = new Scanner(System.in);
@@ -70,7 +70,7 @@ public class TextUi {
     }
 
     /**
-     * Prints the successful message after a task is added.
+     * Prints the success message after a task is added.
      *
      * @param task The task to be added.
      * @param tasks The list of tasks that the task is adding to.
@@ -84,7 +84,7 @@ public class TextUi {
     }
 
     /**
-     * Prints the successful message after marking a task as done.
+     * Prints the success message after marking a task as done.
      *
      * @param task The task to be marked as done.
      */
@@ -95,7 +95,7 @@ public class TextUi {
     }
 
     /**
-     * Prints the successful message after marking a task as undone.
+     * Prints the success message after marking a task as undone.
      *
      * @param task The task to be marked as undone.
      */
@@ -106,7 +106,7 @@ public class TextUi {
     }
 
     /**
-     * Prints the successful message after a task is removed from the task list.
+     * Prints the success message after a task is removed from the task list.
      *
      * @param task The task to be removed.
      * @param tasks The task list that the task is being removed from.
@@ -118,6 +118,11 @@ public class TextUi {
         printTextWithDivider(message);
     }
 
+    /**
+     * Prints out the matching tasks.
+     *
+     * @param taskList The list of matching tasks.
+     */
     public void showFindTaskMessage(ArrayList<Task> taskList) {
         StringBuilder message = new StringBuilder();
         message.append("Here are the matching tasks in your list:\n");
@@ -126,5 +131,21 @@ public class TextUi {
             message.append(i + 1).append(".").append(taskList.get(i)).append("\n");
         }
         printTextWithDivider(message.toString());
+    }
+
+    /**
+     * Prints out all the tasks in the task list.
+     *
+     * @param taskList The list of tasks in Duke.
+     */
+    public void showListTaskMessage(TaskList taskList) {
+        StringBuilder str = new StringBuilder();
+        str.append("Here are the tasks in your list:\n");
+        for (int i = 0; i < taskList.size(); i++) {
+            // Display task as 1-index
+            str.append(i + 1).append(".").append(taskList.getTask(i)).append("\n");
+        }
+
+        printTextWithDivider(str.toString());
     }
 }
