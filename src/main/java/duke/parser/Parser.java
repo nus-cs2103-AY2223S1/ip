@@ -22,105 +22,137 @@ public class Parser {
         switch (inputs[0]) {
         // List out all tasks
         case ListCommand.COMMAND_WORD:
-            if (inputs.length == 2) {
-                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
-            }
-            return new ListCommand();
-        // Add todo duke.task
+            return prepareListCommand(inputs);
+        // Add todo task
         case TodoCommand.COMMAND_WORD:
-            if (inputs.length == 1 || inputs[1].equals("")) {
-                throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
-            }
-            return new TodoCommand(inputs[1]);
-        // Add deadline duke.task
+            return prepareTodoCommand(inputs);
+        // Add deadline task
         case DeadlineCommand.COMMAND_WORD:
-            if (inputs.length == 1 || inputs[1].equals("")) {
-                throw new DukeException("OOPS!!! The description of a deadline cannot be empty.\n");
-            }
-
-            String[] deadlineInputs = inputs[1].split(" /by ", 2);
-
-            if (deadlineInputs.length == 1 || deadlineInputs[1].equals("")) {
-                throw new DukeException("OOPS!!! The date of a deadline cannot be empty.\n");
-            }
-
-
-            try {
-                LocalDateTime eventTiming = LocalDateTime.parse(deadlineInputs[1], Task.DATE_TIME_FORMATTER);
-                return new DeadlineCommand(deadlineInputs[0], eventTiming);
-            } catch (DateTimeException e) {
-                throw new DukeException("OOPS!!! Invalid datetime format, input a valid date and time in the format " +
-                        "YYYY-MM-DD HH:MM. \n");
-            }
-        // Add event duke.task
+            return prepareDeadlineCommand(inputs);
+        // Add event task
         case EventCommand.COMMAND_WORD:
-            if (inputs.length == 1 || inputs[1].equals("")) {
-                throw new DukeException("OOPS!!! The description of an event cannot be empty.\n");
-            }
-
-            String[] eventInputs = inputs[1].split(" /at ", 2);
-
-            if (eventInputs.length == 1 || eventInputs[1].equals("")) {
-                throw new DukeException("OOPS!!! The date of an event cannot be empty.\n");
-            }
-
-            try {
-                LocalDateTime eventTiming = LocalDateTime.parse(eventInputs[1], Task.DATE_TIME_FORMATTER);
-                return new EventCommand(eventInputs[0], eventTiming);
-            } catch (DateTimeException e) {
-                throw new DukeException("OOPS!!! Invalid datetime format, input a valid date and time in the format " +
-                    "YYYY-MM-DD HH:MM. \n");
-            }
-        // Mark duke.task as done
+            return prepareEventCommand(inputs);
+        // Mark task as done
         case MarkCommand.COMMAND_WORD:
-            if (inputs.length == 1 || inputs[1].equals("")) {
-                throw new DukeException("OOPS!!! The duke.task index cannot be empty.\n");
-            }
-
-            try {
-                // Tasks are stored as 0-index but display as 1-index
-                // Minus 1 to get the correct duke.task in the taskList
-                int taskIndex = Integer.parseInt(inputs[1]) - 1;
-                return new MarkCommand(taskIndex);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw new DukeException("OOPS!!! The duke.task index specified is not valid.\n");
-            }
-        // Mark duke.task as undone
+            return prepareMarkCommand(inputs);
+        // Mark task as undone
         case UnmarkCommand.COMMAND_WORD:
-            if (inputs.length == 1 || inputs[1].equals("")) {
-                throw new DukeException("OOPS!!! The duke.task index cannot be empty.\n");
-            }
-
-            try {
-                // Tasks are stored as 0-index but display as 1-index
-                // Minus 1 to get the correct duke.task in the taskList
-                int taskIndex = Integer.parseInt(inputs[1]) - 1;
-                return new UnmarkCommand(taskIndex);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw new DukeException("OOPS!!! The duke.task index specified is not valid.\n");
-            }
-        // Delete duke.task
+            return prepareUnmarkCommand(inputs);
+        // Delete task
         case DeleteCommand.COMMAND_WORD:
-            if (inputs.length == 1 || inputs[1].equals("")) {
-                throw new DukeException("OOPS!!! The duke.task index cannot be empty.\n");
-            }
-
-            try {
-                // Tasks are stored as 0-index but display as 1-index
-                // Minus 1 to get the correct duke.task in the taskList
-                int taskIndex = Integer.parseInt(inputs[1]) - 1;
-                return new DeleteCommand(taskIndex);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw new DukeException("OOPS!!! The duke.task index specified is not valid.\n");
-            }
+            return prepareDeleteCommand(inputs);
         case ByeCommand.COMMAND_WORD:
-            if (inputs.length == 2) {
-                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
-            }
-
-            return new ByeCommand();
+            return prepareByeCommand(inputs);
         default:
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
         }
+    }
+
+    private static ListCommand prepareListCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 2) {
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
+        }
+        return new ListCommand();
+    }
+
+    private static TodoCommand prepareTodoCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
+        }
+        return new TodoCommand(inputs[1]);
+    }
+
+    private static DeadlineCommand prepareDeadlineCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.\n");
+        }
+
+        String[] deadlineInputs = inputs[1].split(" /by ", 2);
+
+        if (deadlineInputs.length == 1 || deadlineInputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The date of a deadline cannot be empty.\n");
+        }
+
+
+        try {
+            LocalDateTime eventTiming = LocalDateTime.parse(deadlineInputs[1], Task.DATE_TIME_FORMATTER);
+            return new DeadlineCommand(deadlineInputs[0], eventTiming);
+        } catch (DateTimeException e) {
+            throw new DukeException("OOPS!!! Invalid datetime format, input a valid date and time in the format " +
+                    "YYYY-MM-DD HH:MM. \n");
+        }
+    }
+
+    private static EventCommand prepareEventCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The description of an event cannot be empty.\n");
+        }
+
+        String[] eventInputs = inputs[1].split(" /at ", 2);
+
+        if (eventInputs.length == 1 || eventInputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The date of an event cannot be empty.\n");
+        }
+
+        try {
+            LocalDateTime eventTiming = LocalDateTime.parse(eventInputs[1], Task.DATE_TIME_FORMATTER);
+            return new EventCommand(eventInputs[0], eventTiming);
+        } catch (DateTimeException e) {
+            throw new DukeException("OOPS!!! Invalid datetime format, input a valid date and time in the format " +
+                    "YYYY-MM-DD HH:MM. \n");
+        }
+    }
+
+    private static MarkCommand prepareMarkCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The task index cannot be empty.\n");
+        }
+
+        try {
+            // Tasks are stored as 0-index but display as 1-index
+            // Minus 1 to get the correct task in the taskList
+            int taskIndex = Integer.parseInt(inputs[1]) - 1;
+            return new MarkCommand(taskIndex);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException("OOPS!!! The task index specified is not valid.\n");
+        }
+    }
+
+    private static UnmarkCommand prepareUnmarkCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The task index cannot be empty.\n");
+        }
+
+        try {
+            // Tasks are stored as 0-index but display as 1-index
+            // Minus 1 to get the correct task in the taskList
+            int taskIndex = Integer.parseInt(inputs[1]) - 1;
+            return new UnmarkCommand(taskIndex);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException("OOPS!!! The task index specified is not valid.\n");
+        }
+    }
+
+    private static DeleteCommand prepareDeleteCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The task index cannot be empty.\n");
+        }
+
+        try {
+            // Tasks are stored as 0-index but display as 1-index
+            // Minus 1 to get the correct task in the taskList
+            int taskIndex = Integer.parseInt(inputs[1]) - 1;
+            return new DeleteCommand(taskIndex);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException("OOPS!!! The task index specified is not valid.\n");
+        }
+    }
+
+    private static ByeCommand prepareByeCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 2) {
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
+        }
+
+        return new ByeCommand();
     }
 }
