@@ -24,7 +24,9 @@ public class Ui {
                                + "|___| \\__\\ |__|       \\____/       \\____/       |__| \n";
 
     /**
-     * Outputs the greeting message when starting up the project.
+     * Returns a string with the greeting message and saved list when starting up the project.
+     *
+     * @return a String with greeting message and saved list of tasks.
      */
     public static String printGreeting() {
         return "Hello! I'm KiwiQE :) \nWhat can I do for you? \n"
@@ -32,23 +34,28 @@ public class Ui {
     }
 
     /**
-     * Outputs the goodbye message when terminating the project.
+     * Returns a string with the goodbye message when terminating the project.
+     *
+     * @return a String with the goodbye message.
      */
     public static String printGoodbyeMessage() {
         return "\n  sayonara, goodbye\n";
     }
 
     /**
-     * Outputs the task list.
+     * Returns a string describing empty task list.
+     *
+     * @return a String informing user task list is empty.
      */
     public static String printTaskListEmpty() {
         return "\n" + "  Nothing to do currently ehe\n";
     }
 
     /**
-     * Outputs the corresponding customised Index Out Of Bounds Exception message.
+     * Returns a string with the corresponding customised Index Out Of Bounds Exception message.
      *
      * @param keyword A keyword object to identify which message to output.
+     * @return A String with the customised exception message.
      */
     public String printIndexOutOfBoundsException(Keywords keyword) {
         switch (keyword) {
@@ -62,9 +69,10 @@ public class Ui {
     }
 
     /**
-     * Outputs the corresponding customised String Index Out Of Bounds Exception message.
+     * Returns a string with the corresponding customised String Index Out Of Bounds Exception message.
      *
      * @param keyword A keyword object to identify which message to output.
+     * @return A String with the customised exception message.
      */
     public String printInsufficientInfoException(Keywords keyword) {
         switch (keyword) {
@@ -88,35 +96,45 @@ public class Ui {
     }
 
     /**
-     * Outputs the message when input is not recognised.
+     * Returns a string with the message when input is not recognised.
+     *
+     * @return a String to inform user input not recognised.
      */
     public String printUnrecognisedWord() {
         return "\n  What do you mean by Justin Bieber plays~\n";
     }
 
     /**
-     * Outputs the File Not Found Error.
+     * Returns a string with the File Not Found Error.
+     *
+     * @return a String to inform users File does not exist.
      */
     public static String printFileNotFound() {
         return "File has yet to be created, creating for you now!";
     }
 
     /**
-     * Outputs the error unable to create the file.
+     * Returns a string with the error unable to create the file.
+     *
+     * @return a String to inform users about File creation error.
      */
     public static String printCannotOpenFile() {
         return "You can't create a file!";
     }
 
     /**
-     * Outputs unable to append information to the file.
+     * Returns a string with the message unable to append information to the file.
+     *
+     * @return a String to inform users about appending error.
      */
     public static String printUnableToAppend() {
         return "You can't append!";
     }
 
     /**
-     * Outputs if no tasks exist when find function used.
+     * Returns a string to inform users no tasks exist when find function used.
+     *
+     * @return a String to inform users no task exist when find function used.
      */
     public String printNoMatchingTask() {
         return "\n No tasks exist yet, can't find a match :( \n";
