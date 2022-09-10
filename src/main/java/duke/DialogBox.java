@@ -38,8 +38,6 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        VBox.setVgrow(this, Priority.ALWAYS);
         dialog.setText(text);
         displayPicture.setImage(img);
     }

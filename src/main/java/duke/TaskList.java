@@ -34,7 +34,7 @@ public class TaskList {
     public String addDeadline(String desc, LocalDate deadline) {
         Deadline d = new Deadline(desc, deadline);
         tasks.add(d);
-        return "Successfully added: " + deadline + countTasks();
+        return "Successfully added: " + d + countTasks();
     }
 
     /**
@@ -47,7 +47,7 @@ public class TaskList {
     public String addDeadline(String desc, String deadline) {
         Deadline d = new Deadline(desc, deadline);
         tasks.add(d);
-        return "Successfully added: " + deadline + countTasks();
+        return "Successfully added: " + d + countTasks();
     }
 
     /**
@@ -58,9 +58,9 @@ public class TaskList {
      * @return Associated message from Duke.
      */
     public String addEvent(String desc, LocalDate time) {
-        Event event = new Event(desc, time);
-        tasks.add(event);
-        return "Successfully added: " + event + countTasks();
+        Event e = new Event(desc, time);
+        tasks.add(e);
+        return "Successfully added: " + e + countTasks();
     }
 
     /**
@@ -71,9 +71,9 @@ public class TaskList {
      * @return Associated message from Duke.
      */
     public String addEvent(String desc, String time) {
-        Event event = new Event(desc, time);
-        tasks.add(event);
-        return "Successfully added: " + event + countTasks();
+        Event e = new Event(desc, time);
+        tasks.add(e);
+        return "Successfully added: " + e + countTasks();
     }
 
     /**
