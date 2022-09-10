@@ -1,11 +1,5 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-
-import java.time.LocalDate;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -20,55 +14,40 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    public String getList() {
+        return tasks.list();
+    }
 
     /**
      * Constructs the Duke.
-     *
-     * @param filePath filepath containing input from previous session.
      */
-    public Duke(String filePath) {
+    public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage(filePath);
+        this.storage = new Storage(System.getProperty("user.dir") + "/data/duke.txt");
         try {
-            this.tasks = new TaskList(storage.load());
+            tasks = new TaskList(storage.load());
             tasks.list();
         } catch (FileNotFoundException e) {
-            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
 
     /**
-     * Runs the Duke program.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                if (fullCommand.equals("bye")) {
-                    ArrayList<String> data = tasks.bye();
-                    storage.save(data);
-                    ui.showBye();
-                    break;
-                } else {
-                    boolean exit = Parser.parse(fullCommand, tasks, ui, storage);
-                    isExit = exit;
-                }
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
+    public String getResponse(String input) {
+        try {
+            if (input.equals("bye")) {
+                ArrayList<String> data = tasks.bye();
+                storage.save(data);
+                return ui.showBye();
+            } else {
+                return Parser.parse(input, tasks, ui, storage);
             }
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
-
-    public static void main(String[] args) {
-        new Duke(System.getProperty("user.dir") + "/data/duke.txt").run();
-    }
-
 }
 

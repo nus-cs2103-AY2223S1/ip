@@ -38,6 +38,9 @@ public class TaskList {
         this.size = tasks.size();
     }
 
+    public boolean isEmpty() {
+        return this.size == 0;
+    }
     /**
      * Saves the TaskList after user input bye.
      * @return ArrayList of the input that has been saved.
@@ -63,13 +66,15 @@ public class TaskList {
      *
      * @param in Input of the user.
      */
-    public void markTask(String in) {
+    public String markTask(String in) {
         char n = in.charAt(5);
         int number = Character.getNumericValue(n) - 1;
         Task t = tasks.get(number);
         t.markAsDone();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(t.toString());
+        String line1 =  "Nice! I've marked this task as done:";
+        String line2 = t.toString();
+        String mark = line1 + "\n" + line2;
+        return mark;
     }
 
     /**
@@ -77,25 +82,29 @@ public class TaskList {
      *
      * @param in Input of the user.
      */
-    public void unmarkTask(String in) {
+    public String unmarkTask(String in) {
         char n = in.charAt(7);
         int number = Character.getNumericValue(n) - 1;
         Task t = tasks.get(number);
         t.markAsUndone();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(t.toString());
+        String line1 = "OK, I've marked this task as not done yet:";
+        String line2 = t.toString();
+        String unmark = line1 + "\n" + line2;
+        return unmark;
     }
 
     /**
      * Lists the inputs of the user.
      */
-    public void list() {
+    public String list() {
         int count = 1;
-        System.out.println("Here are the tasks in your list:");
+        String list = "Here are the tasks in your list:" + "\n";
         for (Task task : tasks) {
-            System.out.println(count + ". " + task.toString());
+            String newLine = count + ". " + task.toString() + "\n";
+            list += newLine;
             count += 1;
         }
+        return list;
     }
 
     /**
@@ -103,14 +112,14 @@ public class TaskList {
      *
      * @param in Input of the user.
      */
-    public void delete(String in) {
+    public String delete(String in) {
         char n = in.charAt(7);
         int number = Character.getNumericValue(n) - 1;
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + tasks.get(number).toString());
         tasks.remove(number);
         size -= 1;
-        System.out.println("Now you have " + size + " tasks in the list");
+        return "Now you have " + size + " tasks in the list";
     }
 
     /**
@@ -119,7 +128,7 @@ public class TaskList {
      * @param in Input of the user.
      * @throws DukeException An exception unique to duke.Duke.
      */
-    public void deadline(String in) throws DukeException {
+    public String deadline(String in) throws DukeException {
         String deadLine = in.replaceFirst("deadline", "");
         if (deadLine.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -130,9 +139,11 @@ public class TaskList {
             Deadline d = new Deadline(desc, LocalDate.parse(by));
             tasks.add(d);
             size += 1;
-            System.out.println("Got it. I've added this task:");
-            System.out.println("  " + d.toString());
-            System.out.println("Now you have " + size + " tasks in the list");
+            String line1 = "Got it. I've added this task:";
+            String line2 = "  " + d.toString();
+            String line3 = "Now you have " + size + " tasks in the list";
+            String message = line1 + "\n" + line2 + "\n" + line3;
+            return message;
         }
     }
 
@@ -142,7 +153,7 @@ public class TaskList {
      * @param in Input of the user.
      * @throws DukeException An exception unique to duke.Duke.
      */
-    public void event(String in) throws DukeException {
+    public String event(String in) throws DukeException {
         String event = in.replaceFirst("event", "");
         if (event.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -153,9 +164,11 @@ public class TaskList {
             Event e = new Event(desc, LocalDate.parse(by));
             tasks.add(e);
             size += 1;
-            System.out.println("Got it. I've added this task:");
-            System.out.println("  " + e.toString());
-            System.out.println("Now you have " + size + " tasks in the list");
+            String line1 = "Got it. I've added this task:";
+            String line2 = "  " + e.toString();
+            String line3 = "Now you have " + size + " tasks in the list";
+            String message = line1 + "\n" + line2 + "\n" + line3;
+            return message;
         }
     }
 
@@ -165,7 +178,7 @@ public class TaskList {
      * @param in Input of the user.
      * @throws DukeException An exception unique to duke.Duke.
      */
-    public void todo(String in) throws DukeException {
+    public String todo(String in) throws DukeException {
         String todo = in.replaceFirst("todo", "");
         if (todo.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -173,25 +186,34 @@ public class TaskList {
             Todo t = new Todo(todo);
             tasks.add(t);
             size += 1;
-            System.out.println("Got it. I've added this task:");  // Output user input
-            System.out.println("  " + t.toString());
-            System.out.println("Now you have " + size + " tasks in the list");
+            String line1 = "Got it. I've added this task:";
+            String line2 = "  " + t.toString();
+            String line3 = "Now you have " + size + " tasks in the list";
+            String message = line1 + "\n" + line2 + "\n" + line3;
+            return message;
         }
     }
 
-    public void find(String in) throws DukeException {
+    /**
+     * Finds tasks in list
+     * @param in Input of the user
+     * @throws DukeException If there is an error in the input
+     */
+    public String find(String in) throws DukeException {
         String toBeFound = in.replaceFirst("find", "");
         if (toBeFound.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of what is to be found cannot be empty.");
         } else {
             int count = 1;
-            System.out.println("Here are the matching tasks in your list:");
+            String find = "Here are the matching tasks in your list:" + "\n";
             for ( Task task : tasks ) {
                 if (task.getDescription().contains(toBeFound.trim())) {
-                    System.out.println(count + ". " + task.toString());
+                    String newLine = count + ". " + task.toString() + "\n";
                     count += 1;
+                    find += newLine;
                 }
             }
+            return find;
         }
     }
 }
