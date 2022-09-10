@@ -96,6 +96,16 @@ public class Task {
         return this.description.contains(keyword);
     }
 
+    public void update(String input, VBox dialogContainer, Image dukeImage) {
+    }
+
+    public void sendTaskUpdatedMessage(VBox dialogContainer, Image dukeImage) {
+        String updatedTask = "Task has been updated!: \n"
+                + "       "
+                + this.toString();
+        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(updatedTask, dukeImage));
+    }
+
     /**
      * Returns what the task is about, and also an icon to indicate if the task is done.
      *

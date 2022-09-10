@@ -22,7 +22,7 @@ public class Parser {
      * @param response The user input.
      * @param tasks The TaskList object that contains the tasks currently stored in the Duke chat-bot.
      */
-    public void parse(String response, TaskList tasks) {
+    /*public void parse(String response, TaskList tasks) {
         if (response.equals("list")) {
             System.out.println("     The following are your saved tasks: ");
             for (int i = 0; i < tasks.getTasks().size(); i++) {
@@ -93,7 +93,7 @@ public class Parser {
                     + "       event\n"
                     + "       deadline\n");
         }
-    }
+    }*/
 
     /**
      * Overloaded method of parse(), meant for JavaFX.
@@ -177,6 +177,21 @@ public class Parser {
                 }
                 dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(tasksWithKeyword, dukeImage));
             }
+        } else if (response.length() > 5 && response.substring(0, 6).equals("update")) {
+            if (response.length() <= 7) {
+                String needMoreInfo =
+                        "Please indicate task number and/or details for the update after 'update'!";
+                throw new DukeException(needMoreInfo);
+            } else {
+                int taskNumber = Integer.parseInt(response.substring(7, 8)) - 1;
+                String updateText = response.substring(9);
+
+                Task t = tasks.getTask(taskNumber);
+                t.update(updateText, dialogContainer, dukeImage);
+            }
+
+
+
         } else if (response.equals("bye")) {
             ;
         } else {

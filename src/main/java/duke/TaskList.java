@@ -53,6 +53,8 @@ public class TaskList {
      * @param taskNumber An integer that provides the index of the task in the ArrayList to be removed.
      */
     public void deleteTask(int taskNumber) {
+        assert taskNumber >= 0 : "taskNumber should not be negative";
+
         Task t = tasks.get(taskNumber);
         tasks.remove(taskNumber);
         System.out.println("     Ok! I have removed the following task!:\n"
@@ -68,6 +70,8 @@ public class TaskList {
      * @param dukeImage The image of Duke.
      */
     public void deleteTask(int taskNumber, VBox dialogContainer, Image dukeImage) {
+        assert taskNumber >= 0 : "taskNumber should not be negative";
+
         Task t = tasks.get(taskNumber);
         tasks.remove(taskNumber);
         String taskDeleted = "Ok! I have removed the following task!:\n"
@@ -82,6 +86,8 @@ public class TaskList {
      * @param t The Task object to be added into the ArrayList object.
      */
     public void addTask(Task t) {
+        assert t != null : "Task to be added should not be null";
+
         tasks.add(t);
         System.out.println("     Ok! I have added the following "
                 + ((t instanceof Todo)
@@ -102,6 +108,8 @@ public class TaskList {
      * @param dukeImage The image of Duke.
      */
     public void addTask(Task t, VBox dialogContainer, Image dukeImage) {
+        assert t != null : "Task to be added should not be null";
+
         tasks.add(t);
         String taskAdded = "Ok! I have added the following "
                 + ((t instanceof Todo)

@@ -219,6 +219,6 @@ public class Duke extends Application {
     public static void main(String[] args) {
         String workingDir = System.getProperty("user.dir");
         Path pathToDuke = Paths.get(workingDir, "data", "duke.txt");
-        new Duke(String.valueOf(pathToDuke)).run();
+        new Duke(String.valueOf(pathToDuke));
     }
 }
