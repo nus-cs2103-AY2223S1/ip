@@ -212,7 +212,7 @@ public class TaskList {
     }
 
     /**
-     * Return {@code TaskList} as format to be saved in hard disk.
+     * Returns {@code TaskList} as format to be saved in hard disk.
      * @return String of {@code TaskList} as format to be saved in file.
      */
     public String toFile() {

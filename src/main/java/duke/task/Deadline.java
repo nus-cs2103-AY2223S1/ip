@@ -49,7 +49,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * To produce a {@code String} with "|" delimiters for storing the
+     * Produces a {@code String} with "|" delimiters for storing the
      * {@code Deadline}'s data in a text file.
      * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]
      *                  |[PRIORITY][TASK DEADLINE]"
