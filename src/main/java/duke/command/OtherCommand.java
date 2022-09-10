@@ -23,9 +23,10 @@ public class OtherCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Storage storage) {
-        if (this.fullCommand.split(" ")[0].equals("Get")) {
+        String typeDescription = this.fullCommand.split(" ")[0];
+        if (typeDescription.equals("Get")) {
             return (taskList.getASpecificDay(fullCommand));
-        } else if (this.fullCommand.split(" ")[0].equals("find")) {
+        } else if (typeDescription.equals("find")) {
             return (taskList.find(fullCommand));
         } else {
             return (taskList.listAllTask());

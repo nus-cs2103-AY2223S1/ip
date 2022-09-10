@@ -20,21 +20,22 @@ public class Parser {
      * @throws DukeException Throws DukeException with remind message when the input format is wrong.
      */
     public static Command parse(String fullCommand) throws DukeException {
+        String typeDescription = fullCommand.split(" ")[0];
         if (fullCommand.equals("bye")) {
             return new ExitCommand();
-        } else if (fullCommand.split(" ")[0].equals("event")
-                || fullCommand.split(" ")[0].equals("deadline")
-                || fullCommand.split(" ")[0].equals("todo")) {
+        } else if (typeDescription.equals("event")
+                || typeDescription.equals("deadline")
+                || typeDescription.equals("todo")) {
             return new AddCommand(fullCommand);
-        } else if (fullCommand.split(" ")[0].equals("delete")) {
+        } else if (typeDescription.equals("delete")) {
             return new DeleteCommand(fullCommand);
-        } else if (fullCommand.split(" ")[0].equals("mark")
-                || fullCommand.split(" ")[0].equals("unmark")) {
+        } else if (typeDescription.equals("mark")
+                || typeDescription.equals("unmark")) {
             return new MarkingCommand(fullCommand);
-        } else if (fullCommand.split(" ")[0].equals("Get")
-                || fullCommand.split(" ")[0].equals("list")) {
+        } else if (typeDescription.equals("Get")
+                || typeDescription.equals("list")) {
             return new OtherCommand(fullCommand);
-        } else if (fullCommand.split(" ")[0].equals("find")) {
+        } else if (typeDescription.equals("find")) {
             return new OtherCommand(fullCommand);
         } else {
             throw new DukeException("Sorry, I don't know your meanings.");

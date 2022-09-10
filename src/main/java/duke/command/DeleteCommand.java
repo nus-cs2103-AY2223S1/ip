@@ -27,7 +27,8 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
-        return taskList.delete(Integer.valueOf(this.fullCommand.split(" ")[1]),
-                storage);
+        String stringIndex = this.fullCommand.split(" ")[1];
+        int intIndex = Integer.valueOf(stringIndex);
+        return taskList.delete(intIndex, storage);
     }
 }
