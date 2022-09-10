@@ -26,7 +26,7 @@ public class UnmarkCommand extends Command {
      * Executes operations to unmark task and save the list.
      *
      * @throws CheeseException If given index of task to unmark does not match a task from
-     *                         <code>taskList</code>.
+     *                         <code>taskList</code> or there is an error in saving.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) throws CheeseException {
