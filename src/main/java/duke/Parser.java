@@ -2,10 +2,12 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.concurrent.CompletableFuture;
 
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Todo;
+import javafx.application.Platform;
 
 /**
  * Parser class to manage user inputs
@@ -52,8 +54,16 @@ public class Parser {
             int index;
             switch (cmd) {
             case bye:
-                result = "Bye! Don't Come back!";
+                result = "Bye! Shutting Down...";
                 storage.write(tasks);
+                CompletableFuture.runAsync(() -> {
+                    try {
+                        Thread.sleep(1500);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Platform.exit();
+                });
                 return result;
             case list:
                 result = tasks.list();
