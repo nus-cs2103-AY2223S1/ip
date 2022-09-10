@@ -1,9 +1,9 @@
 package duke.commands;
 
+import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.task.Todo;
-import duke.ui.TextUi;
 
 /**
  * Represents a todo command.
@@ -27,12 +27,13 @@ public class TodoCommand extends Command {
      * @param taskList The list of tasks in Duke.
      * @param ui The TextUi class used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
+     * @return The success message after adding a todo task.
      */
     @Override
-    public void execute(TaskList taskList, TextUi ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addTask(this.todoTask);
         storage.appendTaskToFile(this.todoTask);
-        ui.showAddTaskMessage(this.todoTask, taskList);
+        return ui.getAddTaskCommandMessage(this.todoTask, taskList);
     }
 
     @Override

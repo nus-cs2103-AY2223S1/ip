@@ -1,8 +1,8 @@
 package duke.commands;
 
+import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.TextUi;
 
 /**
  * Represents a bye command in Duke.
@@ -14,12 +14,13 @@ public class ByeCommand extends Command {
      * Prints goodbye message to the console.
      *
      * @param taskList The list of tasks in Duke.
-     * @param ui The TextUi class used to print message in Duke.
+     * @param ui The ui class to get the command response.
      * @param storage The storage used to save the tasks in the local file.
+     * @return The goodbye message.
      */
     @Override
-    public void execute(TaskList taskList, TextUi ui, Storage storage) {
-        ui.showGoodByeMessage();
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return Ui.GOODBYE_MESSAGE;
     }
 
     @Override

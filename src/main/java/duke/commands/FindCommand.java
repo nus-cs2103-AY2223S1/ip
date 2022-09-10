@@ -2,10 +2,10 @@ package duke.commands;
 
 import java.util.ArrayList;
 
+import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.TextUi;
 
 /**
  * Represents a find command.
@@ -24,11 +24,12 @@ public class FindCommand extends Command {
      * @param taskList The list of tasks in Duke.
      * @param ui The TextUi class used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
+     * @return The string representation of the list of matching tasks.
      */
     @Override
-    public void execute(TaskList taskList, TextUi ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         ArrayList<Task> foundTask = taskList.findTask(this.query);
-        ui.showFindTaskMessage(foundTask);
+        return ui.getFindCommandMessage(foundTask);
     }
 
     @Override

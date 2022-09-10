@@ -2,10 +2,10 @@ package duke.commands;
 
 import java.time.LocalDateTime;
 
+import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.TaskList;
-import duke.ui.TextUi;
 
 
 /**
@@ -30,14 +30,15 @@ public class DeadlineCommand extends Command {
      * Adds the deadline task to the task list and save it to the file.
      *
      * @param taskList The list of tasks in Duke.
-     * @param ui The TextUi class used to print message in Duke.
+     * @param ui The ui class to get the command response.
      * @param storage The storage used to save the tasks in the local file.
+     * @return The success message after adding a deadline task.
      */
     @Override
-    public void execute(TaskList taskList, TextUi ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addTask(this.deadlineTask);
         storage.appendTaskToFile(this.deadlineTask);
-        ui.showAddTaskMessage(this.deadlineTask, taskList);
+        return ui.getAddTaskCommandMessage(this.deadlineTask, taskList);
     }
 
     @Override
