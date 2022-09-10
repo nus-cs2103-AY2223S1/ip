@@ -64,13 +64,12 @@ public class Parser {
                 } else if (taskListWithKeyWord.size() != 0) {
                     return ui.printTasksWithKeyword(taskListWithKeyWord);
                 } else {
-                    return "OOPS!!! I'm sorry, but I don't know what that means :-(\n";
+                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
                 }
             }
         } catch (DukeException de) {
-            System.out.println(de);
+            return de.getMessage();
         }
-        return "";
     }
 
     /**
@@ -125,7 +124,7 @@ public class Parser {
             if (validIndex && validAction) {
                 return taskList.getTask(index - 1);
             } else if (validAction && !validIndex) {
-                throw new DukeException("☹ OOPS!!! Please enter a valid task number to mark/unmark");
+                throw new DukeException("OOPS!!! Please enter a valid task number to mark/unmark");
             }
             return null;
         } catch (NumberFormatException e) {
@@ -145,16 +144,16 @@ public class Parser {
         String type = splitStr[0];
         if (type.equals("todo")) {
             if (splitStr.length < 2) {
-                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.\n");
+                throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
             }
             String description = str.substring(type.length() + 1);
             return new ToDo(description);
         } else if (type.equals("deadline")) {
             if (splitStr.length < 2) {
-                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.\n");
+                throw new DukeException("OOPS!!! The description of a deadline cannot be empty.\n");
             }
             if (str.indexOf("/by") - 1 < 0) {
-                throw new DukeException("☹ OOPS!!! Please set date of deadline with /by.\n");
+                throw new DukeException("OOPS!!! Please set date of deadline with /by.\n");
             }
             String description = str.substring(type.length() + 1, str.indexOf("/by") - 1);
             String date = str.substring(str.indexOf("/by") + 4);
@@ -162,10 +161,10 @@ public class Parser {
             return new Deadline(description, formattedDate);
         } else if (type.equals("event")) {
             if (splitStr.length < 2) {
-                throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.\n");
+                throw new DukeException("OOPS!!! The description of an event cannot be empty.\n");
             }
             if (str.indexOf("/at") - 1 < 0) {
-                throw new DukeException("☹ OOPS!!! Please set date of event with /at.\n");
+                throw new DukeException("OOPS!!! Please set date of event with /at.\n");
             }
             String description = str.substring(type.length() + 1, str.indexOf("/at") - 1);
             String date = str.substring(str.indexOf("/at") + 4);
@@ -196,7 +195,7 @@ public class Parser {
                 }
             }
             if (taskListWithKeyword.size() == 0) {
-                throw new DukeException("☹ OOPS!!! No such task with keyword is found.");
+                throw new DukeException("OOPS!!! No such task with keyword is found.");
             }
         }
         return taskListWithKeyword;
