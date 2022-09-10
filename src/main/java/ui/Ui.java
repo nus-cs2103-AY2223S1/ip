@@ -24,9 +24,11 @@ public class Ui {
     private static final String SCHEDULE_MESSAGE_PREFIX = "Here are your tasks at ";
     private static final String EMPTY_SCHEDULE_MESSAGE = "You have no tasks scheduled on ";
     private static final String TASK_COUNT_MESSAGE_PREFIX = "Boss, you got ";
-    private static final String TASK_COUNT_MESSAGE_SUFFIX = " tasks now\n";
+    private static final String MULTIPLE_TASK_COUNT_MESSAGE_SUFFIX = " tasks now\n";
+    private static final String SINGLE_TASK_COUNT_MESSAGE_SUFFIX = " task now\n";
     private static final String NEXT_LINE_STRING = "\n";
     private static final String DOT_INDICATOR = ". ";
+    private static final String MARK_TASK_MESSAGE = "Swee lah! I marked this task as done liao:\n";
     private Image uncleCheongImage = new Image(this.getClass().getResourceAsStream("/images/unclecheong.jpeg"));
     private Image errorImage = new Image(this.getClass().getResourceAsStream("/images/error.png"));
 
@@ -123,8 +125,14 @@ public class Ui {
      * @param dialogContainer VBox to add the number of tasks text to.
      */
     public void printTaskCountMessage(TaskList tasks, VBox dialogContainer) {
-        appendUncleCheongResponseWithoutUserInput(TASK_COUNT_MESSAGE_PREFIX
-                + tasks.getSize() + TASK_COUNT_MESSAGE_SUFFIX, dialogContainer);
+        assert(tasks.getSize() >= 1);
+        if (tasks.getSize() == 1) {
+            appendUncleCheongResponseWithoutUserInput(TASK_COUNT_MESSAGE_PREFIX
+                    + tasks.getSize() + SINGLE_TASK_COUNT_MESSAGE_SUFFIX, dialogContainer);
+        } else {
+            appendUncleCheongResponseWithoutUserInput(TASK_COUNT_MESSAGE_PREFIX
+                    + tasks.getSize() + MULTIPLE_TASK_COUNT_MESSAGE_SUFFIX, dialogContainer);
+        }
     }
 
     /**
@@ -159,7 +167,7 @@ public class Ui {
      * @param userDialog contains the user's dialog to be added to the VBox.
      */
     public void printMarkedMessage(Task task, VBox dialogContainer, DialogBox userDialog) {
-        appendUncleCheongResponseAndUserInput(TASK_ADDED_MESSAGE
+        appendUncleCheongResponseAndUserInput(MARK_TASK_MESSAGE
                 + task, dialogContainer, userDialog);
     }
 
