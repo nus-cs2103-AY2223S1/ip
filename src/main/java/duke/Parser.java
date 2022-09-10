@@ -6,13 +6,11 @@ public class Parser {
     public Pair<Duke.Command, String> parse(String s) throws DukeException, DukeTaskException{
 
         boolean isMultipleWords = false;
-        String firstWord = "";
+        String firstWord = s;
         String restWord = "";
 
         int indexOfSpace = s.indexOf(' ');
         isMultipleWords = indexOfSpace > -1;
-        firstWord = s;
-        restWord = "";
         if (isMultipleWords) {
             firstWord = s.substring(0, indexOfSpace);
             restWord = s.substring(indexOfSpace).trim();
