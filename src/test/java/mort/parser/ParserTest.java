@@ -68,6 +68,19 @@ public class ParserTest {
         assertEquals(expected, e2.getMessage());
         assertEquals(expected, e3.getMessage());
     }
+    
+    @Test
+    public void parse_emptyViewDate_exceptionThrown() {
+        Exception e1 = assertThrows(MortException.class, () -> Parser.parse("view"));
+        Exception e2 = assertThrows(MortException.class, () -> Parser.parse("view "));
+        Exception e3 = assertThrows(MortException.class, () -> Parser.parse("view  "));
+
+        String expected = "You can't give me a blank date just because you can't get any for yourself.\n"
+                + "Type \"view <date>\" to view all tasks on that date.";
+        assertEquals(expected, e1.getMessage());
+        assertEquals(expected, e2.getMessage());
+        assertEquals(expected, e3.getMessage());
+    }
     @Test
     public void parse_wrongNumberFormat_exceptionThrown() {
         Exception e1 = assertThrows(MortException.class, () -> Parser.parse("delete asdf"));

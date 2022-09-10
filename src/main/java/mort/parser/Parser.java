@@ -5,15 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import mort.command.AddCommand;
-import mort.command.Command;
-import mort.command.CommandWord;
-import mort.command.DeleteCommand;
-import mort.command.ExitCommand;
-import mort.command.FindCommand;
-import mort.command.ListCommand;
-import mort.command.MarkCommand;
-import mort.command.UnmarkCommand;
+import mort.command.*;
 import mort.exception.MortException;
 import mort.task.TaskType;
 import mort.ui.Ui;
@@ -52,6 +44,8 @@ public class Parser {
                 return validateMark(parsedCommand);
             case "unmark":
                 return validateUnmark(parsedCommand);
+            case "view":
+                return validateView(parsedCommand);
             case "find":
                 return validateFind(parsedCommand);
             case "list":
@@ -200,6 +194,17 @@ public class Parser {
         } else {
             int num = Integer.parseInt(parsedCommand[1]);
             return new MarkCommand(num);
+        }
+    }
+    
+    private static Command validateView(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
+        boolean hasBlankDate = parsedCommand.length < 2;
+        if (hasBlankDate) {
+            throw new MortException("You can't give me a blank date just because you can't "
+                    + "get any for yourself.\n" + Ui.getCommandHelp(CommandWord.VIEW));
+        } else {
+            return new ViewCommand(parsedCommand[1]);
         }
     }
 

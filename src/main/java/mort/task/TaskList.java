@@ -1,6 +1,11 @@
 package mort.task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -29,11 +34,15 @@ public class TaskList {
      * Prints all tasks in the list.
      */
     public String list() {
+        return convertTasksToString(tasks);
+        /*
         StringBuilder sb = new StringBuilder();
         this.tasks.forEach(t -> sb.append(this.tasks.indexOf(t) + 1)
                 .append(". ").append(t).append("\n"));
         
         return sb.toString();
+        
+         */
     }
 
     /**
@@ -93,13 +102,42 @@ public class TaskList {
      * @return A string representing all possible matches.
      */
     public String find(String keyword) {
-        StringBuilder sb = new StringBuilder();
-        tasks.stream()
-                .filter(task -> task.isMatch(keyword))
-                .forEach(task -> sb.append(this.tasks.indexOf(task) + 1)
-                        .append(". ")
-                        .append(task)
-                        .append("\n"));
-        return sb.toString();
+        List<Task> filteredTasks = filterTasks(task -> task.isMatch(keyword));
+        return convertTasksToString(filteredTasks);
     }
+
+    /**
+     * Shows all tasks scheduled on a given date.
+     * @param date
+     * @return The string representation of all tasks on a given date.
+     */
+    public String viewSchedule(LocalDate date) {
+        List<Task> filteredTasks = filterTasks(task -> task.isDateMatch(date));
+        return convertTasksToString(filteredTasks);
+    }
+
+    /**
+     * Filters the task list with the given condition.
+     * @param condition
+     * @return A list of tasks satisfying the given condition.
+     */
+    private List<Task> filterTasks(Predicate<Task> condition) {
+        return tasks.stream()
+                .filter(condition)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Converts a given list of tasks to its string representation.
+     * @param tasks
+     * @return The string representation of a given list of tasks.
+     */
+    private String convertTasksToString(List<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
+        tasks.forEach(task -> sb.append(tasks.indexOf(task) + 1)
+                .append(". ")
+                .append(task)
+                .append("\n"));
+        return sb.toString();
+    } 
 }

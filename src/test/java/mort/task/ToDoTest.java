@@ -2,6 +2,9 @@ package mort.task;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ToDoTest {
     private final ToDo todo1 = new ToDo("buy apples", true);
     private final ToDo todo2 = new ToDo("buy 6 apples & chicken", false);
+    private final LocalDate date = LocalDate.parse("31/12/1926", DateTimeFormatter.ofPattern("d/M/yyyy"));
+    
     @Test
     public void testGetStatusIcon() {
         assertEquals("X", todo1.getStatusIcon());
@@ -34,5 +39,11 @@ public class ToDoTest {
         assertFalse(todo2.isMatch("[X]"));
         assertFalse(todo2.isMatch("homework"));
         assertFalse(todo1.isMatch("[ ]"));
+    }
+    
+    @Test
+    public void testIsDateMatch() {
+        assertFalse(todo1.isDateMatch(date));
+        assertFalse(todo2.isDateMatch(date));
     }
 }

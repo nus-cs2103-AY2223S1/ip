@@ -24,7 +24,6 @@ public class Event extends Task {
     public Event(String desc, LocalDate atDate) {
         super(desc);
         this.atDate = atDate;
-        this.isDone = false;
         this.hasTime = false;
     }
 
@@ -36,8 +35,8 @@ public class Event extends Task {
      */
     public Event(String desc, LocalDateTime atDateTime) {
         super(desc);
+        this.atDate = atDateTime.toLocalDate();
         this.atDateTime = atDateTime;
-        this.isDone = false;
         this.hasTime = true;
     }
 
@@ -51,6 +50,7 @@ public class Event extends Task {
         super(desc, isDone);
         this.atDate = atDate;
         this.hasTime = false;
+        this.isDone = isDone;
     }
 
     /**
@@ -61,8 +61,10 @@ public class Event extends Task {
      */
     public Event(String desc, LocalDateTime atDateTime, boolean isDone) {
         super(desc, isDone);
+        this.atDate = atDateTime.toLocalDate();
         this.atDateTime = atDateTime;
         this.hasTime = true;
+        this.isDone = isDone;
     }
 
     private String formatAt() {
@@ -78,6 +80,16 @@ public class Event extends Task {
         } else {
             return this.atDate.format(DateTimeFormatter.ofPattern("d/M/yyyy"));
         }
+    }
+
+    /**
+     * Checks if a given date matches date of the event.
+     * @param date
+     * @return True if there is a match; false otherwise.
+     */
+    @Override
+    public boolean isDateMatch(LocalDate date) {
+        return this.atDate.isEqual(date);
     }
 
     /**

@@ -3,6 +3,9 @@ package mort.ui;
 import mort.command.CommandWord;
 import mort.task.Task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Class that deals with user interactions.
  */
@@ -34,12 +37,11 @@ public class Ui {
                 + "\nYou have " + size + " task" + (size == 1 ? "" : "s") + ".";
     }
     
-    public String getListMessage(int size) {
-        if (size == 0) {
+    public String getListMessage(String tasks) {
+        if (tasks.isBlank()) {
             return "You don't have any tasks. Make yourself useful.\n";
         } else {
-            return "*rolls eyes*\n"
-                    + "Fine. Here are your tasks:\n";
+            return "*rolls eyes*\nFine. Here are your tasks:\n" + tasks;
         }
     }
     
@@ -88,6 +90,9 @@ public class Ui {
         case FIND:
             sb.append("find <keyword>\" to search for a task.");
             break;
+        case VIEW:
+            sb.append("view <date>\" to view all tasks on that date.");
+            break;
         }
         return sb.toString();
     }
@@ -98,6 +103,15 @@ public class Ui {
         } else {
             return "Really? Find them yourself next time.\nHere's what I found for '"
                     + keyword + "':\n" + result;
+        }
+    }
+    
+    public String getViewMessage(String tasks, LocalDate date) {
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+        if (tasks.isBlank()) {
+            return "You don't have any tasks on " + formattedDate + ". Make yourself useful.\n";
+        } else {
+            return "Do I have to?\nWhatever. Here are your tasks for " + formattedDate + ":\n" + tasks;
         }
     }
 }
