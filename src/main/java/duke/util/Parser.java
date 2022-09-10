@@ -7,6 +7,8 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Recurring;
 import duke.task.ToDo;
+
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -78,8 +80,9 @@ public class Parser {
         String mark = null;
         String response;
         String[] arr;
+        String[] item = new String[0];
         if (fromSave) {
-            String[] item = input.split("\\|");
+            item = input.split("\\|");
             mark = item[1];
             arr = item[0].split(" ", 2);
         } else {
@@ -95,7 +98,11 @@ public class Parser {
         if (response != null) {
             return response;
         }
-        parseAddTaskCommand(command, arr[1], fromSave);
+        if (item.length == 3) {
+            parseAddTaskCommand(command, true, arr[1], item[2]);
+        } else {
+            parseAddTaskCommand(command, fromSave, arr[1]);
+        }
         if (mark != null && mark.equals("X")) {
             list.markAsDone(list.getSize() - 1);
         }
@@ -130,23 +137,23 @@ public class Parser {
         }
     }
 
-    private void parseAddTaskCommand(ListCommands command, String arg, boolean fromSave)
+    private void parseAddTaskCommand(ListCommands command, boolean fromSave, String... arg)
             throws NoArgumentException, WrongArgumentException, FileParseException {
         switch (command) {
         case todo:
             try {
-                list.add(new ToDo(arg));
+                list.add(new ToDo(arg[0]));
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new NoArgumentException("todo", e);
             }
             break;
         case deadline:
             try {
-                String[] desc = arg.split(" /by ");
+                String[] desc = arg[0].split(" /by ");
                 list.add(new Deadline(desc[0], desc[1]));
             } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                 if (fromSave) {
-                    throw new FileParseException(command + arg, e);
+                    throw new FileParseException(command + arg[0], e);
                 } else {
                     if (e instanceof ArrayIndexOutOfBoundsException) {
                         throw new NoArgumentException("deadline", e);
@@ -159,11 +166,11 @@ public class Parser {
             break;
         case event:
             try {
-                String[] desc = arg.split(" /at ");
+                String[] desc = arg[0].split(" /at ");
                 list.add(new Event(desc[0], desc[1]));
             } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                 if (fromSave) {
-                    throw new FileParseException(command + arg, e);
+                    throw new FileParseException(command + arg[0], e);
                 } else {
                     if (e instanceof ArrayIndexOutOfBoundsException) {
                         throw new NoArgumentException("event", e);
@@ -176,12 +183,16 @@ public class Parser {
             break;
         case recurring:
             try {
-                String[] desc = arg.split(" /every ");
+                String[] desc = arg[0].split(" /every ");
                 String[] arr = desc[1].split(" \\*");
-                list.add(new Recurring(desc[0], arr[0], Integer.parseInt(arr[1])));
+                Recurring r = new Recurring(desc[0], arr[0], Integer.parseInt(arr[1]));
+                if (fromSave) {
+                    r.calculateRemaining(LocalDateTime.parse(arg[1]));
+                }
+                list.add(r);
             } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                 if (fromSave) {
-                    throw new FileParseException(command + arg, e);
+                    throw new FileParseException(command + arg[0], e);
                 } else {
                     if (e instanceof ArrayIndexOutOfBoundsException) {
                         throw new NoArgumentException("recurring", e);

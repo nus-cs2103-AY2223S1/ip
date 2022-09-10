@@ -103,6 +103,7 @@ public class Ui {
         StringBuilder str = new StringBuilder();
         str.append("The following line is corrupted:\n\t").append(e.getMessage());
         str.append("\nPls note that it'll be deleted\n");
+        System.out.println(str);
         return str.toString();
     }
 
