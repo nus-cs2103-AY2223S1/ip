@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    protected LocalDate by;
+    protected LocalDate deadlineDate;
 
     /**
      * Constructs a deadline instance.
@@ -17,7 +17,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, LocalDate by) {
         super(description);
-        this.by = by;
+        this.deadlineDate = by;
     }
 
     /**
@@ -26,10 +26,10 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D]" + super.toString() + " (by: " + deadlineDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     public LocalDate getDeadline() {
-        return this.by;
+        return this.deadlineDate;
     }
 }

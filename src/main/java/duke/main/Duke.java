@@ -38,66 +38,66 @@ public class Duke {
         String dukeResponse;
             try {
                 switch (response) {
-                    case "find": {
-                        String keyword = parser.getKeyword();
-                        ArrayList<Task> matchingTasks = tasks.searchMatches(keyword);
-                        dukeResponse = ui.printMatchingList(matchingTasks);
-                        break;
-                    }
-                    case "list": {
-                        dukeResponse = ui.printList(tasks);
-                        break;
-                    }
-                    case "mark": {
-                        int taskNumber = parser.getTaskNumber();
-                        assert taskNumber > 0;
-                        dukeResponse = tasks.markAsDone(taskNumber);
-                        break;
-                    }
-                    case "unmark": {
-                        int taskNumber = parser.getTaskNumber();
-                        assert taskNumber > 0;
-                        dukeResponse = tasks.markNotDone(taskNumber);
-                        break;
-                    }
-                    case "priority": {
-                        int taskNumber = parser.getTaskNumber();
-                        dukeResponse = tasks.markHighPriority(taskNumber);
-                        break;
-                    }
-                    case "delete": {
-                        int taskNumber = parser.getTaskNumber();
-                        assert (taskNumber > 0);
-                        dukeResponse = ui.printDeleteMessage(tasks, taskNumber);
-                        tasks.deleteTask(taskNumber);
-                        break;
-                    }
-                    case "deadline": {
-                        String task = parser.getDeadlineDescription();
-                        LocalDate d1 = parser.getDeadlineTime();
-                        tasks.addTask(new Deadline(task, d1));
-                        dukeResponse = ui.printAddMessage(tasks);
-                        break;
-                    }
-                    case "event": {
-                        String task = parser.getEventDescription();
-                        String d1 = parser.getEventTime();
-                        tasks.addTask(new Event(task, d1));
-                        dukeResponse = ui.printAddMessage(tasks);
-                        break;
-                    }
-                    case "todo": {
-                        String task = parser.getTodoDescription();
-                        tasks.addTask(new Todo(task));
-                        dukeResponse = ui.printAddMessage(tasks);
-                        break;
-                    }
-                    case "bye": {
-                        dukeResponse = ui.printGoodbyeMessage();
-                        break;
-                    }
-                    default:
-                        throw new InvalidCommandException();
+                case "find": {
+                    String keyword = parser.getKeyword();
+                    ArrayList<Task> matchingTasks = tasks.searchTasks(keyword);
+                    dukeResponse = ui.printMatchingList(matchingTasks);
+                    break;
+                }
+                case "list": {
+                    dukeResponse = ui.printList(tasks);
+                    break;
+                }
+                case "mark": {
+                    int taskNumber = parser.getTaskNumber();
+                    assert taskNumber > 0;
+                    dukeResponse = tasks.markAsDone(taskNumber);
+                    break;
+                }
+                case "unmark": {
+                    int taskNumber = parser.getTaskNumber();
+                    assert taskNumber > 0;
+                    dukeResponse = tasks.markNotDone(taskNumber);
+                    break;
+                }
+                case "priority": {
+                    int taskNumber = parser.getTaskNumber();
+                    dukeResponse = tasks.markHighPriority(taskNumber);
+                    break;
+                }
+                case "delete": {
+                    int taskNumber = parser.getTaskNumber();
+                    assert (taskNumber > 0);
+                    dukeResponse = ui.printDeleteMessage(tasks, taskNumber);
+                    tasks.deleteTask(taskNumber);
+                    break;
+                }
+                case "deadline": {
+                    String task = parser.getDeadlineDescription();
+                    LocalDate d1 = parser.getDeadlineTime();
+                    tasks.addTask(new Deadline(task, d1));
+                    dukeResponse = ui.printAddMessage(tasks);
+                    break;
+                }
+                case "event": {
+                    String task = parser.getEventDescription();
+                    String d1 = parser.getEventTime();
+                    tasks.addTask(new Event(task, d1));
+                    dukeResponse = ui.printAddMessage(tasks);
+                    break;
+                }
+                case "todo": {
+                    String task = parser.getTodoDescription();
+                    tasks.addTask(new Todo(task));
+                    dukeResponse = ui.printAddMessage(tasks);
+                    break;
+                }
+                case "bye": {
+                    dukeResponse = ui.printGoodbyeMessage();
+                    break;
+                }
+                default:
+                    throw new InvalidCommandException();
                 }
             } catch (InvalidCommandException | EmptyTodoListException e) {
                 dukeResponse = e.getMessage();

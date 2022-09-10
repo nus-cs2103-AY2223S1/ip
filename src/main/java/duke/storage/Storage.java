@@ -76,7 +76,7 @@ public class Storage {
             FileWriter myWriter = new FileWriter(this.filePath);
             StringBuilder output = new StringBuilder();
             ArrayList<Task> tasks = taskList.getTasks();
-            for (Task task:tasks) {
+            for (Task task : tasks) {
                 int number = 0;
                 int priority = 0;
                 if (task.checkDone()) {

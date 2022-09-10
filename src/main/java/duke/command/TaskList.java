@@ -96,9 +96,9 @@ public class TaskList {
         taskList.add(task);
     }
 
-    public ArrayList<Task> searchMatches(String keyword) {
+    public ArrayList<Task> searchTasks(String keyword) {
         ArrayList<Task> matchingList = new ArrayList<>();
-        for (Task task: taskList) {
+        for (Task task : taskList) {
             String description = task.getDescription();
             if (description.contains(keyword)) {
                 matchingList.add(task);

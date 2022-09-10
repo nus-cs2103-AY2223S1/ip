@@ -48,6 +48,7 @@ public class Task {
 
     /**
      * Marks task as done and prints message.
+     * @return Output message.
      */
     public String markAsDone() {
         this.isDone = true;
@@ -58,6 +59,7 @@ public class Task {
 
     /**
      * Marks task as not done and prints message.
+     * @return Output message.
      */
     public String markNotDone() {
         this.isDone = false;
