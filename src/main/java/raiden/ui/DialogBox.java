@@ -41,7 +41,7 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
         this.dialog.setText(text);
-        displayPicture.setImage(img);
+        this.displayPicture.setImage(img);
     }
 
     /**

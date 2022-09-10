@@ -29,6 +29,7 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Raiden.png"));
+    private Image raidenGreetingImage = new Image(this.getClass().getResourceAsStream("/images/RaidenGreet.png"));
 
     /**
      * Initialises the main window.
@@ -38,7 +39,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String greetingMessage = "Hello, I'm Raiden.\n" + "What can I do for you?\n";
         this.dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(greetingMessage, this.dukeImage));
+                DialogBox.getDukeDialog(greetingMessage, this.raidenGreetingImage));
     }
 
     /**

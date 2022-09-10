@@ -270,10 +270,10 @@ public class TaskList {
                 throw new RaidenException("Invalid task id!");
             }
             StringBuilder result = new StringBuilder();
-            result.append("Understood. I've removed this task:");
+            result.append("Understood. I've removed this task:\n");
             result.append(this.taskList.get(id - 1));
             this.taskList.remove(id - 1);
-            String line = String.format("Now you have %d task%s in the list.",
+            String line = String.format("\nNow you have %d task%s in the list.",
                     len - 1, len - 1 != 1 ? "s" : "");
             result.append(line);
             // Remove the task from the save file

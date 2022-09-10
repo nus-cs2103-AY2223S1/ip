@@ -9,7 +9,7 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="420.0" style="-fx-background-color: #DBB7F0;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" alignment="TOP_LEFT" style="-fx-background-color: #9933ff; -fx-text-fill: white; -fx-label-padding: 5; -fx-background-radius: 10;" text="Label" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS">
+        <Label fx:id="dialog" alignment="TOP_LEFT" contentDisplay="TOP" style="-fx-background-color: #9933ff; -fx-text-fill: white; -fx-label-padding: 5; -fx-background-radius: 10;" text="Label" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS">
             <font>
                 <Font size="14.0" />
             </font></Label>

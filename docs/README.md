@@ -69,7 +69,7 @@ Adds an Event task with the description "Drinking party" with the date at 12 Sep
 
 ![Add](images/add.PNG)
 
-## Lists Tasks
+## List Tasks
 Displays all the current tasks in the list with their descriptions, completion status and date/time (for Deadline and Event tasks).
 
 ### Usage
