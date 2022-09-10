@@ -23,7 +23,6 @@ import duke.task.ToDo;
  * The Parser class contains the methods that handles user commands.
  */
 public class Parser {
-
     /**
      * Initializes an instance of a Parser.
      */
@@ -43,9 +42,7 @@ public class Parser {
         String commandArg = arg.length == 2 ? arg[1].trim() : "";
         switch (command) {
         case "list":
-            if (!commandArg.equals("")) {
-                throw new DukeException("list must not have an argument.");
-            }
+            checkNoArg(command, commandArg);
             return new ListCommand();
         case "mark":
             return new MarkCommand(parseIntArg(commandArg));
@@ -56,9 +53,7 @@ public class Parser {
         case "find":
             return new FindCommand(commandArg);
         case "todo":
-            if (commandArg.equals("")) {
-                throw new DukeException("A todo must contain a description.");
-            }
+            checkToDoArg(commandArg);
             return new ToDoCommand(new ToDo(commandArg));
         case "deadline":
             String[] deadlineArgs = getDeadlineArgs(commandArg);
@@ -70,35 +65,56 @@ public class Parser {
             boolean sortArgs = getSortArg(commandArg);
             return new SortCommand(sortArgs);
         case "bye":
-            if (!commandArg.equals("")) {
-                throw new DukeException("bye must not have any argument.");
-            }
+            checkNoArg(command, commandArg);
             return new ByeCommand();
         default:
             throw new DukeException("Sorry, I don't understand what that means :(");
         }
     }
 
+    private void checkToDoArg(String arg) throws DukeException {
+        if (arg.equals("")) {
+            throw new DukeException("A todo must contain a description.");
+        }
+    }
+
     private String[] getDeadlineArgs(String desc) throws DukeException {
         String[] res = desc.split("/by");
-        for (int i = 0; i < res.length; i++) {
-            res[i] = res[i].trim();
-        }
-        if (res.length != 2 || res[0].equals("") || res[1].equals("")) {
+        trimArgs(res);
+        checkDeadlineArgsValidity(res);
+        return res;
+    }
+
+    private void checkDeadlineArgsValidity(String[] args) throws DukeException {
+        if (args.length != 2 || args[0].equals("") || args[1].equals("")) {
             throw new DukeException("A deadline must contain a description and a due date.");
         }
-        return res;
     }
 
     private String[] getEventArgs(String desc) throws DukeException {
         String[] res = desc.split("/at");
-        for (int i = 0; i < res.length; i++) {
-            res[i] = res[i].trim();
-        }
-        if (res.length != 2 || res[0].equals("") || res[1].equals("")) {
+        trimArgs(res);
+        checkEventArgsValidity(res);
+        return res;
+    }
+
+    private void checkEventArgsValidity(String[] args) throws DukeException {
+        if (args.length != 2 || args[0].equals("") || args[1].equals("")) {
             throw new DukeException("An event must contain a description and a date.");
         }
-        return res;
+    }
+
+
+    private void trimArgs(String[] args) {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = args[i].trim();
+        }
+    }
+
+    private void checkNoArg(String command, String arg) throws DukeException {
+        if (!arg.equals("")) {
+            throw new DukeException(command + " " + "must not have an argument.");
+        }
     }
 
     private boolean getSortArg(String option) throws DukeException {

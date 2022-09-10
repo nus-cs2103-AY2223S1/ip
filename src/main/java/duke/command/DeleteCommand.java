@@ -22,8 +22,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
-        String deletedTaskDesc = taskList.getTaskN(index).toString();
-        taskList.deleteTaskN(index);
+        String deletedTaskDesc = taskList.getTaskByIndex(index).toString();
+        taskList.deleteTaskByIndex(index);
         storage.overwriteFile(taskList.toStorageString());
         return Command.WRAPPER.getDeleteResponse(deletedTaskDesc, taskList.getNumOfTask());
     }

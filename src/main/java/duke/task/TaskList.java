@@ -44,7 +44,7 @@ public class TaskList {
      * @param isDone Indicates whether task is done or not done.
      * @throws DukeException If n - 1 is outside the bounds of TaskList' size.
      */
-    public void markTaskN(int n, boolean isDone) throws DukeException {
+    public void markTaskByIndex(int n, boolean isDone) throws DukeException {
         try {
             this.taskList.get(n - 1).isDoneSetter(isDone);
         } catch (IndexOutOfBoundsException e) {
@@ -58,7 +58,7 @@ public class TaskList {
      * @param n Index of task to be deleted.
      * @throws DukeException If n - 1 is outside the bounds of TaskList's size.
      */
-    public void deleteTaskN(int n) throws DukeException {
+    public void deleteTaskByIndex(int n) throws DukeException {
         try {
             this.taskList.remove(n - 1);
         } catch (IndexOutOfBoundsException e) {
@@ -73,7 +73,7 @@ public class TaskList {
      * @return n-th task in TaskList.
      * @throws DukeException If n - 1 is outside the bounds of TaskList's size.
      */
-    public Task getTaskN(int n) throws DukeException {
+    public Task getTaskByIndex(int n) throws DukeException {
         try {
             // start counting from 1
             return this.taskList.get(n - 1);

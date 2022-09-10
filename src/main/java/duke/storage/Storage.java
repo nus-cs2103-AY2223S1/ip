@@ -40,10 +40,9 @@ public class Storage {
      * @throws DukeException If unable to find, access, or read data from file.
      */
     public TaskList load() throws DukeException {
-        Scanner sc = null;
         TaskList taskList = new TaskList();
         try {
-            sc = new Scanner(file);
+            Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String currLine = sc.nextLine();
 
@@ -51,39 +50,41 @@ public class Storage {
                     break;
                 }
 
-                String[] taskSplit = currLine.split("\\|", 4);
-                Task newTask;
-                String taskType = taskSplit[0].trim();
-                boolean isDone = taskSplit[1].trim().equals("1");
-                String taskDesc = taskSplit[2].trim();
-                String taskDate = taskSplit.length == 4 ? taskSplit[3].trim() : "";
-                switch (taskType) {
-                case "T":
-                    newTask = new ToDo(taskDesc, isDone);
-                    break;
-                case "D":
-                    newTask = new Deadline(taskDesc, LocalDate.parse(taskDate), isDone);
-                    break;
-                case "E":
-                    newTask = new Event(taskDesc, LocalDate.parse(taskDate), isDone);
-                    break;
-                default:
-                    newTask = null;
-                }
-                assert newTask != null : "Corrupted text file.";
-                taskList.addTask(newTask);
+                taskList.addTask(parseLineFromStorage(currLine));
             }
+            sc.close();
             return taskList;
         } catch (FileNotFoundException e) {
             this.createFile();
             return new TaskList();
         } catch (DateTimeParseException e) {
-            throw new DukeException("Saved file is corrupted.");
-        } finally {
-            if (sc != null) {
-                sc.close();
-            }
+            throw new DukeException("Date in saved file is corrupted.");
         }
+    }
+
+
+    private Task parseLineFromStorage(String line) throws DukeException {
+        String[] taskSplit = line.split("\\|", 4);
+        Task newTask;
+        String taskType = taskSplit[0].trim();
+        boolean isDone = taskSplit[1].trim().equals("1");
+        String taskDesc = taskSplit[2].trim();
+        String taskDate = taskSplit.length == 4 ? taskSplit[3].trim() : "";
+        switch (taskType) {
+        case "T":
+            newTask = new ToDo(taskDesc, isDone);
+            break;
+        case "D":
+            newTask = new Deadline(taskDesc, LocalDate.parse(taskDate), isDone);
+            break;
+        case "E":
+            newTask = new Event(taskDesc, LocalDate.parse(taskDate), isDone);
+            break;
+        default:
+            newTask = null;
+            throw new DukeException("Corrupted storage.");
+        }
+        return newTask;
     }
 
     /**

@@ -29,7 +29,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command currentCommand = this.parser.parse(input);
-            if (currentCommand.getIsTerminator()) {
+            if (currentCommand.isTerminator()) {
                 end();
             }
             return currentCommand.execute(taskList, storage);

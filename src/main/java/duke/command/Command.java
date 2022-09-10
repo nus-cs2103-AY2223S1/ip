@@ -19,7 +19,7 @@ public abstract class Command {
         this.isTerminator = isTerminator;
     }
 
-    public boolean getIsTerminator() {
+    public boolean isTerminator() {
         return isTerminator;
     }
 

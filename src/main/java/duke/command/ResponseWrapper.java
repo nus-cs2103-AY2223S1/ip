@@ -1,12 +1,12 @@
 package duke.command;
 
 /**
- * The Ui Class encapsulates all the input and output interaction between Duke and user.
+ * The ResponseWrapper Class wraps Duke output to become more user-friendly to read.
  */
 public class ResponseWrapper {
 
     /**
-     * Initializes an instance of Ui.
+     * Initializes an instance of a ResponseWrapper.
      */
     protected ResponseWrapper() {
     }

@@ -22,8 +22,8 @@ public class MarkCommand extends Command {
 
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
-        taskList.markTaskN(index, true);
+        taskList.markTaskByIndex(index, true);
         storage.overwriteFile(taskList.toStorageString());
-        return Command.WRAPPER.getMarkResponse(taskList.getTaskN(index).toString());
+        return Command.WRAPPER.getMarkResponse(taskList.getTaskByIndex(index).toString());
     }
 }
