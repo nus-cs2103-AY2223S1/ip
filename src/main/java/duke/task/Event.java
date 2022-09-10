@@ -43,4 +43,10 @@ public class Event extends Task {
         return "[E]" + super.toString()
                 + " (at: " + atTime.format(formatter) + ")";
     }
+
+    public void setAtTime(String newAtTime) {
+        String format = "HHmm, d/MM/yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        this.atTime = LocalDateTime.parse(newAtTime, formatter);
+    }
 }

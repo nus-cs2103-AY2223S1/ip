@@ -118,4 +118,8 @@ public class Ui {
     public String showFindEmptyMessage() {
         return ("There are no matching task in your list\n");
     }
+
+    public String showSnoozeMessage(Task task) {
+        return "OK, I've snoozed this task:\n  " + task.toString();
+    }
 }

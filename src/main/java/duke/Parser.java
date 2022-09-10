@@ -7,6 +7,7 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.SnoozeCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 
@@ -56,6 +57,14 @@ public class Parser {
                     throw new DukeException("The keyword of a task cannot be empty.");
                 }
                 return new FindCommand(commands[0], commands[1]);
+            case "snooze":
+                if (commands.length != 2 || commands[1].length() < 1) {
+                    throw new DukeException("The information to snooze a task cannot be empty.");
+                }
+                String[] snoozeInfo = commands[1].split(" ", 2);
+                index = Integer.parseInt(snoozeInfo[0]);
+                String newDate = snoozeInfo[1];
+                return new SnoozeCommand(commands[0], index - 1, newDate);
             default:
                 return new AddCommand(input);
             }
