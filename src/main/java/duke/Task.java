@@ -9,7 +9,7 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Construct a <code>Task</code>.
+     * Constructs a <code>Task</code>.
      *
      * @param description Description of the task.
      * @param isDone Indicator whether the task has been done or not.
@@ -20,7 +20,7 @@ public abstract class Task {
     }
 
     /**
-     * Mark this <code>Task</code> as done.
+     * Marks this <code>Task</code> as done.
      *
      * @return True.
      */
@@ -30,7 +30,7 @@ public abstract class Task {
     }
 
     /**
-     * Mark this <code>Task</code> as not done.
+     * Marks this <code>Task</code> as not done.
      *
      * @return False.
      */
