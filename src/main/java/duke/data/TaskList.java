@@ -26,7 +26,7 @@ public class TaskList {
     }
 
     /**
-     * To list down all the tasks that are added to the list.
+     * Lists down all the tasks that are added to the list.
      * @return A list of all the tasks added.
      */
     public ArrayList<Task> list() {

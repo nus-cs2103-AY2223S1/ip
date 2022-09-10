@@ -1,0 +1,20 @@
+.root {
+    -fx-background-color: #9498F4;
+    -fx-font-family: sans-serif
+}
+
+.text-input {
+    -fx-pref-width: 310;
+    -fx-pref-height: 35;
+}
+
+.button {
+    -fx-pref-height: 32;
+    -fx-background-color: #FFFFFF;
+    -fx-font-weight: 700
+}
+
+.text-container {
+    -fx-background: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+}

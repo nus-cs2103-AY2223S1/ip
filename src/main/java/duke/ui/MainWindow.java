@@ -26,6 +26,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     private ScrollPane scrollPane;
 
+    @FXML
+    private VBox header;
     private Duke duke;
 
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/owl.png"));
@@ -39,6 +41,8 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         DialogBox greeting = DialogBox.getDukeDialog(dukeImage, "Hello! I'm Duke\nWhat can I do for you ^_^");
         dialogContainer.getChildren().add(greeting);
+        header.getChildren().add(new Header("Duke"));
+        userInput.setPromptText("Enter a command!");
     }
 
     public void setDuke(Duke duke) {

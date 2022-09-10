@@ -14,7 +14,7 @@ public class DeadlineCommand extends Command {
     private final String by;
 
     /**
-     * Construct a new Deadline Command
+     * Constructs a new Deadline Command
      * @param description A description of the deadline
      * @param by Date to complete the task by
      */

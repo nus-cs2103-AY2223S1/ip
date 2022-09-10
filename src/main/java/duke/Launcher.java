@@ -3,12 +3,12 @@ package duke;
 import javafx.application.Application;
 
 /**
- * To launch the application
+ * Launches the application
  */
 public class Launcher {
 
     /**
-     * Entry point of the application
+     * Launches the application
      * @param args Ignore
      */
     public static void main(String[] args) {
