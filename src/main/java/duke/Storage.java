@@ -1,12 +1,13 @@
 package duke;
 
-import java.util.ArrayList;
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.util.ArrayList;
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
@@ -16,7 +17,7 @@ public class Storage {
     private BufferedWriter writer;
     private BufferedReader reader;
 
-    private String filePath;
+    private final String filePath;
 
     Storage(String filePath) {
         this.filePath = filePath;
@@ -31,15 +32,26 @@ public class Storage {
      */
     public void load(TaskList t) throws IOException, DukeException {
 
-        //TODO: un-hardcode directory checks with a parser
+        String first;
+        String rest = filePath;
+        boolean isTextFile = false;
 
-        //checks whether directory exists, else makes a new one
-        File d = new File("data");
-        if (!d.getAbsoluteFile().exists()) {
-            new File("data").mkdirs();
+        while (!isTextFile) {
+            if (rest.contains("/")) {
+                int index = rest.indexOf('/');
+                first = rest.substring(0, index).trim();
+                rest = rest.substring(index + 1).trim();
+
+                File d = new File(first);
+                if (!d.getAbsoluteFile().exists()) {
+                    new File(first).mkdirs();
+                }
+            } else {
+                isTextFile = true;
+            }
         }
 
-        File saveFile = new File("data/tasks.txt");
+        File saveFile = new File(filePath);
         saveFile.createNewFile();
 
         // Creating the file reader
@@ -66,14 +78,19 @@ public class Storage {
     }
 
     private void parse(char c, String s) throws DukeException {
-        if (c == 'T') {
+        switch (c) {
+        case 'T':
             log.add(Todo.load(s));
-        } else if (c == 'D') {
+            break;
+        case 'D':
             log.add(Deadline.load(s));
-        } else if (c == 'E') {
+            break;
+        case 'E':
             log.add(Event.load(s));
-        } else {
+            break;
+        default:
             throw new DukeException("Something went wrong with reading the save");
+            //Fallthrough
         }
     }
 
@@ -87,8 +104,8 @@ public class Storage {
         log = t.getLog();
 
         writer = new BufferedWriter(new FileWriter("data\\tasks.txt", false));
-        for(int i = 0; i < log.size(); i++) {
-            writer.write(log.get(i).saveString());
+        for (Task task : log) {
+            writer.write(task.saveString());
             writer.newLine();
         }
         writer.close();

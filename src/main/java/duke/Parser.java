@@ -15,13 +15,11 @@ public class Parser {
     public Pair<Duke.Command, String> parse(String s) throws DukeException {
 
         boolean isMultipleWords = false;
-        String firstWord = "";
+        String firstWord = s;
         String restWord = "";
 
         int indexOfSpace = s.indexOf(' ');
         isMultipleWords = indexOfSpace > -1;
-        firstWord = s;
-        restWord = "";
         if (isMultipleWords) {
             firstWord = s.substring(0, indexOfSpace);
             restWord = s.substring(indexOfSpace).trim();
@@ -67,6 +65,11 @@ public class Parser {
                 }
                 return new Pair(Duke.Command.EVENT, restWord);
                 //Fallthrough
+            case "find":
+                if (restWord.equals("")) {
+                    throw new DukeTaskException("Keyword to find cannot be empty");
+                }
+                return new Pair(Duke.Command.FIND, restWord);
             default:
                 throw new DukeException("?? Unrecognised command");
                 //Fallthrough

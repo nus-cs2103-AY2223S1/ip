@@ -1,8 +1,7 @@
 package duke;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
 
 /**
  * A Deadline is a type of Task with a due date.
