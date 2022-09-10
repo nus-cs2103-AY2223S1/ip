@@ -9,11 +9,12 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308"
          styleClass="label-content" maxWidth="1.7976931348623157E308"
-         prefWidth="500.0" type="javafx.scene.layout.HBox"
+         type="javafx.scene.layout.HBox"
          xmlns="http://javafx.com/javafx/8.0.171"
          xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" text="Label" wrapText="true" minWidth="150"/>
+        <Label fx:id="dialog" wrapText="false" ellipsisString=" ..."
+               minWidth="150"/>
         <ImageView fx:id="displayPicture" fitHeight="50.0" fitWidth="50.0"
                    pickOnBounds="true" preserveRatio="true"/>
     </children>
