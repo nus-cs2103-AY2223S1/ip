@@ -1,4 +1,4 @@
-package DukeBot;
+package dukebot;
 
 /**
  * Encapsulates the User Interface.
@@ -45,7 +45,7 @@ public class Ui {
     /**
      * Returns a string that lists out the tasks.
      *
-     * @param tasks
+     * @param tasks List of tasks to be shown.
      * @return String with all the tasks listed out
      */
     public static String showList(TaskList tasks, boolean isFind) {

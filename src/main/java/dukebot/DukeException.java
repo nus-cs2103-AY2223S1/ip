@@ -1,4 +1,4 @@
-package DukeBot;
+package dukebot;
 
 /**
  * An exception specific to the Duke program.

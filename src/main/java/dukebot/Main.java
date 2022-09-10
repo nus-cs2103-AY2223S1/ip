@@ -1,4 +1,4 @@
-package DukeBot;
+package dukebot;
 
 import java.io.IOException;
 

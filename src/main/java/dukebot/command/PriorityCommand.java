@@ -1,6 +1,6 @@
-package DukeBot.command;
+package dukebot.command;
 
-import DukeBot.*;
+import dukebot.*;
 
 public class PriorityCommand extends Command {
 

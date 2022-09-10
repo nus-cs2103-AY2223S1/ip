@@ -1,6 +1,6 @@
-package DukeBot;
+package dukebot;
 
-import DukeBot.command.*;
+import dukebot.command.*;
 
 /**
  * Encapsulates the class that parses the commands from user.

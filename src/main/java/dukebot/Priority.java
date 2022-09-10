@@ -1,4 +1,4 @@
-package DukeBot;
+package dukebot;
 
 public enum Priority {
     LOW,

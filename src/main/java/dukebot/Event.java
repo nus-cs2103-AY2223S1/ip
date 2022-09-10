@@ -1,17 +1,17 @@
-package DukeBot;
+package dukebot;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Encapsulates the Deadline sub-class of Task class.
+ * Encapsulates the Event sub-class of Task class.
  */
-public class Deadline extends Task {
+public class Event extends Task {
 
     private LocalDate time;
 
-    public Deadline(String description, String time) throws DukeException {
+    public Event(String description, String time) throws DukeException {
         super(description);
         try {
             this.time = LocalDate.parse(time, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -23,17 +23,17 @@ public class Deadline extends Task {
     /**
      * Get the type of Task.
      *
-     * @return "D" indicating Deadline.
+     * @return "E" indicating Event.
      */
     @Override
     public String getTaskType() {
-        return "D";
+        return "E";
     }
 
     /**
-     * Get the time of the Deadline.
+     * Get the time of the Event.
      *
-     * @return by The time of the Deadline.
+     * @return timing The time of the Event.
      */
     @Override
     public String getTime() {
@@ -41,13 +41,13 @@ public class Deadline extends Task {
     }
 
     /**
-     * Get string representation of Deadline.
+     * Get the String representation of an Event.
      *
-     * @return String representation of Deadline.
+     * @return String representation of an Event.
      */
     @Override
     public String toString() {
-        return String.format("[%s]%s (by: "
+        return String.format("[%s]%s (at: "
                 + this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))
                 + ")", this.getTaskType(), super.toString());
     }

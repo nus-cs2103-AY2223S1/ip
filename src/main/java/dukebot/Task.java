@@ -1,4 +1,4 @@
-package DukeBot;
+package dukebot;
 
 /**
  * Encapsulates a particular task by the user.
@@ -62,29 +62,23 @@ public abstract class Task {
     }
 
     /**
-     * Get task count.
+     * Returns task count.
      *
      * @return taskCount Number of tasks.
      */
     public static int getTaskCount() {
         return taskCount;
     }
-    /**
-     * Increase task count by 1.
-     */
-    public static void addTaskCount() {
-        Task.taskCount++;
-    }
 
     /**
-     * Reduce task count by 1.
+     * Reduces task count by 1.
      */
     public static void reduceTaskCount() {
         Task.taskCount--;
     }
 
     /**
-     * Mark Task as incomplete.
+     * Marks Task as incomplete.
      *
      * @throws DukeException if Task is incomplete.
      */
@@ -96,7 +90,7 @@ public abstract class Task {
     }
 
     /**
-     * Get the String representation of a Task.
+     * Gets the String representation of a Task.
      *
      * @return String representation of a Task.
      */
@@ -107,7 +101,7 @@ public abstract class Task {
 
 
     /**
-     * Get the description of the Task.
+     * Retrieves the description of the Task.
      *
      * @return description.
      */

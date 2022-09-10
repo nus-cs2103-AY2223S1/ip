@@ -1,6 +1,6 @@
-package DukeBot.command;
+package dukebot.command;
 
-import DukeBot.DukeException;
+import dukebot.DukeException;
 
 /**
  * Abstract class that encapsulates a command.

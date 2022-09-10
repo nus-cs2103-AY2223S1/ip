@@ -1,6 +1,6 @@
-package DukeBot;
+package dukebot;
 
-import DukeBot.command.Command;
+import dukebot.command.Command;
 
 /**
  * Encapsulates the Duke class.
@@ -26,6 +26,13 @@ public class Duke {
     public boolean isExit() {
         return isExit;
     }
+
+    /**
+     * Responds to a command from the user.
+     *
+     * @param s String containing the user's command.
+     * @return Response to be shown to the user.
+     */
     public String getResponse(String s) {
         assert storage != null;
         try {

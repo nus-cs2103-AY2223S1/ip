@@ -1,9 +1,9 @@
-package DukeBot.command;
+package dukebot.command;
 
-import DukeBot.DukeException;
-import DukeBot.Task;
-import DukeBot.TaskList;
-import DukeBot.Ui;
+import dukebot.DukeException;
+import dukebot.Task;
+import dukebot.TaskList;
+import dukebot.Ui;
 
 public class FindCommand extends Command {
 

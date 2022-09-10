@@ -1,12 +1,12 @@
-package DukeBot.command;
+package dukebot.command;
 
-import DukeBot.Deadline;
-import DukeBot.DukeException;
-import DukeBot.Event;
-import DukeBot.Task;
-import DukeBot.TaskList;
-import DukeBot.ToDo;
-import DukeBot.Ui;
+import dukebot.Deadline;
+import dukebot.DukeException;
+import dukebot.Event;
+import dukebot.Task;
+import dukebot.TaskList;
+import dukebot.ToDo;
+import dukebot.Ui;
 
 public class NewTaskCommand extends Command {
 

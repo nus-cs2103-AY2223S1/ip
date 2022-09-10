@@ -1,9 +1,7 @@
-package DukeBot.command;
+package dukebot.command;
 
-import DukeBot.DukeException;
-import DukeBot.Task;
-import DukeBot.TaskList;
-import DukeBot.Ui;
+import dukebot.DukeException;
+import dukebot.TaskList;
 
 public class MarkCommand extends Command {
 

@@ -1,4 +1,4 @@
-package DukeBot;
+package dukebot;
 
 import javafx.application.Application;
 
