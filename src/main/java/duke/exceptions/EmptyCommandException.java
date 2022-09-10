@@ -9,6 +9,6 @@ public class EmptyCommandException extends DukeException {
 
     @Override
     public String toString() {
-        return String.format("OOPS!!! The description of a %s cannot be empty.", this.type);
+        return String.format("The description of a %s cannot be empty.", this.type);
     }
 }

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DuplicateTaskException;
 import duke.exceptions.EmptyCommandException;
 import duke.exceptions.NoBeforeException;
 import duke.exceptions.NoTimeException;
@@ -21,6 +22,10 @@ public class TaskList {
 
     private TaskList(List<Task> list) {
         this.tasks = list;
+    }
+
+    private int getSize() {
+        return tasks.size();
     }
 
     private String printTask(int index) {
@@ -85,6 +90,9 @@ public class TaskList {
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("todo");
         }
+        if (hasDuplicate(desc)) {
+            throw new DuplicateTaskException();
+        }
         ToDo newTask = new ToDo(desc);
         addTask(newTask);
         return printAddedTask(newTask);
@@ -104,6 +112,9 @@ public class TaskList {
         if (time == null || time.isBlank()) {
             throw new NoTimeException("deadline");
         }
+        if (hasDuplicate(desc)) {
+            throw new DuplicateTaskException();
+        }
         Deadline newTask = new Deadline(desc, time);
         addTask(newTask);
         return printAddedTask(newTask);
@@ -122,6 +133,9 @@ public class TaskList {
         }
         if (time == null || time.isBlank()) {
             throw new NoTimeException("event");
+        }
+        if (hasDuplicate(desc)) {
+            throw new DuplicateTaskException();
         }
         Event newTask = new Event(desc, time);
         addTask(newTask);
@@ -158,6 +172,10 @@ public class TaskList {
     private TaskList filterTasks(Predicate<? super Task> cond) {
         return new TaskList(tasks.stream().filter(cond).collect(Collectors.toList()));
 
+    }
+
+    private boolean hasDuplicate(String desc) {
+        return filterTasks(t -> t.isSame(desc)).getSize() != 0;
     }
 
     /**

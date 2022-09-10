@@ -55,6 +55,10 @@ public class Task {
         return false;
     }
 
+    public boolean isSame(String desc) {
+        return desc.equals(this.description);
+    }
+
     /**
      * Returns string representation of task.
      *

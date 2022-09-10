@@ -9,6 +9,6 @@ public class NoTimeException extends DukeException {
 
     @Override
     public String toString() {
-        return String.format("OOPS!!! The time of a %s cannot be empty.", this.type);
+        return String.format("The time of a %s cannot be empty.", this.type);
     }
 }
