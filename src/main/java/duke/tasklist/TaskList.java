@@ -60,6 +60,9 @@ public class TaskList {
      */
     public String mark(int i) throws DukeException {
         try {
+            if (items.get(i - 1).isDone()) {
+                throw new DukeException("This item is already marked.");
+            }
             return items.get(i - 1).markAsDone();
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(ITEM_DOESNT_EXIST);
@@ -75,6 +78,9 @@ public class TaskList {
      */
     public String unmark(int i) throws DukeException {
         try {
+            if (!items.get(i - 1).isDone()) {
+                throw new DukeException("This item is already unmarked.");
+            }
             return items.get(i - 1).markAsNotDone();
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(ITEM_DOESNT_EXIST);
@@ -155,9 +161,9 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder("Your current tasks:");
+        StringBuilder output = new StringBuilder("Here are your current tasks:");
         for (int i = 0; i < items.size(); i++) {
-            output.append("\n  " + (i + 1) + ". " + items.get(i));
+            output.append("\n   ").append(i + 1).append(". ").append(items.get(i));
         }
         return output.toString();
     }

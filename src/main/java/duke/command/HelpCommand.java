@@ -10,7 +10,7 @@ import duke.tasklist.TaskList;
  * @author Kartikeya
  */
 public class HelpCommand implements Command {
-    private final String[] commandNames = {
+    private static final String[] COMMAND_NAMES = {
         "todo <description>",
         "deadline <description> /by <time>",
         "event <description> /at <time>",
@@ -23,22 +23,22 @@ public class HelpCommand implements Command {
         "help",
         "bye"
     };
-    private final String[] commandDescriptions = {
+    private static final String[] COMMAND_DESCRIPTIONS = {
         "Creates task with given description.",
         "Creates deadline with given description set by given time.\n"
-                + "          Time must be formatted as: yyyy-mm-dd hhmm",
+                + "      24-hr time must be formatted as: yyyy-mm-dd hhmm",
         "Creates event with the given description set at given time.\n"
-                + "          Time must be formatted as: yyyy-mm-dd hhmm",
+                + "      24-hr time must be formatted as: yyyy-mm-dd hhmm",
         "Lists all currently saved tasks.",
         "Marks given task num from \"list\" as complete.",
         "Marks given task num from \"list\" as incomplete.",
         "Deletes given task num from \"list\" permanently.",
         "Returns all tasks whose descriptions match given text.",
-        "Clears window of all dialogues.",
-        "Shows list of commands",
+        "Clears window of all messages.",
+        "Shows all available commands.",
         "Saves all tasks to storage and exits Artemis.",
     };
-    private final String[] commandUsage = {
+    private static final String[] COMMAND_USAGES = {
         "todo Write essay",
         "deadline Finish essay /by 2022-12-12 1800",
         "event Submit essay /at 2022-12-12 2359",
@@ -53,20 +53,29 @@ public class HelpCommand implements Command {
     };
     /**
      * {@inheritDoc}
-     * Shows list of available commands to user.
+     * Shows confirmation list of available commands to user.
      */
     @Override
     public String execute(TaskList itemList, Storage storage) throws DukeException {
+        return "Displaying list of available commands...";
+    }
+
+    /**
+     * Returns string representing list of available commands for user.
+     *
+     * @return the string representing a list of available commands
+     */
+    public static String getHelpList() {
         StringBuilder availableCommands = new StringBuilder(
-                "Here is a list of case-sensitive available commands:\n");
-        for (int i = 0; i < commandNames.length; i++) {
+                "Here is a list of (case-sensitive) available commands:\n");
+        for (int i = 0; i < COMMAND_NAMES.length; i++) {
             availableCommands
-                    .append(commandNames[i])
-                    .append("\n          ")
-                    .append(commandDescriptions[i])
-                    .append("\n          eg. ")
-                    .append(commandUsage[i])
-                    .append(i + 1 == commandNames.length ? "" : "\n");
+                    .append(COMMAND_NAMES[i])
+                    .append("\n      ")
+                    .append(COMMAND_DESCRIPTIONS[i])
+                    .append("\n      eg. ")
+                    .append(COMMAND_USAGES[i])
+                    .append(i + 1 == COMMAND_NAMES.length ? "" : "\n");
         }
         return availableCommands.toString();
     }

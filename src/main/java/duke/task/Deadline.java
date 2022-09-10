@@ -53,7 +53,7 @@ public class Deadline extends DukeTask {
     public String updateTime(String newBy) throws DukeException {
         this.by = newBy;
         formatTime();
-        return "Deadline time updated!";
+        return "Success! Deadline time updated.";
     }
 
     @Override

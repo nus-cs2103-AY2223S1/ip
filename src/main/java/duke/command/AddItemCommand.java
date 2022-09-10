@@ -84,6 +84,6 @@ public class AddItemCommand implements Command {
                     + " is not a recognised command.");
         }
         itemList.add(newTask);
-        return "Item added: " + newTask + itemList.listCount();
+        return "Success! Item added: " + newTask + itemList.listCount();
     }
 }

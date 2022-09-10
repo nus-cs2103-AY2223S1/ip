@@ -40,7 +40,7 @@ public abstract class DukeTask {
      */
     public String markAsDone() {
         isDone = true;
-        return "Good job! This task has been completed:\n  " + this;
+        return "Success! This task has been completed:\n  " + this;
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class DukeTask {
      */
     public String updateDescription(String newDescription) {
         this.description = newDescription;
-        return "Description updated!";
+        return "Success! Description updated.";
     }
 
     /**

@@ -6,6 +6,7 @@ import duke.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -26,6 +27,7 @@ public class Main extends Application {
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             fxmlLoader.<MainWindow>getController().sendWelcome();
             stage.setTitle("Artemis");
+            stage.getIcons().add(new Image("/images/DaDuke.png"));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
