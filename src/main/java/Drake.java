@@ -6,7 +6,7 @@ public class Drake {
     private final TaskList tasks;
     private final Ui ui;
 
-    public Drake() throws IOException {
+    public Drake() throws IOException, DrakeException {
         ui = new Ui();
         storage = new Storage();
         tasks = new TaskList(storage.fileToList());
@@ -35,6 +35,8 @@ public class Drake {
             new Drake().run();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } catch (DrakeException e) {
+            throw new RuntimeException(e);
         }
     }
 

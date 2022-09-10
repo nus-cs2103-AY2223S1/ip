@@ -7,7 +7,7 @@ public class DeleteCommand extends TaskOperationCommand {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws InvalidTaskNumberException, IOException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DrakeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
             System.out.println("I've removed this task: ");
             ui.printLine(tasks.getTaskToString(taskNumber));

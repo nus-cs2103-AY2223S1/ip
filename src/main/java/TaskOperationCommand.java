@@ -14,7 +14,7 @@ public abstract class TaskOperationCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws InvalidTaskNumberException, IOException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DrakeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
             ui.printLine(tasks.getTaskToString(taskNumber));
         } else {
