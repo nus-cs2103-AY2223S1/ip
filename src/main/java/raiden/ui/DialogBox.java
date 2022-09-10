@@ -52,8 +52,9 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
-        setStyle("-fx-background-color: #FFCCFF");
-        this.triangle.setStyle("-fx-scale-x: -1; -fx-translate-y: 10");
+        this.dialog.setStyle("-fx-background-color: #4C0099; -fx-text-fill: white; -fx-label-padding: 5; "
+                + "-fx-background-radius: 10;");
+        this.triangle.setStyle("-fx-stroke: #4C0099; -fx-fill: #4C0099; -fx-scale-x: -1; -fx-translate-y: 10");
     }
 
     /**

@@ -14,8 +14,8 @@ import raiden.ui.MainWindow;
  * Represents a GUI for Raiden using FXML.
  */
 public class Main extends Application {
-    private static final double STAGE_MIN_WIDTH = 452;
-    private static final double STAGE_MIN_HEIGHT = 670;
+    private static final double STAGE_MIN_WIDTH = 450;
+    private static final double STAGE_MIN_HEIGHT = 690;
     private static final String TITLE = "Raiden Bot";
 
     private static Stage stage;
