@@ -2,6 +2,7 @@ import components.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -30,6 +31,7 @@ public class Duke extends Application {
   private Storage storage;
   private TaskList taskList;
   private Ui ui;
+  private ArrayList<String> undo;
 
   public Duke(String filePath) {
     ui = new Ui();
