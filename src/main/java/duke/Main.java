@@ -17,6 +17,9 @@ public class Main extends Application {
         try {
             Duke.initialize();
 
+            assert Duke.getIsRunning()
+                    : "Duke.getIsRunning() should be true if Duke.initialize() runs correctly";
+
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);

@@ -43,6 +43,9 @@ public class TaskList {
      * @return The task that was added.
      */
     public static Task addToList(Task task) {
+        assert task != null
+                : "a null Task should not be added to the list";
+
         tasks.add(task);
 
         return task;
