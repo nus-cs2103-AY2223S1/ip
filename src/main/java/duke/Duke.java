@@ -47,7 +47,7 @@ public class Duke {
                 ui.printMessage(command.execute(tasks, storage, ui));
                 isExit = command.isExit;
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                ui.printMessage(e.getMessage());
             }
         }
     }
