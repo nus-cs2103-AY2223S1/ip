@@ -20,7 +20,7 @@
       </TextField>
       <Button fx:id="sendButton" layoutX="340.0" layoutY="587.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" style="-fx-border-radius: 30, 30, 30, 30; -fx-background-radius: 30, 30, 30, 30; -fx-background-color: rgb(243,223,255);" text="Send" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
          <font>
-            <Font size="14.0" />
+            <Font name="Yu Gothic Regular" size="18.0" />
          </font>
       </Button>
         <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" layoutX="81.0" layoutY="-16.0" pannable="true" style="-fx-background-color: #DBB7F0;" vvalue="1.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

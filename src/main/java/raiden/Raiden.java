@@ -44,7 +44,7 @@ public class Raiden {
      * @return The String representation of Raiden's response.
      */
     public String getResponse(String input) {
-        while (this.ui.isActive()) {
+        while (this.ui.showActiveStatus()) {
             try {
                 Command command = Parser.parse(input, this.storage, this.taskList, this.ui);
                 return command.execute();

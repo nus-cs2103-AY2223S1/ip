@@ -24,7 +24,7 @@ public class Ui {
      *
      * @return true if the scanner has next, false otherwise.
      */
-    public boolean isActive() {
+    public boolean showActiveStatus() {
         return this.isActive;
     }
 
