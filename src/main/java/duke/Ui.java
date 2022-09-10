@@ -55,8 +55,8 @@ public class Ui {
      *
      * @return exit message
      */
-    public String showExitMessage() {
-        return ("Bye. Hope to see you again soon!");
+    public static String showExitMessage() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -90,8 +90,8 @@ public class Ui {
         assert(taskList != null);
         String strOfTasks = "";
         for (int i = 0; i < taskList.getSize(); i++) {
-            strOfTasks += showTask(i + 1, taskList.getTask(i));
-            strOfTasks += "\n";
+            String taskString = showTask(i + 1, taskList.getTask(i)) + "\n";
+            strOfTasks += taskString;
         }
         return strOfTasks;
     }
@@ -151,5 +151,12 @@ public class Ui {
      */
     public String showInvalidIndexMessage() {
         return "Invalid index! \nPlease enter a valid index.";
+    }
+
+    /**
+     * @return invalid Snoozed Task Message
+     */
+    public String invalidSnoozeTaskMessage() {
+        return "You can only snooze DEADLINES and EVENTS only!!!";
     }
 }
