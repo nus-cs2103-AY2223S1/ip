@@ -16,13 +16,13 @@ import dobby.tasks.Todo;
  * Class that adds new tasks to the list.
  */
 public class TaskCommand extends Command {
-    private static String COMMAND_TODO = "todo";
-    private static String COMMAND_DEADLINE = "deadline";
-    private static String COMMAND_EVENT = "event";
-    private static String WRONG_DATE_FORMAT = "wrongDateFormat";
-    private static String NO_DATE = "noDate";
-    private static String WRONG_DATETYPE_DEADLINE = "wrongDeadline";
-    private static String WRONG_DATETYPE_EVENT = "wrongEvent";
+    private static final String COMMAND_TODO = "todo";
+    private static final String COMMAND_DEADLINE = "deadline";
+    private static final String COMMAND_EVENT = "event";
+    private static final String WRONG_DATE_FORMAT = "wrongDateFormat";
+    private static final String NO_DATE = "noDate";
+    private static final String WRONG_DATETYPE_DEADLINE = "wrongDeadline";
+    private static final String WRONG_DATETYPE_EVENT = "wrongEvent";
 
     /**
      * Adds new tasks to the list.
