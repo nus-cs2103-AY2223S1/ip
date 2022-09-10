@@ -137,6 +137,10 @@ public class Ui {
         return "\nPls try again\n";
     }
 
+    /**
+     * Error where it's not supposed to happen at all.
+     * @return String message.
+     */
     public static String showUnknownError() {
         return "A particular error occurred where it's impossible for the error to occur";
     }
