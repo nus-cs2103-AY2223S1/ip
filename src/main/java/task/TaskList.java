@@ -53,6 +53,14 @@ public class TaskList {
         taskList.forEach(n -> System.out.println((taskList.indexOf(n) + 1) + "."
                 + n.toString()));
     }
+    
+    public boolean isEmpty() {
+        if (taskList.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Removes the task at the index provided.

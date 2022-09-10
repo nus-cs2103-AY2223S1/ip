@@ -41,10 +41,11 @@ public class FindCommand extends Command {
     public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) throws DukeException {
         String response = "";
         try {
+            assert !taskList.isEmpty();
+            assert !notesList.isEmpty();
             if (taskList.size() == 0) {
                 throw new DukeException("There are no tasks in your list. :)");
             } else {
-                assert taskList.size() > 0;
                 String taskToFind = this.fullCommand.substring(5);
                 ArrayList<Task> tasksFound = new ArrayList<>(taskList.size());
                 for (int i = 0; i < taskList.size(); i++) {

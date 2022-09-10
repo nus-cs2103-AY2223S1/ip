@@ -48,14 +48,14 @@ public class EditCommand extends Command {
     @Override
     public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) {
         String response = "";
+        assert !taskList.isEmpty();
+        assert !notesList.isEmpty();
         if (commandLine.startsWith("mark")) {
             int index = Integer.parseInt(commandLine.substring(5)) - 1;
             try {
                 if (index > taskList.size() - 1 || index < 0) {
                     throw new DukeException("You have no such tasks.");
                 } else {
-                    assert index < taskList.size();
-                    assert index >= 0;
                     Task task = taskList.get(index);
                     if (task instanceof Notes) {
                         response = "Sorry, you can't mark a note.";
@@ -78,8 +78,6 @@ public class EditCommand extends Command {
                 if (index > taskList.size() - 1 || index < 0) {
                     throw new DukeException("You have no such tasks.");
                 } else {
-                    assert index < taskList.size();
-                    assert index >= 0;
                     Task task = taskList.get(index);
                     if (task instanceof Notes) {
                         response = "Sorry, you can't unmark a note.";

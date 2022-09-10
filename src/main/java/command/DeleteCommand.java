@@ -50,11 +50,11 @@ public class DeleteCommand extends Command {
         String response = "";
         int index = Integer.parseInt(commandLine.substring(7)) - 1;
         try {
+            assert !taskList.isEmpty();
+            assert !notesList.isEmpty();
             if (index > taskList.size() - 1 || index < 0) {
                 throw new DukeException("You have no such tasks.");
             } else {
-                assert index < taskList.size();
-                assert index >= 0;
                 Task task = taskList.get(index);
                 if (task instanceof Notes) {
                     notesList.remove(index);

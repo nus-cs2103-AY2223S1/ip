@@ -53,6 +53,8 @@ public class AddCommand extends Command {
     @Override
     public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) throws DukeException {
         String response = "";
+        assert !taskList.isEmpty();
+        assert !notesList.isEmpty();
         if (commandLine.startsWith("todo")) {
             try {
                 if (commandLine.length() <= 5) {

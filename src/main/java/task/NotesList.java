@@ -57,6 +57,14 @@ public class NotesList extends TaskList {
         notesList.remove(index);
     }
 
+    public boolean isEmpty() {
+        if (taskList.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Changes the notesList to an ArrayList.
      *

@@ -45,6 +45,8 @@ public class FileData {
 
     public void updateData(ArrayList<Task> tasks, ArrayList<Task> notes) {
         try {
+            assert !tasks.isEmpty();
+            assert !notes.isEmpty();
             for (int i = 0; i < tasks.size(); i++) {
                 if (i == 0) {
                     writeToFile(this.fileName, tasks.get(i).toString() + System.lineSeparator());
