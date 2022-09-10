@@ -1,3 +1,2 @@
+T|1|play
 T|1|eat
-T|0|play
-T|1|drink
