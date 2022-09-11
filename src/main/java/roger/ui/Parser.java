@@ -47,6 +47,7 @@ public class Parser {
      * @throws RogerInvalidInputException If the command is known but the argument format is incorrect.
      */
     public Command parse(String input) throws RogerInvalidInputException {
+        input = input.trim();
         int cmdArgSeparator = input.indexOf(CMD_ARG_SEPARATOR_STRING);
         boolean argsAreProvided = cmdArgSeparator >= 0;
         String command = argsAreProvided ? input.substring(0, cmdArgSeparator) : input;
