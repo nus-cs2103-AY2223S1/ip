@@ -2,7 +2,7 @@ Skylark is a desktop application used for you to keep track of your tasks easily
 
 # User Guide
 1. Ensure that you have `Java 11` or above installed on your local machine
-2. Download the latest `Skylark.jar` from here
+2. Download the latest `Skylark.jar` from [here](https://github.com/Hikoya/ip/releases)
 3. Copy the file to the folder you want to use as the home folder for Skylark. This folder should preferably be empty.
 4. Double-click the file to start Skylark.
 
