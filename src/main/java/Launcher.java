@@ -1,4 +1,3 @@
-import duke.AllTasksList;
 import duke.Storage;
 import javafx.application.Application;
 
@@ -8,6 +7,6 @@ import javafx.application.Application;
 public class Launcher {
     public static void main(String[] args) {
         Storage.initStorage();
-        Application.launch(Duke.class, args);
+        Application.launch(Main.class, args);
     }
 }
