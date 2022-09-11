@@ -14,7 +14,7 @@ import spongebob.controller.MainWindow;
  */
 public class Main extends Application {
 
-    private SpongebobApplication duke = new SpongebobApplication("data/duke.txt");
+    private SpongebobApplication spongebob = new SpongebobApplication("data/spongebob.txt");
 
     @Override
     public void start(Stage stage) {
@@ -23,7 +23,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setSpongebobApplication(duke);
+            fxmlLoader.<MainWindow>getController().setSpongebobApplication(spongebob);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

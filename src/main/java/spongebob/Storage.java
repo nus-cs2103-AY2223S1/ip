@@ -18,7 +18,7 @@ public class Storage {
     /**
      * Returns a storage instance.
      *
-     * @param filePath Path to the file duke.txt.
+     * @param filePath Path to the file spongebob.txt.
      */
     public Storage(String filePath) {
         this.filepath = filePath;

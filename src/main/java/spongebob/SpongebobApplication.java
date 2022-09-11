@@ -3,14 +3,14 @@ package spongebob;
 import spongebob.command.ICommand;
 
 /**
- * Represents the main class of the Duke program.
+ * Represents the main class of the spongebob program.
  */
 public class SpongebobApplication {
     private Storage storage;
     private TaskList taskList;
 
     /**
-     * Returns an instance of Duke.
+     * Returns an instance of spongebob.
      *
      * @param filePath String location of duke.txt.
      */
@@ -31,7 +31,7 @@ public class SpongebobApplication {
     }
 
     /**
-     * Main method for Duke program.
+     * Runs main method for program.
      *
      * @param args Command line arguments.
      */

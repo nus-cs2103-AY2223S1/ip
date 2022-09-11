@@ -41,7 +41,7 @@ public abstract class Task {
     }
 
     /**
-     * Return if the task is marked to be deleted.
+     * Returns if the task is marked to be deleted.
      * @return True if the task is marked to be deleted, else false.
      */
     public boolean isToBeDeleted() {

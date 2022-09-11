@@ -1,11 +1,11 @@
 package spongebob;
 
 /**
- * Represents an exception specific to the Duke program.
+ * Represents an exception specific to the spongebob program.
  */
 public class SpongebobException extends Exception {
     /**
-     * Returns an instance of DukeException.
+     * Returns an instance of SpongebobException.
      *
      * @param msg Error message.
      */
