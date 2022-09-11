@@ -1,5 +1,17 @@
 # <h1 align = "center"/>✧&nbsp;&nbsp;&nbsp;✮✧︎&nbsp;&nbsp; ✦ ✨️ L&emsp;&emsp;U&emsp;&emsp;N&emsp;&emsp;A ✨ ✫❍&nbsp;&nbsp;&nbsp;❈ &nbsp;&nbsp;✶
 
+<details>
+
+<summary>Contents</summary>
+
+1. [About Luna](https://github.com/fannyjian/ip/edit/master/docs/README.md#about-luna-%EF%B8%8F)
+2. [GUI Preview](https://github.com/fannyjian/ip/edit/master/docs/README.md#sneak-peak-of-lunas-gui-)
+3. [Getting Started](https://github.com/fannyjian/ip/edit/master/docs/README.md#get-started-with-luna-%EF%B8%8F)
+4. [Features](https://github.com/fannyjian/ip/edit/master/docs/README.md#features-%EF%B8%8F)
+5. [User Guide](https://github.com/fannyjian/ip/edit/master/docs/README.md#user-guide-)
+
+</details>
+
 ## <h1 align = "center"/>About Luna ☀️
 Luna is your nature-themed graphical user interface (GUI) desktop app that is sure to help you complete your tasks in the prettiest way possible 🌻
 <br/><br/>
@@ -9,16 +21,21 @@ Luna is your nature-themed graphical user interface (GUI) desktop app that is su
 <br/><br/>
 
 ## <h1 align = "center"/>Get started with Luna ⛅️
-1. Download the `jar` file
+1. Download the `jar` file from this [page](https://github.com/fannyjian/ip/releases/tag/A-Release)
 2. Navigate to the directory containing the `jar` file in terminal
 3. Run java -jar `luna-v1.0.jar`
+4. Give Luna commands to complete your tasks!
+5. Say `bye` to Luna to exit and save your tasks for next time 💫
+
+**⚡️ Please only use `bye` to exit Luna instead of closing the window, 
+or Luna will not be able to save your tasks to storage! ⚡️** 
 <br/><br/>
 
 ## <h1 align = "center"/>Features ☁️
 
 ### Add and delete tasks
 
-Add or delete various tasks like:
+A lot of stuff to do? Add or delete different types of tasks to keep track!
 - todo 🌸
 - deadline 🌺
 - event 🌼
@@ -140,7 +157,7 @@ Output:
 ```
 ---
 ### 5. `find` 🌷
-Search for specific tasks in your list by a keyword.
+Search for specific tasks in your list by a keyword (partial match supported).
 
 Tell Luna your command in the format:
 
