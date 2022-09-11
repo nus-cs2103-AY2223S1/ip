@@ -27,8 +27,6 @@ public class TodoCommand extends Command {
                 + " tasks in the list\n";
         Response response = new Response(message, false, false);
         ui.setResponse(response);
-        //ui.printMessage(message);
-        //storage.saveTasksInStorage(taskList);
     }
 
     @Override

@@ -14,6 +14,6 @@ public class HelpWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        helpMessage.setText(Constants.HELP_MESSAGE);
+        helpMessage.setText(Constants.HELP_DETAILED_MESSAGE);
     }
 }

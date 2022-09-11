@@ -24,16 +24,24 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
-            stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             fxmlLoader.<MainWindow>getController().showWelcome();
-            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/app_icon.png")));
-            stage.setTitle("Ado");
-            stage.setResizable(false);
-            stage.sizeToScene();
+            setUpStage(stage);
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Updates modifications to stage design
+     * @param stage
+     */
+    public void setUpStage(Stage stage) {
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/app_icon.png")));
+        stage.setTitle("Ado");
+        stage.setResizable(false);
+        stage.sizeToScene();
     }
 }

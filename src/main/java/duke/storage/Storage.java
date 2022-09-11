@@ -6,8 +6,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import duke.DukeException;
 import duke.task.Deadline;
@@ -37,6 +41,7 @@ public class Storage {
             if (!storageFolder.exists()) {
                 storageFolder.mkdir();
             }
+
             //create task.txt if it does not exist
             if (!storageFile.exists()) {
                 isNewUser = true;
@@ -44,18 +49,16 @@ public class Storage {
                 //Reused from https://www.w3schools.com/java/java_files_create.asp with minor modifications
                 try {
                     FileWriter myWriter = new FileWriter(this.filePath);
-                    myWriter.write("T|X|Feed cat\n" + "E|X|Team meeting | Mon 6pm\n"
-                            + "D| |Do assignment |2022-08-25");
+                    myWriter.write("T|X|Feed cat\n" + "E| |event Team meeting|2022-09-22@19:30\n"
+                            + "D| |Do assignment|2022-10-02");
                     myWriter.close();
-                    System.out.println("Successfully wrote to the file.");
                 } catch (IOException e) {
-                    System.out.println("An error occurred.");
-                    e.printStackTrace();
+                    System.out.println("Error in inserting sample data" + e.getMessage());
                 }
             }
 
         } catch (IOException error) {
-            System.out.println("error finding:" + error.getMessage());
+            System.out.println("Error in Storage constructor:" + error.getMessage());
         }
     }
 
@@ -71,48 +74,7 @@ public class Storage {
             String savedTaskString = storageReader.readLine();
 
             while (savedTaskString != null) {
-                String[] taskSegment = savedTaskString.split("\\|");
-                String taskType = taskSegment[0];
-                String taskStatus = taskSegment[1];
-                String taskDescription = taskSegment[2];
-
-                //To store date from deadline tasks
-                LocalDate taskLocalDate = null;
-                //To store date from event tasks
-                String taskDate = null;
-
-                boolean isDeadlineTask = taskSegment.length >= 4 && taskType.equals("D");
-                boolean isEventTask = taskSegment.length >= 4 && taskType.equals("E");
-                if (isDeadlineTask) {
-                    try {
-                        taskLocalDate = LocalDate.parse(taskSegment[3]);
-                    } catch (Exception ex) {
-                        System.out.println(ex.getMessage());
-                    }
-                } else if (isEventTask) {
-                    taskDate = taskSegment[3];
-                }
-
-                Task currentSavedTask = null;
-                switch(taskType) {
-                case "T":
-                    currentSavedTask = new Todo(taskDescription);
-                    break;
-                case "D":
-                    currentSavedTask = new Deadline(taskDescription, taskLocalDate);
-                    break;
-                case "E":
-                    currentSavedTask = new Event(taskDescription, taskDate);
-                    break;
-                default: assert false : "Unknown taskType: " + taskType;
-                    break;
-                }
-
-                if (taskStatus.equals("X")) {
-                    currentSavedTask.markAsDone();
-                }
-
-                loadedTasks.add(currentSavedTask);
+                addTaskFromString(savedTaskString, loadedTasks);
                 savedTaskString = storageReader.readLine();
             }
             storageReader.close();
@@ -120,6 +82,81 @@ public class Storage {
             System.out.println("error loading:" + error.getMessage());
         }
         return loadedTasks;
+    }
+
+    /**
+     * Converts string to task object to be added to array of tasks.
+     * @param savedTaskString
+     */
+    public void addTaskFromString(String savedTaskString, List<Task> loadedTasks) {
+
+        String[] taskSegment = savedTaskString.split("\\|");
+        String taskType = taskSegment[0];
+        String taskStatus = taskSegment[1];
+        String taskDescription = taskSegment[2];
+
+        //To store date from deadline tasks
+        LocalDate taskLocalDate = null;
+        LocalDateTime taskLocalDateTime = null;
+
+        boolean isDeadlineTask = taskSegment.length >= 4 && taskType.equals("D");
+        boolean isEventTask = taskSegment.length >= 4 && taskType.equals("E");
+        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH);
+
+        if (isDeadlineTask) {
+            try {
+                String date = stringToMediumDateFormat(taskSegment[3]);
+                taskLocalDate = LocalDate.parse(date, formatterDate);
+            } catch (Exception ex) {
+                System.out.println("Error in converting deadline date " + ex.getMessage());
+            }
+        } else if (isEventTask) {
+            String[] dateSplit = taskSegment[3].split("@", 2);
+            try {
+                String date = stringToMediumDateFormat(dateSplit[0]);
+                taskLocalDate = LocalDate.parse(date, formatterDate);
+
+                String[] timeSplit = dateSplit[1].split(":", 2);
+                taskLocalDateTime = taskLocalDate
+                        .atTime(Integer.parseInt(timeSplit[0]), Integer.parseInt(timeSplit[1]));
+            } catch (Exception ex) {
+                System.out.println("Error in converting event date " + ex.getMessage());
+            }
+        }
+
+        Task currentSavedTask = null;
+        switch(taskType) {
+        case "T":
+            currentSavedTask = new Todo(taskDescription);
+            break;
+        case "D":
+            currentSavedTask = new Deadline(taskDescription, taskLocalDate);
+            break;
+        case "E":
+            currentSavedTask = new Event(taskDescription, taskLocalDateTime);
+            break;
+        default: assert false : "Unknown taskType: " + taskType;
+            break;
+        }
+
+        if (taskStatus.equals("X")) {
+            currentSavedTask.markAsDone();
+        }
+
+        loadedTasks.add(currentSavedTask);
+    }
+
+    /**
+     * Converts string from data.txt to a parsable string to LocalDate.
+     * @param date from data.txt.
+     * @return parsable string to LocalDate.
+     */
+    public String stringToMediumDateFormat(String date) {
+        LocalDate tempDate = LocalDate.parse(date);
+        String formattedDate = tempDate.format(DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.MEDIUM));
+        formattedDate.replace("-", " ");
+        return formattedDate;
     }
 
     /**

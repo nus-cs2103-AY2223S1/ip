@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Response;
 import duke.Ui;
 import duke.storage.Storage;
 import duke.task.Task;
@@ -23,8 +24,10 @@ public class DeleteCommand extends Command {
         }
         Task curr = taskList.getTaskAtIndex(index - 1);
         taskList.removeTaskAtIndex(index - 1);
-        ui.printMessage(" - Removed this task:\n" + curr + "\nNow you have " + taskList.listSize()
-                + " tasks in the list\n");
+        String message = " - Removed this task:\n" + curr + "\nNow you have " + taskList.listSize()
+                + " tasks in the list\n";
+        Response response = new Response(message, false, false);
+        ui.setResponse(response);
     }
 
     @Override

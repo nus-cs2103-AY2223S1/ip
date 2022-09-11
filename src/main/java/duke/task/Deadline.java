@@ -2,13 +2,13 @@ package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Represents a deadline task with description and date to be completed by.
  */
 public class Deadline extends Task {
 
-    protected String by;
     private LocalDate date;
     private String formattedDate;
 
@@ -20,12 +20,12 @@ public class Deadline extends Task {
     public Deadline(String description, LocalDate date) {
         super(description);
         this.date = date;
-        this.formattedDate = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        this.formattedDate = date.format(DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH));
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by:" + formattedDate + ")";
+        return "[D]" + super.toString() + " (by: " + formattedDate + ")";
     }
 
     @Override

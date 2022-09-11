@@ -16,8 +16,8 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        ui.setResponse(new Response(Constants.HELP_MESSAGE, false, false));
-        System.out.println(Constants.HELP_MESSAGE);
+        Response response = new Response(Constants.HELP_MESSAGE, false, false);
+        ui.setResponse(response);
     }
 
     @Override

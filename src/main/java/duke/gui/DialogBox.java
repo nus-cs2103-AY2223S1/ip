@@ -8,18 +8,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 /**
@@ -85,7 +79,6 @@ public class DialogBox extends HBox {
             // with minor modifications
             db.dialog.setStyle(db.dialog.getStyle() + "-fx-background-color: #e94b3c;");
         } else {
-
             db.dialog.setStyle(db.dialog.getStyle() + "-fx-background-color: #57504d;");
         }
         return db;

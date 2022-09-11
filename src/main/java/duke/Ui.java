@@ -1,9 +1,6 @@
 package duke;
 
-import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -35,13 +32,10 @@ public class Ui {
     }
 
     /**
-     * Prints out message to user interface.
+     * Prints out message to from user to CLI.
      * @param message text to be printed.
      */
     public void printMessage(String message) {
-        assert (message != null) : "Null message";
-        Response response = new Response(message, false, true);
-        setResponse(response);
         System.out.println(message);
     }
 
@@ -76,7 +70,9 @@ public class Ui {
             response = Constants.LIST_EMPTY_MESSAGE;
             return response;
         }
+
         assert (list.size() >= 0) : "Negative list size" + list.size();
+
         StringBuilder output = new StringBuilder();
         output.append(Constants.MATCHING_TASK_MESSAGE + "\"" + text + "\":\n");
         for (int i = 0; i < list.size(); i++) {
@@ -119,60 +115,5 @@ public class Ui {
         setResponse(response);
         System.out.println(message);
     }
-
-    /**
-     * Checks if user's input is valid for execution.
-     * @param input user's input.
-     * @throws DukeException If user's input does not meet the task detail requirements.
-     */
-    void validate(String input) throws DukeException {
-        String[] commandSegments = input.split(" ", 2);
-        String mainCommand = commandSegments[0].toLowerCase().trim();
-
-        String[] allCommands = {"list", "bye", "todo", "deadline", "event", "mark", "unmark", "delete", "find", "help"};
-        boolean isInvalidCommand = !Arrays.asList(allCommands).contains(mainCommand);
-        if (isInvalidCommand) {
-            throw new DukeException(mainCommand + Constants.INVALID_COMMAND_MESSAGE);
-        }
-
-        //Check if commands that require description or date are valid
-        String[] commandsWithDescription = {"todo", "deadline", "event", "find"};
-        boolean commandNeedsDescription = Arrays.asList(commandsWithDescription).contains(mainCommand);
-        if (commandNeedsDescription) {
-            boolean isMissingDescription = commandSegments.length <= 1;
-            if (isMissingDescription) {
-                throw new DukeException(Constants.MISSING_DESCRIPTION_MESSAGE);
-            }
-
-            switch (mainCommand) {
-            case "todo":
-            case "find":
-                break;
-            case "deadline":
-                String[] deadlineSegments = commandSegments[1].split("/by", 2);
-
-                //Handles missing date in input
-                if (deadlineSegments.length < 2) {
-                    throw new DukeException(Constants.MISSING_DATE_MESSAGE);
-                }
-
-                //Handles invalid date format in input
-                String by = deadlineSegments[1].trim();
-                try {
-                    LocalDate date = LocalDate.parse(by);
-                } catch (Exception ex) {
-                    throw new DukeException(Constants.INVALID_DATE_MESSAGE);
-                }
-                break;
-            case "event":
-                String[] eventSegments = commandSegments[1].split("/at", 2);
-                if (eventSegments.length < 2) {
-                    throw new DukeException(Constants.MISSING_DATE_MESSAGE);
-                }
-                break;
-            default:
-                throw new DukeException(mainCommand + Constants.INVALID_COMMAND_MESSAGE);
-            }
-        }
-    }
 }
+

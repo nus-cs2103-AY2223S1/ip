@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Response;
 import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -21,7 +22,10 @@ public class MarkCommand extends Command {
             throw new DukeException("There is no " + index + " index in the list. \n");
         } else {
             taskList.markTaskAtIndex(index - 1);
-            ui.printMessage("[X] You've completed a task!\n" + taskList.getTaskAtIndex(index - 1) + "\n");
+            String message = "[X] You've completed a task!\n" + taskList.getTaskAtIndex(index - 1) + "\n";
+            Response response = new Response(message, false, false);
+            ui.setResponse(response);
+
         }
     }
 

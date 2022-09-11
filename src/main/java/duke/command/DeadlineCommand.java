@@ -31,8 +31,8 @@ public class DeadlineCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Deadline deadline = new Deadline(description, by);
         taskList.addTask(deadline);
-        String message = "+ Added this deadline:\n" + deadline + "\nNow you have " + taskList.listSize()
-                + " tasks in the list\n";
+        String message = "+ Added this deadline:\n" + deadline + "\n You have " + taskList.listSize()
+                + " tasks in the list NOW \n";
         Response response = new Response(message, false, false);
         ui.setResponse(response);
     }
