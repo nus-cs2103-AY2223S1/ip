@@ -43,7 +43,7 @@ public class TaskListTest {
         String filePath = System.getProperty("user.dir")
                 + File.separator + "test" + File.separator + "result.txt";
         TaskList taskList = new TaskList(filePath);
-        Task currentTask = new ToDo("Test Add!");
+        Task currentTask = new Todo("Test Add!");
         taskList.add(currentTask);
         assertEquals("Test Add!", taskList.get(taskList.size() - 1).getDescription());
     }

@@ -8,13 +8,13 @@ public class TodoTest {
 
     @Test
     public void toString_description_success() {
-        ToDo toDoTask = new ToDo("Make tea");
+        Todo toDoTask = new Todo("Make tea");
         assertEquals("[T] [ ] Make tea", toDoTask.toString());
     }
 
     @Test
     public void toStringFile_description_success() {
-        ToDo toDoTask = new ToDo("Make tea");
+        Todo toDoTask = new Todo("Make tea");
         assertEquals("T | 0 | Make tea", toDoTask.toStringFile());
         toDoTask.markAsDone();
         assertEquals("T | 1 | Make tea", toDoTask.toStringFile());
@@ -24,7 +24,7 @@ public class TodoTest {
 
     @Test
     public void getStatusIcon_description_success() {
-        ToDo toDoTask = new ToDo("Make tea");
+        Todo toDoTask = new Todo("Make tea");
         assertEquals(" ", toDoTask.getStatusIcon());
         toDoTask.markAsDone();
         assertEquals("X", toDoTask.getStatusIcon());
@@ -34,11 +34,11 @@ public class TodoTest {
 
     @Test
     public void getDescription_description_success() {
-        ToDo toDoTask = new ToDo("Make tea");
+        Todo toDoTask = new Todo("Make tea");
         assertEquals("Make tea", toDoTask.getDescription());
-        ToDo toDoTask2 = new ToDo("Make coffee");
+        Todo toDoTask2 = new Todo("Make coffee");
         assertEquals("Make coffee", toDoTask2.getDescription());
-        ToDo toDoTask3 = new ToDo("Make cereal");
+        Todo toDoTask3 = new Todo("Make cereal");
         assertEquals("Make cereal", toDoTask3.getDescription());
     }
 }

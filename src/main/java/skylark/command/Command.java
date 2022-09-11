@@ -5,7 +5,7 @@ import skylark.task.Deadline;
 import skylark.task.Event;
 import skylark.task.Task;
 import skylark.task.TaskList;
-import skylark.task.ToDo;
+import skylark.task.Todo;
 
 /**
  * Represents a command based on user input. <br><br>
@@ -191,7 +191,11 @@ public abstract class Command {
             if (command.equals(CommandList.COMMAND_TODO.toString())) {
                 throw new SkylarkException("The description of a todo cannot be empty.");
             }
-            ToDo toDoTask = new ToDo(command.substring(TodoCommand.POSITION));
+            String description = command.substring(TodoCommand.POSITION);
+            if (description.isEmpty()) {
+                throw new SkylarkException("The description of a todo cannot be empty.");
+            }
+            Todo toDoTask = new Todo(description);
             taskList.add(toDoTask);
             String response = "Got it. I've added this task:"
                     + System.lineSeparator()

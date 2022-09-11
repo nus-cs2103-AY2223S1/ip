@@ -1,7 +1,7 @@
 package skylark.task;
 
 /** Represents a ToDo Task. */
-public class ToDo extends Task {
+public class Todo extends Task {
     /** Symbol that represents a ToDo task. */
     private static final char SYMBOL_TODO = 'T';
 
@@ -10,7 +10,7 @@ public class ToDo extends Task {
      *
      * @param description Description of the Task
      */
-    public ToDo(String description) {
+    public Todo(String description) {
         super(description);
     }
 
@@ -22,7 +22,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%c] %s", ToDo.SYMBOL_TODO, super.toString());
+        return String.format("[%c] %s", Todo.SYMBOL_TODO, super.toString());
     }
 
     /**
@@ -33,6 +33,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toStringFile() {
-        return String.format("%c | %s", ToDo.SYMBOL_TODO, super.toStringFile());
+        return String.format("%c | %s", Todo.SYMBOL_TODO, super.toStringFile());
     }
 }

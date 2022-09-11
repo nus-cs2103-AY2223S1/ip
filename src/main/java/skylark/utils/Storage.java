@@ -11,7 +11,7 @@ import skylark.skylark.SkylarkException;
 import skylark.task.Deadline;
 import skylark.task.Event;
 import skylark.task.Task;
-import skylark.task.ToDo;
+import skylark.task.Todo;
 
 /** Represents a Storage object used for file operations such as read and write. */
 public class Storage {
@@ -58,7 +58,7 @@ public class Storage {
                     Task currentTask;
                     switch (splitStrings[0]) {
                     case "T":
-                        currentTask = new ToDo(splitStrings[2]);
+                        currentTask = new Todo(splitStrings[2]);
                         break;
                     case "D": {
                         String desc = splitStrings[2];

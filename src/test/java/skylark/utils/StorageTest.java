@@ -12,7 +12,7 @@ import skylark.skylark.SkylarkException;
 import skylark.task.Deadline;
 import skylark.task.Event;
 import skylark.task.Task;
-import skylark.task.ToDo;
+import skylark.task.Todo;
 
 public class StorageTest {
 
@@ -33,8 +33,8 @@ public class StorageTest {
         ArrayList<Task> taskArrayList = new ArrayList<>();
 
         try {
-            taskArrayList.add(new ToDo("Make Coffee"));
-            taskArrayList.add(new ToDo("Make Cereal"));
+            taskArrayList.add(new Todo("Make Coffee"));
+            taskArrayList.add(new Todo("Make Cereal"));
             taskArrayList.add(new Event("Attend Splashdown", "2022-08-21 1800"));
             taskArrayList.add(new Event("Attend Lecture", "2022-08-21 1800"));
             taskArrayList.add(new Deadline("Finish CS2100", "2022-08-21 1800"));
