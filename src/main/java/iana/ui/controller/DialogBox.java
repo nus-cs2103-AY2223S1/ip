@@ -24,6 +24,9 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructor for DialogBox
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -48,10 +51,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns a Dialogbox for user with given text and image.
+     * 
+     * @param text the given text to be displayed.
+     * @param img the given image to be used as display picture.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+   /**
+     * Returns a Dialogbox for Iana with given text and image.
+     * 
+     * @param text the given text to be displayed.
+     * @param img the given image to be used as display picture.
+     */
     public static DialogBox getIanaDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

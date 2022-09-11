@@ -2,7 +2,6 @@ package iana.tasks;
 
 import iana.exception.IanaException;
 import iana.tasks.TaskList;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -43,7 +42,7 @@ public class TaskList implements Serializable {
      * @param newTask new task to be added.
      * @throws IanaException if task is in the incorrect format.
      */
-    public void add(Task newTask) throws IanaException {
+    public void add(Task newTask) {
         this.taskList.add(newTask);
     }
 
@@ -89,12 +88,8 @@ public class TaskList implements Serializable {
     public TaskList findKeyword(String keyword) {
         TaskList list = new TaskList();
         for (Task task : this.taskList) {
-            if (task.containsKeyword(keyword)) {
-                try {
-                    list.add(task);
-                } catch (IanaException e) {
-                    break;
-                }
+            if (!task.containsKeyword(keyword)) {
+                list.add(task);
             }
         }
         return list;

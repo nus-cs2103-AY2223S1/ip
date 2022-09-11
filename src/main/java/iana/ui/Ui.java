@@ -19,6 +19,7 @@ public class Ui {
 
     /**
      * Returns desired message surrounded by borders.
+     * 
      * @param msg the message to be printed.
      */
     public String say(String msg) {
@@ -27,6 +28,7 @@ public class Ui {
 
     /**
      * Returns task list of all current tasks.
+     * 
      * @param tasks task list to be printed out.
      */
     public String list(TaskList tasks) {
@@ -52,12 +54,13 @@ public class Ui {
      * Returns message to request new user input.
      */
     public String askNewCommand() {
-        return say("> Try another action ><");
+        return say("> Sorry, I don't understand. Try another action!");
     }
 
     /**
      * Returns task information that is added to task list.
-     * @param task task to be printed.
+     * 
+     * @param task task to be returned.
      */
     public String sayTaskAdded(Task task) {
         return say(String.format("> Nice! I have added the task to the list:\n\t   %s", task.toString()));
@@ -65,6 +68,7 @@ public class Ui {
 
     /**
      * Returns task that is deleted from task list.
+     * 
      * @param task task that is deleted.
      * @param listSize number of tasks left in the task list.
      */
@@ -75,6 +79,7 @@ public class Ui {
 
     /**
      * Reads user input from command line.
+     * 
      * @return the user's input.
      */
     public String readCommand() {
