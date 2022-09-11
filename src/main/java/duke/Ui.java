@@ -24,23 +24,7 @@ public class Ui {
         this.out = out;
     }
 
-    String getUserCommand() {
-        String nextCmdLine = scanner.nextLine();
-
-        while (shouldIgnoreLine(nextCmdLine)) {
-            nextCmdLine = scanner.nextLine();
-        }
-        return nextCmdLine;
-    }
-
     private boolean shouldIgnoreLine(String line) {
         return line.trim().isEmpty() || line.contains("//");
-    }
-
-    /**
-     * Start message of Duke
-     */
-    public void startMessage() {
-        System.out.println(GREETING);
     }
 }

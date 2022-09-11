@@ -185,10 +185,7 @@ public class TaskList {
         return sortedTaskList;
     }
 
-    private boolean withinDateAndIsNotDone(LocalDateTime start, LocalDateTime end, Task task) {
-        if (task.getDoneStatus() == 1) {
-            return false;
-        }
+    private boolean withinDate(LocalDateTime start, LocalDateTime end, Task task) {
         if (task.getLocalDateTime().isBefore(start)) {
             return false;
         }
@@ -206,7 +203,7 @@ public class TaskList {
         List<Task> tasksWithinDate = new ArrayList<>();
 
         this.getTaskList().forEach(task -> {
-            if (withinDateAndIsNotDone(start, end, task)) {
+            if (withinDate(start, end, task)) {
                 tasksWithinDate.add(task);
             }
         });

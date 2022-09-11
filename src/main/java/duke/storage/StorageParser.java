@@ -31,10 +31,8 @@ public class StorageParser {
 
     static Task formatTask(String rawTask) throws DukeException {
         String identifier = rawTask.substring(0, 1).toUpperCase(Locale.ROOT);
-        boolean marked = false;
+
         String[] segments = rawTask.split("\\| ");
-        StringBuilder sb = new StringBuilder();
-        Task formattedTask;
 
         switch (identifier) {
         case "T":

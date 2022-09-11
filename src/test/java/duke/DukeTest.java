@@ -16,7 +16,6 @@ public class DukeTest {
      */
     @Test
     public void addTodo_descriptionToDo_success() {
-        // Test description = "Test todo for Duke !"
         String expected = "";
         String actual = "";
         try {
@@ -37,7 +36,6 @@ public class DukeTest {
      */
     @Test
     public void addDeadline_descriptionDeadlineLocalDateTime_success() {
-        // Test description = "Finish Assignment 1";
         String dateTime = "16 Aug 2023 1955";
         DateTimeFormatter dateTimeFormatter = DateHandler.getDateTimeFormatter();
         String expected = "";
@@ -60,7 +58,6 @@ public class DukeTest {
      */
     @Test
     public void addEvent_descriptionEventLocalDateTime_success() {
-        // Test description = "Dinner Date"
         String dateTime = "25 Dec 2029 1835";
         DateTimeFormatter dateTimeFormatter = DateHandler.getDateTimeFormatter();
         String expected = "";

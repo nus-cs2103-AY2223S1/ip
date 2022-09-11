@@ -43,7 +43,7 @@ public abstract class Task {
     }
 
     /**
-     * Mark a task as done, outputs status of action if needed.
+     * Toggles a task as done.
      * @param slient option to slience task output in console.
      */
     public String markAsDone(boolean slient) {
@@ -55,7 +55,7 @@ public abstract class Task {
     }
 
     /**
-     * Mark a task as undone, outputs status of action.
+     * Toggles a task as undone.
      * @return
      */
     public String markAsUnDone() {
