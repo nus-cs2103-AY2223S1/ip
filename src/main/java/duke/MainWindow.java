@@ -23,6 +23,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/ernie.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/bert.jpg"));
 
+    /**
+     * Initializes the Java GUI
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -31,6 +34,10 @@ public class MainWindow extends AnchorPane {
         );
     }
 
+    /**
+     * Sets a Duke with UI, Storage and Tasklist
+     * @param d Duke
+     */
     public void setDuke(Duke d) {
         duke = d;
     }

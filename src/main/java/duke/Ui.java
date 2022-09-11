@@ -13,7 +13,7 @@ import java.util.List;
 public class Ui {
     static final String GREET_MESSAGE = "Hello I'm Bert.\nWhat can I do for you?\n";
     static final String QUIT_MESSAGE = "Bye. Hope to see you again soon!";
-    static final String MARK_TASK_MESSAGE =  "Nice! I've marked this task as done:\n  ";
+    static final String MARK_TASK_MESSAGE = "Nice! I've marked this task as done:\n  ";
     static final String UNMARK_TASK_MESSAGE = "OK, I've marked this task as not done yet:\n  ";
 
     /**
