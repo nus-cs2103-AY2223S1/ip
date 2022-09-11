@@ -46,6 +46,7 @@ public class Duke {
                 return cmd.execute(storage, tasklist, ui);
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
+                return e.getMessage();
             }
         }
     }
