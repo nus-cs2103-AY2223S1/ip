@@ -213,4 +213,8 @@ public class Duke {
         }
         return String.join("\n", result);
     }
+
+    public static void main(String[] args) {
+        Launcher.main(args);
+    }
 }
