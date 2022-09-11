@@ -15,7 +15,7 @@ public class Duke {
     private static final String GREETING = "Hello! I'm Duke!\n";
 
     private TaskList tasks;
-    private boolean tasksEnd = false;
+    private boolean hasTasksEnd = false;
 
     /**
      * Initialises Duke class with empty {@code TaskList}.
@@ -34,14 +34,14 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
 
-        while (!tasksEnd) {
+        while (!hasTasksEnd) {
             System.out.print(">> ");
             String input = sc.nextLine();
             try {
                 Command command = Parser.parseCommand(input);
                 command.execute(tasks);
                 if (command instanceof ByeCommand) {
-                    tasksEnd = true;
+                    hasTasksEnd = true;
                 }
                 Storage.write(tasks);
             } catch (DukeException e) {
