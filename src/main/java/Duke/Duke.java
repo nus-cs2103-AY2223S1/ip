@@ -16,8 +16,6 @@ import Duke.task.TaskTodo;
 import Duke.ui.DukeResponses;
 import Duke.ui.GuiUi;
 import Duke.utils.Utils;
-import javafx.application.Application;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +29,7 @@ import java.util.TimerTask;
  * of all present tasks. It has a command line interface and does not
  * store data from each run.
  */
-public class Duke extends Application {
+public class Duke {
 
     // Deals with loading tasks from the file and saving tasks in the file.
     private Storage storage;
@@ -40,14 +38,11 @@ public class Duke extends Application {
     // Handles how to respond to user inputs.
     private final DukeResponses dukeResponses = new DukeResponses();
     // Handles how to display the UI.
-    private GuiUi dukeUi;
+    private GuiUi guiUi;
     // String to specify location of previous information.
     private static final String filepath = "data" + File.separator + "dukeData.txt";
 
-    @Override
-    public void start(Stage stage) {
-        dukeUi = new GuiUi(stage, this);
-        dukeUi.show();
+    public void load() {
         initialiseStorage();
         loadTaskFromStorageIntoTasks();
         welcomeUser();
@@ -57,7 +52,7 @@ public class Duke extends Application {
         try {
             storage = new Storage(filepath);
         } catch (DukeException | IOException e) {
-            dukeUi.displayOutput(dukeResponses.loadFileFailed() + '\n' + e.getMessage());
+            guiUi.displayOutput(dukeResponses.loadFileFailed() + '\n' + e.getMessage());
         }
     }
 
@@ -65,16 +60,16 @@ public class Duke extends Application {
         try {
             tasks = new TaskList(storage.load());
             if (tasks.isNotEmpty()) {
-                dukeUi.displayOutput(dukeResponses.loadTaskSuccessfully() + '\n' + dukeResponses.listTasks(tasks));
+                guiUi.displayOutput(dukeResponses.loadTaskSuccessfully() + '\n' + dukeResponses.listTasks(tasks));
             }
         } catch (DukeException e) {
             tasks = new TaskList();
-            dukeUi.displayOutput(dukeResponses.loadTaskFailed() + '\n' + e.getMessage());
+            guiUi.displayOutput(dukeResponses.loadTaskFailed() + '\n' + e.getMessage());
         }
     }
 
     private void welcomeUser() {
-        dukeUi.displayOutput(dukeResponses.startPrompt());
+        guiUi.displayOutput(dukeResponses.startPrompt());
     }
 
     public String receiveInput(String inputString) {
@@ -135,7 +130,7 @@ public class Duke extends Application {
     private void terminate() {
         try {
             storage.storeTask(tasks);
-            dukeUi.displayOutput(dukeResponses.endPrompt());
+            guiUi.displayOutput(dukeResponses.endPrompt());
             TimerTask exitApp = new TimerTask() {
                 @Override
                 public void run() {
@@ -145,7 +140,7 @@ public class Duke extends Application {
             new Timer().schedule(exitApp, new Date(System.currentTimeMillis() + 1000));
         } catch (IOException err) {
             String response = String.format("IO Exception: %s", err.getMessage());
-            dukeUi.displayOutput(response);
+            guiUi.displayOutput(response);
         }
     }
 
@@ -211,5 +206,9 @@ public class Duke extends Application {
     private <T extends Task> String addTask(T task) {
         tasks.addTask(task);
         return dukeResponses.addTask(task) + "\n" + dukeResponses.listTasks(tasks);
+    }
+
+    public void setGui(GuiUi guiUi) {
+        this.guiUi = guiUi;
     }
 }
