@@ -122,9 +122,7 @@ public class Storage {
     public void save(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(this.filePath);
-            for (int i = 1; i <= tasks.getCount(); i++) {
-                fw.write(tasks.getTask(i).toSimpleString() + "\n");
-            }
+            fw.write(tasks.toSimpleStrings());
             fw.close();
         } catch (IOException e) {
             throw new DukeException(Message.FILE_NOT_FOUND);

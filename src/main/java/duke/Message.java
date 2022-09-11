@@ -20,6 +20,14 @@ public class Message {
     public static final String FILE_READ_ERROR = "There is an error when reading the memory file.";
     public static final String FILE_CREATE_ERROR = "There is an error when creating the memory file";
 
+    /**
+     * Returns a String that describes that the task does not exist within the specified tasklist
+     * and suggests potential numbers for the user to try to locate the task. This method is called
+     * when the task is not found in the tasklist specified
+     *
+     * @param tasks the tasklist of type TaskList
+     * @return a String message describing the task is not found
+     */
     public static String returnTaskNotFound(TaskList tasks) {
         return "Task does not exist. Try another number between 1 and " + tasks.getCount();
     }
