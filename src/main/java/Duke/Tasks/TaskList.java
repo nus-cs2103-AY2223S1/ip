@@ -1,9 +1,5 @@
 package Duke.Tasks;
 
-import java.sql.Array;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -55,7 +51,32 @@ public class TaskList {
         return output;
     }
 
-    public String sort_ddl() {
+
+    public String sortAll() {
+        this.tasks.sort((t1, t2) -> {
+            if (t1.getIsDone() && !t2.getIsDone()) {
+                return 1;
+            }
+            if (!t1.getIsDone() && t2.getIsDone()) {
+                return -1;
+            }
+            if (t1.getDateTime() == null && t2.getDateTime() != null) {
+                return 1;
+            }
+            if (t1.getDateTime() != null && t2.getDateTime() == null) {
+                return -1;
+            }
+            if (t1.getDateTime() != null && t2.getDateTime() != null) {
+                return t1.getDateTime().compareTo(t2.getDateTime());
+            }
+            return t1.getDiscription().compareTo(t2.getDiscription());
+
+        });
+
+        return this.showTasks();
+    }
+
+    public String sortDeadline() {
         List<Deadline> deadlines = new ArrayList<>();
         for (Task task : this.tasks) {
             if (task instanceof Deadline) { deadlines.add((Deadline) task); }

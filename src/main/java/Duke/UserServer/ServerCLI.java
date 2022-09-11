@@ -25,8 +25,7 @@ public class ServerCLI {
 
     private FileReader fileReader = new FileReader("Duke");
 
-
-    public ServerCLI() {
+    public void run() {
         load();
         serve();
     }
@@ -60,6 +59,8 @@ public class ServerCLI {
     private String executeCommand(UserCommand curCommand) throws DukeException {
         return curCommand.execute();
     }
+
+
 
 
 

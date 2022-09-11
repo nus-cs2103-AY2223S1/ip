@@ -24,11 +24,7 @@ public class Duke {
     public static void main(String[] args) { //throws DukeException, FileNotFoundException {
 
 
-        System.out.println(LocalDateTime.parse("2022-11-11T00:00").toLocalDate());
-        System.out.println(LocalDateTime.parse("2022-11-11T00:00").toLocalTime());
-
-
-        //serverGUI.run();
+        serverCLI.run();
 
     }
 

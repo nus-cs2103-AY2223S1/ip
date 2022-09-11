@@ -78,14 +78,22 @@ public class FileReader {
                             components[2].strip(),
                             components[1].strip().equals("true"));
                 case "D":
-                    localdate = LocalDate.parse(components[3].strip());
 
                     return new Deadline(
                             components[2].strip(),
                             LocalDateTime.parse(components[3].strip()).toLocalDate(),
                             LocalDateTime.parse(components[3].strip()).toLocalTime(),
                             components[1].strip().equals("true"));
-                case "E":
+
+
+
+
+
+
+
+
+
+                    case "E":
 
                     return new Event(
                             components[2].strip(),
