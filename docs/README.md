@@ -24,9 +24,9 @@ Luna is your nature-themed graphical user interface (GUI) desktop app that is su
 
 <a name="getting-started"></a>
 ## <h1 align = "center"/>Get started with Luna ⛅️
-1. Download the `jar` file from this [page](https://github.com/fannyjian/ip/releases/tag/A-Release)
+1. Download `luna-v1.0.jar` from this [page](https://github.com/fannyjian/ip/releases/tag/A-Release)
 2. Navigate to the directory containing the `jar` file in terminal
-3. Run java -jar `luna-v1.0.jar`
+3. Run `java -jar luna-v1.0.jar`
 4. Give Luna commands to complete your tasks!
 5. Say `bye` to Luna to exit and save your tasks for next time 💫
 
