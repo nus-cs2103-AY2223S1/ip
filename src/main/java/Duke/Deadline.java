@@ -12,6 +12,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for a deadline task.
+     *
      * @param description description of task.
      * @param deadline deadline in YYYY-MM-DD format.
      */
