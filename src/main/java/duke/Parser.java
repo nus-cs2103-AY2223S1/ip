@@ -46,13 +46,10 @@ public class Parser {
             validateSingleCommand(commandDetails);
             return new HelpCommand();
         case "todo":
-            assert (inputSegments[1] != null) : "Missing task name";
             return validateTodoCommand(commandDetails);
         case "deadline":
-            assert (inputSegments[1].contains("/by")) : "Input has missing keyword /\"by\"";
             return validateDeadlineCommand(commandDetails);
         case "event":
-            assert (inputSegments[1].contains("/at")) : "Input has missing keyword /\"at\"";
             return validateEventCommand(fullCommand);
         case "mark":
             validateMultipleCommand(fullCommand);

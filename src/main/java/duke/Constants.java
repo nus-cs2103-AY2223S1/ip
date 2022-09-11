@@ -6,10 +6,16 @@ package duke;
 public class Constants {
     public static final String CHATBOX_NAME = "Ado";
 
-    public static final String HELP_DETAILED_MESSAGE = "List of commands:\ntodo: adds a todo task"
-            + "\ndeadline: adds a deadline task\nevent:adds a event task\nmark: marks a task at specified index"
-            + "\nunmark: unmarks a task at specified index\n\nlist: lists all saved task"
-            + "\nfind: finds a task with keyword\nbye:exits the chatbot\nhelp: lists all commands";
+    public static final String HELP_DETAILED_MESSAGE = "List of commands:"
+            + "\ntodo: adds a todo task [Description]\ne.g. todo feed cat"
+            + "\ndeadline: adds a deadline task [Description, date]\ne.g. deadline Do homework /by 12 Mar 2022"
+            + "\nevent:adds a event task [Description, date, time]"
+            + "\ne.g. event LOTR meet and greet /at 28 Nov 2022  20:30"
+            + "\nmark: marks a task at specified index\ne.g. mark 2"
+            + "\nunmark: unmarks a task at specified index\ne.g. unmark 1"
+            + "\nfind: finds a task with keyword\ne.g. find homework"
+            + "\n\nlist: lists all saved task"
+            + "\nbye:exits Ado chatbot";
     public static final String HELP_MESSAGE = "Need help? You can click on the \"?\" icon beside the send button to"
             + " see the list of available commands!";
 
