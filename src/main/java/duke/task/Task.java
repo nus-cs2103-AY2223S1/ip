@@ -6,7 +6,8 @@ import java.time.format.DateTimeFormatter;
  * Abstract superclass for handling Tasks.
  */
 public abstract class Task {
-    protected static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
+    protected static final DateTimeFormatter DATE_FORMAT =
+            DateTimeFormatter.ofPattern("d MMM yyyy");
     protected static final boolean IS_INCOMPLETE = false;
 
     private static final int STATUS_COMPLETE_INT = 1;
@@ -81,8 +82,8 @@ public abstract class Task {
     /**
      * Returns {@code isComplete} status in integer format.
      *
-     * @return {@code isComplete} status.
-     * {@code 0} signifies incomplete. {@code 1} signifies complete.
+     * @return {@code isComplete} status. {@code 0} signifies incomplete. {@code 1} signifies
+     *         complete.
      */
     int getStatusNumber() {
         return isComplete ? STATUS_COMPLETE_INT : STATUS_INCOMPLETE_INT;
