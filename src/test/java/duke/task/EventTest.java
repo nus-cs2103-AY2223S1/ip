@@ -10,21 +10,21 @@ public class EventTest {
     @Test
     public void eventToStringTest() {
         Event e = new Event("iP Week 3", false, LocalDate.parse("2022-08-21"));
-        assertEquals("\t[E][ ] iP Week 3 (at: Aug 21 2022)", e.toString());
+        assertEquals(" [E][ ] iP Week 3 (at: Aug 21 2022)", e.toString());
     }
 
     @Test
     public void markEventTest() {
         Event e = new Event("iP Week 3", false, LocalDate.parse("2022-08-21"));
         e.markAsDone();
-        assertEquals("\t[E][X] iP Week 3 (at: Aug 21 2022)", e.toString());
+        assertEquals(" [E][X] iP Week 3 (at: Aug 21 2022)", e.toString());
     }
 
     @Test
     public void unmarkEventTest() {
         Event e = new Event("iP Week 3", true, LocalDate.parse("2022-08-21"));
         e.markAsUndone();
-        assertEquals("\t[E][ ] iP Week 3 (at: Aug 21 2022)", e.toString());
+        assertEquals(" [E][ ] iP Week 3 (at: Aug 21 2022)", e.toString());
     }
 
     @Test

@@ -10,21 +10,21 @@ public class DeadlineTest {
     @Test
     public void deadlineToStringTest() {
         Deadline d = new Deadline("iP Week 3", false, LocalDate.parse("2022-08-21"));
-        assertEquals("\t[D][ ] iP Week 3 (by: Aug 21 2022)", d.toString());
+        assertEquals(" [D][ ] iP Week 3 (by: Aug 21 2022)", d.toString());
     }
 
     @Test
     public void markDeadlineTest() {
         Deadline d = new Deadline("iP Week 3", false, LocalDate.parse("2022-08-21"));
         d.markAsDone();
-        assertEquals("\t[D][X] iP Week 3 (by: Aug 21 2022)", d.toString());
+        assertEquals(" [D][X] iP Week 3 (by: Aug 21 2022)", d.toString());
     }
 
     @Test
     public void unmarkDeadlineTest() {
         Deadline d = new Deadline("iP Week 3", true, LocalDate.parse("2022-08-21"));
         d.markAsUndone();
-        assertEquals("\t[D][ ] iP Week 3 (by: Aug 21 2022)", d.toString());
+        assertEquals(" [D][ ] iP Week 3 (by: Aug 21 2022)", d.toString());
     }
 
     @Test

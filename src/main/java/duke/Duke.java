@@ -3,6 +3,7 @@ package duke;
 import java.io.FileNotFoundException;
 
 import duke.command.Command;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -25,6 +26,8 @@ public class Duke {
      * @param stage The current Stage of the Application.
      */
     public Duke(Stage stage) {
+        stage.setTitle("dukeBot Ver. Pingu");
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/DaDuke.png")));
         ui = new Ui(stage);
         this.storage = new Storage(System.getProperty("user.home") + "/data/duke.txt");
         try {

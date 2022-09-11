@@ -8,21 +8,21 @@ public class ToDoTest {
     @Test
     public void toDoToStringTest() {
         ToDo td = new ToDo("iP Week 3", false);
-        assertEquals("\t[T][ ] iP Week 3", td.toString());
+        assertEquals(" [T][ ] iP Week 3", td.toString());
     }
 
     @Test
     public void markToDoTest() {
         ToDo td = new ToDo("iP Week 3", false);
         td.markAsDone();
-        assertEquals("\t[T][X] iP Week 3", td.toString());
+        assertEquals(" [T][X] iP Week 3", td.toString());
     }
 
     @Test
     public void unmarkToDoTest() {
         ToDo td = new ToDo("iP Week 3", true);
         td.markAsUndone();
-        assertEquals("\t[T][ ] iP Week 3", td.toString());
+        assertEquals(" [T][ ] iP Week 3", td.toString());
     }
 
     @Test
