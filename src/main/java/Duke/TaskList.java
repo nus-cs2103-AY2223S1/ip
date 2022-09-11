@@ -55,6 +55,7 @@ public class TaskList {
         for (Task x : list) {
             out += num + ". " + x.toString() + "\n";
             num++;
+            assert num <= list.size() : "num out of range";
         }
         System.out.println(out);
     }
@@ -69,6 +70,7 @@ public class TaskList {
         for (Task x : list) {
             out += num + ". " + x.toString() + "\n";
             num++;
+            assert num <= list.size() : "num out of range";
         }
         return out;
     }
