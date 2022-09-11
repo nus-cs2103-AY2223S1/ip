@@ -1,24 +1,25 @@
 package mort.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 public class ToDoTest {
     private final ToDo todo1 = new ToDo("buy apples", true);
     private final ToDo todo2 = new ToDo("buy 6 apples & chicken", false);
     private final LocalDate date = LocalDate.parse("31/12/1926", DateTimeFormatter.ofPattern("d/M/yyyy"));
-    
+
     @Test
     public void testGetStatusIcon() {
         assertEquals("X", todo1.getStatusIcon());
         assertEquals(" ", todo2.getStatusIcon());
     }
+
     @Test
     public void testGetSaveFormat() {
         assertEquals("T | 1 | buy apples", todo1.getSaveFormat());
@@ -30,6 +31,7 @@ public class ToDoTest {
         assertEquals("[T][X] buy apples", todo1.toString());
         assertEquals("[T][ ] buy 6 apples & chicken", todo2.toString());
     }
+
     @Test
     public void testIsMatch() {
         assertTrue(todo2.isMatch("appl"));
@@ -40,7 +42,7 @@ public class ToDoTest {
         assertFalse(todo2.isMatch("homework"));
         assertFalse(todo1.isMatch("[ ]"));
     }
-    
+
     @Test
     public void testIsDateMatch() {
         assertFalse(todo1.isDateMatch(date));
