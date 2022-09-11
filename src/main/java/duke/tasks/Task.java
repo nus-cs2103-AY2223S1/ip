@@ -70,4 +70,11 @@ public abstract class Task {
      * @return the date of the Task if the Task has a date.
      */
     public abstract String getDate();
+
+    /**
+     * Checks if the Task occurs on a specific date.
+     * @param date The date to check if the Task occurs on.
+     * @return True if the Task occurs on the given date.
+     */
+    public abstract boolean isOnDate(String date);
 }

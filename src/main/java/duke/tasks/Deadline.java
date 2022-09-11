@@ -50,6 +50,16 @@ public class Deadline extends Task {
         return by;
     }
 
+    /**
+     * Checks if the Deadline task occurs on a specific date.
+     * @param date The date to check if the Deadline task occurs on.
+     * @return True if the Deadline task occurs on the given date.
+     */
+    @Override
+    public boolean isOnDate(String date) {
+        return by.equals(date);
+    }
+
     private String getFormattedDate() {
         LocalDate date = Parser.parseDate(by);
         return date.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_FORMAT));

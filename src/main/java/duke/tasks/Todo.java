@@ -40,4 +40,14 @@ public class Todo extends Task {
     public String getDate() {
         return " ";
     }
+
+    /**
+     * Checks if the Todo task occurs on a specific date.
+     * @param date The date to check if the Todo task occurs on.
+     * @return False.
+     */
+    @Override
+    public boolean isOnDate(String date) {
+        return false;
+    }
 }

@@ -12,6 +12,7 @@ import duke.commands.EventCommand;
 import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
+import duke.commands.OnCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UndoCommand;
 import duke.commands.UnmarkCommand;
@@ -35,7 +36,7 @@ public class Parser {
 
 
     private enum MissingDetails {
-        TASK_NUMBER, DESCRIPTION, DESCRIPTION_AND_DATE, KEYWORD
+        TASK_NUMBER, DESCRIPTION, DESCRIPTION_AND_DATE, KEYWORD, DATE
     }
 
     /**
@@ -67,6 +68,8 @@ public class Parser {
             return prepareDelete(splitInputArray);
         case FindCommand.COMMAND_WORD:
             return prepareFind(splitInputArray);
+        case OnCommand.COMMAND_WORD:
+            return prepareOn(splitInputArray);
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
         default:
@@ -94,6 +97,8 @@ public class Parser {
                 throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_DESCRIPTION_AND_DATE);
             case KEYWORD:
                 throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_KEYWORD);
+            case DATE:
+                throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_DATE);
             default:
                 throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_MORE_DETAILS);
             }
@@ -163,5 +168,13 @@ public class Parser {
         assert splitInputArray.length == 2 : INVALID_USER_INPUT;
         String[] keywords = splitInputArray[1].split(" ");
         return new FindCommand(keywords);
+    }
+
+    private static Command prepareOn(String[] splitInputArray) throws DukeException {
+        verifyInput(splitInputArray, MissingDetails.DATE);
+        assert splitInputArray.length == 2 : INVALID_USER_INPUT;
+        String date = splitInputArray[1];
+        verifyDateFormat(date);
+        return new OnCommand(date);
     }
 }

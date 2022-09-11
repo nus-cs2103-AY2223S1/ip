@@ -89,11 +89,23 @@ public class TaskList {
     }
 
     /**
+     * Finds the tasks that occur on a specific date.
+     * @param date The date to check if a Task occurs on.
+     * @return A list of tasks that occur on the given date.
+     */
+    public List<Task> getTasksOnDate(String date) {
+        return tasks
+            .stream()
+            .filter(task -> task.isOnDate(date))
+            .collect(Collectors.toList());
+    }
+
+    /**
      * Finds matching tasks whose description contains any of the given keyword(s).
      * @param keywords The keyword(s) to check each Task's description for.
      * @return A list of tasks whose description contains any of the given keyword(s).
      */
-    public List<Task> getMatchingTasks(String ... keywords) {
+    public List<Task> getTasksWithKeywords(String ... keywords) {
         return tasks
             .stream()
             .filter(task -> Arrays.stream(keywords).anyMatch(keyword -> !keyword.isEmpty() && task.hasKeyword(keyword)))

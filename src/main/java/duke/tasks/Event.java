@@ -50,6 +50,16 @@ public class Event extends Task {
         return at;
     }
 
+    /**
+     * Checks if the Event task occurs on a specific date.
+     * @param date The date to check if the Event task occurs on.
+     * @return True if the Event task occurs on the given date.
+     */
+    @Override
+    public boolean isOnDate(String date) {
+        return at.equals(date);
+    }
+
     private String getFormattedDate() {
         LocalDate date = Parser.parseDate(at);
         return date.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_FORMAT));

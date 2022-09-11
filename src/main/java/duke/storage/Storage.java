@@ -116,7 +116,7 @@ public class Storage {
     }
 
     /**
-     * Undo the most recent change to the task list.
+     * Undos the most recent change to the task list.
      * @param taskList The list of tasks to change.
      * @throws StorageException If there is an IOException saving the modified list of tasks.
      */

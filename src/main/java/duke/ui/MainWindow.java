@@ -36,7 +36,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Initialise Duke. Show loading errors if any and the greeting message to the user.
+     * Initialises Duke. Shows loading errors if any and the greeting message to the user.
      */
     public void setDuke(Duke d) {
         duke = d;
