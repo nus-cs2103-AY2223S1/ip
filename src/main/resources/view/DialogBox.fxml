@@ -2,23 +2,26 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" minHeight="-Infinity" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" text="Label" wrapText="true" minHeight="-Infinity" maxHeight="Infinity">
+        <Label fx:id="dialog" text="Label" textFill="WHITE" wrapText="true">
             <padding>
-                <Insets left="10.0" right="10.0" />
+                <Insets topRightBottomLeft="10.0" />
             </padding>
+            <HBox.margin>
+                <Insets left="10.0" right="10.0" />
+            </HBox.margin>
             <font>
-                <Font name="Verdana" size="12.0" />
+                <Font name="Courier New Bold" size="12.0" />
             </font>
         </Label>
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
+        <Circle fx:id="displayPicture" radius="30.0" />
     </children>
     <padding>
-        <Insets topRightBottomLeft="15.0" />
+        <Insets topRightBottomLeft="10.0" />
     </padding>
 </fx:root>
