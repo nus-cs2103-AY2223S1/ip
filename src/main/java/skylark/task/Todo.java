@@ -20,7 +20,7 @@ public class Todo extends Task {
      * @param description Description of the Task
      * @param tag         Tag of the Task
      */
-    public ToDo(String description, String tag) {
+    public Todo(String description, String tag) {
         super(description, tag);
     }
 

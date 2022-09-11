@@ -26,7 +26,7 @@ public class TodoTest {
 
     @Test
     public void toString_descriptionWTag_success() {
-        ToDo toDoTask = new ToDo("Make tea", "Test tag!");
+        Todo toDoTask = new Todo("Make tea", "Test tag!");
         assertEquals("[T] [ ] Make tea TAG: Test tag!", toDoTask.toString());
         toDoTask.markAsDone();
         assertEquals("[T] [X] Make tea TAG: Test tag!", toDoTask.toString());
@@ -34,7 +34,7 @@ public class TodoTest {
 
     @Test
     public void toStringFile_descriptionWTag_success() {
-        ToDo toDoTask = new ToDo("Make tea", "Test tag!");
+        Todo toDoTask = new Todo("Make tea", "Test tag!");
         assertEquals("T | 0 | Make tea | Test tag!", toDoTask.toStringFile());
         toDoTask.markAsDone();
         assertEquals("T | 1 | Make tea | Test tag!", toDoTask.toStringFile());
@@ -64,7 +64,7 @@ public class TodoTest {
 
     @Test
     public void setTag_tag_success() {
-        ToDo toDoTask = new ToDo("Make tea", "Old tag!");
+        Todo toDoTask = new Todo("Make tea", "Old tag!");
         assertEquals("[T] [ ] Make tea TAG: Old tag!", toDoTask.toString());
         toDoTask.setTag("New tag!");
         assertEquals("[T] [ ] Make tea TAG: New tag!", toDoTask.toString());
