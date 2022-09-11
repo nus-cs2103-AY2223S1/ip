@@ -30,7 +30,7 @@ public class Storage {
                 Storage.store(tasks);
             }
         } catch (IOException e) {
-            throw new IanaException("IO Exception from Storage::initialise");
+            throw new IanaException("Oh no, the storage file is corrupted!");
         }
     }
 
@@ -56,7 +56,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new IanaException("File not found!xx");
         } catch (IOException e) {
-            throw new IanaException("IO Exception from Storage::load");
+            throw new IanaException("Oh no, the storage file is corrupted! :(");
         } catch (ClassNotFoundException e) {
             throw new IanaException("Class not found");
         }
@@ -66,6 +66,7 @@ public class Storage {
      * Saves task list data into storage file.
      * 
      * @param taskList task list of tasks to be stored.
+     * 
      * @throws IanaException if file or folder does not exist.
      */
     public static void store(TaskList taskList) throws IanaException {
@@ -76,7 +77,7 @@ public class Storage {
             objOut.close();
             fileOut.close();
         } catch (IOException e) {
-            throw new IanaException("IO Exception from storing tasks!");
+            throw new IanaException("Naur, I can't seem to store the tasks!");
         }
     }
 }

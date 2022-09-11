@@ -29,6 +29,7 @@ public class Ui {
 
     /**
      * Returns task list of all current tasks.
+     * 
      * @param tasks task list to be printed out.
      */
     public String list(TaskList tasks) {
@@ -60,7 +61,8 @@ public class Ui {
 
     /**
      * Returns task information that is added to task list.
-     * @param task task to be printed.
+     * 
+     * @param task task to be returned.
      */
     public String sayTaskAdded(Task task) {
         return say(String.format("> Okay :). Remember to complete the task:\n\t   %s", task.toString()));
@@ -68,6 +70,7 @@ public class Ui {
 
     /**
      * Returns information of task that is deleted from task list.
+     *
      * @param task task that is deleted.
      * @param listSize number of tasks left in the task list.
      */
@@ -100,6 +103,7 @@ public class Ui {
 
     /**
      * Reads user input from command line.
+     * 
      * @return the user's input.
      */
     public String readCommand() {

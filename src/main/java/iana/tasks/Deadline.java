@@ -12,6 +12,7 @@ public class Deadline extends Task implements Serializable {
 
     /**
      * Constructor for Deadline class.
+     * 
      * @param task string of task description.
      * @param endTime deadline time.
      * @param isCompleted true if task has been completed

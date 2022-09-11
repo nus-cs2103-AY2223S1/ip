@@ -14,6 +14,7 @@ public class MarkCommand extends Command {
     
     /**
      * Constructor for MarkCommand class.
+     * 
      * @param taskNum task number to be marked as completed.
      */
     public MarkCommand(String taskNum) {
