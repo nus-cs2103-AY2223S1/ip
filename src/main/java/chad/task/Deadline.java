@@ -10,7 +10,9 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline
+     *
      * Example: deadline return book /by 2/12/2019 1800
+     *
      * @param description description of deadline
      * @param dateTime date and time of when deadline is due
      */

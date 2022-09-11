@@ -1,6 +1,5 @@
 package chad;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import chad.exception.ChadException;
@@ -8,13 +7,15 @@ import chad.task.Task;
 
 /**
  * Contains commands for user to interact with Chadbot
+ *
  */
 public class Parser {
     /**
      * Reads user input in command line
+     *
      * @param taskList arraylist of tasks
      * @param userInput user input
-     * @throws ChadException Thrown when invalid error occurs
+     * @throws ChadException throws error when invalid command is input
      */
     public static String readCommand(ArrayList<Task> taskList, String userInput) throws ChadException {
         String[] tempArr = userInput.split(" ");
