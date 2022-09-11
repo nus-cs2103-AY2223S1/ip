@@ -92,7 +92,7 @@ public class Parser {
                 throw new InvalidCommandException();
             } else {
                 msg = this.ui.msg("Got it. I've added this task:\n " + "\t" + task + "\n" + "Now you have "
-                        + this.tasks.size() + " task(s) in the list.");
+                        + (this.tasks.size()+1) + " task(s) in the list.");
             }
             this.tasks.add(task);
         }

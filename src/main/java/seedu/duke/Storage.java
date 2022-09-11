@@ -7,20 +7,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * Represents a storage, stores and read data from given file location
  */
 public class Storage {
-    protected String dataFileName;
+    protected Path filePath;
 
     /**
      * Instantiates a new Storage object
      */
-    public Storage(String filePath) {
-        this.dataFileName = filePath;
+    public Storage(Path filePath) {
+        this.filePath = filePath;
     }
 
     /**
@@ -30,12 +33,19 @@ public class Storage {
      */
     public void writeToFile(TaskList tasks) throws IOException {
         //structure: command|1 (1 for mark, 0 for unmark)
-        ArrayList<Task> arr = tasks.getTasks();
-        FileWriter fw = new FileWriter(this.dataFileName);
-        for (Task task : arr) {
-            fw.write(task.getData() + "\n");
+        ArrayList<Task> taskArr = tasks.getTasks();
+        ArrayList<String> stringArr = new ArrayList<String>();
+        for (Task t: tasks.getTasks()) {
+            stringArr.add(t.getData());
         }
-        fw.close();
+
+        Iterable<String> lines = stringArr;
+        try {
+            Files.createDirectories(this.filePath.getParent());
+            Files.write(this.filePath, stringArr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -45,16 +55,18 @@ public class Storage {
      */
     public void loadFromFile(TaskList tasks) {
         try {
-
-            File f = new File(dataFileName);
-            Scanner s = new Scanner(f);
-
-            while (s.hasNext()) {
-                String line = s.nextLine();
-                tasks.add(TaskSorter.sortTaskFromData(line));
+            if (!Files.exists(this.filePath)) {
+                Files.createDirectories(this.filePath.getParent());
+                Files.createFile(this.filePath);
             }
 
-        } catch (FileNotFoundException e) {
+            List<String> data = Files.readAllLines(this.filePath);
+
+            for (String s: data) {
+                tasks.add(TaskSorter.sortTaskFromData(s));
+            }
+
+        } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }

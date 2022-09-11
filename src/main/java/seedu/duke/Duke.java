@@ -1,12 +1,16 @@
 package seedu.duke;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 import java.io.IOException;
 import javafx.application.Platform;
 
 public class Duke{
 
-    private static String DATA_FILE_PATH = "./Duke.txt";
+    private static Path DATA_FILE_PATH = Paths.get("data","duke.txt");
+
 
     private Storage storage;
     private TaskList tasks;
@@ -22,13 +26,6 @@ public class Duke{
         this.storage = new Storage(DATA_FILE_PATH);
         this.tasks = new TaskList();
         this.parser = new Parser(this.tasks, this.ui, this.storage);
-
-        try {
-            File f = new File(DATA_FILE_PATH);
-            f.createNewFile();
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
         this.storage.loadFromFile(tasks);
     }
 

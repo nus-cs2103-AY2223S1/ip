@@ -1,3 +1,0 @@
-todo|buy concert ticket|0
-deadline|sign up for internship |0|2020-08-08
-deadline|contact buyers |0|2021-09-09
