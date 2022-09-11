@@ -13,7 +13,7 @@ public class InvalidParamException extends CarbonException {
     @Override
     public String toString() {
         return String.format(
-                "%s\n    Looks like you're missing details for your '%s'.",
+                "%s\nLooks like you're missing valid details for your '%s'.",
                 super.toString(),
                 this.getMessage()
                 );

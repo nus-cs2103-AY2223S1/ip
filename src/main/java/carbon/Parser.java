@@ -16,6 +16,7 @@ public class Parser {
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
+    private boolean hasUndoed;
 
     /**
      * Constructs an instance of Parser class.
@@ -27,6 +28,7 @@ public class Parser {
     public Parser(Ui ui, Storage storage) {
         this.ui = ui;
         this.storage = storage;
+        this.hasUndoed = false;
         try {
             this.taskList = this.storage.loadSaveFile();
         } catch (FileNotFoundException error) {
@@ -56,14 +58,8 @@ public class Parser {
             log = this.taskList.listItems();
             break;
         case "undo":
-            try {
-                this.taskList = this.storage.loadUndoFile();
-                log = this.taskList.listItems();
-            } catch (FileNotFoundException error) {
-                log = "There's no command to undo yet.";
-            } catch (CorruptedSaveFileException error) {
-                log = "Sorry, I can't undo that command.";
-            }
+            log = this.undoPreviousCommand();
+            this.hasUndoed = true;
             break;
         default:
             // unable to process as a simple command, pass to next handler
@@ -105,9 +101,27 @@ public class Parser {
                 throw invalidInput;
             }
             this.storage.writeSaveTasks(this.taskList);
+            this.hasUndoed = false;
             return log;
         } catch (CarbonException error) {
             throw error;
         }
+    }
+
+    private String undoPreviousCommand() {
+        String log;
+        try {
+            if (this.hasUndoed) {
+                log = "My guy, you already undo-ed once.\nI can't remember more than one change.";
+            } else {
+                this.taskList = this.storage.loadUndoFile();
+                log = this.taskList.listItems();
+            }
+        } catch (FileNotFoundException error) {
+            log = "There's nothing to undo yet.";
+        } catch (CorruptedSaveFileException error) {
+            log = "Sorry, I can't undo that. Too bad.";
+        }
+        return log;
     }
 }

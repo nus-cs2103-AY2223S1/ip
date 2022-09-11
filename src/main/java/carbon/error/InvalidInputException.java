@@ -13,7 +13,7 @@ public class InvalidInputException extends CarbonException {
     @Override
     public String toString() {
         return String.format(
-                "%s\n    '%s'? I have no idea what that is.",
+                "%s\n'%s'? I have no idea what that is.",
                 super.toString(),
                 this.getMessage()
                 );

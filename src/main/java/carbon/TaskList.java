@@ -75,7 +75,14 @@ public class TaskList {
             CarbonException invalidParam = new InvalidParamException(input);
             throw invalidParam;
         }
-        taskNumber = Integer.valueOf(input.substring(requiredLen));
+
+        String indexString = input.substring(requiredLen);
+        if (!indexString.matches("[0-9]+")) {
+            CarbonException invalidParam = new InvalidParamException(input);
+            throw invalidParam;
+        }
+
+        taskNumber = Integer.valueOf(indexString);
 
         if (taskNumber < 1 || taskNumber > this.tasks.size()) {
             CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
@@ -87,9 +94,16 @@ public class TaskList {
     }
 
     private String setDone(int taskNumber, boolean isDone) {
+        String log;
         Task task = this.tasks.get(taskNumber - 1);
-        task.setDone(isDone);
-        String log = String.format("Got it! \n\n    %s", task);
+        boolean hasChanged = task.setDone(isDone);
+        if (hasChanged) {
+            log = String.format("Got it! \n\n%s", task);
+        } else {
+            log = String.format("I've already marked it as "
+                    + (isDone ? "done" : "undone")
+                    + ".\n\n%s", task);
+        }
         return log;
     }
 
@@ -123,7 +137,7 @@ public class TaskList {
         }
         this.tasks.add(newTask);
         String log = String.format(
-                "I have added: \n    %s\n\n    We've got %s so far.",
+                "I have added: \n%s\n\nWe've got %s so far.",
                 newTask,
                 this.countTasks()
                 );
@@ -153,7 +167,7 @@ public class TaskList {
 
         Task taskDeleted = this.tasks.remove(taskNumber - 1);
         String log = String.format(
-                "I have removed: \n    %s\n\n    We've got %s left.",
+                "I have removed: \n%s\n\nWe've got %s left.",
                 taskDeleted,
                 this.countTasks()
                 );
@@ -206,7 +220,7 @@ public class TaskList {
     private String arrangeTasks(List<Task> tasks, String log) {
         for (int i = 0; i < tasks.size(); i++) {
             String taskLog = String.format(
-                    "\n    %d: %s",
+                    "\n%d: %s",
                     i + 1,
                     tasks.get(i)
                     );

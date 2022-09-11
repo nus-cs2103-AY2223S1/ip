@@ -20,8 +20,8 @@ public class TaskListTest {
     public void addTask_todo_returnsAddedTask() {
         String input = "todo Complete Assignment";
         String expectedOutput = "I have added: \n"
-                + "    (TODO) [ ] Complete Assignment !\n\n"
-                + "    We've got 1 task so far.";
+                + "(TODO) [ ] Complete Assignment !\n\n"
+                + "We've got 1 task so far.";
         String actualOutput = this.taskList.addTask(input, Task.Type.TODO);
         assertEquals(expectedOutput, actualOutput);
     }

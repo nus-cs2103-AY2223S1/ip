@@ -22,7 +22,7 @@ public class OutOfBoundsException extends CarbonException {
     @Override
     public String toString() {
         return String.format(
-                "%s\n    %s\n    Maybe you would like to try that again.",
+                "%s\n%s\nMaybe you would like to try that again.",
                 super.toString(),
                 this.getMessage()
         );

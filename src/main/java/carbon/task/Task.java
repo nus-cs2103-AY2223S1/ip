@@ -108,9 +108,14 @@ public abstract class Task {
      * Updates whether the task is done or not.
      *
      * @param isDone Whether the task is done or not.
+     * @return Whether there was a change.
      */
-    public void setDone(boolean isDone) {
+    public boolean setDone(boolean isDone) {
+        if (this.isDone == isDone) {
+            return false;
+        }
         this.isDone = isDone;
+        return true;
     }
 
     /**

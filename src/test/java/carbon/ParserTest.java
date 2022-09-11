@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import carbon.error.InvalidInputException;
-import carbon.error.OutOfBoundsException;
+import carbon.error.InvalidParamException;
 
 public class ParserTest {
     private Ui ui = new Ui();
@@ -25,12 +25,12 @@ public class ParserTest {
     }
 
     @Test
-    public void process_outOfBoundsIndex_returnsOutOfBoundsException() {
+    public void process_outOfBoundsIndex_returnsInvalidParamException() {
         String input = "mark -1";
         boolean hasError = false;
         try {
             this.parser.processCommand(input);
-        } catch (OutOfBoundsException error) {
+        } catch (InvalidParamException error) {
             hasError = true;
         }
         assertTrue(hasError);
