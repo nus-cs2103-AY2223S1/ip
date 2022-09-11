@@ -170,7 +170,13 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String res = ("Here are the tasks in your list:");
+        
+        if (tasks.size() == 0) {
+            String res = "\nHmm, you don't have any task yet!\n";
+            res += "\nUse todo/event/deadline to start adding your task \uD83D\uDE00";
+            return res;
+        }
+        String res = String.format("You have %d tasks in your list:", tasks.size());
         for (int i = 0; i <  tasks.size(); i++) {
             if (tasks.get(i) == null) {
                 break;
@@ -183,6 +189,9 @@ public class TaskList {
     public static String taskArrToString(Task[] tasksArr) {
         int i = 0;
         String res = "";
+        if (tasksArr.length == 0) {
+            return "Hmm, there's nothing here!";
+        }
         for (Task task : tasksArr) {
             res += String.format("\n %d.%s", i + 1, task.toString());
         }

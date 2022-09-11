@@ -33,8 +33,6 @@ public class Duke {
         assert storage != null : "Storage should be created";
         try {
             tasks = new TaskList(storage.load());
-            ui.showResponse(String.format("Here is the list that you have saved previously:\n%s", 
-                    tasks.toString()));
             if (!storage.getWarnings().isEmpty()) {
                 ui.showWarning(storage.getWarnings());
             }
@@ -42,6 +40,16 @@ public class Duke {
             ui.showErr(e.getMessage());
             tasks = new TaskList();
         } 
+    }
+
+    /**
+     * Returns the string representation of the the tasks list 
+     * managed by this duke instance.
+     *  
+     * @return String representation of the tasks list.
+     */
+    public String getTaskListString() {
+        return String.format("%s", tasks.toString());
     }
 
     /**
