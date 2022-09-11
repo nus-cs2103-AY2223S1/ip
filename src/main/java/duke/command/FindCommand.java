@@ -1,8 +1,6 @@
 package duke.command;
 
 import duke.Parser;
-import duke.Storage;
-import duke.task.Task;
 import duke.task.TaskList;
 
 public class FindCommand extends Command {
