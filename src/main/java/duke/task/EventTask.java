@@ -22,11 +22,13 @@ public class EventTask extends Task {
     public EventTask(String description) throws DateTimeParseException, DukeException {
         super();
         this.commandString = description;
-        description = description.substring(6);
+        int descriptionStartIndex = "event ".length();
+        description = description.substring(descriptionStartIndex);
         String[] split = description.split(" /at ");
-        if (split.length < 2) {
+        int correctSplitCount = 2;
+        if (split.length < correctSplitCount) {
             throw new DukeException("Deadline time (indicated by /by separator) is missing.");
-        } else if (split.length > 2) {
+        } else if (split.length > correctSplitCount) {
             throw new DukeException("Multiple usage of /by separator is not allowed.");
         }
         this.description = split[0];

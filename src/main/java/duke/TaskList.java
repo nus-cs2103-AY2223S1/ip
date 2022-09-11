@@ -97,10 +97,10 @@ public class TaskList {
      */
     public String findTask(String identifier) {
         String messageList = "";
-        int count = 1;
+        int taskCount = 1;
         for (Task t: tasks) {
             if (t.toString().contains(identifier)) {
-                messageList += "\n    " + count++ + ". " + t;
+                messageList += "\n    " + taskCount++ + ". " + t;
             }
         }
         return ui.printMessage("Here are the matching tasks in your list:\n    " + messageList);
@@ -123,9 +123,9 @@ public class TaskList {
      */
     public String generateList() {
         String messageList = "";
-        int count = 1;
+        int taskCount = 1;
         for (Task t: tasks) {
-            messageList += "\n    " + count++ + ". " + t;
+            messageList += "\n    " + taskCount++ + ". " + t;
         }
         return ui.printMessage("Here are the tasks in your list:\n    " + messageList);
     }
@@ -142,7 +142,8 @@ public class TaskList {
         if (tasks != null && tasks.length() <= 0) {
             return;
         }
-        for (String s: tasks.split("\n")) {
+        String[] taskSplit = tasks.split("\n");
+        for (String s: taskSplit) {
             try {
                 parser.parse(s, false);
             } catch (DukeException e) {

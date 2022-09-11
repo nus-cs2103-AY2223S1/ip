@@ -11,14 +11,14 @@ public class Ui {
                                      + "| | | | | | | |/ / _ \\\n"
                                      + "| |_| | |_| |   <  __/\n"
                                      + "|____/ \\__,_|_|\\_\\___|\n";
-    private Scanner sc;
+    private Scanner scanner;
     private boolean isVerbose;
 
     /**
      * Class constructor for Ui.
      */
     public Ui() {
-        sc = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         isVerbose = true;
     }
 
@@ -28,7 +28,7 @@ public class Ui {
      * @return Next line of user input.
      */
     public String getNextLine() {
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 
     /**
