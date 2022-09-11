@@ -1,5 +1,5 @@
 # About Luna 🌙
-Luna is your nature-themed desktop app that helps you complete your tasks in the prettiest way possible 🌻
+Luna is your nature-themed desktop app that helps you complete your tasks in the ~~most extra~~ prettiest way possible 🌻
 
 ✨ Take a sneak peek at Luna's GUI ✨
 
