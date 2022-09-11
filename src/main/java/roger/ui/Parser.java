@@ -138,7 +138,7 @@ public class Parser {
     private FindCommand parseFindArguments(String arguments) throws RogerInvalidInputException {
         String query = arguments.trim();
         if (query.isBlank()) {
-            throw new RogerInvalidInputException("Where your search term?");
+            throw new RogerInvalidInputException("Find tasks with `find <task name>`");
         }
         return new FindCommand(query);
     }
