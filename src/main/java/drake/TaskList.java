@@ -1,9 +1,9 @@
 package drake;
 
-import drake.tasks.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import drake.tasks.Task;
 
 /**
  * Represents a list of tasks.
@@ -88,6 +88,11 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Filters the task list and returns the tasks that match the given search keywords.
+     * @param searchKeywords The given search keywords.
+     * @return The tasks that match the given search keywords.
+     */
     public TaskList filter(List<String> searchKeywords) {
         TaskList result = new TaskList(new ArrayList<>());
 

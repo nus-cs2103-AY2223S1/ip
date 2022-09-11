@@ -1,8 +1,8 @@
 package drake;
 
-import drake.commands.Command;
-
 import java.io.IOException;
+
+import drake.commands.Command;
 
 /**
  * Entrypoint for the Drake to-do list chatbot.
