@@ -10,22 +10,22 @@ import bro.Ui;
  */
 public class ModifyCommand extends Command {
     /**
-     * An enum for modifyType.
+     * An enum for status.
      */
     public enum ModifyType {
         MARK, UNMARK
     }
 
-    private ModifyType modifyType;
+    private ModifyType status;
     private int index;
 
     /**
      * Constructor of the ModifyCommand class.
-     * @param modifyType Specifies the type of the modification to be done.
+     * @param status Specifies the type of the modification to be done.
      * @param index Gives the index value to the index variable.
      */
-    public ModifyCommand(ModifyType modifyType, int index) {
-        this.modifyType = modifyType;
+    public ModifyCommand(ModifyType status, int index) {
+        this.status = status;
         this.index = index;
     }
 
@@ -36,7 +36,7 @@ public class ModifyCommand extends Command {
      */
     @Override
     public String execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
-        switch (modifyType) {
+        switch (status) {
         case MARK:
             try {
                 return tasklist.markTask(this.index, storage);
