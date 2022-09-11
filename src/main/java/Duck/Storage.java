@@ -88,8 +88,7 @@ public class Storage {
                 list.get(i).writeToFile(writer);
             }
             writer.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("IOException at WriteListToFile!");
         }
 

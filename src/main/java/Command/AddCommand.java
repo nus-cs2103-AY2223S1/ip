@@ -1,32 +1,32 @@
-package Commands;
+package Command;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;
 import UI.UI;
 
 /**
- * DeleteCommand encapsulates the deletion of an item in the list
+ * AddCommand encapsulates the add a new item to list command
  */
-public class DeleteCommand extends Commands{
-    private int index;
+public class AddCommand extends Commands{
+    private Todo item;
 
     /**
-     * @param index index of item to be deleted
+     * @param item item to be added
      */
-
-    public DeleteCommand(int index){
-        this.index = index;
+    public AddCommand(Todo item) {
+        this.item = item;
     }
 
     /**
-     * @param list TaskList for index to be deleted
+     * @param list TaskList for item to be added
      * @param storage not really used here but abstract method requires it
      */
     @Override
     public void execute(TaskList<Todo> list, Storage storage, UI ui) {
-        Todo item = list.removeFromList(index);
-        ui.sendTextToUi("Quack! Deleted item: " + item);
+        list.addToList(item);
+        ui.sendTextToUi("Quack! Added new item: " + item);
     }
+
     /**
      * see commands superclass
      * @return returns false

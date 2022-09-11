@@ -1,4 +1,4 @@
-package Commands;
+package Command;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;

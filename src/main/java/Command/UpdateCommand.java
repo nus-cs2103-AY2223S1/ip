@@ -1,4 +1,4 @@
-package Commands;
+package Command;
 
 import Duck.Storage;
 import Duck.TaskList;
@@ -31,7 +31,6 @@ public class UpdateCommand extends Commands{
 
     /**
      * abstract function to be implemented by all subclasses
-     *
      * @param list    TaskList to be modified
      * @param storage Storage to be modified
      * @param ui UI to send information for display

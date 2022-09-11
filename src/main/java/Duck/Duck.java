@@ -1,6 +1,6 @@
 package Duck;
 import Models.Todo;
-import Commands.Commands;
+import Command.Commands;
 
 import Quackceptions.InvalidObjectClass;
 import UI.UI;
@@ -28,14 +28,13 @@ public class Duck {
         try {
             this.storage = new Storage("data", "duck.txt");
             this.list = new TaskList<Todo>(storage.readFromFile());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error! File not found!");
         }
     }
 
     /**
-     * function to receive the command inputs from the UI
+     * receive the command inputs from the UI
      * @param text user input
      * @param ui UI object that called this method
      */

@@ -6,17 +6,17 @@ import java.text.ParseException;
 
 public class Todo {
     protected String title;
-    protected boolean completed;
+    protected boolean isCompleted;
 
     /**
      * Class that encapsulates a Todo object
      * It has several subclasses including Deadline and Event
      * @param title title encapsulates the title of the todo object
-     * @param completed is a boolean value to keep track of the marked/unmarked status
+     * @param isCompleted is a boolean value to keep track of the marked/unmarked status
      */
-    public Todo(String title, boolean completed) {
+    public Todo(String title, boolean isCompleted) {
         this.title = title;
-        this.completed = completed;
+        this.isCompleted = isCompleted;
     }
     /**
      * @return String where string is the objects title
@@ -28,15 +28,15 @@ public class Todo {
      * @return boolean where boolean is the object's completion status
      **/
     public boolean isCompleted() {
-        return completed;
+        return isCompleted;
     }
 
     public void completeTask() {
-        this.completed = true;
+        this.isCompleted = true;
     }
 
     public void unCompleteTask() {
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     public void setTitle(String title) {
@@ -51,10 +51,10 @@ public class Todo {
      * @throws IOException Exception happens when writer cannot be accessed
      */
     public void writeToFile(FileWriter writer) throws IOException {
-        writer.write(String.format("T;%s;%d\n", this.title, this.completed ? 1 : 0));
+        writer.write(String.format("T;%s;%d\n", this.title, this.isCompleted ? 1 : 0));
     }
     public String toString() {
-        String s = completed ? "[X]" : "[ ]";
+        String s = isCompleted ? "[X]" : "[ ]";
         return String.format("[T] %s %s",s , this.title);
     }
 }

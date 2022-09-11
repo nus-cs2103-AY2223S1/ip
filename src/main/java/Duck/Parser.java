@@ -1,15 +1,15 @@
 package Duck;
 
-import Commands.Commands;
-import Commands.ExitCommand;
-import Commands.ListCommand;
-import Commands.AddCommand;
-import Commands.MarkCommand;
-import Commands.UnmarkCommand;
-import Commands.DeleteCommand;
-import Commands.ErrorCommand;
-import Commands.FindCommand;
-import Commands.UpdateCommand;
+import Command.Commands;
+import Command.ExitCommand;
+import Command.ListCommand;
+import Command.AddCommand;
+import Command.MarkCommand;
+import Command.UnmarkCommand;
+import Command.DeleteCommand;
+import Command.ErrorCommand;
+import Command.FindCommand;
+import Command.UpdateCommand;
 
 import Models.Todo;
 import Models.Event;
@@ -37,10 +37,13 @@ public class Parser {
      */
     public static Commands parseText(String input, UI ui)  {
         try {
-            if (input.contains(";")) throw new UnallowedCharacterException(";");
-            else if (input.toUpperCase().equals("BYE")) return new ExitCommand();
-            else if (input.toUpperCase().equals("LIST")) return new ListCommand();
-            else {
+            if (input.contains(";")) {
+                throw new UnallowedCharacterException(";");
+            } else if (input.toUpperCase().equals("BYE")) {
+                return new ExitCommand();
+            } else if (input.toUpperCase().equals("LIST")) {
+                return new ListCommand();
+            } else {
                 return commandsWithArguments(input, ui);
             }
         } catch (ArrayIndexOutOfBoundsException a) {

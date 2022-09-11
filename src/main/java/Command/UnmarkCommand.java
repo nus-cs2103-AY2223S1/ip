@@ -1,24 +1,24 @@
-package Commands;
+package Command;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;
 import UI.UI;
 
 /**
- * Encapsulates the mark command
+ * Encapsulates the unmark command
  */
-public class MarkCommand extends Commands{
+public class UnmarkCommand extends Commands {
     private int index;
 
     /**
-     * @param index index of item to be marked
+     * @param index index of item to be unmarked
      */
-    public MarkCommand(int index){
+    public UnmarkCommand(int index){
         this.index = index;
     }
 
     /**
-     * function to mark the item with the given index
+     * function to unmark the item with the given index
      * function simply calls retrieves the item and
      * calls the completeTask() function on it
      *
@@ -28,10 +28,10 @@ public class MarkCommand extends Commands{
     @Override
     public void execute(TaskList<Todo> list, Storage storage, UI ui) {
         Todo item = list.get(index);
-        item.completeTask();
-        ui.sendTextToUi("Quack! Marked item: " + item);
+        item.unCompleteTask();
+        ui.sendTextToUi("Quack! Unmarked item: " + item);
     }
-
+    
     /**
      * see super class
      * @return returns false
