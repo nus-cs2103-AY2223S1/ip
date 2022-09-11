@@ -178,10 +178,14 @@ Usage: `bye`
 
 # UI Screenshots
 
-### Main Window
+<h3 align="center">Main Window</h3>
 
+<p align="center">
 <img alt="Main Window" height="1000" src="Ui-main.png">
+</p>
 
-### Help Window
+<h3 align="center">Help Window</h3>
 
+<p align="center">
 <img alt="Help Window" height="1000" src="Ui-help.png">
+</p>
