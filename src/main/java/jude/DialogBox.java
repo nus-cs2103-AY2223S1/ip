@@ -29,8 +29,8 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
     /**
-     * A dialog box component, which contains a profile picture representing a user, and some
-     * text which represents what the user says.
+     * Creates a dialog box component, which contains a profile picture representing a user, and
+     * some text which represents what the user says.
      *
      * @param text What the user is saying.
      * @param img The profile picture of the user.

@@ -54,7 +54,7 @@ public class Parser {
         try {
             dateObject = LocalDateTime.parse(date);
         } catch (DateTimeParseException ex) {
-            boolean valid = false;
+            boolean isValid = false;
             String[] dateTimeFormats = {
                 "yyyy-MM-dd",
                 "yyyy-MM-dd H:mm",
@@ -84,7 +84,7 @@ public class Parser {
                     } else {
                         dateObject = LocalDateTime.parse(date, dateFormat);
                     }
-                    valid = true;
+                    isValid = true;
                     break;
                 } catch (DateTimeParseException ignored) {
                     /*
@@ -93,7 +93,7 @@ public class Parser {
                      */
                 }
             }
-            if (!valid) {
+            if (!isValid) {
                 throw new IllegalCommandException("Please input a valid date, e.g. 21 Aug 2022, "
                         + "Aug 21 2022 or 2022-08-21.");
             }
@@ -316,7 +316,7 @@ public class Parser {
     }
 
     /**
-     * List the tasks in a user-friendly format.
+     * Lists the tasks in a user-friendly format.
      *
      * @param tasks The tasks to display.
      */
