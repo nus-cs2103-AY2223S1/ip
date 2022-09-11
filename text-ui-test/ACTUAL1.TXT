@@ -29,7 +29,7 @@
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][ ] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -72,7 +72,7 @@
 | 1.[T][X] homework
 | 2.[E][X] meet friends (at: [unknown])
 | 3.[E][ ] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -94,7 +94,7 @@
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][ ] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -112,7 +112,7 @@
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -123,14 +123,14 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Marked your task as done:
-| [E][X] meet people at function x/y/z whatever (at: 7:12am)
+| [E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -148,7 +148,7 @@
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][X] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -166,7 +166,7 @@
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][X] /at mysterious (by: [unknown])
 | 6.[D][X] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -185,14 +185,14 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | That's going to happen at some time later:
-| [E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| [E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][X] /at mysterious (by: [unknown])
 | 6.[D][X] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -202,7 +202,7 @@
 | 11.[T][ ] project 12
 | 12.[E][ ] meet friends (at: [unknown])
 | 13.[E][ ] meet people at dinner (at: 6:25 pm)
-| 14.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 14.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Good luck with the deadline, here's the task:
@@ -221,7 +221,7 @@
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][X] /at mysterious (by: [unknown])
 | 6.[D][X] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -231,7 +231,7 @@
 | 11.[T][ ] project 12
 | 12.[E][ ] meet friends (at: [unknown])
 | 13.[E][ ] meet people at dinner (at: 6:25 pm)
-| 14.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 14.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 15.[D][ ] /at mysterious (by: [unknown])
 | 16.[D][ ] /by mysterious number 2 (by: [unknown])
 | 17.[D][ ] rush this please (by: when?)
@@ -249,7 +249,7 @@
 ,----------------------------------------------------------------
 | Here, your tasks:
 | 1.[T][ ] homework
-| 2.[E][X] meet people at function x/y/z whatever (at: 7:12am)
+| 2.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 3.[D][X] /at mysterious (by: [unknown])
 | 4.[D][X] /by mysterious number 2 (by: [unknown])
 | 5.[D][ ] rush this please (by: when?)
@@ -259,7 +259,7 @@
 | 9.[T][ ] project 12
 | 10.[E][ ] meet friends (at: [unknown])
 | 11.[E][ ] meet people at dinner (at: 6:25 pm)
-| 12.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 12.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 13.[D][ ] /at mysterious (by: [unknown])
 | 14.[D][ ] /by mysterious number 2 (by: [unknown])
 | 15.[D][ ] rush this please (by: when?)
@@ -283,7 +283,7 @@
 ,----------------------------------------------------------------
 | Here, your tasks:
 | 1.[T][ ] homework
-| 2.[E][X] meet people at function x/y/z whatever (at: 7:12am)
+| 2.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 3.[D][X] /at mysterious (by: [unknown])
 | 4.[D][X] /by mysterious number 2 (by: [unknown])
 | 5.[D][ ] rush this please (by: when?)
@@ -293,7 +293,7 @@
 | 9.[T][ ] project 12
 | 10.[E][ ] meet friends (at: [unknown])
 | 11.[E][ ] meet people at dinner (at: 6:25 pm)
-| 12.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 12.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 13.[D][ ] /at mysterious (by: [unknown])
 | 14.[D][ ] /by mysterious number 2 (by: [unknown])
 | 15.[D][ ] rush this please (by: when?)

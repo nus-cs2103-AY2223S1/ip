@@ -29,7 +29,7 @@ mark 6
 list
 event meet friends
 event meet people at dinner /at 6:25 pm
-event meet people at function x/y/z whatever /at oh no not this /by /at 7:12am
+event meet people at function x/y/z whatever /at oh no not this /by /at 7:12am 1524 Fri NOV
 list
 deadline /at mysterious
 deadline /by mysterious number 2

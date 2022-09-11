@@ -25,6 +25,22 @@ public class StringMatcher<T> {
         this.getResult = getResult;
     }
 
+    public static Predicate<String> getCaseInsensitiveMatcher(String[] matches) {
+        String[] copy = new String[matches.length];
+        for (int i = 0; i < matches.length; i++) {
+            copy[i] = matches[i].toLowerCase();
+        }
+        return s -> {
+            String lowercase = s.toLowerCase();
+            for (String candidate : copy) {
+                if (lowercase.equals(candidate)) {
+                    return true;
+                }
+            }
+            return false;
+        };
+    }
+
     /**
      * Checks if the string matches.
      * If it does, it would give the result.

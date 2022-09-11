@@ -49,7 +49,7 @@ public class TaskList {
     }
 
     /**
-     * Get tasks that match the search term.
+     * Gets tasks that match the search term.
      *
      * @param query Search term.
      * @return List of tasks.
