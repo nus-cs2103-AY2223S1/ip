@@ -1,8 +1,8 @@
-# Duke
+# dukeBot Ver. Pingu
 >"A computer once beat me at chess, but it was no match for me at kick boxing." – Emo Philips
 ([source](https://www.brainyquote.com/quotes/emo_philips_128993))
 
-Duke frees your mind of having to remember things you need to do. It's,
+dukeBot Ver. Pingu frees your mind of having to remember things you need to do. It's,
 - text-based
 - easy to learn
 - ~~FAST~~ _SUPER FAST_ to use
