@@ -4,22 +4,25 @@
 
 <summary>Contents</summary>
 
-1. [About Luna](https://github.com/fannyjian/ip/blob/master/docs/README.md#about-luna-%EF%B8%8F)
-2. [GUI Preview](https://github.com/fannyjian/ip/blob/master/docs/README.md#sneak-peak-of-lunas-gui-)
-3. [Getting Started](https://github.com/fannyjian/ip/blob/master/docs/README.md#get-started-with-luna-%EF%B8%8F)
-4. [Features](https://github.com/fannyjian/ip/blob/master/docs/README.md#features-%EF%B8%8F)
-5. [User Guide](https://github.com/fannyjian/ip/blob/master/docs/README.md#user-guide-)
+1. [About Luna](#about-luna)
+2. [GUI Preview](#sneak-peek)
+3. [Getting Started](#getting-started)
+4. [Features](#features)
+5. [User Guide](#user-guide)
 
 </details>
 
+<a name="about-luna"></a>
 ## <h1 align = "center"/>About Luna ☀️
 Luna is your nature-themed graphical user interface (GUI) desktop app that is sure to help you complete your tasks in the prettiest way possible 🌻
 <br/><br/>
 
-## <h1 align = "center"/>Sneak peak of Luna's GUI 🌤
+<a name="sneak-peek"></a>
+## <h1 align = "center"/>Sneak peek of Luna's GUI 🌤
 <p align = "center"/><img src="Ui.png" width=40% height=40%/>
 <br/><br/>
 
+<a name="getting-started"></a>
 ## <h1 align = "center"/>Get started with Luna ⛅️
 1. Download the `jar` file from this [page](https://github.com/fannyjian/ip/releases/tag/A-Release)
 2. Navigate to the directory containing the `jar` file in terminal
@@ -31,6 +34,7 @@ Luna is your nature-themed graphical user interface (GUI) desktop app that is su
 or Luna will not be able to save your tasks to storage! ⚡️** 
 <br/><br/>
 
+<a name="features"></a>
 ## <h1 align = "center"/>Features ☁️
 
 ### Add and delete tasks
@@ -53,6 +57,7 @@ Still need to work on more on your task?
 - Search by keyword for specific tasks 🌹
 <br/><br/>
 
+<a name="user-guide"></a>
 ## <h1 align = "center"/>User Guide 🌙
 
 ### 1. `todo` 🌸
