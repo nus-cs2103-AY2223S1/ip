@@ -1,6 +1,6 @@
 # User Guide
 
-Duke is a dedicated task manager chat-bot app that helps you **record and manage your tasks.** It is designed to free user mind and **ease them in remembering all the different tasks and crucial dates in their life.** It uses **Command Line Interface (CLI)** to operate and **integrates with Graphical User Interfaces (GUI)** to enhance user experiences.
+Duke is a dedicated task manager chatBot app that helps you **record and manage your tasks.** It is designed to free user mind and **ease them in remembering all the different tasks and crucial dates in their life.** It uses **Command Line Interface (CLI)** to operate and **integrates with Graphical User Interfaces (GUI)** to enhance user experiences.
 
 ## Quick start
 
@@ -67,15 +67,16 @@ Use list command to show the current tasks list you have if you are not sure wha
 <details><summary>Event task is added with a correct format and duke response user the command success status</summary>
 
 * Example of usage:</br>
-  `event go for final exam /at 2022-11-04 1000`
+  <code>event go for final exam /at 2022-11-04 1000</code>
 
-* Expected outcome:
-    ```
-    ~~~~~-----DUKE-----~~~~~
+* Expected outcome:</br>
+  <pre>
+    <code>~~~~~~~-----DUKE-----~~~~~~~
     New task is registered as you wish, you can come back to check if you wish!:
     [E][ ] go for final exam (at: Nov 04 2022 10:00)
-    Now you have 1 tasks in your list.
-    ```
+    Now you have 1 tasks in your list.</code>
+  </pre>
+
 * **Description:** There is currently 1 task in user's list and the adding command performed successfully.
 </details>
 
@@ -84,32 +85,33 @@ Use list command to show the current tasks list you have if you are not sure wha
 <details><summary>Event task is deleted and there are currently 0 task in the list</summary>
 
 * Example of usage:</br>
-  `delete 1`
+  <code>delete 1</code>
 
 * Expected outcome:
-    ```
-    ~~~~~-----DUKE-----~~~~~
+  <pre>
+    <code>~~~~~-----DUKE-----~~~~~
     Ching Ching Poof~~ This task is removed:
     [E][ ] go for final exam (at: Nov 04 2022 10:00)
-    Now you have 0 tasks on your list.
-    ```
+    Now you have 0 tasks on your list.</code>
+  </pre>
+  
 * **Description:** There is currently 0 task in user's list and the deleting command performed successfully.
 </details>
 
 ### `find` - finding a task with search keyword.
 
-<details><summary>Find a task which contain `exam` word in it's detail</summary>
+<details><summary>Find a task which contain <code>exam</code> word in it's detail</summary>
 
 * Example of usage:</br>
-`find exam`
+  <code>find exam</code>
 
 * Expected outcome:
-    ``` 
-    ~~~~~-----DUKE-----~~~~~
+  <pre>
+    <code>~~~~~-----DUKE-----~~~~~
     Here you go! your matching tasks in your list
     [T][ ] exam preparation
-    [E][ ] exam at Utown (at: Nov 12 2022 19:00)
-    ```
+    [E][ ] exam at Utown (at: Nov 12 2022 19:00) </code>
+  </pre>
 
 * **Description:** There is currently 2 tasks in user's list with "exam" detail.
 </details>
@@ -119,18 +121,19 @@ Use list command to show the current tasks list you have if you are not sure wha
 <details><summary>Show all tasks added in the tasks list</summary>
 
 * Example of usage:</br>
-`list`
+<code>list</code>
 
 * Expected outcome:
-    ```
-    ~~~~~-----DUKE-----~~~~~
+  <pre>
+    <code>~~~~~-----DUKE-----~~~~~
     Weeeee, your current list is as follow:
     1. [E][ ] dummyEvent (at: Sep 11 2011 11:30)
     2. [D][ ] dummyDeadline (by: Jan 28 2011 09:00)
     3. [T][ ] dummyTodo
     4. [T][ ] exam preparation
-    5. [E][ ] exam at Utown (at: Nov 12 2022 19:00)
-    ```
+    5. [E][ ] exam at Utown (at: Nov 12 2022 19:00)</code>
+  </pre>
+  
 * **Description:** There are currently 6 tasks in user's list and all of them are undone.
 </details>
 
@@ -139,20 +142,20 @@ Use list command to show the current tasks list you have if you are not sure wha
 <details><summary>Mark and unmark a task</summary>
 
 * Example of usage:</br>
-`mark 1`</br>
-`unmark 1`
+<code>mark 1</code></br>
+<code>unmark 1</code>
 
 * Expected outcome:
-    ```
-    ~~~~~-----DUKE-----~~~~~
+  <pre>
+    <code>~~~~~-----DUKE-----~~~~~
     Nice! this task is marked as done. Good Job!
-    [E][X] dummyEvent (at: Sep 11 2011 11:30)
-    ```
-    ```
-    ~~~~~-----DUKE-----~~~~~
+    [E][X] dummyEvent (at: Sep 11 2011 11:30)</code>
+  </pre>
+  <pre>
+    <code>~~~~~-----DUKE-----~~~~~
     This task is marked as not done. Keep it up!
-    [E][ ] dummyEvent (at: Sep 11 2011 11:30)
-    ```
+    [E][ ] dummyEvent (at: Sep 11 2011 11:30)</code>
+  </pre>
 * **Description:** The event task is mark as "done" and unmark as "undone" respectively
 </details>
 
@@ -161,49 +164,51 @@ Use list command to show the current tasks list you have if you are not sure wha
 <details><summary>Tasks date and time is close</summary>
 
 * Example of input: </br>
-`event attend party /at 2011-09-11 1300`
+<code>event attend party /at 2011-09-11 1300</code>
 
 * Expected outcome:
-    ```
-    ~~~~~-----DUKE-----~~~~~
+  <pre>
+    <code>~~~~~-----DUKE-----~~~~~
     Hey, these two tasks timing are quite close, are you sure to proceed? (Y/N)
     New Task: [E][ ] attend party (at: Sep 11 2011 13:00)
-    Existing Task: [E][ ] dummyEvent (at: Sep 11 2011 11:30)
-    ```
+    Existing Task: [E][ ] dummyEvent (at: Sep 11 2011 11:30)</code>
+  </pre>
+    
 * **Description:** This happens because there is another event task in the task list occur at close timing. Please respond `Y` to proceed adding task or `N` to cancel the previous add task command.
 </details>
 
-### Response for random input
+### Other Responses
 
 <details><summary>Random Input</summary>
 
 * Example of random input:</br>
-`hi`
+<code>hi</code>
 
 * Expected outcome:
-    ```
-    ~~~~~-----DUKE-----~~~~~
+  <pre>
+    <code>~~~~~-----DUKE-----~~~~~
     Based on my understanding, your command didn't follow the format
     todo              : todo [task description]
     deadline          : deadline [task description] /by [YYYY-MM-DD HHmm]
     event             : event [task description] /at [YYYY-MM-DD HHmm]
     single command    : | bye | list |
     mark/unmark/delete: [command] [number of task in list you wish to modify]
-    find              : find [search keyword]
-    ```
+    find              : find [search keyword]</code>
+  </pre>
+  
 * **Description:** Duke will not understand any random input. It will show the available input if it does not recognise the input.
 </details>
 
 <details><summary>Incorrect date format</summary>
 
-* Example of error input 1:</br>
-`deadline some deadline /by 09-01-2022 0900`
+* Example of incorrect date format:</br>
+<code>deadline some deadline /by 09-01-2022 0900</code>
 
 * Expected outcome:
-    ```
-    ~~~~~-----DUKE-----~~~~~
+  <pre>
+    <code>~~~~~-----DUKE-----~~~~~
     Date and time format should be [YYYY-MM-DD HHmm]!
-    (eg. 2022-08-21 1300)
-    ```
+    (eg. 2022-08-21 1300)</code>
+  </pre>
 * **Description:** Duke will show the correct date format that user should use while interacting with the app.
 </details>
