@@ -21,15 +21,15 @@ public class Rabbit {
     public final String GREET = "Yo...nice to meet you. This is rabbit...\n"
             + "Ughhhhh I hate this job.\n"
             + "You can input stuff that you want me to write on this grandma-aged notebook.\n"
-            + "Type 'instructions' to check what you can do."
+            + "Type 'instructions' to check what you can do.\n"
             + "Actually why not just do me a favour? Close this window and free both of us.\n";
 
     public final String[] INSTRUCTIONS =  {"1. Type the type of a task followed by its content and time to add it into the list.\n"
             + "   There are three types: todo, deadline and event.\n"
-            + "   - To add todo, type 'todo the content' such as 'todo do homework'.\n"
-            + "   - To add deadline, type 'deadline the content /year-month-day-time' "
-            + "such as 'deadline do homework /2022-08-22-1800'.\n"
-            + "   - To add event, type 'event the content /year-month-day-time' "
+            + "   - To add todo, type 'todo the content' such as 'todo do homework'.\n",
+            "   - To add deadline, type 'deadline the content /year-month-day-time' "
+            + "such as 'deadline do homework /2022-08-22-1800'.\n",
+            "   - To add event, type 'event the content /year-month-day-time' "
             + "such as 'deadline do homework /2022-08-22-1800'.\n",
             "2. Type 'list' then I'll show all the existing lines to you.\n"
             + "3. Type 'mark + the index of an existing task' to marks it as done. Like 'mark 1'.\n"
