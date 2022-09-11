@@ -1,6 +1,5 @@
 package duke.parser;
 
-import duke.Duke;
 import duke.command.Command;
 import duke.command.AddCommand;
 import duke.command.DeleteCommand;
@@ -15,7 +14,6 @@ import duke.model.Deadline;
 import duke.model.Event;
 import duke.model.ToDo;
 
-import java.text.NumberFormat;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 
@@ -74,57 +72,83 @@ public class Parser {
      * @return a Command associated with the user's input
      */
     public static Command parse(String userInput) throws DukeException {
-
         String[] input = userInput.split(" ", 2);
-
         String inputKeyword = input[0];
-
         Keyword keyword = Keyword.getKeyword(inputKeyword);
 
-        String[] description;
-
-        String[] inputArray;
+        checkInputValidity(userInput, keyword);
 
         Command command;
+        String[] description;
+        String[] dates;
 
         switch (keyword) {
-        case BYE:
-            command = new ExitCommand();
-            break;
-        case LIST:
-            command = new ListCommand();
-            break;
-        case MARK:
-            try {
-                inputArray = userInput.split(" ", 2);
-                Integer.parseInt(inputArray[1]);
+            case BYE:
+                command = new ExitCommand();
+                break;
+            case LIST:
+                command = new ListCommand();
+                break;
+            case MARK:
                 command = new MarkCommand(parseInt(input[1]));
                 Parser.updateLastUserInput(userInput);
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("Please put in a valid task number!");
-            }
-            break;
-        case UNMARK:
-            try {
-                inputArray = userInput.split(" ", 2);
-                Integer.parseInt(inputArray[1]);
+                break;
+            case UNMARK:
                 command = new UnmarkCommand(parseInt(input[1]));
                 Parser.updateLastUserInput(userInput);
+                break;
+            case TODO:
+                command = new AddCommand(new ToDo(input[1]));
+                Parser.updateLastUserInput(userInput);
+                break;
+            case DEADLINE:
+                description = input[1].split(" /by ", 2);
+                command = new AddCommand(new Deadline(description[0], description[1]));
+                Parser.updateLastUserInput(userInput);
+                break;
+            case EVENT:
+                description = input[1].split(" /at ", 2);
+                dates = description[1].split(" ");
+                command = new AddCommand(new Event(description[0], dates[0], dates[1]));
+                Parser.updateLastUserInput(userInput);
+                break;
+            case DELETE:
+                command = new DeleteCommand(parseInt(input[1]));
+                Parser.updateLastUserInput(userInput);
+                break;
+            case FIND:
+                command = new FindCommand(input[1]);
+                break;
+            case UNDO:
+                command = new UndoCommand(lastUserInput);
+                break;
+            default:
+                throw new DukeException("Invalid command!");
+        }
+        return command;
+    }
+
+    public static void checkInputValidity(String userInput, Keyword keyword) throws DukeException {
+        String[] input = userInput.split(" ", 2);
+        String[] inputArray = userInput.split(" ", 0);
+        String[] description;
+
+        switch (keyword) {
+        case MARK:
+        case UNMARK:
+        case DELETE:
+            try {
+                Integer.parseInt(input[1]);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 throw new DukeException("Please put in a valid task number!");
             }
             break;
         case TODO:
-            inputArray = userInput.split(" ", 0);
             if (inputArray.length < 2) {
                 throw new DukeException("Please put in a description!");
             }
-            command = new AddCommand(new ToDo(input[1]));
-            Parser.updateLastUserInput(userInput);
             break;
         case DEADLINE:
-            inputArray = userInput.split(" ", 0);
-
             if (!userInput.contains("/by")) {
                 throw new DukeException("Please include '/by'!");
             } else if (inputArray[1].equals("/by")) {
@@ -137,11 +161,8 @@ public class Parser {
             if (!Parser.isValid(description[1]) || description[1].split(" ").length > 1) {
                 throw new DukeException("Invalid date given!");
             }
-            command = new AddCommand(new Deadline(description[0], description[1]));
-            Parser.updateLastUserInput(userInput);
             break;
         case EVENT:
-            inputArray = userInput.split(" ", 0);
             if (!userInput.contains("/at")) {
                 throw new DukeException("Please include '/at'!");
             } else if (inputArray[1].equals("/at")) {
@@ -159,29 +180,22 @@ public class Parser {
             if (!Parser.isValid(dates[0]) || !Parser.isValid(dates[1])) {
                 throw new DukeException("Invalid start/end date!");
             }
-            command = new AddCommand(new Event(description[0], dates[0], dates[1]));
-            Parser.updateLastUserInput(userInput);
-            break;
-        case DELETE:
-            try {
-                inputArray = userInput.split(" ", 2);
-                Integer.parseInt(inputArray[1]);
-                command = new DeleteCommand(parseInt(input[1]));
-                Parser.updateLastUserInput(userInput);
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("Please put in a valid task number!");
-            }
             break;
         case FIND:
-            command = new FindCommand(input[1]);
+            if (input.length < 2) {
+                throw new DukeException("Please include a description to search!");
+            }
             break;
+        case BYE:
+        case LIST:
         case UNDO:
-            command = new UndoCommand(lastUserInput);
+            if (input.length != 1) {
+                throw new DukeException("Unexpected arguments detected!");
+            }
             break;
         default:
-            throw new DukeException("Invalid command!");
+            break;
         }
-        return command;
     }
 
     /**
