@@ -8,9 +8,9 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" alignment="CENTER_RIGHT" ellipsisString="" prefHeight="137.0" prefWidth="138.0" text="Label" textOverrun="CLIP" wrapText="true">
+        <Label fx:id="dialog" alignment="CENTER_RIGHT" ellipsisString="" prefHeight="314.0" prefWidth="268.0" text="Label" textOverrun="CLIP" wrapText="true">
          <font>
-            <Font name="Serif Regular" size="12.0" />
+            <Font name="Serif Bold" size="14.0" />
          </font>
          <HBox.margin>
             <Insets />
