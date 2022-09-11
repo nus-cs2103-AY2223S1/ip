@@ -1,4 +1,4 @@
-package seedu.duke.Ui;
+package seedu.duke.ui;
 
 import java.io.IOException;
 import java.util.Collections;

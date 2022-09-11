@@ -2,25 +2,25 @@ package seedu.duke.task;
 
 public abstract class Task {
     private final String taskName;
-    private boolean taskDone;
+    private boolean isDone;
 
     Task(String taskName) {
         this.taskName = taskName;
-        this.taskDone = false;
+        this.isDone = false;
     }
 
     public boolean check() {
-        if (taskDone) {
+        if (isDone) {
             return false;
         } else {
-            taskDone = true;
+            isDone = true;
             return true;
         }
     }
 
     public boolean uncheck() {
-        if (taskDone) {
-            taskDone = false;
+        if (isDone) {
+            isDone = false;
             return true;
         } else {
             return false;
@@ -29,10 +29,10 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return String.format("[%c] %s", (taskDone ? 'X' : ' '), taskName);
+        return String.format("[%c] %s", (isDone ? 'X' : ' '), taskName);
     }
 
     public String saveFileFormat() {
-        return String.format("%d###%s", taskDone ? 1 : 0, taskName);
+        return String.format("%d###%s", isDone ? 1 : 0, taskName);
     }
 }

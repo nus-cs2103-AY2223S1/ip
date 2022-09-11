@@ -22,7 +22,7 @@ public class Storage {
     private final String filePath;
 
     /**
-     * To initialize a Storage, a filepath to the data file is needed.
+     * Returns new Storage instance with the provided filePath.
      *
      * @param filePath      Filepath to data file
      */

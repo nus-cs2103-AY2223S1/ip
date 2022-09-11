@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import seedu.duke.Ui.MainWindow;
+import seedu.duke.ui.MainWindow;
 
 /**
  * A GUI for Duke using FXML.
