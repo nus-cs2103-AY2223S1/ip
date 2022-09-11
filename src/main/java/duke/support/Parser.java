@@ -43,16 +43,19 @@ public class Parser {
             // if unmark, update status
             char b = a.charAt(7);
             int c = Character.getNumericValue(b);
+            assert (c <= Task.getNumberTasks()) : "There is no task " + c;
             this.taskList.markIncomplete(c);
             output = "ok! task " + c + " has been unmarked!";
         } else if (a.contains("mark")) {
             char b = a.charAt(5);
             int c = Character.getNumericValue(b);
+            assert (c <= Task.getNumberTasks()) : "There is no task " + c;
             this.taskList.markComplete(c);
             output = "ok! task " + c + " has been marked!";
         } else if (a.contains("delete")) {
             char b = a.charAt(7);
             int c = Character.getNumericValue(b);
+            assert (c <= Task.getNumberTasks()) : "There is no task " + c;
             int numberTasksLeft = Task.getNumberTasks() - 1;
             Task deletedTask = this.taskList.getTaskArr()[c];
             this.taskList.deleteTask(c, numberTasksLeft);
@@ -69,6 +72,7 @@ public class Parser {
             this.taskList.addTask(newTask);
             output = Ui.printToDo(newTask);
         } else if (a.contains("deadline")) {
+            assert a.contains("by") : "Please provide a deadline.";
             String description = a.substring(9, a.lastIndexOf("/") - 1);
             String day = a.substring(a.lastIndexOf("/by") + 4);
             try {
@@ -83,6 +87,7 @@ public class Parser {
                 return DukeException.dateTimeException();
             }
         } else if (a.contains("event")) {
+            assert a.contains("at") : "please provide a deadline";
             String description = a.substring(6, a.lastIndexOf("/") - 1);
             String time = a.substring(a.lastIndexOf("/at") + 4);
             Event newTask = new Event(description, time);
@@ -93,12 +98,14 @@ public class Parser {
             String word = a.substring(5);
             int index = 1;
             String findList = "";
+            assert(Task.getNumberTasks() > 0);
             for (int i = 1; i <= Task.getNumberTasks(); i++) {
                 if (this.taskList.getTaskArr()[i].output().contains(word)) {
                     findList = findList + Ui.printFindTasks(index, this.taskList.getTaskArr()[i].output()) + "\n";
                     index++;
                 }
             }
+            assert index > 1 : "No tasks contain this word";
             output =  Ui.printFind() + "\n" + findList;
         } else if (a.equals("bye")) {
             output = Ui.printBye();
