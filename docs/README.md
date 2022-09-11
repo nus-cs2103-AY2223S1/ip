@@ -1,8 +1,3 @@
-<a name="sneak-peek"></a>
-## Sneak peek of Luna's GUI 🌤
-![image](https://github.com/fannyjian/ip/blob/master/docs/Ui.png?raw=true)
-<br/><br/>
-
 <a name="getting-started"></a>
 ## Get started with Luna ⛅️
 1. Download `luna-v1.0.jar` from this [page](https://github.com/fannyjian/ip/releases/tag/A-Release)
