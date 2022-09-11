@@ -1,6 +1,4 @@
-package sakura;
-
-import java.time.LocalDateTime;
+package sakura.task;
 
 /**
  * Abstract representation of a task in the Sakura database.

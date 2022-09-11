@@ -1,5 +1,7 @@
 package sakura;
 
+import sakura.task.TaskList;
+
 import java.io.IOException;
 
 /**
@@ -14,7 +16,6 @@ public class Parser {
      * @param taskList Tasklist object created with Sakura
      */
     public static String parseCommand(String input, TaskList taskList) {
-        System.out.println(Sakura.ui.printDiv());
         if (input.equals("bye")) {
             Sakura.inProgress = false;
             return exit();

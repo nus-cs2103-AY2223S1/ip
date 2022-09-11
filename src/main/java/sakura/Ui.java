@@ -3,6 +3,7 @@ package sakura;
 import java.util.List;
 
 import javafx.application.Platform;
+import sakura.task.Task;
 
 public class Ui {
     static String DIV = "_________________________________________________________________";

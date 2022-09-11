@@ -1,48 +1,48 @@
-package sakura;
+package sakura.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a deadline task.
+ * Represents an event as a task in the list.
  */
-public class Deadline extends Task {
+public class Event extends Task {
 
     protected LocalDateTime date;
 
     /**
-     * Constructor for a deadline.
+     * Constructor for event.
      *
-     * @param description description of the task.
-     * @param date The deadline in datetime format for the task.
+     * @param description description of the event.
+     * @param date the time of the event in datetime format.
      */
-    public Deadline(String description, String date) {
+    public Event(String description, String date) {
         super(description, date);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         this.date = LocalDateTime.parse(date, formatter);
     }
 
     /**
-     * Convert the deadline into the specific string for data saving.
+     * Convert the event into the specific string for data saving.
      *
      * @return the string representation in the specific format for database
      */
     @Override
     public String stringifyTask() {
         String timeFormat = this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-        return String.format("D|%d|%s|%s", this.isDone ? 1 : 0, this.description, timeFormat);
+        return String.format("E|%d|%s|%s", this.isDone ? 1 : 0, this.description, timeFormat);
     }
 
     /**
-     * Return the string representation of the deadline.
+     * Return the string representation of the task.
      *
-     * @return string representation of the deadline
+     * @return string representation of the task
      */
     @Override
     public String toString() {
         String timeFormat = this.date.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"));
-        return "(DEADLINE)" + super.toString() + " (date: " + timeFormat + ")";
+        return "(EVENT)" + super.toString() + " (at: " + timeFormat + ")";
     }
 }
-//[31m
+//[35m
 //[0m

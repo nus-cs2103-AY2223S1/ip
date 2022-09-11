@@ -1,5 +1,7 @@
 package sakura;
 
+import sakura.task.*;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;

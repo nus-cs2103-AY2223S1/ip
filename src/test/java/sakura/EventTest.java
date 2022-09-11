@@ -1,6 +1,7 @@
 package sakura;
 
 import org.junit.jupiter.api.Test;
+import sakura.task.Event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
