@@ -4,6 +4,10 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+javadoc.options.encoding = 'UTF-8'
+
 repositories {
     mavenCentral()
 }
