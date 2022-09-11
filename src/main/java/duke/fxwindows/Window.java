@@ -20,6 +20,8 @@ public class Window extends AnchorPane {
     private Duke duke;
 
     private TaskCategoryPane taskCategoryPane;
+    private TaskListPane taskListPane;
+    private TaskDescriptionPane taskDescriptionPane;
 
     public void initialise(Duke duke) {
 //        Setup duke
@@ -28,11 +30,23 @@ public class Window extends AnchorPane {
 
 //        Setup panes
         this.loadTaskCategoryPane();
+        this.loadTaskListPane();
+        this.loadTaskDescPane();
     }
 
     private void loadTaskCategoryPane() {
         this.taskCategoryPane = new TaskCategoryPane();
         this.contentBox.getChildren().add(this.taskCategoryPane);
+    }
+
+    private void loadTaskListPane() {
+        this.taskListPane = new TaskListPane(this.duke.getTasks());
+        this.contentBox.getChildren().add(this.taskListPane);
+    }
+
+    private void loadTaskDescPane() {
+        this.taskDescriptionPane = new TaskDescriptionPane(this.duke.getTasks().get(0));
+        this.contentBox.getChildren().add(this.taskDescriptionPane);
     }
 
     @FXML
@@ -43,7 +57,7 @@ public class Window extends AnchorPane {
 //                DialogBox.getUserDialog(input, userImage),
 //                DialogBox.getDukeDialog(response, dukeImage)
 //        );
-        System.out.println("response");
+        System.out.println(response);
         userInput.setText("");
     }
 }

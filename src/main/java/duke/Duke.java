@@ -32,6 +32,10 @@ public class Duke {
 
     }
 
+    public TaskList getTasks() {
+        return this.tasks;
+    }
+
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.init();
