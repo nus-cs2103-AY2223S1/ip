@@ -82,7 +82,7 @@ public class Ui {
     }
 
     /**
-     * Begin to list tasks
+     * Begins to list tasks
      *
      * @return Duke's response to reading a list
      * @since 0.3

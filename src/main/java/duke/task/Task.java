@@ -74,7 +74,7 @@ public abstract class Task {
     }
 
     /**
-     * Add a tag to tags
+     * Adds a tag to tags
      *
      * @param tag
      * @since 0.3
@@ -84,7 +84,7 @@ public abstract class Task {
     }
 
     /**
-     * Get all tags in a list
+     * Gets all tags in a list
      *
      * @return all tags as a single line, with all tags having a # prefix.
      * @since 0.3
