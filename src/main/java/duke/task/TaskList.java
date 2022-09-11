@@ -186,7 +186,7 @@ public class TaskList {
         StringBuilder sb = new StringBuilder();
         int len = tasks.size();
         if (len == 0) {
-            return "YOU HAVE NO TASKS :<\n";
+            return "YOU HAVE NO TASKS :<";
         }
 
         for (int i = 0; i < len; i++) {

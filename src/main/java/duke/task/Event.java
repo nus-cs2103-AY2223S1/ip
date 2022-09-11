@@ -29,7 +29,7 @@ public class Event extends Task {
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
         String formattedDateTime = getDateTime().format(formatter);
-        return String.format("[E]%s (by: %s)", super.toString(), formattedDateTime);
+        return String.format("[E]%s (at: %s)", super.toString(), formattedDateTime);
     }
 
     /**

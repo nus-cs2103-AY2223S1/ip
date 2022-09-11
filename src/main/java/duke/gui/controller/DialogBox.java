@@ -25,8 +25,8 @@ import javafx.scene.text.Text;
 public class DialogBox extends HBox {
 
     private static final String ERROR_BACKGROUND_COLOR = "#9F0000";
-    private static final String SUCCESS_BACKGROUND_COLOR = "#15048F";
-    private static final String USER_BACKGROUND_COLOR = "#D9E8FB";
+    private static final String SUCCESS_BACKGROUND_COLOR = "#0B82C5";
+    private static final String USER_BACKGROUND_COLOR = "white";
 
     /** Text section of the dialog. */
     @FXML

@@ -11,8 +11,8 @@ import duke.task.TaskList;
  */
 public class Ui {
     private enum Divider {
-        THICK_DIVIDER("==========================="),
-        THIN_DIVIDER("-----------------------------");
+        THICK_DIVIDER("================================="),
+        THIN_DIVIDER("-----------------------------------");
 
         private String divider;
 
@@ -117,7 +117,8 @@ public class Ui {
      * @return String representation of the TaskList.
      */
     public String getPrettyTaskList(TaskList tasks) {
-        return addBetweenDividers(Divider.THICK_DIVIDER, tasks.toString());
+        String tasksList = addBetweenDividers(Divider.THICK_DIVIDER, tasks.toString());
+        return String.format("Your tasks: [%d] \n%s", tasks.getSize(), tasksList);
     }
 
     /**

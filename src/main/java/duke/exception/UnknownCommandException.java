@@ -13,6 +13,6 @@ public class UnknownCommandException extends DukeException {
      * @param invalidCommand Invalid command provided by the user.
      */
     public UnknownCommandException(String invalidCommand) {
-        super(invalidCommand + " is not a valid command!");
+        super("[" + invalidCommand + "] is not a valid command!");
     }
 }
