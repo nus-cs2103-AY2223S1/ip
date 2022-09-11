@@ -106,23 +106,19 @@ public abstract class Task implements Serializable {
      * @param taskType    the task type either duke.Todo, duke.Deadline or duke.Event
      * @throws DukeException
      */
-    private static void validateTaskCreation(
-            String[] commandArray,
-            TaskType taskType
-    )
-            throws DukeException {
-        // TODO Move this logic to a factory method within the Tasks itself
-        if (commandArray.length <= 1 || commandArray[1].length() == 0) {
-            throw new DukeException(
-                    "☹ OOPS!!! The description of a " + taskType + " cannot be empty."
-            );
+    private static void validateTaskCreation(String[] commandArray, TaskType taskType) throws DukeException {
+        Boolean isEmptyDescription = commandArray.length <= 1 || commandArray[1].length() == 0;
+        if (isEmptyDescription) {
+            throw new DukeException("☹ OOPS!!! The description of a " + taskType + " cannot be empty.");
         }
 
-        if (taskType == TaskType.DEADLINE && commandArray[1].indexOf("/by") < 0) {
+        Boolean isValidDeadline = taskType == TaskType.DEADLINE && commandArray[1].indexOf("/by") < 0;
+        if (isValidDeadline) {
             throw new DukeException("☹ OOPS!!! The description of a DEADLINE must contain a '/by'");
         }
 
-        if (taskType == TaskType.EVENT && commandArray[1].indexOf("/at") < 0) {
+        Boolean isValidEvent = taskType == TaskType.EVENT && commandArray[1].indexOf("/at") < 0;
+        if (isValidEvent) {
             throw new DukeException("☹ OOPS!!! The description of a EVENT must contain a '/at'");
         }
     }
