@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 /**
  * Enum class used to store the command flags and execution logic of the various available commands.
  *
@@ -49,20 +47,10 @@ public enum Command {
     private static DukeException noNumberException = new DukeException("Sorry, no number was detected");
 
     /**
-     * Execute the greet command and welcome the user.
-     */
-    public static String greet() {
-        return "Hello from Duke!\nWhat can I do for you?";
-    }
-
-    /**
      * Execute the exit command and end the program.
-     *
-     * @param scanner The scanner object that needs to be closed
      */
-    public static void exit(Scanner scanner) {
-        System.out.println(" Bye. Hope to see you again soon!");
-        scanner.close();
+    public static String exit() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -141,8 +129,7 @@ public enum Command {
      * @param allTasks     the list to store all tasks created by the user
      * @throws DukeException
      */
-    public static String delete(String[] commandArray, AllTasksList allTasks)
-            throws DukeException {
+    public static String delete(String[] commandArray, AllTasksList allTasks) throws DukeException {
         try {
             if (commandArray.length <= 1) {
                 throw noNumberException;
@@ -165,12 +152,12 @@ public enum Command {
      */
     public static String parseAndExecuteCommand(String userInput, AllTasksList allTasks) throws DukeException {
         String[] commandArray = userInput.split(" ", 2);
+        assert commandArray.length <= 2 : "command array should be at most 2 in length";
         String command = commandArray[0];
-
         try {
             switch (Command.valueOf(command)) {
             case bye:
-                return "Goodbye!";
+                return Command.exit();
             case list:
                 return Command.listTasks(allTasks);
             case find:
