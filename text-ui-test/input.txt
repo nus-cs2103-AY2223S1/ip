@@ -1,0 +1,38 @@
+invalid task
+todo task 1
+deadline task 2 /by xxx
+event task 3 /at xxx
+deadline task 2 /by 23-11-2000 2359
+event task 3 /at 23-11-2020 2359
+list
+mark 1
+mark 2
+mark 3
+mark 4
+list
+unmark 1
+unmark 2
+list
+unmark 3
+unmark 4
+list
+unmark a
+mark a
+mark
+unmark
+todo
+deadline
+event
+list 2
+test invalid task
+delete
+delete 99
+delete 2
+list
+delete 1
+list
+find 1
+find 2
+find 3
+find task
+bye

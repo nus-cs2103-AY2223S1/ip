@@ -1,7 +1,110 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Greetings from Elp
+ _______
+|  _____|  _   _____
+|  |____  | | |  __ |
+|   ____| | | |  ___|
+|  |____  | | | |
+|_______| |_| |_|
+What can I help you with?
 
+No such available command, "invalid" please try again.
+Added: [T][ ] task 1
+
+-Deadline- Your date needs to be in dd-MM-yyyy HHmm format!
+
+-Event- Your date needs to be in dd-MM-yyyy HHmm format!
+
+Added: [D][ ] task 2 (by: Nov 23 2000 2359)
+
+Added: [E][ ] task 3 (at: Nov 23 2020 2359)
+
+1. [T][ ] task 1
+2. [D][ ] task 2 (by: Nov 23 2000 2359)
+3. [E][ ] task 3 (at: Nov 23 2020 2359)
+
+Task successfully marked!
+[T][X] task 1
+
+Task successfully marked!
+[D][X] task 2 (by: Nov 23 2000 2359)
+
+Task successfully marked!
+[E][X] task 3 (at: Nov 23 2020 2359)
+
+Invalid input, please input an available integer index!
+
+1. [T][X] task 1
+2. [D][X] task 2 (by: Nov 23 2000 2359)
+3. [E][X] task 3 (at: Nov 23 2020 2359)
+
+Task successfully unmarked!
+[T][ ] task 1
+
+Task successfully unmarked!
+[D][ ] task 2 (by: Nov 23 2000 2359)
+
+1. [T][ ] task 1
+2. [D][ ] task 2 (by: Nov 23 2000 2359)
+3. [E][X] task 3 (at: Nov 23 2020 2359)
+
+Task successfully unmarked!
+[E][ ] task 3 (at: Nov 23 2020 2359)
+
+Invalid input, please input an available integer index!
+
+1. [T][ ] task 1
+2. [D][ ] task 2 (by: Nov 23 2000 2359)
+3. [E][ ] task 3 (at: Nov 23 2020 2359)
+
+Invalid input, please input an available integer index!
+
+Invalid input, please input an available integer index!
+
+Did you forget to input an index behind your command?
+
+Invalid input, please input an available integer index!
+
+Did you forget to input an index behind your command?
+
+Invalid input, please input an available integer index!
+
+Did you forget to input an index behind your command?
+
+Added: [T][ ] a
+
+Did you forget to input an index behind your command?
+
+-Deadline- Please follow the format of ~description~ /by dd-MM-yyyy HHmm!
+
+Did you forget to input an index behind your command?
+
+-Event- Please follow the format of ~description~ /at dd-MM-yyyy HHmm!
+
+1. [T][ ] task 1
+2. [D][ ] task 2 (by: Nov 23 2000 2359)
+3. [E][ ] task 3 (at: Nov 23 2020 2359)
+4. [T][ ] a
+
+No such available command, "test" please try again.
+Did you forget to input an index behind your command?
+
+Invalid index, please input the index of an available task!
+
+Invalid index, please input the index of an available task!
+
+Ok, I've removed this task:
+[D][ ] task 2 (by: Nov 23 2000 2359)
+You have 3 tasks left currently.
+
+1. [T][ ] task 1
+2. [E][ ] task 3 (at: Nov 23 2020 2359)
+3. [T][ ] a
+
+Ok, I've removed this task:
+[T][ ] task 1
+You have 2 tasks left currently.
+
+1. [E][ ] task 3 (at: Nov 23 2020 2359)
+2. [T][ ] a
+
+Have a nice day! :)
