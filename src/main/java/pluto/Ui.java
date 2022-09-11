@@ -9,9 +9,9 @@ public class Ui {
     /** Name of chat bot */
     private static final String CHATBOT = "Pluto";
     /** To display output in red color */
-    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RED = "";
     /** To reset display color of the output */
-    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_RESET = "";
     /** Scanner to take inputs */
     private Scanner sc;
 
@@ -25,9 +25,9 @@ public class Ui {
     /**
      * Displays welcome message.
      */
-    public void showWelcome() {
-        String introduction = String.format("\tHello I am %s.\n\tWhat can I do for you?", CHATBOT);
-        System.out.println(introduction);
+    public static String showWelcome() {
+        String introduction = String.format("Hello I am %s.\nWhat can I do for you?", CHATBOT);
+        return introduction;
     }
 
     /**
@@ -42,23 +42,23 @@ public class Ui {
      * Displays output to the user.
      * @param message Message to be displayed.
      */
-    public void print(StringBuilder message) {
-        System.out.println(message);
+    public String print(StringBuilder message) {
+        return message.toString();
     }
 
     /**
      * Displays output to the user.
      * @param message Message to be displayed.
      */
-    public void print(String message) {
-        System.out.println(message);
+    public String print(String message) {
+        return message;
     }
 
     /**
      * Display error messages.
      * @param emessage Error message.
      */
-    public void showError(String emessage) {
-        System.out.println(ANSI_RED + emessage + ANSI_RESET);
+    public String showError(String emessage) {
+        return ANSI_RED + emessage + ANSI_RESET;
     }
 }

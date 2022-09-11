@@ -1,5 +1,6 @@
 package pluto.command;
 
+import pluto.Main;
 import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
@@ -19,8 +20,8 @@ public class ExitCommand extends Command {
      * Prints appropriate exit message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.print("\tSee You Later!");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.print("See You Later!");
     }
 
     @Override
