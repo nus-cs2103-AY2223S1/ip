@@ -18,6 +18,7 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(String input) {
         this.input = input;
+        assert(input != null);
     }
 
     /**

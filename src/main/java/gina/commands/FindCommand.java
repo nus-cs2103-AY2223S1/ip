@@ -18,6 +18,7 @@ public class FindCommand extends Command {
      */
     public FindCommand(String input) {
         this.input = input;
+        assert(input != null);
     }
 
     /**

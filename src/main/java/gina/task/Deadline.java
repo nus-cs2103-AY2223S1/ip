@@ -5,6 +5,7 @@ import gina.GinaException;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 /**
@@ -28,7 +29,8 @@ public class Deadline extends Task {
         super(description);
         try {
             this.dateTime = LocalDateTime.parse(by, dateTimeInputFormatter);
-        } catch (Exception e) {
+            assert(dateTime != null);
+        } catch (DateTimeParseException e) {
             throw new GinaException("Input your date and time in the format yyyy-MM-dd HHmm!");
         }
     }
@@ -54,13 +56,14 @@ public class Deadline extends Task {
      * {@inheritDoc}
      */
     public boolean isOnThisDate(String dateStr) throws GinaException {
+        assert(dateStr != null);
         if (dateStr.isBlank()) {
             throw new GinaException("Aren't you going to tell me when the deadline is?");
         }
         try {
             LocalDate date = LocalDate.parse(dateStr, dateInputFormatter);
             return date.equals(this.dateTime.toLocalDate());
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) {
             throw new GinaException("Tell me the date in the format yyyy-MM-dd.\n" +
                     "Gina Linetti's time is precious.");
         }

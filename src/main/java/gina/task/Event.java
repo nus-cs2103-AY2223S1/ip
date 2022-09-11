@@ -54,6 +54,7 @@ public class Event extends Task {
      * {@inheritDoc}
      */
     public boolean isOnThisDate(String dateStr) throws GinaException {
+        assert(dateStr != null);
         if (dateStr.isBlank()) {
             throw new GinaException("Aren't you gonna tell me when the event is?");
         }

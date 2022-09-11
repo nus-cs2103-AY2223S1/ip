@@ -19,6 +19,7 @@ public class ToDoCommand extends Command {
      */
     public ToDoCommand(String input) {
         this.input = input;
+        assert(input != null);
     }
 
     /**

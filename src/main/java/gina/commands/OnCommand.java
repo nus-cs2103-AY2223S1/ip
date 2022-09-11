@@ -17,6 +17,7 @@ public class OnCommand extends Command {
      * @param input The user input for date.
      */
     public OnCommand(String input) {
+        assert(input != null);
         this.input = input.trim();
     }
 
