@@ -36,7 +36,6 @@ public class Parser {
             userAction = command[1].trim();
         }
         String userCommand = command[0].trim();
-//        System.out.println(userCommand);
         switch (userCommand) {
             case "list":
                 return new ListCommand();
