@@ -2,7 +2,9 @@ package duke.parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 
+import duke.commands.AliasCommand;
 import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.commands.DeadlineCommand;
@@ -12,11 +14,43 @@ import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
+import duke.commands.UnaliasCommand;
 import duke.commands.UnknownCommand;
 import duke.commands.UnmarkCommand;
 import duke.exceptions.DukeException;
+import duke.storage.Storage;
 
 public class Parser {
+
+    private final HashMap<String, String> aliases;
+    private final Storage storage;
+
+    public Parser(Storage storage) {
+        this.storage = storage;
+        this.aliases = storage.loadAliases();
+    }
+
+    /**
+     * Add an alias for a command.
+     *
+     * @param alias The alias.
+     * @param command The aliased command.
+     */
+    public void addAlias(String alias, String command) {
+        this.aliases.put(alias, command);
+        this.storage.updateAlias(aliases);
+    }
+
+    /**
+     * Remove an alias for a command.
+     *
+     * @param alias The alias.
+     */
+    public void removeAlias(String alias) {
+        if (aliases.remove(alias) != null) {
+            storage.updateAlias(aliases);
+        }
+    }
 
     /**
      * Parses the provided user input to return the command to be executed.
@@ -29,23 +63,25 @@ public class Parser {
         int idx = input.indexOf(' ');
         String textCommand = idx < 0 ? input : input.substring(0, idx);
 
+        textCommand = this.aliases.getOrDefault(textCommand, textCommand);
+
+        if (idx != -1) {
+            input = textCommand + input.substring(idx);
+        }
+
         switch (textCommand) {
         case "bye":
             return new ByeCommand();
 
-        case "t":
         case "todo":
             return parseTodo(input);
 
-        case "d":
         case "deadline":
             return parseDeadline(input);
 
-        case "e":
         case "event":
             return parseEvent(input);
 
-        case "ls":
         case "list":
             return new ListCommand();
 
@@ -55,12 +91,17 @@ public class Parser {
         case "unmark":
             return parseUnmark(input);
 
-        case "rm":
         case "delete":
             return parseDelete(input);
 
         case "find":
             return parseFind(input);
+
+        case "alias":
+            return parseAlias(input);
+
+        case "unalias":
+            return parseUnalias(input);
 
         default:
             return new UnknownCommand();
@@ -163,5 +204,29 @@ public class Parser {
             throw new DukeException("Usage: find keyword");
         }
         return new FindCommand(input.substring(5));
+    }
+
+    private AliasCommand parseAlias(String input) throws DukeException {
+        String[] components = input.split(" ");
+
+        if (components.length != 3) {
+            throw new DukeException("Usage: alias <alias> <command>");
+        }
+
+        if (components[1].equals("alias")) {
+            throw new DukeException("The alias command cannot be renamed :(");
+        }
+
+        return new AliasCommand(components[1], components[2], this);
+    }
+
+    private UnaliasCommand parseUnalias(String input) throws DukeException {
+        String[] components = input.split(" ");
+
+        if (components.length != 2) {
+            throw new DukeException("Usage: unalias <alias>");
+        }
+
+        return new UnaliasCommand(components[1], this);
     }
 }

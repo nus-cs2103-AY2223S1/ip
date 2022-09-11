@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import duke.exceptions.DukeException;
@@ -17,9 +18,11 @@ import duke.tasks.Todo;
 public class Storage {
 
     private final String path;
+    private final String pathAlias;
 
-    public Storage(String path) {
-        this.path = path;
+    public Storage(String pathTask, String pathAlias) {
+        this.path = pathTask;
+        this.pathAlias = pathAlias;
     }
 
     /**
@@ -91,6 +94,59 @@ public class Storage {
             writer.close();
         } catch (IOException e) {
             System.out.println("Unable to store your files :(");
+        }
+    }
+
+    /**
+     * Loads all aliases made by the user.
+     *
+     * @return A Hashmap containing the aliases.
+     */
+    public HashMap<String, String> loadAliases() {
+        HashMap<String, String> aliases = new HashMap<>();
+        File db = new File(pathAlias);
+
+        try {
+            Scanner myScanner = new Scanner(db);
+            while (myScanner.hasNextLine()) {
+                String row = myScanner.nextLine();
+                int idx = row.indexOf('=');
+
+                assert idx != -1;
+
+                String alias = row.substring(0, idx);
+                String command = row.substring(idx + 1);
+
+                aliases.put(alias, command);
+            }
+        } catch (FileNotFoundException e) {
+            // No pre-existing aliases - Add in some
+            aliases.put("ls", "list");
+            aliases.put("rm", "delete");
+            aliases.put("t", "todo");
+            aliases.put("d", "deadline");
+            aliases.put("e", "deadline");
+        }
+
+        return aliases;
+    }
+
+    /**
+     * Updates the aliases in storage.
+     *
+     * @param aliases The Hashmap containing the aliases.
+     */
+    public void updateAlias(HashMap<String, String> aliases) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (var entry : aliases.entrySet()) {
+            stringBuilder.append(entry.getKey()).append('=').append(entry.getValue()).append('\n');
+        }
+        try {
+            FileWriter writer = new FileWriter(pathAlias);
+            writer.write(stringBuilder.toString());
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Unable to store your aliases :(");
         }
     }
 }

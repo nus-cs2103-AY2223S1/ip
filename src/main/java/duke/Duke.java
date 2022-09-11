@@ -19,11 +19,11 @@ public class Duke {
     private final Parser parser;
     private boolean isExit;
 
-    public Duke(String filePath, Ui ui) {
+    public Duke(String filePath, Ui ui, String aliasPath) {
         this.ui = ui;
-        this.storage = new Storage(filePath);
+        this.storage = new Storage(filePath, aliasPath);
         this.tasks = new TaskList(storage);
-        this.parser = new Parser();
+        this.parser = new Parser(storage);
 
         this.ui.showWelcome();
     }
@@ -57,7 +57,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         // Using a Text UI
-        new Duke("database.txt", new TextUi()).run();
+        new Duke("database.txt", new TextUi(), "databaseAlias.txt").run();
     }
 }
 

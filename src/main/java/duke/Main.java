@@ -23,7 +23,7 @@ public class Main extends Application {
             stage.setScene(scene);
 
             MainWindow mainWindow = fxmlLoader.<MainWindow>getController();
-            Duke duke = new Duke("database.txt", mainWindow);
+            Duke duke = new Duke("database.txt", mainWindow, "databaseAlias.txt");
             mainWindow.setDuke(duke);
 
             stage.show();
