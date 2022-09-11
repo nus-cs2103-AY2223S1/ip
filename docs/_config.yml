@@ -2,6 +2,6 @@ remote_theme: pages-themes/minimal@v0.2.0
 plugins:
 - jekyll-remote-theme
 
-title: ✨️ L&emsp;U&emsp;N&emsp;A 🌙
+title: 🌙 L&emsp;U&emsp;N&emsp;A ✨
 logo: assets/luna.png
 description: Complete your tasks with style 🥀
