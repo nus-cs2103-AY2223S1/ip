@@ -42,7 +42,11 @@ public enum Command {
     /**
      * duke.Command to find a task
      */
-    find;
+    find,
+    /**
+     * duke.Command to find view schedule
+     */
+    schedule;
 
     private static DukeException noNumberException = new DukeException("Sorry, no number was detected");
 
@@ -60,6 +64,19 @@ public enum Command {
      */
     public static String listTasks(AllTasksList allTasks) {
         return allTasks.listAllTasks();
+    }
+
+    /**
+     * Execute the command to list the schedule of a given date
+     *
+     * @param allTask the list to store all tasks created by the user
+     * @param commandArray a string array of commands to be parsed for more information
+     * @return a string of all deadlines with this due date
+     * @throws DukeException if the due date is malformed
+     */
+    public static String getSchedule(String[] commandArray, AllTasksList allTask) throws DukeException {
+        String dueDate = commandArray[1].trim();
+        return allTask.listSchedule(dueDate);
     }
 
     /**
@@ -168,6 +185,8 @@ public enum Command {
                 return Command.unMarkTask(commandArray, allTasks);
             case delete:
                 return Command.delete(commandArray, allTasks);
+            case schedule:
+                return Command.getSchedule(commandArray, allTasks);
             default:
                 Task newTask = Task.createTask(commandArray);
                 return allTasks.addTask(newTask);

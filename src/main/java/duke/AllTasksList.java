@@ -1,6 +1,9 @@
 package duke;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
@@ -82,6 +85,37 @@ public class AllTasksList implements Serializable {
             output += "\n" + (i + 1) + ". " + this.allTasks.get(i).toString();
         }
         return output;
+    }
+
+    /**
+     * Method used to list all deadlines that have the same due date.
+     *
+     * @param dueDate  used to list all deadlines with this due date
+     * @return a string of all deadlines with this due date
+     * @throws DukeException if the due date is malformed
+     */
+    public String listSchedule(String dueDate) throws DukeException {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime date = LocalDateTime.parse(dueDate + " 00:00", formatter);
+            String output = "";
+            for (int i = 0; i < this.allTasks.size(); i++) {
+                Boolean isDeadline = this.allTasks.get(i) instanceof Deadline;
+                if (!isDeadline) {
+                    continue;
+                }
+                Deadline dl = (Deadline) this.allTasks.get(i);
+                Boolean isSameDate = dl.isSameDay(date);
+                if (!isSameDate) {
+                    continue;
+                }
+
+                output += "\n" + (i + 1) + ". " + this.allTasks.get(i).toString();
+            }
+            return output;
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Date Format Incorrect: yyyy-MM-dd");
+        }
     }
 
     /**
