@@ -19,9 +19,9 @@ public class ByeCommand extends Command {
     }
 
     /**
-     * Indication to stop the bot.
+     * Indicates whether to stop the bot.
      *
-     * @return true - A signal to stop the bot.
+     * @return true If user stops the bot by running this command.
      */
     @Override
     public boolean isExit() {
