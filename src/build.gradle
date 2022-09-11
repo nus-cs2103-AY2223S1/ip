@@ -46,6 +46,11 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+javafx {
+    version = "18.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
 test {
     useJUnitPlatform()
 }
