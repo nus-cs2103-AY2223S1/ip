@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             return "task in addcomand is null";
         }
         tasks.add(task);
-        return "duke.task.Task added: " + task;
+        return "Task added: " + task;
     }
 
     /**
