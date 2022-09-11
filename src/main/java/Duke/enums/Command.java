@@ -6,6 +6,7 @@ package Duke.enums;
  */
 public enum Command {
 
+    HELP("help"),
     LIST("list"),
     FIND("find"),
     CHECK("check"),

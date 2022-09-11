@@ -78,6 +78,7 @@ public class Parser {
         switch (command) {
         case LIST:
         case BYE:
+        case HELP:
             break;
         case CHECK:
         case UNCHECK:
@@ -155,7 +156,8 @@ public class Parser {
             }
             break;
         default:
-            throw new InvalidCommandException("Command not implemented :(");
+            throw new InvalidCommandException(String.format("Command have not been implemented :( Currently %s,",
+                    command.getValue()));
         }
         result.mainData = result.mainData.trim();
         result.secondaryData = result.secondaryData.trim();

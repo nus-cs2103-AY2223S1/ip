@@ -102,6 +102,9 @@ public class Duke {
             case BYE:
                 terminate();
                 return null;
+            case HELP:
+                response = dukeResponses.showHelp();
+                break;
             case LIST:
                 response = listTasks();
                 break;
@@ -131,7 +134,7 @@ public class Duke {
             }
         } catch (InvalidCommandException err) {
             response = String.format("%s is not a valid command\n%s", err.getMessage(),
-                    dukeResponses.listValidInstructions());
+                    dukeResponses.hintUserOfHelpCommand());
         } catch (InvalidTaskNameException | InvalidIndexException | InvalidFindException err) {
             response = err.getMessage();
         } catch (InvalidSecondaryCommandException err) {

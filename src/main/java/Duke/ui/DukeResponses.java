@@ -13,32 +13,55 @@ public class DukeResponses {
     /**
      * Returns a string of the messages to be seen when the application is started.
      * It contains an introduction before showing a
-     * {@link #listValidInstructions() list of valid instructions}
+     * {@link #showHelp() list of valid instructions}
      *
      * @return a string of the messages to be seen when the application is started.
      */
     public String startPrompt() {
-        return String.format("%s \n %s", "Hi from Yi Xian", listValidInstructions());
+        return String.format("%s \n %s", "Hi from Yi Xian", showHelp());
     }
 
     /**
-     * Returns a string of the messages to be seen when the application is started.
+     * Returns a string of the messages that serves as instructions of how to use Duke.
      *
-     * @return a string of the messages to be seen when the application is started.
+     * @return a string of the messages that serves as instructions of how to use Duke.
      */
-    public String listValidInstructions() {
+    public String showHelp() {
         return "What can I do for you?\n" +
-                String.format("- %s (task name)%n", Command.TODO.getValue()) +
+                String.format("- %s \n", Command.HELP.getValue()) +
+                String.format("- %s (task name) \n", Command.TODO.getValue()) +
                 String.format("- %s (task name) %s (date) \n",
                         Command.DEADLINE.getValue(), SecondaryCommand.BY.getValue()) +
                 String.format("- %s (task name) %s (date) \n",
                         Command.EVENT.getValue(), SecondaryCommand.AT.getValue()) +
                 String.format("- %s\n", Command.LIST.getValue()) +
-                String.format("- %s\n", Command.FIND.getValue()) +
+                String.format("- %s (value)\n", Command.FIND.getValue()) +
                 String.format("- %s (index)\n", Command.CHECK.getValue()) +
                 String.format("- %s (index)\n", Command.UNCHECK.getValue()) +
                 String.format("- %s (index)\n", Command.DELETE.getValue()) +
-                String.format("- %s", Command.BYE.getValue());
+                String.format("- %s \n", Command.BYE.getValue()) +
+                "\nEXAMPLES: \n" +
+                String.format("%s \n", Command.HELP.getValue()) +
+                String.format("%s cut hair \n", Command.TODO.getValue()) +
+                String.format("%s cut hair %s 2022-09-11 \n",
+                        Command.DEADLINE.getValue(), SecondaryCommand.BY.getValue()) +
+                String.format("%s cut hair %s 2022-09-11 \n",
+                        Command.EVENT.getValue(), SecondaryCommand.AT.getValue()) +
+                String.format("%s\n", Command.LIST.getValue()) +
+                String.format("%s cut\n", Command.FIND.getValue()) +
+                String.format("%s 1\n", Command.CHECK.getValue()) +
+                String.format("%s 1\n", Command.UNCHECK.getValue()) +
+                String.format("%s 1\n", Command.DELETE.getValue()) +
+                String.format("%s \n", Command.BYE.getValue());
+    }
+
+    /**
+     * Returns a string of a messages to hint the user of the help command.
+     *
+     * @return a string of a messages to hint the user of the help command.
+     */
+    public String hintUserOfHelpCommand() {
+        return "Consider using the 'help' command by sending the word 'help' to me.";
     }
 
     /**
