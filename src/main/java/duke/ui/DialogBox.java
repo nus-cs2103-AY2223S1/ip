@@ -12,7 +12,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 /**
  * A class that composed ImageView and Label control.
@@ -24,6 +28,8 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    //ImageView.setClip solution reference from
+    //https://www.programcreek.com/java-api-examples/?api=javafx.scene.shape.Circle
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -33,9 +39,12 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
         displayPicture.setImage(img);
+        Circle clip = new Circle(displayPicture.getFitWidth() / 2.3);
+        clip.setCenterX(displayPicture.getFitWidth() / 2);
+        clip.setCenterY(displayPicture.getFitHeight() / 2);
+        displayPicture.setClip(clip);
     }
 
     /**
@@ -49,12 +58,27 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var ub = new DialogBox(text, img);
+        ub.changeUserBackgroundColor();
+        return ub;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.changeDukeBackgroundColor();
         return db;
+    }
+
+    //Method below reference from https://www.tabnine.com/code/java/methods/javafx.scene.layout.HBox/setBackground
+    private void changeDukeBackgroundColor() {
+        Background dukeBackground = new Background(new BackgroundFill(Color.LAVENDER, null, null));
+        super.setBackground(dukeBackground);
+    }
+
+    //Method below reference from https://www.tabnine.com/code/java/methods/javafx.scene.layout.HBox/setBackground
+    private void changeUserBackgroundColor() {
+        Background userBackground = new Background(new BackgroundFill(Color.LIGHTCYAN, null, null));
+        super.setBackground(userBackground);
     }
 }
