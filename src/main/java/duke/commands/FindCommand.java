@@ -44,14 +44,11 @@ public class FindCommand extends Command {
     }
 
     private String getUserMessage(ArrayList<String> foundTasks) {
-        String userMessage;
         if (foundTasks.isEmpty()) {
-            userMessage = "No tasks found!";
-        } else {
-            String tasksString = String.join("\n", foundTasks);
-            userMessage = String.format(USER_MESSAGE_FORMAT, tasksString);
+            return "No tasks found!";
         }
-        return userMessage;
+        String tasksString = String.join("\n", foundTasks);
+        return String.format(USER_MESSAGE_FORMAT, tasksString);
     }
 
     @Override
