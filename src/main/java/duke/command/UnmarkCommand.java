@@ -4,7 +4,9 @@ import duke.exception.DukeException;
 import duke.gui.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Response;
 import duke.util.Storage;
+import duke.util.Success;
 
 /**
  * Represents the command that is executed when the user inputs unmark.
@@ -40,15 +42,16 @@ public class UnmarkCommand extends Command {
      * @param tasks TaskList containing the Task to be unmarked.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
+     * @return A Success Response.
      * @throws DukeException If storage object is unable to save the list of tasks after unmarking,
      *              or if the taskIndex is not within range of the size of the TaskList.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public Response execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = tasks.unmark(taskIndex);
         String message = ui.taskUnmarkedMessage(task, tasks);
         storage.save(tasks);
-        return message;
+        return new Success(message);
     }
 
     /**

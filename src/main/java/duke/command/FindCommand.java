@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.gui.Ui;
 import duke.task.TaskList;
+import duke.util.Response;
 import duke.util.Storage;
 
 /**
@@ -39,10 +40,10 @@ public class FindCommand extends Command {
      * @param tasks TaskList to find the Tasks from.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
-     * @return Message to be shown to the user after successful execution.
+     * @return A Success Response.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public Response execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList foundTasks = tasks.find(searchTerm);
         ListCommand listCommand = new ListCommand();
         return listCommand.execute(foundTasks, ui, storage);

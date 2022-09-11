@@ -2,7 +2,9 @@ package duke.command;
 
 import duke.gui.Ui;
 import duke.task.TaskList;
+import duke.util.Response;
 import duke.util.Storage;
+import duke.util.Success;
 
 /**
  * Represents the command that is executed when the user inputs list.
@@ -17,11 +19,11 @@ public class ListCommand extends Command {
      * @param tasks TaskList to be printed.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
-     * @return Message to be shown to the user after successful execution.
+     * @return A Success Response.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return ui.getPrettyTaskList(tasks);
+    public Response execute(TaskList tasks, Ui ui, Storage storage) {
+        return new Success(ui.getPrettyTaskList(tasks));
     }
 
     /**

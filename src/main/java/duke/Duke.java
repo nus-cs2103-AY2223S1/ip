@@ -7,7 +7,9 @@ import duke.exception.DukeException;
 import duke.exception.FileCorruptedException;
 import duke.gui.Ui;
 import duke.task.TaskList;
+import duke.util.Error;
 import duke.util.Parser;
+import duke.util.Response;
 import duke.util.Storage;
 import javafx.application.Platform;
 
@@ -47,7 +49,7 @@ public class Duke {
      * @param input Full user input.
      * @return Response from the duke chat-bot.
      */
-    public String getResponse(String input) {
+    public Response getResponse(String input) {
         try {
             Command command = Parser.parse(input);
             if (command.isExit()) {
@@ -55,7 +57,7 @@ public class Duke {
             }
             return command.execute(tasks, ui, storage);
         } catch (DukeException de) {
-            return de.getMessage();
+            return new Error(de.getMessage());
         }
     }
 
