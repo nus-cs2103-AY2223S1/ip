@@ -2,8 +2,9 @@
 Luna is your nature-themed desktop app that helps you complete your tasks in the prettiest way possible 🌻
 
 ✨ Take a sneak peek at Luna's GUI ✨
+
 ![image](Ui.png)
-<br/><br/><br/>
+<br/><br/>
 
 # Get started with Luna ⛅️
 1. Download `luna-v1.0.jar` from this [page](https://github.com/fannyjian/ip/releases/tag/A-Release)
