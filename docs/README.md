@@ -1,4 +1,4 @@
-#  ✧&nbsp;&nbsp;&nbsp;✮✧︎&nbsp;&nbsp; ✦ ✨️ L&emsp;&emsp;U&emsp;&emsp;N&emsp;&emsp;A ✨ ✫❍&nbsp;&nbsp;&nbsp;❈ &nbsp;&nbsp;✶
+#<p align = "center"> ✧&nbsp;&nbsp;&nbsp;✮✧︎&nbsp;&nbsp; ✦ ✨️ L&emsp;&emsp;U&emsp;&emsp;N&emsp;&emsp;A ✨ ✫❍&nbsp;&nbsp;&nbsp;❈ &nbsp;&nbsp;✶ </p>
 
 ## About Luna ☀️
 Luna is your nature-themed graphical user interface (GUI) desktop app that is sure to help you complete your tasks in the prettiest way possible 🌻
