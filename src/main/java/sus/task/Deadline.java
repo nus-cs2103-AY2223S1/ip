@@ -9,28 +9,27 @@ import sus.common.Utils;
  */
 public class Deadline extends Task {
 
-    private final LocalDate by;
+    private final LocalDate dueDate;
 
     /**
      * Constructor for a new deadline.
      *
      * @param description description of the deadline
-     * @param by date the deadline is to be completed by
+     * @param dueDate date the deadline is to be completed by
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDate dueDate) {
         super(description);
-        this.by = Utils.parseDate(by);
+        this.dueDate = dueDate;
     }
 
     @Override
     public String encodeToString() {
-        String taskStatus = isDone ? "1" : "0";
-        return String.format("D | %s | %s | %s", taskStatus, description, by);
+        return String.format("D | %s | %s | %s", (isDone ? "1" : "0"), description, dueDate);
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s %s (by: %s)", super.getStatusIcon(), description, Utils.convertLocalDate(by));
+        return String.format("[D]%s (by: %s)", super.toString(), Utils.convertLocalDateToString(dueDate));
     }
 
 }

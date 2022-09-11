@@ -51,6 +51,7 @@ public class DialogBox extends HBox {
     public static DialogBox getUserDialog(String message, Color textColour) {
         Label label = new Label(message);
         label.setTextFill(textColour);
+        label.setStyle("-fx-font-weight: bold;");
         label.setPadding(new Insets(20, 25, 0, 0));
         return new DialogBox(label, getIcon(susUser));
     }
@@ -58,7 +59,8 @@ public class DialogBox extends HBox {
     public static DialogBox getBotDialog(String message, Color textColor) {
         Label label = new Label(message);
         label.setTextFill(textColor);
-        label.setPadding(new Insets(15, 0, 0, 20));
+        label.setStyle("-fx-font-weight: bold;");
+        label.setPadding(new Insets(15, 0, 10, 20));
         var db = new DialogBox(label, getIcon(susBot));
         db.flip();
         return db;

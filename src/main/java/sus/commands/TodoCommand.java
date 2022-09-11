@@ -15,12 +15,12 @@ public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates a new Todo.\n"
-            + "\tEx.: " + COMMAND_WORD + " <description>";
+            + "\tEx: " + COMMAND_WORD + " <description>";
 
     private final String description;
 
     /**
-     * Constructor for TodoCommand.
+     * Constructor.
      *
      * @param description description of the to-do to add
      */

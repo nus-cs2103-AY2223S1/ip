@@ -10,7 +10,9 @@ import sus.ui.TextUi;
 public abstract class Command {
 
     /**
-     * {@return true if the command executed is the exit command, false otherwise.}
+     * Checks if exit command is inputted by user.
+     *
+     * @return true if exit command is inputted, false otherwise
      */
     public boolean isExit() {
         return this instanceof ExitCommand;

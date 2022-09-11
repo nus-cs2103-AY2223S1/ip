@@ -15,26 +15,26 @@ public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates a new Deadline.\n"
-            + "\tEx.: " + COMMAND_WORD + " <description> /by <date/time>";
+            + "\tEx: " + COMMAND_WORD + " <description> /by <date/time>";
 
     private final String description;
-    private final String by;
+    private final String dueDate;
 
     /**
-     * Constructor for DeadlineCommand.
+     * Constructor.
      *
      * @param description description of the new deadline
-     * @param by date the deadline is to be completed by
+     * @param dueDate date the deadline is to be completed by
      */
-    public DeadlineCommand(String description, String by) {
+    public DeadlineCommand(String description, String dueDate) {
         this.description = description;
-        this.by = by;
+        this.dueDate = dueDate;
     }
 
     @Override
     public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
         try {
-            Task task = taskList.addDeadline(description, by);
+            Task task = taskList.addDeadline(description, dueDate);
             storage.save(taskList);
             return new CommandResult(Messages.MESSAGE_TASK_ADDED + "\n"
                     + task + "\n"

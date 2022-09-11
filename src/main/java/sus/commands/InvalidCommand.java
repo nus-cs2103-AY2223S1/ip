@@ -12,7 +12,7 @@ public class InvalidCommand extends Command {
     private final String errorMessage;
 
     /**
-     * Constructor for an invalid command.
+     * Constructor.
      *
      * @param errorMessage error message to be displayed to the user
      */

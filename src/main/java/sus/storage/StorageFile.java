@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,9 +48,8 @@ public class StorageFile {
      * @param taskList task list data to save
      */
     public void save(TaskList taskList) throws DukeException {
-        BufferedWriter writer;
         try {
-            writer = Files.newBufferedWriter(path);
+            BufferedWriter writer = Files.newBufferedWriter(path);
             writer.write("");
             writer.flush();
             writer.write(taskList.encodeToString());
@@ -66,21 +66,14 @@ public class StorageFile {
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();
 
-        if (!Files.exists(path)) {
-            return tasks;
-        }
-
         try {
             List<String> contents = Files.readAllLines(path);
 
-            String[] inputArray;
-            String taskType;
-            String description;
-
             for (String line : contents) {
-                inputArray = Arrays.stream(line.split("\\|")).map(String::trim).toArray(String[]::new);
-                taskType = inputArray[0];
-                description = inputArray[2];
+                String[] inputArray = Arrays.stream(line.split("\\|")).map(String::trim).toArray(String[]::new);
+                String taskType = inputArray[0];
+                String description = inputArray[2];
+                LocalDate date = LocalDate.parse(inputArray[3]);
                 Task task = null;
 
                 switch (taskType) {
@@ -88,19 +81,18 @@ public class StorageFile {
                     task = new Todo(description);
                     break;
                 case "D":
-                    task = new Deadline(description, inputArray[3]);
+                    task = new Deadline(description, date);
                     break;
                 case "E":
-                    task = new Event(description, inputArray[3]);
+                    task = new Event(description, date);
                     break;
                 default:
                     break;
                 }
 
-                if (task != null) {
-                    task.setDone(inputArray[1].equals("1"));
-                    tasks.add(task);
-                }
+                assert task != null;
+                task.setDone(inputArray[1].equals("1"));
+                tasks.add(task);
             }
         } catch (IOException e) {
             e.printStackTrace();

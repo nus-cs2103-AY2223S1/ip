@@ -1,7 +1,6 @@
 package sus.commands;
 
 import sus.storage.StorageFile;
-import sus.task.Event;
 import sus.task.TaskList;
 import sus.ui.TextUi;
 

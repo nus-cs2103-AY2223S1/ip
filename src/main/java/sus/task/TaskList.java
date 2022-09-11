@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import sus.DukeException;
 import sus.common.Messages;
+import sus.common.Utils;
 
 /**
  * Represents the task list and methods to manage the task list.
@@ -42,10 +43,10 @@ public class TaskList {
      * Creates a new deadline and add it to the task list.
      *
      * @param description description of the deadline
-     * @param by date deadline is to be completed by
+     * @param dueDate date deadline is to be completed by
      */
-    public Task addDeadline(String description, String by) {
-        Task task = new Deadline(description, by);
+    public Task addDeadline(String description, String dueDate) throws DukeException {
+        Task task = new Deadline(description, Utils.parseDate(dueDate));
         tasks.add(task);
         return task;
     }
@@ -54,10 +55,10 @@ public class TaskList {
      * Creates a new event and add it to the task list.
      *
      * @param description description of the event
-     * @param at time frame of the event
+     * @param timeFrame time frame of the event
      */
-    public Task addEvent(String description, String at) {
-        Task task = new Event(description, at);
+    public Task addEvent(String description, String timeFrame) throws DukeException {
+        Task task = new Event(description, Utils.parseDate(timeFrame));
         tasks.add(task);
         return task;
     }

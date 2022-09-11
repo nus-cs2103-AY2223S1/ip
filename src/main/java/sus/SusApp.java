@@ -41,7 +41,7 @@ public class SusApp extends Application {
         USER("#D1D1D1", "#000000"),
         GREETING("#FFA500", "#000000"),
         SUCCESS("#00D100", "#000000"),
-        INVALID("#FF0000", "#FFFFFF"),
+        INVALID("#8b0000", "#FFFFFF"),
         EXIT("#ffffff", "#000000");
 
         private final Color backgroundColour;
@@ -68,7 +68,6 @@ public class SusApp extends Application {
     private ScrollPane scrollPane;
     private TextField userInput;
     private VBox dialogContainer;
-
 
     private StorageFile storage;
     private TaskList taskList;
@@ -158,13 +157,8 @@ public class SusApp extends Application {
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
-
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
+        sendButton.setOnMouseClicked((event) -> handleUserInput());
+        userInput.setOnAction((event) -> handleUserInput());
     }
 
     /**
@@ -184,7 +178,7 @@ public class SusApp extends Application {
         wrapper.setBackground(new Background(
                 new BackgroundFill(
                         messageType.getBackgroundColour(),
-                        new CornerRadii(40),
+                        new CornerRadii(20),
                         new Insets(10, 50, 10, 70)
         )));
         dialogContainer.getChildren().add(wrapper);
@@ -198,7 +192,7 @@ public class SusApp extends Application {
         wrapper.setBackground(new Background(
                 new BackgroundFill(
                         MessageType.USER.getBackgroundColour(),
-                        new CornerRadii(40),
+                        new CornerRadii(20),
                         new Insets(10, 70, 10, 50)
                 )));
         dialogContainer.getChildren().add(wrapper);
@@ -222,7 +216,7 @@ public class SusApp extends Application {
         final String userCommand = userInput.getText();
         final Command command = new Parser().parseCommand(userCommand);
         final CommandResult result = command.execute(taskList, textUi, storage);
-        final String output = result.getFeedbackToUser();
+        final String output = result.getCommandResult();
 
         showUserMessage(userCommand);
         userInput.clear();

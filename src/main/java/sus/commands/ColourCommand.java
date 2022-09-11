@@ -6,7 +6,7 @@ import sus.task.TaskList;
 import sus.ui.TextUi;
 
 /**
- * Sets the output colour of the program.
+ * Sets the output colour of the CLI.
  */
 public class ColourCommand extends Command {
 
@@ -14,12 +14,17 @@ public class ColourCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Set text output colour.\n"
             + "\tColours supported: black, red, green, yellow, blue, magenta, cyan, white\n"
-            + "\tEx.: " + COMMAND_WORD + " <colour>";
+            + "\tEx: " + COMMAND_WORD + " <colour>";
 
     private final String colour;
 
-    public ColourCommand(String inputColour) {
-        colour = inputColour.toUpperCase();
+    /**
+     * Constructor.
+     *
+     * @param colour output colour of CLI
+     */
+    public ColourCommand(String colour) {
+        this.colour = colour.toUpperCase();
     }
 
     @Override

@@ -5,13 +5,18 @@ package sus.commands;
  */
 public class CommandResult {
 
-    private final String feedbackToUser;
+    private final String commandResult;
 
-    public CommandResult(String feedbackToUser) {
-        this.feedbackToUser = feedbackToUser;
+    /**
+     * Constructor.
+     *
+     * @param commandResult result of command executed
+     */
+    public CommandResult(String commandResult) {
+        this.commandResult = commandResult;
     }
 
-    public String getFeedbackToUser() {
-        return feedbackToUser;
+    public String getCommandResult() {
+        return commandResult;
     }
 }

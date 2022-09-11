@@ -1,5 +1,6 @@
 package sus.parser;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +20,7 @@ import sus.commands.TodoCommand;
 import sus.commands.UnmarkCommand;
 import sus.commands.UpdateCommand;
 import sus.common.Messages;
+import sus.common.Utils;
 
 /**
  * Parses user input.
@@ -175,24 +177,42 @@ public class Parser {
     }
 
     private String[] parseDeadline(String args) throws DukeException {
-        if (!args.contains("/by")) {
-            throw new DukeException(String.format(Messages.MESSAGE_MISSING_SEPARATOR, "/by"));
-        }
-        return args.trim().split("/by");
+        return parseArgsAsDescriptionDate(args, "/by");
     }
 
     private String[] parseEvent(String args) throws DukeException {
-        if (!args.contains("/at")) {
-            throw new DukeException(String.format(Messages.MESSAGE_MISSING_SEPARATOR, "/at"));
-        }
-        return args.trim().split("/at");
+        return parseArgsAsDescriptionDate(args, "/at");
     }
 
+    /**
+     * Takes the visible index as input and translates into list index.
+     *
+     * @param args user input
+     * @return index in the task list
+     * @throws DukeException if input is not a number
+     */
     private int parseArgsAsDisplayedIndex(String args) throws DukeException {
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new DukeException(Messages.MESSAGE_TASK_NOT_SPECIFIED);
         }
         return Integer.parseInt(matcher.group());
+    }
+
+    private String[] parseArgsAsDescriptionDate(String args, String separator) throws DukeException {
+        if (!args.contains(separator)) {
+            throw new DukeException(String.format(Messages.MESSAGE_MISSING_SEPARATOR, separator));
+        }
+
+        String[] argsArray = args.trim().split(separator);
+        if (argsArray.length == 0) {
+            throw new DukeException(Messages.MESSAGE_EMPTY_DESCRIPTION);
+        }
+        if (argsArray.length == 1) {
+            throw new DukeException(Messages.MESSAGE_EMPTY_DATE);
+        }
+        LocalDate date = Utils.parseDate(argsArray[1].trim());
+
+        return new String[] { argsArray[0].trim(), date.toString() };
     }
 }

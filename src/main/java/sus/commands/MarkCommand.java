@@ -15,12 +15,12 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a task as done.\n"
-            + "\tEx.: " + COMMAND_WORD + " <number>";
+            + "\tEx: " + COMMAND_WORD + " <number>";
 
     private final int targetIndex;
 
     /**
-     * Constructor for MarkCommand.
+     * Constructor.
      *
      * @param targetIndex index of the task to be marked
      */

@@ -47,7 +47,7 @@ public class TextUi {
      */
     public void showResultToUser(CommandResult result) {
         showDivider();
-        showWithCurrentColour(result.getFeedbackToUser());
+        showWithCurrentColour(result.getCommandResult());
         showDivider();
     }
 

@@ -51,7 +51,7 @@ public class Sus {
 
     /** Reads the user command and executes it, until the user issues the exit command */
     public void runCommandLoop() {
-        boolean isExit = false;
+        boolean isExit;
         do {
             final String userCommand = textUi.getUserCommand();
             final Command command = new Parser().parseCommand(userCommand);

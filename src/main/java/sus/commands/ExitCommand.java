@@ -14,6 +14,13 @@ public class ExitCommand extends Command {
             + ": Exits Duke.\n"
             + "\tEx.: " + COMMAND_WORD;
 
+    /**
+     * Constructor.
+     */
+    public ExitCommand() {
+
+    }
+
     @Override
     public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
         return new CommandResult("Exiting Duke as requested...");

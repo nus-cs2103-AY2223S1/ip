@@ -9,27 +9,26 @@ import sus.common.Utils;
  */
 public class Event extends Task {
 
-    private final LocalDate at;
+    private final LocalDate timeFrame;
 
     /**
      * Constructor for a new Event.
      *
      * @param description description of the event
-     * @param at time frame of the event
+     * @param timeFrame time frame of the event
      */
-    public Event(String description, String at) {
+    public Event(String description, LocalDate timeFrame) {
         super(description);
-        this.at = Utils.parseDate(at);
+        this.timeFrame = timeFrame;
     }
 
     @Override
     public String encodeToString() {
-        String taskStatus = isDone ? "1" : "0";
-        return String.format("E | %s | %s | %s", taskStatus, description, at);
+        return String.format("E | %s | %s | %s", (isDone ? "1" : "0"), description, timeFrame);
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s %s (at: %s)", super.getStatusIcon(), description, Utils.convertLocalDate(at));
+        return String.format("[E]%s (at: %s)", super.toString(), Utils.convertLocalDateToString(timeFrame));
     }
 }

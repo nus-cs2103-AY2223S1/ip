@@ -41,13 +41,13 @@ test {
 }
 
 application {
-    mainClass = "duke.Duke"
+    mainClass = "sus.Sus"
 }
 
 shadowJar {
-    archiveBaseName.set('duke')
+    archiveBaseName.set('sus')
     archiveClassifier.set('')
-    archiveVersion.set('1.0.2')
+    archiveVersion.set('1.1.0')
 }
 
 run {

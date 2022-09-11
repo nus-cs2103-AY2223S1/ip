@@ -18,23 +18,23 @@ public class EventCommand extends Command {
             + "\tEx.: " + COMMAND_WORD + " <description> /at <date/time>";
 
     private final String description;
-    private final String at;
+    private final String timeFrame;
 
     /**
-     * Constructor for EventCommand.
+     * Constructor.
      *
-     * @param description description of the new event
-     * @param at time frame of the event (date, time, etc.)
+     * @param description description of the event
+     * @param timeFrame time frame of the event
      */
-    public EventCommand(String description, String at) {
+    public EventCommand(String description, String timeFrame) {
         this.description = description;
-        this.at = at;
+        this.timeFrame = timeFrame;
     }
 
     @Override
     public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
         try {
-            Task task = taskList.addEvent(description, at);
+            Task task = taskList.addEvent(description, timeFrame);
             storage.save(taskList);
             return new CommandResult(Messages.MESSAGE_TASK_ADDED + "\n"
                     + task + "\n"

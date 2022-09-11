@@ -21,7 +21,7 @@ public class UpdateCommand extends Command {
     private final String newDescription;
 
     /**
-     * Constructor for UpdateCommand.
+     * Constructor .
      *
      * @param targetIndex index of task to update
      * @param newDescription new description to be set
