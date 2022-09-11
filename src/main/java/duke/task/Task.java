@@ -8,6 +8,14 @@ public class Task {
     protected String description;
     /** Flag to indicate if a task is done or not */
     protected boolean isDone;
+    /** Priority to indicate urgency of task */
+    protected Priority priority;
+
+    enum Priority {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
 
     /**
      * Instantiates a Task object.
@@ -17,6 +25,7 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.priority = Priority.LOW;
     }
 
     /**
@@ -28,6 +37,7 @@ public class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+        this.priority = Priority.LOW;
     }
 
     public String getDescription() {
@@ -38,6 +48,14 @@ public class Task {
         return this.isDone ? "X" : " ";
     }
 
+    public String getPriorityStatus() {
+        return this.priority.toString();
+    }
+
+    public void setPriorityStatus(String priority) {
+        this.priority = Priority.valueOf(priority);
+    }
+
     /**
      * Returns the String representation of the Task object when saved into a file.
      *
@@ -45,7 +63,7 @@ public class Task {
      */
     public String fileStatus() {
         String status = this.isDone ? "1" : "0";
-        return status + " | " + this.description;
+        return getPriorityStatus() + " | " + status + " | " + this.description;
     }
 
     public void markAsDone() {
@@ -58,6 +76,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + this.getPriorityStatus() + "]" + "[" + this.getStatusIcon() + "] " + this.description;
     }
 }

@@ -67,17 +67,18 @@ public class Storage {
             while (scanner.hasNextLine()) {
                 String[] taskDescription = scanner.nextLine().split(" \\| ");
                 String taskType = taskDescription[0];
-                boolean isDone = taskDescription[1].equals("1");
-                String description = taskDescription[2] + " ";
+                boolean isDone = taskDescription[2].equals("1");
+                String description = taskDescription[3] + " ";
                 String date = " ";
                 Task task = null;
 
-                if (taskDescription.length == 4) {
-                    date += taskDescription[3];
+                if (taskDescription.length == 5) {
+
+                    date += taskDescription[4];
                 }
 
                 if (taskType.equals("T")) {
-                    task = new ToDo(description, isDone);
+                    task = new ToDo(description);
                 }
 
                 if (taskType.equals("D")) {
@@ -91,7 +92,7 @@ public class Storage {
                 if (isDone) {
                     task.markAsDone();
                 }
-
+                task.setPriorityStatus(taskDescription[1]);
                 taskList.add(task);
             }
         } catch (DukeException e) {
