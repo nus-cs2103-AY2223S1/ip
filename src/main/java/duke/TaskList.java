@@ -56,6 +56,7 @@ public class TaskList {
      * Method to mark a task as done.
      */
     public String mark(int index) throws IOException {
+        assert index < inputList.size() || index > 0;
         inputList.get(index - 1).mark();
         String response = "Nice! I've marked this task as done:\n" + inputList.get(index- 1);
         Storage.writeToFile(inputList);
@@ -66,6 +67,7 @@ public class TaskList {
      * Method to mark a task as undone.
      */
     public String unmark(int index) throws IOException {
+        assert index < inputList.size() || index > 0;
         inputList.get(index - 1).unmark();
         String response = "Nice! I've marked this task as undone:\n" + inputList.get(index- 1);
         Storage.writeToFile(inputList);
@@ -77,10 +79,20 @@ public class TaskList {
      */
     public String list() {
         String itemList = "";
+        String response = "";
         for (Task item : inputList) {
             itemList += inputList.indexOf(item) + 1 + ". " + item + "\n";
         }
-        String response = "Here are the tasks in your list:\n" + itemList;
+        if (inputList.size() == 0) {
+            response += "There are no tasks in your list.!";
+            return response;
+        }
+
+        if (inputList.size() == 1) {
+            response += "Here is the task in your list:\n" + itemList;
+            return response;
+        }
+        response += "Here are the tasks in your list:\n" + itemList;
         return response;
     }
 
@@ -150,6 +162,9 @@ public class TaskList {
         for (Task item : list) {
             itemList += list.indexOf(item) + 1 + "." + item.toString() + "\n";
         }
+
+        assert !itemList.isEmpty();
+
         String response = "Here are the matching tasks in your list:\n" + itemList;
         return response;
     }
