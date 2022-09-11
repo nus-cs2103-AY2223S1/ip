@@ -4,9 +4,9 @@ package duke.task;
  * Supported task symbols in display and save formats.
  */
 public enum TaskSymbolType {
-    T("\uD83D\uDCDD", 3),
+    T("📝", 3),
     D("⏰", 4),
-    E("\uD83D\uDCC5", 4);
+    E("📅", 4);
 
     private final String symbol;
     private final int argCount;

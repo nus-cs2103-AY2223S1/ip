@@ -35,7 +35,7 @@ public class Parser {
         + "[dd/MM/yy HHmm][dd/MM/yy HH:mm][dd-MM-yy HHmm][dd-MM-yy HH:mm][dd/MM/yyyy HHmm][dd/MM/yyyy HH:mm]"
         + "[dd-MM-yyyy HHmm][dd-MM-yyyy HH:mm]");
     public static final DateTimeFormatter DATE_TIME_SAVE_FORMAT = DateTimeFormatter.ofPattern("d-M-yy HHmm");
-    public static final DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
+    public static final DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy h:mm a");
 
     /**
      * Parses an integer from a string.
