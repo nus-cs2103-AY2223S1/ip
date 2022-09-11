@@ -17,7 +17,7 @@ import duke.command.UnmarkCommand;
 import duke.exception.IllegalDescriptionException;
 import duke.exception.IllegalKeywordException;
 import duke.exception.IllegalTaskException;
-import duke.exception.IllegalTimeException;
+import duke.exception.IllegalDateException;
 import duke.exception.IllegalTokenException;
 
 /**
@@ -31,10 +31,10 @@ public class Parser {
 
     static {
         String[] monthsArr = {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
-        int dayNum = 1;
+        int monthNum = 1;
         for (String key : monthsArr) {
-            months.put(key, "" + dayNum);
-            ++dayNum;
+            months.put(key, "" + monthNum);
+            ++monthNum;
         }
     }
 
@@ -60,233 +60,288 @@ public class Parser {
         //strip() to allow for any (unintentional) whitespaces before or after
         response = response.strip();
         //for any caps commands
-        String lresponse = response.toLowerCase();
-        //bye command
-        if (lresponse.equals("bye")) {
-            return new ByeCommand();
-        //list command
-        } else if (lresponse.equals("list")) {
-            return new ListCommand(taskList);
+        String responseInLowerCase = response.toLowerCase();
+
+        //program queries
+        if (responseInLowerCase.equals("bye")) {
+            return this.executeOnBye();
         }
 
+        //list task queries
         try {
-            //mark command
-            if (lresponse.equals("mark") || lresponse.startsWith("mark ")) {
-                //no task specified, mark<space> is 5 char long
-                if (response.length() < 6) {
-                    throw new IllegalTaskException("No task specified.");
-                }
-                //taking index 5 inclusive onward
-                //minus 1 to convert into index starting from 0
-                int query = Integer.parseInt(response.substring(5).strip()) - 1;
-                //will throw illegaltaskexception
-                return new MarkCommand(taskList, query);
-            //unmark command
-            } else if (lresponse.equals("unmark") || lresponse.startsWith("unmark ")) {
-                //no task specified, unmark<space> is 7 char long
-                if (response.length() < 8) {
-                    throw new IllegalTaskException("No task specified.");
-                }
-                //taking index 7 inclusive onward
-                //minus 1 to convert into index starting from 0
-                int query = Integer.parseInt(response.substring(7).strip()) - 1;
-                //will throw illegaltaskexception
-                return new UnmarkCommand(taskList, query);
-            //delete command
-            } else if (lresponse.equals("delete") || lresponse.startsWith("delete ")) {
-                //no task specified, delete<space> is 7 char long
-                if (response.length() < 8) {
-                    throw new IllegalTaskException("No task specified.");
-                }
-                //taking index 7 inclusive onward
-                //minus 1 to convert into index starting from 0
-                int query = Integer.parseInt(response.substring(7).strip()) - 1;
-                return new DeleteCommand(taskList, query);
-            } else if (lresponse.equals("find") || lresponse.startsWith("find ")) {
-                //no keywords specified, find<space> is 5 char long
-                if (response.length() < 6) {
-                    throw new IllegalKeywordException("No keyword specified.");
-                }
-                //taking index 5 inclusive onward
-                //ensure no leading whitespaces
-                return new FindCommand(taskList, response.substring(5).stripLeading());
+            if (responseInLowerCase.equals("list")) {
+                return this.executeOnList();
+            } else if (responseInLowerCase.equals("find") || responseInLowerCase.startsWith("find ")) {
+                return this.executeOnFind(response);
             }
-        } catch (NumberFormatException | IllegalTaskException e) {
-            return () -> "I'm sorry, but the task number you have inputted does not exist or is invalid.";
         } catch (IllegalKeywordException e) {
             return () -> "I'm sorry, but you have not specified a keyword.";
         }
 
+        //modify task queries
         try {
-            if (lresponse.equals("todo") || lresponse.startsWith("todo ")) {
-                //completely nothing after command, todo<space> is 5 char long
-                //todo command with whitespaces followed are not valid descriptions.
-                if (response.length() < 6) {
-                    throw new IllegalDescriptionException("No description specified.");
-                }
-                //taking index 5 onward as description
-                //should be atleast 1 char by now
-                String description = response.substring(5);
-                return new ToDoCommand(taskList, description);
-            } else if (lresponse.equals("deadline") || lresponse.startsWith("deadline ")) {
-                //completely nothing after command, deadline<space> is 9 char long
-                if (response.length() < 10) {
-                    throw new IllegalTokenException("No token found.");
-                }
-                //cut away deadline<space>
-                response = response.substring(9);
-                //e.g. deadline /by <time>
-                //or deadline /by
-                if (response.equals("/by") || response.startsWith("/by ")) {
-                    throw new IllegalDescriptionException("No description specified.");
-                }
-                //e.g. deadline <desc> /by
-                if (response.endsWith(" /by")) {
-                    throw new IllegalTimeException("No time specified.");
-                }
-                int tokenPosition = response.indexOf(" /by ");
-                if (tokenPosition < 0) {
-                    throw new IllegalTokenException("No token found.");
-                }
-                String description = response.substring(0, tokenPosition);
-                //starting from after /by<space>
-                String time = response.substring(tokenPosition + 5);
-                //as of now still can have e.g deadline <space><space><space> /by <time>
-                //to ensure whitespaces alone as a description or time is not allowed
-                if (description.strip().length() == 0) {
-                    throw new IllegalDescriptionException("No description specified.");
-                }
-                //should not even come here as if time is pure whitespace, will be truncated
-                if (time.length() == 0) {
-                    throw new IllegalTimeException("No time specified.");
-                }
-                //strip leading get rid of white spaces infront, back alr dealt with
-                time = time.stripLeading();
-                return new DeadlineCommand(taskList, description, Parser.parseTime(time));
-            } else if (lresponse.equals("event") || lresponse.startsWith("event ")) {
-                if (response.length() < 7) {
-                    throw new IllegalTokenException("No token found.");
-                }
-                response = response.substring(6);
-                if (response.equals("/at") || response.startsWith("/at ")) {
-                    throw new IllegalDescriptionException("No description specified.");
-                }
-                if (response.endsWith(" /at")) {
-                    throw new IllegalTimeException("No time specified.");
-                }
-                int tokenPosition = response.indexOf(" /at ");
-                if (tokenPosition < 0) {
-                    throw new IllegalTokenException("No token found.");
-                }
-                String description = response.substring(0, tokenPosition);
-                String time = response.substring(tokenPosition + 5);
-                //to ensure whitespaces alone as a description or time is not allowed
-                if (description.strip().length() == 0) {
-                    throw new IllegalDescriptionException("No description specified.");
-                }
-                //should not even come here as if time is pure whitespace, will be truncated
-                if (time.length() == 0) {
-                    throw new IllegalTimeException("No time specified.");
-                }
-                //strip leading get rid of white spaces infront, back alr dealt with
-                time = time.stripLeading();
-                return new EventCommand(taskList, description, Parser.parseTime(time));
+            //mark command
+            if (responseInLowerCase.equals("mark") || responseInLowerCase.startsWith("mark ")) {
+                return this.executeOnMark(response);
+            //unmark command
+            } else if (responseInLowerCase.equals("unmark") || responseInLowerCase.startsWith("unmark ")) {
+                return this.executeOnUnmark(response);
+            //delete command
+            } else if (responseInLowerCase.equals("delete") || responseInLowerCase.startsWith("delete ")) {
+                return this.executeOnDelete(response);
+            }
+        } catch (NumberFormatException | IllegalTaskException e) {
+            return () -> "I'm sorry, but the task number you have inputted does not exist or is invalid.";
+        }
+
+        //creation of task queries
+        try {
+            if (responseInLowerCase.equals("todo") || responseInLowerCase.startsWith("todo ")) {
+                return this.executeOnTodo(response);
+            } else if (responseInLowerCase.equals("deadline") || responseInLowerCase.startsWith("deadline ")) {
+                return this.executeOnDeadline(response);
+            } else if (responseInLowerCase.equals("event") || responseInLowerCase.startsWith("event ")) {
+                return this.executeOnEvent(response);
             }
         } catch (IllegalDescriptionException e) {
             return () -> "I'm sorry, but the description cannot be empty.";
-        } catch (IllegalTimeException e) {
-            return () -> "I'm sorry, but the time specified is either invalid or empty.";
+        } catch (IllegalDateException e) {
+            return () -> "I'm sorry, but the date specified is either invalid or empty.";
         } catch (IllegalTokenException e) {
             return () -> "I'm sorry, but you are mising the \"/by\" or \"/at\" token.";
         }
+
         return () -> "I'm sorry, but I don't know what that means.";
+
+    }
+
+    private Supplier<String> executeOnBye() {
+        return new ByeCommand();
+    }
+
+    private Supplier<String> executeOnList() {
+        return new ListCommand(taskList);
+    }
+
+    private Supplier<String> executeOnMark(String response) throws IllegalTaskException {
+        //no task specified, mark<space> is 5 char long
+        if (response.length() < 6) {
+            throw new IllegalTaskException("No task specified.");
+        }
+        //taking index 5 inclusive onward
+        //minus 1 to convert into index starting from 0
+        int query = Integer.parseInt(response.substring(5).strip()) - 1;
+        //will throw illegaltaskexception
+        return new MarkCommand(taskList, query);
+    }
+
+    private Supplier<String> executeOnUnmark(String response) throws IllegalTaskException {
+        //no task specified, unmark<space> is 7 char long
+        if (response.length() < 8) {
+            throw new IllegalTaskException("No task specified.");
+        }
+        //taking index 7 inclusive onward
+        //minus 1 to convert into index starting from 0
+        int query = Integer.parseInt(response.substring(7).strip()) - 1;
+        //will throw illegaltaskexception
+        return new UnmarkCommand(taskList, query);
+    }
+
+    private Supplier<String> executeOnDelete(String response) throws IllegalTaskException {
+        //no task specified, delete<space> is 7 char long
+        if (response.length() < 8) {
+            throw new IllegalTaskException("No task specified.");
+        }
+        //taking index 7 inclusive onward
+        //minus 1 to convert into index starting from 0
+        int query = Integer.parseInt(response.substring(7).strip()) - 1;
+        return new DeleteCommand(taskList, query);
+    }
+
+    private Supplier<String> executeOnFind(String response) throws IllegalKeywordException {
+        //no keywords specified, find<space> is 5 char long
+        if (response.length() < 6) {
+            throw new IllegalKeywordException("No keyword specified.");
+        }
+        //taking index 5 inclusive onward
+        //ensure no leading whitespaces
+        return new FindCommand(taskList, response.substring(5).stripLeading());
+    }
+
+    private Supplier<String> executeOnTodo(String response) throws IllegalDescriptionException {
+        //completely nothing after command, todo<space> is 5 char long
+        //todo command with whitespaces followed are not valid descriptions.
+        if (response.length() < 6) {
+            throw new IllegalDescriptionException("No description specified.");
+        }
+        //taking index 5 onward as description
+        //should be atleast 1 char by now
+        String description = response.substring(5);
+        return new ToDoCommand(taskList, description);
+    }
+
+    private Supplier<String> executeOnDeadline(String response) throws IllegalTokenException,
+            IllegalDescriptionException, IllegalDateException {
+        //completely nothing after command, deadline<space> is 9 char long
+        if (response.length() < 10) {
+            throw new IllegalTokenException("No token found.");
+        }
+        //cut away deadline<space>
+        response = response.substring(9);
+        //e.g. deadline /by <date>
+        //or deadline /by
+        if (response.equals("/by") || response.startsWith("/by ")) {
+            throw new IllegalDescriptionException("No description specified.");
+        }
+        //e.g. deadline <desc> /by
+        if (response.endsWith(" /by")) {
+            throw new IllegalDateException("No date specified.");
+        }
+        int tokenPosition = response.indexOf(" /by ");
+        if (tokenPosition < 0) {
+            throw new IllegalTokenException("No token found.");
+        }
+        String description = response.substring(0, tokenPosition);
+        //starting from after /by<space>
+        String date = response.substring(tokenPosition + 5);
+        //as of now still can have e.g deadline <space><space><space> /by <date>
+        //to ensure whitespaces alone as a description or date is not allowed
+        if (description.strip().length() == 0) {
+            throw new IllegalDescriptionException("No description specified.");
+        }
+        //should not even come here as if date is pure whitespace, will be truncated
+        if (date.length() == 0) {
+            throw new IllegalDateException("No date specified.");
+        }
+        //strip leading get rid of white spaces infront, back alr dealt with
+        date = date.stripLeading();
+        return new DeadlineCommand(taskList, description, Parser.parseDate(date));
+    }
+
+    private Supplier<String> executeOnEvent(String response) throws IllegalTokenException, IllegalDescriptionException,
+            IllegalDateException {
+        if (response.length() < 7) {
+            throw new IllegalTokenException("No token found.");
+        }
+        response = response.substring(6);
+        if (response.equals("/at") || response.startsWith("/at ")) {
+            throw new IllegalDescriptionException("No description specified.");
+        }
+        if (response.endsWith(" /at")) {
+            throw new IllegalDateException("No date specified.");
+        }
+        int tokenPosition = response.indexOf(" /at ");
+        if (tokenPosition < 0) {
+            throw new IllegalTokenException("No token found.");
+        }
+        String description = response.substring(0, tokenPosition);
+        String date = response.substring(tokenPosition + 5);
+        //to ensure whitespaces alone as a description or date is not allowed
+        if (description.strip().length() == 0) {
+            throw new IllegalDescriptionException("No description specified.");
+        }
+        //should not even come here as if date is pure whitespace, will be truncated
+        if (date.length() == 0) {
+            throw new IllegalDateException("No date specified.");
+        }
+        //strip leading get rid of white spaces infront, back alr dealt with
+        date = date.stripLeading();
+        return new EventCommand(taskList, description, Parser.parseDate(date));
     }
 
     /**
-     * Parses string to the appropriate time it represents, if any.
+     * Parses string to the appropriate date it represents, if any.
      *
-     * @param str the string to parse.
-     * @return the LocalDate object representing time.
-     * @throws IllegalTimeException If unable to parse the string to a valid time.
+     * @param dateStr the string to parse.
+     * @return the LocalDate object representing date.
+     * @throws IllegalDateException If unable to parse the string to a valid date.
      */
-    private static LocalDate parseTime(String str) throws IllegalTimeException {
-        String sDay;
-        String sMonth;
-        String sYear;
-        //ddmmyyyy
-        String[] arr = new String[3];
-        //forward slash, hyphen, dot, or whitespace, otherwise no separator cases
-        if (str.indexOf('/') >= 0) {
-            arr = Parser.parseTimeHelper('/', str);
-        } else if (str.indexOf('-') >= 0) {
-            arr = Parser.parseTimeHelper('-', str);
-        } else if (str.indexOf('.') >= 0) {
-            arr = Parser.parseTimeHelper('.', str);
-        } else if (str.indexOf(' ') >= 0) {
-            arr = Parser.parseTimeHelper(' ', str);
-        } else if (str.length() == 4 || str.length() == 6 || str.length() == 8) {
-            arr[0] = str.substring(0, 2);
-            arr[1] = str.substring(2, 4);
-            if (str.length() > 4) {
-                arr[2] = str.substring(4);
-            }
+    private static LocalDate parseDate(String dateStr) throws IllegalDateException {
+        String dayStr;
+        String monthStr;
+        String yearStr;
+
+        String[] dateArr = new String[3]; //ddmmyyyy
+        Parser.splitString(dateStr, dateArr);
+
+        if (dateArr[0] == null || dateArr[1] == null) { //need both day and month else invalid
+            throw new IllegalDateException("Unable to parse due to invalid format.");
         }
-        //if any of these if statements go through, arr will have atleast 2 no null elements
-        //no method of parsing, arr[1] check redundant but just in case
-        if (arr[0] == null || arr[1] == null) {
-            throw new IllegalTimeException("Unable to parse due to invalid format.");
-        }
-        sDay = arr[0].strip();
-        sMonth = arr[1].strip();
-        //check if d/dd and m/mm/MMM
-        if (sDay.length() < 1 || sDay.length() > 2 || sMonth.length() < 1 || sMonth.length() > 3) {
-            throw new IllegalTimeException("Invalid day or month values.");
-        }
+
+        dayStr = dateArr[0].strip();
+
+        monthStr = dateArr[1].strip();
         //convert month to number
-        //length of 3 may indicate abbrev
-        if (sMonth.length() == 3) {
-            sMonth = Parser.months.get(sMonth.toLowerCase());
-            if (sMonth == null) {
-                throw new IllegalTimeException("Invalid abbreviated month.");
+        if (monthStr.length() == 3) { //length of 3 may indicate abbrev
+            monthStr = Parser.months.get(monthStr.toLowerCase());
+            if (monthStr == null) { //no such month
+                throw new IllegalDateException("Invalid abbreviated month.");
             }
         }
-        //if year null, defaults to current year
-        //else strip
-        if (arr[2] == null) {
-            sYear = "" + LocalDate.now().getYear();
-        } else {
-            sYear = arr[2].strip();
+
+        if (dateArr[2] == null) { //if year null, defaults to current year
+            dateArr[2] = "" + LocalDate.now().getYear();
         }
-        //check if yy/yyyy
-        if (sYear.length() == 2) {
-            sYear = "20" + sYear;
-        } else if (sYear.length() != 4) {
-            throw new IllegalTimeException("Invalid year input.");
+        yearStr = dateArr[2].strip();
+        //convert yy to yyyy
+        if (yearStr.length() == 2) {
+            yearStr = "20" + yearStr;
         }
+        //by here, anyth outside length of 4 reject
+        if (yearStr.length() != 4) {
+            throw new IllegalDateException("Invalid year input.");
+        }
+
         try {
-            return LocalDate.of(Integer.parseInt(sYear), Integer.parseInt(sMonth), Integer.parseInt(sDay));
+            return LocalDate.of(Integer.parseInt(yearStr), Integer.parseInt(monthStr), Integer.parseInt(dayStr));
         } catch (NumberFormatException | DateTimeException e) {
             //if cannot parse means invalid input
-            throw new IllegalTimeException("Date input invalid.");
+            throw new IllegalDateException("Date input invalid.");
+        }
+    }
+
+    private static void splitString(String str, String[] dest) {
+        String[] result = new String[3];
+
+        if (str.indexOf('/') >= 0) {
+            result = Parser.splitStringByChar('/', str);
+        } else if (str.indexOf('-') >= 0) {
+            result = Parser.splitStringByChar('-', str);
+        } else if (str.indexOf('.') >= 0) {
+            result = Parser.splitStringByChar('.', str);
+        } else if (str.indexOf(' ') >= 0) {
+            result = Parser.splitStringByChar(' ', str);
+        } else if (str.length() == 4 || str.length() == 6 || str.length() == 8) { //no char separator
+            result[0] = str.substring(0, 2);
+            result[1] = str.substring(2, 4);
+            if (str.length() > 4) {
+                result[2] = str.substring(4);
+            }
+        }
+        //copy result to dest arr
+        for (int i = result.length - 1; i >= 0; --i) {
+            dest[i] = result[i];
         }
     }
 
     /**
      * Splits a string by using a separator char.
      *
-     * @param c the char used as separator.
+     * @param separator the char used as separator.
      * @param str the string to split.
      * @return an array of parts of the input string in order.
      */
-    private static String[] parseTimeHelper(char c, String str) {
+    private static String[] splitStringByChar(char separator, String str) {
         //helper that just splits string by specified char separator into array of size 3
         String[] arr = new String[3];
-        int count = 0;
-        for (int charIndex = str.indexOf(c); charIndex >= 0 && count < 2; charIndex = str.indexOf(c)) {
-            arr[count++] = str.substring(0, charIndex);
+        int currIndex = 0;
+        for (int charIndex = str.indexOf(separator);
+             charIndex >= 0 && currIndex < 2;
+             charIndex = str.indexOf(separator)) {
+            arr[currIndex++] = str.substring(0, charIndex);
             str = str.substring(charIndex + 1);
         }
-        arr[count] = str;
+        arr[currIndex] = str;
         return arr;
     }
 }

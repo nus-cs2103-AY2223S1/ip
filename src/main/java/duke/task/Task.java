@@ -66,7 +66,7 @@ public abstract class Task {
      *
      * @return the parsable string representation of the task.
      */
-    public String toData() {
+    public String toStorageFormat() {
         switch (this.status) {
         case DONE:
             return "1" + this.description.length() + "_" + this.description;

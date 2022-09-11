@@ -2,10 +2,9 @@ package duke.gui;
 
 import java.util.function.Supplier;
 
-import duke.Duke;
 import duke.command.ByeCommand;
-import duke.command.Command;
 import duke.logic.Parser;
+
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -39,10 +38,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        initializeMessage();
+        displayWelcomeMessage();
     }
 
-    private void initializeMessage() {
+    private void displayWelcomeMessage() {
         this.dialogContainer.getChildren()
                 .add(DialogBox.getDukeDialog(WELCOME_MESSAGE, dukeImage));
     }
@@ -58,12 +57,12 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+        userInput.clear();
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
         Supplier<String> command = parser.parse(input);
-        String response = parser.parse(input).get();
+        String response = command.get();
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(response, dukeImage));
-        userInput.clear();
-        if (command instanceof ByeCommand) { //bye gives 2 sec delay to close program
+        if (command instanceof ByeCommand) { //bye gives 2 sec pause before closing program
             PauseTransition pause = new PauseTransition(Duration.seconds(2));
             pause.setOnFinished(event -> Platform.exit());
             pause.play();

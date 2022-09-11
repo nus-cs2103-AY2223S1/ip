@@ -13,19 +13,19 @@ public class UnmarkCommand extends Command {
     private TaskList taskList;
 
     /** Zero-based index of the task to unmark. */
-    private int query;
+    private int queryIndex;
 
     /**
      * Constructor for the command.
      *
      * @param taskList the task list the command will modify.
-     * @param query the zero-based index of the task to unmark.
+     * @param queryIndex the zero-based index of the task to unmark.
      * @throws IllegalTaskException If the task specified to unmark does not exist.
      */
-    public UnmarkCommand(TaskList taskList, int query) throws IllegalTaskException {
+    public UnmarkCommand(TaskList taskList, int queryIndex) throws IllegalTaskException {
         this.taskList = taskList;
-        if (this.taskList.exists(query)) {
-            this.query = query;
+        if (this.taskList.exists(queryIndex)) {
+            this.queryIndex = queryIndex;
         } else {
             throw new IllegalTaskException("Task does not exist.");
         }
@@ -34,6 +34,6 @@ public class UnmarkCommand extends Command {
     @Override
     public String get() {
         return "OK, I've marked this task as not done yet:\n"
-                + taskList.unmarkTask(query).toString();
+                + taskList.unmarkTask(queryIndex).toString();
     }
 }
