@@ -1,0 +1,33 @@
+.viewport {
+    -fx-background-image: url('../images/background.png');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.input {
+    -fx-background-image: url('../images/background.png');
+    -fx-background-color: FDF4E8;
+    -fx-border-color: TRANSPARENT;
+}
+
+.button {
+    -fx-background-image: url('../images/background.png');
+    -fx-border-color: TRANSPARENT;
+}
+
+.text {
+    -fx-background-color: TRANSPARENT;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color:FDF4E8;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color:FDF4E8;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: WHITE;
+    -fx-opacity: 70%
+}
