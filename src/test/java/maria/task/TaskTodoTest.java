@@ -14,7 +14,7 @@ public class TaskTodoTest {
 
         try {
             TaskTodo te = new TaskTodo("Kick_Ball", false);
-            assertEquals(te.toString(), "[T][ ] Kick_Ball");
+            assertEquals("[Todo] Kick_Ball [Not Done]", te.toString());
         } catch (TaskNoNameException e) {
             fail();
         }
