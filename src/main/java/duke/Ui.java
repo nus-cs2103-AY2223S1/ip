@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Encapsulates all the interactions between the Duke interface and the user.
  */
 public class Ui {
-    public static final String BORDER = "_________________________________________________";
+    public static final String BORDER = "______________________________________________________________";
 
     /**
      * Returns a string with the inputted message on the Duke interface.
@@ -42,7 +42,7 @@ public class Ui {
 
     public String getHelpMessage() {
         String whitespace = "\n\n";
-        String helpMsg = "Here are the commands you can use:" + whitespace
+        String helpMsg = "Here are the commands you can use (shortcuts in brackets):" + whitespace
                 + "bye(b) - Quit App" + whitespace
                 + "list(l) - Get the list of tasks" + whitespace
                 + "help(h) - Get to this help screen" + whitespace
