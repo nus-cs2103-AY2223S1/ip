@@ -12,14 +12,6 @@ Tuna is a desktop app for managing tasks, optimised for use via a GUI.
 7. [Find](#finding-a-task---find) tasks that contain a specified keyword.
 8. [Load](#loading-the-data) and [Save](#saving-the-data) data into the hard disk.
 
-## Quick start
-1. Ensure that you have `Java 11` or above installed in your computer.
-2. Download the latest Tuna.jar from [here](https://github.com/marcusczh/ip/releases).
-3. Copy the file to the folder you want to use as the home folder for Tuna.
-4. Double-click the file to start the app. The GUI should appear in a few seconds as such.
-
-      <img src="./screenshots/welcome.png" width=300/>
-
 ## Usage
 
 ### Notes about the command format:
