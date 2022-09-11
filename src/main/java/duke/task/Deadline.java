@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 /**
@@ -15,8 +16,8 @@ public class Deadline extends Task {
         this.end = end;
     }
 
-    public Deadline(String description, Boolean isDone, LocalDate end) {
-        super(description, isDone);
+    public Deadline(String description, Boolean isDone, LocalDate end, List<String> tags) {
+        super(description, isDone, tags);
         this.end = end;
     }
 
@@ -32,7 +33,7 @@ public class Deadline extends Task {
 
     public String toString() {
         String status = isDone ? "Done  " : "UnDone";
-        return String.format("Deadline  | %s | %s | %s", status, super.getDescription(), this.end);
+        return String.format("Deadline  | %s | %s | %s | %s", status, super.getDescription(), this.end, super.printTags());
     }
 
     @Override

@@ -42,7 +42,11 @@ public class Duke {
                     || parsedCommand[0].equals("deadline") || parsedCommand[0].equals("delete")) {
                 storage.save(tasks);
                 return ui.printAddCommandUi(parsedCommand[0], parsedCommand[1], tasks);
-            } else if (parsedCommand[0].equals("list")) {
+            } else if (parsedCommand[0].equals("tag") || parsedCommand[0].equals("untag")) {
+                storage.save(tasks);
+                return ui.printTagCommandUi(parsedCommand[0], parsedCommand[1].split(" ")[0],
+                        parsedCommand[1].split(" ")[1], tasks);
+            }else if (parsedCommand[0].equals("list")) {
                 return ui.printListCommandUi(parsedCommand[0], parsedCommand[1], tasks);
             } else if (parsedCommand[0].equals("help")) {
                 return ui.printDukeInfo();

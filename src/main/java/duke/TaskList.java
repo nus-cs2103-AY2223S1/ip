@@ -35,10 +35,14 @@ public class TaskList {
      * task status (done, undone) are represented by [X], [ ].
      */
     public String printTaskList() {
+        if (this.getSize() == 0) {
+            return "Oops! There's no matching tasks found :-(";
+        }
         int count = 1;
         String listString = "";
         for (Task t : tasks) {
-            listString += String.format("%d.%s %s\n", count, t.getStatusIcon(), t.getDescription());
+            //listString += String.format("%d.%s %s %s\n", count, t.getStatusIcon(), t.getDescription(), t.printTags());
+            listString += String.format("%d.%s\n", count, t.printTask());
             count += 1;
         }
         return listString;
@@ -52,7 +56,7 @@ public class TaskList {
      * @return string format of task list.
      */
     public String saveTaskList(){
-        String result = "Task Type | Status | Description & Time\n";
+        String result = "Task Type | Status | Description & Time | Tags\n";
         for (Task t : tasks) {
             result += t.toString() + "\n";
         }
@@ -152,6 +156,16 @@ public class TaskList {
             }
         }
         return new TaskList(tasksAtDate);
+    }
+
+    public TaskList searchByTag(String tag) {
+        TaskList tasksByTag = new duke.TaskList();
+        for (Task t : tasks) {
+            if (t.containsTag(tag)) {
+                tasksByTag.addTask(t);
+            }
+        }
+        return tasksByTag;
     }
 
     /**

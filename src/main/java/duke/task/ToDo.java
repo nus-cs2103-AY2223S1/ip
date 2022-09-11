@@ -1,4 +1,5 @@
 package duke.task;
+import java.util.List;
 
 /**
  * Represents a task to do with a task description
@@ -10,8 +11,8 @@ public class ToDo extends Task {
         super(description);
     }
 
-    public ToDo(String description, Boolean isDone) {
-        super(description, isDone);
+    public ToDo(String description, Boolean isDone, List<String> tags) {
+        super(description, isDone, tags);
     }
 
     @Override
@@ -21,7 +22,7 @@ public class ToDo extends Task {
 
     public String toString() {
         String status = isDone ? "Done  " : "UnDone";
-        return String.format("Todo      | %s | %s", status, super.getDescription());
+        return String.format("Todo      | %s | %s | %s", status, super.getDescription(), super.printTags());
     }
 
     @Override

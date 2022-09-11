@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Represents an Event task with an event description, start date and end date
@@ -16,8 +17,8 @@ public class Event extends Task {
         this.endDate = endDate;
     }
 
-    public Event(String description, Boolean isDone, LocalDate startDate, LocalDate endDate) {
-        super(description, isDone);
+    public Event(String description, Boolean isDone, LocalDate startDate, LocalDate endDate, List<String> tags) {
+        super(description, isDone, tags);
         assert startDate.isBefore(endDate) || startDate.isEqual(endDate)
                 : "invalid date range (start date after end date).";
         this.startDate = startDate;
@@ -36,8 +37,8 @@ public class Event extends Task {
 
     public String toString() {
         String status = isDone ? "Done  " : "UnDone";
-        return String.format("Event     | %s | %s | %s to %s", status, super.getDescription(),
-                this.startDate, this.endDate);
+        return String.format("Event     | %s | %s | %s to %s | %s", status, super.getDescription(),
+                this.startDate, this.endDate, super.printTags());
     }
 
     @Override
