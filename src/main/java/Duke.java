@@ -2,6 +2,7 @@ import components.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import commands.*;
 
 
 
@@ -30,17 +32,7 @@ public class Duke extends Application {
   private Storage storage;
   private TaskList taskList;
   private Ui ui;
-
-  public Duke(String filePath) {
-    ui = new Ui();
-    storage = new Storage(filePath);
-    try {
-      taskList = new TaskList(storage.load());
-    } catch (DukeException e) {
-      ui.showLoadingError();
-      taskList = new TaskList();
-    }
-  }
+  private ArrayList<String> undo;
 
   public Duke() {
     ui = new Ui();
@@ -54,18 +46,6 @@ public class Duke extends Application {
     taskList.setStorage(storage);
     Parser.setUi(ui);
     Parser.setTaskList(taskList);
-  }
-
-  public void run() {
-    taskList.setStorage(storage);
-    Parser.setUi(ui);
-    Parser.setTaskList(taskList);
-    Scanner sc = new Scanner(System.in);
-    ui.getPrompt(sc);
-  }
-
-  public static void main(String[] args) {
-    new Duke("duke.txt").run();
   }
 
   @Override
@@ -157,13 +137,13 @@ public class Duke extends Application {
    * the dialog container. Clears the user input after processing.
    */
   private void handleUserInput() {
-      String userText = userInput.getText();
-      String dukeText = getResponse(userInput.getText());
-      dialogContainer.getChildren().addAll(
-              DialogBox.getUserDialog(userText, user),
-              DialogBox.getDukeDialog(dukeText, duke)
-      );
-      userInput.clear();
+    String userText = userInput.getText();
+    String dukeText = getResponse(userInput.getText());
+    dialogContainer.getChildren().addAll(
+        DialogBox.getUserDialog(userText, user),
+        DialogBox.getDukeDialog(dukeText, duke)
+    );
+    userInput.clear();
   }
 
   /**
@@ -172,86 +152,9 @@ public class Duke extends Application {
    */
   public String getResponse(String input) {
     try {
-      if (input.equals("bye")) {
-        System.out.println("Bye. Hope to see you again soon!");
-        System.exit(0);
-      } else if (input.equals("list")) {
-        return taskList.showTasks();
-      } else if (input.contains("unmark")) {
-        if (input.equals("unmark")) {
-          return new DukeException("☹ OOPS!!! The description of a mark cannot be empty.").getMessage();
-        } else {
-          int num = Integer.parseInt(input.substring(7));
-          return taskList.setTaskStatus(num - 1, false);
-        }
-      } else if (input.contains("mark")) {
-        if (input.equals("mark")) {
-          return new DukeException("☹ OOPS!!! The description of a mark cannot be empty.").getMessage();
-        } else {
-          int num = Integer.parseInt(input.substring(5));
-          return taskList.setTaskStatus(num - 1, true);
-        }
-      } else if (input.contains("find")) {
-        return taskList.findLine(input.substring(5));
-      } else if (input.contains("todo")) {
-        if (input.equals("todo")) {
-          return new DukeException("☹ OOPS!!! The description of a todo cannot be empty.").getMessage();
-        } else {
-          String d1 = input.substring(5);
-          Todo test = new Todo(d1);
-          return taskList.add(test);
-        }
-      } else if (input.contains("deadline")) {
-        if (input.equals("deadline")) {
-          return new DukeException("☹ OOPS!!! The description of a unmark cannot be empty.").getMessage();
-        } else {
-          try {
-            String description = input.substring(9, input.indexOf("/") - 1);
-            String var = input.substring(input.indexOf("/") + 4, input.length());
-            LocalDate d1 = LocalDate.parse(var);
-            Deadline test = new Deadline(description, d1);
-            return taskList.add(test);
-          } catch (DateTimeParseException e) {
-            String description = input.substring(9, input.indexOf("/") - 1);
-            String by = input.substring(input.indexOf("/") + 4, input.length());
-            String time = input.substring(input.length() - 4, input.length());
-            Deadline test = new Deadline(description, by);
-            return taskList.add(test);
-          }
-
-        }
-      } else if (input.contains("event")) {
-        if (input.equals("event")) {
-          return new DukeException("☹ OOPS!!! The description of a unmark cannot be empty.").getMessage();
-
-        } else {
-          try {
-            String description = input.substring(6, input.indexOf("/") - 1);
-            LocalDate d1 = LocalDate.parse(input.substring(input.indexOf("/") + 4));
-            Event test = new Event(description, d1);
-            return taskList.add(test);
-
-          } catch (DateTimeParseException e) {
-            String description = input.substring(6, input.indexOf("/") - 1);
-            String at = input.substring(input.indexOf("/") + 4);
-            Event test = new Event(description, at);
-            return taskList.add(test);
-          }
-        }
-      } else if (input.contains("delete")) {
-        if (input.equals("delete")) {
-          return new DukeException("☹ OOPS!!! The description of a delete cannot be empty.").getMessage();
-
-        } else {
-          int removal = Integer.parseInt(input.substring(7));
-          return taskList.remove(removal - 1);
-        }
-      } else {
-        return new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-()").getMessage();
-      }
+      return Parser.readCommands(input).execute(this.taskList, this.storage, input);
     } catch (DukeException e) {
-      e.getMessage();
+      return e.getMessage();
     }
-    return new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-()").getMessage();
   }
 }

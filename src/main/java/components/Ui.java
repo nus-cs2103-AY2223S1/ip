@@ -12,23 +12,6 @@ public class Ui {
   public Ui() { }
 
   /**
-   * gets user input formatted into strings and then to be read.
-   *
-   * @param sc scanner object which contains the text.
-   */
-  public void getPrompt(Scanner sc) {
-    String line = "";
-    while (sc.hasNext()) {
-      try {
-        line = sc.nextLine();
-        Parser.parseLine(line);
-      } catch (DukeException e) {
-        e.printStackTrace();
-      }
-    }
-  }
-
-  /**
    * shows error when there is one during loading.
    *
    *

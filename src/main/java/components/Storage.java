@@ -76,7 +76,6 @@ public class Storage {
       while (s.hasNext()) {
         String line = s.nextLine();
         Parser.parseLineStorage(line, this);
-
       }
       s.close();
       return ls;
