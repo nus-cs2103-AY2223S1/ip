@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import duke.task.Task;
 
@@ -11,6 +12,7 @@ public class TaskList {
     protected final ArrayList<Task> tasks;
     private final Storage store;
     private final Ui ui;
+    private final HashSet<String> taskSet;
 
     /**
      * Class constructor for TaskList.
@@ -21,6 +23,7 @@ public class TaskList {
         tasks = new ArrayList<>();
         store = new Storage();
         ui = uiInstance;
+        taskSet = new HashSet<>();
     }
 
     /**
@@ -31,24 +34,16 @@ public class TaskList {
      * @throws DukeException If duplicate task is added.
      */
     public String addTask(Task task) throws DukeException {
-        if (checkDuplicate(task)) {
+        if (taskSet.contains(task.toStorageString())) {
             throw new DukeException("no duplicate tasks pls");
         }
         tasks.add(task);
+        taskSet.add(task.toStorageString());
         return ui.printMessage("Got it. I've added this task:\n      "
                 + task
                 + "\n    Now you have "
                 + tasks.size()
                 + " tasks in the list.");
-    }
-
-    private boolean checkDuplicate(Task task) {
-        for (Task t: tasks) {
-            if (task.equals(t)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
