@@ -18,7 +18,7 @@ Search for a saved task description.
 - Example Usage
   - `find church`
 
-## Feature
+## Feature - Mark
 Mark a task as done.
 ### Usage
 ### `mark <index of task shown in the list>`
@@ -28,7 +28,7 @@ Mark a task as done.
 
 Expected outcome: A task specified by the given index will be marked as done
 
-## Feature
+## Feature - Unmark
 Mark a task as un done.
 ### Usage
 ### `unmark <index of task shown in the list>`
@@ -38,7 +38,7 @@ Mark a task as un done.
 
 Expected outcome: A task specified by the given index will be marked as undone.
 
-## Feature
+## Feature - Delete
 Delete a task
 ### Usage
 ### `delete <index of task shown in the list>`
