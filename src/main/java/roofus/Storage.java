@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Represents Roofus's memory.
+ * Represents Roofus' memory.
  */
 public class Storage {
     private static String storagePath;
@@ -41,7 +41,7 @@ public class Storage {
     }
 
     /**
-     * Saves a task list into Roofus's memory.
+     * Saves a task list into Roofus' memory.
      *
      * @throws  IOException If storage path is invalid.
      */
