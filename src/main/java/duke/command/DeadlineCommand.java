@@ -25,13 +25,13 @@ public class DeadlineCommand extends Command {
      *
      * @param taskList the task list the command will modify.
      * @param description the description of the deadline.
-     * @param date the date the deadline is due.
+     * @param time the time the deadline is due.
      */
-    public DeadlineCommand(TaskList taskList, String description, LocalDate date) {
+    public DeadlineCommand(TaskList taskList, String description, LocalDate time) {
         this.taskList = taskList;
-//        assert description.length() > 0;
+        assert description.length() > 0;
         this.description = description;
-        this.date = date;
+        this.time = time;
     }
 
     @Override

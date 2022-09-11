@@ -22,7 +22,7 @@ public class FindCommand extends Command {
      */
     public FindCommand(TaskList taskList, String keyword) {
         this.taskList = taskList;
-//        assert keyword.length() > 0;
+        assert keyword.length() > 0;
         this.keyword = keyword;
     }
 

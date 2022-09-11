@@ -23,7 +23,7 @@ public class ToDoCommand extends Command {
      */
     public ToDoCommand(TaskList taskList, String description) {
         this.taskList = taskList;
-//        assert description.length() > 0;
+        assert description.length() > 0;
         this.description = description;
     }
 
