@@ -62,16 +62,18 @@ public class Parser {
     public static Parser formatInput(String input) throws DukeException {
         Parser result = new Parser();
         int maxParameters = 2;
+        String delimiter = " ";
 
-        String[] commandWithInfo = input.split(" ", maxParameters);
+        String[] commandWithInfo = input.split(delimiter, maxParameters);
         String commandString = commandWithInfo[0];
 
         Command command = Command.getCommandFromValue(commandString);
-        if (command != null) {
-            result.command = command;
-        } else {
+        if (command == null) {
             throw new InvalidCommandException(commandString);
         }
+        result.command = command;
+
+        boolean hasInsufficientInformation = commandWithInfo.length != maxParameters;
 
         switch (command) {
         case LIST:
@@ -80,19 +82,19 @@ public class Parser {
         case CHECK:
         case UNCHECK:
         case DELETE:
-            if (commandWithInfo.length != maxParameters) {
+            if (hasInsufficientInformation) {
                 throw new InvalidIndexException("Please enter an index");
             }
             result.mainData = commandWithInfo[1];
             break;
         case FIND:
-            if (commandWithInfo.length != maxParameters) {
+            if (hasInsufficientInformation) {
                 throw new InvalidFindException();
             }
             result.mainData = commandWithInfo[1];
             break;
         case TODO:
-            if (commandWithInfo.length != maxParameters) {
+            if (hasInsufficientInformation) {
                 throw new InvalidTaskNameException();
             }
             result.mainData = commandWithInfo[1];
@@ -101,19 +103,21 @@ public class Parser {
             }
             break;
         case EVENT:
-            if (commandWithInfo.length != maxParameters) {
+            if (hasInsufficientInformation) {
                 throw new InvalidTaskNameException();
             }
 
             String info = commandWithInfo[1];
             SecondaryCommand at = SecondaryCommand.AT;
 
-            if (!info.contains(SecondaryCommand.AT.getValue() + ' ')) {
+            boolean hasNoAtCommandInString = !info.contains(SecondaryCommand.AT.getValue() + ' ');
+            if (hasNoAtCommandInString) {
                 throw new InvalidSecondaryCommandException(at.getValue());
             }
 
             int atIndex = info.lastIndexOf(at.getValue());
-            if (atIndex == 0) {
+            boolean isAtCommandAtStartOfString = atIndex == 0;
+            if (isAtCommandAtStartOfString) {
                 throw new InvalidTaskNameException();
             }
 
@@ -125,19 +129,21 @@ public class Parser {
             }
             break;
         case DEADLINE:
-            if (commandWithInfo.length != maxParameters) {
+            if (hasInsufficientInformation) {
                 throw new InvalidTaskNameException();
             }
 
             info = commandWithInfo[1];
             SecondaryCommand by = SecondaryCommand.BY;
 
-            if (!info.contains(SecondaryCommand.BY.getValue() + ' ')) {
+            boolean hasNoByCommandInString = !info.contains(SecondaryCommand.BY.getValue() + ' ');
+            if (hasNoByCommandInString) {
                 throw new InvalidSecondaryCommandException(by.getValue());
             }
 
             int byIndex = info.lastIndexOf(by.getValue());
-            if (byIndex == 0) {
+            boolean isByCommandAtStartOfString = byIndex == 0;
+            if (isByCommandAtStartOfString) {
                 throw new InvalidTaskNameException();
             }
 

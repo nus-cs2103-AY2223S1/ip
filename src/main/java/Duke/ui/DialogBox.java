@@ -26,7 +26,14 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    /**
+     * The {@code DialogBox} consist of an ImageView to represent the speaker's face and a label
+     * containing text from the speaker.
+     *
+     * @param text  a string containing the text from the speaker
+     * @param image an image to be displayed along with the text.
+     */
+    private DialogBox(String text, Image image) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(GuiUi.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -37,7 +44,7 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        displayPicture.setImage(img);
+        displayPicture.setImage(image);
     }
 
     /**
@@ -50,12 +57,26 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+    /**
+     * Create a DialogBox for a user.
+     *
+     * @param text  a string containing the input from the user.
+     * @param image the image of the user.
+     * @return a DialogBox for a user.
+     */
+    public static DialogBox getUserDialog(String text, Image image) {
+        return new DialogBox(text, image);
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+    /**
+     * Create a DialogBox for duke.
+     *
+     * @param text  a string containing the output from Duke.
+     * @param image the image of Duke.
+     * @return a DialogBox for duke.
+     */
+    public static DialogBox getDukeDialog(String text, Image image) {
+        var db = new DialogBox(text, image);
         db.flip();
         return db;
     }
