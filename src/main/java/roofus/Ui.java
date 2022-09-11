@@ -8,9 +8,9 @@ import roofus.task.Task;
 public class Ui {
 
     /**
-     * Formats Roofus's greetings.
+     * Formats Roofus' greetings.
      *
-     * @return Roofus's greetings.
+     * @return Roofus' greetings.
      */
     public String greet() {
         return "Hello I'm ROOOOFUS!!!\n"
@@ -68,7 +68,7 @@ public class Ui {
     }
 
     /**
-     * Formats all tasks that contains key in TaskList.
+     * Formats all tasks that contain key in TaskList.
      *
      * @param taskList A Tasklist that contains all tasks.
      * @return The list of tasks that matches the key.
