@@ -1,11 +1,10 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Mark command class to mark a task as done.
@@ -18,7 +17,7 @@ public class MarkCommand extends Command {
      *
      * @param taskNo The task number to be marked.
      */
-    public MarkCommand(int taskNo){
+    public MarkCommand(int taskNo) {
         this.taskNo = taskNo;
     }
 

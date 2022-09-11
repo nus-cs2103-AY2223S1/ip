@@ -6,10 +6,9 @@ import java.time.format.DateTimeFormatter;
 /**
  *  Event task class.
  */
-public class Event extends Task{
+public class Event extends Task {
 
-    private  LocalDate date;
-
+    private LocalDate date;
 
     /**
      * Constructor of event task.
@@ -19,9 +18,10 @@ public class Event extends Task{
      * @param status Status of the event, 'X' is done, otherwise
      *               Undone.
      */
-    public Event(String description, LocalDate date, char status){
+    public Event(String description, LocalDate date, char status) {
         super(description);
         this.date = date;
+        assert status == 'X' || status == ' ' : "The task status should be either X or empty";
         if (status == 'X') {
             super.mark();
         }

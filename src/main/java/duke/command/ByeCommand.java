@@ -12,7 +12,7 @@ public class ByeCommand extends Command {
      * Shows bye message.
      *
      * @param tasks Tasks to be executed.
-     * @return The good bye message
+     * @return The goodbye message
      */
     @Override
     public String execute(TaskList tasks) {

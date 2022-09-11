@@ -10,6 +10,6 @@ public class ToDoTest {
     @Test
     public void getDescriptionTest() {
         ToDo t = new ToDo("Test2", 'X');
-        assertEquals("[T]" + "[ ] " + "Test2", t.getDescription());
+        assertEquals("[T]" + "[X] " + "Test2", t.getDescription());
     }
 }

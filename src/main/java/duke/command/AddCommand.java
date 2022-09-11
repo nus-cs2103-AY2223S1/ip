@@ -1,11 +1,12 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-import java.io.IOException;
 
 /**
  * AddCommand class to add task to tasklist.
@@ -18,7 +19,7 @@ public class AddCommand extends Command {
      *
      * @param task The task to be added.
      */
-    public AddCommand (Task task) {
+    public AddCommand(Task task) {
         this.task = task;
     }
 
@@ -34,7 +35,7 @@ public class AddCommand extends Command {
         try {
             Storage.save(tasks.getTasks());
         } catch (IOException e) {
-           return Ui.showError(e);
+            return Ui.showError(e);
         }
         return Ui.showAddTaskMessage(this.task, tasks.getSize());
     }

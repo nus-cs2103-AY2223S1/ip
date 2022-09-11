@@ -2,11 +2,9 @@ package duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 
-
+import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {
 
@@ -21,6 +19,6 @@ public class DeadlineTest {
     public void getDescriptionTest() {
         LocalDate date = LocalDate.parse("2019-10-15");
         Deadline d = new Deadline("Test", date, 'X');
-        assertEquals("[D]" + "[ ] " + "Test" + "(" + date + ")", d.getDescription());
+        assertEquals("[D]" + "[X] " + "Test" + "(" + date + ")", d.getDescription());
     }
 }

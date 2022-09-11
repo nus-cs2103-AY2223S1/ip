@@ -18,9 +18,10 @@ public class Deadline extends Task {
      * @param status Status of the deadline, 'X' is done, otherwise
      *                  Undone.
      */
-    public Deadline(String description, LocalDate date, char status){
+    public Deadline(String description, LocalDate date, char status) {
         super(description);
         this.date = date;
+        assert status == 'X' || status == ' ' : "The task status should be either X or empty";
         if (status == 'X') {
             super.mark();
         }
