@@ -8,7 +8,7 @@ public class Message {
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
     public static final String INVALID_TODO_INPUT = "The description of a todo cannot be empty.";
     public static final String INVALID_DEADLINE_INPUT = "Please use proper deadline formatting: deadline {task} /by {time}";
-    public static final String INVALID_DATE_FORMAT = "Please indicate your date after {/bye} as YYYY-MM-DD (e.g 2019-12-09)";
+    public static final String INVALID_DATE_FORMAT = "Please indicate your date after {/by} as YYYY-MM-DD (e.g 2019-12-09)";
     public static final String INVALID_EVENT_INPUT = "Please use proper event formatting: event {task} /at {time}";
     public static final String INVALID_ACCESS_EMPTY_TASKLIST = "Task does not exist. Initialise a task first, then try again";
     public static final String INVALID_MARK_TASK_FORMAT = "To mark a task, please input this format: mark {task number}";
