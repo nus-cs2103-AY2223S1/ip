@@ -1,5 +1,4 @@
 package duke.commands;
-
 import duke.storage.Storage;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
@@ -22,12 +21,15 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.sendMessage("Here are the matching tasks in your list:");
+        StringBuilder stringBuilder = new StringBuilder("Here are the matching tasks in your list:\n");
+
         for (int i = 0; i < tasks.getSize(); i++) {
             Task task = tasks.getTask(i);
             if (task.getDescription().contains(this.keyword)) {
-                ui.sendMessage((i + 1) + ". " + task.toString());
+                stringBuilder.append(i + 1).append(". ").append(task.toString()).append('\n');
             }
         }
+
+        ui.sendMessage(stringBuilder.toString());
     }
 }

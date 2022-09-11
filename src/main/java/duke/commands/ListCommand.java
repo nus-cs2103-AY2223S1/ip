@@ -18,7 +18,7 @@ public class ListCommand extends Command {
         StringBuilder stringBuilder = new StringBuilder("Here are the tasks in your list:\n");
 
         for (int i = 0; i < tasks.getSize(); i++) {
-            stringBuilder.append((i + 1) + ". " + tasks.getTask(i) + '\n');
+            stringBuilder.append(i + 1).append(". ").append(tasks.getTask(i)).append('\n');
         }
 
         ui.sendMessage(stringBuilder.toString());
