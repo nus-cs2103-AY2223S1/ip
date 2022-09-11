@@ -1,4 +1,6 @@
-<img align="center" src="ArtemisHeader.png" alt="Header">
+<p align="center">
+<img src="ArtemisHeader.png" alt="Header">
+</p>
 
 # User Guide
 
