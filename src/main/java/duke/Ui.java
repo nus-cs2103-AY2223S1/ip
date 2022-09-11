@@ -8,10 +8,10 @@ import java.util.ArrayList;
  */
 public class Ui {
 
-    private boolean cont = true;
+    private boolean isActive = true;
 
     public boolean isActive() {
-        return this.cont;
+        return this.isActive;
     }
 
     public void greet() {
@@ -20,7 +20,7 @@ public class Ui {
 
     public void goodbye() {
         System.out.println(":) Bye. Hope to see you again soon!");
-        cont = false;
+        isActive = false;
     }
 
     public void printSuccessfulClear() {
