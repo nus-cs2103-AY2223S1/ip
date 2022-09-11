@@ -39,7 +39,7 @@ public class Parser {
             ui.printSuccessfulAdd();
             ui.printTask(t);
             ui.printNoOfTasks(tasks);
-        } catch (EmptyTodoException e) {
+        } catch (EmptyFieldException e) {
             ui.printErrorMessage(e, tasks);
         }
     }
@@ -81,7 +81,27 @@ public class Parser {
         try {
             ArrayList<Task> result = tasks.findTasks(command);
             ui.printFoundResults(result);
-        } catch (EmptyFindException e) {
+        } catch (EmptyFieldException e) {
+            ui.printErrorMessage(e, tasks);
+        }
+    }
+
+    private void changeTaskDescAndDisplay(String command, TaskList tasks, Ui ui) {
+        try {
+            Task t = tasks.updateTaskDesc(command);
+            ui.printSuccessfulUpdate();
+            ui.printTask(t);
+        } catch (TaskNumberException | EmptyFieldException e) {
+            ui.printErrorMessage(e, tasks);
+        }
+    }
+
+    private void changeTaskTimeAndDisplay(String command, TaskList tasks, Ui ui) {
+        try {
+            Task t = tasks.updateTaskTime(command);
+            ui.printSuccessfulUpdate();
+            ui.printTask(t);
+        } catch (TaskNumberException | EmptyFieldException | TaskTypeException e) {
             ui.printErrorMessage(e, tasks);
         }
     }
@@ -117,6 +137,10 @@ public class Parser {
             deleteTaskAndDisplay(command, tasks, ui);
         } else if (startsWith(command, "find")) {
             findTaskAndDisplay(command, tasks, ui);
+        } else if (startsWith(command, "changedesc")) {
+            changeTaskDescAndDisplay(command, tasks, ui);
+        } else if (startsWith(command, "changetime")) {
+            changeTaskTimeAndDisplay(command, tasks, ui);
         } else {
             ui.printErrorMessage(new InvalidCommandException(command), tasks);
         }

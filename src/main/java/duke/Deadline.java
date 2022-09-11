@@ -3,27 +3,23 @@ package duke;
 /**
  * Encapsulates a task with a deadline.
  */
-public class Deadline extends Task {
+public class Deadline extends TimedTask {
 
-    protected String by;
-
-    public Deadline(String description, String by) {
-        super(description);
-        this.by = by;
+    public Deadline(String description, String time) {
+        super(description, time);
     }
 
-    public Deadline(String description, String by, boolean done) {
-        super(description, done);
-        this.by = by;
+    public Deadline(String description, String time, boolean done) {
+        super(description, time, done);
     }
 
     @Override
     public String toSaveData() {
-        return "D|" + (super.isDone ? "1|" : "0|") + this.description + "|" + this.by;
+        return "D|" + (super.isDone ? "1|" : "0|") + this.description + "|" + this.time;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + time + ")";
     }
 }

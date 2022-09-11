@@ -34,6 +34,10 @@ public class Task {
         this.isDone = bool;
     }
 
+    public void updateDesc(String desc) {
+        this.description = desc;
+    }
+
     /**
      * Returns a string that represents this task to be saved into a data file.
      *

@@ -36,11 +36,15 @@ public class Ui {
     }
 
     public void printSuccessfulAdd() {
-        System.out.println("Got it. I've added this task:");
+        System.out.println("Okie. I've added this task:");
     }
 
     public void printSuccessfulDelete() {
         System.out.println("Okie, I've deleted this task:");
+    }
+
+    public void printSuccessfulUpdate() {
+        System.out.println("Okie, I've updated this task:");
     }
 
     public void printNoOfTasks(TaskList ts) {
@@ -85,16 +89,16 @@ public class Ui {
         } else if (e instanceof TaskNumberException) {
             System.out.println(":( Oops! Please enter a valid task number!");
             System.out.println("You currently have " + tasks.getTasksLength() + " tasks.");
-        } else if (e instanceof EmptyTodoException) {
-            System.out.println(":( Oops! The description of a todo cannot be empty!");
+        } else if (e instanceof TaskTypeException) {
+            System.out.println(":( Oops! You can't do that to this type of tasks!");
+        } else if (e instanceof EmptyFieldException) {
+            System.out.println(":( Oops! One or more fields in the command is missing!");
         } else if (e instanceof DeadlineFormatException) {
             System.out.println(":( Oops! That's not the right way to set a deadline!");
             System.out.println("Please use this format: \"deadline <description> /by <time>\"");
         } else if (e instanceof EventFormatException) {
             System.out.println(":( Oops! That's not the right way to set an event!");
             System.out.println("Please use this format: \"event <description> /at <time>\"");
-        } else if (e instanceof EmptyFindException) {
-            System.out.println(":( Oops! The search keyword(s) cannot be empty!");
         } else {
             System.out.println(":( Oops! An unknown error has occurred!");
             e.printStackTrace();

@@ -89,7 +89,7 @@ public class DukeTest {
     public void taskList_addTodo_emptyTodoExceptionThrown() {
         TaskList tasks = new TaskList();
 
-        assertThrows(EmptyTodoException.class, () -> {
+        assertThrows(EmptyFieldException.class, () -> {
             tasks.addTodo("todo");
         });
 
