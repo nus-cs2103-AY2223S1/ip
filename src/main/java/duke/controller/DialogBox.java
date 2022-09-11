@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
@@ -20,8 +22,10 @@ import javafx.scene.layout.HBox;
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;
+    @FXML
+    private ImageView displayPicture;
 
-    private DialogBox(String text) {
+    private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -31,24 +35,25 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
         this.dialog.setText(text);
+        this.displayPicture.setImage(img);
     }
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
+        setAlignment(Pos.TOP_LEFT);
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
-        setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBox getUserDialog(String text) {
-        return new DialogBox(text);
+    public static DialogBox getUserDialog(String text, Image img) {
+        return new DialogBox(text, img);
     }
 
-    public static DialogBox getDukeDialog(String text) {
-        var db = new DialogBox(text);
+    public static DialogBox getDukeDialog(String text, Image img) {
+        var db = new DialogBox(text, img);
         db.flip();
         return db;
     }

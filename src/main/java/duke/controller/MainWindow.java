@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -22,6 +23,8 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private DukeApplication duke;
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/spongebob.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/patrick.png"));
 
     @FXML
     public void initialize() {
@@ -30,7 +33,7 @@ public class MainWindow extends AnchorPane {
 
     public void setDuke(DukeApplication d) {
         this.duke = d;
-        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("Hey there, I am Duke!\nHow may I help you?"));
+        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("Hey there, I am Duke!\nHow may I help you?", dukeImage));
     }
 
     /**
@@ -40,9 +43,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        dialogContainer.getChildren().add(DialogBox.getUserDialog(input));
+        dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
         String response = this.duke.process(input);
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(response));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(response, dukeImage));
         userInput.clear();
     }
 }
