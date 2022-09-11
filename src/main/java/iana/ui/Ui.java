@@ -18,8 +18,10 @@ public class Ui {
     }
 
     /**
-     * Returns desired message surrounded by borders.
+     * Returns desired message.
+     * 
      * @param msg the message to be printed.
+     * @return message to be printed.
      */
     public String say(String msg) {
         return msg;
@@ -30,29 +32,30 @@ public class Ui {
      * @param tasks task list to be printed out.
      */
     public String list(TaskList tasks) {
-        String listMessage = "> Here are the tasks in your list:\n" + tasks.toString();
+        String listMessage = "> Sure! @-@ These are the tasks you have left: \n" + tasks.toString();
         return listMessage;
     }
 
     /**
      * Returns goodbye message.
+     * @return goodbye message.
      */
     public String sayBye() {
-        return say("> Goodbye! :P");
+        return say("> See you next time, goodbye! :P");
     }
 
     /**
      * Returns welcome message.
      */
     public String sayHi() {
-        return say("> Hello there~ I'm IANA.\n\tWhat can I do for you today? : )");
+        return say("> Hello there~ I'm your assistant IANA.\n\t How can I help you today? ^_^");
     }
 
     /**
      * Returns message to request new user input.
      */
     public String askNewCommand() {
-        return say("> Try another action ><");
+        return say("> Oops, my vocabulary is limited! Try another action >_<");
     }
 
     /**
@@ -60,17 +63,39 @@ public class Ui {
      * @param task task to be printed.
      */
     public String sayTaskAdded(Task task) {
-        return say(String.format("> Nice! I have added the task to the list:\n\t   %s", task.toString()));
+        return say(String.format("> Okay :). Remember to complete the task:\n\t   %s", task.toString()));
     }
 
     /**
-     * Returns task that is deleted from task list.
+     * Returns information of task that is deleted from task list.
      * @param task task that is deleted.
      * @param listSize number of tasks left in the task list.
      */
     public String sayTaskDeleted(Task task, int listSize) {
-        return say(String.format("> Noted. I've removed this task:\n\t   %s\n\tNow you have %d tasks in the list.", 
+        return say(String.format("> Nice! I've removed the task:\n\t   %s\n\tNow there's %d tasks left!! Good job! [:", 
         task.toString(), listSize));
+    }
+
+    /**
+     * Returns information of task that is marked.
+     *  
+     * @param markedTask the description of task that is marked.
+     * @return personalised message and marked task description.
+     */
+    public String sayTaskMarked(String markedTask) {
+        String markedMsg = "Nice! I've marked this task as done:\n";
+        return String.format("%s\t   %s", markedMsg, markedTask);
+    }
+
+    /**
+     * Returns information of task that is unmarked.
+     *  
+     * @param markedTask the description of task that is unmarked.
+     * @return personalised message and unmarked task description.
+     */
+    public String sayTaskUnmarked(String unmarkedTask) {
+        String unmarkedMsg = "Aw man, I've unmarked the following task:\n";
+        return String.format("%s\t   %s", unmarkedMsg, unmarkedTask);
     }
 
     /**

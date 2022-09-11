@@ -14,12 +14,8 @@ public class ExitCommand extends Command {
      * Runs the command to exit the program.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui) {
-        try {
-            Storage.store(tasks);
-        } catch (IanaException e) {
-            ui.say(e.getMessage());
-        }
+    public String execute(TaskList tasks, Ui ui) throws IanaException{
+        Storage.store(tasks);
         return ui.sayBye();
     }
 
