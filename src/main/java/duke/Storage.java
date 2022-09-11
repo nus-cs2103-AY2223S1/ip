@@ -35,20 +35,15 @@ public class Storage {
      * @throws DukeException Thrown if file is empty
      */
     public ArrayList<Task> load() throws DukeException {
-
         try {
             reader = new Scanner(file);
-            if (file.length() == 0) {
-                throw new DukeException("File empty");
-            }
-            else {
-
+            if (file.length() != 0) {
                 while (reader.hasNextLine()) {
                     String task = reader.nextLine();
                     String type = task.split("")[3];
                     if (type.equals("E")) {
                         String currentTask = task.substring(9, task.indexOf(" (at: "));
-                        String eventTime = task.substring(task.indexOf(" (at: ") + 6,task.indexOf(")"));
+                        String eventTime = task.substring(task.indexOf(" (at: ") + 6, task.indexOf(")"));
                         Task curr = new Events(currentTask, eventTime);
                         tasks.add(curr);
                     } else if (type.equals("T")) {
@@ -64,16 +59,15 @@ public class Storage {
                         break;
                     }
                 }
+            } else {
+                throw new DukeException("File empty");
             }
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             this.file = new File(filePath);
-
-    } catch (DukeException e) {
+        } catch (DukeException e) {
            throw new DukeException("File empty");
         }
         return tasks;
-
     }
 
     /**
@@ -83,21 +77,17 @@ public class Storage {
      */
     public static void writeToFile(ArrayList<Task> tasks) throws IOException {
         File f = new File(filePath);
-        if (!f.exists()) {
+        if (f.exists()) {
+            FileWriter fw = new FileWriter(filePath);
+            String textToAdd = "";
+            for (Task item : tasks) {
+                if (item != null)
+                    textToAdd += tasks.indexOf(item) + 1 + "." + item + "\n";
+            }
+            fw.write(textToAdd);
+            fw.close();
+        } else {
             throw new IOException("File does not exist");
         }
-        FileWriter fw = new FileWriter(filePath);
-        assert fw != null;
-
-
-        String textToAdd = "";
-        for (Task item : tasks) {
-            if (item != null)
-                textToAdd += tasks.indexOf(item) + 1 + "." + item + "\n";
-        }
-        fw.write(textToAdd);
-        fw.close();
     }
-
-
 }
