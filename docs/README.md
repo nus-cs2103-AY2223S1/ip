@@ -1,6 +1,6 @@
-# User Guide
+# User Guide for Duke Chatbot
 
-## Features
+## (A) Features
 
 ### 1. Feature - List tasks
 
@@ -42,7 +42,7 @@ Reverses the last modifying action performed.
 
 Quits the chatbot.
 
-## Usage
+## (B) Usage
 
 ### 1. `list` - Displays all your tasks
 
