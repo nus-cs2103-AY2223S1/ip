@@ -66,7 +66,7 @@ public class MainWindow extends AnchorPane {
                     System.exit(0);
                 }
             };
-            Timer timer = new Timer("Delay");
+            Timer timer = new Timer();
             timer.schedule(task, 800L);
         }
     }
