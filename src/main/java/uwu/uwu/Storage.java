@@ -22,7 +22,7 @@ public class Storage {
     protected String fileName;
 
     /**
-     * Constructor for Storage object.
+     * Constructs a Storage object.
      *
      * @param filePath The path to the file where the task list is stored.
      */
@@ -65,30 +65,35 @@ public class Storage {
             while (scanner.hasNextLine()) {
                 String task = scanner.nextLine();
                 String[] taskData = task.split(",");
+                String taskType = taskData[0];
+                String taskIsDone = taskData[1];
+                String taskDescription = taskData[2];
 
-                switch (taskData[0]) {
-                case "T":
-                    ToDos todo = new ToDos(taskData[2]);
-                    todo.setIsDone(taskData[1].equals("1"));
+                boolean isToDo = taskType.equals("T");
+                boolean isDeadline = taskType.equals("D");
+                boolean isEvent = taskType.equals("E");
+
+                if (isToDo) {
+                    ToDos todo = new ToDos(taskDescription);
+                    todo.setIsDone(taskIsDone.equals("1"));
                     result.add(todo);
-                    break;
-                case "D":
-                    Deadline deadline = new Deadline(taskData[2], taskData[3]);
-                    deadline.setIsDone(taskData[1].equals("1"));
+                } else if (isDeadline) {
+                    String taskDeadline = taskData[3];
+                    Deadline deadline = new Deadline(taskDescription, taskDeadline);
+                    deadline.setIsDone(taskIsDone.equals("1"));
                     result.add(deadline);
-                    break;
-                case "E":
-                    Event event = new Event(taskData[2], taskData[3]);
-                    event.setIsDone(taskData[1].equals("1"));
+                } else if (isEvent) {
+                    String eventStart = taskData[3];
+                    Event event = new Event(taskDescription, eventStart);
+                    event.setIsDone(taskIsDone.equals("1"));
                     result.add(event);
-                    break;
-                default:
-                    throw new LoadingFileErrorException("\noops! seems like there is trouble "
-                            + "loading the task list file TT");
+                } else {
+                    throw new LoadingFileErrorException("oops! seems like there is trouble loading the task list "
+                            + "file TT");
                 }
             }
         } catch (IOException e) {
-            throw new LoadingFileErrorException("\noops! seems like there is trouble loading the task list file TT");
+            throw new LoadingFileErrorException("oops! seems like there is trouble loading the task list file TT");
         }
 
         return result;

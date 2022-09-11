@@ -8,7 +8,7 @@ public class TaskList {
     private ArrayList<Task> tasks;
 
     /**
-     * Constructor for TaskList object.
+     * Constructs a TaskList object.
      */
     public TaskList() {
         this.tasks = new ArrayList<Task>();
@@ -71,7 +71,7 @@ public class TaskList {
         int count = tasks.size();
 
         if (count == 0) {
-            return "\nyou currently have no tasks, feed me <:";
+            return "you currently have no tasks, feed me <:";
         }
 
         String userToDoStr = "";

@@ -1,5 +1,6 @@
 package uwu.command;
 
+import uwu.exception.EmptyInputException;
 import uwu.exception.NullTaskException;
 import uwu.exception.UwuException;
 import uwu.task.Task;
@@ -8,65 +9,65 @@ import uwu.uwu.Storage;
 import uwu.uwu.Ui;
 
 /**
- * Marks or unmarks a task in the task list.
+ * Marks a task in the task list.
  */
 public class MarkCommand extends Command {
-    /** The index of the task to be marked or unmarked. */
-    private int index;
+    public static final String COMMAND_WORD = "mark";
 
-    /** The user command parsed into MarkCommand. */
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": marks a task at the specified index as complete.\n"
+            + "(e.g mark 1)";
+
+    public static final String MESSAGE_DETAILED_USAGE = "to mark a task as complete, use the following format:\n"
+            + "mark [index of task]\nhave fun~";
+
     private String userCommand;
 
-    /** The type of command, mark or unmark. */
-    private String taskType;
-
     /**
-     * Constructor for a MarkCommand object.
+     * Constructs a MarkCommand object.
      *
      * @param userCommand The command the user typed.
      */
     public MarkCommand(String userCommand) {
         this.userCommand = userCommand;
-        String[] taskData = userCommand.split(" ", 2);
-        this.taskType = taskData[0];
-        this.index = Integer.parseInt(taskData[1].trim()) - 1;
     }
 
     /**
-     * Executes the MarkCommand which marks or unmarks the task at the
+     * Executes the MarkCommand which marks the task at the
      * specified index.
      *
      * @param tasks The list where tasks are added to.
      * @param ui The ui to print out UwuBot's response.
      * @param storage The task list that is stored in the user's hard disk.
-     * @throws UwuException If task index is out of bounds.
+     * @throws UwuException If task index is out of bounds;
+     *                      If task has already been marked;
+     *                      If command does not have index.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws UwuException {
-        if (index >= tasks.size()) {
+        boolean hasNoIndex = userCommand.toLowerCase().trim().endsWith(COMMAND_WORD);
+        if (hasNoIndex) {
+            throw new EmptyInputException("oops! the index is missing ><\n"
+                    + MESSAGE_DETAILED_USAGE);
+        }
+
+        String indexStr = userCommand.substring(COMMAND_WORD.length()).trim();
+        int index = Integer.parseInt(indexStr) - 1;
+        boolean isInvalidTask = index >= tasks.size() || index < 0;
+        boolean hasBeenMarked = tasks.get(index).getIsDone();
+
+        if (isInvalidTask) {
             throw new NullTaskException("hm...it seems that task " + String.valueOf(index + 1) + " does not exist ><"
-                    + "\nplease check that you have keyed in the right task number~ <:");
+                    + "\nplease check that you have keyed in the right task index~ <:");
         }
 
-        String response = "oops something went wrong while marking your task TT";
-
-        switch (taskType) {
-        case "mark":
-            Task markedTask = tasks.get(index);
-            markedTask.setIsDone(true);
-            storage.save(tasks.taskListToStorageString());
-            response = ui.displayMarkedTask(markedTask);
-            break;
-        case "unmark":
-            Task unmarkedTask = tasks.get(index);
-            unmarkedTask.setIsDone(false);
-            storage.save(tasks.taskListToStorageString());
-            response = ui.displayUnmarkedTask(unmarkedTask);
-            break;
-        default:
-            throw new NullTaskException("\toops something went wrong!");
+        if (hasBeenMarked) {
+            throw new NullTaskException("hm...it seems that task " + String.valueOf(index + 1) + "has been marked ><"
+                    + "\nplease try marking another task~ <:");
         }
 
-        return response;
+        Task markedTask = tasks.get(index);
+        markedTask.setIsDone(true);
+        storage.save(tasks.taskListToStorageString());
+        return ui.displayMarkedTask(markedTask);
     }
 
     /**

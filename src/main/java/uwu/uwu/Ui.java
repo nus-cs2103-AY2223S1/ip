@@ -11,8 +11,7 @@ public class Ui {
      * Prints farewell words to users.
      */
     public String displayLeaveChat() {
-        String farewellWords = "good work today!\nhope to see you again soon~";
-        return farewellWords;
+        return "good work today!\nhope to see you again soon~";
     }
 
     /**
@@ -22,10 +21,9 @@ public class Ui {
      * @param tasksLength The length of the task list.
      */
     public String displayAddTask(Task task, int tasksLength) {
-        String addToDoString = "oo new task! ^^"
+        return "oo new task! ^^"
                 + "\n added: " + task.toString()
                 + "\nyou have " + String.valueOf(tasksLength) + " task(s) <:";
-        return addToDoString;
     }
 
     /**
@@ -34,7 +32,9 @@ public class Ui {
      * @param tasks The stored TaskList.
      */
     public String displayTasks(TaskList tasks) {
-        if (tasks.size() == 0) {
+        boolean hasNoTasks = tasks.size() == 0;
+
+        if (hasNoTasks) {
             return "looks like there are no tasks on your list uwu"
                     + "\nfeed me a task to get started~ <:";
         } else {
@@ -48,8 +48,7 @@ public class Ui {
      * @param task The marked task.
      */
     public String displayMarkedTask(Task task) {
-        String markedAsDone = "yey! good job~ keep it up <3";
-        return markedAsDone + "\n\t" + task.toString();
+        return "yey! good job~ keep it up <3\n\t" + task.toString();
     }
 
     /**
@@ -58,8 +57,7 @@ public class Ui {
      * @param task The unmarked task.
      */
     public String displayUnmarkedTask(Task task) {
-        String unmarked = "keep going~";
-        return unmarked + "\n\t" + task.toString();
+        return "task has been unmarked, keep going~" + task.toString();
     }
 
     /**
@@ -90,10 +88,12 @@ public class Ui {
      * @return The list of tasks containing the keyword.
      */
     public String displayFoundTask(TaskList tasks) {
-        if (tasks.size() == 0) {
+        boolean hasFoundNoTasks = tasks.size() == 0;
+
+        if (hasFoundNoTasks) {
             return "hm...looks like there are no tasks matching the keyword ><\ntry another one~";
         } else {
-            return "here are the tasks i found that match your keyword~ <:" + tasks.taskListToString();
+            return "here are the tasks i found that match your keyword~" + tasks.taskListToString();
         }
     }
 }

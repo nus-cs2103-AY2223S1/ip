@@ -18,7 +18,7 @@ public class UwuBot {
     private TaskList tasks;
 
     /**
-     * Constructor for UwuBot object.
+     * Constructs an UwuBot object.
      */
     public UwuBot() {
         storage = new Storage("data/taskList.txt");
@@ -30,6 +30,12 @@ public class UwuBot {
         }
     }
 
+    /**
+     * Gets the response from UwuBot based on user's input.
+     *
+     * @param input The user's input.
+     * @return UwuBot's response to user's input.
+     */
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);

@@ -13,7 +13,7 @@ public class Event extends Task {
     protected LocalDateTime at;
 
     /**
-     * Constructor for an Event object.
+     * Constructs an Event object.
      *
      * @param description The description of the Event task.
      * @param at The String value of date and time of when the task is due.

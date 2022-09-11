@@ -14,7 +14,7 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for Task object.
+     * Constructs Task object.
      *
      * @param task The task the user types in.
      */
@@ -35,6 +35,10 @@ public class Task {
 
     public void setIsDone(boolean isDone) {
         this.isDone = isDone;
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
     /**

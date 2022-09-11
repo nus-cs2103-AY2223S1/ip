@@ -1,13 +1,15 @@
 package uwu.uwu;
 
-import uwu.command.AddCommand;
+import uwu.command.AddDeadlineCommand;
+import uwu.command.AddEventCommand;
+import uwu.command.AddToDosCommand;
 import uwu.command.Command;
 import uwu.command.DeleteCommand;
 import uwu.command.ExitCommand;
 import uwu.command.FindCommand;
 import uwu.command.ListCommand;
 import uwu.command.MarkCommand;
-import uwu.exception.EmptyInputException;
+import uwu.command.UnmarkCommand;
 import uwu.exception.UnknownCommandException;
 import uwu.exception.UwuException;
 
@@ -24,25 +26,25 @@ public class Parser {
      *                      If the task description is empty.
      */
     public static Command parse(String userCommand) throws UwuException {
-        if (userCommand.equals("bye")) {
+        String lowerCaseUserCmd = userCommand.toLowerCase();
+
+        if (lowerCaseUserCmd.equals("bye")) {
             return new ExitCommand();
-        } else if (userCommand.trim().equals("list")) {
+        } else if (lowerCaseUserCmd.trim().equals("list")) {
             return new ListCommand();
-        } else if (userCommand.startsWith("mark") || userCommand.startsWith("unmark")) {
+        } else if (lowerCaseUserCmd.startsWith("mark")) {
             return new MarkCommand(userCommand);
-        } else if (userCommand.startsWith("todo")
-                || userCommand.startsWith("deadline")
-                || userCommand.startsWith("event")) {
-            if (userCommand.trim().endsWith("todo")
-                    || userCommand.trim().endsWith("deadline")
-                    || userCommand.trim().endsWith("event")) {
-                throw new EmptyInputException("your task description is empty TT\n"
-                        + "feed me a task description to get started! <:");
-            }
-            return new AddCommand(userCommand);
-        } else if (userCommand.startsWith("delete")) {
+        } else if (lowerCaseUserCmd.startsWith("unmark")) {
+            return new UnmarkCommand(userCommand);
+        } else if (lowerCaseUserCmd.startsWith("todo")) {
+            return new AddToDosCommand(userCommand);
+        } else if (lowerCaseUserCmd.startsWith("deadline")) {
+            return new AddDeadlineCommand(userCommand);
+        } else if (lowerCaseUserCmd.startsWith("event")) {
+            return new AddEventCommand(userCommand);
+        } else if (lowerCaseUserCmd.startsWith("delete")) {
             return new DeleteCommand(userCommand);
-        } else if (userCommand.startsWith("find")) {
+        } else if (lowerCaseUserCmd.startsWith("find")) {
             return new FindCommand(userCommand);
         } else {
             throw new UnknownCommandException("sorry >< \ni don't know what that means TT");

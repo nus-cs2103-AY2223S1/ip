@@ -5,7 +5,7 @@ package uwu.task;
  */
 public class ToDos extends Task {
     /**
-     * Constructor for ToDos object.
+     * Constructs ToDos object.
      *
      * @param description The description of the ToDos task.
      */

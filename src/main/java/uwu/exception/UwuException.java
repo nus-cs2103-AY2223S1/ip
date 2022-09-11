@@ -5,7 +5,7 @@ package uwu.exception;
  */
 public class UwuException extends Exception {
     /**
-     * Constructor for an UwuException object.
+     * Constructs an UwuException object.
      *
      * @param message The exception message to be displayed.
      */

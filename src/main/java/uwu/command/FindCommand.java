@@ -1,5 +1,7 @@
 package uwu.command;
 
+import uwu.exception.EmptyInputException;
+import uwu.exception.UwuException;
 import uwu.task.TaskList;
 import uwu.uwu.Storage;
 import uwu.uwu.Ui;
@@ -8,35 +10,43 @@ import uwu.uwu.Ui;
  * Finds tasks based on keyword.
  */
 public class FindCommand extends Command {
-    /** The user input. */
+    public static final String COMMAND_WORD = "find";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": finds tasks containing the keywords.\n"
+            + "(e.g find CS2103T work)";
+
+    public static final String MESSAGE_DETAILED_USAGE = "to find a task containing keywords, "
+            + "use the following format:\n'find [keywords]'\nhere is an example, 'find book' :>\nhave fun~";
+
     private String userCommand;
-
-    /** The keyword the user is searching for in the tasks. */
-    private String keyword;
-
-    /** A TaskList containing the tasks with the keywords. */
     private TaskList matchedTasks;
 
     /**
-     * Constructor for FindCommand object.
+     * Constructs a FindCommand object.
      *
      * @param userCommand The user input.
      */
     public FindCommand(String userCommand) {
         this.userCommand = userCommand;
-        String[] taskData = userCommand.split(" ", 2);
-        this.keyword = taskData[1].trim();
         this.matchedTasks = new TaskList();
     }
 
     /**
-     * Executes the find command.
+     * Executes the FindCommand which finds tasks containing the keyword typed by the user.
      *
      * @param tasks The list where tasks are added to.
      * @param ui The ui to print out UwuBot's response.
      * @param storage The task list that is stored in the user's hard disk.
+     * @throws UwuException If keyword is blank.
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws UwuException {
+        boolean hasNoKeyword = userCommand.toLowerCase().replaceFirst(COMMAND_WORD, "").isBlank();
+        if (hasNoKeyword) {
+            throw new EmptyInputException("oops! your keyword is missing ><\n"
+                    + MESSAGE_DETAILED_USAGE);
+        }
+
+        String keyword = userCommand.substring(COMMAND_WORD.length()).trim();
         int tasksLength = tasks.size();
 
         for (int i = 0; i < tasksLength; i++) {

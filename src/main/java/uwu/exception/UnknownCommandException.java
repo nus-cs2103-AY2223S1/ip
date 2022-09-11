@@ -5,7 +5,7 @@ package uwu.exception;
  */
 public class UnknownCommandException extends UwuException {
     /**
-     * Constructor for an UnknownCommandException object.
+     * Constructs an UnknownCommandException object.
      *
      * @param message The exception message to be displayed.
      */

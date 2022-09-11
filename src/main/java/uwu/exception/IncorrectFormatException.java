@@ -5,7 +5,7 @@ package uwu.exception;
  */
 public class IncorrectFormatException extends UwuException {
     /**
-     * Constructor for an IncorrectFormatException object.
+     * Constructs an IncorrectFormatException object.
      *
      * @param message The exception message to be displayed.
      */

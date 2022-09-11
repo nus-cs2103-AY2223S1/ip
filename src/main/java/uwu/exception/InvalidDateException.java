@@ -6,7 +6,7 @@ package uwu.exception;
  */
 public class InvalidDateException extends UwuException {
     /**
-     * Constructor for an InvalidDateException object.
+     * Constructs an InvalidDateException object.
      *
      * @param message The exception message to be displayed.
      */
