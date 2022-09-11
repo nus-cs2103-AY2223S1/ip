@@ -25,13 +25,13 @@ public class EventCommand extends Command {
      *
      * @param taskList the task list the command will modify.
      * @param description the description of the event.
-     * @param time the time the event is at.
+     * @param date the date the event is at.
      */
-    public EventCommand(TaskList taskList, String description, LocalDate time) {
+    public EventCommand(TaskList taskList, String description, LocalDate date) {
         this.taskList = taskList;
         assert description.length() > 0;
         this.description = description;
-        this.time = time;
+        this.date = date;
     }
 
     @Override
