@@ -17,3 +17,5 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 text-ui-test/data/duke.txt
 data/duke.txt
+src/main/resources/images/anya.jpg
+src/main/resources/images/chick.png
