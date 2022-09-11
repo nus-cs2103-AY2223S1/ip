@@ -70,7 +70,7 @@ public class Parser {
             assert i < this.tasks.size() : "index should be valid list item";
 
             msg = this.ui.msg("Noted. I've removed this task:\n\t" + this.tasks.get(i)
-                    + "\nNow you have " + (this.tasks.size() - 1) + " tasks in the list.");
+                    + "\nNow you have " + (this.tasks.size() - 1) + " task(s) in the list.");
             this.tasks.delete(i);
 
         } else if (checkCommand(text, 7)) {
@@ -92,7 +92,7 @@ public class Parser {
                 throw new InvalidCommandException();
             } else {
                 msg = this.ui.msg("Got it. I've added this task:\n " + "\t" + task + "\n" + "Now you have "
-                        + this.tasks.size() + " tasks in the list.");
+                        + this.tasks.size() + " task(s) in the list.");
             }
             this.tasks.add(task);
         }

@@ -41,12 +41,12 @@ public class TaskSorter {
             String[] info = temp[1].split("/at");
             assert info.length == 2;
             LocalDate date = LocalDate.parse(info[1].strip());
-            task = new Event(temp[1],date);
+            task = new Event(info[0],date);
         } else if ("deadline".equals(temp[0])) {
             String[] info = temp[1].split("/by");
             assert info.length == 2;
             LocalDate date = LocalDate.parse(info[1].strip());
-            task = new Deadline(temp[1],date);
+            task = new Deadline(info[0],date);
         } else {
             System.out.println("Invalid choice, please choose either todo, event or deadline");
         }

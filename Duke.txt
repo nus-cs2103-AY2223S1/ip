@@ -1,7 +1,3 @@
-todo|3|0
-todo|two|1
-event|four|1|2020-09-09
-todo|make dinner|0
-deadline|throw hands|0|2014-10-12
-todo|1|0
-todo|hello|0
+todo|buy concert ticket|0
+deadline|sign up for internship |0|2020-08-08
+deadline|contact buyers |0|2021-09-09
