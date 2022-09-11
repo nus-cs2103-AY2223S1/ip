@@ -31,7 +31,7 @@ The task list now contains 2 task(s).
 The task list now contains 3 task(s).
 
 
-> Please input a valid date, e.g. 21 Aug 2022, Aug 21 2022 or 2022-08-21.
+> Please input a valid date/time, e.g. 21 Aug 2022 14:00, Aug 21 2022 2:00PM or 2022-08-21.
 
 
 > The following deadline task has been added:
@@ -39,8 +39,11 @@ The task list now contains 3 task(s).
 The task list now contains 4 task(s).
 
 
+> An event task must have a start time and an end time.
+
+
 > The following event task has been added:
-  [E][ ] task5 (at: Monday 4pm-5pm)
+  [E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 The task list now contains 5 task(s).
 
 
@@ -52,7 +55,7 @@ The task list now contains 5 task(s).
 2.[T][ ] task2
 3.[T][ ] task3
 4.[D][ ] task4 (by: 22 Aug 2022 00:00)
-5.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
@@ -64,19 +67,19 @@ The task list now contains 5 task(s).
 2.[T][X] task2
 3.[T][ ] task3
 4.[D][ ] task4 (by: 22 Aug 2022 00:00)
-5.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
 > The following task has been marked as done:
-  [E][X] task5 (at: Monday 4pm-5pm)
+  [E][X] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 > 1.[T][X] task1
 2.[T][X] task2
 3.[T][ ] task3
 4.[D][ ] task4 (by: 22 Aug 2022 00:00)
-5.[E][X] task5 (at: Monday 4pm-5pm)
+5.[E][X] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
@@ -88,7 +91,7 @@ The task list now contains 5 task(s).
 2.[T][X] task2
 3.[T][ ] task3
 4.[D][X] task4 (by: 22 Aug 2022 00:00)
-5.[E][X] task5 (at: Monday 4pm-5pm)
+5.[E][X] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
@@ -100,7 +103,7 @@ The task list now contains 5 task(s).
 2.[T][X] task2
 3.[T][ ] task3
 4.[D][X] task4 (by: 22 Aug 2022 00:00)
-5.[E][X] task5 (at: Monday 4pm-5pm)
+5.[E][X] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
@@ -112,7 +115,7 @@ The task list now contains 5 task(s).
 2.[T][X] task2
 3.[T][ ] task3
 4.[D][X] task4 (by: 22 Aug 2022 00:00)
-5.[E][X] task5 (at: Monday 4pm-5pm)
+5.[E][X] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
@@ -124,19 +127,19 @@ The task list now contains 5 task(s).
 2.[T][ ] task2
 3.[T][ ] task3
 4.[D][X] task4 (by: 22 Aug 2022 00:00)
-5.[E][X] task5 (at: Monday 4pm-5pm)
+5.[E][X] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
 > The following task has been marked as undone:
-  [E][ ] task5 (at: Monday 4pm-5pm)
+  [E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 > 1.[T][ ] task1
 2.[T][ ] task2
 3.[T][ ] task3
 4.[D][X] task4 (by: 22 Aug 2022 00:00)
-5.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
@@ -148,7 +151,7 @@ The task list now contains 5 task(s).
 2.[T][ ] task2
 3.[T][ ] task3
 4.[D][ ] task4 (by: 22 Aug 2022 00:00)
-5.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
@@ -160,7 +163,7 @@ The task list now contains 5 task(s).
 2.[T][ ] task2
 3.[T][ ] task3
 4.[D][ ] task4 (by: 22 Aug 2022 00:00)
-5.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 
 
 
@@ -194,13 +197,13 @@ The task list now contains 5 task(s).
 > A deadline task must have a deadline.
 
 
-> An event task must have a time at which the event takes place.
+> An event task must have a start time and an end time.
 
 
 > A deadline task must have a deadline.
 
 
-> An event task must have a time at which the event takes place.
+> An event task must have a start time and an end time.
 
 
 > Description of deadline task cannot be empty.
@@ -215,7 +218,13 @@ The task list now contains 5 task(s).
 > Description of event task cannot be empty.
 
 
-> Please input a valid date, e.g. 21 Aug 2022, Aug 21 2022 or 2022-08-21.
+> Description of event task cannot be empty.
+
+
+> Description of event task cannot be empty.
+
+
+> Please input a valid date/time, e.g. 21 Aug 2022 14:00, Aug 21 2022 2:00PM or 2022-08-21.
 
 
 > The following deadline task has been added:
@@ -223,8 +232,14 @@ The task list now contains 5 task(s).
 The task list now contains 6 task(s).
 
 
+> An event task must have a start time and an end time.
+
+
+> An event task must have a start time and an end time.
+
+
 > The following event task has been added:
-  [E][ ] Task 7 (at: Tuesday 1am-2am)
+  [E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
 The task list now contains 7 task(s).
 
 
@@ -232,9 +247,9 @@ The task list now contains 7 task(s).
 2.[T][ ] task2
 3.[T][ ] task3
 4.[D][ ] task4 (by: 22 Aug 2022 00:00)
-5.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 6.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
-7.[E][ ] Task 7 (at: Tuesday 1am-2am)
+7.[E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
 
 
 
@@ -250,9 +265,9 @@ The task list now contains 6 task(s).
 > 1.[T][ ] task1
 2.[T][ ] task3
 3.[D][ ] task4 (by: 22 Aug 2022 00:00)
-4.[E][ ] task5 (at: Monday 4pm-5pm)
+4.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 5.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
-6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+6.[E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
 
 
 
@@ -268,14 +283,14 @@ The task list now contains 6 task(s).
 > 1.[T][ ] task1
 2.[T][ ] task3
 3.[D][ ] task4 (by: 22 Aug 2022 00:00)
-4.[E][ ] task5 (at: Monday 4pm-5pm)
+4.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 5.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
-6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+6.[E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
 
 
 
 > Here are the matching results in your task list (1 in total):
-1.[E][ ] Task 7 (at: Tuesday 1am-2am)
+1.[E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
 
 
 
@@ -305,9 +320,9 @@ No tasks found
 1.[T][X] task1
 2.[T][ ] task3
 3.[D][X] task4 (by: 22 Aug 2022 00:00)
-4.[E][ ] task5 (at: Monday 4pm-5pm)
+4.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 5.[D][X] Task 6 (by: 23 Aug 2022 00:00)
-6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+6.[E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
 
 
 
@@ -315,9 +330,9 @@ No tasks found
 1.[T][X] task1
 2.[T][ ] task3
 3.[D][X] task4 (by: 22 Aug 2022 00:00)
-4.[E][ ] task5 (at: Monday 4pm-5pm)
+4.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 5.[D][X] Task 6 (by: 23 Aug 2022 00:00)
-6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+6.[E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
 
 
 
@@ -327,9 +342,9 @@ No tasks found
 > 1.[T][X] task1
 2.[T][ ] task3
 3.[D][X] task4 (by: 22 Aug 2022 00:00)
-4.[E][ ] task5 (at: Monday 4pm-5pm)
+4.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 5.[D][X] Task 6 (by: 23 Aug 2022 00:00)
-6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+6.[E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
 
 
 
@@ -357,9 +372,9 @@ I will remind you of the important tasks you have:
 > 1.[T][X] task1
 2.[T][ ] task3
 3.[D][X] task4 (by: 22 Aug 2022 00:00)
-4.[E][ ] task5 (at: Monday 4pm-5pm)
+4.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
 5.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
-6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+6.[E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
 
 
 

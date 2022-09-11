@@ -21,6 +21,7 @@ public class Parser {
     private static final String TERMINATION_COMMAND = "bye";
     private static final long DEFAULT_REMINDER_SECONDS = 86400; // corresponding to 24 hours
     private static final String NO_TASKS_STRING = "No tasks found\n";
+    private static final String INVALID_EVENT_TIME_ERROR = "An event task must have a start time and an end time.";
     private final TaskList tasks;
     private final Storage storage;
 
@@ -56,17 +57,15 @@ public class Parser {
         } catch (DateTimeParseException ex) {
             boolean isValid = false;
             String[] dateTimeFormats = {
-                "yyyy-MM-dd",
-                "yyyy-MM-dd H:mm",
-                "yyyy-MM-dd h:mm a",
-                "d MMM yyyy",
-                "d MMM yyyy H:mm",
-                "d MMM yyyy h:mm a",
-                "MMM d yyyy",
-                "MMM d yyyy H:mm",
-                "MMM d yyyy h:mm a",
+                "yyyy-MM-dd", "yyyy-MM-dd H:mm", "yyyy-MM-dd h:mm a", "yyyy-MM-dd h:mma",
+                "d MMM yyyy", "d MMM yyyy H:mm", "d MMM yyyy h:mm a", "d MMM yyyy h:mma",
+                "MMM d yyyy", "MMM d yyyy H:mm", "MMM d yyyy h:mm a", "MMM d yyyy h:mma",
             };
-            boolean[] isDateFormats = { true, false, false, true, false, false, true, false, false };
+            boolean[] isDateFormats = {
+                true, false, false, false,
+                true, false, false, false,
+                true, false, false, false
+            };
             for (int i = 0; i < dateTimeFormats.length; i++) {
                 // Solution below adapted from
                 // https://stackoverflow.com/questions/44925840/
@@ -94,11 +93,11 @@ public class Parser {
                 }
             }
             if (!isValid) {
-                throw new IllegalCommandException("Please input a valid date, e.g. 21 Aug 2022, "
-                        + "Aug 21 2022 or 2022-08-21.");
+                throw new IllegalCommandException("Please input a valid date/time, e.g. 21 Aug "
+                        + "2022 14:00, Aug 21 2022 2:00PM or 2022-08-21.");
             }
         }
-        assert(dateObject != null);
+        assert dateObject != null : "Date object cannot be null";
         return dateObject.format(DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT));
     }
 
@@ -280,23 +279,25 @@ public class Parser {
      * @return Task created as a result of the command.
      * @throws IllegalCommandException When command arguments are invalid.
      */
-    private static Task addEvent(String args) {
-        String[] remTextTokens = "  ".concat(args).split(" /at ", 2);
+    private Task addEvent(String args) {
+        String[] remTextTokens = "  ".concat(args).split(" /from ", 2);
         if (remTextTokens.length != 2) {
-            throw new IllegalCommandException("An event task must have a time at "
-                    + "which the event takes place.");
+            throw new IllegalCommandException(INVALID_EVENT_TIME_ERROR);
         }
 
         String description = remTextTokens[0].strip();
-        String when = remTextTokens[1].strip();
+        String[] startAndEndTime = remTextTokens[1].strip().split(" /to ", 2);
         if (description.isBlank()) {
             throw new IllegalCommandException(
                     "Description of event task cannot be empty.");
-        } else if (when.isBlank()) {
-            throw new IllegalCommandException("An event task must have a "
-                    + "time at which the event takes place.");
+        } else if (startAndEndTime.length != 2 || startAndEndTime[0].isBlank()
+                || startAndEndTime[1].isBlank()) {
+            throw new IllegalCommandException(INVALID_EVENT_TIME_ERROR);
         }
-        Task taskAdded = new Event(description, false, when);
+
+        String startTime = convertToDate(startAndEndTime[0].strip());
+        String endTime = convertToDate(startAndEndTime[1].strip());
+        Task taskAdded = new Event(description, false, startTime, endTime);
         return taskAdded;
     }
 

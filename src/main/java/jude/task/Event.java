@@ -1,5 +1,12 @@
 package jude.task;
 
+import static jude.Parser.DEFAULT_DATE_FORMAT;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import jude.util.DateUtils;
+
 /**
  * An {@code Event} object is a Task which has a start time and an end time.
  */
@@ -62,13 +69,17 @@ public class Event extends Task {
     }
 
     /**
-     * Returns false because {@code Event} objects do not support reminders.
+     * Returns true if and only if {@code Event} has not started yet or is about to start, and is
+     * at most the indicated number of seconds away from the start time.
      *
      * @param seconds Number of seconds time notice required.
-     * @return False
+     * @return True if and only if event to start within the number of seconds indicated in the
+     * parameter {@code seconds}.
      */
     @Override
     public boolean needsReminder(long seconds) {
-        return false;
+        LocalDateTime startTime = LocalDateTime.parse(this.start, DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT));
+        long timeDifference = DateUtils.calculateTimeDifference(LocalDateTime.now(), startTime);
+        return 0 <= timeDifference && timeDifference <= seconds;
     }
 }

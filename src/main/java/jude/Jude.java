@@ -21,8 +21,8 @@ import java.io.IOException;
  *   deadline. The deadline needs to be a valid date (e.g., 21 Aug 2022, Aug 21 2022 or
  *   2022-08-21), with time optional. If time is provided, it must be provided after the date,
  *   with exactly one space in between.
- * event (description) /at (daterange) - adds an event task with start time and end time as part of
- *   daterange parameter
+ * event (description) /from (start date/time) /to (end date/time) - adds an event task with start
+ *   time and end time
  * list - lists all tasks
  * mark - mark the task with a specified index (from list command) as done
  *   e.g. mark 2 marks second task as done
@@ -32,7 +32,8 @@ import java.io.IOException;
  *   multiple words, case-insensitive match)
  * delete - delete the task corresponding to a specified index (from list command)
  *   e.g. delete 2 deletes second task
- * remindme - reminds the user of any tasks about to take place (default: within the next 24 hours)
+ * remindme - reminds the user of any event about to begin and any deadlines of tasks, which are
+ *   not marked as complete, coming soon (default: within the next 24 hours)
  * bye - exits the program
  * <br>
  *

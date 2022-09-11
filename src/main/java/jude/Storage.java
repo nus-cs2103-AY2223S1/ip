@@ -85,10 +85,12 @@ public class Storage {
                 String deadline = sc.nextLine();
                 task = new Deadline(taskName, isDone, deadline);
             } else if (taskType.equals("E")) {
-                String eventTime = sc.nextLine();
-                task = new Event(taskName, isDone, eventTime);
+                String eventStartTime = sc.nextLine();
+                String eventEndTime = sc.nextLine();
+                task = new Event(taskName, isDone, eventStartTime, eventEndTime);
             } else {
-                throw new RuntimeException("Jude cannot understand the input file.");
+                throw new RuntimeException(String.format(
+                        "Jude cannot understand the input file %s.", filePath));
             }
             tasks.add(task);
         }
