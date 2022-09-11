@@ -30,6 +30,17 @@ public class Deadline extends Task {
     }
 
     /**
+     * Method that checks if a given deadline is the same day as the current task.
+     *
+     * @param date  the date to compare to.
+     * @return true if the dates are the same.
+     */
+    public Boolean isSameDay(LocalDateTime date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        return this.dueDate.format(formatter).equals(date.format(formatter));
+    }
+
+    /**
      * To String method that returns the task in string form to the user
      *
      * @return the task in string format
