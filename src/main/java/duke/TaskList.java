@@ -36,6 +36,7 @@ public class TaskList {
     public void clear() {
         this.tasks.clear();
         this.tasksLength = 0;
+        assert (tasks.size() == 0) : "Task list and length mismatch";
     }
 
     /**
@@ -62,6 +63,7 @@ public class TaskList {
         Todo t = new Todo(result);
         tasks.add(t);
         tasksLength++;
+        assert (tasks.size() == tasksLength) : "Task list and length mismatch";
         return t;
     }
 
@@ -91,6 +93,7 @@ public class TaskList {
         Deadline t = new Deadline(stuff[0], parseDate(stuff[1]));
         tasks.add(t);
         tasksLength++;
+        assert (tasks.size() == tasksLength) : "Task list and length mismatch";
         return t;
     }
 
@@ -111,6 +114,7 @@ public class TaskList {
         Event t = new Event(stuff[0], parseDate(stuff[1]));
         tasks.add(t);
         tasksLength++;
+        assert (tasks.size() == tasksLength) : "Task list and length mismatch";
         return t;
     }
 
@@ -168,6 +172,7 @@ public class TaskList {
             } else {
                 Task t = tasks.remove(n - 1);
                 tasksLength--;
+                assert (tasks.size() == tasksLength) : "Task list and length mismatch";
                 return t;
             }
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
@@ -175,6 +180,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Finds all tasks in the task list that matches keyword in given command.
+     *
+     * @param line user input string
+     * @return an ArrayList of tasks that match the keyword
+     */
     public ArrayList<Task> findTasks(String line) throws EmptyFindException {
         if (line.length() <= 5) {
             throw new EmptyFindException();
