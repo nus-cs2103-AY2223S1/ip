@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Encapsulates a list of tasks for Duke.
@@ -54,9 +55,9 @@ public class TaskList {
      * @param line user input string
      * @return the Todo task added
      */
-    public Task addTodo(String line) throws EmptyTodoException {
+    public Task addTodo(String line) throws EmptyFieldException {
         if (line.length() <= 5) {
-            throw new EmptyTodoException();
+            throw new EmptyFieldException();
         }
 
         String result = line.substring(5);
@@ -186,9 +187,9 @@ public class TaskList {
      * @param line user input string
      * @return an ArrayList of tasks that match the keyword
      */
-    public ArrayList<Task> findTasks(String line) throws EmptyFindException {
+    public ArrayList<Task> findTasks(String line) throws EmptyFieldException {
         if (line.length() <= 5) {
-            throw new EmptyFindException();
+            throw new EmptyFieldException();
         }
         String filter = line.substring(5);
         ArrayList<Task> result = new ArrayList<>();
@@ -198,5 +199,56 @@ public class TaskList {
             }
         }
         return result;
+    }
+
+    public Task updateTaskDesc(String line) throws TaskNumberException, EmptyFieldException {
+        try {
+            String[] stuff = line.substring(11).split(" ");
+            int n = Integer.parseInt(stuff[0]);
+            if (n > tasksLength) {
+                throw new TaskNumberException();
+            }
+            if (stuff.length < 2) {
+                throw new EmptyFieldException();
+            }
+
+            String newDesc = String.join(" ", Arrays.copyOfRange(stuff, 1, stuff.length));
+            Task t = tasks.get(n - 1);
+            t.updateDesc(newDesc);
+            assert (tasks.size() == tasksLength) : "Task list and length mismatch";
+            return t;
+        } catch (NumberFormatException e) {
+            throw new TaskNumberException();
+        } catch (IndexOutOfBoundsException e) {
+            throw new EmptyFieldException();
+        }
+    }
+
+    public Task updateTaskTime(String line) throws TaskNumberException, EmptyFieldException, TaskTypeException {
+        try {
+            String[] stuff = line.substring(11).split(" ");
+            int n = Integer.parseInt(stuff[0]);
+            if (n > tasksLength) {
+                throw new TaskNumberException();
+            }
+            if (stuff.length < 2) {
+                throw new EmptyFieldException();
+            }
+
+            String newTime = String.join(" ", Arrays.copyOfRange(stuff, 1, stuff.length));
+            newTime = parseDate(newTime);
+            if (!(tasks.get(n - 1) instanceof TimedTask)) {
+                throw new TaskTypeException();
+            }
+
+            TimedTask t = (TimedTask) tasks.get(n - 1);
+            t.updateTime(newTime);
+            assert (tasks.size() == tasksLength) : "Task list and length mismatch";
+            return t;
+        } catch (NumberFormatException e) {
+            throw new TaskNumberException();
+        } catch (IndexOutOfBoundsException e) {
+            throw new EmptyFieldException();
+        }
     }
 }
