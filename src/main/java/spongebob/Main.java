@@ -1,8 +1,8 @@
-package duke;
+package spongebob;
 
 import java.io.IOException;
 
-import duke.controller.MainWindow;
+import spongebob.controller.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private DukeApplication duke = new DukeApplication("data/duke.txt");
+    private SpongebobApplication duke = new SpongebobApplication("data/duke.txt");
 
     @Override
     public void start(Stage stage) {

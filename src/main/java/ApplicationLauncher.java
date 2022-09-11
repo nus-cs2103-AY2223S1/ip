@@ -1,4 +1,4 @@
-import duke.Main;
+import spongebob.Main;
 import javafx.application.Application;
 
 /**

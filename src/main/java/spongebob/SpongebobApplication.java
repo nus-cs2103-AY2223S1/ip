@@ -1,11 +1,11 @@
-package duke;
+package spongebob;
 
-import duke.command.ICommand;
+import spongebob.command.ICommand;
 
 /**
  * Represents the main class of the Duke program.
  */
-public class DukeApplication {
+public class SpongebobApplication {
     private Storage storage;
     private TaskList taskList;
 
@@ -14,7 +14,7 @@ public class DukeApplication {
      *
      * @param filePath String location of duke.txt.
      */
-    public DukeApplication(String filePath) {
+    public SpongebobApplication(String filePath) {
         this.storage = new Storage(filePath);
         this.taskList = new TaskList(this.storage.load());
     }
@@ -36,6 +36,6 @@ public class DukeApplication {
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
-        DukeApplication dk = new DukeApplication("data/duke.txt");
+        SpongebobApplication spongebob = new SpongebobApplication("data/spongebob.txt");
     }
 }

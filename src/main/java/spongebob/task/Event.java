@@ -1,21 +1,21 @@
-package duke.task;
+package spongebob.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a task with deadline.
+ * Represents an event on a date.
  */
-public class Deadline extends Task {
+public class Event extends Task {
     private final LocalDate date;
 
     /**
-     * Returns an instance of Deadline.
+     * Returns an instance of Event.
      * @param isDone Is task complete.
      * @param description Description of task.
-     * @param dateStr Date of deadline.
+     * @param dateStr Date of event.
      */
-    public Deadline(String isDone, String description, String dateStr) {
+    public Event(String isDone, String description, String dateStr) {
         super(description, isDone.equals("1"));
         LocalDate parsedDate;
         try {
@@ -28,20 +28,20 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns string format of deadline for saving purpose.
-     * @return String format of deadline.
+     * Returns string format of event for saving purpose.
+     * @return String format of event.
      */
     @Override
     public String toStringSaveFormat() {
-        return String.format("D,%s,%s,%s\n", this.isDone ? "1" : "0", this.description, this.date);
+        return String.format("E,%s,%s,%s\n", this.isDone ? "1" : "0", this.description, this.date);
     }
 
     /**
-     * Return string representation of deadline.
-     * @return String representation of deadline.
+     * Return string representation of event.
+     * @return String representation of event.
      */
     @Override
     public String toString() {
-        return String.format("[D][%s] %s (by: %s)\n", this.isDone ? "X" : " ", this.description, this.date);
+        return String.format("[E][%s] %s (at: %s)\n", this.isDone ? "X" : " ", this.description, this.date);
     }
 }

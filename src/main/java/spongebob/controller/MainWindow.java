@@ -1,6 +1,6 @@
-package duke.controller;
+package spongebob.controller;
 
-import duke.DukeApplication;
+import spongebob.SpongebobApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -22,18 +22,18 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private DukeApplication duke;
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/spongebob.png"));
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/patrick.png"));
+    private SpongebobApplication duke;
+    private Image spongebobImage = new Image(this.getClass().getResourceAsStream("/images/spongebob.png"));
+    private Image patrickImage = new Image(this.getClass().getResourceAsStream("/images/patrick.png"));
 
     @FXML
     public void initialize() {
         this.scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(DukeApplication d) {
+    public void setDuke(SpongebobApplication d) {
         this.duke = d;
-        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("Hey there, I am Duke!\nHow may I help you?", dukeImage));
+        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("Hey Patrick!\nWhat do you want to do today?", spongebobImage));
     }
 
     /**
@@ -43,9 +43,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
+        dialogContainer.getChildren().add(DialogBox.getUserDialog(input, patrickImage));
         String response = this.duke.process(input);
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(response, dukeImage));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(response, spongebobImage));
         userInput.clear();
     }
 }

@@ -1,8 +1,8 @@
-package duke.command;
+package spongebob.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
+import spongebob.SpongebobException;
+import spongebob.Storage;
+import spongebob.TaskList;
 
 /**
  * Represents a command to mark task as complete in the list.
@@ -32,7 +32,7 @@ public class MarkCommand implements ICommand {
             try {
                 taskList.markDone(index);
                 numOfMarkedTask++;
-            } catch (DukeException e) {
+            } catch (SpongebobException e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -1,21 +1,21 @@
-package duke.command;
+package spongebob.command;
 
-import duke.Storage;
-import duke.TaskList;
+import spongebob.Storage;
+import spongebob.TaskList;
 
 /**
- * Represents a command to exit the program.
+ * Represents a command to list all task in the list.
  */
-public class ExitCommand implements ICommand {
+public class ListCommand implements ICommand {
     /**
-     * Executes end of program.
+     * Executes the command by listing all task in the list.
      *
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {
-        return "Thank you!";
+        return taskList.toString();
     }
 
     /**
@@ -25,17 +25,17 @@ public class ExitCommand implements ICommand {
      */
     @Override
     public boolean isExit() {
-        return true;
+        return false;
     }
 
     /**
-     * Returns if two ExitCommands are equal.
+     * Returns if two ListCommands are equal.
      *
      * @param obj Other command.
-     * @return True if two ExitCommands are equal. Else false.
+     * @return True if two ListCommands are equal. Else false.
      */
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof ExitCommand;
+        return obj instanceof ListCommand;
     }
 }

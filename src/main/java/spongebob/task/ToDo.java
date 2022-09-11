@@ -1,4 +1,4 @@
-package duke.task;
+package spongebob.task;
 
 /**
  * Represents a class for to to-do tasks.

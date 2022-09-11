@@ -1,7 +1,7 @@
-package duke.command;
+package spongebob.command;
 
-import duke.Storage;
-import duke.TaskList;
+import spongebob.Storage;
+import spongebob.TaskList;
 
 /**
  * An interface for all command types.

@@ -1,7 +1,7 @@
-package duke.command;
+package spongebob.command;
 
-import duke.Storage;
-import duke.TaskList;
+import spongebob.Storage;
+import spongebob.TaskList;
 
 /**
  * Represents a command to save the tasks from the list.

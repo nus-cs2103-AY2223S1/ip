@@ -1,4 +1,4 @@
-package duke;
+package spongebob;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import duke.task.Task;
+import spongebob.task.Task;
 
 /**
  * Represents a storage class for I/O operations.

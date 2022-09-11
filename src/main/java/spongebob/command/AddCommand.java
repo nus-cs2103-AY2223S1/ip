@@ -1,10 +1,10 @@
-package duke.command;
+package spongebob.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.ToDo;
+import spongebob.Storage;
+import spongebob.TaskList;
+import spongebob.task.Deadline;
+import spongebob.task.Event;
+import spongebob.task.ToDo;
 
 /**
  * Represents a command to add new task to the list.

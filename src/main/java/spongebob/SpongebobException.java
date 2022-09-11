@@ -1,15 +1,15 @@
-package duke;
+package spongebob;
 
 /**
  * Represents an exception specific to the Duke program.
  */
-public class DukeException extends Exception {
+public class SpongebobException extends Exception {
     /**
      * Returns an instance of DukeException.
      *
      * @param msg Error message.
      */
-    public DukeException(String msg) {
+    public SpongebobException(String msg) {
         super(msg);
     }
 }

@@ -1,4 +1,4 @@
-package duke.task;
+package spongebob.task;
 
 /**
  * Represents an abstract class for all tasks.

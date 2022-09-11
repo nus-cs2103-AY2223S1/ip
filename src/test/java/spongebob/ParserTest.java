@@ -1,19 +1,19 @@
-package duke;
+package spongebob;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import duke.command.AddCommand;
-import duke.command.CommandType;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.ICommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.SaveCommand;
-import duke.command.UnmarkCommand;
-import duke.command.WrongCommand;
+import spongebob.command.AddCommand;
+import spongebob.command.CommandType;
+import spongebob.command.DeleteCommand;
+import spongebob.command.ExitCommand;
+import spongebob.command.ICommand;
+import spongebob.command.ListCommand;
+import spongebob.command.MarkCommand;
+import spongebob.command.SaveCommand;
+import spongebob.command.UnmarkCommand;
+import spongebob.command.WrongCommand;
 
 public class ParserTest {
     @Test

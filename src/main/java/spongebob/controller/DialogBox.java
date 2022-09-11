@@ -1,4 +1,4 @@
-package duke.controller;
+package spongebob.controller;
 
 import java.io.IOException;
 import java.util.Collections;

@@ -1,13 +1,13 @@
-package duke;
+package spongebob;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import spongebob.task.Deadline;
+import spongebob.task.Event;
+import spongebob.task.Task;
+import spongebob.task.ToDo;
 
 /**
  * Represents a list of tasks.
@@ -44,11 +44,11 @@ public class TaskList {
                     this.list.add(new Event(arguments[1], arguments[2], arguments[3]));
                     break;
                 default:
-                    throw new DukeException("Invalid input from file.");
+                    throw new SpongebobException("Invalid input from file.");
                 }
             }
             System.out.println("Successfully loaded saved contents.\n" + this);
-        } catch (DukeException e) {
+        } catch (SpongebobException e) {
             System.out.println(e.getMessage());
         } finally {
             sc.close();
@@ -83,13 +83,13 @@ public class TaskList {
         for (int index : indexList) {
             try {
                 if (index < 0 || index >= this.list.size()) {
-                    throw new DukeException(
+                    throw new SpongebobException(
                             String.format("Could not delete index %d as it is not within the list.", index)
                     );
                 }
                 this.list.get(index).markToDelete();
                 numOfDeletedTask++;
-            } catch (DukeException e) {
+            } catch (SpongebobException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -104,11 +104,11 @@ public class TaskList {
      *
      * @param index Index of which task to be marked in the list.
      * @return String response after marking the task.
-     * @throws DukeException If specified index is out of range of the list.
+     * @throws SpongebobException If specified index is out of range of the list.
      */
-    public String markDone(int index) throws DukeException {
+    public String markDone(int index) throws SpongebobException {
         if (index < 0 || index >= this.list.size()) {
-            throw new DukeException(String.format("Could not mark index %d as it is not within the list.", index));
+            throw new SpongebobException(String.format("Could not mark index %d as it is not within the list.", index));
         }
         this.list.get(index).markDone();
         return this.list.get(index).toString();
@@ -119,11 +119,11 @@ public class TaskList {
      *
      * @param index Index of which task to be unmarked in the list.
      * @return String response after unmarking the task.
-     * @throws DukeException If specified index is out of range of the list.
+     * @throws SpongebobException If specified index is out of range of the list.
      */
-    public String unmarkDone(int index) throws DukeException {
+    public String unmarkDone(int index) throws SpongebobException {
         if (index < 0 || index >= this.list.size()) {
-            throw new DukeException(String.format("Could not unmark index %d as it is not within the list.", index));
+            throw new SpongebobException(String.format("Could not unmark index %d as it is not within the list.", index));
         }
         this.list.get(index).markNotDone();
         return this.list.get(index).toString();

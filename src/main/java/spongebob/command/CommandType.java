@@ -1,4 +1,4 @@
-package duke.command;
+package spongebob.command;
 
 import java.util.HashMap;
 import java.util.Map;

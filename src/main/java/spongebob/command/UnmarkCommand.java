@@ -1,8 +1,8 @@
-package duke.command;
+package spongebob.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
+import spongebob.SpongebobException;
+import spongebob.Storage;
+import spongebob.TaskList;
 
 /**
  * Represents a command to mark task as incomplete in the list.
@@ -32,7 +32,7 @@ public class UnmarkCommand implements ICommand {
             try {
                 taskList.unmarkDone(index);
                 numOfUnmarkedTask++;
-            } catch (DukeException e) {
+            } catch (SpongebobException e) {
                 System.out.println(e.getMessage());
             }
         }
