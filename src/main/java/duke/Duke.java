@@ -46,10 +46,12 @@ public class Duke {
     }
 
     public String enterStringCommand(String commandStr) {
-            Command c = ui.readCommand(commandStr);
-            String returnStr = c.exec(this.tasks);
-            this.storage.save(this.tasks);
-            return returnStr;
+        assert (tasks != null);
+        assert (storage != null);
+        Command c = ui.readCommand(commandStr);
+        String returnStr = c.exec(this.tasks);
+        this.storage.save(this.tasks);
+        return returnStr;
 
     }
 
