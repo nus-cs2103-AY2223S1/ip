@@ -15,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 /**
  * An example of a custom control using FXML.
@@ -23,14 +22,12 @@ import javafx.scene.text.Text;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    private static final Font userFont = Font.font("Verdana", FontWeight.BOLD, 12);
+    private static final Font skylarkFont = Font.font("Verdana", FontWeight.MEDIUM, 10);
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
-
-    private static final Font userFont = Font.font("Verdana", FontWeight.BOLD, 12);
-    private static final Font skylarkFont = Font.font("Verdana", FontWeight.MEDIUM, 10);
-
     private DialogBox(String text, Image img, boolean isUser) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
