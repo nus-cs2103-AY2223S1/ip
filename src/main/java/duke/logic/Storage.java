@@ -121,6 +121,7 @@ public class Storage {
      * @throws IOException If the file contains invalid contents that cannot be parsed.
      */
     public void retrieveFromStorage(TaskList taskList) throws IOException {
+        assert this.history.exists();
         //initialize scanner with task history file
         Scanner retriever;
         try {
