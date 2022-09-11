@@ -6,6 +6,7 @@ import duke.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -16,6 +17,8 @@ public class Main extends Application {
 
     private Duke duke = new Duke();
 
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/GigachadIcon.png"));
+
     @Override
     public void start(Stage stage) {
         try {
@@ -24,6 +27,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("Gigachad");
+            stage.getIcons().add(dukeImage);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {

@@ -11,18 +11,21 @@
     <children>
       <TextFlow snapToPixel="false">
          <children>
-              <Label fx:id="dialog" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="325.0" text="Label" wrapText="true">
+              <Label fx:id="dialog" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="310.0" style="-fx-background-color: grey; -fx-background-radius: 10; -fx-background-insets: -5;" text="Label" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Calibri" size="12.0" />
                </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Label>
          </children>
          <HBox.margin>
             <Insets />
          </HBox.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </TextFlow>
         <ImageView fx:id="displayPicture" fitHeight="52.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
     </children>

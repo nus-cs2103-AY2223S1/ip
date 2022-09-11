@@ -55,31 +55,25 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        db.setStyle("-fx-background-color: #00FF00");
-        return db;
+        return new DialogBox(text, img);
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         checkExitMessage(text);
         var db = new DialogBox(text, img);
-        db.setStyle("-fx-background-color: #00DDDD");
         db.flip();
         return db;
     }
 
     private static void checkExitMessage(String text) {
         if (text.equals(Ui.EXIT_MESSAGE)) {
-            new Timer().schedule(createTimerTask(), 1000);
+            TimerTask timerTask = new TimerTask() {
+                public void run() {
+                    System.exit(0);
+                }
+            };
+            new Timer().schedule(timerTask, 1000);
         }
-    }
-
-    private static TimerTask createTimerTask() {
-        return new TimerTask() {
-            public void run() {
-                System.exit(0);
-            }
-        };
     }
 }
 
