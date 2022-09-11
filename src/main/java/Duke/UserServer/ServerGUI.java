@@ -17,7 +17,7 @@ import java.sql.Array;
  * ServerCLI
  * provides methods to serve a user's commands
  */
-public class ServerCLI {
+public class ServerGUI {
 
     private TaskList tasks;
     private TextUI Ui = new TextUI();
@@ -25,12 +25,10 @@ public class ServerCLI {
 
     private FileReader fileReader = new FileReader("Duke");
 
-
-    public ServerCLI() {
+    public void run() {
         load();
         serve();
     }
-
 
     private void load() {
         TaskList storedTaskList = fileReader.load();
@@ -59,6 +57,10 @@ public class ServerCLI {
 
     private String executeCommand(UserCommand curCommand) throws DukeException {
         return curCommand.execute();
+    }
+
+    public String getResponse(String input) {
+        return input;
     }
 
 
