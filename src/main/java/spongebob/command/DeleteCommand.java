@@ -40,6 +40,20 @@ public class DeleteCommand implements ICommand {
     }
 
     /**
+     * Returns if the arrays of indexes are the same.
+     * @param otherCmdList The index list of the other delete command.
+     * @return True if the lists are the same in element and order. Else false.
+     */
+    private boolean isSameElements(Integer[] otherCmdList) {
+        for (int i = 0; i < this.indexList.length; i++) {
+            if (this.indexList[i] != otherCmdList[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Returns if two DeleteCommands are equal in index of task to be deleted.
      *
      * @param obj Other command.
@@ -49,7 +63,8 @@ public class DeleteCommand implements ICommand {
     public boolean equals(Object obj) {
         if (obj instanceof DeleteCommand) {
             DeleteCommand otherCmd = (DeleteCommand) obj;
-            return true;
+            boolean isSameLength = this.indexList.length == otherCmd.indexList.length;
+            return isSameLength && isSameElements(otherCmd.indexList);
         } else {
             return false;
         }

@@ -53,6 +53,20 @@ public class MarkCommand implements ICommand {
     }
 
     /**
+     * Returns if the arrays of indexes are the same.
+     * @param otherCmdList The index list of the other mark command.
+     * @return True if the lists are the same in element and order. Else false.
+     */
+    private boolean isSameElements(Integer[] otherCmdList) {
+        for (int i = 0; i < this.indexList.length; i++) {
+            if (this.indexList[i] != otherCmdList[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Returns if two MarkCommands are equal.
      * @param obj Other command.
      * @return True if two MarkCommands are equal in the number and order of tasks to be marked completed. Else false.
@@ -61,16 +75,8 @@ public class MarkCommand implements ICommand {
     public boolean equals(Object obj) {
         if (obj instanceof MarkCommand) {
             MarkCommand otherCmd = (MarkCommand) obj;
-            if (this.indexList.length == otherCmd.indexList.length) {
-                for (int i = 0; i < this.indexList.length; i++) {
-                    if (this.indexList[i] != otherCmd.indexList[i]) {
-                        return false;
-                    }
-                }
-                return true;
-            } else {
-                return false;
-            }
+            boolean isSameLength = this.indexList.length == otherCmd.indexList.length;
+            return isSameLength && isSameElements(otherCmd.indexList);
         } else {
             return false;
         }

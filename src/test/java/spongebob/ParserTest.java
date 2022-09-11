@@ -37,19 +37,19 @@ public class ParserTest {
     @Test
     public void parseMethod_markInput_returnMarkCmd() {
         ICommand cmd = Parser.parse("mark 1");
-        assertEquals(cmd, new MarkCommand(new Integer[] { 1 }));
+        assertEquals(cmd, new MarkCommand(new Integer[] { 0 }));
     }
 
     @Test
     public void parseMethod_unMarkInput_returnUnmarkCmd() {
         ICommand cmd = Parser.parse("unmark 1");
-        assertEquals(cmd, new UnmarkCommand(new Integer[] { 1 }));
+        assertEquals(cmd, new UnmarkCommand(new Integer[] { 0 }));
     }
 
     @Test
     public void parseMethod_deleteInput_returnDeleteCmd() {
         ICommand cmd = Parser.parse("delete 1");
-        assertEquals(cmd, new DeleteCommand(new Integer[] { 1 }));
+        assertEquals(cmd, new DeleteCommand(new Integer[] { 0 }));
     }
 
     @Test

@@ -53,6 +53,20 @@ public class UnmarkCommand implements ICommand {
     }
 
     /**
+     * Returns if the arrays of indexes are the same.
+     * @param otherCmdList The index list of the other unmark command.
+     * @return True if the lists are the same in element and order. Else false.
+     */
+    private boolean isSameElements(Integer[] otherCmdList) {
+        for (int i = 0; i < this.indexList.length; i++) {
+            if (this.indexList[i] != otherCmdList[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Returns if two UnmarkCommands are equal in index.
      *
      * @param obj Other command.
@@ -62,7 +76,8 @@ public class UnmarkCommand implements ICommand {
     public boolean equals(Object obj) {
         if (obj instanceof UnmarkCommand) {
             UnmarkCommand otherCmd = (UnmarkCommand) obj;
-            return true;
+            boolean isSameLength = this.indexList.length == otherCmd.indexList.length;
+            return isSameLength && isSameElements(otherCmd.indexList);
         } else {
             return false;
         }
