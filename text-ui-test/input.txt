@@ -1,0 +1,90 @@
+list
+
+todo Add To Do
+list
+
+event Add Event /at Event Time
+event Add Event /at 2022-02-30
+event Add Event /at 2022-02-02
+list
+
+deadline Add Deadline /by Deadline Time
+deadline Add Deadline /by 2000-1-2
+deadline Add Deadline /by 0001-01-01
+list
+
+mark 1
+list
+
+mark 3
+list
+
+unmark 1
+list
+
+mark 2
+list
+
+unmark 3
+list
+
+mark 10000000000000000
+mark -1
+mark a b c
+mark 1 a b
+
+unmark -100
+unmark 998244353
+unmark a b c
+unmark 3 x y
+
+event
+event /by
+event /at
+event
+
+deadline
+deadline /at
+deadline /by
+deadline /at 2001-01-01
+deadline /by 2000-12-31
+deadline Is Deadline 0 /at
+deadline Is Deadline 1 /at 2005-01-01
+deadline Is Deadline 2 /by
+deadline Is Deadline 3 /by 2006-01-01
+
+event
+event /at
+event /by
+event /at Unknown
+event /by Unknown
+event Is Event 0 /at
+event Is Event 1 /at 2003-01-01
+event Is Event 2 /by
+event Is Event 3 /by 2004-01-01
+
+
+random
+e v e n t
+d e a d line
+dead line
+
+list
+delete 1
+list
+
+find
+find is
+find NaN
+
+delete -1
+delete 0
+delete 10000000000
+delete a
+delete a b c
+delete 3 a
+list
+delete
+list
+
+bye
