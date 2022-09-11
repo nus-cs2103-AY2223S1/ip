@@ -9,11 +9,11 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Karen using FXML.
  */
 public class Main extends Application {
 
-    private Duke duke = new Duke("src/data/tasks.txt");
+    private Karen karen = new Karen("src/data/tasks.txt");
 
     @Override
     public void start(Stage stage) {
@@ -22,7 +22,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().setKaren(karen);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -17,18 +17,18 @@ import java.util.ArrayList;
 /**
  * Represents the karen chatbot.
  */
-public class Duke {
+public class Karen {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
     /**
-     * Creates instance of duke.
+     * Creates instance of karen.
      *
      * @param filePath Location to create the storage
      */
-    public Duke(String filePath) {
+    public Karen(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         try {
