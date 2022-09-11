@@ -59,7 +59,7 @@ public class Main extends Application {
         stage.show();
 
         //Step 2. Formatting the window to look as expected
-        stage.setTitle("Duke");
+        stage.setTitle("Nikki");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
@@ -146,7 +146,7 @@ public class Main extends Application {
      */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
+        Label dukeText = new Label(getResponse(userInput.getText(), new Duke()));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(ngo))
@@ -160,7 +160,11 @@ public class Main extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
+//    private String getResponse(String input) {
+//        return "Nikki heard: " + input;
+//    }
+    public String getResponse(String input, Duke duke) {
+        Parser parser = new Parser(duke);
+        return parser.start(input);
     }
 }
