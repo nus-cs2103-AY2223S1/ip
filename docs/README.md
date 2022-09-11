@@ -1,4 +1,4 @@
-![Header](ArtemisHeader.png)
+<img align="center" src="ArtemisHeader.png" alt="Header">
 
 # User Guide
 
@@ -43,12 +43,13 @@ for its latest version.
 sample execution involving these screenshots is visible
 under [UI Screenshots](#ui-screenshots). Here is a table summarising them:
 
-| Icon                                                                | Meaning                                                      |
-|---------------------------------------------------------------------|--------------------------------------------------------------|
-| ![Normal](../src/main/resources/images/DaDuke.png)                  | Normal responses (excluding task operations).                |
-| ![Success](../src/main/resources/images/DaSuccess.png)              | Successful execution of task creation, updating or deletion. |
-| ![Error](../src/main/resources/images/DaError.png)                  | Failed execution, when the input is wrong.                   |
-| ![Success Yellow](../src/main/resources/images/DaSuccessYellow.png) | Successful execution for `unmark` command.                   |
+| Icon                                   | Meaning                                                      |
+|----------------------------------------|--------------------------------------------------------------|
+| ![Normal](DaDuke.png)                  | Normal responses (excluding task operations).                |
+| ![Success](DaSuccess.png)              | Successful execution of task creation, updating or deletion. |
+| ![Error](DaError.png)                  | Failed execution, when the input is wrong.                   |
+| ![Success Yellow](DaSuccessYellow.png) | Successful execution for `unmark` command.                   |
+| [User](User.png)                       | Messages sent by you, the user.                              |
 
 ### Available Commands
 
