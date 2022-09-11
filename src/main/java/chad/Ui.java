@@ -12,10 +12,12 @@ import chad.task.Task;
 
 /**
  * Contains input methods for user to interact with Chadbot
+ *
  */
 public class Ui {
     /**
      * Greets user when program runs
+     *
      */
     public static String greet() {
         String startChat = "Hello! I'm Chadbot\nWhat can I do for you?\n";
@@ -25,12 +27,18 @@ public class Ui {
 
     /**
      * Exit message when user close program
+     *
      */
     public static String closeChat() {
         String exitChat = "Bye. Hope to see you again soon!";
         return Utility.printText(exitChat);
     }
 
+    /**
+     * Shows all available commands
+     *
+     * @return available commands
+     */
     public static String helpCommands() {
         String output = "";
         output += "list - List all tasks in task list\n";
@@ -45,6 +53,7 @@ public class Ui {
 
     /**
      * List all tasks in task list
+     *
      * @param tasks arraylist of tasks
      */
     public static String listTask(ArrayList<Task> tasks) {
@@ -58,25 +67,32 @@ public class Ui {
 
     /**
      * Marks the task at specific index as done
+     *
      * @param tasks arraylist of tasks
      * @param taskID index of task
-     * @throws IOException throws error if file can't be open in chad.Storage
+     * @throws ChadException if file can't be open in chad.Storage
      */
     public static String markTask(ArrayList<Task> tasks, int taskID) throws ChadException {
-        String outputText = "";
-        outputText += "Nice! I've marked this task as done:\n";
-        Task currentTask = tasks.get(taskID);
-        currentTask.markAsDone();
-        outputText += " " + currentTask;
-        Storage.toggleMarkTaskInFile(taskID);
-        return Utility.printText(outputText);
+        try {
+            String outputText = "";
+            outputText += "Nice! I've marked this task as done:\n";
+            Task currentTask = tasks.get(taskID);
+            currentTask.markAsDone();
+            outputText += " " + currentTask;
+            Storage.toggleMarkTaskInFile(taskID);
+            return Utility.printText(outputText);
+        } catch (Exception e) {
+            throw new ChadException(e.getMessage());
+        }
+
     }
 
     /**
      * Unmarks the task at specific index as done
+     *
      * @param tasks arraylist of tasks
      * @param taskID index of task
-     * @throws IOException throws error if file can't be open in chad.Storage
+     * @throws ChadException if file can't be open in chad.Storage
      */
     public static String unmarkTask(ArrayList<Task> tasks, int taskID) throws ChadException {
         String outputText = "";
@@ -88,6 +104,13 @@ public class Ui {
         return Utility.printText(outputText);
     }
 
+    /**
+     * Search for task by keywords
+     *
+     * @param tasks arraylist of task
+     * @param userInput keyword
+     * @return all matching tasks
+     */
     public static String searchTaskByKeyword(ArrayList<Task> tasks, String userInput) {
         String keyword = userInput.replaceFirst("find", "").trim();
         String baseText = "Here are the matching tasks in your list:\n";
@@ -111,6 +134,7 @@ public class Ui {
 
     /**
      * Prints out all the tasks that ends on the date specified by user
+     *
      * @param tasks arraylist of tasks
      * @param date date specified by user
      */

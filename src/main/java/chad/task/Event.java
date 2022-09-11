@@ -4,13 +4,16 @@ import java.time.LocalDateTime;
 
 /**
  * chad.task.Event task that is a child of task
+ *
  */
 public class Event extends Task {
     protected LocalDateTime dateTime;
 
     /**
      * Constructor for event
+     *
      * Example: event party /at 2/12/2020 1800
+     *
      * @param description description of event
      * @param dateTime date and time of event
      */
