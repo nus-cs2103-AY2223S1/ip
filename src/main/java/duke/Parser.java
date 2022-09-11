@@ -34,18 +34,19 @@ public class Parser {
      *
      * @param command Command string for parsing and execution.
      * @param isVerbose Boolean to indicate verbosity of Ui.
+     * @return Response string from Duke Bot.
      * @throws DukeException If command cannot be parsed or is invalid.
      */
-    public void parse(String command, boolean isVerbose) throws DukeException {
+    public String parse(String command, boolean isVerbose) throws DukeException {
         ui.setVerbose(isVerbose);
         if (command.startsWith("deadline") || command.startsWith("event") || command.startsWith("todo")) {
-            parseTask(command);
+            return parseTask(command);
         } else if (command.startsWith("mark") || command.startsWith("unmark") || command.startsWith("delete")) {
-            parseTwo(command);
+            return parseTwo(command);
         } else if (command.startsWith("find")) {
-            parseFind(command);
+            return parseFind(command);
         } else if (command.startsWith("list") || command.startsWith("bye")) {
-            parseOne(command);
+            return parseOne(command);
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
@@ -56,9 +57,10 @@ public class Parser {
      * Task commands are in the format "task description separator time".
      *
      * @param command Task command string.
+     * @return Response string from Duke Bot.
      * @throws DukeException If command cannot be parsed or is invalid.
      */
-    public void parseTask(String command) throws DukeException {
+    public String parseTask(String command) throws DukeException {
         Task t = null;
         try {
             if (command.startsWith("deadline")) {
@@ -68,9 +70,10 @@ public class Parser {
             } else if (command.startsWith("todo")) {
                 t = new TodoTask(command);
             }
-            tasks.addTask(t);
+            return tasks.addTask(t);
         } catch (DateTimeParseException e) {
             System.out.println("Unable to parse date: " + e);
+            return "Unable to parse date: " + e;
         }
     }
 
@@ -80,9 +83,10 @@ public class Parser {
      * Two part long commands are in the format "command description".
      *
      * @param command Two part long command.
+     * @return Response string from Duke Bot.
      * @throws DukeException If command cannot be parsed or is invalid.
      */
-    public void parseTwo(String command) throws DukeException {
+    public String parseTwo(String command) throws DukeException {
         String[] split = command.split(" ", 2);
         String commandName = split[0];
         int id = tasks.getSize();
@@ -97,11 +101,13 @@ public class Parser {
         }
 
         if (commandName.equals("delete")) {
-            tasks.deleteTask(id - 1);
+            return tasks.deleteTask(id - 1);
         } else if (commandName.equals("mark")) {
-            tasks.markTask(id - 1);
+            return tasks.markTask(id - 1);
         } else if (commandName.equals("unmark")) {
-            tasks.unmarkTask(id - 1);
+            return tasks.unmarkTask(id - 1);
+        } else {
+            throw new DukeException("Unknown command");
         }
     }
 
@@ -109,14 +115,15 @@ public class Parser {
      * Parses and executes find command for Duke Bot.
      *
      * @param command Find command.
+     * @return Response string from Duke Bot.
      * @throws DukeException If command cannot be parsed or is invalid.
      */
-    public void parseFind(String command) throws DukeException {
+    public String parseFind(String command) throws DukeException {
         String[] split = command.split(" ", 2);
         if (split.length < 2) {
             throw new DukeException("Please input string for find.");
         }
-        tasks.findTask(split[1]);
+        return tasks.findTask(split[1]);
     }
 
     /**
@@ -124,14 +131,16 @@ public class Parser {
      * One part long commands are in the format "command".
      *
      * @param command One part long command.
+     * @return Response string from Duke Bot.
      * @throws DukeException If command cannot be parsed or is invalid.
      */
-    public void parseOne(String command) throws DukeException {
+    public String parseOne(String command) throws DukeException {
         if (command.equals("bye")) {
-            tasks.saveTasks();
+            String response = tasks.saveTasks();
             duke.terminate();
+            return response;
         } else if (command.equals("list")) {
-            tasks.generateList();
+            return tasks.generateList();
         } else {
             throw new DukeException("Invalid command format.");
         }

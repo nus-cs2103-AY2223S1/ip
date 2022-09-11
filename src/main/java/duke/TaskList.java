@@ -27,10 +27,11 @@ public class TaskList {
      * Adds a task to TaskList.
      *
      * @param task Task to be added.
+     * @return Response string from Duke Bot.
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         tasks.add(task);
-        ui.printMessage("Got it. I've added this task:\n      "
+        return ui.printMessage("Got it. I've added this task:\n      "
                 + task
                 + "\n    Now you have "
                 + tasks.size()
@@ -41,10 +42,11 @@ public class TaskList {
      * Deletes a task from TaskList.
      *
      * @param id Index of task to be deleted. Index is numbering from calling "list" command.
+     * @return Response string from Duke Bot.
      */
-    public void deleteTask(int id) {
+    public String deleteTask(int id) {
         Task t = tasks.remove(id);
-        ui.printMessage("Noted. I've removed this task:\n      "
+        return ui.printMessage("Noted. I've removed this task:\n      "
                 + t
                 + "\n    Now you have "
                 + tasks.size()
@@ -55,30 +57,33 @@ public class TaskList {
      * Marks a task from TaskList as done.
      *
      * @param id Index of task to be marked. Index is numbering from calling "list" command.
+     * @return Response string from Duke Bot.
      */
-    public void markTask(int id) {
+    public String markTask(int id) {
         Task t = tasks.get(id);
         t.setAsDone();
-        ui.printMessage("Nice! I've marked this task as done:\n    " + t);
+        return ui.printMessage("Nice! I've marked this task as done:\n    " + t);
     }
 
     /**
      * Marks a task from TaskList as undone.
      *
      * @param id Index of task to be unmarked. Index is numbering from calling "list" command.
+     * @return Response string from Duke Bot.
      */
-    public void unmarkTask(int id) {
+    public String unmarkTask(int id) {
         Task t = tasks.get(id);
         t.setAsUndone();
-        ui.printMessage("OK, I've marked this task as not done yet:\n    " + t);
+        return ui.printMessage("OK, I've marked this task as not done yet:\n    " + t);
     }
 
     /**
      * Prints list of tasks in TaskList that contains identifier.
      *
      * @param identifier String to search for tasks.
+     * @return Response string from Duke Bot.
      */
-    public void findTask(String identifier) {
+    public String findTask(String identifier) {
         String messageList = "";
         int count = 1;
         for (Task t: tasks) {
@@ -86,7 +91,7 @@ public class TaskList {
                 messageList += "\n    " + count++ + ". " + t;
             }
         }
-        ui.printMessage("Here are the matching tasks in your list:\n    " + messageList);
+        return ui.printMessage("Here are the matching tasks in your list:\n    " + messageList);
     }
 
     /**
@@ -101,14 +106,16 @@ public class TaskList {
     /**
      * Prints list representation of TaskList.
      * Ui instance is used to print this list.
+     *
+     * @return Response string from Duke Bot.
      */
-    public void generateList() {
+    public String generateList() {
         String messageList = "";
         int count = 1;
         for (Task t: tasks) {
             messageList += "\n    " + count++ + ". " + t;
         }
-        ui.printMessage("Here are the tasks in your list:\n    " + messageList);
+        return ui.printMessage("Here are the tasks in your list:\n    " + messageList);
     }
 
     /**
@@ -135,12 +142,14 @@ public class TaskList {
     /**
      * Saves task from current TaskList.
      * Tasks are saved using an instance of Storage.
+     *
+     * @return Response string from Duke Bot.
      */
-    public void saveTasks() {
+    public String saveTasks() {
         for (Task t : tasks) {
             store.writeText(t.toStorageString(), true);
         }
-        ui.printMessage("Bye. Hope to see you again soon!");
         store.closeWriter();
+        return ui.printMessage("Bye. Hope to see you again soon!");
     }
 }

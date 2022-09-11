@@ -35,12 +35,13 @@ public class Duke {
      * Parses and executes a command string.
      *
      * @param command Command string to be parsed and executed.
+     * @return Response string from Duke Bot.
      */
-    public void parseCommand(String command) {
+    public String parseCommand(String command) {
         try {
-            parser.parse(command, true);
+            return parser.parse(command, true);
         } catch (DukeException e) {
-            ui.printMessage(e.getMessage());
+            return ui.printMessage(e.getMessage());
         }
     }
 
@@ -50,6 +51,14 @@ public class Duke {
      */
     public void terminate() {
         isDukeRunning = false;
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        return parseCommand(input);
     }
 
     /**

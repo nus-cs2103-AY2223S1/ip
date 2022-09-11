@@ -7,10 +7,10 @@ import java.util.Scanner;
  */
 public class Ui {
     public static final String LOGO = " ____        _        \n"
-                             + "|  _ \\ _   _| | _____ \n"
-                             + "| | | | | | | |/ / _ \\\n"
-                             + "| |_| | |_| |   <  __/\n"
-                             + "|____/ \\__,_|_|\\_\\___|\n";
+                                     + "|  _ \\ _   _| | _____ \n"
+                                     + "| | | | | | | |/ / _ \\\n"
+                                     + "| |_| | |_| |   <  __/\n"
+                                     + "|____/ \\__,_|_|\\_\\___|\n";
     private Scanner sc;
     private boolean isVerbose;
 
@@ -44,14 +44,16 @@ public class Ui {
      * Formats and prints a string.
      *
      * @param message Message string to be printed.
+     * @return The formatted and printed message.
      */
-    public void printMessage(String message) {
-        String formattedMessage = "    ____________________________________________________________\n    "
+    public String printMessage(String message) {
+        String formattedMessage = "    __________________________________________________\n    "
                 + message
-                + "\n    ____________________________________________________________\n";
+                + "\n    __________________________________________________\n";
         if (isVerbose) {
             System.out.println(formattedMessage);
         }
+        return formattedMessage;
     }
 
     /**
