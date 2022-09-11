@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Ui {
     public static final String BORDER =
-            "-------------------------------------------------------------------------------";
+            "------------------------------------------------------------------------------";
 
     /**
      * Returns a string with the inputted message on the Duke interface.
