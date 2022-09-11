@@ -41,6 +41,10 @@ public class Duke {
      * @throws DukeException if input is invalid
      */
     public String getResponse(String input) throws DukeException {
+        assert (input != null);
+        assert (ui != null);
+        assert (tasks != null);
+        assert (storage != null);
         return Parser.parse(input).execute(tasks, ui, storage);
     }
 }
