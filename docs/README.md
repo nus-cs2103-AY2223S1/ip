@@ -6,13 +6,17 @@ Luna is your nature-themed graphical user interface (GUI) desktop app that is su
 Visit Luna's [product website](https://fannyjian.github.io/ip/)!
 <br/><br/>
 
-## Get started with Luna 🌤
+## Sneak peak of Luna's GUI 🌤
+<p align = "center"><img src="Ui.png" width=40% height=40%/></p>
+<br/><br/>
+
+## Get started with Luna ⛅️
 1. Download the `jar` file
 2. Navigate to the directory containing the `jar` file in terminal
 3. Run java -jar `luna-v1.0.jar`
 <br/><br/>
 
-## Features ⛅️
+## Features ☁️
 
 ### Add and delete tasks
 
