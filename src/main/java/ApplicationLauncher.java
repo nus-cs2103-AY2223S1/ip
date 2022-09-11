@@ -1,5 +1,5 @@
-import spongebob.Main;
 import javafx.application.Application;
+import spongebob.Main;
 
 /**
  * Launcher for GUI Duke Application

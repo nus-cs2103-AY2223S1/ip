@@ -123,7 +123,7 @@ public class TaskList {
      */
     public String unmarkDone(int index) throws SpongebobException {
         if (index < 0 || index >= this.list.size()) {
-            throw new SpongebobException(String.format("Could not unmark index %d as it is not within the list.", index));
+            throw new SpongebobException(String.format("Could not unmark index %d as not within the list.", index));
         }
         this.list.get(index).markNotDone();
         return this.list.get(index).toString();

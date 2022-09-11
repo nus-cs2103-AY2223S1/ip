@@ -1,6 +1,5 @@
 package spongebob.controller;
 
-import spongebob.SpongebobApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import spongebob.SpongebobApplication;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -33,7 +33,9 @@ public class MainWindow extends AnchorPane {
 
     public void setDuke(SpongebobApplication d) {
         this.duke = d;
-        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("Hey Patrick!\nWhat do you want to do today?", spongebobImage));
+        this.dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog("Hey Patrick!\nWhat do you want to do today?", spongebobImage)
+        );
     }
 
     /**
