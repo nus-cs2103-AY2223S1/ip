@@ -3,16 +3,24 @@ package duke.gui;
 import java.io.IOException;
 import java.util.Collections;
 
+import duke.Response;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 /**
  * An example of a custom control using FXML.
@@ -24,6 +32,8 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+
+    private final Circle c = new Circle(25, 25, 25);
 
     private DialogBox(String text, Image img) {
         try {
@@ -37,6 +47,7 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+        displayPicture.setClip(c);
     }
 
     /**
@@ -61,13 +72,22 @@ public class DialogBox extends HBox {
 
     /**
      * Gets chatbot response and image to be printed GUI flipped.
-     * @param text string of chatbot response
+     * @param response string of chatbot response
      * @param img image of chatbot
      * @return DialogBox of chatbot.
      */
-    public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+    public static DialogBox getDukeDialog(Response response, Image img) {
+        var db = new DialogBox(response.getText(), img);
         db.flip();
+
+        if (response.isErrorResponse()) {
+            //Reused from https://stackoverflow.com/questions/14370554/how-to-programmatically-set-the-color-or-texture-of-a-tab-label-in-javafx
+            // with minor modifications
+            db.dialog.setStyle(db.dialog.getStyle() + "-fx-background-color: #e94b3c;");
+        } else {
+
+            db.dialog.setStyle(db.dialog.getStyle() + "-fx-background-color: #57504d;");
+        }
         return db;
     }
 }

@@ -3,6 +3,7 @@ package duke.command;
 import java.time.LocalDate;
 
 import duke.DukeException;
+import duke.Response;
 import duke.Ui;
 import duke.storage.Storage;
 import duke.task.Deadline;
@@ -30,8 +31,10 @@ public class DeadlineCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Deadline deadline = new Deadline(description, by);
         taskList.addTask(deadline);
-        ui.printMessage("+ Added this deadline:\n" + deadline + "\nNow you have " + taskList.listSize()
-                + " tasks in the list\n");
+        String message = "+ Added this deadline:\n" + deadline + "\nNow you have " + taskList.listSize()
+                + " tasks in the list\n";
+        Response response = new Response(message, false, false);
+        ui.setResponse(response);
     }
 
     @Override

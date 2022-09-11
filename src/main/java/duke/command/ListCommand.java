@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Response;
 import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -16,7 +17,7 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        ui.setResponse(ui.listToString(taskList.getList()));
+        ui.setResponse(new Response(ui.listToString(taskList.getList()), false, false));
         System.out.println(ui.listToString(taskList.getList()));
     }
 

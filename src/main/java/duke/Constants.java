@@ -6,10 +6,10 @@ package duke;
 public class Constants {
     public static final String CHATBOX_NAME = "Ado";
     public static final String PARTITION = "<><><><><><><><><><><><><><><><><><><><><><><><><><><><>";
-    public static final String NEW_WELCOME_MESSAGE = "Yo! I'm " + CHATBOX_NAME + ", what can I do for you? :)"
+    public static final String NEW_WELCOME_MESSAGE = "What's up? I'm " + CHATBOX_NAME + ", How may i help you :-)"
             + "\nSince this is your first time, some sample tasks has been added for you! "
             + "\nType \"help\" for the list of available commands";
-    public static final String WELCOME_MESSAGE = "Yo! I'm " + CHATBOX_NAME + ", what can I do for you? :)"
+    public static final String WELCOME_MESSAGE = "What's up? I'm " + CHATBOX_NAME + ", How may i help you :-)"
             + "\nType \"help\" for the list of available commands";
     public static final String BYE_MESSAGE = "I've saved your tasks! Hope to see you again ~\n";
     public static final String LIST_EMPTY_MESSAGE = "List is empty ~\n";

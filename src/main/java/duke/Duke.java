@@ -40,7 +40,7 @@ public class Duke {
      * @param input user input
      * @return response from chatbot
      */
-    public String getResponse(String input) {
+    public Response getResponse(String input) {
         try {
             ui.validate(input);
             Command c = Parser.parse(input);
@@ -56,7 +56,7 @@ public class Duke {
      * Returns welcome message to be printed in GUI
      * @return welcome message
      */
-    public String getWelcome() {
+    public Response getWelcome() {
         ui.showWelcome(storage);
         return ui.getResponse();
     }

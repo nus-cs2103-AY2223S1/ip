@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.Constants;
 import duke.DukeException;
+import duke.Response;
 import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -15,7 +16,7 @@ public class ByeCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        ui.setResponse(Constants.BYE_MESSAGE);
+        ui.setResponse(new Response(Constants.BYE_MESSAGE, true, false));
         storage.saveTasksInStorage(taskList.getList());
     }
 

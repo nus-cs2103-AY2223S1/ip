@@ -15,6 +15,7 @@ import duke.task.Task;
  */
 public class Ui {
     private String response;
+    private Response currentResponse;
 
     public Ui() {
     }
@@ -24,11 +25,13 @@ public class Ui {
      */
     public void showWelcome(Storage storage) {
         boolean isNewUser = storage.checkIfNewUser();
+        Response response;
         if (isNewUser) {
-            setResponse(Constants.NEW_WELCOME_MESSAGE);
+            response = new Response(Constants.NEW_WELCOME_MESSAGE, false, false);
         } else {
-            setResponse(Constants.WELCOME_MESSAGE);
+            response = new Response(Constants.WELCOME_MESSAGE, false, false);
         }
+        setResponse(response);
     }
 
     /**
@@ -37,7 +40,8 @@ public class Ui {
      */
     public void printMessage(String message) {
         assert (message != null) : "Null message";
-        setResponse(message);
+        Response response = new Response(message, false, true);
+        setResponse(response);
         System.out.println(message);
     }
 
@@ -89,18 +93,19 @@ public class Ui {
         return response;
     }
 
-    public String getResponse() {
-        return response;
+    public Response getResponse() {
+        return currentResponse;
     }
-    public void setResponse(String response) {
-        this.response = response;
+    public void setResponse(Response response) {
+        this.currentResponse = response;
     }
 
     /**
      * Shows error message if there is an error in loading task list.
      */
     public void showLoadingError() {
-        setResponse(Constants.LOAD_TASK_ERROR_MESSAGE);
+        Response response = new Response(Constants.LOAD_TASK_ERROR_MESSAGE, false, true);
+        setResponse(response);
         System.out.println(response);
     }
 
@@ -110,7 +115,8 @@ public class Ui {
      */
     public void showError(String message) {
         assert (message != null) : "Null error message";
-        setResponse(message);
+        Response response = new Response(message, false, true);
+        setResponse(response);
         System.out.println(message);
     }
 

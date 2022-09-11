@@ -1,6 +1,8 @@
 package duke.command;
 
+import duke.Constants;
 import duke.DukeException;
+import duke.Response;
 import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -21,8 +23,11 @@ public class TodoCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Todo todo = new Todo(this.description);
         taskList.addTask(todo);
-        ui.printMessage("+ Added this todo:\n" + todo + "\nNow you have " + taskList.listSize()
-                + " tasks in the list\n");
+        String message = "+ Added this todo:\n" + todo + "\nNow you have " + taskList.listSize()
+                + " tasks in the list\n";
+        Response response = new Response(message, false, false);
+        ui.setResponse(response);
+        //ui.printMessage(message);
         //storage.saveTasksInStorage(taskList);
     }
 

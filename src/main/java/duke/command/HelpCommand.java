@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.Constants;
 import duke.DukeException;
+import duke.Response;
 import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -15,7 +16,7 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        ui.setResponse(Constants.HELP_MESSAGE);
+        ui.setResponse(new Response(Constants.HELP_MESSAGE, false, false));
         System.out.println(Constants.HELP_MESSAGE);
     }
 

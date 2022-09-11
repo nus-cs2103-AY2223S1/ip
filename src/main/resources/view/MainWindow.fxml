@@ -5,14 +5,22 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.gui.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #2a2727;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.gui.MainWindow">
     <children>
-        <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" AnchorPane.bottomAnchor="1.0" />
-        <Button fx:id="sendButton" layoutX="324.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" />
-        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0">
+        <Button fx:id="sendButton" layoutX="324.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" style="-fx-background-color: #181716;" text="Send" textFill="WHITE" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0">
+         <font>
+            <Font name="Franklin Gothic Medium" size="15.0" />
+         </font></Button>
+        <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="320.0" promptText="Message" style="-fx-background-color: #453f3d; -fx-border-color: #181716; -fx-text-fill: white;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="2.0" />
+      <Button fx:id="helpButton" layoutX="292.0" layoutY="564.0" mnemonicParsing="false" onAction="#handleHelpButton" opacity="0.38" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #181716; -fx-border-color: black; -fx-border-radius: 30; -fx-background-radius: 30;" text="?" textFill="WHITE" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="83.0">
+         <font>
+            <Font name="Franklin Gothic Medium" size="14.0" />
+         </font></Button>
+        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" pannable="true" prefHeight="557.0" prefWidth="400.0" style="-fx-background-color: #2a2727; -fx-border-color: #2a2727;" vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" />
+                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" style="-fx-background-color: #2a2727; -fx-border-color: #2a2727;" />
             </content>
         </ScrollPane>
     </children>
