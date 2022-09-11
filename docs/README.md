@@ -4,11 +4,11 @@
 
 <summary>Contents</summary>
 
-1. [About Luna](https://github.com/fannyjian/ip/edit/master/docs/README.md#about-luna-%EF%B8%8F)
-2. [GUI Preview](https://github.com/fannyjian/ip/edit/master/docs/README.md#sneak-peak-of-lunas-gui-)
-3. [Getting Started](https://github.com/fannyjian/ip/edit/master/docs/README.md#get-started-with-luna-%EF%B8%8F)
-4. [Features](https://github.com/fannyjian/ip/edit/master/docs/README.md#features-%EF%B8%8F)
-5. [User Guide](https://github.com/fannyjian/ip/edit/master/docs/README.md#user-guide-)
+1. [About Luna](https://github.com/fannyjian/ip/blob/master/docs/README.md#about-luna-%EF%B8%8F)
+2. [GUI Preview](https://github.com/fannyjian/ip/blob/master/docs/README.md#sneak-peak-of-lunas-gui-)
+3. [Getting Started](https://github.com/fannyjian/ip/blob/master/docs/README.md#get-started-with-luna-%EF%B8%8F)
+4. [Features](https://github.com/fannyjian/ip/blob/master/docs/README.md#features-%EF%B8%8F)
+5. [User Guide](https://github.com/fannyjian/ip/blob/master/docs/README.md#user-guide-)
 
 </details>
 
