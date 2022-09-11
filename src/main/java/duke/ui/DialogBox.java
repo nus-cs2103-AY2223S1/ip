@@ -29,7 +29,10 @@ public class DialogBox extends HBox {
             new BackgroundFill(Color.web("#797ef6", 0.7), new CornerRadii(15.0), Insets.EMPTY)
     );
     private static final Background DUKE_BACKGROUND = new Background(
-            new BackgroundFill(Color.web("#ffffff", 0.1), new CornerRadii(15.0), Insets.EMPTY)
+            new BackgroundFill(Color.web("#ffffff", 0.15), new CornerRadii(15.0), Insets.EMPTY)
+    );
+    private static final Background ERROR_BACKGROUND = new Background(
+            new BackgroundFill(Color.web("#ff8886", 0.2), new CornerRadii(15.0), Insets.EMPTY)
     );
 
     @FXML
@@ -77,11 +80,16 @@ public class DialogBox extends HBox {
      * Returns a DialogBox for Duke with the given text and image.
      * @param text The response from Duke.
      * @param img The image representing Duke.
+     * @param isErrorMessage A boolean indicating if the response is an error message.
      * @return The DialogBox for Duke.
      */
-    public static DialogBox getDukeDialog(String text, Image img) {
+    public static DialogBox getDukeDialog(String text, Image img, Boolean isErrorMessage) {
         DialogBox db = new DialogBox(text, img);
-        db.dialog.setBackground(DUKE_BACKGROUND);
+        if (!isErrorMessage) {
+            db.dialog.setBackground(DUKE_BACKGROUND);
+        } else {
+            db.dialog.setBackground(ERROR_BACKGROUND);
+        }
         db.flip();
         return db;
     }

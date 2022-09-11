@@ -6,6 +6,7 @@ import duke.data.TaskList;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.ui.Ui;
+import javafx.util.Pair;
 
 /**
  * Represents the Duke chatbot.
@@ -50,14 +51,16 @@ public class Duke {
     /**
      * Generates a response to the user input.
      * @param input The user input.
-     * @return A string representation of the response to the user input.
+     * @return A Pair object containing the response as a string and
+     *         a boolean indicating if the response is an error message.
      */
-    public String getResponse(String input) {
+    public Pair<String, Boolean> getResponse(String input) {
         try {
             Command command = Parser.parse(input);
-            return command.execute(tasks, ui, storage);
+            String response = command.execute(tasks, ui, storage);
+            return new Pair<>(response, false);
         } catch (DukeException e) {
-            return e.getMessage();
+            return new Pair<>(e.getMessage(), true);
         }
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 
 /**
  * Controller for MainWindow that provides the layout for the other controls.
@@ -32,7 +33,11 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        //@@author ruiqi7-reused
+        //Reused from https://github.com/nus-cs2103-AY2223S1/ip/pull/77/commits/0f4f0d2a7870d75d0022dddacffb8196c00ab778
+        //with minor modifications
+        scrollPane.setOnScroll(event -> scrollPane.setVvalue(scrollPane.getVvalue() - event.getDeltaY()));
+        dialogContainer.heightProperty().addListener((observable, oldValue, newValue) -> scrollPane.setVvalue(1.0));
     }
 
     /**
@@ -42,9 +47,9 @@ public class MainWindow extends AnchorPane {
         duke = d;
         String loadingError = duke.showLoadingError();
         if (!loadingError.isEmpty()) {
-            dialogContainer.getChildren().add(DialogBox.getDukeDialog(loadingError, dukeImage));
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(loadingError, dukeImage, true));
         }
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(duke.greetUser(), dukeImage));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(duke.greetUser(), dukeImage, false));
     }
 
     /**
@@ -54,10 +59,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        Pair<String, Boolean> response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response.getKey(), dukeImage, response.getValue())
         );
         userInput.clear();
     }
