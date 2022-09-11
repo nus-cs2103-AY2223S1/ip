@@ -43,8 +43,12 @@ public class TaskList {
      *
      * @param id Index of task to be deleted. Index is numbering from calling "list" command.
      * @return Response string from Duke Bot.
+     * @throws DukeException If id is out of bounds.
      */
-    public String deleteTask(int id) {
+    public String deleteTask(int id) throws DukeException {
+        if (id < 0 || id >= tasks.size()) {
+            throw new DukeException("Invalid index for deleting");
+        }
         Task t = tasks.remove(id);
         return ui.printMessage("Noted. I've removed this task:\n      "
                 + t
@@ -58,8 +62,12 @@ public class TaskList {
      *
      * @param id Index of task to be marked. Index is numbering from calling "list" command.
      * @return Response string from Duke Bot.
+     * @throws DukeException If id is out of bounds.
      */
-    public String markTask(int id) {
+    public String markTask(int id) throws DukeException {
+        if (id < 0 || id >= tasks.size()) {
+            throw new DukeException("Invalid index for marking");
+        }
         Task t = tasks.get(id);
         t.setAsDone();
         return ui.printMessage("Nice! I've marked this task as done:\n    " + t);
@@ -70,8 +78,12 @@ public class TaskList {
      *
      * @param id Index of task to be unmarked. Index is numbering from calling "list" command.
      * @return Response string from Duke Bot.
+     * @throws DukeException If id is out of bounds.
      */
-    public String unmarkTask(int id) {
+    public String unmarkTask(int id) throws DukeException {
+        if (id < 0 || id >= tasks.size()) {
+            throw new DukeException("Invalid index for unmarking");
+        }
         Task t = tasks.get(id);
         t.setAsUndone();
         return ui.printMessage("OK, I've marked this task as not done yet:\n    " + t);
