@@ -45,6 +45,10 @@ public class Task {
         return content.contains(input);
     }
 
+    public boolean isSame(String input) {
+        return content.equalsIgnoreCase(input);
+    }
+
     @Override
     public String toString() {
         String newString = String.format("[%s] %s", isDone ? "X" : " ", content);
@@ -54,5 +58,23 @@ public class Task {
     public String toSaveString() {
         String saveString = String.format("%s|%s", isDone ? "1" : "0", content);
         return saveString;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        /* Check if o is an instance of Task or not
+          "null instanceof [type]" also returns false */
+        if (!(o instanceof Task)) {
+            return false;
+        }
+
+        Task c = (Task) o;
+
+        // Compare the data members and return accordingly
+        return c.content.equals(content);
     }
 }

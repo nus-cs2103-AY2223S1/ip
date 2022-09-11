@@ -20,6 +20,7 @@ public class Duke {
     private TaskList taskList;
     private Storage storage;
 
+
     /**
      * Constructs a new {@code Duke} using a String path.
      */
@@ -33,6 +34,10 @@ public class Duke {
             taskList = new TaskList(new ArrayList<>());
             System.out.println(e);
         }
+    }
+    
+    public String invokeSecondary(String input) {
+        return taskList.secondary.apply(input);
     }
 
     /**
@@ -71,21 +76,21 @@ public class Duke {
                 return taskList.deleteTask(content);
             case TODO: {
                 ToDo newTask = new ToDo(content);
-                return taskList.addTask(newTask);
+                return taskList.checkAndAddTask(newTask);
             }
             case EVENT: {
                 String[] contentArray = parser.getContentForEvent();
                 LocalDateTime dateTime = Parser.stringToDateTime(contentArray[1]);
 
                 Event newTask = new Event(contentArray[0], dateTime);
-                return taskList.addTask(newTask);
+                return taskList.checkAndAddTask(newTask);
             }
             case DEADLINE: {
                 String[] contentArray = parser.getContentForDeadline();
                 LocalDateTime dateTime = Parser.stringToDateTime(contentArray[1]);
 
                 Deadline newTask = new Deadline(contentArray[0], dateTime);
-                return taskList.addTask(newTask);
+                return taskList.checkAndAddTask(newTask);
             }
             case FIND:
                 return taskList.findTasks(content);

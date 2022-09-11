@@ -27,6 +27,8 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
+    private boolean isSecondary = false;
+
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -45,10 +47,22 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponseAndSave(input);
+        String res = null;
+
+        if (isSecondary) {
+            res = duke.invokeSecondary(input);
+
+            isSecondary = false;
+        } else {
+            res = duke.getResponseAndSave(input);
+
+            if (res.contains("y/n")) {
+                isSecondary = true;
+            }
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(res, dukeImage)
         );
         userInput.clear();
     }
