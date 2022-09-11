@@ -1,13 +1,6 @@
 package meowmeow;
 
-import meowmeow.commands.AddCommand;
-import meowmeow.commands.Command;
-import meowmeow.commands.DefaultCommand;
-import meowmeow.commands.DeleteCommand;
-import meowmeow.commands.ExitCommand;
-import meowmeow.commands.FindCommand;
-import meowmeow.commands.ListCommand;
-import meowmeow.commands.MarkCommand;
+import meowmeow.commands.*;
 
 /**
  * Class Parser is a class that parses the user's input and translates it into a Command.
@@ -25,6 +18,9 @@ public class Parser {
 
             case "bye":
                 return new ExitCommand();
+
+            case "undo":
+                return new UndoCommand();
 
             default:
                 break;
