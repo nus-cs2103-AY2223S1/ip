@@ -32,6 +32,10 @@ public class Todo extends Task {
         return "[T]" + s;
     }
 
+    public String toShortString() {
+        return toString();
+    }
+
     /**
      * Converts Todo Object into a string to be stored in a file
      * @return condensed String representation of Todo Object

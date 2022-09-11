@@ -89,7 +89,7 @@ public class TaskList {
         assert index < tasks.size();
         tasks.get(index).mark();
         s += "I have marked this task as done: \n";
-        s += tasks.get(index) + "\n";
+        s += tasks.get(index).toShortString() + "\n";
         return s;
     }
 
@@ -104,7 +104,7 @@ public class TaskList {
             tasks.add(e);
             count = tasks.size();
             s += ("Added Task \n");
-            s += tasks.get(count - 1);
+            s += tasks.get(count - 1).toShortString();
             s += "Now you have " + count + " tasks in the list";
             return s;
         } catch (ArrayIndexOutOfBoundsException err) {
@@ -122,7 +122,7 @@ public class TaskList {
         count = tasks.size();
         String s = "";
         s += "Added Task \n";
-        s += tasks.get(count - 1) + "\n";
+        s += tasks.get(count - 1).toShortString() + "\n";
         s += "Now you have " + count + " tasks in the list\n";
         return s;
     }
@@ -138,7 +138,7 @@ public class TaskList {
             count = tasks.size();
             String s = "";
             s += "Added Task\n";
-            s += tasks.get(count - 1) + "\n";
+            s += tasks.get(count - 1).toShortString() + "\n";
             s += "Now you have " + count + " tasks in the list" + "\n";
             return s;
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -158,7 +158,7 @@ public class TaskList {
         Task item = tasks.get(index);
         tasks.remove(index);
         count = tasks.size();
-        String s = ("Noted. I have removed this task: \n" + item);
+        String s = ("Noted. I have removed this task: \n" + item.toShortString());
         return s;
     }
 
@@ -173,7 +173,7 @@ public class TaskList {
         tasks.get(index).unmark();
         String s = "";
         s += "I have marked this task as not done:\n";
-        s += tasks.get(index);
+        s += tasks.get(index).toShortString();
         return s;
     }
 

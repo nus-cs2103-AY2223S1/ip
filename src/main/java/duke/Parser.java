@@ -73,17 +73,22 @@ public class Parser {
                 result = tasks.mark(index);
                 break;
             case event:
-                String[] desc = command[1].split("/at ", 2);
-                assert desc[1] != null;
-                Event e = new Event(desc[0], desc[1]);
-                result = tasks.add(e);
+                try {
+                    String[] desc = command[1].split("/at ", 2);
+                    assert desc[1] != null;
+                    Event e = new Event(desc[0], desc[1]);
+                    result = tasks.add(e);
+                } catch (ArrayIndexOutOfBoundsException aie) {
+                    result = "Invalid time specified. You can specify a time with /at";
+                }
                 break;
+
             case todo:
                 try {
                     Todo t = new Todo(command[1]);
                     result += tasks.add(t);
                 } catch (ArrayIndexOutOfBoundsException err) {
-                    System.out.println("oops the description of a todo cannot be empty!");
+                    result = "oops the description of a todo cannot be empty!";
                 }
                 break;
             case delete:

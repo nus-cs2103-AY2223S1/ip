@@ -58,6 +58,7 @@ public abstract class Task {
         return String.format(s, getStatusIcon(), description);
     }
 
+    public abstract String toShortString();
     /**
      * Converts task to String to be stored in a file
      * @return condensed String representation of Task Object
