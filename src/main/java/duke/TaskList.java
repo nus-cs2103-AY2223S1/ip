@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.stream.IntStream;
 
 import duke.models.Task;
 
@@ -61,7 +62,8 @@ public class TaskList {
      */
     public String getAllTasks() {
         StringBuilder sb = new StringBuilder();
-        tasks.forEach(task -> sb.append(task).append("\n"));
+        IntStream.range(0, tasks.size())
+                .forEach(index -> sb.append(index + 1).append(". ").append(tasks.get(index)).append("\n"));
         return sb.toString();
     }
 
