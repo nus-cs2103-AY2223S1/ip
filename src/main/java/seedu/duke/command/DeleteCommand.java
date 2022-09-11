@@ -23,6 +23,7 @@ public class DeleteCommand extends TaskListCommand {
 
     @Override
     void specialisedFunction(TaskList tasks, Ui ui, Storage storage, int taskIndex){
+        assert(taskIndex <= tasks.numOfTasks());
         Task removedTask = tasks.removeTask(taskIndex);
         ui.appendMessage(ui.getRemovedTaskMessage(removedTask));
     }

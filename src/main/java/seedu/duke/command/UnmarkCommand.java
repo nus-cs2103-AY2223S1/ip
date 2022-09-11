@@ -15,6 +15,7 @@ public class UnmarkCommand extends TaskListCommand {
 
     @Override
     void specialisedFunction(TaskList tasks, Ui ui, Storage storage, int taskIndex) {
+        assert(taskIndex <= tasks.numOfTasks());
         boolean isUnchecked = tasks.fetchTask(taskIndex).uncheck();
         if (isUnchecked) {
             ui.appendMessage(ui.getUnmarkedTaskMessage());
