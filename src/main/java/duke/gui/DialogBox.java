@@ -5,7 +5,6 @@ import java.util.Collections;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -13,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
@@ -24,6 +22,7 @@ import javafx.scene.text.Text;
  * @version 0.2
  */
 public class DialogBox extends HBox {
+    //Change from 2103Y default Label to Text idea adapted from https://github.com/dexter-sim/ip
     @FXML
     private Text dialog;
     @FXML
@@ -42,6 +41,7 @@ public class DialogBox extends HBox {
         displayPicture.setImage(img);
     }
 
+    //this.setStyle referenced from https://github.com/sebbycake/ip
     private DialogBox(String text, Image img, String fill) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -52,8 +52,8 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
         dialog.setText(text);
-        this.setStyle("-fx-background-color: " + fill);
         displayPicture.setImage(img);
+        this.setStyle("-fx-background-color: " + fill);
     }
 
     /**

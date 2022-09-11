@@ -5,9 +5,10 @@ import duke.exception.DukeException;
 
 /**
  * Contains a single static method to read user inputs
+ * Idea for Parser class adapted from https://github.com/dexter-sim/ip
  *
  * @author Nephelite
- * @version 0.1
+ * @version 0.3
  */
 public class Parser {
     /**
@@ -18,7 +19,7 @@ public class Parser {
      * @param ui the Ui Duke is using
      * @return a Command that corresponds to the input String command
      * @throws DukeException if the input command is not recognised as valid
-     * @since 0.1
+     * @since 0.3
      */
     public static Command inputCommand(String command, TaskList tasks, Ui ui) throws DukeException {
         String[] returnedArray = command.split(" ");
