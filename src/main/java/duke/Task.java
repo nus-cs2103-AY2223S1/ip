@@ -23,6 +23,19 @@ public abstract class Task implements Serializable {
     }
 
     /**
+     * Method used get the date and task from a command.
+     *
+     * @param command  the string containing the task and date entered by user
+     * @return a string array, pos 0 refers to task pos 1 refers to date
+     */
+    private static String[] getTaskAndDate(String command, String split) {
+        String task = command.split(split, 2)[0].trim();
+        String date = command.split(split, 2)[1].trim();
+
+        return new String[]{ task, date };
+    }
+
+    /**
      * Factory method used to create a new duke.Task.
      *
      * @param commandArray the command entered by the user to be parsed by the method
@@ -41,13 +54,13 @@ public abstract class Task implements Serializable {
                 return new Todo(task);
             case deadline:
                 Task.validateTaskCreation(commandArray, TaskType.DEADLINE);
-                task = commandArray[1].split("/by", 2)[0].trim();
-                date = commandArray[1].split("/by", 2)[1].trim();
+                task = Task.getTaskAndDate(commandArray[1], "/by")[0];
+                date = Task.getTaskAndDate(commandArray[1], "/by")[1];
                 return new Deadline(task, date);
             case event:
                 Task.validateTaskCreation(commandArray, TaskType.EVENT);
-                task = commandArray[1].split("/at", 2)[0].trim();
-                date = commandArray[1].split("/at", 2)[1].trim();
+                task = Task.getTaskAndDate(commandArray[1], "/at")[0];
+                date = Task.getTaskAndDate(commandArray[1], "/at")[1];
                 return new Event(task, date);
             default:
                 throw new DukeException();
@@ -93,23 +106,19 @@ public abstract class Task implements Serializable {
      * @param taskType    the task type either duke.Todo, duke.Deadline or duke.Event
      * @throws DukeException
      */
-    private static void validateTaskCreation(
-            String[] commandArray,
-            TaskType taskType
-    )
-            throws DukeException {
-        // TODO Move this logic to a factory method within the Tasks itself
-        if (commandArray.length <= 1 || commandArray[1].length() == 0) {
-            throw new DukeException(
-                    "☹ OOPS!!! The description of a " + taskType + " cannot be empty."
-            );
+    private static void validateTaskCreation(String[] commandArray, TaskType taskType) throws DukeException {
+        Boolean isEmptyDescription = commandArray.length <= 1 || commandArray[1].length() == 0;
+        if (isEmptyDescription) {
+            throw new DukeException("☹ OOPS!!! The description of a " + taskType + " cannot be empty.");
         }
 
-        if (taskType == TaskType.DEADLINE && commandArray[1].indexOf("/by") < 0) {
+        Boolean isValidDeadline = taskType == TaskType.DEADLINE && commandArray[1].indexOf("/by") < 0;
+        if (isValidDeadline) {
             throw new DukeException("☹ OOPS!!! The description of a DEADLINE must contain a '/by'");
         }
 
-        if (taskType == TaskType.EVENT && commandArray[1].indexOf("/at") < 0) {
+        Boolean isValidEvent = taskType == TaskType.EVENT && commandArray[1].indexOf("/at") < 0;
+        if (isValidEvent) {
             throw new DukeException("☹ OOPS!!! The description of a EVENT must contain a '/at'");
         }
     }
