@@ -5,7 +5,7 @@ import duke.task.Task;
 
 
 public class AddCommand implements Command {
-    private TaskList tasks;
+    protected TaskList tasks;
     private String taskType;
     protected String description;
     public AddCommand(duke.TaskList taskList, String taskType, String description) {

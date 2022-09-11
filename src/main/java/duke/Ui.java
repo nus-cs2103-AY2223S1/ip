@@ -64,8 +64,7 @@ public class Ui {
         List<String> texts = new ArrayList<>();
         // for add, delete, mark / unmark
         assert !command.equals("") : "empty command.";
-        if (command.equals("delete")) {
-            // special case: index represents a task string instead of a task index
+        if (command.equals("delete")) {  // special case: index represents a task string instead of a task index
             texts.add("Noted. I've removed this task:\n" + String.format("  %s", index));
             texts.add(String.format("Now you have %d tasks in the list.", taskList.getSize()));
             return texts;
@@ -74,15 +73,25 @@ public class Ui {
         assert Integer.parseInt(index) <= taskList.getSize() : "Index out of bound.";
         Task task = taskList.getTask(Integer.parseInt(index) - 1);
         if (command.equals("todo") || command.equals("event") || command.equals("deadline")) { //add
-            texts.add("Got it. I've added this task:\n"
-                            + String.format("  %s %s", task.getStatusIcon(), task.getDescription()));
+            texts.add("Got it. I've added this task:\n" + String.format("  %s", task.printTask()));
             texts.add(String.format("Now you have %d tasks in the list.", taskList.getSize()));
         } else if (command.equals("mark")) {
-            texts.add("Nice! I've marked this task as done:"
-                    + String.format("  %s %s", task.getStatusIcon(), task.getDescription()));
+            texts.add("Nice! I've marked this task as done:\n" + String.format("  %s", task.printTask()));
         } else { //unmark
-            texts.add("OK, I've marked this task as not done yet:"
-                    + String.format("  %s %s", task.getStatusIcon(), task.getDescription()));
+            texts.add("OK, I've marked this task as not done yet:\n" + String.format("  %s", task.printTask()));
+        }
+        return texts;
+    }
+
+    public List<String> printTagCommandUi(String command, String index, String tag, TaskList taskList) {
+        List<String> texts = new ArrayList<>();
+        Task task = taskList.getTask(Integer.parseInt(index) - 1);
+        if (command.equals("tag")) {
+            texts.add(String.format("OK, I've added this tag %s for the task:  %s", tag, task.printTask()));
+            texts.add(String.format("Now the task have %d tags: %s", task.noOfTags(), task.printTags()));
+        } else { //untag
+            texts.add(String.format("OK, I've deleted this tag %s for the task:  %s", tag, task.printTask()));
+            texts.add(String.format("Now the task have %d tags: %s", task.noOfTags(), task.printTags()));
         }
         return texts;
     }
@@ -110,6 +119,7 @@ public class Ui {
         }
         return texts;
     }
+
 
     /**
      * Prints duke chatbot ending message that user sees when he/her stops/exits duke chatbot.

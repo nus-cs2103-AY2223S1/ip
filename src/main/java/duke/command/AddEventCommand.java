@@ -13,13 +13,15 @@ public class AddEventCommand extends AddCommand {
         super(taskList, "event", description);
     }
 
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         if ((!description.contains("/at")) || (!description.contains(" to "))) {
             throw new DukeException(INVALID_EVENT_COMMAND, "");
         }
         String taskDescription = description.split("/at")[0].trim();
         if (taskDescription.equals("")) {
             throw new DukeException(MISSING_DESCRIPTION, "event");
+        } else if (description.split("/at").length == 1) {
+            throw new DukeException(MISSING_DATE, "event");
         }
         String[] dates = description.split("/at")[1].trim().split("to");
         LocalDate start = Parser.parseDate(dates[0]);
@@ -28,5 +30,6 @@ public class AddEventCommand extends AddCommand {
             throw new DukeException(INVALID_DATE_RANGE, "");
         }
         super.execute(new Event(taskDescription, start, end));
+        return String.format("event %d", super.tasks.getSize());
     }
 }

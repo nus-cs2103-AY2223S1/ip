@@ -7,7 +7,8 @@ public class AddTodoCommand extends AddCommand {
         super(taskList, "todo", description);
     }
 
-    public void execute() {
+    public String execute() {
         super.execute(new ToDo(super.description));
+        return String.format("todo %d", super.tasks.getSize());
     }
 }

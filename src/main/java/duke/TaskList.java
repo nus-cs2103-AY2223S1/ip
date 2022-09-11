@@ -38,7 +38,8 @@ public class TaskList {
         int count = 1;
         String listString = "";
         for (Task t : tasks) {
-            listString += String.format("%d.%s %s\n", count, t.getStatusIcon(), t.getDescription());
+            //listString += String.format("%d.%s %s %s\n", count, t.getStatusIcon(), t.getDescription(), t.printTags());
+            listString += String.format("%d.%s\n", count, t.printTask());
             count += 1;
         }
         return listString;
@@ -52,7 +53,7 @@ public class TaskList {
      * @return string format of task list.
      */
     public String saveTaskList(){
-        String result = "Task Type | Status | Description & Time\n";
+        String result = "Task Type | Status | Description & Time | Tags\n";
         for (Task t : tasks) {
             result += t.toString() + "\n";
         }
