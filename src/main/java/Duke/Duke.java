@@ -4,6 +4,8 @@ package Duke;
 import Duke.UserServer.ServerCLI;
 import Duke.UserServer.ServerGUI;
 
+import java.util.Scanner;
+
 
 import java.awt.print.Printable;
 import java.time.LocalDateTime;
@@ -12,24 +14,40 @@ import java.time.LocalDateTime;
 
 public class Duke {
 
-    private static final ServerCLI serverCLI = new ServerCLI();
-    private static final ServerGUI serverGUI = new ServerGUI();
+    private static final int CLIMODEL = 0;
+    private static final int GUIMODEL = 1;
+
+
 
     public static void main(String[] args) { //throws DukeException, FileNotFoundException {
 
 
+        int mode = getMode();
+        if (mode == 0) {
+            ServerCLI serverCLI = new ServerCLI();
+            serverCLI.run();
+        } else {
 
-        serverCLI.run();
+        }
 
 
     }
 
+    private static int getMode(){
+        System.out.println("hello world");
+        Scanner sc = new Scanner(System.in);
+        while(true) {
+            if (sc.hasNextInt()) {
+                int mode = sc.nextInt();
+                if (mode == 1 || mode == 0) {
+                    return mode;
+                }
+            } else {
+                sc.next();
+            }
+            System.out.println("int");
 
-
-
-    public String getResponse(String input) {
-
-        return serverGUI.getResponse(input);
+        }
 
     }
 

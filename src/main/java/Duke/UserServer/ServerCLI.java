@@ -6,6 +6,7 @@ import Duke.Duke;
 import Duke.Exceptions.DukeException;
 import Duke.Parser.CLIParser;
 import Duke.Storage.FileReader;
+import Duke.Storage.FileSaver;
 import Duke.Tasks.Task;
 import Duke.Tasks.TaskList;
 import Duke.UI.TextUI;
@@ -28,6 +29,7 @@ public class ServerCLI {
     public void run() {
         load();
         serve();
+        save();
     }
 
 
@@ -54,6 +56,10 @@ public class ServerCLI {
             }
 
         } while (!(curCommand instanceof QuitCommand));
+    }
+    private void save(){
+        FileSaver filesaver = new FileSaver("Duke");
+        filesaver.save(tasks);
     }
 
     private String executeCommand(UserCommand curCommand) throws DukeException {

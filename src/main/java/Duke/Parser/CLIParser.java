@@ -24,23 +24,21 @@ public class CLIParser {
         int firstSpace = commandString.indexOf(" ");
 
         if (firstSpace == -1) {
-            if (commandString.equals("bye")) {
-                return new QuitCommand();
-            }
 
-            if (commandString.equals("list")) {
-                return new ListTasksCommand(userTasks);
+            switch (commandString) {
+                case "bye":
+                    return new QuitCommand();
+                case "list":
+                    return new ListTasksCommand(userTasks);
+                case "help":
+                    return new HelpCommand();
+                case "sort":
+                    return new SortAllCommand(userTasks);
+                case "save":
+                    return new SaveCommand(userTasks);
+                default:
+                    throw new InvalidCommandException();
             }
-
-            if (commandString.equals("help")) {
-                return new HelpCommand();
-            }
-
-            if (commandString.equals("sort")) {
-                return new SortAllCommand(userTasks);
-            }
-
-            throw new InvalidCommandException();
         }
 
         String commandType = commandString.substring(0, firstSpace);
@@ -63,6 +61,9 @@ public class CLIParser {
             return parseMarkDoneCommand(commandElse, userTasks);
         case "sort":
             return parseSortCommand(commandElse, userTasks);
+
+
+
         default:
             System.out.println("CLIParser .. default ...");
 

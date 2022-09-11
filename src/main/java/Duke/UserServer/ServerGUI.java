@@ -28,6 +28,7 @@ public class ServerGUI {
     public void run() {
         load();
         serve();
+       // save();
     }
 
     private void load() {
@@ -54,6 +55,7 @@ public class ServerGUI {
 
         } while (!(curCommand instanceof QuitCommand));
     }
+
 
     private String executeCommand(UserCommand curCommand) throws DukeException {
         return curCommand.execute();
