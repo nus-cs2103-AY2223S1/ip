@@ -15,6 +15,16 @@ public class Todo extends Task {
     }
 
     /**
+     * Returns a ToDo object.
+     *
+     * @param description Description of the Task
+     * @param tag         Tag of the Task
+     */
+    public ToDo(String description, String tag) {
+        super(description, tag);
+    }
+
+    /**
      * {@inheritDoc}
      * <br><br>
      *

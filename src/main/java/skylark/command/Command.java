@@ -20,6 +20,7 @@ public abstract class Command {
     private static final int MIN_LENGTH_EVENT = 5;
     private static final int MIN_LENGTH_DELETE = 6;
     private static final int MIN_LENGTH_FIND = 5;
+    private static final int MIN_LENGTH_TAG = 5;
 
     /** String representing the input keyed by the user. */
     private final String input;
@@ -60,6 +61,9 @@ public abstract class Command {
         } else if (command.length() >= Command.MIN_LENGTH_FIND
                 && command.startsWith(CommandList.COMMAND_FIND.toString())) {
             return new FindCommand(command);
+        } else if (command.length() >= Command.MIN_LENGTH_TAG
+                && command.startsWith(CommandList.COMMAND_TAG.toString())) {
+            return new TagCommand(command);
         } else {
             return new UnknownCommand(command);
         }
@@ -334,21 +338,61 @@ public abstract class Command {
             if (query.isEmpty()) {
                 throw new SkylarkException("The find query cannot be empty.");
             }
-            String response = "";
-            response += "Here are the matching tasks in your list:";
-            response += System.lineSeparator();
+            StringBuilder response = new StringBuilder();
+            response.append("Here are the matching tasks in your list:");
+            response.append(System.lineSeparator());
             int count = 1;
             for (int i = 0; i < taskList.size(); i++) {
                 Task currentTask = taskList.get(i);
                 if (currentTask.toString().contains(query)) {
-                    response += count
-                            + ". "
-                            + currentTask
-                            + System.lineSeparator();
+                    response.append(count);
+                    response.append(". ");
+                    response.append(currentTask);
+                    response.append(System.lineSeparator());
                     count += 1;
                 }
             }
 
+            return response.toString();
+        }
+    }
+
+    private static class TagCommand extends Command {
+        private static final int POSITION = 4;
+        private static final int POSITION_END = 5;
+
+        /**
+         * Returns a TagCommand object.
+         *
+         * @param input String that is input by the user.
+         */
+        public TagCommand(String input) {
+            super(input);
+        }
+
+        @Override
+        public String run(TaskList taskList) throws SkylarkException {
+            String response;
+            try {
+                String command = super.getInput();
+                int index = Integer.parseInt(command.substring(TagCommand.POSITION, TagCommand.POSITION_END)) - 1;
+                String tag = command.substring(TagCommand.POSITION_END).strip();
+                if (tag.isEmpty()) {
+                    throw new SkylarkException("Sorry, the tag is empty!");
+                }
+                if (taskList.doesIndexExist(index)) {
+                    Task currentTask = taskList.get(index);
+                    currentTask.setTag(tag);
+                    response = "Noted. I've tagged this task:"
+                            + System.lineSeparator()
+                            + currentTask;
+                    taskList.saveToFile();
+                } else {
+                    throw new SkylarkException("Sorry, index does not exist!");
+                }
+            } catch (NumberFormatException numberFormatException) {
+                throw new SkylarkException("Input is not a number!");
+            }
             return response;
         }
     }

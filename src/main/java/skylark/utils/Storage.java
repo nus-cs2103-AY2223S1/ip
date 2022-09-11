@@ -56,20 +56,37 @@ public class Storage {
                     }
 
                     Task currentTask;
+                    String desc = splitStrings[2].strip();
+
                     switch (splitStrings[0]) {
                     case "T":
-                        currentTask = new Todo(splitStrings[2]);
+                        if (splitStrings.length > 3) {
+                            String tag = splitStrings[3].strip();
+                            currentTask = new Todo(desc, tag);
+                        } else {
+                            currentTask = new Todo(desc);
+                        }
                         break;
                     case "D": {
-                        String desc = splitStrings[2];
-                        String endDate = splitStrings[3];
-                        currentTask = new Deadline(desc, endDate);
+                        if (splitStrings.length > 4) {
+                            String endDate = splitStrings[4].strip();
+                            String tag = splitStrings[3].strip();
+                            currentTask = new Deadline(desc, endDate, tag);
+                        } else {
+                            String endDate = splitStrings[3].strip();
+                            currentTask = new Deadline(desc, endDate);
+                        }
                         break;
                     }
                     case "E": {
-                        String desc = splitStrings[2];
-                        String timing = splitStrings[3];
-                        currentTask = new Event(desc, timing);
+                        if (splitStrings.length > 4) {
+                            String timing = splitStrings[4].strip();
+                            String tag = splitStrings[3].strip();
+                            currentTask = new Event(desc, timing, tag);
+                        } else {
+                            String timing = splitStrings[3];
+                            currentTask = new Event(desc, timing);
+                        }
                         break;
                     }
                     default:

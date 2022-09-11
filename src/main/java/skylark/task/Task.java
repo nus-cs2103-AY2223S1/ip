@@ -8,6 +8,9 @@ public abstract class Task {
     /** Represents whether the task is marked as done. */
     private boolean isDone;
 
+    /** Represents the tagging for the task, if any. */
+    private String tag;
+
     /**
      * Returns a Task object.
      * Initialises the description variable and marks the Task as undone.
@@ -18,6 +21,22 @@ public abstract class Task {
         assert description.length() > 0 : "Description should not be empty!";
         this.description = description;
         this.isDone = false;
+        this.tag = "";
+    }
+
+    /**
+     * Returns a Task object.
+     * Initialises the description variable and marks the Task as undone.
+     *
+     * @param description Description of the task inputted by the user.
+     * @param tag Tag of the task if any
+     */
+    public Task(String description, String tag) {
+        assert description.length() > 0 : "Description should not be empty!";
+        assert tag.length() > 0 : "Tag should not be empty!";
+        this.description = description;
+        this.isDone = false;
+        this.tag = tag;
     }
 
     /**
@@ -53,11 +72,22 @@ public abstract class Task {
     }
 
     /**
+     * Adds a new Tag to the task
+     *
+     * @param newTag New tag of the Task
+     */
+    public void setTag(String newTag) {
+        this.tag = newTag;
+    }
+
+    /**
      * Returns the String representation of a particular task.
      */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return String.format("[%s] %s%s", this.getStatusIcon(),
+                this.description,
+                this.tag.isEmpty() ? "" : " TAG: " + this.tag);
     }
 
     /**
@@ -67,6 +97,9 @@ public abstract class Task {
      * @return String representation of the task that is parsable by the Storage object.
      */
     public String toStringFile() {
-        return String.format("%d | %s", this.getStatusIcon().equals("X") ? 1 : 0, this.getDescription());
+        return String.format("%d | %s%s",
+                this.getStatusIcon().equals("X") ? 1 : 0,
+                this.description,
+                this.tag.isEmpty() ? "" : " | " + this.tag);
     }
 }
