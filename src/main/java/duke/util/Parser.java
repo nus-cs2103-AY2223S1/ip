@@ -138,7 +138,7 @@ public class Parser {
      * @throws InvalidCommandFormatException If commandArgument is not a numeric string.
      */
     private static UnmarkCommand parseUnmarkCommand(String commandArgument) throws InvalidCommandFormatException {
-        int taskIndex = parseTaskIndex(commandArgument, MarkCommand.getFormat());
+        int taskIndex = parseTaskIndex(commandArgument, UnmarkCommand.getFormat());
         return new UnmarkCommand(taskIndex);
     }
 
@@ -150,7 +150,7 @@ public class Parser {
      * @throws InvalidCommandFormatException If commandArgument is not a numeric string.
      */
     private static DeleteCommand parseDeleteCommand(String commandArgument) throws InvalidCommandFormatException {
-        int taskIndex = parseTaskIndex(commandArgument, MarkCommand.getFormat());
+        int taskIndex = parseTaskIndex(commandArgument, DeleteCommand.getFormat());
         return new DeleteCommand(taskIndex);
     }
 

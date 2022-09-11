@@ -84,7 +84,7 @@ public class SortCommand extends Command {
      * @return The format of the sort command.
      */
     public static String getFormat() {
-        return "sort <ORDER> <TYPE>";
+        return "sort <ORDER> <METRIC>";
     }
 
     /**
