@@ -162,3 +162,14 @@ Your matching tasks are
 Format: `bye`
 
 ## Summary
+
+```
+todo <name> <isDone (true/false)>
+deadline <name> <isDone (true/false)> <deadline (YYYY-MM-DD)>
+event <name> <isDone (true/false)> <start (YYYY-MM-DD)> <end (YYYY-MM-DD)>
+list
+mark <index>
+unmark <index>
+delete <index>
+find <search_text>
+```
