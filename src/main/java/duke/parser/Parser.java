@@ -1,17 +1,17 @@
 package duke.parser;
 
-import duke.command.OtherCommand;
-import duke.command.MarkingCommand;
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.ExitCommand;
-import duke.command.DeleteCommand;
-import duke.dukeexception.DukeException;
+import java.util.HashMap;
 
+import duke.command.*;
+import duke.dukeexception.DukeException;
+import duke.storage.Storage;
+import duke.tasklist.TaskList;
 /**
  * Represents a function of Duke robot, which can produce command corresponding to user input.
  */
 public class Parser {
+
+
     /**
      * Produce different type of command for execution, corresponding to user input.
      * Throws DukeException when the user input format is not right.
@@ -19,25 +19,28 @@ public class Parser {
      * @return A certain kind of command waiting for execution.
      * @throws DukeException Throws DukeException with remind message when the input format is wrong.
      */
-    public static Command parse(String fullCommand) throws DukeException {
-        String typeDescription = fullCommand.split(" ")[0];
-        if (fullCommand.equals("bye")) {
-            return new ExitCommand();
-        } else if (typeDescription.equals("event")
-                || typeDescription.equals("deadline")
-                || typeDescription.equals("todo")) {
-            return new AddCommand(fullCommand);
-        } else if (typeDescription.equals("delete")) {
-            return new DeleteCommand(fullCommand);
-        } else if (typeDescription.equals("mark")
-                || typeDescription.equals("unmark")) {
-            return new MarkingCommand(fullCommand);
-        } else if (typeDescription.equals("Get")
-                || typeDescription.equals("list")) {
-            return new OtherCommand(fullCommand);
-        } else if (typeDescription.equals("find")) {
-            return new OtherCommand(fullCommand);
-        } else {
+    public static String parse(String fullCommand, TaskList t, Storage s) throws DukeException {
+        CommandType c = CommandType.commandMap.get(fullCommand.split(" ")[0]);
+        if (c == null) {
+            throw new DukeException("Sorry, I don't get what you are saying.");
+        }
+        switch (c) {
+        case BYE:
+             return new ExitCommand().execute(t, s, c);
+        case EVENT:
+        case TODO:
+        case DEADLINE:
+            return new AddCommand(fullCommand).execute(t, s, c);
+        case DELETE:
+            return new DeleteCommand(fullCommand).execute(t, s, c);
+        case MARK:
+        case UNMARK:
+            return new MarkingCommand(fullCommand).execute(t, s, c);
+        case GET:
+        case LIST:
+        case FIND:
+            return new OtherCommand(fullCommand).execute(t, s, c);
+        default:
             throw new DukeException("Sorry, I don't know your meanings.");
         }
     }

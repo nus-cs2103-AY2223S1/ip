@@ -1,6 +1,10 @@
-X event return book on 2/2/2022 1800
-X event return book on today
-Wait deadline return book by 2/2/2022 1800
+X deadline return book by 2/2/2022 1800
 Wait todo borrow book
 Wait deadline return book by today
 Wait deadline return by today
+Wait event go to gim on today
+Wait todo by
+X todo by
+Wait event todo on do
+Wait e todo on 1
+Wait d biub by us

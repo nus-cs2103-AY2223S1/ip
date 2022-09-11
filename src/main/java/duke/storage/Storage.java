@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.List;
 
+import duke.command.CommandType;
 import duke.dukeexception.DukeException;
 import duke.task.Task;
 import duke.tasklist.TaskList;
@@ -63,36 +64,32 @@ public class Storage {
      * Load tasks from file and return a TaskList
      * @return A taskList containing previous added tasks, load from the corresponding file.
      */
+
     public TaskList loadTasks() {
         try {
             Scanner s = new Scanner(this.file); // create a Scanner using the File as the source
             TaskList taskList = new TaskList();
             while (s.hasNextLine()) {
-                String s0 = s.nextLine();
-                String s1 = s0.split(" ",2)[1];
-                String s2 = s0.split(" ", 2)[0];
-                Task t = Task.createATask(s1);
-                if (t != null) {
-                    if (s2.equals("X")) {
-                        t.taskDone();
-                        taskList.getTaskList().add(t);
-                    } else {
-                        taskList.getTaskList().add(t);
-                    }
-                }
+                String storedTaskString = s.nextLine();
+                Task t = disposeTaskString(storedTaskString);
+                taskList.getTaskList().add(t);
             }
             s.close();
             return taskList;
-        } catch (FileNotFoundException e) {
-            System.out.println("Sorry, but something went wrong when loading task "
-                    +e.getMessage());
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Sorry, but something went wrong when loading task "
-                    +e.getMessage());
-        } catch (DukeException d) {
-            System.out.println("Sorry, but something went wrong when loading task "
-                    + d.getMessage());
+        } catch (Exception e) {
+            System.out.println("Sorry, but something went wrong when loading task: "
+                    +e.getMessage() + "\nPlease check.");
         }
         return null;
+    }
+    public Task disposeTaskString(String storedTaskString) throws DukeException{
+        String[] temp = storedTaskString.split(" ",3);
+        String status = temp[0];
+        String type = temp[1];
+        String fullDescription = temp[1] + " " + temp[2];
+        CommandType c = CommandType.commandMap.get(type);
+        Task t = Task.createATask(fullDescription, c);
+        t.markStatus(status);
+        return t;
     }
 }

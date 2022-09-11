@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import duke.command.CommandType;
 import duke.dukeexception.DukeException;
 
 /**
@@ -51,18 +52,24 @@ public class Task {
     }
 
     //create a certain kind of task
-    public static Task createATask(String s) throws DukeException {
-        String des = s.split(" ")[0];
-        assert des.equals("todo") || des.equals("deadline") || des.equals("event"):
-                "des should be one of todo, deadline or event";
-        if (des.equals("todo")) {
+    public static Task createATask(String s,CommandType c) throws DukeException {
+        //assert des.equals("todo") || des.equals("deadline") || des.equals("event"):
+        //        "des should be one of todo, deadline or event";
+        switch (c){
+        case TODO:
             return new ToDo(s);
-        } else if (des.equals("deadline")) {
+        case DEADLINE:
             return new DeadLine(s);
-        } else if (des.equals("event")) {
+        case EVENT:
             return new Event(s);
+        default:
+            throw new DukeException("Sorry, something went wrong when creating task!");
         }
-        return null;
+    }
+    public void markStatus(String status){
+        if (status.equals("X")) {
+            this.taskDone();
+        }
     }
 
     public String getDescription() {
@@ -94,9 +101,6 @@ public class Task {
             throw new DukeException("");
         }
 
-    }
-    public LocalDate getDay(){
-        return this.day;
     }
     public boolean isOnSpecificDay(LocalDate d) {
         if (this.day == null) {
