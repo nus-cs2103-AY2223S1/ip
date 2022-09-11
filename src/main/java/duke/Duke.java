@@ -136,8 +136,6 @@ public class Duke extends Application {
 
     @Override
     public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!");
-        Scene scene = new Scene(helloWorld);
 
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -182,16 +180,6 @@ public class Duke extends Application {
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
         sendButton.setOnMouseClicked((event) -> {
@@ -203,26 +191,7 @@ public class Duke extends Application {
         });
     }
 
-    /**
-     * Creates a label with the specified text and adds it to the dialog container.
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
-     */
-    private Label getDialogLabel(String text) {
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
-    }
-
-    /**
-     * Iteration 2:
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
-     */
     private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userInput.getText(), user),
                 DialogBox.getDukeDialog(getResponse(userInput.getText()), duke)
@@ -235,6 +204,91 @@ public class Duke extends Application {
      * Replace this stub with your completed method.
      */
     String getResponse(String input) {
+        switch (Parser.parse(input)) {
+        case TODO: {
+            Todo todo = new Todo(input.replace("todo", "").trim(), false);
+            tasks.add(todo);
+            storage.writeToFile(tasks);
+            return Ui.printAddedMessage(todo, tasks.getSize());
+        }
+        case DEADLINE: {
+            String[] splitStr = input.trim().split("/by");
+            String date = splitStr[1].replace("by", "").trim();
+            Deadline deadline = new Deadline(splitStr[0].replace("deadline", "").trim(),
+                    false, date);
+            tasks.add(deadline);
+            storage.writeToFile(tasks);
+            return Ui.printAddedMessage(deadline, tasks.getSize());
+        }
+        case EVENT: {
+            String[] splitStr = input.trim().split("/at");
+            String date = splitStr[1].replace("at", "").trim();
+            Event event = new Event(splitStr[0].replace("event", "").trim(), false, date);
+            tasks.add(event);
+            storage.writeToFile(tasks);
+            return Ui.printAddedMessage(event, tasks.getSize());
+        }
+        case DELETE: {
+            String[] splitStr = input.trim().split("\\s+");
+            int deleteItem = Integer.parseInt(splitStr[splitStr.length - 1]) - 1;
+            Task deletedTask = tasks.remove(deleteItem);
+            storage.writeToFile(tasks);
+            return Ui.printDeletedMessage(deletedTask, tasks.getSize());
+        }
+        case MARK: {
+            int taskIndex = Integer.parseInt(input.replace("mark ", "").trim());
+            tasks.markDone(taskIndex);
+            storage.writeToFile(tasks);
+            return Ui.printMarkMessage(tasks.getTaskDescription(taskIndex));
+        }
+        case UNMARK: {
+            int taskIndex = Integer.parseInt(input.replace("unmark ", "").trim());
+            tasks.unmark(taskIndex);
+            storage.writeToFile(tasks);
+            return Ui.printUnmarkMessage(tasks.getTaskDescription(taskIndex));
+        }
+        case QUIT:
+            return Ui.printGoodbyeMessage();
+        case LIST:
+            return Ui.printTasks(tasks);
+        case INVALID:
+            return Ui.printErrorMessage(new DukeException(
+                    "OOPS!!! I'm sorry, but I don't know what that means :-("));
+        case FIND:
+            TaskList filtered = tasks.find(input.replace("find", "").trim());
+            return Ui.printTasks(filtered);
+        case UPDATE:
+            Pattern pattern = Pattern.compile("update (?<index>\\d+) (?<newTask>.*)");
+            Matcher matcher = pattern.matcher(input);
+            matcher.find();
+            int index = Integer.parseInt(matcher.group("index"));
+            String newTask = matcher.group("newTask");
+
+            switch (Parser.parse(newTask)) {
+            case TODO:
+                    Todo todo = new Todo(newTask.replace("todo", "").trim(), false);
+                    tasks.update(index, todo);
+                    Ui.printAddedMessage(todo, tasks.getSize());
+                    storage.writeToFile(tasks);
+            case DEADLINE: {
+                    String[] splitStr = newTask.trim().split("/by");
+                    String date = splitStr[1].replace("by", "").trim();
+                    Deadline deadline = new Deadline(splitStr[0].replace("deadline", "").trim(),
+                            false, date);
+                    tasks.update(index, deadline);
+                    Ui.printAddedMessage(deadline, tasks.getSize());
+                    storage.writeToFile(tasks);
+            }
+            case EVENT: {
+                    String[] splitStr = newTask.trim().split("/at");
+                    String date = splitStr[1].replace("at", "").trim();
+                    Event event = new Event(splitStr[0].replace("event", "").trim(), false, date);
+                    tasks.update(index, event);
+                    Ui.printAddedMessage(event, tasks.getSize());
+                    storage.writeToFile(tasks);
+            }
+            }
+        }
         return "Duke heard: " + input;
     }
 

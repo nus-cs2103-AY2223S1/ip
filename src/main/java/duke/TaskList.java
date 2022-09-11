@@ -33,11 +33,11 @@ public class TaskList {
     }
 
     public void markDone(int index) {
-        tasks.get(index).markAsDone();
+        tasks.get(index - 1).markAsDone();
     }
 
     public void unmark(int index) {
-        tasks.get(index).unmark();
+        tasks.get(index - 1).unmark();
     }
 
     public TaskList find(String task) {
@@ -46,6 +46,10 @@ public class TaskList {
 
     public void update(int index, Task task) {
         tasks.set(index - 1, task);
+    }
+
+    public String getTaskDescription(int index) {
+        return tasks.get(index - 1).description;
     }
 
 }

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Ui {
 
-    private static String DIVIDER = "__________________________________________________________\n";
     private Scanner in;
 
     public Ui() {
@@ -23,20 +22,20 @@ public class Ui {
     /**
      * Prints initial message.
      */
-    public static void printInitialMessage() {
+    public static String printInitialMessage() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.print(logo + "Hello! I'm Yale\nWhat can I do for you?\n");
+        return logo + "Hello! I'm Yale\nWhat can I do for you?\n";
     }
 
     /**
      * Prints goodbye message.
      */
-    public static void printGoodbyeMessage() {
-        System.out.println("Bye. Hope to see you again soon!\n");
+    public static String printGoodbyeMessage() {
+        return "Bye. Hope to see you again soon!\n";
     }
 
     /**
@@ -45,12 +44,10 @@ public class Ui {
      * @param newTask The task added by the user.
      * @param size Total number of tasks.
      */
-    public static void printAddedMessage(Task newTask, int size) {
-        String message = DIVIDER
-                + String.format("\tGot it. I've added this task:\n\t  %s\n", newTask)
-                + String.format("\tNow you have %s tasks in the list\n", size)
-                + DIVIDER;
-        System.out.print(message);
+    public static String printAddedMessage(Task newTask, int size) {
+        String message = String.format("\tGot it. I've added this task:\n\t  %s\n", newTask)
+                + String.format("\tNow you have %s tasks in the list\n", size);
+        return message;
     }
 
     /**
@@ -58,9 +55,9 @@ public class Ui {
      *
      * @param e The exception returned by Duke.
      */
-    public static void printErrorMessage(DukeException e) {
-        String errorMessage = DIVIDER + e.getMessage() + "\n" + DIVIDER;
-        System.out.println(errorMessage);
+    public static String printErrorMessage(DukeException e) {
+        String errorMessage = e.getMessage() + "\n";
+        return errorMessage;
     }
 
     /**
@@ -69,11 +66,11 @@ public class Ui {
      * @param deletedTask The deleted task.
      * @param size Total number of tasks.
      */
-    public static void printDeletedMessage(Task deletedTask, int size) {
-        String message = DIVIDER + "Noted. I've removed this task:\n"
+    public static String printDeletedMessage(Task deletedTask, int size) {
+        String message = "Noted. I've removed this task:\n"
                 + deletedTask
-                + String.format("\nNow you have %s tasks in the list.\n", size) + DIVIDER;
-        System.out.println(message);
+                + String.format("\nNow you have %s tasks in the list.\n", size);
+        return message;
     }
 
     /**
@@ -81,13 +78,19 @@ public class Ui {
      *
      * @param tasks The tasklist.
      */
-    public static void printTasks(TaskList tasks) {
+    public static String printTasks(TaskList tasks) {
+        String tasksString = "";
         for (String task : tasks.convertToStringList()) {
-            System.out.println(task);
+            tasksString += task + "\n";
         }
+        return tasksString;
     }
 
-    public static void printMarkMessage() {
+    public static String printMarkMessage(String task) {
+        return "Mark " + task + " as done";
+    }
 
+    public static String printUnmarkMessage(String task) {
+        return "Already unmark " + task;
     }
 }
