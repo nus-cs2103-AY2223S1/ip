@@ -35,4 +35,14 @@ public class TaskList {
 
         return this.taskList;
     }
+
+    public TaskList findTasks(String keyword) {
+        TaskList result = new TaskList();
+        for (Task task : taskList) {
+            if (task.getDescription().contains(keyword)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
 }

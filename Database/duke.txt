@@ -1,1 +1,3 @@
-[T][ ] wash clothes
+[T][ ] read book
+[T][ ] borrow book
+[T][ ] return book

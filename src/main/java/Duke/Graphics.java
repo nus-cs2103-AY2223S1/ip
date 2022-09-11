@@ -90,6 +90,19 @@ public class Graphics {
         System.out.println("Why you dowan me :(");
     }
 
+    void printSearches(TaskList tasks) {
+        System.out.println("____________________________________");
+        if (tasks.size() == 0) {
+            System.out.println("Sorry there are no tasks matching your keyword");
+        } else {
+            System.out.println("Are these what you are looking for:");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(1 + i + "." + tasks.get(i).toString());
+            }
+        }
+        System.out.println("____________________________________");
+    }
+
     public static void loadingError() {
         System.out.println("Error loading file from specified path, creating new list");
     }

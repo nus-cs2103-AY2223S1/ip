@@ -61,6 +61,8 @@ public class Duke {
                 manage.addDeadline(input);
             } else if (input.startsWith("event")) {
                 manage.addEvent(input);
+            } else if (input.startsWith("find")) {
+                manage.find(input);
             } else {
                 throw new IllegalCommandException();
             }

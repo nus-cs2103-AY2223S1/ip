@@ -103,4 +103,13 @@ public class ManageEvents {
         this.taskList.remove(taskIndex);
     }
 
+    public void find(String input) {
+        String keyword = input.substring(5);
+        TaskList results = taskList.findTasks(keyword);
+        graphics.printSearches(results);
+
+    }
+
+
+
 }
