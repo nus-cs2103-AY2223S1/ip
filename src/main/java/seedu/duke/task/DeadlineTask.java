@@ -2,6 +2,7 @@ package seedu.duke.task;
 
 public class DeadlineTask extends TimeTask {
     private final String deadline;
+
     public DeadlineTask(String taskname, String deadline){
         super(taskname, deadline);
         this.deadline = super.toDisplayDate();
@@ -15,5 +16,10 @@ public class DeadlineTask extends TimeTask {
     @Override
     public String saveFileFormat() {
         return "D###" + super.saveFileFormat();
+    }
+
+    @Override
+    String timeIndex() {
+        return "NA";
     }
 }

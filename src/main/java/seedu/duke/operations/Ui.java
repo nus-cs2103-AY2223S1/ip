@@ -34,7 +34,7 @@ public class Ui {
     }
 
     public String returnMessages() {
-        String output = messageOutputs.substring(0, messageOutputs.length() - 2);
+        String output = messageOutputs.substring(0, messageOutputs.length() - 1);
         messageOutputs = "";
         return output;
     }
@@ -191,7 +191,7 @@ public class Ui {
      * @return Invalid input error message
      */
     public String getInvalidTimeFormatErrorMessage() {
-        return "Invalid date provided.\nPlease format the date in YYYY-MM-DD";
+        return "Invalid date provided.\nPlease format the date in YYYY-MM-DD.";
     }
 
     /**
@@ -209,5 +209,12 @@ public class Ui {
      */
     public void showLoadingError() {
         System.out.println("There appears to be an issue retrieving your previous records");
+    }
+
+    public String getClashingEventErrorMessage(Task task, Task clashingTask) {
+        return String.format("Sorry, it appears that your new Task clashes with an existing Task."
+                + "\n Existing Task: %s"
+                + "\n New Task:      %s"
+                , task, clashingTask);
     }
 }

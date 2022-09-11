@@ -1,5 +1,7 @@
 package seedu.duke.task;
 
+import java.time.LocalDate;
+
 public abstract class Task {
     private final String taskName;
     private boolean isDone;
@@ -35,4 +37,10 @@ public abstract class Task {
     public String saveFileFormat() {
         return String.format("%d###%s", isDone ? 1 : 0, taskName);
     }
+
+    public boolean isClash(Task task) {
+        return false;
+    }
+
+    abstract String timeIndex();
 }
