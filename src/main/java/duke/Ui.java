@@ -12,12 +12,16 @@ import java.util.Scanner;
  * @since   2022-08-28
  */
 public class Ui {
+    static final String GREET_MESSAGE = "Hello I'm duke.Duke\nWhat can I do for you?\n";
+    static final String QUIT_MESSAGE = "Bye. Hope to see you again soon!";
+    static final String MARK_TASK_MESSAGE =  "Nice! I've marked this task as done:\n  ";
+    static final String UNMARK_TASK_MESSAGE = "OK, I've marked this task as not done yet:\n  ";
     /**
      * Prints out the greeting message
      * when the user starts the Duke program
      */
     public String greet() {
-        return "Hello I'm duke.Duke\nWhat can I do for you?\n";
+        return GREET_MESSAGE;
     }
 
     /**
@@ -25,25 +29,7 @@ public class Ui {
      * when the user exits the Duke program
      */
     public String quit() {
-        return "Bye. Hope to see you again soon!";
-    }
-
-    /**
-     * Starts the Duke program and keeps accepting String
-     * input from the user until user terminates program
-     * @param sc Scanner that scans the user's String input
-     * @param storage Storage to load and save the user's todo task list
-     * @param taskList TaskList to update the user's task list
-     */
-    public void start(Scanner sc, Storage storage, TaskList taskList) {
-        while (true) {
-            String command = sc.nextLine();
-            if (command.equals("bye")) {
-                break;
-            }
-            Parser.parseCommand(command, taskList, this);
-            storage.save(taskList.getList());
-        }
+        return QUIT_MESSAGE;
     }
 
     /**
@@ -62,7 +48,7 @@ public class Ui {
      */
     public String markTask(Task taskToMark) {
         taskToMark.mark();
-        return "Nice! I've marked this task as done:\n  " + taskToMark;
+        return MARK_TASK_MESSAGE + taskToMark;
     }
 
     /**
@@ -72,7 +58,7 @@ public class Ui {
      */
     public String unmarkTask(Task taskToMark) {
         taskToMark.unmark();
-        return "OK, I've marked this task as not done yet:\n  " + taskToMark;
+        return UNMARK_TASK_MESSAGE + taskToMark;
     }
 
     /**

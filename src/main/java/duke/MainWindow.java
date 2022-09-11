@@ -18,8 +18,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
 
     private Duke duke;
 
@@ -46,12 +44,13 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        assert response != "";
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
-        if (response.equals("Bye. Hope to see you again soon!")) {
+        if (response.equals(Ui.QUIT_MESSAGE)) {
             Platform.exit();
         }
     }

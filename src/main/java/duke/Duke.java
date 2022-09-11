@@ -22,21 +22,12 @@ static final String filePath = "tasks.txt";
      * Constructor for Duke program
      */
     public Duke() {
-        this.storage = new Storage(filePath);
-        this.taskList = new TaskList(storage.load());
-        this.ui = new Ui();
-    }
-
-    /**
-     * This method is used to run the Duke program. Duke will
-     * respond after each command is entered. Entering command
-     * "bye" will exit the program.
-     */
-    public void run() {
-        this.taskList.printList();
-        Scanner sc = new Scanner(System.in);
-        ui.greet();
-        ui.start(sc, this.storage, this.taskList);
+        storage = new Storage(filePath);
+        taskList = new TaskList(storage.load());
+        ui = new Ui();
+        assert storage != null;
+        assert taskList != null;
+        assert ui != null;
     }
 
     protected String getResponse(String input) {
