@@ -1,5 +1,6 @@
 package duke.parser;
 
+import duke.Duke;
 import duke.command.Command;
 import duke.command.AddCommand;
 import duke.command.DeleteCommand;
@@ -14,6 +15,7 @@ import duke.model.Deadline;
 import duke.model.Event;
 import duke.model.ToDo;
 
+import java.text.NumberFormat;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 
@@ -93,12 +95,24 @@ public class Parser {
             command = new ListCommand();
             break;
         case MARK:
-            command = new MarkCommand(parseInt(input[1]));
-            Parser.updateLastUserInput(userInput);
+            try {
+                inputArray = userInput.split(" ", 2);
+                Integer.parseInt(inputArray[1]);
+                command = new MarkCommand(parseInt(input[1]));
+                Parser.updateLastUserInput(userInput);
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                throw new DukeException("Please put in a valid task number!");
+            }
             break;
         case UNMARK:
-            command = new UnmarkCommand(parseInt(input[1]));
-            Parser.updateLastUserInput(userInput);
+            try {
+                inputArray = userInput.split(" ", 2);
+                Integer.parseInt(inputArray[1]);
+                command = new UnmarkCommand(parseInt(input[1]));
+                Parser.updateLastUserInput(userInput);
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                throw new DukeException("Please put in a valid task number!");
+            }
             break;
         case TODO:
             inputArray = userInput.split(" ", 0);
@@ -149,8 +163,14 @@ public class Parser {
             Parser.updateLastUserInput(userInput);
             break;
         case DELETE:
-            command = new DeleteCommand(parseInt(input[1]));
-            Parser.updateLastUserInput(userInput);
+            try {
+                inputArray = userInput.split(" ", 2);
+                Integer.parseInt(inputArray[1]);
+                command = new DeleteCommand(parseInt(input[1]));
+                Parser.updateLastUserInput(userInput);
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                throw new DukeException("Please put in a valid task number!");
+            }
             break;
         case FIND:
             command = new FindCommand(input[1]);
@@ -159,8 +179,7 @@ public class Parser {
             command = new UndoCommand(lastUserInput);
             break;
         default:
-            command = null;
-            break;
+            throw new DukeException("Invalid command!");
         }
         return command;
     }
