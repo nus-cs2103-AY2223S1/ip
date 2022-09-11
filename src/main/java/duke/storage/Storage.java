@@ -49,7 +49,7 @@ public class Storage {
                 //Reused from https://www.w3schools.com/java/java_files_create.asp with minor modifications
                 try {
                     FileWriter myWriter = new FileWriter(this.filePath);
-                    myWriter.write("T|X|Feed cat\n" + "E| |event Team meeting|2022-09-22@19:30\n"
+                    myWriter.write("T|X|Feed cat\n" + "E| |Team meeting|2022-09-22@19:30\n"
                             + "D| |Do assignment|2022-10-02");
                     myWriter.close();
                 } catch (IOException e) {
