@@ -165,8 +165,8 @@ public enum Command {
      */
     public static String parseAndExecuteCommand(String userInput, AllTasksList allTasks) throws DukeException {
         String[] commandArray = userInput.split(" ", 2);
+        assert commandArray.length <= 2 : "command array should be at most 2 in length";
         String command = commandArray[0];
-
         try {
             switch (Command.valueOf(command)) {
             case bye:
