@@ -25,7 +25,7 @@ public class TaskList {
      * @param currTask to be added
      * @throws DukeException if inputs are missing or dates are incorrect
      */
-    public void addTask(Task currTask) throws DukeException {
+    public void addTask(Task currTask) {
         tasks.add(currTask);
     }
 
