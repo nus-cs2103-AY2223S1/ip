@@ -26,6 +26,7 @@ public class Duke {
     }
 
     public void handleUserInput(String userInput) {
+        assert !isExit : "Duke should not be exiting.";
         try {
             Command command = parser.parse(userInput);
             command.execute(tasks, ui, storage);
@@ -39,6 +40,7 @@ public class Duke {
      * Run Duke with a TextUI.
      */
     public void run() {
+        assert this.ui instanceof TextUi : "`Duke::run` should only be used with a TextUI";
         while (!isExit) {
             handleUserInput(ui.getUserInput());
         }
