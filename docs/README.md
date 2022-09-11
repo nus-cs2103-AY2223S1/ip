@@ -17,7 +17,7 @@
         - [Exiting Duke: `bye`](#exiting-duke-bye)
     - [Command Summary](#command-summary)
 
-![](docs/Ui.png)
+![](Ui.png)
 
 ## Quick start
 
