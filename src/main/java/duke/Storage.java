@@ -53,8 +53,7 @@ public class Storage {
                 LocalDate inputDate = LocalDate.parse(dateEnglish, DateTimeFormatter.ofPattern("MMM dd yyyy"));
                 Deadline task = new Deadline(parts[0], inputDate);
                 currList.addTask(task, isDone);
-            }
-            else { //event
+            } else { //event
                 String parts[] = temp.split(" \\(at: ", 2);
                 String dateEnglish = parts[1].substring(0, 11); //to handle the ) at the end
                 LocalDate inputDate = LocalDate.parse(dateEnglish, DateTimeFormatter.ofPattern("MMM dd yyyy"));
@@ -76,8 +75,7 @@ public class Storage {
                 myWriter.write("\n");
             }
             myWriter.close();
-        }
-        catch (IOException e){
+        } catch (IOException e){
             System.out.println("Cannot write to file!");
         }
     }

@@ -30,7 +30,7 @@ public class Main extends Application {
     private static Parser p;
 
     /**
-     * Setting up of the stage components.
+     * Sets up the stage components for the GUI.
      * @param stage The stage where the dimensions of the different components are specified.
      */
     public void settingUpGui(Stage stage) {

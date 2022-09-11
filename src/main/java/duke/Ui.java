@@ -15,8 +15,7 @@ public class Ui {
     public static String getTaskNumberMessage(TaskList taskList) {
         if (taskList.getLength() == 1) {
             return "Now you have 1 task in the list.";
-        }
-        else {
+        } else {
             return "Now you have " + taskList.getLength() + " tasks in the list.";
         }
     }

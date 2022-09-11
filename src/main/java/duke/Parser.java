@@ -53,7 +53,7 @@ public class Parser {
 
 
     /**
-     * A method to parse the user input and executes the appropriate action accordingly.
+     * Parses the user input and executes the appropriate action accordingly.
      * @param input The user keyboard input after prompt from Duke.
      * @return The resulting duke response as a string.
      */
