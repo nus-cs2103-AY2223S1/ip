@@ -11,13 +11,13 @@ import seedu.duke.task.TaskList;
  */
 public class Ui {
     /* Boolean representing whether there is a loadingError */
-    protected boolean loadingError;
+    protected boolean hasLoadingError;
 
     /**
      * Creates a Ui object.
      */
     public Ui() {
-        this.loadingError = false;
+        this.hasLoadingError = false;
     }
 
     /**

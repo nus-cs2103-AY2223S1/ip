@@ -13,7 +13,7 @@ import seedu.duke.ui.Ui;
  */
 public class MarkCommand extends Command {
     /* Whether to mark the object the task. */
-    protected boolean toMark;
+    protected boolean isMark;
     /* Index of the item on the list to mark. */
     protected int index;
 
@@ -25,7 +25,7 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(String mark, String index) {
         super(false);
-        this.toMark = Objects.equals(mark, "mark");
+        this.isMark = Objects.equals(mark, "mark");
         this.index = Integer.parseInt(index);
     }
 
@@ -53,7 +53,7 @@ public class MarkCommand extends Command {
      */
     private String generateAppropriateUiOutput(TaskList tasks, Ui ui) {
         String messageToUser = "";
-        if (this.toMark) {
+        if (this.isMark) {
             Task task = tasks.markTask(index);
             messageToUser += ui.showMarkStatus(task);
         } else {
