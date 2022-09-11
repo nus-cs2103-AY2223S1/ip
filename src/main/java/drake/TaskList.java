@@ -15,7 +15,7 @@ public class TaskList {
 
 
     public boolean isValidTaskNumber(int taskNumber) {
-        return taskNumber <= list.size();
+        return taskNumber >= 1 && taskNumber <= list.size();
     }
 
     public void markAsDone(int taskNumber) {
