@@ -1,20 +1,21 @@
 package duke;
 
-import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /** Represents a Storage class. Handles reading and writing to a Save File */
 public class Storage {
-    // Exceptions not handled
+
+    private final String directory;
     private final String filename;
-    private static final ArrayList<Task> SAMPLETASKS = new ArrayList<Task>();
 
     public Storage(String filename) {
+        this.directory = System.getProperty("user.dir");
         this.filename = filename;
     }
 
@@ -23,14 +24,20 @@ public class Storage {
      * @param  array Tasks ArrayList
      */
     public void save(ArrayList<Task> array) {
+
         try {
-            FileOutputStream writeData = new FileOutputStream(filename);
-            ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
-            writeStream.writeObject(array);
-            writeStream.flush();
-            writeStream.close();
+            FileWriter fileWriter = new FileWriter(directory + "/" + filename, false);
+
+            for (Task task : array) {
+                String taskString = task.toStoredString();
+                fileWriter.write(taskString + "\n");
+            }
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Problem encountered when writing, file not found");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Problem encountered when writing, cannot initialise stream");
         }
     }
 
@@ -38,23 +45,63 @@ public class Storage {
      * Returns a Tasks ArrayList retrieved from the specified save file
      * @return Tasks ArrayList
      */
-    @SuppressWarnings("unchecked")
     public ArrayList<Task> read() {
         try {
-            FileInputStream readData = new FileInputStream(filename);
-            ObjectInputStream readStream = new ObjectInputStream(readData);
-            Object storedObject = readStream.readObject();
-            assert storedObject.getClass() == SAMPLETASKS.getClass();
-            ArrayList<Task> returnVal = (ArrayList<Task>) storedObject;
-            readStream.close();
+            File readFile = new File(directory, filename);
+            if (readFile.createNewFile()) {
+                System.out.println("No file detected, new file created");
+            }
+        } catch (IOException e) {
+            System.out.println("Problem encountered when reading, file not created");
+            e.printStackTrace();
+        }
+
+        try {
+            String currLine = "";
+            ArrayList<Task> returnVal = new ArrayList<Task>();
+            BufferedReader reader = new BufferedReader(new FileReader(directory + "/" + filename));
+
+            while ((currLine = reader.readLine()) != null) {
+                Task currTask = parse(currLine);
+                returnVal.add(currTask);
+            }
+
             return returnVal;
         } catch (FileNotFoundException e) {
             return new ArrayList<Task>();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            return new ArrayList<Task>();
         }
-        return null;
+    }
+
+    private Task parse(String input) {
+        String[] arguments = input.split("/");
+        String type = arguments[0];
+        String isCompleted = arguments[1];
+        String description = arguments[2];
+        String dateString;
+        Task currTask;
+
+        switch (type) {
+        case "T":
+            currTask = new Todo(description);
+            break;
+        case "D":
+            dateString = arguments[3];
+            currTask = new Deadline(description, dateString);
+            break;
+        case "E":
+            dateString = arguments[3];
+            currTask = new Event(description, dateString);
+            break;
+        default:
+            throw new IllegalStateException();
+        }
+
+        if (isCompleted.equals("T")) {
+            currTask.toggleComplete();
+        }
+
+        return currTask;
     }
 }

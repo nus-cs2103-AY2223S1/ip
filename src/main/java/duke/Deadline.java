@@ -34,6 +34,11 @@ public class Deadline extends Task implements Dated {
         return true;
     }
 
+    @Override
+    public String toStoredString() {
+        return "D/" + super.toStoredString() + "/" + date.toString();
+    }
+
     /**
      * Returns String representation of Deadline object.
      * @return String representation

@@ -35,6 +35,17 @@ public abstract class Task implements Serializable {
     public abstract boolean isDated();
 
     /**
+     * Returns a string containing state and params of Task item for writing to file
+     * @return String
+     */
+    public String toStoredString() {
+        if (isCompleted) {
+            return "T/" + item;
+        }
+        return "F/" + item;
+    }
+
+    /**
      * Returns String representation of a task. This is built on by subclasses
      * @return String representation
      */

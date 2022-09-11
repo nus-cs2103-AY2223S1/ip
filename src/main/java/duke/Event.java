@@ -33,6 +33,11 @@ public class Event extends Task implements Dated {
         return true;
     }
 
+    @Override
+    public String toStoredString() {
+        return "E/" + super.toStoredString() + "/" + date.toString();
+    }
+
     /**
      * Returns String representation of an Event object
      * @return String representation

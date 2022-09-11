@@ -11,13 +11,16 @@ public class Todo extends Task {
         return false;
     }
 
+    @Override
+    public String toStoredString() {
+        return "T/" + super.toStoredString();
+    }
+
+
     /**
      * Returns String representation of aTodo object.
      * @return String representation
      */
-
-
-
     @Override
     public String toString() {
         return "[T]" + super.toString();
