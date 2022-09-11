@@ -32,6 +32,20 @@ public class Duke {
         }
     }
 
+    String helpResponse() {
+        return "Welcome to DukeHam\n\n"
+                + "Below are all the commands that you can use\n\n"
+                + "bye: to exit the program\n\n"
+                + "list: to view all tasks currently\n\n"
+                + "mark: follow this command with task number to mark it\n\n"
+                + "unmark: follow this command with task number to unmark it\n\n"
+                + "delete: follow this command with task number to delete it\n\n"
+                + "todo: follow command with 'task name' to add todo task\n\n"
+                + "deadline: follow command with 'task name /by YYYY-MM-DD' to add deadline tasl\n\n"
+                + "event: follow command with 'task name /at time' to add event task\n\n"
+                + "find: follow command with keyword to find tasks with that word\n\n" ;
+    }
+
     String byeResponse() {
         return "Bye see you again buddy !";
     }
@@ -93,7 +107,9 @@ public class Duke {
 
     String getResponse(String str) throws IOException {
         String first = str.split(" ")[0];
-        if (first.equals("bye")) {
+        if (first.equals("help")) {
+            return helpResponse();
+        } else if (first.equals("bye")) {
             return byeResponse();
         } else if (first.equals("list")) {
             return listResponse();
