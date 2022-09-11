@@ -29,7 +29,7 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
     private static final Font userFont = Font.font("Verdana", FontWeight.BOLD, 12);
-    private static final Font skylarkFont = Font.font("Verdana", FontWeight.MEDIUM, 12);
+    private static final Font skylarkFont = Font.font("Verdana", FontWeight.MEDIUM, 10);
 
     private DialogBox(String text, Image img, boolean isUser) {
         try {
