@@ -31,6 +31,7 @@ public class Ui {
      * Returns task list of all current tasks.
      * 
      * @param tasks task list to be printed out.
+     * @return IANA's response and task list.
      */
     public String list(TaskList tasks) {
         String listMessage = "> Sure! @-@ These are the tasks you have left: \n" + tasks.toString();
@@ -39,7 +40,8 @@ public class Ui {
 
     /**
      * Returns goodbye message.
-     * @return goodbye message.
+     * 
+     * @return IANA's goodbye message.
      */
     public String sayBye() {
         return say("> See you next time, goodbye! :P");
@@ -47,6 +49,8 @@ public class Ui {
 
     /**
      * Returns welcome message.
+     * 
+     * @return IANA's welcome message.
      */
     public String sayHi() {
         return say("> Hello there~ I'm your assistant IANA.\n\t How can I help you today? ^_^");
@@ -54,6 +58,8 @@ public class Ui {
 
     /**
      * Returns message to request new user input.
+     * 
+     * @return IANA's request for a new input.
      */
     public String askNewCommand() {
         return say("> Oops, my vocabulary is limited! Try another action >_<");
@@ -63,6 +69,7 @@ public class Ui {
      * Returns task information that is added to task list.
      * 
      * @param task task to be returned.
+     * @return IANA's response and added task information. 
      */
     public String sayTaskAdded(Task task) {
         return say(String.format("> Okay :). Remember to complete the task:\n\t   %s", task.toString()));
@@ -73,6 +80,7 @@ public class Ui {
      *
      * @param task task that is deleted.
      * @param listSize number of tasks left in the task list.
+     * @return IANA's response, deleted task information, and number of tasks left.
      */
     public String sayTaskDeleted(Task task, int listSize) {
         return say(String.format("> Nice! I've removed the task:\n\t   %s\n\tNow there's %d tasks left!! Good job! [:", 
@@ -83,7 +91,7 @@ public class Ui {
      * Returns information of task that is marked.
      *  
      * @param markedTask the description of task that is marked.
-     * @return personalised message and marked task description.
+     * @return IANA's response and marked task description.
      */
     public String sayTaskMarked(String markedTask) {
         String markedMsg = "Nice! I've marked this task as done:\n";
@@ -94,7 +102,7 @@ public class Ui {
      * Returns information of task that is unmarked.
      *  
      * @param markedTask the description of task that is unmarked.
-     * @return personalised message and unmarked task description.
+     * @return IANA's response and unmarked task description.
      */
     public String sayTaskUnmarked(String unmarkedTask) {
         String unmarkedMsg = "Aw man, I've unmarked the following task:\n";

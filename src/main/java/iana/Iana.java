@@ -29,7 +29,7 @@ public class Iana {
      * Get response from Iana given user input.
      * 
      * @param input the user input to be responded to.
-     * @return a String of Iana's response.
+     * @return IANA's response.
      */
     public String getResponse(String input) {
         try {

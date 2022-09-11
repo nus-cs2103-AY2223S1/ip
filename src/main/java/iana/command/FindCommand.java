@@ -27,6 +27,9 @@ public class FindCommand extends Command {
         return ui.list(list);
     }
 
+    /**
+     * Returns false as command is not exit.
+     */
     @Override
     public boolean isExit() {
         return false;
