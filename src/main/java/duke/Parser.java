@@ -9,10 +9,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
 
 
 /**
  * Represents duke chatbot parser that make sense of user commands.
+ * If there is any invalid user input detected, the parser returns the error message (exception)
+ * instead of the parsed command
  */
 public class Parser {
     private Scanner input;
