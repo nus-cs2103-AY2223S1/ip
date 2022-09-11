@@ -16,7 +16,6 @@ IF ERRORLEVEL 1 (
 REM no error here, errorlevel == 0
 
 REM run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-REM @@author cheeheng-reused
 REM idea adapted from https://github.com/nus-cs2103-AY2223S1/forum/issues/36
 REM idea also adapted from https://github.com/nus-cs2103-AY2223S1/forum/issues/129
 REM idea also adapted from https://stackoverflow.com/questions/24722757/how-to-call-a-batch-file-that-is-one-level-up-from-the-current-directory

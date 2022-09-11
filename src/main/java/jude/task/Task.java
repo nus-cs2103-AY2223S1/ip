@@ -1,5 +1,9 @@
 package jude.task;
 
+//@@author cheeheng-reused
+//Solution reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
+//with major modifications, including significant enhancement to functionality
+
 /**
  * The {@code Task} class models a task. A task has a description and an indicator depicting whether
  * it has been done.
@@ -36,10 +40,6 @@ public abstract class Task {
     public String getDescription() {
         return description;
     }
-
-    //@@author cheeheng-reused
-    //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
-    //with minor modifications
 
     /**
      * Returns the status icon depicting whether the {@code Task} has been done.
@@ -108,3 +108,5 @@ public abstract class Task {
      */
     public abstract boolean needsReminder(long seconds);
 }
+
+//@@author

@@ -16,12 +16,13 @@ public class DateUtils {
      * @return The epoch time corresponding to the input time.
      */
     private static long getEpochTime(LocalDateTime time) {
-        // @@author cheeheng-reused
+        //@@author cheeheng-reused
         // Reused from
         // https://stackoverflow.com/questions/22990067/how-to-extract-epoch-from-localdate-and-localdatetime
         // with minor modifications.
         ZoneId zoneId = ZoneId.systemDefault();
         return time.atZone(zoneId).toEpochSecond();
+        //@author
     }
 
     /**

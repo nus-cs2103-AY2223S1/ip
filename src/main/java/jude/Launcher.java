@@ -13,7 +13,6 @@ public class Launcher {
     private static final String CONSOLE_MODE_FLAG = "console-test";
     private static final String DEFAULT_CONSOLE_DATA_STORAGE_PATH = "text-ui-test/data/tasks.txt";
 
-    // @@author cheeheng-reused
     // Solution below adapted from https://github.com/nus-cs2103-AY2223S1/forum/issues/129
     /**
      * Launches the GUI unless the first argument is console-test.
@@ -39,3 +38,5 @@ public class Launcher {
         }
     }
 }
+
+//@@author

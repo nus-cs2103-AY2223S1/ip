@@ -4,7 +4,8 @@ package jude.task;
  * An {@code Event} object is a Task which has a start time and an end time.
  */
 public class Event extends Task {
-    private final String when;
+    private final String start;
+    private final String end;
 
     /**
      * Creates a new {@code Event} object with a given description, whether it has been done, the
@@ -12,22 +13,14 @@ public class Event extends Task {
      *
      * @param description The description of the event.
      * @param isDone Whether the event is marked as done.
-     * @param when The time of the event.
+     * @param start The start time of the event.
+     * @param end The end time of the event.
      */
-    public Event(String description, boolean isDone, String when) {
+    public Event(String description, boolean isDone, String start, String end) {
         super(description, isDone);
-        this.when = when;
+        this.start = start;
+        this.end = end;
     }
-
-    /**
-     * Returns when the {@code Event} is scheduled to take place.
-     *
-     * @return the time range which the {@code Event} is scheduled to take table.
-     */
-    public String getStartTime() {
-        return when;
-    }
-
 
     /**
      * Returns the task type code for an {@code Event} object, i.e. "E".
@@ -47,7 +40,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("%s (at: %s)", super.toString(), when);
+        return String.format("%s (from %s to %s)", super.toString(), start, end);
     }
 
     /**
@@ -65,7 +58,7 @@ public class Event extends Task {
      */
     @Override
     public String toFileSaveString() {
-        return String.format("%s%s\n", super.toFileSaveString(), when);
+        return String.format("%s%s\n%s\n", super.toFileSaveString(), start, end);
     }
 
     /**

@@ -50,10 +50,11 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setJude(jude);
 
-            // @@author cheeheng-reused
+            //@@author cheeheng-reused
             // Reused from https://stackoverflow.com/questions/29055792/javafx-window-settitle
             // with minor modifications.
             stage.setTitle(MAIN_WINDOW_TITLE);
+            //@@author
 
             stage.show();
         } catch (IOException e) {
@@ -70,3 +71,5 @@ public class Main extends Application {
         jude.run();
     }
 }
+
+//@@author

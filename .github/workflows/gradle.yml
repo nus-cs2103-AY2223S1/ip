@@ -51,3 +51,5 @@ jobs:
         working-directory:  ${{ github.workspace }}/text-ui-test
         shell: cmd
         run: runtest.bat
+
+# @@author

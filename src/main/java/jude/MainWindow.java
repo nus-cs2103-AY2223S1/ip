@@ -81,7 +81,6 @@ public class MainWindow {
             return;
         }
         if (jude.isTerminationCommand(command)) {
-            //@@author cheeheng-reused
             //Code adapted from
             //https://www.javaguides.net/2020/09/javafx-quit-button-example-terminate.html
             // Exit the program when a termination command such as 'bye' is passed to the chatbot.
@@ -96,3 +95,5 @@ public class MainWindow {
         userInput.clear();
     }
 }
+
+//@@author
