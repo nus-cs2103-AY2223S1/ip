@@ -103,6 +103,10 @@ public class Rabbit {
                     return "Okay...task: " + content + " is deleted.\n";
                 case "change":
                     return "Fine...Hold up.";
+                case "edit":
+                    content = this.taskList.edit(input);
+                    this.storage.exportData(this.taskList);
+                    return "Okay...task: " + content + " is edited.\n";
                 default:
                     // the user keyed in an invalid input
                     throw new InvalidInputException();

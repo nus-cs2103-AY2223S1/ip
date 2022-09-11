@@ -46,6 +46,15 @@ public class Deadline extends Task{
         return this.time.format(formatter);
     }
 
+    /**
+     * Sets the time of the task to a new time.
+     *
+     * @param time the new time.
+     */
+    public void setTime(LocalDateTime time) {
+        this.time = time;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

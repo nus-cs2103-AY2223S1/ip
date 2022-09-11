@@ -229,6 +229,18 @@ public class Parser {
     }
 
     /**
+     * Parses the input to an array of
+     * command, index, and content/time.
+     *
+     * @param input the user's input.
+     * @return an array of String.
+     */
+    public static String[] parseEdit(String input) {
+        String[] splitCommand = input.split(" ", 4);
+        return splitCommand;
+    }
+
+    /**
      * Parses the user's input to delete command.
      *
      * @param input the user's command.

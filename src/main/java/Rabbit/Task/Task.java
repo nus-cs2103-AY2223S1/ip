@@ -9,7 +9,7 @@ public abstract class Task {
     // whether the task is marked as done.
     private boolean isDone;
 
-    /** a constructor of Task
+    /** A constructor of Task
      *
      * @param content the content of the task
      */
@@ -18,7 +18,7 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    /** a constructor of Task.
+    /** A constructor of Task.
      *
      * @param content the content of the task.
      * @param isDone whether the task is done.
@@ -29,7 +29,7 @@ public abstract class Task {
     }
 
     /**
-     * returns the content of the task
+     * Returns the content of the task
      *
      * @return the content of the task
      */
@@ -38,7 +38,16 @@ public abstract class Task {
     }
 
     /**
-     * returns true if the task is marked as done,
+     * Sets the content of the task to a new content.
+     *
+     * @param content the new content.
+     */
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    /**
+     * Returns true if the task is marked as done,
      * false otherwise
      *
      * @return true if the task is marked as done,
@@ -49,12 +58,14 @@ public abstract class Task {
     }
 
     /**
-     * marks the task as done.
+     * Marks the task as done.
      */
     public void markDone() {
         this.isDone = true;
     }
 
+    /** Unmark the task.
+     */
     public void unmark() {
         this.isDone = false;
     }
