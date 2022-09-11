@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum CommandType {
-    BYE(), LIST(), EMPTY(""), MARK(), UNMARK(), TODO(), DEADLINE(), EVENT(), DELETE();
+    BYE(), LIST(), EMPTY(""), MARK(), UNMARK(), TODO(), DEADLINE(), EVENT(), DELETE(), FIND();
 
     private static final Map<String, CommandType> BY_COMMAND_TYPE = new HashMap<>();
 

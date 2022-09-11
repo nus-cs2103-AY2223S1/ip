@@ -34,6 +34,24 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
+     * Returns a new {@code TaskList} of every {@code Task} with
+     * description containing the specified keyword.
+     *
+     * @param keyword The {@code String} to search the {@code TaskList} with.
+     * @return A new {@code TaskList} of every {@code Task} with description
+     *         containing the specified keyword.
+     */
+    public TaskList findByKeyword(String keyword) {
+        TaskList matchingList = new TaskList();
+        for (Task task : this) {
+            if (task.contains(keyword)) {
+                matchingList.add(task);
+            }
+        }
+        return matchingList;
+    }
+
+    /**
      * Returns the string representation of a {@code TaskList}.
      *
      * @return The string representing the {@code TaskList}.

@@ -6,6 +6,7 @@ import duke.command.Command;
 import duke.command.CommandType;
 import duke.command.DeleteTaskCommand;
 import duke.command.EmptyCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.SetDoneCommand;
 import duke.task.DeadlineTask;
@@ -143,6 +144,19 @@ public class Parser {
                 throw new DukeException("Invalid argument: Index of task should be a number.");
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
+            }
+        case FIND:
+            if (inputs.length == 1) {
+                throw new DukeException("Wrong number of arguments.");
+            }
+            description = inputs[1];
+            if (description.length() == 0) {
+                throw new DukeException("Invalid argument: Description cannot be empty.");
+            }
+            try {
+                return new FindCommand(description);
+            } catch (StringIndexOutOfBoundsException e) {
+                throw new DukeException("Include the keyword you want to find.");
             }
         default:
             throw new DukeException("Invalid command: Please try again.");
