@@ -1,3 +1,4 @@
+
 plugins {
     id 'java'
     id 'application'
@@ -10,9 +11,11 @@ repositories {
 }
 
 dependencies {
+    // For Junit
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 
+    // For javaFx
     String javaFxVersion = '11'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
@@ -43,13 +46,8 @@ test {
     }
 }
 
-dependencies {
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
-}
-
 application {
-    mainClassName = "Duke.Duke"
+    mainClassName = "Duke.Launcher"
 }
 
 shadowJar {
@@ -57,7 +55,14 @@ shadowJar {
     archiveClassifier = null
 }
 
-run {
-    enableAssertions = true
+checkstyle {
+    toolVersion = '10.2'
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+run{
     standardInput = System.in
 }
