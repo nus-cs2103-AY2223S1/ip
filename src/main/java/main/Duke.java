@@ -2,9 +2,12 @@ package main;
 
 import java.util.Scanner;
 
+import command.Command;
+
 import exception.InvalidCommandException;
 import exception.InvalidDateException;
 import exception.MissingArgumentException;
+
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -26,10 +29,10 @@ public class Duke {
     private boolean isEnd = false;
 
     public Duke() {
-        this.tasks = new TaskList();
         this.ui = new Ui(this.tasks);
         this.parser = new Parser();
         this.storage = new Storage(this.tasks, this.ui, this.storage);
+        this.tasks = new TaskList();
     }
 
     public void run() {
@@ -37,10 +40,9 @@ public class Duke {
         ui.greeting();
             while (!isEnd) {
                 try {
-                    String[] parsedUserInput = parseCommand(userInput.nextLine());
-                    String command = parsedUserInput[0];
-                    String arg1 = parsedUserInput[1];
-                    String arg2 = parsedUserInput[2];
+                    Command nextCommand = parser.parseCommand(userInput.nextLine());
+                    nextCommand.execute(this.tasks, this.ui, this.storage);
+
                     arg2 = arg2.replaceAll(" ","");
                     switch(command) {
                     case COMMAND_LOAD:

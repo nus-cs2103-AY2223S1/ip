@@ -2,6 +2,8 @@ package command;
 
 import java.io.IOException;
 
+import exception.DukeException;
+import exception.DukeIOException;
 import main.Storage;
 import main.TaskList;
 import main.Ui;
@@ -18,12 +20,12 @@ public class ByeCommand extends Command{
         return true;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeIOException{
         try {
             ui.chat("Goodbye!");
             storage.cleanUp();
         } catch (IOException e) {
-            throw e;
+            throw new DukeIOException(e.getLocalizedMessage());
         }
     }
 

@@ -12,17 +12,24 @@ public class Task {
     protected String description;
     protected LocalDate dateTime;
     protected boolean isDone;
+    protected boolean isEmpty;
+
+    private Task() {
+        this.isEmpty = true;
+    }
 
     Task (String type, String description) {
         this.type = type;
         this.description = description;
         this.isDone = false;
+        this.isEmpty = false;
     }
 
     Task (String type, String description, boolean isDone) {
         this.type = type;
         this.description = description;
         this.isDone = isDone;
+        this.isEmpty = false;
     }
 
     Task (String type, String description, String dateTime) throws InvalidDateException {
@@ -30,6 +37,7 @@ public class Task {
         this.description = description;
         this.dateTime = convert(dateTime);
         this.isDone = false;
+        this.isEmpty = false;
     }
 
     Task (String type, String description, String dateTime, boolean isDone) throws InvalidDateException{
@@ -37,6 +45,15 @@ public class Task {
         this.description = description;
         this.dateTime = convert(dateTime);
         this.isDone = isDone;
+        this.isEmpty = false;
+    }
+
+    public static Task empty() {
+        return new Task();
+    }
+
+    public boolean isEmpty() {
+        return this.isEmpty;
     }
 
     public String getDescription() {

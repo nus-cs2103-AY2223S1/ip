@@ -23,6 +23,7 @@ public class LoadCommand extends Command{
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws InvalidDateException, InvalidCommandException, MissingArgumentException, FileNotFoundException{
         storage.loadLog();
+       
     }
 
     @Override

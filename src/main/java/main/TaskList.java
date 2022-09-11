@@ -13,7 +13,7 @@ public class TaskList {
 
     TaskList(TaskList tasklist) {
         this.tasks = new ArrayList<Task>();
-        this.tasks.addAll(tasklist.tasks); //deep copy ArrayList
+        this.tasks.addAll(tasklist.tasks); //deep copy TaskList
     }
 
     public void add(Task newTask) {
