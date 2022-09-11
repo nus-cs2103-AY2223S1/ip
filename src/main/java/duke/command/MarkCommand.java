@@ -53,15 +53,24 @@ public class MarkCommand implements ICommand {
     }
 
     /**
-     * Returns if two MarkCommands are equal in index.
+     * Returns if two MarkCommands are equal.
      * @param obj Other command.
-     * @return True if two MarkCommands are equal in index. Else false.
+     * @return True if two MarkCommands are equal in the number and order of tasks to be marked completed. Else false.
      */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof MarkCommand) {
             MarkCommand otherCmd = (MarkCommand) obj;
-            return true;
+            if (this.indexList.length == otherCmd.indexList.length) {
+                for (int i = 0; i < this.indexList.length; i++) {
+                    if (this.indexList[i] != otherCmd.indexList[i]) {
+                        return false;
+                    }
+                }
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
