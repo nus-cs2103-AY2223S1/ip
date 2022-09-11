@@ -54,6 +54,7 @@ public abstract class Task {
      * @return String representation of Task.
      */
     public String toString() {
+        assert description != null;
         return "[" + getStatusIcon() + "] " + this.description;
     }
 
@@ -64,6 +65,7 @@ public abstract class Task {
      * @return String representation of Task for storage purposes.
      */
     public String toStorageString() {
+        assert commandString != null;
         return commandString + "\n" + getStatus();
     }
 }

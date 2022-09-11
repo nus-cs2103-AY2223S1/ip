@@ -70,6 +70,7 @@ public class Parser {
             } else if (command.startsWith("todo")) {
                 t = new TodoTask(command);
             }
+            assert t != null;
             return tasks.addTask(t);
         } catch (DateTimeParseException e) {
             System.out.println("Unable to parse date: " + e);

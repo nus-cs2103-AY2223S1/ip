@@ -26,6 +26,7 @@ public class Storage {
         if (!dataFolder.exists()) {
             // make data directory if it doesnt exist
             dataFolder.mkdir();
+            assert dataFolder.exists();
         } else if (new File("data/duke.txt").exists()) {
             // else if save file exists, load it into memory
             try {
