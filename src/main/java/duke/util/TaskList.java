@@ -68,7 +68,7 @@ public class TaskList {
     }
 
     /**
-     * Mark the index-th Task as done and returns a string as a follow-up of the operation.
+     * Marks the index-th Task as done and returns a string as a follow-up of the operation.
      *
      * @param index The index indicating which Task to mark.
      * @return A string as a response of the operation.

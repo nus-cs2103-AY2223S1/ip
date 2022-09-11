@@ -84,7 +84,7 @@ public abstract class Task {
     }
 
     /**
-     * An overloaded version of getFileRepresentation()
+     * Overloads getFileRepresentation()
      *
      * @param label A capital letter that indicates the type of the task.
      * @return A string representation of the task in the file.

@@ -97,7 +97,7 @@ public class Duke {
     }
 
     /**
-     * The main logic that runs a chatbot.
+     * Runs a chatbot.
      *
      * @param args String arguments for starting the logic.
      */
