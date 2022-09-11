@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.chatbot.commands.exceptions.EmptyTaskException;
 import duke.taskmanager.task.ToDoTask;
 public class TaskManagerTest {
     @Test
@@ -24,7 +24,7 @@ public class TaskManagerTest {
             TaskManager taskManager = new TaskManager();
             assertEquals(taskManager.listTask(), "You have no tasks in your list.\n");
             taskManager.addTask(new ToDoTask("test"));
-            assertEquals(taskManager.listTask(), "I have your list of tasks displayed below:\n1) [ ] test\n");
+            assertEquals(taskManager.listTask(), "I have your list of tasks displayed below:\n1) [T][ ] test\n");
         } catch (EmptyTaskException exception) {
             Assertions.fail();
         }
@@ -82,7 +82,7 @@ public class TaskManagerTest {
             assertEquals(taskManager.deleteTask(0), "There is no such task!!\n");
             assertEquals(taskManager.deleteTask(2), "There is no such task!!\n");
             assertEquals(taskManager.deleteTask(-1), "There is no such task!!\n");
-            assertEquals(taskManager.deleteTask(1), "The following item has been removed.\n[ ] test\n"
+            assertEquals(taskManager.deleteTask(1), "The following item has been removed.\n[T][ ] test\n"
                     + "You have 0 item(s) remaining.\n");
             assertEquals(taskManager.deleteTask(1), "There is no such task!!\n");
         } catch (EmptyTaskException exception) {

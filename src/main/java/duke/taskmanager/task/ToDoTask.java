@@ -1,7 +1,7 @@
 package duke.taskmanager.task;
 
-import duke.taskmanager.exceptions.EmptyTaskException;
-import duke.taskmanager.exceptions.InvalidArgumentsException;
+import duke.chatbot.commands.exceptions.EmptyTaskException;
+import duke.chatbot.commands.exceptions.InvalidArgumentsException;
 
 /**
  * ToDoTask is a Task with task information.

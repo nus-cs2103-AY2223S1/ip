@@ -1,7 +1,6 @@
 package duke.taskmanager.task;
 
-import duke.taskmanager.exceptions.EmptyTaskException;
-import duke.taskmanager.exceptions.InvalidArgumentsException;
+import duke.chatbot.commands.exceptions.EmptyTaskException;
 
 /**
  * Task is am abstract class to be inherited by other types of tasks.
@@ -47,10 +46,6 @@ public abstract class Task {
         }
     }
 
-    protected void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
-
     public String getTaskType() {
         return this.taskType;
     }
@@ -61,6 +56,10 @@ public abstract class Task {
 
     public boolean isCompleted() {
         return this.isCompleted;
+    }
+
+    protected void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
     public void setCompleted() {

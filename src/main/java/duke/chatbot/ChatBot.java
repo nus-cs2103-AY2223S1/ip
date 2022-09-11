@@ -2,11 +2,12 @@ package duke.chatbot;
 
 import java.util.Scanner;
 
+import duke.chatbot.commands.ByeCommandHandler;
+import duke.chatbot.commands.exceptions.EmptyCommandException;
+import duke.chatbot.commands.exceptions.InvalidArgumentsException;
+import duke.chatbot.commands.exceptions.InvalidCommandException;
+import duke.chatbot.commands.exceptions.InvalidIndexException;
 import duke.taskmanager.TaskManager;
-import duke.taskmanager.exceptions.EmptyCommandException;
-import duke.taskmanager.exceptions.InvalidArgumentsException;
-import duke.taskmanager.exceptions.InvalidCommandException;
-import duke.taskmanager.exceptions.InvalidIndexException;
 import duke.taskmanager.exceptions.LoadDataException;
 import duke.taskmanager.task.DeadlineTask;
 import duke.taskmanager.task.EventTask;
@@ -57,7 +58,7 @@ public class ChatBot {
      *
      * @return the greeting message
      */
-    private String getGreetingResponse() {
+    public String getGreetingResponse() {
         return "Greetings, " + this.name + " at your service.\n"
                 + "How may I help you today?\n";
     }
@@ -67,7 +68,7 @@ public class ChatBot {
      *
      * @return the goodbye message
      */
-    private String getGoodbyeResponse() {
+    public String getGoodbyeResponse() {
         return "Goodbye! It was nice seeing you.\n"
                 + "Enter anything to exit!\n";
     }
@@ -93,7 +94,6 @@ public class ChatBot {
      */
     public void terminate() {
         this.isRunning = false;
-        this.latestResponse = getGoodbyeResponse();
     }
 
     /**
@@ -105,7 +105,7 @@ public class ChatBot {
      * @param input string of the input provided by the user
      */
     public void processCommand(String input) {
-        assert isRunning == true : "chatbot should be running";
+        assert isRunning : "chatbot should be running";
         Scanner inputScanner = new Scanner(input);
         String response = "";
         try {
@@ -124,15 +124,11 @@ public class ChatBot {
 
             switch (command) {
             case "bye":
-                if (hasArguments) {
-                    throw new InvalidCommandException(input);
-                }
-                terminate();
-                response = getLatestResponse();
+                response = new ByeCommandHandler(this).execute(arguments);
                 break;
             case "list":
                 if (hasArguments) {
-                    throw new InvalidCommandException(input);
+                    throw new InvalidCommandException();
                 }
                 response = taskManager.listTask();
                 break;
@@ -198,7 +194,7 @@ public class ChatBot {
                 response = taskManager.updateTask(parseNumber(argumentList[0]), argumentList[1]);
                 break;
             default:
-                throw new InvalidCommandException(input);
+                throw new InvalidCommandException();
             }
             System.out.println(wrapMessage(response));
             taskManager.saveData();

@@ -1,6 +1,6 @@
 package duke.taskmanager.task;
 
-import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.chatbot.commands.exceptions.EmptyTaskException;
 
 /**
  * Task that is empty.
