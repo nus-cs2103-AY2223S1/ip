@@ -17,7 +17,7 @@ public class Deadline extends Task{
      * Constructor for deadline
      *
      * @param name of task
-     * @param date specific date of task in format dd/mm/yyyy
+     * @param date specific date of task in format yyyy-mm-dd
      * @param time in format hhmm(24-hour clock)
      */
     public Deadline(String name, String date, String time) {
@@ -30,10 +30,7 @@ public class Deadline extends Task{
      * Change date to specific format (MMM dd yyy) and get the day of the task
      */
     public void dateProcess() {
-        if(date.length() == 9) {
-            date = "0" + date;
-        }
-        LocalDate d1 = LocalDate.parse(date.substring(6, 10) + "-" + date.substring(3, 5) + "-" + date.substring(0, 2));
+        LocalDate d1 = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         by = d1.getDayOfWeek().toString(); // -> SUNDAY
         a = d1.format(DateTimeFormatter.ofPattern("MMM dd yyyy")); // -> Dec 27 2001
     }

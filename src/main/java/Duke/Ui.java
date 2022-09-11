@@ -1,11 +1,12 @@
 package Duke;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Class that deals with user interactions
  */
 public class Ui {
+
+    private Storage storage;
 
     public Ui() {
     }
@@ -17,12 +18,15 @@ public class Ui {
         System.out.println("Hello!, I'm Yiye.\nWhat can I do for you? ◠‿◠");
     }
 
+
     /**
      * Prints when input is empty
      */
     public void bye() {
         System.out.println("Bye! Hope to see you again soon!");
     }
+
+
 
     /**
      * prints list of tasks
@@ -109,6 +113,8 @@ public class Ui {
             System.out.printf("%d.%s\n", i + 1, list.get(i).toString());
         }
     }
+
+
 
 
 }

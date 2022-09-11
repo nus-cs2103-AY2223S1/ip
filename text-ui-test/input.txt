@@ -1,5 +1,5 @@
-event meeting /at school 4/04/2007 1400
-deadline essay /by 7/07/2007 1900
+event meeting /at school 2007-04-07 1400
+deadline essay /by 2007-07-07 1900
 todo shopping
 list
 mark 1

@@ -1,7 +1,5 @@
 package Duke;
 
-import java.util.Scanner;
-
 /**
  * Parser that parses input into the program
  */
