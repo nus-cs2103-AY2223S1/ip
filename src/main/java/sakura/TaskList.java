@@ -2,6 +2,7 @@ package sakura;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents a list for all tasks similar to array lists.
@@ -149,6 +150,11 @@ public class TaskList {
             }
             return Ui.searchTaskDescription(matchList);
         }
+    }
+
+    public String sortTask() {
+        Collections.sort(tasks);
+        return Ui.showSortedTasks(tasks);
     }
 
 }
