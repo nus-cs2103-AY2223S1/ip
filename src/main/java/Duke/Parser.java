@@ -27,6 +27,7 @@ public class Parser {
             if (input.equals("list")) {
                 toReply += taskList.getAllTasks();
                 System.out.println(toReply);
+                return toReply;
             } else if (input.startsWith("mark")) {
                 String in = stringReplacer.replaceAll(input, "mark");
                 if (in.isEmpty()) {
