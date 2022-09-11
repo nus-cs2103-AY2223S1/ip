@@ -16,6 +16,7 @@ public class Deadline extends Task {
     protected static DateTimeFormatter dateTimeOutputFormatter = DateTimeFormatter.ofPattern("dd LLL yyyy hh:mma");
     protected static DateTimeFormatter dateInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     protected LocalDateTime dateTime;
+    private static final int DESCRIPTION_START_INDEX = 10;
 
     /**
      * Constructs a deadline with the specified description, date and time.
@@ -46,7 +47,7 @@ public class Deadline extends Task {
      * @return The deadline with the specified details.
      */
     public static Deadline createDeadlineFromString(String line) {
-        return new Deadline(line.substring(10, line.indexOf("(by:") - 1),
+        return new Deadline(line.substring(DESCRIPTION_START_INDEX, line.indexOf("(by:") - 1),
                 LocalDateTime.parse(line.substring(line.indexOf("(by:") + 5, line.lastIndexOf(")")),
                         dateTimeOutputFormatter));
     }

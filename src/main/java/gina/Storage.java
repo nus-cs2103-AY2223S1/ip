@@ -45,7 +45,6 @@ public class Storage {
             while (scanner.hasNext()) {
                 Task newTask;
                 line = scanner.nextLine();
-                // process data
                 switch (line.charAt(4)) {
                 case 'T':
                     newTask = ToDo.createToDoFromString(line);
@@ -77,14 +76,15 @@ public class Storage {
      * Saves the specified list of tasks.
      *
      * @param taskList The specified list of tasks.
+     * @throws GinaException If there was an error saving changes to hard disk.
      */
-    public void save(TaskList taskList) {
+    public void save(TaskList taskList) throws GinaException {
         try {
             FileWriter fw = new FileWriter(filePathStr);
             fw.write(taskList.toString());
             fw.close();
         } catch (IOException e) {
-            System.out.println("There was an error saving your file, your changes were not saved!");
+            throw new GinaException("There was an error saving your changes!");
         }
     }
 }

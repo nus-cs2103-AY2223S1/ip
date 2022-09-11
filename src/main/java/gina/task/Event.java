@@ -15,6 +15,7 @@ public class Event extends Task {
     private static DateTimeFormatter dateTimeOutputFormatter = DateTimeFormatter.ofPattern("dd LLL yyyy hh:mma");
     private static DateTimeFormatter dateInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     protected LocalDateTime dateTime;
+    private static final int DESCRIPTION_START_INDEX = 10;
 
     /**
      * Constructs an event with the specified description, date and time.
@@ -44,7 +45,7 @@ public class Event extends Task {
      * @return The event with the specified details.
      */
     public static Event createEventFromString(String line) {
-        return new Event(line.substring(10, line.indexOf("(at:") - 1),
+        return new Event(line.substring(DESCRIPTION_START_INDEX, line.indexOf("(at:") - 1),
                 LocalDateTime.parse(line.substring(line.indexOf("(at:") + 5, line.lastIndexOf(")")),
                         dateTimeOutputFormatter));
     }

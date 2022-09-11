@@ -6,6 +6,7 @@ import java.util.Arrays;
  * Represents a to-do.
  */
 public class ToDo extends Task {
+    private static final int DESCRIPTION_START_INDEX = 10;
     /**
      * Constructs a to-do with the specified description.
      *
@@ -22,7 +23,7 @@ public class ToDo extends Task {
      * @return The to-do with the specified description.
      */
     public static ToDo createToDoFromString(String line) {
-        return new ToDo(line.substring(10));
+        return new ToDo(line.substring(DESCRIPTION_START_INDEX));
     }
 
     /**
