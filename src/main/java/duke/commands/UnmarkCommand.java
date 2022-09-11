@@ -15,7 +15,7 @@ public class UnmarkCommand extends Command {
     private final int index;
 
     /**
-     * Constructor for an unmark command that takes in arguments.
+     * Constructs an unmark command with arguments.
      *
      * @param arguments Arguments string is to be of the format "N".
      */
@@ -23,9 +23,6 @@ public class UnmarkCommand extends Command {
         index = Integer.parseInt(arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public CommandResult execute() throws DukeException {
         assert tasks != null : "Should setData() before calling execute().";

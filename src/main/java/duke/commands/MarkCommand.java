@@ -16,7 +16,7 @@ public class MarkCommand extends Command {
     private final int index;
 
     /**
-     * Constructor for a mark command that takes in arguments.
+     * Constructs a mark command with arguments.
      *
      * @param arguments Arguments string is to be of the format "N".
      */
@@ -24,9 +24,6 @@ public class MarkCommand extends Command {
         index = Integer.parseInt(arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public CommandResult execute() throws DukeException {
         assert tasks != null : "Should setData() before calling execute().";

@@ -7,7 +7,7 @@ public class UnknownCommandException extends DukeException {
     private static final String message = "Unknown command!";
 
     /**
-     * Constructor for an invalid index exception.
+     * Constructs an unknown command exception.
      */
     public UnknownCommandException() {
         super(message);

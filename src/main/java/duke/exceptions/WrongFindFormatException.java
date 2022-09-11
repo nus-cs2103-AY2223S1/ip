@@ -8,7 +8,7 @@ public class WrongFindFormatException extends WrongFormatException {
             "Wrong format for Find!\\nShould be 'find <keyword>'.";
 
     /**
-     * Constructor for an invalid index exception.
+     * Constructs a wrong find format exception.
      */
     public WrongFindFormatException() {
         super(message);

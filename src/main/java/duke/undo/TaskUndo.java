@@ -10,7 +10,7 @@ public class TaskUndo extends UndoAction {
     private final Task task;
 
     /**
-     * Constructor for a task undo action.
+     * Constructs a task undo action with task.
      *
      * @param task Task added.
      */

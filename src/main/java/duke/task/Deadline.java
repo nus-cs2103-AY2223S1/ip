@@ -12,7 +12,7 @@ public class Deadline extends Task {
     private final LocalDateTime deadline;
 
     /**
-     * Constructor for a deadline that takes in description and deadline.
+     * Constructs a deadline with description and deadline.
      * Deadline is set as "not done" when created.
      *
      * @param description Description of a deadline.
@@ -24,7 +24,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Factory method for a Deadline that takes in done, description and date.
+     * Creates a Deadline with done, description and date.
      *
      * @param done        Whether the Deadline is done.
      * @param description Description of Deadline.

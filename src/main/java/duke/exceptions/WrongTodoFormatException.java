@@ -7,7 +7,7 @@ public class WrongTodoFormatException extends WrongFormatException {
     private static final String message = "Description of Todo cannot be empty!";
 
     /**
-     * Constructor for an invalid index exception.
+     * Constructs a wrong todo format exception.
      */
     public WrongTodoFormatException() {
         super(message);

@@ -21,7 +21,7 @@ public class CommandResult {
     private final UndoAction undoAction;
 
     /**
-     * Constructor for a command result.
+     * Constructs a command result.
      *
      * @param userMessage User message to be displayed to the user.
      * @param action      Action to be performed.
@@ -33,7 +33,7 @@ public class CommandResult {
     }
 
     /**
-     * Constructor for a command result.
+     * Constructs a command result.
      *
      * @param userMessage User message to be displayed to the user.
      * @param undoAction  Undo action to be performed.
@@ -45,7 +45,7 @@ public class CommandResult {
     }
 
     /**
-     * Constructor for a command result.
+     * Constructs a command result.
      *
      * @param userMessage User message to be displayed to the user.
      */

@@ -5,7 +5,7 @@ package duke.exceptions;
  */
 public abstract class WrongFormatException extends DukeException {
     /**
-     * Constructor for a Wrong Format Exception that takes in a message.
+     * Constructs a wrong format exception with a message.
      *
      * @param message Message for the Wrong Format Exception.
      */

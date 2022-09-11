@@ -24,7 +24,7 @@ public class DeadlineCommand extends Command {
     private final Deadline deadline;
 
     /**
-     * Constructor for a deadline command that takes in arguments.
+     * Constructs a deadline command with arguments.
      *
      * @param arguments Arguments string is to be of the format "description /by YYYY-MM-DD".
      * @throws DukeException Exception due to invalid arguments.
@@ -51,9 +51,6 @@ public class DeadlineCommand extends Command {
         this.deadline = new Deadline(description, localDateTime);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public CommandResult execute() {
         assert tasks != null : "Should setData() before calling execute().";

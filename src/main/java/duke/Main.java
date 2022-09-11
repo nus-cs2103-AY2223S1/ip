@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * A GUI for Duke using FXML.
+ * Represents the GUI for Duke using FXML.
  */
 public class Main extends Application {
     private final Duke duke = new Duke();

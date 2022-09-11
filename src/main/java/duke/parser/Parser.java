@@ -24,6 +24,58 @@ public class Parser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)\\s?(?<arguments>.*)");
 
     /**
+     * Represents the command along with its arguments, before parsing.
+     */
+    private static class CommandArguments {
+        public final String commandWord;
+        public final String arguments;
+
+        public CommandArguments(String commandWord, String arguments) {
+            this.commandWord = commandWord;
+            this.arguments = arguments;
+        }
+    }
+
+    private CommandArguments getArguments(String userInput) throws DukeException {
+        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            throw new UnknownCommandException();
+        }
+        String commandWord = matcher.group("commandWord");
+        String arguments = matcher.group("arguments");
+        return new CommandArguments(commandWord, arguments);
+    }
+
+    private Command createCommand(CommandArguments commandArguments) throws DukeException {
+        String arguments = commandArguments.arguments;
+
+        switch (commandArguments.commandWord) {
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommand(arguments);
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommand(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommand(arguments);
+        case TodoCommand.COMMAND_WORD:
+            return new TodoCommand(arguments);
+        case DeadlineCommand.COMMAND_WORD:
+            return new DeadlineCommand(arguments);
+        case EventCommand.COMMAND_WORD:
+            return new EventCommand(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommand(arguments);
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+        default:
+            throw new UnknownCommandException();
+        }
+    }
+
+    /**
      * Parses a user input into a command.
      *
      * @param userInput      Input that the user has provided.
@@ -31,60 +83,7 @@ public class Parser {
      * @throws DukeException Exception that occurred during the parsing of the command.
      */
     public Command parseCommand(String userInput) throws DukeException {
-        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        String commandWord;
-        String arguments;
-        if (matcher.matches()) {
-            commandWord = matcher.group("commandWord");
-            arguments = matcher.group("arguments");
-        } else {
-            throw new UnknownCommandException();
-        }
-
-        Command command;
-        switch (commandWord) {
-        case ExitCommand.COMMAND_WORD:
-            command = new ExitCommand();
-            break;
-        case ListCommand.COMMAND_WORD:
-            command = new ListCommand();
-            break;
-        case MarkCommand.COMMAND_WORD: {
-            command = new MarkCommand(arguments);
-            break;
-        }
-        case UnmarkCommand.COMMAND_WORD: {
-            command = new UnmarkCommand(arguments);
-            break;
-        }
-        case DeleteCommand.COMMAND_WORD: {
-            command = new DeleteCommand(arguments);
-            break;
-        }
-        case TodoCommand.COMMAND_WORD: {
-            command = new TodoCommand(arguments);
-            break;
-        }
-        case DeadlineCommand.COMMAND_WORD: {
-            command = new DeadlineCommand(arguments);
-            break;
-        }
-        case EventCommand.COMMAND_WORD: {
-            command = new EventCommand(arguments);
-            break;
-        }
-        case FindCommand.COMMAND_WORD: {
-            command = new FindCommand(arguments);
-            break;
-        }
-        case UndoCommand.COMMAND_WORD: {
-            command = new UndoCommand();
-            break;
-        }
-        default:
-            throw new UnknownCommandException();
-        }
-
-        return command;
+        CommandArguments commandArguments = getArguments(userInput);
+        return createCommand(commandArguments);
     }
 }

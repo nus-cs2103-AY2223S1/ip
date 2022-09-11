@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
- * Controller for the main window of the Duke application.
+ * Represents the controller for the main window of the Duke application.
  * This provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
@@ -80,7 +80,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
-        // Clear user input;
+        // Clear user input
         userInput.clear();
     }
 }

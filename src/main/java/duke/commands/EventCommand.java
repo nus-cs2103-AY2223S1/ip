@@ -24,7 +24,7 @@ public class EventCommand extends Command {
     private final Event event;
 
     /**
-     * Constructor for an event command that takes in arguments.
+     * Constructs an event command with arguments.
      *
      * @param arguments Arguments string is to be of the format "description /at YYYY-MM-DD".
      * @throws DukeException Exception due to invalid arguments.
@@ -51,9 +51,6 @@ public class EventCommand extends Command {
         event = new Event(description, localDateTime);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public CommandResult execute() {
         assert tasks != null : "Should setData() before calling execute().";

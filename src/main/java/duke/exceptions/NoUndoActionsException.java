@@ -7,7 +7,7 @@ public class NoUndoActionsException extends DukeException {
     private static final String message = "No actions to undo!";
 
     /**
-     * Constructor for a bad save data exception.
+     * Constructs a no undo actions left exception.
      */
     public NoUndoActionsException() {
         super(message);

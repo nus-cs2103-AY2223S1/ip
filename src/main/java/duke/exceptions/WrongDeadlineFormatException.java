@@ -8,7 +8,7 @@ public class WrongDeadlineFormatException extends WrongFormatException {
             "Wrong format for Deadline!\\nShould be 'deadline <description> /by YYYY-MM-DD HHmm'.";
 
     /**
-     * Constructor for an invalid index exception.
+     * Constructs a wrong deadline format exception.
      */
     public WrongDeadlineFormatException() {
         super(message);

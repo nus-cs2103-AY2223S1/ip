@@ -10,7 +10,7 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Constructor for a Task that takes in description.
+     * Constructs a task with description.
      * Task is set as "not done" when created.
      *
      * @param description Description of a task.

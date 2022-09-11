@@ -7,9 +7,6 @@ public class ExitCommand extends Command {
     /** Command word of the exit command. */
     public static final String COMMAND_WORD = "bye";
 
-    /**
-     * {@inheritDoc}
-     */
     public CommandResult execute() {
         return new CommandResult("", CommandResult.Action.EXIT);
     }

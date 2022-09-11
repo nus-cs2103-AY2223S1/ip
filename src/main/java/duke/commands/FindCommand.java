@@ -18,7 +18,7 @@ public class FindCommand extends Command {
     private final String keyword;
 
     /**
-     * Constructor for a delete command that takes in arguments.
+     * Constructs a delete command with arguments.
      *
      * @param arguments Arguments string is the find keyword.
      * @throws DukeException Exception due to invalid arguments.
@@ -54,9 +54,6 @@ public class FindCommand extends Command {
         return userMessage;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public CommandResult execute() {
         assert tasks != null : "Should setData() before calling execute().";

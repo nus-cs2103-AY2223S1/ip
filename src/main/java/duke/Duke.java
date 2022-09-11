@@ -30,7 +30,7 @@ public class Duke {
     private final LinkedList<UndoAction> undoActions;
 
     /**
-     * Constructor for a Duke application instance.
+     * Constructs a Duke application instance.
      */
     public Duke() {
         parser = new Parser();
@@ -43,8 +43,8 @@ public class Duke {
     }
 
     /**
-     * Retrieve tasks from storage.
-     * Returns empty list if fail to load from storage.
+     * Retrieves tasks from storage.
+     * If loading from storage fails, empty list is returned.
      *
      * @return Tasks from storage or empty list.
      */

@@ -10,7 +10,7 @@ public class DeleteUndo extends UndoAction {
     private final Task task;
 
     /**
-     * Constructor for a delete undo action.
+     * Constructs a delete undo action with a task.
      *
      * @param task Task deleted.
      */

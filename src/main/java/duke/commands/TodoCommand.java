@@ -15,7 +15,7 @@ public class TodoCommand extends Command {
     private final Todo todo;
 
     /**
-     * Constructor for a todo command that takes in arguments.
+     * Constructs a todo command with arguments.
      *
      * @param arguments Arguments string is to be of the format "description".
      * @throws DukeException Exception due to invalid arguments.
@@ -28,9 +28,6 @@ public class TodoCommand extends Command {
         todo = new Todo(arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public CommandResult execute() {
         assert tasks != null : "Should setData() before calling execute().";

@@ -11,9 +11,9 @@ public class MarkUndo extends UndoAction {
     private final boolean shouldMark;
 
     /**
-     * Constructor for a mark / unmark undo action.
+     * Constructs a mark / unmark undo action with task and is mark.
      *
-     * @param task       Task marked or unmarked.
+     * @param task   Task marked or unmarked.
      * @param isMark True if triggered by mark command.
      */
     public MarkUndo(Task task, boolean isMark) {

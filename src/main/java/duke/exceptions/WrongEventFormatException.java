@@ -8,7 +8,7 @@ public class WrongEventFormatException extends WrongFormatException {
             "Wrong format for Event!\\nShould be 'event <description> /at YYYY-MM-DD HHmm'.";
 
     /**
-     * Constructor for an invalid index exception.
+     * Constructs a wrong event format exception.
      */
     public WrongEventFormatException() {
         super(message);

@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
     private final int index;
 
     /**
-     * Constructor for a delete command that takes in arguments.
+     * Constructs for a delete command with arguments.
      *
      * @param arguments Arguments string is to be of the format "N".
      */
@@ -24,9 +24,6 @@ public class DeleteCommand extends Command {
         index = Integer.parseInt(arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public CommandResult execute() throws DukeException {
         assert tasks != null : "Should setData() before calling execute().";

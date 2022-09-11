@@ -7,7 +7,7 @@ public class InvalidDateException extends DukeException {
     private static final String message = "Invalid date!";
 
     /**
-     * Constructor for an invalid date exception.
+     * Constructs an invalid date exception.
      */
     public InvalidDateException() {
         super(message);

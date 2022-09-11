@@ -8,9 +8,6 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     private static final String LINE_FORMAT = "%d: %s";
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public CommandResult execute() {
         assert tasks != null : "Should setData() before calling execute().";

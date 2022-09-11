@@ -25,7 +25,7 @@ public class Storage {
     private final String filePath;
 
     /**
-     * Constructor for a storage that takes in directory path and file path of the storage.
+     * Constructs a storage with a directory path and a file path of the storage.
      *
      * @param directoryPath Directory path that the storage file is located in.
      * @param filePath      File path of the storage file.
@@ -57,7 +57,7 @@ public class Storage {
     }
 
     /**
-     * Parse line into task.
+     * Parses line into task.
      *
      * @param line Line in save file.
      * @return Parsed task.
@@ -65,25 +65,33 @@ public class Storage {
      */
     private Task parseLine(String line) throws DukeException {
         String[] split = line.split(" \\| ");
-        Task task;
-        switch (split[0]) {
-        case "T":
-            task = Todo.create(split[1], split[2]);
-            break;
-        case "D":
-            task = Deadline.create(split[1], split[2], split[3]);
-            break;
-        case "E":
-            task = Event.create(split[1], split[2], split[3]);
-            break;
+        String tag = split[0];
+
+        switch (tag) {
+        case "T": {
+            String done = split[1];
+            String description = split[2];
+            return Todo.create(done, description);
+        }
+        case "D": {
+            String done = split[1];
+            String description = split[2];
+            String date = split[3];
+            return Deadline.create(done, description, date);
+        }
+        case "E": {
+            String done = split[1];
+            String description = split[2];
+            String date = split[3];
+            return Event.create(done, description, date);
+        }
         default:
             throw new BadDataException();
         }
-        return task;
     }
 
     /**
-     * Load tasks from file.
+     * Loads tasks from file.
      *
      * @return The tasks loaded from the file.
      * @throws DukeException Exception that occurred during the loading of the tasks.
@@ -108,7 +116,7 @@ public class Storage {
     }
 
     /**
-     * Save tasks to file.
+     * Saves tasks to file.
      *
      * @param tasks        Tasks to be saved to the file.
      * @throws IOException Exception that occurred during the saving of the tasks.

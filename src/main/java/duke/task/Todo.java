@@ -6,7 +6,7 @@ package duke.task;
  */
 public class Todo extends Task {
     /**
-     * Constructor for a Todo that takes in description.
+     * Constructs a todo with description.
      * Todo is set as "not done" when created.
      *
      * @param description Description of a todo.
@@ -16,7 +16,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Factory method for a Todo that takes in done and description.
+     * Creates a Todo with done and description.
      *
      * @param done        Whether the Todo is done.
      * @param description Description of Todo.

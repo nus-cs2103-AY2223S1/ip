@@ -10,7 +10,7 @@ public class TaskList {
     private final ArrayList<Task> tasks;
 
     /**
-     * Constructor to create an empty task list.
+     * Constructs an empty task list.
      */
     public TaskList() {
         tasks = new ArrayList<>();
@@ -26,7 +26,7 @@ public class TaskList {
     }
 
     /**
-     * Removes a task from the list.
+     * Removes a task from the list by index.
      *
      * @param index Index of task to be removed.
      */
@@ -35,7 +35,7 @@ public class TaskList {
     }
 
     /**
-     * Removes a task from the list.
+     * Removes a task from the list by reference.
      *
      * @param task Task to be removed.
      */

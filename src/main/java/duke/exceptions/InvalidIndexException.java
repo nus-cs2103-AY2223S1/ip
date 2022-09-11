@@ -7,7 +7,7 @@ public class InvalidIndexException extends DukeException {
     private static final String message = "Invalid index!";
 
     /**
-     * Constructor for an invalid index exception.
+     * Constructs an invalid index exception.
      */
     public InvalidIndexException() {
         super(message);

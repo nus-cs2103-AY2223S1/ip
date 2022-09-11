@@ -12,7 +12,7 @@ public class Event extends Task {
     private final LocalDateTime date;
 
     /**
-     * Constructor for an event that takes in description and date.
+     * Constructs an event with description and date.
      * Event is set as "not done" when created.
      *
      * @param description Description of an event.
@@ -24,7 +24,7 @@ public class Event extends Task {
     }
 
     /**
-     * Factory method for an Event that takes in done, description and date.
+     * Creates an Event with done, description and date.
      *
      * @param done        Whether the Event is done.
      * @param description Description of Event.

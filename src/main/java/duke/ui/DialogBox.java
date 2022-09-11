@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
- * Controller for the dialog box of the Duke application.
+ * Represents the controller for the dialog box of the Duke application.
  */
 public class DialogBox extends HBox {
     @FXML
@@ -20,7 +20,7 @@ public class DialogBox extends HBox {
     private final ImageView displayImage;
 
     /**
-     * Private constructor for a dialog box that takes in a label and an image.
+     * Constructs a dialog box that takes in a label and an image.
      *
      * @param label Label to be shown in the dialog box.
      * @param image Image to be shown in the dialog box.
@@ -48,7 +48,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Factory method to create a user dialog box.
+     * Creates a user dialog box with label and image.
      *
      * @param label User's text to be shown.
      * @param image User's image to be shown.
@@ -59,7 +59,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Factory method to create a duke dialog box.
+     * Create a duke dialog box with label and image.
      *
      * @param label Duke's text to be shown.
      * @param image Duke's image to be shown.
