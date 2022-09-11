@@ -1,0 +1,20 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+//@@author RezwanArefin01-reused
+//Ref: https://github.com/mambax/mambax/blob/gh-pages/assets/css/style.scss
+@media screen and (min-width: 1200px) {
+  .wrapper {
+    width:1200px;
+    margin:0 auto;
+  }
+  
+  section {
+    width:900px;
+    float:right;
+    padding-bottom:50px;
+  }
+}
+//@@author

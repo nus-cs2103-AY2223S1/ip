@@ -1,5 +1,4 @@
 theme: jekyll-theme-minimal
 title: Duke
-description: Your personal ChatBot
-logo: bot.png
-show_downloads: true
+description: A ChatBot to Track Tasks
+logo: /bot.png
