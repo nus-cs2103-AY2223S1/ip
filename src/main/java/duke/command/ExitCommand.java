@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.util.Storage;
+import duke.util.Ui;
 
 /**
  * Command to execute ending the current session
@@ -10,6 +11,12 @@ import duke.util.Storage;
  * @version 0.2
  */
 public class ExitCommand extends Command {
+    private final Ui ui;
+
+    public ExitCommand(Ui ui) {
+        this.ui = ui;
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -20,7 +27,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(Storage storage) {
-        return "Will that be all? Alright then.";
+        return ui.goodbye();
     }
     /**
      * {@inheritDoc}

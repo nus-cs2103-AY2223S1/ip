@@ -79,4 +79,14 @@ public class Duke {
         }
         return latestCommand.isExit();
     }
+
+    /**
+     * Returns Duke's greetings
+     *
+     * @return Duke's greetings as a String
+     * @since 0.3
+     */
+    public String greet() {
+        return ui.greet();
+    }
 }

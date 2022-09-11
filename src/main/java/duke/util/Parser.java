@@ -29,7 +29,7 @@ public class Parser {
             Command.RecognisedCommand word = Command.checkEnums(returnedArray[0]);
             switch (word) {
             case BYE:
-                return new ExitCommand();
+                return new ExitCommand(ui);
             case LIST:
                 return new ListCommand(tasks, ui);
             case HELP:

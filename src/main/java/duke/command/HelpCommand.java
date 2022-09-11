@@ -24,34 +24,49 @@ public class HelpCommand extends Command {
         for (RecognisedCommand e : RecognisedCommand.values()) {
             switch (e) {
             case BYE:
-                response += "Ends my service.\n";
+                response += "bye:\nEnds my service.\n";
+                break;
             case LIST:
-                response += "Lists all the tasks I have been given to track.\n";
+                response += "list:\nLists all the tasks I have been given to track.\n";
+                break;
             case HELP:
-                response += "Lists all the commands I know.\n";
+                response += "help:\nLists all the commands I know.\n";
+                break;
             case MARK:
-                response += "Format: mark x, where x is an integer."
+                response += "mark:\nFormat: mark x, where x is an integer."
                         + "\nMarks the task that is index x on the list as done.\n";
+                break;
             case UNMARK:
-                response += "Format: unmark x, where x is an integer."
+                response += "unmark:\nFormat: unmark x, where x is an integer."
                         + "\nMarks the task that is index x on the list as not done.\n";
+                break;
             case DELETE:
-                response += "Format: delete x, where x is an integer."
+                response += "delete:\nFormat: delete x, where x is an integer."
                         + "\nMarks the task that is index x on the list as done.\n";
+                break;
             case TODO:
-                response += "Format: todo <duke.task>"
+                response += "todo:\nFormat: todo <duke.task>"
                         + "\nI will add the <task> to the list of tasks.\n";
+                break;
             case DEADLINE:
-                response += "Format: todo <task> /by <time/date>"
+                response += "deadline:\nFormat: todo <task> /by <time/date>"
                         + "\nI will add the <task> to the list of tasks."
                         + "\nThe <task> will also display its deadline at <time/date>.\n";
+                break;
             case EVENT:
-                response += "Format: todo <task> /at <time/date"
+                response += "event:\nFormat: todo <task> /at <time/date"
                         + "\nI will add the <task> to the list of tasks."
                         + "\nThe <task> will also display the <time/date> the task should be done.\n";
+                break;
             case FIND:
-                response += "Format: find <keyword>"
+                response += "find:\nFormat: find <keyword>"
                         + "\nI will search for all tasks that possesses the <keyword>\n";
+                break;
+            case TAG:
+                response += "tag:\nFormat: tag <task index> <description>"
+                        + "\nI will tag the task in the task list with the <task index> index, with the"
+                        + "<description>\n";
+                break;
             default:
             }
         }

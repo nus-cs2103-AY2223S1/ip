@@ -30,7 +30,7 @@ public class MainWindow {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/defaultPfP.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/hoshiyomi.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/sui.jpg"));
 
     @FXML
@@ -40,6 +40,7 @@ public class MainWindow {
 
     public void setDuke(Duke d) {
         duke = d;
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(d.greet(), dukeImage));
     }
 
     /**

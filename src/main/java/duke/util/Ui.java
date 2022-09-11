@@ -6,55 +6,70 @@ import java.util.Scanner;
 import duke.task.Task;
 
 /**
- * The program that manages Duke's communications with the user
+ * Program that manages Duke's communications with the user. Ui stands for User Interactions.
  *
  * @author Nephelite
- * @version 0.2
+ * @version 0.3
  */
 public class Ui {
-    /**
-     * Line break before Duke receives a command
-     */
-    private static final String LINE_BREAK_BEFORE =
-            "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
-                    + "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-";
-    /**
-     * Line break after Duke receives a command
-     */
-    private static final String LINE_BREAK_AFTER =
-            "______________________________________________________"
-                    + "______________________________________________________";
     /**
      * Duke logo
      */
     private static final String LOGO =
-            " ____        _\n"
-                    + "|  _ \\ _   _| | _____\n"
-                    + "| | | | | | | |/ / _ \\\n"
-                    + "| |_| | |_| |   <  __/\n"
-                    + "|____/ \\__,_|_|\\_\\___|";
+            " ____         _\n"
+                    + "|  _  \\ _    _| | _____\n"
+                    + "| |   | | |   | | |/  / _ \\\n"
+                    + "| |__| | |__| |    <  __/\n"
+                    + "|____/ \\___|_|\\_\\___|";
     /**
      * First line of Duke's greeting
      */
-    private static final String GREETING_NAME = "Hello! I'm Duke.";
+    private static final String GREETING_NAME = "It's your shooting star, your diamond in the rough, "
+            + "idol VTuber Hoshimachi Suisei!";
     /**
      * Second line of Duke's greeting
      */
-    private static final String GREETING_QUESTION = "What can I do for you?";
-
+    private static final String GREETING_QUESTION = "What are you doing today?";
     /**
-     * Scanner object that Ui will use to read user inputs
+     * Duke begins to read a task list
      */
-    private Scanner commandInput;
-
+    private static final String BEGIN_LIST = "Here are the current tasks in your list:";
     /**
-     * Constructor for a Ui object
-     *
-     * @since 0.1
+     * Duke begins to read a filtered task list
      */
-    public Ui() {
-        this.commandInput = new Scanner(System.in);
-    }
+    private static final String BEGIN_FILTERED_LIST = "Here are the matching tasks in your list:";
+    /**
+     * Duke begins to mark a task
+     */
+    private static final String BEGIN_MARK_TASK = "Yay! You completed this task:\n";
+    /**
+     * Duke begins to unmark a task
+     */
+    private static final String BEGIN_UNMARK_TASK = "Alright, I will mark this task as undone:\n";
+    /**
+     * Duke begins to mark a task
+     */
+    private static final String PRAISE = "Good job!";
+    /**
+     * Duke begins to add a task
+     */
+    private static final String BEGIN_ADD_TASK = "I am adding your task to the list:" + "\n";
+    /**
+     * Duke informs user how many tasks remain
+     */
+    private static final String REMAINING_TASK = " tasks remain in your list.";
+    /**
+     * Duke begins removing a task from the list
+     */
+    private static final String BEGIN_REMOVE_TASK = "Yes. I shall purge this task:\n";
+    /**
+     * Duke tags a task
+     */
+    private static final String TAG_TASK = " has been tagged with #";
+    /**
+     * Duke says goodbye
+     */
+    private static final String FAREWELL = "See you again, have a nice day!\nOtsumachi!";
 
     /**
      * Greets the user
@@ -70,20 +85,20 @@ public class Ui {
      * Begin to list tasks
      *
      * @return Duke's response to reading a list
-     * @since 0.2
+     * @since 0.3
      */
     public String list() {
-        return "Here are the current tasks in your list:";
+        return BEGIN_LIST;
     }
 
     /**
      * Begin to list filtered tasks
      *
      * @return Duke's response to reading a filtered list
-     * @since 0.2
+     * @since 0.3
      */
     public String filteredList() {
-        return "Here are the matching tasks in your list:";
+        return BEGIN_FILTERED_LIST;
     }
 
     /**
@@ -94,7 +109,7 @@ public class Ui {
      * @since 0.2
      */
     public String mark(Task task) {
-        return "Good Job! I will mark this task as done:" + "\n" + task;
+        return BEGIN_MARK_TASK + task + PRAISE;
     }
 
     /**
@@ -105,7 +120,7 @@ public class Ui {
      * @since 0.2
      */
     public String unmark(Task task) {
-        return "Alright, I will mark this task as undone:" + "\n" + task;
+        return BEGIN_UNMARK_TASK + task;
     }
 
     /**
@@ -128,9 +143,7 @@ public class Ui {
      * @since 0.2
      */
     public String addTask(Task task, int size) {
-        return "Adding to Tasks:" + "\n"
-                + task
-                + "\nYou have " + size + " tasks in the list.";
+        return BEGIN_ADD_TASK + task + "\n" + size + REMAINING_TASK;
     }
 
     /**
@@ -142,8 +155,7 @@ public class Ui {
      * @since 0.2
      */
     public String delete(Task task, int size) {
-        return "Understood. I will purge this task from your list:\n" + task
-                + "\nCurrently, you have " + size + " tasks in your list.";
+        return BEGIN_REMOVE_TASK + task + "\n" + size + REMAINING_TASK;
     }
 
     /**
@@ -176,7 +188,22 @@ public class Ui {
         return list;
     }
 
+    /**
+     * Duke informs the user that a tag was added
+     *
+     * @param task Task tagged
+     * @param tag applied Tag
+     * @return String containing Duke response
+     */
     public String addTag(Task task, String tag) {
-        return "Tagged task " + task + " with #" + tag;
+        return task + TAG_TASK + tag + ".";
+    }
+
+    /**
+     * Duke says goodbye to the user
+     * @return String containing Duke's gooddbye
+     */
+    public String goodbye() {
+        return FAREWELL;
     }
 }
