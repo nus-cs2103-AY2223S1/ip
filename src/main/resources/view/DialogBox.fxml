@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.shape.Circle?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="450.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <children>
   <HBox fx:id="chatContainer" spacing="15">
     <HBox fx:id="dialogContainer" styleClass="container">
-      <Text fx:id="dialog" text="Text" wrappingWidth="265" styleClass="text"/>
+      <Text fx:id="dialog" text="Text" wrappingWidth="315" styleClass="text"/>
     </HBox>
     <Circle fx:id="displayPicture" styleClass="displayPicture" radius="35" />
   </HBox>

@@ -11,8 +11,8 @@ import duke.task.TaskList;
  */
 public class Ui {
     private enum Divider {
-        THICK_DIVIDER("================================="),
-        THIN_DIVIDER("-----------------------------------");
+        THICK_DIVIDER("=============================================="),
+        THIN_DIVIDER("-----------------------------------------------");
 
         private String divider;
 
