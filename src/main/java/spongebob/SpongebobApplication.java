@@ -12,10 +12,9 @@ public class SpongebobApplication {
     /**
      * Returns an instance of spongebob.
      *
-     * @param filePath String location of duke.txt.
      */
-    public SpongebobApplication(String filePath) {
-        this.storage = new Storage(filePath);
+    public SpongebobApplication() {
+        this.storage = new Storage();
         this.taskList = new TaskList(this.storage.load());
     }
 
@@ -36,6 +35,6 @@ public class SpongebobApplication {
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
-        SpongebobApplication spongebob = new SpongebobApplication("data/spongebob.txt");
+        SpongebobApplication spongebob = new SpongebobApplication();
     }
 }

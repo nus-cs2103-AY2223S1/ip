@@ -14,7 +14,7 @@ import spongebob.controller.MainWindow;
  */
 public class Main extends Application {
 
-    private SpongebobApplication spongebob = new SpongebobApplication("data/spongebob.txt");
+    private SpongebobApplication spongebob = new SpongebobApplication();
 
     @Override
     public void start(Stage stage) {
