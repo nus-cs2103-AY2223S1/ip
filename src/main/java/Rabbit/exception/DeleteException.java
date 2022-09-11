@@ -13,10 +13,10 @@ public class DeleteException extends RabbitException {
     @Override
     public String toString() {
         switch(this.type) {
-            case FORMAT:
-                return "Type 'delete index' to delete a task if that's what you want.";
-            case INDEX:
-                return "You can't delete a task that's not in the list.";
+        case FORMAT:
+            return "Type 'delete index' to delete a task if that's what you want.";
+        case INDEX:
+            return "You can't delete a task that's not in the list.";
         }
         return "";
     }
