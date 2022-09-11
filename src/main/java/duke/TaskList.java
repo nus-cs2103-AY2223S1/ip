@@ -35,6 +35,9 @@ public class TaskList {
      * task status (done, undone) are represented by [X], [ ].
      */
     public String printTaskList() {
+        if (this.getSize() == 0) {
+            return "Oops! There's no matching tasks found :-(";
+        }
         int count = 1;
         String listString = "";
         for (Task t : tasks) {
@@ -153,6 +156,16 @@ public class TaskList {
             }
         }
         return new TaskList(tasksAtDate);
+    }
+
+    public TaskList searchByTag(String tag) {
+        TaskList tasksByTag = new duke.TaskList();
+        for (Task t : tasks) {
+            if (t.containsTag(tag)) {
+                tasksByTag.addTask(t);
+            }
+        }
+        return tasksByTag;
     }
 
     /**
