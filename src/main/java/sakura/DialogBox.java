@@ -47,9 +47,9 @@ public class DialogBox extends HBox {
         displayPicture.setFitHeight(100.0);
 
         if (t == TextAlignment.LEFT) {
-            this.setBackground(new Background(new BackgroundFill(Color.valueOf("CD5C5C"), new CornerRadii(5), new Insets(1))));
+            this.setBackground(new Background(new BackgroundFill(Color.valueOf("cd5c78"), new CornerRadii(5), new Insets(1))));
         } else {
-            this.setBackground(new Background(new BackgroundFill(Color.valueOf("2D7D7E"), new CornerRadii(5), new Insets(1))));
+            this.setBackground(new Background(new BackgroundFill(Color.valueOf("5cb1cd"), new CornerRadii(5), new Insets(1))));
         }
         this.setAlignment(Pos.CENTER_RIGHT);
         this.getChildren().addAll(dialog, displayPicture);
