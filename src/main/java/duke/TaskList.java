@@ -28,14 +28,27 @@ public class TaskList {
      *
      * @param task Task to be added.
      * @return Response string from Duke Bot.
+     * @throws DukeException If duplicate task is added.
      */
-    public String addTask(Task task) {
+    public String addTask(Task task) throws DukeException {
+        if (checkDuplicate(task)) {
+            throw new DukeException("no duplicate tasks pls");
+        }
         tasks.add(task);
         return ui.printMessage("Got it. I've added this task:\n      "
                 + task
                 + "\n    Now you have "
                 + tasks.size()
                 + " tasks in the list.");
+    }
+
+    private boolean checkDuplicate(Task task) {
+        for (Task t: tasks) {
+            if (task.equals(t)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
