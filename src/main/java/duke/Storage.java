@@ -71,7 +71,7 @@ public class Storage {
     }
 
     /**
-     * Load one task into a TaskList.
+     * Loads one task into a TaskList.
      *
      * @param tasks The destination for the task to be loaded to.
      * @param line The task to be loaded which is stored in a String format.
