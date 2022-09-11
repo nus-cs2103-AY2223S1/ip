@@ -118,7 +118,7 @@ public class Duke {
      * @throws DukeException
      */
     public String handleMark(int index) throws DukeException {
-        
+        assert index > 0;
         tasks.markTask(index);
         Task taskToBeMarked = tasks.getTask(index);
         storage.save(tasks);
