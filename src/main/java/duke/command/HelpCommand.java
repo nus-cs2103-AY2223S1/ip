@@ -14,6 +14,7 @@ public class HelpCommand extends Command {
 
     public static final String HELP_STRING = "- help:\n"
             + "Prints this help message.";
+    private static final String HELP_HEADER = "Here are the commands you can use:";
 
     @Override
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
@@ -27,7 +28,7 @@ public class HelpCommand extends Command {
             ExitCommand.HELP_STRING
         };
 
-        printer.accept("Here are the command you can use:");
+        printer.accept(HELP_HEADER);
         StringJoiner sj = new StringJoiner("\n\n");
         Arrays.stream(helpMessages).forEach(sj::add);
         printer.accept(sj.toString());

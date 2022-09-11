@@ -19,6 +19,8 @@ public class AddTaskCommand extends Command {
             + "- event <description> / <date-time>:\n"
             + "Adds an event task to the task list with the given description and date.\n"
             + "The date-time should be in the format d-M-yy HHmm.";
+    private static final String ADD_TASK_RESPONSE_FORMAT = "I've added the following task:\n\t%s";
+
     private final Task task;
 
     /**
@@ -41,7 +43,7 @@ public class AddTaskCommand extends Command {
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
         tasks.add(task);
         storage.save(tasks);
-        printer.accept("I've added the following task:\n\t" + task);
+        printer.accept(String.format(ADD_TASK_RESPONSE_FORMAT, task));
     }
 
     /**

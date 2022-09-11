@@ -16,6 +16,7 @@ public class UpdateStatusCommand extends Command {
             + "Checks the task at the given index from the task list.\n\n"
             + "uncheck <index>:\n"
             + "Unchecks the task at the given index from the task list.";
+    private static final String UPDATE_RESPONSE_FORMAT = "I've updated the task:\n\t%s";
 
     private final int index;
     private final boolean isDone;
@@ -46,7 +47,7 @@ public class UpdateStatusCommand extends Command {
         Task task = tasks.get(index - 1);
         task.setDone(isDone);
         storage.save(tasks);
-        printer.accept("I've updated the status of this task\n\t" + task);
+        printer.accept(String.format(UPDATE_RESPONSE_FORMAT, task));
     }
 
     /**

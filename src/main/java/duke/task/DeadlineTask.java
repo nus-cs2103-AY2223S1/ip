@@ -29,12 +29,12 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + " (by: " + this.deadline.format(DATE_TIME_OUTPUT_FORMAT) + ")";
+        return String.format("%s (by: %s)", super.toString(), this.deadline.format(DATE_TIME_OUTPUT_FORMAT));
     }
 
     @Override
     public String toSaveString() {
-        return super.toSaveString() + " | " + this.deadline.format(DATE_TIME_INPUT_FORMAT);
+        return String.format("%s | %s", super.toSaveString(), this.deadline.format(DATE_TIME_INPUT_FORMAT));
     }
 
     @Override

@@ -29,7 +29,7 @@ public class EventTask extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.time.format(DATE_TIME_OUTPUT_FORMAT) + ")";
+        return String.format("%s (at: %s)", super.toString(), this.time.format(DATE_TIME_OUTPUT_FORMAT));
     }
 
     /**
@@ -39,7 +39,7 @@ public class EventTask extends Task {
      */
     @Override
     public String toSaveString() {
-        return super.toSaveString() + " | " + this.time.format(DATE_TIME_INPUT_FORMAT);
+        return String.format("%s | %s", super.toSaveString(), this.time.format(DATE_TIME_INPUT_FORMAT));
     }
 
     /**

@@ -13,6 +13,7 @@ public class FindCommand extends Command {
     public static final String HELP_STRING = "- find <keyword>:\n"
             + "Searches for tasks with the given keyword."
             + "The search is case insensitive.";
+    private static final String FIND_RESPONSE_FORMAT = "Tasks containing the keyword \"%s\":\n%s";
 
     private final String keyword;
 
@@ -36,7 +37,7 @@ public class FindCommand extends Command {
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
         TaskList foundTasks = new TaskList();
         tasks.stream().filter(t -> t.contains(keyword)).forEach(foundTasks::add);
-        printer.accept("Tasks containing \"" + keyword + "\":\n" + foundTasks);
+        printer.accept(String.format(FIND_RESPONSE_FORMAT, keyword, foundTasks));
     }
 
     /**

@@ -3,6 +3,7 @@ package duke.command;
 import java.util.function.Consumer;
 
 import duke.DukeException;
+import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Storage;
 
@@ -13,6 +14,7 @@ public class DeleteTaskCommand extends Command {
 
     public static final String HELP_STRING = "- delete <index>:\n"
             + "Deletes the task at the given index from the task list.";
+    private static final String DELETE_RESPONSE_FORMAT = "I've deleted the following task:\n\t%s";
 
     private final int index;
 
@@ -37,9 +39,10 @@ public class DeleteTaskCommand extends Command {
         if (index < 1 || index > tasks.size()) {
             throw new DukeException("Invalid task index.");
         }
+        Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
         storage.save(tasks);
-        printer.accept("I've removed the following task:\n\t" + tasks.get(index - 1));
+        printer.accept(String.format(DELETE_RESPONSE_FORMAT, task));
     }
 
     /**

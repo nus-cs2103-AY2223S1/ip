@@ -14,6 +14,8 @@ public class ExitCommand extends Command {
 
     public static final String HELP_STRING = "- exit:\n"
             + "Exits the program.";
+    private static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
+    private static final int EXIT_DELAY = 1000;
 
     /**
      * Calls the {@code UI} to exit interaction.
@@ -24,13 +26,13 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
-        printer.accept("Bye! Hope to see you soon.");
+        printer.accept(BYE_MESSAGE);
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 System.exit(0);
             }
-        }, 1000L);
+        }, EXIT_DELAY);
     }
 
     /**

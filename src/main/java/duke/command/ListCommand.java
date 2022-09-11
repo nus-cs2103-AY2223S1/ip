@@ -12,6 +12,7 @@ public class ListCommand extends Command {
 
     public static final String HELP_STRING = "- list:\n"
             + "Lists all the tasks in the task list.";
+    private static final String LIST_RESPONSE_FORMAT = "List of tasks:\n%s";
 
     /**
      * Prints the {@code Task}s in the {@code TaskList} to the {@code UI}.
@@ -22,7 +23,7 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
-        printer.accept("List of tasks:\n" + tasks);
+        printer.accept(String.format(LIST_RESPONSE_FORMAT, tasks));
     }
 
     /**
