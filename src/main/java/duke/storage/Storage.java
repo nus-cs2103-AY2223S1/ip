@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.sun.javafx.css.PseudoClassState;
+import duke.parser.Parser;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -27,6 +29,12 @@ public class Storage {
 
     /** Get the file path which is Folder path + /duke.txt. */
     private static final Path FILE_PATH = Paths.get(FOLDER_PATH + "/duke.txt");
+
+    private static final int TASK_TYPE_POSITION = 1;
+    private static final int CHARS_BEFORE_DESCRIPTION = 7;
+    private static final char TODO_SYMBOL = 'T';
+    private static final char EVENT_SYMBOL = 'E';
+    private static final char DEADLINE_SYMBOL = 'D';
 
     /**
      * Handles loading of data from file
@@ -51,26 +59,7 @@ public class Storage {
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String line = s.nextLine();
-            char taskType = line.charAt(1);
-            assert taskType == 'T' || taskType == 'D' || taskType == 'E' : "The task status should be either X or empty";
-            char taskStatus = line.charAt(4);
-            assert taskStatus == 'X' || taskStatus == ' ' : "The task status should be either X or empty";
-            if (taskType == 'T') {
-                String description = line.substring(7);
-                taskList.addTask(new ToDo(description, taskStatus));
-            } else if (taskType == 'D') {
-                String descriptionAndDate = line.substring(7);
-                String[] arguments = descriptionAndDate.split("\\(");
-                String description = arguments[0];
-                LocalDate date = LocalDate.parse(removeLastChar(arguments[1]));
-                taskList.addTask(new Deadline(description, date, taskStatus));
-            } else if (taskType == 'E') {
-                String descriptionAndDate = line.substring(7);
-                String[] arguments = descriptionAndDate.split("\\(");
-                String description = arguments[0];
-                LocalDate date = LocalDate.parse(removeLastChar(arguments[1]));
-                taskList.addTask(new Event(description, date, taskStatus));
-            }
+            Parser.parseStorageData(taskList, line);
         }
         return taskList;
     }
@@ -92,16 +81,5 @@ public class Storage {
         }
         fw.write(fullText);
         fw.close();
-    }
-
-    /**
-     * Removes the last char in a string.
-     *
-     * @param s The string to remove last char.
-     * @return The string without last char.
-     */
-    public static String removeLastChar(String s) {
-        s = s.substring(0, s.length() - 1);
-        return s;
     }
 }

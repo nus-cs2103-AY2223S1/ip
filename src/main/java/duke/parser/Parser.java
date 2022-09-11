@@ -17,6 +17,7 @@ import duke.exception.EmptyDescriptionException;
 import duke.exception.InvalidInputException;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.TaskList;
 import duke.task.ToDo;
 
 
@@ -25,6 +26,13 @@ import duke.task.ToDo;
  */
 public class Parser {
     private static final char UNDONE_STATUS = ' ';
+    private static final int INPUT_SPLIT_LIMIT = 2;
+    private static final int TASK_TYPE_POSITION = 1;
+    private static final int CHARS_BEFORE_DESCRIPTION = 7;
+    private static final char TODO_SYMBOL = 'T';
+    private static final char EVENT_SYMBOL = 'E';
+    private static final char DEADLINE_SYMBOL = 'D';
+
 
     /**
      * Parses the user command.
@@ -35,7 +43,7 @@ public class Parser {
      */
     public static Command parseCommand(String input) throws DukeException {
         assert !input.isEmpty() : "Input cannot be empty";
-        String[] arguments = input.trim().split(" ", 2);
+        String[] arguments = input.trim().split(" ", INPUT_SPLIT_LIMIT);
         String commandType = arguments[0];
         if ("bye".equalsIgnoreCase(commandType)) {
             return exit();
@@ -59,6 +67,42 @@ public class Parser {
             return findTask(arguments);
         } else {
             throw new InvalidInputException();
+        }
+    }
+
+    /**
+     * Parse the data loaded from the file.
+     * @param tasks The taskList to store the data.
+     * @param line  The data loaded from the file.
+     */
+    public static void parseStorageData(TaskList tasks, String line) {
+        char taskType = line.charAt(TASK_TYPE_POSITION);
+        assert taskType == 'T' || taskType == 'D' || taskType == 'E' : "The task status should be either X or empty";
+        char taskStatus = line.charAt(4);
+        assert taskStatus == 'X' || taskStatus == ' ' : "The task status should be either X or empty";
+        if (taskType == TODO_SYMBOL) {
+            String description = line.substring(CHARS_BEFORE_DESCRIPTION);
+            tasks.addTask(new ToDo(description, taskStatus));
+        } else if (taskType == DEADLINE_SYMBOL) {
+            parseTimeDescription(tasks, line, taskStatus, DEADLINE_SYMBOL);
+        } else if (taskType == EVENT_SYMBOL) {
+            parseTimeDescription(tasks, line, taskStatus, EVENT_SYMBOL);
+        }
+    }
+
+
+    private static void parseTimeDescription(TaskList tasks, String line, char taskStatus, char taskSymbol) {
+        String descriptionAndDate = line.substring(CHARS_BEFORE_DESCRIPTION);
+        String[] arguments = descriptionAndDate.split("\\(");
+        String description = arguments[0];
+        //Remove the ")" at end of the description.
+        String dateString = removeLastChar(arguments[1]);
+        LocalDate date = LocalDate.parse(dateString);
+
+        if (taskSymbol  == DEADLINE_SYMBOL) {
+            tasks.addTask(new Deadline(description, date, taskStatus));
+        } else if (taskSymbol  == EVENT_SYMBOL) {
+            tasks.addTask(new Event(description, date, taskStatus));
         }
     }
 
@@ -151,5 +195,16 @@ public class Parser {
         String[] args = text.split(keyword);
         String date = args[1].trim();
         return date;
+    }
+
+    /**
+     * Removes the last char in a string.
+     *
+     * @param s The string to remove last char.
+     * @return The string without last char.
+     */
+    private static String removeLastChar(String s) {
+        s = s.substring(0, s.length() - 1);
+        return s;
     }
 }

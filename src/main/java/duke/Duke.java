@@ -22,6 +22,8 @@ public class Duke {
     /** The list of tasks. */
     private TaskList tasks;
 
+    private static final int DELAY_SECONDS = 3;
+
     /** Constructor for Class Duke/ */
     public Duke() {
         this.ui = new Ui();
@@ -41,7 +43,7 @@ public class Duke {
         try {
             Command c = Parser.parseCommand(input);
             if (c.isExit()) {
-                PauseTransition delay = new PauseTransition(Duration.seconds(3));
+                PauseTransition delay = new PauseTransition(Duration.seconds(DELAY_SECONDS));
                 delay.setOnFinished(event -> Platform.exit());
                 delay.play();
             }
