@@ -58,6 +58,7 @@ public class Duke {
 
     private void loadTaskFromStorageIntoTasks() {
         try {
+            assert storage != null : "The storage should not be null when loading tasks";
             tasks = new TaskList(storage.load());
             if (tasks.isNotEmpty()) {
                 guiUi.displayOutput(dukeResponses.loadTaskSuccessfully() + '\n' + dukeResponses.listTasks(tasks));
@@ -129,6 +130,7 @@ public class Duke {
 
     private void terminate() {
         try {
+            assert tasks != null : "The tasks should not be null when storing them in storage";
             storage.storeTask(tasks);
             guiUi.displayOutput(dukeResponses.endPrompt());
             TimerTask exitApp = new TimerTask() {
@@ -148,6 +150,7 @@ public class Duke {
      * List all current task in the taskList.
      */
     private String listTasks() {
+        assert tasks != null : "The tasks should not be null when listing them";
         return dukeResponses.listTasks(tasks);
     }
 
@@ -155,6 +158,7 @@ public class Duke {
      * Find all current task in the taskList base on a string.
      */
     private String findTasks(String string) {
+        assert tasks != null : "The tasks should not be null when finding tasks";
         return dukeResponses.findTasks(tasks, string);
     }
 
@@ -167,6 +171,7 @@ public class Duke {
         if (Utils.isNotParsable(index)) {
             throw new InvalidIndexException(String.format("%s is not a number", index));
         }
+        assert tasks != null : "The tasks should not be null when checking tasks";
         Task task = tasks.checkTask(Integer.parseInt(index));
         return dukeResponses.markDone(task.getTaskName()) + "\n" + dukeResponses.listTasks(tasks);
     }
@@ -180,6 +185,7 @@ public class Duke {
         if (Utils.isNotParsable(index)) {
             throw new InvalidIndexException(String.format("%s is not a number", index));
         }
+        assert tasks != null : "The tasks should not be null when unchecking tasks";
         Task task = tasks.uncheckTask(Integer.parseInt(index));
         return dukeResponses.markUndone(task.getTaskName()) + "\n" + dukeResponses.listTasks(tasks);
     }
@@ -193,6 +199,7 @@ public class Duke {
         if (Utils.isNotParsable(index)) {
             throw new InvalidIndexException(String.format("%s is not a number", index));
         }
+        assert tasks != null : "The tasks should not be null when deleting tasks";
         Task task = tasks.deleteTask(Integer.parseInt(index));
         return dukeResponses.deleteTask(task) + "\n" + dukeResponses.listTasks(tasks);
     }
@@ -204,6 +211,7 @@ public class Duke {
      * @param task the task we would like to add to the task list.
      */
     private <T extends Task> String addTask(T task) {
+        assert tasks != null : "The tasks should not be null when adding tasks";
         tasks.addTask(task);
         return dukeResponses.addTask(task) + "\n" + dukeResponses.listTasks(tasks);
     }

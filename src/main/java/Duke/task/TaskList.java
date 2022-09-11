@@ -85,6 +85,7 @@ public class TaskList {
      * @param task a task that will be added into the task list.
      */
     public void addTask(Task task) {
+        assert tasks != null : "The tasks should not be null when adding tasks";
         tasks.add(task);
     }
 
@@ -95,6 +96,7 @@ public class TaskList {
      */
     public Task deleteTask(int index) throws InvalidIndexException {
         validateIndex(index - 1);
+        assert isNotEmpty() : "The tasks should contain at least one task when deleting";
         return (Task) tasks.remove(index - 1);
     }
 
@@ -105,6 +107,7 @@ public class TaskList {
      */
     public Task checkTask(int index) throws InvalidIndexException {
         validateIndex(index - 1);
+        assert isNotEmpty() : "The tasks should contain at least one task when checking";
         Task task = (Task) tasks.get(index - 1);
         task.markDone();
         return task;
@@ -117,6 +120,7 @@ public class TaskList {
      */
     public Task uncheckTask(int index) throws InvalidIndexException {
         validateIndex(index - 1);
+        assert isNotEmpty() : "The tasks should contain at least one task when unchecking";
         Task task = (Task) tasks.get(index - 1);
         task.markUndone();
         return task;
