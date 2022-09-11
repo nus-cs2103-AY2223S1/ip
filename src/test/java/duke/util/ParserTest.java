@@ -97,10 +97,10 @@ public class ParserTest {
 
 
         try {
-            Parser.parseDateTime("01-01-2022 0100");
+            Parser.parseDateTime("01-01-2022 100");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: invalid datetime: 01-01-2022 0100", e.getMessage());
+            assertEquals("Parsing error: invalid datetime: 01-01-2022 100", e.getMessage());
         }
     }
 

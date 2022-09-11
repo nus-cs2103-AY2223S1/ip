@@ -15,10 +15,10 @@ public class AddTaskCommand extends Command {
             + "Adds a todo task to the task list with the given description.\n\n"
             + "- deadline <description> / <date-time>:\n"
             + "Adds a deadline task to the task list with the given description and date.\n"
-            + "The date-time should be in the format d-M-yy HHmm.\n\n"
+            + "The date-time should be in the format dd-mm-yy HHmm.\n\n"
             + "- event <description> / <date-time>:\n"
             + "Adds an event task to the task list with the given description and date.\n"
-            + "The date-time should be in the format d-M-yy HHmm.";
+            + "The date-time should be in the format dd-mm-yy HHmm.";
     private static final String ADD_TASK_RESPONSE_FORMAT = "I've added the following task:\n\t%s";
 
     private final Task task;

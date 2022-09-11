@@ -27,7 +27,14 @@ import duke.task.TodoTask;
  */
 public class Parser {
 
-    public static final DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("d-M-yy HHmm");
+    public static final DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern(""
+        + "[d/M/yy HHmm][d/M/yy HH:mm][d-M-yy HHmm][d-M-yy HH:mm][d/M/yyyy HHmm][d/M/yyyy HH:mm]"
+        + "[d-M-yyyy HHmm][d-M-yyyy HH:mm][d/MM/yy HHmm][d/MM/yy HH:mm][d-MM-yy HHmm][d-MM-yy HH:mm]"
+        + "[d/MM/yyyy HHmm][d/MM/yyyy HH:mm][d-MM-yyyy HHmm][d-MM-yyyy HH:mm][dd/M/yy HHmm][dd/M/yy HH:mm]"
+        + "[dd-M-yy HHmm][dd-M-yy HH:mm][dd/M/yyyy HHmm][dd/M/yyyy HH:mm][dd-M-yyyy HHmm][dd-M-yyyy HH:mm]"
+        + "[dd/MM/yy HHmm][dd/MM/yy HH:mm][dd-MM-yy HHmm][dd-MM-yy HH:mm][dd/MM/yyyy HHmm][dd/MM/yyyy HH:mm]"
+        + "[dd-MM-yyyy HHmm][dd-MM-yyyy HH:mm]");
+    public static final DateTimeFormatter DATE_TIME_SAVE_FORMAT = DateTimeFormatter.ofPattern("d-M-yy HHmm");
     public static final DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
 
     /**
@@ -46,7 +53,7 @@ public class Parser {
 
     /**
      * Parses a {@code LocalDateTime} from a string.
-     * The string must be in the format {@code d-M-yy HHmm}.
+     * The string must be in the format {@code DATE_TIME_INPUT_FORMAT}.
      *
      * @param dateTime The string to parse.
      * @return The parsed {@code LocalDateTime}.

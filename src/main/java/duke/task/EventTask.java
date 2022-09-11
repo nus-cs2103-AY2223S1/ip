@@ -1,7 +1,7 @@
 package duke.task;
 
-import static duke.parser.Parser.DATE_TIME_INPUT_FORMAT;
 import static duke.parser.Parser.DATE_TIME_OUTPUT_FORMAT;
+import static duke.parser.Parser.DATE_TIME_SAVE_FORMAT;
 
 import java.time.LocalDateTime;
 
@@ -39,7 +39,7 @@ public class EventTask extends Task {
      */
     @Override
     public String toSaveString() {
-        return String.format("%s | %s", super.toSaveString(), this.time.format(DATE_TIME_INPUT_FORMAT));
+        return String.format("%s | %s", super.toSaveString(), this.time.format(DATE_TIME_SAVE_FORMAT));
     }
 
     /**
