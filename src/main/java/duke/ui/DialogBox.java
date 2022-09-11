@@ -28,7 +28,8 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    //ImageView.setClip solution reference from https://www.programcreek.com/java-api-examples/?api=javafx.scene.shape.Circle
+    //ImageView.setClip solution reference from
+    //https://www.programcreek.com/java-api-examples/?api=javafx.scene.shape.Circle
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
