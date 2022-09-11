@@ -145,7 +145,7 @@ public class Duke {
                 return markTask(input, false);
             } else if (input.startsWith("delete ")) {
                 return deleteTask(input);
-            } else if (input.startsWith("todo ")) {
+            } else if (input.startsWith(TaskType.TODO.string)) {
                 return addTask(input, TaskType.TODO);
             } else if (input.startsWith("deadline ")) {
                 return addTask(input, TaskType.DEADLINE);
@@ -162,7 +162,7 @@ public class Duke {
     }
 
     enum TaskType {
-        TODO("todo "),
+        TODO("t "),
         DEADLINE("deadline "),
         EVENT("event ");
 
