@@ -150,6 +150,7 @@ Example of usage:
 
 Expected outcome:
 * After running `find CS2103`
+
     ```
     Here are the matching tasks in your list:
     1. [D][ ] CS2103 IP (by: Sep 18 2022)
