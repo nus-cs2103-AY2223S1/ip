@@ -87,6 +87,7 @@ public class Storage {
             throw new IOException("File does not exist");
         }
         FileWriter fw = new FileWriter(filePath);
+        assert fw != null;
 
 
         String textToAdd = "";

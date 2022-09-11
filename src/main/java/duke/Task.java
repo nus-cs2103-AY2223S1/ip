@@ -12,7 +12,6 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-
     }
 
     public String toString() {
@@ -28,11 +27,13 @@ public class Task {
     public void mark() {
 
         isDone = true;
+        assert isDone;
     }
 
     public void unmark() {
 
         isDone = false;
+        assert !isDone;
     }
 
 }
