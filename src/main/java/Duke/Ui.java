@@ -25,9 +25,10 @@ public class Ui {
     public String showWelcome() {
         sb = new StringBuilder();
         sb.append("Hello! I'm Duke\nHow may I help you?\n");
-        sb.append("list - lists out your tasks\nbye - quit\ntodo - todo task\n"
-                + "deadline - deadline task /by yyyy-mm-dd\nevent - event task /by yyyy-mm-dd\n"
-                + "delete - delete index\nmark - mark index\nunmark - mark index\nfind - find task");
+        sb.append("list - lists out your tasks\nbye - quit\ntodo - todo <task>\n"
+                + "deadline - deadline <task /by yyyy-mm-dd>\nevent - event <task /by yyyy-mm-dd>\n"
+                + "delete - delete <index>\nmark - mark <index>\nunmark - unmark <index>\nfind - find <task>\n"
+                + "undo - undo <function>");
         return sb.toString();
     }
 
