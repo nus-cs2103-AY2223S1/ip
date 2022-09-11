@@ -1,6 +1,5 @@
 package duke.task;
 
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import duke.exception.DukeException;
@@ -65,19 +64,31 @@ public class TaskList {
     /**
      * Creates one Deadline and adds it to the array list.
      *
-     * @param userInput The description of the task, and deadline.
+     * @param userInput The description of the task, and deadline (e.g. sleep /by 2022-12-12 1800).
      * @return The new Deadline task created.
-     * @throws DukeException If userInput is not in the form "description /by deadline".
-     * @throws DateTimeParseException If deadline date given by user cannot be casted to a date (require "yyyy-mm-dd")
      */
-    public Deadline addDeadline(String userInput) throws DukeException, DateTimeParseException {
-        String[] detailsFragments = userInput.split(" /by");
+    public Deadline addDeadline(String userInput) {
+        String[] details = userInput.split(" /by");
 
-        if (detailsFragments.length != 2) {
-            throw new DukeException("Usage description /by deadline");
+        if (details.length != 2) {
+            throw new DukeException("Usage description /by date time");
         }
 
-        Deadline newDeadline = new Deadline(detailsFragments[0], detailsFragments[1].trim());
+        String[] dateAndTime = details[1].trim().split(" ");
+        boolean hasDateAndTime = dateAndTime.length == 2;
+
+        if (!hasDateAndTime) {
+            throw new DukeException("Usage description /by date time");
+        }
+
+        String taskDescription = details[0];
+        String date = dateAndTime[0];
+
+        String time = dateAndTime[1];
+        // Adds a semicolon between hours and minutes, e.g. 1800 to 18:00
+        String formattedTime = time.substring(0, 2) + ":" + time.substring(2);
+
+        Deadline newDeadline = new Deadline(taskDescription, date, formattedTime);
         TaskList.tasks.add(newDeadline);
 
         return newDeadline;
@@ -88,16 +99,29 @@ public class TaskList {
      *
      * @param userInput The description of the task, and event time.
      * @return The new Event created.
-     * @throws DukeException If userInput is not in the form "description /at time".
      */
-    public Event addEvent(String userInput) throws DukeException, DateTimeParseException {
-        String[] detailsFragments = userInput.split(" /at");
+    public Event addEvent(String userInput) {
+        String[] details = userInput.split(" /at");
 
-        if (detailsFragments.length != 2) {
-            throw new DukeException("Usage description /at time");
+        if (details.length != 2) {
+            throw new DukeException("Usage event description /at date time");
         }
 
-        Event newEvent = new Event(detailsFragments[0], detailsFragments[1].trim());
+        String[] dateAndTime = details[1].trim().split(" ");
+        boolean hasDateAndTime = dateAndTime.length == 2;
+
+        if (!hasDateAndTime) {
+            throw new DukeException("Usage description /by date time");
+        }
+
+        String taskDescription = details[0];
+        String date = dateAndTime[0];
+
+        String time = dateAndTime[1];
+        // Adds a semicolon between hours and minutes, e.g. 1800 to 18:00
+        String formattedTime = time.substring(0, 2) + ":" + time.substring(2);
+
+        Event newEvent = new Event(taskDescription, date, formattedTime);
         TaskList.tasks.add(newEvent);
 
         return newEvent;

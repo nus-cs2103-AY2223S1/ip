@@ -111,7 +111,7 @@ public class Ui {
      * @return Formatted invalid date error message.
      */
     public String getDateErrorMsg() {
-        return "OOPS!!! Your date format has to be in the form 'yyyy-mm-dd'";
+        return "OOPS!!! Your date format has to be in the form 'yyyy-mm-dd', and time has to be in the form '2359'";
     }
 
     /**

@@ -55,7 +55,7 @@ public class AddCommandTest {
      */
     @Test
     public void executes_addEvent_success() {
-        AddCommand addCommand = new AddCommand("event", "eat /at 2020-12-12");
+        AddCommand addCommand = new AddCommand("event", "eat /at 2020-12-12 1800");
 
         TaskList tasks = new TaskList();
         Ui ui = new Ui();
@@ -79,7 +79,7 @@ public class AddCommandTest {
      */
     @Test
     public void executes_addDeadline_success() {
-        AddCommand addCommand = new AddCommand("deadline", "ip /by 2020-01-12");
+        AddCommand addCommand = new AddCommand("deadline", "ip /by 2020-01-12 2356");
 
         TaskList tasks = new TaskList();
         Ui ui = new Ui();
@@ -104,7 +104,7 @@ public class AddCommandTest {
     @Test
     public void executes_addInvalidDeadlineTask_dukeExceptionThrown() {
         // Missing /by
-        AddCommand addCommand = new AddCommand("deadline", "eat 2020-12-12");
+        AddCommand addCommand = new AddCommand("deadline", "eat 2020-12-12 2100");
 
         TaskList tasks = new TaskList();
         Ui ui = new Ui();
@@ -114,7 +114,7 @@ public class AddCommandTest {
             addCommand.execute(tasks, ui, storage);
             fail();
         } catch (DukeException e) {
-            assertEquals("Usage description /by deadline", e.getMessage());
+            assertEquals("Usage description /by date time", e.getMessage());
         }
     }
 
@@ -126,7 +126,7 @@ public class AddCommandTest {
     @Test
     public void executes_addInvalidEventTask_dukeExceptionThrown() {
         // Missing /at
-        AddCommand addCommand = new AddCommand("event", "eat 2020-12-12");
+        AddCommand addCommand = new AddCommand("event", "eat 2020-12-12 2359");
 
         TaskList tasks = new TaskList();
         Ui ui = new Ui();
@@ -136,7 +136,7 @@ public class AddCommandTest {
             addCommand.execute(tasks, ui, storage);
             fail();
         } catch (DukeException e) {
-            assertEquals("Usage description /at time", e.getMessage());
+            assertEquals("Usage event description /at date time", e.getMessage());
         }
     }
 }

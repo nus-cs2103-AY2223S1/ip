@@ -104,10 +104,10 @@ public class Storage {
                     tempList.add(new ToDo(details[2], details[1].equals("1")));
                     break;
                 case "D":
-                    tempList.add(new Deadline(details[2], details[3], details[1].equals("1")));
+                    tempList.add(new Deadline(details[2], details[3], details[4], details[1].equals("1")));
                     break;
                 case "E":
-                    tempList.add(new Event(details[2], details[3], details[1].equals("1")));
+                    tempList.add(new Event(details[2], details[3], details[4], details[1].equals("1")));
                     break;
                 default:
                     throw new DukeException("File contains lines that cannot be validated as a Task.");
@@ -187,10 +187,10 @@ public class Storage {
                     this.writeToFile(Storage.tasksFilePath, "T | " + taskDone + " | " + t.getTaskName() + "\n", false);
                 } else if (t instanceof Deadline) {
                     this.writeToFile(Storage.tasksFilePath, "D | " + taskDone + " | " + t.getTaskName() + " | "
-                            + ((Deadline) t).getDate() + "\n", false);
+                            + ((Deadline) t).getDate() + " | " + ((Deadline) t).getTime() + "\n", false);
                 } else if (t instanceof Event) {
                     this.writeToFile(Storage.tasksFilePath, "E | " + taskDone + " | " + t.getTaskName() + " | "
-                            + ((Event) t).getDate() + "\n", false);
+                            + ((Event) t).getDate() + " | " + ((Event) t).getTime() + "\n", false);
                 } else {
                     throw new DukeException("Invalid event found in save! Aborting...");
                 }
