@@ -1,8 +1,7 @@
 ### duke project template
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it. :grinning:
+This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it. 
 
-> If you don't win, you lose. - someone probably
 
 ## Setting up in Intellij
 
