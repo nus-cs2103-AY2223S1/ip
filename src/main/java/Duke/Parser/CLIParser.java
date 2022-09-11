@@ -10,10 +10,8 @@ import Duke.Tasks.ToDo;
 import Duke.Tasks.Deadline;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.List;
 
 /**
  * CLIParser
@@ -38,6 +36,10 @@ public class CLIParser {
                 return new HelpCommand();
             }
 
+            if (commandString.equals("sort")) {
+                return new SortAllCommand(userTasks);
+            }
+
             throw new InvalidCommandException();
         }
 
@@ -46,6 +48,7 @@ public class CLIParser {
 
 
         switch (commandType) {
+
         case "todo" :
             return parseTodoCommand(commandElse, userTasks);
         case "deadline" :
@@ -58,8 +61,11 @@ public class CLIParser {
             return parseDeleteTaskCommand(commandElse, userTasks);
         case "done":
             return parseMarkDoneCommand(commandElse, userTasks);
+        case "sort":
+            return parseSortCommand(commandElse, userTasks);
         default:
             System.out.println("CLIParser .. default ...");
+
 
         }
         throw new InvalidCommandException();
@@ -67,6 +73,11 @@ public class CLIParser {
 
 
 
+    private SortDeadlineCommand parseSortCommand(String taskName, TaskList userTasks) throws TaskNotExistException {
+        if (taskName.equals("Deadline"))
+            return new SortDeadlineCommand(userTasks);
+        else throw new TaskNotExistException();
+    }
 
     private AddTaskCommand parseTodoCommand(String taskName, TaskList userTasks) {
         return new AddTaskCommand(new ToDo(taskName, false), userTasks);

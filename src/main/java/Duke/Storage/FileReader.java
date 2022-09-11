@@ -72,6 +72,7 @@ public class FileReader {
             String type = components[0].strip();
 
             switch (type) {
+
             case "T":
                 return new ToDo(
                         components[2].strip(),
@@ -89,6 +90,7 @@ public class FileReader {
                         components[1].strip().equals("true"));
             default:
                 throw new Exception();
+
             }
 
         } catch (Exception e) {

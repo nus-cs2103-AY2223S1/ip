@@ -17,7 +17,7 @@ import java.sql.Array;
  * ServerCLI
  * provides methods to serve a user's commands
  */
-public class ServerCLI {
+public class ServerGUI {
 
     private TaskList tasks;
     private TextUI Ui = new TextUI();
@@ -29,7 +29,6 @@ public class ServerCLI {
         load();
         serve();
     }
-
 
     private void load() {
         TaskList storedTaskList = fileReader.load();
@@ -60,7 +59,9 @@ public class ServerCLI {
         return curCommand.execute();
     }
 
-
+    public String getResponse(String input) {
+        return input;
+    }
 
 
 

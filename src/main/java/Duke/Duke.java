@@ -1,27 +1,25 @@
 package Duke;
 
+
 import Duke.UserServer.ServerCLI;
+import Duke.UserServer.ServerGUI;
+
+
+import java.awt.print.Printable;
+import java.time.LocalDateTime;
 
 
 
-/**
- * Duke App Main class
- */
 public class Duke {
 
     private static final ServerCLI serverCLI = new ServerCLI();
+    private static final ServerGUI serverGUI = new ServerGUI();
 
     public static void main(String[] args) { //throws DukeException, FileNotFoundException {
 
-        int value = 999;
-        assert value >= 11000;
 
-        System.out.println("value is" + value);
 
         serverCLI.run();
-
-
-
 
 
     }
@@ -30,7 +28,9 @@ public class Duke {
 
 
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+
+        return serverGUI.getResponse(input);
+
     }
 
 
