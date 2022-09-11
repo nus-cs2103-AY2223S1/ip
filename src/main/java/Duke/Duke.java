@@ -45,7 +45,7 @@ public class Duke {
             String input = scanner.nextLine();
             if (input.equals("bye")) {
                 bye = true;
-                graphics.sayBye();
+                graphics.sayGoodbye();
             } else if (input.equals("list")) {
                 graphics.printList();
             } else if (input.startsWith("mark")) {

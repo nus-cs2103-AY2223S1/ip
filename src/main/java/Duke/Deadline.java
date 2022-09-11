@@ -1,8 +1,17 @@
 package Duke;
 
+/**
+ * This is the deadline class that is
+ * being called by the user
+ */
 public class Deadline extends Task{
     protected String by;
 
+    /**
+     * Constructor for class Deadline
+     * @param description   Description of the deadline
+     * @param by            The date of the deadline
+     */
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
