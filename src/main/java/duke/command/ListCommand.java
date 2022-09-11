@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.ui.Ui;
 import duke.util.TaskList;
 
 /**
@@ -30,12 +29,11 @@ public class ListCommand extends Command {
      *
      * @param storage        the storage object
      * @param tasklist       the task list object
-     * @param ui             the user interface object
      * @return               the bot reply
      * @throws DukeException if the user input is unrecognised
      */
     @Override
-    public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+    public String execute(Storage storage, TaskList tasklist) throws DukeException {
         StringBuilder output = new StringBuilder();
         if (words.size() == 0) {
             output.append("Here's your list ^3^:\n")

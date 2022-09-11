@@ -4,7 +4,6 @@ import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.ui.Ui;
 import duke.util.TaskList;
 
 /**
@@ -15,14 +14,12 @@ import duke.util.TaskList;
 public class Duke {
     private final Storage storage;
     private TaskList tasklist;
-    private final Ui ui;
 
     /**
      * Constructor for the Duke class.
      * @param filePath The name of path to the file used for list storage.
      */
     public Duke(String filePath) {
-        ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasklist = new TaskList(storage.load());
@@ -39,13 +36,11 @@ public class Duke {
      * @return String to be printed by the GUI.
      */
     public String getResponse(String input) {
-        ui.showWelcome();
         while (true) {
             try {
                 Command cmd = Parser.parse(input);
-                return cmd.execute(storage, tasklist, ui);
+                return cmd.execute(storage, tasklist);
             } catch (DukeException e) {
-                ui.showError(e.getMessage());
                 return e.getMessage();
             }
         }

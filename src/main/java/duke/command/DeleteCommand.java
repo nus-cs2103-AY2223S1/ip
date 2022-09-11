@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.ui.Ui;
 import duke.util.TaskList;
 
 /**
@@ -31,12 +30,11 @@ public class DeleteCommand extends Command {
      *
      * @param storage        the storage object
      * @param tasklist       the task list object
-     * @param ui             the user interface object
      * @return               the bot reply
      * @throws DukeException if the user input is unrecognised
      */
     @Override
-    public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+    public String execute(Storage storage, TaskList tasklist) throws DukeException {
         String input = String.join(" ", words);
         StringBuilder output = new StringBuilder();
         // Work on implementing error for "delete hello"

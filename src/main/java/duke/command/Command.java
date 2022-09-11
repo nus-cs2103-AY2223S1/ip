@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.ui.Ui;
 import duke.util.TaskList;
 
 /**
@@ -17,9 +16,8 @@ public abstract class Command {
      *
      * @param storage        the storage object
      * @param tasklist       the tasklist object
-     * @param ui             the ui object
      * @return               the bot reply
      * @throws DukeException if the user input is unrecognised
      */
-    public abstract String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException;
+    public abstract String execute(Storage storage, TaskList tasklist) throws DukeException;
 }

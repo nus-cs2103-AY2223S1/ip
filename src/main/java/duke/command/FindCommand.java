@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import duke.storage.Storage;
 import duke.task.Task;
-import duke.ui.Ui;
 import duke.util.TaskList;
 
 /**
@@ -30,11 +29,10 @@ public class FindCommand extends Command {
      *
      * @param storage  the storage object
      * @param tasklist the task list object
-     * @param ui       the user interface object
      * @return         the bot reply
      */
     @Override
-    public String execute(Storage storage, TaskList tasklist, Ui ui) {
+    public String execute(Storage storage, TaskList tasklist) {
         String inputToFind = String.join(" ", words);
         StringBuilder output = new StringBuilder();
         TaskList foundTasksList = new TaskList();

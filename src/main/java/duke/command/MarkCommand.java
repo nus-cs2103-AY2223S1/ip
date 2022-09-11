@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import duke.common.Messages;
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.ui.Ui;
 import duke.util.TaskList;
 
 /**
@@ -36,12 +35,11 @@ public class MarkCommand extends Command {
      *
      * @param storage        the storage object
      * @param tasklist       the task list object
-     * @param ui             the user interface object
      * @return               the bot reply
      * @throws DukeException if the user input is unrecognised
      */
     @Override
-    public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+    public String execute(Storage storage, TaskList tasklist) throws DukeException {
         StringBuilder output = new StringBuilder();
         int taskNum = Integer.parseInt(words.get(0));
         switch (firstWord) {
