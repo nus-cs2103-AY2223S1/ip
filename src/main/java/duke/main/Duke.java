@@ -20,9 +20,6 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
-
     /**
      * Constructs a new Duke object without any parameters.
      */
@@ -33,6 +30,7 @@ public class Duke {
         } catch (DukeException e) {
             this.ui.showSavingError();
         }
+        this.ui.setMessageStatus(this.storage.getDoesFileExist() ? 1 : 0);
         this.taskList = new TaskList(this.storage.load());
     }
 
@@ -47,6 +45,7 @@ public class Duke {
         } catch (DukeException e) {
             this.ui.showSavingError();
         }
+        this.ui.setMessageStatus(this.storage.getDoesFileExist() ? 1 : 0);
         this.taskList = new TaskList(this.storage.load());
     }
 

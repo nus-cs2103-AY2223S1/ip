@@ -21,6 +21,7 @@ public class Storage {
     public static final String FILE_PATH = "data/duke.txt";
 
     private String path;
+    private boolean doesFileExist = true;
 
     /**
      * Constructs a new Storage object and creates an empty save file if one does not exist.
@@ -31,6 +32,7 @@ public class Storage {
         this.path = path;
         File saveFile = new File(this.path);
         if (!saveFile.exists()) {
+            this.doesFileExist = false;
             try {
                 saveFile.getParentFile().mkdir();
                 saveFile.createNewFile();
@@ -91,5 +93,13 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException("Cannot save to file");
         }
+    }
+
+    /**
+     * Gets whether a new save file was created.
+     * @return Whether a new save file was created.
+     */
+    public boolean getDoesFileExist() {
+        return this.doesFileExist;
     }
 }
