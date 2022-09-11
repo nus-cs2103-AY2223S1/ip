@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 import stubs.TaskListStub;
 import stubs.TaskStub;
 
-public class UnmarkCommandTest {
+public class DeleteCommandTest {
 
-    private static final String MESSAGE_SUCCESS = "I'VE MARKED THIS TASK AS NOT DONE:\n %1$s";
+    private static final String MESSAGE_SUCCESS = "I'VE DELETED THIS TASK:\n %1$s";
 
     @Test
     public void testMarkCommand() {
@@ -19,7 +19,7 @@ public class UnmarkCommandTest {
         TaskStub stub = new TaskStub(false);
         taskList.addTask(stub);
 
-        UnmarkCommand command = new UnmarkCommand(0);
+        DeleteCommand command = new DeleteCommand(0);
         command.setData(taskList);
 
         CommandResult result = new CommandResult(String.format(MESSAGE_SUCCESS, stub));

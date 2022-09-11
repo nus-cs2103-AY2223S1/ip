@@ -23,6 +23,6 @@ public class TodoCommandTest {
         command.setData(list);
 
         CommandResult result = new CommandResult(String.format(MESSAGE_SUCCESS, list.addTask(task)), list);
-        assertEquals(command.execute().toString(), result.toString());
+        assertEquals(result.toString(), command.execute().toString());
     }
 }

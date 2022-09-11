@@ -37,4 +37,14 @@ public class TaskListStub extends TaskList {
     public void set(int index, Task task) {
         testTasks.set(index, task);
     }
+
+    @Override
+    public int size() {
+        return testTasks.size();
+    }
+
+    @Override
+    public String deleteTask(int index) {
+        return testTasks.remove(index).toString();
+    }
 }

@@ -10,6 +10,6 @@ public class EchoCommandTest {
     public void testEchoCommand() {
         EchoCommand command = new EchoCommand("test");
         CommandResult result = new CommandResult("test");
-        assertEquals(command.execute().toString(), result.toString());
+        assertEquals(result.toString(), command.execute().toString());
     }
 }

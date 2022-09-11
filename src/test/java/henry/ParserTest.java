@@ -16,9 +16,9 @@ public class ParserTest {
         Parser parser = new Parser();
         TaskListStub taskList = new TaskListStub(new ArrayList<>());
         String command = "event event stub /at 12-12-2050 00:00";
-        String desired = "OK. I ADDED THIS TASK TO MY LIST:\n [E][ ] event stub (at: 12-12-2050 00:00)";
+        String desired = "OK. I ADDED THIS TASK TO MY LIST:\n [E][ ] event stub (at: 12-12-2050 12:00 AM)";
         Command c = parser.parseCommand(command);
         c.setData(taskList);
-        assertEquals(c.execute().toString(), desired);
+        assertEquals(desired, c.execute().toString());
     }
 }
