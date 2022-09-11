@@ -11,7 +11,7 @@ public class Ui {
     /**
      * Prints the concluding message to the user.
      */
-    public String printByeMessage() {
+    public String getByeMessage() {
         return "K finally, good riddance!";
     }
 
@@ -20,7 +20,7 @@ public class Ui {
      *
      * @param list TaskList that contains tasks
      */
-    public String printListMessage(TaskList list) {
+    public String getListMessage(TaskList list) {
         if (list.getSize() == 0) {
             return "pff there is nothing in your list";
         }
@@ -38,7 +38,7 @@ public class Ui {
      *
      * @param task Task that was marked
      */
-    public String printMarkMessage(Task task) {
+    public String getMarkMessage(Task task) {
         String str = "Took you long enough to complete this task:\n" + task.toString();
         return str;
     }
@@ -48,28 +48,28 @@ public class Ui {
      *
      * @param task Task that was unmarked
      */
-    public String printUnmarkMessage(Task task) {
+    public String getUnmarkMessage(Task task) {
         String str = "Another task marked as not done?? Slow indeed\n" + task.toString();
         return str;
     }
 
-    public String printAddTaskMessage(Task task, int size) {
+    public String getAddTaskMessage(Task task, int size) {
         String str = "Fine, I'll add this task:\n\t" + task.toString() + "\nNow you have "
                 + size + " tasks in the list...";
         return str;
     }
 
-    public String printDeleteMessage(Task task, int size) {
+    public String getDeleteMessage(Task task, int size) {
         String str = "Ughh I'll remove this task:\n\t" + task.toString() + "\nNow you have "
                 + size + " tasks in the list...";
         return str;
     }
 
-    public String printUnknownMessage() {
+    public String getUnknownMessage() {
         return "What are you saying??? Try again";
     }
 
-    public String printErrorMessage(String str) {
+    public String getErrorMessage(String str) {
         return str;
     }
 
@@ -77,7 +77,7 @@ public class Ui {
         return "Error loading data from file";
     }
 
-    public String printFindMessage(TaskList taskList) {
+    public String getFindMessage(TaskList taskList) {
         if (taskList.getSize() == 0) {
             return "HAHA unlucky! There is no matching task in your list!";
         }
@@ -90,7 +90,7 @@ public class Ui {
         return str;
     }
 
-    public String printUpdateMessage(Task task) {
+    public String getUpdateMessage(Task task) {
         return "Fickle-minded as usual. I've update this task:\n" + task.toString();
     }
 }

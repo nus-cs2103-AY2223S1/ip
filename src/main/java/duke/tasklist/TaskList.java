@@ -1,5 +1,7 @@
 package duke.tasklist;
 
+import duke.exception.DukeException;
+import duke.main.Duke;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -66,6 +68,18 @@ public class TaskList {
             }
         }
         return new TaskList(newList);
+    }
+
+    /**
+     * Check is the taskNumber is valid.
+     *
+     * @param taskNumber Number that the user inputted in CLI
+     * @throws DukeException Exception when taskNumber is <= 0 or > task list size
+     */
+    public void validateTaskNumber(int taskNumber) throws DukeException {
+        if (taskNumber <= 0 || taskNumber > list.size()) {
+            throw new DukeException("The task number does not exist dummy!");
+        }
     }
 
 }

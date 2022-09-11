@@ -9,6 +9,7 @@ import duke.task.Task;
 import duke.task.Todo;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
+import duke.updater.Updater;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -50,45 +51,34 @@ public class Duke {
             //terminate chat
             case "bye": {
                 storage.saveData(tasks);
-                return ui.printByeMessage();
+                return ui.getByeMessage();
             }
             //view list of tasks
             case "list": {
-                return ui.printListMessage(tasks);
+                return ui.getListMessage(tasks);
             }
             //mark a task
             case "mark": {
-                int markValue = parser.getTaskNumber();
-                //unsure if I should use SLAP here
-                boolean isWithinTaskSize = markValue > tasks.getSize();
-                boolean isGreaterThanZero = markValue <= 0;
-                if (isWithinTaskSize || isGreaterThanZero) {
-                    throw new DukeException("The mark value does not exist dummy!");
-                }
-
-                Task item = tasks.getTask(markValue);
-                item.setAsDone();
-                return ui.printMarkMessage(item);
+                int taskNumber = parser.getTaskNumber();
+                tasks.validateTaskNumber(taskNumber);
+                Task task = tasks.getTask(taskNumber);
+                task.setAsDone();
+                return ui.getMarkMessage(task);
             }
             //unmark a task
             case "unmark": {
-                int markValue = parser.getTaskNumber();
-                boolean isWithinTaskSize = markValue > tasks.getSize();
-                boolean isGreaterThanZero = markValue <= 0;
-                if (isWithinTaskSize || isGreaterThanZero) {
-                    throw new DukeException("The unmark value does not exist dummy!");
-                }
-
-                Task item = tasks.getTask(markValue);
-                item.setAsUndone();
-                return ui.printUnmarkMessage(item);
+                int taskNumber = parser.getTaskNumber();
+                tasks.validateTaskNumber(taskNumber);
+                Task task = tasks.getTask(taskNumber);
+                task.setAsUndone();
+                return ui.getUnmarkMessage(task);
             }
             //add a to-do task
             case "todo": {
                 String desc = parser.getTodoDescription();
                 Todo todo = new Todo(desc);
                 tasks.addTask(todo);
-                return ui.printAddTaskMessage(todo, tasks.getSize());
+                return ui.getAddTaskMessage(todo, tasks.getSize());
             }
             //add a deadline task
             case "deadline": {
@@ -96,7 +86,7 @@ public class Duke {
                 LocalDate byDate = parser.getDeadlineDate();
                 Deadline deadline = new Deadline(desc, byDate);
                 tasks.addTask(deadline);
-                return ui.printAddTaskMessage(deadline, tasks.getSize());
+                return ui.getAddTaskMessage(deadline, tasks.getSize());
             }
             //add an event task
             case "event": {
@@ -104,61 +94,37 @@ public class Duke {
                 LocalDate atDate = parser.getEventDate();
                 Event event = new Event(desc, atDate);
                 tasks.addTask(event);
-                return ui.printAddTaskMessage(event, tasks.getSize());
+                return ui.getAddTaskMessage(event, tasks.getSize());
             }
             //delete a task from the task list
             case "delete": {
-                int delValue = parser.getTaskNumber();
-                boolean isWithinTaskSize = delValue > tasks.getSize();
-                boolean isGreaterThanZero = delValue <= 0;
-                if (isWithinTaskSize || isGreaterThanZero) {
-                    throw new DukeException("The delete value does not exist dummy!");
-                }
-
-                Task item = tasks.getTask(delValue);
-                tasks.removeTask(delValue);
-                return ui.printDeleteMessage(item, tasks.getSize());
+                int taskNumber = parser.getTaskNumber();
+                tasks.validateTaskNumber(taskNumber);
+                Task task = tasks.getTask(taskNumber);
+                tasks.removeTask(taskNumber);
+                return ui.getDeleteMessage(task, tasks.getSize());
             }
             //find a related task from the task list
             case "find": {
                 String keyword = parser.getKeyword();
                 TaskList relatedTasks = tasks.findRelatedTask(keyword);
-                return ui.printFindMessage(relatedTasks);
+                return ui.getFindMessage(relatedTasks);
             }
             //update a task
             case "update": {
-                int updateValue = parser.getTaskNumber();
-                boolean isWithinTaskSize = updateValue > tasks.getSize();
-                boolean isGreaterThanZero = updateValue <= 0;
-                if (isWithinTaskSize || isGreaterThanZero) {
-                    throw new DukeException("The update value does not exist dummy!");
-                }
-
-                Task task = tasks.getTask(updateValue);
-
-                boolean hasUpdateDateClause = parser.hasUpdateDateClause();
-                if (hasUpdateDateClause && task.getTaskType().equals("E")) {
-                    LocalDate updatedDate = parser.getEventDate();
-                    task.updateDate(updatedDate);
-                } else if (hasUpdateDateClause && task.getTaskType().equals("D")) {
-                    LocalDate updatedDate = parser.getDeadlineDate();
-                    task.updateDate(updatedDate);
-                }
-
-                boolean hasUpdateDescClause = parser.hasUpdateDescClause();
-                if (hasUpdateDescClause) {
-                    String updatedDescription = parser.getUpdatedDescription();
-                    task.updateTask(updatedDescription);
-                }
-
-                return ui.printUpdateMessage(task);
+                int taskNumber = parser.getTaskNumber();
+                tasks.validateTaskNumber(taskNumber);
+                Task task = tasks.getTask(taskNumber);
+                Updater updater = new Updater();
+                updater.updateTask(task, parser);
+                return ui.getUpdateMessage(task);
             }
             //unknown input
             default:
-                return ui.printUnknownMessage();
+                return ui.getUnknownMessage();
             }
         } catch (DukeException e) {
-            return ui.printErrorMessage(e.getMessage());
+            return ui.getErrorMessage(e.getMessage());
         }
     }
 }

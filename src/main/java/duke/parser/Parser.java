@@ -33,9 +33,9 @@ public class Parser {
     }
 
     /**
-     * Return the description of the to-do task.
+     * Returns the description of the to-do task.
      *
-     * @return Description of to-do task
+     * @return String description of to-do task
      * @throws DukeException If input description is empty
      */
     public String getTodoDescription() throws DukeException {
@@ -67,7 +67,7 @@ public class Parser {
     }
 
     /**
-     * Return date of the deadline.
+     * Returns date of the deadline.
      *
      * @return Date of the deadline in LocalDate type
      * @throws DukeException If there is not /by clause
@@ -117,7 +117,7 @@ public class Parser {
     }
 
     /**
-     * Return keyword after first word find was inputted.
+     * Returns keyword after first word find was inputted.
      *
      * @return A single keyword
      * @throws DukeException If there is no keyword inputted after "find"
