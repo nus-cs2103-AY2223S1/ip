@@ -85,132 +85,139 @@ Use list command to show the current tasks list you have if you are not sure wha
 ### `delete` - deleting a task
 
 <details><summary>Event task is deleted and there are currently 0 task in the list</summary>
+<ul>
+  <li> Example of usage:<br>
+    <code>delete 1</code>
+  </li>
 
-* Example of usage:</br>
-  <code>delete 1</code>
-
-* Expected outcome:
-  <pre>
-    <code>~~~~~-----DUKE-----~~~~~
-    Ching Ching Poof~~ This task is removed:
-    [E][ ] go for final exam (at: Nov 04 2022 10:00)
-    Now you have 0 tasks on your list.</code>
-  </pre>
+  <li>Expected outcome:
+  <pre><code>  ~~~~~-----DUKE-----~~~~~
+  Ching Ching Poof~~ This task is removed:
+  [E][ ] go for final exam (at: Nov 04 2022 10:00)
+  Now you have 0 tasks on your list.</code></pre>
+  </li>
   
-* **Description:** There is currently 0 task in user's list and the deleting command performed successfully.
+  <li><b>Description:</b> There is currently 0 task in user's list and the deleting command performed successfully.</li>
+</ul>
 </details>
 
 ### `find` - finding a task with search keyword.
 
 <details><summary>Find a task which contain <code>exam</code> word in it's detail</summary>
-
-* Example of usage:</br>
+<ul>
+  <li>Example of usage:<br>
   <code>find exam</code>
+  </li>
 
-* Expected outcome:
-  <pre>
-    <code>~~~~~-----DUKE-----~~~~~
-    Here you go! your matching tasks in your list
-    [T][ ] exam preparation
-    [E][ ] exam at Utown (at: Nov 12 2022 19:00) </code>
-  </pre>
+  <li>Expected outcome:
+  <pre><code>  ~~~~~-----DUKE-----~~~~~
+  Here you go! your matching tasks in your list
+  [T][ ] exam preparation
+  [E][ ] exam at Utown (at: Nov 12 2022 19:00) </code></pre>
+  </li>
 
-* **Description:** There is currently 2 tasks in user's list with "exam" detail.
+  <li><b>Description:</b> There is currently 2 tasks in user's list with "exam" detail.</li>
+</ul>
 </details>
 
 ### `list` - listing all the tasks in the tasks list
 
 <details><summary>Show all tasks added in the tasks list</summary>
+<ul>
+  <li> Example of usage:<br>
+  <code>list</code>
+  </li>
 
-* Example of usage:</br>
-<code>list</code>
+  <li>Expected outcome:
+  <pre><code>  ~~~~~-----DUKE-----~~~~~
+  Weeeee, your current list is as follow:
+  1. [E][ ] dummyEvent (at: Sep 11 2011 11:30)
+  2. [D][ ] dummyDeadline (by: Jan 28 2011 09:00)
+  3. [T][ ] dummyTodo
+  4. [T][ ] exam preparation
+  5. [E][ ] exam at Utown (at: Nov 12 2022 19:00)</code></pre>
+  </li>
 
-* Expected outcome:
-  <pre>
-    <code>~~~~~-----DUKE-----~~~~~
-    Weeeee, your current list is as follow:
-    1. [E][ ] dummyEvent (at: Sep 11 2011 11:30)
-    2. [D][ ] dummyDeadline (by: Jan 28 2011 09:00)
-    3. [T][ ] dummyTodo
-    4. [T][ ] exam preparation
-    5. [E][ ] exam at Utown (at: Nov 12 2022 19:00)</code>
-  </pre>
-  
-* **Description:** There are currently 6 tasks in user's list and all of them are undone.
+  <li><b>Description:</b> There are currently 6 tasks in user's list and all of them are undone.</li>
+</ul>
 </details>
 
 ### `mark/unmark` - mark tasks as "done" or "undone"
 
 <details><summary>Mark and unmark a task</summary>
+<ul>
+  <li> Example of usage:<br>
+    <code>mark 1</code><br>
+    <code>unmark 1</code>
+  </li>
 
-* Example of usage:</br>
-<code>mark 1</code></br>
-<code>unmark 1</code>
+  <li> Expected outcome:
+  <pre><code>  ~~~~~-----DUKE-----~~~~~
+  Nice! this task is marked as done. Good Job!
+  [E][X] dummyEvent (at: Sep 11 2011 11:30)</code></pre>
+  
+  <pre><code>  ~~~~~-----DUKE-----~~~~~
+  This task is marked as not done. Keep it up!
+  [E][ ] dummyEvent (at: Sep 11 2011 11:30)</code></pre>
+  </li>
 
-* Expected outcome:
-  <pre>
-    <code>~~~~~-----DUKE-----~~~~~
-    Nice! this task is marked as done. Good Job!
-    [E][X] dummyEvent (at: Sep 11 2011 11:30)</code>
-  </pre>
-  <pre>
-    <code>~~~~~-----DUKE-----~~~~~
-    This task is marked as not done. Keep it up!
-    [E][ ] dummyEvent (at: Sep 11 2011 11:30)</code>
-  </pre>
-* **Description:** The event task is mark as "done" and unmark as "undone" respectively
+  <li> <b>Description:</b> The event task is mark as "done" and unmark as "undone" respectively</li>
+</ul>
 </details>
 
 ### Anomalies detection
 
 <details><summary>Tasks date and time is close</summary>
+<ul>
+  <li> Example of input: <br>
+  <code>event attend party /at 2011-09-11 1300</code>
+  </li>
 
-* Example of input: </br>
-<code>event attend party /at 2011-09-11 1300</code>
-
-* Expected outcome:
-  <pre>
-    <code>~~~~~-----DUKE-----~~~~~
-    Hey, these two tasks timing are quite close, are you sure to proceed? (Y/N)
-    New Task: [E][ ] attend party (at: Sep 11 2011 13:00)
-    Existing Task: [E][ ] dummyEvent (at: Sep 11 2011 11:30)</code>
-  </pre>
-    
-* **Description:** This happens because there is another event task in the task list occur at close timing. Please respond `Y` to proceed adding task or `N` to cancel the previous add task command.
+  <li>Expected outcome:
+  <pre><code>  ~~~~~-----DUKE-----~~~~~
+  Hey, these two tasks timing are quite close, are you sure to proceed? (Y/N)
+  New Task: [E][ ] attend party (at: Sep 11 2011 13:00)
+  Existing Task: [E][ ] dummyEvent (at: Sep 11 2011 11:30)</code></pre>
+  </li>   
+  
+  <li> <b>Description:</b> This happens because there is another event task in the task list occur at close timing. Please respond `Y` to proceed adding task or `N` to cancel the previous add task command.</li>
+</ul>
 </details>
 
 ### Other Responses
 
 <details><summary>Random Input</summary>
+<ul>
+  <li> Example of random input:<br>
+  <code>hi</code>
+  </li>
 
-* Example of random input:</br>
-<code>hi</code>
+  <li> Expected outcome:
+  <pre><code>  ~~~~~-----DUKE-----~~~~~
+  Based on my understanding, your command didn't follow the format
+  todo              : todo [task description]
+  deadline          : deadline [task description] /by [YYYY-MM-DD HHmm]
+  event             : event [task description] /at [YYYY-MM-DD HHmm]
+  single command    : | bye | list |
+  mark/unmark/delete: [command] [number of task in list you wish to modify]
+  find              : find [search keyword]</code></pre>
+  </li>
 
-* Expected outcome:
-  <pre>
-    <code>~~~~~-----DUKE-----~~~~~
-    Based on my understanding, your command didn't follow the format
-    todo              : todo [task description]
-    deadline          : deadline [task description] /by [YYYY-MM-DD HHmm]
-    event             : event [task description] /at [YYYY-MM-DD HHmm]
-    single command    : | bye | list |
-    mark/unmark/delete: [command] [number of task in list you wish to modify]
-    find              : find [search keyword]</code>
-  </pre>
-  
-* **Description:** Duke will not understand any random input. It will show the available input if it does not recognise the input.
+  <li> <b>Description:</b> Duke will not understand any random input. It will show the available input if it does not recognise the input.</li>
+</ul>
 </details>
 
 <details><summary>Incorrect date format</summary>
+<ul>
+  <li> Example of incorrect date format:<br>
+  <code>deadline some deadline /by 09-01-2022 0900</code>
+  </li>
 
-* Example of incorrect date format:</br>
-<code>deadline some deadline /by 09-01-2022 0900</code>
+  <li>Expected outcome:
+  <pre><code> ~~~~~-----DUKE-----~~~~~
+  Date and time format should be [YYYY-MM-DD HHmm]!
+  (eg. 2022-08-21 1300)</code></pre>
+  </li>
 
-* Expected outcome:
-  <pre>
-    <code>~~~~~-----DUKE-----~~~~~
-    Date and time format should be [YYYY-MM-DD HHmm]!
-    (eg. 2022-08-21 1300)</code>
-  </pre>
-* **Description:** Duke will show the correct date format that user should use while interacting with the app.
+  <li><b>Description:</b> Duke will show the correct date format that user should use while interacting with the app.</li>
 </details>
