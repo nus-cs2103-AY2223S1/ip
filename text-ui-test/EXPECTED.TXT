@@ -1,7 +1,23 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Got it. I've added this task:
+[D][ ] watch lecture (by: today 2359)
+Now you have 2 tasks in the list.
+Got it. I've added this task:
+[E][ ] play floorball (at: Wed 1-3pm)
+Now you have 3 tasks in the list.
+Nice! I've marked this task as done:
+[D][X] watch lecture (by: today 2359)
+Here are the tasks in your list:
+1.[T][ ] read book
+2.[D][X] watch lecture (by: today 2359)
+3.[E][ ] play floorball (at: Wed 1-3pm)
+OK, I've marked this task as not done yet:
+[D][ ] watch lecture (by: today 2359)
+Nice! I've marked this task as done:
+[E][X] play floorball (at: Wed 1-3pm)
+Nice! I've marked this task as done:
+[T][X] read book
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][ ] watch lecture (by: today 2359)
+3.[E][X] play floorball (at: Wed 1-3pm)
+Bye. Hope to see you again soon!
