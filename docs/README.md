@@ -11,7 +11,7 @@ This product is a desktop app for managing tasks mainly through the use of a Com
 - `event` - Add an "Event" task
 - `mark`- Mark a task as complete
 - `unmark` - Mark a task as incomplete
-- `delete` - Delete a task: 
+- `delete` - Delete a task
 - `find` - Search for a given task
 
 ### Feature-XYZ
@@ -62,12 +62,38 @@ Alternate command: `e`
 
 Format: `event [TASK_NAME] /at [START_DATE] [START_TIME] [END_DATE] [END_TIME]`
 
-### `todo` - Add a "Todo" task
-Adds a task to your task list without any specified date.
+### `mark`- Mark a task as complete
+Marks a given task as complete.
+- The task number to mark must exist in the task list.
 
-Alternate command: `t`
+Alternate command: `m`
 
-Format: `todo [TASK_NAME]`
+Format: `mark [TASK_NUMBER]`
+
+### `unmark` - Mark a task as incomplete
+Marks a given task as incomplete.
+- The task number to unmark must exist in the task list.
+
+Alternate command: `um`
+
+Format: `unmark [TASK_NUMBER]`
+
+### `delete` - Delete a task
+Deletes a given task from the task list.
+- The task number to delete must exist in the task list.
+
+Alternate command: `del`
+
+Format: `del [TASK_NAME]`
+
+### `find` - Search for a given task
+Search for tasks that contains the search text.
+- The search will return results that contains the search text.
+- The search is case sensitive.
+
+Alternate command: `f`
+
+Format: `find [TEXT_TO_SEARCH]`
 
 
 ### `Keyword` - Describe action
