@@ -37,7 +37,7 @@ public class Event extends Task {
         if (o instanceof Event) {
             Event obj = (Event) o;
 
-            if (checkDescription(obj, this) || checkAt(obj, this)) {
+            if (checkDescription(obj, this) && checkAt(obj, this)) {
                 return true;
             } else {
                 return false;

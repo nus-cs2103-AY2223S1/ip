@@ -38,7 +38,7 @@ public class Deadline extends Task {
         if (o instanceof Deadline) {
             Deadline obj = (Deadline) o;
 
-            if (checkDescription(obj, this) || checkBy(obj, this)) {
+            if (checkDescription(obj, this) && checkBy(obj, this)) {
                 return true;
             } else {
                 return false;
