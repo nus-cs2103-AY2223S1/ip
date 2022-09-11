@@ -76,6 +76,19 @@ public class Parser {
                 return todolist.getData();
             }
 
+            if (line.matches("mark [\\d ]+")) {
+                String[] indices = line.substring(5).split(" " );
+                for (String index : indices) {
+                    int i = Integer.parseInt(index);
+                    if (i > todolist.getLength()) {
+                        continue;
+                    }
+
+                    todolist.mark(i - 1);
+                }
+                return "Marked multiple tasks!";
+            }
+
             if (line.matches("unmark \\d+")) {
                 int index = Integer.parseInt(line.split(" ")[1]);
                 if (index > todolist.getLength()) {
@@ -86,6 +99,18 @@ public class Parser {
                 return todolist.getData();
             }
 
+            if (line.matches("unmark [\\d ]+")) {
+                String[] indices = line.substring(7).split(" " );
+                for (String index : indices) {
+                    int i = Integer.parseInt(index);
+                    if (i > todolist.getLength()) {
+                        continue;
+                    }
+
+                    todolist.unmark(i - 1);
+                }
+                return "Unmarked multiple tasks!";
+            }
             if (line.matches("deadline .* by .*")) {
                 assert line.startsWith("deadline ");
                 String[] res = line.substring(9).split(" by ");
