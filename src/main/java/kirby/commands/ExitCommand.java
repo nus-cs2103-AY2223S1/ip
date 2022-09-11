@@ -2,7 +2,6 @@ package kirby.commands;
 
 import kirby.Storage;
 import kirby.TaskList;
-import kirby.exceptions.KirbyMissingArgumentException;
 import kirby.ui.Ui;
 
 /**
@@ -15,7 +14,7 @@ public class ExitCommand extends Command {
      */
     private static final String GOODBYE_MESSAGE = "I loved talking to you ･ω･\n" + "Hope to see you again!";
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         return GOODBYE_MESSAGE;
     }
 

@@ -12,28 +12,27 @@ import kirby.ui.Ui;
  * ToDoCommand class handles the command to create a Todo task.
  */
 public class ToDoCommand extends Command {
-    private static final int TODO_COMMAND_LENGTH = 5;
-    private final String inputString;
+    private final Todo todo;
 
     /**
-     * Constructor for the class DeadlineCommand.
+     * Constructor for the class ToDoCommand.
      *
-     * @param inputString arguments of a command.
+     * @param argument arguments of the command.
+     * @throws KirbyMissingArgumentException If arguments are not followed with the respective commands.
+     *
      */
-    public ToDoCommand(String inputString) {
-        this.inputString = inputString;
+    public ToDoCommand(String argument) throws KirbyMissingArgumentException {
+        if (argument == null) {
+            throw new KirbyMissingArgumentException("todo");
+        }
+        this.todo = new Todo(argument);
     }
     /**
      * {@inheritDoc}
      * Creates a ToDo task if arguments are valid.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (inputString.length() <= TODO_COMMAND_LENGTH) {
-            throw new KirbyMissingArgumentException("todo");
-        }
-        String taskName = inputString.substring(inputString.indexOf(' ') + 1);
-        Todo todo = new Todo(taskName);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.addTask(todo);
         try {
             storage.writeTask(tasks.getList());

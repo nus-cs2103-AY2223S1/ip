@@ -12,33 +12,31 @@ import kirby.ui.Ui;
  * DeadlineCommand class handles the command to create a Deadline task.
  */
 public class DeadlineCommand extends Command {
-    private final String inputString;
+    private final Deadline deadline;
 
     /**
      * Constructor for the class DeadlineCommand.
      *
-     * @param inputString Arguments of a command.
+     * @param arguments Arguments of a command.
      */
-    public DeadlineCommand(String inputString) {
-        this.inputString = inputString;
+    public DeadlineCommand(String[] arguments) throws KirbyMissingArgumentException {
+        String taskName = null;
+        String time = null;
+        taskName = arguments[0];
+        time = arguments[1];
+        if (taskName == null || time == null) {
+            throw new KirbyMissingArgumentException("deadline");
+        }
+        this.deadline = new Deadline(taskName, time);
     }
 
     /**
      * {@inheritDoc}
      * Creates a Deadline task if arguments are valid.
      */
-    @SuppressWarnings("checkstyle:Indentation")
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        boolean isDeadline = (!inputString.contains("/by") || inputString.length() - 1 < inputString.indexOf("/by") + 4
-                || inputString.indexOf(" /by") <= inputString.indexOf("deadline") + 9);
-        if (isDeadline) {
-            throw new KirbyMissingArgumentException("deadline");
-        }
-        String taskName = inputString.substring(inputString.indexOf("deadline") + 9, inputString.indexOf(" /by"));
-        String by = inputString.substring(inputString.indexOf("/by") + 4);
-        Deadline deadline = new Deadline(taskName, by);
-        tasks.addTask(deadline);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        tasks.addTask(this.deadline);
         try {
             storage.writeTask(tasks.getList());
         } catch (IOException e) {

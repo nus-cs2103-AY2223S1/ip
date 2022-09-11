@@ -12,15 +12,28 @@ import kirby.ui.Ui;
  * EventCommand class handles the command to create an Event task.
  */
 public class EventCommand extends Command {
-    private final String inputString;
+    private final Event event;
 
     /**
      * Constructor for the class EventCommand.
      *
-     * @param inputString Arguments of a command.
+     * @param arguments Arguments of a command.
      */
-    public EventCommand(String inputString) {
-        this.inputString = inputString;
+    public EventCommand(String[] arguments) throws KirbyMissingArgumentException {
+        String taskName = null;
+        String time = null;
+        for (int i = 0; i < arguments.length - 1; i++) {
+            if (arguments[i].equals("event")) {
+                taskName = arguments[i + 1];
+            }
+            if (arguments[i].equals("/by")) {
+                time = arguments[i + 1];
+            }
+        }
+        if (taskName == null || time == null) {
+            throw new KirbyMissingArgumentException("event");
+        }
+        this.event = new Event(taskName, time);
     }
 
     /**
@@ -28,20 +41,12 @@ public class EventCommand extends Command {
      * Creates an Event task if arguments are valid.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        boolean isEvent = (!inputString.contains("/at") || inputString.length() - 1 < inputString.indexOf("/at") + 4
-                || inputString.indexOf(" /at") <= inputString.indexOf("event") + 6);
-        if (isEvent) {
-            throw new KirbyMissingArgumentException("event");
-        }
-        String taskName = inputString.substring(inputString.indexOf("event") + 6, inputString.indexOf(" /at"));
-        String at = inputString.substring(inputString.indexOf("/at") + 4);
-        Event event = new Event(taskName, at);
-        tasks.addTask(event);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        tasks.addTask(this.event);
         try {
             storage.writeTask(tasks.getList());
         } catch (IOException e) {
-            e.printStackTrace();
+            return (e.getMessage());
         }
         return tasks.addTaskString(event);
     }
@@ -53,5 +58,5 @@ public class EventCommand extends Command {
     public boolean isExit() {
         return false;
     }
-
 }
+

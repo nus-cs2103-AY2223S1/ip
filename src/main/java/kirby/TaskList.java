@@ -86,6 +86,11 @@ public class TaskList {
         this.taskCount++;
     }
 
+    /**
+     * Prints message when a task is added.
+     *
+     * @param task Task to be added.
+     */
     public String addTaskString(Task task) {
         return "Added into bag of fabulous tasks: \n" + task.toString() + "\n" + printTaskCount(0);
     }
@@ -101,9 +106,15 @@ public class TaskList {
         this.taskCount--;
     }
 
+    /**
+     * Prints message when a task is removed.
+     *
+     * @param taskIndex Task index to be removed.
+     */
     public String removeTaskString(int taskIndex) {
         return "Removed from bag of fabulous tasks: \n" + tasks.get(taskIndex).toString() + "\n" + printTaskCount(1);
     }
+
     /**
      * Removes a task from the list.
      *
@@ -118,6 +129,19 @@ public class TaskList {
             }
         }
         return findTaskList;
+    }
+
+    /**
+     * Prints message when a task is found.
+     *
+     * @param tasks All the tasks found.
+     */
+    public String findTaskString(ArrayList<Task> tasks) {
+        StringBuilder taskListPara = new StringBuilder();
+        for (Task task: tasks) {
+            taskListPara.append(task.toString()).append("\n");
+        }
+        return taskListPara.toString();
     }
 
     /**

@@ -24,7 +24,8 @@ public class TaskTest {
     @Test
     public void checkNoArguments() {
         try {
-            new DeadlineCommand("").execute(taskList, ui, storage);
+            String[] emptyArr = {};
+            new DeadlineCommand(emptyArr).execute(taskList, ui, storage);
         } catch (KirbyMissingArgumentException e) {
             String expectedOutput = "Aaaaaaah, the description of a deadline" + "\n" + "is invalid! \n Try again!";
             assertEquals(expectedOutput, e.getMessage());

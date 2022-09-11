@@ -12,16 +12,20 @@ import kirby.ui.Ui;
  * FindCommand class handles the command to find the list of tasks that contains a specified keyword.
  */
 public class FindCommand extends Command {
-    private static final int FIND_COMMAND_LENGTH = 2;
-    private final String inputString;
+    private ArrayList<Task> tasksFound;
+    private final String argument;
 
     /**
      * Constructor for the class FindCommand.
      *
-     * @param inputString Arguments of a command.
+     * @param argument Arguments of a command.
      */
-    public FindCommand(String inputString) {
-        this.inputString = inputString;
+    public FindCommand(String argument) throws KirbyMissingArgumentException {
+        this.tasksFound = null;
+        if (argument == null) {
+            throw new KirbyMissingArgumentException("find");
+        }
+        this.argument = argument;
     }
 
     /**
@@ -29,20 +33,12 @@ public class FindCommand extends Command {
      * Lists down the list of tasks that contains the keyword.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (inputString.split(" ").length != FIND_COMMAND_LENGTH) {
-            throw new KirbyMissingArgumentException("find");
-        }
-        String keyword = inputString.split(" ")[1];
-        ArrayList<Task> tasksFound = tasks.findTask(keyword);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        tasksFound = tasks.findTask(argument);
         if (tasksFound.size() < 1) {
             return "No tasks found!";
         }
-        StringBuilder taskListPara = new StringBuilder();
-        for (Task task: tasksFound) {
-            taskListPara.append(task.toString()).append("\n");
-        }
-        return taskListPara.toString();
+        return tasks.findTaskString(tasksFound);
     }
 
     /**

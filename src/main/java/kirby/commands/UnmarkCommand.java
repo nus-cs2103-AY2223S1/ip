@@ -5,40 +5,40 @@ import java.io.IOException;
 import kirby.Storage;
 import kirby.TaskList;
 import kirby.exceptions.KirbyMissingArgumentException;
+import kirby.exceptions.KirbyOutOfRangeException;
 import kirby.ui.Ui;
 
 /**
  * UnmarkCommand class handles the command to unmark a task.
  */
 public class UnmarkCommand extends Command {
-    private static final int UNMARK_COMMAND_LENGTH = 2;
-    private final String inputString;
+    private final int taskIndex;
 
     /**
-     * Constructor for the class DeadlineCommand.
+     * Constructor for the class UnmarkCommand.
      *
-     * @param inputString Arguments of a command.
+     * @param argument Argument of a command.
      */
-    public UnmarkCommand(String inputString) {
-        this.inputString = inputString;
+    public UnmarkCommand(String argument, TaskList tasks) throws KirbyMissingArgumentException,
+            KirbyOutOfRangeException {
+        if (argument == null) {
+            throw new KirbyMissingArgumentException("mark");
+        }
+        this.taskIndex = Integer.parseInt(argument);
+
+        int currentTaskCount = tasks.getTaskCount();
+        if (taskIndex < 1 || taskIndex > currentTaskCount) {
+            throw new KirbyOutOfRangeException("unmark");
+        }
     }
 
     /**
      * {@inheritDoc}
-     * Marks the specified task as incomplete if arguments are valid.
+     * Unmarks the specified task if arguments are valid.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (inputString.split(" ").length != UNMARK_COMMAND_LENGTH) {
-            throw new KirbyMissingArgumentException("unmark");
-        }
-        int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
-        int currentTaskCount = tasks.getTaskCount();
-        if (taskIndex < 1 || taskIndex > currentTaskCount) {
-            throw new KirbyMissingArgumentException("unmark");
-        }
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.setTaskUnmarked(taskIndex - 1);
-
         try {
             storage.writeTask(tasks.getList());
         } catch (IOException e) {

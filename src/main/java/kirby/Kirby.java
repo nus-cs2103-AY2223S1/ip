@@ -4,8 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import kirby.commands.Command;
-import kirby.exceptions.KirbyInvalidCommandException;
-import kirby.exceptions.KirbyMissingArgumentException;
 import kirby.ui.Ui;
 
 /**
@@ -37,11 +35,7 @@ public class Kirby {
     }
 
     public String getResponse(String fullCommand) {
-        try {
-            Command c = Parser.parse(fullCommand);
-            return c.execute(tasks, ui, storage);
-        } catch (KirbyInvalidCommandException | KirbyMissingArgumentException e) {
-            return e.getMessage();
-        }
+        Command c = Parser.parse(fullCommand, tasks);
+        return c.execute(tasks, ui, storage);
     }
 }
