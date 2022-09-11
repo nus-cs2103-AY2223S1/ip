@@ -22,29 +22,6 @@ Luna is your nature-themed graphical user interface (GUI) desktop app that is su
 or Luna will not be able to save your tasks to storage! ⚡️** 
 <br/><br/>
 
-<a name="features"></a>
-## Features ☁️
-
-### Add and delete tasks
-
-A lot of stuff to do? Add or delete different types of tasks to keep track!
-- todo 🌸
-- deadline 🌺
-- event 🌼
-
-### Update task statuses
-
-Completed your task? 
-- Mark your task as done 🍃
-
-Still need to work on more on your task?
-- Unmark your task 🍂
-
-### View and search for tasks
-- List and view all your tasks 🌷
-- Search by keyword for specific tasks 🌹
-<br/><br/>
-
 <a name="user-guide"></a>
 ## User Guide 🌙
 
