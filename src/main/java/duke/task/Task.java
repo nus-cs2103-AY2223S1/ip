@@ -1,6 +1,8 @@
 package duke.task;
 
+import java.sql.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Represents a Task.
@@ -8,6 +10,7 @@ import java.time.LocalDate;
  * @version CS2103T AY22/23 Semester 1
  */
 public class Task {
+    protected ArrayList<String> tags;
     protected String description;
     protected boolean isDone;
 
@@ -17,6 +20,7 @@ public class Task {
      * @param description Description of the task.
      */
     public Task(String description) {
+        this.tags = new ArrayList<>();
         this.description = description;
         this.isDone = false;
     }
@@ -80,6 +84,21 @@ public class Task {
      */
     public String saveTask() {
         return String.format("%d | %s", isDone ? 1 : 0, description);
+    }
+
+    public void tagWith(String input) {
+        tags.add(input);
+    }
+
+    public String listTheTags() {
+        int count = 1;
+        String list = "Here are the tags of this task:" + "\n";
+        for (String tag : tags) {
+            String newLine = count + ". " + "#" + tag + "\n";
+            list += newLine;
+            count += 1;
+        }
+        return list;
     }
 
     /**
