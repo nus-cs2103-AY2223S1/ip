@@ -1,12 +1,8 @@
 plugins {
     id 'java'
+    id 'checkstyle'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
-    id 'checkstyle'
-}
-
-checkstyle {
-    toolVersion = '10.2'
 }
 
 repositories {
@@ -55,6 +51,10 @@ shadowJar {
     archiveClassifier = null
 }
 
-run{
+run {
     standardInput = System.in
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }

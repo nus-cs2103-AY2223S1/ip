@@ -48,6 +48,13 @@ public class Ui {
         this.mainWindow = window;
     }
 
+    /**
+     * Closes the MainWindow object.
+     */
+    public void closeMainWindow() {
+        this.mainWindow.closeWindow();
+    }
+
     private void outputMessage(String message) {
         mainWindow.addDukeDialog(message);
     }

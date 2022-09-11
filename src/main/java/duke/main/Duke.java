@@ -8,12 +8,7 @@ import duke.exception.MissingArgumentException;
 import duke.exception.MissingDescriptionException;
 import duke.exception.MissingIndexException;
 import duke.exception.MissingTimeException;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
 
 
 /**
@@ -60,8 +55,10 @@ public class Duke {
      * @param input Input to be handled.
      */
     public void handleInput(String input) {
+        boolean isExit = false;
         try {
             Command c = Parser.parse(input);
+            isExit = c.isExit();
             c.execute(this.taskList, this.ui, this.storage);
         } catch (NumberFormatException e) {
             this.ui.showNotANumber();
@@ -81,6 +78,10 @@ public class Duke {
             this.storage.save(this.taskList);
         } catch (DukeException e) {
             this.ui.showSavingError();
+        }
+
+        if (isExit) {
+            this.ui.closeMainWindow();
         }
     }
 
