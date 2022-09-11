@@ -57,8 +57,6 @@ public class Parser {
             throw new DukeException("Invalid command: Please try again.");
         }
 
-        String description;
-
         switch (commandType) {
         case BYE:
             return new ByeCommand();
@@ -67,99 +65,113 @@ public class Parser {
         case EMPTY:
             return new EmptyCommand();
         case MARK:
-            if (inputs.length == 1) {
-                throw new DukeException("Wrong number of arguments.");
-            }
-            try {
-                int index = Integer.parseInt(inputs[1]) - 1;
-                return new SetDoneCommand(index, true);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Invalid argument: Index of task should be a number.");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
-            }
+            return parseMarkUnmarkCommand(inputs, true);
         case UNMARK:
-            if (inputs.length == 1) {
-                throw new DukeException("Wrong number of arguments.");
-            }
-            try {
-                int index = Integer.parseInt(inputs[1]) - 1;
-                return new SetDoneCommand(index, false);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Invalid argument: Index of task should be a number.");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
-            }
+            return parseMarkUnmarkCommand(inputs, false);
         case TODO:
-            if (inputs.length == 1) {
-                throw new DukeException("Wrong number of arguments.");
-            }
-            description = inputs[1];
-            if (description.length() == 0) {
-                throw new DukeException("Invalid argument: Description cannot be empty.");
-            }
-            return new AddTaskCommand(new TodoTask(description, false));
+            return parseAddTodoCommand(inputs);
         case DEADLINE:
-            if (inputs.length == 1) {
-                throw new DukeException("Wrong number of arguments.");
-            }
-            try {
-                description = inputs[1].substring(0, inputs[1].indexOf(" /by "));
-                if (description.length() == 0) {
-                    throw new DukeException("Invalid argument: Description cannot be empty.");
-                }
-                String deadline = inputs[1].substring(inputs[1].indexOf(" /by ") + 5);
-                if (deadline.length() == 0) {
-                    throw new DukeException("Invalid argument: Deadline cannot be empty.");
-                }
-                return new AddTaskCommand(new DeadlineTask(description, Parser.parseDateTime(deadline), false));
-            } catch (StringIndexOutOfBoundsException e) {
-                throw new DukeException("Invalid argument: Use /by flag to specify the deadline of the task");
-            }
+            return parseAddDeadlineCommand(inputs);
         case EVENT:
-            if (inputs.length == 1) {
-                throw new DukeException("Wrong number of arguments.");
-            }
-            try {
-                description = inputs[1].substring(0, inputs[1].indexOf(" /at "));
-                if (description.length() == 0) {
-                    throw new DukeException("Invalid argument: Description cannot be empty.");
-                }
-                String time = inputs[1].substring(inputs[1].indexOf(" /at ") + 5);
-                if (time.length() == 0) {
-                    throw new DukeException("Invalid argument: Event time cannot be empty.");
-                }
-                return new AddTaskCommand(new EventTask(description, Parser.parseDateTime(time), false));
-            } catch (StringIndexOutOfBoundsException e) {
-                throw new DukeException("Invalid argument: Use /at flag to specify the date and time of the event.");
-            }
+            return parseAddEventCommand(inputs);
         case DELETE:
-            if (inputs.length == 1) {
-                throw new DukeException("Wrong number of arguments.");
-            }
-            try {
-                int index = Integer.parseInt(inputs[1]) - 1;
-                return new DeleteTaskCommand(index);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Invalid argument: Index of task should be a number.");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
-            }
+            return parseDeleteCommand(inputs);
         case FIND:
-            if (inputs.length == 1) {
-                throw new DukeException("Wrong number of arguments.");
-            }
-            description = inputs[1];
-            if (description.length() == 0) {
-                throw new DukeException("Invalid argument: Description cannot be empty.");
-            }
-            try {
-                return new FindCommand(description);
-            } catch (StringIndexOutOfBoundsException e) {
-                throw new DukeException("Include the keyword you want to find.");
-            }
+            return parseFindCommand(inputs);
         default:
             throw new DukeException("Invalid command: Please try again.");
+        }
+    }
+
+    public static Command parseMarkUnmarkCommand(String[] inputs, boolean isDone) throws DukeException {
+        if (inputs.length == 1) {
+            throw new DukeException("Wrong number of arguments.");
+        }
+        try {
+            int index = Integer.parseInt(inputs[1]) - 1;
+            return new SetDoneCommand(index, isDone);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Invalid argument: Index of task should be a number.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
+        }
+    }
+
+    public static Command parseAddTodoCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1) {
+            throw new DukeException("Wrong number of arguments.");
+        }
+        String description = inputs[1];
+        if (description.length() == 0) {
+            throw new DukeException("Invalid argument: Description cannot be empty.");
+        }
+        return new AddTaskCommand(new TodoTask(description, false));
+    }
+
+    public static Command parseAddDeadlineCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1) {
+            throw new DukeException("Wrong number of arguments.");
+        }
+        try {
+            String description = inputs[1].substring(0, inputs[1].indexOf(" /by "));
+            if (description.length() == 0) {
+                throw new DukeException("Invalid argument: Description cannot be empty.");
+            }
+            String deadline = inputs[1].substring(inputs[1].indexOf(" /by ") + 5);
+            if (deadline.length() == 0) {
+                throw new DukeException("Invalid argument: Deadline cannot be empty.");
+            }
+            return new AddTaskCommand(new DeadlineTask(description, Parser.parseDateTime(deadline), false));
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new DukeException("Invalid argument: Use /by flag to specify the deadline of the task");
+        }
+    }
+
+    public static Command parseAddEventCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1) {
+            throw new DukeException("Wrong number of arguments.");
+        }
+        try {
+            String description = inputs[1].substring(0, inputs[1].indexOf(" /at "));
+            if (description.length() == 0) {
+                throw new DukeException("Invalid argument: Description cannot be empty.");
+            }
+            String time = inputs[1].substring(inputs[1].indexOf(" /at ") + 5);
+            if (time.length() == 0) {
+                throw new DukeException("Invalid argument: Event time cannot be empty.");
+            }
+            return new AddTaskCommand(new EventTask(description, Parser.parseDateTime(time), false));
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new DukeException("Invalid argument: Use /at flag to specify the date and time of the event.");
+        }
+    }
+
+    public static Command parseDeleteCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1) {
+            throw new DukeException("Wrong number of arguments.");
+        }
+        try {
+            int index = Integer.parseInt(inputs[1]) - 1;
+            return new DeleteTaskCommand(index);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Invalid argument: Index of task should be a number.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
+        }
+    }
+
+    public static Command parseFindCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1) {
+            throw new DukeException("Wrong number of arguments.");
+        }
+        String keyword = inputs[1];
+        if (keyword.length() == 0) {
+            throw new DukeException("Invalid argument: Description cannot be empty.");
+        }
+        try {
+            return new FindCommand(keyword);
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new DukeException("Include the keyword you want to find.");
         }
     }
 
