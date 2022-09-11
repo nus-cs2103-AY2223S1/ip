@@ -62,12 +62,24 @@ public class Ui {
      * @return A String to indicate the lists of tasks by users.
      */
     public String listTasks(TaskList tasks) {
+        int markedTasks = 0;
+        int unmarkedTasks = 0;
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the tasks in your list.");
         for (int i = 0; i < tasks.getSize(); i++) {
             Task task = tasks.getTask(i);
             sb.append("\n");
             sb.append(i + 1 + ". " + task.toString());
+            if (task.isDone) {
+                markedTasks++;
+            }
+        }
+        unmarkedTasks = tasks.getSize() - markedTasks;
+        if (unmarkedTasks == 0) {
+            sb.append("\nYou have completed all your tasks! Congratulations!");
+        } else {
+            sb.append("\nYou have completed " + markedTasks + " task(s) so far.\n"
+                    + unmarkedTasks + " more tasks to go! Keep it up!");
         }
         return sb.toString();
     }
