@@ -13,7 +13,7 @@ You are able to add three types of tasks, which are, Todo, Deadline and Event.
 
 You are able to mark your task as completed or not completed. This allows you to manage your tasks more effectively.
 - [X] This is a completed todo
-- [ ] This is a incompleted todo
+- [ ] This is an uncompleted todo
 
 ### Feature- Edit Tasks date
 
@@ -61,7 +61,7 @@ Got it nya. I've added this task:
 Now you have 2 tasks in the list
 ```
 
-### `event` - Create a Event
+### `event` - Create an Event
 
 Create event by simply providing a description and date. The date **MUST** be in YY-MM-DD format.
 
@@ -79,7 +79,7 @@ Now you have 3 tasks in the list
 
 ### `list` - Show the current list of tasks
 
-Prints out the current list of task that are registered in SocDuke. This will also print out the task number of all of the tasks
+Prints out the current list of task that are registered in SocDuke. This will also print out the task number of all the tasks.
 
 Format: `list`
 
@@ -148,7 +148,7 @@ Format: `find {TASK_DESCRIPTION}`
 Example of usage: 
 `find cs`
 
-Note that this feature is not case sensitive. Thus, searching for 'cs' will also bring up results containing 'CS'
+Note that this feature is not case-sensitive. Thus, searching for 'cs' will also bring up results containing 'CS'.
 
 Expected outcome:
 ```
@@ -172,3 +172,14 @@ Ok nya. I've removed this task:
 [T][] revise for CS2100 Midterms
 Now you have 2 tasks in the list
 ```
+### `bye` - Exit program
+
+Exit the SocDuke program.
+
+Format: `bye`
+
+Example of usage:
+`bye`
+
+Expected outcome:
+The SocDuke Program will be closed. Same effect as pressing the "X" button on GUI.
