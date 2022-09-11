@@ -10,7 +10,6 @@ import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-import duke.ui.Ui;
 import duke.util.TaskList;
 
 /**
@@ -41,12 +40,11 @@ public class AddCommand extends Command {
      *
      * @param storage        the storage object
      * @param tasklist       the task list object
-     * @param ui             the user interface object
      * @return               the bot reply
      * @throws DukeException if the user input is unrecognised
      */
     @Override
-    public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+    public String execute(Storage storage, TaskList tasklist) throws DukeException {
         StringBuilder output = new StringBuilder();
         switch (firstWord) {
         case "todo":
