@@ -61,5 +61,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getCarbonDialog(response, carbonImage)
         );
         this.userInput.clear();
+
+        if (this.carbon.hasExited()) {
+            this.userInput.setEditable(false);
+        }
     }
 }

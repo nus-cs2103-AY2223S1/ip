@@ -2,6 +2,8 @@ package carbon;
 
 import java.util.Random;
 
+import javafx.application.Platform;
+
 /**
  * Provides the user interface for Carbon to interact with the user.
  * Primarily used for the Graphical User Interface.
@@ -27,6 +29,7 @@ public class Ui {
 
     // used for making random choices of text
     private Random rand;
+    private boolean isExit;
 
     /**
      * Constructs an instance of the Ui class.
@@ -35,6 +38,7 @@ public class Ui {
      */
     public Ui() {
         this.rand = new Random();
+        this.isExit = false;
     }
 
     /**
@@ -58,6 +62,31 @@ public class Ui {
     public String exit() {
         int randomIndex = this.rand.nextInt(Ui.GOODBYES.length);
         String randomGoodbye = Ui.GOODBYES[randomIndex];
+        this.isExit = true;
+        this.closeApplication();
         return randomGoodbye;
+    }
+
+    private void closeApplication() {
+        Thread buffer = new Thread(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } finally {
+                Platform.exit();
+            }
+        });
+        buffer.start();
+    }
+
+    /**
+     * Returns the exit status of the application.
+     * If true, the application should be closing.
+     *
+     * @return Whether or not the application has exited.
+     */
+    public boolean hasExited() {
+        return this.isExit;
     }
 }

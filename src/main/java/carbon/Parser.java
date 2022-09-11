@@ -124,4 +124,14 @@ public class Parser {
         }
         return log;
     }
+
+    /**
+     * Returns the exit status of the application.
+     * If true, the application should be closing.
+     *
+     * @return Whether or not the application has exited.
+     */
+    public boolean hasExited() {
+        return this.ui.hasExited();
+    }
 }
