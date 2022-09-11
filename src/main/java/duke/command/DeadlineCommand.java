@@ -7,7 +7,9 @@ import duke.gui.Ui;
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Response;
 import duke.util.Storage;
+import duke.util.Success;
 
 /**
  * Represents the command that is executed when the user inputs deadline.
@@ -48,18 +50,18 @@ public class DeadlineCommand extends Command {
      * @param tasks TaskList which the newly created deadline task should be added into.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
-     * @return Message to be shown to the user after successful execution.
+     * @return A Success Response.
      * @throws DukeException If storage object is unable to save the list of tasks, or if TaskList cannot be properly
      *              sorted.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public Response execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task deadline = new Deadline(description, byDateTime);
         tasks.add(deadline);
         tasks.sort();
         String message = ui.taskAddedMessage(deadline, tasks);
         storage.save(tasks);
-        return message;
+        return new Success(message);
     }
 
     /**

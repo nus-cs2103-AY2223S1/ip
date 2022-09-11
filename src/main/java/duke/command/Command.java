@@ -3,6 +3,7 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.gui.Ui;
 import duke.task.TaskList;
+import duke.util.Response;
 import duke.util.Storage;
 
 /**
@@ -18,9 +19,10 @@ public abstract class Command {
      * @param tasks TaskList containing the list of tasks.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
+     * @return A Success Response.
      * @throws DukeException If an exception occurs.
      */
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract Response execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Checks if the command is an application terminating command.
