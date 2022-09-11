@@ -4,8 +4,8 @@ import java.nio.file.Path;
 import java.util.function.Consumer;
 
 import duke.command.Command;
-import duke.parser.DataFileCorruptedException;
 import duke.parser.Parser;
+import duke.storage.DataFileCorruptedException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import javafx.scene.control.Alert;

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.DukeException;
-import duke.parser.DataFileCorruptedException;
 import duke.parser.ParseException;
 import duke.parser.Parser;
 import duke.task.Task;

@@ -1,4 +1,4 @@
-package duke.parser;
+package duke.storage;
 
 import duke.DukeException;
 
@@ -7,6 +7,9 @@ import duke.DukeException;
  */
 public class DataFileCorruptedException extends DukeException {
 
+    /**
+     * Constructs a new DataFileCorruptedException.
+     */
     public DataFileCorruptedException() {
         super("Data file is corrupted!");
     }

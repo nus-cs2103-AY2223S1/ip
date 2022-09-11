@@ -30,7 +30,7 @@ public class ParserTest {
             Parser.parseInt("1.0");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: 1.0", e.getMessage());
+            assertEquals("Parsing error: not an integer: 1.0", e.getMessage());
         }
     }
 
@@ -40,7 +40,7 @@ public class ParserTest {
             Parser.parseInt("One");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: One", e.getMessage());
+            assertEquals("Parsing error: not an integer: One", e.getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class ParserTest {
             Parser.parseDateTime("1-1-1");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: 1-1-1", e.getMessage());
+            assertEquals("Parsing error: invalid datetime: 1-1-1", e.getMessage());
         }
     }
 
@@ -65,7 +65,7 @@ public class ParserTest {
             Parser.parseDateTime("0100");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: 0100", e.getMessage());
+            assertEquals("Parsing error: invalid datetime: 0100", e.getMessage());
         }
     }
 
@@ -75,7 +75,7 @@ public class ParserTest {
             Parser.parseDateTime("Hello");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: Hello", e.getMessage());
+            assertEquals("Parsing error: invalid datetime: Hello", e.getMessage());
         }
     }
 
@@ -85,14 +85,14 @@ public class ParserTest {
             Parser.parseDateTime("1-1-1 0100");
             fail();
         } catch (DukeException e) {
-            assertEquals("Parsing error: 1-1-1 0100", e.getMessage());
+            assertEquals("Parsing error: invalid datetime: 1-1-1 0100", e.getMessage());
         }
 
         try {
             Parser.parseDateTime("01-01-1 0100");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: 01-01-1 0100", e.getMessage());
+            assertEquals("Parsing error: invalid datetime: 01-01-1 0100", e.getMessage());
         }
 
 
@@ -100,7 +100,7 @@ public class ParserTest {
             Parser.parseDateTime("01-01-2022 0100");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: 01-01-2022 0100", e.getMessage());
+            assertEquals("Parsing error: invalid datetime: 01-01-2022 0100", e.getMessage());
         }
     }
 
@@ -146,7 +146,7 @@ public class ParserTest {
             Parser.parseCommand("add new task");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: add new task (unknown command; enter \"help\" for available commands)",
+            assertEquals("Parsing error: invalid command: add (enter \"help\" for available commands)",
                     e.getMessage());
         }
     }
@@ -221,7 +221,7 @@ public class ParserTest {
             Parser.parseTask("T | 0   | Task Description");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: 0  ", e.getMessage());
+            assertEquals("Parsing error: not an integer: 0  ", e.getMessage());
         }
     }
 
@@ -248,7 +248,7 @@ public class ParserTest {
             Parser.parseTask("T | 1.3 | Task Description");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: 1.3", e.getMessage());
+            assertEquals("Parsing error: not an integer: 1.3", e.getMessage());
         }
     }
 

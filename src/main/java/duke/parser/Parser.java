@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
+import duke.Duke;
+import duke.DukeException;
 import duke.command.AddTaskCommand;
 import duke.command.Command;
 import duke.command.CommandType;
@@ -39,7 +41,7 @@ public class Parser {
         try {
             return Integer.parseInt(num);
         } catch (NumberFormatException e) {
-            throw new ParseException(num);
+            throw new ParseException("not an integer: " + num);
         }
     }
 
@@ -54,7 +56,7 @@ public class Parser {
         try {
             return LocalDateTime.parse(dateTime, DATE_TIME_INPUT_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new ParseException(dateTime);
+            throw new ParseException("invalid datetime: " + dateTime);
         }
     }
 
@@ -101,7 +103,8 @@ public class Parser {
         case EXIT:
             return new ExitCommand();
         default:
-            throw new ParseException(input, "unknown command; enter \"help\" for available commands");
+            // should not reach here, as command type is verified by getCommandType.
+            throw new DukeException("Duke could not make sense of this command: " + rawInput);
         }
     }
 
@@ -109,16 +112,18 @@ public class Parser {
      * Returns the {@code CommandType} from an argument list.
      * In case of an exception, the {@code rawInput} is used to provide more information.
      *
-     * @param args     The argument list.
+     * @param args     The argument list. It must contain at least one argument.
      * @param rawInput The raw input string.
      * @return The {@code CommandType}.
      */
     private static CommandType getCommandType(String[] args, String rawInput) {
+        assert args.length > 0 : "Argument list should not be empty";
+
         CommandType type;
         try {
             type = CommandType.valueOf(args[0].toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new ParseException(rawInput, "unknown command; enter \"help\" for available commands");
+            throw new ParseException("invalid command: " + args[0] + " (enter \"help\" for available commands)");
         }
         if (!type.isCompatible(args)) {
             throw new ParseException(rawInput, "wrong number of arguments provided");
@@ -217,7 +222,7 @@ public class Parser {
             return new EventTask(splits[2], parseDateTime(splits[3]));
         default:
             // should not reach here as we assume type is valid.
-            throw new ParseException(input, "unknown task symbol");
+            throw new DukeException("Duke could not make sense of this task: " + input);
         }
     }
 
