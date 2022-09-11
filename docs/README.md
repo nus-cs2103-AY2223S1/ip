@@ -31,7 +31,7 @@ Adds any three type of tasks into the list shown in sample below:
 - deadline tasks: `deadline dummyDeadline /by 2022-09-10 2215`
 
 <details><summary><mark>Tips!</mark></summary>
-Please follow the format shown above! Every first word in the input line is a command. (Case sensitve)
+Please follow the format shown above! Every first word in the input line is a command. (Case-sensitive)
 The second section of the input line is the tasks detail.
 The third section after /at and /by is the date and time of the task. Please follow the format.(YYYY-MM-DD HHmm)
 </details>
@@ -66,121 +66,122 @@ Use list command to show the current tasks list you have if you are not sure wha
 
 <details><summary>Event task is added with a correct format and duke response user the command success status</summary>
 
-* Example of usage:
-    - `event go for final exam /at 2022-11-04 1000`
+* Example of usage:</br>
+  `event go for final exam /at 2022-11-04 1000`
 
 * Expected outcome:
-    -  ```
-         ~~~~~-----DUKE-----~~~~~
-         New task is registered as you wish, you can come back to check if you wish!:
-         [E][ ] go for final exam (at: Nov 04 2022 10:00)
-         Now you have 1 tasks in your list.
-         ```
-* Description: There is currently 1 task in user's list and the adding command performed successfully.
+    ```
+    ~~~~~-----DUKE-----~~~~~
+    New task is registered as you wish, you can come back to check if you wish!:
+    [E][ ] go for final exam (at: Nov 04 2022 10:00)
+    Now you have 1 tasks in your list.
+    ```
+* **Description:** There is currently 1 task in user's list and the adding command performed successfully.
 </details>
 
 ### `delete` - deleting a task
 
 <details><summary>Event task is deleted and there are currently 0 task in the list</summary>
 
-* Example of usage:
-    - `delete 1`
+* Example of usage:</br>
+  `delete 1`
 
 * Expected outcome:
-    -  ```
-       ~~~~~-----DUKE-----~~~~~
-       Ching Ching Poof~~ This task is removed:
-       [E][ ] go for final exam (at: Nov 04 2022 10:00)
-       Now you have 0 tasks on your list.
-       ```
-* Description: There is currently 0 task in user's list and the deleting command performed successfully.
+    ```
+    ~~~~~-----DUKE-----~~~~~
+    Ching Ching Poof~~ This task is removed:
+    [E][ ] go for final exam (at: Nov 04 2022 10:00)
+    Now you have 0 tasks on your list.
+    ```
+* **Description:** There is currently 0 task in user's list and the deleting command performed successfully.
 </details>
 
 ### `find` - finding a task with search keyword.
 
 <details><summary>Find a task which contain `exam` word in it's detail</summary>
 
-* Example of usage:
-    - `find exam`
+* Example of usage:</br>
+`find exam`
 
 * Expected outcome:
-    -  ```
-       ~~~~~-----DUKE-----~~~~~
-       Here you go! your matching tasks in your list
-       [T][ ] exam preparation
-       [E][ ] exam at Utown (at: Nov 12 2022 19:00)
-       ```
-* Description: There is currently 2 tasks in user's list with "exam" detail.
+    ``` 
+    ~~~~~-----DUKE-----~~~~~
+    Here you go! your matching tasks in your list
+    [T][ ] exam preparation
+    [E][ ] exam at Utown (at: Nov 12 2022 19:00)
+    ```
+
+* **Description:** There is currently 2 tasks in user's list with "exam" detail.
 </details>
 
 ### `list` - listing all the tasks in the tasks list
 
 <details><summary>Show all tasks added in the tasks list</summary>
 
-* Example of usage:
-    - `list`
+* Example of usage:</br>
+`list`
 
 * Expected outcome:
-    -  ```
-       ~~~~~-----DUKE-----~~~~~
-       Weeeee, your current list is as follow:
-       1. [E][ ] dummyEvent (at: Sep 11 2011 11:30)
-       2. [D][ ] dummyDeadline (by: Jan 28 2011 09:00)
-       3. [T][ ] dummyTodo
-       4. [T][ ] exam preparation
-       5. [E][ ] exam at Utown (at: Nov 12 2022 19:00)
-       ```
-* Description: There are currently 6 tasks in user's list and all of them are undone.
+    ```
+    ~~~~~-----DUKE-----~~~~~
+    Weeeee, your current list is as follow:
+    1. [E][ ] dummyEvent (at: Sep 11 2011 11:30)
+    2. [D][ ] dummyDeadline (by: Jan 28 2011 09:00)
+    3. [T][ ] dummyTodo
+    4. [T][ ] exam preparation
+    5. [E][ ] exam at Utown (at: Nov 12 2022 19:00)
+    ```
+* **Description:** There are currently 6 tasks in user's list and all of them are undone.
 </details>
 
 ### `mark/unmark` - mark tasks as "done" or "undone"
 
 <details><summary>Mark and unmark a task</summary>
 
-* Example of usage:
-    - `mark 1`
-    - `unmark 1`
+* Example of usage:</br>
+`mark 1`</br>
+`unmark 1`
 
 * Expected outcome:
-    -  ```
-       ~~~~~-----DUKE-----~~~~~
-       Nice! this task is marked as done. Good Job!
-       [E][X] dummyEvent (at: Sep 11 2011 11:30)
-       ```
-    - ```
-      ~~~~~-----DUKE-----~~~~~
-      This task is marked as not done. Keep it up!
-      [E][ ] dummyEvent (at: Sep 11 2011 11:30)
-      ```
-* Description: The event task is mark as "done" and unmark as "undone" respectively
+    ```
+    ~~~~~-----DUKE-----~~~~~
+    Nice! this task is marked as done. Good Job!
+    [E][X] dummyEvent (at: Sep 11 2011 11:30)
+    ```
+    ```
+    ~~~~~-----DUKE-----~~~~~
+    This task is marked as not done. Keep it up!
+    [E][ ] dummyEvent (at: Sep 11 2011 11:30)
+    ```
+* **Description:** The event task is mark as "done" and unmark as "undone" respectively
 </details>
 
 ### Anomalies detection
 
 <details><summary>Tasks date and time is close</summary>
 
-* Example of error input 1:
-    - `event attend party /at 2011-09-11 1300`
+* Example of input: </br>
+`event attend party /at 2011-09-11 1300`
 
 * Expected outcome:
-    - ```
+    ```
     ~~~~~-----DUKE-----~~~~~
     Hey, these two tasks timing are quite close, are you sure to proceed? (Y/N)
     New Task: [E][ ] attend party (at: Sep 11 2011 13:00)
     Existing Task: [E][ ] dummyEvent (at: Sep 11 2011 11:30)
     ```
-* Description: This happens because there is another event task in the task list occur at close timing. Please respond `Y` to proceed adding task or `N` to cancel the previous add task command.
+* **Description:** This happens because there is another event task in the task list occur at close timing. Please respond `Y` to proceed adding task or `N` to cancel the previous add task command.
 </details>
 
-### Incorrect input format - some examples of Duke show user error message
+### Response for random input
 
 <details><summary>Random Input</summary>
 
-* Example of error input 1:
-    - `hi`
+* Example of random input:</br>
+`hi`
 
 * Expected outcome:
-    - ```
+    ```
     ~~~~~-----DUKE-----~~~~~
     Based on my understanding, your command didn't follow the format
     todo              : todo [task description]
@@ -190,19 +191,19 @@ Use list command to show the current tasks list you have if you are not sure wha
     mark/unmark/delete: [command] [number of task in list you wish to modify]
     find              : find [search keyword]
     ```
-* Description: Duke will not understand any random input. It will show the available input if it does not recognise the input.
+* **Description:** Duke will not understand any random input. It will show the available input if it does not recognise the input.
 </details>
 
 <details><summary>Incorrect date format</summary>
 
-* Example of error input 1:
-    - `deadline some deadline /by 09-01-2022 0900`
+* Example of error input 1:</br>
+`deadline some deadline /by 09-01-2022 0900`
 
 * Expected outcome:
-    - ```
+    ```
     ~~~~~-----DUKE-----~~~~~
     Date and time format should be [YYYY-MM-DD HHmm]!
     (eg. 2022-08-21 1300)
     ```
-* Description: Duke will show the correct date format that user should use while interacting with the app.
+* **Description:** Duke will show the correct date format that user should use while interacting with the app.
 </details>
