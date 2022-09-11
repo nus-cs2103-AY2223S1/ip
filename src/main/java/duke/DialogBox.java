@@ -7,12 +7,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.shape.Circle;
 
 /** A DialogBox object is used to display a Duke/User message in GUI */
 public class DialogBox extends HBox {
@@ -31,8 +34,19 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        double circleRadius = 50.0;
+        double circleX = displayPicture.getX() + circleRadius;
+        double circleY = displayPicture.getY() + circleRadius;
+
+        Circle border = new Circle(circleX, circleY, circleRadius);
+
         dialog.setText(text);
+        dialog.setPadding(new Insets(5));
+        dialog.setTranslateY(40.0);
+        dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 10;");
+
         displayPicture.setImage(img);
+        displayPicture.setClip(border);
     }
 
     private void flip() {
@@ -40,6 +54,9 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+
+        dialog.setTranslateX(-10.0);
+        dialog.setStyle("-fx-background-color: #ffa500;" + "-fx-background-radius: 10;");
     }
 
     /**
