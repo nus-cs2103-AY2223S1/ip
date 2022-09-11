@@ -45,10 +45,12 @@ public class Storage {
             if (!parentFolder.exists()) {
                 parentFolder.mkdirs();
             }
+            assert parentFolder.exists() : "Parent folder should exist";
             if (!file.exists()) {
                 file.createNewFile();
                 return tasks;
             }
+            assert file.exists() : "File should exist";
             Scanner sc = new Scanner(file);
             if (!sc.hasNextLine()) {
                 return tasks;
