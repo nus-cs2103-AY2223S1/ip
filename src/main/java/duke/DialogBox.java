@@ -86,6 +86,7 @@ public class DialogBox extends HBox {
         );
         var db = new DialogBox(l, iv);
         db.flip();
+
         return db;
     }
 }

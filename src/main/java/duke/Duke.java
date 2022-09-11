@@ -10,10 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.layout.Region;
 import javafx.scene.control.Label;
 
 import javafx.scene.image.Image;
@@ -144,7 +143,7 @@ public class Duke extends Application{
         stage.show();
 
         //Step 2. Formatting the window to look as expected
-        stage.setTitle("Duke");
+        stage.setTitle("Duke ChatBot");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
@@ -164,6 +163,14 @@ public class Duke extends Application{
         //Set spacing for dialogContainer
         dialogContainer.setSpacing(10);
         dialogContainer.setPadding(new Insets(10,5,10,5));
+
+        //Set background colour
+        dialogContainer.setBackground(new Background(
+                        new BackgroundFill(Color.color(0.3254, 0.847, 0.996),
+                        CornerRadii.EMPTY,
+                        new Insets(0))
+                )
+        );
 
         userInput.setPrefWidth(325.0);
 
