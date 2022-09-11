@@ -38,6 +38,7 @@ public class Storage {
      * Returns a Tasks ArrayList retrieved from the specified save file
      * @return Tasks ArrayList
      */
+    @SuppressWarnings("unchecked")
     public ArrayList<Task> read() {
         try {
             FileInputStream readData = new FileInputStream(filename);
