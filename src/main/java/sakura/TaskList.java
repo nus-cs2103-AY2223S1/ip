@@ -128,7 +128,9 @@ public class TaskList {
             } else {
                 int taskIndex = Integer.parseInt(input.substring("delete ".length()));
                 Task task = tasks.get(taskIndex - 1);
+                int initialSize = tasks.size();
                 tasks.remove(task);
+                assert tasks.size() == initialSize - 1 : "Size of tasks list is incorrect after deleting task.";
                 return Ui.deleteDescription(this.tasks, task);
             }
         } catch (IndexOutOfBoundsException e) {

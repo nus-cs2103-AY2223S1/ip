@@ -42,6 +42,7 @@ public class Parser {
      * Display exit Ui interface.
      */
     private static String exit() {
+        assert !Sakura.inProgress : "Not in Progress";
         try {
             Sakura.storage.saveData(Sakura.taskList);
             return Sakura.ui.showExit();

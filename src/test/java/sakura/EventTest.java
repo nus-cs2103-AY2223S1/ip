@@ -21,7 +21,7 @@ public class EventTest {
     @Test
     void testToString() {
         Event test1 = new Event("Zoukout Festival", "2022-05-15 2359");
-        assertEquals("\u001B[35m(EVENT)\u001B[0m[ ] Zoukout Festival (at: 23:59, 15 May 2022)", test1.toString());
+        assertEquals("(EVENT)[ ] Zoukout Festival (at: 23:59, 15 May 2022)", test1.toString());
 
     }
 }

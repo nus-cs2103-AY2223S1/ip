@@ -21,7 +21,7 @@ public class TodoTest {
     @Test
     void testToString() {
         Todo test1 = new Todo("Meditation");
-        assertEquals("\u001B[36m(TODO)\u001B[0m[ ] Meditation", test1.toString());
+        assertEquals("(TODO)[ ] Meditation", test1.toString());
 
     }
 }

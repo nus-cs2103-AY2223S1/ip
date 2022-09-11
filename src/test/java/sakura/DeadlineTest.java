@@ -21,7 +21,7 @@ public class DeadlineTest {
     @Test
     void testToString() {
         Deadline test1 = new Deadline("submit iP task1", "2022-05-15 2359");
-        assertEquals("\u001B[31m(DEADLINE)\u001B[0m[ ] submit iP task1 (by: 23:59, 15 May 2022)", test1.toString());
+        assertEquals("(DEADLINE)[ ] submit iP task1 (by: 23:59, 15 May 2022)", test1.toString());
 
     }
 }

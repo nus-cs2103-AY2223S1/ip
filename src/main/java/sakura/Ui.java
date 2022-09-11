@@ -73,7 +73,9 @@ public class Ui {
      * @return string message to user.
      */
     public static String addDescription(List<Task> tasks, Task newTask) {
+        int initialSize = tasks.size();
         tasks.add(newTask);
+        assert tasks.size() == initialSize + 1 : "Size of tasks list is incorrect after adding new task.";
         return "Yes Senpai! I've added this task: \n\t  "
                 + newTask
                 + " \n\tNow you have "
