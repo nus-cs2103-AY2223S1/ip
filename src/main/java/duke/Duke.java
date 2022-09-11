@@ -32,6 +32,7 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
         } catch (DataFileCorruptedException e) {
+            // If we are here, it means the load did succeed but the data file is corrupted.
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage() + "\n"
                     + "Do you want to reset the datafile?", ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
@@ -41,6 +42,12 @@ public class Duke {
             } else {
                 System.exit(0);
             }
+        } catch (DukeException e) {
+            // If we are here, it means data file could not be created.
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage() + "\n"
+                    + "Check if the file permissions are set correctly.", ButtonType.OK);
+            alert.showAndWait();
+            System.exit(0);
         }
         printer.accept("Welcome to Duke!");
     }

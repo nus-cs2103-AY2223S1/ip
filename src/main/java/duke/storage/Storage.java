@@ -45,12 +45,29 @@ public class Storage {
             throw new DukeException("Could not create directory: " + parent);
         }
         try {
-            if (!dataFile.createNewFile()) {
-                throw new DukeException("Could not create file: " + dataFile);
-            }
+            // file does not exist, so create it
+            boolean isCreated = dataFile.createNewFile();
+            assert isCreated : "File should have been created";
         } catch (IOException e) {
-            throw new DukeException("An I/O error occurred creating the file: " + dataFile);
+            throw new DukeException("Could not create file:: " + dataFile);
         }
+    }
+
+    /**
+     * Returns a {@code Scanner} for the {@code dataFile}.
+     * Throws an exception if the {@code dataFile} does not exist or could not be opened.
+     *
+     * @return The {@code Scanner} for the {@code dataFile}.
+     */
+    private Scanner getScanner() {
+        ensureDataFileExists();
+        Scanner scanner;
+        try {
+            scanner = new Scanner(dataFile);
+        } catch (FileNotFoundException e) {
+            throw new DukeException("Could not open datafile for reading: " + dataFile);
+        }
+        return scanner;
     }
 
     /**
@@ -70,23 +87,6 @@ public class Storage {
             }
         }
         return tasks;
-    }
-
-    /**
-     * Returns a {@code Scanner} for the {@code dataFile}.
-     * Throws an exception if the {@code dataFile} does not exist or could not be opened.
-     *
-     * @return The {@code Scanner} for the {@code dataFile}.
-     */
-    private Scanner getScanner() {
-        ensureDataFileExists();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(dataFile);
-        } catch (FileNotFoundException e) {
-            throw new DukeException("Could not open datafile for reading: " + dataFile);
-        }
-        return scanner;
     }
 
     /**
