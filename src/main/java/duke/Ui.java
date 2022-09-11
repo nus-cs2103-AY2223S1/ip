@@ -24,7 +24,9 @@ public class Ui {
      * @return The Duke welcome message string with a border.
      */
     public static String getWelcomeMessage() {
-        String welcomeMsg = "Hello! I'm duke.\n" + "What can I do for you?";
+        String welcomeMsg = "Hello! I'm duke.\n"
+                + "What can I do for you?\n"
+                + "If you need help, type 'help'.";
         return getMessage(welcomeMsg);
     }
 
@@ -36,6 +38,24 @@ public class Ui {
     public String getExitMessage() {
         String exitMsg = "Bye. Hope to see you again soon!";
         return getMessage(exitMsg);
+    }
+
+    public String getHelpMessage() {
+        String whitespace = "\n\n";
+        String helpMsg = "Here are the commands you can use:" + whitespace
+                + "bye(b) - Quit App" + whitespace
+                + "list(l) - Get the list of tasks" + whitespace
+                + "help(h) - Get to this help screen" + whitespace
+                + "find(f) [text] - Search for tasks with the input text" + whitespace
+                + "mark(m) [number] - Mark a task as done" + whitespace
+                + "unmark(um) [number] - Mark a task as undone" + whitespace
+                + "delete(del) [number] - Delete a task" + whitespace
+                + "todo(t) [task] - Add a todo task" + whitespace
+                + "deadline(d) [task] /by [YYYY-MM-DD] [HH:MM]"
+                + " - Add a deadline task with an end time" + whitespace
+                + "event(e) [task] /at [YYYY-MM-DD] [HH:MM] [YYYY-MM-DD] [HH:MM]"
+                + " - Add an event task with a start and end time.";
+        return getMessage(helpMsg);
     }
 
     /**

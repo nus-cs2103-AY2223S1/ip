@@ -16,6 +16,7 @@ public class Parser {
         HashMap<String, String> shortcuts = new HashMap<>();
         shortcuts.put("b", "bye");
         shortcuts.put("l", "list");
+        shortcuts.put("h", "help");
         shortcuts.put("f", "find");
         shortcuts.put("m", "mark");
         shortcuts.put("um", "unmark");
@@ -116,6 +117,7 @@ public class Parser {
         switch (cmd) {
         case "bye":
         case "list":
+        case "help":
             minimumArgumentsNeeded = 1;
             break;
         case "find":

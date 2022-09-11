@@ -52,6 +52,8 @@ public class Duke {
                 return executeByeResponse();
             case "list":
                 return executeListResponse();
+            case "help":
+                return executeHelpResponse();
             case "find":
                 return executeFindResponse(parsedOutput);
             case "mark":
@@ -120,6 +122,10 @@ public class Duke {
 
     private String executeListResponse() {
         return ui.listTasks(tasks.getTasks());
+    }
+
+    private String executeHelpResponse() {
+        return ui.getHelpMessage();
     }
 
     private String executeFindResponse(String[] parsedOutput) {
