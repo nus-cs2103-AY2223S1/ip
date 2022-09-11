@@ -114,7 +114,7 @@ public class Duke {
                 }
 
                 // Saves list to file ./data/duke.txt
-                saveList(list);
+                // saveList(list);
             } catch (DukeException e) {
                 printWithLineBreak(e.getMessage());
             } catch (Exception e) {
