@@ -10,8 +10,12 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <Text fx:id="dialog" styleClass="text" text="Text" wrappingWidth="250"/>
-    <Circle fx:id="displayPicture" radius="50" />
+  <HBox fx:id="chatContainer" spacing="15">
+    <HBox fx:id="dialogContainer" styleClass="container">
+      <Text fx:id="dialog" text="Text" wrappingWidth="250"/>
+    </HBox>
+    <Circle fx:id="displayPicture" styleClass="displayPicture" radius="35" />
+  </HBox>
   </children>
   <padding>
     <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />

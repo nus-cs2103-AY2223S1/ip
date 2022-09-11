@@ -1,3 +1,13 @@
-.text {
+.container {
     -fx-font: 11 arial;
+    -fx-padding: 10px;
+    -fx-background-radius: 10;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10;
+}
+
+.displayPicture {
+    -fx-stroke: brown;
+    -fx-stroke-width: 1;
 }

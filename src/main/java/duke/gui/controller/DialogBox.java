@@ -25,6 +25,12 @@ public class DialogBox extends HBox {
     @FXML
     private Text dialog;
 
+    @FXML
+    private HBox dialogContainer;
+
+    @FXML
+    private HBox chatContainer;
+
     /** Display picture of the dialog. */
     @FXML
     private Circle displayPicture;
@@ -52,9 +58,9 @@ public class DialogBox extends HBox {
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+        ObservableList<Node> tmp = FXCollections.observableArrayList(chatContainer.getChildren());
         Collections.reverse(tmp);
-        getChildren().setAll(tmp);
+        chatContainer.getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
     }
 
@@ -66,7 +72,9 @@ public class DialogBox extends HBox {
      * @return DialogBox FXML element representing the user's dialog.
      */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        DialogBox dialogBox = new DialogBox(text, img);
+        dialogBox.dialogContainer.setStyle("-fx-background-color: #C8FFCD");
+        return dialogBox;
     }
 
     /**
@@ -77,8 +85,9 @@ public class DialogBox extends HBox {
      * @return DialogBox FXML element representing the chat-bot's dialog.
      */
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        db.flip();
-        return db;
+        DialogBox dialogBox = new DialogBox(text, img);
+        dialogBox.flip();
+        dialogBox.dialogContainer.setStyle("-fx-background-color: #D9E8FB");
+        return dialogBox;
     }
 }
