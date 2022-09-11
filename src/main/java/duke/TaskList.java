@@ -185,7 +185,7 @@ public class TaskList {
     }
 
     /**
-     * Find a task by searching for a keyword.
+     * Finds a task by searching for a keyword.
      *
      * @param splitStr the string input
      * @return the String representation of the response
