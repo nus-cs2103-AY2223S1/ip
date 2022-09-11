@@ -45,8 +45,6 @@ public class Parser {
                         storage.fileUpdater(newTask, false, index);
                         toReply += "Nice! I've marked this task as done:\n";
                         toReply += taskList.getList().get(index).toString();
-                        // System.out.println("Nice! I've marked this task as done:");
-                        // System.out.println(taskList.getList().get(index).toString());
                     }
                 }
             } else if (input.startsWith("unmark")) {
@@ -66,8 +64,6 @@ public class Parser {
                         storage.fileUpdater(newTask, false, index);
                         toReply += "Ok, I've marked this task as not done yet:\n";
                         toReply += taskList.getList().get(index).toString();
-                        // System.out.println("Ok, I've marked this task as not done yet:");
-                        // System.out.println(taskList.getList().get(index).toString());
                     }
                 }
             } else if (input.startsWith("delete")) {
