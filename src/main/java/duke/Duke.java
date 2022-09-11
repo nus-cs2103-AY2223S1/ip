@@ -43,9 +43,6 @@ public class Duke {
     public void init() {
         this.ui.start();
         this.tasks.loadFromLocalStorage(this.storage);
-
-//        while (this.ui.isOpen()) {
-//        }
     }
 
     public String enterStringCommand(String commandStr) {
