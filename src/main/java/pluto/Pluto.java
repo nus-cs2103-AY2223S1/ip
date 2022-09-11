@@ -12,12 +12,12 @@ public class Pluto {
     private TaskList tasks;
     /** To display appropriate messages to the user */
     private Ui ui;
-
+    /** File to store user data */
+    private final String filePath = "PlutoData.txt";
     /**
      * Constructor that initializes global variables.
-     * @param filePath Path of file to read and write files from.
      */
-    public Pluto(String filePath) {
+    public Pluto() {
         ui = new Ui();
         try {
             storage = new Storage(filePath);
@@ -27,31 +27,16 @@ public class Pluto {
             tasks = new TaskList();
         }
     }
-
     /**
-     * Runs the programme by taking inputs and displaying relevant outputs.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (PlutoException e) {
-                ui.showError(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (PlutoException e) {
+            return ui.showError(e.getMessage());
         }
-    }
-
-    /**
-     * Entry point of the code.
-     * @param args The command line arguments.
-     */
-    public static void main(String[] args) {
-        String path = "PlutoData.txt";
-        new Pluto(path).run();
     }
 }

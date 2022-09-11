@@ -30,18 +30,18 @@ public class DeleteCommand extends Command {
      * and displays an appropriate message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
         Task t = tasks.deleteTask(idx);
         try {
             storage.rewriteFile(tasks);
             StringBuilder deleteMessage = new StringBuilder();
-            deleteMessage.append("\tNoted. I've removed this task:\n");
-            deleteMessage.append(String.format("\t\t%s\n", t.toString()));
-            deleteMessage.append(String.format("\tNow you have %d tasks in the list.", tasks.nTasks()));
-            ui.print(deleteMessage);
+            deleteMessage.append("Noted. I've removed this task:\n");
+            deleteMessage.append(String.format("\t%s\n", t.toString()));
+            deleteMessage.append(String.format("Now you have %d tasks in the list.", tasks.nTasks()));
+            return ui.print(deleteMessage);
         } catch (IOException e) {
             tasks.addTask(idx - 1, t);
-            throw new PlutoException("\tOOPS!!! Couldn't delete task. Try again!");
+            throw new PlutoException("OOPS!!! Couldn't delete task. Try again!");
         }
 
     }

@@ -52,7 +52,7 @@ public class Parser {
         try {
             enumCommand = Type.valueOf(command.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new PlutoException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new PlutoException("OOPS!!! I don't know what that means!");
         }
         switch (enumCommand) {
         case TODO:
@@ -76,7 +76,7 @@ public class Parser {
         case BYE:
             return new ExitCommand();
         default:
-            throw new PlutoException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new PlutoException("OOPS!!! I don't know what that means!");
         }
     }
 
@@ -94,17 +94,17 @@ public class Parser {
         case DEADLINE:
             String[] arrDeadline = input.split("/by", 2);
             if (arrDeadline.length == 1) {
-                throw new PlutoException("\tOOPS!!! The deadline date is required.");
+                throw new PlutoException("OOPS!!! The deadline date is required.");
             }
             return new AddCommand(new Deadline(arrDeadline[0].strip(), parseDate(arrDeadline[1].strip())));
         case EVENT:
             String[] arrEvent = input.split("/at", 2);
             if (arrEvent.length == 1) {
-                throw new PlutoException("\tOOPS!!! The event date is required.");
+                throw new PlutoException("OOPS!!! The event date is required.");
             }
             return new AddCommand(new Event(arrEvent[0].strip(), parseDate(arrEvent[1].strip())));
         default:
-            throw new PlutoException("\tOOPS!!! Task must be a Todo, Deadline or Event.");
+            throw new PlutoException("OOPS!!! Task must be a Todo, Deadline or Event.");
         }
     }
 
@@ -117,7 +117,7 @@ public class Parser {
         HashSet<String> commands = new HashSet<>(Arrays.asList("todo", "deadline", "event", "mark",
                 "unmark", "delete", "show"));
         if (commands.contains(str.strip())) {
-            throw new PlutoException(String.format("\tOOPS!!! The description of %s cannot be empty.", str));
+            throw new PlutoException(String.format("OOPS!!! The description of %s cannot be empty.", str));
         }
     }
 
@@ -132,7 +132,7 @@ public class Parser {
             return LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
         } catch (DateTimeParseException e) {
             System.out.println(date);
-            throw new PlutoException("\tOOPS!!! dd-MM-yyyy HHmm date format required.");
+            throw new PlutoException("OOPS!!! dd-MM-yyyy HHmm date format required.");
         }
     }
 
@@ -146,7 +146,7 @@ public class Parser {
         try {
             return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         } catch (DateTimeParseException e) {
-            throw new PlutoException("\tOOPS!!! dd-MM-yyyy date format required.");
+            throw new PlutoException("OOPS!!! dd-MM-yyyy date format required.");
         }
     }
 
@@ -160,7 +160,7 @@ public class Parser {
         try {
             return Integer.parseInt(idx.strip()) - 1;
         } catch (NumberFormatException e) {
-            throw new PlutoException("\tOOPS!!! Index of task is required.");
+            throw new PlutoException("OOPS!!! Index of task is required.");
         }
     }
 }

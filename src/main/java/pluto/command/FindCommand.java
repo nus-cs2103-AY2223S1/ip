@@ -21,13 +21,12 @@ public class FindCommand extends Command {
      * Displays all tasks containing a keyword.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList t = tasks.filter(keyword);
         if (t.nTasks() == 0) {
-            ui.print("\tNo tasks found.");
+            return ui.print("No tasks found.");
         } else {
-            ui.print("\tHere are the matching tasks in your list:");
-            ui.print(t.toString());
+            return ui.print("Here are the matching tasks in your list:\n" + ui.print(t.toString()));
         }
 
     }

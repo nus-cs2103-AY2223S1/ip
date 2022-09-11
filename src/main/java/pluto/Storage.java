@@ -31,7 +31,7 @@ public class Storage {
             this.path = path;
             file.createNewFile();
         } catch (IOException e) {
-            throw new PlutoException("\tOOPS!!! " + e.getMessage());
+            throw new PlutoException("OOPS!!! " + e.getMessage());
         }
     }
 
@@ -72,11 +72,11 @@ public class Storage {
                     missions.add(event);
                     break;
                 default:
-                    throw new PlutoException("\tOOPS!!! Couldn't parse previous tasks.");
+                    throw new PlutoException("OOPS!!! Couldn't parse previous tasks.");
                 }
             }
         } catch (IOException e) {
-            throw new PlutoException("\tOOPS!!! " + e.getMessage());
+            throw new PlutoException("OOPS!!! " + e.getMessage());
         }
         return missions;
     }

@@ -31,17 +31,17 @@ public class AddCommand extends Command {
      * and displays an appropriate message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
         try {
             storage.appendToFile(t.toFile());
             tasks.addTask(t);
             StringBuilder addMessage = new StringBuilder();
-            addMessage.append("\tGot it. I've added this task:\n");
-            addMessage.append("\t\t" + t.toString() + "\n");
-            addMessage.append(String.format("\tNow you have %d tasks in the list.", tasks.nTasks()));
-            ui.print(addMessage);
+            addMessage.append("Got it. I've added this task:\n");
+            addMessage.append("\t" + t.toString() + "\n");
+            addMessage.append(String.format("Now you have %d tasks in the list.", tasks.nTasks()));
+            return ui.print(addMessage);
         } catch (IOException e) {
-            throw new PlutoException("\tOOPS!!! Couldn't add task. Try again!");
+            throw new PlutoException("OOPS!!! Couldn't add task. Try again!");
         }
     }
 

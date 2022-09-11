@@ -15,12 +15,11 @@ public class ListCommand extends Command {
      * Displays all tasks in the task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (tasks.nTasks() == 0) {
-            ui.print("\tNo tasks added yet.");
+            return ui.print("No tasks added yet.");
         } else {
-            ui.print("\tHere are the tasks in your list:");
-            ui.print(tasks.toString());
+            return ui.print("Here are the tasks in your list:\n" + ui.print(tasks.toString()));
         }
     }
 

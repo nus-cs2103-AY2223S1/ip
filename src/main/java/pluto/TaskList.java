@@ -44,7 +44,7 @@ public class TaskList {
         try {
             missions.add(idx, t);
         } catch (IndexOutOfBoundsException e) {
-            throw new PlutoException("\tOOPS!!! Valid index required.");
+            throw new PlutoException("OOPS!!! Valid index required.");
         }
     }
 
@@ -58,7 +58,7 @@ public class TaskList {
         try {
             return missions.remove(idx);
         } catch (IndexOutOfBoundsException e) {
-            throw new PlutoException("\tOOPS!!! Valid index required.");
+            throw new PlutoException("OOPS!!! Valid index required.");
         }
     }
 
@@ -72,7 +72,7 @@ public class TaskList {
         try {
             return missions.get(idx);
         } catch (IndexOutOfBoundsException e) {
-            throw new PlutoException("\tOOPS!!! Valid index required.");
+            throw new PlutoException("OOPS!!! Valid index required.");
         }
     }
 
@@ -90,7 +90,7 @@ public class TaskList {
                 missions.get(idx).markAsUndone();
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new PlutoException("\tOOPS!!! Valid index required.");
+            throw new PlutoException("OOPS!!! Valid index required.");
         }
     }
 
@@ -129,10 +129,9 @@ public class TaskList {
     public String toString() {
         StringBuilder printTasks = new StringBuilder();
         for (int i = 0; i < missions.size(); i++) {
-            String output = String.format("\t\t%d. %s\n", i + 1, missions.get(i).toString());
+            String output = String.format("\t%d. %s\n", i + 1, missions.get(i).toString());
             printTasks.append(output);
         }
         return printTasks.toString();
     }
-
 }

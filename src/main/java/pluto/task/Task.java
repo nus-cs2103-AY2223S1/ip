@@ -9,11 +9,11 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
     /** Reset display color */
-    protected static final String ANSI_RESET = "\u001B[0m";
+    protected static final String ANSI_RESET = "";
     /** Red display color */
-    protected static final String ANSI_RED = "\u001B[31m";
+    protected static final String ANSI_RED = "";
     /** Green display color */
-    protected static final String ANSI_GREEN = "\u001B[32m";
+    protected static final String ANSI_GREEN = "";
 
     /** Task description */
     protected String description;
