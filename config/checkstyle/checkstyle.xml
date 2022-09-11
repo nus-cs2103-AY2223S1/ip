@@ -16,7 +16,9 @@
 
     <module name="NewlineAtEndOfFile">
         <!-- Accept LF, CR or CRLF to accomodate devs who prefer different line endings -->
-        <property name="lineSeparator" value="lf_cr_crlf"/>
+<!--        <property name="lineSeparator" value="lf_cr_crlf"/>-->
+        <property name="severity" value="ignore" />
+
     </module>
 
     <module name="RegexpSingleline">

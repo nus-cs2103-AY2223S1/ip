@@ -16,11 +16,8 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks) {
-//        tasks.printList();
-//        Ui.showPrintListMessage();
         int i = 0;
         String response = "";
-        int ListLength = tasks.getSize();
         for (Task task : tasks.getTasks()) {
             i = i + 1;
             response = response + i + ". " + task + "\n";

@@ -1,14 +1,13 @@
 package duke;
 
-import javafx.application.Platform;
-import javafx.animation.PauseTransition;
-
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.util.Duration;
 
 
@@ -34,8 +33,9 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets the response from bot.
+     * @param input The input given by the user.
+     * @return  The response given by bot.
      */
     public String getResponse(String input) {
         try {
@@ -47,8 +47,8 @@ public class Duke {
             }
             String response = c.execute(this.tasks);
             return response;
-        }catch (DukeException e) {
-                return ui.showError(e);
+        } catch (DukeException e) {
+            return ui.showError(e);
         }
     }
 }

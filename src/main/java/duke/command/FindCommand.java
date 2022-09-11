@@ -26,14 +26,12 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks) {
-        tasks.findTask(this.keyword);
         int i = 0;
         String response = "";
         for (Task task : tasks.getTasks()) {
             if (task.getDescription().toLowerCase().contains(this.keyword.toLowerCase())) {
                 i = i + 1;
-//                System.out.println(i + "." + task);
-                response = response  + i + "." + task + "\n";
+                response = response + i + "." + task + "\n";
             }
         }
         return Ui.showFindTaskMessage(this.keyword) + response;

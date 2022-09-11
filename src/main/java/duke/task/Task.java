@@ -39,7 +39,7 @@ public class Task {
      * Gets the description of the task based on status of the task.
      *
      * @return Returns [X] + description if the task is done or
-     * [ ] if the not done.
+     *     [ ] if the not done.
      */
     public String getDescription() {
         if (isDone) {
@@ -53,7 +53,7 @@ public class Task {
      * The string representation of task.
      *
      * @return Returns [X] + description if the task is done or
-     * [ ] if the not done.
+     *     [ ] if the not done.
      */
     @Override
     public String toString() {
@@ -63,5 +63,4 @@ public class Task {
             return "[ ] " + description;
         }
     }
-
 }

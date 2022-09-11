@@ -1,10 +1,10 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Mark command class to mark a task as undone.
@@ -17,7 +17,7 @@ public class UnMarkCommand extends Command {
      *
      * @param taskNo The task number to be marked.
      */
-    public UnMarkCommand(int taskNo){
+    public UnMarkCommand(int taskNo) {
         this.taskNo = taskNo;
     }
 

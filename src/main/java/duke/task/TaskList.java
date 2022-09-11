@@ -1,11 +1,6 @@
 package duke.task;
 
-import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-
-import duke.storage.Storage;
-import duke.ui.Ui;
 
 /**
  * Tasklist class to store task objects.
@@ -26,30 +21,9 @@ public class TaskList {
      *
      * @param t The task to be added.
      */
-    public void addTask(Task t)  {
+    public void addTask(Task t) {
         this.tasks.add(t);
-//        try {
-//            Storage.save(this.tasks);
-//        } catch (IOException e) {
-//            Ui.showError(e);
-//        }
     }
-
-//    /**
-//     * Method to add a task but without printing
-//     * the show message, this is for loading the
-//     * data from storage file.
-//     *
-//     * @param t The task to be added.
-//     */
-//    public void addTaskWithoutPrinting(Task t)  {
-//        this.tasks.add(t);
-////        try {
-////            Storage.save(this.tasks);
-////        } catch (IOException e) {
-////            Ui.showError(e);
-////        }
-//    }
 
     /**
      * Gets the task based on task number.
@@ -58,6 +32,7 @@ public class TaskList {
      * @return The task in the taskList at taskNo position.
      */
     public Task getTask(int taskNo) {
+        assert taskNo <= this.tasks.size() : "The task number should not be bigger than total tasks size";
         return tasks.get(taskNo - 1);
     }
 
@@ -85,6 +60,7 @@ public class TaskList {
      * @param taskNo The corresponding task ID.
      */
     public void markTask(int taskNo) {
+        assert taskNo <= this.tasks.size() : "The task number should not be bigger than total tasks size";
         Task task = this.getTask(taskNo);
         task.mark();
     }
@@ -95,6 +71,7 @@ public class TaskList {
      * @param taskNo The corresponding task ID.
      */
     public void unMarkTask(int taskNo) {
+        assert taskNo <= this.tasks.size() : "The task number should not be bigger than total tasks size";
         Task task = this.getTask(taskNo);
         task.unMark();
     }
@@ -105,22 +82,8 @@ public class TaskList {
      * @param taskNo The corresponding task ID.
      */
     public void deleteTask(int taskNo) {
+        assert taskNo <= this.tasks.size() : "The task number should not be bigger than total tasks size";
         this.tasks.remove(taskNo - 1);
-    }
-
-    /**
-     * Finds task based on keyword.
-     *
-     * @param keyword The keyword to find.
-     */
-    public void findTask(String keyword) {
-        int i = 0;
-        for (Task task : tasks) {
-            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
-                i = i + 1;
-                System.out.println(i + "." + task);
-            }
-        }
     }
 
     /**
@@ -139,15 +102,4 @@ public class TaskList {
         }
         return "Task";
     }
-
-//    /**
-//     * Prints all tasks in tasklist.
-//     */
-//    public void printList() {
-//        Ui.showPrintListMessage();
-//        int ListLength = tasks.size();
-//        for (int i = 0; i < ListLength; i++) {
-//            System.out.println((i + 1) + ". " + tasks.get(i));
-//        }
-//    }
 }

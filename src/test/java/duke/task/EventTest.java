@@ -1,25 +1,24 @@
 package duke.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import org.junit.jupiter.api.Test;
 
 public class EventTest {
 
     @Test
-    public void getDateTest () {
+    public void getDateTest() {
         LocalDate date = LocalDate.parse("2019-10-11");
-        Event e = new Event("Test1",date);
+        Event e = new Event("Test1", date, 'X');
         assertEquals("2019-10-11", e.getDate().toString());
     }
 
     @Test
-    public void getDescriptionTest () {
+    public void getDescriptionTest() {
         LocalDate date = LocalDate.parse("2019-10-16");
-        Event e = new Event("Test1",date);
-        assertEquals("[E]" + "[ ] " + "Test1" + "(" + date + ")", e.getDescription());
+        Event e = new Event("Test1", date, 'X');
+        assertEquals("[E]" + "[X] " + "Test1" + "(" + date + ")", e.getDescription());
     }
 }

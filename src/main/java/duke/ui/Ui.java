@@ -1,8 +1,8 @@
 package duke.ui;
 
-import duke.task.Task;
-
 import java.time.LocalDate;
+
+import duke.task.Task;
 
 /**
  * Deals with interactions with the user.
@@ -12,11 +12,11 @@ public class Ui {
     public static final String NAME = "Duke";
 
     /** Greeting message to welcome the user. */
-    private final static String GREETING_MESSAGE = "Hello! I'm " + NAME + "\n"
+    private static final String GREETING_MESSAGE = "Hello! I'm " + NAME + "\n"
             + "What can I do for you?\n";
 
     /** Bye message when user exit the program. */
-    private final static String BYE_MESSAGE = "Bye. Hope to see you again soon!\n";
+    private static final String BYE_MESSAGE = "Bye. Hope to see you again soon!\n";
 
     /** Print the welcome message. */
     public static String showWelcomeMessage() {
@@ -30,20 +30,20 @@ public class Ui {
 
     /** Print the error message. */
     public static String showError(Exception e) {
-        return  "The following error occur: " + e;
+        return "The following error occur: " + e;
     }
 
     /** Print the reply when a new task is added. */
     public static String showAddTaskMessage(Task task, int size) {
-        String reply = "Got it. I've added this task:\n" +
-                task + "\nNow you have " + size + " tasks in the list.";
+        String reply = "Got it. I've added this task:\n"
+                + task + "\nNow you have " + size + " tasks in the list.";
         return reply;
     }
 
     /** Print the message when a task is deleted. */
     public static String showDeleteTaskMessage(Task task, int size) {
-        String reply = "Noted. I've removed this task:\n" +
-                task + "\nNow you have " + size + " tasks in the list.";
+        String reply = "Noted. I've removed this task:\n"
+                + task + "\nNow you have " + size + " tasks in the list.";
         return reply;
     }
 
@@ -62,7 +62,7 @@ public class Ui {
         return "Here are the tasks on: " + date + "\n";
     }
 
-    public static String showFindTaskMessage(String keyword)  {
+    public static String showFindTaskMessage(String keyword) {
         return "Based on your keyword:" + keyword + " these are the tasks found:\n";
     }
 

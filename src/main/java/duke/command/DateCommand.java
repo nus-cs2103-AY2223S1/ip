@@ -1,12 +1,12 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.time.LocalDate;
 
 /**
  * Date command class to find all the tasks on a give date.
@@ -30,7 +30,6 @@ public class DateCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks) {
-//        tasks.printTasksOnSpecificDate(this.localDate);
         int i = 0;
         String response = "";
         for (Task task : tasks.getTasks()) {
@@ -39,14 +38,12 @@ public class DateCommand extends Command {
                 if (d.getDate().equals(this.localDate)) {
                     i = i + 1;
                     response = response + i + "." + d + "\n";
-//                    System.out.println(i + "." + d);
                 }
             } else if (tasks.getTaskType(task).equals("Events")) {
                 Event e = (Event) task;
                 if (e.getDate().equals(this.localDate)) {
                     i = i + 1;
                     response = response + i + "." + e + "\n";
-//                    System.out.println(i + "." + e);
                 }
             }
         }
