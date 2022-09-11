@@ -27,7 +27,16 @@ public class Gui extends Application {
 
     @Override
     public void start(Stage stage) {
+        AnchorPane mainLayout = new AnchorPane();
         //Step 1. Setting up required components
+        setUpComponents(stage, mainLayout);
+        //Step 2. Formatting the window to look as expected
+        formatWindow(stage, mainLayout);
+        //Step 3. Add functionality to handle user input.
+        startGina();
+    }
+
+    public void setUpComponents(Stage stage, AnchorPane mainLayout) {
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -36,15 +45,15 @@ public class Gui extends Application {
         userInput = new TextField();
         sendButton = new Button("Send");
 
-        AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
         scene = new Scene(mainLayout);
 
         stage.setScene(scene);
         stage.show();
+    }
 
-        //Step 2. Formatting the window to look as expected
+    public void formatWindow(Stage stage, AnchorPane mainLayout) {
         stage.setTitle("Gina");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -59,7 +68,6 @@ public class Gui extends Application {
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
-        // You will need to import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         userInput.setPrefWidth(325.0);
@@ -70,11 +78,13 @@ public class Gui extends Application {
 
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
-
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+        //Scroll down to the end every time dialogContainer's height changes.
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+    }
 
-        //Step 3. Add functionality to handle user input.
+    public void startGina() {
         showGreeting();
 
         sendButton.setOnMouseClicked((event) -> {
@@ -84,17 +94,6 @@ public class Gui extends Application {
         userInput.setOnAction((event) -> {
             handleUserInput();
         });
-
-        //Scroll down to the end every time dialogContainer's height changes.
-        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-    }
-
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
     }
 
     /**
