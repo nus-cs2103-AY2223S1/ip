@@ -51,6 +51,7 @@ public class Storage {
      */
     public void update(TaskList taskList) {
         FileWriter fileWriter;
+        assert this.history.exists();
         try {
             fileWriter = new FileWriter(history);
             //prepare what to overwrite
@@ -70,6 +71,7 @@ public class Storage {
      * Clears the file.
      */
     public void clear() {
+        assert this.history.exists();
         try {
             FileWriter clearer = new FileWriter(this.history);
             clearer.write("");

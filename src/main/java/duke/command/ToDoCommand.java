@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.exception.IllegalDescriptionException;
 import duke.logic.TaskList;
 import duke.task.ToDo;
 
@@ -21,16 +20,11 @@ public class ToDoCommand extends Command {
      *
      * @param taskList the task list the command will modify.
      * @param description the description of the todo.
-     * @throws IllegalDescriptionException If no description is specified, including just whitespaces.
      */
-    public ToDoCommand(TaskList taskList, String description) throws IllegalDescriptionException {
+    public ToDoCommand(TaskList taskList, String description) {
         this.taskList = taskList;
-        //double check
-        if (description.length() > 0) {
-            this.description = description;
-        } else {
-            throw new IllegalDescriptionException("No description specified.");
-        }
+        assert description.length() > 0;
+        this.description = description;
     }
 
     @Override

@@ -2,7 +2,6 @@ package duke.command;
 
 import java.time.LocalDate;
 
-import duke.exception.IllegalDescriptionException;
 import duke.logic.TaskList;
 import duke.task.Deadline;
 
@@ -27,16 +26,11 @@ public class DeadlineCommand extends Command {
      * @param taskList the task list the command will modify.
      * @param description the description of the deadline.
      * @param time the time the deadline is due.
-     * @throws IllegalDescriptionException If no description is specified, including just whitespaces.
      */
-    public DeadlineCommand(TaskList taskList, String description, LocalDate time) throws IllegalDescriptionException {
+    public DeadlineCommand(TaskList taskList, String description, LocalDate time) {
         this.taskList = taskList;
-        //double check
-        if (description.length() > 0) {
-            this.description = description;
-        } else {
-            throw new IllegalDescriptionException("No description specified.");
-        }
+        assert description.length() > 0;
+        this.description = description;
         this.time = time;
     }
 
