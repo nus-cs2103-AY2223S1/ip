@@ -49,6 +49,7 @@ public class TaskList {
                 lastCmdType = "delete";
                 taskList.remove(taskNum);
                 numOfInputs -= 1;
+
                 return "Meowmeow has thrown this task into the void!! (=^>w<^=) \n"
                         + task + "\n"
                         + "You have " + numOfInputs + " tasks left now Owo";
@@ -82,9 +83,8 @@ public class TaskList {
 
             if (splitB.length <= 1) {
                 throw new MeowmeowException("=0w0= To add a deadline type it in in this format: "
-                        + "deadline taskName /by YYYY-DD-MMTHH:MM:SS");
+                        + "deadline taskName /by YYYY-MM-DDTHH:MM:SS");
             } else {
-                System.out.println(splitB[1]);
                 LocalDateTime deadline = LocalDateTime.parse(splitB[1]);
                 Task d = new Deadline(splitB[0], deadline);
                 taskList.add(d);
@@ -206,7 +206,6 @@ public class TaskList {
     }
 
     public void restoreDeletedTask(String deletedSaveData) {
-        System.out.println(deletedSaveData);
         String[] split = deletedSaveData.split(" \\| ");
         String firstChar = split[0];
 
