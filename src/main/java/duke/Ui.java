@@ -17,7 +17,7 @@ public class Ui {
     private final static String LINE = "──────────────────────────────────────────";
 
     private boolean isOpen = true;
-    private Scanner in;
+//    private Scanner in;
 
     public Ui() {
     }
@@ -37,25 +37,25 @@ public class Ui {
         this.isOpen = true;
         System.out.println(Ui.LOGO);
         this.printWithHorizontalRule("Hello! I'm " + Ui.NAME + "\n" + "What can I do for you?");
-        this.in = new Scanner(System.in);
+//        this.in = new Scanner(System.in);
     }
 
-    private String readInput() {
-        return in.nextLine();
-    }
+//    private String readInput() {
+//        return in.nextLine();
+//    }
 
     /**
      * Read the input from stdin, and converts it to a Command object.
      * If command object is an exit object, close the UI.
      * @return a Command object.
      */
-    public Command readCommand() {
-        Parser.ParsedInputArguments args = Parser.getInputArguments(this.readInput());
+    public Command readCommand(String input) {
+        Parser.ParsedInputArguments args = Parser.getInputArguments(input);
         Command c = Command.getCommand(args);
 
         if (c.isExit()) {
             this.isOpen = false;
-            this.in.close();
+//            this.in.close();
         }
         return c;
     }

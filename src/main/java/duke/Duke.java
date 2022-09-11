@@ -40,20 +40,25 @@ public class Duke {
     /**
      * Run the Duke app.
      */
-    public void run() {
+    public void init() {
         this.ui.start();
         this.tasks.loadFromLocalStorage(this.storage);
 
-        while (this.ui.isOpen()) {
-            Command c = ui.readCommand();
-            ui.printWithHorizontalRule(c.exec(this.tasks));
+//        while (this.ui.isOpen()) {
+//        }
+    }
+
+    public String enterStringCommand(String commandStr) {
+            Command c = ui.readCommand(commandStr);
+            String returnStr = c.exec(this.tasks);
             this.storage.save(this.tasks);
-        }
+            return returnStr;
+
     }
 
     public static void main(String[] args) {
         Duke duke = new Duke();
-        duke.run();
+        duke.init();
     }
 
 }
