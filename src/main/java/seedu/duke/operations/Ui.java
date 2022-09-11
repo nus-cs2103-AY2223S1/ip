@@ -14,14 +14,14 @@ public class Ui {
     private String messageOutputs = "";
 
     /**
-     * Ui initializes a Scanner to take user inputs.
+     * Returns Ui instance.
      */
     public Ui() {
         this.cmdReader = new Scanner(System.in);
     }
 
     /**
-     * Method that allows Ui to read user input.
+     * Returns user input into Ui.
      *
      * @return  User input from the command line
      */
