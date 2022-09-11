@@ -1,7 +1,6 @@
 package duke.task;
 
 import duke.exception.DukeException;
-import duke.gui.Response;
 
 /**
  * An abstract class representing a task (which has a description, and completion status).
