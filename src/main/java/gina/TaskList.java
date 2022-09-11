@@ -23,6 +23,7 @@ public class TaskList {
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+        assert(tasks != null);
     }
 
     /**
@@ -32,7 +33,7 @@ public class TaskList {
      * @return Task at the specified index.
      * @throws GinaException If index is out of bounds.
      */
-    public Task get(int i) throws GinaException{
+    public Task get(int i) throws GinaException {
         try {
             return tasks.get(i);
         } catch (IndexOutOfBoundsException e) {
@@ -56,6 +57,7 @@ public class TaskList {
      * @return List of tasks as a string.
      */
     public static String convertTasksToListString(ArrayList<Task> tasks) {
+        assert(tasks != null);
         StringBuilder list = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
             String newLine = (i + 1) + ". " + tasks.get(i).toString() + "\n";
@@ -70,6 +72,7 @@ public class TaskList {
      * @param task The specified task.
      */
     public void addTask(Task task) {
+        assert(task != null);
         tasks.add(task);
     }
 
@@ -80,7 +83,7 @@ public class TaskList {
      * @return Deleted task.
      * @throws GinaException If index is out of bounds.
      */
-    public Task deleteTask(int index) throws GinaException{
+    public Task deleteTask(int index) throws GinaException {
         try {
             return tasks.remove(index);
         } catch (IndexOutOfBoundsException e) {
@@ -95,7 +98,7 @@ public class TaskList {
      * @return List of tasks with specified date.
      * @throws GinaException If date is blank or in the wrong format.
      */
-    public TaskList getTasksOnDate(String dateStr) throws GinaException{
+    public TaskList getTasksOnDate(String dateStr) throws GinaException {
         ArrayList<Task> tasksOnDate = new ArrayList<>();
         for (Task t : tasks) {
             if (t.isOnThisDate(dateStr)) {
@@ -105,7 +108,7 @@ public class TaskList {
         return new TaskList(tasksOnDate);
     }
 
-    public TaskList getTasksWithWord(String input) throws GinaException{
+    public TaskList getTasksWithWord(String input) throws GinaException {
         ArrayList<Task> tasksWithWord = new ArrayList<>();
         for (Task t : tasks) {
             if (t.doesDescriptionContain(input)) {

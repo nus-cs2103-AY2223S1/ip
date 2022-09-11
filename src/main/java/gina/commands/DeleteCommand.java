@@ -19,6 +19,7 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(String input) {
         this.input = input;
+        assert(input != null);
     }
 
     /**

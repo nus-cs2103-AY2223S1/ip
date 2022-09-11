@@ -19,6 +19,7 @@ public class DeadlineCommand extends Command {
      */
     public DeadlineCommand(String input) {
         this.input = input;
+        assert(input != null);
     }
 
     /**
@@ -31,7 +32,7 @@ public class DeadlineCommand extends Command {
 
         String[] str = input.split(" /by ", 2);
         if (str.length < 2 || str[1].trim().length() == 0) {
-            throw new GinaException("Wait! When is the deadline??");
+            throw new GinaException("Wait! You need to tell me the description AND date.");
         }
         Deadline newDeadline = new Deadline(str[0], str[1]);
 

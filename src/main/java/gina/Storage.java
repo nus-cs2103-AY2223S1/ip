@@ -60,10 +60,11 @@ public class Storage {
                     newTask = null;
                     break;
                 }
+                assert(newTask != null);
                 tasks.add(newTask);
             }
         } catch (FileNotFoundException e) {
-            throw new GinaException("File couldn't be created. Starting Duke with no tasks loaded!");
+            throw new GinaException("File couldn't be created so... no tasks loaded!");
         } catch (NullPointerException e) {
             throw new GinaException("Please input a file path!");
         } catch (IOException e) {

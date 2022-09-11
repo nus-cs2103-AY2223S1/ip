@@ -18,6 +18,7 @@ public class UnmarkCommand extends Command {
      */
     public UnmarkCommand(String input) {
         this.input = input;
+        assert(input != null);
     }
 
     /**
