@@ -8,6 +8,9 @@ import duke.tasks.TaskList;
 import duke.ui.TextUi;
 import duke.ui.Ui;
 
+/**
+ * The main class which handles the overarching logic of the program.
+ */
 public class Duke {
 
     private final TaskList tasks;
@@ -25,6 +28,11 @@ public class Duke {
         this.ui.showWelcome();
     }
 
+    /**
+     * Handles the user-provided input and evaluate it.
+     *
+     * @param userInput The user input string.
+     */
     public void handleUserInput(String userInput) {
         assert !isExit : "Duke should not be exiting.";
         try {
@@ -36,16 +44,17 @@ public class Duke {
         }
     }
 
-    /**
-     * Run Duke with a TextUI.
-     */
-    public void run() {
+    private void run() {
         assert this.ui instanceof TextUi : "`Duke::run` should only be used with a TextUI";
         while (!isExit) {
             handleUserInput(ui.getUserInput());
         }
     }
 
+    /**
+     * Runs Duke with an example TextUI.
+     * @param args
+     */
     public static void main(String[] args) {
         // Using a Text UI
         new Duke("database.txt", new TextUi()).run();
