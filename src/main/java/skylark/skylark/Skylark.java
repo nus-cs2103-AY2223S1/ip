@@ -7,6 +7,8 @@ import skylark.task.TaskList;
 
 /** Represents the main entry point of Skylark. */
 public class Skylark {
+    /** Text that is shown to the user when they first access Skylark. */
+    public static final String TITLE = "Skylark";
 
     /** Text that is shown to the user when they first access Skylark. */
     public static final String TEXT_HELLO = "Hello, I am Skylark, how can I help you today?";

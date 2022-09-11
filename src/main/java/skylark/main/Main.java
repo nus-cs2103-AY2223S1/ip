@@ -1,10 +1,13 @@
 package skylark.main;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import skylark.skylark.Skylark;
@@ -16,6 +19,8 @@ import skylark.ui.MainWindow;
 public class Main extends Application {
 
     private final Skylark skylark = new Skylark();
+    private final InputStream imageStream = this.getClass().getResourceAsStream("/images/User.png");
+    private final Image userImage = new Image(Objects.requireNonNull(imageStream));
 
     @Override
     public void start(Stage stage) {
@@ -26,6 +31,9 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setSkylark(skylark);
             fxmlLoader.<MainWindow>getController().setStage(stage);
+
+            stage.getIcons().add(userImage);
+            stage.setTitle(Skylark.TITLE);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
