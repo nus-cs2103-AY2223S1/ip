@@ -1,0 +1,19 @@
+list
+todo a
+deadline b /by 2022-11-22
+event c /at 2022-09-01
+list
+mark 5
+list
+unmark 5
+help
+delete 7
+delete 6
+list
+delete 5
+mark 10
+unmark 10
+gibberish
+todo
+deadline return book
+event project meeting
