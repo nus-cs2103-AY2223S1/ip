@@ -1,0 +1,14 @@
+todo work
+todowork
+deadline /by Sunday
+deadline/bySunday
+deadline /asdf Sunday
+event /at UTown Auditorium (Wed 2-4pm)
+event/atUTown Auditorium (Wed 2-4pm)
+event /asdf UTown Auditorium (Wed 2-4pm)
+list
+mark 1
+list
+delete 2
+list
+bye
