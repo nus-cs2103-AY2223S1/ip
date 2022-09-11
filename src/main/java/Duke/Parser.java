@@ -142,6 +142,7 @@ public class Parser {
                     throw new DukeException("Input date-time in the format yyyy-MM-dd HHmm");
                 } else {
                     taskList.getList().add(task);
+                    assert taskList.getList().size() > 0 : "Task list not updated properly";
                     storage.writeToFile(task);
                     toReply += "Got it. I've added this task: \n";
                     toReply += "  " + task.toString() +"\n";
