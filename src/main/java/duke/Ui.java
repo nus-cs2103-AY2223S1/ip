@@ -1,3 +1,5 @@
+package duke;
+
 public class Ui {
     private final String HORIZONTAL_LINE_BREAK = "-------------------------";
 

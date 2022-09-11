@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Scanner;
 
 //Solution below adapted from https://github.com/nus-cs2103-AY2223S1/ip/commit/da76395fec6c4ab68f6c849a0431d7297e9fb97f
