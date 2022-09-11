@@ -9,6 +9,7 @@ import java.nio.file.Path;
  * Class that handles loading and saving of tasks for Duke Bot.
  */
 public class Storage {
+
     private FileWriter fileWriter;
     private String previousText;
 
@@ -21,11 +22,11 @@ public class Storage {
      * 3. Erases file at data/duke.txt if it exists to write next save file.
      */
     public Storage() {
-        File file = new File("data");
-        if (!file.exists()) {
+        File dataFolder = new File("data");
+        if (!dataFolder.exists()) {
             // make data directory if it doesnt exist
-            file.mkdir();
-            assert file.exists();
+            dataFolder.mkdir();
+            assert dataFolder.exists();
         } else if (new File("data/duke.txt").exists()) {
             // else if save file exists, load it into memory
             try {

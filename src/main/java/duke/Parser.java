@@ -88,12 +88,12 @@ public class Parser {
      * @throws DukeException If command cannot be parsed or is invalid.
      */
     public String parseTwo(String command) throws DukeException {
-        String[] split = command.split(" ", 2);
-        String commandName = split[0];
+        String[] commandSplit = command.split(" ", 2);
+        String commandName = commandSplit[0];
         int id = tasks.getSize();
-        if (split.length > 1) {
+        if (commandSplit.length > 1) {
             try {
-                id = Integer.parseInt(split[1]);
+                id = Integer.parseInt(commandSplit[1]);
             } catch (NumberFormatException e) {
                 throw new DukeException("Please input a valid number.");
             }
@@ -120,11 +120,11 @@ public class Parser {
      * @throws DukeException If command cannot be parsed or is invalid.
      */
     public String parseFind(String command) throws DukeException {
-        String[] split = command.split(" ", 2);
-        if (split.length < 2) {
+        String[] commandSplit = command.split(" ", 2);
+        if (commandSplit.length < 2) {
             throw new DukeException("Please input string for find.");
         }
-        return tasks.findTask(split[1]);
+        return tasks.findTask(commandSplit[1]);
     }
 
     /**

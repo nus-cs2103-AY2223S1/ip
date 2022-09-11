@@ -68,8 +68,8 @@ public class Duke {
     public static void main(String[] args) {
         Duke duke = new Duke();
         while (duke.isDukeRunning) {
-            String m = duke.getNextLine();
-            duke.parseCommand(m);
+            String userInput = duke.getNextLine();
+            duke.parseCommand(userInput);
         }
     }
 }
