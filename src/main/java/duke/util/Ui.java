@@ -45,11 +45,11 @@ public class Ui {
     /**
      * Duke begins to unmark a task
      */
-    private static final String BEGIN_UNMARK_TASK = "Alright, I will mark this task as undone:\n";
+    private static final String BEGIN_UNMARK_TASK = "Alright, I will mark this task as not done:\n";
     /**
      * Duke begins to mark a task
      */
-    private static final String PRAISE = "Good job!";
+    private static final String PRAISE = "\nGood job!";
     /**
      * Duke begins to add a task
      */
