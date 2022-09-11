@@ -14,17 +14,6 @@ public class Meowmeow {
 
     /**
      * Constructor for the Meowmeow class.
-     *
-     * @param filePath is a String that specifies the filepath of the save file.
-     */
-    public Meowmeow(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        tasks = new TaskList(storage.load(), storage);
-    }
-
-    /**
-     * Constructor for the Meowmeow class.
      */
     public Meowmeow() {
         ui = new Ui();
@@ -33,37 +22,9 @@ public class Meowmeow {
     }
 
     /**
-     * Method that runs the program.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } finally {
-                ui.showLine();
-            }
-            storage.save(tasks.getTaskList());
-        }
-    }
-
-    /**
-     * Main method that runs the program.
+     * Method that gets the response from the chatbot.
      *
-     * @param args the command line arguments.
-     */
-    public static void main(String[] args) {
-        new Meowmeow("data/tasks.txt").run();
-    }
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * @param input the user input.
      */
     public String getResponse(String input) {
         assert input != null : "Input cannot be null";

@@ -1,6 +1,15 @@
 package meowmeow;
 
-import meowmeow.commands.*;
+import meowmeow.commands.AddCommand;
+import meowmeow.commands.Command;
+import meowmeow.commands.DefaultCommand;
+import meowmeow.commands.DeleteCommand;
+import meowmeow.commands.ExitCommand;
+import meowmeow.commands.FindCommand;
+import meowmeow.commands.HiCommand;
+import meowmeow.commands.ListCommand;
+import meowmeow.commands.MarkCommand;
+import meowmeow.commands.UndoCommand;
 
 /**
  * Class Parser is a class that parses the user's input and translates it into a Command.
@@ -13,6 +22,10 @@ public class Parser {
             String[] splitUI = userInput.split(" ");
             assert splitUI.length > 0 : "splitUI should not be empty";
             switch (splitUI[0]) {
+
+            case "hi":
+                return new HiCommand();
+
             case "list":
                 return new ListCommand();
 
