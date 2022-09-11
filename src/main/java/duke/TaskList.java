@@ -24,7 +24,7 @@ class TaskList {
             String task;
             if (type == 'D' || type == 'E') {
                 task = x.substring(9, x.indexOf("(") - 1);
-                String additional = x.substring(x.indexOf("(") + 5);
+                String additional = x.substring(x.indexOf("(") + 6, x.indexOf(')'));
                 if (type == 'D') {
                     arrayList.add(new Deadline(id, task, additional, done));
                 } else {
@@ -38,62 +38,62 @@ class TaskList {
         return arrayList;
     }
 
-    void find(String query) {
-        System.out.println("Here are the matching tasks in your list:");
+    String find(String query) {
+        String[] response = new String[]{"Here are the matching tasks in your list:\n"};
         tasks.stream().filter(x -> x.getName().contains(query))
-                .forEach(System.out::println);
+                .forEach(x -> response[0] += x + "\n");
+        return response[0];
     }
 
     List<Task> getTasks() {
         return tasks;
     }
 
-    void list() {
-        System.out.println("Here are the tasks in your list: ");
-        tasks.forEach(System.out::println);
+    String list() {
+        String[] response = new String[]{"Here are the tasks in your list: \n"};
+        tasks.forEach(x -> response[0] += x + "\n");
+        return response[0];
     }
 
-    void mark(int id, boolean done) {
+    String mark(int id, boolean done) {
+        String response = "";
         Task task = tasks.get(id - 1);
+        task.setStatus(done);
         if (done) {
-            task.setDone();
-            System.out.println("Nice! I've marked this task as done: ");
+            response += "Nice! I've marked this task as done: \n";
         } else {
-            task.setNotDone();
-            System.out.println("OK, I've marked this task as not done yet: ");
+            response += "OK, I've marked this task as not done yet: \n";
         }
-        System.out.println(task);
+        response += task;
+        return response;
     }
 
-    void event(String name, String eventDate) {
-        Event event = new Event(tasks.size() + 1, name, eventDate);
-        tasks.add(event);
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(event);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+    String addTask(String name, String type, String additional) {
+        String response = "";
+        Task newTask;
+        if (type.equals("T")) {
+            newTask = new Todo(tasks.size() + 1, name);
+        } else if (type.equals("D")) {
+            newTask = new Deadline(tasks.size() + 1, name, additional);
+        } else if (type.equals("E")) {
+            newTask = new Event(tasks.size() + 1, name, additional);
+        } else {
+            return "Unknown task type";
+        }
+        tasks.add(newTask);
+        response += "Got it. I've added this task: \n";
+        response += newTask + "\n";
+        response += "Now you have " + tasks.size() + " tasks in the list.";
+        return response;
     }
 
-    void deadline(String name, String deadline) {
-        Deadline deadlineEvent = new Deadline(tasks.size() + 1, name, deadline);
-        tasks.add(deadlineEvent);
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(deadlineEvent);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-    }
-
-    void todo(String task) {
-        Todo todo = new Todo(tasks.size() + 1, task);
-        tasks.add(todo);
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(todo);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-    }
-
-    void delete(int id) {
+    String delete(int id) {
+        String response = "";
         Task toRemove = tasks.remove(id - 1);
-        System.out.println("Noted. I've removed this task: ");
-        System.out.println(toRemove);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        response += "Noted. I've removed this task: \n";
+        response += toRemove + "\n";
+        response += "Now you have " + tasks.size() + " tasks in the list.";
+        return response;
     }
 
 }

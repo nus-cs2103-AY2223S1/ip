@@ -19,12 +19,8 @@ abstract class Task {
         return name;
     }
 
-    void setDone() {
-        isDone = true;
-    }
-
-    void setNotDone() {
-        isDone = false;
+    void setStatus(boolean b) {
+        isDone = b;
     }
 
     int getId() {
