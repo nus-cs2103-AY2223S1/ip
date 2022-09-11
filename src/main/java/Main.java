@@ -22,7 +22,6 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle(" ❈  ✶  ✧︎ ✱✬ ✨  l u n a  ✨ ❇︎ ✫❍   ❈ ✶  ✶ ");
-            stage.initStyle(StageStyle.UNDECORATED);
             stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setLuna(luna);
             fxmlLoader.<MainWindow>getController().welcome();

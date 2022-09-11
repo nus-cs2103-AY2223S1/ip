@@ -4,19 +4,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: FDF4E8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: FDF4E8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
     <children>
-        <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="403.0" promptText="tell luna your commands" style="-fx-background-color: FDF4E8; -fx-border-color: FDF4E8;" AnchorPane.bottomAnchor="1.0">
+        <TextField fx:id="userInput" layoutX="7.0" layoutY="652.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="503.0" promptText="tell luna your commands" style="-fx-background-color: FDF4E8; -fx-border-color: FDF4E8;" AnchorPane.bottomAnchor="7.0">
          <font>
             <Font name="Lao MN" size="14.0" />
          </font></TextField>
-        <Button fx:id="sendButton" layoutX="401.0" layoutY="557.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="98.0" style="-fx-background-color: FDF4E8;" text="E N T E R 🌙" textFill="#cb9d9d">
+        <Button fx:id="sendButton" layoutX="500.0" layoutY="652.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="98.0" style="-fx-background-color: FDF4E8;" text="E N T E R 🌙" textFill="#cb9d9d">
          <font>
             <Font name="Lao MN" size="15.0" />
          </font></Button>
-        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="500.0" style="-fx-background-color: FDF4E8;" vvalue="1.0">
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="655.0" prefWidth="595.0" style="-fx-background-color: FDF4E8;" vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="495.0" style="-fx-background-color: FDF4E8;" />
+                <VBox fx:id="dialogContainer" prefHeight="652.0" prefWidth="592.0" style="-fx-background-color: FDF4E8;" />
             </content>
         </ScrollPane>
     </children>
