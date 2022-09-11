@@ -1,5 +1,3 @@
-# Duke 
-
 ![](Ui.png)
 
 Duke is a personal chat-bot to help you keep track of your tasks, events, or deadlines. 
