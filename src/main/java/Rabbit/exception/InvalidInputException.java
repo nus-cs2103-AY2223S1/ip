@@ -1,4 +1,4 @@
-package Rabbit.RabbitException;
+package rabbit.exception;
 
 public class InvalidInputException extends RabbitException {
     @Override

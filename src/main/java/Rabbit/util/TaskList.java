@@ -1,13 +1,12 @@
-package Rabbit.util;
+package rabbit.util;
 
 import java.util.ArrayList;
 
-import Rabbit.RabbitException.FindFormatException;
-import Rabbit.Task.Task;
-import Rabbit.RabbitException.AddToListException;
-import Rabbit.RabbitException.MarkUnmarkException;
-import Rabbit.RabbitException.DeleteException;
-
+import rabbit.exception.AddToListException;
+import rabbit.exception.MarkUnmarkException;
+import rabbit.exception.DeleteException;
+import rabbit.exception.FindFormatException;
+import rabbit.task.Task;
 
 public class TaskList {
     private ArrayList<Task> taskList;

@@ -1,4 +1,4 @@
-package Rabbit.RabbitException;
+package rabbit.exception;
 
 public class DeleteException extends RabbitException {
     public enum Type {

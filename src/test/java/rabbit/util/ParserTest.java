@@ -1,11 +1,14 @@
-package Rabbit.util;
+package rabbit.util;
 
-import Rabbit.Rabbit;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-import Rabbit.RabbitException.RabbitException;
+
 import java.time.LocalDateTime;
+
+import rabbit.exception.RabbitException;
+
+
 public class ParserTest {
 
     @Test

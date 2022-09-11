@@ -1,4 +1,4 @@
-package Rabbit.Task;
+package rabbit.task;
 
 /**
  * A class of tasks noted by Rabbit.
@@ -7,7 +7,7 @@ public abstract class Task {
     // the specification of the task.
     private String content;
     // whether the task is marked as done.
-    private boolean done;
+    private boolean isDone;
 
     /** a constructor of Task
      *
@@ -15,7 +15,7 @@ public abstract class Task {
      */
     public Task(String content) {
         this.content = content;
-        this.done = false;
+        this.isDone = false;
     }
 
     /** a constructor of Task.
@@ -25,7 +25,7 @@ public abstract class Task {
      */
     public Task(String content, boolean isDone) {
         this.content = content;
-        this.done = isDone;
+        this.isDone = isDone;
     }
 
     /**
@@ -45,22 +45,22 @@ public abstract class Task {
      * false otherwise
      */
     public boolean isDone() {
-        return this.done;
+        return this.isDone;
     }
 
     /**
      * marks the task as done.
      */
     public void markDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     public void unmark() {
-        this.done = false;
+        this.isDone = false;
     }
 
     @Override
     public String toString() {
-        return this.done ? "[X] " + this.content : "[ ] " + this.content;
+        return this.isDone ? "[X] " + this.content : "[ ] " + this.content;
     }
 }

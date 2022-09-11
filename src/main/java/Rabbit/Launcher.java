@@ -1,7 +1,6 @@
-package Rabbit;
+package rabbit;
 
 import javafx.application.Application;
-import Rabbit.Main;
 
 /**
  * A launcher class to workaround classpath issues.

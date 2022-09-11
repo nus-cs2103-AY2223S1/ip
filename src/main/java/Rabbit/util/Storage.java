@@ -1,4 +1,4 @@
-package Rabbit.util;
+package rabbit.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,12 +8,14 @@ import java.nio.file.Path;
 import java.io.File;
 import java.nio.file.Files;
 import java.io.FileWriter;
-import Rabbit.RabbitException.ImportDataException;
-import Rabbit.RabbitException.RabbitException;
-import Rabbit.RabbitException.ExportDataException;
-import Rabbit.Task.Event;
-import Rabbit.Task.Deadline;
-import Rabbit.Task.Todo;
+
+import rabbit.exception.ImportDataException;
+import rabbit.exception.RabbitException;
+import rabbit.exception.ExportDataException;
+
+import rabbit.task.Event;
+import rabbit.task.Deadline;
+import rabbit.task.Todo;
 
 
 public class Storage {

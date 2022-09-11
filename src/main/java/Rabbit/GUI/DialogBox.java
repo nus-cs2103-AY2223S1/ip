@@ -1,4 +1,4 @@
-package Rabbit.GUI;
+package rabbit.gui;
 
 import java.io.IOException;
 import java.util.Collections;

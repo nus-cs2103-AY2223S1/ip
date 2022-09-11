@@ -1,4 +1,4 @@
-package Rabbit.GUI;
+package rabbit.gui;
 
 import java.util.Random;
 
@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import Rabbit.Rabbit;
+import rabbit.Rabbit;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.

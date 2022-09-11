@@ -1,11 +1,12 @@
-package Rabbit;
+package rabbit;
 
-import Rabbit.util.Parser;
-import Rabbit.util.TaskList;
-import Rabbit.util.Storage;
-import Rabbit.RabbitException.RabbitException;
-import Rabbit.RabbitException.ImportDataException;
-import Rabbit.RabbitException.InvalidInputException;
+import rabbit.util.Parser;
+import rabbit.util.TaskList;
+import rabbit.util.Storage;
+
+import rabbit.exception.RabbitException;
+import rabbit.exception.ImportDataException;
+import rabbit.exception.InvalidInputException;
 
 
 /**
@@ -64,38 +65,39 @@ public class Rabbit {
             if (input.equals("bye")) {
                 return BYE;
             }
+
             // the function that the input is calling
-            String function = input.substring(0, Parser.parseFunction(input));
+            String function = Parser.parseCommand(input);
             try {
-                String content = "";
+                String content;
                 switch (function) {
                 case "list":
                     content = this.taskList.list();
                     return "Here are the tasks:\n" + content;
-                case "find ":
+                case "find":
                     content = this.taskList.find(input);
                     return "Here are the matching tasks:\n" + content;
-                case "mark ":
+                case "mark":
                     content = this.taskList.mark(input);
                     this.storage.exportData(this.taskList);
                     return "Okay...task: " + content + " is marked as done.\n";
-                case "unmark ":
+                case "unmark":
                     content = this.taskList.unmark(input);
                     this.storage.exportData(this.taskList);
                     return "Okay...task: " + content + " is unmarked as done.\n";
-                case "todo ":
+                case "todo":
                     content = this.taskList.addToList(TaskList.TaskType.TODO, input);
                     this.storage.exportData(this.taskList);
                     return "Okay...noted.\n" + content + "...Huh? Hope you can remember it.\n";
-                case "deadline ":
+                case "deadline":
                     content = this.taskList.addToList(TaskList.TaskType.DEADLINE, input);
                     this.storage.exportData(this.taskList);
                     return "Okay...noted.\n" + content + "...Huh? Hope you can remember it.\n";
-                case "event ":
+                case "event":
                     content = this.taskList.addToList(TaskList.TaskType.EVENT, input);
                     this.storage.exportData(this.taskList);
                     return "Okay...noted.\n" + content + "...Huh? Hope you can remember it.\n";
-                case "delete ":
+                case "delete":
                     content = this.taskList.delete(input);
                     this.storage.exportData(this.taskList);
                     return "Okay...task: " + content + " is deleted.\n";

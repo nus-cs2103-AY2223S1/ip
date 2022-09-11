@@ -1,15 +1,15 @@
-package Rabbit;
+package rabbit;
 
 import java.io.IOException;
 
-import Rabbit.RabbitException.ImportDataException;
+import rabbit.exception.ImportDataException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import Rabbit.GUI.MainWindow;
+import rabbit.gui.MainWindow;
 
 /**
  * A GUI for Duke using FXML.
