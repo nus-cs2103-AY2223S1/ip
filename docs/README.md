@@ -7,7 +7,7 @@ Luna is your nature-themed graphical user interface (GUI) desktop app that is su
 
 <a name="sneak-peek"></a>
 ## Sneak peek of Luna's GUI 🌤
-<div align="center"><img src="Ui.png" alt="https://github.com/fannyjian/ip/blob/master/docs/Ui.png?raw=true"width=40% height=40%/></div>
+<div align="center"><img src="https://github.com/fannyjian/ip/blob/master/docs/Ui.png?raw=true" width=40% height=40%/></div>
 <br/><br/>
 
 <a name="getting-started"></a>
