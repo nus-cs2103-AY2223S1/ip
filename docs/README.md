@@ -3,13 +3,13 @@ Hi there! Welcome to the Duke User Guide.
 This manual will help you understand the features of your personal task tracker!
 
 ## Features List
-1. Add tasks such as Todos, Deadlines and Events
-2. Mark tasks as done or not done
-3. Delete tasks
-4. Search for tasks using keywords
-5. Manage short notes
-6. View all your tasks and notes
-7. Exit Duke
+1. [Add tasks such as Todos, Deadlines and Events](#1-add-tasks)
+2. [Mark tasks as done or not done](#2-marking-tasks)
+3. [Delete tasks](#3-delete-tasks)
+4. [Search for tasks using keywords](#4-search-tasks)
+5. [Manage short notes](#5-manage-short-notes)
+6. [View all your tasks and notes](#6-view-all-your-tasks-and-notes)
+7. [Exit Duke](#7-exit-duke)
 
 ## Features
 
@@ -210,3 +210,5 @@ Expected response from Duke:
 ```
 Bye. Hope to see you again soon!
  ```
+
+[Back To Top](#duke-user-guide)
