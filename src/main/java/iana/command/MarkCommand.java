@@ -1,5 +1,8 @@
 package iana.command;
 
+import iana.Iana;
+import iana.exception.IanaException;
+import iana.tasks.Task;
 import iana.tasks.TaskList;
 import iana.ui.Ui;
 
@@ -22,14 +25,14 @@ public class MarkCommand extends Command {
      * Runs command to mark task.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) throws IanaException {
         try {
             int taskNumber = Integer.parseInt(this.taskNum) - 1;
             tasks.mark(taskNumber);
-            String markedMsg = "Nice! I've marked this task as done:\n";
-            return ui.say(String.format("%s\t   %s", markedMsg, tasks.printTaskString(taskNumber)));
+            String markedTask = tasks.printTaskString(taskNumber);
+            return ui.sayTaskMarked(markedTask);
         } catch (ArrayIndexOutOfBoundsException e) {
-            return ui.say(e.getMessage());
+            throw new IanaException("Hey, this task does not exist!! >:C");
         }
     }
 

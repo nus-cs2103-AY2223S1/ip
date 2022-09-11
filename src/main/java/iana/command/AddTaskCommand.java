@@ -24,14 +24,10 @@ public class AddTaskCommand extends Command {
      * Runs the command to try to add a new task.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui) {
-        try {
-            Task newTask = Task.of(this.taskInput, false);
-            tasks.add(newTask);
-            return ui.sayTaskAdded(newTask);
-        } catch (IanaException e) {
-            return ui.say(e.getMessage());
-        }
+    public String execute(TaskList tasks, Ui ui) throws IanaException {
+        Task newTask = Task.of(this.taskInput, false);
+        tasks.add(newTask);
+        return ui.sayTaskAdded(newTask);
     }
 
     /**
