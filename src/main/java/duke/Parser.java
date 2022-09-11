@@ -1,15 +1,17 @@
 package duke;
-
-import duke.Exceptions.NoSuchCommandException;
-import duke.Task.Event;
-import duke.Task.Task;
-import duke.Task.Todo;
-import duke.Ui;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import duke.Exceptions.DukeException;
+import duke.Task.Event;
+import duke.Task.Task;
+import duke.Task.Todo;
+
+
+/**
+ *
+ */
 public class Parser {
 
     public Parser() {
@@ -20,9 +22,9 @@ public class Parser {
      *
      * @param input: input string to check
      * @return enum Duke.Commands value
-     * @throws NoSuchCommandException inputted command is not a valid command
+     * @throws DukeException
      */
-    public Duke.Commands analyzeCommand(String input) throws NoSuchCommandException {
+    public Duke.Commands analyzeCommand(String input) throws DukeException {
         if (input.matches("list(.*)")) {
             return Duke.Commands.LIST;
         } else if (input.matches("bye(.*)")) {
@@ -45,7 +47,7 @@ public class Parser {
         } else if (input.matches("find(.*)")) {
             return Duke.Commands.FIND;
         }
-        throw new NoSuchCommandException();
+        throw new DukeException("I dont understand this command booo");
     }
 
     private LocalDateTime formatTime(String dateTime) {
@@ -69,9 +71,8 @@ public class Parser {
     public String executeInput(Ui ui, String input, Storage storage, TaskList taskList) {
         String[] inputArr = input.split(" ", 2);
         String commandString = inputArr[0];
-
         try {
-            switch (this.analyzeCommand(commandString)) {
+            switch (this.analyzeCommand(input)) {
             case BYE:
                 return ui.showBye();
             case LIST:
@@ -90,20 +91,25 @@ public class Parser {
                 return handleDeleteCommand(ui, storage, taskList, inputArr[1]);
             case FIND:
                 return handleFindCommand(ui, taskList, inputArr[1]);
+            default:
+                return null;
             }
-        } catch (NoSuchCommandException e) {
+        } catch (IndexOutOfBoundsException e) {
+            return new DukeException("Description cannot be empty").getMessage();
+        } catch (DukeException e) {
             return e.getMessage();
-        } catch (Exception e) {
-            System.out.println(e);
         }
-        return "";
+
     }
 
     private String handleListComand(Ui ui, TaskList taskList) {
         return ui.showAllTask(taskList);
     }
 
-    private String handleTodoCommand(Ui ui, Storage storage, TaskList taskList, String input) {
+    private String handleTodoCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
+        if (input.strip() == "") {
+            throw new DukeException("Description cannot be empty");
+        }
         Task task = new Todo(input);
         taskList.addTask(task);
         storage.updateFile(taskList.list);
@@ -111,52 +117,96 @@ public class Parser {
 
     }
 
-    private String handleEventCommand(Ui ui, Storage storage, TaskList taskList, String input) {
+    private String handleEventCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
+        if (!input.contains("/at")) {
+            throw new DukeException("Event command must have /at param");
+        }
         String[] inputArr = input.split("/at");
+        if (inputArr[0].strip() == "") {
+            throw new DukeException("Description cannot be empty");
+        }
         String description = inputArr[0];
-        LocalDateTime time = formatTime(inputArr[1].strip());
-        Task task = new Event(description, time);
-        taskList.addTask(task);
-        storage.updateFile(taskList.list);
+        try {
+            LocalDateTime time = formatTime(inputArr[1].strip());
+            Task task = new Event(description, time);
+            taskList.addTask(task);
+            storage.updateFile(taskList.list);
+            return ui.showAddTask(taskList, task);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Time cannot be empty");
+        }
 
-        return ui.showAddTask(taskList, task);
     }
 
-    private String handleDeadlineCommand(Ui ui, Storage storage, TaskList taskList, String input) {
+    private String handleDeadlineCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
+        if (!input.contains("/by")) {
+            throw new DukeException("Deadline command must have /by param");
+        }
         String[] inputArr = input.split("/by");
-        String description = inputArr[0];
-        LocalDateTime time = formatTime(inputArr[1].strip());
-        Task task = new Event(description, time);
-        taskList.addTask(task);
-        storage.updateFile(taskList.list);
-
-        return ui.showAddTask(taskList, task);
+        if (inputArr[0].strip() == "") {
+            throw new DukeException("Description cannot be empty");
+        }
+        try {
+            String description = inputArr[0];
+            LocalDateTime time = formatTime(inputArr[1].strip());
+            Task task = new Event(description, time);
+            taskList.addTask(task);
+            storage.updateFile(taskList.list);
+            return ui.showAddTask(taskList, task);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Time cannot be empty");
+        }
     }
 
-    private String handleMarkCommand(Ui ui, Storage storage, TaskList taskList, String input) {
-        Integer index = Integer.parseInt(input) - 1;
-        Task task = taskList.toggleTaskStatus(index);
-        storage.updateFile(taskList.list);
+    private String handleMarkCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
+        try {
+            Integer index = Integer.parseInt(input) - 1;
+            Task task = taskList.toggleTaskStatus(index);
+            storage.updateFile(taskList.list);
+            return ui.showMarkTask(task);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Param can only contain integers");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("There is no such task");
+        }
 
-        return ui.showMarkTask(task);
+
     }
 
-    private String handleUnmarkCommand(Ui ui, Storage storage, TaskList taskList, String input) {
-        Integer index = Integer.parseInt(input) - 1;
-        Task task = taskList.toggleTaskStatus(index);
-        storage.updateFile(taskList.list);
+    private String handleUnmarkCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
+        try {
+            Integer index = Integer.parseInt(input) - 1;
+            Task task = taskList.toggleTaskStatus(index);
+            storage.updateFile(taskList.list);
 
-        return ui.showUnmarkTask(task);
+            return ui.showUnmarkTask(task);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Param can only contain integers");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("There is no such task");
+        }
+
     }
 
-    private String handleDeleteCommand(Ui ui, Storage storage, TaskList taskList, String input) {
-        Integer index = Integer.parseInt(input) - 1;
-        Task task = taskList.deleteTask(index);
-        storage.updateFile(taskList.list);
+    private String handleDeleteCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
+        try {
+            Integer index = Integer.parseInt(input) - 1;
+            Task task = taskList.deleteTask(index);
+            storage.updateFile(taskList.list);
 
-        return ui.showRemoveTask(taskList, task);
+            return ui.showRemoveTask(taskList, task);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Param can only contain integers");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("There is no such task");
+        }
+
     }
-    private String handleFindCommand(Ui ui, TaskList taskList, String input) {
+    private String handleFindCommand(Ui ui, TaskList taskList, String input) throws DukeException {
+        if (input.strip() == "") {
+            throw new DukeException("Param cannot be empty");
+
+        }
         return ui.showFindTask(taskList.filterTask(input));
     }
 
