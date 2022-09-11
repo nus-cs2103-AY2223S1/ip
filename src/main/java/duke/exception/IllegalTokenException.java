@@ -8,9 +8,9 @@ package duke.exception;
 public class IllegalTokenException extends IllegalArgumentException {
     /**
      * Constructs an IllegalTokenException with the specified detail message.
-     * @param s the detail message.
+     * @param message the detail message.
      */
-    public IllegalTokenException(String s) {
-        super(s);
+    public IllegalTokenException(String message) {
+        super(message);
     }
 }

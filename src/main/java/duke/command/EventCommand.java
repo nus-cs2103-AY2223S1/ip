@@ -17,8 +17,8 @@ public class EventCommand extends Command {
     /** Description of the event. */
     private String description;
 
-    /** Time the event is at. */
-    private LocalDate time;
+    /** Date the event is at. */
+    private LocalDate date;
 
     /**
      * Constructor for the command.
@@ -36,7 +36,7 @@ public class EventCommand extends Command {
 
     @Override
     public String get() {
-        taskList.add(new Event(description, time));
+        taskList.add(new Event(description, date));
         return "Got it. I've added this task:\n"
                 + taskList.get(taskList.size() - 1).toString() + "\n"
                 + String.format("Now you have %d tasks in the list.", taskList.size());

@@ -28,35 +28,24 @@ public class Duke extends Application {
     /** Parser to parse user responses. */
     private Parser parser;
 
-    private static String filePath = "./data/history.txt";
+    private static String historyFilePath = "./data/history.txt";
 
     /**
      * Constructor for Duke.
      *
      */
     public Duke() {
-        this.storage = new Storage(Duke.filePath);
+        this.storage = new Storage(Duke.historyFilePath);
         this.taskList = new TaskList(this.storage);
         this.parser = new Parser(this.taskList);
     }
-
-//    /**
-//     * Starts Duke up.
-//     */
-//    private void run() {
-//        ui.start(parser);
-//    }
-
-//    public static void main(String[] args) {
-//        new Duke("./data/history.txt").run();
-//    }
 
     @Override
     public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(duke.Duke.class.getResource("/view/MainWindow.fxml"));
-            AnchorPane ap = fxmlLoader.load();
-            Scene scene = new Scene(ap);
+            AnchorPane anchorPane = fxmlLoader.load();
+            Scene scene = new Scene(anchorPane);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setParser(this.parser);
             stage.setResizable(false);

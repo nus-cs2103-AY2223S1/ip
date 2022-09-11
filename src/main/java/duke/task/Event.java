@@ -4,23 +4,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Event is a user set task happening at a certain time.
+ * Event is a user set task happening at a certain date.
  *
  * @author totsukatomofumi
  */
 public class Event extends Task {
-    /** Time the event is at. */
-    private LocalDate time;
+    /** Date the event is at. */
+    private LocalDate date;
 
     /**
      * Constructs an event.
      *
      * @param description the description of the event.
-     * @param time the time the event is at.
+     * @param date the date the event is at.
      */
-    public Event(String description, LocalDate time) {
+    public Event(String description, LocalDate date) {
         super(description);
-        this.time = time;
+        this.date = date;
     }
 
     /**
@@ -31,7 +31,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString()
-                + String.format(" (at: %s)", time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+                + String.format(" (at: %s)", date.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 
     /**
@@ -41,7 +41,7 @@ public class Event extends Task {
      * @return the parsable string representation of the event.
      */
     @Override
-    public String toData() {
-        return "E" + super.toData() + this.time.toString();
+    public String toStorageFormat() {
+        return "E" + super.toStorageFormat() + this.date.toString();
     }
 }

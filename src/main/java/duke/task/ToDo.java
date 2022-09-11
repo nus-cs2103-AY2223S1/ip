@@ -32,7 +32,7 @@ public class ToDo extends Task {
      * @return the parsable string representation of the todo.
      */
     @Override
-    public String toData() {
-        return "T" + super.toData();
+    public String toStorageFormat() {
+        return "T" + super.toStorageFormat();
     }
 }

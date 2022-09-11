@@ -8,9 +8,9 @@ package duke.exception;
 public class IllegalTaskException extends IllegalArgumentException {
     /**
      * Constructs an IllegalTaskException with the specified detail message.
-     * @param s the detail message.
+     * @param message the detail message.
      */
-    public IllegalTaskException(String s) {
-        super(s);
+    public IllegalTaskException(String message) {
+        super(message);
     }
 }

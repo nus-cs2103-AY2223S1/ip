@@ -17,8 +17,8 @@ public class DeadlineCommand extends Command {
     /** Description of the deadline. */
     private String description;
 
-    /** Time the deadline is due. */
-    private LocalDate time;
+    /** Date the deadline is due. */
+    private LocalDate date;
 
     /**
      * Constructor for the command.
@@ -36,7 +36,7 @@ public class DeadlineCommand extends Command {
 
     @Override
     public String get() {
-        taskList.add(new Deadline(description, time));
+        taskList.add(new Deadline(description, date));
         return "Got it. I've added this task:\n"
                 + taskList.get(taskList.size() - 1).toString() + "\n"
                 + String.format("Now you have %d tasks in the list.", taskList.size());
