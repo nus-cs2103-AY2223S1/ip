@@ -50,7 +50,7 @@ application {
 shadowJar {
     archiveBaseName = "luna"
     archiveClassifier = null
-    archiveVersion = "v0.2"
+    archiveVersion = "v1.0"
 }
 
 run{
