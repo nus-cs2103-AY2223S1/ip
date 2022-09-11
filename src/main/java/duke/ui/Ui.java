@@ -85,7 +85,7 @@ public class Ui {
      * @param taskList the TaskList to search in
      */
     public static String find(String description, TaskList taskList) {
-        String str = "\tHere are the matching tasks in your list!\n";
+        String str = "";
 
         int num = 1;
         for (int i = 1; i < Task.getNumOfTasks() + 1; i++) {
@@ -94,6 +94,11 @@ public class Ui {
                 str += "\t\t" + num + ". " + task + "\n";
                 num += 1;
             }
+        }
+        if (str.equals("")) {
+            str = "\tYou do not have any matching tasks";
+        } else {
+            str = "\tHere are the matching tasks in your list!\n" + str;
         }
         return str;
     }
