@@ -13,7 +13,7 @@ public class Deadline extends Task {
     protected LocalDateTime by;
 
     /**
-     * Constructor for a Deadline object.
+     * Constructs a Deadline object.
      *
      * @param description The description of the Deadline task.
      * @param by The String value of date and time of when the task is due.

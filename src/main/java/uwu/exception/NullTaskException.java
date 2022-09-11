@@ -5,7 +5,7 @@ package uwu.exception;
  */
 public class NullTaskException extends UwuException {
     /**
-     * Constructor for a NullTaskException object.
+     * Constructs a NullTaskException object.
      *
      * @param message The exception message to be displayed.
      */

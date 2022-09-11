@@ -14,7 +14,7 @@ import uwu.task.ToDos;
 public class TaskListTest {
     @Test
     public void taskListToString_zeroTasks_success() {
-        assertEquals("\nyou currently have no tasks, feed me <:", new TaskList().taskListToString());
+        assertEquals("you currently have no tasks, feed me <:", new TaskList().taskListToString());
     }
 
     @Test

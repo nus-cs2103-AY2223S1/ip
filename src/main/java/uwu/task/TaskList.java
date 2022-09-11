@@ -5,13 +5,13 @@ import java.util.ArrayList;
 /** This class encapsulates a TaskList object. */
 public class TaskList {
     /** The list of user's tasks. */
-    private ArrayList<Task> userToDoList;
+    private ArrayList<Task> tasks;
 
     /**
-     * Constructor for TaskList object.
+     * Constructs a TaskList object.
      */
     public TaskList() {
-        this.userToDoList = new ArrayList<Task>();
+        this.tasks = new ArrayList<Task>();
     }
 
     /**
@@ -20,7 +20,7 @@ public class TaskList {
      * @return The number of tasks in the task list.
      */
     public int size() {
-        return userToDoList.size();
+        return tasks.size();
     }
 
     /**
@@ -30,7 +30,7 @@ public class TaskList {
      * @return The task at index i of the task list
      */
     public Task get(int i) {
-        return userToDoList.get(i);
+        return tasks.get(i);
     }
 
     /**
@@ -39,7 +39,7 @@ public class TaskList {
      * @param tasks The updated task list.
      */
     public void setTaskList(ArrayList<Task> tasks) {
-        this.userToDoList = tasks;
+        this.tasks = tasks;
     }
 
     /**
@@ -48,7 +48,7 @@ public class TaskList {
      * @param newTask The new task added.
      */
     public void add(Task newTask) {
-        userToDoList.add(newTask);
+        tasks.add(newTask);
     }
 
     /**
@@ -58,7 +58,7 @@ public class TaskList {
      * @return The task that is removed.
      */
     public Task remove(int i) {
-        return userToDoList.remove(i);
+        return tasks.remove(i);
     }
 
     /**
@@ -68,16 +68,16 @@ public class TaskList {
      * @return The string representation of a TaskList.
      */
     public String taskListToString() {
-        int count = userToDoList.size();
+        int count = tasks.size();
 
         if (count == 0) {
-            return "\nyou currently have no tasks, feed me <:";
+            return "you currently have no tasks, feed me <:";
         }
 
         String userToDoStr = "";
 
         for (int i = 0; i < count; i++) {
-            String listItem = " " + String.valueOf(i + 1) + ". " + userToDoList.get(i).toString();
+            String listItem = " " + String.valueOf(i + 1) + ". " + tasks.get(i).toString();
 
             userToDoStr = userToDoStr + "\n" + listItem;
         }
@@ -92,11 +92,11 @@ public class TaskList {
      * @return The string representation of stored TaskList.
      */
     public String taskListToStorageString() {
-        int count = userToDoList.size();
+        int count = tasks.size();
         String taskListStorage = "";
 
         for (int i = 0; i < count; i++) {
-            String taskItem = userToDoList.get(i).toStorageString();
+            String taskItem = tasks.get(i).toStorageString();
 
             if (i == 0) {
                 taskListStorage = taskItem;

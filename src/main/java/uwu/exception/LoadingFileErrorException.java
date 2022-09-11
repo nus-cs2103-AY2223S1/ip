@@ -5,7 +5,7 @@ package uwu.exception;
  */
 public class LoadingFileErrorException extends UwuException {
     /**
-     * Constructor for a LoadingFileErrorException object.
+     * Constructs a LoadingFileErrorException object.
      *
      * @param message The exception message to be displayed.
      */

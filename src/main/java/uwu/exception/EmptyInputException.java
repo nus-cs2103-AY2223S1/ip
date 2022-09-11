@@ -5,7 +5,7 @@ package uwu.exception;
  */
 public class EmptyInputException extends UwuException {
     /**
-     * Constructor for an EmptyInputException object.
+     * Constructs an EmptyInputException object.
      *
      * @param message The exception message to be displayed.
      */
