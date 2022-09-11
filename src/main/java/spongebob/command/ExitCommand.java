@@ -15,6 +15,7 @@ public class ExitCommand implements ICommand {
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {
+        System.exit(0);
         return "Thank you!";
     }
 

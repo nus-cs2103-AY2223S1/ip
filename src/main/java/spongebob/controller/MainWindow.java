@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private SpongebobApplication duke;
+    private SpongebobApplication spongebobApplication;
     private Image spongebobImage = new Image(this.getClass().getResourceAsStream("/images/spongebob.png"));
     private Image patrickImage = new Image(this.getClass().getResourceAsStream("/images/patrick.png"));
 
@@ -31,11 +31,19 @@ public class MainWindow extends AnchorPane {
         this.scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(SpongebobApplication d) {
-        this.duke = d;
-        this.dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog("Hey Patrick!\nWhat do you want to do today?", spongebobImage)
-        );
+    public void setSpongebobApplication(SpongebobApplication app) {
+        this.spongebobApplication = app;
+        String welcomeMsg = "Hey Patrick! Here are some things you can do:"
+                + "\n  1) list"
+                + "\n  2) todo <task>"
+                + "\n  3) deadline <task> /by <yyyy-mm-dd>"
+                + "\n  4) event <event> /at <yyyy-mm-dd>"
+                + "\n  5) mark <num>"
+                + "\n  6) unmark <num>"
+                + "\n  7) find <keyword>"
+                + "\n  8) bye"
+                + "\nWhat do you want to do today?";
+        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog(welcomeMsg, spongebobImage));
     }
 
     /**
@@ -46,7 +54,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, patrickImage));
-        String response = this.duke.process(input);
+        String response = this.spongebobApplication.process(input);
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(response, spongebobImage));
         userInput.clear();
     }
