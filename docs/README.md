@@ -13,6 +13,7 @@ $ java --version
 > Supports only Java 11
 2. Download the latest released JAR file from [here](https://github.com/danielk0k/ip/releases/)
 3. Double-click on the downloaded file and that's all!
+> If double clicking does not work, open up the terminal and change directory to where the downloaded JAR file is and run `java -jar spongebob.jar`
 
 ## User Guide
 
