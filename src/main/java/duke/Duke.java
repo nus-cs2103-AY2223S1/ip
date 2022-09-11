@@ -36,7 +36,7 @@ public class Duke {
     }
 
     /**
-     * Run Duke with a TextUI.
+     * Runs Duke with a TextUI.
      */
     public void run() {
         while (!isExit) {
