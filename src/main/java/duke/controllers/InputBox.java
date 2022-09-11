@@ -60,6 +60,7 @@ public class InputBox extends AnchorPane {
     private static void checkResponseAndExitIfRequired(String response) {
         if (response.equals(Ui.MESSAGE_EXIT)) {
             Platform.exit();
+            System.exit(0);
         }
     }
 }
