@@ -31,9 +31,7 @@ for its latest version.
 2. Download the latest `duke.jar` from [here](https://github.com/kxrt/ip/releases).
 3. Copy the file to the folder you want to use as your **home** folder for *Artemis*.
 4. Navigate to the aforementioned folder via CLI and run `java -jar duke.jar`.
-5. The GUI similar to the below image should appear.
-
-   IMG HERE
+5. The GUI similar to the [Main Window screenshot](#ui-screenshots) should appear.
 6. Type your desired command in the message box and press `Enter` to execute it.  
    eg. Type `help` and press `Enter` to view a list of possible commands!
 
