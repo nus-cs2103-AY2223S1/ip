@@ -4,6 +4,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import duke.exceptions.DukeEmptyDescriptionException;
 import duke.exceptions.DukeException;
 import duke.exceptions.DukeMissingInputException;
 import duke.exceptions.DukeUnknownDateException;
@@ -97,7 +98,9 @@ public class Parser {
             args = (type.equals("deadline")) ? item.split("/by ") : item.split("/at ");
             try {
                 description = args[0].trim();
-                assert !description.isBlank() : "Description for " + type + " is Blank";
+                if (description.isBlank()) {
+                    throw new DukeEmptyDescriptionException(type);
+                }
                 addedArg = args[1];
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(type);
