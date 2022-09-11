@@ -9,7 +9,7 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="446.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <AnchorPane prefHeight="99.0" prefWidth="324.0" style="-fx-background-radius: 10; -fx-background-color: #3C3C3C;">
+      <AnchorPane prefHeight="80.0" prefWidth="345.0" style="-fx-background-radius: 10; -fx-background-color: #3C3C3C;">
          <children>
               <Label fx:id="dialog" alignment="TOP_LEFT" prefWidth="320.0" text="Label" textFill="WHITE" wrapText="true">
                <padding>
@@ -20,13 +20,16 @@
                </font>
             </Label>
          </children>
+         <HBox.margin>
+            <Insets left="5.0" right="5.0" />
+         </HBox.margin>
       </AnchorPane>
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="displayPicture" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
             <Insets left="5.0" right="5.0" />
          </HBox.margin></ImageView>
     </children>
     <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
     </padding>
 </fx:root>
