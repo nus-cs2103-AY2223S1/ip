@@ -1,7 +1,5 @@
 package duke.command;
 
-import java.io.IOException;
-
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -34,7 +32,7 @@ public class AddCommand extends Command {
         tasks.addTask(this.task);
         try {
             Storage.save(tasks.getTasks());
-        } catch (IOException e) {
+        } catch (Exception e) {
             return Ui.showError(e);
         }
         return Ui.showAddTaskMessage(this.task, tasks.getSize());

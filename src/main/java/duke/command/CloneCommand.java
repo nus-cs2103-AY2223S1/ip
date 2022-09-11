@@ -1,38 +1,40 @@
 package duke.command;
 
 import duke.storage.Storage;
+import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
 /**
- * Mark command class to mark a task as undone.
+ * CloneCommand class to clone a task based on existing item.
  */
-public class UnMarkCommand extends Command {
+public class CloneCommand extends Command {
     private int taskNo;
 
     /**
-     * Constructor for unMarkCommand class.
+     * Constructor of delete command.
      *
-     * @param taskNo The task number to be marked.
+     * @param taskNo The task number to be deleted.
      */
-    public UnMarkCommand(int taskNo) {
+    public CloneCommand(int taskNo) {
         this.taskNo = taskNo;
     }
 
     /**
-     * Marks the give task as undone.
+     * Clone a task in the tasklist.
      *
-     * @param tasks The task to be executed.
+     * @param tasks The task to be cloned.
      */
     @Override
     public String execute(TaskList tasks) {
-        tasks.unMarkTask(taskNo);
         try {
+            Task t = tasks.getTask(taskNo);
+            tasks.addTask(t);
             Storage.save(tasks.getTasks());
+            return Ui.showCloneTaskMessage(t, tasks.getSize());
         } catch (Exception e) {
             return Ui.showError(e);
         }
-        return Ui.unMarkTaskMessage(tasks.getTask(taskNo));
     }
 
     /**
@@ -43,4 +45,3 @@ public class UnMarkCommand extends Command {
         return false;
     }
 }
-

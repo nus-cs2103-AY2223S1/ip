@@ -47,6 +47,13 @@ public class Ui {
         return reply;
     }
 
+    /** Print the message when a task is clone. */
+    public static String showCloneTaskMessage(Task task, int size) {
+        String reply = "Noted. I've cloned this task:\n"
+                + task + "\nNow you have " + size + " tasks in the list.";
+        return reply;
+    }
+
     /** Print the message when a task is marked. */
     public static String markTaskMessage(Task task) {
         return "Nice! I've marked this task as done:\n" + task;

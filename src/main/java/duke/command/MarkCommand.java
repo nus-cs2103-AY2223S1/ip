@@ -1,7 +1,5 @@
 package duke.command;
 
-import java.io.IOException;
-
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
@@ -31,7 +29,7 @@ public class MarkCommand extends Command {
         tasks.markTask(taskNo);;
         try {
             Storage.save(tasks.getTasks());
-        } catch (IOException e) {
+        } catch (Exception e) {
             return Ui.showError(e);
         }
         return Ui.markTaskMessage(tasks.getTask(taskNo));

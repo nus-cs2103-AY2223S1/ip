@@ -2,15 +2,7 @@ package duke.parser;
 
 import java.time.LocalDate;
 
-import duke.command.AddCommand;
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DateCommand;
-import duke.command.DeleteCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnMarkCommand;
+import duke.command.*;
 import duke.exception.DukeException;
 import duke.exception.EmptyDateException;
 import duke.exception.EmptyDescriptionException;
@@ -65,6 +57,8 @@ public class Parser {
             return deleteTask(arguments);
         } else if ("find".equalsIgnoreCase(commandType)) {
             return findTask(arguments);
+        } else if("clone".equalsIgnoreCase(commandType)) {
+            return cloneTask(arguments);
         } else {
             throw new InvalidInputException();
         }
@@ -148,6 +142,14 @@ public class Parser {
         }
         int taskNo = Integer.parseInt(arguments[1]);
         return new DeleteCommand(taskNo);
+    }
+
+    private static Command cloneTask(String[] arguments) throws EmptyDescriptionException {
+        if (arguments.length == 1) {
+            throw new EmptyDescriptionException();
+        }
+        int taskNo = Integer.parseInt(arguments[1]);
+        return new CloneCommand(taskNo);
     }
 
     private static Command findTask(String[] arguments) throws EmptyDescriptionException {
