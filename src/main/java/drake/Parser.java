@@ -42,6 +42,8 @@ public class Parser {
             return new DeleteCommand(fullInput);
         case "bye":
             return new ByeCommand();
+        case "find":
+            return new FindCommand(fullInput);
         default:
             throw new UnknownCommandException();
         }
