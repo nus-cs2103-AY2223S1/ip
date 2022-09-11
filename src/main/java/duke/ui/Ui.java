@@ -24,7 +24,7 @@ public class Ui {
     }
 
     /**
-     * Greet the user when the chatbot is active.
+     * Greets the user when the chatbot is active.
      */
     public void displayHello() {
         displaySeparator();
@@ -37,21 +37,21 @@ public class Ui {
     }
 
     /**
-     * Inform the user that the previously saved tasks has been loaded to the chatbot.
+     * Informs the user that the previously saved tasks has been loaded to the chatbot.
      */
     public void displayLoadingSuccess() {
         System.out.println("Successfully loaded");
     }
 
     /**
-     * Inform the user that there was no previously saved tasks.
+     * Informs the user that there was no previously saved tasks.
      */
     public void displayLoadingError() {
         System.out.println("OOPS!!! Couldn't find any saved tasks");
     }
 
     /**
-     * Display all the tasks of the specific task list.
+     * Displays all the tasks of the specific task list.
      * @param tasks The specific arraylist that contains all the tasks to be displayed.
      */
     public void displayTaskList(ArrayList<Task> tasks) {
@@ -65,7 +65,7 @@ public class Ui {
     }
 
     /**
-     * Inform the user that the task that want to mark has been completed.
+     * Informs the user that the task that want to mark has been completed.
      */
     public void displayMarkTask(Task task) {
         displaySeparator();
@@ -74,7 +74,7 @@ public class Ui {
     }
 
     /**
-     * Inform the user that the task that want to mark as not done has been completed.
+     * Informs the user that the task that want to mark as not done has been completed.
      */
     public void displayUnmarkTask(Task task) {
         displaySeparator();
@@ -83,7 +83,7 @@ public class Ui {
     }
 
     /**
-     * Inform the user that the task that want to add has been completed.
+     * Informs the user that the task that want to add has been completed.
      */
     public void displayAddTask(Task task) {
         displaySeparator();
@@ -92,7 +92,7 @@ public class Ui {
     }
 
     /**
-     * Inform the user that the task that want to delete has been completed.
+     * Informs the user that the task that want to delete has been completed.
      */
     public void displayDeleteTask(Task task) {
         displaySeparator();
@@ -100,7 +100,7 @@ public class Ui {
     }
 
     /**
-     * Display a goodbye message when the user exits the chatbot.
+     * Displays a goodbye message when the user exits the chatbot.
      */
     public void displayBye() {
         displaySeparator();
@@ -109,7 +109,8 @@ public class Ui {
     }
 
     /**
-     * Inform the user the current number of tasks in the task list.
+     * Informs the user the current number of tasks in the task list.
+     *
      * @param taskSize The current size of the task list.
      */
     public void displayNumOfTasks(int taskSize) {
@@ -121,7 +122,7 @@ public class Ui {
     }
 
     /**
-     * Inform the user that the task they are trying to access to perform action does not exist.
+     * Informs the user that the task they are trying to access to perform action does not exist.
      */
     public void displayInvalidTaskIndex() {
         displaySeparator();
@@ -134,7 +135,7 @@ public class Ui {
     }
 
     /**
-     * Display all the tasks in the task list that matches the user input keyword.
+     * Displays all the tasks in the task list that matches the user input keyword.
      */
     public void displayMatchedTasks(ArrayList<Task> tasks) {
         int size = tasks.size();

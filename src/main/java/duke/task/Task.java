@@ -28,21 +28,21 @@ public class Task {
     }
 
     /**
-     * Mark the task as done.
+     * Marks the task as done.
      */
     public void markAsDone() {
         isDone = true;
     }
 
     /**
-     * Mark the task as not done.
+     * Marks the task as not done.
      */
     public void markAsNotDone() {
         isDone = false;
     }
 
     /**
-     * Return a string that contains the status icon and the description of the task.
+     * Returns a string that contains the status icon and the description of the task.
      * @return A string that contains the status icon and the description of the task.
      */
     public String taskInfo() {
@@ -50,7 +50,7 @@ public class Task {
     }
 
     /**
-     * Return a string that contains the status icon and description of the task that
+     * Returns a string that contains the status icon and description of the task that
      * is used for saving.
      * @return A string that contains the status icon and description of the task that
      * is used for saving.
@@ -60,7 +60,7 @@ public class Task {
     }
 
     /**
-     * Return true if the description of the task contains the specified keyword.
+     * Returns true if the description of the task contains the specified keyword.
      * @param keyword The keyword to search for.
      * @return True if description contains the keyword, false otherwise.
      */

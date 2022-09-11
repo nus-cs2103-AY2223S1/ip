@@ -13,8 +13,9 @@ public class ByeCommand extends Command {
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
 
     /**
-     * Save the current list of tasks into a text file for future reference and
+     * Saves the current list of tasks into a text file for future reference and
      * display a goodbye message.
+     *
      * @param tasks The TaskList object of the chatbot.
      * @param storage The storage object of the chatbot.
      * @return The goodbye message.

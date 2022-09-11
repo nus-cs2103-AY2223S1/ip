@@ -22,6 +22,7 @@ public class Storage {
 
     /**
      * Reads the file containing previously saved tasks and add them to the current task list of the chatbot.
+     *
      * @param file The file containing previously saved tasks.
      * @param tasks The TaskList object that contains the task list.
      * @throws FileNotFoundException When the file of the previously saved tasks cannot be found.
@@ -33,46 +34,57 @@ public class Storage {
             String currLine = s.nextLine();
             String[] spiltCurrLine = currLine.split(",", 2);
             if (spiltCurrLine[0].equals("T")) {
-                String[] spiltCurrTodo = spiltCurrLine[1].split(",", 3);
-                ToDo currTodo = new ToDo(spiltCurrTodo[1]);
-                checkMarkAsDone(currTodo, spiltCurrTodo[0]);
-                checkPriority(currTodo, spiltCurrTodo[2]);
-                tasks.addTask(currTodo);
+                readTodoContent(spiltCurrLine[1], tasks);
             } else if (spiltCurrLine[0].equals("D")) {
-                String[] spiltCurrDeadline = spiltCurrLine[1].split(",", 5);
-                LocalDate localDate = null;
-                LocalTime localTime = null;
-                if (spiltCurrDeadline.length == 5) {
-                    localDate = LocalDate.parse(spiltCurrDeadline[2]);
-                    localTime = LocalTime.parse(spiltCurrDeadline[3]);
-                } else if (spiltCurrLine.length == 4){
-                    localDate = LocalDate.parse(spiltCurrDeadline[2]);
-                } else {
-                    assert false;
-                }
-                Deadline currDeadline = new Deadline(spiltCurrDeadline[1], localDate, localTime);
-
-                if (spiltCurrDeadline.length == 5) {
-                    checkPriority(currDeadline, spiltCurrDeadline[4]);
-                } else if (spiltCurrDeadline.length == 4) {
-                    checkPriority(currDeadline, spiltCurrDeadline[3]);
-                } else {
-                    assert false;
-                }
-                checkMarkAsDone(currDeadline, spiltCurrDeadline[0]);
-                tasks.addTask(currDeadline);
+                readDeadlineContent(spiltCurrLine[1], tasks);
             } else if (spiltCurrLine[0].equals("E")) {
-                String[] spiltCurrEvent = spiltCurrLine[1].split(",", 4);
-                Event currEvent = new Event(spiltCurrEvent[1], spiltCurrEvent[2]);
-                checkMarkAsDone(currEvent, spiltCurrEvent[0]);
-                checkPriority(currEvent, spiltCurrEvent[3]);
-                tasks.addTask(currEvent);
+                readEventContent(spiltCurrLine[1], tasks);
             } else {
                 assert false;
                 continue;
             }
         }
 
+    }
+
+    private void readTodoContent(String input, TaskList tasks) {
+        String[] spiltCurrTodo = input.split(",", 3);
+        ToDo currTodo = new ToDo(spiltCurrTodo[1]);
+        checkMarkAsDone(currTodo, spiltCurrTodo[0]);
+        checkPriority(currTodo, spiltCurrTodo[2]);
+        tasks.addTask(currTodo);
+    }
+
+    private void readDeadlineContent(String input, TaskList tasks) {
+        String[] spiltCurrDeadline = input.split(",", 5);
+        LocalDate localDate = null;
+        LocalTime localTime = null;
+        if (spiltCurrDeadline.length == 5) {
+            localDate = LocalDate.parse(spiltCurrDeadline[2]);
+            localTime = LocalTime.parse(spiltCurrDeadline[3]);
+        } else if (spiltCurrDeadline.length == 4){
+            localDate = LocalDate.parse(spiltCurrDeadline[2]);
+        } else {
+            assert false;
+        }
+        Deadline currDeadline = new Deadline(spiltCurrDeadline[1], localDate, localTime);
+        if (spiltCurrDeadline.length == 5) {
+            checkPriority(currDeadline, spiltCurrDeadline[4]);
+        } else if (spiltCurrDeadline.length == 4) {
+            checkPriority(currDeadline, spiltCurrDeadline[3]);
+        } else {
+            assert false;
+        }
+        checkMarkAsDone(currDeadline, spiltCurrDeadline[0]);
+        tasks.addTask(currDeadline);
+    }
+
+    private void readEventContent(String input, TaskList tasks) {
+        String[] spiltCurrEvent = input.split(",", 4);
+        Event currEvent = new Event(spiltCurrEvent[1], spiltCurrEvent[2]);
+        checkMarkAsDone(currEvent, spiltCurrEvent[0]);
+        checkPriority(currEvent, spiltCurrEvent[3]);
+        tasks.addTask(currEvent);
     }
 
     private void checkMarkAsDone(Task task, String input) {
@@ -110,6 +122,7 @@ public class Storage {
 
     /**
      * Saves the current task list to a text file that can be used in the future for reference.
+     *
      * @param taskList The list containing the tasks that is to be saved.
      */
     public void saveTaskToFile(ArrayList<Task> taskList) {

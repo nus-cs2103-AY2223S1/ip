@@ -23,8 +23,9 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Return a list of tasks from the task list that matches with the keyword the user
+     * Returns a list of tasks from the task list that matches with the keyword the user
      * input.
+     *
      * @param task The TaskList object of the chatbot.
      * @param storage The storage object of the chatbot.
      * @return The list of tasks that matches with the user input keyword.

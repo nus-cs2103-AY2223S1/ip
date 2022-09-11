@@ -14,7 +14,8 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     /**
-     * Return a string containing the list of tasks.
+     * Returns a string containing the list of tasks.
+     *
      * @param task The TaskList object of the chatbot.
      * @param storage The storage object of the chatbot.
      * @return The list of tasks.

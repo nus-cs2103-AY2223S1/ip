@@ -31,7 +31,8 @@ import java.time.LocalTime;
 public class Parser {
 
     /**
-     * Return the appropriate command after parsing the user input if its valid.
+     * Returns the appropriate command after parsing the user input if its valid.
+     *
      * @param input The user input.
      * @return The command that the user input.
      * @throws InvalidInputException When the user inputs an invalid command.
@@ -91,6 +92,9 @@ public class Parser {
     private Command handlePriorityParse(String input) throws InvalidPriorityException {
         String[] prioritySpilt = input.split(" ", 2);
         int taskToChangePriority = handleParseInt(prioritySpilt[0], "change priority level");
+        if (prioritySpilt.length != 2) {
+            throw new InvalidPriorityException();
+        }
         switch (prioritySpilt[1]) {
             case "high" :
             case "medium" :

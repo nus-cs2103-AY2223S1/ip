@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete the specific task in the task list and return a message that the task
+     * Deletes the specific task in the task list and return a message that the task
      * has been deleted.
      * @param task The TaskList object of the chatbot.
      * @param storage The storage object of the chatbot.
