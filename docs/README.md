@@ -50,6 +50,10 @@ Delete a task.
 
 Exit the application with `bye`.
 
+### Resizable
+
+Application is resizable! Just re-size the window as you would do with any other application.
+
 ## Usage
 
 ### `todo` - Create a Todo task
