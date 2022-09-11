@@ -17,6 +17,7 @@ import skylark.task.Todo;
 public class Storage {
     /** File path of the text file used for storage. */
     private final String filePath;
+    private final String regexString = " \\| ";
 
     /**
      * Returns a Storage object.
@@ -49,7 +50,7 @@ public class Storage {
                 Scanner scanner = new Scanner(file);
                 while (scanner.hasNextLine()) {
                     String nextLine = scanner.nextLine();
-                    String[] splitStrings = nextLine.split(" \\| ", -1);
+                    String[] splitStrings = nextLine.split(regexString, -1);
 
                     if (splitStrings.length < 3) {
                         throw new SkylarkException("Not enough parameters!");
