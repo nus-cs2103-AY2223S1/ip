@@ -5,9 +5,18 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/**
+ * The UnmarkCommand class executes the unmark command.
+ */
 public class UnmarkCommand extends Command {
+    /** The input given by the user. */
     private String input;
 
+    /**
+     * Instantiates the UnmarkCommand object.
+     *
+     * @param input The input given by the user.
+     */
     public UnmarkCommand(String input) {
         this.input = input;
     }

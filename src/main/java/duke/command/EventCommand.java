@@ -5,9 +5,18 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Event;
 
+/**
+ * EventCommand class to execute the event command.
+ */
 public class EventCommand extends Command {
+    /** The input given by the user. */
     private String input;
 
+    /**
+     * Instantiates the EventCommand object.
+     *
+     * @param input The input given by the user.
+     */
     public EventCommand(String input) {
         this.input = input;
     }

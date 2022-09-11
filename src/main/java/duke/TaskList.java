@@ -1,4 +1,5 @@
 package duke;
+
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -33,8 +34,7 @@ public class TaskList {
      * @return the task of given index found in list.
      */
     public Task get(int index) {
-        Task t = tasks.get(index);
-        return t;
+        return tasks.get(index);
     }
 
     /**
@@ -44,8 +44,7 @@ public class TaskList {
      * @return The element that was removed from the list
      */
     public Task remove(int index) {
-        Task t = tasks.remove(index);
-        return t;
+        return tasks.remove(index);
     }
 
     /**

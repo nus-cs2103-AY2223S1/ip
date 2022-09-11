@@ -1,4 +1,5 @@
 package duke;
+
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -42,12 +43,12 @@ public class Storage {
      * @throws FileNotFoundException If filePath is invalid.
      */
     public static String printFileContents(String filePath) throws FileNotFoundException {
-        File f = new File(filePath);
-        Scanner s = new Scanner(f);
+        File file = new File(filePath);
+        Scanner scanner = new Scanner(file);
         String response  = "";
 
-        while (s.hasNextLine()) {
-            response += s.nextLine() + "\n";
+        while (scanner.hasNextLine()) {
+            response += scanner.nextLine() + "\n";
         }
         return response;
     }
@@ -55,16 +56,16 @@ public class Storage {
     /**
      * Reformats the content from the saved file into the list.
      *
-     * @param f File to be loaded from.
+     * @param file File to be loaded from.
      * @param taskList The collection of Task objects.
      * @throws FileNotFoundException If file does not exist.
      */
-    public static void formatToList(File f, ArrayList<Task> taskList) throws FileNotFoundException {
-        Scanner s = new Scanner(f);
+    public static void formatToList(File file, ArrayList<Task> taskList) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file);
 
         try {
-            while (s.hasNextLine()) {
-                String[] taskDescription = s.nextLine().split(" \\| ");
+            while (scanner.hasNextLine()) {
+                String[] taskDescription = scanner.nextLine().split(" \\| ");
                 String taskType = taskDescription[0];
                 boolean isDone = taskDescription[1].equals("1");
                 String description = taskDescription[2] + " ";

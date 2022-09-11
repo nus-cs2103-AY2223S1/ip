@@ -6,9 +6,18 @@ import duke.Ui;
 import duke.task.Task;
 import duke.task.ToDo;
 
+/**
+ * TodoCommand class to execute the todo command.
+ */
 public class TodoCommand extends Command {
+    /** The input given by the user. */
     private String input;
 
+    /**
+     * Instantiates the TodoCommand object.
+     *
+     * @param input The input given by the user.
+     */
     public TodoCommand(String input) {
         this.input = input;
     }

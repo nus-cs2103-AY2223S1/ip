@@ -3,6 +3,9 @@ package duke.command;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * ByeCommand class to execute the bye command.
+ */
 public class ByeCommand extends Command {
 
     @Override

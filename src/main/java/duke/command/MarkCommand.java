@@ -5,9 +5,18 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/**
+ * MarkCommand class to execute the mark command.
+ */
 public class MarkCommand extends Command {
+    /** The input given by the user. */
     private String input;
 
+    /**
+     * Instantiates the MarkCommand object.
+     *
+     * @param input THe input given by the user.
+     */
     public MarkCommand(String input) {
         this.input = input;
     }

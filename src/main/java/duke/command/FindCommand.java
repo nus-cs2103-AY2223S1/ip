@@ -5,9 +5,18 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/**
+ * FindCommand class to execute the find command.
+ */
 public class FindCommand extends Command {
+    /** The input given by the user. */
     private String input;
 
+    /**
+     * Instantiates the FindCommand object.
+     *
+     * @param input The input given by the user.
+     */
     public FindCommand(String input) {
         this.input = input;
     }
