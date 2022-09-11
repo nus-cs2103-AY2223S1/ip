@@ -26,5 +26,5 @@ public abstract class Command {
      * @param storage Storage of the file.
      * @throws BroException If the input is invalid.
      */
-    public abstract void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException;
+    public abstract String execute(TaskList tasklist, Ui ui, Storage storage) throws BroException;
 }

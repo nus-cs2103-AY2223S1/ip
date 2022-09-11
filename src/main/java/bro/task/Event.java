@@ -28,7 +28,7 @@ public class Event extends Task {
         if (at.trim().split(" ").length == 4) {
             isMonthFormat = true;
         } else {
-            atStore = parser.eventParser(at);
+            atStore = Parser.eventParser(at);
         }
     }
 

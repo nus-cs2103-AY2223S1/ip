@@ -15,8 +15,8 @@ public class Ui {
     /**
      * Prints out the welcome message.
      */
-    public void welcome() {
-        System.out.println("Hello! I'm THE BRO\n" + "What can I do for you?");
+    public static String welcome() {
+        return "Hello! I'm THE BRO\n" + "What can I do for you?";
     }
 
     /**
@@ -31,16 +31,16 @@ public class Ui {
      * Prints out the size of the ArrayList.
      * @param list1 The ArrayList
      */
-    public static void listSize(ArrayList<Task> list1) {
-        System.out.println("You have " + list1.size() + " tasks left!");
+    public static String listSize(ArrayList<Task> list1) {
+        return "You have " + list1.size() + " tasks left!" + "\n";
     }
 
     /**
      * Prints the toString of the task.
      * @param t The task given by the user.
      */
-    public static void printAdd(Task t) {
-        System.out.println(t.toString());
+    public static String printAdd(Task t) {
+        return t.toString() + "\n";
     }
 
     /**
@@ -48,8 +48,8 @@ public class Ui {
      * @param list1 ArrayList of Task where the task has to be marked.
      * @param n Index of the task to be marked.
      */
-    public static void markUi(ArrayList<Task> list1, int n) {
-        System.out.println("I have marked this task\n" + (list1.get(n - 1)).toString());
+    public static String markUi(ArrayList<Task> list1, int n) {
+        return "I have marked this task\n" + (list1.get(n - 1)).toString() + "\n";
     }
 
     /**
@@ -57,8 +57,8 @@ public class Ui {
      * @param list1 ArrayList of Task where the task has to be unmarked.
      * @param n Index of the task to be unmarked.
      */
-    public static void unmarkUi(ArrayList<Task> list1, int n) {
-        System.out.println("I have unmarked this task\n" + (list1.get(n - 1)).toString());
+    public static String unmarkUi(ArrayList<Task> list1, int n) {
+        return "I have unmarked this task\n" + (list1.get(n - 1)).toString() + "\n";
     }
 
     /**
@@ -66,29 +66,29 @@ public class Ui {
      * @param list1 ArrayList of Task where the task has to be deleted.
      * @param n Index of the task to be deleted.
      */
-    public static void deleteUi(ArrayList<Task> list1, int n) {
-        System.out.println("I have removed this task.\n" + (list1.get(n - 1)).toString());
+    public static String deleteUi(ArrayList<Task> list1, int n) {
+        return "I have removed this task.\n" + (list1.get(n - 1)).toString() + "\n";
     }
 
     /**
      * Prints out the bye statement.
      */
-    public static void bye() {
-        System.out.println("See you later broo!");
+    public static String bye() {
+        return "See you later broo!";
     }
 
     /**
      * Shows the error message for the file not being able to load.
      */
-    public static void showLoadingError() {
-        System.out.println("The file couldn't be loaded.");
+    public static String showLoadingError() {
+        return "The file couldn't be loaded." + "\n";
     }
 
     /**
      * Prints out the message given.
      * @param msg The message to be printed out.
      */
-    public static void errorMessage(String msg) {
-        System.out.println(msg);
+    public static String errorMessage(String msg) {
+        return msg + "\n";
     }
 }

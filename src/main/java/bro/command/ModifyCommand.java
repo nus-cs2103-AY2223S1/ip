@@ -35,24 +35,22 @@ public class ModifyCommand extends Command {
      * Marks or unmarks the task.
      */
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
+    public String execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
         switch (modifyType) {
         case MARK:
             try {
-                tasklist.markTask(this.index, storage);
+                return tasklist.markTask(this.index, storage);
             } catch (IndexOutOfBoundsException e) {
                 throw new BroException("Index is out of bound. Enter a valid index");
             }
-            break;
         case UNMARK:
             try {
-                tasklist.unmarkTask(this.index, storage);
+                return tasklist.unmarkTask(this.index, storage);
             } catch (IndexOutOfBoundsException e) {
                 throw new BroException("Index is out of bound. Enter a valid index");
             }
-            break;
         default:
-            break;
+            return "Exception";
         }
     }
 }

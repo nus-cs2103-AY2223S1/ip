@@ -20,8 +20,8 @@ public class ExitCommand extends Command {
      * Bye message will be printed.
      */
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) {
-        ui.bye();
+    public String execute(TaskList tasklist, Ui ui, Storage storage) {
+        return ui.bye();
     }
 
     /**

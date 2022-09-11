@@ -1,23 +1,19 @@
 package bro;
 
 import bro.command.Command;
-
+import javafx.application.Platform;
 /**
  * The class for bot.
  */
 public class Bro {
-
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    private String filePath;
-
+    private String filePath = "./bro.Bro.txt";
     /**
-     * Constructor for the class Bro that initialises global variables.
-     * @param filePath String of the locaton of the file.
+     * Constructor for the class Bro.
      */
-    public Bro(String filePath) {
-        this.filePath = filePath;
+    public Bro() {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -29,29 +25,17 @@ public class Bro {
     }
 
     /**
-     * Parses each input and executes the command.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        ui.welcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = new Parser().parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (BroException e) {
-                ui.errorMessage(e.getMessage());
-            }
+    public String getResponse(String input) {
+        String result = "";
+        try {
+            Command c = new Parser().parse(input);
+            result += c.execute(tasks, ui, storage);
+        } catch (BroException e) {
+            result += ui.errorMessage(e.getMessage());
         }
-    }
-
-    /**
-     * Entry point.
-     * @param args Command line arguments.
-     */
-    public static void main(String[] args) {
-        Bro bro = new Bro("./bro.Bro.txt");
-        bro.run();
+        return result;
     }
 }
