@@ -1,6 +1,5 @@
 package duke.model;
 
-import duke.Duke;
 import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +9,22 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskListTest {
+    @Test
+    public void add_success() {
+        List<Task> list = new ArrayList<>();
+        TaskList taskList = new TaskList(list);
+        taskList.add(new Deadline("fishing", "2021-05-04"));
+        assertEquals(taskList.toStorage(), "D | 0 | fishing | 2021-05-04\n");
+    }
+
+    @Test
+    public void delete_success() {
+        List<Task> list = new ArrayList<>();
+        list.add(new Deadline("fishing", "2021-05-04"));
+        TaskList taskList = new TaskList(list);
+        taskList.delete(1);
+        assertEquals(taskList.toString(), "\tYou do not have any tasks!");
+    }
 
     @Test
     public void mark_success() throws DukeException {
