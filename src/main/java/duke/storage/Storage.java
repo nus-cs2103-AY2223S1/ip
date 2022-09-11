@@ -1,17 +1,18 @@
 package duke.storage;
 
-import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.Todo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 /**
  * Storage is a Storage that loads and saves data to file.
@@ -41,48 +42,49 @@ public class Storage {
         ArrayList<Task> dukeList = new ArrayList<>();
         File file = new File(filePath);
 
-        if (file.exists()) {
-            Scanner sc = new Scanner(file);
-            while (sc.hasNext()) {
-                String input = sc.nextLine();
-                String[] splitInput = input.split(Pattern.quote(" | "));
-                String taskType = splitInput[0];
-                String taskStatus = splitInput[1];
-                String taskDescription = splitInput[2];
-
-                boolean isComplete = taskStatus.equals("1");
-
-                switch (taskType) {
-                    case "T":
-                        Todo todo = new Todo(taskDescription);
-                        dukeList.add(todo);
-                        break;
-
-                    case "D":
-                        String by = splitInput[3];
-                        Deadline deadline = new Deadline(taskDescription, by);
-                        dukeList.add(deadline);
-                        break;
-
-                    case "E":
-                        String at = splitInput[3];
-                        Event event = new Event(taskDescription, at);
-                        dukeList.add(event);
-                        break;
-
-                    default:
-                        break;
-                }
-
-                if (isComplete) {
-                    int size = dukeList.size();
-                    dukeList.get(size - 1).markAsDone();
-                }
-            }
-        } else {
+        if (!file.exists()) {
             File parent = new File(DIRECTORY + "/data");
             boolean isDirectoryCreated = parent.mkdir();
             boolean isFileCreated = file.createNewFile();
+        }
+
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNext()) {
+            String input = sc.nextLine();
+            String[] splitInput = input.split(Pattern.quote(" | "));
+            String taskType = splitInput[0];
+            String taskStatus = splitInput[1];
+            String taskDescription = splitInput[2];
+
+            boolean isComplete = taskStatus.equals("1");
+
+            switch (taskType) {
+            case "T":
+                Todo todo = new Todo(taskDescription);
+                dukeList.add(todo);
+                break;
+
+            case "D":
+                String by = splitInput[3];
+                Deadline deadline = new Deadline(taskDescription, by);
+                dukeList.add(deadline);
+                break;
+
+            case "E":
+                String at = splitInput[3];
+                Event event = new Event(taskDescription, at);
+                dukeList.add(event);
+                break;
+
+            default:
+                break;
+            }
+
+            if (isComplete) {
+                int size = dukeList.size();
+                dukeList.get(size - 1).markAsDone();
+            }
         }
 
         return dukeList;

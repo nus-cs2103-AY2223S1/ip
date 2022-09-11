@@ -1,14 +1,14 @@
 package duke;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * Duke is the class where the main logic of the program is located.

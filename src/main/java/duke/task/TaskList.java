@@ -1,6 +1,5 @@
 package duke.task;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -165,19 +164,6 @@ public class TaskList {
             }
         }
         return remindedTasks;
-    }
-
-    /**
-     * Saves a task.
-     *
-     * @return Updated list.
-     */
-    public ArrayList<Task> saveTasks() {
-        ArrayList<Task> dukeList = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            dukeList.add(tasks.get(i));
-        }
-        return dukeList;
     }
 
     /**

@@ -44,15 +44,6 @@ public abstract class Task {
     }
 
     /**
-     * Returns saved task in String representation.
-     *
-     * @return String representation of saved task.
-     */
-    public String saveTask() {
-        return String.format("%d | %s", isDone ? 1 : 0, description);
-    }
-
-    /**
      * Returns the description of the task.
      *
      * @return Description of the task.

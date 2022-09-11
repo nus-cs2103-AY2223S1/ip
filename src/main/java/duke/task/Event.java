@@ -10,8 +10,8 @@ import java.time.format.DateTimeFormatter;
  * @version CS2103T AY22/23 Sem 1
  */
 public class Event extends Task {
-    protected LocalDate at;
     private static final LocalDate TODAY = LocalDate.now();
+    protected LocalDate at;
 
     /**
      * Constructor for Event.
