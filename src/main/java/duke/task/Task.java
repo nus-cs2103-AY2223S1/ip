@@ -68,4 +68,12 @@ public abstract class Task {
         assert commandString != null;
         return commandString + "\n" + getStatus();
     }
+
+    @Override
+    public boolean equals(Object task) {
+        if (task instanceof Task) {
+            return ((Task) task).toStorageString().equals(toStorageString());
+        }
+        return false;
+    }
 }
