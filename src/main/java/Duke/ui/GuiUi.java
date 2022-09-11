@@ -34,6 +34,11 @@ public class GuiUi extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Set a Duke for GuiUi.
+     *
+     * @param duke a Duke for GuiUi.
+     */
     public void setDuke(Duke duke) {
         this.duke = duke;
         duke.setGui(this);
@@ -46,32 +51,32 @@ public class GuiUi extends AnchorPane {
         String input = userInput.getText();
         String output = null;
 
-        if (isValidInput(input)) {
+        boolean isValidInput = !input.trim().isBlank();
+        if (isValidInput) {
             displayInput(input);
             output = duke.receiveInput(input);
         }
 
-        if (isValidOutput(output)) {
+        boolean isValidOutput = output != null;
+        if (isValidOutput) {
             displayOutput(output);
         }
 
         userInput.clear();
     }
 
-    private boolean isValidInput(String input) {
-        return !input.trim().isBlank();
-    }
-
-    private boolean isValidOutput(String output) {
-        return output != null;
-    }
-
+    /**
+     * Display the user input to the user.
+     */
     public void displayInput(String input) {
         dialogContainer.getChildren().add(
                 DialogBox.getUserDialog(input, userImage)
         );
     }
 
+    /**
+     * Display the Duke output to the user.
+     */
     public void displayOutput(String output) {
         dialogContainer.getChildren().add(
                 DialogBox.getDukeDialog(output, dukeImage)

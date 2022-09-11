@@ -42,12 +42,18 @@ public class Duke {
     // String to specify location of previous information.
     private static final String filepath = "data" + File.separator + "dukeData.txt";
 
+    /**
+     * Load the {@link Duke#storage storage} and {@link Duke#tasks tasklist} for Duke.
+     */
     public void load() {
         initialiseStorage();
         loadTaskFromStorageIntoTasks();
         welcomeUser();
     }
 
+    /**
+     * Create a {@link Duke#storage storage} based on the specified {@link Duke#filepath}.
+     */
     private void initialiseStorage() {
         try {
             storage = new Storage(filepath);
@@ -56,6 +62,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Load the {@link Duke#tasks tasks} from the {@link Duke#storage storage}.
+     */
     private void loadTaskFromStorageIntoTasks() {
         try {
             assert storage != null : "The storage should not be null when loading tasks";
@@ -69,10 +78,19 @@ public class Duke {
         }
     }
 
+    /**
+     * Display a welcome message to the user.
+     */
     private void welcomeUser() {
         guiUi.displayOutput(dukeResponses.startPrompt());
     }
 
+    /**
+     * Return an output from the input provided by a user.
+     *
+     * @param inputString a string input from the user.
+     * @return a string output from Duke.
+     */
     public String receiveInput(String inputString) {
         String response = "";
         try {
@@ -128,6 +146,9 @@ public class Duke {
         return response;
     }
 
+    /**
+     * Terminate the programme upon completion.
+     */
     private void terminate() {
         try {
             assert tasks != null : "The tasks should not be null when storing them in storage";
@@ -216,6 +237,11 @@ public class Duke {
         return dukeResponses.addTask(task) + "\n" + dukeResponses.listTasks(tasks);
     }
 
+    /**
+     * Set a gui for Duke.
+     *
+     * @param guiUi a guiUi for Duke.
+     */
     public void setGui(GuiUi guiUi) {
         this.guiUi = guiUi;
     }
