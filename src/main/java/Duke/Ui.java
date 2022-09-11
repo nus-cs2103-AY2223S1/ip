@@ -29,15 +29,6 @@ public class Ui {
     }
 
     /**
-     * Greets user with opening statements.
-     *
-     * @return opening statements.
-     */
-    public String greeting() {
-        return "Hello! I'm Duke\nWhat can I do for you?\n";
-    }
-
-    /**
      * Says bye to user with closing statement.
      *
      * @return closing statements.
@@ -51,7 +42,7 @@ public class Ui {
      *
      * @return error message.
      */
-    public String printfileNotFound() {
+    public String printFileNotFound() {
         return "File not Found!\n";
     }
 

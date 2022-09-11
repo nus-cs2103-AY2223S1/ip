@@ -29,6 +29,7 @@ public class Parser {
                 if (input.length() == 4 || input.substring(5).equals("")) {
                     throw new IllegalIndexException("OOPS!!! The index of a mark cannot be empty.");
                 }
+                //  Isolates the index after "mark"
                 String remainder = input.substring(5);
                 int index = Integer.valueOf(remainder) - 1;
                 taskList.mark(index);
@@ -41,6 +42,7 @@ public class Parser {
                 if (input.length() == 6 || input.substring(7).equals("")) {
                     throw new IllegalIndexException("OOPS!!! The index of an unmark cannot be empty.");
                 }
+                //  Isolates the index after "unmark"
                 String remainder = input.substring(7);
                 int index = Integer.valueOf(remainder) - 1;
                 taskList.unmark(index);
@@ -49,21 +51,24 @@ public class Parser {
             }
             //  Add Todo Task
             if (input.length() >= 4 && input.substring(0, 4).equals("todo")) {
-                //  error checking
+                //  Error checking
                 if (input.length() == 4 || input.substring(5).equals("")) {
                     throw new EmptyDescriptionException("OOPS!!! The description of a todo cannot be empty.");
                 }
-                ToDo todo = new ToDo(input.substring(5));
+                //  Isolates the task description after "todo"
+                String description = input.substring(5);
+                ToDo todo = new ToDo(description);
                 taskList.addTask(todo);
                 storage.updateStorage(taskList);
                 return ui.addResponse(todo, taskList);
             }
             //  Add Deadline Task
             if (input.length() >= 8 && input.substring(0, 8).equals("deadline")) {
-                //  error checking
+                //  Error checking
                 if (input.length() == 8 || input.substring(9).equals("")) {
                     throw new EmptyDescriptionException("OOPS!!! The description of a deadline cannot be empty.");
                 }
+                //  Isolates remaining input after "deadline" and filters further for task description and time
                 String remainder = input.substring(9);
                 String[] arr = remainder.split("/by");
                 String description = arr[0].trim();
@@ -75,10 +80,11 @@ public class Parser {
             }
             //  Add Event Task
             if (input.length() >= 5 && input.substring(0, 5).equals("event")) {
-                // error checking
+                // Error checking
                 if (input.length() == 5 || input.substring(6).equals("0")) {
                     throw new EmptyDescriptionException("OOPS!!! The description of a event cannot be empty.");
                 }
+                //  Isolates remaining input after "event" and filters further for task description and time
                 String remainder = input.substring(6);
                 String[] arr = remainder.split("/at");
                 String description = arr[0].trim();
@@ -90,6 +96,7 @@ public class Parser {
             }
             //  Delete Tasks
             if (input.length() >= 6 && input.substring(0, 6).equals("delete")) {
+                //  Isolates index after "delete"
                 String remainder = input.substring(7);
                 int index = Integer.valueOf(remainder) - 1;
                 String response = ui.deleteResponse(taskList, index);
@@ -99,10 +106,11 @@ public class Parser {
             }
             //  Find Tasks
             if (input.length() >= 4 && input.substring(0, 4).equals("find")) {
+                //  Isolates string input after "find"
                 String remainder = input.substring(5);
                 return ui.find(taskList, remainder);
             }
-            //  if loop reaches here, raise error
+            //  If loop reaches here, input is invalid, so throw an error
             throw new InvalidTaskException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         } catch (InvalidTaskException e) {
             return e.getMessage();
