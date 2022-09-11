@@ -26,5 +26,5 @@ public abstract class Command {
      * @param storage Write data to a local file.
      * @throws PlutoException If task list modification or writing to storage generates error.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException;
 }

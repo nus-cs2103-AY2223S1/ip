@@ -29,7 +29,7 @@ public class ShowCommand extends Command {
      * Displays all tasks of a date.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
         TaskList filteredTasks = new TaskList();
         for (int i = 0; i < tasks.nTasks(); i++) {
             Task t = tasks.getTask(i);
@@ -39,10 +39,9 @@ public class ShowCommand extends Command {
             }
         }
         if (filteredTasks.nTasks() == 0) {
-            ui.print("\tNo tasks found on this date.");
+            return ui.print("No tasks found on this date.");
         } else {
-            ui.print("\tHere are the tasks on this date:");
-            ui.print(filteredTasks.toString());
+            return ui.print("Here are the tasks on this date:\n" + ui.print(filteredTasks.toString()));
         }
     }
 
