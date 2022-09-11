@@ -25,7 +25,7 @@ public class FindCommand extends Command {
      * Finds whether any task has the keyword provided.
      */
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
-        tasklist.findTask(keyword);
+    public String execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
+        return tasklist.findTask(keyword);
     }
 }

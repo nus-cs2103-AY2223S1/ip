@@ -25,9 +25,9 @@ public class DeleteCommand extends Command {
      * Deletes the given task by the user.
      */
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
+    public String execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
         try {
-            tasklist.deleteTask(this.index, storage);
+            return tasklist.deleteTask(this.index, storage);
         } catch (IndexOutOfBoundsException e) {
             throw new BroException("Index is out of bound. Enter a valid index");
         }

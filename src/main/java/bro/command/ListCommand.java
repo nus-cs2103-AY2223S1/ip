@@ -20,7 +20,7 @@ public class ListCommand extends Command {
      * Lists all the tasks.
      */
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) {
-        tasklist.listAll();
+    public String execute(TaskList tasklist, Ui ui, Storage storage) {
+        return tasklist.listAll();
     }
 }

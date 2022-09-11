@@ -48,7 +48,7 @@ public class Parser {
             return new AddCommand(new Deadline(in[1].split("/by")[0].trim(),
               in[1].split("/by")[1].trim()));
         case "event":
-            return new AddCommand(new Event(in[1].split("/by")[0].trim(),
+            return new AddCommand(new Event(in[1].split("/at")[0].trim(),
               in[1].split("/at")[1].trim()));
         case "delete":
             return new DeleteCommand(Integer.parseInt(in[1].trim()));

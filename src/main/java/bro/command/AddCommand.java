@@ -25,20 +25,17 @@ public class AddCommand extends Command {
      * Adds the given task to the file.
      */
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) {
+    public String execute(TaskList tasklist, Ui ui, Storage storage) {
         String type = this.task.getTaskType();
         switch (type) {
         case ("bro.task.Todo"):
-            tasklist.todoTask(this.task, storage);
-            break;
+            return tasklist.todoTask(this.task, storage);
         case ("bro.task.Deadline"):
-            tasklist.deadlineTask(this.task, storage);
-            break;
+            return tasklist.deadlineTask(this.task, storage);
         case ("bro.task.Event"):
-            tasklist.eventTask(this.task, storage);
-            break;
+            return tasklist.eventTask(this.task, storage);
         default:
-            break;
+            return "Exception";
         }
     }
 }

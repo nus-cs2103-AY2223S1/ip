@@ -30,6 +30,7 @@ public class Deadline extends Task {
             byStore = Parser.deadlineParser(by);
         }
     }
+
     @Override
     public String getTaskType() {
         return "bro.task.Deadline";
