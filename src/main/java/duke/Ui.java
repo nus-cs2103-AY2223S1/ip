@@ -11,7 +11,7 @@ import duke.task.TaskList;
  * A component of the chatBot Duke that returns his response as a string.
  */
 public class Ui {
-    public static final String INTRO_MESSAGE = "Gigachad is here to help";
+    public static final String INTRO_MESSAGE = "Dread it, run from it, Gigachad arrives all the same";
     public static final String EXIT_MESSAGE = "Farewell, till we meet again";
 
     /**
