@@ -14,6 +14,10 @@ repositories {
     mavenCentral()
 }
 
+run {
+    enableAssertions = true
+}
+
 dependencies {
     String javaFxVersion = '11'
 
@@ -49,7 +53,7 @@ test {
 }
 
 application {
-    mainClassName = "Meowmeow.meowmeow"
+    mainClassName = "meowmeow.Launcher"
 }
 
 shadowJar {

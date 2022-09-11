@@ -18,6 +18,7 @@ public class Parser {
 
         try {
             String[] splitUI = userInput.split(" ");
+            assert splitUI.length > 0 : "splitUI should not be empty";
             switch (splitUI[0]) {
             case "list":
                 return new ListCommand();
