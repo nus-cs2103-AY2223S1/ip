@@ -1,16 +1,24 @@
 # User Guide
-Tuna is a desktop app for managing tasks, optimised for use via a ChatBot GUI.
+Tuna is a desktop app for managing tasks, optimised for use via a GUI.
 
 ## Features
-1. Add Todo, Deadline and Event tasks.
-2. List all tasks.
-3. List tasks that occur on a specified date.
-4. Delete a task.
-5. Mark and Un-mark tasks when they are completed.
-6. Sort tasks in chronological order.
-7. Find tasks that contain a specified keyword.
-8. Load and save data into the hard disk.
+1. Add [Todo](#adding-a-todo-task---todo), [Deadline](#adding-a-deadline-task---deadline) and 
+[Event](#adding-an-event-task---event) tasks.
+2. [List](#listing-all-tasks---list) all tasks.
+3. [List](#listing-all-tasks---list) tasks that occur on a specified date.
+4. [Delete](#deleting-a-task---delete) a task.
+5. [Mark](#marking-a-task---mark) or [Un-mark](#un-marking-a-task---unmark) a task when it is completed.
+6. [Sort](#sorting-all-tasks---sort) tasks in chronological order.
+7. [Find](#finding-a-task---find) tasks that contain a specified keyword.
+8. [Load](#loading-the-data) and [Save](#saving-the-data) data into the hard disk.
 
+## Quick start
+1. Ensure that you have `Java 11` or above installed in your computer.
+2. Download the latest Tuna.jar from [here](https://github.com/marcusczh/ip/releases).
+3. Copy the file to the folder you want to use as the home folder for Tuna.
+4. Double-click the file to start the app. The GUI should appear in a few seconds as such.
+
+      <img src="./screenshots/welcome.png" width=300/>
 
 ## Usage
 
@@ -19,7 +27,7 @@ Tuna is a desktop app for managing tasks, optimised for use via a ChatBot GUI.
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br/>e.g. in todo `TASK_DESCRIPTION`, 
 `TASK_DESCRIPTION` is a parameter which can be used as `todo complete assignments`.
 - Items in square brackets are optional.
-- For commands that involve date and time, the symbols are representated as such:
+- For commands that involve date and time, the symbols are represented as such:
   - `Y`: Year
   - `M`: Month
   - `D`: Day
@@ -138,6 +146,10 @@ Example of usage:
 Exits the program and saves the data into the data file.
 
 Format: `bye`
+
+### Loading the data
+
+Tuna data are loaded automatically when the program starts.
 
 ### Saving the data
 
