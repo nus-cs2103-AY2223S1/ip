@@ -12,6 +12,7 @@
 
 .button {
     -fx-background-image: url('../images/background.png');
+    -fx-background-color: FDF4E8;
     -fx-border-color: TRANSPARENT;
 }
 
