@@ -13,11 +13,35 @@ public class ParserTest {
     private static final BotUI UI = new BotUI();
 
     @Test
-    public void testExtractDate_invalidDateFormat_exceptionThrown() {
+    public void testExtractDate_dayNotExist_exceptionThrown() {
         try {
             Parser.extractDateTime("dummyDetail /at 2022-14-32 2300", " /at ");
+        } catch (DukeException ex) {
+            assertEquals(UI.invalidDateFormat(), ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testExtractDate_timeNotExist_exceptionThrown() {
+        try {
             Parser.extractDateTime("dummyDetail /at 2022-02-11 2500", " /at ");
+        } catch (DukeException ex) {
+            assertEquals(UI.invalidDateFormat(), ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testExtractDate_onlyYear_exceptionThrown() {
+        try {
             Parser.extractDateTime("dummyDetail /at 2022", " /at ");
+        } catch (DukeException ex) {
+            assertEquals(UI.invalidDateFormat(), ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testExtractDate_onlyTime_exceptionThrown() {
+        try {
             Parser.extractDateTime("dummyDetail /at 1800", " /at ");
         } catch (DukeException ex) {
             assertEquals(UI.invalidDateFormat(), ex.getMessage());

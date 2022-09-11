@@ -1,3 +1,1 @@
-[E] __ false __ dummyEvent __ Sep 11 2011 11:30 __ 
-[D] __ false __ dummyDeadline __ Jan 28 2011 09:00 __ 
-[T] __ false __ dummyTodo __ 
+[E] __ true __ attend group project meeting __ Sep 11 2022 21:00 __ 
