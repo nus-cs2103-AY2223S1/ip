@@ -1,6 +1,15 @@
 package uwu.uwu;
 
-import uwu.command.*;
+import uwu.command.AddDeadlineCommand;
+import uwu.command.AddEventCommand;
+import uwu.command.AddToDosCommand;
+import uwu.command.DeleteCommand;
+import uwu.command.ExitCommand;
+import uwu.command.FindCommand;
+import uwu.command.HelpCommand;
+import uwu.command.ListCommand;
+import uwu.command.MarkCommand;
+import uwu.command.UnmarkCommand;
 import uwu.task.Task;
 import uwu.task.TaskList;
 
