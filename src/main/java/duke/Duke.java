@@ -11,6 +11,7 @@ import duke.util.Error;
 import duke.util.Parser;
 import duke.util.Response;
 import duke.util.Storage;
+import duke.util.Success;
 import javafx.application.Platform;
 
 /**
@@ -66,7 +67,7 @@ public class Duke {
      *
      * @return Duke greeting message.
      */
-    public String getGreetingMessage() {
-        return ui.greetingMessage();
+    public Response greetUser() {
+        return new Success(ui.greetingMessage());
     }
 }

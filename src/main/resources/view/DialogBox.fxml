@@ -12,7 +12,7 @@
   <children>
   <HBox fx:id="chatContainer" spacing="15">
     <HBox fx:id="dialogContainer" styleClass="container">
-      <Text fx:id="dialog" text="Text" wrappingWidth="250"/>
+      <Text fx:id="dialog" text="Text" wrappingWidth="265" styleClass="text"/>
     </HBox>
     <Circle fx:id="displayPicture" styleClass="displayPicture" radius="35" />
   </HBox>

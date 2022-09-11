@@ -1,13 +1,19 @@
 .container {
-    -fx-font: 11 arial;
+    -fx-font: 12 consolas;
+    -fx-font-weight: bold;
     -fx-padding: 10px;
     -fx-background-radius: 10;
     -fx-border-color: black;
     -fx-border-width: 1px;
     -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, grey, 10, 0, 0, 0);
+}
+
+.text {
+    -fx-line-spacing: 5px
 }
 
 .displayPicture {
-    -fx-stroke: brown;
+    -fx-effect: dropshadow(gaussian, grey, 3, 0, 0, 0);
     -fx-stroke-width: 1;
 }

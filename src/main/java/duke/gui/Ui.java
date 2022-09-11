@@ -11,8 +11,8 @@ import duke.task.TaskList;
  */
 public class Ui {
     private enum Divider {
-        THICK_DIVIDER("===========================\n"),
-        THIN_DIVIDER("___________________________________\n");
+        THICK_DIVIDER("==========================="),
+        THIN_DIVIDER("-----------------------------");
 
         private String divider;
 
@@ -43,9 +43,9 @@ public class Ui {
     public String greetingMessage() {
         String logo = "    __                    \n"
                 + ".--|  |.-----.-----.-----.\n"
-                + "|  _  ||  _  |  _  |  -__|\n"
-                + "|___||___|__  |___|\n"
-                + "         |______|      \n";
+                + "|  _  ||  _  |  _  |  -___|__\n"
+                + "|_____||_____|__   |________|\n"
+                + "            |______|      \n";
         String greeting = "Henlo! I'm \n" + addBetweenDividers(Divider.THICK_DIVIDER, logo) + "How may I assist you?";
         return greeting;
     }
@@ -57,7 +57,7 @@ public class Ui {
      * @param tasks TaskList to add the new Task into.
      */
     public String taskAddedMessage(Task task, TaskList tasks) {
-        return String.format("Got it. I've added this task ^_^: \n%s\n%s",
+        return String.format("Got it. I've added this task ^_^: \n%s%s",
                 addBetweenDividers(Divider.THIN_DIVIDER, getIndentedTask(task)), getNumTasks(tasks));
     }
 
@@ -68,7 +68,7 @@ public class Ui {
      * @param tasks TaskList to remove the new Task from.
      */
     public String taskDeletedMessage(Task task, TaskList tasks) {
-        return String.format("Okie. I've deleted this task >_>: \n%s\n%s",
+        return String.format("Okie. I've deleted this task >_>: \n%s%s",
                 addBetweenDividers(Divider.THIN_DIVIDER, getIndentedTask(task)), getNumTasks(tasks));
     }
 
@@ -79,7 +79,7 @@ public class Ui {
      * @param tasks TaskList containing the target Task to mark.
      */
     public String taskMarkedMessage(Task task, TaskList tasks) {
-        return String.format("Sure! I've marked this task as done ^O^: \n%s\n%s",
+        return String.format("Sure! I've marked this task as done ^O^: \n%s%s",
                 addBetweenDividers(Divider.THIN_DIVIDER, getIndentedTask(task)), getNumTasks(tasks));
     }
 
@@ -90,7 +90,7 @@ public class Ui {
      * @param tasks TaskList containing the target Task to unmark.
      */
     public String taskUnmarkedMessage(Task task, TaskList tasks) {
-        return String.format("Sure! I've unmarked this task as done ^O^: \n%s\n%s",
+        return String.format("Sure! I've unmarked this task as done ^O^: \n%s%s",
                 addBetweenDividers(Divider.THIN_DIVIDER, getIndentedTask(task)), getNumTasks(tasks));
     }
 
@@ -128,6 +128,6 @@ public class Ui {
      * @return String that is between two upper and lower dividers.
      */
     public String addBetweenDividers(Divider divider, String string) {
-        return String.format("%s\n%s\n%s", divider, string, divider);
+        return String.format("%s\n%s\n%s\n", divider, string, divider);
     }
 }

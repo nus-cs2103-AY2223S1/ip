@@ -187,10 +187,13 @@ public class TaskList {
         int len = tasks.size();
         if (len == 0) {
             return "YOU HAVE NO TASKS :<\n";
-        } else {
-            for (int i = 0; i < len; i++) {
-                Task task = tasks.get(i);
-                sb.append(String.format("%d.%s%n", i + 1, task));
+        }
+
+        for (int i = 0; i < len; i++) {
+            Task task = tasks.get(i);
+            sb.append(String.format("%d.%s", i + 1, task));
+            if (i != len - 1) {
+                sb.append("\n");
             }
         }
         return sb.toString();

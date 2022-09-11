@@ -3,6 +3,7 @@ package duke.gui.controller;
 import java.io.IOException;
 import java.util.Collections;
 
+import duke.util.Response;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -21,24 +23,28 @@ import javafx.scene.text.Text;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+
+    private static final String ERROR_BACKGROUND_COLOR = "#9F0000";
+    private static final String SUCCESS_BACKGROUND_COLOR = "#15048F";
+    private static final String USER_BACKGROUND_COLOR = "#D9E8FB";
+
     /** Text section of the dialog. */
     @FXML
     private Text dialog;
-
-    @FXML
-    private HBox dialogContainer;
-
-    @FXML
-    private HBox chatContainer;
-
     /** Display picture of the dialog. */
     @FXML
     private Circle displayPicture;
+    @FXML
+    private HBox dialogContainer;
+    @FXML
+    private HBox chatContainer;
+
+
 
     /**
      * Returns a DialogBox with text and a display picture.
      *
-     * @param text Text of the dialog.
+     * @param text
      * @param img Display picture of the dialog.
      */
     private DialogBox(String text, Image img) {
@@ -73,21 +79,36 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getUserDialog(String text, Image img) {
         DialogBox dialogBox = new DialogBox(text, img);
-        dialogBox.dialogContainer.setStyle("-fx-background-color: #C8FFCD");
+        dialogBox.setBackgroundColor(USER_BACKGROUND_COLOR);
         return dialogBox;
     }
 
     /**
      * Returns a dialog representing the duke chat-bot.
      *
-     * @param text Text of the dialog.
+     * @param response Text of the dialog.
      * @param img Display picture of the duke chat-bot.
      * @return DialogBox FXML element representing the chat-bot's dialog.
      */
-    public static DialogBox getDukeDialog(String text, Image img) {
-        DialogBox dialogBox = new DialogBox(text, img);
+    public static DialogBox getDukeDialog(Response response, Image img) {
+        boolean isError = response.isError();
+        DialogBox dialogBox = new DialogBox(response.getMessage(), img);
         dialogBox.flip();
-        dialogBox.dialogContainer.setStyle("-fx-background-color: #D9E8FB");
+        dialogBox.dialog.setFill(Color.WHITE);
+        if (isError) {
+            dialogBox.setBackgroundColor(ERROR_BACKGROUND_COLOR);
+        } else {
+            dialogBox.setBackgroundColor(SUCCESS_BACKGROUND_COLOR);
+        }
         return dialogBox;
+    }
+
+    /**
+     * Sets the background color of the dialog box.
+     *
+     * @param color Background color of the dialog box.
+     */
+    private void setBackgroundColor(String color) {
+        this.dialogContainer.setStyle("-fx-background-color: " + color);
     }
 }
