@@ -78,7 +78,7 @@ public class Parser {
         }
     }
 
-    private static MarkCommand markTask(String input) throws DukeException{
+    private static MarkCommand markTask(String input) throws DukeException {
         String[] commandList = input.strip().split(" ");
         try {
             int taskIndexNum = Integer.parseInt(commandList[1]);

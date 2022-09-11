@@ -5,10 +5,11 @@ import duke.task.Task;
 import java.util.ArrayList;
 
 public class TaskList {
+
     private ArrayList<Task> taskArray;
     private int count = 0;
 
-    public TaskList(){
+    public TaskList() {
         this.taskArray = new ArrayList<>();
     }
 
@@ -16,25 +17,25 @@ public class TaskList {
         this.taskArray = taskArray;
     }
 
-    public void add(Task task){
+    public void add(Task task) {
         this.taskArray.add(task);
         this.count += 1;
     }
 
-    public Task getTask(int position) throws IndexOutOfBoundsException{
+    public Task getTask(int position) throws IndexOutOfBoundsException {
         return taskArray.get(position - 1);
     }
 
-    public int getCount(){
+    public int getCount() {
         return this.count;
     }
 
-    public void markTaskAtPos(int position) throws IndexOutOfBoundsException{
+    public void markTaskAtPos(int position) throws IndexOutOfBoundsException {
             Task currTask = getTask(position);
             currTask.markAsDone();
     }
 
-    public boolean unmarkTaskAtPos(int position){
+    public boolean unmarkTaskAtPos(int position) {
         try {
             Task currTask = getTask(position);
             currTask.unmark();
@@ -60,7 +61,7 @@ public class TaskList {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String stringedList = "";
         for (int i = 0; i < this.count; i++) {
             if (i == this.count -1) {
@@ -71,4 +72,5 @@ public class TaskList {
         }
         return "Here are the tasks in your list:\n" + stringedList;
     }
+
 }

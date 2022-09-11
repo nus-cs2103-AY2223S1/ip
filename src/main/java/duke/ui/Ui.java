@@ -46,7 +46,8 @@ public class Ui {
     }
 
     public void showAddition(Task task, int totalTasks) {
-        showFullMessage("Got it. I've added this task:\n" + task + "\nNow you have " + totalTasks + " tasks in the list.");
+        showFullMessage("Got it. I've added this task:\n" + task
+                + "\nNow you have " + totalTasks + " tasks in the list.");
     }
 
     public void showMarked(Task task) {
@@ -58,7 +59,8 @@ public class Ui {
     }
     
     public void showDeleted(Task task) {
-        showFullMessage("Noted. I've removed this task:\n" + task + "\nNow you have " + this.tasks.getCount() + " tasks in the list.");
+        showFullMessage("Noted. I've removed this task:\n" + task
+                + "\nNow you have " + this.tasks.getCount() + " tasks in the list.");
     }
 
 }
