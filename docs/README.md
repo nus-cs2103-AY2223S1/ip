@@ -1,5 +1,5 @@
 <a name="getting-started"></a>
-## Get started with Luna ⛅️
+# Get started with Luna ☀️
 1. Download `luna-v1.0.jar` from this [page](https://github.com/fannyjian/ip/releases/tag/A-Release)
 2. Navigate to the directory containing the `jar` file in terminal
 3. Run `java -jar luna-v1.0.jar`
@@ -7,11 +7,11 @@
 5. Say `bye` to Luna to exit and save your tasks for next time 💫
 
 **⚡️ Please only use `bye` to exit Luna instead of closing the window, 
-or Luna will not be able to save your tasks to storage! ⚡️** 
-<br/><br/>
+or Luna won't be able to save your tasks ⚡️** 
+<br/><br/><br/>
 
 <a name="user-guide"></a>
-## User Guide 🌙
+# User Guide 🌤
 
 ### 1. `todo` 🌸
 
