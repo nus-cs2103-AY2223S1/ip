@@ -2,5 +2,6 @@ remote_theme: pages-themes/minimal@v0.2.0
 plugins:
 - jekyll-remote-theme
 
-title: ✨️ L&emsp;&emsp;U&emsp;&emsp;N&emsp;&emsp;A 🌙
-description: Luna is your nature-themed graphical user interface (GUI) desktop app that is sure to help you complete your tasks in the prettiest way possible 🌻
+title: ✨️ L&emsp;U&emsp;N&emsp;A 🌙
+logo: Ui.png
+description: Your nature-themed graphical user interface (GUI) desktop app that helps you complete your tasks in the prettiest way possible 🌻
