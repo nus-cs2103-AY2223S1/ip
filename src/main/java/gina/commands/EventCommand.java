@@ -19,6 +19,7 @@ public class EventCommand extends Command {
      */
     public EventCommand(String input) {
         this.input = input;
+        assert(input != null);
     }
 
     /**
