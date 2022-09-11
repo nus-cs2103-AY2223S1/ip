@@ -62,7 +62,7 @@ public class Storage {
 
 
     /**
-     * Initialise the list from the .txt file
+     * Initialises the list from the .txt file
      * @param list list storing all tasks
      */
     public void listInit(List<Task> list) {

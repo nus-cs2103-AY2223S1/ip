@@ -32,7 +32,7 @@ public class Duke {
     }
 
     /**
-     * Main driver function to run Duke program
+     * runs the Duke program
      */
     public void run() {
 
