@@ -9,7 +9,7 @@ public class TaskTest {
     @Test
     public void test_create_todo() {
         try {
-            String[] arr = new String[]{"todo", "test"};
+            String[] arr = new String[]{ "todo", "test" };
             Task todoOne = Task.createTask(arr);
             Task todoTwo = new Todo("test");
             assertEquals(todoOne.toString(), todoTwo.toString());
@@ -21,7 +21,7 @@ public class TaskTest {
     @Test
     public void test_mark_todo() {
         try {
-            String[] arr = new String[]{"todo", "test"};
+            String[] arr = new String[]{ "todo", "test" };
             Task todoOne = Task.createTask(arr);
             todoOne.markAsDone();
             Task todoTwo = new Todo("test");
