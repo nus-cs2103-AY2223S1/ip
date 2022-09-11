@@ -2,8 +2,6 @@
 
 ## <h1 align = "center">About Luna ☀️
 Luna is your nature-themed graphical user interface (GUI) desktop app that is sure to help you complete your tasks in the prettiest way possible 🌻
-
-Visit Luna's [product website](https://fannyjian.github.io/ip/)!
 <br/>
 
 <br/>
