@@ -125,16 +125,15 @@ public abstract class Command {
             String command = super.getInput();
             try {
                 int index = Integer.parseInt(command.substring(DoneCommand.POSITION)) - 1;
-                if (taskList.doesIndexExist(index)) {
-                    Task currentTask = taskList.get(index);
-                    currentTask.markAsDone();
-                    response = "Nice! I've marked this task as done:"
-                            + System.lineSeparator()
-                            + currentTask;
-                    taskList.saveToFile();
-                } else {
+                if (!taskList.doesIndexExist(index)) {
                     throw new SkylarkException("Sorry, index does not exist!");
                 }
+                Task currentTask = taskList.get(index);
+                currentTask.markAsDone();
+                response = "Nice! I've marked this task as done:"
+                        + System.lineSeparator()
+                        + currentTask;
+                taskList.saveToFile();
             } catch (NumberFormatException numberFormatException) {
                 throw new SkylarkException("Input is not a number!");
             }
@@ -160,16 +159,15 @@ public abstract class Command {
             String response;
             try {
                 int index = Integer.parseInt(command.substring(UndoneCommand.POSITION)) - 1;
-                if (taskList.doesIndexExist(index)) {
-                    Task currentTask = taskList.get(index);
-                    currentTask.markAsUndone();
-                    response = "OK, I've marked this task as not done yet:"
-                            + System.lineSeparator()
-                            + currentTask;
-                    taskList.saveToFile();
-                } else {
+                if (!taskList.doesIndexExist(index)) {
                     throw new SkylarkException("Sorry, index does not exist!");
                 }
+                Task currentTask = taskList.get(index);
+                currentTask.markAsUndone();
+                response = "OK, I've marked this task as not done yet:"
+                        + System.lineSeparator()
+                        + currentTask;
+                taskList.saveToFile();
             } catch (NumberFormatException numberFormatException) {
                 throw new SkylarkException("Input is not a number!");
             }
@@ -303,20 +301,19 @@ public abstract class Command {
             try {
                 String command = super.getInput();
                 int index = Integer.parseInt(command.substring(DeleteCommand.POSITION)) - 1;
-                if (taskList.doesIndexExist(index)) {
-                    Task currentTask = taskList.get(index);
-                    taskList.remove(index);
-                    response = "Noted. I've removed this task:"
-                            + System.lineSeparator()
-                            + currentTask
-                            + System.lineSeparator()
-                            + "Now you have "
-                            + taskList.size()
-                            + " tasks in the list.";
-                    taskList.saveToFile();
-                } else {
+                if (!taskList.doesIndexExist(index)) {
                     throw new SkylarkException("Sorry, index does not exist!");
                 }
+                Task currentTask = taskList.get(index);
+                taskList.remove(index);
+                response = "Noted. I've removed this task:"
+                        + System.lineSeparator()
+                        + currentTask
+                        + System.lineSeparator()
+                        + "Now you have "
+                        + taskList.size()
+                        + " tasks in the list.";
+                taskList.saveToFile();
             } catch (NumberFormatException numberFormatException) {
                 throw new SkylarkException("Input is not a number!");
             }
@@ -380,16 +377,15 @@ public abstract class Command {
                 if (tag.isEmpty()) {
                     throw new SkylarkException("Sorry, the tag is empty!");
                 }
-                if (taskList.doesIndexExist(index)) {
-                    Task currentTask = taskList.get(index);
-                    currentTask.setTag(tag);
-                    response = "Noted. I've tagged this task:"
-                            + System.lineSeparator()
-                            + currentTask;
-                    taskList.saveToFile();
-                } else {
+                if (!taskList.doesIndexExist(index)) {
                     throw new SkylarkException("Sorry, index does not exist!");
                 }
+                Task currentTask = taskList.get(index);
+                currentTask.setTag(tag);
+                response = "Noted. I've tagged this task:"
+                        + System.lineSeparator()
+                        + currentTask;
+                taskList.saveToFile();
             } catch (NumberFormatException numberFormatException) {
                 throw new SkylarkException("Input is not a number!");
             }

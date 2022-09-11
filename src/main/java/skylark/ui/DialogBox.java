@@ -13,6 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 /**
  * An example of a custom control using FXML.
@@ -25,7 +28,10 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    private static final Font userFont = Font.font("Verdana", FontWeight.BOLD, 12);
+    private static final Font skylarkFont = Font.font("Verdana", FontWeight.MEDIUM, 12);
+
+    private DialogBox(String text, Image img, boolean isUser) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -37,6 +43,12 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+
+        if (isUser) {
+            dialog.setFont(userFont);
+        } else {
+            dialog.setFont(skylarkFont);
+        }
     }
 
     /**
@@ -50,11 +62,11 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        return new DialogBox(text, img, true);
     }
 
     public static DialogBox getSkylarkDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        var db = new DialogBox(text, img, false);
         db.flip();
         return db;
     }

@@ -31,7 +31,6 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setSkylark(skylark);
             fxmlLoader.<MainWindow>getController().setStage(stage);
-
             stage.getIcons().add(userImage);
             stage.setTitle(Skylark.TITLE);
             stage.show();
