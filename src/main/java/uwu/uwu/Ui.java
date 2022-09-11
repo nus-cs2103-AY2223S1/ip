@@ -1,5 +1,6 @@
 package uwu.uwu;
 
+import uwu.command.*;
 import uwu.task.Task;
 import uwu.task.TaskList;
 
@@ -95,5 +96,23 @@ public class Ui {
         } else {
             return "here are the tasks i found that match your keyword~" + tasks.taskListToString();
         }
+    }
+
+    /**
+     * Displays UwuBot program usage instructions.
+     *
+     * @return The instructions to use UwuBot.
+     */
+    public String displayCommands() {
+        return "\u2022 " + AddToDosCommand.MESSAGE_USAGE
+                + "\n\u2022 " + AddEventCommand.MESSAGE_USAGE
+                + "\n\u2022 " + AddDeadlineCommand.MESSAGE_USAGE
+                + "\n\u2022 " + DeleteCommand.MESSAGE_USAGE
+                + "\n\u2022 " + MarkCommand.MESSAGE_USAGE
+                + "\n\u2022 " + UnmarkCommand.MESSAGE_USAGE
+                + "\n\u2022 " + FindCommand.MESSAGE_USAGE
+                + "\n\u2022 " + ListCommand.MESSAGE_USAGE
+                + "\n\u2022 " + HelpCommand.MESSAGE_USAGE
+                + "\n\u2022 " + ExitCommand.MESSAGE_USAGE;
     }
 }

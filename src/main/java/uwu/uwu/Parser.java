@@ -7,6 +7,7 @@ import uwu.command.Command;
 import uwu.command.DeleteCommand;
 import uwu.command.ExitCommand;
 import uwu.command.FindCommand;
+import uwu.command.HelpCommand;
 import uwu.command.ListCommand;
 import uwu.command.MarkCommand;
 import uwu.command.UnmarkCommand;
@@ -46,6 +47,8 @@ public class Parser {
             return new DeleteCommand(userCommand);
         } else if (lowerCaseUserCmd.startsWith("find")) {
             return new FindCommand(userCommand);
+        } else if (lowerCaseUserCmd.startsWith("help")) {
+            return new HelpCommand();
         } else {
             throw new UnknownCommandException("sorry >< \ni don't know what that means TT");
         }
