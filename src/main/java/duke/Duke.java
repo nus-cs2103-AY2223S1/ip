@@ -122,7 +122,7 @@ public class Duke {
         if (undoAction == null) {
             return;
         }
-        undoActions.add(undoAction);
+        undoActions.push(undoAction);
     }
 
     private void useUndoActionIfRequired(CommandResult result) throws DukeException {
