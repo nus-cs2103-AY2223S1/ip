@@ -37,6 +37,9 @@ public class MainWindow extends AnchorPane {
         duke = d;
     }
 
+    /**
+     * Shows the welcome message upon launching the bot.
+     */
     public void showWelcome() {
         String welcomeMessage = Messages.LOGO + Messages.WELCOME;
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(welcomeMessage, dukeImage));

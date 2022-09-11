@@ -29,11 +29,13 @@ public class DeleteCommand extends Command {
      * Executes the command for "delete" keyword.
      * This is the main way for outputting bot replies.
      *
-     * @param storage the storage object
-     * @param tasklist the task list object
-     * @param ui the user interface object
+     * @param storage        the storage object
+     * @param tasklist       the task list object
+     * @param ui             the user interface object
+     * @return               the bot reply
      * @throws DukeException if the user input is unrecognised
      */
+    @Override
     public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         String input = String.join(" ", words);
         StringBuilder output = new StringBuilder();

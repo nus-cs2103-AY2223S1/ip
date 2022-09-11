@@ -15,9 +15,10 @@ public abstract class Command {
      * Executes the command.
      * This is the main way for outputting bot replies.
      *
-     * @param storage the storage object
-     * @param tasklist the tasklist object
-     * @param ui the ui object
+     * @param storage        the storage object
+     * @param tasklist       the tasklist object
+     * @param ui             the ui object
+     * @return               the bot reply
      * @throws DukeException if the user input is unrecognised
      */
     public abstract String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException;

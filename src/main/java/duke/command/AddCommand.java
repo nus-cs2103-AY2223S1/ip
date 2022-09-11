@@ -34,71 +34,84 @@ public class AddCommand extends Command {
         this.firstWord = firstWord;
     }
 
+
     /**
      * Executes the command for "todo", "deadline" and "event" keywords.
      * This is the main way for outputting bot replies.
      *
-     * @param storage the storage object
-     * @param tasklist the task list object
-     * @param ui the user interface object
+     * @param storage        the storage object
+     * @param tasklist       the task list object
+     * @param ui             the user interface object
+     * @return               the bot reply
      * @throws DukeException if the user input is unrecognised
      */
+    @Override
     public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
-        String input = String.join(" ", words);
         StringBuilder output = new StringBuilder();
         switch (firstWord) {
         case "todo":
-            if (words.size() != 0) {
-                Todo todo = new Todo(input);
-                tasklist.addTask(todo);
-                output.append(TASK_ADDED)
-                        .append(todo).append("\n")
-                        .append("You have ").append(tasklist.tasks.size())
-                        .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
-            } else {
-                throw new DukeException("Please enter a task following 'todo' and I'll add it into your list. T^T");
-            }
+            addTodo(tasklist, output);
             break;
         case "deadline":
-            // After adding new exceptions, throw them here
-            String remainingDdlWords = String.join(" ", words.subList(0, words.indexOf("/by")));
-            String ddl = String.join(" ", words.subList(words.indexOf("/by") + 1, words.size()));
-            LocalDate ddlDate = LocalDate.parse(ddl);
-            String newDdl = ddlDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
-            Deadline deadline;
-            if (ddl.matches("\\d{4}-\\d{2}-\\d{2}")) {
-                deadline = new Deadline(remainingDdlWords, newDdl);
-            } else {
-                deadline = new Deadline(remainingDdlWords, ddl);
-            }
-            tasklist.addTask(deadline);
-            output.append(TASK_ADDED)
-                    .append(deadline).append("\n")
-                    .append("You have ").append(tasklist.tasks.size())
-                    .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
+            addDeadline(tasklist, output);
             break;
         case "event":
-            // After adding new exceptions, throw them here
-            String remainingEventWords = String.join(" ", words.subList(0, words.indexOf("/at")));
-            String evt = String.join(" ", words.subList(words.indexOf("/at") + 1, words.size()));
-            LocalDate evtDate = LocalDate.parse(evt);
-            String newEvt = evtDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
-            Event event;
-            if (evt.matches("\\d{4}-\\d{2}-\\d{2}")) {
-                event = new Event(remainingEventWords, newEvt);
-            } else {
-                event = new Event(remainingEventWords, evt);
-            }
-            tasklist.addTask(event);
-            output.append(TASK_ADDED)
-                    .append(event).append("\n")
-                    .append("You have ").append(tasklist.tasks.size())
-                    .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
+            addEvent(tasklist, output);
             break;
         default:
             // Defensive coding for default statement.
             output.append(Messages.UNKNOWN_COMMAND);
         }
         return output.toString();
+    }
+
+    private void addTodo(TaskList tasklist, StringBuilder output) throws DukeException {
+        String input = String.join(" ", words);
+        if (words.size() != 0) {
+            Todo todo = new Todo(input);
+            tasklist.addTask(todo);
+            output.append(TASK_ADDED)
+                    .append(todo).append("\n")
+                    .append("You have ").append(tasklist.tasks.size())
+                    .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
+        } else {
+            throw new DukeException("Please enter a task following 'todo' and I'll add it into your list. T^T");
+        }
+    }
+
+    private void addDeadline(TaskList tasklist, StringBuilder output) throws DukeException {
+        String remainingDdlWords = String.join(" ", words.subList(0, words.indexOf("/by")));
+        String ddl = String.join(" ", words.subList(words.indexOf("/by") + 1, words.size()));
+        Deadline deadline;
+        if (ddl.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            LocalDate ddlDate = LocalDate.parse(ddl);
+            String newDdl = ddlDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+            deadline = new Deadline(remainingDdlWords, newDdl);
+        } else {
+            deadline = new Deadline(remainingDdlWords, ddl);
+        }
+        tasklist.addTask(deadline);
+        output.append(TASK_ADDED)
+                .append(deadline).append("\n")
+                .append("You have ").append(tasklist.tasks.size())
+                .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
+    }
+
+    private void addEvent(TaskList tasklist, StringBuilder output) throws DukeException {
+        String remainingEventWords = String.join(" ", words.subList(0, words.indexOf("/at")));
+        String evt = String.join(" ", words.subList(words.indexOf("/at") + 1, words.size()));
+        Event event;
+        if (evt.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            LocalDate evtDate = LocalDate.parse(evt);
+            String newEvt = evtDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+            event = new Event(remainingEventWords, newEvt);
+        } else {
+            event = new Event(remainingEventWords, evt);
+        }
+        tasklist.addTask(event);
+        output.append(TASK_ADDED)
+                .append(event).append("\n")
+                .append("You have ").append(tasklist.tasks.size())
+                .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
     }
 }

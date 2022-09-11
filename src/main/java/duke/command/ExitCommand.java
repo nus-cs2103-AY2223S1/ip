@@ -15,11 +15,13 @@ public class ExitCommand extends Command {
      * Executes the command for "bye" keyword.
      * This is the main way for outputting bot replies.
      *
-     * @param storage the storage object
-     * @param tasklist the task list object
-     * @param ui the user interface object
+     * @param storage        the storage object
+     * @param tasklist       the task list object
+     * @param ui             the user interface object
+     * @return               the bot reply
      * @throws DukeException if the user input is unrecognised
      */
+    @Override
     public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         ui.showGoodbye();
         storage.writeToFile(tasklist);

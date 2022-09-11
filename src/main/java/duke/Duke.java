@@ -34,11 +34,13 @@ public class Duke {
 
     /**
      * Main run method for the program.
+     *
+     * @param input The user input.
+     * @return String to be printed by the GUI.
      */
     public String getResponse(String input) {
         ui.showWelcome();
         while (true) {
-            System.out.print(">> ");
             try {
                 Command cmd = Parser.parse(input);
                 return cmd.execute(storage, tasklist, ui);

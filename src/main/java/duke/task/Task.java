@@ -61,7 +61,7 @@ public class Task {
     /**
      * Empty formatTask function to be overridden by subclasses.
      *
-     * @return null
+     * @return Reformatted string representation of the task
      */
     public String formatTask() {
         return null;
