@@ -43,13 +43,13 @@ for its latest version.
 sample execution involving these screenshots is visible
 under [UI Screenshots](#ui-screenshots). Here is a table summarising them:
 
-| Icon                                   | Meaning                                                      |
-|----------------------------------------|--------------------------------------------------------------|
-| ![Normal](DaDuke.png)                  | Normal responses (excluding task operations).                |
-| ![Success](DaSuccess.png)              | Successful execution of task creation, updating or deletion. |
-| ![Error](DaError.png)                  | Failed execution, when the input is wrong.                   |
-| ![Success Yellow](DaSuccessYellow.png) | Successful execution for `unmark` command.                   |
-| [User](User.png)                       | Messages sent by you, the user.                              |
+| Icon                                                                             | Meaning                                                      |
+|----------------------------------------------------------------------------------|--------------------------------------------------------------|
+| <img src="DaDuke.png" alt="Normal" height="100" align="center">                  | Normal responses (excluding task operations).                |
+| <img src="DaSuccess.png" alt="Success" height="100" align="center">              | Successful execution of task creation, updating or deletion. |
+| <img src="DaError.png" alt="Error" height="100" align="center">                  | Failed execution, when the input is wrong.                   |
+| <img src="DaSuccessYellow.png" alt="Success Yellow" height="100" align="center"> | Successful execution for `unmark` command.                   |
+| <img src="DaUser.png" alt="User" height="100" align="center">                    | Messages sent by you, the user.                              |
 
 ### Available Commands
 
