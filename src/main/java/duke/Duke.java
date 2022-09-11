@@ -70,7 +70,7 @@ public class Duke {
     }
 
     /**
-     * Handles an Event task inputted by user by calling on TaskList and Ui objects.
+     * Add an event task by calling on TaskList and Ui objects.
      *
      * @param str A string representing the entire input user keyed in after "event".
      * @return A String of the response associated with the user's event.
@@ -84,6 +84,7 @@ public class Duke {
         Task event = new Event(eDescription, eAt);
         tasks.addTask(event);
         int size = tasks.getSize();
+        assert size > 0;
         storage.save(tasks);
         return ui.printEvent(event, size);
     }
