@@ -1,13 +1,13 @@
 package roger.storage;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
-import roger.storage.StorageParser;
+
 import roger.tasks.Event;
 import roger.tasks.ToDo;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StorageParserTest {
     @Test

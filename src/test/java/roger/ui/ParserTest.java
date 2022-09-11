@@ -1,13 +1,13 @@
 package roger.ui;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
-import roger.commands.AddEventCommand;
-import roger.exceptions.RogerInvalidInputException;
-import roger.ui.Parser;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+
+import roger.commands.AddEventCommand;
+import roger.exceptions.RogerInvalidInputException;
 
 
 public class ParserTest {
