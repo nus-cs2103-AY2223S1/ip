@@ -123,6 +123,24 @@ public class Ui {
             return "Senpai, there are no such tasks in your list :(";
         }
     }
+
+    public static String showSortedTasks(List<Task> tasks) {
+        StringBuilder list = new StringBuilder("Senpai, here are the tasks sorted by date:");
+        for (int i = 0; i < tasks.size(); i++) {
+            int index = i + 1;
+            list.append("\n\t").append(index).append(". ").append(tasks.get(i));
+        }
+        return list.toString();
+    }
+
+    /**
+     * Prints a string of text surrounded by a line of underscores above and below.
+     *
+     * @param str text to be printed.
+     */
+    public static String print(String str) {
+        return (DIV + str + DIV);
+    }
 }
 
 

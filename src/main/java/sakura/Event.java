@@ -8,18 +8,18 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
 
-    protected LocalDateTime at;
+    protected LocalDateTime date;
 
     /**
      * Constructor for event.
      *
      * @param description description of the event.
-     * @param at the time of the event in datetime format.
+     * @param date the time of the event in datetime format.
      */
-    public Event(String description, String at) {
-        super(description);
+    public Event(String description, String date) {
+        super(description, date);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        this.at = LocalDateTime.parse(at, formatter);
+        this.date = LocalDateTime.parse(date, formatter);
     }
 
     /**
@@ -29,7 +29,7 @@ public class Event extends Task {
      */
     @Override
     public String stringifyTask() {
-        String timeFormat = this.at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        String timeFormat = this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
         return String.format("E|%d|%s|%s", this.isDone ? 1 : 0, this.description, timeFormat);
     }
 
@@ -40,7 +40,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String timeFormat = this.at.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"));
+        String timeFormat = this.date.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"));
         return "(EVENT)" + super.toString() + " (at: " + timeFormat + ")";
     }
 }
