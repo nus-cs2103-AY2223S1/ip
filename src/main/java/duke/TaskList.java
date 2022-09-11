@@ -40,7 +40,7 @@ public class TaskList {
     }
 
     /**
-     * A method that returns if the list is empty.
+     * Returns if the list is empty.
      *
      * @return Is the list empty.
      */
@@ -49,7 +49,7 @@ public class TaskList {
     }
 
     /**
-     * A method that returns the size of the list.
+     * Returns the size of the list.
      *
      * @return Size of the list.
      */
@@ -68,7 +68,7 @@ public class TaskList {
     }
 
     /**
-     * A method that marks a Task from the list.
+     * Marks a Task from the list.
      *
      * @param index Index of the Task to be marked, with respect to the TaskList.
      */
@@ -77,7 +77,7 @@ public class TaskList {
     }
 
     /**
-     * A method that un-marks a Task from the list.
+     * Un-marks a Task from the list.
      *
      * @param index Index of the Task to be un-marked, with respect to the TaskList.
      */
@@ -86,7 +86,7 @@ public class TaskList {
     }
 
     /**
-     * A method that adds a ToDo to the list.
+     * Adds a ToDo to the list.
      *
      * @param description The description of the ToDo.
      */
@@ -96,7 +96,7 @@ public class TaskList {
     }
 
     /**
-     * A method that adds a Deadline to the list.
+     * Adds a Deadline to the list.
      *
      * @param description The description of the Deadline.
      * @param date The due date of the Deadline.
@@ -107,7 +107,7 @@ public class TaskList {
     }
 
     /**
-     * A method that adds an Event to the list.
+     * Adds an Event to the list.
      *
      * @param description The description of the Event.
      * @param date The due date of the Event.

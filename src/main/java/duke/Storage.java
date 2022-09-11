@@ -28,7 +28,7 @@ public class Storage {
     }
 
     /**
-     * Write the lines from the list into the save file.
+     * Writes the lines from the list into the save file.
      *
      * @param dataArrayList ArrayList containing the data to be written into the save file.
      */
