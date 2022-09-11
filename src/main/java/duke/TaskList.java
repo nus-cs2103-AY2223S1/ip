@@ -38,9 +38,6 @@ public class TaskList {
         this.size = tasks.size();
     }
 
-    public boolean isEmpty() {
-        return this.size == 0;
-    }
     /**
      * Saves the TaskList after user input bye.
      * @return ArrayList of the input that has been saved.
@@ -65,10 +62,12 @@ public class TaskList {
      * Marks a task.
      *
      * @param in Input of the user.
+     * @return message for user
      */
     public String markTask(String in) {
         char n = in.charAt(5);
         int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "index should be >= 0";
         Task t = tasks.get(number);
         t.markAsDone();
         String line1 =  "Nice! I've marked this task as done:";
@@ -81,10 +80,12 @@ public class TaskList {
      * Unmarks a task.
      *
      * @param in Input of the user.
+     * @return message for user
      */
     public String unmarkTask(String in) {
         char n = in.charAt(7);
         int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "index should be >= 0";
         Task t = tasks.get(number);
         t.markAsUndone();
         String line1 = "OK, I've marked this task as not done yet:";
@@ -95,6 +96,8 @@ public class TaskList {
 
     /**
      * Lists the inputs of the user.
+     *
+     * @return message for user
      */
     public String list() {
         int count = 1;
@@ -111,10 +114,12 @@ public class TaskList {
      * Deletes a task.
      *
      * @param in Input of the user.
+     * @return message for user
      */
     public String delete(String in) {
         char n = in.charAt(7);
         int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "idx should be >= 0";
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + tasks.get(number).toString());
         tasks.remove(number);
@@ -123,9 +128,10 @@ public class TaskList {
     }
 
     /**
-     * Adds a deadline event to the list.
+     * Returns a message for deadline input.
      *
      * @param in Input of the user.
+     * @return message for user
      * @throws DukeException An exception unique to duke.Duke.
      */
     public String deadline(String in) throws DukeException {
@@ -133,24 +139,35 @@ public class TaskList {
         if (deadLine.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         } else {
-            String[] aStr = deadLine.split("/by ", 2);
-            String desc = aStr[0];
-            String by = aStr[1];
-            Deadline d = new Deadline(desc, LocalDate.parse(by));
-            tasks.add(d);
-            size += 1;
-            String line1 = "Got it. I've added this task:";
-            String line2 = "  " + d.toString();
-            String line3 = "Now you have " + size + " tasks in the list";
-            String message = line1 + "\n" + line2 + "\n" + line3;
-            return message;
+            return addDeadline(deadLine);
         }
     }
 
     /**
-     * Adds an event task to the list.
+     * Adds a deadline event to the list.
+     *
+     * @param deadLine Input of the user.
+     * @return message for user.
+     */
+    public String addDeadline(String deadLine) {
+        String[] aStr = deadLine.split("/by ", 2);
+        String desc = aStr[0];
+        String by = aStr[1];
+        Deadline d = new Deadline(desc, LocalDate.parse(by));
+        tasks.add(d);
+        size += 1;
+        String line1 = "Got it. I've added this task:";
+        String line2 = "  " + d.toString();
+        String line3 = "Now you have " + size + " tasks in the list";
+        String message = line1 + "\n" + line2 + "\n" + line3;
+        return message;
+    }
+
+    /**
+     * Returns a message for event input.
      *
      * @param in Input of the user.
+     * @return Message for the user.
      * @throws DukeException An exception unique to duke.Duke.
      */
     public String event(String in) throws DukeException {
@@ -158,24 +175,35 @@ public class TaskList {
         if (event.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
         } else {
-            String[] aStr = event.split("/at ", 2);
-            String desc = aStr[0];
-            String by = aStr[1];
-            Event e = new Event(desc, LocalDate.parse(by));
-            tasks.add(e);
-            size += 1;
-            String line1 = "Got it. I've added this task:";
-            String line2 = "  " + e.toString();
-            String line3 = "Now you have " + size + " tasks in the list";
-            String message = line1 + "\n" + line2 + "\n" + line3;
-            return message;
+            return addEvent(event);
         }
+    }
+
+    /**
+     * Adds an event task to the list.
+     *
+     * @param event Input of the user.
+     * @return Message for the user
+     */
+    public String addEvent(String event) {
+        String[] aStr = event.split("/at ", 2);
+        String desc = aStr[0];
+        String by = aStr[1];
+        Event e = new Event(desc, LocalDate.parse(by));
+        tasks.add(e);
+        size += 1;
+        String line1 = "Got it. I've added this task:";
+        String line2 = "  " + e.toString();
+        String line3 = "Now you have " + size + " tasks in the list";
+        String message = line1 + "\n" + line2 + "\n" + line3;
+        return message;
     }
 
     /**
      * Adds a to-do task to the list.
      *
      * @param in Input of the user.
+     * @return message for user
      * @throws DukeException An exception unique to duke.Duke.
      */
     public String todo(String in) throws DukeException {
@@ -197,6 +225,7 @@ public class TaskList {
     /**
      * Finds tasks in list
      * @param in Input of the user
+     * @return message for user
      * @throws DukeException If there is an error in the input
      */
     public String find(String in) throws DukeException {
@@ -204,6 +233,7 @@ public class TaskList {
         if (toBeFound.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of what is to be found cannot be empty.");
         } else {
+            assert toBeFound.length() > 0 : "keywords should not be empty";
             int count = 1;
             String find = "Here are the matching tasks in your list:" + "\n";
             for ( Task task : tasks ) {
@@ -215,5 +245,38 @@ public class TaskList {
             }
             return find;
         }
+    }
+
+    public String tag(String in) throws DukeException {
+        String tag = in.replaceFirst("tag", "");
+        if (tag.trim().isEmpty()) {
+            throw new DukeException("☹ OOPS!!! The description of what is to tag cannot be empty.");
+        } else {
+            return addTag(tag.trim());
+        }
+    }
+
+    public String addTag(String tag) {
+        char n = tag.charAt(0);
+        int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "idx should be >= 0";
+        Task task = tasks.get(number);
+        String[] aStr = tag.split("#", 2);
+        String desc = aStr[1];
+        System.out.println("hi");
+        task.tagWith(desc);
+        String line1 = "Got it. I've tagged this task:";
+        String line2 = "  " + task.toString();
+        String line3 = "with #" + desc;
+        String message = line1 + "\n" + line2 + "\n" + line3;
+        return message;
+    }
+
+    public String listTag(String in) throws DukeException {
+        char n = in.charAt(8);
+        int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "idx should be >= 0";
+        Task task = tasks.get(number);
+        return task.listTheTags();
     }
 }

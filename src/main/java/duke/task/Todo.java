@@ -16,7 +16,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Construst a to-do task with isDone.
+     * Construct a to-do task with isDone.
      * @param description Description of the to-do task.
      * @param isDone True if task is done, false otherwise
      */
