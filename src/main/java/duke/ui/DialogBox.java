@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
  * Represents the controller for the dialog box of the Duke application.
  */
 public class DialogBox extends HBox {
+    private static final String dukeBackgroundStyle = "-fx-background-color: #333333;";
     @FXML
     private final Label text;
     @FXML
@@ -30,10 +31,10 @@ public class DialogBox extends HBox {
         displayImage = new ImageView(image);
 
         text.setWrapText(true);
-        displayImage.setFitWidth(100.0f);
-        displayImage.setFitHeight(100.0f);
+        displayImage.setFitWidth(50.0f);
+        displayImage.setFitHeight(50.0f);
 
-        setAlignment(Pos.TOP_RIGHT);
+        setAlignment(Pos.CENTER_RIGHT);
         getChildren().addAll(text, displayImage);
     }
 
@@ -41,7 +42,7 @@ public class DialogBox extends HBox {
      * Flips the dialog box so that the image is to the left of the text.
      */
     private void flip() {
-        setAlignment(Pos.TOP_LEFT);
+        setAlignment(Pos.CENTER_LEFT);
         ObservableList<Node> nodes = FXCollections.observableArrayList(this.getChildren());
         FXCollections.reverse(nodes);
         getChildren().setAll(nodes);
@@ -68,6 +69,7 @@ public class DialogBox extends HBox {
     public static DialogBox getDukeDialog(String label, Image image) {
         DialogBox dialogBox = new DialogBox(label, image);
         dialogBox.flip();
+        dialogBox.setStyle(dukeBackgroundStyle);
         return dialogBox;
     }
 }

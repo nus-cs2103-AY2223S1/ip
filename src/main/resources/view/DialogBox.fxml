@@ -4,8 +4,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<fx:root alignment="TOP_RIGHT" prefWidth="Infinity" type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/null">
-    <Label fx:id="text" text="Label" wrapText="true" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+<fx:root prefWidth="Infinity" type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/null">
+    <Label alignment="CENTER_RIGHT" fx:id="text" text="Label" wrapText="true" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
     <ImageView fx:id="displayImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
     </ImageView>
 </fx:root>

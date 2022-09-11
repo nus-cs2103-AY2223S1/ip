@@ -1,0 +1,24 @@
+#app {
+    -fx-base: #000000;
+    -fx-font-size: 16px;
+}
+
+.scroll-bar {
+   -fx-background-color: #D3D3D3;
+}
+
+.scroll-bar .thumb {
+   -fx-background-color: #808080;
+}
+
+Label {
+    -fx-background-color: #565656;
+    -fx-padding: 10px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-radius: 6;
+}
+
+DialogBox {
+    -fx-padding: 10px;
+}
