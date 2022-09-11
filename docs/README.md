@@ -1,5 +1,10 @@
-<a name="getting-started"></a>
-# Get started with Luna ☀️
+# About Luna 🌙
+Luna is your nature-themed desktop app that helps you complete your tasks in the prettiest way possible 🌻
+
+Take a sneak peek at Luna's GUI!
+[!image](Ui.png)
+
+# Get started with Luna ⛅️
 1. Download `luna-v1.0.jar` from this [page](https://github.com/fannyjian/ip/releases/tag/A-Release)
 2. Navigate to the directory containing the `jar` file in terminal
 3. Run `java -jar luna-v1.0.jar`
@@ -10,8 +15,7 @@
 or Luna won't be able to save your tasks ⚡️** 
 <br/><br/><br/>
 
-<a name="user-guide"></a>
-# User Guide 🌤
+# User Guide ☀️
 
 ### 1. `todo` 🌸
 

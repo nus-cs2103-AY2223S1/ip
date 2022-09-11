@@ -3,5 +3,5 @@ plugins:
 - jekyll-remote-theme
 
 title: ✨️ L&emsp;U&emsp;N&emsp;A 🌙
-logo: Ui.png
-description: Your nature-themed graphical user interface (GUI) desktop app that helps you complete your tasks in the prettiest way possible 🌻
+logo: assets/luna.png
+description: Complete your tasks with style 🥀
