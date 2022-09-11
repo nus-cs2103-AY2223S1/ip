@@ -4,8 +4,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.function.Consumer;
 
+import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.util.Storage;
 
 /**
  * Encapsulates a command that ends interaction.

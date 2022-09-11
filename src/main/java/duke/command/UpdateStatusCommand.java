@@ -3,9 +3,9 @@ package duke.command;
 import java.util.function.Consumer;
 
 import duke.DukeException;
+import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.util.Storage;
 
 /**
  * Encapsulates a command to check or uncheck a {@code Task} from a {@code TaskList}.

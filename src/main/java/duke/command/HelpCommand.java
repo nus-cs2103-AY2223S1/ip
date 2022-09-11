@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.StringJoiner;
 import java.util.function.Consumer;
 
+import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.util.Storage;
 
 /**
  * Encapsulates a command to print the help message.

@@ -2,8 +2,8 @@ package duke.command;
 
 import java.util.function.Consumer;
 
+import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.util.Storage;
 
 /**
  * Encapsulates a command.

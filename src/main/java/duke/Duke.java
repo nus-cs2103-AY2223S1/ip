@@ -4,10 +4,10 @@ import java.nio.file.Path;
 import java.util.function.Consumer;
 
 import duke.command.Command;
+import duke.parser.DataFileCorruptedException;
+import duke.parser.Parser;
+import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.util.DataFileCorruptedException;
-import duke.util.Parser;
-import duke.util.Storage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 

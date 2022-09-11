@@ -2,9 +2,9 @@ package duke.command;
 
 import java.util.function.Consumer;
 
+import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.util.Storage;
 
 /**
  * Encapsulates a command to add a {@code Task} to a {@code TaskList}.

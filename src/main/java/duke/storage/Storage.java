@@ -1,4 +1,4 @@
-package duke.util;
+package duke.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.DukeException;
+import duke.parser.DataFileCorruptedException;
+import duke.parser.ParseException;
+import duke.parser.Parser;
 import duke.task.Task;
 import duke.task.TaskList;
 

@@ -15,6 +15,8 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.UpdateStatusCommand;
+import duke.parser.ParseException;
+import duke.parser.Parser;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.TodoTask;

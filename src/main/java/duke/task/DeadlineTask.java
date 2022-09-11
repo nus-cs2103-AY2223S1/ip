@@ -1,7 +1,7 @@
 package duke.task;
 
-import static duke.util.Parser.DATE_TIME_INPUT_FORMAT;
-import static duke.util.Parser.DATE_TIME_OUTPUT_FORMAT;
+import static duke.parser.Parser.DATE_TIME_INPUT_FORMAT;
+import static duke.parser.Parser.DATE_TIME_OUTPUT_FORMAT;
 
 import java.time.LocalDateTime;
 
