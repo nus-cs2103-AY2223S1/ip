@@ -122,6 +122,34 @@ public class Parser {
                     String.format("You have %d tasks left.", TaskList.getTaskList().size()));
         }));
 
+        commands.add(PrefixCommandMatcher.of("reschedule", (str, map) -> {
+            assert str != null;
+            assert map != null;
+            Task task = TaskList.getTask(str);
+            if (task instanceof ToDo) {
+                return new DukeResponse("That's a todo, it doesn't have a date.");
+            }
+            Task newTask;
+            if (task instanceof Event) {
+                if (!map.containsKey("at")) {
+                    return new DukeResponse("Do specify /at for events.");
+                }
+                newTask = new Event(task.getDescription(), map.get("at"), task.isTaskDone());
+            } else if (task instanceof Deadline) {
+                if (!map.containsKey("at")) {
+                    return new DukeResponse("Do specify /by for events.");
+                }
+                newTask = new Deadline(task.getDescription(), map.get("by"), task.isTaskDone());
+            } else {
+                return new DukeResponse("This is a strange task - I don't recognise it.");
+            }
+            List<Task> tasks = TaskList.getTaskList();
+            tasks.set(tasks.indexOf(task), newTask);
+            return new DukeResponse(
+                    "I have rescheduled your task!",
+                    newTask.toString());
+        }));
+
         return commands;
     }
 

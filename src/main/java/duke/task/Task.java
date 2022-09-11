@@ -60,6 +60,24 @@ public class Task {
     }
 
     /**
+     * Gets the task description.
+     *
+     * @return Task description.
+     */
+    public String getDescription() {
+        return name;
+    }
+
+    /**
+     * Gets if the task is done.
+     *
+     * @return true if the task is done, false otherwise.
+     */
+    public boolean isTaskDone() {
+        return isDone;
+    }
+
+    /**
      * Creates a string representation suitable for printing to screen.
      *
      * @return String representation of task.
