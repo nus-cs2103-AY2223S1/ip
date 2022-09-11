@@ -56,7 +56,7 @@ public class Parser {
     }
 
     /**
-     * Edit <code>Task</code> and <code>TaskList</code> based on user input.
+     * Edits <code>Task</code> and <code>TaskList</code> based on user input.
      *
      * @param cmd command to be executed
      * @param splitInput array of user input words
