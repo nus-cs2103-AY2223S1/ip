@@ -100,7 +100,7 @@ public class Ui {
             return "List is empty\n";
         } else {
             boolean hasValues = false;
-            String returnVal = "Here are the list items matching " + regex + "\n";
+            String returnVal = "Here are the list items matching " + regex + ":\n";
 
             for (int i = 0; i < input.size(); i++) {
                 String currLine = input.get(i).toString();
