@@ -118,6 +118,7 @@ public class Duke {
      * @throws DukeException
      */
     public String handleMark(int index) throws DukeException {
+        
         tasks.markTask(index);
         Task taskToBeMarked = tasks.getTask(index);
         storage.save(tasks);
@@ -132,6 +133,7 @@ public class Duke {
      * @throws DukeException
      */
     public String handleUnmark(int index) throws DukeException {
+        assert index > 0;
         tasks.unmarkTask(index);
         Task taskToBeUnmarked = tasks.getTask(index);
         storage.save(tasks);
@@ -146,6 +148,7 @@ public class Duke {
      * @throws DukeException
      */
     public String handleDelete(int index) throws DukeException {
+        assert index > 0;
         Task taskToBeDeleted = tasks.deleteTask(index);
         int size = tasks.getSize();
         storage.save(tasks);
