@@ -1,0 +1,14 @@
+.scroll-pane .viewport {
+    -fx-background-image: url("/images/starry_sky.jpg");
+    -fx-background-size: cover;
+    -fx-background-position:center;
+    -fx-background-repeat: no-repeat;
+}
+
+.textBox {
+    -fx-background-color: rgba(173, 216, 230, 0.8);
+    -fx-border-color: rgb(0, 0, 139);
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
