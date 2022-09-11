@@ -19,7 +19,7 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    final private String filePath;
+    private final String filePath;
 
     /**
      * Constructor for Storage class

@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 /**
  * The Duke program implements an application that
  * acts as your to-do list. It can add, delete, mark/unmark
@@ -13,7 +11,7 @@ import java.util.Scanner;
  */
 
 public class Duke {
-static final String filePath = "tasks.txt";
+    private static final String filePath = "tasks.txt";
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
@@ -31,7 +29,7 @@ static final String filePath = "tasks.txt";
     }
 
     protected String getResponse(String input) {
-        String str = Parser.parseCommand(input,this.taskList,this.ui);
+        String str = Parser.parseCommand(input, this.taskList, this.ui);
         this.storage.save(this.taskList.getList());
         return str;
     }
