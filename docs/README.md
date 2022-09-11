@@ -66,18 +66,20 @@ Use list command to show the current tasks list you have if you are not sure wha
 
 <details><summary>Event task is added with a correct format and duke response user the command success status</summary>
 
-* Example of usage:</br>
-  <code>event go for final exam /at 2022-11-04 1000</code>
+<ul>
+  <li> Example of usage:<br>
+    <code>event go for final exam /at 2022-11-04 1000</code>
+  </li>
 
-* Expected outcome:</br>
-  <pre>
-    <code>~~~~~~~-----DUKE-----~~~~~~~
-    New task is registered as you wish, you can come back to check if you wish!:
-    [E][ ] go for final exam (at: Nov 04 2022 10:00)
-    Now you have 1 tasks in your list.</code>
-  </pre>
+  <li>Expected outcome:
+  <pre><code>  ~~~~~~~-----DUKE-----~~~~~~~
+  New task is registered as you wish, you can come back to check if you wish!:
+  [E][ ] go for final exam (at: Nov 04 2022 10:00)
+  Now you have 1 tasks in your list.</code></pre>
+  </li>
+  <li><b>Description:</b> There is currently 1 task in user's list and the adding command performed successfully.</li>
+</ul>
 
-* **Description:** There is currently 1 task in user's list and the adding command performed successfully.
 </details>
 
 ### `delete` - deleting a task
