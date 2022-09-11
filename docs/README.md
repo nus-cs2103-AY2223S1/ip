@@ -1,13 +1,6 @@
-# &emsp;&emsp;&emsp;&emsp;&emsp;✧&nbsp;&nbsp;&nbsp;✮✧︎&nbsp;&nbsp; ✦ ✨️ L&emsp;&emsp;U&emsp;&emsp;N&emsp;&emsp;A ✨ ✫❍&nbsp;&nbsp;&nbsp;❈ &nbsp;&nbsp;✶
-
-<a name="about-luna"></a>
-## About Luna ☀️
-Luna is your nature-themed graphical user interface (GUI) desktop app that is sure to help you complete your tasks in the prettiest way possible 🌻
-<br/><br/>
-
 <a name="sneak-peek"></a>
 ## Sneak peek of Luna's GUI 🌤
-<div align="center"><img src="https://github.com/fannyjian/ip/blob/master/docs/Ui.png?raw=true" width=40% height=40%/></div>
+![image](https://github.com/fannyjian/ip/blob/master/docs/Ui.png?raw=true)
 <br/><br/>
 
 <a name="getting-started"></a>
