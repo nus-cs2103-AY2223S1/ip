@@ -34,6 +34,7 @@ public class MainWindow extends AnchorPane {
 
     public void setDuke(Duke d) {
         duke = d;
+        assert duke != null;
     }
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
@@ -43,6 +44,8 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() throws IOException {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        assert response != null;
+        assert input != null;
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
