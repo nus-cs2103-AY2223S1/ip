@@ -20,20 +20,6 @@ import duke.task.ToDo;
  * @author totsukatomofumi
  */
 public class TaskList extends ArrayList<Task> {
-    /**
-     * HashMap to contain set chars representing task types and function to return a new task of that
-     * corresponding type pairs.
-     */
-    private static final HashMap<Character,
-            BiFunction<Integer, Integer, Function<String, Task>>> taskMap = new HashMap<>();
-
-    static {
-        TaskList.taskMap.put('T', (index, length) -> line -> new ToDo(line.substring(index)));
-        TaskList.taskMap.put('D', (index, length) -> line -> new Deadline(line.substring(index, index + length),
-                LocalDate.parse(line.substring(index + length))));
-        TaskList.taskMap.put('E', (index, length) -> line -> new Event(line.substring(index, index + length),
-                LocalDate.parse(line.substring(index + length))));
-    }
 
     /** Storage object for writing task history to a file. */
     private Storage storage;
@@ -52,7 +38,7 @@ public class TaskList extends ArrayList<Task> {
         this.storage = storage;
         //retrieve or else clear the file
         try {
-            this.retrieve();
+            this.storage.retrieveFromStorage(this);
         //thrown
         } catch (IOException e) {
             //make sure file is not deleted, else make again
@@ -123,63 +109,6 @@ public class TaskList extends ArrayList<Task> {
         this.get(index).unmark();
         this.updateStorage();
         return this.get(index);
-    }
-
-    /**
-     * Retrieves list of task from the task history file via storage.
-     *
-     * @throws IOException If the file contains invalid contents that cannot be parsed.
-     */
-    public void retrieve() throws IOException {
-        //initialize scanner with task history file
-        Scanner retriever;
-        try {
-            retriever = new Scanner(this.storage.getHistory());
-        } catch (FileNotFoundException e) {
-            //file or directory was modified during runtime of this program
-            throw new RuntimeException(e);
-        }
-        //iterate through each line
-        while (retriever.hasNextLine()) {
-            String line = retriever.nextLine();
-            StringBuilder strLength = new StringBuilder();
-            //starting at first digit of length of task description
-            int index = 2;
-            while (index < line.length() && line.charAt(index) != '_') {
-                strLength.append(line.charAt(index));
-                ++index;
-            }
-            //throw bad file exception
-            //no '_' encountered
-            if (index == line.length()) {
-                retriever.close();
-                throw new IOException("Text file containing history has invalid formatting for parsing.");
-            }
-            //now index is index of first '_' encountered
-            int length;
-            try {
-                length = Integer.parseInt(strLength.toString());
-            //formatting is all messed up
-            } catch (NumberFormatException e) {
-                retriever.close();
-                throw new IOException("Text file containing history has invalid formatting for parsing.");
-            }
-            //increment to first index of task description
-            index++;
-            //retrieve task according to char
-            Task toAdd = TaskList.taskMap.get(line.charAt(0)).apply(index, length).apply(line);
-            if (toAdd != null) {
-                if (line.charAt(1) == '1') {
-                    toAdd.mark();
-                }
-                super.add(toAdd);
-            //if null means no task category was identified
-            } else {
-                retriever.close();
-                throw new IOException("Unable to identify task type as type found in file was invalid.");
-            }
-        }
-        retriever.close();
     }
 
     /**

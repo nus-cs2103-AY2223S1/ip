@@ -8,9 +8,9 @@ package duke.exception;
 public class IllegalKeywordException extends IllegalArgumentException {
     /**
      * Constructs an IllegalKeywordException with the specified detail message.
-     * @param s the detail message.
+     * @param message the detail message.
      */
-    public IllegalKeywordException(String s) {
-        super(s);
+    public IllegalKeywordException(String message) {
+        super(message);
     }
 }

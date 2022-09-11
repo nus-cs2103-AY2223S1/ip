@@ -13,19 +13,19 @@ public class MarkCommand extends Command {
     private TaskList taskList;
 
     /** Zero-based index of the task to mark. */
-    private int query;
+    private int queryIndex;
 
     /**
      * Constructor for the command.
      *
      * @param taskList the task list the command will modify.
-     * @param query the zero-based index of the task to mark.
+     * @param queryIndex the zero-based index of the task to mark.
      * @throws IllegalTaskException If the task specified to mark does not exist.
      */
-    public MarkCommand(TaskList taskList, int query) throws IllegalTaskException {
+    public MarkCommand(TaskList taskList, int queryIndex) throws IllegalTaskException {
         this.taskList = taskList;
-        if (this.taskList.exists(query)) {
-            this.query = query;
+        if (this.taskList.exists(queryIndex)) {
+            this.queryIndex = queryIndex;
         } else {
             throw new IllegalTaskException("Task does not exist.");
         }
@@ -34,6 +34,6 @@ public class MarkCommand extends Command {
     @Override
     public String get() {
         return "Nice! I've marked this task as done:\n"
-                + taskList.markTask(query).toString();
+                + taskList.markTask(queryIndex).toString();
     }
 }

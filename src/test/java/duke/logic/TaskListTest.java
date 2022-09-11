@@ -1,4 +1,4 @@
-package du
+package duke.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.FileWriter;
@@ -28,7 +28,7 @@ public class TaskListTest {
     public void retrieve() {
         TaskList taskList = new TaskList(storage);
         try {
-            taskList.retrieve();
+            taskList.retrieveFromStorage();
         } catch (IOException e) {
             throw new RuntimeException();
         }

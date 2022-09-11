@@ -2,7 +2,6 @@ package duke.command;
 
 import java.time.LocalDate;
 
-import duke.exception.IllegalDescriptionException;
 import duke.logic.TaskList;
 import duke.task.Event;
 
@@ -18,31 +17,26 @@ public class EventCommand extends Command {
     /** Description of the event. */
     private String description;
 
-    /** Time the event is at. */
-    private LocalDate time;
+    /** Date the event is at. */
+    private LocalDate date;
 
     /**
      * Constructor for the command.
      *
      * @param taskList the task list the command will modify.
      * @param description the description of the event.
-     * @param time the time the event is at.
-     * @throws IllegalDescriptionException If no description is specified, including just whitespaces.
+     * @param date the date the event is at.
      */
-    public EventCommand(TaskList taskList, String description, LocalDate time) throws IllegalDescriptionException {
+    public EventCommand(TaskList taskList, String description, LocalDate date) {
         this.taskList = taskList;
-        //double check
-        if (description.length() > 0) {
-            this.description = description;
-        } else {
-            throw new IllegalDescriptionException("No description specified.");
-        }
-        this.time = time;
+//        assert description.length() > 0;
+        this.description = description;
+        this.date = date;
     }
 
     @Override
     public String get() {
-        taskList.add(new Event(description, time));
+        taskList.add(new Event(description, date));
         return "Got it. I've added this task:\n"
                 + taskList.get(taskList.size() - 1).toString() + "\n"
                 + String.format("Now you have %d tasks in the list.", taskList.size());

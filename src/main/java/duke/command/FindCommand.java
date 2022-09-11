@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.exception.IllegalKeywordException;
 import duke.logic.TaskList;
 
 /**
@@ -20,16 +19,11 @@ public class FindCommand extends Command {
      *
      * @param taskList the task list the command will search from.
      * @param keyword the keyword to search with.
-     * @throws IllegalKeywordException If no keyword is specified, including just whitespaces.
      */
-    public FindCommand(TaskList taskList, String keyword) throws IllegalKeywordException {
+    public FindCommand(TaskList taskList, String keyword) {
         this.taskList = taskList;
-        //double check only
-        if (keyword.length() > 0) {
-            this.keyword = keyword;
-        } else {
-            throw new IllegalKeywordException("No keyword.");
-        }
+//        assert keyword.length() > 0;
+        this.keyword = keyword;
     }
 
     /**

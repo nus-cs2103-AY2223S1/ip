@@ -8,9 +8,9 @@ package duke.exception;
 public class IllegalDescriptionException extends IllegalArgumentException {
     /**
      * Constructs an IllegalDescriptionException with the specified detail message.
-     * @param s the detail message.
+     * @param message the detail message.
      */
-    public IllegalDescriptionException(String s) {
-        super(s);
+    public IllegalDescriptionException(String message) {
+        super(message);
     }
 }
