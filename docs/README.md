@@ -10,6 +10,14 @@ Retrieve all tasks from storage.
 
 Expected outcome: All tasks will be displayed, regardless whether it is marked or not.
 
+## Feature - Search
+Search for a saved task description.
+### Usage
+### `find <query string`
+
+- Example Usage
+  - `find church`
+
 ## Feature
 Mark a task as done.
 ### Usage
@@ -74,7 +82,7 @@ Expected outcome: An unmarked event task will be created and stored in the list.
 Get schedules of a specified time frame
 ### Get all schedules in chronological order
 #### Usage
-`schedule`
+`schedule_general`
 
 Expected outcome: All tasks will be returned sorted based on their date of creation or date.
 

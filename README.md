@@ -1,5 +1,5 @@
 # User Guide - Duke Task Manager
-![Screenshot](./docs/Ui.png)
+![Screenshot](Ui.png)
 
 ## Features
 
@@ -10,13 +10,21 @@ Retrieve all tasks from storage.
 
 Expected outcome: All tasks will be displayed, regardless whether it is marked or not.
 
+## Feature - Search
+Search for a saved task description.
+### Usage
+### `find <query string`
+
+- Example Usage
+    - `find church`
+
 ## Feature
 Mark a task as done.
 ### Usage
 ### `mark <index of task shown in the list>`
 
 - Example Usage
-   - `mark 1`
+    - `mark 1`
 
 Expected outcome: A task specified by the given index will be marked as done
 
@@ -26,7 +34,7 @@ Mark a task as un done.
 ### `unmark <index of task shown in the list>`
 
 - Example Usage
-   - `unmark 1`
+    - `unmark 1`
 
 Expected outcome: A task specified by the given index will be marked as undone.
 
@@ -36,7 +44,7 @@ Delete a task
 ### `delete <index of task shown in the list>`
 
 - Example Usage
-   - `delete 1`
+    - `delete 1`
 
 Expected outcome: A task specified by the given index will be deleted.
 
@@ -46,7 +54,7 @@ Create a new todo task.
 ### `todo <insert todo here>`
 
 - Example Usage
-   - `todo Go to Heaven`
+    - `todo Go to Heaven`
 
 Expected outcome: An unmarked Todo task will be created and stored in the list.
 
@@ -56,7 +64,7 @@ Create a new Deadline task.
 ### `deadline <describe deadline> /by <LocalDateTime string>`
 
 - Example Usage
-   - `deadline Submit cheque to heaven /by 1234 12 Dec 2024`
+    - `deadline Submit cheque to heaven /by 1234 12 Dec 2024`
 
 Expected outcome: An unmarked deadline task will be created and stored in the list.
 
@@ -66,7 +74,7 @@ Create a new Event task.
 ### `event <describe event> /at <LocalDateTime string>`
 
 - Example Usage
-   - `event Heaven Homecoming /at 2359 24 Dec 2022`
+    - `event Heaven Homecoming /at 2359 24 Dec 2022`
 
 Expected outcome: An unmarked event task will be created and stored in the list.
 
@@ -74,7 +82,7 @@ Expected outcome: An unmarked event task will be created and stored in the list.
 Get schedules of a specified time frame
 ### Get all schedules in chronological order
 #### Usage
-`schedule`
+`schedule_general`
 
 Expected outcome: All tasks will be returned sorted based on their date of creation or date.
 
@@ -84,17 +92,17 @@ Expected outcome: All tasks will be returned sorted based on their date of creat
     - `schedule_range /from <LocalDateTime string>`
 
 - Example Usage:
-   - Displays all tasks that fall from 1200 19 Dec 2022 onwards.
+    - Displays all tasks that fall from 1200 19 Dec 2022 onwards.
 
-     `schedule_range /from 1200 19 Dec 2022`
+      `schedule_range /from 1200 19 Dec 2022`
 
 #### Get schedules from given datetime range
 `schedule_range /from <LocalDateTime string> /to <LocalDateTime string>`
 
 - Example Usage:
-   - Displays all tasks that fall from 1200 19 Dec 2022 onwards to 0001 25 Dec 2025.
+    - Displays all tasks that fall from 1200 19 Dec 2022 onwards to 0001 25 Dec 2025.
 
-     `schedule_range /from 1200 19 Dec 2022 /to 0001 25 Dec 2025`
+      `schedule_range /from 1200 19 Dec 2022 /to 0001 25 Dec 2025`
 
 ## Feature - Exit
 Exit the program
