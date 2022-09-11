@@ -20,6 +20,7 @@ public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (tasks.isEmpty()) {
+            assert(tasks.numOfTasks() == 0);
             ui.appendMessage(ui.getNoTaskMessage());
         }
         for (int i = 1; i <= tasks.numOfTasks(); i++) {
