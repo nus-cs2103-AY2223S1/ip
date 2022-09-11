@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -26,12 +27,18 @@ public class Gui extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("/view/MainWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MainWindow.fxml"));
             VBox mainWindow = fxmlLoader.load();
+
+            stage.setTitle("Duke");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/bot.png")));
+
             Scene scene = new Scene(mainWindow);
             stage.setScene(scene);
+
             Path path = Paths.get(System.getProperty("user.dir"), "data", "data.txt");
             fxmlLoader.<MainWindow>getController().initDuke(path);
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

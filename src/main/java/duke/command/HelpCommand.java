@@ -28,9 +28,8 @@ public class HelpCommand extends Command {
             ExitCommand.HELP_STRING
         };
 
-        printer.accept(HELP_HEADER);
-        StringJoiner sj = new StringJoiner("\n\n");
+        StringJoiner sj = new StringJoiner("\n--------------------\n");
         Arrays.stream(helpMessages).forEach(sj::add);
-        printer.accept(sj.toString());
+        printer.accept(HELP_HEADER + "\n\n" + sj);
     }
 }
