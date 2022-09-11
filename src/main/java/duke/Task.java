@@ -23,6 +23,19 @@ public abstract class Task implements Serializable {
     }
 
     /**
+     * Method used get the date and task from a command.
+     *
+     * @param command  the string containing the task and date entered by user
+     * @return a string array, pos 0 refers to task pos 1 refers to date
+     */
+    private static String[] getTaskAndDate(String command, String split) {
+        String task = command.split(split, 2)[0].trim();
+        String date = command.split(split, 2)[1].trim();
+
+        return new String[]{ task, date };
+    }
+
+    /**
      * Factory method used to create a new duke.Task.
      *
      * @param commandArray the command entered by the user to be parsed by the method
@@ -41,13 +54,13 @@ public abstract class Task implements Serializable {
                 return new Todo(task);
             case deadline:
                 Task.validateTaskCreation(commandArray, TaskType.DEADLINE);
-                task = commandArray[1].split("/by", 2)[0].trim();
-                date = commandArray[1].split("/by", 2)[1].trim();
+                task = Task.getTaskAndDate(commandArray[1], "/by")[0];
+                date = Task.getTaskAndDate(commandArray[1], "/by")[1];
                 return new Deadline(task, date);
             case event:
                 Task.validateTaskCreation(commandArray, TaskType.EVENT);
-                task = commandArray[1].split("/at", 2)[0].trim();
-                date = commandArray[1].split("/at", 2)[1].trim();
+                task = Task.getTaskAndDate(commandArray[1], "/at")[0];
+                date = Task.getTaskAndDate(commandArray[1], "/at")[1];
                 return new Event(task, date);
             default:
                 throw new DukeException();
