@@ -1,7 +1,23 @@
 package duke.parser;
 
-import duke.command.*;
-import duke.exception.*;
+import duke.command.CreateToDoCommand;
+import duke.command.CreateEventCommand;
+import duke.command.CreateDeadlineCommand;
+import duke.command.ShowTasksCommand;
+import duke.command.DeleteTaskCommand;
+import duke.command.MarkTaskCommand;
+import duke.command.UnmarkTaskCommand;
+import duke.command.SortTasksCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.RemindDeadlineCommand;
+
+import duke.exception.InvalidTimeException;
+import duke.exception.TooManyKeywordsException;
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidTaskException;
+import duke.exception.EmptyContentException;
+
 import duke.command.Command;
 import duke.storage.Storage;
 import duke.task.TasksController;
@@ -137,22 +153,22 @@ public class Parser {
             String task = parseTask(inputText);
             String content = parseContent(inputText);
             switch (task) {
-                case "ToDo":
-                    command = new CreateToDoCommand();
-                    response = command.execute(controller, content, "", -1, storage, "");
-                    break;
-                case "Event": {
-                    String taskTime = parseTime(inputText);
-                    command = new CreateEventCommand();
-                    response = command.execute(controller, content, taskTime, -1, storage, "");
-                    break;
-                }
-                case "Deadline": {
-                    String taskTime = parseTime(inputText);
-                    command = new CreateDeadlineCommand();
-                    response = command.execute(controller, content, taskTime, -1, storage, "");
-                    break;
-                }
+            case "ToDo":
+                command = new CreateToDoCommand();
+                response = command.execute(controller, content, "", -1, storage, "");
+                break;
+            case "Event":
+                String eventTime = parseTime(inputText);
+                command = new CreateEventCommand();
+                response = command.execute(controller, content, eventTime, -1, storage, "");
+                break;
+            case "Deadline":
+                String ddlTime = parseTime(inputText);
+                command = new CreateDeadlineCommand();
+                response = command.execute(controller, content, ddlTime, -1, storage, "");
+                break;
+            default:
+                break;
             }
         } catch (InvalidTaskException ite) {
             response = "Your task is invalid. Please try again...";
@@ -177,53 +193,55 @@ public class Parser {
         try {
             String commandText = parseCommand(inputText);
             switch (commandText) {
-                case "add":
-                    response = addTasksHelper(controller, storage, inputText);
-                    break;
-                case "list":
-                    command = new ShowTasksCommand();
-                    response = command.execute(controller, "", "", -1, storage, "");
-                    break;
-                case "delete":
-                    int deleteIndex = parseIndex(inputText) - 1;
-                    command = new DeleteTaskCommand();
-                    response = command.execute(controller, "", "", deleteIndex, storage, "");
-                    break;
-                case "mark":
-                    int markIndex = parseIndex(inputText) - 1;
-                    command = new MarkTaskCommand();
-                    response = command.execute(controller, "", "", markIndex, storage, "");
-                    break;
-                case "unmark":
-                    int unmarkIndex = parseIndex(inputText) - 1;
-                    command = new UnmarkTaskCommand();
-                    response = command.execute(controller, "", "", unmarkIndex, storage, "");
-                    break;
-                case "find":
-                    ArrayList<String> keywords = parseKeyword(inputText);
-                    command = new FindCommand();
-                    if (keywords.size() == 1) {
-                        response = command.execute(controller, "", "", -1, storage, keywords.get(0));
-                    } else if (keywords.size() == 2) {
-                        response = command.execute(controller, "", "", -1, storage, keywords.get(0),
-                                keywords.get(1));
-                    } else {
-                        response = command.execute(controller, "", "", -1, storage, keywords.get(0),
-                                keywords.get(1), keywords.get(2));
-                    }
-                    break;
-                case "sort":
-                    command = new SortTasksCommand();
-                    response = command.execute(controller, "", "", -1, storage, "");
-                    break;
-                case "reminder":
-                    command = new RemindDeadlineCommand();
-                    response = command.execute(controller, "", "", -1, storage, "");
-                    break;
-                case "exit":
-                    command = new ExitCommand();
-                    response = command.execute(controller, "", "", -1, storage, "");
-                    break;
+            case "add":
+                response = addTasksHelper(controller, storage, inputText);
+                break;
+            case "list":
+                command = new ShowTasksCommand();
+                response = command.execute(controller, "", "", -1, storage, "");
+                break;
+            case "delete":
+                int deleteIndex = parseIndex(inputText) - 1;
+                command = new DeleteTaskCommand();
+                response = command.execute(controller, "", "", deleteIndex, storage, "");
+                break;
+            case "mark":
+                int markIndex = parseIndex(inputText) - 1;
+                command = new MarkTaskCommand();
+                response = command.execute(controller, "", "", markIndex, storage, "");
+                break;
+            case "unmark":
+                int unmarkIndex = parseIndex(inputText) - 1;
+                command = new UnmarkTaskCommand();
+                response = command.execute(controller, "", "", unmarkIndex, storage, "");
+                break;
+            case "find":
+                ArrayList<String> keywords = parseKeyword(inputText);
+                command = new FindCommand();
+                if (keywords.size() == 1) {
+                    response = command.execute(controller, "", "", -1, storage, keywords.get(0));
+                } else if (keywords.size() == 2) {
+                    response = command.execute(controller, "", "", -1, storage, keywords.get(0),
+                            keywords.get(1));
+                } else {
+                    response = command.execute(controller, "", "", -1, storage, keywords.get(0),
+                            keywords.get(1), keywords.get(2));
+                }
+                break;
+            case "sort":
+                command = new SortTasksCommand();
+                response = command.execute(controller, "", "", -1, storage, "");
+                break;
+            case "reminder":
+                command = new RemindDeadlineCommand();
+                response = command.execute(controller, "", "", -1, storage, "");
+                break;
+            case "exit":
+                command = new ExitCommand();
+                response = command.execute(controller, "", "", -1, storage, "");
+                break;
+            default:
+                break;
             }
         } catch (InvalidCommandException ice) {
             response = "Your command is invalid. Please try again...";
