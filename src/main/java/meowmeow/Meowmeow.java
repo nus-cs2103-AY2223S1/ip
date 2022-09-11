@@ -1,19 +1,5 @@
 package meowmeow;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-
 import meowmeow.commands.Command;
 
 /**
@@ -37,6 +23,9 @@ public class Meowmeow {
         tasks = new TaskList(storage.load(), storage);
     }
 
+    /**
+     * Constructor for the Meowmeow class.
+     */
     public Meowmeow() {
         ui = new Ui();
         storage = new Storage("data/meowmeow.txt");
