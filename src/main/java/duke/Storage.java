@@ -77,16 +77,17 @@ public class Storage {
      */
     public static void writeToFile(ArrayList<Task> tasks) throws IOException {
         File f = new File(filePath);
-        if (!f.exists()) {
+        if (f.exists()) {
+            FileWriter fw = new FileWriter(filePath);
+            String textToAdd = "";
+            for (Task item : tasks) {
+                if (item != null)
+                    textToAdd += tasks.indexOf(item) + 1 + "." + item + "\n";
+            }
+            fw.write(textToAdd);
+            fw.close();
+        } else {
             throw new IOException("File does not exist");
         }
-        FileWriter fw = new FileWriter(filePath);
-        String textToAdd = "";
-        for (Task item : tasks) {
-            if (item != null)
-                textToAdd += tasks.indexOf(item) + 1 + "." + item + "\n";
-        }
-        fw.write(textToAdd);
-        fw.close();
     }
 }
