@@ -61,7 +61,7 @@ public class TaskList {
     }
 
     /**
-     * Remove the Task object from the TaskList.
+     * Removes the Task object from the TaskList.
      *
      * @param index Index of the Task object in the TaskList.
      */
@@ -81,7 +81,7 @@ public class TaskList {
     }
 
     /**
-     * Save the current TaskList into the storage file.
+     * Saves the current TaskList into the storage file.
      * Throws a SkylarkException in an event of a file operation exception.
      *
      * @throws SkylarkException If file operation fails.
