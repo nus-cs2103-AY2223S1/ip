@@ -50,6 +50,8 @@ public class Parser {
             if (splitStr.length == 1) {
                 switch (commandType) {
                 case "bye":
+                case "exit":
+                case "quit":
                     return ui.quit();
                 case "list":
                     return ui.listOutTasks(taskList);
@@ -66,18 +68,23 @@ public class Parser {
                 Task taskToMark = getTaskToMark(commandBody, commandBodyWordCount, taskList);
                 return commandType.equals("mark") ? ui.markTask(taskToMark) : ui.unmarkTask(taskToMark);
             case "delete":
+            case "rm":
                 Task taskToDelete = getTaskToDelete(commandBody, commandBodyWordCount, taskList);
                 return ui.deleteTask(taskList, taskToDelete);
             case "find":
+            case "f":
                 List<Task> taskListWithKeyWord = getTaskListWithKeyword(commandBody, taskList);
                 return ui.printTasksWithKeyword(taskListWithKeyWord);
             case "todo":
+            case "t":
                 Task toDoToAdd = getToDoToAdd(commandBody, commandBodyWordCount);
                 return ui.addTask(taskList, toDoToAdd);
             case "deadline":
+            case "d":
                 Task deadlineToAdd = getDeadlineToAdd(commandBody, commandBodyWordCount);
                 return ui.addTask(taskList, deadlineToAdd);
             case "event":
+            case "e":
                 Task eventToAdd = getEventToAdd(commandBody, commandBodyWordCount);
                 return ui.addTask(taskList, eventToAdd);
             default:
