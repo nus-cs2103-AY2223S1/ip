@@ -2,7 +2,6 @@ package duke;
 
 import java.io.IOException;
 import java.util.Collections;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-
+/**
+ * An example of a custom GUI of chatbot
+ * This shows a simple GUI for a chatbot for users to interact with the bot.
+ */
 public class DialogBox extends HBox {
 
     private Label text;
@@ -31,6 +33,7 @@ public class DialogBox extends HBox {
         this.setAlignment(Pos.TOP_RIGHT);
         this.getChildren().addAll(text, displayPicture);
     }
+
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
@@ -51,10 +54,6 @@ public class DialogBox extends HBox {
         return db;
     }
 }
-
-
-
-
 
 ///**
 // * below is the code about FXML
