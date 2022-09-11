@@ -1,26 +1,20 @@
-# <h1 align = "center">✧&nbsp;&nbsp;&nbsp;✮✧︎&nbsp;&nbsp; ✦ ✨️ L&emsp;&emsp;U&emsp;&emsp;N&emsp;&emsp;A ✨ ✫❍&nbsp;&nbsp;&nbsp;❈ &nbsp;&nbsp;✶ </h1>
+# <h1 align = "center"/>✧&nbsp;&nbsp;&nbsp;✮✧︎&nbsp;&nbsp; ✦ ✨️ L&emsp;&emsp;U&emsp;&emsp;N&emsp;&emsp;A ✨ ✫❍&nbsp;&nbsp;&nbsp;❈ &nbsp;&nbsp;✶
 
-## <h1 align = "center">About Luna ☀️
+## <h1 align = "center"/>About Luna ☀️
 Luna is your nature-themed graphical user interface (GUI) desktop app that is sure to help you complete your tasks in the prettiest way possible 🌻
-<br/>
+<br/><br/>
 
-<br/>
+## <h1 align = "center"/>Sneak peak of Luna's GUI 🌤
+<p align = "center"/><img src="Ui.png" width=40% height=40%/>
+<br/><br/>
 
-## <h1 align = "center">Sneak peak of Luna's GUI 🌤
-<p align = "center"><img src="Ui.png" width=40% height=40%/></p>
-<br/>
-
-<br/>
-
-## <h1 align = "center">Get started with Luna ⛅️
+## <h1 align = "center"/>Get started with Luna ⛅️
 1. Download the `jar` file
 2. Navigate to the directory containing the `jar` file in terminal
 3. Run java -jar `luna-v1.0.jar`
-<br/>
+<br/><br/>
 
-<br/>
-
-## <h1 align = "center">Features ☁️
+## <h1 align = "center"/>Features ☁️
 
 ### Add and delete tasks
 
@@ -40,11 +34,9 @@ Still need to work on more on your task?
 ### View and search for tasks
 - List and view all your tasks 🌷
 - Search by keyword for specific tasks 🌹
-<br/>
+<br/><br/>
 
-<br/>
-
-## <h1 align = "center">User Guide 🌙
+## <h1 align = "center"/>User Guide 🌙
 
 ### 1. `todo` 🌸
 
@@ -175,4 +167,4 @@ Tell Luna your command in the format:
 `bye`
 
 ---
-<p align = "center"> . ❍  ❃ ☆  ✶ ❅  🌙 Goodbye from Luna 🌙  ❅ ✶  ☆ ❃  ❍  . </p>
+<p align = "center"/> . ❍  ❃ ☆  ✶ ❅  🌙 Goodbye from Luna 🌙  ❅ ✶  ☆ ❃  ❍  . 
