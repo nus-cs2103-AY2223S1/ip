@@ -1,6 +1,8 @@
-import duke.DukeException;
-import duke.TaskList;
-import duke.task.*;
+import gina.GinaException;
+import gina.TaskList;
+import gina.task.Event;
+import gina.task.Task;
+import gina.task.ToDo;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
@@ -25,7 +27,7 @@ public class TaskListTest {
             TaskList taskList = new TaskList(tasks);
             taskList.deleteTask(0);
             assertEquals(0, taskList.size());
-        } catch (DukeException e) {
+        } catch (GinaException e) {
             fail();
         }
     }
@@ -39,7 +41,7 @@ public class TaskListTest {
             Task task2 = new Event("write", "2022-10-10 1200");
             taskList.addTask(task2);
             assertEquals(1, taskList.getTasksOnDate("2022-09-01").size());
-        } catch (DukeException e) {
+        } catch (GinaException e) {
             fail();
         }
     }
