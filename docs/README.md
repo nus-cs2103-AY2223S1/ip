@@ -1,29 +1,35 @@
-# User Guide
+# User Guide for Nikki
+
+Nikki is a chatbot that can keep track of different kinds of tasks.
 
 ## Features 
 
-### Feature-ABC
+### Feature - Add  tasks
 
-Description of the feature.
+Add todo, deadline or event tasks with date or time.
 
-### Feature-XYZ
+### Feature - Delete tasks
 
-Description of the feature.
+Delete certain task.
+
+### Feature - Mark or Unmark tasks
+
+Mark one task as done, or unmark one task as undone
 
 ## Usage
 
-### `Keyword` - Describe action
+### `mark` - Mark Task
 
-Describe the action and its outcome.
+Mark a task to be done.
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`mark 1`
 
 Expected outcome:
 
-Description of the outcome.
+The first item of the task list is crossed.
 
 ```
-expected output
+[T][X] finish CS2103T ip
 ```
