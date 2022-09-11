@@ -33,15 +33,19 @@ public class Parser {
         case "bye":
             return new ByeCommand();
 
+        case "t":
         case "todo":
             return parseTodo(input);
 
+        case "d":
         case "deadline":
             return parseDeadline(input);
 
+        case "e":
         case "event":
             return parseEvent(input);
 
+        case "ls":
         case "list":
             return new ListCommand();
 
@@ -51,6 +55,7 @@ public class Parser {
         case "unmark":
             return parseUnmark(input);
 
+        case "rm":
         case "delete":
             return parseDelete(input);
 
