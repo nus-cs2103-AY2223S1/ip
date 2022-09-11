@@ -37,14 +37,14 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList taskList, BotUI ui, AnomaliesManager anomaliesManager) {
         TaskList foundList = new TaskList();
-        boolean found = false;
+        boolean hasFound = false;
         for (Task t : taskList.getList()) {
             if (t.getDetail().contains(this.detail)) {
                 foundList.addTask(t);
-                found = true;
+                hasFound = true;
             }
         }
-        if (found) {
+        if (hasFound) {
             return ui.taskFound(foundList);
         } else {
             return ui.taskNotFound();

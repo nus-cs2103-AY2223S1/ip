@@ -37,21 +37,18 @@ public class Duke {
         this.taskList = temp;
     }
 
-    /**
-     * Runs the duke chatBot program.
-     * Shows the text-based UI
-     */
-    void runBot() {
+    //Runs the duke chatBot program.
+    private void runBot() {
         System.out.println(ui.sayHello());
-        boolean exitDuke = false;
-        while (!exitDuke) {
+        boolean isExitDuke = false;
+        while (!isExitDuke) {
             try {
                 System.out.print(BotUI.userSpeak());
                 Command c = Parser.parse(ui.readCommand(), anomaliesManger);
                 String output = c.execute(taskList, ui, anomaliesManger);
                 System.out.println(output);
                 FileManager.write(this.taskList);
-                exitDuke = c.isExit();
+                isExitDuke = c.isExit();
             } catch (DukeException de) {
                 System.out.println(de.getMessage());
             } catch (IOException ex) {
@@ -61,7 +58,7 @@ public class Duke {
     }
 
     /**
-     * Main method of the program.
+     * Represents the main method of the program.
      * For text-based UI execution.
      */
     public static void main(String[] args) {

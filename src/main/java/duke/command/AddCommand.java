@@ -24,7 +24,7 @@ public class AddCommand extends Command {
 
     private static final int MIN_HOUR_DIFFERENCE = 4;
     private final String detail;
-    private final boolean anomalyResolved;
+    private final boolean isAnomalyResolved;
 
     /**
      * Constructs AddCommand object
@@ -35,13 +35,13 @@ public class AddCommand extends Command {
     public AddCommand(String command, String detail) {
         super(command);
         this.detail = detail;
-        this.anomalyResolved = false;
+        this.isAnomalyResolved = false;
     }
 
-    private AddCommand(String command, String detail, boolean anomalyResolved) {
+    private AddCommand(String command, String detail, boolean isAnomalyResolved) {
         super(command);
         this.detail = detail;
-        this.anomalyResolved = anomalyResolved;
+        this.isAnomalyResolved = isAnomalyResolved;
     }
 
     private boolean taskHasTime(Task task) {
@@ -128,7 +128,7 @@ public class AddCommand extends Command {
                 return "";
             }
 
-            if (!anomalyResolved) {
+            if (!isAnomalyResolved) {
                 String anomaliesOutput = checkAnomalies(newTask, taskList, anomaliesManager, ui);
                 if (anomaliesManager.isRaised()) {
                     return anomaliesOutput;
