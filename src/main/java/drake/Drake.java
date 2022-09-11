@@ -45,10 +45,8 @@ public class Drake {
     public static void main(String[] args) {
         try {
             new Drake().run();
-        } catch (IOException e) {
+        } catch (IOException | DrakeException e) {
             System.out.println(e.getMessage());
-        } catch (DrakeException e) {
-            throw new RuntimeException(e);
         }
     }
 
