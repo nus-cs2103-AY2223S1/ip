@@ -2,6 +2,9 @@ package maria.command;
 
 import maria.TaskManager;
 
+/**
+ * Displays the instructions for using the app.
+ */
 public class CommandHelp extends Command {
 
     /**
@@ -11,7 +14,7 @@ public class CommandHelp extends Command {
      */
     @Override
     public String execute(TaskManager taskManager) {
-        
+
         return "List of commands:\n"
                 + "Type 'todo <name> <done (true/false)>' to create a todo.\n"
                 + "Type 'deadline <name> <done (true/false)> <deadline (YYYY-MM-DD)>' to create a task with deadline.\n"

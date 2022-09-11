@@ -32,21 +32,21 @@ public class Parser {
                 return new CommandExit();
             case "todo": {
                 String name = commandStrArr[1];
-                boolean done = Boolean.parseBoolean(commandStrArr[2]);
-                return new CommandAddTodo(name, done);
+                boolean isDone = Boolean.parseBoolean(commandStrArr[2]);
+                return new CommandAddTodo(name, isDone);
             }
             case "deadline": {
                 String name = commandStrArr[1];
-                boolean done = Boolean.parseBoolean(commandStrArr[2]);
+                boolean isDone = Boolean.parseBoolean(commandStrArr[2]);
                 LocalDate deadline = LocalDate.parse(commandStrArr[3]);
-                return new CommandAddDeadline(name, done, deadline);
+                return new CommandAddDeadline(name, isDone, deadline);
             }
             case "event": {
                 String name = commandStrArr[1];
-                boolean done = Boolean.parseBoolean(commandStrArr[2]);
+                boolean isDone = Boolean.parseBoolean(commandStrArr[2]);
                 LocalDate start = LocalDate.parse(commandStrArr[3]);
                 LocalDate end = LocalDate.parse(commandStrArr[4]);
-                return new CommandAddEvent(name, done, start, end);
+                return new CommandAddEvent(name, isDone, start, end);
             }
             case "list":
                 return new CommandListAllTasks();
@@ -90,19 +90,19 @@ public class Parser {
         try {
             String[] tokens = storageStr.split("\\|\\|\\|");
             String name = tokens[0];
-            boolean done = Boolean.parseBoolean(tokens[1]);
+            boolean isDone = Boolean.parseBoolean(tokens[1]);
             String taskType = tokens[2];
 
             switch (taskType) {
             case "todo":
-                return new CommandAddTodo(name, done);
+                return new CommandAddTodo(name, isDone);
             case "deadline":
                 LocalDate deadline = LocalDate.parse(tokens[3]);
-                return new CommandAddDeadline(name, done, deadline);
+                return new CommandAddDeadline(name, isDone, deadline);
             case "event":
                 LocalDate start = LocalDate.parse(tokens[3]);
                 LocalDate end = LocalDate.parse(tokens[4]);
-                return new CommandAddEvent(name, done, start, end);
+                return new CommandAddEvent(name, isDone, start, end);
             default:
                 return new CommandUnknown();
             }

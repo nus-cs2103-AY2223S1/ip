@@ -11,11 +11,11 @@ import maria.task.TaskTodo;
 public class CommandAddTodo extends Command {
 
     private String name;
-    private boolean done;
+    private boolean isDone;
 
-    public CommandAddTodo(String name, boolean done) {
+    public CommandAddTodo(String name, boolean isDone) {
         this.name = name;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     /**
@@ -27,7 +27,7 @@ public class CommandAddTodo extends Command {
     public String execute(TaskManager taskManager) {
 
         try {
-            Task task = new TaskTodo(this.name, this.done);
+            Task task = new TaskTodo(this.name, this.isDone);
             taskManager.getTaskList().add(task);
             return "Added a todo task " + task;
         } catch (TaskNoNameException e) {

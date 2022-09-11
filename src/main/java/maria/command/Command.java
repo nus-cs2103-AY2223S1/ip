@@ -2,6 +2,11 @@ package maria.command;
 
 import maria.TaskManager;
 
+/**
+ * Represents the abstract class for all commands.
+ *
+ * All commands must implement the method {@code execute}.
+ */
 public abstract class Command {
 
     /**

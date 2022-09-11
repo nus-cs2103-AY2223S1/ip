@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import maria.Storage;
 import maria.util.StorageConverter;
 
+/**
+ * Stores all the tasks.
+ *
+ * Some methods of ArrayList have been overridden to support synchronization with local storage.
+ */
 public class TaskList extends ArrayList<Task> {
 
     private final Storage storage;

@@ -1,11 +1,13 @@
 package maria.command;
 
+import java.util.List;
+
 import maria.TaskManager;
 import maria.task.Task;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Lists all the tasks that has been added.
+ */
 public class CommandListAllTasks extends Command {
 
     /**

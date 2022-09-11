@@ -13,13 +13,13 @@ import maria.task.TaskNoNameException;
 public class CommandAddEvent extends Command {
 
     private String name;
-    private boolean done;
+    private boolean isDone;
     private LocalDate start;
     private LocalDate end;
 
-    public CommandAddEvent(String name, boolean done, LocalDate start, LocalDate end) {
+    public CommandAddEvent(String name, boolean isDone, LocalDate start, LocalDate end) {
         this.name = name;
-        this.done = done;
+        this.isDone = isDone;
         this.start = start;
         this.end = end;
     }
@@ -33,7 +33,7 @@ public class CommandAddEvent extends Command {
     public String execute(TaskManager taskManager) {
 
         try {
-            Task task = new TaskEvent(this.name, this.done, this.start, this.end);
+            Task task = new TaskEvent(this.name, this.isDone, this.start, this.end);
             taskManager.getTaskList().add(task);
             return "Added a event task " + task;
         } catch (TaskNoNameException e) {

@@ -1,11 +1,11 @@
 package maria;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import maria.command.CommandExecutor;
 import maria.task.TaskList;
 import maria.util.StorageConverter;
-
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * Acts as the interface for all the tasks related logic in the program.

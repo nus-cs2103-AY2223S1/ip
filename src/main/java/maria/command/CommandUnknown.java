@@ -2,6 +2,9 @@ package maria.command;
 
 import maria.TaskManager;
 
+/**
+ * Displays a string that tells the user that the parser cannot understand the command.
+ */
 public class CommandUnknown extends Command {
 
     public CommandUnknown() {}

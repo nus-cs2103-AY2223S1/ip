@@ -2,7 +2,7 @@ package maria.task;
 
 import java.time.LocalDate;
 
-import maria.util.DukeDateTimeFormatter;
+import maria.util.MariaDateFormatter;
 
 /**
  * Represents a Task of type Event.
@@ -34,8 +34,8 @@ public class TaskEvent extends Task {
     @Override
     public String toString() {
         return "[Event] " + super.toString() + " (from "
-                + DukeDateTimeFormatter.formatDisplay(this.startTime) + " to "
-                + DukeDateTimeFormatter.formatDisplay(this.endTime) + ")";
+                + MariaDateFormatter.formatDisplay(this.startTime) + " to "
+                + MariaDateFormatter.formatDisplay(this.endTime) + ")";
     }
 
     /**
@@ -45,8 +45,8 @@ public class TaskEvent extends Task {
     @Override
     public String toStorageString() {
         return super.toStorageString() + "|||" + "event" + "|||"
-                + DukeDateTimeFormatter.formatStorage(this.startTime) + "|||"
-                + DukeDateTimeFormatter.formatStorage(this.endTime);
+                + MariaDateFormatter.formatStorage(this.startTime) + "|||"
+                + MariaDateFormatter.formatStorage(this.endTime);
     }
 
 }

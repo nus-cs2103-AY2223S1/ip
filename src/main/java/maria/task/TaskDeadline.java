@@ -2,7 +2,7 @@ package maria.task;
 
 import java.time.LocalDate;
 
-import maria.util.DukeDateTimeFormatter;
+import maria.util.MariaDateFormatter;
 
 /**
  * Represents a Task of type Deadline.
@@ -29,7 +29,7 @@ public class TaskDeadline extends Task {
      */
     @Override
     public String toString() {
-        return "[Deadline] " + super.toString() + " (by: " + DukeDateTimeFormatter.formatDisplay(this.deadline) + ")";
+        return "[Deadline] " + super.toString() + " (by: " + MariaDateFormatter.formatDisplay(this.deadline) + ")";
     }
 
     /**
@@ -39,7 +39,7 @@ public class TaskDeadline extends Task {
     @Override
     public String toStorageString() {
         return super.toStorageString() + "|||" + "deadline" + "|||"
-                + DukeDateTimeFormatter.formatStorage(this.deadline);
+                + MariaDateFormatter.formatStorage(this.deadline);
     }
 
 }

@@ -4,21 +4,14 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import maria.Parser;
 import maria.TaskManager;
 import maria.command.Command;
-import maria.command.CommandExecutor;
-import maria.command.CommandFindTask;
 import maria.command.CommandHelp;
-import maria.task.Task;
-import maria.task.TaskList;
 
 /**
  * Represents the controller for the main page of the application.

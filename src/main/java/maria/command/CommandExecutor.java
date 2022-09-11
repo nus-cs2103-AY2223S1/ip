@@ -2,6 +2,9 @@ package maria.command;
 
 import maria.TaskManager;
 
+/**
+ * Executes all commands in Maria.
+ */
 public class CommandExecutor {
 
     private TaskManager taskManager;

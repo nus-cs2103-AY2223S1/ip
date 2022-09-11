@@ -28,8 +28,8 @@ public abstract class Task {
         return this.isDone;
     }
 
-    public void setIsDone(boolean done) {
-        this.isDone = done;
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public String getName() {
