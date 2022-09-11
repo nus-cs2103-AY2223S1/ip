@@ -14,4 +14,9 @@ public class TodoTask extends Task {
     public String saveFileFormat() {
         return "T###" + super.saveFileFormat();
     }
+
+    @Override
+    String timeIndex() {
+        return "NA";
+    }
 }
