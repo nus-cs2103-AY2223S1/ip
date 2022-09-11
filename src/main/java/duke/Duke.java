@@ -34,10 +34,12 @@ public class Duke {
         }
     }
 
+    /** Saves the file when Duke is closed. */
     public void save() {
         this.storage.save(tasks);
     }
 
+    /** Loads the file when Duke is opened. */
     public String load() {
         try {
             return this.storage.printFileContents(storage.getFilePath());
@@ -46,13 +48,19 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns the greeting message when Duke is opened
+     *
+     * @return Greeting message.
+     */
     public String greeting() {
-        return ui.greeting();
+        return ui.printGreeting();
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns the response from Duke after the user input is read.
+     *
+     * @return Response from Duke.
      */
     public String getResponse(String input) {
         try {

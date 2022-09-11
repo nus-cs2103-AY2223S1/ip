@@ -24,9 +24,16 @@ public class Parser {
         this.ui = ui;
     }
 
+    /**
+     * Parses the input from user.
+     *
+     * @param input The user input.
+     * @return A command.
+     * @throws DukeException if input is invalid.
+     */
     public static Command parse(String input) throws DukeException {
-        String[] inputArray = input.split(" ");
-        String first = inputArray[0];
+        String[] inputs = input.split(" ");
+        String first = inputs[0];
         switch (first) {
         case "bye":
             return new ByeCommand();

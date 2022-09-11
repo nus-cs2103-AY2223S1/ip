@@ -5,6 +5,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/**
+ * ListCommand class to execute the list command.
+ */
 public class ListCommand extends Command {
 
     public ListCommand() {

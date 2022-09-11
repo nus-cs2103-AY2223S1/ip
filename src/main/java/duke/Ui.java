@@ -1,4 +1,5 @@
 package duke;
+
 import java.util.Scanner;
 
 /**
@@ -16,7 +17,7 @@ public class Ui {
     /**
      * Prints the greeting message when Duke is opened.
      */
-    public static String greeting() {
+    public static String printGreeting() {
         String greetingMessage = "Hello! I'm Duke\n" + "What can I do for you?\n";
         return greetingMessage + "Here are some tasks that were left from before:\n";
     }

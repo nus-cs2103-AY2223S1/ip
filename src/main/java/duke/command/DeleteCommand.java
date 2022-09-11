@@ -5,9 +5,18 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/**
+ * DeleteCommand class to execute the delete command.
+ */
 public class DeleteCommand extends Command {
+    /** The input given by the user. */
     private String input;
 
+    /**
+     * Instantiates the DeleteCommand object.
+     *
+     * @param input The input given by the user.
+     */
     public DeleteCommand(String input) {
         this.input = input;
     }

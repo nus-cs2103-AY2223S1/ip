@@ -5,9 +5,18 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Deadline;
 
+/**
+ * DeadlineCommand class to execute the deadline command.
+ */
 public class DeadlineCommand extends Command {
+    /** The input provided by the user. */
     private String input;
 
+    /**
+     * Instantiates the DeadlineCommand object.
+     *
+     * @param input Input provided by the user.
+     */
     public DeadlineCommand(String input) {
         this.input = input;
     }
