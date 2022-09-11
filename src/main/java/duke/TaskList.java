@@ -51,7 +51,7 @@ public class TaskList {
      *
      * @return string format of task list.
      */
-    public String saveTaskList() {
+    public String saveTaskList(){
         String result = "Task Type | Status | Description & Time\n";
         for (Task t : tasks) {
             result += t.toString() + "\n";

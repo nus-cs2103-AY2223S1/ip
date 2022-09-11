@@ -1,19 +1,15 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.ToDo;
-import duke.task.Task;
+import duke.command.AddDeadlineCommand;
+import duke.command.AddEventCommand;
+import duke.command.AddTodoCommand;
+import duke.command.MarkCommand;
+import duke.exception.DukeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
-
-
+import static duke.exception.ErrorMessage.*;
 
 /**
  * Represents duke chatbot parser that make sense of user commands.
@@ -21,7 +17,6 @@ import java.util.Scanner;
  * instead of the parsed command
  */
 public class Parser {
-    private Scanner input;
 
     /**
      * Returns a LocalDate object parsed from a string containing date.
@@ -31,7 +26,7 @@ public class Parser {
      * @return LocalDate object.
      * @throws DukeException If the string date format is not accepted by duke chatbot.
      */
-    public LocalDate parseDate(String str) throws DukeException {
+    public static LocalDate parseDate(String str) throws DukeException {
         // parse string format date to LocalDate object -> to String format yyyy-MM-dd, exception
         String time = str.trim();
         try {
@@ -48,14 +43,23 @@ public class Parser {
             } else if (time.matches("([0-9]{2}) ([0-9]{2}) ([0-9]{4})")) {
                 return LocalDate.parse(time, DateTimeFormatter.ofPattern("dd MM yyyy"));
             } else {
-                throw new DukeException("☹ OOPS!!! This is not a proper time format, "
-                        + "please refer to command format information.");
+                throw new DukeException(INVALID_DATE_FORMAT, "");
             }
         } catch (Exception e) {
-            throw new DukeException(e.getMessage());
+            throw new DukeException(INVALID_DATE, "");
         }
     }
 
+    public void parseCommandType(String[] taskString) throws duke.exception.DukeException {
+        String type = taskString[0];
+        if (taskString.length == 1 && (type.equals("todo") || type.equals("deadline") || type.equals("event"))) {
+            throw new DukeException(MISSING_DESCRIPTION, type);
+        } else if (taskString.length == 1 && (type.equals("mark") || type.equals("unmark") || type.equals("delete"))) {
+            throw new DukeException(MISSING_INDEX, type);
+        } else if (taskString.length == 1 && !type.equals("list") && !type.equals("bye") && !type.equals("help")) {
+            throw new DukeException(INVALID_COMMAND_TYPE, type);
+        }
+    }
     /**
      * Returns simplified command string parsed from a user command.
      * If the command is invalid, exception is thrown.
@@ -67,48 +71,16 @@ public class Parser {
      */
     public String parseCommand(String line, TaskList taskList) throws DukeException {
         String[] taskString = line.split(" ", 2); //split by first white space
-        String taskType = taskString[0];
-        if (taskString.length == 1 && !taskType.equals("list") && !taskType.equals("bye") && !taskType.equals("help")) {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        } else if (taskType.equals("todo")) {
-            String description = taskString[1].trim();
-            if (description.equals("")) { // task description empty
-                throw new DukeException("☹ OOPS!!! The description of a Todo task cannot be empty.");
-            }
-            taskList.addTask(new ToDo(description));
+        parseCommandType(taskString);
+        String taskType = taskString[0].trim();
+        if (taskType.equals("todo")) {
+            new AddTodoCommand(taskList, taskString[1].trim()).execute();
             return String.format("todo %d", taskList.getSize());
         } else if (taskType.equals("deadline")) {
-            if (!taskString[1].contains("/by")) { // command not properly formatted
-                throw new DukeException("☹ OOPS!!! The command not properly formatted.\n"
-                        + "Please follow the format: Deadline {description} /by {date}.");
-            }
-            String[] descriptions = taskString[1].split("/by");
-            String description = descriptions[0].trim();
-            LocalDate end = parseDate(descriptions[1]);
-            if (description.equals("")) { // task description empty
-                throw new DukeException("☹ OOPS!!! The description of a Deadline task cannot be empty.");
-            }
-            taskList.addTask(new Deadline(description, end));
+            new AddDeadlineCommand(taskList, taskString[1].trim()).execute();
             return String.format("deadline %d", taskList.getSize());
         } else if (taskType.equals("event")) {
-            if (!taskString[1].contains("/at")) { // command not properly formatted
-                throw new DukeException("☹ OOPS!!! The command not properly formatted.\n"
-                        + "Please follow the format: Event {description} /at {date} to {date}.");
-            } else if (!taskString[1].contains(" to ")) {
-                throw new DukeException("☹ OOPS!!! The command not properly formatted.\n"
-                        + "Please follow the format: Event {description} /at {date} to {date}.");
-            }
-            String[] descriptions = taskString[1].split("/at");
-            String description = descriptions[0].trim();
-            String[] dates = descriptions[1].trim().split("to");
-            LocalDate start = parseDate(dates[0]);
-            LocalDate end = parseDate(dates[1]);
-            if (descriptions[0].trim().equals("")) { // task description empty
-                throw new DukeException("☹ OOPS!!! The description of a Event task cannot be empty.");
-            } else if (start.isAfter(end)) {
-                throw new DukeException("☹ OOPS!!! The start date of a Event task cannot be after end date.");
-            }
-            taskList.addTask(new Event(description, start, end));
+            new AddEventCommand(taskList, taskString[1].trim()).execute();
             return String.format("event %d", taskList.getSize());
         } else if (taskType.equals("list")) {
             if (taskString.length == 1 || taskString[1].trim().equals("")) { //list command
@@ -120,28 +92,11 @@ public class Parser {
                 return String.format("list %s", date);
             }
         } else if (taskType.equals("mark") || taskType.equals("unmark") || taskType.equals("delete")) {
-            String taskIndex = taskString[1].trim();
-            if (taskIndex.equals("") || !taskIndex.matches("[0-9]+")) { // task description empty or not numeric
-                throw new DukeException(String.format("☹ OOPS!!! The task index of a %s command cannot be empty.",
-                        taskType));
-            } else if (Integer.parseInt(taskIndex) > taskList.getSize() || Integer.parseInt(taskIndex) < 1) {
-                throw new DukeException("☹ OOPS!!! The task index exceeds task list size limit.");
-            }
-            assert taskIndex.matches("[0-9]+") : "Wrong format of task Index.";
-            if (taskType.equals("unmark")) {
-                taskList.markAsUndone(Integer.parseInt(taskIndex));
-            } else if (taskType.equals("mark")) {
-                taskList.markAsDone(Integer.parseInt(taskIndex));
-            } else {
-                // delete task and return task (optional argument)
-                Task t = taskList.deleteTaskAtIndex(Integer.parseInt(taskIndex));
-                return String.format("%s %s %s", taskType, t.getStatusIcon(), t.getDescription());
-            }
-            return String.format("%s %s", taskType, taskIndex);
+            return new MarkCommand(taskList, taskType, taskString[1].trim()).execute();
         } else if (taskType.equals("bye") || taskType.equals("help")) {
             return taskType;
         } else {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException(INVALID_COMMAND_TYPE, "");
         }
     }
 
