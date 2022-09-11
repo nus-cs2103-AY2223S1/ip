@@ -1,4 +1,4 @@
-package ploopy;
+package ploopy.task;
 
 public class Event extends Task {
 
@@ -10,11 +10,16 @@ public class Event extends Task {
         type = "E";
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s %s%s", super.toString(), getDate(), getPriorityForString());
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public String getDate() {
-        return String.format("(at %s)", super.getDate());
+        return String.format("(at: %s)", super.getDate());
     }
 }

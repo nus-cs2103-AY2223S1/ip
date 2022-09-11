@@ -1,12 +1,9 @@
 package ploopy;
 
 import javafx.application.Application;
+import ploopy.task.TaskList;
 import ploopy.ui.Main;
 import ploopy.ui.TextUI;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 /**
  * Chatbot that can store and edit tasks.
@@ -57,5 +54,6 @@ public class Ploopy {
 
     public static void main(String[] args) {
         Application.launch(Main.class, args);
+
     }
 }

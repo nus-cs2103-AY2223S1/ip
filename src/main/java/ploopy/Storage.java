@@ -1,5 +1,8 @@
 package ploopy;
 
+import ploopy.task.Task;
+import ploopy.task.TaskList;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

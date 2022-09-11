@@ -2,6 +2,7 @@ package ploopy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import ploopy.task.ToDo;
 
 public class ToDoTest {
 
@@ -9,6 +10,6 @@ public class ToDoTest {
     public void testMarkDone() {
         ToDo todo = new ToDo("finish 2103T work");
         todo.markDone();
-        assertEquals("[T][✓] finish 2103T work", todo.toString());
+        assertEquals("[T][X] finish 2103T work", todo.toString());
     }
 }

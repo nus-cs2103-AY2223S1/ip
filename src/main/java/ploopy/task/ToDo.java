@@ -1,4 +1,4 @@
-package ploopy;
+package ploopy.task;
 
 public class ToDo extends Task {
 
@@ -9,6 +9,11 @@ public class ToDo extends Task {
     public ToDo(String name) {
         super(name, null);
         this.type = "T";
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s%s", super.toString(), getPriorityForString());
     }
 
     @Override

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
-import ploopy.ui.TextUI;
+import ploopy.task.TaskList;
 
 class ParserTest {
     @Test
@@ -22,7 +22,6 @@ class ParserTest {
     @Test
     public void parseInput_blankInput_exceptionThrown() {
         try {
-            TextUI ui = new TextUI();
             Storage storage = new Storage();
             TaskList taskList = new TaskList(storage);
             Parser.parseInput("          ", taskList);

@@ -1,5 +1,7 @@
-package ploopy;
+package ploopy.task;
 
+import ploopy.PloopyException;
+import ploopy.Storage;
 import ploopy.ui.TextUI;
 
 import java.util.ArrayList;

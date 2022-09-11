@@ -1,4 +1,4 @@
-package ploopy;
+package ploopy.task;
 
 public class Deadline extends Task {
 
@@ -10,11 +10,16 @@ public class Deadline extends Task {
         type = "D";
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s %s%s", super.toString(), getDate(), getPriorityForString());
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public String getDate() {
-        return String.format("(by %s)", super.getDate());
+        return String.format("(by: %s)", super.getDate());
     }
 }

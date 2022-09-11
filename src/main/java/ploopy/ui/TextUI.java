@@ -1,6 +1,6 @@
 package ploopy.ui;
 
-import ploopy.Task;
+import ploopy.task.Task;
 
 /**
  * Interacts with the user between commands

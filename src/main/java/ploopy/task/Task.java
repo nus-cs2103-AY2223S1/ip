@@ -1,4 +1,4 @@
-package ploopy;
+package ploopy.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,9 +16,9 @@ public abstract class Task {
     /** Type of task */
     protected String type;
     /** Name of task */
-    private final String name;
+    protected final String name;
     /** Boolean for task being done or not */
-    private boolean done;
+    private boolean isDone;
     /** Date of task (If applicable) */
     private LocalDateTime dateTime;
     /** String format of date */
@@ -34,7 +34,7 @@ public abstract class Task {
      */
     public Task(String name, String date) {
         this.name = name;
-        this.done = false;
+        this.isDone = false;
         priority = null;
         if (date != null) {
             dateStringForm = date;
@@ -51,7 +51,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s]%s %s %s %s", type, getStatus(), name, getDate(), getPriorityForString());
+        return String.format("[%s]%s %s", type, getStatus(), name);
     }
 
     /**
@@ -77,7 +77,7 @@ public abstract class Task {
      *
      */
     public void markDone() {
-        done = true;
+        isDone = true;
     }
 
     /**
@@ -85,7 +85,7 @@ public abstract class Task {
      *
      */
     public void unmark() {
-        done = false;
+        isDone = false;
     }
 
     /**
@@ -95,7 +95,7 @@ public abstract class Task {
      * @return String of task status.
      */
     public String getStatus() {
-        return done ? "[X]" : "[ ]";
+        return isDone ? "[X]" : "[ ]";
     }
 
     public String getType() {
@@ -108,7 +108,7 @@ public abstract class Task {
      * @return Task done status.
      */
     public boolean isDone() {
-        return done;
+        return isDone;
     }
 
     public String getName() {
@@ -137,11 +137,11 @@ public abstract class Task {
         this.priority = priority;
     }
 
-    private String getPriorityForString() {
+    public String getPriorityForString() {
         if (priority == null || priority.equals("none")) {
             return "";
         } else {
-            return "Priority: " + priority;
+            return " Priority: " + priority;
         }
     }
 
