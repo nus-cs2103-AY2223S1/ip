@@ -19,6 +19,9 @@ public class Parser {
         if (input.equals("list")) {
             return new ListCommand();
         }
+        if (input.equals("help")) {
+            return new HelpCommand();
+        }
         if (input.startsWith("mark")) {
             return new MarkCommand(input);
         }
