@@ -1,4 +1,5 @@
 T | 0 | borrow a book
 T | 1 | have fun
 T | 0 | finish CS2103T ip
-E | 0 | tp meeting | 13/9/2022 2100
+E | 1 | tp meeting | 13/9/2022 2100
+T | 0 | finish hw
