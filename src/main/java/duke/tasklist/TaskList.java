@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.command.CommandType;
 import duke.task.Task;
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
@@ -117,7 +118,7 @@ public class TaskList {
         for (int i = 0; i < countTask(); i++) {
             String[] temp = this.taskList.get(i).printTask().split(" ");
             for (int j = 0; j < temp.length; j++) {
-                if (temp[j].equals(target)) {
+                if (temp[j].contains(target)) {
                     res += count + "." + this.taskList.get(i).printTask() + "\n";
                     count ++;
                     break;
@@ -130,9 +131,32 @@ public class TaskList {
         return res;
     }
     public String find(String fullCommand) {
+        String res = "Are these tasks what you are looking for?\n";
         String target = fullCommand.split(" ",2)[1];
-        String res = "Here is the matching tasks in your list:\n";
-        res += findMatch(target);
+        CommandType c = CommandType.commandMap.get(target);
+        if (c != null){
+            res += findCertainTypeTask(c);
+        } else {
+            res += findMatch(target);
+        }
+        return res;
+    }
+    public String findCertainTypeTask(CommandType c) {
+        String res = "";
+        int count = 1;
+        for (int i = 0; i < countTask(); i++) {
+            Task t = this.taskList.get(i);
+            if (t == null) {
+                continue;
+            }
+            String typeDes = t.getDescription().split(" ")[0];
+            if (CommandType.commandMap.get(typeDes).equals(c)) {
+                res += count + "." + this.taskList.get(i).printTask() + "\n";
+            }
+        }
+        if (count == 1) {
+            res += "There is no match for your search.";
+        }
         return res;
     }
 }

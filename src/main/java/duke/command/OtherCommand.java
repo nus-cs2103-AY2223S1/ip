@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.dukeexception.DukeException;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
@@ -22,14 +23,16 @@ public class OtherCommand extends Command {
      * @param storage The object containing the corresponding file.
      */
     @Override
-    public String execute(TaskList taskList, Storage storage) {
-        String typeDescription = this.fullCommand.split(" ")[0];
-        if (typeDescription.equals("Get")) {
+    public String execute(TaskList taskList, Storage storage, CommandType c) throws DukeException {
+        switch (c) {
+        case GET:
             return (taskList.getASpecificDay(fullCommand));
-        } else if (typeDescription.equals("find")) {
+        case FIND:
             return (taskList.find(fullCommand));
-        } else {
+        case LIST:
             return (taskList.listAllTask());
+        default:
+            throw new DukeException("Sorry, something went wrong when executing this command!");
         }
     }
 }

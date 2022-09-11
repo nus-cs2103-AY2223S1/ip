@@ -26,9 +26,15 @@ public class DeleteCommand extends Command {
      * @throws DukeException Throws DukeException when the task index is out of index.
      */
     @Override
-    public String execute(TaskList taskList, Storage storage) throws DukeException {
-        String stringIndex = this.fullCommand.split(" ")[1];
-        int intIndex = Integer.valueOf(stringIndex);
-        return taskList.delete(intIndex, storage);
+    public String execute(TaskList taskList, Storage storage, CommandType c) throws DukeException {
+        try {
+            String stringIndex = this.fullCommand.split(" ")[1];
+            int intIndex = Integer.valueOf(stringIndex);
+            return taskList.delete(intIndex, storage);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("The content of delete cannot be empty.");
+        } catch (Exception e){
+            throw new DukeException("The description of deleting index is wrong.");
+        }
     }
 }
