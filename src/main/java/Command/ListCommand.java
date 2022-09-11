@@ -7,10 +7,10 @@ import Duke.TaskList;
 */
 public class ListCommand extends Command {
 
-    boolean exit;
+    boolean isExit;
 
     public ListCommand() {
-        this.exit = false;
+        this.isExit = false;
     }
 
     @Override

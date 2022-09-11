@@ -10,10 +10,10 @@ import java.io.IOException;
 * Command that marks a specified task as incomplete when executed.
 */
 public class UnmarkCommand extends Command {
-    boolean exit;
+    boolean isExit;
     private String userAction;
     public UnmarkCommand(String userAction) {
-        this.exit = false;
+        this.isExit = false;
         this.userAction = userAction;
     }
     public boolean isNumeric(String str) {

@@ -74,8 +74,8 @@ public class Storage {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
             } catch (IOException e1a) {
-                System.out.println("⚡️Luna has encountered an error while loading tasks⚡️" +
-                        "\n️Please exit and try again ️⛈");
+                System.out.println(" Duke has encountered an error while loading tasks" +
+                        "\n Please exit and try again");
                 e1a.printStackTrace();
             }
         } catch (IOException e) {

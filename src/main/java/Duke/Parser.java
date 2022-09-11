@@ -22,62 +22,42 @@ public class Parser {
      * Parses the user input and splits the input into a user command and user action
      * to be passed into a Command object to execute the respective commands.
      *
-     * @param fullCommand the full user input as a String.
+     * @param command the full user input as a String.
      * @return a Command object to execute the user input if it is valid.
      * @throws DukeException if the user input is invalid or insufficient.
      */
-    public static Command parse(String fullCommand) throws DukeException {
-        String[] command = fullCommand.split("_______________");
-        String userCommand = command[0];
-        Command nextCommand = null;
-        try {
-            if (userCommand.equals("list")) {
-                nextCommand = new ListCommand();
-            } else if (userCommand.equals("mark")) {
-                String userAction = command[1].strip();
-                nextCommand = new MarkCommand(userAction);
-            } else if (userCommand.equals("unmark")) {
-                String userAction = command[1].strip();
-                nextCommand = new UnmarkCommand(userAction);
-            } else if (userCommand.equals("todo")) {
-                String userAction = command[1];
-                nextCommand = new TodoCommand(userAction);
-            } else if (userCommand.equals("event")) {
-                try {
-                    String userAction = command[1];
-                    nextCommand = new EventCommand(userAction);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeException("I'm sorry, but you need to provide a event");
-                }
-            } else if (userCommand.equals("deadline")) {
-                try {
-                    String userAction = command[1].strip();
-                    nextCommand = new DeadlineCommand(userAction);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeException("I'm sorry, but you need to provide a deadline");
-                }
-            } else if (userCommand.equals("delete")) {
-                String userAction = command[1].strip();
-                nextCommand = new DeleteCommand(userAction);
-            } else if (userCommand.equals("find")) {
-                try {
-                    String userAction = command[1];
-                    nextCommand = new FindCommand(userAction);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeException("I'm sorry, but you need to provide a keyword to search for");
-                }
-            } else if (userCommand.equals("bye")) {
-                nextCommand = new ExitCommand();
-            } else {
-                throw new DukeException("I'm sorry, but I don't know what that means :-(");
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("I'm sorry, but you need to provide a valid index");
-        } catch (NullPointerException e1){
-            throw new DukeException("I'm sorry, but I don't know what that means :-(");
-        } catch (DukeException e2) {
-            DukeUi.sendMessage(e2.getMessage());
+    public static Command parse(String[] command) throws DukeException {
+        String userAction = "";
+        boolean isDescriptionNeeded = command[0].equals("mark") || command[0].equals("unmark") || command[0].equals("todo")
+                || command[0].equals("deadline") || command[0].equals("event") || command[0].equals("find");
+        if (isDescriptionNeeded && (command.length == 1)) {
+            throw new DukeException("You need to provide a description for the command !");
+        } else if (isDescriptionNeeded) {
+            userAction = command[1].trim();
         }
-        return nextCommand;
+        String userCommand = command[0].trim();
+//        System.out.println(userCommand);
+        switch (userCommand) {
+            case "list":
+                return new ListCommand();
+            case "mark":
+                return new MarkCommand(userAction);
+            case "unmark":
+                return new UnmarkCommand(userAction);
+            case "todo":
+                return new TodoCommand(userAction);
+            case "deadline":
+                return new DeadlineCommand(userAction);
+            case "event":
+                return new EventCommand(userAction);
+            case "delete":
+                return new DeleteCommand(userAction);
+            case "find":
+                return new FindCommand(userAction);
+            case "bye" :
+                return new ExitCommand();
+            default:
+                throw new DukeException(userCommand + DukeUi.INVALID_COMMAND);
+        }
     }
 }

@@ -11,10 +11,10 @@ import java.io.IOException;
 * Command that adds an Event to the TaskList when executed.
 */
 public class EventCommand extends Command {
-    boolean exit;
+    boolean isExit;
     private String userAction;
     public EventCommand(String userAction) {
-        this.exit = false;
+        this.isExit = false;
         this.userAction = userAction;
     }
 

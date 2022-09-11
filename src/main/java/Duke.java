@@ -4,6 +4,9 @@ import Duke.DukeUi;
 import Duke.Parser;
 import Duke.TaskList;
 import Duke.Storage;
+
+import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class Duke {
@@ -28,16 +31,13 @@ public class Duke {
 
     public String getResponse(String input) throws DukeException {
         try {
-            String fullCommand = ui.readCommand(input);
-            Command c = Parser.parse(fullCommand);
-            if (c != null) {
-                return c.execute(tasks, ui, storage);
-            } else {
-                throw new DukeException("Sorry ! I do not understand this command !!");
-            }
+            String[] userCommand = ui.readCommand(input);
+            Command c = Parser.parse(userCommand);
+            return c.execute(tasks, ui, storage);
         } catch (DukeException e) {
             return e.toString();
+        } catch (DateTimeParseException e2) {
+            return "deadline must be of form yyyy-mm-dd";
         }
     }
-
 }

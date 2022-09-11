@@ -11,11 +11,11 @@ import java.io.IOException;
 */
 public class MarkCommand extends Command {
 
-    boolean exit;
+    boolean isExit;
     private String userAction;
 
     public MarkCommand(String userAction) {
-        this.exit = false;
+        this.isExit = false;
         this.userAction = userAction;
     }
 

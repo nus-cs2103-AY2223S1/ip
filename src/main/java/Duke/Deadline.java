@@ -11,11 +11,7 @@ public class Deadline extends Task {
     public Deadline(String description, String deadline) throws DukeException {
         super(description);
         this.deadline = deadline;
-        try {
-            this.dateTime = LocalDate.parse(deadline);
-        } catch (DateTimeParseException e) {
-            throw new DukeException("deadline must be of form yyyy-mm-dd");
-        }
+        this.dateTime = LocalDate.parse(deadline);
     }
 
     @Override

@@ -10,11 +10,11 @@ import java.io.IOException;
 * Command that deletes a task from the TaskList when executed.
 */
 public class DeleteCommand extends Command {
-    boolean exit;
+    boolean isExit;
     private String userAction;
 
     public DeleteCommand(String userAction) {
-        this.exit = false;
+        this.isExit = false;
         this.userAction = userAction;
     }
 

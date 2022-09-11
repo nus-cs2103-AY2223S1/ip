@@ -10,10 +10,10 @@ import java.io.IOException;
 */
 public class ExitCommand extends Command {
 
-    boolean exit;
+    boolean isExit;
 
     public ExitCommand() {
-        this.exit = true;
+        this.isExit = true;
     }
 
     @Override

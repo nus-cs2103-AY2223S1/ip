@@ -14,10 +14,10 @@ public abstract class Command {
     /**
      * The exit boolean decides if the command exits the program.
      */
-    private boolean exit;
+    private boolean isExit;
 
     public Command() {
-        this.exit = false;
+        this.isExit = false;
     }
 
     /**
@@ -36,6 +36,6 @@ public abstract class Command {
      * @return true if the command exits the program, false otherwise
      */
     public boolean isExit() {
-        return this.exit;
+        return this.isExit;
     }
 }

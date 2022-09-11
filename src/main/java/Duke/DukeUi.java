@@ -1,4 +1,5 @@
 package Duke;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -10,18 +11,20 @@ public class DukeUi {
     private static final String LINE = "____________________________________________________________";
     private static final String START_MESSAGE = " Hello! I'm Duke\n" + " What can I do for you?";
     private static final String END_MESSAGE = " Bye. Hope to see you again soon!";
+    static final String INVALID_COMMAND = " is not a valid command !! " +
+            "valid commands are list, mark (number), unmark (number), todo (task), deadline (task) /by yyyy/mm/dd," +
+            "event (task) /at (time), delete (number), find (keyword)";
 
-    public String readCommand(String input) {
-        String[] command = input.split(" ");
-        String userCommand = command[0];
-        String userAction = "";
-        for (int i = 0; i < command.length; i++) {
-            if (i != 0) {
-                userAction = userAction + command[i] + " ";
-            }
-        }
-        userAction.strip();
-        return userCommand + "_______________" + userAction;
+    /**
+     * Splits user input into a String array of length 2.
+     *
+     * @param input the user inpuut.
+     * @return a String array consisting of the user input of maximum length 2.
+     * where index 0 is the command and index 1 is the input.
+     */
+    public String[] readCommand(String input) {
+        String[] command = input.split(" ", 2);
+        return command;
     }
 
     /**

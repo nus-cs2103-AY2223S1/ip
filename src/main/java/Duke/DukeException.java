@@ -10,11 +10,7 @@ package Duke;
 public class DukeException extends Exception {
 
     public DukeException(String errorMessage) {
-        super(" ☹ OOPS!!! " + errorMessage);
+        super(" OOPS!!! " + errorMessage);
     }
 
-    @Override
-    public String toString() {
-        return "OOPS!!! I'm sorry, but I don't know what that means :-(";
-    }
 }

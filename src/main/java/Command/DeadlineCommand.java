@@ -12,20 +12,18 @@ import java.time.format.DateTimeParseException;
 * Command that adds a Deadline to the TaskList when executed.
 */
 public class DeadlineCommand extends Command {
-    boolean exit;
+    boolean isExit;
     private String userAction;
     public DeadlineCommand(String userAction) {
-        this.exit = false;
+        this.isExit = false;
         this.userAction = userAction;
     }
 
     @Override
     public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
-            String[] deadlineString = userAction.split("/by ");
-            if (deadlineString[0].equals("")) {
-                throw new DukeException("The description and date/time of a deadline cannot be empty.");
-            } else if (deadlineString.length == 1) {
+            String[] deadlineString = userAction.split("/by ", 2);
+            if (deadlineString.length == 1) {
                 throw new DukeException("The description or date/time of a deadline cannot be empty.");
             } else {
                 Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);

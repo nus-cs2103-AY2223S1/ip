@@ -9,11 +9,11 @@ import Duke.TaskList;
 */
 public class FindCommand extends Command {
 
-    boolean exit;
+    boolean isExit;
     private String userAction;
 
     public FindCommand(String userAction) {
-        this.exit = false;
+        this.isExit = false;
         this.userAction = userAction;
     }
 
