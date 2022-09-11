@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Encapsulates all the interactions between the Duke interface and the user.
  */
 public class Ui {
-    public static final String BORDER = "______________________________________________________________";
+    public static final String BORDER = "--------------------------------------------------------------------------";
 
     /**
      * Returns a string with the inputted message on the Duke interface.
