@@ -2,11 +2,18 @@ package rabbit.util;
 
 import java.util.ArrayList;
 
+import rabbit.exception.RabbitException;
+import rabbit.exception.EditTaskException;
 import rabbit.exception.AddToListException;
 import rabbit.exception.MarkUnmarkException;
 import rabbit.exception.DeleteException;
+import rabbit.exception.InvalidInputException;
 import rabbit.exception.FindFormatException;
+
 import rabbit.task.Task;
+import rabbit.task.Deadline;
+import rabbit.task.Event;
+
 
 public class TaskList {
     private ArrayList<Task> taskList;
@@ -122,6 +129,57 @@ public class TaskList {
         assert taskList.get(i - 1) != null;
         taskList.get(i - 1).unmark();
         return taskList.get(i - 1).getContent();
+    }
+
+    /**
+     * Changes the content or the time of a specified task.
+     *
+     * @param input the user's input
+     * @throws RabbitException
+     */
+    public String edit(String input) throws RabbitException {
+        String[] splitCommand = Parser.parseEdit(input);
+        String command;
+        String content;
+        String time;
+        int i;
+        Task task;
+
+        try {
+            command = splitCommand[0] + " " + splitCommand[1];
+            i = Integer.parseInt(splitCommand[2]);
+            task = this.taskList.get(i - 1);
+            if (command.equals("edit content")) {
+                content = splitCommand[3];
+                task.setContent(content);
+            } else if (command.equals("edit time")) {
+                time = splitCommand[3];
+                if (task instanceof Event) {
+                    Event event = (Event) task;
+                    event.setTime(Parser.parseTime(time));
+                } else if (task instanceof Deadline) {
+                    Deadline deadline = (Deadline) task;
+                    deadline.setTime(Parser.parseTime(time));
+                } else {
+                    throw new EditTaskException(EditTaskException.Type.WRONGTYPE);
+                }
+            } else {
+                throw new InvalidInputException();
+            }
+        } catch (EditTaskException e) {
+            throw e;
+        } catch (InvalidInputException e) {
+            throw e;
+        } catch (AddToListException e) {
+            throw e;
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new EditTaskException(EditTaskException.Type.INDEX);
+        } catch (NumberFormatException e) {
+            throw new EditTaskException(EditTaskException.Type.FORMAT);
+        } catch (IndexOutOfBoundsException e) {
+            throw new EditTaskException(EditTaskException.Type.FORMAT);
+        }
+        return task.getContent();
     }
 
     /**
