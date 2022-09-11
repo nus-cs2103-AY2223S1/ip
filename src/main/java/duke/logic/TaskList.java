@@ -44,6 +44,7 @@ public class TaskList extends ArrayList<Task> {
             //make sure file is not deleted, else make again
             this.storage.createRequiredFiles();
             this.storage.clear();
+            this.clear();
         }
     }
 
