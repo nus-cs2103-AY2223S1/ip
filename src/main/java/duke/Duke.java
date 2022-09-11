@@ -163,7 +163,7 @@ public class Duke extends Application {
      private void handleUserInput() {
          this.parser = new Parser(); // new parser and thus tasklist being created everytime
          String userText = userInput.getText();
-         String dukeText = this.getResponse(userText);
+         String dukeText = this.getResponse(userText, this.parser);
          dialogContainer.getChildren().addAll(
                  DialogBox.getUserDialog(userText, user),
                  DialogBox.getDukeDialog(dukeText, duke)
@@ -176,8 +176,8 @@ public class Duke extends Application {
      * @param input The User's input.
      * @return Duke's response to the User's input.
      */
-     public String getResponse(String input) {
-         return this.parser.userInput(input);
+     public String getResponse(String input, Parser parser) {
+         return parser.userInput(input);
      }
 
 }
