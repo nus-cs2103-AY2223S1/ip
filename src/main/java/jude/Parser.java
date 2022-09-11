@@ -17,8 +17,10 @@ import jude.task.Todo;
  * The {@code Parser} class parses user commands in the task tracker chatbot and executes them.
  */
 public class Parser {
-
+    public static final String DEFAULT_DATE_FORMAT = "dd MMM yyyy HH:mm";
     private static final String TERMINATION_COMMAND = "bye";
+    private static final long DEFAULT_REMINDER_SECONDS = 86400; // corresponding to 24 hours
+    private static final String NO_TASKS_STRING = "No tasks found\n";
     private final TaskList tasks;
     private final Storage storage;
 
@@ -52,7 +54,7 @@ public class Parser {
         try {
             dateObject = LocalDateTime.parse(date);
         } catch (DateTimeParseException ex) {
-            boolean valid = false;
+            boolean isValid = false;
             String[] dateTimeFormats = {
                 "yyyy-MM-dd",
                 "yyyy-MM-dd H:mm",
@@ -82,7 +84,7 @@ public class Parser {
                     } else {
                         dateObject = LocalDateTime.parse(date, dateFormat);
                     }
-                    valid = true;
+                    isValid = true;
                     break;
                 } catch (DateTimeParseException ignored) {
                     /*
@@ -91,13 +93,13 @@ public class Parser {
                      */
                 }
             }
-            if (!valid) {
+            if (!isValid) {
                 throw new IllegalCommandException("Please input a valid date, e.g. 21 Aug 2022, "
                         + "Aug 21 2022 or 2022-08-21.");
             }
         }
         assert(dateObject != null);
-        return dateObject.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
+        return dateObject.format(DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT));
     }
 
     /**
@@ -170,6 +172,9 @@ public class Parser {
             } else if (command.equals("bye")) {
                 response = String.format("%sGoodbye! Have a nice day!", response);
                 return response;
+            } else if (command.equals("remindme")) {
+                response = String.format("%s%s\n", response, remindMe());
+                return response;
             } else {
                 response = String.format("%sSorry, I don't understand what this means!\n", response);
             }
@@ -177,6 +182,16 @@ public class Parser {
             response = String.format("%s%s\n", response, ex.getMessage());
         }
         return response;
+    }
+
+    /**
+     * Returns list of tasks to remind the user.
+     *
+     * @return List of tasks to remind the user.
+     */
+    String remindMe() {
+        final String remindString = "I will remind you of the important tasks you have:\n";
+        return remindString + list(tasks.getTasksToRemind(DEFAULT_REMINDER_SECONDS));
     }
 
     /**
@@ -301,11 +316,14 @@ public class Parser {
     }
 
     /**
-     * List the tasks in a user-friendly format.
+     * Lists the tasks in a user-friendly format.
      *
      * @param tasks The tasks to display.
      */
     private String list(TaskList tasks) {
+        if (tasks.size() == 0) {
+            return NO_TASKS_STRING;
+        }
         String response = "";
         for (int i = 1; i <= tasks.size(); i++) {
             Task task = tasks.get(i);

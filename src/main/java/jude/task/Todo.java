@@ -24,4 +24,15 @@ public class Todo extends Task {
     public String getTaskTypeCode() {
         return "T";
     }
+
+    /**
+     * Returns false because {@code Todo} objects do not require reminders.
+     *
+     * @param seconds Number of seconds time notice required.
+     * @return False
+     */
+    @Override
+    public boolean needsReminder(long seconds) {
+        return false;
+    }
 }

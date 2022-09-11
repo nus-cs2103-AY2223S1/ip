@@ -1,11 +1,16 @@
 package jude.task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import jude.Parser;
+import jude.util.DateUtils;
+
 /**
  * A {@code Deadline} object is a Task object that has an associated deadline by which the task
  * should be completed.
  */
 public class Deadline extends Task {
-
     private final String deadline;
 
     /**
@@ -67,5 +72,23 @@ public class Deadline extends Task {
     @Override
     public String toFileSaveString() {
         return String.format("%s%s\n", super.toFileSaveString(), deadline);
+    }
+
+    /**
+     * Returns whether the {@code Deadline} objects have a deadline which is coming soon (within
+     * {@code seconds} of the current time) and is not marked as complete.
+     * Also reminds of tasks which are overdue.
+     *
+     * @param seconds Number of seconds of reminder notice.
+     * @return True if the {@code Deadline} is not marked as complete and has a deadline no greater
+     *     than {@code seconds} seconds away or is overdue, and false otherwise.
+     */
+    @Override
+    public boolean needsReminder(long seconds) {
+        long timeToDeadline = DateUtils.calculateTimeDifference(LocalDateTime.now(),
+                LocalDateTime.parse(this.deadline,
+                DateTimeFormatter.ofPattern(Parser.DEFAULT_DATE_FORMAT)));
+        boolean isDeadlineComingSoon = timeToDeadline <= seconds;
+        return !getIsDone() && isDeadlineComingSoon;
     }
 }

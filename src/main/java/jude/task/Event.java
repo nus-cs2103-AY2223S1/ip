@@ -67,4 +67,15 @@ public class Event extends Task {
     public String toFileSaveString() {
         return String.format("%s%s\n", super.toFileSaveString(), when);
     }
+
+    /**
+     * Returns false because {@code Event} objects do not support reminders.
+     *
+     * @param seconds Number of seconds time notice required.
+     * @return False
+     */
+    @Override
+    public boolean needsReminder(long seconds) {
+        return false;
+    }
 }

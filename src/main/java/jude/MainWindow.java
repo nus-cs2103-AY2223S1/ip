@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-//import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -61,7 +60,8 @@ public class MainWindow {
     public void setJude(Jude jude) {
         this.jude = jude;
         Ui ui = this.jude.getUi();
-        String firstMessageString = ui.getWelcomeMessage() + ui.getCredits();
+        Parser parser = this.jude.getParser();
+        String firstMessageString = ui.getWelcomeMessage();
         dialogContainer.getChildren().add(DialogBox.getChatbotDialog(firstMessageString,
                 chatbotImage));
     }

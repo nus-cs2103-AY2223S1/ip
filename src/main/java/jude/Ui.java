@@ -6,14 +6,6 @@ import java.util.Scanner;
  * Deals with the user interface of the chatbot.
  */
 public class Ui {
-    private static final String CREDITS = "Credits:\n"
-            + "Jude the chatbot's profile picture is taken from "
-            + "https://www.iconfinder.com/search?q=person&price=free (original author Bombasticon "
-            + "Studio)"
-            + "under Free for commercial use licence.\n"
-            + "User profile picture is taken from https://www.pexels"
-            + ".com/photo/man-smiling-behind-wall-220453/ "
-            + "licenced under CC0. Original author Pixabay.";
     private static final String WELCOME_MESSAGE = "Hello! I'm Jude, named after the Beatles' hit "
             + "song 'Hey Jude'.\nWhat can I do for you?";
 
@@ -34,15 +26,6 @@ public class Ui {
      */
     public String getWelcomeMessage() {
         return WELCOME_MESSAGE;
-    }
-
-    /**
-     * Returns credits message for third-party images used in this project.
-     *
-     * @return Credits message for third-party images used in this project.
-     */
-    public String getCredits() {
-        return CREDITS;
     }
 
     /**
