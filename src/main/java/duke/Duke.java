@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Duke is an interactive chatbot that keeps track of tasks inputted by user.
+ * Duke is an interactive chatbot to help user track the tasks.
  */
 public class Duke {
     private Storage storage;
@@ -28,23 +28,10 @@ public class Duke {
         } catch (IOException e) {
             ui.showErrorMessage(e.getMessage());
         }
-
     }
 
     /**
-     * Returns a String response based on the given input by user.
-     *
-     * @param input A String input by user.
-     * @param duke A Duke object.
-     * @return A String of the response associated with the user's input.
-     */
-    public String getResponse(String input, Duke duke) {
-        Parser parser = new Parser(duke);
-        return parser.start(input);
-    }
-
-    /**
-     * Handles a Todo task inputted by user by calling on TaskList and Ui objects.
+     * Add a todo task by calling the TaskList and Ui
      *
      * @param tDescription A String of the description for the task.
      * @return A String of the response associated with the user's todo.
@@ -59,7 +46,7 @@ public class Duke {
     }
 
     /**
-     * Handles a Deadline task inputted by user by calling on TaskList and Ui objects.
+     * Add a deadline task by calling on TaskList and Ui objects.
      *
      * @param str A string representing the entire input user keyed in after "deadline".
      * @return A String of the response associated with the user's deadline.
