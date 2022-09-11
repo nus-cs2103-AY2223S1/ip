@@ -40,6 +40,11 @@ public class Ui {
         return getMessage(exitMsg);
     }
 
+    /**
+     * Returns a string containing the Duke help message.
+     *
+     * @return The Duke Help String with a border.
+     */
     public String getHelpMessage() {
         String whitespace = "\n\n";
         String helpMsg = "Here are the commands you can use (shortcuts in brackets):" + whitespace
