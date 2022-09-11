@@ -1,5 +1,6 @@
 package duke;
 
+import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -79,7 +80,7 @@ public class ParserTest {
         assertEquals("☹ OOPS!!! The task index of a delete command cannot be empty.",exception.getMessage());
 
         //list, list date command
-        assertEquals("list all", parser.parseCommand("list     ", taskList));
+        assertEquals("list 0", parser.parseCommand("list     ", taskList));
         assertEquals("list 2022-03-24", parser.parseCommand("list    24 03 2022", taskList));
         assertEquals("bye", parser.parseCommand("bye", taskList));
 
