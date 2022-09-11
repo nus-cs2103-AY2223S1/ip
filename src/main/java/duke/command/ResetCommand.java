@@ -9,7 +9,7 @@ import duke.tasklist.TaskList;
  *
  * @author Kartikeya
  */
-public class EmptyCommand implements Command {
+public class ResetCommand implements Command {
     /**
      * {@inheritDoc}
      * Clears user's task list and shows confirmation to user.

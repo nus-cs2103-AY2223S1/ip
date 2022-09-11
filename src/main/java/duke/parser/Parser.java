@@ -4,12 +4,12 @@ import duke.command.AddItemCommand;
 import duke.command.ClearScreenCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
-import duke.command.EmptyCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.HelpCommand;
 import duke.command.ListItemsCommand;
 import duke.command.MarkCommand;
+import duke.command.ResetCommand;
 import duke.command.UnmarkCommand;
 import duke.command.UpdateDescriptionCommand;
 import duke.command.UpdateTimeCommand;
@@ -62,8 +62,8 @@ public class Parser {
             case "help": {
                 return new HelpCommand();
             }
-            case "empty": {
-                return new EmptyCommand();
+            case "reset": {
+                return new ResetCommand();
             }
             default: {
                 return new AddItemCommand(input);
