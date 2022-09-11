@@ -17,13 +17,6 @@ public class FindCommand extends Command {
         this.taskDescription = taskDescription;
     }
 
-    /**
-     * Find existing task with description that contains the user input.
-     *
-     * @param tasks list of existing tasks.
-     * @param ui user interface to be shown.
-     * @param storage to rewrite the data file.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList matchingTasks = tasks.find(taskDescription);

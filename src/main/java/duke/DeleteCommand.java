@@ -17,14 +17,6 @@ public class DeleteCommand extends Command {
         this.taskNumber = taskNumber;
     }
 
-    /**
-     * Delete existing task int the tasklist and update the data file.
-     *
-     * @param tasks list of existing tasks.
-     * @param ui user interface to be shown.
-     * @param storage to rewrite the data file.
-     * @throws DukeException if something went wrong with the update of data file.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task deletedTask = tasks.delete(taskNumber);

@@ -20,7 +20,7 @@ public abstract class Task {
     }
 
     /**
-     * Method to get the name of the item.
+     * Gets description of task
      *
      * @return  name of item.
      */
@@ -29,21 +29,21 @@ public abstract class Task {
     }
 
     /**
-     * Mark item as Done.
+     * Marks item as Done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * Mark item as not Done.
+     * Marks item as not Done.
      */
     public void markAsNotDone() {
         this.isDone = false;
     }
 
     /**
-     * Update item's date.
+     * Updates item's date.
      */
     public abstract void updateDate(String updatedDate) throws DukeException;
 
@@ -56,7 +56,7 @@ public abstract class Task {
     }
 
     /**
-     * Converts Task into string suitable for storage in data file.
+     * Returns string representation of data.
      *
      * @return String to be stored in data file.
      */
