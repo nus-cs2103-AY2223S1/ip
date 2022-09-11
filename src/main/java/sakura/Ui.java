@@ -134,15 +134,6 @@ public class Ui {
         }
         return list.toString();
     }
-
-    /**
-     * Prints a string of text surrounded by a line of underscores above and below.
-     *
-     * @param str text to be printed.
-     */
-    public static String print(String str) {
-        return (DIV + str + DIV);
-    }
 }
 
 
