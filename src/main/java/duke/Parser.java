@@ -39,6 +39,8 @@ public class Parser {
      * @param ui This is for the Duke program to interact/print outputs to the user
      */
     public static String parseCommand(String rawInput, TaskList taskList, Ui ui) {
+        DukeException invalidCommandException = new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+
         try {
             String trimmedInput = rawInput.replaceAll("\\s{2,}", " ").trim();
             String[] splitStr = trimmedInput.split(" ");
@@ -50,39 +52,43 @@ public class Parser {
                 return ui.quit();
                 case "list":
                 return ui.listOutTasks(taskList);
+                default:
+                throw invalidCommandException;
                 }
             }
 
             String commandBody = trimmedInput.substring(commandType.length() + 1);
             int commandBodyWordCount = commandBody.split(" ").length;
-
             switch (commandType) {
                 case "mark":
                 case "unmark":
-                    Task taskToMark = getTaskToMark(commandBody, commandBodyWordCount, taskList);
-                    return commandType.equals("mark") ? ui.markTask(taskToMark) : ui.unmarkTask(taskToMark);
+                Task taskToMark = getTaskToMark(commandBody, commandBodyWordCount, taskList);
+                return commandType.equals("mark") ? ui.markTask(taskToMark) : ui.unmarkTask(taskToMark);
                 case "delete":
-                    Task taskToDelete = getTaskToDelete(commandBody,commandBodyWordCount,taskList);
-                    return ui.deleteTask(taskList, taskToDelete);
+                Task taskToDelete = getTaskToDelete(commandBody,commandBodyWordCount,taskList);
+                return ui.deleteTask(taskList, taskToDelete);
                 case "find":
-                    List<Task> taskListWithKeyWord = getAllTaskWithKeyword(commandBody, taskList);
-                    return ui.printTasksWithKeyword(taskListWithKeyWord);
+                List<Task> taskListWithKeyWord = getAllTaskWithKeyword(commandBody, taskList);
+                return ui.printTasksWithKeyword(taskListWithKeyWord);
                 case "todo":
-                    Task toDoToAdd = getToDoToAdd(commandBody,commandBodyWordCount);
-                    return ui.addTask(taskList,toDoToAdd);
+                Task toDoToAdd = getToDoToAdd(commandBody,commandBodyWordCount);
+                return ui.addTask(taskList,toDoToAdd);
                 case "deadline":
-                    Task deadlineToAdd = getDeadlineToAdd(commandBody,commandBodyWordCount);
-                    return ui.addTask(taskList,deadlineToAdd);
+                Task deadlineToAdd = getDeadlineToAdd(commandBody,commandBodyWordCount);
+                return ui.addTask(taskList,deadlineToAdd);
                 case "event":
-                    Task eventToAdd = getEventToAdd(commandBody,commandBodyWordCount);
-                    return ui.addTask(taskList, eventToAdd);
+                Task eventToAdd = getEventToAdd(commandBody,commandBodyWordCount);
+                return ui.addTask(taskList, eventToAdd);
+                default:
+                throw invalidCommandException;
             }
-            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
 
         } catch (DukeException de) {
             return de.getMessage();
         } catch (DateTimeParseException dtpe) {
             return "Deadline date is entered incorrectly. Enter date in YYYY-MM-DD format (e.g 2019-10-02)";
+        } catch (NumberFormatException nfe) {
+            return "Invalid task number";
         }
     }
 
@@ -94,11 +100,10 @@ public class Parser {
      * @throws DukeException Throw DukeException when not valid
      */
     private static boolean isValidIndex(int index, TaskList taskList) throws DukeException {
-       if (index > 0 && index <= taskList.getSize()) {
-           return true;
-       } else {
-           throw new DukeException("OOPS!!! Index " + index + " is not valid. Please enter a task number from 0 - " + taskList.getSize());
-       }
+        if (index <= 0 || index > taskList.getSize()) {
+            throw new DukeException("OOPS!!! Index " + index + " is not valid. Please enter a task number from 1 - " + taskList.getSize());
+        }
+        return true;
     }
 
     /**
@@ -109,19 +114,12 @@ public class Parser {
      * @return Task The task from the user's task list to be deleted
      * @throws DukeException This tells user to enter a valid number when an invalid task number is entered
      */
-    private static Task getTaskToDelete(String commandBody, int commandBodyWordCount, TaskList taskList) throws DukeException {
-        try {
-            if (commandBodyWordCount != 1) {
-                return null;
-            }
-            int index = Integer.parseInt(commandBody);
-            if (isValidIndex(index, taskList)) {
-                return taskList.getTask(index - 1);
-            }
-            return null;
-        } catch (NumberFormatException e) {
+    private static Task getTaskToDelete(String commandBody, int commandBodyWordCount, TaskList taskList) throws NumberFormatException, DukeException {
+        int index = Integer.parseInt(commandBody);
+        if (commandBodyWordCount != 1 || !isValidIndex(index, taskList)) {
             return null;
         }
+        return taskList.getTask(index - 1);
     }
 
     /**
@@ -132,19 +130,12 @@ public class Parser {
      * @return Task The task from the user's task list to be marked/unmarked
      * @throws DukeException Tells user to enter a valid number when an invalid task number is entered
      */
-    private static Task getTaskToMark(String commandBody, int commandBodyWordCount, TaskList taskList) throws DukeException {
-        try {
-            if (commandBodyWordCount != 1) {
-                return null;
-            }
-            int index = Integer.parseInt(commandBody);
-            if (isValidIndex(index,taskList)) {
-                return taskList.getTask(index - 1);
-            }
-            return null;
-        } catch (NumberFormatException e) {
+    private static Task getTaskToMark(String commandBody, int commandBodyWordCount, TaskList taskList) throws NumberFormatException, DukeException {
+        int index = Integer.parseInt(commandBody);
+        if (commandBodyWordCount != 1 || !isValidIndex(index,taskList)) {
             return null;
         }
+        return taskList.getTask(index - 1);
     }
 
     /**
@@ -159,9 +150,8 @@ public class Parser {
     private static Task getToDoToAdd(String commandBody, int commandBodyWordCount) throws DukeException {
         if (commandBodyWordCount < 1) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
-        } else {
-            return new ToDo(commandBody);
         }
+        return new ToDo(commandBody);
     }
 
     /**

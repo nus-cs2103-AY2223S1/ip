@@ -46,6 +46,7 @@ public class Storage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert file != null;
         return file;
     }
 
