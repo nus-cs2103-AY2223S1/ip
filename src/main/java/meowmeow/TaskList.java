@@ -13,6 +13,9 @@ public class TaskList {
     private static int numOfInputs = 0;
     private final ArrayList<Task> taskList;
     private final Storage storage;
+    private String lastCmdType = "undo";
+    private int lastCmdIndex;
+    private String deletedTask;
 
     TaskList(ArrayList<Task> loadSave, Storage storage) {
         this.taskList = loadSave;
@@ -42,6 +45,8 @@ public class TaskList {
                 throw new MeowmeowException("Meowmeow can't throw away a task that doesn't exist =owo=");
             } else {
                 String task = taskList.get(taskNum).toString();
+                deletedTask = taskList.get(taskNum).getSaveData();
+                lastCmdType = "delete";
                 taskList.remove(taskNum);
                 numOfInputs -= 1;
                 return "Meowmeow has thrown this task into the void!! (=^>w<^=) \n"
@@ -61,6 +66,7 @@ public class TaskList {
                 Task t = new ToDo(taskName);
                 taskList.add(t);
                 numOfInputs += 1;
+                lastCmdType = "add";
 
                 return "(=^-w-^=) " + t + " has been added to your task list!\n"
                     + "You now have " + numOfInputs + " tasks >w<";
@@ -83,6 +89,8 @@ public class TaskList {
                 Task d = new Deadline(splitB[0], deadline);
                 taskList.add(d);
                 numOfInputs += 1;
+                lastCmdType = "add";
+
                 return "(=^-w-^=) " + d + " has been added to your task list!\n"
                         + "You now have " + numOfInputs + " tasks >w<";
             }
@@ -102,6 +110,7 @@ public class TaskList {
                 Task e = new Event(splitA[0], time);
                 taskList.add(e);
                 numOfInputs += 1;
+                lastCmdType = "add";
 
                 return "(=^-w-^=) " + e + " has been added to your task list!\n"
                         + "You now have " + numOfInputs + " tasks >w<";
@@ -117,6 +126,8 @@ public class TaskList {
             if (taskNum <= numOfInputs) {
                 task = taskList.get(taskNum - 1);
                 task.markAsDone();
+                lastCmdType = "mark";
+                lastCmdIndex = taskNum - 1;
 
                 return "Good job (=OwO=) You finished this task! \n" + task;
             } else {
@@ -133,6 +144,8 @@ public class TaskList {
             if (taskNum <= numOfInputs) {
                 task = taskList.get(taskNum - 1);
                 task.markAsNotDone();
+                lastCmdType = "unmark";
+                lastCmdIndex = taskNum - 1;
 
                 return "uwu this task has been marked as not done... \n" + task;
             } else {
@@ -162,6 +175,84 @@ public class TaskList {
             return similarTasks;
         } catch (MeowmeowException e) {
             return e.toString();
+        }
+    }
+
+    public String undo() {
+        switch(lastCmdType) {
+            case "delete":
+                restoreDeletedTask(deletedTask);
+                lastCmdType = "undo";
+                return "Meowmeow has restored the task you deleted! (=^>w<^=)";
+
+            case "add":
+                deleteTask(numOfInputs - 1);
+                lastCmdType = "undo";
+                return "Meowmeow has removed the task you added! (=^Ow<^=)";
+
+            case "mark":
+                taskList.get(lastCmdIndex).markAsNotDone();
+                lastCmdType = "undo";
+                return "Meowmeow has marked the task you finished as not done! uwu";
+
+            case "unmark":
+                taskList.get(lastCmdIndex).markAsDone();
+                lastCmdType = "undo";
+                return "Meowmeow has marked the task you unfinished as done! (=^OwO^=)";
+
+            default:
+                return "There isn't anything for Meowmeow to undo! (=^0w0^=)";
+        }
+    }
+
+    public void restoreDeletedTask(String deletedSaveData) {
+        System.out.println(deletedSaveData);
+        String[] split = deletedSaveData.split(" \\| ");
+        String firstChar = split[0];
+
+        switch (firstChar) {
+            case "T":
+                String taskName = split[2];
+                addTodo(taskName);
+
+                boolean isDone = Boolean.parseBoolean(split[1]);
+                if (isDone) {
+                    Task task = taskList.get(numOfInputs - 1);
+                    task.markAsDone();
+                }
+                break;
+
+            case "D":
+                taskName = split[2];
+
+                LocalDateTime date = LocalDateTime.parse(split[3]);
+
+                addDeadline(taskName + " /by " + date);
+
+                isDone = Boolean.parseBoolean(split[1]);
+                if (isDone) {
+                    Task task = taskList.get(numOfInputs - 1);
+                    task.markAsDone();
+                }
+                break;
+
+            case "E":
+                taskName = split[2];
+
+                String time = split[3];
+
+                addEvent(taskName + " /at " + time);
+
+                isDone = Boolean.parseBoolean(split[1]);
+                if (isDone) {
+                    Task task = taskList.get(numOfInputs - 1);
+                    task.markAsDone();
+                }
+                break;
+
+            default:
+                System.out.println("Something went wrong restoring the deleted task");
+                break;
         }
     }
 }
