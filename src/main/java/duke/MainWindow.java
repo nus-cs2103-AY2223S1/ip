@@ -2,7 +2,6 @@ package duke;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -28,7 +27,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog("Hello I'm Bert.\nWhat can I do for you?", dukeImage)
+                DialogBox.getDukeDialog(Ui.GREET_MESSAGE, dukeImage)
         );
     }
 

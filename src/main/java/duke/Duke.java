@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 /**
  * The Duke program implements an application that
  * acts as your to-do list. It can add, delete, mark/unmark

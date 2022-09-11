@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Ui class allows Duke to interact/print messages
@@ -12,17 +11,10 @@ import java.util.Scanner;
  * @since   2022-08-28
  */
 public class Ui {
-    static final String GREET_MESSAGE = "Hello I'm duke.Duke\nWhat can I do for you?\n";
+    static final String GREET_MESSAGE = "Hello I'm Bert.\nWhat can I do for you?\n";
     static final String QUIT_MESSAGE = "Bye. Hope to see you again soon!";
     static final String MARK_TASK_MESSAGE =  "Nice! I've marked this task as done:\n  ";
     static final String UNMARK_TASK_MESSAGE = "OK, I've marked this task as not done yet:\n  ";
-    /**
-     * Prints out the greeting message
-     * when the user starts the Duke program
-     */
-    public String greet() {
-        return GREET_MESSAGE;
-    }
 
     /**
      * Prints out the quitting message

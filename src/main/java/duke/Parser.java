@@ -68,7 +68,7 @@ public class Parser {
                 Task taskToDelete = getTaskToDelete(commandBody,commandBodyWordCount,taskList);
                 return ui.deleteTask(taskList, taskToDelete);
                 case "find":
-                List<Task> taskListWithKeyWord = getAllTaskWithKeyword(commandBody, taskList);
+                List<Task> taskListWithKeyWord = getTaskListWithKeyword(commandBody, taskList);
                 return ui.printTasksWithKeyword(taskListWithKeyWord);
                 case "todo":
                 Task toDoToAdd = getToDoToAdd(commandBody,commandBodyWordCount);
@@ -170,7 +170,7 @@ public class Parser {
             throw new DukeException("OOPS!!! Please set date of deadline with /by.\n");
         }
         String description = commandBody.substring(0,commandBody.indexOf("/by") - 1);
-        String date = commandBody.substring(commandBody.indexOf("/by") + 4);
+        String date = commandBody.substring(commandBody.indexOf("/by") + "/by ".length());
         String formattedDate = Parser.parseDate(date);
         return new Deadline(description, formattedDate);
     }
@@ -191,7 +191,7 @@ public class Parser {
             throw new DukeException("OOPS!!! Please set date of at with /at.\n");
         }
         String description = commandBody.substring(0,commandBody.indexOf("/at") - 1);
-        String date = commandBody.substring(commandBody.indexOf("/at") + 4);
+        String date = commandBody.substring(commandBody.indexOf("/at") + "/at ".length());
         return new Event(description, date);
     }
 
@@ -203,7 +203,7 @@ public class Parser {
      * @return list of tasks containing user's search keyword
      * @throws DukeException This tells the user if no such task contains the user's search keyword
      */
-    private static List<Task> getAllTaskWithKeyword(String keyword, TaskList taskList) throws DukeException {
+    private static List<Task> getTaskListWithKeyword(String keyword, TaskList taskList) throws DukeException {
         List<Task> taskListWithKeyword = new ArrayList<>();
             for (int i = 0; i < taskList.getSize(); i++) {
                 if (taskList.getTask(i).toString().contains(keyword)) {
