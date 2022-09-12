@@ -81,10 +81,33 @@ public class Ui {
         String reply = "Here are the tasks in your list:\n";
         for (int i = 0; i < tasks.getLength(); i++) {
             int index = i + 1;
-            reply += index + ". " + tasks.getTask(index).toString() + "\n";
+            reply += index + ". " + tasks.getTask(i).toString() + "\n";
         }
         return reply;
     }
+
+    /**
+     * Prints out confirmation that a task has been marked as done
+     *
+     * @param task task marked as done
+     * @return String confirmation
+     */
+    public String printMarked(Task task) {
+        return "Nice! I've marked this task as done: \n"
+                + task.toString();
+    }
+
+    /**
+     * Prints out confirmation that a task has been marked as not done
+     *
+     * @param task task marked as done
+     * @return String confirmation
+     */
+    public String printUnmarked(Task task) {
+        return "Nice! I've marked this task as not done yet: \n"
+                + task.toString();
+    }
+
 
     /**
      * Prints out the matching tasks

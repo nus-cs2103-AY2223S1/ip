@@ -16,7 +16,6 @@ public class Duke {
     private TaskStorage storage;
     private TaskList taskList;
     private Ui ui;
-    private DukeHandler handler;
 
     private Parser parser;
 
@@ -24,7 +23,6 @@ public class Duke {
         ui = new Ui();
         storage = new TaskStorage(filePath);
         taskList = storage.loadTask();
-        handler = new DukeHandler(storage, taskList, ui);
     }
 
     /**
