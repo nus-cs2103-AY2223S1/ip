@@ -25,7 +25,7 @@ public abstract class CommandHandler {
     protected final Matcher commandRegexMatcher;
 
     /**
-     * Constructor for class CommandHandler
+     * Constructor for class CommandHandler.
      *
      * @param commandStr input command string.
      * @param commandRegexPattern regex pattern for command string validation.

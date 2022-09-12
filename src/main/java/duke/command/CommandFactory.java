@@ -34,8 +34,8 @@ public class CommandFactory {
      *
      * @param commandStr input command string.
      * @return command handler to execute input command string.
-     * @throws CommandException if input command string does not pass validation checks in a command.
-     *                          handler
+     * @throws CommandException if input command string does not pass validation checks in a command
+     *                          handler.
      */
     public static CommandHandler getCommandHandler(String commandStr) throws CommandException {
         switch (parseCommand(commandStr)) {

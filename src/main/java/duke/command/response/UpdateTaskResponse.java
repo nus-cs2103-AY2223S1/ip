@@ -5,10 +5,10 @@ import duke.data.tasks.Task;
 public class UpdateTaskResponse extends CommandResponse {
 
     /**
-     * Constructor for UpdateTaskResponse class
+     * Constructor for UpdateTaskResponse class.
      *
-     * @param updatedTask a newly updated task
-     * @param updateType  type of update
+     * @param updatedTask a newly updated task.
+     * @param updateType  type of update.
      */
     public UpdateTaskResponse(Task updatedTask, UpdateType updateType) {
         super(String.format(updateType.updateResponseTemplate, updatedTask), true, false);
@@ -22,9 +22,9 @@ public class UpdateTaskResponse extends CommandResponse {
         public final String updateResponseTemplate;
 
         /**
-         * Constructor for UpdateType enum
+         * Constructor for UpdateType enum.
          *
-         * @param updateResponseTemplate response string template for an update event
+         * @param updateResponseTemplate response string template for an update event.
          */
         UpdateType(String updateResponseTemplate) {
             this.updateResponseTemplate = updateResponseTemplate;

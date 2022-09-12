@@ -18,9 +18,9 @@ public abstract class Task implements Serializable {
     protected boolean isMarked;
 
     /**
-     * Constructor for Task class
+     * Constructor for Task class.
      *
-     * @param title title of the task
+     * @param title title of the task.
      */
     Task(String title) {
         this.title = title;
@@ -31,7 +31,7 @@ public abstract class Task implements Serializable {
     }
 
     /**
-     * Extract out all tags from the task title
+     * Extracts out all tags from the task title.
      */
     private void extractTags() {
         Matcher matcher = tagRegexPattern.matcher(this.title);
@@ -54,14 +54,14 @@ public abstract class Task implements Serializable {
     }
 
     /**
-     * Mark a task as completed
+     * Marks a task as completed.
      */
     public void mark() {
         this.isMarked = true;
     }
 
     /**
-     * Mark a task as uncompleted
+     * Marks a task as uncompleted.
      */
     public void unmark() {
         this.isMarked = false;

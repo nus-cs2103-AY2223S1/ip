@@ -12,10 +12,10 @@ public class DeleteTaskResponse extends CommandResponse {
     );
 
     /**
-     * Constructor for DeleteTaskResponse class
+     * Constructor for DeleteTaskResponse class.
      *
-     * @param deletedTask deleted task from the task list
-     * @param numTasks the current number of tasks in the task list
+     * @param deletedTask deleted task from the task list.
+     * @param numTasks the current number of tasks in the task list.
      */
     public DeleteTaskResponse(Task deletedTask, int numTasks) {
         super(String.format(DELETE_TASK_RESPONSE_TEMPLATE, deletedTask, numTasks), true, false);

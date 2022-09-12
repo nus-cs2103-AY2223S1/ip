@@ -15,9 +15,9 @@ public abstract class CommandUpdateTaskHandler extends CommandHandler {
     }
 
     /**
-     * Gets the selected task index string in an update command
+     * Gets the selected task index string in an update command.
      *
-     * @return string representation of task index
+     * @return string representation of task index.
      */
     protected abstract String getSelectedTaskIdStr();
 
