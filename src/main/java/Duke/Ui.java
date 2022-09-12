@@ -29,7 +29,28 @@ public class Ui {
                 + "deadline - deadline <task /by yyyy-mm-dd>\nevent - event <task /by yyyy-mm-dd>\n"
                 + "delete - delete <index>\nmark - mark <index>\nunmark - unmark <index>\nfind - find <task>\n"
                 + "undo - undo <function>");
+        System.out.println("Hello! I'm Duke\nHow may I help you?\nlist - lists out your tasks\nbye - quit\ntodo - todo <task>\n" +
+                "deadline - deadline <task /by yyyy-mm-dd>\nevent - event <task /by yyyy-mm-dd>\n" +
+                "delete - delete <index>\nmark - mark <index>\nunmark - unmark <index>\nfind - find <task>\n" +
+                "undo - undo <function>");
         return sb.toString();
+    }
+
+    /**
+     * Reads user command.
+     *
+     * @return String of user command.
+     */
+    public String readCommand() {
+        String fullCommand = sc.nextLine();
+        return fullCommand;
+    }
+
+    /**
+     * Prints straight line.
+     */
+    public void showLine() {
+        System.out.println("____________________________________________________________");
     }
 
     /**
@@ -44,6 +65,7 @@ public class Ui {
         for (int index = 0; index < listOfTasks.getSize(); index++) {
             sb.append(index + 1 + ". " + listOfTasks.getTask(index).toString());
             sb.append(System.lineSeparator());
+            System.out.println(index + 1 + ". " + listOfTasks.getTask(index).toString());
         }
         return sb.toString();
     }
@@ -58,6 +80,9 @@ public class Ui {
     public String showMarkedTask(int taskIndex, TaskList listOfTasks) {
         sb = new StringBuilder();
         sb.append("Nice! I've marked this task as done:\n" + "["
+                + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
+                + listOfTasks.getTask(taskIndex).getDescription());
+        System.out.println("Nice! I've marked this task as done:\n" + "["
                 + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
                 + listOfTasks.getTask(taskIndex).getDescription());
         return sb.toString();
@@ -75,6 +100,9 @@ public class Ui {
         sb.append("Ok, I've marked this task as not done yet:\n" + "["
                 + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
                 + listOfTasks.getTask(taskIndex).getDescription());
+        System.out.println("Ok, I've marked this task as not done yet:\n" + "["
+                + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
+                + listOfTasks.getTask(taskIndex).getDescription());
         return sb.toString();
     }
 
@@ -88,6 +116,8 @@ public class Ui {
     public String showToDoTask(Task toDoTask, TaskList listOfTasks) {
         sb = new StringBuilder();
         sb.append("Got it. I've added this task:\n" + toDoTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println("Got it. I've added this task:\n" + toDoTask + "\nNow you have "
                 + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
         return sb.toString();
     }
@@ -103,6 +133,8 @@ public class Ui {
         sb = new StringBuilder();
         sb.append("Got it. I've added this task:\n" + deadlineTask + "\nNow you have "
                 + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println("Got it. I've added this task:\n" + deadlineTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
         return sb.toString();
     }
 
@@ -117,6 +149,8 @@ public class Ui {
         sb = new StringBuilder();
         sb.append("Got it. I've added this task:\n" + eventTask + "\nNow you have "
                 + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println("Got it. I've added this task:\n" + eventTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
         return sb.toString();
     }
 
@@ -130,6 +164,8 @@ public class Ui {
     public String showDeletedTask(Task deletedTask, TaskList listOfTasks) {
         sb = new StringBuilder();
         sb.append("Noted. I've removed this task:\n" + deletedTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println("Noted. I've removed this task:\n" + deletedTask + "\nNow you have "
                 + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
         return sb.toString();
     }
@@ -146,6 +182,7 @@ public class Ui {
         for (int index = 0; index < matchingTasks.getSize(); index++) {
             sb.append(index + 1 + ". " + matchingTasks.getTask(index).toString());
             sb.append(System.lineSeparator());
+            System.out.println(index + 1 + ". " + matchingTasks.getTask(index).toString());
         }
         return sb.toString();
     }
@@ -161,6 +198,8 @@ public class Ui {
         sb = new StringBuilder();
         sb.append("Got it. I've added back this task:\n" + undoTask + "\nNow you have "
                 + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println("Got it. I've added back this task:\n" + undoTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
         return sb.toString();
     }
 
@@ -174,6 +213,7 @@ public class Ui {
         sb = new StringBuilder();
         sb.append(errorMessage);
         sb.append(System.lineSeparator());
+        System.out.println(errorMessage);
         return sb.toString();
     }
 
@@ -184,6 +224,7 @@ public class Ui {
         sb = new StringBuilder();
         sb.append("Unable to load data");
         sb.append(System.lineSeparator());
+        System.out.println("Unable to load data");
         return sb.toString();
     }
 
@@ -194,6 +235,7 @@ public class Ui {
         sb = new StringBuilder();
         sb.append("Bye. Hope to see you again soon!");
         sb.append(System.lineSeparator());
+        System.out.println("Bye. Hope to see you again soon!");
         return sb.toString();
     }
 }

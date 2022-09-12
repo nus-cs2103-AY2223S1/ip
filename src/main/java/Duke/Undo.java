@@ -79,4 +79,17 @@ public class Undo {
         this.taskStack.remove(this.taskStack.size() - 1);
         return lastTask;
     }
+
+    /**
+     * Checks if command stack is empty.
+     *
+     * @return true if empty and false if not.
+     */
+    public boolean isCommandStackEmpty() {
+        if (this.commandStack.size() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

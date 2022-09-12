@@ -7,6 +7,7 @@ import java.time.format.DateTimeParseException;
  * Parser class object.
  */
 public class Parser {
+    public static boolean stopRunning = false;
 
     /**
      * Creates a Parser object by parsing the commands from user.
@@ -26,6 +27,7 @@ public class Parser {
 
         switch (firstWord) {
         case "BYE":
+            stopRunning = true;
             reply = ui.showBye();
             break;
 
@@ -42,7 +44,7 @@ public class Parser {
                 undo.addLastCommand("MARK");
                 undo.addLastIndex(taskIndex);
             } catch (ArrayIndexOutOfBoundsException e) {
-                return ":( OOPS!!! You're missing an index for mark.";
+                ui.showError(":( OOPS!!! You're missing an index for mark.");
             }
             break;
 
@@ -55,7 +57,7 @@ public class Parser {
                 undo.addLastCommand("UNMARK");
                 undo.addLastIndex(taskIndex);
             } catch (ArrayIndexOutOfBoundsException e) {
-                return ":( OOPS!!! You're missing an index for unmark.";
+                ui.showError(":( OOPS!!! You're missing an index for unmark.");
             }
             break;
 
@@ -68,7 +70,7 @@ public class Parser {
                 storage.writeToTextFile(listOfTasks);
                 undo.addLastCommand("TODO");
             } catch (StringIndexOutOfBoundsException e) {
-                return ":( OOPS!!! The description of a todo cannot be empty.";
+                ui.showError(":( OOPS!!! The description of a todo cannot be empty.");
             }
             break;
 
@@ -83,11 +85,11 @@ public class Parser {
                 storage.writeToTextFile(listOfTasks);
                 undo.addLastCommand("DEADLINE");
             } catch (StringIndexOutOfBoundsException e) {
-                return ":( OOPS!!! The description of a deadline cannot be empty.";
+                ui.showError(":( OOPS!!! The description of a deadline cannot be empty.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                return ":( OOPS!!! You're missing some descriptions for your deadline.";
+                ui.showError(":( OOPS!!! You're missing some descriptions for your deadline.");
             } catch (DateTimeParseException e) {
-                return ":( OOPS!!! You need to use yyyy-mm-dd for date format.";
+                ui.showError(":( OOPS!!! You need to use yyyy-mm-dd for date format.");
             }
             break;
 
@@ -102,11 +104,11 @@ public class Parser {
                 storage.writeToTextFile(listOfTasks);
                 undo.addLastCommand("EVENT");
             } catch (StringIndexOutOfBoundsException e) {
-                return ":( OOPS!!! The description of an event cannot be empty.";
+                ui.showError(":( OOPS!!! The description of an event cannot be empty.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                return ":( OOPS!!! You're missing some descriptions for your event.";
+                ui.showError(":( OOPS!!! You're missing some descriptions for your event.");
             } catch (DateTimeParseException e) {
-                return ":( OOPS!!! You need to use yyyy-mm-dd for date format.";
+                ui.showError(":( OOPS!!! You need to use yyyy-mm-dd for date format.");
             }
             break;
 
@@ -121,7 +123,7 @@ public class Parser {
                 undo.addLastIndex(deleteIndex);
                 undo.addLastTask(deletedTask);
             } catch (ArrayIndexOutOfBoundsException e) {
-                return ":( OOPS!!! You're missing an index for delete.";
+                ui.showError(":( OOPS!!! You're missing an index for delete.");
             }
             break;
 
@@ -136,11 +138,15 @@ public class Parser {
                 }
                 reply = ui.showFindTask(matchingTasks);
             } catch (ArrayIndexOutOfBoundsException e) {
-                return ":( OOPS!!! The description of a find cannot be empty.";
+                ui.showError(":( OOPS!!! The description of a find cannot be empty.");
             }
             break;
 
         case "UNDO":
+            if (undo.isCommandStackEmpty()) {
+                reply = ui.showError("There are no previous commands.");
+                break;
+            }
             String lastCommand = undo.popLastCommand();
             switch (lastCommand) {
             case "MARK":
@@ -189,7 +195,7 @@ public class Parser {
             break;
 
         default:
-            reply = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+            reply = ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
             break;
         }
         return reply;
