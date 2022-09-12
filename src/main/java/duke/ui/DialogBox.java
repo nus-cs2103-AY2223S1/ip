@@ -1,4 +1,4 @@
-package Duke.ui;
+package duke.ui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -59,7 +59,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Create a DialogBox for a user.
+     * Creates a DialogBox for a user.
      *
      * @param text  a string containing the input from the user.
      * @param image the image of the user.
@@ -70,7 +70,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Create a DialogBox for duke.
+     * Creates a DialogBox for duke.
      *
      * @param text  a string containing the output from Duke.
      * @param image the image of Duke.

@@ -1,6 +1,6 @@
-package Duke.ui;
+package duke.ui;
 
-import Duke.Duke;
+import duke.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -35,7 +35,7 @@ public class GuiUi extends AnchorPane {
     }
 
     /**
-     * Set a Duke for GuiUi.
+     * Sets a Duke for GuiUi.
      *
      * @param duke a Duke for GuiUi.
      */
@@ -66,7 +66,7 @@ public class GuiUi extends AnchorPane {
     }
 
     /**
-     * Display the user input to the user.
+     * Displays the user input to the user.
      */
     public void displayInput(String input) {
         dialogContainer.getChildren().add(
@@ -75,7 +75,7 @@ public class GuiUi extends AnchorPane {
     }
 
     /**
-     * Display the Duke output to the user.
+     * Displays the Duke output to the user.
      */
     public void displayOutput(String output) {
         dialogContainer.getChildren().add(

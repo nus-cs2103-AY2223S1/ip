@@ -1,6 +1,6 @@
-package Duke.task;
+package duke.task;
 
-import Duke.enums.Command;
+import duke.enums.Command;
 
 /**
  * The {@code TaskTodo} class stores relevant information for a todoTask.
@@ -8,7 +8,7 @@ import Duke.enums.Command;
 public class TaskTodo extends Task {
 
     /**
-     * Constructor for a taskTodo.
+     * Constructs a new taskTodo.
      *
      * @param taskName a string representing the name of the task.
      */
@@ -17,7 +17,7 @@ public class TaskTodo extends Task {
     }
 
     /**
-     * Constructor for a taskTodo.
+     * Constructs a taskTodo specifying whether it is done.
      *
      * @param taskName a string representing the name of the task.
      * @param done     a boolean representing if the task is done.

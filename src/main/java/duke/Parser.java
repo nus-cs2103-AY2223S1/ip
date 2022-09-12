@@ -1,13 +1,13 @@
-package Duke;
+package duke;
 
-import Duke.enums.Command;
-import Duke.enums.SecondaryCommand;
-import Duke.exceptions.DukeException;
-import Duke.exceptions.InvalidCommandException;
-import Duke.exceptions.InvalidFindException;
-import Duke.exceptions.InvalidIndexException;
-import Duke.exceptions.InvalidSecondaryCommandException;
-import Duke.exceptions.InvalidTaskNameException;
+import duke.enums.Command;
+import duke.enums.SecondaryCommand;
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidCommandException;
+import duke.exceptions.InvalidFindException;
+import duke.exceptions.InvalidIndexException;
+import duke.exceptions.InvalidSecondaryCommandException;
+import duke.exceptions.InvalidTaskNameException;
 
 /**
  * The {@code Parser} class formats a string input into an input object.

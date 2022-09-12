@@ -1,4 +1,4 @@
-package Duke.exceptions;
+package duke.exceptions;
 
 /**
  * {@code InvalidCommandException} is an exception thrown when a
@@ -6,7 +6,7 @@ package Duke.exceptions;
  */
 public class InvalidCommandException extends DukeException {
     /**
-     * The constructor for an invalid command exception.
+     * Constructs an invalid command exception.
      */
     public InvalidCommandException(String message) {
         super(message);

@@ -1,8 +1,8 @@
-package Duke.task;
+package duke.task;
 
-import Duke.Parser;
-import Duke.exceptions.DukeException;
-import Duke.exceptions.InvalidIndexException;
+import duke.Parser;
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidIndexException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,14 +17,16 @@ public class TaskList {
     private final ArrayList<? super Task> tasks; // Stores the task created by the user.
 
     /**
-     * Constructor for a task list with no task.
+     * Constructs a task list with no task.
      */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
     /**
-     * Constructor for a task list with task loaded from storage.
+     * Constructs a task list with task loaded from storage.
+     *
+     * @param scanner a scanner that stores information of tasks.
      */
     public TaskList(Scanner scanner) throws DukeException {
         tasks = new ArrayList<>();
@@ -90,7 +92,7 @@ public class TaskList {
     }
 
     /**
-     * Delete a task given the index of it in the taskList.
+     * Deletes a task given the index of it in the taskList.
      *
      * @param index an integer representing the index of task in the task list.
      */
@@ -101,7 +103,7 @@ public class TaskList {
     }
 
     /**
-     * Check a task as done given the index of it in the taskList.
+     * Checks a task as done given the index of it in the taskList.
      *
      * @param index an integer representing the index of task in the task list.
      */
@@ -114,7 +116,7 @@ public class TaskList {
     }
 
     /**
-     * Uncheck a task as not done given the index of it in the taskList.
+     * Unchecks a task as not done given the index of it in the taskList.
      *
      * @param index an integer representing the index of task in the task list.
      */
@@ -127,7 +129,7 @@ public class TaskList {
     }
 
     /**
-     * Validate if the index is valid.
+     * Validates if the index is valid.
      *
      * @param index an integer representing the index of task in the task list.
      * @throws InvalidIndexException the error thrown when the index is invalid.

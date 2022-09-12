@@ -1,5 +1,5 @@
-import Duke.task.TaskTodo;
-import Duke.ui.NekoResponses;
+import duke.task.TaskTodo;
+import duke.ui.NekoResponses;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;

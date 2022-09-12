@@ -1,9 +1,9 @@
-package Duke.ui;
+package duke.ui;
 
-import Duke.enums.Command;
-import Duke.enums.SecondaryCommand;
-import Duke.task.Task;
-import Duke.task.TaskList;
+import duke.enums.Command;
+import duke.enums.SecondaryCommand;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * The {@code CliUi} class contains string outputs used throughout the application for Cli.

@@ -1,4 +1,4 @@
-package Duke.exceptions;
+package duke.exceptions;
 
 /**
  * {@code InvalidIndexException} is an exception thrown when an
@@ -6,7 +6,7 @@ package Duke.exceptions;
  */
 public class InvalidIndexException extends DukeException {
     /**
-     * The constructor for an invalid index exception.
+     * Constructs an invalid index exception.
      *
      * @param message the message to be displayed to the users in the event of the exception.
      */

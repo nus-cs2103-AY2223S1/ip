@@ -1,9 +1,9 @@
-package Duke.task;
+package duke.task;
 
-import Duke.enums.Command;
-import Duke.enums.SecondaryCommand;
-import Duke.exceptions.InvalidDateException;
-import Duke.utils.Utils;
+import duke.enums.Command;
+import duke.enums.SecondaryCommand;
+import duke.exceptions.InvalidDateException;
+import duke.utils.Utils;
 
 import java.time.LocalDate;
 
@@ -15,7 +15,7 @@ public class TaskEvent extends Task {
     private final LocalDate taskAt; // The date the task is supposed to occur at.
 
     /**
-     * Constructor for a task event object.
+     * Constructs a new task event.
      *
      * @param taskName a string representing the name of the task.
      * @param at       a string representing the time of the task.
@@ -26,7 +26,7 @@ public class TaskEvent extends Task {
     }
 
     /**
-     * Constructor for a task event.
+     * Constructs a task event specifying whether it is done.
      *
      * @param taskName a string representing the name of the task.
      * @param at       a string representing the time of the task.

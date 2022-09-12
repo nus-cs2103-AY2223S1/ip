@@ -1,36 +1,36 @@
-package Duke.task;
+package duke.task;
 
 /**
  * The {@code Task} stores relevant information for a task.
- * It contains the {@link Task#taskName task name}, and a {@link Task#done boolean} to indicate if
+ * It contains the {@link Task#taskName task name}, and a {@link Task#isDone boolean} to indicate if
  * it is done or not.
  */
 public abstract class Task {
 
     final private String taskName;
-    private boolean done;
+    private boolean isDone;
     public static final String DONE = "DONE";
     public static final String UNDONE = "UNDONE";
 
     /**
-     * Constructor for a task. All task and undone from the start.
+     * Constructs a task. All task and undone from the start.
      *
      * @param taskName a string representing the name of the task.
      */
     public Task(String taskName) {
         this.taskName = taskName;
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
      * Constructor for a task specifying if it is already done.
      *
      * @param taskName a string representing the name of the task.
-     * @param done     a boolean specifying if a task is done.
+     * @param isDone   a boolean specifying if a task is done.
      */
-    public Task(String taskName, boolean done) {
+    public Task(String taskName, boolean isDone) {
         this.taskName = taskName;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     /**
@@ -46,14 +46,14 @@ public abstract class Task {
      * Marks a task as done.
      */
     public void markDone() {
-        done = true;
+        isDone = true;
     }
 
     /**
      * Marks a task as undone.
      */
     public void markUndone() {
-        done = false;
+        isDone = false;
     }
 
     /**
@@ -63,7 +63,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        String checkbox = done ? "[X] " : "[ ] ";
+        String checkbox = isDone ? "[X] " : "[ ] ";
         return checkbox + taskName;
     }
 
@@ -73,7 +73,7 @@ public abstract class Task {
      * @return a string representing the task for storage.
      */
     public String toStorageString() {
-        String doneString = done ? DONE : UNDONE;
+        String doneString = isDone ? DONE : UNDONE;
         return doneString + "\n";
     }
 }

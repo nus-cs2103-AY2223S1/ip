@@ -1,4 +1,4 @@
-package Duke.exceptions;
+package duke.exceptions;
 
 /**
  * {@code InvalidTaskNameException} is an exception thrown when a
@@ -6,7 +6,7 @@ package Duke.exceptions;
  */
 public class InvalidTaskNameException extends DukeException {
     /**
-     * The constructor for an invalid task name exception.
+     * Constructs an invalid task name exception.
      */
     public InvalidTaskNameException() {
         super("Please include a valid task name");

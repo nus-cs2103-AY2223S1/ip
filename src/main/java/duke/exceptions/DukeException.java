@@ -1,4 +1,4 @@
-package Duke.exceptions;
+package duke.exceptions;
 
 /**
  * {@code DukeException} is the superclass of those
@@ -6,7 +6,7 @@ package Duke.exceptions;
  */
 public class DukeException extends Exception {
     /**
-     * The constructor for a Duke exception.
+     * Constructs a Duke exception.
      *
      * @param message the message to be displayed to the users in the event of the exception.
      */

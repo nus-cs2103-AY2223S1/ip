@@ -1,9 +1,9 @@
-package Duke.task;
+package duke.task;
 
-import Duke.enums.Command;
-import Duke.enums.SecondaryCommand;
-import Duke.exceptions.InvalidDateException;
-import Duke.utils.Utils;
+import duke.enums.Command;
+import duke.enums.SecondaryCommand;
+import duke.exceptions.InvalidDateException;
+import duke.utils.Utils;
 
 import java.time.LocalDate;
 
@@ -15,7 +15,7 @@ public class TaskDeadline extends Task {
     private final LocalDate taskBy; // The date the task is supposed to be completed by.
 
     /**
-     * Constructor for a task deadline.
+     * Constructs a new task deadline.
      *
      * @param taskName a string representing the name of the task.
      * @param by       a string representing the deadline for the task.
@@ -26,7 +26,7 @@ public class TaskDeadline extends Task {
     }
 
     /**
-     * Constructor for a task deadline.
+     * Constructs a task deadline specifying whether it is done.
      *
      * @param taskName a string representing the name of the task.
      * @param by       a string representing the deadline for the task.

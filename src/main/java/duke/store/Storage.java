@@ -1,8 +1,8 @@
-package Duke.store;
+package duke.store;
 
-import Duke.exceptions.FileFailedToLoadException;
-import Duke.task.Task;
-import Duke.task.TaskList;
+import duke.exceptions.FileFailedToLoadException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,7 +20,7 @@ public class Storage {
     private final String filepath; // Path name of file that tasks are stored in.
 
     /**
-     * Constructor for a duke class.
+     * Constructs a storage with a filepath.
      *
      * @param path String containing filepath to store tasks in.
      */
@@ -31,6 +31,9 @@ public class Storage {
         scanner = new Scanner(file);
     }
 
+    /**
+     * Creates a file if it does not already exist.
+     */
     private void createFileIfFileDoesNotExist(File file) throws IOException, FileFailedToLoadException {
         if (file.exists()) {
             return;
@@ -43,7 +46,7 @@ public class Storage {
     }
 
     /**
-     * Return a scanner that outputs content in the saved file.
+     * Returns a scanner that outputs content in the saved file.
      */
     public Scanner load() {
         return scanner;

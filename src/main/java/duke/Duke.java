@@ -1,21 +1,21 @@
-package Duke;
+package duke;
 
-import Duke.exceptions.DukeException;
-import Duke.exceptions.InvalidCommandException;
-import Duke.exceptions.InvalidDateException;
-import Duke.exceptions.InvalidFindException;
-import Duke.exceptions.InvalidIndexException;
-import Duke.exceptions.InvalidSecondaryCommandException;
-import Duke.exceptions.InvalidTaskNameException;
-import Duke.store.Storage;
-import Duke.task.Task;
-import Duke.task.TaskDeadline;
-import Duke.task.TaskEvent;
-import Duke.task.TaskList;
-import Duke.task.TaskTodo;
-import Duke.ui.GuiUi;
-import Duke.ui.NekoResponses;
-import Duke.utils.Utils;
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidCommandException;
+import duke.exceptions.InvalidDateException;
+import duke.exceptions.InvalidFindException;
+import duke.exceptions.InvalidIndexException;
+import duke.exceptions.InvalidSecondaryCommandException;
+import duke.exceptions.InvalidTaskNameException;
+import duke.store.Storage;
+import duke.task.Task;
+import duke.task.TaskDeadline;
+import duke.task.TaskEvent;
+import duke.task.TaskList;
+import duke.task.TaskTodo;
+import duke.ui.GuiUi;
+import duke.ui.NekoResponses;
+import duke.utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class Duke {
     private static final String filepath = "data" + File.separator + "dukeData.txt";
 
     /**
-     * Load the {@link Duke#storage storage} and {@link Duke#tasks tasklist} for Duke.
+     * Loads the {@link Duke#storage storage} and {@link Duke#tasks tasklist} for Duke.
      */
     public void load() {
         initialiseStorage();
@@ -52,7 +52,7 @@ public class Duke {
     }
 
     /**
-     * Create a {@link Duke#storage storage} based on the specified {@link Duke#filepath}.
+     * Creates a {@link Duke#storage storage} based on the specified {@link Duke#filepath}.
      */
     private void initialiseStorage() {
         try {
@@ -63,7 +63,7 @@ public class Duke {
     }
 
     /**
-     * Load the {@link Duke#tasks tasks} from the {@link Duke#storage storage}.
+     * Loads the {@link Duke#tasks tasks} from the {@link Duke#storage storage}.
      */
     private void loadTaskFromStorageIntoTasks() {
         try {
@@ -79,14 +79,14 @@ public class Duke {
     }
 
     /**
-     * Display a welcome message to the user.
+     * Displays a welcome message to the user.
      */
     private void welcomeUser() {
         guiUi.displayOutput(nekoResponses.startPrompt());
     }
 
     /**
-     * Return an output from the input provided by a user.
+     * Returns an output from the input provided by a user.
      *
      * @param inputString a string input from the user.
      * @return a string output from Duke.
@@ -150,7 +150,7 @@ public class Duke {
     }
 
     /**
-     * Terminate the programme upon completion.
+     * Terminates the programme upon completion.
      */
     private void terminate() {
         try {
@@ -171,7 +171,7 @@ public class Duke {
     }
 
     /**
-     * List all current task in the taskList.
+     * Lists all current task in the taskList.
      */
     private String listTasks() {
         assert tasks != null : "The tasks should not be null when listing them";
@@ -179,7 +179,7 @@ public class Duke {
     }
 
     /**
-     * Find all current task in the taskList base on a string.
+     * Finds all current task in the taskList base on a string.
      */
     private String findTasks(String string) {
         assert tasks != null : "The tasks should not be null when finding tasks";
@@ -187,7 +187,7 @@ public class Duke {
     }
 
     /**
-     * Mark a task as done given the index of it in the taskList.
+     * Marks a task as done given the index of it in the taskList.
      *
      * @param index an integer representing the index of task in the task list.
      */
@@ -201,7 +201,7 @@ public class Duke {
     }
 
     /**
-     * Mark a task as undone given the index of it in the taskList.
+     * Marks a task as undone given the index of it in the taskList.
      *
      * @param index an integer representing the index of task in the task list.
      */
@@ -215,7 +215,7 @@ public class Duke {
     }
 
     /**
-     * Delete a task given the index of it in the taskList.
+     * Deletes a task given the index of it in the taskList.
      *
      * @param index an integer representing the index of task in the task list.
      */
@@ -229,7 +229,7 @@ public class Duke {
     }
 
     /**
-     * Add the task given into the taskList.
+     * Adds the task given into the taskList.
      *
      * @param <T>  the type of the task we would like to add to the task list.
      * @param task the task we would like to add to the task list.
@@ -241,7 +241,7 @@ public class Duke {
     }
 
     /**
-     * Set a gui for Duke.
+     * Sets a gui for Duke.
      *
      * @param guiUi a guiUi for Duke.
      */

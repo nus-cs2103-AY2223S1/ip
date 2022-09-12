@@ -1,4 +1,4 @@
-package Duke.enums;
+package duke.enums;
 
 /**
  * Command enum represents the possible commands that a user can provide to duke.
@@ -20,7 +20,7 @@ public enum Command {
     private final String value; // Value provided by user.
 
     /**
-     * The constructor for the Command enum.
+     * Constructs a Command enum.
      *
      * @param commandString the value representing the string value of the enum.
      */

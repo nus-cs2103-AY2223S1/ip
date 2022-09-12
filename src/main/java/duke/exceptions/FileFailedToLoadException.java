@@ -1,4 +1,4 @@
-package Duke.exceptions;
+package duke.exceptions;
 
 /**
  * {@code FileFailedToLoadException} is an exception thrown when a
@@ -6,7 +6,7 @@ package Duke.exceptions;
  */
 public class FileFailedToLoadException extends DukeException {
     /**
-     * The constructor for a file failed to load exception.
+     * Constructs a file failed to load exception.
      */
     public FileFailedToLoadException() {
         super("File failed to load!");

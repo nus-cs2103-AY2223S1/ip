@@ -1,6 +1,6 @@
-package Duke;
+package duke;
 
-import Duke.ui.GuiUi;
+import duke.ui.GuiUi;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

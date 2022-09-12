@@ -1,4 +1,4 @@
-package Duke.enums;
+package duke.enums;
 
 /**
  * Secondary commands that can be used by users in the duke application.
@@ -12,7 +12,7 @@ public enum SecondaryCommand {
     private final int length;   // Length of the string provided by the user
 
     /**
-     * The constructor for the Secondary Command enum.
+     * Constructs a Secondary Command enum.
      *
      * @param secondaryCommandString the value representing the string value of the enum.
      * @param secondaryCommandLength the length of the string representing the value of the enum.
