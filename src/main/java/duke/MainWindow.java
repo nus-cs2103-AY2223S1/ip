@@ -39,7 +39,7 @@ public class MainWindow extends AnchorPane {
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBoxUser.getUserDialog(input, userImage),
-                DialogBoxFalcon.getDukeDialog(response, falconImage)
+                DialogBoxFalcon.getFalconDialog(response, falconImage)
         );
         userInput.clear();
     }

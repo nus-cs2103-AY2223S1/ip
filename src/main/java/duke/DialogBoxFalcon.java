@@ -26,7 +26,7 @@ public class DialogBoxFalcon extends HBox {
 
     private DialogBoxFalcon(String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBoxFalconFalcon.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBoxFalcon.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
@@ -49,10 +49,6 @@ public class DialogBoxFalcon extends HBox {
     }
 
     public static DialogBoxFalcon getFalconDialog(String text, Image img) {
-        return new DialogBoxFalcon(text, img);
-    }
-
-    public static DialogBoxFalcon getDukeDialog(String text, Image img) {
         var DialogBoxFalcon = new DialogBoxFalcon(text, img);
         DialogBoxFalcon.flip();
         return DialogBoxFalcon;
