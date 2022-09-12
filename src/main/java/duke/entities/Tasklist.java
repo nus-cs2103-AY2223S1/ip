@@ -2,6 +2,8 @@ package duke.entities;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /** Tasklist entity. */
 public class Tasklist implements Iterable<Task> {
@@ -36,6 +38,20 @@ public class Tasklist implements Iterable<Task> {
         Task item = this.tasks.get(index);
         this.tasks.remove(index);
         return item;
+    }
+
+    /**
+     * Returns a List of tasks that match the given query.
+     *
+     * @param query
+     * @return List of tasks.
+     */
+    public List<Task> find(String query) {
+        return this
+                .tasks
+                .stream()
+                .filter(t -> t.toString().contains(query))
+                .collect(Collectors.toList());
     }
 
     public int size() {
