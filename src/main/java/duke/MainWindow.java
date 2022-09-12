@@ -49,10 +49,14 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        //@@author LikHern-reused
+        //Reused from https://stackoverflow.com/questions/39235545/add-delay-after-platform-runlater-runnable
+        // with minor modifications
         KeyFrame kf1 = new KeyFrame(Duration.seconds(0), e -> displayUserDialogAndDukeDialog(input, response));
         KeyFrame kf2 = new KeyFrame(Duration.seconds(1), e -> exitApplication());
         Timeline timeline = new Timeline(kf1, kf2);
         Platform.runLater(timeline::play);
+        //@@author
     }
 
     @FXML
