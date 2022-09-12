@@ -2,7 +2,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 /*Week 2 done*/
 /*Level 1*/
@@ -87,7 +91,7 @@ public class Duke {
         return NumberOfItems;
     }
 
-    public static void main(String[] args) throws DukeException, IOException {
+    public static void main(String[] args) throws DukeException, IOException, ParseException {
 
         Scanner input = new Scanner(System.in);
 
@@ -99,6 +103,8 @@ public class Duke {
 //                System.out.println("We had to make a new file.");
             log.createNewFile();
         }
+
+        //Reading in data from the file
         Scanner readfile = new Scanner(log);
         while(readfile.hasNextLine()) {
             String firsttask = readfile.next();
@@ -130,10 +136,7 @@ public class Duke {
                     }
                 }
                 String skipbar2 = readfile.next();
-                String deadlineday =  readfile.next().trim();
-                System.out.println(status);
-                System.out.println(addtask);
-                System.out.println(deadlineday);
+                String deadlineday =  readfile.nextLine().trim();
                 Deadlines d = new Deadlines(addtask, deadlineday);
                 if (status == 1){
                     d.setStatus();
@@ -155,9 +158,6 @@ public class Duke {
                 }
                 String skipbar2 = readfile.next();
                 String deadlineday =  readfile.nextLine().trim();
-                System.out.println(status);
-                System.out.println(addtask);
-                System.out.println(deadlineday);
                 Events t = new Events(addtask, deadlineday);
                 if (status == 1){
                     t.setStatus();
@@ -260,7 +260,8 @@ public class Duke {
                     }
                     String firsthalf = remainingmessage.substring(1, i);
                     String secondhalf = remainingmessage.substring(i + 4, lengthofremainingmessage);
-                    Deadlines t = new Deadlines(firsthalf, secondhalf);
+
+                    Deadlines t = new Deadlines(firsthalf, secondhalf.trim());
                     ListofMessages.add(t);
                     String GotIt = "Got it. I've added this task: ";
                     System.out.println(GotIt);
@@ -297,6 +298,7 @@ public class Duke {
                 String secondhalf = remainingmessage.substring(i + 4, lengthofremainingmessage);
 
                 Events t = new Events(firsthalf, secondhalf);
+
                 ListofMessages.add(t);
                 String GotIt = "Got it. I've added this task: ";
                 System.out.println(GotIt);
