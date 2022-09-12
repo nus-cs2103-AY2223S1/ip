@@ -9,18 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import duke.tasks.Task;
-
 /**
  * a chatbot that should be able to keep track of tasks
  * such as deadlines, events
  * and mark off as a task list
  */
-public class Duke {
+public class Duke extends Application {
     /**
      * the main body of the code
      */
-    public static void main(String[] args) {
+    public void start(Stage stage) {
         Ui ui = new Ui();
         Storage storage = new Storage();
         Parser parser = new Parser();
@@ -46,7 +44,10 @@ public class Duke {
         String command = ui.readInput();
         while (!command.split(" ")[0].equals("bye")) {
             taskList = parser.readInput(command, taskList, ui);
-            System.out.println(taskList.getToStage());
+            Label output = new Label(taskList.getToStage());
+            Scene scene = new Scene(output);
+            stage.setScene(scene);
+            stage.show();
             command = ui.readInput();
         }
 
