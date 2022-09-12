@@ -1,4 +1,4 @@
-package duke;
+package duke.backend;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,12 +7,15 @@ import java.io.IOException;
 
 import java.util.Scanner;
 
+import duke.DukeException;
+
+
 /**
  * Storage class manages the saving of data and loading of saved data
  */
 public class Storage {
-    private String saveFilePath;
-    private String saveDirectoryPath;
+    private final String saveFilePath;
+    private final String saveDirectoryPath;
 
     /**
      * Class Constructor for storage using directory and file paths
@@ -38,7 +41,7 @@ public class Storage {
 
     /**
      * Checks if the specified file exists, otherwise creates the directory and file accordingly
-     * @param tasklist list of tasks to be save
+     * @param tasklist list of tasks to be saved
      * @throws IOException error if specified file cannot be read
      * @throws FileNotFoundException error if specified file cannot be found
      */
@@ -46,10 +49,13 @@ public class Storage {
         File f = new File(this.saveFilePath);
         if (f.exists()) {
             readFile(f, tasklist);
-        } else {
+        } else if (!f.exists()) {
             File dir = new File(this.saveDirectoryPath);
             dir.mkdir();
             f.createNewFile();
+        } else {
+            throw new DukeException("Error in creating directory for saving the tasks :(" +
+                    " Please check permissions and try again");
         }
     }
 
@@ -72,6 +78,8 @@ public class Storage {
                 tasklist.appendEventFromFile(tempWords[2], tempWords[3], isCompleted);
             } else if (tempWords[0].equals("D")) {
                 tasklist.appendDeadlineFromFile(tempWords[2], tempWords[3], isCompleted);
+            } else {
+                throw new DukeException("Error in reading data from File, please try again!");
             }
         }
     }

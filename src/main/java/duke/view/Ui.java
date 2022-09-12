@@ -1,4 +1,6 @@
-package duke;
+package duke.view;
+
+import duke.backend.TaskList;
 
 public class Ui {
     private static final String GREET_MESSAGE = "Hello! I'm Duke \nWhat can I do for you?";
@@ -10,16 +12,20 @@ public class Ui {
     private static final String UNMARK_TEXT_MESSAGE = "OK, I've marked this task as not done yet: \n";
     private static final String MATCH_TEXT_MESSAGE = "Here are the matching tasks in your list: \n";
 
+    private String getTaskListSizeMessage(TaskList tasklist) {
+        return "\nNow you have " + tasklist.getSize() + " tasks in the list.";
+    }
+
     public String showAddedTask(TaskList tasklist) {
         String content = tasklist.getLastTask();
         content = ADD_TASK_MESSAGE + content;
-        content += "\nNow you have " + tasklist.getSize() + " tasks in the list.";
+        content += getTaskListSizeMessage(tasklist);
         return content;
     }
 
     public String showDeletedTask(String content, TaskList tasklist) {
         content = DELETE_TASK_MESSAGE + content;
-        content += "\nNow you have " + tasklist.getSize() + " tasks in the list.";
+        content += getTaskListSizeMessage(tasklist);
         return content;
     }
 
