@@ -5,14 +5,12 @@ import duke.Ui;
 import duke.task.TaskList;
 
 /**
- * Command used to exit the session with the chatBot.
+ * Command used to list all the available commands.
  */
-public class ExitCommand extends Command {
-    public static final String COMMAND_WORD = "bye";
-    public static final String HELP_MESSAGE = "Exit: bye";
+public class HelpCommand extends Command {
+    public static final String COMMAND_WORD = "help";
     /**
-     * Ends the session with the user by returning
-     * the corresponding message to the GUI.
+     * Returns the message of all available commands to the GUI.
      *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
@@ -21,6 +19,6 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(TaskList list, FileStorage storage, Ui ui) {
-        return ui.getOutroMessage();
+        return ui.getHelpMessage();
     }
 }

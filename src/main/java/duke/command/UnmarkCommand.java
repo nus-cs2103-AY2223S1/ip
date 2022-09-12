@@ -10,6 +10,7 @@ import duke.task.TaskList;
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
+    public static final String HELP_MESSAGE = "Unmark Task Done: unmark [index]\n\n";
     private int index;
     public UnmarkCommand(int index) {
         this.index = index - 1;

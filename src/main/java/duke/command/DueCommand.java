@@ -13,6 +13,7 @@ import duke.task.TaskList;
  */
 public class DueCommand extends Command {
     public static final String COMMAND_WORD = "due";
+    public static final String HELP_MESSAGE = "Get Due Tasks: due [date]\n\n";
     private LocalDate date;
 
     public DueCommand(LocalDate date) {

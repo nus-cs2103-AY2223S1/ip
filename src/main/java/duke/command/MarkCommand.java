@@ -10,6 +10,7 @@ import duke.task.TaskList;
  */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
+    public static final String HELP_MESSAGE = "Mark Task Done: mark [index]\n\n";
     private int index;
     public MarkCommand(int index) {
         this.index = index - 1;

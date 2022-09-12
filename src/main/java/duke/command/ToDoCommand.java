@@ -11,6 +11,7 @@ import duke.task.TaskList;
  */
 public class ToDoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
+    public static final String HELP_MESSAGE = "Add ToDo: todo [priority] [description]\n\n";
     private Task task;
     public ToDoCommand(Task task) {
         this.task = task;

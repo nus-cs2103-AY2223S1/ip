@@ -14,6 +14,7 @@ import duke.command.DueCommand;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.PriorityCommand;
@@ -70,6 +71,10 @@ public class Parser {
         }
         case ListCommand.COMMAND_WORD: {
             command = new ListCommand();
+            break;
+        }
+        case HelpCommand.COMMAND_WORD: {
+            command = new HelpCommand();
             break;
         }
         case DueCommand.COMMAND_WORD:
@@ -211,7 +216,7 @@ public class Parser {
             task = createTaskWithDate(Objects.requireNonNullElse(priority, Priority.LOW), str[0], str[1], type);
             return task;
         case EVENT:
-            String[] str1 = description.split(" /at ", 2);
+            String[] str1 = description.split(" /on ", 2);
             task = createTaskWithDate(Objects.requireNonNullElse(priority, Priority.LOW), str1[0], str1[1], type);
             return task;
         default:

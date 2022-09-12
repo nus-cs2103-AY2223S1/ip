@@ -13,6 +13,7 @@ import duke.task.TaskList;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
+    public static final String HELP_MESSAGE = "Find Tasks: find [queries]\n\n";
     private String[] queries;
     public FindCommand(String ... queries) {
         this.queries = queries;

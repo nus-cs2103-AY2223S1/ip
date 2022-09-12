@@ -3,6 +3,17 @@ package duke;
 import java.util.Comparator;
 import java.util.List;
 
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.DueCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.PriorityCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkCommand;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -11,7 +22,8 @@ import duke.task.TaskList;
  * A component of the chatBot Duke that returns his response as a string.
  */
 public class Ui {
-    public static final String INTRO_MESSAGE = "Dread it, run from it, Gigachad arrives all the same";
+    public static final String INTRO_MESSAGE = "Dread it, run from it, Gigachad arrives all the same."
+            + "\nWhen powerless, type 'help'";
     public static final String EXIT_MESSAGE = "Farewell, till we meet again";
 
     /**
@@ -121,6 +133,21 @@ public class Ui {
             strBuilder.append("\n").append(i + 1).append(".").append(list.get(i));
         }
         return strBuilder.toString();
+    }
+
+
+    /**
+     * Returns the message containing all the available commands' formats.
+     *
+     * @return The string containing the intended message.
+     */
+    public String getHelpMessage() {
+        String message = "Here are my abilities:\n";
+        message += ToDoCommand.HELP_MESSAGE + DeadlineCommand.HELP_MESSAGE + EventCommand.HELP_MESSAGE
+                + MarkCommand.HELP_MESSAGE + UnmarkCommand.HELP_MESSAGE + DeleteCommand.HELP_MESSAGE
+                + ListCommand.HELP_MESSAGE + PriorityCommand.HELP_MESSAGE + DueCommand.HELP_MESSAGE
+                + FindCommand.HELP_MESSAGE + ExitCommand.HELP_MESSAGE;
+        return message;
     }
 }
 

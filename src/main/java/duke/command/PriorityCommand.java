@@ -10,6 +10,7 @@ import duke.task.TaskList;
  */
 public class PriorityCommand extends Command {
     public static final String COMMAND_WORD = "priority";
+    public static final String HELP_MESSAGE = "Set Priority: priority [index] [value]\n\n";
 
     private Priority priority;
     private int index;

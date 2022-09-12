@@ -11,6 +11,7 @@ import duke.task.TaskList;
  */
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
+    public static final String HELP_MESSAGE = "Add Deadline: deadline [priority] [description] /by [date] [time]\n\n";
     private Task task;
     public DeadlineCommand(Task task) {
         this.task = task;

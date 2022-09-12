@@ -10,6 +10,7 @@ import duke.task.TaskList;
  */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
+    public static final String HELP_MESSAGE = "Add Event: event [priority] [description] /on [date] [time]-[time]\n\n";
     private Task task;
     public EventCommand(Task task) {
         this.task = task;

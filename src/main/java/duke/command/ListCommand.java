@@ -10,6 +10,7 @@ import duke.task.TaskList;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    public static final String HELP_MESSAGE = "List All Tasks: list\n\n";
 
     /**
      * Lists all tasks from the taskList

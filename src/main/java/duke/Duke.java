@@ -51,7 +51,7 @@ public class Duke {
     public String getResponse(String input) {
         String response = "";
         try {
-            Command command = parser.parse(input);
+            Command command = parser.parse(input.toLowerCase());
             assert command != null : "Command should not be null";
             response = command.execute(listOfTasks, storage, ui);
         } catch (DukeException e) {
