@@ -22,6 +22,10 @@ class TaskList {
             char type = x.charAt(3);
             boolean done = x.charAt(6) == 'X';
             String task;
+
+            assert(id > 0);
+            assert(type == 'T' || type == 'D' || type == 'E');
+
             if (type == 'D' || type == 'E') {
                 task = x.substring(9, x.indexOf("(") - 1);
                 String additional = x.substring(x.indexOf("(") + 6, x.indexOf(')'));

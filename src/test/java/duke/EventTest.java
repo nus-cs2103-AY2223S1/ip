@@ -14,7 +14,7 @@ public class EventTest {
     @Test
     public void markTest() {
         Task task = new Event(1, "test", "2022-03-05");
-        task.setDone();
+        task.setStatus(true);
         assertEquals("1.[E][X] test(at : Mar 05 2022)", task.toString());
     }
 }
