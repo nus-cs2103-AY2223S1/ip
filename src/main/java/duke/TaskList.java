@@ -41,23 +41,41 @@ public class TaskList {
         userTasks.add(new Event(taskDescription, dateTime, isCompleted));
     }
 
-    public String removeTask(String number) {
+    public void checkTaskExistsAtIndex(Integer number) throws DukeException {
+        if (number >= userTasks.size()) {
+            throw new DukeException("Task doesn't exist as the requested index");
+        }
+    }
+
+    public String removeTask(String number) throws DukeException {
         int index = Integer.parseInt(number) - 1;
+        checkTaskExistsAtIndex(index);
+
+        assert userTasks.size() > 0: "Task list cannot be empty";
+
         Task deletedTask = userTasks.remove(index);
         String taskMessage = deletedTask.returnDescription();
         return taskMessage;
     }
 
-    public String markSpecificTask(String taskNumber) {
+    public String markSpecificTask(String taskNumber) throws DukeException{
         int index = Integer.parseInt(taskNumber) - 1;
+        checkTaskExistsAtIndex(index);
+
+        assert userTasks.size() > 0: "Task list cannot be empty";
+
         Task currentTask = userTasks.get(index);
         currentTask.markTask();
         String content = currentTask.returnDescription();
         return content;
     }
 
-    public String unmarkSpecificTask(String taskNumber) {
+    public String unmarkSpecificTask(String taskNumber) throws DukeException {
         int index = Integer.parseInt(taskNumber) - 1;
+        checkTaskExistsAtIndex(index);
+
+        assert userTasks.size() > 0: "Task list cannot be empty";
+
         Task currentTask = userTasks.get(index);
         currentTask.unmarkTask();
         String content = currentTask.returnDescription();

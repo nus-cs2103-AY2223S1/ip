@@ -31,13 +31,13 @@ public class Ui {
         return BYE_MESSAGE;
     }
 
-    public String showMark(TaskList tasklist, String taskNumber) {
+    public String showMark(TaskList tasklist, String taskNumber) throws DukeException{
         String markInText = MARK_TEXT_MESSAGE;
         markInText += tasklist.markSpecificTask(taskNumber);
         return markInText;
     }
 
-    public String showUnmark(TaskList tasklist, String taskNumber) {
+    public String showUnmark(TaskList tasklist, String taskNumber) throws DukeException {
         String unmarkInText = UNMARK_TEXT_MESSAGE;
         unmarkInText += tasklist.unmarkSpecificTask(taskNumber);
         return unmarkInText;
