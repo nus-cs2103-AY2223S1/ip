@@ -28,7 +28,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        return "[D]" + super.toString()
+                + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     /**
@@ -40,4 +41,5 @@ public class Deadline extends Task {
     public String toSimpleString() {
         return "D | " + super.toSimpleString() + " | " + this.by;
     }
+
 }

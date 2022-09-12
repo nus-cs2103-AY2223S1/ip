@@ -5,6 +5,7 @@ package duke.task;
  * A task unit can be an event, deadline or to-do
  */
 public class Task {
+
     protected String description;
     protected boolean isDone;
 
@@ -59,4 +60,5 @@ public class Task {
     public String toSimpleString() {
         return (getStatusIcon().equals("X") ? "1" : "0") + " | " + this.description;
     }
+
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * Represents a list of tasks
  */
 public class TaskList {
+
     private ArrayList<Task> taskArray;
     private int count = 0;
 
@@ -64,8 +65,8 @@ public class TaskList {
      * @throws IndexOutOfBoundsException if given position > length of list of tasks or given position < 1
      */
     public void markTaskAtPos(int position) throws IndexOutOfBoundsException{
-            Task currTask = getTask(position);
-            currTask.markAsDone();
+        Task currTask = getTask(position);
+        currTask.markAsDone();
     }
 
     /**
@@ -75,8 +76,8 @@ public class TaskList {
      * @throws IndexOutOfBoundsException if given position > length of list of tasks or given position < 1
      */
     public void unmarkTaskAtPos(int position) throws IndexOutOfBoundsException{
-            Task currTask = getTask(position);
-            currTask.unmark();
+        Task currTask = getTask(position);
+        currTask.unmark();
     }
 
     /**
@@ -112,7 +113,7 @@ public class TaskList {
      * @return string representation
      */
     @Override
-    public String toString(){
+    public String toString() {
         String stringedList = "";
         for (int i = 0; i < this.count; i++) {
             if (i == this.count -1) {
@@ -123,4 +124,5 @@ public class TaskList {
         }
         return "Here are the tasks in your list:\n" + stringedList;
     }
+
 }

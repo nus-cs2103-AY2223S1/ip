@@ -10,7 +10,7 @@ public class ToDo extends Task{
      *
      * @param description the description of this to-do
      */
-    public ToDo(String description){
+    public ToDo(String description) {
         super(description);
     }
 
@@ -33,4 +33,5 @@ public class ToDo extends Task{
     public String toSimpleString() {
         return "T | " + super.toSimpleString();
     }
+
 }

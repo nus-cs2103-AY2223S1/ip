@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.time.LocalDate;
 
-
 public class Storage {
     private final String filePath;
 
@@ -21,7 +20,7 @@ public class Storage {
         File f = new File(filePath);
     }
 
-    public TaskList load() throws DukeException{
+    public TaskList load() throws DukeException {
         TaskList tasks = new TaskList();
         try {
             File localFile = new File(this.filePath);
@@ -54,7 +53,6 @@ public class Storage {
         }
     }
 
-
     private Event makeEvent(String markIndex, String description, String at) {
         Event newEvent = new Event(description, at);
         if (markIndex.equals("1")) {
@@ -64,7 +62,7 @@ public class Storage {
         return newEvent;
     }
 
-    private Deadline makeDeadline(String markIndex, String description, String by) throws DukeException{
+    private Deadline makeDeadline(String markIndex, String description, String by) throws DukeException {
         try {
             Deadline newDeadline = new Deadline(description, LocalDate.parse(by));
             if (markIndex.strip().equals("1")) {
@@ -77,7 +75,7 @@ public class Storage {
         }
     }
 
-    private ToDo makeToDo(String markIndex, String description){
+    private ToDo makeToDo(String markIndex, String description) {
         ToDo newToDo = new ToDo(description);
         if (markIndex.strip().equals("1")) {
             newToDo.markAsDone();
@@ -91,17 +89,17 @@ public class Storage {
         try {
             String[] taskSegments = taskString.split("\\|");
             switch (taskSegments[0].strip()) {
-                case "E":
-                    newTask = makeEvent(taskSegments[1].strip(), taskSegments[2].strip(), taskSegments[3].strip());
-                    break;
-                case "D":
-                    newTask = makeDeadline(taskSegments[1].strip(), taskSegments[2].strip(), taskSegments[3].strip());
-                    break;
-                case "T":
-                    newTask = makeToDo(taskSegments[1].strip(), taskSegments[2].strip());
-                    break;
-                default:
-                    throw new DukeException(Message.FILE_READ_ERROR);
+            case "E":
+                newTask = makeEvent(taskSegments[1].strip(), taskSegments[2].strip(), taskSegments[3].strip());
+                break;
+            case "D":
+                newTask = makeDeadline(taskSegments[1].strip(), taskSegments[2].strip(), taskSegments[3].strip());
+                break;
+            case "T":
+                newTask = makeToDo(taskSegments[1].strip(), taskSegments[2].strip());
+                break;
+            default:
+                throw new DukeException(Message.FILE_READ_ERROR);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException(Message.FILE_READ_ERROR);
@@ -128,4 +126,5 @@ public class Storage {
             throw new DukeException(Message.FILE_NOT_FOUND);
         }
     }
+
 }

@@ -13,7 +13,7 @@ public class Event extends Task {
      * @param description the description of the event
      * @param at the place or time of the event
      */
-    public Event(String description, String at){
+    public Event(String description, String at) {
         super(description);
         this.at = at;
     }
@@ -24,7 +24,7 @@ public class Event extends Task {
      * @return string representation
      */
     @Override
-    public String toString(){
+    public String toString() {
         return "[E]" + super.toString() + " (at: " + this.at + ")";
     }
 
@@ -37,4 +37,5 @@ public class Event extends Task {
     public String toSimpleString() {
         return "E | " + super.toSimpleString() + " | " + this.at;
     }
+
 }
