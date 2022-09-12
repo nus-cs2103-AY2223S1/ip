@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
  * Represents a task list.
  */
 public class TaskList {
-    private static final String MESSAGE_AFTER_ADD = "Got it. I've added this task:";
+    private static final String MESSAGE_AFTER_ADD = "I shall add this task.";
     private static final String MESSAGE_AFTER_DELETE = "Noted. I've removed this task:";
     private List<Task> taskList;
 
@@ -37,7 +37,7 @@ public class TaskList {
      */
     public String add(Task task) {
         taskList.add(task);
-        return String.format(MESSAGE_AFTER_ADD + "\n\t\t" + task.toString() + "\n\tNow you have " + taskList.size()
+        return String.format(MESSAGE_AFTER_ADD + "\n" + task.toString() + "\nNow you have " + taskList.size()
                 + " tasks in the list.");
     }
 
@@ -59,7 +59,7 @@ public class TaskList {
     public String remove(int index) {
         Task task = taskList.get(index);
         taskList.remove(index);
-        return String.format(MESSAGE_AFTER_DELETE + "\n\t\t" + task.toString() + "\n\tNow you have " + taskList.size()
+        return String.format(MESSAGE_AFTER_DELETE + "\n" + task.toString() + "\nNow you have " + taskList.size()
                 + " tasks in the list.");
     }
 

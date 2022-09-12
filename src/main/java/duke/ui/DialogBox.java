@@ -11,13 +11,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -41,9 +39,10 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        dialog.setText(text);
+
         // Referencing
         // https://stackoverflow.com/questions/20489908/border-radius-and-shadow-on-imageview
-        dialog.setText(text);
         displayPicture.setImage(img);
         Rectangle clip = new Rectangle(displayPicture.getFitWidth(), displayPicture.getFitHeight());
         clip.setArcWidth(30);
