@@ -49,10 +49,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns a User DialogBox container node for JavaFX.
+     * @param text String contained in the DialogBox.
+     * @param img Image contained in the DialogBox.
+     * @return A User DialogBox node to be rendered into the root node.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns a Duke DialogBox container node for JavaFX.
+     * @param text String contained in the DialogBox.
+     * @param img Image contained in the DialogBox.
+     * @return A Duke DialogBox node to be rendered into the root node.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
