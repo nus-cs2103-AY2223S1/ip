@@ -6,6 +6,7 @@ import sally.command.AddTodoCommand;
 import sally.command.ByeCommand;
 import sally.command.Command;
 import sally.command.DeleteCommand;
+import sally.command.FindCommand;
 import sally.command.ListCommand;
 import sally.command.MarkCommand;
 import sally.command.UnmarkCommand;
@@ -63,6 +64,15 @@ public class Parser {
             int taskNum = Integer.parseInt(command.substring(5)) - 1; // -1 so that index is constant
             checkMarkValidity(taskNum);
             return new MarkCommand(taskNum);
+        }
+
+        // Find
+        else if (command.startsWith("find")) {
+            String keyword = command.replace("find ", "");
+            if (keyword.isEmpty()) {
+                throw new SallyException.SallyInvalidInputException();
+            }
+            return new FindCommand(keyword);
         }
 
         // sally.task.Task Commands

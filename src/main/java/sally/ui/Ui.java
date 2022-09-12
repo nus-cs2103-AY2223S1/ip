@@ -1,5 +1,6 @@
 package sally.ui;
 
+import sally.task.Task;
 import sally.task.TaskList;
 
 import java.util.ArrayList;
@@ -149,5 +150,13 @@ public class Ui {
      */
     public void showError(String error) {
         printWithBorder(error);
+    }
+
+    public void showFoundTasks(ArrayList<Task> foundTasks) {
+        String output = "";
+        for (int i = 0; i < foundTasks.size(); i++) {
+            output = output + (i + 1) + ". " + foundTasks.get(i).toString() + "\n";
+        }
+        printWithBorder("Here are the matching tasks in your list: \n" + output);
     }
 }
