@@ -2,18 +2,13 @@ package duke.taskmanager.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-import duke.chatbot.commands.exceptions.EmptyTaskException;
-import duke.chatbot.commands.exceptions.InvalidArgumentsException;
-import duke.chatbot.commands.exceptions.InvalidDeadlineException;
 
 /**
  * Deadline Task is a Task with the additional deadline information.
  */
 public class DeadlineTask extends Task {
     public static final String TASK_DELIMITER = "/by ";
-    private static final String TASK_TYPE = "D";
+    public static final String TASK_TYPE = "D";
     private LocalDateTime deadline;
 
     /**
@@ -65,13 +60,18 @@ public class DeadlineTask extends Task {
     }
 
     /**
-     * Updates the deadline task with the new task with updated task name and deadline.
+     * Updates the deadline task with the updated task name and deadline.
      *
-     * @param newTask the new task to update the current deadline task with
+     * @param arguments the update task name and deadline
      */
-    public void update(DeadlineTask newTask) {
-        super.update(newTask);
-        this.deadline = newTask.getDeadline();
+    @Override
+    public void update(String... arguments) {
+        if (arguments[0].length() != 0) {
+            this.setTaskName(arguments[0]);
+        }
+        if (arguments[1].length() != 0) {
+            this.deadline = LocalDateTime.parse(arguments[1], DateTimeFormatter.ofPattern(arguments[2]));
+        }
     }
 
     /**

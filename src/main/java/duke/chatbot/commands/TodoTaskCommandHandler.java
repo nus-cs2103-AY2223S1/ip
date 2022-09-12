@@ -9,7 +9,7 @@ import duke.taskmanager.task.ToDoTask;
  * managed by the task manager.
  * Responds with the confirmation message stating that a new task is added.
  */
-public class TodoTaskCommandHandler implements CommandHandler {
+public class TodoTaskCommandHandler implements Command {
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the to do task command with a reference to the task manager

@@ -16,7 +16,7 @@ import duke.taskmanager.task.EventTask;
  * managed by the task manager.
  * Responds with the confirmation message stating that a new task is added.
  */
-public class EventTaskCommandHandler implements CommandHandler {
+public class EventTaskCommandHandler implements Command {
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the event task command with a reference to the task manager

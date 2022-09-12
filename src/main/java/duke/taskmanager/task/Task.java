@@ -60,15 +60,7 @@ public abstract class Task {
         this.isCompleted = false;
     }
 
-    /**
-     * Updates the task with the new task with updated attributes
-     *
-     * @param newTask the new task to update the current task with
-     */
-    public void update(Task newTask) {
-        this.taskName = newTask.getTaskName();
-        this.isCompleted = newTask.isCompleted();
-    };
+    public abstract void update(String... arguments);
 
     /**
      * Formats the details of the task into a format that can be read and written by

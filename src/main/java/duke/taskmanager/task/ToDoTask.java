@@ -1,12 +1,10 @@
 package duke.taskmanager.task;
 
-import duke.chatbot.commands.exceptions.InvalidArgumentsException;
-
 /**
  * ToDoTask is a Task with task information.
  */
 public class ToDoTask extends Task {
-    private static final String TASK_TYPE = "T";
+    public static final String TASK_TYPE = "T";
 
     /**
      * Creates a new to do task with information indicating the name of the task.
@@ -31,11 +29,12 @@ public class ToDoTask extends Task {
     }
 
     /**
-     * Updates the to do task with the new task with updated task name.
+     * Updates the to do task with the updated task name.
      *
-     * @param newTask the new task to update the current to do task with
+     * @param arguments the updated task name
      */
-    public void update(ToDoTask newTask) {
-        super.update(newTask);
+    @Override
+    public void update(String... arguments) {
+        super.setTaskName(arguments[0]);
     }
 }

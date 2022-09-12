@@ -7,7 +7,7 @@ import duke.chatbot.commands.exceptions.InvalidCommandException;
  * Bye Command handler that executes the bye command by terminating the chatbot.
  * Responds with a goodbye response obtained from the chatbot.
  */
-public class ByeCommandHandler implements CommandHandler {
+public class ByeCommandHandler implements Command {
     private final ChatBot chatBot;
     /**
      * Creates a new handler for the bye command with a reference to the chatbot

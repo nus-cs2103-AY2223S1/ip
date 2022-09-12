@@ -2,6 +2,7 @@ package duke.taskmanager;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -10,14 +11,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-import duke.chatbot.commands.exceptions.EmptyTaskException;
+import duke.chatbot.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commands.exceptions.InvalidDeadlineException;
 import duke.chatbot.commands.exceptions.InvalidEventException;
 import duke.taskmanager.exceptions.InvalidFormattedStringException;
 import duke.taskmanager.exceptions.LoadDataException;
 import duke.taskmanager.exceptions.SaveDataException;
 import duke.taskmanager.task.DeadlineTask;
-import duke.taskmanager.task.EmptyTask;
 import duke.taskmanager.task.EventTask;
 import duke.taskmanager.task.Task;
 import duke.taskmanager.task.ToDoTask;
@@ -50,6 +50,24 @@ public class TaskManager {
     }
 
     /**
+     * Returns the task type of a task in the task list.
+     *
+     * @return task type of the task indicated by the item number
+     */
+    public String getTaskType(int itemNumber) {
+        return this.taskList.get(itemNumber - 1).getTaskType();
+    }
+
+    /**
+     * Returns a length of the task list
+     *
+     * @return length of the task list
+     */
+    public int getListSize() {
+        return this.taskList.size();
+    }
+
+    /**
      * Processes strings that are formatted to be readable for task manager.
      * Used to process strings loaded from a save file creates a new task from the string.
      *
@@ -58,7 +76,7 @@ public class TaskManager {
      * @throws Exception when the formatted string cannot be read
      */
     private Task processFormattedString(String formattedString) throws InvalidFormattedStringException,
-            EmptyTaskException, InvalidDeadlineException, InvalidEventException {
+            InvalidDeadlineException, InvalidEventException {
         String[] arguments = formattedString.split(ATTRIBUTE_SEPARATOR);
         String taskType = arguments[0];
         boolean isCompleted = (arguments[1].equals("1"));
@@ -82,7 +100,7 @@ public class TaskManager {
                 throw new InvalidEventException(DATE_FORMAT);
             }
         default:
-            return new EmptyTask();
+            throw new InvalidFormattedStringException();
         }
 
     }
@@ -195,22 +213,16 @@ public class TaskManager {
 
     /**
      * Updates a task according to item number and a new task with updated attributes.
+     * Responds with the string of the updated task.
      *
      * @param itemNumber index of the task to be updated
-     * @param newTask new task with updated attributes
-     * @return a response message indicating that the task has been updated
+     * @param arguments the updated attributes
+     * @return string of the updated task
+     * @throws InvalidArgumentsException thrown when the arguments do not match the task to be updated
      */
-    public String updateTask(int itemNumber, Task newTask) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
-            this.taskList.get(itemNumber - 1).update(newTask);
-            stringBuilder.append("The following item has been updated.\n");
-            stringBuilder.append(itemNumber).append(") ")
-                    .append(this.taskList.get(itemNumber - 1).toString()).append("\n");
-        } else {
-            return "There is no such task!!\n";
-        }
-        return stringBuilder.toString();
+    public String updateTask(int itemNumber, String... arguments) throws InvalidArgumentsException {
+        this.taskList.get(itemNumber - 1).update(arguments);
+        return this.taskList.get(itemNumber - 1).toString();
     }
 
     /**
@@ -232,7 +244,7 @@ public class TaskManager {
                 fileWriter.write("\n");
             }
             fileWriter.close();
-        } catch (Exception exception) {
+        } catch (IOException exception) {
             throw new SaveDataException();
         }
     }

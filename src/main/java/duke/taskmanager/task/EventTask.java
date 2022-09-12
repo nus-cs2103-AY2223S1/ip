@@ -1,13 +1,14 @@
 package duke.taskmanager.task;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Event Task is a Task with the additional event time information.
  */
 public class EventTask extends Task {
     public static final String TASK_DELIMITER = "/at ";
-    private static final String TASK_TYPE = "E";
+    public static final String TASK_TYPE = "E";
     private LocalDateTime eventTime;
 
     /**
@@ -59,14 +60,18 @@ public class EventTask extends Task {
     }
 
     /**
-     * Updates the event task with the new task with updated task name and event time.
+     * Updates the event task with the updated task name and event time.
      *
-     * @param newTask the new task to update the current event task with
+     * @param arguments the update task name and event time
      */
-    public void update(EventTask newTask) {
-
-        super.update(newTask);
-        this.eventTime = newTask.getEventTime();
+    @Override
+    public void update(String... arguments) {
+        if (arguments[0].length() != 0) {
+            this.setTaskName(arguments[0]);
+        }
+        if (arguments[1].length() != 0) {
+            this.eventTime = LocalDateTime.parse(arguments[1], DateTimeFormatter.ofPattern(arguments[2]));
+        }
     }
 
     /**

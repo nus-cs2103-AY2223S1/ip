@@ -16,7 +16,7 @@ import duke.taskmanager.task.DeadlineTask;
  * managed by the task manager.
  * Responds with the confirmation message stating that a new task is added.
  */
-public class DeadlineTaskCommandHandler implements CommandHandler {
+public class DeadlineTaskCommandHandler implements Command {
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the deadline task command with a reference to the task manager

@@ -2,16 +2,18 @@ package duke.chatbot;
 
 import java.util.Scanner;
 
-import duke.chatbot.commands.*;
+import duke.chatbot.commands.ByeCommandHandler;
+import duke.chatbot.commands.DeadlineTaskCommandHandler;
+import duke.chatbot.commands.EventTaskCommandHandler;
+import duke.chatbot.commands.ListTaskCommandHandler;
+import duke.chatbot.commands.TodoTaskCommandHandler;
+import duke.chatbot.commands.UpdateTaskCommandHandler;
 import duke.chatbot.commands.exceptions.EmptyCommandException;
 import duke.chatbot.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commands.exceptions.InvalidCommandException;
 import duke.chatbot.commands.exceptions.InvalidIndexException;
 import duke.taskmanager.TaskManager;
 import duke.taskmanager.exceptions.LoadDataException;
-import duke.taskmanager.task.DeadlineTask;
-import duke.taskmanager.task.EventTask;
-import duke.taskmanager.task.ToDoTask;
 
 /**
  * Chatbot that processes commands.
@@ -37,7 +39,7 @@ public class ChatBot {
     }
 
     /**
-     * Returns the runningState of the chatbot
+     * Returns the running state of the chatbot
      *
      * @return running state of the chatbot
      */
@@ -74,7 +76,7 @@ public class ChatBot {
     }
 
     /**
-     * Initializes the chatbot by setting its runningState to true and responds
+     * Initializes the chatbot by setting its running state to true and responds
      * with a greeting message. The task manager is also initialized by loading
      * any pre-existing data.
      */
@@ -89,8 +91,7 @@ public class ChatBot {
     }
 
     /**
-     * Terminates the chatbot by setting its runningState to false and responds
-     * with a goodbye message.
+     * Terminates the chatbot by setting its running state to false
      */
     public void terminate() {
         this.isRunning = false;
@@ -106,11 +107,12 @@ public class ChatBot {
      */
     public void processCommand(String input) {
         assert isRunning : "chatbot should be running";
+        input = input.strip();
         Scanner inputScanner = new Scanner(input);
         String response = "";
         try {
             // Guard Clause for empty commands
-            if (input.length() <= 0) {
+            if (input.length() == 0) {
                 throw new EmptyCommandException();
             }
 
@@ -119,7 +121,7 @@ public class ChatBot {
             boolean hasArguments = inputScanner.hasNext();
             String arguments = "";
             if (hasArguments) {
-                arguments = inputScanner.nextLine().substring(1);
+                arguments = inputScanner.nextLine().strip();
             }
 
             switch (command) {
@@ -154,7 +156,7 @@ public class ChatBot {
                 response = taskManager.findTask(arguments);
                 break;
             case "update":
-                response = "";
+                response = new UpdateTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             default:
                 throw new InvalidCommandException();
