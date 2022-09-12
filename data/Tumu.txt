@@ -3,3 +3,5 @@ D #   # Take CS quiz # 2022-09-14T23:59
 D # X # Finish lab assignment # 2022-09-15T23:59
 E #   # Attend piano concert # 2022-09-21T20:00
 T #   # Buy porridge for Grandma # 
+T #   # Clean my room # 
+T #   # Take out the trash # 
