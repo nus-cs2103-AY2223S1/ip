@@ -20,8 +20,8 @@ public class DeadlineCommand extends Command {
      * @param arguments Arguments of a command.
      */
     public DeadlineCommand(String[] arguments) throws KirbyMissingArgumentException {
-        String taskName = null;
-        String time = null;
+        String taskName;
+        String time;
         taskName = arguments[0];
         time = arguments[1];
         if (taskName == null || time == null) {
