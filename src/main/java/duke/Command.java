@@ -1,10 +1,8 @@
 package duke;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 /**
  * An abstraction for a command to Duke.
@@ -27,103 +25,56 @@ public enum Command {
     }
 
     /**
-     * Runs the command with the given Duke bot.
+     * Returns the response string after running the command with the given Duke bot.
      *
      * @param args Command arguments.
      * @param duke Duke bot executing the command.
+     * @return The response string.
      */
     public String run(String args, Duke duke) {
-        TaskList taskList = duke.getTaskList();
-        Storage storage = duke.getStorage();
         String errorMessage = getUsageError(args, duke);
         if (!errorMessage.isEmpty()) {
+            // If the command is used incorrectly
             return errorMessage;
         }
 
         switch(name) {
         case "delete":
             int index = Integer.parseInt(args) - 1;
-            Task t = taskList.deleteTask(index);
-            try {
-                storage.rewriteFile(taskList.getTasks());
-            } catch (IOException e) {
-                return "Unable to write to file.";
-            }
-            return "Noted. I've removed this task:\n" + "  " + t
-                    + "\nNow you have " + taskList.getCount() + " tasks in the list.";
+            return duke.deleteTask(index);
 
         case "find":
             if (args.charAt(0) == '"' && args.charAt(args.length() - 1) == '"') {
                 args = args.substring(1, args.length() - 1);
             }
-            ArrayList<Task> matchingTasks = taskList.getMatchingTasks(args);
-            if (matchingTasks.isEmpty()) {
-                return "No results found for keyword '" + args + "'";
-            } else {
-                return "Here are the matching tasks in your list:\n" + listTasks(matchingTasks);
-            }
+            return duke.findTask(args);
 
         case "list":
-            return "Here are the tasks in your list:\n" + listTasks(taskList.getTasks());
+            return duke.listTasks();
 
         case "deadline":
             String[] temp = args.split(" /by ", 2);
-            t = new Deadline(temp[0], LocalDate.parse(temp[1],
+            Task t = new Deadline(temp[0], LocalDate.parse(temp[1],
                     DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)));
-            taskList.addTask(t);
-            try {
-                storage.appendTaskToFile(t);
-            } catch (IOException e) {
-                return "Unable to write to file.";
-            }
-            return "Got it. I've added this task:\n" + "  " + t + "\nNow you have "
-                    + taskList.getCount() + " tasks in the list.";
+            return duke.addTask(t);
 
         case "event":
             temp = args.split(" /at ", 2);
             t = new Event(temp[0], LocalDate.parse(temp[1],
                     DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)));
-            taskList.addTask(t);
-            try {
-                storage.appendTaskToFile(t);
-            } catch (IOException e) {
-                return "Unable to write to file.";
-            }
-            return "Got it. I've added this task:\n" + "  " + t + "\nNow you have "
-                    + taskList.getCount() + " tasks in the list.";
+            return duke.addTask(t);
 
         case "todo":
             t = new ToDo(args);
-            taskList.addTask(t);
-            try {
-                storage.appendTaskToFile(t);
-            } catch (IOException e) {
-                return "Unable to write to file.";
-            }
-            return "Got it. I've added this task:\n" + "  " + t + "\nNow you have "
-                    + taskList.getCount() + " tasks in the list.";
+            return duke.addTask(t);
 
         case "mark":
             // Fallthrough
 
         case "unmark":
             index = Integer.parseInt(args) - 1;
-            t = taskList.getTasks().get(index);
             boolean b = name.equals("mark");
-            taskList.markTask(t, b);
-            try {
-                storage.rewriteFile(taskList.getTasks());
-            } catch (IOException e) {
-                return "Unable to write to file.";
-            }
-
-            if (b) {
-                return "Nice! I've marked this task as done: \n"
-                        + "  " + t;
-            } else {
-                return "OK, I've marked this task as not done: \n"
-                        + "  " + t;
-            }
+            return duke.markTask(index, b);
 
         default:
             return "";
@@ -139,14 +90,14 @@ public enum Command {
         }
     }
 
-    private String listTasks(ArrayList<Task> tasks) {
-        String ret = "";
-        for (int i = 0; i < tasks.size(); ++i) {
-            ret += (i + 1) + ". " + tasks.get(i).toString() + "\n";
-        }
-        return ret;
-    }
-
+    /**
+     * Returns an error message if the arguments supplied to the command are invalid, and
+     * an empty String otherwise.
+     *
+     * @param args The command arguments.
+     * @param duke The duke bot executing the commands.
+     * @return An error message if the arguments are invalid.
+     */
     private String getUsageError(String args, Duke duke) {
         TaskList taskList = duke.getTaskList();
         String usage = getCorrectUsage();
