@@ -28,7 +28,6 @@ public class Duke extends Application{
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-
     private Image user = new Image(this.getClass().getResourceAsStream("/images/userAmongUsColoured.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/dukeAmongUsColoured.png"));
 
@@ -49,48 +48,50 @@ public class Duke extends Application{
                 reply = ui.showList(tasklist);
             } else if (input.equals("mark")) {
                 reply = ui.showMark(tasklist, inputs[1]);
-                storage.writeToFile(tasklist.listOfTasksForSaving());
             } else if (input.equals("unmark")) {
                 reply = ui.showUnmark(tasklist, inputs[1]);
-                storage.writeToFile(tasklist.listOfTasksForSaving());
             } else if (input.equals("todo")) {
-                if (inputs.length <= 1) {
-                    throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-                }
+                checkInvalidDescription(input, inputs);
                 tasklist.appendToDo(inputString);
                 reply = ui.showAddedTask(tasklist);
-                storage.writeToFile(tasklist.listOfTasksForSaving());
             } else if (input.equals("deadline")) {
-                if (inputs.length <= 1) {
-                    throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
-                }
+                checkInvalidDescription(input, inputs);
                 String[] deadlineDescription = Parser.splitBySlash(inputString);
                 tasklist.appendDeadline(deadlineDescription[0], deadlineDescription[1]);
                 reply = ui.showAddedTask(tasklist);
-                storage.writeToFile(tasklist.listOfTasksForSaving());
             } else if (input.equals("event")) {
-                if (inputs.length <= 1) {
-                    throw new DukeException("OOPS!!! The description of a event cannot be empty.");
-                }
+                checkInvalidDescription(input, inputs);
                 String[] eventDescription = Parser.splitBySlash(inputString);
                 tasklist.appendEvent(eventDescription[0], eventDescription[1]);
                 reply = ui.showAddedTask(tasklist);
-                storage.writeToFile(tasklist.listOfTasksForSaving());
             } else if (input.equals("delete")) {
                 String taskMessage = tasklist.removeTask(inputs[1]);
                 reply = ui.showDeletedTask(taskMessage, tasklist);
-                storage.writeToFile(tasklist.listOfTasksForSaving());
             } else if (input.equals("find")) {
                 reply = ui.showMatch(tasklist, inputString.replace("find ", ""));
             } else {
                 throw new DukeException("Sorry, I don't recognise the input :( Please try again ");
             }
-        } catch (DukeException e) {
-            reply = ui.showError(e.getMessage());
-        } catch (IOException e) {
+            saveData(storage, tasklist);
+        } catch (Exception e) {
             reply = ui.showError(e.getMessage());
         }
         return reply;
+    }
+
+    private static void saveData(Storage storage, TaskList tasklist) throws DukeException{
+        String contentToSave = tasklist.listOfTasksForSaving();
+        try {
+            storage.writeToFile(contentToSave);
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
+        }
+    }
+
+    private static void checkInvalidDescription(String taskType, String[] inputs) throws DukeException {
+        if (inputs.length <= 1) {
+            throw new DukeException(String.format("The description of %s cannot be empty", taskType));
+        }
     }
 
     /**
@@ -200,19 +201,4 @@ public class Duke extends Application{
         dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(new Label(ui.showGreeting()), new ImageView(duke)));
     }
 
-
-//    /**
-//     * Executes run method upon starting
-//     * @param args optional arguments
-//     */
-//    public static void main(String[] args) {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
-//        Scanner scanner = new Scanner(System.in);
-//        run(scanner);
-//    }
 }
