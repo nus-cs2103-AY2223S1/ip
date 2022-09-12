@@ -125,7 +125,7 @@ manager.
 
 Adds a deadline task to the Duke task manager.
 
-Format: `deadline DESCRIPTION /BY`
+Format: `deadline DESCRIPTION /by BY`
 
 * The `DESCRIPTION` is any sentence describing the task and
 includes the spaces used.
@@ -142,7 +142,7 @@ to complete the task, i.e. the deadline, to be `2022-08-23 18:00`.
 
 Adds an event task to the Duke task manager.
 
-Format: `event DESCRIPTION /START /END`
+Format: `event DESCRIPTION /from START /to END`
 
 * The `DESCRIPTION` is any sentence describing the task and 
 includes the spaces used.
@@ -160,16 +160,16 @@ the start time to `2022-08-23 18:00` and the end time to `2022-08-23 19:00`.
 
 ## Command Summary
 
-| **Command**   | **Format, Examples**                                                                              |
-|---------------|---------------------------------------------------------------------------------------------------|
-| **List**      | `list`                                                                                            |
-| **Hello**     | `hello`                                                                                           |
-| **Exit**      | `bye`                                                                                             |
-| **Mark**      | `mark INDEX`, e.g. `mark 1`                                                                       |
-| **Un-mark**   | `unmark INDEX`, e.g. `unmark 1`                                                                   |
-| **Delete**    | `delete INDEX`, e.g. `delete 1`                                                                   |
-| **Find**      | `find KEYWORD`, e.g. `find book`                                                                  |
-| **Reminder**  | `remind TASK_TYPE`, e.g. `remind deadline`                                                        |
-| **Todo**      | `todo DESCRIPTION`, e.g. `todo read book`                                                         |
-| **Deadline**  | `deadline DESCRIPTION /BY`, e.g. `deadline return book /2022-08-23 18:00`                         |
-| **Event**     | `event DESCRIPTION /START /END`, e.g. `event library event /2022-08-23 18:00 /2022-08-23 19:00`   |
+| **Command**   | **Format, Examples**                                                                                            |
+|---------------|-----------------------------------------------------------------------------------------------------------------|
+| **List**      | `list`                                                                                                          |
+| **Hello**     | `hello`                                                                                                         |
+| **Exit**      | `bye`                                                                                                           |
+| **Mark**      | `mark INDEX`, e.g. `mark 1`                                                                                     |
+| **Un-mark**   | `unmark INDEX`, e.g. `unmark 1`                                                                                 |
+| **Delete**    | `delete INDEX`, e.g. `delete 1`                                                                                 |
+| **Find**      | `find KEYWORD`, e.g. `find book`                                                                                |
+| **Reminder**  | `remind TASK_TYPE`, e.g. `remind deadline`                                                                      |
+| **Todo**      | `todo DESCRIPTION`, e.g. `todo read book`                                                                       |
+| **Deadline**  | `deadline DESCRIPTION /by BY`, e.g. `deadline return book /by 2022-08-23 18:00`                                 |
+| **Event**     | `event DESCRIPTION /from START /to END`, e.g. `event library event /from 2022-08-23 18:00 /to 2022-08-23 19:00` |
