@@ -29,6 +29,10 @@ Duke can help you to keep track of whether you have done your task or not.
 
 Have a long list of tasks? Duke can search through it to show you the tasks you want to do.
 
+### Feature - Local save
+
+Duke keeps a local copy of all the tasks, so the next time you load him up, he'll know what you still need to do! But there is no need because you will never exit the app right?
+
 ## Usage
 
 ### `todo` - Add a new Todo task
@@ -100,3 +104,13 @@ Example of usage:
 `delete (index)`
 
 The index used is the one shown from the list command.
+
+### `bye` - Say goodbye to Duke and exit the program
+
+Tells Duke you are done with using the program and exits. However, Duke would highly appreciate it if you do not use this command. In fact, Duke would prefer if you do not kill him...
+
+Example of usage:
+
+`bye`
+
+Duke would not like it if you use this command or close the program.
