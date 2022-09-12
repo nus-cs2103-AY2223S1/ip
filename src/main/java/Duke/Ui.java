@@ -29,10 +29,10 @@ public class Ui {
                 + "deadline - deadline <task /by yyyy-mm-dd>\nevent - event <task /by yyyy-mm-dd>\n"
                 + "delete - delete <index>\nmark - mark <index>\nunmark - unmark <index>\nfind - find <task>\n"
                 + "undo - undo <function>");
-        System.out.println("Hello! I'm Duke\nHow may I help you?\nlist - lists out your tasks\nbye - quit\ntodo - todo <task>\n" +
-                "deadline - deadline <task /by yyyy-mm-dd>\nevent - event <task /by yyyy-mm-dd>\n" +
-                "delete - delete <index>\nmark - mark <index>\nunmark - unmark <index>\nfind - find <task>\n" +
-                "undo - undo <function>");
+        System.out.println("Hello! I'm Duke\nHow may I help you?\nlist - lists out your tasks\nbye - quit\n"
+                + "todo - todo <task>\ndeadline - deadline <task /by yyyy-mm-dd>\nevent - event <task /by yyyy-mm-dd>\n"
+                + "delete - delete <index>\nmark - mark <index>\nunmark - unmark <index>\nfind - find <task>\n"
+                + "undo - undo <function>");
         return sb.toString();
     }
 

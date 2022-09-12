@@ -12,11 +12,6 @@ public class Duke {
     private TaskList tasks;
     private Undo undo;
 
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
-    }
-
     /**
      * Creates a Duke object with the given filepath.
      */
@@ -32,6 +27,16 @@ public class Duke {
             currentTaskList = new TaskList();
         }
         this.tasks = currentTaskList;
+    }
+
+    /**
+     * Driver code that start Duke.
+     *
+     * @param args Accepts any String arguments.
+     */
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.run();
     }
 
     /**
@@ -60,13 +65,13 @@ public class Duke {
      */
     public void run() {
         ui.showWelcome();
-        boolean stopRunning = false;
-        while (!stopRunning) {
+        boolean isExit = false;
+        while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
                 Parser.parse(fullCommand, tasks, ui, storage, undo);
-                stopRunning = Parser.stopRunning;
+                isExit = Parser.getIsExit();
             } catch (IOException e) {
                 ui.showError(e.getMessage());
             } finally {

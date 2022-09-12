@@ -7,7 +7,15 @@ import java.time.format.DateTimeParseException;
  * Parser class object.
  */
 public class Parser {
-    public static boolean stopRunning = false;
+    private static boolean isExit = false;
+
+    public static boolean getIsExit() {
+        return isExit;
+    }
+
+    public static void setIsExit() {
+        isExit = true;
+    }
 
     /**
      * Creates a Parser object by parsing the commands from user.
@@ -27,7 +35,7 @@ public class Parser {
 
         switch (firstWord) {
         case "BYE":
-            stopRunning = true;
+            setIsExit();
             reply = ui.showBye();
             break;
 
