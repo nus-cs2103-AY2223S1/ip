@@ -11,22 +11,22 @@ Karen task bot is optimised for use via Graphical User Interface (GUI).
 `[]` means the field is optional.
 
 ## Command Summary
-| Keyword    | Usage                                     |
-|------------|-------------------------------------------|
-| **todo**   | `todo {description}`                      |
-| **deadline** | `deadline {description} /by {dd/mm/yyyy}` |
-| **event**  | `event {description} /at {dd/mm/yyyy}`    |
-| **list**   | `list`                                    |
-| **mark**   | `mark {task number}`                      |
-| **unmark** | `unmark {task number}`                    |
-| **delete** | `delete {task number}`                    |
-| **find**   | `find {keyword}`                          |
-| **update** | `update {task number} [{description}] [/at {dd/mm/yyyy}] `|
-| **bye**    | `bye`                                     |
+| Keyword      | Usage                                                      |
+|--------------|------------------------------------------------------------|
+| **todo**     | `todo {description}`                                       |
+| **deadline** | `deadline {description} /by {dd/mm/yyyy}`                  |
+| **event**    | `event {description} /at {dd/mm/yyyy}`                     |
+| **list**     | `list`                                                     |
+| **mark**     | `mark {task number}`                                       |
+| **unmark**   | `unmark {task number}`                                     |
+| **delete**   | `delete {task number}`                                     |
+| **find**     | `find {keyword}`                                           |
+| **update**   | `update {task number} [{description}] [/at {dd/mm/yyyy}] ` |
+| **bye**      | `bye`                                                      |
 
 
 ## Features 
-###Add a todo: `todo`
+### Add a todo: `todo`
 Adds a task of type todo to your task list.
 
 Format: `todo {description}`
@@ -40,7 +40,7 @@ Fine, I'll add this task:
 Now you have {x} tasks in the list...
 ```
 
-###Add a deadline: `deadline`
+### Add a deadline: `deadline`
 Adds a task of type deadline to your task list.
 
 Format: `deadline {description} /by {dd/mm/yyyy}`
@@ -54,7 +54,7 @@ Fine, I'll add this task:
 Now you have {x} tasks in the list...
 ```
 
-###Add an event: `event`
+### Add an event: `event`
 Adds a task of type event to your task list.
 
 Format: `event {description} /at {dd/mm/yyyy}`
@@ -68,7 +68,7 @@ Fine, I'll add this task:
 Now you have {x} tasks in the list...
 ```
 
-###Mark task as completed: `mark`
+### Mark task as completed: `mark`
 Marks a task in your task list as complete.
 
 Format: `mark {task number}`
@@ -81,7 +81,7 @@ Took you long enough to complete this task:
 [T][X] CS2103T assignment (by: Dec 12 2022)
 ```
 
-###Mark task as uncomplete: `unmark`
+### Mark task as uncomplete: `unmark`
 Marks a task in your task list as uncompleted.
 
 Format: `unmark {task number}`
@@ -94,7 +94,7 @@ Another task marked as not done?? Slow indeed
 [T][] bake a cake
 ```
 
-###List tasks: `list`
+### List tasks: `list`
 Returns all the tasks in your task list.
 
 Format: `list`
@@ -109,7 +109,7 @@ Here are your dumb tasks in your list:
 3.[E][] Joe's birthday (at: Oct 10 2022)
 ```
 
-###Delete a task: `delete`
+### Delete a task: `delete`
 Deletes a task in your task list.
 
 Format: `delete {task number}`
@@ -123,7 +123,7 @@ Ughh I'll remove this task:
 Now you have {x} tasks in the list...
 ```
 
-###Find task: `find`
+### Find task: `find`
 Returns a list of tasks that matches keyword.
 
 Format: `find {keyword}`
@@ -136,7 +136,7 @@ Tsk! Be grateful I searched through your entire list to find these:
 1. [T][] bake a cake
 ```
 
-###Update a task: `update`
+### Update a task: `update`
 Updates a task in your task list.
 
 Format: `update {task number} [{description}] [/at {dd/mm/yyyy}]`
@@ -151,7 +151,7 @@ Fickle-minded as usual. I've update this task:
 [D][X] bake cupcake (by: Dec 12 2022)
 ```
 
-###Exit task bot: `bye`
+### Exit task bot: `bye`
 Exits the program.
 
 Format: `bye`
