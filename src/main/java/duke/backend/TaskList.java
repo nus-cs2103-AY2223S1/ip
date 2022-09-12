@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 import java.util.ArrayList;
 
+import duke.Duke;
 import duke.DukeException;
 import duke.tasktype.Deadline;
 import duke.tasktype.Event;
@@ -106,13 +107,23 @@ public class TaskList {
         userTasks.add(new Event(taskDescription, dateTime, isCompleted));
     }
 
+    public void checkTaskExistsAtIndex(Integer number) throws DukeException {
+        if (number >= userTasks.size()) {
+            throw new DukeException("Task doesn't exist as the requested index");
+        }
+    }
+
     /**
      * Removes a Task from the input index and returns its description
      * @param number index of the task in userTasks ArrayList to be removed
      * @return description of the removed Task
      */
-    public String removeTask(String number) {
+    public String removeTask(String number) throws DukeException {
         int index = Integer.parseInt(number) - 1;
+        checkTaskExistsAtIndex(index);
+
+        assert userTasks.size() > 0: "userTasks ArrayList must not be empty";
+
         Task deletedTask = userTasks.remove(index);
         String taskMessage = deletedTask.returnDescription();
         return taskMessage;
@@ -123,8 +134,12 @@ public class TaskList {
      * @param taskNumber index of the Task to be marked
      * @return the description of the Task after marking it
      */
-    public String markSpecificTask(String taskNumber) {
+    public String markSpecificTask(String taskNumber) throws DukeException {
         int index = Integer.parseInt(taskNumber) - 1;
+        checkTaskExistsAtIndex(index);
+
+        assert userTasks.size() > 0: "userTasks ArrayList must not be empty";
+
         Task currentTask = userTasks.get(index);
         currentTask.markTask();
         String content = currentTask.returnDescription();
@@ -136,8 +151,12 @@ public class TaskList {
      * @param taskNumber index of the Task to be unmarked
      * @return the description of the Task after unmarking it
      */
-    public String unmarkSpecificTask(String taskNumber) {
+    public String unmarkSpecificTask(String taskNumber) throws DukeException{
         int index = Integer.parseInt(taskNumber) - 1;
+        checkTaskExistsAtIndex(index);
+
+        assert userTasks.size() > 0: "userTasks ArrayList must not be empty";
+
         Task currentTask = userTasks.get(index);
         currentTask.unmarkTask();
         String content = currentTask.returnDescription();
