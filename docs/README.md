@@ -22,7 +22,7 @@ faster than a traditional, GUI based task manager.
 
 [Command list summary](#command-list-summary)
 
-##Quick start
+## Quick start
 1. You must have `Java 11` installed on your device.
 
 
