@@ -42,7 +42,6 @@ public class Duke {
     
     private void start() {
         ui.printWelcomeMessage();
-        tasks = new TaskList(storage.loadFromDisk());
 //            repeatUntilQuit();
         exit();
     }

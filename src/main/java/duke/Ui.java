@@ -61,7 +61,7 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             allTasks = allTasks.concat(i + 1 + "." + tasks.get(i) + "\n");
         }
-        return "Here are the matching tasks in your list: " + allTasks;
+        return "Here are the matching tasks in your list: " + "\n" + allTasks;
     }
 
     /**
