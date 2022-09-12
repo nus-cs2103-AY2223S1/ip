@@ -1,5 +1,6 @@
 package duke;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -72,7 +73,28 @@ class TaskList {
         return response;
     }
 
+    boolean checkIfDuplicate(String name, String type, String additional) {
+        if (type.equals("T")) {
+            return tasks.stream().anyMatch(x -> x.getName().equals(name) && x.getClass() == Todo.class);
+        } else {
+            return tasks.stream().anyMatch(x -> {
+                LocalDate date = LocalDate.parse(additional);
+                if (x.getClass() == Deadline.class) {
+                    return x.getName().equals(name) && ((Deadline) x).deadline.equals(date);
+                } else if (x.getClass() == Event.class) {
+                    System.out.println(date);
+                    System.out.println(((Event) x).eventTime);
+                    return x.getName().equals(name) && ((Event) x).eventTime.equals(date);
+                }
+                return false;
+            });
+        }
+    }
+
     String addTask(String name, String type, String additional) {
+        if (checkIfDuplicate(name, type, additional)) {
+            return "Duplicate task! Not added.";
+        }
         String response = "";
         Task newTask;
         switch (type) {
