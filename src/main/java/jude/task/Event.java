@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 
 import jude.util.DateUtils;
 
+// The idea to add a start and end time for an Event is adapted from
+// https://github.com/nus-cs2103-AY2223S1/forum/issues/82
 /**
  * An {@code Event} object is a Task which has a start time and an end time.
  */
