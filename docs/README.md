@@ -1,5 +1,5 @@
 # User Guide: Kirby Deluxe Bot
-Kirby is a desktop task management app, optimised via a Command Line interface (CLI) while having the benefits of a Graphical User Interface (GUI). Bored of the traditional to-do task list checkboxes? Kirby provides a refreshing method of keeping track of your ongoing tasks, yet it is simple to learn with its intuitive interface. 
+Bored of the traditional to-do task list applications? <br><br> Kirby is a desktop task management app that provides a refreshing way of keeping track of your ongoing tasks! While incorporating the interactive element offered by chat bots, it improvises the conventional features of a task manager. Through its intuitive interface and input system, Kirby provides unparalleled convenience to its users and is easy to learn. 
 
 - [Quick Start (Installation Guide)](#quick-start)
 - [Features](#features) 
