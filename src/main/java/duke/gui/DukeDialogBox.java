@@ -6,21 +6,29 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 /**
  * Duke Dialog Box Class.
  */
 public class DukeDialogBox extends HBox {
     @FXML
-    private Label dialog;
+    private Text dialog;
     @FXML
     private ImageView displayPicture;
+
+    @FXML
+    private VBox dialogBox;
 
     private DukeDialogBox(String text, Image img) {
         try {
@@ -33,7 +41,11 @@ public class DukeDialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        dialog.setFont(Font.font("verdana", FontPosture.REGULAR, 14));
         dialog.setText(text);
+        dialog.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+        dialogBox.setStyle(
+                "-fx-background-color: lightgrey; -fx-text-fill: white; -fx-border-radius: 100px; -fx-padding: 15px;");
         displayPicture.setImage(img);
     }
 
@@ -76,6 +88,8 @@ public class DukeDialogBox extends HBox {
      */
     private void flip() {
         this.setAlignment(Pos.TOP_LEFT);
+        dialog.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+        dialog.setFont(Font.font("Comic Sans MS", FontWeight.LIGHT, FontPosture.REGULAR, 14));
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         FXCollections.reverse(tmp);
         this.getChildren().setAll(tmp);
