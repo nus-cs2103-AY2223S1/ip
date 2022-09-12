@@ -1,0 +1,46 @@
+
+
+/* We try to use a OOCSS methodology here */
+
+.hoverableText:hover {
+    -fx-text-fill: blue;
+}
+
+.hoverableLabel:hover {
+    -fx-background-color: lightgray;
+}
+
+.label-skin {
+    -fx-font-family: Helvetica;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+
+}
+
+.label {
+    -fx-background-color: white;
+}
+
+.pane {
+    -fx-border-color: darkgray;
+    /* -fx-border-width: 1px 0px 1px 0px; */
+    -fx-border-width: 0px 1px 0px 0px;
+    /* -fx-border-width: 5px; */
+    -fx-border-style: solid;
+    margin: 0;
+}
+
+.categoryPane {
+    -fx-background-color: e0e0e0;
+}
+.listPane {
+    -fx-background-color: white;
+}
+.descriptionPane {
+    -fx-background-color: lightgray;
+}
+
+/* Scene background */
+/* .root {
+    -fx-background-color: white;
+} */

@@ -26,7 +26,7 @@ public class Main extends Application {
 
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
-
+            scene.getStylesheets().add(getClass().getResource("/view/TaskCategoryPane.css").toExternalForm());
             stage.setScene(scene);
             fxmlLoader.<Window>getController().initialise(duke);
             stage.show();
