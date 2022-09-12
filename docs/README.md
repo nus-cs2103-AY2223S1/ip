@@ -65,7 +65,7 @@ Format: `deadline [TASK_NAME] /by [END_DATE] [END_TIME]`
 Examples: 
 
 - `deadline Math assignment /by 2022-09-20 13:00`
-- `d ip /by 2022-16-20 23:59`
+- `d ip /by 2022-12-20 23:59`
 
 ### `event` - Add an "Event" task
 Adds a task to your task list with a start date/time and an end date/time.
