@@ -8,7 +8,7 @@ public class Message {
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
     public static final String INVALID_TODO_INPUT = "The description of a todo cannot be empty.";
     public static final String INVALID_DEADLINE_INPUT = "Please use proper deadline formatting: deadline {task} /by {time}";
-    public static final String INVALID_DATE_FORMAT = "Please indicate your date after {/bye} as YYYY-MM-DD (e.g 2019-12-09)";
+    public static final String INVALID_DATE_FORMAT = "Please indicate your date after {/by} as YYYY-MM-DD (e.g 2019-12-09)";
     public static final String INVALID_EVENT_INPUT = "Please use proper event formatting: event {task} /at {time}";
     public static final String INVALID_ACCESS_EMPTY_TASKLIST = "Task does not exist. Initialise a task first, then try again";
     public static final String INVALID_MARK_TASK_FORMAT = "To mark a task, please input this format: mark {task number}";
@@ -20,6 +20,14 @@ public class Message {
     public static final String FILE_READ_ERROR = "There is an error when reading the memory file.";
     public static final String FILE_CREATE_ERROR = "There is an error when creating the memory file";
 
+    /**
+     * Returns a String that describes that the task does not exist within the specified tasklist
+     * and suggests potential numbers for the user to try to locate the task. This method is called
+     * when the task is not found in the tasklist specified
+     *
+     * @param tasks the tasklist of type TaskList
+     * @return a String message describing the task is not found
+     */
     public static String returnTaskNotFound(TaskList tasks) {
         return "Task does not exist. Try another number between 1 and " + tasks.getCount();
     }
