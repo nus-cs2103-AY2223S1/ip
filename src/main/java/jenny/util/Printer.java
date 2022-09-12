@@ -11,8 +11,6 @@ import java.util.ArrayList;
  * @author Deon
  */
 public final class Printer {
-    private static final String UNDERSCORE = "_";
-    private static final int WINDOW_LENGTH = 60;
     private final PrintStream out;
 
     /**
@@ -25,23 +23,14 @@ public final class Printer {
     }
 
     /**
-     * Sends a series of underscores to the output stream.
-     */
-    public void printLine() {
-        out.println("\t" + UNDERSCORE.repeat(WINDOW_LENGTH));
-    }
-
-    /**
      * Sends a series of messages to the output stream.
      *
      * @param messages the messages to be printed.
      */
     public void print(String[] messages) {
-//        printLine();
         for (String message : messages) {
             out.println("\t" + message);
         }
-//        printLine();
     }
 
     /**
@@ -50,10 +39,8 @@ public final class Printer {
      * @param messages the messages to be printed.
      */
     public void print(ArrayList<String> messages) {
-//        printLine();
         for (String message : messages) {
             out.println("\t" + message);
         }
-//        printLine();
     }
 }
