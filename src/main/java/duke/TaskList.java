@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Contains the list of Tasks stored in Duke, as well as methods to manipulate them.
@@ -38,7 +39,8 @@ public class TaskList {
     public ArrayList<Task> find(String s) {
         ArrayList<Task> result = new ArrayList<>();
         for (Task task : tasks) {
-            if (task.contains(s)) {
+            String taskInLowercase = task.toString().toLowerCase();
+            if (taskInLowercase.contains(s)) {
                 result.add(task);
             }
         }
