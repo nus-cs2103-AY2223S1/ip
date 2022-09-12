@@ -35,5 +35,10 @@ public class TaskList {
         tasks.remove(task);
     }
 
+    public void updateTaskDescription(int taskNo, String updatedField) {
+        Task task = tasks.get(taskNo);
+        task.updateDescription(updatedField);
+    }
+
 
 }

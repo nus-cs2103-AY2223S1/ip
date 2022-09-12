@@ -38,6 +38,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public void updateDescription(String updatedField) {
+        this.description = updatedField;
+    }
+
     public String added() {
         return String.format("New task added:\n" +
                 "  %s\n" +

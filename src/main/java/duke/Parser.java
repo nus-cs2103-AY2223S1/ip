@@ -1,16 +1,11 @@
 package duke;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import duke.command.*;
-<<<<<<< HEAD
-=======
-import org.aopalliance.intercept.Invocation;
-import org.yaml.snakeyaml.util.ArrayUtils;
->>>>>>> branch-Assertions
+
 
 /**
  * Parser class to parse texts into commands.
@@ -66,11 +61,7 @@ public class Parser {
         int[] taskNosInt = new int[taskNosString.length];
         int currIndex = 0;
         for (String string : taskNosString) {
-<<<<<<< HEAD
             int taskNo = Integer.parseInt(string) - 1;
-=======
-            int taskNo = Integer.valueOf(string) - 1;
->>>>>>> branch-Assertions
             if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
                 return new ResponseCommand("Task number " + (taskNo + 1) + " does not exist.");
             }
@@ -128,6 +119,23 @@ public class Parser {
         return localDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
 
+    public static Command parseUpdate(String desc) {
+        Scanner sc = new Scanner(desc);
+        String field = sc.next();
+        int taskNo = Integer.parseInt(sc.next()) - 1;
+        sc.next();
+        String updatedField = sc.nextLine();
+
+        switch (field) {
+            case "description":
+                return new UpdateTaskDescriptionCommand(taskNo, updatedField);
+
+            default:
+                return new InvalidCommand();
+        }
+    }
+
+
     public static Command parse(String rawCommand) throws DukeException, AssertionError {
         UI.userInput(rawCommand);
         Scanner sc = new Scanner(rawCommand);
@@ -167,6 +175,10 @@ public class Parser {
                 case ("find"):
                     assert desc.length() != 0 : "Cannot find an empty string!";
                     return Parser.parseFind(desc);
+
+                case ("update"):
+                    assert desc.length() != 0 : "Cannot find an empty string!";
+                    return Parser.parseUpdate(desc);
 
                 default:
                     return new InvalidCommand();

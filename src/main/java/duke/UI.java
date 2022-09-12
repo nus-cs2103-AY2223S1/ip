@@ -176,4 +176,18 @@ public class UI {
                 + matchedTasks
                 + DIVIDER;
     }
+
+    public static void updateTaskDesc(Task task) {
+        System.out.println(DIVIDER);
+        System.out.println("The following task has been updated:");
+        System.out.println(task);
+        System.out.println(DIVIDER);
+    }
+
+    public static String updateTaskDescResponse(Task task) {
+        return DIVIDER
+                + "The following task has been updated: \n"
+                + task + System.lineSeparator()
+                + DIVIDER;
+    }
 }
