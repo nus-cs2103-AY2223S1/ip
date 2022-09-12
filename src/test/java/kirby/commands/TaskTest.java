@@ -27,7 +27,7 @@ public class TaskTest {
             String[] emptyArr = {null, null, null};
             new DeadlineCommand(emptyArr).execute(taskList, ui, storage);
         } catch (KirbyMissingArgumentException e) {
-            String expectedOutput = "Aaaaaaah, the description of a deadline" + "\n" + "is invalid! \n Try again!";
+            String expectedOutput = "Aaah you have missing arguments! " + "deadline command is invalid! \nTry again!";
             assertEquals(expectedOutput, e.getMessage());
         }
     }

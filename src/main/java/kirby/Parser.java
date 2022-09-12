@@ -60,6 +60,7 @@ public class Parser {
         String taskTime = null;
         int beginIndex = inputString.indexOf(taskType) + taskType.length() + 1;
         String placeholder = getPlaceholder(taskType);
+        assert placeholder != null;
         int afterPlaceholderIndex = inputString.indexOf(placeholder) + placeholder.length() + 1;
         boolean taskNameExists = beginIndex < inputString.indexOf(placeholder);
         boolean timeExists = inputString.length() - 1 >= afterPlaceholderIndex;
