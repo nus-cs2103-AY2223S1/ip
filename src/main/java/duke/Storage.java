@@ -22,7 +22,7 @@ class Storage {
      *
      * @param taskList the target destination to store result
      */
-    protected void readResult(TaskList taskList) {
+    public void readResult(TaskList taskList) {
         File file = new File(filePath);
         try {
             FileReader fr = new FileReader(file);
@@ -51,6 +51,7 @@ class Storage {
             Ui.formatPrint("Fail to write file.");
         }
     }
+
     /**
      * Writes the task list result to the file.
      *

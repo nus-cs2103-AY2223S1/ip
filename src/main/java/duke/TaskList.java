@@ -7,13 +7,17 @@ import java.util.ArrayList;
  * TaskList class to model list of Tasks and relevant operations.
  */
 public class TaskList {
-    static final String INVALID_COMMAND_MESSAGE = "Invalid Command";
-    private ArrayList<Task> taskArrayList;
-    protected enum TaskEnum {
+    /**
+     * TaskEnum includes all the possible types of Task instance.
+     */
+    public enum TaskEnum {
         Todo,
         Deadline,
         Event
     }
+    static final String INVALID_COMMAND_MESSAGE = "Invalid Command";
+    private ArrayList<Task> taskArrayList;
+
 
     /**
      * Constructs an instance of TaskList and initializes a new array list.
@@ -48,10 +52,11 @@ public class TaskList {
     }
 
     /**
-     * Reads pre-created records from the given line from the file
+     * Reads pre-created records from the given line from the file.
+     *
      * @param line string of pre-created record
      */
-    protected void readPreCreatedTask(String line) {
+    public void readPreCreatedTask(String line) {
         String separator = " \\| ";
         Task curr;
         boolean isDone;

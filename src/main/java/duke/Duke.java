@@ -22,13 +22,15 @@ public class Duke {
     /**
      * Sets the isTerminated to be true
      */
-    protected void setTerminated() {
+    public void setTerminated() {
         this.isTerminated = true;
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns response from the input string by parsing the string and executing the corresponding command.
+     *
+     * @param input String to be parsed into command and to be executed
+     * @return a String to be displayed back to user
      */
     public String getResponse(String input) {
         if (isTerminated) {

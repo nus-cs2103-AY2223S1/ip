@@ -35,6 +35,11 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().add(dialogBox);
     }
 
+    /**
+     * Initializes Duke with a default greeting function.
+     *
+     * @param d the Duke object to be initialized
+     */
     public void setDuke(Duke d) {
         duke = d;
         addDialogBox(DialogBox.getDukeDialog(duke.getResponse("greet"), dukeImage));

@@ -43,9 +43,10 @@ public class Event extends Task {
     }
 
     /**
-     * Returns true if obj is equal to this instance else false
+     * Returns true if obj is equal to this instance else false.
+     *
      * @param obj object to be compared with
-     * @return true if obj is equal to this instance else false
+     * @return true if obj is equal to this instance in its description, at, and isDone else false
      */
     @Override
     public boolean equals(Object obj) {

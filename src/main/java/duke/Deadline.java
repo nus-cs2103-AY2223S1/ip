@@ -42,6 +42,12 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
+    /**
+     * Returns true if obj is equal to this instance else false
+     *
+     * @param obj object to be compared with
+     * @return true if obj is equal to this instance in its description, by, and isDone else false
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

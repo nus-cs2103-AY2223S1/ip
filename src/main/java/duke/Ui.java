@@ -25,7 +25,7 @@ class Ui {
      * @param s string to be printed
      * @return String to be displayed to the user
      */
-    protected static String formatPrint(String s) {
+    public static String formatPrint(String s) {
         return s;
     }
 
@@ -34,7 +34,7 @@ class Ui {
      *
      * @param taskList the list of tasks
      */
-    protected static String listPrint(TaskList taskList) {
+    public static String listPrint(TaskList taskList) {
         String opening = "Here are the tasks in your list:\n";
         String[] separators = new String[] {"\n", ". "};
         ArrayList<Task> arr = taskList.getTaskArrayList();
@@ -42,9 +42,9 @@ class Ui {
         String result = opening;
         for (Task t : arr) {
             if (count != 1) {
-                result += separators[0];
+                result = result + separators[0];
             }
-            result += count + separators[1] + t.toString();
+            result = result + count + separators[1] + t.toString();
             count++;
         }
         return Ui.formatPrint(result);
@@ -55,7 +55,7 @@ class Ui {
      *
      * @return greeting string to be displayed to user
      */
-    protected static String greet() {
+    public static String greet() {
         return Ui.formatPrint(OPENING);
     }
 
@@ -64,7 +64,7 @@ class Ui {
      *
      * @return help string
      */
-    protected static String help() {
+    public static String help() {
         return Ui.formatPrint(HELP_MESSAGE);
     }
 
@@ -73,18 +73,22 @@ class Ui {
      *
      * @return bye string to be displayed to user
      */
-    protected static String bye() {
+    public static String bye() {
         return Ui.formatPrint(ENDING);
     }
 
-    protected static String endedSessionPrint() {
+    /**
+     * Prints Message that signals the session has ended.
+     * @return String that suggests the session has ended
+     */
+    public static String endedSessionPrint() {
         return Ui.formatPrint(ENDED_SESSION_MESSAGE);
     }
 
     /**
      * Prints output for no matching result case.
      */
-    protected static String processUnfoundResult() {
+    public static String processUnfoundResult() {
         return ERROR_UNFOUND_MESSAGE;
     }
 
@@ -95,7 +99,7 @@ class Ui {
      * @param isDone the state the task object is changed to
      * @return result string to be displayed to user
      */
-    protected static String taskStateChangePrint(Task t, boolean isDone) {
+    public static String taskStateChangePrint(Task t, boolean isDone) {
         String successMsg = "Nice! I've marked this task as done:\n";
         String failMsg = "OK, I've marked this task as not done yet:\n";
         String res;
@@ -113,7 +117,7 @@ class Ui {
      * @param msg the error message to decide which scenario
      * @return result string to be displayed to user
      */
-    protected static String processExceptionOutput(String msg) {
+    public static String processExceptionOutput(String msg) {
         switch (msg) {
         case "Unable to parse query":
             // fall through
