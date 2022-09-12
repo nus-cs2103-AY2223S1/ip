@@ -45,7 +45,6 @@ public class NekoResponses {
                 String.format("- %s \n", Command.HELP.getValue()) +
                 String.format("- %s \n", Command.BYE.getValue()) +
                 "\nEXAMPLES: \n" +
-                String.format("%s \n", Command.HELP.getValue()) +
                 String.format("%s cut hair \n", Command.TODO.getValue()) +
                 String.format("%s cut hair %s 2022-09-11 \n",
                         Command.DEADLINE.getValue(), SecondaryCommand.BY.getValue()) +
@@ -56,6 +55,7 @@ public class NekoResponses {
                 String.format("%s 1\n", Command.CHECK.getValue()) +
                 String.format("%s 1\n", Command.UNCHECK.getValue()) +
                 String.format("%s 1\n", Command.DELETE.getValue()) +
+                String.format("%s \n", Command.HELP.getValue()) +
                 String.format("%s \n", Command.BYE.getValue());
     }
 
