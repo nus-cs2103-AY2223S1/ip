@@ -24,6 +24,9 @@ public class Parser {
     private enum Keyword {
         BYE, LIST, MARK, TODO, DEADLINE, EVENT, DELETE, FIND, SORT;
 
+        //@@author Devashish Bansal
+        // Reused from https://stackoverflow.com/questions/4936819/java-check-if-enum-contains-a-given-string
+        // with minor modifications
         private static boolean hasKeyword(String s) {
             for (Keyword k : Keyword.values()) {
                 if (k.name().equals(s)) {
@@ -32,6 +35,7 @@ public class Parser {
             }
             return false;
         }
+        //@@author
     }
 
     /**

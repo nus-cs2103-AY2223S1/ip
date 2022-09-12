@@ -6,6 +6,9 @@ package tako;
 public enum Sort {
     ALPHABET, DATE;
 
+    //@@author Devashish Bansal
+    // Reused from https://stackoverflow.com/questions/4936819/java-check-if-enum-contains-a-given-string
+    // with minor modifications
     /**
      * Check if Sort has the specified way of sorting.
      *
@@ -20,4 +23,5 @@ public enum Sort {
         }
         return false;
     }
+    //@@author
 }
