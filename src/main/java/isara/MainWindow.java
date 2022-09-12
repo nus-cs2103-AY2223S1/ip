@@ -63,6 +63,9 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
 
+        //@@author midnightfeverrr-reused
+        //Reused from https://github.com/midnightfeverrr/ip/blob/master/src/main/java/MainWindow.java
+        // with minor modifications.
         if (isara.getExitStatus()) {
             CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS).execute(Platform::exit);
         }
