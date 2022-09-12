@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -19,7 +20,11 @@
          </font></Button>
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" style="-fx-background-color: #53a1ff;"/>
+                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" styleClass="dialog">
+                    <stylesheets>
+                        <URL value="@../style/style.css"/>
+                    </stylesheets>
+                </VBox>
             </content>
         </ScrollPane>
     </children>
