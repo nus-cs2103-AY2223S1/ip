@@ -14,10 +14,6 @@ public class Ui {
         return isExit;
     }
 
-    public static String showWelcomeMessage() {
-        return "Hello! I'm Duke\nWhat can I do for you?";
-    }
-
     public String readUserInputThenOutputMessage(TaskList taskList, Storage storage, String input) {
         assert !isExit : "isExit should be false here, and can only be changed after this line of code";
         Scanner scanner = new Scanner(input);

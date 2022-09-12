@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class ListCommand extends Command {
-    private static final int DISPLAYED_INDEX_OFFSET = 1;
-
     /**
      * Returns a list of tasks that is currently stored in the task list.
      *

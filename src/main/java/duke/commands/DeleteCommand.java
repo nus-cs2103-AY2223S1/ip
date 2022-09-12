@@ -6,8 +6,6 @@ import duke.task.TaskList;
 import java.util.Scanner;
 
 public class DeleteCommand extends Command {
-    private static final int DISPLAYED_INDEX_OFFSET = 1;
-
     private final int deleteIndex;
 
     /**

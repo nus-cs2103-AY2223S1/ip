@@ -2,11 +2,13 @@ package duke.commands;
 
 import duke.task.TaskList;
 
+import static duke.ui.Messages.MESSAGE_INCORRECT_COMMAND;
+
 public class IncorrectCommand extends Command {
     /**
      * Print error message for invalid command.
      */
     public String execute(TaskList taskList) {
-        return "OOPS!!! I'm sorry, but I don't know what that means :-(";
+        return MESSAGE_INCORRECT_COMMAND;
     }
 }
