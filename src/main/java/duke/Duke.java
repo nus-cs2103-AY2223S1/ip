@@ -1,7 +1,22 @@
 package duke;
 
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+
+import duke.commands.Command;
+import duke.ui.MainWindow;
+import duke.ui.Ui;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 
 /**
  * The Duke program implements an application that
@@ -10,12 +25,21 @@ import java.util.Scanner;
  *
  * @author Ying Ting Tan
  */
-public class Duke {
+public class Duke extends Application {
 
     private TaskList taskList;
     private Storage storage;
     private Ui ui;
     private Parser parser;
+    private ScrollPane scrollPane;
+    private VBox dialogContainer;
+    private TextField userInput;
+    private Button sendButton;
+    private Scene scene;
+
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/tim.jpg"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/minion.png"));
+
 
     /**
      * Constructor. Initialises Ui, Parser, Storage and TaskList.
@@ -25,34 +49,68 @@ public class Duke {
         parser = new Parser();
         storage = new Storage();
         taskList = new TaskList();
-    }
-
-    /**
-     * Loads task list from storage and passes user input into parser.
-     */
-    public void run() {
-        Scanner sc = new Scanner(System.in);
-        ui.start();
         try {
             storage.read(taskList);
-            while (sc.hasNext()) {
-                String input = sc.nextLine();
-                parser.parseInput(input, ui, storage, taskList);
-            }
         } catch (IOException e) {
-            System.out.println(e.toString());
+            e.toString();
+        }
+     }
+
+//    /**
+//     * Loads task list from storage and passes user input into parser.
+//     */
+//    public Command run() {
+//        Scanner sc = new Scanner(System.in);
+//        ui.start();
+//        try {
+//            storage.read(taskList);
+//            while (sc.hasNext()) {
+//                String input = sc.nextLine();
+//                return parser.parseInput(input, ui, storage, taskList);
+//            }
+//        } catch (IOException e) {
+//            System.out.println(e.toString());
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//        Duke duke = new Duke();
+//        duke.run();
+//    }
+
+    @Override
+    public void start(Stage stage) {
+        Duke duke = new Duke();
+        loadWindow(stage);
+    }
+
+
+    private void loadWindow(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Duke.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<MainWindow>getController().setDuke(this);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    /**
-     * Creates new Duke object and runs program.
-     * @param args
-     */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
+    public String getResponse(String input) {
+        try {
+            Command c = parser.parseInput(input, ui, storage, taskList);
+            String response = c.execute();
+            return response;
+        } catch (DukeException e) {
+            return ui.showDukeException(e);
+        } catch (DateTimeParseException e) {
+            return "OOPS!!! Please enter date in YYYY-MM-DD format!";
+        }
     }
 
-
-
+    public String greet() {
+        return "Bello! I'm Bob! \n" + "What can I do for you?";
+    }
 }

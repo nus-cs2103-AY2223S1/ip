@@ -1,87 +1,40 @@
 package duke;
-import java.time.format.DateTimeParseException;
-import java.util.List;
+import duke.commands.*;
+import duke.ui.Ui;
+
 public class Parser {
 
-    public static void parseInput(String input, Ui ui, Storage storage, TaskList taskList) {
+    public static Command parseInput(String input, Ui ui, Storage storage, TaskList taskList) {
         String[] breakitdown = input.split(" ");
         String command = breakitdown[0];
-        Task newTask;
-        try {
             if (command.equals("bye")) {
-                ui.bye();
+                //return new ByeCommand(ui, storage, taskList);
                 storage.write(taskList);
+                System.out.println("Bye. Hope to see you again soon!");
                 System.exit(0);
+                return null;
             } else if (command.equals("list")) {
-                ui.printTaskList(taskList);
+                return new ListCommand(ui, taskList);
             } else if (command.equals("unmark")) {
                 int idx = Integer.parseInt(breakitdown[1]);
-                Task toUnmark = taskList.unmark(idx);
-                ui.printOnUnmark(toUnmark);
+                return new UnmarkCommand(idx, taskList, ui);
             } else if (command.equals("mark")) {
                 int idx = Integer.parseInt(breakitdown[1]);
-                Task toMark = taskList.mark(idx);
-                ui.printOnMark(toMark);
+                return new MarkCommand(idx, taskList, ui);
             } else if (command.equals("todo")) {
-                if (breakitdown.length == 1) {
-                    throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-                }
-                String taskName = input.substring(5);
-                newTask = new ToDos(taskName);
-                taskList.add(newTask);
-                ui.printOnAdd(newTask, taskList);
+                return new ToDoCommand(input, ui, taskList);
             } else if (command.equals("deadline")) {
-                if (breakitdown.length == 1) {
-                    throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
-                }
-                String desc = input.substring(9);
-                if (!desc.contains("/by")) {
-                    throw new DukeException("OOPS!!! /by keyword not found!");
-                }
-                String[] taskNameBy = desc.split("/by ");
-                if (taskNameBy.length == 1) {
-                    throw new DukeException("OOPS!!! Date of deadline cannot be empty.");
-                }
-                String taskName = taskNameBy[0];
-                String by = taskNameBy[1];
-                try {
-                    newTask = new Deadlines(taskName, by);
-                    taskList.add(newTask);
-                    ui.printOnAdd(newTask, taskList);
-                } catch (DateTimeParseException e) {
-                    System.out.println("OOPS!!! Please enter date in YYYY-MM-DD format");
-                }
+                return new DeadlineCommand(input, ui, taskList);
             } else if (command.equals("event")) {
-                if (breakitdown.length == 1) {
-                    throw new DukeException("OOPS!!! The description of an event cannot be empty.");
-                }
-                String desc = input.substring(6);
-                if (!desc.contains("/at")) {
-                    throw new DukeException("OOPS!!! /at keyword not found!");
-                }
-                String[] taskNameLocation = desc.split("/at ");
-                if (taskNameLocation.length == 1) {
-                    throw new DukeException("OOPS!!! Location of event cannot be empty.");
-                }
-                String taskName = taskNameLocation[0];
-                String location = taskNameLocation[1];
-                newTask = new Events(taskName, location);
-                taskList.add(newTask);
-                ui.printOnAdd(newTask, taskList);
+                return new EventCommand(input, ui, taskList);
             } else if (command.equals("delete")) {
                 int idx = Integer.parseInt(breakitdown[1]);
-                Task toDelete = taskList.delete(idx);
-                ui.printOnDelete(toDelete, taskList);
+                return new DeleteCommand(idx, ui, taskList);
             } else if (command.equals("find")) {
                 String toFind = breakitdown[1];
-                List<Task> found = taskList.find(toFind);
-                ui.printOnFind(found);
+                return new FindCommand(toFind, taskList, ui);
             } else {
-                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                return new UnknownCommand();
             }
-        } catch (DukeException e) {
-            System.out.println(e.toString());
-        }
     }
-
 }
