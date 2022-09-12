@@ -62,16 +62,8 @@ public class TaskStorage<T> extends Storage<T> {
         }
         assert isArrayList;
 
-        ArrayList<?> tArrayList = (ArrayList<?>) t;
-        boolean isTask = tArrayList.get(0) instanceof Task;
-        if (!isTask) {
-            assert !isTask;
-            throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_TYPE);
-        }
-        assert isTask;
-
         @SuppressWarnings("unchecked")
-        ArrayList<Task> tasks = (ArrayList<Task>) tArrayList;
+        ArrayList<Task> tasks = (ArrayList<Task>) t;
 
         try {
             FileWriter fileWriter = new FileWriter(filePath.toFile());
