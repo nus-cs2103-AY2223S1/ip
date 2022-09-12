@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class TaskList {
     private ArrayList<Task> tasks;
     private int taskCount;
-    private Storage storage = new Storage();
 
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -21,7 +20,7 @@ public class TaskList {
     /**
      * Used to convert the current TaskList into a string format that can be easily read by the program after saving
      *
-     * @returns the TaskList in the required string format for saving to file
+     * @return the TaskList in the required string format for saving to file
      */
     public String saveToFile() {
         String output = "";
@@ -54,67 +53,98 @@ public class TaskList {
      * @return the respective output messages
      */
     public String add(String str, Scruffles.Type type) {
-        if (type.equals(Scruffles.Type.TODO)) {
-            try {
-                if (str.equals("todo") || str.equals("todo ")) {
-                    throw new DescriptionEmptyException();
-                }
-                tasks.add(new Todo(str.replace("todo ", "")));
-                taskCount++;
-                return String.format("woof! the task is added woof!\n" +
-                                "%s\n" +
-                                "you now have %d tasks in the list woof!",
-                        tasks.get(taskCount - 1).toString(),
-                        taskCount);
-            } catch (DescriptionEmptyException e) {
-                return e.getMessage();
-            }
-        } else if (type.equals(Scruffles.Type.DEADLINE)) {
-            try {
-                if (str.equals("deadline") || str.equals("deadline ")) {
-                    throw new DescriptionEmptyException();
-                }
-                String[] input = str.split("/by ");
-                String name = input[0].replace("deadline", "");
-                LocalDate date = LocalDate.parse(input[1]);
-                tasks.add(new Deadline(name, date));
-                taskCount++;
-                return String.format("woof! the task is added woof!\n" +
-                                "%s\n" +
-                                "you now have %d tasks in the list woof!",
-                        tasks.get(taskCount - 1).toString(),
-                        taskCount);
-            } catch (DescriptionEmptyException e) {
-                return e.getMessage();
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return "grrrr >:( when is your deadline?? woof woof!";
-            } catch (DateTimeParseException e) {
-                return "grrrr >:( please input deadline in yyyy-mm-dd format woof woof!";
-            }
-        } else if (type.equals(Scruffles.Type.EVENT)) {
-            try {
-                if (str.equals("event") || str.equals("event ")) {
-                    throw new DescriptionEmptyException();
-                }
-                String[] input = str.split("/at ");
-                String name = input[0].replace("event", "");
-                tasks.add(new Event(name, input[1]));
-                taskCount++;
-                return String.format("Got it. I've added this task:\n" +
-                                "%s\n" +
-                                "you now have %d tasks in the list woof!",
-                        tasks.get(taskCount - 1).toString(),
-                        taskCount);
-            } catch (DescriptionEmptyException e) {
-                return e.getMessage();
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return "grrrr >:( when is your event?? woof woof!";
-            } catch (DateTimeParseException e) {
-                return "grrrr >:( please input event date as 'yyyy-mm-dd from hh:mm to hh:mm' format" +
-                        " woof woof!";
-            }
-        } else {
+        switch (type) {
+        case TODO:
+            return todo(str);
+        case DEADLINE:
+            return deadline(str);
+        case EVENT:
+            return event(str);
+        default:
             return "";
+        }
+    }
+
+    /**
+     * Adds a Todo into the TaskList
+     *
+     * @param str the input string of the Todo
+     * @return the respective output messages
+     */
+    private String todo(String str) {
+        try {
+            if (str.equals("todo") || str.equals("todo ")) {
+                throw new DescriptionEmptyException();
+            }
+            tasks.add(new Todo(str.replace("todo ", "")));
+            taskCount++;
+            return String.format("woof! the task is added woof!\n" +
+                            "%s\n" +
+                            "you now have %d tasks in the list woof!",
+                    tasks.get(taskCount - 1).toString(),
+                    taskCount);
+        } catch (DescriptionEmptyException e) {
+            return e.getMessage();
+        }
+    }
+
+    /**
+     * Adds a Deadline into the TaskList
+     *
+     * @param str the input string of the Deadline
+     * @return the respective output messages
+     */
+    private String deadline(String str) {
+        try {
+            if (str.equals("deadline") || str.equals("deadline ")) {
+                throw new DescriptionEmptyException();
+            }
+            String[] input = str.split("/by ");
+            String name = input[0].replace("deadline", "");
+            LocalDate date = LocalDate.parse(input[1]);
+            tasks.add(new Deadline(name, date));
+            taskCount++;
+            return String.format("woof! the task is added woof!\n" +
+                            "%s\n" +
+                            "you now have %d tasks in the list woof!",
+                    tasks.get(taskCount - 1).toString(),
+                    taskCount);
+        } catch (DescriptionEmptyException e) {
+            return e.getMessage();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "grrrr >:( when is your deadline?? woof woof!";
+        } catch (DateTimeParseException e) {
+            return "grrrr >:( please input deadline in yyyy-mm-dd format woof woof!";
+        }
+    }
+
+    /**
+     * Adds a Event into the TaskList
+     *
+     * @param str the input string of the Event
+     * @return the respective output messages
+     */
+    private String event(String str) {
+        try {
+            if (str.equals("event") || str.equals("event ")) {
+                throw new DescriptionEmptyException();
+            }
+            String[] input = str.split("/at ");
+            String name = input[0].replace("event", "");
+            tasks.add(new Event(name, input[1]));
+            taskCount++;
+            return String.format("Got it. I've added this task:\n" +
+                            "%s\n" +
+                            "you now have %d tasks in the list woof!",
+                    tasks.get(taskCount - 1).toString(),
+                    taskCount);
+        } catch (DescriptionEmptyException e) {
+            return e.getMessage();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "grrrr >:( when is your event?? woof woof!";
+        } catch (DateTimeParseException e) {
+            return "grrrr >:( please input event date as 'yyyy-mm-dd from hh:mm to hh:mm' format" +
+                    " woof woof!";
         }
     }
 
@@ -205,7 +235,7 @@ public class TaskList {
     }
 
     public String bye() {
-        storage.save(this);
+        Storage.save(this);
         return Ui.bye();
     }
 
