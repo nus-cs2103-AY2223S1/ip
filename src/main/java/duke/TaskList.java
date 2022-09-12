@@ -74,13 +74,25 @@ public class TaskList {
         return taskList.get(i);
     }
 
-    /**
-     * Prints the String representation of the TaskList.
-     */
-    public void print() {
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println((i + 1) + "." + taskList.get(i).toString());
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (taskList.size() == 0) {
+            String str = ("There are currently no tasks in the list.");
+            sb.append(str);
+        } else {
+            String str = ("Here are the tasks in your list: \n");
+            sb.append(str);
+            for (int i = 0; i < this.size(); i++) {
+                str = ("\t" + (i+1) + ".\t " + this.get(i).toString());
+                sb.append(str);
+                if (i != this.size() - 1) {
+                    sb.append("\n");
+                }
+            }
         }
+        return sb.toString();
+
     }
 
     public List<Task> find(String toFind) {

@@ -1,6 +1,2 @@
-[T][ ] homework 
-[E][X] interview  (at: zoom)
-[E][ ] party  (at: home)
-[D][ ] iP  (by: 2022-08-31)
-[T][ ] party guest list 
-[D][ ] Party preparation  (by: 2022-09-06)
+[T][ ] homework
+[D][ ] iP  (by: 2022-09-17)
