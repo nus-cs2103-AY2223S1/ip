@@ -53,7 +53,7 @@ public class DeleteCommand extends Command {
         assert !isEmpty;
 
         try {
-            int index = Integer.parseInt(arguments) - OFFSET;
+            int index = Integer.parseInt(arguments) + OFFSET;
             Task task = tasks.remove(index);
             tasks.save(storage);
             ui.print(new String[]{

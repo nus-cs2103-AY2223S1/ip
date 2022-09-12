@@ -45,7 +45,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void run(TaskList tasks, Ui ui, Storage<ArrayList<Task>> storage) {
         try {
-            int index = Integer.parseInt(arguments) - OFFSET;
+            int index = Integer.parseInt(arguments) + OFFSET;
             Task task = tasks.get(index);
             assert index >= 0;
             task.unmark();
