@@ -86,6 +86,9 @@ class Parser {
                 case "hi":
                     return duke.hi();
 
+                case "Hi":
+                    return duke.hi();
+
                 case "help":
                     return help();
 
