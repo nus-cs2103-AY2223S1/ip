@@ -18,15 +18,15 @@ import javafx.scene.layout.HBox;
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.
  */
-public class DialogBox extends HBox {
+public class DialogBoxFalcon extends HBox {
     @FXML
-    private Label dialog;
+    private Label dialogFalcon;
     @FXML
-    private ImageView displayPicture;
+    private ImageView displayPictureFalcon;
 
-    private DialogBox(String text, Image img) {
+    private DialogBoxFalcon(String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBoxFalcon.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
@@ -34,8 +34,8 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        dialog.setText(text);
-        displayPicture.setImage(img);
+        dialogFalcon.setText(text);
+        displayPictureFalcon.setImage(img);
     }
 
     /**
@@ -48,13 +48,9 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
-    }
-
-    public static DialogBox getDukeDialog(String text, Image img) {
-        var dialogBox = new DialogBox(text, img);
-        dialogBox.flip();
-        return dialogBox;
+    public static DialogBoxFalcon getFalconDialog(String text, Image img) {
+        var DialogBoxFalcon = new DialogBoxFalcon(text, img);
+        DialogBoxFalcon.flip();
+        return DialogBoxFalcon;
     }
 }
