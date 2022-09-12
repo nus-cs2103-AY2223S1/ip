@@ -63,14 +63,32 @@ public class Task {
                 + this.getDescription();
     }
 
+    /**
+     * Adds a tag to the task.
+     *
+     * @param tag The name of the tag.
+     */
     public void addTag(String tag) {
         this.tags.add(tag);
     }
 
     /**
-     * Formats tags into File.
+     *  Prints the tag array.
      *
-     * @return String added into file.
+     * @return The String of the tag array
+     */
+    public String tagsToString() {
+        if (tags.isEmpty()) {
+            return "";
+        } else {
+            return " " + tags;
+        }
+    }
+
+    /**
+     *  Formats the tags for file storing
+     *
+     * @return the formatted string for tag storing
      */
     public String formatTagsForFile() {
         String temp = "";

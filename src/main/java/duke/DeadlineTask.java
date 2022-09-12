@@ -62,6 +62,7 @@ public class DeadlineTask extends Task {
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("h:mm a");
         return "[D]" + super.toString() + " (by: "
                 + this.date.format(formatterDate) + " "
-                + this.time.format(formatterTime) + ")";
+                + this.time.format(formatterTime) + ")"
+                + tagsToString();
     }
 }

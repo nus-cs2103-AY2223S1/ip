@@ -247,14 +247,14 @@ public class TaskList {
      * @throws DukeException if no task index was indicated.
      */
     public String tagTask(String string) throws DukeException {
-        String printTags = "Tags added: ";
         String[] stringComponents = string.split(" ");
         int taskIndex = stringToInteger(stringComponents[0]) - 1;
         Task taskChosen = this.list.get(taskIndex);
+        String printTags = "Tags added: ";
         for (int i = 1; i < stringComponents.length; i++) {
             taskChosen.addTag(stringComponents[i]);
             printTags += stringComponents[i] + " ";
         }
-        return printTags;
+        return printTags + "\n" + taskChosen;
     }
 }

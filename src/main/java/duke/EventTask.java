@@ -62,6 +62,7 @@ public class EventTask extends Task {
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("h:mm a");
         return "[E]" + super.toString() + " (at: "
                 + this.date.format(formatterDate) + " "
-                + this.time.format(formatterTime) + ")";
+                + this.time.format(formatterTime) + ")"
+                + tagsToString();
     }
 }

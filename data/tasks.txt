@@ -1,6 +1,3 @@
-T |   | todo  2022-12-20 1200 | tag1 | tag2 | tag3
-T | X | todo | tag
-E |   | event | -2021-02-20 0100
-T |   | todo
-D |   | deadline | 2022-11-11 1100
-E |   | event | 2011-11-11 1100
+T |   | homework | urgent
+D |   | homework | 2022-12-20 1200
+E |   | birthday | 2022-02-01 1800

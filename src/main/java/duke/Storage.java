@@ -85,38 +85,20 @@ public class Storage {
         assert this.filePath != null;
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
-            String[] keywords = line.split(" \\| ", 4);
+            String[] keywords = line.split(" \\| ");
             switch (keywords[0]) {
             case "D":
-                validateTask(4, keywords, tasks, Parser.Type.DEADLINE);
+                setTaskIntoList(Parser.Type.DEADLINE, keywords, tasks);
                 break;
             case "E":
-                validateTask(4, keywords, tasks, Parser.Type.EVENT);
+                setTaskIntoList(Parser.Type.EVENT, keywords, tasks);
                 break;
             case "T":
-                validateTask(3, keywords, tasks, Parser.Type.TODO);
+                setTaskIntoList(Parser.Type.TODO, keywords, tasks);
                 break;
             default:
                 throw new DukeException("Error! Task not given.");
             }
-        }
-    }
-
-    /**
-     * Checks if it contains the right number of keywords.
-     * Starts to add into list if number of keywords is correct.
-     *
-     * @param numberOfKeywords The number of keywords separated by | symbol.
-     * @param keywords The array of words separated by | symbol.
-     * @param tasks The list added into.
-     * @throws DukeException If the number of keywords is incorrect.
-     */
-    public void validateTask(int numberOfKeywords, String[] keywords, TaskList tasks, Parser.Type type)
-            throws DukeException {
-        if (keywords.length < numberOfKeywords) {
-            throw new DukeException("Incorrect information for deadline from input or file");
-        } else {
-            setTaskIntoList(type, keywords, tasks);
         }
     }
 
