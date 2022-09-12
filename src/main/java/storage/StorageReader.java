@@ -20,7 +20,7 @@ public class StorageReader {
     }
 
     /**
-     * Return contents of file history.
+     * Returns contents of file history.
      *
      * @return arraylist containing all the lines in the file.
      */

@@ -33,7 +33,7 @@ public class Parser {
     private static HashMap<String, Pattern> commandAliasesHashMap = new HashMap<>();
 
     /**
-     * Initiliase hashmap which stores Pattern
+     * Initializes hashmap which stores Pattern
      * required to determine corresponding
      * String command.
      *
@@ -161,7 +161,7 @@ public class Parser {
     }
 
     /**
-     * return event
+     * Returns event.
      *
      * @param description description
      * @param date date
