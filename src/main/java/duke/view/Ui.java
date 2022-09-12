@@ -1,5 +1,6 @@
 package duke.view;
 
+import duke.DukeException;
 import duke.backend.TaskList;
 
 public class Ui {
@@ -11,6 +12,7 @@ public class Ui {
     private static final String MARK_TEXT_MESSAGE = "Nice! I've marked this task as done: \n";
     private static final String UNMARK_TEXT_MESSAGE = "OK, I've marked this task as not done yet: \n";
     private static final String MATCH_TEXT_MESSAGE = "Here are the matching tasks in your list: \n";
+    private static final String REMINDER_MESSAGE = "Here are the reminders for tasks in the upcoming week: \n";
 
     private String getTaskListSizeMessage(TaskList tasklist) {
         return "\nNow you have " + tasklist.getSize() + " tasks in the list.";
@@ -53,6 +55,12 @@ public class Ui {
         String listInString = LIST_MESSAGE;
         listInString += tasklist.listOfTaskForDisplay();
         return listInString;
+    }
+
+    public String showReminder(TaskList tasklist) {
+        String reminderInString = REMINDER_MESSAGE;
+        reminderInString += tasklist.listOfTasksForReminder();
+        return reminderInString;
     }
 
     public String showMatch(TaskList tasklist, String substring) {

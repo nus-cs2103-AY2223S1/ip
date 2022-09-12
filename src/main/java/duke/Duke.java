@@ -71,6 +71,8 @@ public class Duke extends Application{
                 reply = ui.showDeletedTask(taskMessage, tasklist);
             } else if (input.equals("find")) {
                 reply = ui.showMatch(tasklist, inputString.replace("find ", ""));
+            } else if (input.equals("remind")) {
+                reply = ui.showReminder(tasklist);
             } else {
                 throw new DukeException("Sorry, I don't recognise the input :( Please try again ");
             }
