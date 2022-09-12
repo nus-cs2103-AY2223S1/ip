@@ -8,7 +8,12 @@ class InputParser {
     String parse(String input, TaskList taskList, Storage storage) throws EmptyTextException, IllegalCommandException, EndProgramException {
         String response = "";
         assert(input.length() > 0);
-        String command = input.substring(0, input.indexOf(" ") - 1);
+        String command;
+        if (input.contains(" ")) {
+            command = input.substring(0, input.indexOf(" ") - 1);
+        } else {
+            command = input;
+        }
         switch (command) {
         case "find":
             response = taskList.find(input.substring(6));
