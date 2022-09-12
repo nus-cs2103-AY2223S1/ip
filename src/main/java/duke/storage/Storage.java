@@ -67,36 +67,7 @@ public class Storage {
             String taskString = storageReader.readLine();
 
             while (taskString != null && !taskString.isEmpty()) {
-                int dateSeparatorIndex = taskString.lastIndexOf("|");
-                int tagsIndex = taskString.indexOf("#");
-
-                String taskType = taskString.substring(0, 1);
-                String taskStatus = taskString.substring(2, 3);
-                String description = dateSeparatorIndex == 3
-                        ? taskString.substring(4, tagsIndex)
-                        : taskString.substring(4, dateSeparatorIndex);
-                String taskDate = taskString.substring(dateSeparatorIndex + 1, tagsIndex);
-
-                String[] tags;
-                if (tagsIndex == taskString.length() - 1) {
-                    tags = new String[0];
-                } else {
-                    tags = Arrays.stream(taskString.substring(tagsIndex + 1).split(","))
-                            .map(String::trim)
-                            .filter(text -> !text.isEmpty())
-                            .toArray(String[]::new);
-                }
-
-                Task currentLoadedTask = taskType.equals("D")
-                        ? new Deadline(description, taskDate, tags)
-                        : taskType.equals("E")
-                        ? new Event(description, taskDate, tags)
-                        : new ToDo(description, tags);
-
-                if (taskStatus.equals("X")) {
-                    currentLoadedTask.markAsFinished();
-                }
-
+                Task currentLoadedTask = loadTaskFromStorageRepresentation(taskString);
                 loadedTasks.add(currentLoadedTask);
                 taskString = storageReader.readLine();
             }
@@ -110,8 +81,55 @@ public class Storage {
         return loadedTaskList;
     }
 
+    private Task loadTaskFromStorageRepresentation(String taskString)
+            throws DukeException {
+        int dateSeparatorIndex = taskString.lastIndexOf("|");
+        int tagsIndex = taskString.indexOf("#");
+
+        String taskType = taskString.substring(0, 1);
+        String taskStatus = taskString.substring(2, 3);
+
+        String description = dateSeparatorIndex == 3
+                ? taskString.substring(4, tagsIndex)
+                : taskString.substring(4, dateSeparatorIndex);
+        String taskDate = taskString.substring(dateSeparatorIndex + 1, tagsIndex);
+        String[] tags = loadTags(taskString, tagsIndex);
+
+        return reinitializeTask(taskType, taskStatus, description, taskDate, tags);
+    }
+
+    private Task reinitializeTask(String type, String status, String description,
+                                  String date, String[] tags) throws DukeException {
+        Task initializedTask = type.equals("D")
+                ? new Deadline(description, date, tags)
+                : type.equals("E")
+                ? new Event(description, date, tags)
+                : new ToDo(description, tags);
+
+        if (status.equals("X")) {
+            initializedTask.markAsFinished();
+        }
+
+        return initializedTask;
+    }
+
+    private String[] loadTags(String taskString, int tagsIndex) {
+        String[] tags;
+
+        if (tagsIndex == taskString.length() - 1) {
+            tags = new String[0];
+        } else {
+            tags = Arrays.stream(taskString.substring(tagsIndex + 1).split(","))
+                    .map(String::trim)
+                    .filter(text -> !text.isEmpty())
+                    .toArray(String[]::new);
+        }
+
+        return tags;
+    }
+
     /**
-     * Save the list of string to Duke's storage.
+     * Saves the list of string to Duke's storage.
      *
      * @param taskListString the list of string to be saved.
      * @throws DukeException If the storage fails to save the list of string.
