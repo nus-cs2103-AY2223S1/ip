@@ -1,7 +1,6 @@
 package bro;
 
 import bro.command.Command;
-import javafx.application.Platform;
 /**
  * The class for bot.
  */
