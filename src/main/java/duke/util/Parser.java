@@ -11,6 +11,7 @@ import duke.util.command.CommandList;
 import duke.util.command.CommandMark;
 import duke.util.command.CommandTodo;
 import duke.util.command.CommandUnmark;
+import duke.util.command.CommandUpdateDescription;
 
 /**
  * Class to deal with making sense of the user's command.
@@ -43,6 +44,8 @@ public class Parser {
             return new CommandDeadline(command);
         } else if (command.split(" ").length > 3 && command.split(" ")[0].equals("event")) {
             return new CommandEvent(command);
+        } else if (command.split(" ").length > 2 && command.split(" ")[0].equals("update")) {
+            return new CommandUpdateDescription(command);
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
