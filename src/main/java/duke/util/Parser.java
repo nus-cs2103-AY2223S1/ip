@@ -1,5 +1,8 @@
 package duke.util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import duke.exception.FileParseException;
 import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
@@ -8,8 +11,7 @@ import duke.task.Event;
 import duke.task.Recurring;
 import duke.task.ToDo;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
+
 
 /**
  * To handle the user's input and execute the commands.

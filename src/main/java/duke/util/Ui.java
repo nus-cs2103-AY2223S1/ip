@@ -1,15 +1,18 @@
 package duke.util;
 
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import duke.exception.DukeException;
 import duke.exception.FileParseException;
 import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
 import duke.task.Recurring;
 import duke.task.Task;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+
 
 /**
  * For anything related to printing statements in Duke.
@@ -37,6 +40,10 @@ public class Ui {
         return "Bye! Hope that I was of service!";
     }
 
+    /**
+     * Shows user the list of commands available.
+     * @return A string of the list.
+     */
     public static String showHelp() {
         StringBuilder str = new StringBuilder();
         str.append("These are the commands available:\n");
@@ -47,6 +54,11 @@ public class Ui {
         return str.toString();
     }
 
+    /**
+     * Shows user the list of tasks they have.
+     * @param list The TaskList object that contains Tasks objects.
+     * @return A string with the list of tasks.
+     */
     public static String displayList(TaskList list) {
         if (list.getSize() == 0) {
             return Ui.getListSize(list);
@@ -68,18 +80,22 @@ public class Ui {
         return "nice! I've marked this task as done:\n" + "\t" + task + "\n";
     }
 
+    /**
+     * Shown after the user unmarks a task.
+     * @param task The Task to be unmarked.
+     * @return The string showing the task that was unmarked.
+     */
     public static String markTaskNotDone(Task task) {
-        StringBuilder str = new StringBuilder();
-        str.append("Ok! I've marked this task as not done yet:\n");
-        str.append("\t").append(task).append("\n");
-        return str.toString();
+        return "Ok! I've marked this task as not done yet:\n\t" + task + "\n";
     }
 
+    /**
+     * Shown after the user deletes a task.
+     * @param task The Task to be deleted.
+     * @return The string showing the task that was deleted.
+     */
     public static String deleteTask(Task task) {
-        StringBuilder str = new StringBuilder();
-        str.append("Ok! I've deleted this task:\n");
-        str.append("\t").append(task).append("\n");
-        return str.toString();
+        return "Ok! I've deleted this task:\n\t" + task + "\n";
     }
 
     public static String addTask(Task task) {
@@ -90,13 +106,21 @@ public class Ui {
         return "You currently have " + list.getSize() + " tasks in the list\n";
     }
 
+    /**
+     * Shown when the user wants to know the past/future dates of a Recurring task.
+     * @param task The Recurring task queried.
+     * @return The string of the list of dates.
+     */
     public static String showRemaining(Recurring task) {
-        StringBuilder str = new StringBuilder("Dates for the task: ");
-        str.append(task.getDescription()).append("\n");
-        str.append(task.showDates());
-        return str.toString();
+        return "Dates for the task: " + task.getDescription() + "\n" + task.showDates();
     }
 
+    /**
+     * Shows the result after searching for the user input keyword.
+     * @param keyword Keyword to be queried.
+     * @param list The list containing Task with the keyword in the description field.
+     * @return The string of list containing Tasks that contains the keyword.
+     */
     public static String findKeyword(String keyword, ArrayList<Task> list) {
         StringBuilder str = new StringBuilder();
         str.append("I have found the following tasks containing '").append(keyword).append("'\n");
@@ -109,6 +133,11 @@ public class Ui {
         return str.toString();
     }
 
+    /**
+     * Shown when an error occurs while parsing a Task loaded from the save file.
+     * @param e The exception raised.
+     * @return The string specifying which Task is corrupted and will be deleted.
+     */
     public static String warnCorruptedLine(FileParseException e) {
         StringBuilder str = new StringBuilder();
         str.append("The following line is corrupted:\n\t").append(e.getMessage());
@@ -117,6 +146,11 @@ public class Ui {
         return str.toString();
     }
 
+    /**
+     * Shown when a DukeException is raised.
+     * @param e The DukeException raised.
+     * @return The string containing details of the exception.
+     */
     public static String showErrorOccurred(DukeException e) {
         StringBuilder str = new StringBuilder();
         if (e instanceof WrongArgumentException) {

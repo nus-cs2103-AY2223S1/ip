@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.exception.WrongArgumentException;
+import static java.time.temporal.ChronoUnit.DAYS;
 
-import java.time.DayOfWeek;
 import java.time.DateTimeException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 
-import static java.time.temporal.ChronoUnit.DAYS;
+import duke.exception.WrongArgumentException;
 
 /**
  * Tasks that are recurring with yearly, monthly, weekly or daily frequency.
@@ -20,12 +20,12 @@ public class Recurring extends Task {
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yy h:mma");
     private enum FREQUENCY_PERIOD { yearly, monthly, weekly, daily }
     private FREQUENCY_PERIOD period;
-    private String dateKeyedIn;
+    private final String dateKeyedIn;
     private LocalDateTime startDate;
-    private LocalDateTime now;
+    private final LocalDateTime now;
     private final int originalTimes;
     private int timesRemaining;
-    private ArrayList<LocalDateTime> dates = new ArrayList<>();
+    private final ArrayList<LocalDateTime> dates = new ArrayList<>();
 
 
     /**
@@ -147,13 +147,13 @@ public class Recurring extends Task {
         if (diff > 0) {
             switch (this.period) {
             case yearly:
-                alreadyHappened = (int) Math.ceil((double) (diff / 365.0));
+                alreadyHappened = (int) Math.ceil((diff / 365.0));
                 break;
             case monthly:
-                alreadyHappened = (int) Math.ceil((double) (diff / 12.0));
+                alreadyHappened = (int) Math.ceil((diff / 12.0));
                 break;
             case weekly:
-                alreadyHappened = (int) Math.ceil((double) (diff / 7.0));
+                alreadyHappened = (int) Math.ceil((diff / 7.0));
                 break;
             case daily:
                 alreadyHappened = (int) diff;
