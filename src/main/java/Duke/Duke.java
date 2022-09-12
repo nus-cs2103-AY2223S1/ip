@@ -53,11 +53,15 @@ public class Duke {
      *
      * @param input of what the user types.
      * @return a string of duke's response.
-     * @throws DukeException if invalid user input.
-     * @throws IOException   if file not found.
+     * @throws IOException if file not found.
      */
     public String getResponse(String input) throws IOException {
-        return Parser.parse(input, tasks, ui, storage, undo);
+        assert input != null;
+        try {
+            return Parser.parse(input, tasks, ui, storage, undo);
+        } catch (DukeException e) {
+            return ui.showError(e.getMessage());
+        }
     }
 
     /**
@@ -72,7 +76,7 @@ public class Duke {
                 ui.showLine();
                 Parser.parse(fullCommand, tasks, ui, storage, undo);
                 isExit = Parser.getIsExit();
-            } catch (IOException e) {
+            } catch (IOException | DukeException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();

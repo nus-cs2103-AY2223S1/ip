@@ -33,10 +33,11 @@ public class Parser {
      * @param ui          is the output text from Duke to console.
      * @param storage     deals with saving and loading tasks in Duke.txt.
      * @param undo        deals with undoing the last command from user.
-     * @throws IOException if file does not open.
+     * @throws IOException   if file does not open.
+     * @throws DukeException if command is invalid.
      */
     public static String parse(String command, TaskList listOfTasks, Ui ui, Storage storage, Undo undo)
-            throws IOException {
+            throws IOException, DukeException {
         String reply = "";
         String[] response = command.split(" ");
         String firstWord = response[0].toUpperCase();
@@ -58,26 +59,32 @@ public class Parser {
         case "MARK":
             try {
                 int taskIndex = Integer.parseInt(response[1]) - 1;
+                if (taskIndex >= listOfTasks.getSize()) {
+                    throw new DukeException(":( OOPS!!! That index does not exist.");
+                }
                 listOfTasks.markAsDone(taskIndex);
                 reply = ui.showMarkedTask(taskIndex, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
                 undo.addLastCommand("MARK");
                 undo.addLastIndex(taskIndex);
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.showError(":( OOPS!!! You're missing an index for mark.");
+                throw new DukeException(":( OOPS!!! You're missing an index for mark.");
             }
             break;
 
         case "UNMARK":
             try {
                 int taskIndex = Integer.parseInt(response[1]) - 1;
+                if (taskIndex >= listOfTasks.getSize()) {
+                    throw new DukeException(":( OOPS!!! That index does not exist.");
+                }
                 listOfTasks.markAsNotDone(taskIndex);
                 reply = ui.showUnmarkedTask(taskIndex, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
                 undo.addLastCommand("UNMARK");
                 undo.addLastIndex(taskIndex);
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.showError(":( OOPS!!! You're missing an index for unmark.");
+                throw new DukeException(":( OOPS!!! You're missing an index for unmark.");
             }
             break;
 
@@ -90,7 +97,7 @@ public class Parser {
                 storage.writeToTextFile(listOfTasks);
                 undo.addLastCommand("TODO");
             } catch (StringIndexOutOfBoundsException e) {
-                ui.showError(":( OOPS!!! The description of a todo cannot be empty.");
+                throw new DukeException(":( OOPS!!! The description of a todo cannot be empty.");
             }
             break;
 
@@ -105,11 +112,11 @@ public class Parser {
                 storage.writeToTextFile(listOfTasks);
                 undo.addLastCommand("DEADLINE");
             } catch (StringIndexOutOfBoundsException e) {
-                ui.showError(":( OOPS!!! The description of a deadline cannot be empty.");
+                throw new DukeException(":( OOPS!!! The description of a deadline cannot be empty.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.showError(":( OOPS!!! You're missing some descriptions for your deadline.");
+                throw new DukeException(":( OOPS!!! You're missing some descriptions for your deadline.");
             } catch (DateTimeParseException e) {
-                ui.showError(":( OOPS!!! You need to use yyyy-mm-dd for date format.");
+                throw new DukeException(":( OOPS!!! You need to use yyyy-mm-dd for date format.");
             }
             break;
 
@@ -124,17 +131,20 @@ public class Parser {
                 storage.writeToTextFile(listOfTasks);
                 undo.addLastCommand("EVENT");
             } catch (StringIndexOutOfBoundsException e) {
-                ui.showError(":( OOPS!!! The description of an event cannot be empty.");
+                throw new DukeException(":( OOPS!!! The description of an event cannot be empty.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.showError(":( OOPS!!! You're missing some descriptions for your event.");
+                throw new DukeException(":( OOPS!!! You're missing some descriptions for your event.");
             } catch (DateTimeParseException e) {
-                ui.showError(":( OOPS!!! You need to use yyyy-mm-dd for date format.");
+                throw new DukeException(":( OOPS!!! You need to use yyyy-mm-dd for date format.");
             }
             break;
 
         case "DELETE":
             try {
                 int deleteIndex = Integer.parseInt(response[1]) - 1;
+                if (deleteIndex >= listOfTasks.getSize()) {
+                    throw new DukeException(":( OOPS!!! That index does not exist.");
+                }
                 Task deletedTask = listOfTasks.getTask(deleteIndex);
                 listOfTasks.remove(deleteIndex + 1);
                 reply = ui.showDeletedTask(deletedTask, listOfTasks);
@@ -143,7 +153,7 @@ public class Parser {
                 undo.addLastIndex(deleteIndex);
                 undo.addLastTask(deletedTask);
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.showError(":( OOPS!!! You're missing an index for delete.");
+                throw new DukeException(":( OOPS!!! You're missing an index for delete.");
             }
             break;
 
@@ -158,14 +168,13 @@ public class Parser {
                 }
                 reply = ui.showFindTask(matchingTasks);
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.showError(":( OOPS!!! The description of a find cannot be empty.");
+                throw new DukeException(":( OOPS!!! The description of a find cannot be empty.");
             }
             break;
 
         case "UNDO":
             if (undo.isCommandStackEmpty()) {
-                reply = ui.showError("No previous commands.");
-                break;
+                throw new DukeException("No previous commands.");
             }
             String lastCommand = undo.popLastCommand();
             switch (lastCommand) {
@@ -215,8 +224,7 @@ public class Parser {
             break;
 
         default:
-            reply = ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
-            break;
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
         return reply;
     }
