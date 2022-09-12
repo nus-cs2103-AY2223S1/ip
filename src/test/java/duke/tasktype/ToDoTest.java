@@ -1,5 +1,6 @@
-package duke;
+package duke.tasktype;
 
+import duke.tasktype.ToDo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

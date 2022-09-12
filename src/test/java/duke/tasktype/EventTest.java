@@ -1,5 +1,7 @@
-package duke;
+package duke.tasktype;
 
+import duke.DukeException;
+import duke.tasktype.Event;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
