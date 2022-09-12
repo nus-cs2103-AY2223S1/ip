@@ -3,28 +3,15 @@ package duke;
 import java.util.ArrayList;
 
 public class Tag {
-    public String name;
+    private final String name;
     private final ArrayList<Task> list = new ArrayList<>();
 
-    public Tag(String name){
+    public Tag(String name) {
         this.name = name;
     }
 
-    public String getTagName() {
-        return this.name;
-    }
-
-    public String addTaskToTag(Task task){
-        list.add(task);
-        return "Tag has been added to task";
-    }
-
-    public String showAllTaskUnderList() {
-        return getTasksString(list);
-    }
-
     static String getTasksString(ArrayList<Task> list) {
-        if(list.size() == 0 ) {
+        if (list.size() == 0) {
             return "You do not have any tasks currently";
         }
 
@@ -36,6 +23,19 @@ public class Tag {
         }
 
         return ret.toString();
+    }
+
+    public String getTagName() {
+        return this.name;
+    }
+
+    public String addTaskToTag(Task task) {
+        list.add(task);
+        return "Tag has been added to task";
+    }
+
+    public String showAllTaskUnderList() {
+        return getTasksString(list);
     }
 
     @Override

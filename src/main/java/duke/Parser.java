@@ -1,13 +1,16 @@
 package duke;
 
-import exceptions.EmptyNameException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import exceptions.EmptyNameException;
+
+
 
 public class Parser {
     private static final String DEADLINE_REGEX = "/by";
     private static final String EVENT_REGEX = "/at";
+
     /**
      * Takes in a command from the user when the user wants to add a task and return the type of the task
      *
@@ -90,7 +93,7 @@ public class Parser {
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
-    public static String getFindObject(String command){
-        return command.split(" ",2)[1].trim();
+    public static String getFindObject(String command) {
+        return command.split(" ", 2)[1].trim();
     }
 }

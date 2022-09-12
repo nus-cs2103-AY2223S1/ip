@@ -30,6 +30,8 @@ public class Event extends Task {
     @Override
     public String toString() {
         String tag = "[E]";
-        return tag + "[" + this.getStatusIcon() + "] " + this.getTaskName() + "(" + Parser.convertDateToString(date) + ") "  + this.getTagString();
+        return tag + "[" + this.getStatusIcon() + "] "
+                + this.getTaskName() + "(" + Parser.convertDateToString(date)
+                + ") " + this.getTagString();
     }
 }

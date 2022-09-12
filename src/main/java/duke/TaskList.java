@@ -1,11 +1,12 @@
 package duke;
 
-import exceptions.EmptyNameException;
+import static duke.Tag.getTasksString;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static duke.Tag.getTasksString;
+import exceptions.EmptyNameException;
+
 
 /**
  * Represents the state of the tasklist in the program.
@@ -34,7 +35,7 @@ public class TaskList {
             Task task = null;
 
             String type = Parser.getType(command);
-             if (type.equals(TaskTypeEnum.todo.toString())) {
+            if (type.equals(TaskTypeEnum.todo.toString())) {
                 if (command.trim().length() == 4) {
                     throw new EmptyNameException();
                 }
@@ -124,6 +125,7 @@ public class TaskList {
 
     /**
      * Display number of items in currently in the array list
+     *
      * @return number of item in the list
      */
     public String displayNumberOfItemsInList() {
@@ -171,12 +173,12 @@ public class TaskList {
 
     }
 
-    public String findTask(String name){
+    public String findTask(String name) {
         StringBuilder ret = new StringBuilder();
         ret.append("Here are the matching tasks in your list:");
-        for(int i = 0; i < taskList.size(); i++){
+        for (int i = 0; i < taskList.size(); i++) {
             Task task = taskList.get(i);
-            if(task.getTaskName().contains(name)){
+            if (task.getTaskName().contains(name)) {
                 ret.append(i).append(". ").append(task);
             }
         }
@@ -185,7 +187,7 @@ public class TaskList {
     }
 
 
-    public String setTag(String taskName, Tag tag){
+    public String setTag(String taskName, Tag tag) {
         for (Task task : taskList) {
             if (task.getTaskName().contains(taskName)) {
                 task.addTag(tag);
@@ -195,8 +197,8 @@ public class TaskList {
 
     }
 
-    public boolean checkTaskExist(String name){
-        for(Task task: taskList){
+    public boolean checkTaskExist(String name) {
+        for (Task task : taskList) {
             if (name.equals(task.getTaskName())) {
                 return true;
             }
@@ -205,8 +207,8 @@ public class TaskList {
     }
 
 
-    public Task getTaskByName(String name){
-        for(Task task: taskList){
+    public Task getTaskByName(String name) {
+        for (Task task : taskList) {
             if (name.equals(task.getTaskName())) {
                 return task;
             }

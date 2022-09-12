@@ -30,13 +30,13 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public String getTagString(){
-        return tag != null ? "Tag: " +  tag.toString() : "";
+    public String getTagString() {
+        return tag != null ? "Tag: " + tag.toString() : "";
     }
 
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.getTaskName() ;
+        return "[" + this.getStatusIcon() + "] " + this.getTaskName();
     }
 }

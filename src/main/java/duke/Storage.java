@@ -1,12 +1,13 @@
 package duke;
 
-import exceptions.EmptyNameException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import exceptions.EmptyNameException;
+
 
 /**
  * Stores the task in a file under /data/duke.txt

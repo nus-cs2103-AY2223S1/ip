@@ -1,8 +1,8 @@
 package duke;
 
-import exceptions.UnknownCommandException;
-
 import java.io.IOException;
+
+import exceptions.UnknownCommandException;
 
 /**
  * Duke is the main class of this program. It is a todolist where users can enter 3 types of commands.
@@ -18,7 +18,7 @@ public class Duke {
      * Load tasks into tasks list if there is storage
      */
     public Duke() {
-        this.taskList =  new TaskList();
+        this.taskList = new TaskList();
         this.storage = new Storage("data/duke.txt", taskList);
         TagList tagList = new TagList();
         try {
@@ -29,19 +29,13 @@ public class Duke {
         this.ui = new Ui(taskList, storage, tagList);
     }
 
-    /**
-     * Main method for Duke.
-     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.start();
     }
 
-    /**
-     * Initialise TaskList if there are tasks saved previously in storage.
-     */
-    public void start() {
 
+    public void start() {
         ui.run();
     }
 
@@ -49,7 +43,7 @@ public class Duke {
     public String getReponse(String nextCommand) {
         try {
             return ui.getResponse(nextCommand);
-        } catch(UnknownCommandException e){
+        } catch (UnknownCommandException e) {
             return e.getMessage();
         }
     }
