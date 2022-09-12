@@ -2,7 +2,7 @@ package duke;
 import java.time.LocalDateTime;
 
 /**
- * Task with a date and time at
+ * Task with a date and time at.
  */
 public class Event extends Task {
     private static final String TYPE = "[E]";

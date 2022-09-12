@@ -8,11 +8,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 /**
- * Deals with loading tasks from text file and saving tasks in the file in Duke
+ * Deals with loading tasks from text file and saving tasks in the file in Duke.
  */
 public class Storage {
     private String filePath;
@@ -27,7 +26,7 @@ public class Storage {
     }
 
     /**
-     * Read text file and obtain new array of tasks from it.
+     * Reads text file and obtain new array of tasks from it.
      *
      * @return new ArrayList of tasks.
      * @throws DukeException error reading file.
@@ -55,9 +54,9 @@ public class Storage {
     /**
      * Creates Task instance based on data from text file.
      *
-     * @param data line of data in text file
-     * @return Task instance created
-     * @throws DukeException missing inputs or invalid arguments
+     * @param data line of data in text file.
+     * @return Task instance created.
+     * @throws DukeException missing inputs or invalid arguments.
      */
     private Task createTask(String data) throws DukeException {
         String[] info = data.split(Task.FIELD_DIVIDER);
@@ -98,7 +97,7 @@ public class Storage {
     }
 
     /**
-     * Write the tasks from current program into text file.
+     * Writes the tasks from current program into text file.
      *
      * @param tasks TaskList containing current list of tasks.
      * @throws DukeException error writing tasks.
@@ -116,24 +115,24 @@ public class Storage {
     }
 
     /**
-     * Create the directory and text file in the path if not created.
+     * Creates the directory and text file in the path if not created.
      *
      * @return true if file created, false otherwise.
      * @throws DukeException error when creating file.
      */
     private boolean createFile() throws DukeException {
-        boolean beenCreated = false;
+        boolean isCreated = false;
         File data = new File("data");
         File f = new File(filePath);
         try {
             data.mkdir();
             if (!f.createNewFile()) {
-                beenCreated = true;
+                isCreated = true;
             }
         } catch (IOException e) {
             throw new DukeException("Error creating text file");
         }
-        return beenCreated;
+        return isCreated;
 
     }
 }

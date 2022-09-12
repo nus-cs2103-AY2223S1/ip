@@ -2,7 +2,7 @@ package duke;
 import java.time.LocalDate;
 
 /**
- * Class for tasks that have a deadline
+ * Class for tasks that have a deadline.
  */
 public class Deadline extends Task {
     private static final String TYPE = "[D]";
@@ -11,9 +11,9 @@ public class Deadline extends Task {
     /**
      * Constructor for new deadline instance.
      *
-     * @param name name of task
-     * @param date date of deadline, in LocalDate TYPE
-     * @throws MissingDescriptionException missing name
+     * @param name name of task.
+     * @param date date of deadline, in LocalDate TYPE.
+     * @throws MissingDescriptionException missing name.
      */
     public Deadline(String name, LocalDate date) throws MissingDescriptionException {
         super(name);
@@ -23,7 +23,7 @@ public class Deadline extends Task {
     /**
      * Returns string representation of task.
      *
-     * @return string with TYPE, completed or not, name, and date time(if applicable)
+     * @return string with TYPE, completed or not, name, and date time(if applicable).
      */
     @Override
     public String toString() {
@@ -36,9 +36,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return string representation of task to be written in text file
+     * Returns string representation of task to be written in text file.
      *
-     * @return string representation to be written in text file
+     * @return string representation to be written in text file.
      */
     @Override
     public String toData() {

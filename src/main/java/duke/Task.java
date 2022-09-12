@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * item used in Duke
+ * item used in Duke.
  */
 public class Task {
     protected static final String FIELD_DIVIDER = "/%&#@.,/";
@@ -16,7 +16,7 @@ public class Task {
     }
 
     /**
-     * Constructor for new task
+     * Constructor for new task.
      * outdated.
      *
      * @param name name of task.
@@ -34,21 +34,21 @@ public class Task {
     }
 
     /**
-     * Mark task as completed.
+     * Marks task as completed.
      */
     public void mark() {
         this.isCompleted = true;
     }
 
     /**
-     * Mark task as not completed.
+     * Marks task as not completed.
      */
     public void unmark() {
         this.isCompleted = false;
     }
 
     /**
-     * checks if task description contains keyword.
+     * Checks if task description contains keyword.
      *
      * @param keyword String to contain in description.
      * @return if keyword is in description of task.
@@ -60,8 +60,8 @@ public class Task {
     /**
      * Sets the priority level of the task.
      *
-     * @param priority the level user input
-     * @throws DukeException unknown priority level
+     * @param priority the level user input.
+     * @throws DukeException unknown priority level.
      */
     public void setPriority(String priority) throws DukeException {
         switch (priority) {
@@ -85,7 +85,7 @@ public class Task {
     /**
      * Returns string representation of task.
      *
-     * @return string with type, completed or not, name, and date time(if applicable)
+     * @return string with type, completed or not, name, and date time(if applicable).
      */
     @Override
     public String toString() {
@@ -96,9 +96,9 @@ public class Task {
     }
 
     /**
-     * Return string representation of task to be written in text file
+     * Returns string representation of task to be written in text file.
      *
-     * @return string representation to be written in text file
+     * @return string representation to be written in text file.
      */
     public String toData() {
         return this.toString();

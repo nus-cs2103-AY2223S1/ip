@@ -1,15 +1,15 @@
 package duke;
 
 /**
- * Exceptions thrown in Duke
+ * Exceptions thrown in Duke.
  */
 public class DukeException extends Exception {
     private String message;
 
     /**
-     * Constructor for new instance
+     * Constructor for new instance.
      *
-     * @param message message to be printed for users
+     * @param message message to be printed for users.
      */
     public DukeException(String message) {
         super(message);
@@ -17,9 +17,9 @@ public class DukeException extends Exception {
     }
 
     /**
-     * Returns string representation of exception
+     * Returns string representation of exception.
      *
-     * @return string for message
+     * @return string for message.
      */
     @Override
     public String toString() {

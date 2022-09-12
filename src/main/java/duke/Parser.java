@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * deals with making sense of user commands in Duke
+ * deals with making sense of user commands in Duke.
  */
 public class Parser {
     /**
@@ -51,8 +51,8 @@ public class Parser {
     /**
      * Returns the index of task to mark or unmark.
      *
-     * @param command input by user
-     * @return index of task in list
+     * @param command input by user.
+     * @return index of task in list.
      */
     private static int getIndex(String command) {
         String index = command.split(" ", 2)[1];

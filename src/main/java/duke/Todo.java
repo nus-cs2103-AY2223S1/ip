@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Task with only name
+ * Task with only name.
  */
 public class Todo extends Task {
     private static final String TYPE = "[T]";
@@ -31,7 +31,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Return string representation of task to be written in text file.
+     * Returns string representation of task to be written in text file.
      *
      * @return string representation to be written in text file.
      */

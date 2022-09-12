@@ -32,7 +32,7 @@ public class TaskList {
     }
 
     /**
-     * Mark task in arraylist to done.
+     * Marks task in arraylist to done.
      *
      * @param index index of task to mark, in 1 indexing.
      */
@@ -42,7 +42,7 @@ public class TaskList {
     }
 
     /**
-     * Unmark task in arraylist to not done.
+     * Unmarks task in arraylist to not done.
      *
      * @param index index of task to unmark, in 1 indexing.
      */
@@ -52,10 +52,10 @@ public class TaskList {
     }
 
     /**
-     * Adds new Todo into arraylist
+     * Adds new Todo into arraylist.
      *
-     * @param command input by user
-     * @return message to be displayed
+     * @param command input by user.
+     * @return message to be displayed.
      */
     public String addTodo(String command) {
         try {
@@ -75,10 +75,10 @@ public class TaskList {
     }
 
     /**
-     * Adds new Deadline into arraylist
+     * Adds new Deadline into arraylist.
      *
-     * @param command input by user
-     * @return message to be displayed
+     * @param command input by user.
+     * @return message to be displayed.
      */
     public String addDeadline(String command) {
         try {
@@ -107,10 +107,10 @@ public class TaskList {
     }
 
     /**
-     * Adds new Event into arraylist
+     * Adds new Event into arraylist.
      *
-     * @param command input by user
-     * @return message to be displayed
+     * @param command input by user.
+     * @return message to be displayed.
      */
     public String addEvent(String command) {
         try {
@@ -148,7 +148,7 @@ public class TaskList {
      * Deletes tasks from arraylist.
      *
      * @param command command input by user, with index to delete.
-     * @return String containing message to be displayed
+     * @return String containing message to be displayed.
      */
     public String delete(String command) {
         try {
@@ -167,7 +167,7 @@ public class TaskList {
     }
 
     /**
-     * Return string representation of specific task in arraylist.
+     * Returns string representation of specific task in arraylist.
      *
      * @param index index of task to get the string representation of, in 1 indexing.
      * @return String representation of specific task.
@@ -177,7 +177,7 @@ public class TaskList {
     }
 
     /**
-     * Return string representation of tasks to be written into text file.
+     * Returns string representation of tasks to be written into text file.
      *
      * @return string representation of tasks to be written into text file.
      */
@@ -193,8 +193,8 @@ public class TaskList {
     /**
      * Searches and prints out matching tasks.
      *
-     * @param command input by user
-     * @return String containing message to be displayed
+     * @param command input by user.
+     * @return String containing message to be displayed.
      */
     public String find(String command) {
         String keyword = command.replace("find", "").strip();
@@ -224,10 +224,10 @@ public class TaskList {
     }
 
     /**
-     * sets the priority of the task in the given index to the input level.
+     * Sets the priority of the task in the given index to the input level.
      *
-     * @param command input by user
-     * @return message to be displayed to the user
+     * @param command input by user.
+     * @return message to be displayed to the user.
      */
     public String setPriority(String command) {
         try {
