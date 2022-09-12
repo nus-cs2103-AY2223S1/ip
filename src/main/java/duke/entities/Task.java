@@ -4,7 +4,7 @@ package duke.entities;
 public abstract class Task {
 
     private final String name;
-    private boolean done = false;
+    private boolean isDone = false;
 
     public Task(String name) {
         this.name = name;
@@ -18,14 +18,14 @@ public abstract class Task {
      */
     public Task(String name, boolean done) {
         this.name = name;
-        this.done = done;
+        this.isDone = done;
     }
 
     public void setDone(boolean done) {
-        this.done = done;
+        this.isDone = done;
     }
 
     public String toString() {
-        return String.format("[%s] %s", this.done ? "x" : " ", this.name);
+        return String.format("[%s] %s", this.isDone ? "x" : " ", this.name);
     }
 }
