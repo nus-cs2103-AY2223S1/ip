@@ -20,9 +20,9 @@ import javafx.scene.layout.HBox;
  */
 public class DialogBoxFalcon extends HBox {
     @FXML
-    private Label dialog;
+    private Label dialogFalcon;
     @FXML
-    private ImageView displayPicture;
+    private ImageView displayPictureFalcon;
 
     private DialogBoxFalcon(String text, Image img) {
         try {
@@ -34,8 +34,8 @@ public class DialogBoxFalcon extends HBox {
             e.printStackTrace();
         }
 
-        dialog.setText(text);
-        displayPicture.setImage(img);
+        dialogFalcon.setText(text);
+        displayPictureFalcon.setImage(img);
     }
 
     /**
@@ -48,7 +48,7 @@ public class DialogBoxFalcon extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBoxFalcon getUserDialog(String text, Image img) {
+    public static DialogBoxFalcon getFalconDialog(String text, Image img) {
         return new DialogBoxFalcon(text, img);
     }
 

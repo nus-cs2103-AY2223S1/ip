@@ -20,9 +20,9 @@ import javafx.scene.layout.HBox;
  */
 public class DialogBoxUser extends HBox {
     @FXML
-    private Label dialog;
+    private Label dialogUser;
     @FXML
-    private ImageView displayPicture;
+    private ImageView displayPictureUser;
 
     private DialogBoxUser(String text, Image img) {
         try {
@@ -34,27 +34,11 @@ public class DialogBoxUser extends HBox {
             e.printStackTrace();
         }
 
-        dialog.setText(text);
-        displayPicture.setImage(img);
-    }
-
-    /**
-     * Flips the dialog box such that the ImageView is on the left and text on the right.
-     */
-    private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        Collections.reverse(tmp);
-        getChildren().setAll(tmp);
-        setAlignment(Pos.TOP_LEFT);
+        dialogUser.setText(text);
+        displayPictureUser.setImage(img);
     }
 
     public static DialogBoxUser getUserDialog(String text, Image img) {
         return new DialogBoxUser(text, img);
-    }
-
-    public static DialogBoxUser getDukeDialog(String text, Image img) {
-        var dialogBox = new DialogBoxUser(text, img);
-        dialogBox.flip();
-        return dialogBox;
     }
 }
