@@ -114,18 +114,32 @@ public abstract class Command {
     }
 
     static class ListCommand extends Command {
+        private TaskList resultTaskList;
         public ListCommand() {
 
         }
 
         @Override
         public String exec(TaskList taskList) {
-            return taskList.toString();
+            this.resultTaskList = taskList;
+            return "There are " + this.resultTaskList.size() + " items in your list.";
         }
 
         @Override
         public String exec(TaskList mainTaskList, TaskList targetTaskList) {
-            return mainTaskList.toString();
+            this.resultTaskList = mainTaskList;
+            return "There are " + this.resultTaskList.size() + " items in your list.";
+        }
+
+        @Override
+        public boolean returnsTaskList() {
+            return true;
+        }
+
+        @Override
+        public TaskList getTaskList() {
+            assert (resultTaskList != null);
+            return resultTaskList;
         }
     }
 

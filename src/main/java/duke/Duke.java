@@ -33,7 +33,7 @@ public class Duke {
     public String execCommand(Command c, TaskList customTaskList) {
         assert (tasks != null);
         assert (storage != null);
-        String returnStr = c.exec(customTaskList);
+        String returnStr = c.exec(this.tasks, customTaskList);
         this.storage.save(this.tasks);
         return returnStr;
 

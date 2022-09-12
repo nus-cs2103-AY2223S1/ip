@@ -78,13 +78,11 @@ public class Window extends AnchorPane {
     void updateTaskList(TaskList tList) {
         this.taskListPane.setTasks(tList);
         this.taskList = tList;
-        selectTask(tList.get(0));
-    }
-
-    void updateTaskList() {
-        this.taskListPane.setTasks(this.duke.getTasks());
-        this.taskList = this.duke.getTasks();
-        selectTask(this.duke.getTasks().get(0));
+        if (tList.size() > 0) {
+            selectTask(tList.get(0));
+        } else {
+            selectTask(null);
+        }
     }
 
     @FXML

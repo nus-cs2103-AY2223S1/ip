@@ -45,12 +45,13 @@ public class TaskDescriptionPane extends AnchorPane {
     private void renderTask() {
         vBox.getChildren().clear();
 
-        System.out.println("Current task: " + currentTask.toString());
         if (currentTask == null) {
             vBox.getChildren().add(
                     new TaskLabel("No Task Selected!")
             );
+            return;
         }
+
         HashMap<String, String> infoPair = currentTask.getInfoPair();
 //        System.out.println(infoPair);
         for (String key : infoPair.keySet()) {
