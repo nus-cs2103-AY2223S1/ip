@@ -12,11 +12,15 @@ import java.util.ArrayList;
 public class Storage {
 
     private final String directory;
-    private final String filename;
+    private final String fileName;
 
-    public Storage(String filename) {
+    /**
+     * Creates a Storage class which saves and reads from input save file name
+     * @param saveFile name of save file
+     */
+    public Storage(String saveFile) {
         this.directory = System.getProperty("user.dir");
-        this.filename = filename;
+        this.fileName = saveFile;
     }
 
     /**
@@ -26,7 +30,7 @@ public class Storage {
     public void save(ArrayList<Task> array) {
 
         try {
-            FileWriter fileWriter = new FileWriter(directory + "/" + filename, false);
+            FileWriter fileWriter = new FileWriter(directory + "/" + fileName, false);
 
             for (Task task : array) {
                 String taskString = task.toStoredString();
@@ -47,8 +51,9 @@ public class Storage {
      */
     public ArrayList<Task> read() {
         try {
-            File readFile = new File(directory, filename);
-            if (readFile.createNewFile()) {
+            File readFile = new File(directory, fileName);
+            boolean fileExists = readFile.createNewFile();
+            if (!fileExists) {
                 System.out.println("No file detected, new file created");
             }
         } catch (IOException e) {
@@ -57,9 +62,9 @@ public class Storage {
         }
 
         try {
-            String currLine = "";
+            String currLine;
             ArrayList<Task> returnVal = new ArrayList<Task>();
-            BufferedReader reader = new BufferedReader(new FileReader(directory + "/" + filename));
+            BufferedReader reader = new BufferedReader(new FileReader(directory + "/" + fileName));
 
             while ((currLine = reader.readLine()) != null) {
                 Task currTask = parse(currLine);

@@ -7,7 +7,6 @@ import duke.exceptions.DukeException;
 
 /** Represents a Ui object. Handles response strings. */
 public class Ui {
-    private static final String DIVIDER = "-------------------------------------\n";
 
     /** Returns greeting message */
     public static String greet() {
