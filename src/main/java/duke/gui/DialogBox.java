@@ -13,19 +13,22 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 
 /**
  * Class containing the DialogBox.
  * Contains and display the picture of Duke and user as well as their dialog.
  */
 public class DialogBox extends HBox {
+
+    private static final String[] dukeStyleClasses = {"duke-dialog-background"};
+    private static final String[] userStyleClasses = {"user-dialog-background"};
+
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text, Image img, String... styleCLasses) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -36,7 +39,7 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        dialog.setMinHeight(Region.USE_PREF_SIZE);
+        dialog.getStyleClass().addAll(styleCLasses);
         displayPicture.setImage(img);
     }
 
@@ -58,7 +61,7 @@ public class DialogBox extends HBox {
      * @return The DialogBox of user.
      */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        return new DialogBox(text, img, userStyleClasses);
     }
 
     /**
@@ -69,7 +72,7 @@ public class DialogBox extends HBox {
      * @return The DialogBox of Duke.
      */
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        var db = new DialogBox(text, img, dukeStyleClasses);
         db.flip();
         return db;
     }

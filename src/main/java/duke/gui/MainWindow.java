@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -25,8 +26,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpeg"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/gigachad.jpeg"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/gigachad.png"));
 
     @FXML
     public void initialize() {
@@ -62,5 +63,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+        if (duke.getIsEnd()) {
+            Stage stage = (Stage) dialogContainer.getScene().getWindow();
+            stage.close();
+        }
     }
 }

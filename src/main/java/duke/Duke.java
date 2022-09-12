@@ -3,6 +3,7 @@ package duke;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
+import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -31,6 +32,7 @@ public class Duke {
         try {
             this.storage = new Storage();
             this.tasks = new TaskList(storage.loadFile());
+            this.isEnd = false;
         } catch (DukeException e) {
             this.ui.printException(e);
         } catch (IOException e) {
@@ -43,14 +45,30 @@ public class Duke {
      * Returns Duke bot response to input.
      *
      * @param input User input into bot.
-     * @return Duke bot response
+     * @return Duke bot response.
      */
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);
+            if (command instanceof ByeCommand) {
+                this.isEnd = true;
+            }
             return command.run(this.tasks, this.ui, this.storage);
-        } catch (DukeException | IOException | DateTimeParseException e) {
+        } catch (DukeException e) {
+            return this.ui.printException(e);
+        } catch (IOException e) {
+            return this.ui.printException(e);
+        } catch (DateTimeParseException e) {
             return this.ui.printException(e);
         }
+    }
+
+    /**
+     * Returns whether the duke program is going to end.
+     *
+     * @return A boolean indicating if program is ending.
+     */
+    public boolean getIsEnd() {
+        return this.isEnd;
     }
 }
