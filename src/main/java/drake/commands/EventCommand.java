@@ -27,6 +27,7 @@ public class EventCommand extends CreateTaskCommand {
      */
     public EventCommand(String fullInput) {
         super(fullInput);
+        assert fullInput.startsWith("event");
     }
 
     /**
