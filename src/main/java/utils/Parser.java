@@ -9,7 +9,7 @@ import exceptions.DukeException;
 public class Parser {
 
     /**
-     * Decision tree for Duke to process, store and echo text input from the user.
+     * Decides the actions for Duke to take.
      * @param s The entire string entered by the user, line-by-line.
      * @param arr An array of strings (words) obtained from splitting the above string.
      * @throws DukeException A custom exception for handling errors unique to Duke.

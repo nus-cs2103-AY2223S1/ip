@@ -24,7 +24,7 @@ public abstract class Task {
     }
 
     /**
-     * Visual representation of whether a task is marked completed.
+     * Returns a visual representation of whether a task is marked completed.
      * @return A string with an 'X' if the task is completed, and no 'X' otherwise.
      */
     public String getStatusIcon() {

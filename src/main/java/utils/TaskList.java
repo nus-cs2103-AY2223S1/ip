@@ -38,7 +38,6 @@ public class TaskList {
             throw new DukeException("No cached tasks.");
         } else {
             this.tasks = taskList;
-            // Ui.sendMessage("Tasks loaded from cache.");
         }
     }
 
@@ -51,7 +50,7 @@ public class TaskList {
     }
 
     /**
-     * Utility function with logic for adding tasks to the user's task list.
+     * Adds tasks to the user's task list.
      * @param description The description of the task to be added.
      * @param type The type of task to be added.
      * @param remarks The remarks to be added for events or deadlines.
@@ -90,9 +89,6 @@ public class TaskList {
         default:
             break;
         }
-        int actualSize = tasks.size();
-        s = s + "\n\tNow you have " + (actualSize) + (actualSize == 1 ? " task" : " tasks") + " in the list.";
-        // Ui.sendMessage(s);
     }
 
     /**
