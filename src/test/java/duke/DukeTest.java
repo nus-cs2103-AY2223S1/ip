@@ -31,6 +31,15 @@ public class DukeTest {
     }
 
     @Test
+    public void unmarkTest(){
+        Todo todo = new Todo("test");
+        todo.mark();
+        assertEquals(todo.toString(), "[T][X] test");
+        todo.unmark();
+        assertEquals(todo.toString(), "[T][ ] test");
+    }
+
+    @Test
     public void encodeTest() {
         try {
             Deadline deadline = new Deadline("test", "2000-01-01");
