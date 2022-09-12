@@ -1,16 +1,16 @@
 package duke.tasktype;
 
-import duke.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.DukeException;
 
 /**
  * Event is specialised Task with a date and time as deadline
  */
 public class Event extends Task {
     private String dateTime = "";
-    private LocalDateTime dateTimeProper;
+    private LocalDateTime properDateTime;
 
     /**
      * Class Constructor using description of task and dateTime
@@ -21,7 +21,7 @@ public class Event extends Task {
         super(taskDescription.replace("event ", ""));
         this.dateTime = dateTime;
         try {
-            this.dateTimeProper = LocalDateTime.parse(dateTime);
+            this.properDateTime = LocalDateTime.parse(dateTime);
         } catch (Exception e) {
             throw new DukeException("Date and Time of your event must be in the following format: YYYY-MM-DDTHH:MM");
         }
@@ -37,7 +37,7 @@ public class Event extends Task {
         super(taskDescription, isCompleted);
         this.dateTime = dateTime;
         try {
-            this.dateTimeProper = LocalDateTime.parse(dateTime);
+            this.properDateTime = LocalDateTime.parse(dateTime);
         } catch (Exception e) {
             throw new DukeException("Date and Time of your event must be in the following format: YYYY-MM-DDTHH:MM");
         }
@@ -49,7 +49,7 @@ public class Event extends Task {
      */
     @Override
     public String returnDescription() {
-        String formattedDate = this.dateTimeProper.format(DateTimeFormatter.ofPattern("MMM dd yyyy @ HH:mm"));
+        String formattedDate = this.properDateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy @ HH:mm"));
         return "[E]" + super.returnDescription() + " (at: " + formattedDate + ")";
     }
 

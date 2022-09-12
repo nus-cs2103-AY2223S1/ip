@@ -1,7 +1,6 @@
 package duke.backend;
 
 import duke.DukeException;
-import duke.backend.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;

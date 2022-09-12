@@ -25,6 +25,10 @@ public class Task {
         this.isCompleted = isCompleted;
     }
 
+    /**
+     * Returns the description of the task
+     * @return description of the task in a string
+     */
     public String getTaskDescription() {
         return this.taskDescription;
     }
