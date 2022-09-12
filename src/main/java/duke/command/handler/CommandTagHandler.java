@@ -6,21 +6,21 @@ import java.util.regex.Pattern;
 import duke.command.CommandException;
 import duke.command.handler.base.CommandUpdateTaskHandler;
 import duke.command.response.CommandResponse;
-import duke.command.response.DeleteTaskResponse;
+import duke.command.response.UpdateTaskResponse;
 import duke.data.TaskList;
 import duke.data.tasks.Task;
 
-public class CommandDeleteHandler extends CommandUpdateTaskHandler {
+public class CommandTagHandler extends CommandUpdateTaskHandler {
 
     protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
-        "Invalid `delete` command format!",
-        "Expected format: delete <task-number>",
+        "Invalid `tag` command format!",
+        "Expected format: tag #<tag-name> <task-number>",
         "Examples:",
-        "\t- delete 1"
+        "\t- tag #CS2103 1"
     );
-    private static final Pattern commandRegexPattern = Pattern.compile("^delete (\\d+)");
+    private static final Pattern commandRegexPattern = Pattern.compile("^tag #(\\w+) (\\d+)$");
 
-    public CommandDeleteHandler(String commandStr) throws CommandException {
+    public CommandTagHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
     }
 
@@ -32,12 +32,15 @@ public class CommandDeleteHandler extends CommandUpdateTaskHandler {
     @Override
     protected String getSelectedTaskIdStr() {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
-        return regexMatchResult.group(1);
+        return regexMatchResult.group(2);
     }
 
     @Override
     protected CommandResponse updateTask(Task task, int taskIdx, TaskList taskList) {
-        taskList.deleteTask(taskIdx);
-        return new DeleteTaskResponse(task, taskList.size());
+        MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
+        String tagName = regexMatchResult.group(1);
+
+        task.addTag(tagName);
+        return new UpdateTaskResponse(task, UpdateTaskResponse.UpdateType.TAG);
     }
 }

@@ -9,6 +9,12 @@ public class TaskDeadline extends Task {
 
     private final LocalDateTime deadline;
 
+    /**
+     * Constructor for TaskDeadline class.
+     *
+     * @param title title of the deadline task.
+     * @param deadline local date-time representing the deadline.
+     */
     public TaskDeadline(String title, LocalDateTime deadline) {
         super(title);
         this.deadline = deadline;

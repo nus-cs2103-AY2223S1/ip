@@ -2,14 +2,23 @@ package duke.command.response;
 
 public class CommandResponse {
 
-    private String responseStr;
-    private boolean triggerSave;
-    private boolean triggerTerminate;
+    private final String responseStr;
+    private final boolean isSave;
+    private final boolean isTerminate;
 
+    /**
+     * Constructor for CommandResponse class.
+     *
+     * @param responseStr response string.
+     * @param triggerSave boolean to trigger a save to cache.
+     * @param triggerTerminate boolean to trigger a termination.
+     */
     public CommandResponse(String responseStr, boolean triggerSave, boolean triggerTerminate) {
+        assert !responseStr.isBlank() : "Command response should not be blank!";
+
         this.responseStr = responseStr;
-        this.triggerSave = triggerSave;
-        this.triggerTerminate = triggerTerminate;
+        this.isSave = triggerSave;
+        this.isTerminate = triggerTerminate;
     }
 
     public String getResponseStr() {
@@ -17,10 +26,10 @@ public class CommandResponse {
     }
 
     public boolean isTriggerSave() {
-        return triggerSave;
+        return isSave;
     }
 
     public boolean isTriggerTerminate() {
-        return triggerTerminate;
+        return isTerminate;
     }
 }
