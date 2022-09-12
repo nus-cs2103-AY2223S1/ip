@@ -2,12 +2,10 @@ package duke.chatbot;
 
 import java.util.Scanner;
 
-import duke.chatbot.commands.*;
-import duke.chatbot.commands.exceptions.EmptyCommandException;
-import duke.chatbot.commands.exceptions.InvalidArgumentsException;
-import duke.chatbot.commands.exceptions.InvalidCommandException;
-import duke.taskmanager.TaskManager;
-import duke.taskmanager.exceptions.LoadDataException;
+import duke.chatbot.commandmanager.CommandManager;
+import duke.chatbot.commandmanager.commands.exceptions.EmptyCommandException;
+import duke.chatbot.taskmanager.TaskManager;
+import duke.chatbot.taskmanager.exceptions.LoadDataException;
 
 /**
  * Chatbot that processes commands.
@@ -17,6 +15,7 @@ public class ChatBot {
 
     private final String name;
     private final TaskManager taskManager;
+    private final CommandManager commandManager;
     private boolean isRunning;
     private String latestResponse;
     /**
@@ -28,6 +27,7 @@ public class ChatBot {
     public ChatBot(String name) {
         this.name = name;
         this.taskManager = new TaskManager();
+        this.commandManager = new CommandManager();
         this.isRunning = false;
         this.latestResponse = "";
     }
@@ -66,7 +66,7 @@ public class ChatBot {
      */
     public String getGoodbyeResponse() {
         return "Goodbye! It was nice seeing you.\n"
-                + "Enter anything to exit!\n";
+                + "Press enter to exit!\n";
     }
 
     /**
@@ -77,6 +77,7 @@ public class ChatBot {
     public void initialize() {
         this.isRunning = true;
         this.latestResponse = getGreetingResponse();
+        this.commandManager.initialize(this, this.taskManager);
         try {
             taskManager.loadData();
         } catch (LoadDataException exception) {
@@ -102,7 +103,6 @@ public class ChatBot {
     public void processCommand(String input) {
         assert isRunning : "chatbot should be running";
         input = input.strip();
-        Scanner inputScanner = new Scanner(input);
         String response = "";
         try {
             // Guard Clause for empty commands
@@ -111,52 +111,20 @@ public class ChatBot {
             }
 
             // Get command and arguments
+            Scanner inputScanner = new Scanner(input);
             String command = inputScanner.next();
             String arguments = "";
             if (inputScanner.hasNext()) {
                 arguments = inputScanner.nextLine().strip();
             }
+            inputScanner.close();
 
-            switch (command) {
-            case "bye":
-                response = new ByeCommandHandler(this).execute(arguments);
-                break;
-            case "list":
-                response = new ListTaskCommandHandler(this.taskManager).execute(arguments);
-                break;
-            case "todo":
-                response = new TodoTaskCommandHandler(this.taskManager).execute(arguments);
-                break;
-            case "deadline":
-                response = new DeadlineTaskCommandHandler(this.taskManager).execute(arguments);
-                break;
-            case "event":
-                response = new EventTaskCommandHandler(this.taskManager).execute(arguments);
-                break;
-            case "mark":
-                response = new MarkTaskCommandHandler(this.taskManager).execute(arguments);
-                break;
-            case "unmark":
-                response = new UnmarkTaskCommandHandler(this.taskManager).execute(arguments);
-                break;
-            case "delete":
-                response = new DeleteTaskCommandHandler(this.taskManager).execute(arguments);
-                break;
-            case "find":
-                response = new FindTaskCommandHandler(this.taskManager).execute(arguments);
-                break;
-            case "update":
-                response = new UpdateTaskCommandHandler(this.taskManager).execute(arguments);
-                break;
-            default:
-                throw new InvalidCommandException();
-            }
+            response = this.commandManager.getCommand(command).execute(arguments);
+            this.taskManager.saveData();
             System.out.println(wrapMessage(response));
-            taskManager.saveData();
         } catch (Exception exception) {
             response = exception.getMessage();
         } finally {
-            inputScanner.close();
             this.latestResponse = response;
         }
     }
