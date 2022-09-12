@@ -37,24 +37,14 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().start();
-    }
-    
-    private void start() {
-        ui.printWelcomeMessage();
-//            repeatUntilQuit();
-        exit();
-    }
-
-    private void exit() {
-        ui.printGoodbyeMessage();
+        new Duke();
     }
 
     private String mark(String[] input) throws DukeException {
         parser.checkValidArgLength(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
-            assert taskIndex > 0 && taskIndex <= tasks.getSize(): "taskIndex out of range";
+            assert taskIndex > 0 && taskIndex <= tasks.getSize() : "taskIndex out of range";
             Task markedTask = tasks.getTask(taskIndex);
             markedTask.markAsDone();
             storage.saveToDisk(tasks.getTaskList());
@@ -68,7 +58,7 @@ public class Duke {
         parser.checkValidArgLength(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
-            assert taskIndex > 0 && taskIndex <= tasks.getSize(): "taskIndex out of range";
+            assert taskIndex > 0 && taskIndex <= tasks.getSize() : "taskIndex out of range";
             Task unmarkedTask = tasks.getTask(taskIndex);
             unmarkedTask.unmarkAsNotDone();
             storage.saveToDisk(tasks.getTaskList());
@@ -130,7 +120,7 @@ public class Duke {
         parser.checkValidArgLength(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
-            assert taskIndex > 0 && taskIndex <= tasks.getSize(): "taskIndex out of range";
+            assert taskIndex > 0 && taskIndex <= tasks.getSize() : "taskIndex out of range";
             Task deletedTask = tasks.deleteTask(taskIndex);
             storage.saveToDisk(tasks.getTaskList());
             return ui.printTaskDeleted(deletedTask, tasks.getSize());
@@ -147,34 +137,34 @@ public class Duke {
     }
 
     public String getResponse(String input) {
-            String[] words = parser.parseInput(input);
-            String keyword = parser.getKeyword(input);
+        String[] words = parser.parseInput(input);
+        String keyword = parser.getKeyword(input);
 
-            try {
-                switch (keyword) {
-                    case "bye":
-                        return ui.printGoodbyeMessage();
-                    case "list":
-                        return ui.printAllTasks(tasks.getTaskList());
-                    case "todo":
-                        return createToDo(words);
-                    case "deadline":
-                        return createDeadline(words);
-                    case "event":
-                        return createEvent(words);
-                    case "mark":
-                        return mark(words);
-                    case "unmark":
-                        return unmark(words);
-                    case "delete":
-                        return deleteTask(words);
-                    case "find":
-                        return findTask(words);
-                    default:
-                        throw new DukeInvalidException();
-                }
-            } catch (DukeException ex) {
-                return ex.getMessage();
-            } 
+        try {
+            switch (keyword) {
+                case "bye":
+                    return ui.printGoodbyeMessage();
+                case "list":
+                    return ui.printAllTasks(tasks.getTaskList());
+                case "todo":
+                    return createToDo(words);
+                case "deadline":
+                    return createDeadline(words);
+                case "event":
+                    return createEvent(words);
+                case "mark":
+                    return mark(words);
+                case "unmark":
+                    return unmark(words);
+                case "delete":
+                    return deleteTask(words);
+                case "find":
+                    return findTask(words);
+                default:
+                    throw new DukeInvalidException();
+            }
+        } catch (DukeException ex) {
+            return ex.getMessage();
+        }
     }
 }

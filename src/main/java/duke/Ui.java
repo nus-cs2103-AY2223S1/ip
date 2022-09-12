@@ -2,37 +2,41 @@ package duke;
 
 import duke.task.Task;
 
-import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A Ui object that deals with interaction with the user.
  */
 public class Ui {
-
-    public final Scanner in;
-    public final PrintStream out;
     /**
      * Creates a Ui object.
      */
     public Ui() {
-        this(System.in, System.out);
     }
-    protected Ui(InputStream in, PrintStream out) {
-        this.in = new Scanner(in);
-        this.out = out;
-    }
-    public String getUserInput() {
-        out.print("Please enter your command: ");
-        return in.nextLine();
+    
+    /**
+     * Prompts the user to enter a command and displays all available commands.
+     * 
+     * @return The user prompt and the list of commands available
+     */
+    public static String promptUserInput() {
+        return "Please enter your command: \n"
+                + "The available commands are\n"
+                + "1. bye\n"
+                + "2. list\n"
+                + "3. todo\n"
+                + "4. deadline\n"
+                + "5. event\n"
+                + "6. mark\n"
+                + "7. unmark\n"
+                + "8. delete\n"
+                + "9. find\n";
     }
 
     /**
      * Displays a welcome message to the user.
      */
-    protected String printWelcomeMessage() {
+    protected static String printWelcomeMessage() {
         return "Hello! I'm SoCCat\nWhat can I do for you?";
     }
 
@@ -53,7 +57,7 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             allTasks = allTasks.concat(i + 1 + "." + tasks.get(i) + "\n");
         }
-        return "Here are the tasks in your list: " + "\n" + allTasks;
+        return "Here are all the tasks in your list: \n" + allTasks;
     }
     
     protected String printMatchingTasks(ArrayList<Task> tasks) {
@@ -61,7 +65,7 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             allTasks = allTasks.concat(i + 1 + "." + tasks.get(i) + "\n");
         }
-        return "Here are the matching tasks in your list: " + "\n" + allTasks;
+        return "Here are the matching tasks in your list: \n" + allTasks;
     }
 
     /**

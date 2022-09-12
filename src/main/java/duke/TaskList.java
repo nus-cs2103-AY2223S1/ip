@@ -12,7 +12,7 @@ public class TaskList {
     private final ArrayList<Task> tasks;
 
     /**
-     * Creates a Tasklist object.
+     * Creates a TaskList object.
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
