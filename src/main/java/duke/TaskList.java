@@ -44,7 +44,7 @@ class TaskList {
     }
 
     String find(String query) {
-        String[] response = new String[]{"Here are the matching tasks in your list:\n"};
+        String[] response = new String[]{"Woof! This is what I found: \n"};
         tasks.stream().filter(x -> x.getName().contains(query))
                 .forEach(x -> response[0] += x + "\n");
         return response[0];
@@ -55,7 +55,7 @@ class TaskList {
     }
 
     String list() {
-        String[] response = new String[]{"Here are the tasks in your list: \n"};
+        String[] response = new String[]{"Woof! Here is everything you need: \n"};
         tasks.forEach(x -> response[0] += x + "\n");
         return response[0];
     }
@@ -65,9 +65,9 @@ class TaskList {
         Task task = tasks.get(id - 1);
         task.setStatus(done);
         if (done) {
-            response += "Nice! I've marked this task as done: \n";
+            response += "Good boy, I've marked this task as done. Time for a treat? \n";
         } else {
-            response += "OK, I've marked this task as not done yet: \n";
+            response += "Woof, I've marked this task as not done yet: \n";
         }
         response += task;
         return response;
@@ -82,8 +82,6 @@ class TaskList {
                 if (x.getClass() == Deadline.class) {
                     return x.getName().equals(name) && ((Deadline) x).deadline.equals(date);
                 } else if (x.getClass() == Event.class) {
-                    System.out.println(date);
-                    System.out.println(((Event) x).eventTime);
                     return x.getName().equals(name) && ((Event) x).eventTime.equals(date);
                 }
                 return false;
@@ -93,7 +91,7 @@ class TaskList {
 
     String addTask(String name, String type, String additional) {
         if (checkIfDuplicate(name, type, additional)) {
-            return "Duplicate task! Not added.";
+            return "Woof! Duplicate task! Not added.";
         }
         String response = "";
         Task newTask;
@@ -111,7 +109,7 @@ class TaskList {
             return "Unknown task type";
         }
         tasks.add(newTask);
-        response += "Got it. I've added this task: \n";
+        response += "Woof!. I've added this task: \n";
         response += newTask + "\n";
         response += "Now you have " + tasks.size() + " tasks in the list.";
         return response;
@@ -120,7 +118,7 @@ class TaskList {
     String delete(int id) {
         String response = "";
         Task toRemove = tasks.remove(id - 1);
-        response += "Noted. I've removed this task: \n";
+        response += "Woof! I've removed this task: \n";
         response += toRemove + "\n";
         response += "Now you have " + tasks.size() + " tasks in the list.";
         return response;

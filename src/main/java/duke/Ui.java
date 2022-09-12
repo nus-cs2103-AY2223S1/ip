@@ -49,6 +49,9 @@ public class Ui extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog("HI MY NAME IS MOTOONG! WOOF!", dukeImage)
+        );
     }
 
     public void setDuke(Duke d) {
