@@ -38,13 +38,7 @@ public class Ui {
      * Gets the initial greeting message for when the chatbot starts up.
      */
     public String getGreeting() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        return "Hello from\n"
-                + logo
+        return "Hi! I'm totally not Duke!\n"
                 + "\nWhat can I do for you?";
     }
 

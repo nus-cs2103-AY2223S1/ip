@@ -38,7 +38,7 @@ public class TaskList {
     public void addTodo(String input) throws DukeException {
         // Check if input is empty
         if (input.length() == 0) {
-            throw new DukeException("The description of a todo cannot be empty.");
+            throw new DukeException("The description of a todo cannot be empty!!!");
         }
 
         // Instantiate task object
@@ -67,14 +67,14 @@ public class TaskList {
 
         // If there is no /by, throw an error
         if (slashIdx == -1 || slashIdx > input.length() - 5) {
-            throw new DukeException("Please set a due date!");
+            throw new DukeException("Please set a due date!!!");
         }
 
         String desc = input.substring(0, slashIdx);
         String by = input.substring((slashIdx + 4));
 
         if (desc.length() == 0) {
-            throw new DukeException("The description of a deadline cannot be empty.");
+            throw new DukeException("The description of a deadline cannot be empty!!!");
         }
 
         // Instantiate task object
@@ -103,14 +103,14 @@ public class TaskList {
 
         // If there is no /at, throw an error
         if (slashIdx == -1 || slashIdx > input.length() - 5) {
-            throw new DukeException("Please set a date!");
+            throw new DukeException("Please set a date!!!");
         }
 
         String desc = input.substring(0, slashIdx);
         String at = input.substring((slashIdx + 4));
 
         if (desc.length() == 0) {
-            throw new DukeException("The description of an event cannot be empty.");
+            throw new DukeException("The description of an event cannot be empty!!!");
         }
 
         // Instantiate task object
@@ -132,10 +132,10 @@ public class TaskList {
      * @param newTask The recently added task
      */
     public void printAddedTask(Task newTask) {
-        String output = "Got it. I've added this task: \n"
+        String output = "Got it! I've added your task: \n"
                         + "  \n"
                         + newTask
-                        + String.format("\nNow you have %d tasks in the list.",
+                        + String.format("\nNow you have %d tasks in the list!",
                                         this.tasks.size());
 
         this.ui.handleOutput(output);
@@ -145,7 +145,7 @@ public class TaskList {
      * Prints all items in the items list.
      */
     public void printItems() {
-        StringBuilder output = new StringBuilder("Here are the tasks in your list:\n");
+        StringBuilder output = new StringBuilder("Here are your tasks!:\n");
 
         // Print every task in the list
         for (int i = 0; i < this.tasks.size(); i++) {
@@ -166,7 +166,7 @@ public class TaskList {
 
         StringBuilder output = new StringBuilder("Here are the tasks on "
                 + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                + "\n");
+                + "!\n");
 
         for (Task task : this.tasks) {
             // Check that task is not a To-do which has no deadline
@@ -193,7 +193,7 @@ public class TaskList {
     public void mark(int index) throws DukeException {
         // Check if the index is within the bounds of the list
         if (index <= 0 || index > this.tasks.size()) {
-            throw new DukeException("Invalid index");
+            throw new DukeException("Invalid index!!!");
         }
 
         // Get the task to be marked
@@ -205,7 +205,7 @@ public class TaskList {
         selectedTask.mark();
 
         // Print message
-        this.ui.handleOutput("Nice! I've marked this task as done:\n"
+        this.ui.handleOutput("Nice! I've marked this task as done!:\n"
                              + selectedTask);
 
         // Update data file
@@ -222,7 +222,7 @@ public class TaskList {
     public void unmark(int index) throws DukeException {
         // Check if the index is within the bounds of the list
         if (index <= 0 || index > this.tasks.size()) {
-            throw new DukeException("Invalid index");
+            throw new DukeException("Invalid index!!!");
         }
 
         // Get the task to be marked
@@ -234,7 +234,7 @@ public class TaskList {
         selectedTask.unmark();
 
         // Print message
-        this.ui.handleOutput("OK, I've marked this task as not done yet:\n"
+        this.ui.handleOutput("Okay! I've marked this task as not done yet!:\n"
                              + selectedTask);
 
         // Update data file
@@ -251,7 +251,7 @@ public class TaskList {
     public void delete(int index) throws DukeException {
         // Check if the index is within the bounds of the list
         if (index <= 0 || index > this.tasks.size()) {
-            throw new DukeException("Invalid index");
+            throw new DukeException("Invalid index!!!");
         }
 
         // Remove task from list and get removed task
@@ -260,10 +260,10 @@ public class TaskList {
         assert removedTask != null; // Check that task is not null
 
         // Print message
-        String output = "Noted. I've removed this task:\n"
+        String output = "I've removed this task!:\n"
                         + removedTask
                         + "\n"
-                        + String.format("Now you have %d tasks in the list.",
+                        + String.format("Now you have %d tasks!",
                                         this.tasks.size());
         this.ui.handleOutput(output);
 
@@ -277,7 +277,7 @@ public class TaskList {
      * @param key a String that is contained within the desired tasks
      */
     public void find(String key) {
-        String header = "Here are the matching tasks in your list:\n";
+        String header = "Here are the matching tasks!:\n";
         String matchingTasks = this.tasks.stream()
                 .map(Task::toString)
                 .filter(task -> task.contains(key))
