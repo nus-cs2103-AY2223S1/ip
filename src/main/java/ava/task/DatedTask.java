@@ -29,7 +29,7 @@ public abstract class DatedTask extends Task {
     }
 
     /**
-     * Comparator method.
+     * Compares dates.
      *
      * @param otherTask The other task to be compared to.
      * @return A number greater than 0 if the date of the Task precedes the other Task's date,

@@ -3,7 +3,7 @@ import javafx.application.Application;
 /** Application launcher. */
 public class Launcher {
     /**
-     * The entry point to the application.
+     * Launches the application.
      *
      * @param args String arguments; not used.
      */
