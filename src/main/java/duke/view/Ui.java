@@ -1,6 +1,6 @@
 package duke.view;
 
-import duke.TaskList;
+import duke.backend.TaskList;
 
 public class Ui {
     private static final String GREET_MESSAGE = "Hello! I'm Duke \nWhat can I do for you?";

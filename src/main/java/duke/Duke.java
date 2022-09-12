@@ -2,6 +2,8 @@ package duke;
 
 import java.io.IOException;
 
+import duke.backend.Storage;
+import duke.backend.TaskList;
 import duke.view.DialogBox;
 import duke.view.Ui;
 import javafx.application.Application;
