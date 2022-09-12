@@ -55,8 +55,7 @@ public class Ui {
      * @param e The exception.
      */
     public String getGeneralError(Exception e) {
-        String message = ("Something went wrong: " + e.getMessage()
-                          + "\nQuelque chose a mal tourné: " + e.getMessage());
+        String message = "";
         if (e instanceof DateTimeParseException) {
             message += ("\nPlease give a valid deadline in the format of yyyy-MM-dd HHmm!"
                         + "\nVeuillez indiquer une date limite valide au format yyyy-MM-dd HHmm!");

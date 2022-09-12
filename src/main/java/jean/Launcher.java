@@ -7,7 +7,7 @@ import javafx.application.Application;
  */
 public class Launcher {
     /**
-     * Main class to launch Jean.
+     * Launches Jean.
      *
      * @param args Command-line arguments.
      */
