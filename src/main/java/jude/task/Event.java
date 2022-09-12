@@ -74,7 +74,7 @@ public class Event extends Task {
      *
      * @param seconds Number of seconds time notice required.
      * @return True if and only if event to start within the number of seconds indicated in the
-     * parameter {@code seconds}.
+     *     parameter {@code seconds}.
      */
     @Override
     public boolean needsReminder(long seconds) {
