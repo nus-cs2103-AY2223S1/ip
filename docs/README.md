@@ -24,7 +24,7 @@ Ado is a **desktop chatbot app for managing and storing tasks, optimized for use
 2. Download the latest `Ado.jar` file from [here](https://github.com/jovitaanderson/ip/releases/tag/v0.1).
 3. Copy the file to the folder you want to use as the home folder for your task list.
 4. Double-click the file to start the app. If done correctly, the GUI should be similar as below. <br>
-<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_startup.png?raw=true" alt="AdoStartUp" style="zoom:35%;" /> <br>
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_startup.png?raw=true" alt="AdoStartUp"/> <br>
 5. Type the command in the command box and press Enter to execute it. You can try the follow example commands:
     - `list` : Lists all the tasks.
     - `deadline submit assignment /by 25 Sep 2022` : Adds a deadline task `submit assignment (by:25 Sep 2022)` to the list.
@@ -42,8 +42,8 @@ e.g. in `todo {description}` , `{description}` is a parameter which can be used 
 
 ### Viewing help: `help`
 Displays a list of avaible commands with examples. <br>
-<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_1.png?raw=true" alt="AdoHelp1" style="zoom:35%;" />
-<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_2.png?raw=true" alt="AdoHelp2p" style="zoom:35%;" /> <br>
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_1.png?raw=true" alt="AdoHelp1"/>
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_2.png?raw=true" alt="AdoHelp2p"/> <br>
 Format: `help` **or** click on the `?` icon beside the send button
 
 ### Adding a todo task: `todo`
@@ -95,7 +95,7 @@ Format: `find {keyword}`
 - The search is case-insensitive. e.g. `ASsignment` will match `assignment`.
 
 Example: `find assignment` <br>
-<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_find.png?raw=true" alt="AdoFind" style="zoom:35%;" /> <br>
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_find.png?raw=true" alt="AdoFind"/> <br>
 
 ### Listing all tasks: `list`
 Lists all the tasks in the task list.<br>
@@ -113,7 +113,7 @@ Ado saves data automatically in the hard disk after any valid command that chang
 **A**: Install the app in the other computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Ado chatbot located at `[JAR file location]/data/tasks.txt`. <br>
 **Q**: What does the red text message mean? <br>
 **A**: It means that you have entered a invalid command that Ado doesnt understand!To learn the proper usage of each command you can read [here](#features)
-<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_errorMessage.png?raw=true" alt="AdoErrorMessage" style="zoom:35%;" /> <br>
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_errorMessage.png?raw=true" alt="AdoErrorMessage"/> <br>
 
 ## Command summary
 
