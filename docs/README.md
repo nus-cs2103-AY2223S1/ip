@@ -24,17 +24,17 @@
 ### Feature Summary
 
 - Adding tasks
-  - todo
-  - deadline
-  - event
-  - fixed
+  - `todo`
+  - `deadline`
+  - `event`
+  - `fixed`
 - Editing tasks
-  - mark / unmark
-  - delete
+  - `mark` / `unmark`
+  - `delete`
 - Utility
-  - find
-  - list
-  - bye
+  - `find`
+  - `list`
+  - `bye`
 
 ## Features to add tasks
 
