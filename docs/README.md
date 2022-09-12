@@ -3,7 +3,7 @@ Duke is an interactive chatbot that can **help manage tasks**. It is in the form
 
 ## Quick start
 1. Ensure you have Java `11` or above installed in your computer.
-2. Download the latest `Duke.jar` from [here](https://github.com/hanwenlai/ip/releases).
+2. Download the latest `duke.jar` from [here](https://github.com/hanwenlai/ip/releases).
 3. Copy the file to the folder you want to use as the home folder for Duke.
 
 ## Features 
