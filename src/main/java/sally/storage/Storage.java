@@ -7,10 +7,10 @@ import sally.task.Task;
 import sally.task.TaskList;
 import sally.task.ToDo;
 
-import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**

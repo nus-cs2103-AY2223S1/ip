@@ -1,10 +1,10 @@
 package sally.command;
 
 import sally.exception.SallyException;
-import sally.task.TaskList;
 import sally.storage.Storage;
-import sally.ui.Ui;
+import sally.task.TaskList;
 import sally.task.ToDo;
+import sally.ui.Ui;
 
 /**
  * AddTodoCommand class to represent command to add a new todo in the task list.

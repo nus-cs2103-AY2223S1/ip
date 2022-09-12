@@ -1,14 +1,12 @@
 package sally.command;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import sally.Sally;
 import sally.exception.SallyException;
 import sally.storage.Storage;
 import sally.task.Deadline;
-import sally.ui.Ui;
 import sally.task.TaskList;
+import sally.ui.Ui;
 
 /**
  * AddDeadlineCommand class to represent command to add a new deadline in the task list.
