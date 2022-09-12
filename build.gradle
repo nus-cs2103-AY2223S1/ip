@@ -52,7 +52,7 @@ application {
 shadowJar {
     archiveBaseName = "jude"
     archiveClassifier = null
-    archiveVersion = "0.2"
+    archiveVersion = "0.3"
 }
 
 run {
