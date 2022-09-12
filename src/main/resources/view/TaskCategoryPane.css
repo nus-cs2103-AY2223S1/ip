@@ -1,6 +1,7 @@
 
 
 /* We try to use a OOCSS methodology here */
+/* Color scheme from: https://colorswall.com/palette/38872*/
 .hoverableText:hover {
     -fx-text-fill: blue;
 }
