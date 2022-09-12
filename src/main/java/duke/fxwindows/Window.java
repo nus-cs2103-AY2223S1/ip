@@ -96,9 +96,11 @@ public class Window extends AnchorPane {
             updateTaskList(c.getTaskList());
         }
         taskListPane.refresh();
-//        else {
-//            updateTaskList();
-//        }
+    }
+
+    @FXML
+    private void requestFocusOnClick() {
+        userInput.requestFocus();
     }
 
     @FXML
