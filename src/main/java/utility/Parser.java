@@ -41,7 +41,7 @@ public class Parser {
     public static void initialiseCommandAliases() {
         if (commandAliasesHashMap.isEmpty()) {
             HashMap<String, Pattern> commandAliases = new HashMap<>();
-            Pattern todoRegex = Pattern.compile("t|todo",
+            Pattern todoRegex = Pattern.compile("t|todo|task",
                     Pattern.CASE_INSENSITIVE);
             Pattern listRegex = Pattern.compile("l|list",
                     Pattern.CASE_INSENSITIVE);
