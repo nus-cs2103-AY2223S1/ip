@@ -10,7 +10,7 @@ public enum Sort {
     // Reused from https://stackoverflow.com/questions/4936819/java-check-if-enum-contains-a-given-string
     // with minor modifications
     /**
-     * Check if Sort has the specified way of sorting.
+     * Checks if Sort has the specified way of sorting.
      *
      * @param s String to check against Sort values.
      * @return boolean for whether the sort is valid.

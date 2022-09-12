@@ -94,7 +94,7 @@ public class TaskList {
     }
 
     /**
-     * Find a task containing the keyword in their description.
+     * Finds a task containing the keyword in their description.
      *
      * @param keyword Keyword in the description of tasks.
      * @return Task list with tasks containing the keyword in their descriptions.
