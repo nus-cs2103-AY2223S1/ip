@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-import duke.chatbot.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commands.exceptions.InvalidDeadlineException;
 import duke.chatbot.commands.exceptions.InvalidEventException;
 import duke.taskmanager.exceptions.InvalidFormattedStringException;
@@ -26,7 +25,6 @@ import duke.taskmanager.task.ToDoTask;
  * TaskManager class manages a list of task and provide functions to manipulate the list.
  */
 public class TaskManager {
-    public static final String UPDATE_DELIMITER = " >> ";
     private static final String FILE_PATH = "tasklist.txt";
     private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";
     private static final String ATTRIBUTE_SEPARATOR = "<>";
@@ -131,63 +129,45 @@ public class TaskManager {
 
     /**
      * Marks a task in the task list to indicate completion. The task to be marked is provided by the user.
-     * Responds with an appropriate message indicating the marking of the task depending on the
-     * prior completion status of the task
+     * Responds with a confirmation indicating if the marking of task is successful.
      *
      * @param itemNumber index of the task to be marked as completed
-     * @return response message indicating the marking of the task
+     * @return whether the marking of task is successful
      */
-    public String markTask(int itemNumber) {
-        if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
-            if (this.taskList.get(itemNumber - 1).isCompleted()) {
-                return "The task is already marked you dummy.\n";
-            } else {
-                this.taskList.get(itemNumber - 1).setCompleted();
-                return "I've marked this task as done. Good Job!\n";
-            }
+    public boolean markTask(int itemNumber) {
+        if (!(this.taskList.get(itemNumber - 1).isCompleted())) {
+            this.taskList.get(itemNumber - 1).setCompleted();
+            return true;
         } else {
-            return "There is no such task!!\n";
+            return false;
         }
     }
 
     /**
      * Unmarks a marked task in the task list to indicate completion. The task to be marked is provided by the user.
-     * Responds with an appropriate message indicating the unmarking of the task depending on the
-     * prior completion status of the task
+     * Responds with a confirmation indicating if the unmarking of task is successful.
      *
-     * @param itemNumber index of the marked task to be unmarked as completed
-     * @return response message indicating the unmarking of the task
+     * @param itemNumber index of the task to be marked as not completed
+     * @return whether the unmarking of task is successful
      */
-    public String unmarkTask(int itemNumber) {
-        if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
-            if (!(this.taskList.get(itemNumber - 1).isCompleted())) {
-                return "The task is still not done you idiot.\n";
-            } else {
-                this.taskList.get(itemNumber - 1).setNotCompleted();
-                return "The task has been unmarked.\n";
-            }
+    public boolean unmarkTask(int itemNumber) {
+        if (this.taskList.get(itemNumber - 1).isCompleted()) {
+            this.taskList.get(itemNumber - 1).setNotCompleted();
+            return true;
         } else {
-            return "There is no such task!!\n";
+            return false;
         }
     }
 
     /**
      * Deletes a task in the task list. The task to be deleted is provided by the user.
-     * Responds with an appropriate message indicating the task that was deleted.
+     * Responds with the task that was deleted.
      *
      * @param itemNumber index of the task to be deleted
-     * @return response message indicating the deletion of the task
+     * @return the deleted task
      */
     public String deleteTask(int itemNumber) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
-            stringBuilder.append("The following item has been removed.\n");
-            stringBuilder.append(this.taskList.remove(itemNumber - 1).toString()).append("\n");
-            stringBuilder.append("You have ").append(this.taskList.size()).append(" item(s) remaining.\n");
-        } else {
-            return "There is no such task!!\n";
-        }
-        return stringBuilder.toString();
+        return this.taskList.remove(itemNumber - 1).toString();
     }
 
     /**
@@ -218,9 +198,8 @@ public class TaskManager {
      * @param itemNumber index of the task to be updated
      * @param arguments the updated attributes
      * @return string of the updated task
-     * @throws InvalidArgumentsException thrown when the arguments do not match the task to be updated
      */
-    public String updateTask(int itemNumber, String... arguments) throws InvalidArgumentsException {
+    public String updateTask(int itemNumber, String... arguments) {
         this.taskList.get(itemNumber - 1).update(arguments);
         return this.taskList.get(itemNumber - 1).toString();
     }

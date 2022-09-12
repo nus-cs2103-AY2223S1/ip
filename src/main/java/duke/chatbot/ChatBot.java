@@ -4,14 +4,16 @@ import java.util.Scanner;
 
 import duke.chatbot.commands.ByeCommandHandler;
 import duke.chatbot.commands.DeadlineTaskCommandHandler;
+import duke.chatbot.commands.DeleteTaskCommandHandler;
 import duke.chatbot.commands.EventTaskCommandHandler;
 import duke.chatbot.commands.ListTaskCommandHandler;
+import duke.chatbot.commands.MarkTaskCommandHandler;
 import duke.chatbot.commands.TodoTaskCommandHandler;
+import duke.chatbot.commands.UnmarkTaskCommandHandler;
 import duke.chatbot.commands.UpdateTaskCommandHandler;
 import duke.chatbot.commands.exceptions.EmptyCommandException;
 import duke.chatbot.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commands.exceptions.InvalidCommandException;
-import duke.chatbot.commands.exceptions.InvalidIndexException;
 import duke.taskmanager.TaskManager;
 import duke.taskmanager.exceptions.LoadDataException;
 
@@ -141,13 +143,13 @@ public class ChatBot {
                 response = new EventTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "mark":
-                response = taskManager.markTask(parseNumber(arguments));
+                response = new MarkTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "unmark":
-                response = taskManager.unmarkTask(parseNumber(arguments));
+                response = new UnmarkTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "delete":
-                response = taskManager.deleteTask(parseNumber(arguments));
+                response = new DeleteTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "find":
                 if (!hasArguments) {
@@ -168,20 +170,6 @@ public class ChatBot {
         } finally {
             inputScanner.close();
             this.latestResponse = response;
-        }
-    }
-
-    /**
-     * Parses a string argument into a number.
-     *
-     * @throws InvalidIndexException when the string argument is not a number
-     */
-    private int parseNumber(String argument) throws InvalidIndexException {
-        try {
-            int itemNumber = Integer.parseInt(argument);
-            return itemNumber;
-        } catch (NumberFormatException exception) {
-            throw new InvalidIndexException();
         }
     }
 
