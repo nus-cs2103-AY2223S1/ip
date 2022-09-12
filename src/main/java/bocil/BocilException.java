@@ -4,14 +4,14 @@ package bocil;
  * Describes all the exception handled by the program.
  */
 public class BocilException extends Exception {
-    private static final String EMPTY_INPUT = "Please enter something!";
-    private static final String FILE_NOT_FOUND = "I cannot find your file";
-    private static final String FILE_WRONG_FORMAT = "I cannot understand the formatting inside the storage file. "
+    private static final String EMPTY_INPUT = "I don't speak sign language. Enter something!";
+    private static final String FILE_NOT_FOUND = "Where is your file bro?";
+    private static final String FILE_WRONG_FORMAT = "What is that formatting inside your storage file. "
             + "Please fix it and restart the app!";
-    private static final String INVALID_INDEX = "The task number you input is invalid";
-    private static final String INVALID_FORMAT = "The input format is invalid";
-    private static final String INVALID_TAG_FORMAT = "The tag format you input is invalid";
-    private static final String INVALID_DATE_FORMAT = "The date format you input is invalid";
+    private static final String INVALID_INDEX = "Please input a valid task index!";
+    private static final String INVALID_FORMAT = "Please write your input according to the format!";
+    private static final String INVALID_TAG_FORMAT = "Please input a valid tag!";
+    private static final String INVALID_DATE_FORMAT = "Please write your date according to the format!";
     private static final String UNKNOWN_COMMAND = "I can't understand what you are saying..";
 
     /**
