@@ -55,7 +55,7 @@ public class Duke {
     }
 
     String byeResponse() {
-        return "Crista ronaldo SuuWeee ! ";
+        return "Crista ronaldo SuuWeeeee ! ";
     }
 
     String siuResponse() {
