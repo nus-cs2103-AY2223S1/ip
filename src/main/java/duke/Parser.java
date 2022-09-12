@@ -5,6 +5,7 @@ import duke.command.AddEventCommand;
 import duke.command.AddTodoCommand;
 import duke.command.MarkCommand;
 import duke.command.TagCommand;
+import duke.command.ListCommand;
 import duke.exception.DukeException;
 
 import java.time.LocalDate;
@@ -82,13 +83,10 @@ public class Parser {
         } else if (taskType.equals("event")) {
             return new AddEventCommand(taskList, taskString[1].trim()).execute();
         } else if (taskType.equals("list")) {
-            if (taskString.length == 1 || taskString[1].trim().equals("")) { //list command
+            if (taskString.length == 1 || taskString[1].trim().equals("")) { //list all
                 return "list 0";
-            } else if (!taskString[1].trim().matches(".*\\d.*")) {
-                return String.format("list %s", taskString[1].trim());
-            } else { //list date
-                LocalDate date = parseDate(taskString[1].trim());
-                return String.format("list %s", date);
+            } else {
+                return new ListCommand(taskList, taskString[1].trim()).execute();
             }
         } else if (taskType.equals("mark") || taskType.equals("unmark") || taskType.equals("delete")) {
             return new MarkCommand(taskList, taskType, taskString[1].trim()).execute();

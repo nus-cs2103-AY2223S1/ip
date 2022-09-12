@@ -5,12 +5,12 @@ public enum ErrorMessage {
     INVALID_DATE ("☹ OOPS!!! This is not a proper date format, year, month or day value is invalid."),
     MISSING_DATE ("☹ OOPS!!! The date information of a %s task cannot be empty."),
     MISSING_DESCRIPTION ("☹ OOPS!!! The description of a %s task cannot be empty."),
-    INVALID_DEADLINE_COMMAND ("☹ OOPS!!! The command not properly formatted.\n"
+    INVALID_DEADLINE_COMMAND ("☹ OOPS!!! The command is not properly formatted.\n"
             + "Please follow the format: Deadline {description} /by {date}."),
-    INVALID_EVENT_COMMAND ("☹ OOPS!!! The command not properly formatted.\n"
+    INVALID_EVENT_COMMAND ("☹ OOPS!!! The command is not properly formatted.\n"
             + "Please follow the format: Event {description} /at {date} to {date}."),
 
-    INVALID_TAG_COMMAND ("☹ OOPS!!! The command not properly formatted.\n"
+    INVALID_TAG_COMMAND ("☹ OOPS!!! The command is not properly formatted.\n"
             + "Please follow the format: tag {task index} /with {tag}."),
     INVALID_COMMAND_TYPE ("☹ OOPS!!! I'm sorry, but I don't know what that means :-("),
     INVALID_INDEX ("☹ OOPS!!! The task index exceeds task list size limit."),
@@ -19,7 +19,7 @@ public enum ErrorMessage {
     INVALID_TAG ("☹ OOPS!!! The tag can only contain alphabets and it cannot be empty."),
     EXCEEDING_TAG_NUMBER ("☹ OOPS!!! The tag cannot be added because a task cannot have more than 3 tags."),
     TAG_ALREADY_IN_TASK ("☹ OOPS!!! The tag %s is already in the task tag list, same tag cannot be added again."),
-
+    INVALID_KEYWORD ("☹ OOPS!!! The keyword in list command can only contain alphabets."),
     TAG_NOT_IN_TASK("☹ OOPS!!! The tag %s is not in the task tag list, so it cannot be deleted.");
 
     private String name;

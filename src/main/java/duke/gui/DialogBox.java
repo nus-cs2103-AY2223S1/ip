@@ -1,5 +1,8 @@
 package duke.gui;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -36,14 +39,28 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         dialog.setWrapText(true);
-        dialog.getStyleClass().add("scroll-free-text-area");
-        int noOfLines = text.split("\r\n|\r|\n").length;
-        dialog.setPrefHeight(12 * noOfLines);
+        newDialogFitText();
         dialog.setStyle(String.format("-fx-line-spacing: 8px; -fx-control-inner-background: %s; -fx-hbar-policy:never; "
                 + "-fx-vbar-policy:never; -fx-padding: 2;", color));
         displayPicture.setImage(img);
         displayPicture.setClip(new javafx.scene.shape.Circle(25, 25, 25));
     }
+
+    private void newDialogFitText() {
+        SimpleIntegerProperty count = new SimpleIntegerProperty(20);
+        int rowHeight = 10;
+        dialog.prefHeightProperty().bindBidirectional(count);
+        dialog.minHeightProperty().bindBidirectional(count);
+        dialog.scrollTopProperty().addListener(new ChangeListener<Number>(){
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number oldVal, Number newVal) {
+                if(newVal.intValue() > rowHeight){
+                    count.setValue(count.get() + newVal.intValue());
+                }
+            }
+        });
+    }
+
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.

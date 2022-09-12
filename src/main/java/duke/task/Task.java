@@ -86,16 +86,26 @@ public class Task {
     }
 
     public String printTags() {
-        String result = "{";
-        for (String tag : tags) {
-            result += String.format("%s ", tag.trim());
+        if (noOfTags() == 1) {
+            return String.format("{%s}", tags.get(0));
+        } else if (noOfTags() == 0) {
+            return "{}";
+        } else {
+            return String.format("{%s}", String.join(",", tags));
         }
-        return result.trim() + "}";
     }
 
     public static List<String> readTags(String tagString) {
         String newTagString = tagString.substring(1, tagString.length() - 1);
-        return new ArrayList<String>(Arrays.asList(newTagString.split(" ")));
+        if (tagString.equals("{}")) {
+            return new ArrayList<String>();
+        } else if (!newTagString.contains(",")) {
+            List<String> newTags =  new ArrayList<String>();
+            newTags.add(newTagString);
+            return newTags;
+        } else {
+            return new ArrayList<String>(Arrays.asList(newTagString.split(",")));
+        }
     }
 
     public String printTask() {

@@ -23,7 +23,6 @@ public class TagCommand implements Command {
         } else if (info.split("/with").length == 1) {
             throw new DukeException(INVALID_TAG, "");
         }
-        System.out.println(info);
         String index = info.split("/with")[0].trim();
         String tag = info.split("/with")[1].trim();
         if (!index.matches("[0-9]+") || index.equals("")) {
@@ -38,17 +37,17 @@ public class TagCommand implements Command {
 
     public String execute() throws DukeException {
         String index = this.splitInfo().split(" ")[0];
-        String tag = this.splitInfo().split(" ")[1];
+        String tag = this.splitInfo().split(" ")[1].trim();
         Task task = tasks.getTask(Integer.parseInt(index) - 1);
         if (taskType.equals("tag") && task.noOfTags() >= 3) {
             throw new DukeException(EXCEEDING_TAG_NUMBER, "");
         } else if (taskType.equals("tag") && task.containsTag(tag)) {
             throw new DukeException(TAG_ALREADY_IN_TASK, tag);
+        } else if (taskType.equals("untag") && !task.containsTag(tag)) {
+            throw new DukeException(TAG_NOT_IN_TASK, tag);
         } else if (taskType.equals("tag") && task.noOfTags() < 3) {
             task.addTag(tag);
             return String.format("tag %s %s", index, tag);
-        } else if (taskType.equals("untag") && !task.containsTag(tag)) {
-            throw new DukeException(TAG_NOT_IN_TASK, tag);
         } else {
             task.deleteTag(tag);
             return String.format("untag %s %s", index, tag);
