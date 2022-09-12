@@ -18,6 +18,7 @@ public class EventCommand extends Command {
      * @param input Description part of input following "event".
      */
     public EventCommand(String input) {
+        assert input != null : "An event task shouldn't be created with null description.";
         this.description = input;
     }
 
