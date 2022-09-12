@@ -33,14 +33,14 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(Ui.helloMessage(), dukeImage));
     }
 
     /**
-     * Sets duke for MainWindow
+     * Sets duke for MainWindow and displays the task list loaded.
      */
     public void setDuke(Duke d) {
         duke = d;
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(duke.toString(), dukeImage));
     }
 
     /**

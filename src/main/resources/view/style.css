@@ -1,0 +1,10 @@
+.label {
+  -fx-background-color: #eff1f5;
+  -fx-text-fill: #4c4f69;
+  -fx-padding: 10;
+}
+
+.text-field {
+  -fx-background-color: #eff1f5;
+  -fx-text-fill: #4c4f69;
+}

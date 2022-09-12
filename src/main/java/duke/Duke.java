@@ -3,6 +3,7 @@ package duke;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.task.TaskList;
+import duke.ui.Ui;
 import javafx.application.Platform;
 
 /**
@@ -35,5 +36,10 @@ public class Duke {
             Platform.exit();
         }
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return Ui.helloMessage() + "\n" + taskList.toString();
     }
 }
