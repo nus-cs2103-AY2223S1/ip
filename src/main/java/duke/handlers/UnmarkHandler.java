@@ -1,14 +1,17 @@
 package duke.handlers;
 
 import duke.entities.Task;
+import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
 import duke.service.Service;
+import duke.service.Ui;
 
-public class UnmarkHandler implements IHandler{
+/** Handles user action of setting a Task as not done */
+public class UnmarkHandler implements IHandler {
     private String taskIndex;
 
     public UnmarkHandler(HandlerFactory factory) {
-        this.taskIndex = factory.taskName;
+        this.taskIndex = factory.getTaskName();
     }
 
     /**
@@ -22,13 +25,14 @@ public class UnmarkHandler implements IHandler{
         if (this.taskIndex == null) {
             throw new DukeException("Invalid list index!\nUsage: `unmark 2`");
         }
-        try{
+        try {
+            Tasklist list = s.getList();
+            Ui ui = s.getUi();
             int number = Integer.parseInt(this.taskIndex);
-            Task item = s.list.get(number - 1);
+            Task item = list.get(number - 1);
             item.setDone(false);
-            s.ui.customPrint("OK, I've marked this task as not done yet:\n  " + item);
-        }
-        catch (NumberFormatException ex) {
+            ui.customPrint("OK, I've marked this task as not done yet:\n  " + item);
+        } catch (NumberFormatException ex) {
             throw new DukeException("Invalid list index!\nUsage: `unmark 2`");
         }
     }

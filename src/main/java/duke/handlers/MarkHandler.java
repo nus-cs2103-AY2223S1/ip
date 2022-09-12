@@ -1,14 +1,17 @@
 package duke.handlers;
 
 import duke.entities.Task;
+import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
 import duke.service.Service;
+import duke.service.Ui;
 
-public class MarkHandler implements IHandler{
+/** Handles the user action for marking a Task as done */
+public class MarkHandler implements IHandler {
     private String taskIndex;
 
     public MarkHandler(HandlerFactory factory) {
-        this.taskIndex = factory.taskName;
+        this.taskIndex = factory.getTaskName();
     }
 
     /**
@@ -22,16 +25,17 @@ public class MarkHandler implements IHandler{
         if (this.taskIndex == null) {
             throw new DukeException("Invalid list index!\nUsage: `mark 2`");
         }
-        try{
+        try {
             int number = Integer.parseInt(this.taskIndex);
-            if (number > s.list.size()) {
+            Tasklist list = s.getList();
+            Ui ui = s.getUi();
+            if (number > list.size()) {
                 throw new DukeException("Task not found! Please try again.");
             }
-            Task item = s.list.get(number - 1);
+            Task item = list.get(number - 1);
             item.setDone(true);
-            s.ui.customPrint("Nice! I've marked this task as done:\n  " + item);
-        }
-        catch (NumberFormatException ex) {
+            ui.customPrint("Nice! I've marked this task as done:\n  " + item);
+        } catch (NumberFormatException ex) {
             throw new DukeException("Invalid list index!\nUsage: `mark 2`");
         }
     }

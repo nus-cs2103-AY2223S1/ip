@@ -1,17 +1,28 @@
 package duke.data;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import duke.entities.Deadline;
+import duke.entities.Event;
 import duke.entities.Task;
 import duke.entities.Tasklist;
 import duke.entities.Todo;
 
-import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+/** FileStorage saves the user's current Tasks */
 public class FileStorage implements IStorage {
-    private final String filePath;
     private static final Pattern TASK_REGEX = Pattern.compile("^\\[(T|D|E)\\]\\[(x| )\\] (.*)(?: \\(.*: (.*)\\))?$");
+    private final String filePath;
 
+    /**
+     * Constructs FileStorage using filepath
+     * @param filePath path to store the file in.
+     */
     public FileStorage(String filePath) {
         this.filePath = filePath;
     }
@@ -42,7 +53,8 @@ public class FileStorage implements IStorage {
             BufferedReader reader = new BufferedReader(new FileReader(this.filePath));
             String line;
             int lineNumber = 1;
-            while((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
+                lineNumber++;
                 try {
                     Matcher m = TASK_REGEX.matcher(line);
                     m.find();
@@ -51,11 +63,18 @@ public class FileStorage implements IStorage {
                     String taskName = m.group(3);
                     String taskDate = m.group(4);
                     switch (taskType) {
-                        case "T":
-                            result.add(new Todo(taskName, taskDone.equals("x")));
-                            break;
+                    case "T":
+                        result.add(new Todo(taskName, taskDone.equals("x")));
+                        break;
+                    case "E":
+                        result.add(new Event(taskName, taskDate));
+                        break;
+                    case "D":
+                        result.add(new Deadline(taskName, taskDate));
+                        break;
+                    default:
+                        continue;
                     }
-                    lineNumber++;
                 } catch (IllegalStateException ex) {
                     System.out.println(String.format("Invalid line found at line %d. Ignoring line %d.", lineNumber));
                 }

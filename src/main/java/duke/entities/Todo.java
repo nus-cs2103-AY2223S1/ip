@@ -1,5 +1,6 @@
 package duke.entities;
 
+/** Todo entity. */
 public class Todo extends Task {
 
     public Todo(String name) {

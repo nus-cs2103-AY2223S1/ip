@@ -1,16 +1,26 @@
 package duke.handlers;
 
-import duke.entities.Task;
-import duke.exceptions.DukeException;
-import duke.service.Service;
-
 import java.util.ArrayList;
 
-public class FindHandler implements IHandler{
+import duke.entities.Task;
+import duke.entities.Tasklist;
+import duke.exceptions.DukeException;
+import duke.service.Service;
+import duke.service.Ui;
+
+/**
+ * Handles the user action for finding a task.
+ */
+public class FindHandler implements IHandler {
     private String taskName;
 
+    /**
+     * Constructs a FindHandler from HandlerFactory
+     *
+     * @param factory HandlerFactory
+     */
     public FindHandler(HandlerFactory factory) {
-        this.taskName = factory.taskName;
+        this.taskName = factory.getTaskName();
     }
 
     /**
@@ -22,10 +32,12 @@ public class FindHandler implements IHandler{
     @Override
     public void handle(Service s) throws DukeException {
         ArrayList<Task> results = new ArrayList<>();
+        Tasklist list = s.getList();
+        Ui ui = s.getUi();
         if (this.taskName == null) {
             throw new DukeException("Please enter a task name!");
         }
-        for (Task t: s.list) {
+        for (Task t: list) {
             if (t.toString().contains(this.taskName)) {
                 results.add(t);
             }
@@ -40,6 +52,6 @@ public class FindHandler implements IHandler{
             sb.append(t);
             index++;
         }
-        s.ui.customPrint(sb.toString());
+        ui.customPrint(sb.toString());
     }
 }

@@ -1,9 +1,14 @@
 package duke.handlers;
 
+import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
 import duke.service.Service;
+import duke.service.Ui;
 
-public class ListHandler implements IHandler{
+/**
+ * Handles the user action for listing all tasks.
+ */
+public class ListHandler implements IHandler {
     public ListHandler() {
     }
 
@@ -17,13 +22,15 @@ public class ListHandler implements IHandler{
     public void handle(Service s) throws DukeException {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Here are the tasks in your list:\n");
-        int n = s.list.size();
+        Tasklist list = s.getList();
+        Ui ui = s.getUi();
+        int n = list.size();
         for (int i = 0; i < n; i++) {
-            stringBuilder.append(String.format("%d. %s", i + 1, s.list.get(i)));
+            stringBuilder.append(String.format("%d. %s", i + 1, list.get(i)));
             if (i != n - 1) {
                 stringBuilder.append("\n");
             }
         }
-        s.ui.customPrint(stringBuilder.toString());
+        ui.customPrint(stringBuilder.toString());
     }
 }

@@ -5,11 +5,12 @@ import duke.entities.Todo;
 import duke.exceptions.DukeException;
 import duke.service.Service;
 
-public class TodoHandler implements IHandler{
+/** Handles user action of creating a new Todo. */
+public class TodoHandler implements IHandler {
     private String todoName;
 
     public TodoHandler(HandlerFactory factory) {
-        this.todoName = factory.taskName;
+        this.todoName = factory.getTaskName();
     }
 
     /**

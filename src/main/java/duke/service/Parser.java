@@ -1,14 +1,22 @@
 package duke.service;
 
-import duke.handlers.HandlerFactory;
-import duke.handlers.IHandler;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parser {
-    private static final Pattern COMMAND_REGEX = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
+import duke.handlers.HandlerFactory;
+import duke.handlers.IHandler;
 
+/** Parser class handles user-inputs */
+public class Parser {
+    private static final Pattern COMMAND_REGEX =
+            Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
+
+    /**
+     * Parsers the user input into tokens.
+     *
+     * @param s
+     * @return IHandler
+     */
     public static IHandler parse(String s) {
         try {
             Matcher m = COMMAND_REGEX.matcher(s);

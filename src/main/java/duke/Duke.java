@@ -1,28 +1,37 @@
 package duke;
 
+import java.io.File;
+import java.util.Scanner;
+
 import duke.data.FileStorage;
 import duke.data.IStorage;
 import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
+import duke.gui.Gui;
 import duke.handlers.IHandler;
 import duke.service.Parser;
 import duke.service.Service;
 import duke.service.Ui;
+import javafx.application.Application;
 
-import java.io.File;
-import java.util.Scanner;
-
+/**
+ * Main entrypoint for Duke Application
+ */
 public class Duke {
-    private static final String LOGO = " ____        _        \n" +
-            "|  _ \\ _   _| | _____ \n" +
-            "| | | | | | | |/ / _ \\\n" +
-            "| |_| | |_| |   <  __/\n" +
-            "|____/ \\__,_|_|\\_\\___|\n" +
-            "\n";
-    private final static Tasklist list = new Tasklist();
+    private static final String LOGO = " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n"
+            + "\n";
+    private static final Tasklist list = new Tasklist();
 
+    /**
+     * Main Entrypoint for CLI tool
+     * @param args arguments passed by user in CLI
+     */
     public static void main(String[] args) {
-
+        Application.launch(Gui.class, args);
         Scanner sc = new Scanner(System.in);
         String userInput;
         Ui ui = new Ui();
@@ -49,13 +58,9 @@ public class Duke {
         ui.customPrint("Bye. Hope to see you again soon!");
     }
 
-
-
     private static void handleCommand(Service s, String str) throws DukeException {
         IHandler handler = Parser.parse(str);
         handler.handle(s);
         s.updateStorage();
     }
-
-
 }

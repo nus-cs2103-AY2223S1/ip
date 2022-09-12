@@ -1,5 +1,8 @@
 package duke.enums;
 
+/**
+ * Enum for available user commands.
+ */
 public enum Command {
     TODO,
     EVENT,

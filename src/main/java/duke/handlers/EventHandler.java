@@ -1,20 +1,28 @@
 package duke.handlers;
 
+import java.time.format.DateTimeParseException;
+
 import duke.entities.Event;
 import duke.entities.Task;
 import duke.exceptions.DukeException;
 import duke.service.Service;
-import java.time.format.DateTimeParseException;
 
-public class EventHandler implements IHandler{
+/**
+ * Handles User action for creating a new Event.
+ */
+public class EventHandler implements IHandler {
     private String eventName;
     private String flag;
     private String flagOption;
 
+    /**
+     * Constructs EventHandler from HandlerFactory
+     * @param factory HandlerFactory
+     */
     public EventHandler(HandlerFactory factory) {
-        this.eventName = factory.taskName;
-        this.flag = factory.flag;
-        this.flagOption = factory.flagOption;
+        this.eventName = factory.getTaskName();
+        this.flag = factory.getFlag();
+        this.flagOption = factory.getFlagOption();
     }
 
     /**

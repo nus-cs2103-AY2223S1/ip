@@ -1,12 +1,13 @@
 package duke.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TasklistTest {
     @Test
-    public void addTest(){
+    public void addTest() {
         Tasklist list = new Tasklist();
         assertEquals(list.toString(), "[]");
         list.add(new Todo("hello"));
@@ -14,7 +15,7 @@ public class TasklistTest {
     }
 
     @Test
-    public void removeTest(){
+    public void removeTest() {
         Tasklist list = new Tasklist();
         assertEquals(list.toString(), "[]");
         list.add(new Todo("hello"));

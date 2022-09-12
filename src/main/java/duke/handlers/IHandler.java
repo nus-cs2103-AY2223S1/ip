@@ -3,6 +3,9 @@ package duke.handlers;
 import duke.exceptions.DukeException;
 import duke.service.Service;
 
+/**
+ * Interface representing a Handler.
+ */
 public interface IHandler {
     /**
      * Handles the command

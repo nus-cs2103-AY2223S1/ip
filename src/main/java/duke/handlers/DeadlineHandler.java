@@ -1,21 +1,29 @@
 package duke.handlers;
 
+import java.time.format.DateTimeParseException;
+
 import duke.entities.Deadline;
 import duke.entities.Task;
 import duke.exceptions.DukeException;
 import duke.service.Service;
 
-import java.time.format.DateTimeParseException;
 
-public class DeadlineHandler implements IHandler{
+/**
+ * Handles the user command for creating a new Deadline.
+ */
+public class DeadlineHandler implements IHandler {
     private String deadlineName;
     private String flag;
     private String flagOption;
 
+    /**
+     * Constructs new DeadlineHandler from a HandlerFactory.
+     * @param factory
+     */
     public DeadlineHandler(HandlerFactory factory) {
-        this.deadlineName = factory.taskName;
-        this.flag = factory.flag;
-        this.flagOption = factory.flagOption;
+        this.deadlineName = factory.getTaskName();
+        this.flag = factory.getFlag();
+        this.flagOption = factory.getFlagOption();
     }
 
     /**

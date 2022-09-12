@@ -1,5 +1,6 @@
 package duke.entities;
 
+/** Task entity */
 public abstract class Task {
 
     private final String name;
@@ -9,6 +10,12 @@ public abstract class Task {
         this.name = name;
     }
 
+    /**
+     * Constructs a Task entity.
+     *
+     * @param name
+     * @param done
+     */
     public Task(String name, boolean done) {
         this.name = name;
         this.done = done;
