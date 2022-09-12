@@ -2,6 +2,7 @@ package duke.fxwindows;
 
 import duke.Duke;
 import duke.TaskList;
+import duke.command.Command;
 import duke.tasks.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -76,19 +77,26 @@ public class Window extends AnchorPane {
 
     void updateTaskList(TaskList tList) {
         this.taskListPane.setTasks(tList);
+        selectTask(tList.get(0));
     }
 
     void updateTaskList() {
         this.taskListPane.setTasks(this.duke.getTasks());
+        selectTask(this.duke.getTasks().get(0));
     }
 
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.execCommand(input);
+        Command c = duke.ui.readCommand(input);
+        String response = duke.execCommand(c);
         userInput.setText("");
         showNotification(response);
-        this.updateTaskList();
+        if (c.returnsTaskList()) {
+            updateTaskList(c.getTaskList());
+        } else {
+            updateTaskList();
+        }
     }
 
     @FXML

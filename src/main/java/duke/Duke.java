@@ -4,7 +4,7 @@ import duke.command.Command;
 
 public class Duke {
 
-    private Ui ui;
+    public Ui ui;
     private TaskList tasks;
     private LocalStorage storage;
 
@@ -22,10 +22,9 @@ public class Duke {
         this.tasks.loadFromLocalStorage(this.storage);
     }
 
-    public String execCommand(String commandStr) {
+    public String execCommand(Command c) {
         assert (tasks != null);
         assert (storage != null);
-        Command c = ui.readCommand(commandStr);
         String returnStr = c.exec(this.tasks);
         this.storage.save(this.tasks);
         return returnStr;

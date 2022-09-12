@@ -32,6 +32,14 @@ public abstract class Command {
         return false;
     }
 
+    public boolean returnsTaskList(){
+        return false;
+    }
+
+    public TaskList getTaskList(){
+        return null;
+    }
+
     /**
      * Returns the relevant command object from a Parser.ParsedInputArguments object.
      * @param inputArgs an input argument object representing input
@@ -85,6 +93,7 @@ public abstract class Command {
         public boolean isExit() {
             return true;
         }
+
     }
 
     static class ListCommand extends Command {
@@ -115,6 +124,7 @@ public abstract class Command {
 
             return "Nice! I've marked this as done: \n" + task;
         }
+
     }
 
     static class UnmarkCommand extends Command {
@@ -133,6 +143,7 @@ public abstract class Command {
 
             return "OK, I've marked this task as not done yet: \n" + task;
         }
+
     }
 
     static class FindCommand extends Command {
@@ -141,22 +152,34 @@ public abstract class Command {
             this.args = args;
         }
 
+        private TaskList taskList;
+
         @Override
         public String exec(TaskList taskList) {
-            TaskList tasksFound = new TaskList();
+            this.taskList = new TaskList();
             for (Iterator<Task> i = taskList.getIterator(); i.hasNext(); ) {
                 Task t = i.next();
 
                 if (t.getDescription().contains(args)) {
-                    tasksFound.add(t);
+                    this.taskList.add(t);
                 }
             }
 
-            if (tasksFound.size() > 0) {
-                return "Here are the matching tasks in your list:\n" + tasksFound.toString();
+            if (this.taskList.size() > 0) {
+                return "Here are the matching tasks in your list:\n" + this.taskList.toString();
             } else {
                 return "There are no matching tasks in your list.";
             }
+        }
+
+        @Override
+        public boolean returnsTaskList() {
+            return true;
+        }
+
+        @Override
+        public TaskList getTaskList() {
+            return taskList;
         }
     }
     static class AddTodoCommand extends Command {
@@ -175,6 +198,7 @@ public abstract class Command {
                     this.todo.toString() + "\n" +
                     "Now you have " + taskList.size() + " tasks in the list.";
         }
+
     }
 
     static class AddDeadlineCommand extends Command {
@@ -194,6 +218,7 @@ public abstract class Command {
                     this.deadline.toString() + "\n" +
                     "Now you have " + taskList.size() + " tasks in the list.";
         }
+
     }
 
     static class AddEventCommand extends Command {
@@ -213,6 +238,7 @@ public abstract class Command {
                     this.event.toString() + "\n" +
                     "Now you have " + taskList.size() + " tasks in the list.";
         }
+
     }
 
     static class DeleteTaskCommand extends Command {
@@ -231,6 +257,7 @@ public abstract class Command {
                     task.toString() + "\n" +
                     "Now you have " + taskList.size() + " tasks in the list.";
         }
+
     }
 
     static class UnrecognizedCommand extends Command {
