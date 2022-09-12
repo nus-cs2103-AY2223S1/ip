@@ -1,18 +1,18 @@
 package duke.command.handler;
 
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
 import duke.command.CommandException;
+import duke.command.handler.base.CommandUpdateTaskHandler;
 import duke.command.response.CommandResponse;
 import duke.command.response.DeleteTaskResponse;
-
 import duke.data.TaskList;
 import duke.data.tasks.Task;
 
-import java.util.regex.Pattern;
-import java.util.regex.MatchResult;
+public class CommandDeleteHandler extends CommandUpdateTaskHandler {
 
-public class CommandDeleteHandler extends CommandHandler {
-
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `delete` command format!",
         "Expected format: delete <task-number>",
         "Examples:",
@@ -26,7 +26,7 @@ public class CommandDeleteHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**
@@ -38,22 +38,14 @@ public class CommandDeleteHandler extends CommandHandler {
      *                          parsed into a number
      */
     @Override
-    public CommandResponse run(TaskList taskList) throws CommandException {
+    protected String getSelectedTaskIdStr() {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
-        String taskIdxStr = regexMatchResult.group(1);
-        try {
-            int taskIdx = Integer.parseInt(taskIdxStr);
-            if (taskIdx <= 0 || taskIdx > taskList.size()) {
-                throw new CommandException("Invalid task selected!");
-            } else {
-                Task deletedTask = taskList.deleteTask(taskIdx - 1);
-                return new DeleteTaskResponse(deletedTask, taskList.size());
-            }
-        } catch (NumberFormatException error) {
-            throw new CommandException(String.join("\n",
-                "Task number should be a number!",
-                "Got: %s", taskIdxStr
-            ));
-        }
+        return regexMatchResult.group(1);
+    }
+
+    @Override
+    protected CommandResponse updateTask(Task task, int taskIdx, TaskList taskList) {
+        taskList.deleteTask(taskIdx);
+        return new DeleteTaskResponse(task, taskList.size());
     }
 }

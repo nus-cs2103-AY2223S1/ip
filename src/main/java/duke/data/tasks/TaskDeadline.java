@@ -1,8 +1,8 @@
 package duke.data.tasks;
 
 import java.time.LocalDateTime;
-import java.time.format.FormatStyle;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class TaskDeadline extends Task {
     private static final long serialVersionUID = 22L;
@@ -10,10 +10,10 @@ public class TaskDeadline extends Task {
     private final LocalDateTime deadline;
 
     /**
-     * Constructor for TaskDeadline class
+     * Constructor for TaskDeadline class.
      *
-     * @param title title of the deadline task
-     * @param deadline local date-time representing the deadline
+     * @param title title of the deadline task.
+     * @param deadline local date-time representing the deadline.
      */
     public TaskDeadline(String title, LocalDateTime deadline) {
         super(title);

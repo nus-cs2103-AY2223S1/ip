@@ -1,8 +1,8 @@
 package duke.data.tasks;
 
 import java.time.LocalDateTime;
-import java.time.format.FormatStyle;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class TaskEvent extends Task {
     private static final long serialVersionUID = 23L;
@@ -10,10 +10,10 @@ public class TaskEvent extends Task {
     private final LocalDateTime timing;
 
     /**
-     * Constructor for TaskEvent class
+     * Constructor for TaskEvent class.
      *
-     * @param title title of the event task
-     * @param timing local date-time representing the timing of the event
+     * @param title title of the event task.
+     * @param timing local date-time representing the timing of the event.
      */
     public TaskEvent(String title, LocalDateTime timing) {
         super(title);

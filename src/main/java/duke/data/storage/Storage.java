@@ -1,14 +1,13 @@
 package duke.data.storage;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import java.io.IOException;
-import java.io.Serializable;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * A generic storage class to serialize and deserialize objects
@@ -29,10 +28,10 @@ public class Storage<T extends Serializable> {
     }
 
     /**
-     * Serialize object to specified storage file
+     * Serializes object to specified storage file.
      *
-     * @param object object to serialize
-     * @throws StorageException if serialization fails due to IO error
+     * @param object object to serialize.
+     * @throws StorageException if serialization fails due to IO error.
      */
     public void save(T object) throws StorageException {
         try {
@@ -49,11 +48,11 @@ public class Storage<T extends Serializable> {
     }
 
     /**
-     * Deserialize object from specified storage file
+     * Deserializes object from specified storage file.
      *
-     * @param fallback object to return if storage has not been initialized
-     * @return deserialized object of type T
-     * @throws StorageException if deserialization fails due to IO error
+     * @param fallback object to return if storage has not been initialized.
+     * @return deserialized object of type T.
+     * @throws StorageException if deserialization fails due to IO error.
      */
     @SuppressWarnings("unchecked")
     public T load(T fallback) throws StorageException {

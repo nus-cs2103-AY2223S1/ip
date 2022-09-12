@@ -12,10 +12,10 @@ public class AddTaskResponse extends CommandResponse {
     );
 
     /**
-     * Constructor for AddTaskResponse class
+     * Constructor for AddTaskResponse class.
      *
-     * @param addedTask a newly added task to the task list
-     * @param numTasks current number of tasks in the task list
+     * @param addedTask a newly added task to the task list.
+     * @param numTasks current number of tasks in the task list.
      */
     public AddTaskResponse(Task addedTask, int numTasks) {
         super(String.format(ADD_TASK_RESPONSE_TEMPLATE, addedTask, numTasks), true, false);

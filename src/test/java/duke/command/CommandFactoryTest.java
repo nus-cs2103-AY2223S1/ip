@@ -1,51 +1,55 @@
 package duke.command;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class CommandFactoryTest {
 
     @Test
     void parseCommand_supportedCommands_success() throws CommandException {
-        CommandFactory commandFactory = new CommandFactory();
         // `bye` command
-        assertEquals(Command.BYE, commandFactory.parseCommand("bye"));
-        assertEquals(Command.BYE, commandFactory.parseCommand("bye bye"));
+        assertEquals(Command.BYE, CommandFactory.parseCommand("bye"));
+        assertEquals(Command.BYE, CommandFactory.parseCommand("bye bye"));
         // `list` command
-        assertEquals(Command.LIST, commandFactory.parseCommand("list"));
-        assertEquals(Command.LIST, commandFactory.parseCommand("list all"));
+        assertEquals(Command.LIST, CommandFactory.parseCommand("list"));
+        assertEquals(Command.LIST, CommandFactory.parseCommand("list all"));
         // `todo` command
-        assertEquals(Command.TODO, commandFactory.parseCommand("todo task-1"));
-        assertEquals(Command.TODO, commandFactory.parseCommand("todo"));
+        assertEquals(Command.TODO, CommandFactory.parseCommand("todo task-1"));
+        assertEquals(Command.TODO, CommandFactory.parseCommand("todo"));
         // `deadline` command
         assertEquals(Command.DEADLINE,
-            commandFactory.parseCommand("deadline task-1 /by 2022-08-23"));
-        assertEquals(Command.DEADLINE, commandFactory.parseCommand("deadline /by 2022-08-23"));
-        assertEquals(Command.DEADLINE, commandFactory.parseCommand("deadline task-1"));
+            CommandFactory.parseCommand("deadline task-1 /by 2022-08-23"));
+        assertEquals(Command.DEADLINE, CommandFactory.parseCommand("deadline /by 2022-08-23"));
+        assertEquals(Command.DEADLINE, CommandFactory.parseCommand("deadline task-1"));
         // `event` command
-        assertEquals(Command.EVENT, commandFactory.parseCommand("event task-1 /at 2022-08-23"));
-        assertEquals(Command.EVENT, commandFactory.parseCommand("event /at 2022-08-23"));
-        assertEquals(Command.EVENT, commandFactory.parseCommand("event task-1"));
+        assertEquals(Command.EVENT, CommandFactory.parseCommand("event task-1 /at 2022-08-23"));
+        assertEquals(Command.EVENT, CommandFactory.parseCommand("event /at 2022-08-23"));
+        assertEquals(Command.EVENT, CommandFactory.parseCommand("event task-1"));
         // `mark` command
-        assertEquals(Command.MARK, commandFactory.parseCommand("mark 1"));
-        assertEquals(Command.MARK, commandFactory.parseCommand("mark"));
-        assertEquals(Command.MARK, commandFactory.parseCommand("mark abc"));
+        assertEquals(Command.MARK, CommandFactory.parseCommand("mark 1"));
+        assertEquals(Command.MARK, CommandFactory.parseCommand("mark"));
+        assertEquals(Command.MARK, CommandFactory.parseCommand("mark abc"));
         // `unmark` command
-        assertEquals(Command.UNMARK, commandFactory.parseCommand("unmark 2"));
-        assertEquals(Command.UNMARK, commandFactory.parseCommand("unmark"));
-        assertEquals(Command.UNMARK, commandFactory.parseCommand("unmark abc"));
+        assertEquals(Command.UNMARK, CommandFactory.parseCommand("unmark 2"));
+        assertEquals(Command.UNMARK, CommandFactory.parseCommand("unmark"));
+        assertEquals(Command.UNMARK, CommandFactory.parseCommand("unmark abc"));
         // `delete` command
-        assertEquals(Command.DELETE, commandFactory.parseCommand("delete 1"));
-        assertEquals(Command.DELETE, commandFactory.parseCommand("delete"));
-        assertEquals(Command.DELETE, commandFactory.parseCommand("delete abc"));
+        assertEquals(Command.DELETE, CommandFactory.parseCommand("delete 1"));
+        assertEquals(Command.DELETE, CommandFactory.parseCommand("delete"));
+        assertEquals(Command.DELETE, CommandFactory.parseCommand("delete abc"));
+        // `tag` command
+        assertEquals(Command.TAG, CommandFactory.parseCommand("tag #cs2103 1"));
+        assertEquals(Command.TAG, CommandFactory.parseCommand("tag"));
+        assertEquals(Command.TAG, CommandFactory.parseCommand("tag abc"));
     }
 
     @Test
     void parseCommand_unknownCommands_exception() {
-        CommandFactory commandFactory = new CommandFactory();
         try {
-            commandFactory.parseCommand("hello");
+            CommandFactory.parseCommand("hello");
             fail();
         } catch (Exception exception) {
             assertTrue(exception instanceof CommandException);

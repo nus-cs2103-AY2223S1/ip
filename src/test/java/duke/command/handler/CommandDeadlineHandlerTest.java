@@ -1,11 +1,13 @@
 package duke.command.handler;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import duke.command.CommandException;
 
@@ -43,7 +45,7 @@ class CommandDeadlineHandlerTest {
                 fail();
             } catch (Exception exception) {
                 assertTrue(exception instanceof CommandException);
-                assertEquals(CommandDeadlineHandler.INVALID_FORMAT_MSG, exception.getMessage());
+                assertEquals(CommandDeadlineHandler.INVALID_FORMAT_MESSAGE, exception.getMessage());
             }
         }
     }

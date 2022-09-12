@@ -1,18 +1,16 @@
 package duke.command.handler;
 
-import duke.command.CommandException;
-import duke.command.response.AddTaskResponse;
-import duke.command.response.CommandResponse;
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
 
-import duke.data.TaskList;
+import duke.command.CommandException;
+import duke.command.handler.base.CommandAddTaskHandler;
+import duke.data.tasks.Task;
 import duke.data.tasks.TaskDeadline;
 
-import java.util.regex.Pattern;
-import java.util.regex.MatchResult;
+public class CommandDeadlineHandler extends CommandAddTaskHandler {
 
-public class CommandDeadlineHandler extends CommandHandler {
-
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `deadline` command format!",
         "Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>",
         "Examples:",
@@ -20,7 +18,7 @@ public class CommandDeadlineHandler extends CommandHandler {
         "\t- deadline d1 /by 2022-01-01 18:00"
     );
     private static final Pattern commandRegexPattern = Pattern.compile(
-        String.format("^deadline (.+) /by %s", commandDateTimeRegexStr));
+        String.format("^deadline (.+) /by %s", COMMAND_DATETIME_REGEX_STRING));
 
     public CommandDeadlineHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
@@ -28,7 +26,7 @@ public class CommandDeadlineHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**
@@ -39,16 +37,12 @@ public class CommandDeadlineHandler extends CommandHandler {
      * @throws CommandException if date-time for event task cannot be parsed
      */
     @Override
-    public CommandResponse run(TaskList taskList) throws CommandException {
+    protected Task getTaskFromCommand() throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         String deadlineTaskTitle = regexMatchResult.group(1);
         String deadlineDateTimeStr = regexMatchResult.group(2);
 
-        TaskDeadline deadlineTask = new TaskDeadline(deadlineTaskTitle,
-            parseDateTime(deadlineDateTimeStr));
-        taskList.addTask(deadlineTask);
-
-        return new AddTaskResponse(deadlineTask, taskList.size());
+        return new TaskDeadline(deadlineTaskTitle, parseDateTime(deadlineDateTimeStr));
     }
 }

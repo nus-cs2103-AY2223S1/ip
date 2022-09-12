@@ -1,18 +1,16 @@
 package duke.command.handler;
 
-import duke.command.CommandException;
-import duke.command.response.AddTaskResponse;
-import duke.command.response.CommandResponse;
-
-import duke.data.TaskList;
-import duke.data.tasks.TaskEvent;
-
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-public class CommandEventHandler extends CommandHandler {
+import duke.command.CommandException;
+import duke.command.handler.base.CommandAddTaskHandler;
+import duke.data.tasks.Task;
+import duke.data.tasks.TaskEvent;
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+public class CommandEventHandler extends CommandAddTaskHandler {
+
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `event` command format!",
         "Expected format: event <title> /at <YYYY-mm-dd HH:mm>",
         "Examples:",
@@ -20,7 +18,7 @@ public class CommandEventHandler extends CommandHandler {
         "\t- event e1 /at 2022-01-01 18:00"
     );
     private static final Pattern commandRegexPattern = Pattern.compile(
-        String.format("^event (.+) /at %s", commandDateTimeRegexStr));
+        String.format("^event (.+) /at %s", COMMAND_DATETIME_REGEX_STRING));
 
     public CommandEventHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
@@ -28,7 +26,7 @@ public class CommandEventHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**
@@ -39,15 +37,12 @@ public class CommandEventHandler extends CommandHandler {
      * @throws CommandException if date-time for event task cannot be parsed
      */
     @Override
-    public CommandResponse run(TaskList taskList) throws CommandException {
+    protected Task getTaskFromCommand() throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         String eventTitle = regexMatchResult.group(1);
         String eventDateTimeStr = regexMatchResult.group(2);
 
-        TaskEvent eventTask = new TaskEvent(eventTitle, parseDateTime(eventDateTimeStr));
-        taskList.addTask(eventTask);
-
-        return new AddTaskResponse(eventTask, taskList.size());
+        return new TaskEvent(eventTitle, parseDateTime(eventDateTimeStr));
     }
 }
