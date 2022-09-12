@@ -1,0 +1,6 @@
+E | 0 | dinner | utown
+E | 1 | CS2101 class | com2
+D | 0 | ip | tonight
+T | 1 | return book
+D | 1 | test deadline | 2003-12-10
+T | 0 | finish dinner
