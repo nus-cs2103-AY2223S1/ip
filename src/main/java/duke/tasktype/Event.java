@@ -1,4 +1,6 @@
-package duke;
+package duke.tasktype;
+
+import duke.DukeException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -6,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Event is specialised Task with a date and time as deadline
  */
-public class Event extends Task{
+public class Event extends Task {
     private String dateTime = "";
     private LocalDateTime dateTimeProper;
 
@@ -46,7 +48,7 @@ public class Event extends Task{
      * @return String of task
      */
     @Override
-    protected String returnDescription() {
+    public String returnDescription() {
         String formattedDate = this.dateTimeProper.format(DateTimeFormatter.ofPattern("MMM dd yyyy @ HH:mm"));
         return "[E]" + super.returnDescription() + " (at: " + formattedDate + ")";
     }
@@ -56,7 +58,7 @@ public class Event extends Task{
      * @return String of task
      */
     @Override
-    protected String toWriteFile() {
+    public String toWriteFile() {
         return "E , " + super.toWriteFile() + " , " + this.dateTime;
     }
 }

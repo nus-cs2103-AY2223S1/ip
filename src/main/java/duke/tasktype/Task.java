@@ -1,4 +1,4 @@
-package duke;
+package duke.tasktype;
 
 /**
  * Task is a representation of a job to be done
@@ -33,7 +33,7 @@ public class Task {
      * Returns the String format of Task for display in UI
      * @return String of task
      */
-    protected String returnDescription(){
+    public String returnDescription(){
         String cross = " ";
         if (isCompleted) {
             cross = "X";
@@ -45,7 +45,7 @@ public class Task {
      * Returns the String format of Task for saving to a file
      * @return String of task
      */
-    protected String toWriteFile() {
+    public String toWriteFile() {
         String cross = "false";
         if (isCompleted) {
             cross = "true";
@@ -56,14 +56,14 @@ public class Task {
     /**
      * Marks task as completed by modifying boolean
      */
-    protected void markTask() {
+    public void markTask() {
         this.isCompleted = true;
     }
 
     /**
      * Marks task as incomplete by modifying boolean
      */
-    protected void unmarkTask() {
+    public void unmarkTask() {
         this.isCompleted = false;
     }
 }

@@ -1,9 +1,9 @@
-package duke;
+package duke.tasktype;
 
 /**
  * Event is specialised Task with a clear task description
  */
-public class ToDo extends Task{
+public class ToDo extends Task {
 
     /**
      * Class Constructor using description of task
@@ -27,7 +27,7 @@ public class ToDo extends Task{
      * @return String of task
      */
     @Override
-    protected String returnDescription() {
+    public String returnDescription() {
         return "[T]" + super.returnDescription();
     }
 
@@ -36,7 +36,7 @@ public class ToDo extends Task{
      * @return String of task
      */
     @Override
-    protected String toWriteFile() {
+    public String toWriteFile() {
         return "T , " + super.toWriteFile();
     }
 }

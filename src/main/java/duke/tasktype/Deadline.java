@@ -1,4 +1,6 @@
-package duke;
+package duke.tasktype;
+
+import duke.DukeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -7,7 +9,7 @@ import java.time.format.DateTimeFormatter;
  * Deadline is specialised Task with a date as deadline
  *
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private String date = "";
     private LocalDate dateProper;
 
@@ -16,7 +18,7 @@ public class Deadline extends Task{
      * @param taskDescription description of task
      * @param date date that task is due
      */
-    public Deadline(String taskDescription, String date) throws DukeException{
+    public Deadline(String taskDescription, String date) throws DukeException {
         super(taskDescription.replace("deadline ", ""));
         this.date = date;
         try {
@@ -47,7 +49,7 @@ public class Deadline extends Task{
      * @return String of task
      */
     @Override
-    protected String returnDescription() {
+    public String returnDescription() {
         String formattedDate = this.dateProper.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
         return "[D]" + super.returnDescription() + " (by: " + formattedDate + ")";
     }
@@ -57,7 +59,7 @@ public class Deadline extends Task{
      * @return String of task
      */
     @Override
-    protected String toWriteFile(){
+    public String toWriteFile(){
         return "D , " + super.toWriteFile() + " , " + this.date;
     }
 }
