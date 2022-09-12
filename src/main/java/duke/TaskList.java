@@ -9,6 +9,10 @@ public class TaskList {
 
     private int numTasks;
     private ArrayList<Task> tasks;
+    private String storeUndoCommand;
+    private String storeUndoData;
+    private Task storeTask;
+    private boolean isUndoable = false;
 
     /**
      * Constructs a TaskList object given a set of tasks
@@ -53,9 +57,6 @@ public class TaskList {
             }
             tasks.add(numTasks, new Deadline(split[0], split[1], isDone));
             numTasks++;
-            if (!isLoaded) {
-                return (confirmation + tasks.get(numTasks - 1) + number);
-            }
         } else if (type.equals("event")) {
             String[] split = noType.split(" /at ");
             if (split.length != 2) {
@@ -64,15 +65,15 @@ public class TaskList {
             }
             tasks.add(numTasks, new Event(split[0], split[1], isDone));
             numTasks++;
-            if (!isLoaded) {
-                return (confirmation + tasks.get(numTasks - 1) + number);
-            }
         } else {
             tasks.add(numTasks, new ToDo(noType, isDone));
             numTasks++;
-            if (!isLoaded) {
-                return (confirmation + tasks.get(numTasks - 1) + number);
-            }
+
+        }
+        if (!isLoaded) {
+            isUndoable = true;
+            storeUndoCommand = "addTask";
+            return (confirmation + tasks.get(numTasks - 1) + number);
         }
         return "";
     }
@@ -93,6 +94,9 @@ public class TaskList {
         Task task = tasks.get(Integer.valueOf(index) - 1);
         tasks.remove(Integer.valueOf(index) - 1);
         numTasks--;
+        storeTask = task;
+        storeUndoCommand = "deleteTask";
+        isUndoable = true;
         return ("Noted. I've removed this task:\n  " + task + "\nNow you have "
                 + (numTasks) + " tasks in the list.");
 
@@ -112,6 +116,9 @@ public class TaskList {
         }
         Task task = tasks.get(Integer.valueOf(index) - 1);
         task.mark();
+        isUndoable = true;
+        storeUndoData = index;
+        storeUndoCommand = "markTask";
         return ("Nice! I've marked this task as done:\n  " + task);
     }
 
@@ -130,6 +137,9 @@ public class TaskList {
         }
         Task task = tasks.get(Integer.valueOf(index) - 1);
         task.unmark();
+        isUndoable = true;
+        storeUndoData = index;
+        storeUndoCommand = "unmarkTask";
         return ("OK, I've marked this task as not done yet:\n  " + task);
     }
 
@@ -223,5 +233,29 @@ public class TaskList {
             throw new DukeException("No matching tasks found! Please try something else.");
         }
         return list;
+    }
+
+    public String undo() throws DukeException {
+        if(isUndoable) {
+            isUndoable = false;
+            switch(storeUndoCommand) {
+            case "addTask":
+                return deleteTask(String.valueOf(getLength() - 1));
+            case "deleteTask":
+                String confirmation = "Got it. I've added this task:\n  ";
+                String number = "\nNow you have " + (numTasks + 1) + " tasks in the list.";
+                tasks.add(numTasks, this.storeTask);
+                numTasks ++;
+                return (confirmation + tasks.get(numTasks - 1) + number);
+            case "markTask":
+                return unmarkTask(storeUndoData);
+            case "unmarkTask":
+                return markTask(storeUndoData);
+            default:
+                return "";
+            }
+        } else {
+            throw new DukeException("An action has just been undone.");
+        }
     }
 }
