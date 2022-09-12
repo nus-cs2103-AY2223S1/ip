@@ -1,0 +1,4 @@
+T | 0 | read book
+D | 0 | return book | June 6th
+T | 1 | join sports club
+E | 0 | lunch | 12pm

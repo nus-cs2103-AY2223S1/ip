@@ -10,17 +10,17 @@ public class Pony {
     private String line  = "___________________________________________________";
     private String exit = "Bye. Hope to see you again soon!";
     Scanner sc = new Scanner(System.in);
-    ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
+    private Storage storage;
 
     public Pony() {
         this.tasks = new ArrayList<>();
     };
 
     public void initialise() {
-        // Load data from hard disk
-//        try {
-//            Path path = Paths.get
-//        }
+//         Load data from hard disk
+        this.storage = new Storage("./data/pony.txt");
+        this.tasks = this.storage.loadTaskList();
         System.out.println(this.greet);
     }
 
@@ -57,6 +57,7 @@ public class Pony {
                     target.markAsDone();
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(target.toString());
+                    this.storage.updateDisk(this.tasks);
                 }
             } catch (PonyException.taskMissingError e) {
                 System.out.println(e.getMessage());
@@ -77,6 +78,7 @@ public class Pony {
                     target.markAsNotDone();
                     System.out.println("OK, I've marked this task as not done yet: ");
                     System.out.println(target.toString());
+                    this.storage.updateDisk(this.tasks);
                 }
             } catch (PonyException.taskMissingError e) {
                 System.out.println(e.getMessage());
@@ -97,6 +99,7 @@ public class Pony {
                     this.tasks.add(newTask);
                     System.out.println("Got it. I've added this task: " + newTask.toString());
                     System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+                    this.storage.updateDisk(this.tasks);
                     run();
                 }
             } catch (PonyException.taskMissingError e) {
@@ -123,6 +126,7 @@ public class Pony {
                         this.tasks.add(newTask);
                         System.out.println("Got it. I've added this task: " + newTask.toString());
                         System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+                        this.storage.updateDisk(this.tasks);
                     }
                 }
             } catch (PonyException.taskMissingError | PonyException.taskFormatError e) {
@@ -150,6 +154,7 @@ public class Pony {
 //                        System.out.println("Got it. I've added this task: " + newTask.toString());
                         System.out.println("Added: " + newTask.toString());
                         System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+                        this.storage.updateDisk(this.tasks);
                     }
                 }
             } catch (PonyException.taskMissingError | PonyException.taskFormatError e) {
@@ -170,6 +175,7 @@ public class Pony {
                     System.out.println(target.toString());
                     tasks.remove(taskIndex - 1);
                     System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+                    this.storage.updateDisk(this.tasks);
                 }
             } catch (PonyException.taskMissingError e) {
                 System.out.println(e.getMessage());
@@ -197,11 +203,11 @@ public class Pony {
     }
 
     public static void main(String[] args) {
-//        Pony myPony = new Pony();
-//        myPony.initialise();
-//        myPony.run();
-        Path currDir = Paths.get(".");
-        System.out.println(currDir.toAbsolutePath());
+        Pony myPony = new Pony();
+        myPony.initialise();
+        myPony.run();
+//        Path currDir = Paths.get(".");
+//        System.out.println(currDir.toAbsolutePath());
 //        System.out.println("Working Directory = " + System.getProperty("user.dir"));
     }
 }
