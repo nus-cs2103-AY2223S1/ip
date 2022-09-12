@@ -11,18 +11,18 @@ Karen task bot is optimised for use via Graphical User Interface (GUI).
 `[]` means the field is optional.
 
 ## Command Summary
-| Keyword      | Usage                                                      |
-|--------------|------------------------------------------------------------|
-| **todo**     | `todo {description}`                                       |
-| **deadline** | `deadline {description} /by {dd/mm/yyyy}`                  |
-| **event**    | `event {description} /at {dd/mm/yyyy}`                     |
-| **list**     | `list`                                                     |
-| **mark**     | `mark {task number}`                                       |
-| **unmark**   | `unmark {task number}`                                     |
-| **delete**   | `delete {task number}`                                     |
-| **find**     | `find {keyword}`                                           |
-| **update**   | `update {task number} [{description}] [/at {dd/mm/yyyy}] ` |
-| **bye**      | `bye`                                                      |
+ Keyword      | Usage                                                       
+--------------|-------------------------------------------------------------
+ **todo**     | `todo {description}`                                        
+ **deadline** | `deadline {description} /by {dd/mm/yyyy}`                   
+ **event**    | `event {description} /at {dd/mm/yyyy}`                      
+ **list**     | `list`                                                      
+ **mark**     | `mark {task number}`                                        
+ **unmark**   | `unmark {task number}`                                      
+ **delete**   | `delete {task number}`                                      
+ **find**     | `find {keyword}`                                            
+ **update**   | `update {task number} [{description}] [/at {dd/mm/yyyy}] `  
+ **bye**      | `bye`                                                       
 
 
 ## Features 
