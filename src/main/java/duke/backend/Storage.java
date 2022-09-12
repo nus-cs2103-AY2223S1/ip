@@ -48,10 +48,13 @@ public class Storage {
         File f = new File(this.saveFilePath);
         if (f.exists()) {
             readFile(f, tasklist);
-        } else {
+        } else if (!f.exists()) {
             File dir = new File(this.saveDirectoryPath);
             dir.mkdir();
             f.createNewFile();
+        } else {
+            throw new DukeException("Error in creating directory for saving the tasks :(" +
+                    " Please check permissions and try again");
         }
     }
 
@@ -74,6 +77,8 @@ public class Storage {
                 tasklist.appendEventFromFile(tempWords[2], tempWords[3], isCompleted);
             } else if (tempWords[0].equals("D")) {
                 tasklist.appendDeadlineFromFile(tempWords[2], tempWords[3], isCompleted);
+            } else {
+                throw new DukeException("Error in reading data from File, please try again!");
             }
         }
     }
