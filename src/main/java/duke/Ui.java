@@ -13,7 +13,7 @@ public class Ui {
      * Returns a salutation, indicating the programme has started running.
      */
     public String start() {
-        return "Hello! I'm Duke\nWhat can I do for you?";
+        return "Hello! I'm Duke+\nWhat can I do for you?";
     }
 
     /**

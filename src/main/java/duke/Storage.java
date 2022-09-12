@@ -86,7 +86,6 @@ public class Storage {
      * @return TaskList with all saved tasks added to.
      */
     public TaskList loadFile(TaskList list) {
-        assert(list.isEmpty() == true);
         try {
             Scanner s = new Scanner(this.file);
             while (s.hasNext()) {
