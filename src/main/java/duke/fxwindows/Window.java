@@ -4,13 +4,17 @@ import duke.Duke;
 import duke.TaskList;
 import duke.tasks.Task;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class Window extends AnchorPane {
 
+    @FXML
+    private ToolBar toolBar;
     @FXML
     private HBox contentBox;
     @FXML
@@ -30,9 +34,15 @@ public class Window extends AnchorPane {
         this.duke.init();
 
 //        Setup panes
+        this.loadToolBar();
         this.loadTaskCategoryPane();
         this.loadTaskListPane();
         this.loadTaskDescPane();
+        this.loadBottomBar();
+    }
+
+    private void loadToolBar() {
+        this.toolBar.getStyleClass().add("toolbar");
     }
 
     private void loadTaskCategoryPane() {
@@ -50,6 +60,10 @@ public class Window extends AnchorPane {
         this.contentBox.getChildren().add(this.taskDescriptionPane);
     }
 
+    private void loadBottomBar() {
+        this.userInput.getStyleClass().add("commandField");
+    }
+
     void selectTask(Task t) {
         this.taskDescriptionPane.displayTask(t);
     }
@@ -63,11 +77,16 @@ public class Window extends AnchorPane {
     }
 
     @FXML
-    public void handleUserInput() {
+    private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.execCommand(input);
         System.out.println(response);
         userInput.setText("");
         this.updateTaskList();
+    }
+
+    @FXML
+    private void showHelpWindow() {
+        new HelpWindow();
     }
 }

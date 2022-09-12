@@ -3,6 +3,7 @@ package duke.fxwindows;
 import duke.TaskList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 

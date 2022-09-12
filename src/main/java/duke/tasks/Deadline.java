@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import duke.parser.Parser;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class Deadline extends Task {
     protected LocalDate by;
@@ -17,6 +18,15 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + Parser.parseDatetoString(by) + ")";
+    }
+
+    @Override
+    public HashMap<String, String> getInfoPair() {
+        return new HashMap<String, String>() {{
+            put("Type", "Deadline");
+            put("Description", description);
+            put("Date", Parser.parseDatetoString(by));
+        }};
     }
 
     @Override

@@ -18,6 +18,6 @@ public class TaskLabel extends Label {
         this.setMaxWidth(MAX_VALUE);
         VBox.setVgrow(this, Priority.ALWAYS);
         this.setAlignment(Pos.CENTER_LEFT);
-        this.setPadding(new Insets(0, 30, 0, 10));
+        this.setPadding(new Insets(5, 30, 0, 10));
     }
 }

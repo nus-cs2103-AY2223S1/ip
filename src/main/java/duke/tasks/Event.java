@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import duke.parser.Parser;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class Event extends Task {
     protected LocalDate at;
@@ -22,6 +23,15 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + Parser.parseDatetoString(at) + ")";
+    }
+
+    @Override
+    public HashMap<String, String> getInfoPair() {
+        return new HashMap<String, String>() {{
+            put("Type", "Event");
+            put("Description", description);
+            put("Date", Parser.parseDatetoString(at));
+        }};
     }
 
     @Override

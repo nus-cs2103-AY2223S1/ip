@@ -1,7 +1,6 @@
 
 
 /* We try to use a OOCSS methodology here */
-
 .hoverableText:hover {
     -fx-text-fill: blue;
 }
@@ -33,14 +32,29 @@
 .categoryPane {
     -fx-background-color: e0e0e0;
 }
+
 .listPane {
     -fx-background-color: white;
 }
+
 .descriptionPane {
     -fx-background-color: lightgray;
 }
 
+.toolbar {
+    -fx-background-color: linear-gradient(to bottom right, #004999, #0055b3)
+}
+
+.selectedFill {
+    -fx-background-color: #006ee6;
+}
 /* Scene background */
-/* .root {
+.root {
     -fx-background-color: white;
-} */
+}
+
+.commandField {
+    -fx-border-radius: 0px;
+    -fx-border-width: 0px;
+    -fx-font-family: monospace;
+}

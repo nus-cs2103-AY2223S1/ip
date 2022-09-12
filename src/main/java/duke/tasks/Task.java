@@ -4,6 +4,8 @@ import duke.TaskList;
 import org.json.JSONObject;
 import duke.parser.JsonParsable;
 
+import java.util.HashMap;
+
 public abstract class Task implements JsonParsable {
     protected String description;
     protected boolean isDone;
@@ -39,8 +41,8 @@ public abstract class Task implements JsonParsable {
         this.isDone = false;
     }
 
+    public abstract HashMap<String, String> getInfoPair();
     public abstract JSONObject toJsonObject();
-
 
     public static Task fromJSONObject(JSONObject jsonObject) {
         switch (jsonObject.getString("type")) {

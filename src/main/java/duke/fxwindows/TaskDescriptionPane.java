@@ -1,22 +1,20 @@
 package duke.fxwindows;
 
-import duke.TaskList;
-import duke.tasks.Deadline;
-import duke.tasks.Event;
 import duke.tasks.Task;
-import duke.tasks.Todo;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.HashMap;
 
-import static java.lang.Double.MAX_VALUE;
+public class TaskDescriptionPane extends AnchorPane {
 
-public class TaskDescriptionPane extends VBox {
+    @FXML
+    private VBox vBox;
 
     private Task currentTask;
 
@@ -33,8 +31,11 @@ public class TaskDescriptionPane extends VBox {
         HBox.setHgrow(this, Priority.ALWAYS);
 
         this.currentTask = t;
-        this.renderTask();
 
+//        I don't know WHY, but for some godforsaken reason the vbox only shows when i add this
+//        even though vbox is alr a child in scenebuilder. WTF?
+        this.getChildren().add(vBox);
+        this.renderTask();
 
         this.getStyleClass().add("pane");
         this.getStyleClass().add("descriptionPane");
@@ -42,16 +43,21 @@ public class TaskDescriptionPane extends VBox {
     }
 
     private void renderTask() {
-        Task t = currentTask;
-        this.getChildren().clear();
-        if (t instanceof Event) {
-            this.getChildren().add(new TaskCategoryLabel(t.toString()));
-        } else if (t instanceof Deadline) {
-            this.getChildren().add(new TaskCategoryLabel(t.toString()));
-        } else if (t instanceof Todo) {
-            this.getChildren().add(new TaskCategoryLabel(t.toString()));
-        } else {
-            this.getChildren().add(new TaskCategoryLabel("Unknown task!"));
+        vBox.getChildren().clear();
+
+        System.out.println("Current task: " + currentTask.toString());
+        if (currentTask == null) {
+            vBox.getChildren().add(
+                    new TaskLabel("No Task Selected!")
+            );
+        }
+        HashMap<String, String> infoPair = currentTask.getInfoPair();
+//        System.out.println(infoPair);
+        for (String key : infoPair.keySet()) {
+            System.out.println(key + ": " + infoPair.get(key));
+            vBox.getChildren().add(
+                    new TaskLabel(key + ": " + infoPair.get(key))
+            );
         }
     }
 
