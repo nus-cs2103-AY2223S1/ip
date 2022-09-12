@@ -16,6 +16,8 @@ public class Deadline extends Task {
      */
     public Deadline(String description, LocalDateTime deadlineTiming) {
         super(description);
+        assert !description.isEmpty() : "Description of a deadline should not be empty";
+
         this.deadlineTiming = deadlineTiming;
         this.taskType = TaskType.DEADLINE;
     }
