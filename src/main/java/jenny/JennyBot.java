@@ -44,7 +44,7 @@ public final class JennyBot {
     }
 
     /**
-     * Run the JennyBot Application
+     * Runs the JennyBot Application
      */
     public void run() {
         ui.greet();
@@ -63,7 +63,7 @@ public final class JennyBot {
     }
 
     /**
-     * Send a greeting message to the user.
+     * Sends a greeting message to the user.
      *
      * @return a greeting message.
      */
@@ -78,7 +78,7 @@ public final class JennyBot {
     }
 
     /**
-     * Run the user input as a command and returns the response from the application.
+     * Runs the user input as a command and returns the response from the application.
      *
      * @param input the command to be run.
      * @return the response from the application after running the command.

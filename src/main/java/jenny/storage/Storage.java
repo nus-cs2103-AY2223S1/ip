@@ -1,11 +1,11 @@
 package jenny.storage;
 
+import jenny.exceptions.JennyException;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import jenny.exceptions.JennyException;
 
 
 /**
@@ -40,7 +40,7 @@ public abstract class Storage<T> {
 
 
     /**
-     * Save the item to storage.
+     * Saves the item to storage.
      *
      * @param t the item to store
      * @throws JennyException when runtime exceptions are thrown in the JennyBot application.
@@ -49,7 +49,7 @@ public abstract class Storage<T> {
 
 
     /**
-     * Load the item from storage.
+     * Loads the item from storage.
      *
      * @return the item to load
      * @throws JennyException when runtime exceptions are thrown in the JennyBot application.
