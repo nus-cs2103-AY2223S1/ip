@@ -1,6 +1,6 @@
 # User Guide of Neko Neko
 
-![Unfortunately the image of the Neko Neko application failed to load :(](https://github.com/yixiann/ip/blob/master/docs/ui.png)
+![Unfortunately the image of the Neko Neko application failed to load :(](https://github.com/yixiann/ip/blob/master/docs/Ui.png)
 
 ## About
 
