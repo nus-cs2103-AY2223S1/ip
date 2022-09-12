@@ -11,4 +11,12 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
+
+    @Override
+    public String saveToDisk() {
+        String output = "";
+        String taskStatus = (this.isDone) ? "1" : "0";
+        output += "D" + SEPARATOR + taskStatus + SEPARATOR + this.description + SEPARATOR + this.by + "\n";
+        return output;
+    }
 }
