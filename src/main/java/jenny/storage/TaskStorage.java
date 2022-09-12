@@ -30,7 +30,6 @@ import java.util.Scanner;
 public class TaskStorage<T> extends Storage<T> {
     private static final String MESSAGE_SCOPE = TaskStorage.class.getSimpleName();
     private static final String ERROR_INVALID_TYPE = "TaskStorage can only save a list of tasks!";
-    private static final String ERROR_NOTHING_TO_SAVE = "There is nothing in your list to save!";
     private static final String ERROR_CORRUPTED_SAVE = "Your save contains corrupted data!";
 
     private final Path filePath;
@@ -64,13 +63,6 @@ public class TaskStorage<T> extends Storage<T> {
         assert isArrayList;
 
         ArrayList<?> tArrayList = (ArrayList<?>) t;
-        boolean isEmpty = tArrayList.isEmpty();
-        if (isEmpty) {
-            assert isEmpty;
-            throw new JennyException(MESSAGE_SCOPE, ERROR_NOTHING_TO_SAVE);
-        }
-        assert !isEmpty;
-
         boolean isTask = tArrayList.get(0) instanceof Task;
         if (!isTask) {
             assert !isTask;
