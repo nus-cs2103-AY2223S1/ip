@@ -24,7 +24,23 @@ public class Parser {
         try {
             String toReply = "";
 
-            if (input.equals("list")) {
+            if (input.startsWith("update")) {
+                String in = stringReplacer.replaceAll(input, "update");
+                if (in.isEmpty()) {
+                    throw new TaskStatusException("Please provide task number");
+                }
+                int index = Integer.parseInt(in) - 1;
+                if (index >= taskList.getList().size() || index < 0) {
+                    throw new TaskStatusException("Please provide correct task number");
+                }
+                // get the task number to update
+                // if task is todo, throw error (no date to update)
+                // update the task with what comes after the number, from within the list by calling task.editDate(String newDate)
+                // update the storage
+                // return toReply statement
+
+
+            } else if (input.equals("list")) {
                 toReply += taskList.getAllTasks();
                 System.out.println(toReply);
                 return toReply;

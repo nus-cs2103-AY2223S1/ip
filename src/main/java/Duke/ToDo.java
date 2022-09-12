@@ -22,6 +22,11 @@ public class ToDo extends Task {
         return true;
     }
 
+    @Override
+    void editDate(String newDate) {
+        // nothing to do, error will be thrown before calling this
+    }
+
     /**
      * Returns a string representing this class' information
      * @return string including task type, done/undone and task name
