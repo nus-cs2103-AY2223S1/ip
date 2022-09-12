@@ -1,5 +1,10 @@
 package duke.backend;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 
 import duke.DukeException;
@@ -7,6 +12,8 @@ import duke.tasktype.Deadline;
 import duke.tasktype.Event;
 import duke.tasktype.Task;
 import duke.tasktype.ToDo;
+
+import javax.swing.*;
 
 /**
  * TaskList is the data structure for storing all types of Tasks entered into Duke.
@@ -168,6 +175,46 @@ public class TaskList {
             }
         }
         return content;
+    }
+
+    public String listOfTasksForReminder() {
+        String content = "";
+        for (Task task: userTasks) {
+            if (task instanceof Deadline) {
+                content += getDeadlineDescriptionIfWithinOneWeek((Deadline) task);
+            } else if (task instanceof Event) {
+                content += getEventDescriptionIfWithinOneWeek((Event) task);
+            }
+        }
+        return content;
+    }
+
+    private String getDeadlineDescriptionIfWithinOneWeek(Deadline task) {
+        if (isWithinOneWeek(task.getDate())) {
+            return task.returnDescription() + "\n";
+        } else {
+            return "";
+        }
+    }
+
+    private String getEventDescriptionIfWithinOneWeek(Event task) {
+        if (isWithinOneWeek(task.getDate())) {
+            return task.returnDescription() + "\n";
+        } else {
+            return "";
+        }
+    }
+
+    private boolean isWithinOneWeek(LocalDateTime d1) {
+        LocalDateTime d2 = LocalDateTime.now();
+        Duration p = Duration.between(d2, d1);
+        return p.toDays() <= 7 && p.toDays() >= 0;
+    }
+
+    private boolean isWithinOneWeek(LocalDate d1) {
+        LocalDate d2 = LocalDate.now();
+        Period p = Period.between(d2, d1);
+        return p.getDays() <= 7 && p.getDays() >= 0;
     }
 
     /**

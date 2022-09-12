@@ -11,7 +11,7 @@ import duke.DukeException;
  */
 public class Deadline extends Task {
     private String date = "";
-    private LocalDate dateProper;
+    private LocalDate properDate;
 
     /**
      * Class Constructor using description of task and date
@@ -22,7 +22,7 @@ public class Deadline extends Task {
         super(taskDescription.replace("deadline ", ""));
         this.date = date;
         try {
-            this.dateProper = LocalDate.parse(date);
+            this.properDate = LocalDate.parse(date);
         } catch (Exception e) {
             throw new DukeException("Date has to follow the following format: YYYY-MM-DD");
         }
@@ -38,10 +38,14 @@ public class Deadline extends Task {
         super(taskDescription, isCompleted);
         this.date = date;
         try {
-            this.dateProper = LocalDate.parse(date);
+            this.properDate = LocalDate.parse(date);
         } catch (Exception e) {
             throw new DukeException("Date has to follow thw following format: YYYY-MM-DD");
         }
+    }
+
+    public LocalDate getDate() {
+        return this.properDate;
     }
 
     /**
@@ -50,7 +54,7 @@ public class Deadline extends Task {
      */
     @Override
     public String returnDescription() {
-        String formattedDate = this.dateProper.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        String formattedDate = this.properDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
         return "[D]" + super.returnDescription() + " (by: " + formattedDate + ")";
     }
 

@@ -3,6 +3,7 @@ package duke.tasktype;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
 import duke.DukeException;
 
 /**
@@ -43,6 +44,9 @@ public class Event extends Task {
         }
     }
 
+    public LocalDateTime getDate() {
+        return this.properDateTime;
+    }
     /**
      * Returns the String format of Task for display in UI
      * @return String of task
