@@ -35,4 +35,9 @@ public class ToDo extends Task {
     public String toStorageFormat() {
         return "T" + super.toStorageFormat();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ToDo && super.equals(obj);
+    }
 }

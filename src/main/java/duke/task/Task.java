@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.util.Locale;
+
 /**
  * Task is the abstract base for all the tasks that can be specified by the user.
  *
@@ -79,5 +81,10 @@ public abstract class Task {
 
     public boolean contains(String keyword) {
         return this.description.contains(keyword);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Task && ((Task) obj).description.equalsIgnoreCase(this.description);
     }
 }
