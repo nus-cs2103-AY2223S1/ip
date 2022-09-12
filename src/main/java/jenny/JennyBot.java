@@ -63,6 +63,21 @@ public final class JennyBot {
     }
 
     /**
+     * Send a greeting message to the user.
+     *
+     * @return a greeting message.
+     */
+    public String greet() {
+        ByteArrayOutputStream res = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(res, true, StandardCharsets.UTF_8);
+        ui.setPrintStream(out);
+        ui.greet();
+        String response = res.toString();
+        out.close();
+        return response;
+    }
+
+    /**
      * Run the user input as a command and returns the response from the application.
      *
      * @param input the command to be run.

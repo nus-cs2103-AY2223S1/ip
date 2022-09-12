@@ -36,6 +36,9 @@ public class MainWindow extends AnchorPane {
 
     public void setDuke(JennyBot j) {
         jennyBot = j;
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(jennyBot.greet(), dukeImage)
+        );
     }
 
     /**
