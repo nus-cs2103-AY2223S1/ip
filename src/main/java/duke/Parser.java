@@ -65,6 +65,7 @@ public class Parser {
                  */
                 responseString = String.format("Here are the matching tasks in your list:\n");
                 String descriptionToFind = input.substring(5);
+                assert(descriptionToFind != null);
                 List<Integer> searchResults = tasks.findTasks(descriptionToFind);
                 int counter = 1;
                 for (int index : searchResults) {
@@ -132,6 +133,7 @@ public class Parser {
                 start = 5;
                 dummyTask = new Todo(input.substring(start));
                 tasks.add(dummyTask);
+                assert(input.substring(start) != null);
                 responseString = "Got it. I've added this task:\n";
                 responseString += String.format(" %s\n", dummyTask);
                 responseString += String.format("Now you have %s tasks in the list.\n", tasks.getSize());
@@ -160,6 +162,8 @@ public class Parser {
                 start = 9;
                 end = counter - 1;
                 tasks.add(new Deadline(input.substring(start, end), input.substring(counter + 4)));
+                assert(input.substring(start, end) != null);
+                assert(input.substring(counter + 4) != null);
                 responseString = ("Got it. I've added this task:\n");
                 responseString += String.format("  %s\n", tasks.getTask(tasks.getSize() - 1).toString());
                 responseString += String.format("Now you have %s tasks in the list.", tasks.getSize());
@@ -188,6 +192,8 @@ public class Parser {
                 start = 6;
                 end = counter - 1;
                 tasks.add(new Event(input.substring(start, end), input.substring(counter + 4)));
+                assert(input.substring(start, end) != null);
+                assert(input.substring(counter + 4) != null);
                 responseString = "Got it. I've added this task:\n";
                 responseString += String.format("  %s\n", tasks.getTask(tasks.getSize() - 1).toString());
                 responseString += String.format("Now you have %s tasks in the list.", tasks.getSize());
