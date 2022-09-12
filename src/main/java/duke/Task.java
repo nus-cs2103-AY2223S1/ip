@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public abstract class Task {
     private String description;
-    private boolean marked;
+    private boolean isMarked;
 
     /**
      * Constructor for the Task class.
@@ -16,7 +16,7 @@ public abstract class Task {
      */
     public Task(String description) {
         this.description = description;
-        this.marked = false;
+        this.isMarked = false;
     }
 
     public abstract String getType();
@@ -27,15 +27,15 @@ public abstract class Task {
     }
 
     public boolean getMarked() {
-        return this.marked;
+        return this.isMarked;
     }
 
     public void setMarked(boolean b) {
-        this.marked = b;
+        this.isMarked = b;
     }
 
     @Override
     public String toString() {
-        return "[" + (marked ? "X" : " ") + "] " + description;
+        return "[" + (isMarked ? "X" : " ") + "] " + description;
     }
 }

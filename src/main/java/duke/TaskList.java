@@ -21,6 +21,19 @@ public class TaskList {
     }
 
     /**
+     * Returns the tasks as an ordered list in a String.
+     *
+     * @return The tasks in an ordered list.
+     */
+    public String listTasks() {
+        String ret = "";
+        for (int i = 0; i < tasks.size(); ++i) {
+            ret += (i + 1) + ". " + tasks.get(i).toString() + "\n";
+        }
+        return ret;
+    }
+
+    /**
      * Appends task to the task list.
      *
      * @param t Task to append.

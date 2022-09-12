@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -38,37 +39,25 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
-            String nextTask = s.nextLine();
-            String[] temp = nextTask.split("\\[");
-            Character taskType = temp[1].charAt(0);
-            Boolean marked = temp[2].charAt(0) == 'X';
-            String dateTemp = temp[temp.length - 1];
-            dateTemp = dateTemp.substring(0, dateTemp.length() - 1);
-            LocalDate date = LocalDate.now();
-            if (!dateTemp.isEmpty()) {
-                date = LocalDate.parse(dateTemp);
-            }
-            String task = "";
-            for (int i = 3; i < temp.length - 1; ++i) {
-                if (i < temp.length - 2) {
-                    task += temp[i];
-                    task += "[";
-                } else {
-                    task += temp[i].substring(0, temp[i].length() - 1);
-                }
-            }
+            String savedTask = s.nextLine();
+            // Extract properties of the saved task
+            HashMap<String, Object> props = getProperties(savedTask);
+            Character type = (Character) props.get("type");
+            Boolean isMarked = (Boolean) props.get("isMarked");
+            LocalDate date = (LocalDate) props.get("date");
+            String description = (String) props.get("description");
 
-            switch(taskType) {
+            switch(type) {
             case 'T':
-                addTask(tasks, new ToDo(task), marked);
+                addTask(tasks, new ToDo(description), isMarked);
                 break;
 
             case 'D':
-                addTask(tasks, new Deadline(task, date), marked);
+                addTask(tasks, new Deadline(description, date), isMarked);
                 break;
 
             case 'E':
-                addTask(tasks, new Event(task, date), marked);
+                addTask(tasks, new Event(description, date), isMarked);
                 break;
 
             default:
@@ -76,6 +65,33 @@ public class Storage {
             }
         }
         return tasks;
+    }
+
+    private HashMap<String, Object> getProperties(String savedTask) {
+        HashMap<String, Object> ret = new HashMap<>();
+        String[] temp = savedTask.split("\\[");
+        ret.put("type", temp[1].charAt(0));
+        ret.put("isMarked", temp[2].charAt(0) == 'X');
+
+        String dateTemp = temp[temp.length - 1];
+        dateTemp = dateTemp.substring(0, dateTemp.length() - 1);
+        LocalDate date = LocalDate.now();
+        if (!dateTemp.isEmpty()) {
+            date = LocalDate.parse(dateTemp);
+        }
+        ret.put("date", date);
+
+        String description = "";
+        for (int i = 3; i < temp.length - 1; ++i) {
+            if (i < temp.length - 2) {
+                description += temp[i];
+                description += "[";
+            } else {
+                description += temp[i].substring(0, temp[i].length() - 1);
+            }
+        }
+        ret.put("description", description);
+        return ret;
     }
 
     private void addTask(ArrayList<Task> tasks, Task t, boolean b) {
