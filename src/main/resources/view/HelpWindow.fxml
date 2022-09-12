@@ -60,6 +60,19 @@
                   <Insets left="30.0" />
                </padding>
             </HBox>
+            <HBox>
+               <children>
+                  <Label text="To search existing tasks, do:" />
+                  <Label text="find &lt;keyword&gt;">
+                     <font>
+                        <Font name="Monospaced Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
          </children>
          <opaqueInsets>
             <Insets />
