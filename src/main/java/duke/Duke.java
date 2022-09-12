@@ -3,7 +3,6 @@ package duke;
 import duke.task.TaskList;
 import duke.util.Parser;
 import duke.util.StoredTasks;
-import duke.util.Ui;
 import duke.util.command.Command;
 
 import java.io.File;
@@ -19,14 +18,12 @@ public class Duke {
 
     private StoredTasks storedTasks;
     private TaskList taskList;
-    private Ui ui;
 
     /**
      * Constructor for Duke class.
      */
     public Duke() {
         this.storedTasks = new StoredTasks(FILE_DIR, FILE_PATH);
-        this.ui = new Ui();
         try {
             this.taskList = new TaskList(this.storedTasks.load());
         } catch (DukeException e) {
