@@ -72,7 +72,7 @@ Examples:
 
 ### Locating a task by keywords: `find`
 
-Finds tasks that have descriptions that contain a keyword.
+Find tasks that have descriptions that contain a keyword.
 
 Format: `find KEYWORD`
 
@@ -135,7 +135,7 @@ includes the spaces used.
 Examples:
 
 * `deadline return book /by 2022-08-23 18:00` adds the `deadline` task
-`return book` to the Duke task manager and it sets the time by which
+`return book` to the Duke task manager, and it sets the time by which
 to complete the task, i.e. the deadline, to be `2022-08-23 18:00`.
 
 ### Adding an event task: `event`
