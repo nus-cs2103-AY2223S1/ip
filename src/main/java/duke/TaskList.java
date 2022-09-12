@@ -161,9 +161,13 @@ public class TaskList {
      *
      * @param input a String representing the desired date.
      */
-    public void printAllOnDate(String input) {
-        LocalDate date = LocalDate.parse(input);
-
+    public void printAllOnDate(String input) throws DukeException {
+        LocalDate date;
+        try {
+            date = LocalDate.parse(input);
+        } catch (java.time.format.DateTimeParseException e) {
+            throw new DukeException("Invalid date!!!");
+        }
         StringBuilder output = new StringBuilder("Here are the tasks on "
                 + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + "!\n");
@@ -276,13 +280,16 @@ public class TaskList {
      *
      * @param key a String that is contained within the desired tasks
      */
-    public void find(String key) {
+    public void find(String key) throws DukeException {
         String header = "Here are the matching tasks!:\n";
         String matchingTasks = this.tasks.stream()
                 .map(Task::toString)
                 .filter(task -> task.contains(key))
                 .reduce("", (prev, curr) -> prev + "\n" + curr);
 
+        if (matchingTasks.length() == 0) {
+            throw new DukeException("I couldn't find any matching tasks!");
+        }
         this.ui.handleOutput(header + matchingTasks);
     }
 
