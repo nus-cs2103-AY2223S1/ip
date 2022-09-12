@@ -25,24 +25,6 @@ import duke.command.UnmarkCommand;
  * class Parser to parse through commands input by user.
  */
 public class Parser {
-
-    /**
-     * private enum class that stores Command Cases.
-     */
-    private enum CommandCases {
-        HI,
-        BYE,
-        LIST,
-        MARK,
-        UNMARK,
-        TODO,
-        DEADLINE,
-        EVENT,
-        DELETE,
-        FIND,
-        PRIORITY
-    }
-
     //formatter for date.
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" d/MM/uuuu");
 
@@ -159,5 +141,13 @@ public class Parser {
         } catch (DateTimeParseException e) {
             throw new DukeException("hihi please provide date in dd/mm/yyyy format :)");
         }
+    }
+
+    /**
+     * Public method to check whether application should terminate.
+     * @return Boolean result of whether application should terminate.
+     */
+    public boolean isBye(String input) {
+        return input.equals(CommandCases.BYE);
     }
 }

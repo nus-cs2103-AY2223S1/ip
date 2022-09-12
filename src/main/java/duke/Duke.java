@@ -4,6 +4,10 @@
  */
 package duke;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.application.Platform;
+
 import duke.command.Command;
 
 /**
@@ -30,5 +34,18 @@ public class Duke {
         } catch (DukeException e) {
             return e.getMessage();
         }
+    }
+
+    /**
+     * Public method to terminate the application.
+     */
+    public void terminateApplication() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.exit();
+                System.exit(0);
+            }
+        }, 100);
     }
 }

@@ -13,15 +13,9 @@ import duke.task.Task;
  */
 public class Ui {
 
-    private static final String initText = "Hello! I'm Duke! What can I do for you? \n "
+    private static final String initText = "Hello! I'm Duke! What can I do for you? \n"
             + "The commands I currently have are as follows: \n";
     private static final String endText = "Bye bye! Hope to see you again soon!";
-
-    private static final String logo = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
 
     private static final String instructions = "1) hi\n"
             + "2) bye \n"
@@ -55,8 +49,8 @@ public class Ui {
     /**
      * class method to print welcome message.
      */
-    public String printWelcome() {
-        return printMessage("Hello from\n" + logo + "\n" + initText + instructions);
+    public static String printWelcome() {
+        return printMessage(initText + instructions);
     }
 
     /**
@@ -122,7 +116,7 @@ public class Ui {
      * @param str
      * @return desired string formatting output.
      */
-    public String printMessage(String str) {
+    public static String printMessage(String str) {
         return str;
     }
 }

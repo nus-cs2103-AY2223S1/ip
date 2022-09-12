@@ -33,8 +33,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(Ui.printWelcome(), dukeImage)
+        );
     }
-
 
     public void setDuke(Duke d) {
         duke = d;
@@ -48,6 +50,13 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+
+        if (input.equals(CommandCases.BYE)) {
+            userInput.clear();
+            dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(response, dukeImage));
+            duke.terminateApplication();
+            return;
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
