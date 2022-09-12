@@ -16,7 +16,7 @@ public class Ui {
     private Scanner sc;
 
     /**
-     * Constructor that initializes global variables.
+     * Initializes global variables.
      */
     public Ui() {
         sc = new Scanner(System.in);
@@ -39,7 +39,7 @@ public class Ui {
     }
 
     /**
-     * Displays output to the user.
+     * Returns output to the user.
      * @param message Message to be displayed.
      */
     public String print(StringBuilder message) {
@@ -47,7 +47,7 @@ public class Ui {
     }
 
     /**
-     * Displays output to the user.
+     * Returns output to the user.
      * @param message Message to be displayed.
      */
     public String print(String message) {
@@ -55,7 +55,7 @@ public class Ui {
     }
 
     /**
-     * Display error messages.
+     * Returns error messages.
      * @param emessage Error message.
      */
     public String showError(String emessage) {

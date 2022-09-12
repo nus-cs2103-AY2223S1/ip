@@ -15,7 +15,7 @@ public class Pluto {
     /** File to store user data */
     private final String filePath = "PlutoData.txt";
     /**
-     * Constructor that initializes global variables.
+     * Initializes global variables.
      */
     public Pluto() {
         ui = new Ui();
@@ -27,9 +27,11 @@ public class Pluto {
             tasks = new TaskList();
         }
     }
+
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns response to user input.
+     * @param input Input by the user.
+     * @return Response generated.
      */
     public String getResponse(String input) {
         try {
