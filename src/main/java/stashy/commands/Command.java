@@ -1,5 +1,6 @@
 package stashy.commands;
 
+import stashy.data.exception.DeveloperException;
 import stashy.data.exception.StashyException;
 import stashy.data.task.TaskList;
 import stashy.storage.Storage;
@@ -31,9 +32,10 @@ public abstract class Command {
      * @param ui The UI of this application
      * @param storage The storage used for this application
      * @return The stringtified UI output
-     * @throws StashyException If any exception is caught
+     * @throws DeveloperException Since this method should be overriden
      */
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        throw new StashyException("Note to dev: Implement this method in the child class!");
+        // This statement should not be reached on the final product
+        throw new DeveloperException("Implement this method in the child class!");
     }
 }
