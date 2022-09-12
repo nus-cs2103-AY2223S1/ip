@@ -134,7 +134,7 @@ includes the spaces used.
 
 Examples:
 
-* `deadline return book /2022-08-23 18:00` adds the `deadline` task
+* `deadline return book /by 2022-08-23 18:00` adds the `deadline` task
 `return book` to the Duke task manager and it sets the time by which
 to complete the task, i.e. the deadline, to be `2022-08-23 18:00`.
 
@@ -154,7 +154,7 @@ times. e.g. `2022-08-23 18:00`.
 
 Examples:
 
-* `event library event /2022-08-23 18:00 /2022-08-23 19:00` adds
+* `event library event /from 2022-08-23 18:00 /to 2022-08-23 19:00` adds
 the `event` task `library event` to the Duke task manager. It sets
 the start time to `2022-08-23 18:00` and the end time to `2022-08-23 19:00`.
 
