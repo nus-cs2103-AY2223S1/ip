@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -23,8 +24,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/ChadUser.jpg"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/ChadBot.jpg"));
 
     @FXML
     public void initialize() {
@@ -39,7 +40,7 @@ public class MainWindow extends AnchorPane {
      * Displays the welcome message.
      */
     public void showWelcome() {
-        String welcome = "Hello! I'm DukePro\nWhat can I do for you?";
+        Pair<String, Boolean> welcome = new Pair<>("Hey, I'm ChadBot.\nWhat can I do for you?", false);
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(welcome, dukeImage)
         );
@@ -52,7 +53,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        Pair<String, Boolean> response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)

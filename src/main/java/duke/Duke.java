@@ -3,6 +3,7 @@ package duke;
 import java.io.FileNotFoundException;
 
 import duke.command.Command;
+import javafx.util.Pair;
 
 /**
  * Duke is a Personal Assistant Chatbot that helps a person to keep track of various things.
@@ -34,12 +35,12 @@ public class Duke {
      * @param fullCommand User input.
      * @return Response from Duke.
      */
-    public String getResponse(String fullCommand) {
+    public Pair<String, Boolean> getResponse(String fullCommand) {
         try {
             Command c = Parser.parse(fullCommand);
-            return c.execute(tasks, ui, storage);
+            return new Pair<>(c.execute(tasks, ui, storage), false);
         } catch (DukeException e) {
-            return e.getMessage();
+            return new Pair<>(e.getMessage(), true);
         }
     }
 }

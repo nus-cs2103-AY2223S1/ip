@@ -23,7 +23,7 @@ public class Ui {
             }
         }, 1500);
 
-        return "Bye. Hope to see you again soon!";
+        return "Bye. See you again soon.";
     }
 
     /**
@@ -33,7 +33,7 @@ public class Ui {
      * @return The message indicating the given Task has been marked as completed.
      */
     public String showMark(String task) {
-        return String.format("Nice! I've marked this task as done:%n%s%n", task);
+        return String.format("Noted. I've marked this task as done:%n%s%n", task);
     }
 
     /**
@@ -43,7 +43,7 @@ public class Ui {
      * @return The message indicating the given Task has been marked as uncompleted.
      */
     public String showUnmark(String task) {
-        return String.format("OK, I've marked this task as not done yet:%n%s%n", task);
+        return String.format("Noted. I've marked this task as not done yet:%n%s%n", task);
     }
 
     /**
@@ -54,7 +54,7 @@ public class Ui {
      * @return The message indicating the given Task has been added.
      */
     public String showAdd(String task, int size) {
-        return String.format("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
+        return String.format("Noted. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
                 task, size, size > 1 ? "s" : "");
     }
 
