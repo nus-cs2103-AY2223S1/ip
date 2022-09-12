@@ -33,7 +33,7 @@ public class Storage {
     }
 
     /**
-     * A method to create file that also handles the errors.
+     * Creates a new file.
      *
      * @return file A newly created {@link File}
      */
@@ -77,8 +77,7 @@ public class Storage {
     }
 
     /**
-     * A method to save TaskList to a file while handling errors occured during the
-     * process.
+     * Saves TaskList to a file.
      *
      * @param taskList TaskList
      */
@@ -102,7 +101,7 @@ public class Storage {
     }
 
     /**
-     * A method to read the save file and returns TaskList.
+     * Reads save file and returns TaskList.
      *
      * @return TaskList where its tasks are those in the save file
      */
