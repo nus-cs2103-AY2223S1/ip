@@ -10,6 +10,7 @@ public class TaskNotFoundException extends Exception {
      * @param message Input that was not recognised.
      */
     public TaskNotFoundException(String message) {
+
         super(message);
     }
 }

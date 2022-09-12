@@ -11,22 +11,22 @@ import duke.exception.TaskNotFoundException;
 public class TaskParser extends Parser {
     private String[] keywords;
     private String input;
-    public enum TASKS {
+    public enum Tasks {
         TODO,
         DEADLINE,
         EVENT
     }
 
-    private final HashMap<String, TASKS> taskMap = new HashMap<>();
+    private final HashMap<String, Tasks> taskMap = new HashMap<>();
 
     /**
      * Creates a task parser to make sense of user inputs.
      * @param input User input string.
      */
     public TaskParser(String input) {
-        taskMap.put("todo", TASKS.TODO);
-        taskMap.put("deadline", TASKS.DEADLINE);
-        taskMap.put("event", TASKS.EVENT);
+        taskMap.put("todo", Tasks.TODO);
+        taskMap.put("deadline", Tasks.DEADLINE);
+        taskMap.put("event", Tasks.EVENT);
         this.input = input;
         this.keywords = input.split(" ", 2);
     }
@@ -37,7 +37,7 @@ public class TaskParser extends Parser {
      * @throws TaskNotFoundException When user input command does not correspond to recognised command.
      */
     @Override
-    public TASKS getCommand() throws TaskNotFoundException {
+    public Tasks getCommand() throws TaskNotFoundException {
         String command = this.keywords[0];
         if (!taskMap.containsKey(command)) {
             throw new TaskNotFoundException(input);

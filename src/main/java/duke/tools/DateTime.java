@@ -24,6 +24,12 @@ public class DateTime {
      * @return the date in the form "dd MMM yyyy".
      */
     public String getDate() {
+
         return this.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+    }
+
+    public static String convertDate(String date) {
+        LocalDate newDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd MMM yyyy"));
+        return newDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

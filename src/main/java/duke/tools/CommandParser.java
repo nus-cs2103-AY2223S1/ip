@@ -11,12 +11,12 @@ public class CommandParser extends Parser {
     private String[] keywords;
     private String input;
 
-    private final HashMap<String, COMMANDS> commandMap = new HashMap<>();
+    private final HashMap<String, Commands> commandMap = new HashMap<>();
 
     /**
      * Collection of commands recognised by Duke.
      */
-    public enum COMMANDS {
+    public enum Commands {
         BYE,
         LIST,
         MARK,
@@ -33,15 +33,15 @@ public class CommandParser extends Parser {
      * @param input user input String.
      */
     public CommandParser(String input) {
-        commandMap.put("bye", COMMANDS.BYE);
-        commandMap.put("list", COMMANDS.LIST);
-        commandMap.put("mark", COMMANDS.MARK);
-        commandMap.put("unmark", COMMANDS.UNMARK);
-        commandMap.put("delete", COMMANDS.DELETE);
-        commandMap.put("todo", COMMANDS.TODO);
-        commandMap.put("deadline", COMMANDS.DEADLINE);
-        commandMap.put("event", COMMANDS.EVENT);
-        commandMap.put("find", COMMANDS.FIND);
+        commandMap.put("bye", Commands.BYE);
+        commandMap.put("list", Commands.LIST);
+        commandMap.put("mark", Commands.MARK);
+        commandMap.put("unmark", Commands.UNMARK);
+        commandMap.put("delete", Commands.DELETE);
+        commandMap.put("todo", Commands.TODO);
+        commandMap.put("deadline", Commands.DEADLINE);
+        commandMap.put("event", Commands.EVENT);
+        commandMap.put("find", Commands.FIND);
         this.input = input;
         this.keywords = input.split(" ", 2);
     }
@@ -51,7 +51,7 @@ public class CommandParser extends Parser {
      * @return A command constant.
      * @throws TaskNotFoundException When user input command does not correspond to recognised command.
      */
-    public COMMANDS getCommand() throws TaskNotFoundException {
+    public Commands getCommand() throws TaskNotFoundException {
         String command = this.keywords[0];
         if (!commandMap.containsKey(command)) {
             throw new TaskNotFoundException(input);
