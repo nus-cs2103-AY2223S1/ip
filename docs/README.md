@@ -4,6 +4,13 @@ Gigachad will help you keep track of all your tasks.
 
 ## Features
 
+### Viewing Help : `help`
+Views a list of available commands.
+
+Format: `help`
+
+***
+
 ### Adding a ToDo : `todo`
 Adds a todo task into the tasklist.
 
