@@ -32,6 +32,7 @@ public class Parser {
      * @param duke Duke bot running the command.
      */
     public String runCommand(Duke duke) {
+        assert duke != null : "Duke is null";
         return command.run(args, duke);
     }
 }
