@@ -66,6 +66,7 @@ public class TaskList {
         case EVENT:
             return event(str);
         default:
+            assert false: "is not a correct type";
             return "";
         }
     }

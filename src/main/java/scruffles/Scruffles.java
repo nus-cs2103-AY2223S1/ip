@@ -23,7 +23,6 @@ public class Scruffles extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Ui ui;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image scruffles = new Image(this.getClass().getResourceAsStream("/images/DaScruffles.jpeg"));
 
