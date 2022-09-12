@@ -6,7 +6,7 @@ import duke.ui.Ui;
 import duke.tasks.Task;
 
 /**
- * a chat bot that should be able to keep track of tasks
+ * a chatbot that should be able to keep track of tasks
  * such as deadlines, events
  * and mark off as a task list
  */

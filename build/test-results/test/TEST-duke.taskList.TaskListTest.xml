@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="duke.taskList.TaskListTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-09-08T19:21:23" hostname="LAPTOP-Q59MTK9C" time="0.024">
+<testsuite name="duke.taskList.TaskListTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-09-12T09:34:33" hostname="LAPTOP-Q59MTK9C" time="0.02">
   <properties/>
-  <testcase name="eventTask()" classname="duke.taskList.TaskListTest" time="0.024"/>
+  <testcase name="eventTask()" classname="duke.taskList.TaskListTest" time="0.02"/>
   <system-out><![CDATA[Got it. I've added this task:
 [T][ ]  Anime convention /by 27/11/2022 0800
 Now you have 1 tasks in the list.
