@@ -4,7 +4,7 @@ import duke.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
-import static duke.Constants.INVALID_COMMAND_MESSAGE;
+import static duke.constants.Constants.INVALID_COMMAND_MESSAGE;
 
 /**
  * When the command is not recognised

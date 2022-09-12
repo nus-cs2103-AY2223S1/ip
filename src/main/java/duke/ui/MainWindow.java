@@ -2,7 +2,7 @@ package duke.ui;
 
 import java.util.Objects;
 
-import duke.Constants;
+import duke.constants.Constants;
 import duke.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

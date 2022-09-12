@@ -3,8 +3,9 @@ package duke.ui;
 import java.util.Iterator;
 import java.util.List;
 
-import duke.Constants;
 import duke.TaskList;
+import duke.constants.Constants;
+import duke.constants.HelpMessages;
 import duke.models.Task;
 
 
@@ -28,7 +29,7 @@ public class Ui {
      * Output bye message
      */
     public String showByeMessage() {
-        return "Bye! Hope to see you again soon!\n";
+        return "Bye. Hope to see you again soon!";
 
     }
 
@@ -69,6 +70,11 @@ public class Ui {
                 + t + "\n" + "Now you have " + size + " tasks in the list.\n";
     }
 
+
+    public String showHelpMessage() {
+        return HelpMessages.HELP_MESSAGE;
+    }
+
     /**
      * Displays error that data has not been loaded successfully
      */
@@ -81,7 +87,9 @@ public class Ui {
      * @param tasks
      */
     public String listAllTasks(TaskList tasks) {
-        return "\n" + tasks.getAllTasks() + "\n";
+        String listEmptyMessage = "You have no tasks in your list!\n";
+        String listNotEmptyMessage = "\n" + tasks.getAllTasks() + "\n";
+        return tasks.getSize() == 0 ? listEmptyMessage : listNotEmptyMessage;
     }
 
     /**
