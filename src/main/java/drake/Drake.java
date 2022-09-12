@@ -1,6 +1,7 @@
 package drake;
 
 import java.io.IOException;
+import java.util.List;
 
 import drake.commands.Command;
 
@@ -20,14 +21,17 @@ public class Drake {
     }
 
     private void run() {
-        ui.showWelcome();
+        ui.replyWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullInput = ui.readInput();
                 ui.printDash(); // show the divider line ("_______")
                 Command c = Parser.parse(fullInput);
-                c.execute(tasks, ui, storage);
+                List<String> reply = c.execute(tasks, ui, storage);
+                for (String line : reply) {
+                    ui.printLine(line);
+                }
                 isExit = c.isExit();
             } catch (IOException | DrakeException e) {
                 ui.printError(e.getMessage());
@@ -38,7 +42,7 @@ public class Drake {
     }
 
     /**
-     * Entrypoint.
+     * Entrypoint for the command-line app.
      *
      * @param args Command-line arguments.
      */

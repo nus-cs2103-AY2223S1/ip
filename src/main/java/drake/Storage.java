@@ -1,11 +1,5 @@
 package drake;
 
-import drake.commands.CommandType;
-import drake.tasks.Deadline;
-import drake.tasks.Event;
-import drake.tasks.Task;
-import drake.tasks.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -14,14 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import drake.commands.CommandType;
+import drake.tasks.Deadline;
+import drake.tasks.Event;
+import drake.tasks.Task;
+import drake.tasks.Todo;
+
 /**
  * Task list saving and loading functionalities.
  */
 public class Storage {
 
-    List<List<String>> tasks;
     private static final String TASK_FILE_PATH = "data/tasks.txt";
     private static final String TASK_FILE_DIR = "data";
+    private final List<List<String>> tasks;
     private final File taskFile;
 
     /**
@@ -95,6 +95,9 @@ public class Storage {
 
         case DELETE:
             tasks.remove(taskNumber - 1);
+            break;
+        default:
+            throw new UnknownCommandException();
         }
 
         updateFile();
@@ -118,7 +121,7 @@ public class Storage {
                 fileWriter.write(listToCsv(task));
             }
             fileWriter.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new DrakeException(
                     "Higher powers taking a hold on me... I cannot save the task list. This might help: " + e);
         }

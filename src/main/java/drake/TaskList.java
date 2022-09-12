@@ -22,6 +22,13 @@ public class TaskList {
     }
 
     /**
+     * Constructor. Initialises the task list with an empty list.
+     */
+    public TaskList() {
+        list = new ArrayList<>();
+    }
+
+    /**
      * Checks if the given task number is valid.
      *
      * @param taskNumber The given task number.
