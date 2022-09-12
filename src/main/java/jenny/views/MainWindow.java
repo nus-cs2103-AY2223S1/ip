@@ -31,7 +31,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        this.scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
     public void setDuke(JennyBot j) {
