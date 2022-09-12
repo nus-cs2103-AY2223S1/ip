@@ -15,7 +15,7 @@ public class ToDo extends Task{
     }
 
     /**
-     * toString that returns todo task in a specific format
+     * toString that returns todo task in a specific format.
      *
      * @return String
      */

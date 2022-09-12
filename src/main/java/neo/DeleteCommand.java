@@ -33,10 +33,12 @@ public class DeleteCommand extends Command {
      * @throws IOException
      */
     @Override
-    void complete(String tempi) throws NeoException, IOException {
+    String complete(String tempi) throws NeoException, IOException {
         int tempii = Integer.valueOf(tempi);
-        System.out.println("ok, I've deleted this take from array");
-        System.out.println(arrayLL.getTask(tempii-1).toString());
+        //System.out.println("ok, I've deleted this take from array");
+        //System.out.println(arrayLL.getTask(tempii-1).toString());
+        String t = arrayLL.getTask(tempii-1).toString();
         arrayLL.delete(tempii-1);
+        return t;
     }
 }

@@ -1,6 +1,10 @@
 package neo;//package neo;
 import neo.*;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 import javafx.application.Application;
@@ -35,6 +39,8 @@ public class Neo {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/Amy.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Jake.png"));
 
+    File f = new File("/Users/richavm/Documents/NUS/Y2S1/CS2103T/data/Neo.txt");
+
     /**
      * Constructor for neo class.
      */
@@ -43,130 +49,86 @@ public class Neo {
         this.ui = new Ui();
         this.arrayLL = new TaskList();
         this.parser = new Parser(ui, stor, arrayLL);
+
+        addToTaskList(String.valueOf(f), arrayLL);
+
     }
 
     /**
-    @Override
-    public void start(Stage stage) {
-        scrollPane = new ScrollPane();
-        dialogContainer = new VBox();
-        scrollPane.setContent(dialogContainer);
-
-        userInput = new TextField();
-        sendButton = new Button("Send");
-
-        AnchorPane mainLayout = new AnchorPane();
-        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
-
-        scene = new Scene(mainLayout);
-
-        stage.setTitle("Neo");
-        stage.setResizable(false);
-        stage.setMinHeight(600.0);
-        stage.setMinWidth(400.0);
-
-        mainLayout.setPrefSize(400.0, 600.0);
-
-        scrollPane.setPrefSize(385, 535);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
-        scrollPane.setVvalue(1.0);
-        scrollPane.setFitToWidth(true);
-
-        // You will need to import `javafx.scene.layout.Region` for this.
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-
-        userInput.setPrefWidth(325.0);
-
-        sendButton.setPrefWidth(55.0);
-
-        AnchorPane.setTopAnchor(scrollPane, 1.0);
-
-        AnchorPane.setBottomAnchor(sendButton, 1.0);
-        AnchorPane.setRightAnchor(sendButton, 1.0);
-
-        AnchorPane.setLeftAnchor(userInput , 1.0);
-        AnchorPane.setBottomAnchor(userInput, 1.0);
-
-        stage.setScene(scene);
-
-
-        sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
-
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
-
-        stage.show();
-    }*/
-
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
-    }
-
-    /**
-    private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
-        );
-        userInput.clear();
-    }*/
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Function used to retrieve tasks from neo.txt and add to task list.
+     *
+     * @param filePath file path
+     * @param arrayLL tasklist to store tasks
      */
-    public String getResponse(String input) {
-        return "Duke heard: " + input;
+    public static void addToTaskList(String filePath, TaskList arrayLL)  {
+        File f = new File(filePath); // create a File for the given file path
+        Scanner sc = null; // create a Scanner using the File as the source
+        try {
+            sc = new Scanner(f);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        String str = "";
+        Task task;
+
+        while (sc.hasNext()) {
+            String stri = sc.nextLine();
+            String arr[];
+            arr = stri.split("] ", 2);
+            String temp0 = arr[0];
+
+            String temp1 = arr[1];
+
+            if (temp0.equals("[D][X")) {
+                Deadline d = new Deadline(temp1);
+                d.setIsDone(true);
+                arrayLL.addTask(d);
+            }
+            if (temp0.equals("[D][ ")) {
+                Deadline d = new Deadline(temp1);
+                arrayLL.addTask(d);
+            }
+            if (temp0.equals("[E][X")) {
+                Event e = new Event(temp1);
+                e.setIsDone(true);
+                arrayLL.addTask(e);
+            }
+            if (temp0.equals("[E][ ")) {
+                Event e = new Event(temp1);
+                arrayLL.addTask(e);
+            }
+            if (temp0.equals("[T][ ")) {
+                ToDo td = new ToDo(temp1);
+                arrayLL.addTask(td);
+            }
+            if (temp0.equals("[T][X")) {
+                ToDo td = new ToDo(temp1);
+                td.setIsDone(true);
+                arrayLL.addTask(td);
+            }
+            sc.nextLine();
+        }
     }
 
-    public static void main(String[] args) throws NeoException, IOException {
+    /**
+     * Gets bots response from parser.
+     *
+     * @param userText user string input
+     * @return
+     * @throws NeoException neo exception
+     * @throws IOException input output exception
+     */
+    public String getResponse(String userText) throws NeoException, IOException {
 
-        List<String> arrayList = new ArrayList<String>();
-        List<Task> arrayL = new ArrayList<Task>();
-        String userText;
-
-        Task[] tasks = new Task[100];
-        Neo neo = new Neo();
-        neo.ui.printStart();
-        Scanner sc = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("Please enter items you want to add to the list, if you want to quit enter bye");
-            System.out.println("");
-            System.out.print("Enter Your command: ");
-            userText = sc.nextLine();
-            System.out.println("");
-
-            if (userText.equals("bye") || userText.equals("Bye")) {
-                System.out.println("Exiting chatbot! Hope to see you again");
-                break;
-            }
-
-            neo.parser.checkText(userText);
+        if (userText.equals("hi") || userText.equals("Hi")) {
+            return ui.printStart();
         }
+        if (userText.equals("bye") || userText.equals("Bye")) {
+            return ui.printEnd();
+        }
+
+        return parser.checkText(userText);
+
     }
 }
 
