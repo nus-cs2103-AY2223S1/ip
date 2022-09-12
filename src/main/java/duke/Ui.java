@@ -1,8 +1,5 @@
 package duke;
 
-import task.Task;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -68,18 +65,4 @@ public class Ui {
         System.out.println(str);
     }
 
-    public String appendMessage(String str1, String str2) {
-        return str1 + "\n" + str2;
-    }
-
-    /**
-     * Prints out the list of tasks currently stored in the TaskList.
-     */
-
-    public static void list(ArrayList<Task> db) {
-        System.out.println("Here are your list of tasks!");
-        db.forEach(task -> System.out.println((db.indexOf(task) + 1)
-                + ". "  + task.toString()));
-        System.out.println("You have " + db.size() + " tasks in the list.");
-    }
 }

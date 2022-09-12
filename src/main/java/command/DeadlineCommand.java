@@ -1,26 +1,26 @@
 package command;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import task.Deadline;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import task.Deadline;
 
 public class DeadlineCommand extends Command {
 
-    String str;
+    private final String STRING;
 
     public DeadlineCommand(String str) {
-        this.str = str;
+        this.STRING = str;
     }
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String sub = str.substring(8).trim();
+        String sub = STRING.substring(8).trim();
         try {
-            if (str.contains("/by ")) {
+            if (STRING.contains("/by ")) {
                 String[] split = sub.split("/by ");
                 if (split.length < 2) {
                     throw new DukeException("Please specify the deadline in yyyy-mm-dd format.");

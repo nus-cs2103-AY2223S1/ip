@@ -1,8 +1,10 @@
 package command;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+
 public abstract class Command {
 
     private boolean isExit = false;

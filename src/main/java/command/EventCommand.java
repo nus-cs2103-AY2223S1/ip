@@ -1,26 +1,26 @@
 package command;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import task.Event;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import task.Event;
 
 public class EventCommand extends Command {
 
-    String str;
+    private final String STRING;
 
     public EventCommand(String str) {
-        this.str = str;
+        this.STRING = str;
     }
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String sub = str.substring(5).trim();
+        String sub = STRING.substring(5).trim();
         try {
-            if (str.contains("/at ")) {
+            if (STRING.contains("/at ")) {
                 String[] split = sub.split("/at ");
                 if (split.length < 2) {
                     throw new DukeException("Please specify the event date in yyyy-mm-dd format.");

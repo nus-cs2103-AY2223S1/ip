@@ -1,20 +1,22 @@
 package command;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+
 public class DeleteCommand extends Command {
 
-    String str;
+    private final String STRING;
 
     public DeleteCommand(String str) {
-        this.str = str;
+        this.STRING = str;
     }
     
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            int index = Integer.parseInt(str.substring(6).trim());
+            int index = Integer.parseInt(STRING.substring(6).trim());
             if (index <= tasks.size() && index > 0) {
                 StringBuilder output = new StringBuilder();
                 output.append("Noted. I've removed this task:\n");

@@ -1,10 +1,5 @@
 package duke;
 
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -15,6 +10,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
 
 /**
  * The class that deals with loading tasks from the file and
@@ -26,7 +25,6 @@ import java.util.Scanner;
 
 public class Storage {
 
-    private final String DIRECTORY_PATH;
     private final String FILE_PATH;
 
     /**
@@ -36,7 +34,6 @@ public class Storage {
      */
 
     public Storage(String filePath) {
-        this.DIRECTORY_PATH = null;
         this.FILE_PATH = filePath;
     }
 
