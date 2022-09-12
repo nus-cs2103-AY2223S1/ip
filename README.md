@@ -1,6 +1,9 @@
 # Kirby Deluxe Bot
 > “By failing to prepare, you are preparing to fail.” – Benjamin Franklin, Founding Father of the United States
 
+Bored of having traditional to-do lists? Looking for something fun to boost your productivity? <br>
+The all-in-one Kirby Deluxe Bot provides an unorthodox way of keeping track of your tasks by simulating a chat bot!
+
 ## Smart task management application 💡
 - Kirby features a **clean and sleek interface** with **convenient** and simple command inputs. 
 - Encompassing a range of features from **chronological sort** to **search functionalities**, it can boost your productivity by leaps and bounds. 
@@ -13,8 +16,8 @@ Interactive and Simple-to-Use Task Bot Application
 
 
 ## Useful Links
-- User Guide
-- Developer Guide
+- [User Guide](https://sltsheryl.github.io/ip/)
+
 ## Installation
-Check out the User Guide for instructions on how to download Kirby. <br>
+Check out the [User Guide](https://sltsheryl.github.io/ip/#quick-start) for instructions on how to download Kirby. <br>
 Try it out today!
