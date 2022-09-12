@@ -1,6 +1,9 @@
 package duke;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.WEEKS;
 
 public class TaskList {
     private List<Task> taskArray;
@@ -34,5 +37,22 @@ public class TaskList {
 
     public int getSize() {
         return taskArray.size();
+    }
+
+    public List<Integer> getUpcomingTasks() {
+        List<Integer> searchResults = new ArrayList<>();
+        LocalDate currentDate = LocalDate.now();
+        LocalDate oneWeekLaterDate = currentDate.plus(1,WEEKS);
+        Task task;
+        for (int i = 0; i < taskArray.size(); i++) {
+            task = taskArray.get(i);
+            if (task.getTaskType() != "T") { //if task is not todo type
+                LocalDate taskDate = taskArray.get(i).getDate();
+                if (taskDate.isBefore(oneWeekLaterDate) && taskDate.isAfter(currentDate)) {
+                    searchResults.add(i);
+                }
+            }
+        }
+        return searchResults;
     }
 }

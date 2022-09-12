@@ -1,4 +1,7 @@
 package duke;
+
+import java.time.LocalDate;
+
 /**
  * A Todo object is a Task object that needs to be completed by user.
  *
@@ -20,6 +23,11 @@ public class Todo extends Task {
      *
      * @return "T"
      */
+
+    @Override
+    public LocalDate getDate() {
+        return null;
+    }
     @Override
     public String getTaskType() {
         return "T";

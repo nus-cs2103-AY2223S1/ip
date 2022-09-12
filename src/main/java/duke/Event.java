@@ -21,6 +21,10 @@ public class Event extends Task {
         this.at = LocalDate.parse(at);
     }
 
+    public LocalDate getDate() {
+        return this.at;
+    }
+
     /**
      * The task type for a Deadline object is "E".
      *

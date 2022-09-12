@@ -19,6 +19,10 @@ public class Deadline extends Task {
         this.by = LocalDate.parse(by);
     }
 
+    public LocalDate getDate() {
+        return this.by;
+    }
+
     /**
      * The task type for a Deadline object is "D".
      *
