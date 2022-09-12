@@ -16,6 +16,8 @@ public class Event extends Task {
      */
     public Event(String description, LocalDateTime eventTiming) {
         super(description);
+        assert !description.isEmpty() : "Description of an event should not be empty";
+
         this.eventTiming = eventTiming;
         this.taskType = TaskType.EVENT;
     }

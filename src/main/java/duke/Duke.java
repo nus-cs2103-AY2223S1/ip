@@ -39,12 +39,14 @@ public class Duke {
      * @return The response after executing the command.
      */
     public String getResponse(String input) {
+        assert input != null : "Command should not be null";
         try {
             Command command = Parser.parse(input);
             String response = command.execute(this.taskList, this.ui, this.storage);
             if (command.isExit()) {
                 exitDuke();
             }
+            assert !response.equals("") : "Response should not be empty";
             return response;
         } catch (DukeException e) {
             return e.getMessage();

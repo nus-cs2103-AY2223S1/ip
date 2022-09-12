@@ -11,6 +11,8 @@ public class Todo extends Task {
      */
     public Todo(String description) {
         super(description);
+        assert !description.isEmpty() : "Description of a todo should not be empty";
+
         this.taskType = TaskType.TODO;
     }
 
