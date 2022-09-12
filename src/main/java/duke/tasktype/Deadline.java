@@ -1,9 +1,9 @@
 package duke.tasktype;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import duke.DukeException;
 
 /**
  * Deadline is specialised Task with a date as deadline

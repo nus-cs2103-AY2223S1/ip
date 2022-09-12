@@ -2,6 +2,8 @@ package duke;
 
 import java.io.IOException;
 
+import duke.view.DialogBox;
+import duke.view.Ui;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
