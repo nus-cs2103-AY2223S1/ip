@@ -25,10 +25,14 @@ public class MainWindow extends AnchorPane {
     private Image jarvisImage = new Image(this.getClass().getResourceAsStream("/images/Jarvis.jpg"));
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
 
-
+    /**
+     * Initialises main window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(
+                DialogBox.getJarvisDialog("Hello! I am Jarvis! What can I do for you?", jarvisImage));
     }
 
     public void setJarvis(Jarvis j) {

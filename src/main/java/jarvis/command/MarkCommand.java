@@ -3,6 +3,7 @@ package jarvis.command;
 import jarvis.JarvisException;
 import jarvis.storage.Storage;
 import jarvis.task.TaskList;
+import jarvis.ui.Ui;
 
 /**
  * MarkCommand --- command to mark tasks as done or undone.
@@ -20,13 +21,14 @@ public class MarkCommand extends Command {
     /**
      * Executes the command.
      *
-     * @param tasks the list of tasks.
      * @param storage stores the tasks locally.
+     * @param tasks the list of tasks.
+     * @param ui prints feedback.
      * @return response after executing the command.
      * @throws JarvisException exception for invalid commands.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws JarvisException {
+    public String execute(Storage storage, TaskList tasks, Ui ui) throws JarvisException {
         int taskIndex = super.getTaskIndex();
 
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
@@ -36,11 +38,11 @@ public class MarkCommand extends Command {
         if (getKeyCommand().equals("mark")) {
             tasks.get(taskIndex).setIsDone(true);
             storage.saveTasks(tasks);
-            return "Nice! I've marked this task as done:\n\t" + tasks.get(taskIndex);
+            return ui.showTaskDoneMessage(taskIndex, tasks);
         } else {
             tasks.get(taskIndex).setIsDone(false);
             storage.saveTasks(tasks);
-            return "Okay, I've marked this task as not done yet:\n\t" + tasks.get(taskIndex);
+            return ui.showTaskUndoneMessage(taskIndex, tasks);
         }
     }
 }

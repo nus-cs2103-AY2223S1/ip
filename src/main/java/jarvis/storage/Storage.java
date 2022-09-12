@@ -46,25 +46,23 @@ public class Storage {
                 Task task;
 
                 while (sc.hasNextLine()) {
-                    String[] split = sc.nextLine().split("\\|");
-                    switch (split[0]) {
+                    String[] taskDetails = sc.nextLine().split(",");
+                    switch (taskDetails[0]) {
                     case "T":
-                        task = new ToDo(split[2]);
+                        task = new ToDo(taskDetails[2]);
                         break;
                     case "D":
-                        task = new Deadline(split[2], split[3]);
+                        task = new Deadline(taskDetails[2], taskDetails[3]);
                         break;
                     case "E":
-                        task = new Event(split[2], split[3]);
+                        task = new Event(taskDetails[2], taskDetails[3]);
                         break;
                     default:
                         throw new JarvisException("Failed to load task\n");
                     }
-
-                    if (split[1].equals("1")) {
+                    if (taskDetails[1].equals("1")) {
                         task.setIsDone(true);
                     }
-
                     tasks.add(task);
                 }
             } catch (FileNotFoundException e) {
@@ -73,6 +71,22 @@ public class Storage {
         }
 
         return tasks;
+    }
+
+    String getTaskType(Task task) {
+        if (task instanceof ToDo) {
+            return "T,";
+        } else if (task instanceof Deadline) {
+            return "D,";
+        }
+        return "E,";
+    }
+
+    String getTaskStatus(Task task) {
+        if (task.getIsDone()) {
+            return "1,";
+        }
+        return "0,";
     }
 
     /**
@@ -88,34 +102,21 @@ public class Storage {
             FileWriter fileWriter = new FileWriter(file);
             for (Task task: tasks.getTasks()) {
                 StringBuilder taskString = new StringBuilder();
-                if (task instanceof ToDo) {
-                    taskString.append("T|");
-                } else if (task instanceof Deadline) {
-                    taskString.append("D|");
-                } else if (task instanceof Event) {
-                    taskString.append("E|");
-                }
-
-                if (task.getIsDone()) {
-                    taskString.append("1|");
-                } else {
-                    taskString.append("0|");
-                }
-
+                taskString.append(getTaskType(task));
+                taskString.append(getTaskStatus(task));
                 taskString.append(task.getDescription());
 
                 if (task instanceof Deadline) {
-                    taskString.append("|");
+                    taskString.append(",");
                     taskString.append(((Deadline) task).getDueBy());
                 } else if (task instanceof Event) {
-                    taskString.append("|");
+                    taskString.append(",");
                     taskString.append(((Event) task).getStartAt());
                 }
 
                 taskString.append(System.lineSeparator());
                 fileWriter.write(taskString.toString());
             }
-
             fileWriter.close();
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());

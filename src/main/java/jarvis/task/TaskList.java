@@ -100,7 +100,7 @@ public class TaskList {
         StringBuilder output = new StringBuilder();
         output.append("Here are your tasks:\n");
         for (int i = 0; i < tasks.size(); i++) {
-            output.append(String.format("\t %d. %s", i + 1, tasks.get(i)));
+            output.append(String.format("%d. %s", i + 1, tasks.get(i)));
             if (i + 1 < tasks.size()) {
                 output.append("\n");
             }

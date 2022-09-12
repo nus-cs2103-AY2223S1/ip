@@ -3,6 +3,7 @@ package jarvis.command;
 import jarvis.JarvisException;
 import jarvis.storage.Storage;
 import jarvis.task.TaskList;
+import jarvis.ui.Ui;
 
 /**
  * ListCommand --- command to list all tasks.
@@ -20,13 +21,14 @@ public class ListCommand extends Command {
     /**
      * Executes the command.
      *
-     * @param tasks the list of tasks.
      * @param storage stores the tasks locally.
+     * @param tasks the list of tasks.
+     * @param ui prints feedback.
      * @return response after executing the command.
      * @throws JarvisException exception for invalid commands.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) {
+    public String execute(Storage storage, TaskList tasks, Ui ui) {
         return tasks.toString();
     }
 }

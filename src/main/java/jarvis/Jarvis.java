@@ -31,7 +31,7 @@ public class Jarvis {
     public String getResponse(String input) {
         try {
             Command command = Parser.parseUserCommand(input);
-            return command.execute(tasks, storage);
+            return command.execute(storage, tasks, ui);
         } catch (JarvisException e) {
             return e.getMessage();
         }

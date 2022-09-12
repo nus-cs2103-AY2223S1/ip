@@ -6,9 +6,10 @@ import jarvis.JarvisException;
 import jarvis.storage.Storage;
 import jarvis.task.Task;
 import jarvis.task.TaskList;
+import jarvis.ui.Ui;
 
 /**
- * FindCommand --- find tasks.
+ * FindCommand --- command to find tasks by description.
  */
 public class FindCommand extends Command {
     /**
@@ -23,13 +24,14 @@ public class FindCommand extends Command {
     /**
      * Executes the command.
      *
-     * @param tasks the list of tasks.
      * @param storage stores the tasks locally.
+     * @param tasks the list of tasks.
+     * @param ui prints feedback.
      * @return response after executing the command.
      * @throws JarvisException exception for invalid commands.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws JarvisException {
+    public String execute(Storage storage, TaskList tasks, Ui ui) throws JarvisException {
         List<Task> tasksFound = tasks.findTasks(super.getDescription());
 
         if (tasksFound.size() > 0) {
