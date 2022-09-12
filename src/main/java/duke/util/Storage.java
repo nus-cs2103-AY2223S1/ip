@@ -38,7 +38,7 @@ public class Storage {
      * @return String representation of the file path
      */
     public String locateHomeDir() {
-        return System.getProperty("user.dir") + "\\data\\saves\\tasks.txt";
+        return System.getProperty("user.dir") + "/data/saves/tasks.txt";
     }
     /**
      * Saves a TaskList object in a file with the path saveFilePath
@@ -155,8 +155,8 @@ public class Storage {
      * @since 0.1
      */
     public ArrayList<Task> load() throws DukeException, IOException {
-        File dataDir = new File(System.getProperty("user.dir") + "\\data");
-        File savesDir = new File(System.getProperty("user.dir") + "\\data\\saves");
+        File dataDir = new File(System.getProperty("user.dir") + "/data");
+        File savesDir = new File(System.getProperty("user.dir") + "/data/saves");
         if (!dataDir.exists()) {
             dataDir.mkdir();
         }
