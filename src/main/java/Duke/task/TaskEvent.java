@@ -44,7 +44,7 @@ public class TaskEvent extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E] %s (at: %s)", super.toString(), Utils.formatDateToString(taskAt));
+        return String.format("[E] %s \n(at: %s)", super.toString(), Utils.formatDateToString(taskAt));
     }
 
     /**

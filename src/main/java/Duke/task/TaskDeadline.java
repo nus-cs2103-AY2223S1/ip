@@ -44,7 +44,7 @@ public class TaskDeadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D] %s (by: %s)", super.toString(), Utils.formatDateToString(taskBy));
+        return String.format("[D] %s \n(by: %s)", super.toString(), Utils.formatDateToString(taskBy));
     }
 
     /**
