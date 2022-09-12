@@ -32,7 +32,7 @@ public class TaskList {
             }
             fileScanner.close();
         } catch (FileNotFoundException | CustomMessageException e) {
-            System.out.println(e.getMessage());
+            System.out.println("No existing data was found");
         }
     }
 
@@ -49,7 +49,9 @@ public class TaskList {
      * @param newTask The {@code Task} to be added
      */
     public void addToTaskList(Task newTask) {
+        int length = userTasks.size();
         userTasks.add(newTask);
+        assert userTasks.size() == length + 1 : "The length of the tasks list has not increased";
         storage.writeToDisk(getStorageRepresentationOfAllTasks());
     }
 
@@ -76,7 +78,9 @@ public class TaskList {
      * @param index The index of the {@code Task}
      */
     public void removeTask(int index) {
+        int length = userTasks.size();
         userTasks.remove(index);
+        assert userTasks.size() == length - 1 : "The length of the tasks list has not decreased";
         storage.writeToDisk(getStorageRepresentationOfAllTasks());
     }
 

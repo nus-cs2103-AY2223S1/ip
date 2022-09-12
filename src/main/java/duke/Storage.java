@@ -37,26 +37,21 @@ public class Storage {
 
     /**
      * Writes a {@code String} representation of the tasks to disk
+     *
      * @param stringToWrite The {@code String} to write
      */
     public void writeToDisk(String stringToWrite) {
-        try {
-            File tasksFile = new File(filePath);
-            boolean hasTasksFile = tasksFile.exists();
-            boolean isTasksFileDeleted = hasTasksFile && tasksFile.delete();
-            if (isTasksFileDeleted || !hasTasksFile) {
-                FileWriter fileWriter = new FileWriter(filePath);
-                try {
-                    fileWriter.write(stringToWrite);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                fileWriter.close();
-            } else {
-                System.out.println("Unable to save your data");
+        File tasksFile = new File(filePath);
+        boolean hasTasksFile = tasksFile.exists();
+        boolean isTasksFileDeleted = hasTasksFile && tasksFile.delete();
+        if (isTasksFileDeleted || !hasTasksFile) {
+            try (FileWriter fileWriter = new FileWriter(filePath)) {
+                fileWriter.write(stringToWrite);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("Unable to save your data");
         }
     }
 }
