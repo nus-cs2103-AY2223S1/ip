@@ -3,7 +3,7 @@ package wanya;
 /**
  * Represents the exceptions that arise from Wanya bot.
  */
-public class WanyaException extends Exception{
+public class WanyaException extends Exception {
     /**
      * Initialises the exception with error message.
      *

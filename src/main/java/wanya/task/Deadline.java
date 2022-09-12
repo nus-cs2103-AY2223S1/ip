@@ -1,14 +1,13 @@
 package wanya.task;
 
 import wanya.parser.DateTimeParser;
-
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 /**
  * Represents the deadline task.
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private LocalDateTime dueDate;
     private static final String TASK_TYPE = "D";
 
@@ -48,7 +47,7 @@ public class Deadline extends Task{
      */
     @Override
     public String toString() {
-        return "[" + TASK_TYPE +"]" + super.toString() + "(by: "
+        return "[" + TASK_TYPE + "]" + super.toString() + "(by: "
                 + DateTimeParser.getDateTimeString(dueDate) + ")";
     }
 

@@ -14,7 +14,7 @@ public class Event extends Task {
 
     /**
      * Creates an Event object when given task name and date.
-     * 
+     *
      * @param taskName name of the event task.
      * @param date due date of the event task.
      * @throws DateTimeException if invalid date format is given.
@@ -29,7 +29,7 @@ public class Event extends Task {
      *
      * @param taskName name of the event task.
      * @param hasCompleted whether the task has been completed.
-     * @param date due date of the event task. 
+     * @param date due date of the event task.
      * @throws DateTimeException if invalid date format is given.
      */
     public Event(String taskName, boolean hasCompleted, String date) throws DateTimeException {

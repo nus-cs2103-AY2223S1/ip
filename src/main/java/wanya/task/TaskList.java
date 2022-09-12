@@ -2,7 +2,6 @@ package wanya.task;
 
 import wanya.WanyaException;
 import wanya.ui.Ui;
-
 import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
  */
 public class TaskList {
     private final List<Task> tasks;
-    private final static String saveFileCorruptedMessage = "Saved data is corrupted! ";
+    private static final String saveFileCorruptedMessage = "Saved data is corrupted! ";
 
     /**
      * Initialises an array of Task.
@@ -26,39 +25,44 @@ public class TaskList {
      *
      * @param data encoded data from storage.
      */
-    public TaskList(List<String> data) {
+    public TaskList(List<String> data) throws WanyaException {
         this();
-        assert tasks.size() == 0: "New task list must be empty!";
-
         for (String encodedTask : data) {
             String[] inputs = encodedTask.split("\\|");
-            assert inputs.length >= 3: saveFileCorruptedMessage + "There is missing information!";
+            assert inputs.length >= 3 : saveFileCorruptedMessage + "There is missing information!";
 
             String taskType = inputs[0];
-            assert taskType.equals("T") || taskType.equals("D") || taskType.equals("E")
+            assert taskType.equals("T") || taskType.equals("D") || taskType.equals("E") || taskType.equals("P")
                     : saveFileCorruptedMessage + "Invalid task type!";
             assert inputs[1].equals("1") || inputs[1].equals("0") : saveFileCorruptedMessage;
 
             boolean completed = inputs[1].equals("1");
             String description = inputs[2];
+            Task taskToBeAdded;
             switch(taskType) {
             case "T":
-                ToDo toDo = new ToDo(description, completed);
-                tasks.add(toDo);
+                taskToBeAdded = new ToDo(description, completed);
                 break;
             case "D":
-                assert inputs.length == 4: saveFileCorruptedMessage + "Date required for Deadline task!";
+                assert inputs.length == 4 : saveFileCorruptedMessage + "Date required for Deadline task!";
                 String dueDate = inputs[3];
-                Deadline deadline = new Deadline(description, completed, dueDate);
-                tasks.add(deadline);
+                taskToBeAdded = new Deadline(description, completed, dueDate);
                 break;
             case "E":
-                assert inputs.length == 4: saveFileCorruptedMessage + "Date required for Event task!";
+                assert inputs.length == 4 : saveFileCorruptedMessage + "Date required for Event task!";
                 String date = inputs[3];
-                Event event = new Event(description, completed, date);
-                tasks.add(event);
+                taskToBeAdded = new Event(description, completed, date);
                 break;
+            case "P":
+                assert inputs.length == 5 : saveFileCorruptedMessage + "Start date and End date required!";
+                String startDate = inputs[3];
+                String endDate = inputs[4];
+                taskToBeAdded = new Period(description, startDate, endDate);
+                break;
+            default:
+                throw new WanyaException(saveFileCorruptedMessage);
             }
+            tasks.add(taskToBeAdded);
         }
     }
 
@@ -82,7 +86,7 @@ public class TaskList {
      * @return Task in position index of task list.
      */
     public Task get(int index) {
-        return tasks.get(index);
+        return tasks.get(index - 1);
     }
 
     /**
@@ -102,24 +106,23 @@ public class TaskList {
      * @param command the first word of the user input.
      * @param commandDescription contains information about the task to be added.
      * @return String message whether task has been added successfully.
-     * @throws WanyaException if invalid input is given with command.
+     * @throws WanyaException if invalid input format is given with command.
      */
     public String addTaskWithDate(String command, String commandDescription) throws WanyaException {
         boolean isDeadline = command.equals("deadline");
         String[] inputs = isDeadline
                           ? commandDescription.split("/by")
                           : commandDescription.split("/at");
+
         //no date provided
         if (inputs.length == 1 && isDeadline) {
-            throw new WanyaException("Deadline must have a due date\n" +
-                    "Include '/by' and date with format " +
-                    "\"yyyy-mm-dd\" at the back");
+            throw new WanyaException("Deadline must have a due date\n"
+                    + "Include '/by' and date with format \"yyyy-mm-dd\" at the back");
         }
         //must be event
         if (inputs.length == 1) {
-            throw new WanyaException("Event must have a date\n" +
-                    "Include '/at' and date with format " +
-                    "\"yyyy-mm-dd\" at the back");
+            throw new WanyaException("Event must have a date\n"
+                    + "Include '/at' and date with format \"yyyy-mm-dd\" at the back");
         }
 
         String taskName = inputs[0];
@@ -132,6 +135,35 @@ public class TaskList {
                                         ? new WanyaException(Ui.showDateTimeFormat("D"))
                                         : new WanyaException(Ui.showDateTimeFormat("E"));
              throw exception;
+        }
+    }
+
+    /**
+     * Adds a Period task to task list.
+     *
+     * @param commandDescription contains information about the task to be added.
+     * @return String message whether Period task has been added successfully.
+     * @throws WanyaException if invalid input format is given.
+     */
+    public String addPeriod(String commandDescription) throws WanyaException {
+        String[] inputs = commandDescription.split("/from");
+        if (inputs.length == 1) {
+            throw new WanyaException("Period must have valid dates provided in the format of "
+                    + "/from DATE to DATE.");
+        }
+        String taskName = inputs[0];
+        String[] dates = inputs[1].split("to");
+        if (dates.length == 1) {
+            throw new WanyaException("Please include a \"to\" keyword.");
+        }
+        String startDate = dates[0].trim();
+        String endDate = dates[1].trim();
+        try {
+            Task newTask = new Period(taskName, startDate, endDate);
+            return addTask(newTask);
+        } catch (DateTimeException e) {
+            throw new WanyaException("Please input valid date format of \"yyyy-mm-dd\" +"
+                    + "behind /from and to");
         }
     }
 

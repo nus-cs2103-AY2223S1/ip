@@ -43,9 +43,9 @@ public class Ui {
      */
     public static String showDateTimeFormat(String taskType) {
         String preposition = taskType.equals("E") ? "/at" : "/by";
-        String dateTimeErrorMsg = ("Please enter a valid date behind " + preposition + " with the format " +
-                        "\"yyyy-mm-dd HH:mm\" where time is optional.\n " +
-                         "If time is provided, leave it in 24 hours format.");
+        String dateTimeErrorMsg = ("Please enter a valid date behind " + preposition + " with the format "
+                + "\"yyyy-mm-dd HH:mm\" where time is optional.\n "
+                + "If time is provided, leave it in 24 hours format.");
         return dateTimeErrorMsg;
     }
 
