@@ -63,10 +63,10 @@ public class MainWindow extends AnchorPane {
         List<String> responses = duke.getResponse(input);
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
         this.addDialogToContainer(getDukeDialogs(responses, dukeImage));
-        userInput.clear();
-        if (responses.get(0).equals("Chatbot stopped, all previous tasks will be auto-saved :D")) {
+        if (input.equals("yes") && duke.getExitStatus()) {
             System.exit(0);
             javafx.application.Platform.exit();
         }
+        userInput.clear();
     }
 }

@@ -19,6 +19,8 @@ public class Ui {
         texts.add("Hello! I'm Duke, your personalized chatbot to arrange your tasks!");
         texts.add("Duke allows you to freely add, delete, mark task status, search tasks by time, "
                 + "and list all tasks");
+        texts.add("To display full text in a dialog box, please use the scroll bar, "
+                + "or click on the dialog and scroll up.");
         texts.add("Please type 'help' command for more information on Duke task types and command format.");
         return texts;
     }
@@ -30,33 +32,30 @@ public class Ui {
      */
     public List<String> printDukeInfo() {
         List<String> texts = new ArrayList<>();
-        texts.add("There are 3 types of task implemented:");
-        texts.add("1. todo     : tasks without any date/time attached to it\n"
-                + "2. deadline : tasks that need to be done before a specific date/time\n"
-                + "3. event    : tasks that start at a specific time and ends at a specific time");
-
-        texts.add("Below is all the command you can use: ");
-        texts.add("  Command: Command Format\n"
-                + "  1.  Add todo: todo {task description}\n"
-                + "  2.  Add deadline: deadline {task description} /by {end date}\n"
-                + "  3.  Add event: event {task description} /at {start date} to {end date}\n"
-                + "  4.  Delete task: delete {task index}\n"
-                + "  5.  Mark task as done: mark {task index}\n"
-                + "  6.  Mark task as undone: unmark {task index}\n"
-                + "  7.  Tag task: tag {task index} /with {tag}\n"
-                + "  8.  Untag task: untag {task index} /with {tag}\n"
-                + "  9.  List all tasks: list\n"
-                + "  10. List unfinished tasks by date: list {date}\n"
-                + "  11. List tasks by description keyword: list {keyword}\n"
-                + "  12. List tasks by tag: list #{tag}\n"
-                + "  13. Exit chatbot: bye");
-
-        texts.add("Other Remarks: ");
-        texts.add("1. Acceptable date formats include dd/MM/yyyy, yyyy/MM/dd, yyyy-MM-dd, dd-MM-yyyy, "
-                + "   dd MM yyyy, yyyy MM dd.\n"
-                + "2. A tag must be a case-sensitive word containing only alphabets"
-                + "3. A task can contain at most 3 tags, repeated tags are not allowed in a task."
-                + "4. Task list will be auto-saved after bye command and auto-loaded when chatbot starts up.");
+        texts.add("There are 3 types of task implemented:\n"
+                + "  1. todo : tasks without any date/time attached to it\n"
+                + "  2. deadline : tasks that need to be done before a specific date/time\n"
+                + "  3. event : tasks that start at a specific time and ends at a specific time");
+        texts.add("Below is all the command you can use with the command format specified: \n"
+                + "  1.  Add todo : todo {task description}\n"
+                + "  2.  Add deadline : deadline {task description} /by {end date}\n"
+                + "  3.  Add event : event {task description} /at {start date} to {end date}\n"
+                + "  4.  Delete task : delete {task index}\n"
+                + "  5.  Mark task as done : mark {task index}\n"
+                + "  6.  Mark task as undone : unmark {task index}\n"
+                + "  7.  Tag task : tag {task index} /with {tag}\n"
+                + "  8.  Untag task : untag {task index} /with {tag}\n"
+                + "  9.  List all tasks : list\n"
+                + "  10. List unfinished tasks by date : list {date}\n"
+                + "  11. List tasks by description keyword : list {keyword}\n"
+                + "  12. List tasks by tag : list #{tag}\n"
+                + "  13. Exit duke chatbot : bye");
+        texts.add("Other Remarks: \n"
+                + "  1. Acceptable date formats include dd/MM/yyyy, yyyy/MM/dd, yyyy-MM-dd, dd-MM-yyyy, "
+                + "dd MM yyyy, yyyy MM dd.\n"
+                + "  2. A tag / keyword must be a case-sensitive word containing only alphabets.\n"
+                + "  3. A task can contain at most 3 tags, repeated tags are not allowed in a task.\n"
+                + "  4. Task list will be auto-saved after bye command and auto-loaded when chatbot starts up.");
         return texts;
     }
 
@@ -137,8 +136,9 @@ public class Ui {
      */
     public List<String> printEndingUi() {
         List<String> texts = new ArrayList<>();
-        texts.add("Chatbot stopped, all previous tasks will be auto-saved :D");
-        texts.add("Bye. Hope to see you again soon!");
+        texts.add("Duke Chatbot will stop, all previous tasks will be auto-saved :D \n"
+                + "Bye, Hope to see you again soon!");
+        texts.add("Please type 'yes' to confirm exit or close the window.");
         return texts;
     }
 

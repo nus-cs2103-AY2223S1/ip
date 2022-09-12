@@ -13,6 +13,7 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
     private Parser parser;
+    private boolean isExit;
 
     /**
      * Creates Duke chatbot object,
@@ -24,6 +25,11 @@ public class Duke {
         parser = new Parser();
         storage = new Storage(filePath);
         tasks = new TaskList(storage.load()); //exception handling ?
+        isExit = false;
+    }
+
+    public boolean getExitStatus() {
+        return isExit;
     }
 
     /**
@@ -33,6 +39,7 @@ public class Duke {
      */
 
     public List<String> getResponse(String input) {
+        if (!input.equals("yes")) isExit = false;
         try {
             String line = input.trim();
             String[] parsedCommand = parser.parseCommand(line, tasks).split(" ", 2);
@@ -51,9 +58,9 @@ public class Duke {
             } else if (parsedCommand[0].equals("help")) {
                 return ui.printDukeInfo();
             } else {
+                isExit = true;
                 return ui.printEndingUi();
             }
-
         } catch (Exception e) {
             return ui.showException(e);
         }
