@@ -45,7 +45,7 @@ public class Parser {
     protected int getTaskIndex(String[] input) {
         return Integer.parseInt(input[1]) - 1;
     }
-    protected void checkArg(String[] input) throws DukeEmptyException {
+    protected void checkValidArgLength(String[] input) throws DukeEmptyException {
         if (input.length < 2) {
             throw new DukeEmptyException(input[0]);
         }

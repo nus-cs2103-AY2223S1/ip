@@ -51,7 +51,7 @@ public class Duke {
     }
 
     private String mark(String[] input) throws DukeException {
-        parser.checkArg(input);
+        parser.checkValidArgLength(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task markedTask = tasks.getTask(taskIndex);
@@ -64,7 +64,7 @@ public class Duke {
     }
 
     private String unmark(String[] input) throws DukeException {
-        parser.checkArg(input);
+        parser.checkValidArgLength(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task unmarkedTask = tasks.getTask(taskIndex);
@@ -77,7 +77,7 @@ public class Duke {
     }
 
     private String createToDo(String[] input) throws DukeException {
-        parser.checkArg(input);
+        parser.checkValidArgLength(input);
         try {
             ToDo task = new ToDo(input[1]);
             tasks.addTask(task);
@@ -89,7 +89,7 @@ public class Duke {
     }
 
     private String createDeadline(String[] input) throws DukeException {
-        parser.checkArg(input);
+        parser.checkValidArgLength(input);
         try {
             String[] taskDetails = input[1].split(" /by ", 2);
             String tasking = taskDetails[0];
@@ -107,7 +107,7 @@ public class Duke {
     }
 
     private String createEvent(String[] input) throws DukeException {
-        parser.checkArg(input);
+        parser.checkValidArgLength(input);
         try {
             String[] taskDetails = input[1].split(" /at ", 2);
             String tasking = taskDetails[0];
@@ -125,7 +125,7 @@ public class Duke {
     }
 
     private String deleteTask(String[] input) throws DukeException {
-        parser.checkArg(input);
+        parser.checkValidArgLength(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task deletedTask = tasks.deleteTask(taskIndex);
@@ -137,7 +137,7 @@ public class Duke {
     }
 
     private String findTask(String[] input) throws DukeException {
-        parser.checkArg(input);
+        parser.checkValidArgLength(input);
         String searchTerm = input[1];
         ArrayList<Task> results = tasks.find(searchTerm);
         return ui.printMatchingTasks(results);

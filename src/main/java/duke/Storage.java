@@ -1,6 +1,5 @@
 package duke;
 
-import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -27,10 +26,10 @@ public class Storage {
     }
 
     /**
-     * Retrieves the list of tasks that are saved in the disk.
+     * Retrieves the list of tasks that are saved in the disk. If specified file does not exist, it will create a new 
+     * one.
      *
      * @return An ArrayList of type Task that consists of all the given tasks that were previously saved.
-     * @throws DukeException if an I/O error occurs when locating or creating the file with the given pathname.
      */
     protected ArrayList<Task> loadFromDisk() {
 
@@ -76,9 +75,8 @@ public class Storage {
      * Saves the given list of tasks into the disk.
      *
      * @param tasks An ArrayList of type Task that consists of all the given tasks that were previously saved.
-     * @throws DukeException if an I/O error occurs when locating or creating the file with the given pathname.
      */
-    protected void saveToDisk(ArrayList<Task> tasks) throws DukeException {
+    protected void saveToDisk(ArrayList<Task> tasks) {
         try {
             File file = new File(FILEPATH);
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -102,7 +100,7 @@ public class Storage {
             }
             writer.close();
         } catch (IOException ex) {
-            throw new DukeException(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 }
