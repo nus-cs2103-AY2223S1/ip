@@ -21,7 +21,8 @@ public class FindCommand extends Command {
         if (dl.isEmpty()) {
             DobbyChat.listEmpty();
         } else {
-            DobbyChat.echo(dl.find(ui.getDesc()));
+            String keyword = ui.getDesc();
+            DobbyChat.find(keyword, dl);
         }
     }
 }

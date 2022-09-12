@@ -16,15 +16,6 @@ public class DobbyChat {
     }
 
     /**
-     * Prints messages in a specific format.
-     *
-     * @param s String to be printed.
-     */
-    public static void echo(String s) {
-        printChat(s);
-    }
-
-    /**
      * Prints message to welcome users.
      */
     public static void getHello() {
@@ -78,13 +69,13 @@ public class DobbyChat {
      * Prints message when users add tasks and shows how many tasks are in the list.
      *
      * @param task task to be added
-     * @param list list where task is added to
+     * @param list task list
      */
     public static void added(Task task, DobbyList list) {
-        String taskString = task.toString() + "\n";
+        String taskString = task.toString() + "\n\n";
 
         String accept = "Yes master, Dobby will add the following task to the list: \n\n\t";
-        String length = "\nYou now have " + list.getLength() + " task(s) left.";
+        String length = "Master has " + list.getLength() + " task(s) left.";
         printChat(accept + taskString + length);
     }
 
@@ -92,7 +83,7 @@ public class DobbyChat {
      * Prints message when users delete task and shows how many tasks are left in list.
      *
      * @param task task to be deleted
-     * @param list list where task is deleted from
+     * @param list task list
      */
     public static void deleted(Task task, DobbyList list) {
         if (list.isEmpty()) {
@@ -102,7 +93,7 @@ public class DobbyChat {
 
             String deleted = "Task deleted! Less work for master! Dobby is HAAAAAPPY!\n"
                     + "Dobby has removed this task: \n\n\t";
-            String length = "\nYou now have " + (list.getLength() - 1) + " task(s) in the list.";
+            String length = "\nMaster has only " + (list.getLength() - 1) + " task(s) left.";
             printChat(deleted + taskString + length);
         }
     }
@@ -110,7 +101,7 @@ public class DobbyChat {
     /**
      * Prints string of lists upon users' request
      *
-     * @param list list which user wishes to print from
+     * @param list task list
      */
     public static void list(DobbyList list) {
         String intro = "Here are the tasks Dobby has found:\n\n\t";
@@ -119,13 +110,26 @@ public class DobbyChat {
     }
 
     /**
+     * Prints string of lists with description containing keyword
+     *
+     * @param keyword keyword user wishes to find
+     * @param list task list
+     */
+    public static void find(String keyword, DobbyList list) {
+        String intro = "Dobby has found the following relevant tasks:\n\n\t";
+        String tasksFound = list.find(keyword);
+        printChat(intro + tasksFound);
+    }
+
+    /**
      * Prints message when user simplifies task command to their desired custom command.
      *
-     * @param oldCmd default custom command.
+     * @param initialCmd default custom command.
      * @param newCmd user custom command.
      */
-    public static void simplified(String oldCmd, String newCmd) {
-        String simplified = "Yes master, from now on dobby will do [" + oldCmd + "] when dobby sees [" + newCmd + "]";
+    public static void simplified(String initialCmd, String newCmd) {
+        String simplified = "Yes master, from now on dobby will do [" + initialCmd + "] when dobby sees [" + newCmd
+                + "].";
         printChat(simplified);
     }
 

@@ -103,18 +103,16 @@ public class DobbyList {
      */
     public String find(String toFind) {
         String foundListString = "";
-        String intro = "Here are the matching tasks in your list:\n\t";
-
         int i = 0;
         for (Task dobbyTask : dobbyList) {
             if (dobbyTask.isPresent(toFind)) {
-                foundListString += (i + 1) + "." + dobbyTask.toString() + "\n\t";
+                foundListString += (i + 1) + "." + dobbyTask + "\n\t";
                 i++;
             } else {
                 continue;
             }
         }
-        return intro + foundListString;
+        return foundListString;
     }
 
     /**
