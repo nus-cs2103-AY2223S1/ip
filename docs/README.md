@@ -123,7 +123,7 @@ Examples:
 ### `find` - Search for a given task
 Search for tasks that contains the search text.
 - The search will return results that contains the search text.
-- The search is case sensitive.
+- The search is case insensitive.
 
 Alternate command: `f`
 
