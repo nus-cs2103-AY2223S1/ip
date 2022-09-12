@@ -34,6 +34,8 @@ public class Constants {
     public static final String WELCOME_MESSAGE = "What's up? " + CHATBOX_NAME
             + " reporting for duty, How may i help you :-)";
 
+    public static final String MARK_MESSAGE = "[X] Yay! You've completed a task!\n";
+    public static final String UNMARK_MESSAGE = "[ ] I've marked this task as not done yet\n";
     public static final String BYE_MESSAGE = "I've saved your tasks! Come back soon ~\n";
     public static final String LIST_EMPTY_MESSAGE = "List is empty, go make yourself busy!\n";
     public static final String LIST_MESSAGE = "Here are the tasks in your list, go do it! \n";

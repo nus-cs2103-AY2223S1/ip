@@ -1,6 +1,7 @@
 package ado.command;
 
 import ado.AdoException;
+import ado.Constants;
 import ado.Response;
 import ado.Ui;
 import ado.storage.Storage;
@@ -22,7 +23,7 @@ public class MarkCommand extends Command {
             throw new AdoException("There is no " + index + " index in the list. \n");
         } else {
             taskList.markTaskAtIndex(index - 1);
-            String message = "[X] You've completed a task!\n" + taskList.getTaskAtIndex(index - 1) + "\n";
+            String message = Constants.MARK_MESSAGE + taskList.getTaskAtIndex(index - 1) + "\n";
             Response response = new Response(message, false, false);
             ui.setResponse(response);
             storage.saveTasksInStorage(taskList.getList());
