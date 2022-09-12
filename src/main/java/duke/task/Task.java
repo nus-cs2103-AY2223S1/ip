@@ -9,6 +9,7 @@ import duke.exception.DukeException;
  */
 public class Task {
     protected static final String STORAGE_DELIMITER = " | ";
+    private static final String STORAGE_TAG_DELIMITER = " |";
     private static final String DONE_STATUS = "X";
     private static final String NOT_DONE_STATUS = " ";
     private static final String DONE_STORAGE = "1";
@@ -81,7 +82,6 @@ public class Task {
         String[] taskSubstrings = string.split(" \\| ");
         TaskType taskType = TaskType.parse(taskSubstrings[0]);
         Task task;
-
         try {
             switch (taskType) {
             case DEADLINE:
@@ -111,7 +111,6 @@ public class Task {
         } catch (DukeException e) {
             throw new RuntimeException(e.getMessage());
         }
-
         if (taskSubstrings[1].equals(Task.DONE_STORAGE)) {
             task.isDone = true;
         }
@@ -183,7 +182,7 @@ public class Task {
      */
     public String getTagsStorageString() {
         String tagsString = getTagsString();
-        return tagsString == "" ? "" : " |" + tagsString;
+        return tagsString == "" ? "" : STORAGE_TAG_DELIMITER + tagsString;
     }
 
 }

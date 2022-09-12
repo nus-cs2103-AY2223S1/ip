@@ -22,6 +22,7 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
+Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: Sep 21 2022)
 3. [E][ ] project meeting (at: Sep 23 2022)
@@ -53,6 +54,7 @@ Nice! I've marked this task as done:
 ____________________________________________________________
 
 ____________________________________________________________
+Here are the tasks in your list:
 1. [T][X] borrow book
 2. [D][X] return book (by: Sep 21 2022)
 3. [E][X] project meeting (at: Sep 23 2022)
@@ -74,6 +76,7 @@ OK, I've marked this task as not done yet:
 ____________________________________________________________
 
 ____________________________________________________________
+Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: Sep 21 2022)
 3. [E][ ] project meeting (at: Sep 23 2022)
@@ -96,6 +99,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 ____________________________________________________________
+Here are the tasks in your list:
 1. [D][ ] return book (by: Sep 21 2022)
 ____________________________________________________________
 

@@ -162,14 +162,14 @@ public class TaskList {
     public List<Task> findKeywords(String ... keywords) {
         List<Task> matchedTasks = new ArrayList<>();
         for (Task task : taskList) {
-            boolean matchAllKeywords = true;
+            boolean isMatchingKeywords = true;
             for (String keyword : keywords) {
                 if (!task.hasKeyword(keyword)) {
-                    matchAllKeywords = false;
+                    isMatchingKeywords = false;
                     break;
                 }
             }
-            if (matchAllKeywords) {
+            if (isMatchingKeywords) {
                 matchedTasks.add(task);
             }
         }
@@ -185,14 +185,14 @@ public class TaskList {
     public List<Task> findTags(String ... tags) {
         List<Task> matchedTasks = new ArrayList<>();
         for (Task task : taskList) {
-            boolean matchAllTags = true;
+            boolean isMatchingTags = true;
             for (String tag : tags) {
                 if (!task.hasTag(tag)) {
-                    matchAllTags = false;
+                    isMatchingTags = false;
                     break;
                 }
             }
-            if (matchAllTags) {
+            if (isMatchingTags) {
                 matchedTasks.add(task);
             }
         }
