@@ -103,11 +103,11 @@ public class Parser {
     }
 
     private static String parseCommand(String s) {
-        String parsedString = s.toLowerCase();
-        if (SHORTCUTS.containsKey(s)) {
-            parsedString = SHORTCUTS.get(s);
+        String parsedCommand = s.toLowerCase();
+        if (SHORTCUTS.containsKey(parsedCommand)) {
+            parsedCommand = SHORTCUTS.get(parsedCommand);
         }
-        return parsedString;
+        return parsedCommand;
     }
 
     private static void checkForBadInput(String[] parsedOutput)
