@@ -50,7 +50,7 @@ public class TaskCategoryPane extends VBox {
                         parent.duke.getTasks().filterByCategory(TaskList.Categories.TODO));
             }
         });
-        TaskCategoryLabel eventLabel = new TaskCategoryLabel("Event");
+        TaskCategoryLabel eventLabel = new TaskCategoryLabel("Events");
         eventLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -58,7 +58,7 @@ public class TaskCategoryPane extends VBox {
                         parent.duke.getTasks().filterByCategory(TaskList.Categories.EVENT));
             }
         });
-        TaskCategoryLabel deadlineLabel = new TaskCategoryLabel("Deadline");
+        TaskCategoryLabel deadlineLabel = new TaskCategoryLabel("Deadlines");
         deadlineLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
