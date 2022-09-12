@@ -1,20 +1,10 @@
 package jenny.util;
 
+import jenny.commands.*;
+import jenny.exceptions.JennyException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import jenny.commands.ByeCommand;
-import jenny.commands.Command;
-import jenny.commands.DeadlineCommand;
-import jenny.commands.DeleteCommand;
-import jenny.commands.EventCommand;
-import jenny.commands.FindCommand;
-import jenny.commands.InvalidCommand;
-import jenny.commands.ListCommand;
-import jenny.commands.MarkCommand;
-import jenny.commands.TodoCommand;
-import jenny.commands.UnmarkCommand;
-import jenny.exceptions.JennyException;
 
 
 /**
@@ -55,18 +45,20 @@ public class Parser {
                 return new UnmarkCommand(arguments);
             case TodoCommand.COMMAND:
                 return new TodoCommand(arguments);
-            case DeadlineCommand.COMMAND:
-                return new DeadlineCommand(arguments);
-            case EventCommand.COMMAND:
-                return new EventCommand(arguments);
-            case DeleteCommand.COMMAND:
-                return new DeleteCommand(arguments);
-            case ByeCommand.COMMAND:
-                return new ByeCommand(arguments);
-            case FindCommand.COMMAND:
-                return new FindCommand(arguments);
-            default:
-                return new InvalidCommand();
+                case DeadlineCommand.COMMAND:
+                    return new DeadlineCommand(arguments);
+                case EventCommand.COMMAND:
+                    return new EventCommand(arguments);
+                case DeleteCommand.COMMAND:
+                    return new DeleteCommand(arguments);
+                case ByeCommand.COMMAND:
+                    return new ByeCommand(arguments);
+                case FindCommand.COMMAND:
+                    return new FindCommand(arguments);
+                case NoteCommand.COMMAND:
+                    return new NoteCommand(arguments);
+                default:
+                    return new InvalidCommand();
             }
         } catch (IllegalStateException | IllegalArgumentException | JennyException e) {
             throw new JennyException(MESSAGE_SCOPE, e.getMessage());
