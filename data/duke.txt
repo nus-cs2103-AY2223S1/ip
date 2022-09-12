@@ -1,3 +1,3 @@
-T|0| read book
-D|0| return book|1800-12-01
-E|0| library fair|1900-12-01
+E|0| library fair|2000-12-01
+T|0| say hi
+D|0| return book|2022-12-11

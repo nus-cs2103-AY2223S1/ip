@@ -26,7 +26,7 @@ public class Ui {
      */
     public static String printIntro() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Hello! I'm duke.Duke\n");
+        sb.append("Hello! I'm GigaDuke\n");
         sb.append("What can I do for you?");
         return sb.toString();
     }
@@ -65,7 +65,7 @@ public class Ui {
      */
     public String printAddTasks(Task task, TaskList tasks) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Got it. I've added this duke.task:\n");
+        sb.append("Got it. I've added this task:\n");
         String taskToBeAdded = String.format("  %s\n", task.toString());
         String numberOfTasksLeft = String.format("Now you have %d tasks in the list.", tasks.getSize());
         sb.append(taskToBeAdded);
@@ -80,7 +80,7 @@ public class Ui {
      * @return String message indicating the Task has been marked.
      */
     public String printMark(Task task) {
-        return String.format("Nice! I've marked this duke.task as done:\n %s", task.toString());
+        return String.format("Nice! I've marked this task as done:\n %s", task.toString());
     }
 
     /**
@@ -90,7 +90,7 @@ public class Ui {
      * @return String message indicating that Task has been unmarked.
      */
     public String printUnMark(Task task) {
-        return String.format("OK, I've marked this duke.task as not done yet:\n %s", task.toString());
+        return String.format("OK, I've marked this task as not done yet:\n %s", task.toString());
     }
 
     /**
