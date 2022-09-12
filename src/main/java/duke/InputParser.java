@@ -10,7 +10,7 @@ class InputParser {
         assert(input.length() > 0);
         String command;
         if (input.contains(" ")) {
-            command = input.substring(0, input.indexOf(" ") - 1);
+            command = input.substring(0, input.indexOf(" "));
         } else {
             command = input;
         }
