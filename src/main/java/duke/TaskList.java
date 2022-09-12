@@ -75,13 +75,17 @@ class TaskList {
     String addTask(String name, String type, String additional) {
         String response = "";
         Task newTask;
-        if (type.equals("T")) {
+        switch (type) {
+        case "T":
             newTask = new Todo(tasks.size() + 1, name);
-        } else if (type.equals("D")) {
+            break;
+        case "D":
             newTask = new Deadline(tasks.size() + 1, name, additional);
-        } else if (type.equals("E")) {
+            break;
+        case "E":
             newTask = new Event(tasks.size() + 1, name, additional);
-        } else {
+            break;
+        default:
             return "Unknown task type";
         }
         tasks.add(newTask);

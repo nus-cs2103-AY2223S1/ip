@@ -8,49 +8,57 @@ class InputParser {
     String parse(String input, TaskList taskList, Storage storage) throws EmptyTextException, IllegalCommandException, EndProgramException {
         String response = "";
         assert(input.length() > 0);
-        if (input.startsWith("find")) {
-            assert(input.length() > 5);
+        String command = input.substring(0, input.indexOf(" ") - 1);
+        switch (command) {
+        case "find":
             response = taskList.find(input.substring(6));
+            break;
 
-        } else if (input.equals("bye")) {
+        case "bye":
             storage.save(taskList);
             throw new EndProgramException();
 
-        } else if (input.equals("list")) {
+        case "list":
             response = taskList.list();
+            break;
 
-        } else if (input.startsWith("mark")) {
+        case "mark":
             assert(input.length() > 5);
             response = taskList.mark(Integer.parseInt(input.substring(5)), true);
+            break;
 
-        } else if (input.startsWith("unmark")) {
+        case "unmark":
             assert(input.length() > 7);
             response = taskList.mark(Integer.parseInt(input.substring(7)), false);
+            break;
 
-        } else if (input.startsWith("delete")) {
+        case "delete":
             if (input.trim().length() <= 6) {
                 throw new EmptyTextException();
             }
             int id = Integer.parseInt(input.substring(input.indexOf(" ") + 1));
             response = taskList.delete(id);
+            break;
 
-        } else if (input.startsWith("todo")) {
+        case "todo":
             if (input.trim().length() <= 4) {
                 throw new EmptyTextException();
             }
             String name = input.substring(input.indexOf(" ") + 1);
             response = taskList.addTask(name, "T", "");
+            break;
 
-        } else if (input.startsWith("deadline") || input.startsWith("event")) {
+        case "deadline":
+        case "event":
             int minLength = input.startsWith("deadline") ? 8 : 5;
             if (input.trim().length() <= minLength || input.substring(input.indexOf(" ") + 1).trim().equals("")) {
                 throw new EmptyTextException();
             }
-            String name = input.substring(input.indexOf(" ") + 1, input.indexOf("/"));
+            name = input.substring(input.indexOf(" ") + 1, input.indexOf("/"));
             String date = input.substring(input.indexOf("/") + 4);
             response = taskList.addTask(name, input.startsWith("deadline") ? "D" : "E", date);
-
-        }else {
+            break;
+        default:
             throw new IllegalCommandException();
         }
 

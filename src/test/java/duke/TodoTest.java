@@ -14,7 +14,7 @@ public class TodoTest {
     @Test
     public void markTest() {
         Task task = new Todo(1, "test");
-        task.setDone();
+        task.setStatus(true);
         assertEquals("1.[T][X] test", task.toString());
     }
 }
