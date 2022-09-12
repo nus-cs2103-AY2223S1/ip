@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 public class DialogBox extends HBox {
     private Label text;
@@ -17,6 +18,7 @@ public class DialogBox extends HBox {
         displayPicture = iv;
 
         text.setWrapText(true);
+        text.setFont(Font.font ("Lucida Sans Unicode", 14));
         displayPicture.setFitWidth(100.0);
         displayPicture.setFitHeight(100.0);
 
