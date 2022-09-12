@@ -3,7 +3,7 @@ package duke.command;
 import duke.TaskList;
 import duke.models.Task;
 
-import static duke.Constants.INVALID_COMMAND_MESSAGE;
+import static duke.constants.Constants.INVALID_COMMAND_MESSAGE;
 
 /**
  * Parses the command entered by the user

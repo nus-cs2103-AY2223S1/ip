@@ -17,11 +17,11 @@ public class Duke {
     private Parser parser;
 
     /**
-     * Empty constructor
+     * Constructor for Duke
      */
     public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage("saved.txt");
+        this.storage = new Storage("./data/saved.txt");
         this.tasks = new TaskList(storage.loadData());
         this.parser = new Parser(tasks);
     }

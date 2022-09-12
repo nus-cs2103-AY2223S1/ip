@@ -2,11 +2,10 @@ package duke;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import duke.models.Task;
-
 
 
 /**
@@ -60,14 +59,10 @@ public class TaskList {
      * @return returns a string of all tasks in the TaskList
      */
     public String getAllTasks() {
-        String result = "";
-        ListIterator<Task> listIterator = tasks.listIterator();
-        while (listIterator.hasNext()) {
-            Task t = listIterator.next();
-            result += listIterator.nextIndex()
-                    + ". " + t + "\n";
-        }
-        return result;
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0, tasks.size())
+                .forEach(index -> sb.append(index + 1).append(". ").append(tasks.get(index)).append("\n"));
+        return sb.toString();
     }
 
     /**

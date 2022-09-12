@@ -1,6 +1,6 @@
 package duke.command;
 
-import static duke.Constants.QUACK_STRING;
+import static duke.constants.Constants.QUACK_STRING;
 
 import duke.TaskList;
 import duke.storage.Storage;

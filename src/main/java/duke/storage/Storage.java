@@ -5,14 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import duke.DukeException;
 import duke.TaskList;
 import duke.models.Deadline;
 import duke.models.Event;
@@ -30,36 +29,24 @@ public class Storage {
     }
 
     /**
-     * Checks if saved folder exists. Run at the start of the program
+     * Check if saved folder exists. Run at the start of the program
      * to initialize data from saved file
      */
     public void run() {
         try {
-            File myObj = new File("./data/saved.txt");
-            String home = System.getProperty("user.dir");
+            String currentDirectory = System.getProperty("user.dir");
+            Path path = java.nio.file.Paths.get(currentDirectory, "/data");
+            File myObj = new File(currentDirectory + "/data/saved.txt");
+            boolean directoryExists = Files.exists(path);
 
-            // inserts correct file path separator on *nix and Windows
-            Path currentRelativePath = Paths.get("");
-            String s = currentRelativePath.toAbsolutePath().toString();
-
-            Path path = java.nio.file.Paths.get(home, "./data");
-            boolean directoryExists = java.nio.file.Files.exists(path);
-            if (!directoryExists) {
-                try {
-                    File newDirectory = new File("./data");
-                    newDirectory.mkdirs();
-                    myObj.createNewFile();
-                } catch (IOException e) {
-                    throw new DukeException("file not found");
-                }
-            }
-
-            if (myObj.createNewFile()) {
-                System.out.println("hello");
+            if (directoryExists) {
+                System.out.println("Directory exists");
             } else {
-                //File already exists
+                System.out.println("Directory does not exist");
+                Files.createDirectory(path);
+                myObj.createNewFile();
             }
-        } catch (IOException | DukeException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -104,7 +91,7 @@ public class Storage {
     public void write(String text) {
         assert text != null : "Text should not be null";
         try {
-            FileWriter myWriter = new FileWriter(filePath, true);
+            FileWriter myWriter = new FileWriter(this.filePath, true);
             myWriter.write(text + "\n");
             myWriter.close();
         } catch (IOException e) {
