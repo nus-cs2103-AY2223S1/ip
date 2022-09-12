@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.Command;
+import duke.command.CommandType;
 
 /**
  * An abstract class representing the {@code Task}
@@ -11,20 +11,20 @@ public abstract class Task {
      */
     protected final String description;
     /**
-     * The {@code Command} type of the {@code Task}
+     * The {@code CommandType} type of the {@code Task}
      */
-    protected final Command taskCommand;
+    protected final CommandType taskCommandType;
     private boolean isDone;
 
     /**
      * Constructs the {@code Task}
      * @param description The description of the {@code Task}
-     * @param taskCommand The {@code Command} type of the {@code Task}
+     * @param taskCommandType The {@code CommandType} type of the {@code Task}
      */
-    public Task(String description, Command taskCommand) {
+    public Task(String description, CommandType taskCommandType) {
         this.description = description;
         isDone = false;
-        this.taskCommand = taskCommand;
+        this.taskCommandType = taskCommandType;
     }
 
     /**
@@ -71,6 +71,7 @@ public abstract class Task {
      * @return True if the keyword is present
      */
     public boolean isMatchingKeywordInDescription(String keyword) {
+        System.out.println(description);
         return description.contains(keyword);
     }
 

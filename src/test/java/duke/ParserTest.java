@@ -34,45 +34,45 @@ class ParserTest {
     public void parseUserCommand_actualCommand_performsAction() throws CustomMessageException {
         assertEquals("Got it. I've added this task:\n"
                 + "    [T][ ] borrow book\n"
-                + "Now you have 1 task in the list.\n", parser.parseUserCommand(
-                "todo borrow book"));
+                + "Now you have 1 task in the list.", parser.parseUserCommand(
+                "todo borrow book").execute());
         assertEquals("Here are the tasks in your list:\n"
-                        + "  1. [T][ ] borrow book\n",
-                parser.parseUserCommand("list"));
+                        + "  1. [T][ ] borrow book",
+                parser.parseUserCommand("list").execute());
         assertEquals("Nice! I've marked this task as done:\n"
-                        + "    [T][X] borrow book\n",
-                parser.parseUserCommand("mark 1"));
+                        + "    [T][X] borrow book",
+                parser.parseUserCommand("mark 1").execute());
         assertEquals("Got it. I've added this task:\n"
                         + "    [D][ ] return book (by: 24 Aug 2022 14:00)\n"
-                        + "Now you have 2 tasks in the list.\n",
-                parser.parseUserCommand("deadline return book /by 2022-08-24 14:00"));
+                        + "Now you have 2 tasks in the list.",
+                parser.parseUserCommand("deadline return book /by 2022-08-24 14:00").execute());
         assertEquals("Got it. I've added this task:\n"
                         + "    [E][ ] project meeting (at: 31 Dec 2023 23:59)\n"
-                        + "Now you have 3 tasks in the list.\n",
-                parser.parseUserCommand("event project meeting /at 2023-12-31 23:59"));
+                        + "Now you have 3 tasks in the list.",
+                parser.parseUserCommand("event project meeting /at 2023-12-31 23:59").execute());
 
         CustomMessageException todoThrows = assertThrows(CustomMessageException.class, () -> parser.parseUserCommand(
-                "todo"), "Expected parses to throw, but it didn't");
+                "todo").execute(), "Expected parses to throw, but it didn't");
 
-        assertTrue(todoThrows.getMessage().contains("OOPS!!! The description of a todo cannot be empty."));
+        assertTrue(todoThrows.getMessage().contains("OOPS!!! The todo must have valid arguments."));
 
         CustomMessageException blahThrows = assertThrows(CustomMessageException.class, () -> parser.parseUserCommand(
-                "blah"), "Expected parses to throw, but it didn't");
+                "blah").execute(), "Expected parses to throw, but it didn't");
 
         assertTrue(blahThrows.getMessage().contains("OOPS!!! I'm sorry, but I don't know what that "
                 + "means :-("));
 
         assertEquals("Noted. I've removed this task:\n"
                         + "    [D][ ] return book (by: 24 Aug 2022 14:00)\n"
-                        + "Now you have 2 tasks in the list.\n",
-                parser.parseUserCommand("delete 2"));
+                        + "Now you have 2 tasks in the list.",
+                parser.parseUserCommand("delete 2").execute());
         assertEquals("Here are the tasks in your list:\n"
                         + "  1. [T][X] borrow book\n"
-                        + "  2. [E][ ] project meeting (at: 31 Dec 2023 23:59)\n",
-                parser.parseUserCommand("list"));
+                        + "  2. [E][ ] project meeting (at: 31 Dec 2023 23:59)",
+                parser.parseUserCommand("list").execute());
         assertEquals("Got it. I've added this task:\n"
                         + "    [D][ ] return book (by: 24 Aug 2022 14:00)\n"
-                        + "Now you have 3 tasks in the list.\n",
-                parser.parseUserCommand("deadline return book /by 2022-08-24 14:00"));
+                        + "Now you have 3 tasks in the list.",
+                parser.parseUserCommand("deadline return book /by 2022-08-24 14:00").execute());
     }
 }

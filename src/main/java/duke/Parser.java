@@ -1,13 +1,16 @@
 package duke;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import duke.command.AddTaskCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.CommandType;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
 
 /**
  * A class to parse user input
@@ -23,20 +26,9 @@ public class Parser {
     public Parser(TaskList taskList) {
         this.taskList = taskList;
     }
-
-    private static String generateEmptyDescMessage(String taskType) {
-        return "OOPS!!! The description of a " + taskType + " cannot be empty.\n";
-    }
-
     private static String generateInvalidArgumentsMessage(String action) {
-        return "OOPS!!! The " + action + " must valid arguments.\n";
+        return "OOPS!!! The " + action + " must have valid arguments.\n";
     }
-
-    private String generateTasksNumberMessage() {
-        return "Now you have " + taskList.sizeOfList() + " task" + (taskList.sizeOfList() == 1 ? "" : "s")
-                + " in the list.";
-    }
-
     /**
      * Returns a {@code String} representing the parsed input
      *
@@ -44,95 +36,42 @@ public class Parser {
      * @return A {@code String} representing the input
      * @throws CustomMessageException if invalid input is given
      */
-    public String parseUserCommand(String command)
+    public Command parseUserCommand(String command)
             throws CustomMessageException {
-        String[] commands = command.split("\\s+");
-        Command taskType;
+        String[] arguments = command.split("\\s+");
+        CommandType taskType;
         try {
-            taskType = Command.valueOf(commands[0].toUpperCase());
+            taskType = CommandType.valueOf(arguments[0].toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new CustomMessageException(("OOPS!!! I'm sorry, but I "
                     + "don't know what that means :-("));
         }
-        commands = Arrays.copyOfRange(commands, 1, commands.length);
-        if (!taskType.isNumberOfArgsCorrect(commands.length)) {
+        arguments = Arrays.copyOfRange(arguments, 1, arguments.length);
+        if (!taskType.isNumberOfArgsCorrect(arguments.length)) {
             throw new CustomMessageException((generateInvalidArgumentsMessage(taskType.getString())));
         }
-        int index;
-        String displayString;
         switch (taskType) {
         case BYE:
-            displayString = Responses.BYE_MESSAGE;
-            break;
+            return new ByeCommand();
         case LIST:
-            String tasks = taskList.getTextRepresentationOfAllTasks();
-            displayString = tasks.length() > 0 ? "Here are the tasks in your list:"
-                    + tasks : "No existing tasks found :(";
-            break;
+            return new ListCommand(taskList);
         case MARK:
-            index = Integer.parseInt(commands[0]) - 1;
-            taskList.markTaskAsDone(index);
-            displayString = "Nice! I've marked this task as done:\n    " + taskList.getTaskString(index);
-            break;
+            return new MarkCommand(taskList, arguments);
         case UNMARK:
-            index = Integer.parseInt(commands[0]) - 1;
-            taskList.markTaskAsNotDone(index);
-            displayString = "OK, I've marked this task as not done yet:\n    "
-                    + taskList.getTaskString(index);
-            break;
+            return new UnmarkCommand(taskList, arguments);
         case DELETE:
-            index = Integer.parseInt(commands[0]) - 1;
-            String deletedTaskDescription = taskList.getTaskString(index);
-            taskList.removeTask(index);
-            displayString = "Noted. I've removed this task:\n    "
-                    + deletedTaskDescription + "\n" + generateTasksNumberMessage();
-            break;
+            return new DeleteCommand(taskList, arguments);
         case TODO:
-            displayString = parseNewTaskCommand(command, commands.length, Command.TODO, "");
-            break;
+            return new AddTaskCommand(taskList, arguments, command, arguments.length, CommandType.TODO, "");
         case DEADLINE:
-            displayString = parseNewTaskCommand(command, commands.length, Command.DEADLINE, " /by ");
-            break;
+            return new AddTaskCommand(taskList, arguments, command, arguments.length, CommandType.DEADLINE, " /by ");
         case EVENT:
-            displayString = parseNewTaskCommand(command, commands.length, Command.EVENT, " /at ");
-            break;
+            return new AddTaskCommand(taskList, arguments, command, arguments.length, CommandType.EVENT, " /at ");
         case FIND:
-            displayString = ("Here are the matching tasks in your list:"
-                    + taskList.getTextRepresentationOfKeywordTasks(commands[0]));
-            break;
+            return new FindCommand(taskList, arguments);
         default:
             throw new CustomMessageException((
                     "OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
         }
-        return displayString.equals("") ? "" : displayString + "\n";
-    }
-
-    private String parseNewTaskCommand(String command, int commandsLen, Command taskCommand, String toSplitBy)
-            throws CustomMessageException {
-        if (commandsLen == 0) {
-            throw new CustomMessageException((generateEmptyDescMessage(taskCommand.getString())));
-        }
-            assert commandsLen > 0 : "There should be minimally 1 arguments to a new task";
-        if (taskCommand == Command.TODO) {
-            taskList.addToTaskList(new ToDo(command.substring(5).strip(), duke.Command.TODO));
-        } else if (taskCommand == Command.EVENT || taskCommand == Command.DEADLINE) {
-            String[] splitString = command.split(toSplitBy);
-            String taskDescription = splitString[0].substring(taskCommand.getString().length() + 1).strip();
-            if (taskDescription.isEmpty() || taskDescription.isBlank()) {
-                throw new CustomMessageException((generateEmptyDescMessage(taskCommand.getString())));
-            }
-            String userRequirement = splitString[1].strip();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            LocalDateTime dateTime = LocalDateTime.parse(userRequirement, formatter);
-            Task newTask;
-            if (taskCommand == Command.EVENT) {
-                newTask = new Event(taskDescription, Command.EVENT, dateTime);
-            } else {
-                newTask = new Deadline(taskDescription, Command.DEADLINE, dateTime);
-            }
-            taskList.addToTaskList(newTask);
-        }
-        return (("Got it. I've added this task:\n    "
-                + taskList.getTaskString(taskList.sizeOfList() - 1) + "\n" + generateTasksNumberMessage()));
     }
 }

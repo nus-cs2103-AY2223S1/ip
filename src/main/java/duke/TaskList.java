@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import duke.command.Command;
 import duke.task.Task;
 
 /**
@@ -28,7 +29,8 @@ public class TaskList {
         try {
             Scanner fileScanner = storage.getScannerForTasksFile();
             while (fileScanner.hasNextLine()) {
-                parser.parseUserCommand(fileScanner.nextLine());
+                Command parsedCommad = parser.parseUserCommand(fileScanner.nextLine());
+                parsedCommad.execute();
             }
             fileScanner.close();
         } catch (FileNotFoundException | CustomMessageException e) {
@@ -115,6 +117,7 @@ public class TaskList {
      * @return The {@code String} representation of the {@code Tasks}
      */
     public String getTextRepresentationOfKeywordTasks(String keyword) {
+        userTasks.forEach(System.out::println);
         return convertTaskListToString(userTasks.stream().filter(task -> task.isMatchingKeywordInDescription(keyword))
                 .collect(Collectors.toList()));
     }

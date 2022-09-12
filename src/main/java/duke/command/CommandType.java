@@ -1,14 +1,9 @@
-package duke;
-
-enum Operator {
-    GREATER_THAN,
-    EQUAL
-}
+package duke.command;
 
 /**
  * An enum class that contains all the valid user commands.
  */
-public enum Command {
+public enum CommandType {
     BYE("bye", 0, Operator.EQUAL),
     LIST("list", 0, Operator.EQUAL),
     MARK("mark", 1, Operator.EQUAL),
@@ -23,7 +18,7 @@ public enum Command {
     private final int numberOfArgs;
     private final Operator operator;
 
-    Command(String commandString, int numberOfArgs, Operator operator) {
+    CommandType(String commandString, int numberOfArgs, Operator operator) {
         this.commandString = commandString;
         this.numberOfArgs = numberOfArgs;
         this.operator = operator;
@@ -46,7 +41,7 @@ public enum Command {
     public boolean isNumberOfArgsCorrect(int argsLength) {
         switch (operator) {
         case GREATER_THAN:
-            return this.numberOfArgs > argsLength;
+            return argsLength > this.numberOfArgs;
         case EQUAL:
             return this.numberOfArgs == argsLength;
         default:

@@ -7,7 +7,7 @@ public class CustomMessageException extends Exception {
     /**
      * @param message The custom message to take in
      */
-    CustomMessageException(String message) {
+    public CustomMessageException(String message) {
         super(message);
     }
 }

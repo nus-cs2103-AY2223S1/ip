@@ -1,5 +1,7 @@
 package duke;
 
+import duke.command.Command;
+
 /**
  * The driving engine for Duke
  */
@@ -26,9 +28,9 @@ public class Duke {
      */
     public String getResponse(String input) {
         try {
-            return parser.parseUserCommand(input);
-            //                Command c = Parser.parse(fullCommand);
-            //                c.execute(tasks, ui, storage);
+            Command parsedCommand = parser.parseUserCommand(input);
+            String output = parsedCommand.execute();
+            return output + "\n";
         } catch (CustomMessageException e) {
             return e.getMessage();
         }

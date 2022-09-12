@@ -12,6 +12,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import duke.command.CommandType;
 import duke.task.Event;
 
 class TaskListTest {
@@ -36,7 +37,7 @@ class TaskListTest {
     void addEventTask() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse("2023-12-31 23:59", formatter);
-        Event newTask = new Event("event project meeting ".substring(5).strip(), Command.EVENT, dateTime);
+        Event newTask = new Event("event project meeting ".substring(5).strip(), CommandType.EVENT, dateTime);
         taskList.addToTaskList(newTask);
     }
 
