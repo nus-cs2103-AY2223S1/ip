@@ -30,7 +30,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             fxmlLoader.<Window>getController().initialise(duke);
             NotificationPane np = new NotificationPane(ap);
-//            System.out.println(notificationPane);
+
             Scene scene = new Scene(np);
             scene.getStylesheets().add(getClass().getResource("/view/TaskCategoryPane.css").toExternalForm());
             stage.setScene(scene);

@@ -47,11 +47,11 @@
 }
 
 .selectedFill {
-    -fx-background-color: #006ee6;
+    -fx-background-color: #5ba8fc;
 }
 
 .selectedFill:hover {
-    -fx-background-color: #006ee6;
+    -fx-background-color:#308df2;
 }
 
 /* Scene background */

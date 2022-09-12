@@ -53,9 +53,8 @@ public class TaskDescriptionPane extends AnchorPane {
         }
 
         HashMap<String, String> infoPair = currentTask.getInfoPair();
-//        System.out.println(infoPair);
+
         for (String key : infoPair.keySet()) {
-            System.out.println(key + ": " + infoPair.get(key));
             vBox.getChildren().add(
                     new TaskLabel(key + ": " + infoPair.get(key))
             );

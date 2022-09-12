@@ -75,18 +75,20 @@ public class TaskListPane extends ScrollPane {
         }
     }
 
-    void selectTaskFromParent(Task t) {
-        if (t == null) {
-            return;
-        }
-
+    void deSelectTaskFromParent(){
         if (selectedTask != null) {
             Label prevTaskLabel = this.taskToLabelMap.get(this.selectedTask);
             ObservableList<String> styles = prevTaskLabel.getStyleClass();
             styles.remove(styles.size() - 1);
         }
-        this.selectedTask = t;
-
+        selectedTask = null;
+    }
+    void selectTaskFromParent(Task t) {
+        deSelectTaskFromParent();
+        if (t == null) {
+            return;
+        }
         this.taskToLabelMap.get(t).getStyleClass().add("selectedFill");
+        this.selectedTask = t;
     }
 }
