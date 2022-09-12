@@ -13,7 +13,6 @@ public class Parser {
 
     int count = 0;
     TaskList tasks = new TaskList();
-    boolean terminator = false;
     boolean checker = false;
     Ui ui = new Ui();
 
