@@ -25,7 +25,7 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public String getMoreInfo() {
+    public String getDescription() {
         return this.description;
     }
 

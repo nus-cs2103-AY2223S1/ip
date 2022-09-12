@@ -16,6 +16,7 @@ public class ByeCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        ui.showGoodbye();
         try {
             storage.savesFile(tasks);
         } catch (SallyException e) {
