@@ -24,7 +24,7 @@ public class Duke {
     private final Storage storage;
     private final Ui ui;
     private final Parser parser;
-    private TaskList tasks;
+    private final TaskList tasks;
 
     /**
      * Creates a Duke object.
@@ -54,6 +54,7 @@ public class Duke {
         parser.checkValidArgLength(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
+            assert taskIndex > 0 && taskIndex <= tasks.getSize(): "taskIndex out of range";
             Task markedTask = tasks.getTask(taskIndex);
             markedTask.markAsDone();
             storage.saveToDisk(tasks.getTaskList());
@@ -67,6 +68,7 @@ public class Duke {
         parser.checkValidArgLength(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
+            assert taskIndex > 0 && taskIndex <= tasks.getSize(): "taskIndex out of range";
             Task unmarkedTask = tasks.getTask(taskIndex);
             unmarkedTask.unmarkAsNotDone();
             storage.saveToDisk(tasks.getTaskList());
@@ -128,6 +130,7 @@ public class Duke {
         parser.checkValidArgLength(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
+            assert taskIndex > 0 && taskIndex <= tasks.getSize(): "taskIndex out of range";
             Task deletedTask = tasks.deleteTask(taskIndex);
             storage.saveToDisk(tasks.getTaskList());
             return ui.printTaskDeleted(deletedTask, tasks.getSize());
