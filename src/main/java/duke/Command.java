@@ -32,25 +32,25 @@ public enum Command {
      * @param args Command arguments.
      * @param duke Duke bot executing the command.
      */
-    public void run(String args, Duke duke) {
-        UI ui = duke.getUI();
+    public String run(String args, Duke duke) {
         TaskList taskList = duke.getTaskList();
         Storage storage = duke.getStorage();
-
-        if (!isCorrectUsage(args, duke)) {
-            return;
+        String errorMessage = getUsageError(args, duke);
+        if (!errorMessage.isEmpty()) {
+            return errorMessage;
         }
+
         switch(name) {
         case "delete":
             int index = Integer.parseInt(args) - 1;
             Task t = taskList.deleteTask(index);
-            ui.printTaskDeleted(t, taskList.getCount());
             try {
                 storage.rewriteFile(taskList.getTasks());
             } catch (IOException e) {
-                ui.printError("Unable to write to file.");
+                return "Unable to write to file.";
             }
-            break;
+            return "Noted. I've removed this task:\n" + "  " + t
+                    + "\nNow you have " + taskList.getCount() + " tasks in the list.";
 
         case "find":
             if (args.charAt(0) == '"' && args.charAt(args.length() - 1) == '"') {
@@ -58,52 +58,50 @@ public enum Command {
             }
             ArrayList<Task> matchingTasks = taskList.getMatchingTasks(args);
             if (matchingTasks.isEmpty()) {
-                ui.print("No results found for keyword '" + args + "'");
+                return "No results found for keyword '" + args + "'";
             } else {
-                ui.printTasks(matchingTasks, "Here are the matching tasks in your list:");
+                return "Here are the matching tasks in your list:\n" + listTasks(matchingTasks);
             }
-            break;
 
         case "list":
-            ui.printTasks(duke.getTaskList().getTasks(), "Here are the tasks in your list:");
-            break;
+            return "Here are the tasks in your list:\n" + listTasks(taskList.getTasks());
 
         case "deadline":
             String[] temp = args.split(" /by ", 2);
             t = new Deadline(temp[0], LocalDate.parse(temp[1],
                     DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)));
             taskList.addTask(t);
-            ui.printTaskAdded(t, taskList.getCount());
             try {
                 storage.appendTaskToFile(t);
             } catch (IOException e) {
-                ui.printError("Unable to write to file.");
+                return "Unable to write to file.";
             }
-            break;
+            return "Got it. I've added this task:\n" + "  " + t + "\nNow you have "
+                    + taskList.getCount() + " tasks in the list.";
 
         case "event":
             temp = args.split(" /at ", 2);
             t = new Event(temp[0], LocalDate.parse(temp[1],
                     DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)));
             taskList.addTask(t);
-            ui.printTaskAdded(t, taskList.getCount());
             try {
                 storage.appendTaskToFile(t);
             } catch (IOException e) {
-                ui.printError("Unable to write to file.");
+                return "Unable to write to file.";
             }
-            break;
+            return "Got it. I've added this task:\n" + "  " + t + "\nNow you have "
+                    + taskList.getCount() + " tasks in the list.";
 
         case "todo":
             t = new ToDo(args);
             taskList.addTask(t);
-            ui.printTaskAdded(t, taskList.getCount());
             try {
                 storage.appendTaskToFile(t);
             } catch (IOException e) {
-                ui.printError("Unable to write to file.");
+                return "Unable to write to file.";
             }
-            break;
+            return "Got it. I've added this task:\n" + "  " + t + "\nNow you have "
+                    + taskList.getCount() + " tasks in the list.";
 
         case "mark":
             // Fallthrough
@@ -113,16 +111,22 @@ public enum Command {
             t = taskList.getTasks().get(index);
             boolean b = name.equals("mark");
             taskList.markTask(t, b);
-            ui.printTaskMarked(t, b);
             try {
                 storage.rewriteFile(taskList.getTasks());
             } catch (IOException e) {
-                ui.printError("Unable to write to file.");
+                return "Unable to write to file.";
             }
-            break;
+
+            if (b) {
+                return "Nice! I've marked this task as done: \n"
+                        + "  " + t;
+            } else {
+                return "OK, I've marked this task as not done: \n"
+                        + "  " + t;
+            }
 
         default:
-            break;
+            return "";
         }
     }
 
@@ -135,98 +139,92 @@ public enum Command {
         }
     }
 
-    private boolean isCorrectUsage(String args, Duke duke) {
-        UI ui = duke.getUI();
+    private String listTasks(ArrayList<Task> tasks) {
+        String ret = "";
+        for (int i = 0; i < tasks.size(); ++i) {
+            ret += (i + 1) + ". " + tasks.get(i).toString() + "\n";
+        }
+        return ret;
+    }
+
+    private String getUsageError(String args, Duke duke) {
         TaskList taskList = duke.getTaskList();
         String usage = getCorrectUsage();
         switch(name) {
         case "delete":
             if (args.isEmpty()) {
-                ui.printError("Please specify a task number.\n\n" + usage);
-                return false;
+                return "Please specify a task number.\n\n" + usage;
             }
-            return true;
+            return "";
 
         case "find":
             if (args.isBlank()) {
-                ui.printError("Please specify at least one keyword.\n\n" + usage);
-                return false;
+                return "Please specify at least one keyword.\n\n" + usage;
             } else if (args.charAt(0) != '"' || args.charAt(args.length() - 1) != '"') {
                 if (args.split(" ").length > 1) {
-                    ui.printError("'find' only expects 1 argument.\n\n If there are multiple "
-                            + "keywords, please enclose them in quotation marks (\"\").");
-                    return false;
+                    return "'find' only expects 1 argument.\n\n If there are multiple "
+                            + "keywords, please enclose them in quotation marks (\"\").";
                 }
             } else {
                 if (args.length() == 2 || args.substring(1, args.length() - 1).isBlank()) {
-                    ui.printError("Please specify at least one keyword.\n\n" + usage);
-                    return false;
+                    return "Please specify at least one keyword.\n\n" + usage;
                 }
             }
-            return true;
+            return "";
 
         case "list":
             if (!args.isEmpty()) {
-                ui.printError("'list' expects no arguments.");
-                return false;
+                return "'list' expects no arguments.";
             }
-            return true;
+            return "";
 
         case "deadline":
             String[] temp = args.split(" /by ", 2);
             if (temp.length < 2) {
-                ui.printError("Please specify a task and deadline.\n\n" + usage);
-                return false;
+                return "Please specify a task and deadline.\n\n" + usage;
             } else if (!isValidDate(temp[1])) {
-                ui.printError("Please specify the due date in the right format.\n\n" + usage);
-                return false;
+                return "Please specify the due date in the right format.\n\n" + usage;
             }
-            return true;
+            return "";
 
         case "event":
             temp = args.split(" /at ", 2);
             if (temp.length < 2) {
-                ui.printError("Please specify an event and date.\n\n" + usage);
-                return false;
+                return "Please specify an event and date.\n\n" + usage;
             } else if (!isValidDate(temp[1])) {
-                ui.printError("Please specify the event date in the right format.\n\n" + usage);
-                return false;
+                return "Please specify the event date in the right format.\n\n" + usage;
             }
-            return true;
+            return "";
 
         case "todo":
             if (args.isEmpty()) {
-                ui.printError("Please specify a task.\n\n" + usage);
-                return false;
+                return "Please specify a task.\n\n" + usage;
             }
-            return true;
+            return "";
 
         case "mark":
             // Fallthrough
 
         case "unmark":
             if (args.isEmpty()) {
-                ui.printError("Please specify a task number\n\n" + usage);
-                return false;
+                return "Please specify a task number\n\n" + usage;
             } else {
                 try {
                     int index = Integer.parseInt(args) - 1;
                     if (index < 0 || index >= taskList.getCount()) {
-                        ui.printError("Please specify a valid task number.\n"
+                        return "Please specify a valid task number.\n"
                                 + "There are " + taskList.getCount()
-                                + " task(s) in the list.\n\n" + usage);
-                        return false;
+                                + " task(s) in the list.\n\n" + usage;
                     }
-                    return true;
                 } catch (NumberFormatException e) {
-                    ui.printError("Please specify a task number.\n\n"
-                            + "\"" + args + "\"" + " is not an item number\n" + usage);
-                    return false;
+                    return "Please specify a task number.\n\n"
+                            + "\"" + args + "\"" + " is not an item number\n" + usage;
                 }
             }
+            return "";
 
         default:
-            return false;
+            return "";
         }
     }
 

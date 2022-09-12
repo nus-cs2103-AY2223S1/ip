@@ -31,9 +31,7 @@ public class Parser {
      *
      * @param duke Duke bot running the command.
      */
-    public void runCommand(Duke duke) {
-        if (command != null) {
-            command.run(args, duke);
-        }
+    public String runCommand(Duke duke) {
+        return command.run(args, duke);
     }
 }

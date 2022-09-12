@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
  * A Duke bot.
  */
 public class Duke {
-    private UI ui;
+    private Parser parser;
     private Storage storage;
     private TaskList taskList;
 
@@ -14,12 +14,13 @@ public class Duke {
      * Constructor for the Duke class.
      */
     public Duke() {
-        ui = new UI();
+        parser = new Parser();
         storage = new Storage("data/nuke.txt");
-    }
-
-    public UI getUI() {
-        return ui;
+        try {
+            taskList = new TaskList(storage.load());
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to load storage");
+        }
     }
 
     public TaskList getTaskList() {
@@ -31,7 +32,16 @@ public class Duke {
     }
 
     protected String getResponse(String input) {
-        return "Duke heard: " + input;
+        if (parser.parse(input)) {
+            return parser.runCommand(this);
+        } else {
+            if (input.equals("bye")) {
+                return "Bye. Hope to see you again soon!";
+            } else {
+                return "Please enter a valid command:\n\n" + "mark\n"
+                        + "unmark\n" + "list\n" + "todo\n" + "deadline\n" + "event";
+            }
+        }
     }
 
     /**
@@ -43,8 +53,6 @@ public class Duke {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to load storage");
         }
-
-        ui.run(this);
     }
 
     public static void main(String[] args) {
