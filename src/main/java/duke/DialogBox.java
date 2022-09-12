@@ -19,31 +19,35 @@ public class DialogBox extends HBox {
 
     private Label text;
     private ImageView displayPicture;
+    private static int IMAGE_FIT_WIDTH_HEIGHT = 60;
+    private static int TEXT_MAX_WIDTH = 225;
+    private static int TEXT_PADDING_TOP_BOTTOM = 10;
+    private static int TEXT_PADDING_LEFT_RIGHT = 7;
+    private static String FONT_STYLE = "Lucida Sans Unicode";
+    private static int FONT_SIZE = 10;
+    private static int CLIP_ARC_WIDTH_HEIGHT = 30;
+    private static int DIALOG_BOX_CORNER_RADII = 12;
 
     public DialogBox(Label l, ImageView iv) {
         text = l;
         displayPicture = iv;
 
-        displayPicture.setFitWidth(60.0);
-        displayPicture.setFitHeight(60.0);
+        displayPicture.setFitWidth(IMAGE_FIT_WIDTH_HEIGHT);
+        displayPicture.setFitHeight(IMAGE_FIT_WIDTH_HEIGHT);
 
         //Use a rectangle to clip the Images
-        Rectangle clip = new Rectangle(
-                displayPicture.getFitWidth(),
-                displayPicture.getFitHeight()
-        );
-        clip.setArcWidth(30);
-        clip.setArcHeight(30);
+        Rectangle clip = clipForDisplayPicture(displayPicture);
         displayPicture.setClip(clip);
 
 
         text.setWrapText(true);
         //So text doesn't overflow into User/ Duke icon area
-        text.setMaxWidth(225);
+        text.setMaxWidth(TEXT_MAX_WIDTH);
         // Padding within label
-        text.setPadding(new Insets(10,7,10,7));
+        text.setPadding(new Insets(TEXT_PADDING_TOP_BOTTOM,TEXT_PADDING_LEFT_RIGHT,
+                TEXT_PADDING_TOP_BOTTOM,TEXT_PADDING_LEFT_RIGHT));
         //Modify font
-        text.setFont(Font.font("Lucida Sans Unicode", 10));
+        text.setFont(Font.font(FONT_STYLE, FONT_SIZE));
 
 
         this.setAlignment(Pos.TOP_RIGHT);
@@ -51,6 +55,16 @@ public class DialogBox extends HBox {
 
         //Space between image and text
         this.setSpacing(7);
+    }
+
+    private Rectangle clipForDisplayPicture(ImageView displayPicture) {
+        Rectangle clip = new Rectangle(
+                displayPicture.getFitWidth(),
+                displayPicture.getFitHeight()
+        );
+        clip.setArcWidth(CLIP_ARC_WIDTH_HEIGHT);
+        clip.setArcHeight(CLIP_ARC_WIDTH_HEIGHT);
+        return clip;
     }
 
     /**
@@ -69,7 +83,7 @@ public class DialogBox extends HBox {
         //Background colour for the text
         l.setBackground(new Background(
                             new BackgroundFill(Color.color(0.3254, 0.3529, 0.996),
-                            new CornerRadii(12,12,12,12,false),
+                            new CornerRadii(DIALOG_BOX_CORNER_RADII,DIALOG_BOX_CORNER_RADII,DIALOG_BOX_CORNER_RADII,DIALOG_BOX_CORNER_RADII,false),
                             new Insets(0))
                         )
         );
@@ -80,13 +94,12 @@ public class DialogBox extends HBox {
         //Background colour for the text
         l.setBackground(new Background(
                             new BackgroundFill(Color.color(0.996, 0.5882, 0.902),
-                            new CornerRadii(12,12,12,12,false),
+                            new CornerRadii(DIALOG_BOX_CORNER_RADII,DIALOG_BOX_CORNER_RADII,DIALOG_BOX_CORNER_RADII,DIALOG_BOX_CORNER_RADII,false),
                             new Insets(0))
                         )
         );
         var db = new DialogBox(l, iv);
         db.flip();
-
         return db;
     }
 }
