@@ -9,10 +9,18 @@ import java.time.format.DateTimeParseException;
 public class Parser {
     private static boolean isExit = false;
 
+    /**
+     * Gets whether program should exit
+     *
+     * @return boolean of whether program should exit
+     */
     public static boolean getIsExit() {
         return isExit;
     }
 
+    /**
+     * Enables program to exit
+     */
     public static void setIsExit() {
         isExit = true;
     }
@@ -40,6 +48,10 @@ public class Parser {
             break;
 
         case "LIST":
+            if (listOfTasks.getSize() == 0) {
+                reply = ui.showError("No tasks.");
+                break;
+            }
             reply = ui.showTaskList(listOfTasks);
             break;
 
@@ -152,7 +164,7 @@ public class Parser {
 
         case "UNDO":
             if (undo.isCommandStackEmpty()) {
-                reply = ui.showError("There are no previous commands.");
+                reply = ui.showError("No previous commands.");
                 break;
             }
             String lastCommand = undo.popLastCommand();
