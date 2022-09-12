@@ -1,6 +1,6 @@
 # User Guide of Neko Neko
 
-![alt text](https://github.com/yixiann/ip/blob/master/docs/ui.png)
+![Unfortunately the image of the Neko Neko application failed to load :(](https://github.com/yixiann/ip/blob/master/docs/ui.png)
 
 ## About
 
@@ -18,7 +18,7 @@ It has the added benefit of relieving your stress as you look at the cute cat, N
 ### Check and Uncheck tasks
 
 - Mark a task as either done or undone.
-- [X] indicated done while [ ] indicated undone.
+- [ X ] indicated done while [  ] indicated undone.
 
 ### Find tasks
 
