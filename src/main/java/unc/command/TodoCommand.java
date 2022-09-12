@@ -18,6 +18,7 @@ public class TodoCommand extends Command {
      * @param input Description part of input following "todo".
      */
     public TodoCommand(String input) {
+        assert input != null : "A todo task shouldn't be created with null description.";
         this.description = input;
     }
 
