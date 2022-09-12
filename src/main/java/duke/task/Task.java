@@ -119,6 +119,7 @@ public class Task {
         return !description.isEmpty();
     }
 
+    // Stringify adapted from https://github.com/dexter-sim/ip/blob/master/src/main/java/duke/task/Task.java
     /**
      * Stringify task for storage.
      *
