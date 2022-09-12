@@ -22,7 +22,8 @@ import dobby.commands.UnmarkCommand;
 public class Parser {
     private static final String DESC_AND_DATE_SEPERATOR = "/";
     private static final String TASKTYPE_AND_REST_SEPERATOR = " ";
-    private static final String NO_DATE_FOUND = "noDate";
+    private static final String NO_DATE = "noDate";
+    private static final String NO_DESCRIPTION = "noDescription";
     private static final String WRONG_DATE_FORMAT = "wrongDateFormat";
     private static final char TASK_MARKED_SYMBOL = 'X';
     private static final String USERFILE_DESC_DATE_SEPERATOR = "|";
@@ -41,7 +42,7 @@ public class Parser {
             int endIndex = rest.indexOf(DESC_AND_DATE_SEPERATOR) - 1;
             return rest.substring(0, endIndex);
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
-            return NO_DATE_FOUND;
+            return NO_DESCRIPTION;
         }
     }
 
@@ -57,7 +58,7 @@ public class Parser {
             assert rest != null : "string input cannot be null!";
             int i = rest.indexOf(DESC_AND_DATE_SEPERATOR);
             if (i == -1) {
-                dateFormatted = NO_DATE_FOUND;
+                dateFormatted = NO_DATE;
             } else {
                 String dateString = rest.substring(i + 4);
                 dateFormatted = dateFormat(dateString, INPUT_DATE_FORMAT, OUTPUT_DATE_FORMAT);
@@ -105,12 +106,12 @@ public class Parser {
             assert rest != null : "string input cannot be null!";
             int i = rest.indexOf(DESC_AND_DATE_SEPERATOR);
             if (i == -1) {
-                return NO_DATE_FOUND;
+                return NO_DATE;
             } else {
                 return rest.substring(i + 1, i + 3);
             }
         } catch (StringIndexOutOfBoundsException e) {
-            return NO_DATE_FOUND;
+            return NO_DATE;
         }
     }
 

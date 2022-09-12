@@ -37,7 +37,7 @@ Users can customize their own preferred command for each function.
 
 Tasks can be listed out, both done and not-done for the user to refer to. The status of tasks will be shown as well.
 
-###                                                                                           
+###                                                                                                 
 
 ## Usage
 
@@ -64,7 +64,7 @@ Yes master, Dobby will add the following task to the list:
 Master has 1 task(s) left.
 ```
 
-###
+###    
 
 ### `Deadline` - Add a deadline
 
@@ -90,7 +90,7 @@ Yes master, Dobby will add the following task to the list:
 Master has 1 task(s) left.
 ```
 
-###
+###    
 
 ### `Event` - Add an event
 
@@ -116,7 +116,7 @@ Yes master, Dobby will add the following task to the list:
 Master has 1 task(s) left.
 ```
 
-###
+###    
 
 ### `list` - Lists all tasks
 
@@ -136,7 +136,7 @@ Expected outcome:
     3. [E][ ] TestEvent (by: Feb 02 2022 02:02)
 ```
 
-###
+###    
 
 ### `mark` - Mark a task as done
 
@@ -164,7 +164,7 @@ Expected outcome for tasks that were marked as done:
 Dobby has already marked this task done!
 ```
 
-###
+###    
 
 ### `unmark` - Mark a task as not done
 
@@ -192,7 +192,7 @@ Expected outcome for tasks that were not marked as done:
 Master has never marked this task done before...
 ```
 
-###
+###    
 
 ### `delete` - Delete a task
 
@@ -217,7 +217,7 @@ Dobby has removed this task:
 Master has only 1 task(s) left.
 ```
 
-###
+###   
 
 ### `find` - Find tasks by keyword
 
@@ -240,7 +240,7 @@ Dobby has found the following relevant tasks:
         2.[T][ ] find dobby's sock
 ```
 
-###
+###   
 
 ### `simplify` - Customizes commands for a function
 
@@ -260,7 +260,7 @@ Expected outcome:
 Yes master, from now on dobby will do [todo] when dobby sees [dobbyTodo].
 ```
 
-###
+###   
 
 ### `bye` - Exit the program
 
@@ -273,5 +273,3 @@ Expected outcome:
 ```
 Byebye. Dobby will miss you!
 ```
-
-###

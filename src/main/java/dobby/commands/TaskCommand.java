@@ -21,6 +21,7 @@ public class TaskCommand extends Command {
     private static final String COMMAND_EVENT = "event";
     private static final String WRONG_DATE_FORMAT = "wrongDateFormat";
     private static final String NO_DATE = "noDate";
+    private static final String NO_DESCRIPTION = "noDescription";
     private static final String WRONG_DATETYPE_DEADLINE = "wrongDeadline";
     private static final String WRONG_DATETYPE_EVENT = "wrongEvent";
 
@@ -56,13 +57,15 @@ public class TaskCommand extends Command {
                     } else if (date.equals(WRONG_DATETYPE_EVENT)) {
                         DobbyChat.noEventDate();
                         //if user didn't include the date
-                    } else if (date.equals(NO_DATE) | desc.equals(NO_DATE)) {
+                    } else if (date.equals(NO_DATE)) {
                         if (cmd.equals(COMMAND_EVENT)) {
                             DobbyChat.noEventDate();
                         } else {
                             DobbyChat.noDeadlineDate();
                         }
                         //user entered everything correctly
+                    } else if (desc.equals(NO_DESCRIPTION)) {
+                        DobbyChat.noTaskDesc();
                     } else {
                         if (cmd.equals(COMMAND_DEADLINE)) {
                             Deadline newDeadline = new Deadline(desc, date);
