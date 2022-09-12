@@ -34,6 +34,7 @@ public class Main extends Application {
             Scene scene = new Scene(np);
             scene.getStylesheets().add(getClass().getResource("/view/TaskCategoryPane.css").toExternalForm());
             stage.setScene(scene);
+            stage.setTitle("Duke Task Manager");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

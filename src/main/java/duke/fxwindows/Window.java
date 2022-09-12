@@ -73,6 +73,7 @@ public class Window extends AnchorPane {
 
     void selectTask(Task t) {
         this.taskDescriptionPane.displayTask(t);
+        this.taskListPane.selectTaskFromParent(t);
     }
 
     void updateTaskList(TaskList tList) {

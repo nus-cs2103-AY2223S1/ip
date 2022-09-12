@@ -2,22 +2,23 @@ package duke.fxwindows;
 
 import duke.TaskList;
 import duke.tasks.Task;
-import javafx.event.EventHandler;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.HashMap;
 
 public class TaskListPane extends ScrollPane {
 
+    private Task selectedTask;
     private TaskList tasks;
+    private HashMap<Task, Label> taskToLabelMap;
+
     private Window parent;
 
     @FXML
@@ -50,10 +51,13 @@ public class TaskListPane extends ScrollPane {
 
      void refresh() {
         this.vBox.getChildren().clear();
+        this.taskToLabelMap = new HashMap<>();
         for (int i = 0; i < this.tasks.size(); i ++) {
             Task t = this.tasks.get(i);
-
             Label l = new TaskCategoryLabel((i+1) + ". " + t.toString());
+
+            this.taskToLabelMap.put(t, l);
+
             l.setOnMouseClicked((MouseEvent event) -> {
                 parent.selectTask(t);
             });
@@ -69,5 +73,20 @@ public class TaskListPane extends ScrollPane {
             // CSS Classes
             this.getStyleClass().add("hoverableLabel");
         }
+    }
+
+    void selectTaskFromParent(Task t) {
+        if (t == null) {
+            return;
+        }
+
+        if (selectedTask != null) {
+            Label prevTaskLabel = this.taskToLabelMap.get(this.selectedTask);
+            ObservableList<String> styles = prevTaskLabel.getStyleClass();
+            styles.remove(styles.size() - 1);
+        }
+        this.selectedTask = t;
+
+        this.taskToLabelMap.get(t).getStyleClass().add("selectedFill");
     }
 }

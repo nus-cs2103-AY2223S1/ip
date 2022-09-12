@@ -49,6 +49,11 @@
 .selectedFill {
     -fx-background-color: #006ee6;
 }
+
+.selectedFill:hover {
+    -fx-background-color: #006ee6;
+}
+
 /* Scene background */
 .root {
     -fx-background-color: white;
