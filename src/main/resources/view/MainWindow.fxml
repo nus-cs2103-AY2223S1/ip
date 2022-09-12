@@ -7,11 +7,13 @@
 <?import javafx.scene.layout.VBox?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/18"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="Duke.ui.GuiUi">
-    <TextField fx:id="userInput" layoutX="6.0" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0"
-               prefWidth="281.0"/>
-    <Button fx:id="sendButton" layoutX="295.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput"
-            prefHeight="41.0" prefWidth="97.0" text="Send"/>
-    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0">
-        <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0"/>
+    <TextField fx:id="userInput" layoutX="6.0" layoutY="561.0" onAction="#handleUserInput" prefHeight="34.0"
+               prefWidth="281.0" style="-fx-background-color: #ccbbcc; -fx-background-radius: 10;"/>
+    <Button fx:id="sendButton" layoutX="294.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleUserInput"
+            prefHeight="34.0" prefWidth="93.0" style="-fx-background-color: #ccbbcc; -fx-background-radius: 10;"
+            text="Send"/>
+    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="394.0" vvalue="1.0">
+        <VBox fx:id="dialogContainer" opacity="0.9" prefHeight="552.0" prefWidth="375.0"
+              style="-fx-background-image: url('images/bg.jpg'); -fx-background-size: cover;"/>
     </ScrollPane>
 </AnchorPane>
