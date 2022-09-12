@@ -21,11 +21,11 @@ public abstract class CommandAddTaskHandler extends CommandHandler {
     protected abstract String getInvalidFormatMessage();
 
     /**
-     * Add a task to the task list
+     * Adds a task to the task list.
      *
-     * @param taskList task list
-     * @return add task response
-     * @throws CommandException if there are errors when creating a task
+     * @param taskList task list.
+     * @return add task response.
+     * @throws CommandException if there are errors when creating a task.
      */
     @Override
     public CommandResponse run(TaskList taskList) throws CommandException {

@@ -19,10 +19,10 @@ public class CommandTodoHandler extends CommandAddTaskHandler {
     private static final Pattern commandRegexPattern = Pattern.compile("^todo (.+)");
 
     /**
-     * Constructor for CommandTodoHandler
+     * Constructor for CommandTodoHandler.
      *
-     * @param commandStr input command string
-     * @throws CommandException if input command string does not meet format specifications
+     * @param commandStr input command string.
+     * @throws CommandException if input command string does not meet format specifications.
      */
     public CommandTodoHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);

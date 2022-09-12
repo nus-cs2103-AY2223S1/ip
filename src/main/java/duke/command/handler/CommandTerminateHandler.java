@@ -25,10 +25,10 @@ public class CommandTerminateHandler extends CommandHandler {
     }
 
     /**
-     * Returns a command response that terminates the program
+     * Returns a command response that terminates the program.
      *
-     * @param taskList task list
-     * @return command response with a termination flag
+     * @param taskList task list.
+     * @return command response with a termination flag.
      */
     @Override
     public CommandResponse run(TaskList taskList) {

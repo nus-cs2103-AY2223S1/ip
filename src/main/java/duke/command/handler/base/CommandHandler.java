@@ -25,11 +25,11 @@ public abstract class CommandHandler {
     protected final Matcher commandRegexMatcher;
 
     /**
-     * Constructor for class CommandHandler
+     * Constructor for class CommandHandler.
      *
-     * @param commandStr input command string
-     * @param commandRegexPattern regex pattern for command string validation
-     * @throws CommandException if the input command string fails validation check
+     * @param commandStr input command string.
+     * @param commandRegexPattern regex pattern for command string validation.
+     * @throws CommandException if the input command string fails validation check.
      */
     public CommandHandler(String commandStr, Pattern commandRegexPattern) throws CommandException {
         this.commandStr = commandStr;
@@ -41,11 +41,11 @@ public abstract class CommandHandler {
     }
 
     /**
-     * Parse a date-time string to LocalDateTime object
+     * Parses a date-time string to LocalDateTime object.
      *
-     * @param dateTimeStr date-time string
-     * @return the parsed local date-time
-     * @throws CommandException if date-time string cannot be parsed
+     * @param dateTimeStr date-time string.
+     * @return the parsed local date-time.
+     * @throws CommandException if date-time string cannot be parsed.
      */
     protected static LocalDateTime parseDateTime(String dateTimeStr) throws CommandException {
         try {
@@ -59,18 +59,18 @@ public abstract class CommandHandler {
     }
 
     /**
-     * Checks if the input command string is valid based on predefined regex
+     * Checks if the input command string is valid based on predefined regex.
      *
-     * @return true if given input command string to CommandHandler is valid else false
+     * @return true if given input command string to CommandHandler is valid else false.
      */
     private boolean isCommandValid() {
         return commandRegexMatcher.find();
     }
 
     /**
-     * Returns the error message for a command with invalid format
+     * Returns the error message for a command with invalid format.
      *
-     * @return invalid format error message
+     * @return invalid format error message.
      */
     protected abstract String getInvalidFormatMessage();
 

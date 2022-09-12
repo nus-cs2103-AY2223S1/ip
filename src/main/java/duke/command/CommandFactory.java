@@ -14,11 +14,11 @@ import duke.command.handler.base.CommandHandler;
 public class CommandFactory {
 
     /**
-     * Parse command given by user to a predefined command enum
+     * Parses command given by user to a predefined command enum.
      *
-     * @param commandStr input command string
-     * @return enum representing a supported command
-     * @throws CommandException if command is unknown/unsupported
+     * @param commandStr input command string.
+     * @return enum representing a supported command.
+     * @throws CommandException if command is unknown/unsupported.
      */
     public static Command parseCommand(String commandStr) throws CommandException {
         String commandToken = commandStr.split(" ")[0];
@@ -30,12 +30,12 @@ public class CommandFactory {
     }
 
     /**
-     * Returns a CommandHandler based on given command enum
+     * Returns a CommandHandler based on given command enum.
      *
-     * @param commandStr input command string
-     * @return command handler to execute input command string
+     * @param commandStr input command string.
+     * @return command handler to execute input command string.
      * @throws CommandException if input command string does not pass validation checks in a command
-     *                          handler
+     *                          handler.
      */
     public static CommandHandler getCommandHandler(String commandStr) throws CommandException {
         switch (parseCommand(commandStr)) {
