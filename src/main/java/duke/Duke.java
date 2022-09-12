@@ -26,7 +26,7 @@ public class Duke extends Application {
     private Button sendButton;
     private Scene scene;
 
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaEnlistee.png"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaEnlistee.jpg"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Ditto.png"));
 
     /**
