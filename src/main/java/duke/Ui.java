@@ -134,7 +134,7 @@ public class Ui {
             for (int i = 0; i < input.size(); i++) {
                 Task currTask = input.get(i);
                 if (!currTask.isDated()) {
-                    break;
+                    continue;
                 }
                 Dated datedTask = (Dated) currTask;
                 if (datedTask.isBetween(now, end)) {
@@ -143,7 +143,7 @@ public class Ui {
                 }
             }
             if (!hasValues) {
-                return "There are no tasks due between the next two weeks.\n";
+                return "There are no tasks due in the next two weeks.\n";
             }
             return returnVal;
         }
