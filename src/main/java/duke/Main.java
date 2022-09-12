@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * Main class to bridge existing logic in Duke and the UI,
  */
 public class Main extends Application {
-    private Duke duke = new Duke();
+    private DukePro duke = new DukePro();
 
     /**
      * start Method to launch and kickstart the stage for GUI.
@@ -28,7 +28,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
-            stage.setTitle("DukePro_v2.0");
+            stage.setTitle("DukePro_v3.0");
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();

@@ -13,7 +13,7 @@ import duke.command.Command;
 /**
  * class Duke that runs chat bot Duke.
  */
-public class Duke {
+public class DukePro {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -21,7 +21,7 @@ public class Duke {
     /**
      * public constructor for Duke.
      */
-    public Duke() {
+    public DukePro() {
         this.ui = new Ui();
         this.storage = new Storage(System.getProperty("user.home") + "/data/duke.txt");
         this.tasks = new TaskList(storage.loadFromFile());

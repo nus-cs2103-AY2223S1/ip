@@ -25,7 +25,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Duke duke;
+    private DukePro duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
@@ -38,7 +38,7 @@ public class MainWindow extends AnchorPane {
         );
     }
 
-    public void setDuke(Duke d) {
+    public void setDuke(DukePro d) {
         duke = d;
     }
 
