@@ -25,8 +25,8 @@ import duke.exceptions.ParseException;
  */
 public class Parser {
 
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "You don't seem to be using that wish correctly.";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Im sorry I don't understand your wish! You can use the wish 'help' for help.";
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
             "(?<commandWord>\\S+)(?<arguments>.*)");
     private final Set<String> availableCommands;

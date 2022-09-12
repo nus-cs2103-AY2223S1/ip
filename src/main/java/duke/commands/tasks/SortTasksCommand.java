@@ -28,7 +28,7 @@ public class SortTasksCommand extends BaseTaskCommand {
         taskList.sortTaskList(direction);
         successMessage = String.format(
                 "%s%s", successMessage, taskList.outputTasksString());
-        return new CommandResult(super.formatOutputString(successMessage));
+        return new CommandResult(successMessage);
     }
 
 }

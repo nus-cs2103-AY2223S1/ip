@@ -24,7 +24,7 @@ public class AddTodoCommand extends BaseTaskCommand {
     public CommandResult execute() {
         this.taskList.addTask(todo);
         successMessage = String.format("%s%s%s", successMessage, "\n", todo);
-        return new CommandResult(super.formatOutputString(successMessage));
+        return new CommandResult(successMessage);
     }
 
 }

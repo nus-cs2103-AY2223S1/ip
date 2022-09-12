@@ -38,9 +38,9 @@ public class DeleteTaskCommand extends BaseTaskCommand {
         } catch (TaskNotFoundException e) {
             errorMessage = String.format(
                     "%s%s", errorMessage, e.getMessage());
-            return new CommandResult(super.formatOutputString(errorMessage));
+            return new CommandResult(errorMessage);
         }
 
-        return new CommandResult(super.formatOutputString(successMessage));
+        return new CommandResult(successMessage);
     }
 }

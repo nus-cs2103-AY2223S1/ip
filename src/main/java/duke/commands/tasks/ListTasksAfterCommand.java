@@ -35,7 +35,7 @@ public class ListTasksAfterCommand extends ListTasksCommand {
                 "%s%s",
                 successMessage,
                 taskList.outputTasksAfterString(this.dateTime));
-        return new CommandResult(super.formatOutputString(successMessage));
+        return new CommandResult(successMessage);
     }
 
 }

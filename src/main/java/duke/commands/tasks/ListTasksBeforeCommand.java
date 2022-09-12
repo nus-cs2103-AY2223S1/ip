@@ -34,6 +34,6 @@ public class ListTasksBeforeCommand extends ListTasksCommand {
                 "%s%s",
                 successMessage,
                 taskList.outputTasksBeforeString(this.dateTime));
-        return new CommandResult(super.formatOutputString(successMessage));
+        return new CommandResult(successMessage);
     }
 }

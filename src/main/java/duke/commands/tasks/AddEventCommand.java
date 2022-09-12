@@ -25,7 +25,7 @@ public class AddEventCommand extends BaseTaskCommand {
     public CommandResult execute() {
         this.taskList.addTask(event);
         successMessage = String.format("%s%s%s", successMessage, "\n", event);
-        return new CommandResult(super.formatOutputString(successMessage));
+        return new CommandResult(successMessage);
     }
 
 }

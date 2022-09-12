@@ -13,6 +13,6 @@ public class ListTasksCommand extends BaseTaskCommand {
     public CommandResult execute() {
         successMessage = String.format(
                 "%s%s", successMessage, taskList.outputTasksString());
-        return new CommandResult(super.formatOutputString(successMessage));
+        return new CommandResult(successMessage);
     }
 }

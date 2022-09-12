@@ -25,7 +25,7 @@ public class AddDeadlineCommand extends BaseTaskCommand {
     public CommandResult execute() {
         this.taskList.addTask(deadline);
         successMessage = String.format("%s%s%s", successMessage, "\n", deadline);
-        return new CommandResult(super.formatOutputString(successMessage));
+        return new CommandResult(successMessage);
     }
 
 }

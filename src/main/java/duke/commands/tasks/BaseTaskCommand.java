@@ -12,23 +12,6 @@ public abstract class BaseTaskCommand implements BaseCommand {
     protected TaskList taskList;
 
     /**
-     * Returns the input string formatted with borders.
-     *
-     * @param text
-     *            Text to be formatted
-     * @return Formatted text
-     */
-    public String formatOutputString(String text) {
-        assert Objects.nonNull(text);
-        String borderMessage = "______________________";
-        return String.format(
-                "\n%s\n%s\n%s\n",
-                borderMessage,
-                text,
-                borderMessage);
-    }
-
-    /**
      * @param taskList
      *            Task List to be set
      */

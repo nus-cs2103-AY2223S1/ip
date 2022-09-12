@@ -41,6 +41,6 @@ public class FindTaskCommand extends BaseTaskCommand {
                 "%s%s",
                 successMessage,
                 taskList.searchTasks(this.searchTerm));
-        return new CommandResult(super.formatOutputString(successMessage));
+        return new CommandResult(successMessage);
     }
 }
