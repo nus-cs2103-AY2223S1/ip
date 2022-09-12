@@ -31,8 +31,7 @@ public class NekoResponses {
      * @return a string of the messages that serves as instructions of how to use Duke.
      */
     public String showHelp() {
-        return catchPhrase + " What can I do for you?\n" +
-                String.format("- %s \n", Command.HELP.getValue()) +
+        return catchPhrase + "What can I do for you?\n" +
                 String.format("- %s (task name) \n", Command.TODO.getValue()) +
                 String.format("- %s (task name) %s (date) \n",
                         Command.DEADLINE.getValue(), SecondaryCommand.BY.getValue()) +
@@ -43,6 +42,7 @@ public class NekoResponses {
                 String.format("- %s (index)\n", Command.CHECK.getValue()) +
                 String.format("- %s (index)\n", Command.UNCHECK.getValue()) +
                 String.format("- %s (index)\n", Command.DELETE.getValue()) +
+                String.format("- %s \n", Command.HELP.getValue()) +
                 String.format("- %s \n", Command.BYE.getValue()) +
                 "\nEXAMPLES: \n" +
                 String.format("%s \n", Command.HELP.getValue()) +
