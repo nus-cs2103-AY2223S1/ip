@@ -29,6 +29,7 @@ public class UnmarkHandler implements IHandler {
             Tasklist list = s.getList();
             int number = Integer.parseInt(this.taskIndex);
             Task item = list.get(number - 1);
+            s.saveTasks();
             item.setDone(false);
             return "OK, I've marked this task as not done yet:\n  " + item;
         } catch (NumberFormatException ex) {

@@ -4,7 +4,6 @@ import duke.entities.Task;
 import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
 import duke.service.Service;
-import duke.service.Ui;
 
 /** Handles the user action for marking a Task as done */
 public class MarkHandler implements IHandler {
@@ -32,6 +31,7 @@ public class MarkHandler implements IHandler {
                 throw new DukeException("Task not found! Please try again.");
             }
             Task item = list.get(number - 1);
+            s.saveTasks();
             item.setDone(true);
             return "Nice! I've marked this task as done:\n  " + item;
         } catch (NumberFormatException ex) {

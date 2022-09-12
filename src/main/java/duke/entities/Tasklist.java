@@ -7,7 +7,22 @@ import java.util.stream.Collectors;
 
 /** Tasklist entity. */
 public class Tasklist implements Iterable<Task> {
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks = new ArrayList<>();
+
+    /**
+     * Constructs a Tasklist with no tasks.
+     */
+    public Tasklist() {}
+
+    /**
+     * Constructs a Tasklist with given tasks.
+     *
+     * @param tasks
+     */
+    public Tasklist(ArrayList<Task> tasks) {
+        // TODO DEEP COPY TO UNDO MARK
+        this.tasks = new ArrayList<>(tasks);
+    }
 
     /**
      * Adds a new Task to the Tasklist.
@@ -16,6 +31,15 @@ public class Tasklist implements Iterable<Task> {
      */
     public void add(Task task) {
         this.tasks.add(task);
+    }
+
+    /**
+     * Returns a new copy of Tasklist.
+     *
+     * @return new instance of Tasklist with exact same tasks.
+     */
+    public Tasklist copy() {
+        return new Tasklist(this.tasks);
     }
 
     /**

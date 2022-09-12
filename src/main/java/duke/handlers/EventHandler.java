@@ -48,6 +48,7 @@ public class EventHandler implements IHandler {
         }
         try {
             Task event = new Event(this.eventName, this.flagOption);
+            s.saveTasks();
             s.addToList(event);
             int size = s.getList().size();
             assert size != 0;
