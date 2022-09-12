@@ -11,7 +11,9 @@ import java.time.format.DateTimeFormatter;
  */
 
 public class Event extends Task {
+
     private LocalDate time;
+    private boolean isOver;
 
     /**
      * Initializes Event Task object with the task description and event date.
@@ -23,6 +25,18 @@ public class Event extends Task {
     public Event(String name, LocalDate time) {
         super(name);
         this.time = time;
+        this.isOver = LocalDate.now().isAfter(time);
+    }
+
+    /**
+     * Returns true if the current date is after the event, false otherwise.
+     *
+     * @return true if the current date is after the event, false otherwise.
+     */
+
+    @Override
+    public boolean isOver() {
+        return isOver;
     }
 
     /**
@@ -44,7 +58,12 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: "
-                + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        if (isOver) {
+            return "[E]" + super.toString() + " (by: "
+                    + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " OVERDUE!)";
+        } else {
+            return "[E]" + super.toString() + " (by: "
+                    + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        }
     }
 }

@@ -1,5 +1,6 @@
 package task;
 
+import java.lang.annotation.Documented;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -11,7 +12,9 @@ import java.time.format.DateTimeFormatter;
  */
 
 public class Deadline extends Task {
-    private LocalDate time;
+
+    private final LocalDate time;
+    private final boolean isOver;
 
     /**
      * Initializes Deadline Task object with the task description and Deadline.
@@ -23,6 +26,18 @@ public class Deadline extends Task {
     public Deadline(String name, LocalDate time) {
         super(name);
         this.time = time;
+        this.isOver = LocalDate.now().isAfter(time);
+    }
+
+    /**
+     * Returns true if the current date is after the deadline, false otherwise.
+     *
+     * @return true if the current date is after the deadline, false otherwise.
+     */
+
+    @Override
+    public boolean isOver() {
+        return isOver;
     }
 
     /**
@@ -44,8 +59,13 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: "
-                + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        if (isOver) {
+            return "[D]" + super.toString() + " (by: "
+                    + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " OVERDUE!)";
+        } else {
+            return "[D]" + super.toString() + " (by: "
+                    + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        }
     }
 }
 

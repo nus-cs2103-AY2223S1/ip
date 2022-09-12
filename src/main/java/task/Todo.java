@@ -1,5 +1,8 @@
 package task;
 
+import duke.Duke;
+import duke.DukeException;
+
 /**
  * Represents a Todo Task object.
  *
@@ -24,6 +27,17 @@ public class Todo extends Task {
      *
      * @return the String containing the Task information to be stored
      */
+
+    /**
+     * Returns true if the current date is after the deadline, false otherwise.
+     *
+     * @return true if the current date is after the deadline, false otherwise.
+     */
+
+    @Override
+    public boolean isOver() throws DukeException {
+        throw new DukeException("Todo tasks have no date, operation is invalid.");
+    }
 
     @Override
     public String stringify() {

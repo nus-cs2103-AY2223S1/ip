@@ -53,18 +53,24 @@ public class Storage {
             while (sc.hasNext()) {
                 String[] split = sc.nextLine().split("##");
                 Task task;
-                if ("D".equals(split[0])) {
+                switch (split[0]) {
+                case "D": {
                     LocalDate ld = LocalDate.parse(split[3]);
                     task = new Deadline(split[2], ld);
-                } else if ("E".equals(split[0])) {
+                    break;
+                }
+                case "E": {
                     LocalDate ld = LocalDate.parse(split[3]);
                     task = new Event(split[2], ld);
-                } else if ("T".equals(split[0])) {
+                    break;
+                }
+                case "T":
                     task = new Todo(split[2]);
-                } else {
+                    break;
+                default:
                     throw new DukeException("Unable to read file.");
                 }
-                if (split[1].equals("Y")) {
+                if ("Y".equals(split[1])) {
                     task.toggleDoneness();
                 }
                 taskList.add(task);

@@ -1,5 +1,7 @@
 package task;
 
+import duke.DukeException;
+
 /**
  * Represents an abstract Task object.
  *
@@ -21,6 +23,15 @@ public abstract class Task {
         this.name = name;
         this.done = false;
     }
+
+    /**
+     * Returns true if the current date is after the date stored in the given task, false otherwise.
+     *
+     * @return true if the current date is after the date stored in the given task, false otherwise.
+     * @throws DukeException if given task has no date stored (todo tasks)
+     */
+
+    public abstract boolean isOver() throws DukeException;
 
     /**
      * Marks the task as done if undone, unmarks the task otherwise.
