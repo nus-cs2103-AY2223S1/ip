@@ -47,18 +47,20 @@ public class Parser {
                 return new UnmarkCommand(arguments);
             case TodoCommand.COMMAND:
                 return new TodoCommand(arguments);
-            case DeadlineCommand.COMMAND:
-                return new DeadlineCommand(arguments);
-            case EventCommand.COMMAND:
-                return new EventCommand(arguments);
-            case DeleteCommand.COMMAND:
-                return new DeleteCommand(arguments);
-            case ByeCommand.COMMAND:
-                return new ByeCommand(arguments);
-            case FindCommand.COMMAND:
-                return new FindCommand(arguments);
-            default:
-                return new InvalidCommand();
+                case DeadlineCommand.COMMAND:
+                    return new DeadlineCommand(arguments);
+                case EventCommand.COMMAND:
+                    return new EventCommand(arguments);
+                case DeleteCommand.COMMAND:
+                    return new DeleteCommand(arguments);
+                case ByeCommand.COMMAND:
+                    return new ByeCommand(arguments);
+                case FindCommand.COMMAND:
+                    return new FindCommand(arguments);
+                case NoteCommand.COMMAND:
+                    return new NoteCommand(arguments);
+                default:
+                    return new InvalidCommand();
             }
         } catch (IllegalStateException | IllegalArgumentException | JennyException e) {
             throw new JennyException(MESSAGE_SCOPE, e.getMessage());
