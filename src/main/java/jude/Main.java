@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private static final String DEFAULT_GUI_DATA_STORAGE_PATH = "data/tasks.txt";
     private static final String MAIN_WINDOW_TITLE = "Jude the chatbot";
+    private static final double MIN_WIDTH = 300.0;
+    private static final double MIN_HEIGHT = 500.0;
     private Jude jude = new Jude(DEFAULT_GUI_DATA_STORAGE_PATH);
 
     /**
@@ -48,6 +50,8 @@ public class Main extends Application {
             assert ap != null : "Root node of MainWindow cannot be null";
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setMinWidth(MIN_WIDTH);
+            stage.setMinHeight(MIN_HEIGHT);
             fxmlLoader.<MainWindow>getController().setJude(jude);
 
             //@@author cheeheng-reused
