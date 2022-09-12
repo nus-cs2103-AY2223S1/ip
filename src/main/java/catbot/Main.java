@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     /** The CatBot chatbot to be run. */
-    private CatBot catBot = new CatBot("src/tasks.txt");
+    private CatBot catBot = new CatBot("./tasks.txt");
 
     private Image icon = new Image(this.getClass().getResourceAsStream("/images/icon.jpg"));
 
