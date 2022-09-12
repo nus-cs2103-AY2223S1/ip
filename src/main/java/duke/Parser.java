@@ -86,6 +86,9 @@ class Parser {
                 case "hi":
                     return duke.hi();
 
+                case "help":
+                    return help();
+
                 //Default case: Not any of the tasks(aTodo, Deadline, Event) and hence, throws an Exception
                 default:
                     //To handle any extra words the user keyed in
@@ -95,6 +98,22 @@ class Parser {
         } catch (WrongMessageException | CannotUnderstandException | IOException e) {
             return e.getMessage();
         }
+    }
+
+    public String help() {
+        String help = "If you want to add tasks, here are three ways: \n"
+                + "todo xxx" + "\n"
+                + "event xxx /at yyyy-mm-dd(must exactly be this type, or the program cannot work)" + "\n"
+                + "deadline xxx /by yyyy-mm-dd" + "\n"
+                + "If you want delete tasks, do like this" + "\n"
+                + "delete (index of tasks), like: delete 1" + "\n"
+                + "If you want to see the task list, very easy!, just type: " + "\n"
+                + "list" + "/n"
+                + "use (search xxx) to search what you want" + "\n"
+                + "use (on yyyy-mm-dd) to search tasks on exact date" + "\n"
+                + "use (mark/unmark index) to mark or unmark the completion of tasks" + "\n"
+                + "Have fun with Mr.ZMZ! Dear Rabbit!";
+        return help;
     }
 
     /**
