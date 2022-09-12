@@ -19,11 +19,10 @@ public class ListHandler implements IHandler {
      * @throws DukeException
      */
     @Override
-    public void handle(Service s) throws DukeException {
+    public String handle(Service s) throws DukeException {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Here are the tasks in your list:\n");
         Tasklist list = s.getList();
-        Ui ui = s.getUi();
         int n = list.size();
         for (int i = 0; i < n; i++) {
             stringBuilder.append(String.format("%d. %s", i + 1, list.get(i)));
@@ -31,6 +30,6 @@ public class ListHandler implements IHandler {
                 stringBuilder.append("\n");
             }
         }
-        ui.customPrint(stringBuilder.toString());
+        return stringBuilder.toString();
     }
 }

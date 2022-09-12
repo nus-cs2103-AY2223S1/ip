@@ -30,10 +30,9 @@ public class FindHandler implements IHandler {
      * @throws DukeException
      */
     @Override
-    public void handle(Service s) throws DukeException {
+    public String handle(Service s) throws DukeException {
         ArrayList<Task> results = new ArrayList<>();
         Tasklist list = s.getList();
-        Ui ui = s.getUi();
         if (this.taskName == null) {
             throw new DukeException("Please enter a task name!");
         }
@@ -52,6 +51,6 @@ public class FindHandler implements IHandler {
             sb.append(t);
             index++;
         }
-        ui.customPrint(sb.toString());
+        return sb.toString();
     }
 }

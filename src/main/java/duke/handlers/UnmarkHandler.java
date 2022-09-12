@@ -21,17 +21,16 @@ public class UnmarkHandler implements IHandler {
      * @throws DukeException
      */
     @Override
-    public void handle(Service s) throws DukeException {
+    public String handle(Service s) throws DukeException {
         if (this.taskIndex == null) {
             throw new DukeException("Invalid list index!\nUsage: `unmark 2`");
         }
         try {
             Tasklist list = s.getList();
-            Ui ui = s.getUi();
             int number = Integer.parseInt(this.taskIndex);
             Task item = list.get(number - 1);
             item.setDone(false);
-            ui.customPrint("OK, I've marked this task as not done yet:\n  " + item);
+            return "OK, I've marked this task as not done yet:\n  " + item;
         } catch (NumberFormatException ex) {
             throw new DukeException("Invalid list index!\nUsage: `unmark 2`");
         }

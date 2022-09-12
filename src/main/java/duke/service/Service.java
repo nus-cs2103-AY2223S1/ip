@@ -32,23 +32,13 @@ public class Service {
      */
     public void addToList(Task t) {
         this.list.add(t);
-        int size;
-        if ((size = this.list.size()) == 1) {
-            this.ui.customPrint(String.format("Got it. I've added this task:\n  "
-                    + t
-                    + "\nNow you have %d task in the list.", size));
-        } else {
-            this.ui.customPrint(String.format("Got it. I've added this task:\n  "
-                    + t
-                    + "\nNow you have %d tasks in the list.", size));
-        }
     }
 
     public Tasklist getList() {
         return this.list;
     }
 
-    public Ui getUi() {
-        return this.ui;
+    public void message(String s) {
+        this.ui.receiveMessage(s);
     }
 }

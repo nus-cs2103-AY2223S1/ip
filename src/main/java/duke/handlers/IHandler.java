@@ -12,5 +12,5 @@ public interface IHandler {
      * @param s Service object of the application
      * @throws DukeException
      */
-    void handle(Service s) throws DukeException;
+    String handle(Service s) throws DukeException;
 }

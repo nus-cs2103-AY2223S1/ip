@@ -4,7 +4,6 @@ import duke.entities.Task;
 import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
 import duke.service.Service;
-import duke.service.Ui;
 
 /**
  * Handles user action for deleting a Task.
@@ -23,18 +22,19 @@ public class DeleteHandler implements IHandler {
      * @throws DukeException
      */
     @Override
-    public void handle(Service s) throws DukeException {
+    public String handle(Service s) throws DukeException {
         if (this.taskIndex == null) {
             throw new DukeException("Invalid list index!\nUsage: `delete 2`");
         }
         try {
             Tasklist list = s.getList();
-            Ui ui = s.getUi();
             int number = Integer.parseInt(this.taskIndex);
             Task item = list.remove(number - 1);
-            ui.customPrint("Noted. I've removed this task:\n"
+            int size = list.size();
+            return String.format("Noted. I've removed this task:\n"
                     + item
-                    + "Now you have " + list.size() + " tasks in the list.");;
+                    + "\n"
+                    + "Now you have %d task%s in the list.", size, size != 1 ? "s" : "");
         } catch (NumberFormatException ex) {
             throw new DukeException("Invalid list index!\nUsage: `delete 2`");
         }
