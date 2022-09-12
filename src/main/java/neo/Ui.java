@@ -14,9 +14,15 @@ public class Ui {
     /**
      * Function to print welcome message
      */
-    public void printStart() {
-        System.out.println("");
-        System.out.println("Hello! I'm Neo");
-        System.out.println("What can I do for you?");
+    public String printStart() {
+        return "Hello! I'm Neo " + "What can I do for you?";
+    }
+
+    /**
+     *
+     * Function to print goodbye message.
+     */
+    public String printEnd() {
+        return "Exiting chat bot! Hope to see you again";
     }
 }

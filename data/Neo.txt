@@ -1,6 +1,4 @@
-[D][X] return book  (by: Feb 08 2022)
+[D][X] read book  (by: Feb 02 2022)
 
-[D][ ] return book  (by: Sep 08 2028)
-
-[D][ ] return movie  (by: Sep 06 2034)
+[D][ ] return book  (by: Apr 04 2022)
 

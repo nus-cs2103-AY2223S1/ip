@@ -26,7 +26,7 @@ public class Storage {
         this.inp = inp;
     }
 
-    private Task task;
+    private static Task task;
 
     /**
      * Prints tasks in file.
@@ -34,13 +34,20 @@ public class Storage {
      * @param filePath stores path of file
      * @throws FileNotFoundException
      */
-    private static void printFileContents(String filePath) throws FileNotFoundException {
+    public static String printFileContents(String filePath) throws FileNotFoundException {
         File f = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        String str = "";
         while (s.hasNext()) {
-            System.out.println(s.nextLine());
+            //System.out.println(s.nextLine());
+            str += s.nextLine() + "\n";
         }
+        if (str.equals("")) {
+            return "No tasks in task manager";
+        }
+        return str;
     }
+
 
     /**
      * Writes task to file.
@@ -108,11 +115,12 @@ public class Storage {
      * @throws IOException input output exception
      */
 
-    public void retrieveData() throws IOException {
+    public String retrieveData() throws IOException {
         try {
-            printFileContents(f.getAbsolutePath());
+            return printFileContents(f.getAbsolutePath());
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
+        return "retrieve data";
     }
 }

@@ -5,5 +5,5 @@ import java.io.IOException;
  * Abstract command class.
  */
 abstract class Command {
-    abstract void complete(String temp) throws NeoException, IOException;
+    abstract String complete(String temp) throws NeoException, IOException;
 }

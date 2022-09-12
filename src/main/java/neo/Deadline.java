@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
  * Class for deadline task.
  */
 public class Deadline extends Task{
-    protected String by;
+    protected String by = "";
 
     /**
      * Constructor for deadline class.
@@ -20,13 +20,27 @@ public class Deadline extends Task{
     }
 
     /**
+     * Constructor for deadline class.
+     *
+     * @param description stores user input
+     */
+    public Deadline(String description) {
+        super(description);
+    }
+
+    /**
      * Returns deadlines task string in specific format.
      *
      * @return String
      */
     @Override
     public String toString() {
-        LocalDate d1 = LocalDate.parse(by);
-        return "[D]" + super.toString() + " (by: " + d1.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        if (by.equals("")){
+            return "[D]" + super.toString();
+        }
+        else {
+            LocalDate d1 = LocalDate.parse(by);
+            return "[D]" + super.toString() + " (by: " + d1.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        }
     }
 }

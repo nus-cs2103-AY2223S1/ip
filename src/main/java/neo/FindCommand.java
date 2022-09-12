@@ -34,13 +34,16 @@ public class FindCommand extends Command{
      * @throws IOException Input output button
      */
     @Override
-    void complete(String tempi) throws NeoException, IOException {
+    String complete(String tempi) throws NeoException, IOException {
         System.out.println("Here are the matching tasks in your list:");
+        String str = "";
         for(int i =0; i<arrayLL.arrayL.size(); i++) {
             String tempii = String.valueOf(arrayLL.getTask(i));
             if (tempii.contains(tempi)) {
-                System.out.println(tempii);
+                //System.out.println(tempii);
+                str += i + tempii + "\n";
             }
         }
+        return str;
     }
 }

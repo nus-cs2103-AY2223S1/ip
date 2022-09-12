@@ -20,13 +20,27 @@ public class Event extends Task {
     }
 
     /**
+     * Constructor for event class.
+     *
+     * @param description
+     */
+    public Event(String description) {
+        super(description);
+    }
+
+    /**
      * Returns event task string in specific format.
      *
      * @return String
      */
     @Override
     public String toString() {
-        LocalDate e1 = LocalDate.parse(at);
-        return "[E]" + super.toString() + " (on: " + e1.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        if (at.equals("")) {
+            return "[E]" + super.toString();
+        }
+        else {
+            LocalDate e1 = LocalDate.parse(at);
+            return "[E]" + super.toString() + " (on: " + e1.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        }
     }
 }
