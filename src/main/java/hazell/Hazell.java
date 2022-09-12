@@ -1,6 +1,8 @@
 package hazell;
 
+import hazell.entities.TaskList;
 import hazell.exceptions.HazellException;
+import hazell.ui.Ui;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -79,7 +81,7 @@ public class Hazell {
      * @param input User input
      * @return Bot response
      */
-    String getResponse(String input) {
+    public String getResponse(String input) {
         String response;
         try {
             Command command = Command.parse(input);

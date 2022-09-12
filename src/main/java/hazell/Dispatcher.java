@@ -1,5 +1,9 @@
 package hazell;
 
+import hazell.entities.Deadline;
+import hazell.entities.Event;
+import hazell.entities.TaskList;
+import hazell.entities.ToDo;
 import hazell.exceptions.HazellException;
 import hazell.exceptions.UnknownCommand;
 

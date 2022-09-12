@@ -2,6 +2,7 @@ package hazell;
 
 import java.io.IOException;
 
+import hazell.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

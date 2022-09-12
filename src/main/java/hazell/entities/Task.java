@@ -1,4 +1,4 @@
-package hazell;
+package hazell.entities;
 
 import hazell.exceptions.TaskDescriptionEmpty;
 

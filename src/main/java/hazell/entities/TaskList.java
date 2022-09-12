@@ -1,5 +1,6 @@
-package hazell;
+package hazell.entities;
 
+import hazell.Storage;
 import hazell.exceptions.NoSuchTask;
 
 import java.io.IOException;

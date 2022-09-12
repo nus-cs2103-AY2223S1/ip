@@ -1,5 +1,6 @@
-package hazell;
+package hazell.ui;
 
+import hazell.Hazell;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
