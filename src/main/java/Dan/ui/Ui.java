@@ -10,14 +10,14 @@ public class Ui {
      *
      * @param obj The object to be printed
      */
-    public static void printIndent(Object obj) {
+    public static String printIndent(Object obj) {
         System.out.println("    " + obj.toString().replace("\n", "\n    "));
     }
 
     /**
      * Prints a horizontal line
      */
-    public static void printLine() {
+    public static String printLine() {
         printIndent("____________________________________________________________");
     }
 
@@ -26,7 +26,7 @@ public class Ui {
      *
      * @param s String to be printed
      */
-    public static void printBlock(String s) {
+    public static String printBlock(String s) {
         printLine();
         printIndent(s);
         printLine();
@@ -35,7 +35,7 @@ public class Ui {
     /**
      * Prints the welcome message
      */
-    public static void greet() {
+    public static String greet() {
         printLine();
         printIndent("Hello from\n");
         String logo = "\n"
@@ -57,7 +57,7 @@ public class Ui {
     /**
      * Prints the goodbye message
      */
-    public static void bye() {
+    public static String bye() {
         printBlock("Boo! Bye bye... :(");
     }
 }

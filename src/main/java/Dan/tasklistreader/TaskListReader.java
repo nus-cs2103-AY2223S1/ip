@@ -21,7 +21,7 @@ import dan.task.TaskList;
  * Namely, the storage, loading and saving of data.
  *<</p>
  * Stores data separated by <SEPARATOR> in the format with no whitespace:
- *     eg. SEPARATOR = "|"
+ * *     eg. SEPARATOR = "|"
  *     Tasktype{T,D,E}|Task.isDone{1,0}|Task.Name|(optional)Deadline String
  */
 public class TaskListReader {

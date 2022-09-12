@@ -1,6 +1,5 @@
 package dan;
 
-
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.util.Scanner;
@@ -9,6 +8,7 @@ import dan.parser.Parser;
 import dan.task.TaskList;
 import dan.tasklistreader.TaskListReader;
 import dan.ui.Ui;
+import javafx.fxml.FXML;
 
 /**
  * Dan is a personal chat bot that helps its user keep track of tasks. It currently supports the following commands:
@@ -21,6 +21,8 @@ public class Dan {
     private TaskListReader tlr;
     private TaskList tasks;
     private Parser parser;
+    private String dataFileName = "TestData1.txt"; //default save file name
+
 
     /**
      * Initialises the chat bot, Dan.
@@ -29,10 +31,9 @@ public class Dan {
      *
      * default storage location: src/main/data
      *
-     * @param fileName Name of the data storage file
      */
-    public Dan(String fileName) {
-        tlr = new TaskListReader(fileName);
+    public Dan() {
+        tlr = new TaskListReader(dataFileName);
         try {
             tasks = new TaskList(tlr.readTaskListFromFile());
             parser = new Parser(tasks);
@@ -71,11 +72,13 @@ public class Dan {
     }
 
     /**
-     * The main driver of the chatbot.
+     * Returns the expected response after passing through the chatbot logic
      *
-     * @param args Command-line commands for the application
+     * @param input
+     * @return
      */
-    public static void main(String[] args) {
-        new Dan("TestData1.txt").run();
+    @FXML
+    String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 }
