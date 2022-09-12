@@ -1,14 +1,16 @@
 package duke.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.ToDo;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskListTest {
-    Task t1 = new ToDo("something");
-    Task t2 = new Deadline("iP", "25/08/22");
+    private Task t1 = new ToDo("something");
+    private Task t2 = new Deadline("iP", "25/08/22");
 
     @Test
     public void addTask() {
