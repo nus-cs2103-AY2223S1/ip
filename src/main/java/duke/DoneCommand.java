@@ -12,12 +12,13 @@ public class DoneCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.mark(index);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String msg = tasks.mark(index);
         try {
             storage.save(tasks);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+        return msg;
     }
 }

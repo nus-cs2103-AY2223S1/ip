@@ -53,6 +53,17 @@ public class Duke {
         }
     }
 
+    public String getResponse(String input) {
+        String errorMsg = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            errorMsg = ui.showError(e.getMessage());
+        }
+        return errorMsg;
+    }
+
     public static void main(String[] args) {
         new Duke("./data/duke.txt").run();
     }

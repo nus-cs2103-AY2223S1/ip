@@ -12,12 +12,13 @@ public class UndoneCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.unmark(index);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String msg = tasks.unmark(index);
         try {
             storage.save(tasks);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+        return msg;
     }
 }

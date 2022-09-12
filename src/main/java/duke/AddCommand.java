@@ -13,14 +13,14 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(task);
         try {
             storage.save(tasks);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-        ui.showAddTask(task, tasks.size());
+        return ui.showAddTask(task, tasks.size());
     }
     @Override
     public boolean equals(Object obj) {

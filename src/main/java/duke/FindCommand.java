@@ -9,12 +9,13 @@ public class FindCommand extends Command {
         this.searchTerm = searchTerm;
     }
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList foundTasks = tasks.find(searchTerm);
         if (foundTasks.size() == 0) {
             ui.showError("No tasks found.");
+            return "No tasks found.";
         } else {
-            ui.showList(foundTasks);
+            return ui.showList(foundTasks);
         }
     }
 }
