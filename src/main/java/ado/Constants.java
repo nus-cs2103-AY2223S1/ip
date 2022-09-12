@@ -6,29 +6,38 @@ package ado;
 public class Constants {
     public static final String CHATBOX_NAME = "Ado";
 
-    public static final String HELP_DETAILED_MESSAGE = "List of commands:"
-            + "\ntodo: adds a todo task [Description]\ne.g. todo feed cat"
-            + "\ndeadline: adds a deadline task [Description, date]\ne.g. deadline Do homework /by 12 Mar 2022"
-            + "\nevent:adds a event task [Description, date, time]"
+    public static final String HELP_DETAILED_MESSAGE = "List of commands[Detailed]:"
+            + "\ntodo: adds a todo task, todo {description}\ne.g. todo feed cat"
+            + "\ndeadline: adds a deadline task, deadline {description dd MMM yyyy}"
+            + "\ne.g. deadline Do homework /by 12 Mar 2022"
+            + "\nevent:adds a event task, event {description dd MMM yyyy HH:mm}"
             + "\ne.g. event LOTR meet and greet /at 28 Nov 2022  20:30"
-            + "\nmark: marks a task at specified index\ne.g. mark 2"
-            + "\nunmark: unmarks a task at specified index\ne.g. unmark 1"
-            + "\nfind: finds a task with keyword\ne.g. find homework"
-            + "\n\nlist: lists all saved task"
-            + "\nbye:exits Ado chatbot";
-    public static final String HELP_MESSAGE = "Need help? You can click on the \"?\" icon beside the send button to"
-            + " see the list of available commands!";
+            + "\nmark: marks a task at specified index, mark {index}\ne.g. mark 2"
+            + "\nunmark: unmarks a task at specified index, unmark {index}\ne.g. unmark 1"
+            + "\nfind: finds a task with keyword, find {keyword}\ne.g. find homework"
+            + "\nlist: lists all saved task"
+            + "\nbye:exits program\n\nNeed more help?\nRefer to user guide: https://jovitaanderson.github.io/ip/";
+    public static final String HELP_MESSAGE = "List of commands:"
+            + "\ntodo: todo {description}"
+            + "\ndeadline: deadline {description dd MMM yyyy}"
+            + "\nevent: event {description dd MMM yyyy HH:mm}"
+            + "\nmark: mark {index}"
+            + "\nunmark: unmark {index}"
+            + "\nfind: find {keyword}"
+            + "\nlist: lists all saved task"
+            + "\nbye:exits program";
 
     public static final String NEW_WELCOME_MESSAGE = "Yo! I'm " + CHATBOX_NAME + ", your personal task tracker :-)"
             + "\nSince this is your first time, some sample tasks has been added for you to play around! \n"
-            + "\nHappy exploring ~\n\n" + HELP_MESSAGE;
+            + "\nHappy exploring ~\n\nNeed help? You can type 'help' or click on the \"?\" icon beside"
+            + " the send button to see examples on how to use the commands!";
     public static final String WELCOME_MESSAGE = "What's up? " + CHATBOX_NAME
             + " reporting for duty, How may i help you :-)";
 
     public static final String BYE_MESSAGE = "I've saved your tasks! Come back soon ~\n";
     public static final String LIST_EMPTY_MESSAGE = "List is empty, go make yourself busy!\n";
     public static final String LIST_MESSAGE = "Here are the tasks in your list, go do it! \n";
-    public static final String MATCHING_TASK_MESSAGE = "Here are the matching tasks containing";
+    public static final String MATCHING_TASK_MESSAGE = "Here are the matching tasks containing ";
     public static final String NOMATCHING_TASK_MESSAGE = "No matching tasks with";
     public static final String LOAD_TASK_ERROR_MESSAGE = "Error in loading task :( New task list created!\n";
     public static final String INVALID_SINGLE_COMMAND_MESSAGE = "Single commands should not have any text behind it\n";

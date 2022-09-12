@@ -25,6 +25,7 @@ public class UnmarkCommand extends Command {
             String message = "[ ] I've marked this task as not done yet:\n" + taskList.getTaskAtIndex(index - 1) + "\n";
             Response response = new Response(message, false, false);
             ui.setResponse(response);
+            storage.saveTasksInStorage(taskList.getList());
         }
     }
 

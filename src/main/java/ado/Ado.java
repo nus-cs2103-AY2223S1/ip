@@ -7,6 +7,7 @@ import ado.command.Command;
 import ado.storage.Storage;
 import ado.task.Task;
 import ado.task.TaskList;
+import javafx.application.Platform;
 
 /**
  * Represents the main functions of Ado chatbot and initializes require variables.
@@ -45,6 +46,9 @@ public class Ado {
             Command c = Parser.parse(input);
             c.execute(tasks, ui, storage);
             isExit = c.isExit();
+            if (isExit) {
+                Platform.exit();
+            }
         } catch (AdoException e) {
             ui.showError(e.getMessage());
         }

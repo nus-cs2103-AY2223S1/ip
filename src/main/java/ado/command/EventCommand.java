@@ -34,6 +34,7 @@ public class EventCommand extends Command {
                 + " tasks in the list\n";
         Response response = new Response(message, false, false);
         ui.setResponse(response);
+        storage.saveTasksInStorage(taskList.getList());
     }
 
     @Override

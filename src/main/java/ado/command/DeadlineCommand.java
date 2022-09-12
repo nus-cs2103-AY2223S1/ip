@@ -35,6 +35,7 @@ public class DeadlineCommand extends Command {
                 + " tasks in the list NOW \n";
         Response response = new Response(message, false, false);
         ui.setResponse(response);
+        storage.saveTasksInStorage(taskList.getList());
     }
 
     @Override

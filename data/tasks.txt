@@ -1,3 +1,4 @@
 T|X|Feed cat
-E| |Team meeting|2022-09-22@19:30
-D| |Do assignment|2022-10-02
+E|X|Team meeting|2022-09-22@19:30
+D|X|Do assignment|2022-10-02
+T|X|run

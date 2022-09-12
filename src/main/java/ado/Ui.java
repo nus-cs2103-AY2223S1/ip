@@ -65,8 +65,9 @@ public class Ui {
      * @return matching tasks in string form.
      */
     public String matchingTasklistToString(List<Task> list, String text) {
-        boolean foundMatchingTask = false;
-        if (list.size() == 0) {
+        boolean hasMatchingTask = false;
+        boolean listIsEmpty = list.size() == 0 ? true : false;
+        if (listIsEmpty) {
             response = Constants.LIST_EMPTY_MESSAGE;
             return response;
         }
@@ -76,12 +77,14 @@ public class Ui {
         StringBuilder output = new StringBuilder();
         output.append(Constants.MATCHING_TASK_MESSAGE + "\"" + text + "\":\n");
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getDescription().contains(text)) {
+            boolean hasSameSubstring = list.get(i).getDescription()
+                    .toLowerCase().contains(text.toLowerCase()) ? true : false;
+            if (hasSameSubstring) {
                 output.append(i + 1).append(". ").append(list.get(i)).append("\n");
-                foundMatchingTask = true;
+                hasMatchingTask = true;
             }
         }
-        if (!foundMatchingTask) {
+        if (!hasMatchingTask) {
             response = Constants.NOMATCHING_TASK_MESSAGE + "\"" + text + "\" :(";
             return response;
         }

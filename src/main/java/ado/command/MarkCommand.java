@@ -25,7 +25,7 @@ public class MarkCommand extends Command {
             String message = "[X] You've completed a task!\n" + taskList.getTaskAtIndex(index - 1) + "\n";
             Response response = new Response(message, false, false);
             ui.setResponse(response);
-
+            storage.saveTasksInStorage(taskList.getList());
         }
     }
 

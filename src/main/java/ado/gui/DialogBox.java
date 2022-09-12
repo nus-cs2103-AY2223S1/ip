@@ -81,6 +81,7 @@ public class DialogBox extends HBox {
         } else {
             db.dialog.setStyle(db.dialog.getStyle() + "-fx-background-color: #57504d;");
         }
+
         return db;
     }
 }
