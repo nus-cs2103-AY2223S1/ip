@@ -9,7 +9,6 @@ public abstract class Task {
     /**
      * The description of the {@code Task}
      */
-    // original access modifier was protected
     protected final String description;
     /**
      * The {@code Command} type of the {@code Task}
@@ -66,6 +65,11 @@ public abstract class Task {
      */
     public abstract String getFileStorageString(int index);
 
+    /**
+     * Checks if the keyword is in the task description
+     * @param keyword The user's inputted keyword
+     * @return True if the keyword is present
+     */
     public boolean isMatchingKeywordInDescription(String keyword) {
         return description.contains(keyword);
     }

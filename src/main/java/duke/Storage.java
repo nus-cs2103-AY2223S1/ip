@@ -42,7 +42,9 @@ public class Storage {
     public void writeToDisk(String stringToWrite) {
         try {
             File tasksFile = new File(filePath);
-            if ((tasksFile.exists() && tasksFile.delete()) || !tasksFile.exists()) {
+            boolean hasTasksFile = tasksFile.exists();
+            boolean isTasksFileDeleted = hasTasksFile && tasksFile.delete();
+            if (isTasksFileDeleted || !hasTasksFile) {
                 FileWriter fileWriter = new FileWriter(filePath);
                 try {
                     fileWriter.write(stringToWrite);

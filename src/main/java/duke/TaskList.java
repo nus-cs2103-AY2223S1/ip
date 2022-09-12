@@ -89,7 +89,7 @@ public class TaskList {
         return userTasks.get(index).toString();
     }
 
-    // use LinkedHashMap to guarantee order of elements is insertion order
+    // Uses LinkedHashMap to guarantee that the order of elements is insertion order
     private LinkedHashMap<Integer, Task> getMappedIndexToUserText(List<Task> taskList) {
         return taskList.stream().collect(LinkedHashMap::new, (
                 hashMap, streamElement) -> hashMap.put(hashMap.size() + 1, streamElement), HashMap::putAll);

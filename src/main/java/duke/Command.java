@@ -21,7 +21,7 @@ public enum Command {
     }
 
     /**
-     * Method to get the String representation of the enum
+     * Returns the String representation of the enum
      * @return Returns the String representation of the enum
      */
     public String getString() {

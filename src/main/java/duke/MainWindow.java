@@ -69,12 +69,11 @@ public class MainWindow extends AnchorPane {
         //todo there must be a better way to do this than to check for bye every time
         if (input.strip().equalsIgnoreCase("bye")) {
             handleUserExit(input);
-        } else {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(response, dukeImage)
-            );
-            userInput.clear();
         }
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getDukeDialog(response, dukeImage)
+        );
+        userInput.clear();
     }
 }
