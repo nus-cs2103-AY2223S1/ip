@@ -25,6 +25,8 @@ public class StoredTasks {
      * @param filePath Target File Path.
      */
     public StoredTasks(String fileDir, String filePath) {
+        assert !fileDir.isEmpty() : "File Directory should not be empty";
+        assert !filePath.isEmpty() : "File Path should not be empty";
         this.fileDir = fileDir;
         this.filePath = filePath;
     }
