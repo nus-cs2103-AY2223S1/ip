@@ -1,2 +1,3 @@
 T | 0 | make magic
-T | 1 | bake a cake please
+T | 1 | eat 2 cakes
+E | 0 | call grandma  | 2022-12-12
