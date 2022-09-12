@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClassName = "jenny.JennyBot"
+    mainClassName = "jenny.Launcher"
 }
 
 sourceSets {
@@ -60,7 +60,7 @@ sourceSets {
 
 shadowJar {
     archiveBaseName = "jenny"
-    archiveVersion = "v0.6"
+    archiveVersion = "v1.0"
     archiveClassifier = null
 }
 
