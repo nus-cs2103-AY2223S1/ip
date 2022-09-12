@@ -13,7 +13,7 @@ If you can type fast, Duke can get your contact management tasks done faster tha
 3. Copy the file to the folder you want to use as the _home folder_ for your Duke.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.<br>
-   ![Ui](docs/Ui.png)
+   ![Ui](Ui.png)
 5. Refer to the <<Features>> below for details of each command.
 
 -------------------------------------------------------------------------------------------------------------
