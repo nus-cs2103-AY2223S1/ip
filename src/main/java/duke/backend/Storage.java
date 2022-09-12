@@ -1,13 +1,14 @@
 package duke.backend;
 
-import duke.DukeException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.Scanner;
+
+import duke.DukeException;
+
 
 /**
  * Storage class manages the saving of data and loading of saved data
