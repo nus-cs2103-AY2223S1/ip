@@ -13,11 +13,11 @@
       <HBox fx:id="contentBox" alignment="TOP_CENTER" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="24.600000000000023" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
       <HBox alignment="BOTTOM_CENTER" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TextField fx:id="userInput" onAction="#handleUserInput" promptText="Enter Command..." styleClass="commandField" stylesheets="@TaskCategoryPane.css" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="userInput" onAction="#handleUserInput" promptText="Enter Command..." styleClass="commandField" stylesheets="@styles.css" HBox.hgrow="ALWAYS" />
             <Button id="commandField" fx:id="helpButton" mnemonicParsing="false" onAction="#showHelpWindow" text="Get Help" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar" stylesheets="@TaskCategoryPane.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar" stylesheets="@styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Duke Task Manager">
                <font>

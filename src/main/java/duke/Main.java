@@ -32,7 +32,7 @@ public class Main extends Application {
             NotificationPane np = new NotificationPane(ap);
 
             Scene scene = new Scene(np);
-            scene.getStylesheets().add(getClass().getResource("/view/TaskCategoryPane.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/view/styles.css").toExternalForm());
             stage.setScene(scene);
             stage.setTitle("Duke Task Manager");
             stage.show();
