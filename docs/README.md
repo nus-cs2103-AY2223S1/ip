@@ -35,7 +35,7 @@ If a task is completed, mark it so that it is shown as marked in the list of tas
 The index is one-based (starts from 1). <br>
 <p align="center">
 <img width="596" alt="marked" src="https://user-images.githubusercontent.com/96589109/189592390-72b776bb-3349-4ea9-a2f7-209c5921057f.png"> <br>
-Marked tasks are represented with checkboxes.
+Marked tasks are represented with checkboxes
 </p>
 
 ### Unmark a Task: `unmark <task index>`
