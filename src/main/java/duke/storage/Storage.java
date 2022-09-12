@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.common.Messages;
 import duke.common.exceptions.StorageException;
 import duke.data.TaskList;
 import duke.tasks.Deadline;
@@ -21,9 +22,9 @@ import duke.tasks.Todo;
  * Loads and saves the list of tasks in a file.
  */
 public class Storage {
-    private static final String FILE_PATH = "data/tasklist.txt";
-    private static final String OLD_FILE_PATH = "data/oldtasklist.txt";
-    private static final String TEMP_FILE_PATH = "data/temptasklist.txt";
+    private static final String FILE_PATH = "data/task-list.txt";
+    private static final String PREV_FILE_PATH = "data/prev-task-list.txt";
+    private static final String TEMP_FILE_PATH = "data/temp-task-list.txt";
     private static final String INVALID_STORAGE_DATA = "Invalid storage data";
 
     private void createFile(File file) throws StorageException {
@@ -31,7 +32,7 @@ public class Storage {
         try {
             file.createNewFile();
         } catch (IOException e) {
-            throw new StorageException();
+            throw new StorageException(Messages.MESSAGE_CREATE_FILE_ERROR);
         }
     }
 
@@ -53,20 +54,20 @@ public class Storage {
         FileWriter writer = null;
 
         try {
-            Files.copy(Paths.get(FILE_PATH), Paths.get(OLD_FILE_PATH), REPLACE_EXISTING);
+            Files.copy(Paths.get(FILE_PATH), Paths.get(PREV_FILE_PATH), REPLACE_EXISTING);
             writer = new FileWriter(FILE_PATH);
             for (int i = 0; i < numTasks; i++) {
                 Task task = taskList.getTask(i);
                 writer.write(formatTask(task));
             }
         } catch (IOException e) {
-            throw new StorageException();
+            throw new StorageException(Messages.MESSAGE_SAVE_FILE_ERROR);
         } finally {
             if (writer != null) {
                 try {
                     writer.close();
                 } catch (IOException e) {
-                    throw new StorageException();
+                    throw new StorageException(Messages.MESSAGE_SAVE_FILE_ERROR);
                 }
             }
         }
@@ -79,12 +80,12 @@ public class Storage {
      */
     public ArrayList<Task> load() throws StorageException {
         ArrayList<Task> tasks = new ArrayList<>();
-        File file = new File(FILE_PATH);
-        createFile(file);
+        File taskListFile = new File(FILE_PATH);
+        createFile(taskListFile);
         Scanner sc = null;
 
         try {
-            sc = new Scanner(file);
+            sc = new Scanner(taskListFile);
             while (sc.hasNext()) {
                 String line = sc.nextLine();
                 String[] splitInputArray = line.split(";", 4);
@@ -107,7 +108,7 @@ public class Storage {
             }
             return tasks;
         } catch (IOException e) {
-            throw new StorageException();
+            throw new StorageException(Messages.MESSAGE_LOAD_FILE_ERROR);
         } finally {
             if (sc != null) {
                 sc.close();
@@ -121,12 +122,16 @@ public class Storage {
      * @throws StorageException If there is an IOException saving the modified list of tasks.
      */
     public void undo(TaskList taskList) throws StorageException {
+        if (taskList.numTasks() == 0) {
+            throw new StorageException(Messages.MESSAGE_EMPTY_FILE_ERROR);
+        }
+
         try {
             Files.copy(Paths.get(FILE_PATH), Paths.get(TEMP_FILE_PATH), REPLACE_EXISTING);
-            Files.copy(Paths.get(OLD_FILE_PATH), Paths.get(FILE_PATH), REPLACE_EXISTING);
-            Files.copy(Paths.get(TEMP_FILE_PATH), Paths.get(OLD_FILE_PATH), REPLACE_EXISTING);
+            Files.copy(Paths.get(PREV_FILE_PATH), Paths.get(FILE_PATH), REPLACE_EXISTING);
+            Files.copy(Paths.get(TEMP_FILE_PATH), Paths.get(PREV_FILE_PATH), REPLACE_EXISTING);
         } catch (IOException e) {
-            throw new StorageException();
+            throw new StorageException(Messages.MESSAGE_RETRIEVE_FILE_ERROR);
         }
         taskList.changeTasks(load());
     }
