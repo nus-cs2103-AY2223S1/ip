@@ -28,7 +28,7 @@ public class UpdateTimeCommand implements Command {
             throw new DukeException("Please attach a valid task number to the command.");
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Please attach both a valid task number and a "
-                    + "non-empty time in this 24-hour format: \"yyyy-mm-dd hhmm\"");
+                    + "non-empty time in this 24-hour format: \"yyyy-mm-dd hhmm\".");
         }
     }
 

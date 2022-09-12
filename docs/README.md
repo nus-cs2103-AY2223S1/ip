@@ -60,11 +60,13 @@ under [UI Screenshots](#ui-screenshots). Here is a table summarising them:
 5. [Viewing all tasks](#viewing-all-tasks-list)
 6. [Marking a task as complete](#marking-a-task-as-complete-mark)
 7. [Marking a task as incomplete](#marking-a-task-as-incomplete-unmark)
-8. [Deleting a task](#deleting-a-task-delete)
-9. [Searching for a task](#searching-for-a-task-find)
-10. [Clearing screen of all messages](#clearing-screen-of-all-messages-clear)
-11. [Deleting all tasks](#deleting-all-tasks-reset)
-12. [Saving and exiting](#saving-and-exiting-bye)
+8. [Updating a task description](#updating-a-task-description-description)
+9. [Updating time of deadline or event](#updating-time-of-deadline-or-event-time)
+10. [Deleting a task](#deleting-a-task-delete)
+11. [Searching for a task](#searching-for-a-task-find)
+12. [Clearing screen of all messages](#clearing-screen-of-all-messages-clear)
+13. [Deleting all tasks](#deleting-all-tasks-reset)
+14. [Saving and exiting](#saving-and-exiting-bye)
 
 ### Editing, Exporting or Importing Saved Data
 
@@ -75,106 +77,129 @@ folder present inside *Artemis*' home folder.
 
 ### Viewing list of available commands: `help`
 
-Shows all available commands in a new window, with a synopsis and usage example.  
-Usage: `help`
+_Shows all available commands in a new window, with a synopsis and usage example._  
+**Usage:** `help`
 
 ### Creating a task with a description: `todo`
 
-Creates a todo task.  
-Note: Todo tasks have a description attached to them.  
-Usage: `todo {description}`  
-Example: `todo Submit essay`
+_Creates a todo task._  
+**Note:** Todo tasks have a description attached to them.  
+**Usage:** `todo {description}`  
+**Example:** `todo Submit essay`
 
 ### Creating a task due at a specific time: `deadline`
 
-Creates a deadline task.  
-Note: Deadline tasks have a time attached to them. This time **must** be entered in the
-following 24-hour format: `yyyy-mm-dd hhmm`  
-Usage: `deadline {description} /by {time}`  
-Example: `deadline Submit essay /by 2022-12-12 1800`
+_Creates a deadline task._  
+**Note:** Deadline tasks have a time attached to them. This time **must** be entered in
+the following 24-hour format: `yyyy-mm-dd hhmm`.  
+**Usage:** `deadline {description} /by {time}`  
+**Example:** `deadline Submit essay /by 2022-12-12 1800`
 
 ### Creating an task taking place at a specific time: `event`
 
-Creates an event task.  
-Note: Event tasks have a time attached to them. This time **must** be entered in the
-following 24-hour format: `yyyy-mm-dd hhmm`  
-Usage: `event {description} /at {time}`  
-Example: `event Essay submission /at 2022-12-12 1800`
+_Creates an event task._  
+**Note:** Event tasks have a time attached to them. This time **must** be entered in the
+following 24-hour format: `yyyy-mm-dd hhmm`.  
+**Usage:** `event {description} /at {time}`  
+**Example:** `event Essay submission /at 2022-12-12 1800`
 
 ### Viewing all tasks: `list`
 
-Shows a list of all tasks stored in *Artemis*.  
-Usage: `list`
+_Shows a list of all tasks stored in *Artemis*._  
+**Usage:** `list`
 
 ### Marking a task as complete: `mark`
 
-Marks a specified task as complete.  
-Note: The number below refers to the task number visible through the `list` command.
+_Marks a specified task as complete._  
+**Note:** The number below refers to the task number visible through the `list` command.
 Numbers that do not exist on this list or numbers less than or equal to 0 will result in
 an error.    
-Usage: `mark {number}`  
-Example: `mark 1`
+**Usage:** `mark {number}`  
+**Example:** `mark 1`
 
 ### Marking a task as incomplete: `unmark`
 
-Marks a specified task as incomplete.  
-Note: The number below refers to the task number visible through the `list` command.
+_Marks a specified task as incomplete._  
+**Note:** The number below refers to the task number visible through the `list` command.
 Numbers that do not exist on this list or numbers less than or equal to 0 will result in
 an error.  
-Usage: `unmark {number}`  
-Example: `unmark 1`
+**Usage:** `unmark {number}`  
+**Example:** `unmark 1`
+
+### Updating a task description: `description`
+
+_Updates the description of a task._  
+**Note:** The number below refers to the task number visible through the `list` command.
+Numbers that do not exist on this list or numbers less than or equal to 0 will result in
+an error.  
+**Usage:** `description {number} {new description}`  
+**Example:** `description 1 Submit letter`
+
+### Updating time of deadline or event: `time`
+
+_Updates the time of a task. This command displays an error when called on tasks with no
+time attached, i.e. todo tasks._  
+**Note:** The number below refers to the task number visible through the `list` command.
+Numbers that do not exist on this list or numbers less than or equal to 0 will result in
+an error. Furthermore, the time **must** be entered in the following 24-hour
+format: `yyyy-mm-dd hhmm`.   
+**Usage:** `time {number} {new time}`  
+**Example:** `time 1 2022-12-11 1700`
 
 ### Deleting a task: `delete`
 
-Deletes a specified task from the list of all tasks.  
-Note: The number below refers to the task number visible through the `list` command.
+_Deletes a specified task from the list of all tasks._  
+**Note:** The number below refers to the task number visible through the `list` command.
 Numbers that do not exist on this list or numbers less than or equal to 0 will result in
 an error.  
-Usage: `delete {number}`  
-Example: `delete 1`
+**Usage:** `delete {number}`  
+**Example:** `delete 1`
 
 ### Searching for a task: `find`
 
-Shows all tasks whose descriptions contain the specified text.  
-Note: The specified text is case-sensitive, and takes all characters (including spaces)
+_Shows all tasks whose descriptions contain the specified text._  
+**Note:** The specified text is case-sensitive, and takes all characters (including
+spaces)
 into account.  
-Usage: `find {text}`  
-Example: `find Submit essay`
+**Usage:** `find {text}`  
+**Example:** `find Submit essay`
 
 ### Clearing screen of all messages: `clear`
 
-Removes all messages from the application window.  
-Usage: `clear`
+_Removes all messages from the application window._  
+**Usage:** `clear`
 
 ### Deleting all tasks: `reset`
 
-Deletes all tasks that *Artemis* is aware of.  
-Note: This command is **nuclear**, and cannot be undone if saved. Please only use it if
-deleting all tasks is your intended goal.  
-Usage: `reset`
+_Deletes all tasks that *Artemis* is aware of._  
+**Note:** This command is **nuclear**, and cannot be undone if saved. Please only use it
+if deleting all tasks is your intended goal.  
+**Usage:** `reset`
 
 ### Saving and exiting: `bye`
 
-Saves and exits *Artemis*.  
-Note: This command is important if task data is to be saved for the future.  
-Usage: `bye`
+_Saves and exits *Artemis*._  
+**Note:** This command is important if task data is to be saved for the future.  
+**Usage:** `bye`
 
 # Command Summary
 
-| Command                    | Description                                                          |
-|----------------------------|----------------------------------------------------------------------|
-| todo `desc`                | Creates a todo with the given description.                           |
-| deadline `desc` /by `time` | Creates a deadline with the given description set by the given time. |
-| event `desc` /at `time`    | Creates an event with the given description set at the given time.   |
-| list                       | Lists all currently saved tasks.                                     |
-| mark `num`                 | Marks task `num` from `list` as complete.                            |
-| unmark `num`               | Marks task `num` from `list` as incomplete.                          |
-| delete `num`               | Deletes task `num` from `list` permanently.                          |
-| find `text`                | Returns all tasks whose descriptions match the exact text.           |
-| clear                      | Clears window of all messages.                                       |
-| reset                      | Deletes all tasks.                                                   |
-| help                       | Shows all available commands.                                        |
-| bye                        | Saves all tasks to storage and exits Artemis.                        |
+| Command                             | Description                                                          |
+|-------------------------------------|----------------------------------------------------------------------|
+| todo `desc`                         | Creates a todo with the given description.                           |
+| deadline `desc` /by `time`          | Creates a deadline with the given description set by the given time. |
+| event `desc` /at `time`             | Creates an event with the given description set at the given time.   |
+| list                                | Lists all currently saved tasks.                                     |
+| mark `num`                          | Marks task `num` from `list` as complete.                            |
+| unmark `num`                        | Marks task `num` from `list` as incomplete.                          |
+| description `num` `new description` | Updates description of task `num` from `list`.                       |
+| time `num` `new time`               | Updates time of task `num` from `list`.                              |
+| delete `num`                        | Deletes task `num` from `list` permanently.                          |
+| find `text`                         | Returns all tasks whose descriptions match the exact text.           |
+| clear                               | Clears window of all messages.                                       |
+| reset                               | Deletes all tasks.                                                   |
+| help                                | Shows all available commands.                                        |
+| bye                                 | Saves all tasks to storage and exits Artemis.                        |
 
 # UI Screenshots
 

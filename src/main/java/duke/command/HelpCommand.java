@@ -17,6 +17,8 @@ public class HelpCommand implements Command {
         "list",
         "mark <num>",
         "unmark <num>",
+        "description <num> <new description>",
+        "time <num> <new time>",
         "delete <num>",
         "find <text>",
         "clear",
@@ -26,12 +28,15 @@ public class HelpCommand implements Command {
     private static final String[] COMMAND_DESCRIPTIONS = {
         "Creates task with given description.",
         "Creates deadline with given description set by given time.\n"
-                + "      24-hr time must be formatted as: yyyy-mm-dd hhmm",
+                + "      24-hr time must be formatted as: \"yyyy-mm-dd hhmm\".",
         "Creates event with the given description set at given time.\n"
-                + "      24-hr time must be formatted as: yyyy-mm-dd hhmm",
+                + "      24-hr time must be formatted as: \"yyyy-mm-dd hhmm\".",
         "Lists all currently saved tasks.",
         "Marks given task num from \"list\" as complete.",
         "Marks given task num from \"list\" as incomplete.",
+        "Updates description of task num from \"list\".",
+        "Updates time of task num from \"list\".\n"
+                + "      24-hr time must be formatted as: \"yyyy-mm-dd hhmm\".",
         "Deletes given task num from \"list\" permanently.",
         "Returns all tasks whose descriptions match given text.",
         "Clears window of all messages.",
@@ -44,7 +49,9 @@ public class HelpCommand implements Command {
         "event Submit essay /at 2022-12-12 2359",
         "list",
         "mark 1",
-        "umark 1",
+        "unmark 1",
+        "description 1 Submit letter",
+        "time 1 2022-12-11 1700",
         "delete 1",
         "find essay",
         "clear",
