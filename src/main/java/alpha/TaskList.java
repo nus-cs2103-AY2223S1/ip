@@ -32,20 +32,25 @@ public class TaskList {
     }
 
     /**
-     * Displays the list of tasks.
+     * Returns the list of tasks.
      *
      * @param uI Object of the Ui class to display the tasks.
+     * @return A string containing a list of tasks.
      */
-    public void printTasks(Ui uI) {
+    public String printTasks(Ui uI) {
         if (tasks.isEmpty()) {
-            uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "Your task list is empty!");
+            return uI.returnText(">> " + "Your task list is empty!");
         } else {
-            uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "Your task list is as follows:");
+            String tasksToBePrinted = "";
+            tasksToBePrinted += uI.returnText(">> "
+                    + "Your task list is as follows:\n");
             int count = 1;
             for (Task task : tasks) {
-                uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), count + ") " + task.toString());
+                tasksToBePrinted += uI.returnText(count + ") "
+                        + task.toString() + "\n");
                 count++;
             }
+            return tasksToBePrinted;
         }
     }
 
@@ -65,7 +70,7 @@ public class TaskList {
     }
 
     /**
-     * Deleted task of the provided task number from the task list.
+     * Deletes task of the provided task number from the task list.
      *
      * @param taskNumber The task number of the task that needs to be deleted.
      * @throws AlphaException If the task number is out of bounds.

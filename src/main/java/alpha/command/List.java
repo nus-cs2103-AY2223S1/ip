@@ -6,6 +6,7 @@ import alpha.Ui;
 
 /**
  * Lists all tasks in the task list.
+ * @return A string containing a list of filtered tasks to be printed.
  */
 public class List extends Command {
 
@@ -15,8 +16,8 @@ public class List extends Command {
      * Displays the list of tasks in the task list.
      */
     @Override
-    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) {
-        taskList.printTasks(uI);
+    public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) {
+        return taskList.printTasks(uI);
     }
 
     /**

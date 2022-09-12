@@ -26,13 +26,15 @@ public class Delete extends Command {
      * {@inheritDoc}
      *
      * Deletes the task with the given task number from the task list and rewrites the file.
-     * Displays a message to indicate successful deletion of the task.
+     * Returns a message to indicate successful deletion of the task.
+     *
+     * @return Message to display successful completion of task.
      */
     @Override
-    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
+    public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.deleteTask(taskNumber);
         fileOperations.rewriteFile(taskList);
-        uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "deleted: Task " + this.taskNumber);
+        return uI.returnText(">> " + "deleted task: " + this.taskNumber);
     }
 
     /**

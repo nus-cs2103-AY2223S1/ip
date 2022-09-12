@@ -36,7 +36,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + String.format(uI.getAnsiCode("ANSI_RED") + " (on: %s)", date + uI.getAnsiCode(""));
+        return super.toString() + String.format(" (on: %s)", date);
 
     }
 

@@ -11,19 +11,19 @@ public class Help extends Command {
     /**
      * {@inheritDoc}
      *
-     * Displays all the recognised input commands and their expected format.
+     * Returns all the recognised input commands and their expected format.
+     * @return String containing list of commands and their format.
      */
     @Override
-    public void execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
-        uI.colouredPrint(uI.getAnsiCode("ANSI_WHITE"), "   COMMAND \t\t" + "FORMAT");
-        uI.colouredPrint(uI.getAnsiCode("ANSI_WHITE"), "1. todo    \t\t" + "todo taskDescription");
-        uI.colouredPrint(uI.getAnsiCode("ANSI_WHITE"), "2. event   \t\t"
-                + "event taskDescription /on YYYY-MM-DD");
-        uI.colouredPrint(uI.getAnsiCode("ANSI_WHITE"), "3. deadline\t\t"
-                + "deadline taskDescription /by YYYY-MM-DD");
-        uI.colouredPrint(uI.getAnsiCode("ANSI_WHITE"), "4. mark    \t\t" + "mark taskNumber");
-        uI.colouredPrint(uI.getAnsiCode("ANSI_WHITE"), "5. unmark  \t\t" + "unmark taskNumber");
-        uI.colouredPrint(uI.getAnsiCode("ANSI_WHITE"), "6. delete  \t\t" + "delete taskNumber");
-        uI.colouredPrint(uI.getAnsiCode("ANSI_WHITE"), "7. list    \t\t" + "list");
+    public String execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
+        return uI.returnText(
+                "COMMAND\t" + "FORMAT\n"
+                + "1. todo    \t\t" + "todo description\n"
+                + "2. event   \t\t" + "event description /on yyyy-mm-dd\n"
+                + "3. deadline\t" + "deadline description /by yyyy-mm-dd\n"
+                + "4. mark    \t\t" + "mark task number\n"
+                + "5. unmark  \t" + "unmark task number\n"
+                + "6. delete  \t\t" + "delete task number\n"
+                + "7. list    \t\t" + "list\n");
     }
 }

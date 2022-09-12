@@ -26,13 +26,14 @@ public class Mark extends Command {
      * {@inheritDoc}
      *
      * Marks the task with the given task number as done and rewrites the file.
-     * Displays a message to indicate the successful completion of marking the task.
+     * Returns a message to indicate the successful completion of marking the task.
+     * @return A message to indicate the completion of task.
      */
     @Override
-    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
+    public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.modifyTaskStatus(taskNumber, true);
         fileOperations.rewriteFile(taskList);
-        uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "marked: Task " + this.taskNumber);
+        return uI.returnText(">> " + "marked task: " + this.taskNumber);
     }
 
     /**

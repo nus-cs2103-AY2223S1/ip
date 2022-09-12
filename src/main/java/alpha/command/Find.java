@@ -26,10 +26,11 @@ public class Find extends Command {
      * {@inheritDoc}
      *
      * Finds all tasks that contains the keyword.
+     * @return A string containing a list of filtered tasks to be printed.
      */
     @Override
-    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
+    public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         TaskList filteredTasks = (new TaskList(taskList.filterTaskDescription(keyword)));
-        filteredTasks.printTasks(uI);
+        return filteredTasks.printTasks(uI);
     }
 }

@@ -29,10 +29,11 @@ public class Add extends Command {
      * {@inheritDoc}
      *
      * Adds task to the taskList and writes it to the file.
-     * Displays a message to indicate successful addition of the task.
+     * Returns a message to indicate successful addition of the task.
+     * @return Message to display successful completion of task.
      */
     @Override
-    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
+    public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.addToTaskList(task);
         String textToAppend;
         if (this.task instanceof Event) {
@@ -47,7 +48,7 @@ public class Add extends Command {
             textToAppend = "[" + task.getTaskType() + "] [" + task.getStatus() + "] " + task.getDescription() + "\n";
         }
         fileOperations.writeToFile(textToAppend);
-        uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "added: " + task.getDescription());
+        return uI.returnText(">> " + "added task: " + task.getDescription());
     }
 
     /**

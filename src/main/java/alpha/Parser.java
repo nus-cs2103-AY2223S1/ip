@@ -29,7 +29,7 @@ public class Parser {
      */
     public Command interpretMessage(String input) throws AlphaException {
         String[] inputTokens = input.split(" ", 2);
-        switch (inputTokens[0]) {
+        switch (inputTokens[0].toLowerCase()) {
         case "todo": {
             checkInvalidInput(input, 4);
             return new Add(new Todo(input.substring(5), "T"));
@@ -39,7 +39,7 @@ public class Parser {
             String[] taskInfo = inputTokens[1].split(" /on ", 2);
             if (taskInfo.length <= 1) {
                 throw new AlphaException("Invalid input: Incorrect format! "
-                        + "Enter help to learn about the command formats.");
+                        + "(enter help to know more)");
             }
             String formattedDate = checkDateFormat(taskInfo[1]);
             return new Add(new Event(taskInfo[0], formattedDate, "E"));
@@ -50,7 +50,7 @@ public class Parser {
             String[] taskInfo = inputTokens[1].split(" /by ", 2);
             if (taskInfo.length <= 1) {
                 throw new AlphaException("Invalid input: Incorrect format! "
-                        + "Enter help to learn about the command formats.");
+                        + "(enter help to know more)");
             }
             String formattedDate = checkDateFormat(taskInfo[1]);
             return new Add(new Deadline(taskInfo[0], formattedDate, "D"));
@@ -113,7 +113,7 @@ public class Parser {
             formattedDeadline = d.format(dTF);
             return formattedDeadline;
         } catch (DateTimeException d) {
-            throw new AlphaException("Invalid date: Input date must be an actual date in YYYY-MM-DD format!");
+            throw new AlphaException("Invalid input: Input date must be an actual date in YYYY-MM-DD format!");
         }
     }
 }

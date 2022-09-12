@@ -1,5 +1,9 @@
 package alpha;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import alpha.command.Add;
 import alpha.command.Delete;
 import alpha.command.Mark;
@@ -7,13 +11,10 @@ import alpha.command.Unmark;
 import alpha.task.Deadline;
 import alpha.task.Event;
 import alpha.task.Todo;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
 
-    Parser parser = new Parser();
+    private Parser parser = new Parser();
 
     /**
      * Tests whether the interpretMessage() in Parser class correctly interprets the user input or not.
@@ -37,24 +38,25 @@ public class ParserTest {
     public void interpretMessage_inputMessage_exception() {
         try {
             parser.interpretMessage("event");
-        } catch (AlphaException e){
+        } catch (AlphaException e) {
             assertEquals(new AlphaException("Invalid input: Task description is missing!"), e);
         }
         try {
             parser.interpretMessage("read /by 2020-12-12");
-        } catch (AlphaException e){
+        } catch (AlphaException e) {
             assertEquals(new AlphaException("Invalid input: Task type unknown!"), e);
         }
         try {
             parser.interpretMessage("event xyz /on 22");
-        } catch (AlphaException e){
-            assertEquals(new AlphaException("Invalid input: Input date must be in YYYY-MM-DD format!"), e);
+        } catch (AlphaException e) {
+            assertEquals(new AlphaException("Invalid input: Input date must be an actual date "
+                    + "in YYYY-MM-DD format!"), e);
         }
         try {
             parser.interpretMessage("deadline xyz /on 22");
-        } catch (AlphaException e){
-            assertEquals(new AlphaException("Invalid input: Incorrect format! " +
-                    "Enter help to learn about the command formats."), e);
+        } catch (AlphaException e) {
+            assertEquals(new AlphaException("Invalid input: Incorrect format! "
+                    + "Enter help to learn about the command formats."), e);
         }
     }
 }

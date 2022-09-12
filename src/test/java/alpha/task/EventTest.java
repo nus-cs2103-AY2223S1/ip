@@ -1,14 +1,18 @@
 package alpha.task;
 
-import alpha.Ui;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import alpha.Ui;
+
+
+
 
 public class EventTest {
 
-    Event event = new Event("birthday", "Sep 04 2022", "E");
-    Ui uI = new Ui();
+    private Event event = new Event("birthday", "Sep 04 2022", "E");
+    private Ui uI = new Ui();
 
     /**
      * Tests whether the getDate() in Event class returns the date in the required format or not.
@@ -22,7 +26,7 @@ public class EventTest {
      * Tests whether the toString() in Event class returns the event details in the required format or not.
      */
     @Test
-    public void toString_noInput_String() {
+    public void toString_noInput_string() {
         assertEquals(String.format(uI.getAnsiCode("ANSI_BLUE") + "[ %s ] [ %s ] %s", "E", " ", "birthday"
                 + uI.getAnsiCode("")) + String.format(uI.getAnsiCode("ANSI_RED") + " (on: %s)", "Sep 04 2022"
                 + uI.getAnsiCode("")), event.toString());

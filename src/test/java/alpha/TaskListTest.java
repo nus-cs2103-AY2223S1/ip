@@ -1,22 +1,26 @@
 package alpha;
 
-import alpha.task.Task;
-import alpha.task.Todo;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import alpha.task.Task;
+import alpha.task.Todo;
+
+
 
 public class TaskListTest {
-    List<Task> tasks = new ArrayList<>();
-    TaskList taskList = new TaskList(tasks);
+    private List<Task> tasks = new ArrayList<>();
+    private TaskList taskList = new TaskList(tasks);
 
     /**
      * Tests whether the taskList correctly modifies the status of the tasks or not.
      */
     @Test
-    public void modifiyTaskStatus_taskNumber_AlphaException() {
+    public void modifiyTaskStatus_taskNumber_alphaException() {
         taskList.addToTaskList(new Todo("read", "T"));
         taskList.addToTaskList(new Todo("dance", "T"));
         try {

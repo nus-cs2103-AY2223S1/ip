@@ -77,7 +77,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format(uI.getAnsiCode("ANSI_BLUE") + "[ %s ] [ %s ] %s", this.getTaskType(),
-                this.getStatus(), this.getDescription() + uI.getAnsiCode("ANSI_RESET"));
+        return String.format("[ %s ] [ %s ] %s", this.getTaskType(),
+                this.getStatus(), this.getDescription());
     }
 }
