@@ -34,13 +34,13 @@ public class DeleteCommand extends Command {
         if (index > tasks.getSize() || index <= 0) {
             return ui.printMessage("Index is out of range!");
         }
-        tasks.deleteTask(this.index);
+        String deleted = tasks.deleteTask(this.index - 1);
 
         if (tasks.getSize() == 0) {
             return "Hooray you have no tasks left!";
         }
 
         storage.saveToFile(tasks.saveList());
-        return ui.printDeleteTask(tasks.get(this.index), tasks.getSize());
+        return ui.printDeleteTask(deleted, tasks.getSize());
     }
 }

@@ -11,7 +11,7 @@
          xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #97FFFF; -fx-opacity: 1; -fx-background-radius: 5; -fx-label-padding: 8;"
-               textAlignment="JUSTIFY" wrapText="true" textFill="#000000">
+               textAlignment="LEFT" wrapText="true" textFill="#000000">
             <font>
                 <Font name="Poppins" size="14.0" />
             </font>

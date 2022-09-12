@@ -15,7 +15,7 @@ import duke.task.Task;
  * Class TaskList to store the list of Tasks.
  */
 public class TaskList {
-    private List<Task> memo;
+    private ArrayList<Task> memo;
     private int size;
 
     /**
@@ -36,8 +36,8 @@ public class TaskList {
         memo.add(t);
         this.size++;
         String note = "Now you have " + this.size + " tasks in the list.";
-        return "Got it, I've added this task:\n      " + t.toString()
-                + "\n    " + note;
+        return "Got it, I've added this task:\n" + t.toString()
+                + "\n" + note;
     }
 
     /**
@@ -61,7 +61,7 @@ public class TaskList {
         String str = "Here are the tasks in your list:";
         for (Task k : memo) {
             count++;
-            str += "\n    " + count + ". " + k.toString();
+            str += "\n" + count + ". " + k.toString();
         }
         return str;
     }
@@ -72,13 +72,10 @@ public class TaskList {
      * @return String updated note.
      */
     public String deleteTask(int index) {
-        assert index >= 0 : "index should be not negative";
-        String temp = this.memo.get(index - 1).toString();
-        this.memo.remove(index - 1);
+        assert index >= 0 : "index should be >= 0";
+        Task removedTask = this.memo.remove(index);
         this.size--;
-        String noteUpdated = "Now you have " + this.size + " tasks in the list.";
-        return "Noted. I've deleted this task:\n      " + temp
-                + "\n    " + noteUpdated;
+        return removedTask.toString();
     }
 
     /**

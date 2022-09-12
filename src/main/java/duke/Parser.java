@@ -106,11 +106,11 @@ public class Parser {
                     return new TodoCommand(splitString[1]);
 
                 case DEADLINE:
-                    String[] parse = splitString[1].split("/by", 2);
+                    String[] parse = splitString[1].split(" /by", 2);
                     return new DeadlineCommand(parse[0], LocalDate.parse(parse[1], formatter));
 
                 case EVENT:
-                    String[] parse1 = splitString[1].split("/at", 2);
+                    String[] parse1 = splitString[1].split(" /at", 2);
                     return new EventCommand(parse1[0], LocalDate.parse(parse1[1], formatter));
 
                 case DELETE:

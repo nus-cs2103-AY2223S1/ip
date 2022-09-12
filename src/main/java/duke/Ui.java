@@ -65,7 +65,7 @@ public class Ui {
      */
     public String printMark(Task t) {
         t.mark();
-        return printMessage("Nice! I've marked this task as done :)\n      "
+        return printMessage("Nice! I've marked this task as done :)\n"
                 + t.toString());
     }
 
@@ -74,7 +74,7 @@ public class Ui {
      */
     public String printUnmark(Task t) {
         t.unmark();
-        return printMessage("ok I mark this task as not done yet... \n      "
+        return printMessage("ok I mark this task as not done yet... \n"
                 + t.toString());
     }
 
@@ -83,16 +83,16 @@ public class Ui {
      */
     public String printAddTask(Task t, int n) {
         String note = "Now you have " + n + " tasks in the list.";
-        return printMessage("Got it, I've added this task:\n      " + t.toString()
+        return printMessage("Got it, I've added this task:\n" + t.toString()
                 + "\n" + note);
     }
 
     /**
      * class method to print delete Task message.
      */
-    public String printDeleteTask(Task t, int n) {
+    public String printDeleteTask(String t, int n) {
         String noteUpdated = "Now you have " + n + " tasks in the list.";
-        String str = "Noted. I've deleted this task:\n      " + t.toString()
+        String str = "Noted. I've deleted this task:\n" + t
                 + "\n" + noteUpdated;
         return printMessage(str);
     }
@@ -105,8 +105,8 @@ public class Ui {
      */
     public String printPriority(int priorityLevel, Task t) {
         t.priority(priorityLevel);
-        String s = "Nice! I've marked this task to your specific priority level :) \n"
-                + "Default priority level is 0! \n      "
+        String s = "Nice! I've marked this task to your specific priority level :)\n"
+                + "Default priority level is 0!\n"
                 + t.toString();
         return printMessage(s);
     }
