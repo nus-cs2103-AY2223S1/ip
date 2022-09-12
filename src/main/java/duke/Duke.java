@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * @author Lan Jingbo, Jerry
  */
 public class Duke {
-    private static Ui ui;
+    private Ui ui;
     private TaskList tasks;
     private Storage storage;
 
@@ -33,6 +33,13 @@ public class Duke {
         }
     }
 
+    /**
+     * This function will handle the Todo tasks.
+     *
+     * @param require the user input
+     * @return a string which will present in GUI
+     * @throws WrongMessageException
+     */
     public String todo(String require) throws WrongMessageException {
         try {
             String content = require.substring(4).trim();
@@ -50,6 +57,13 @@ public class Duke {
         }
     }
 
+    /**
+     * This function will handle the Deadline tasks.
+     *
+     * @param require the user input
+     * @return a string which will present in GUI
+     * @throws WrongMessageException
+     */
     public String deadline(String require) throws WrongMessageException {
         try {
             String info = require.substring(8).trim();
@@ -69,6 +83,13 @@ public class Duke {
         }
     }
 
+    /**
+     * This function will handle the Event tasks.
+     *
+     * @param require the user input
+     * @return a string which will present in GUI
+     * @throws WrongMessageException
+     */
     public String event(String require) throws WrongMessageException {
         try {
             String info = require.substring(5).trim();
@@ -188,69 +209,19 @@ public class Duke {
         }
     }
 
+    /**
+     * handle the requirement "bye".
+     * @return the UI of bye
+     */
     public String bye() {
         return "Bye! Hope to see you again soon!";
     }
 
+    /**
+     * the greeting.
+     * @return the UI if hi
+     */
     public String hi() {
         return ui.greet();
     }
-
-    /**
-     * Run the chatbot, Life is good.
-     */
-    /*public void run() {
-
-        ui.greet();
-        String s;
-
-        while (true) {
-            String str = ui.requirement();
-            try {
-                if (str.startsWith("todo")) {
-                    tasks.addTask(Parser.todo(str));
-                    System.out.println("Now you have " + tasks.getSize() + " task(s)");
-                } else if (str.startsWith("deadline")) {
-                    tasks.addTask(Parser.deadline(str));
-                    System.out.println("Now you have " + tasks.getSize() + " task(s)");
-                } else if (str.startsWith("event")) {
-                    tasks.addTask(Parser.event(str));
-                    System.out.println("Now you have " + tasks.getSize() + " task(s)");
-                } else if (str.startsWith("mark")) {
-                    String[] temp = str.split(" ");
-                    int key = Parser.parseInteger(temp[1]);
-                    mark(key);
-                } else if (str.startsWith("unmark")) {
-                    String[] temp = str.split(" ");
-                    int key = Parser.parseInteger(temp[1]);
-                    unmark(key);
-                } else if (str.startsWith("list")) {
-                    showList();
-                } else if (str.startsWith("bye")) {
-                    System.out.println("Bye! Hope to see you again soon!");
-                    break;
-                } else if (str.startsWith("delete")) {
-                    delete(str);
-                } else if (str.startsWith("on")) {
-                    String[] temp = str.split(" ");
-                    String date = temp[1].trim();
-                    LocalDate lc = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                    getOnDate(lc);
-                } else if (str.startsWith("search")) {
-                    search(Parser.convertInfo(str));
-                } else {
-                    throw new CannotUnderstandException();
-                }
-                // Handling exceptions
-            } catch (WrongMessageException | CannotUnderstandException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        try {
-            storage.saveFile(tasks);
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
-    }*/
 }

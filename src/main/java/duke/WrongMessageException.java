@@ -5,7 +5,7 @@ package duke;
  *
  * @author Lan Jingbo, Jerry
  */
-public class WrongMessageException extends Exception{
+public class WrongMessageException extends Exception {
 
     /**
      * The constructor with no input.
