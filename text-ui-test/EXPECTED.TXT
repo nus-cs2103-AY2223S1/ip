@@ -1,7 +1,12 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello! I'm Tuna
+Welcome back to the app
+What can I do for you today?
+Here are the tasks in your list:
+1. [D][X] return book (by: 12 Aug 2022 1500hrs)
+2. [T][ ] look for book
+3. [E][X] concert (at: 10 Sep 2022 1830hrs)
+4. [D][ ] borrow book (by: 10 Aug 2022 1200hrs)
+5. [D][X] read book (by: 11 Aug 2022 2359hrs)
+6. [T][ ] new task
 
+Bye! Don't forget to do your tasks! Hope to see you again soon!
