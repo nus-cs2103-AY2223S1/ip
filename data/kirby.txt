@@ -1,5 +1,9 @@
-kirby.tasks.Todo~hello haha
 kirby.tasks.Deadline~e cdsc dcs~23mcsd cd
+kirby.tasks.Todo~sleep
+kirby.tasks.Todo~todo
+kirby.tasks.Todo~todo
+kirby.tasks.Todo~todo
 kirby.tasks.Deadline~yo~1990-10-02
 kirby.tasks.Event~hehe~1990-10-02
+kirby.tasks.Deadline~e hello~2012-12-21
 kirby.tasks.Deadline~ewd~2012-21-32

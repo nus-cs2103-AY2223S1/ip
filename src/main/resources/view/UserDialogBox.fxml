@@ -14,8 +14,8 @@
             <Insets bottom="8.0" left="8.0" right="8.0" top="18.0" />
          </HBox.margin>
          <children>
-              <Label fx:id="dialog" style="-fx-background-color: '#009B95';" text="Label" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS">
-               <font>
+             <Label fx:id="dialog" alignment="CENTER" minWidth="70.0" style="-fx-background-color: #db4848; -fx-background-radius: 24;" text="Label" textFill="#dedede" wrapText="true" HBox.hgrow="ALWAYS">
+                 <font>
                   <Font name="monofur   bold for Powerline" size="14.0" />
                </font>
                <padding>
@@ -24,7 +24,7 @@
             </Label>
          </children>
       </TextFlow>
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="displayPicture" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>
         <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
