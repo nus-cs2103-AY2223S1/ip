@@ -4,10 +4,11 @@
 JennyBot befriends you and helps you remember your tasks when no one else does.
 
 ## Features of JennyBot :hot_face::sweat_drops::sweat_drops:
-- Remembers **three** different types of tasks:
+- Remembers **four** different types of tasks:
   1. Todo task (you know, just a task)
   2. Deadline task (due by a certain date)
   3. Event task (occurring at a certain date)
+  4. Note task (Just a note for you to remember)
 - **Backup** your task list locally (user/.jenny/storage/tasks)
 - Mark and unmark your tasks as **completed** or **uncompleted**
 - **Finds** which tasks you are looking for
@@ -17,12 +18,13 @@ JennyBot befriends you and helps you remember your tasks when no one else does.
 1. Add a _Todo_ task `todo <description>`
 2. Add a _Deadline_ task `deadline <description> /by <yyyy-MM-dd>`
 3. Add a _Event_ task `event <description> /at <yyyy-MM-dd>`
-4. List all available tasks `list`
-5. Mark a task as complete `mark <index>`
-6. Unmark a task as complete `unmark <index>`
-7. Delete a task from the list `delete <index>`
-8. Find a task by description `find <description>`
-9. Exit the application `bye`
+4. Add a _Note_ task `note <description>`
+5. List all available tasks `list`
+6. Mark a task as complete `mark <index>`
+7. Unmark a task as complete `unmark <index>`
+8. Delete a task from the list `delete <index>`
+9. Find a task by description `find <description>`
+10. Exit the application `bye`
 
 ### Upcoming features from developers of JennyBot:
 
