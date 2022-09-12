@@ -16,7 +16,6 @@ import org.controlsfx.control.NotificationPane;
 public class Main extends Application {
 
     private Duke duke = new Duke();
-//    private MainWindow mainWindow = new MainWindow();
     private Window window= new Window();
 
     private NotificationPane np;
