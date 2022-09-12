@@ -30,6 +30,9 @@ public class Parser {
      * @return a String representing command name.
      */
     public static String getCommandName(String inputString) {
+        if (inputString.split(" ").length == 1) {
+            return inputString;
+        }
         return inputString.substring(0, inputString.indexOf(" "));
     }
 

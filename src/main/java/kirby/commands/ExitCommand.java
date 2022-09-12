@@ -12,10 +12,10 @@ public class ExitCommand extends Command {
      * {@inheritDoc}
      * Quits the program.
      */
-    private static final String GOODBYE_MESSAGE = "I loved talking to you ･ω･\n" + "Hope to see you again!";
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return GOODBYE_MESSAGE;
+        System.exit(0);
+        return null;
     }
 
     /**
