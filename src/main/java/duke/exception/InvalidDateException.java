@@ -9,6 +9,6 @@ public class InvalidDateException extends DukeException {
      * Constructor for invalid date exception.
      */
     public InvalidDateException() {
-        super("\nThe date you enter should be in YYYY-MM-DD format :-(");
+        super("\nThe date you enter should be in YYYY-MM-DD format.");
     }
 }

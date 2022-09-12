@@ -1,4 +1,3 @@
 [D][X] return book (2022-09-12)
-[T][X] read book
+[T][ ] read book
 [E][X] go buffet (2022-09-11)
-[D][ ] finish assignments (2022-09-11)

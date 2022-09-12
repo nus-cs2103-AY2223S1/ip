@@ -65,16 +65,19 @@ public class Ui {
     }
 
     /** Print the message when a date command is called. */
-    public static String showTasksOnDateMessage(LocalDate date) {
-        return "Here are the tasks on: " + date + "\n";
+    public static String showTasksOnDateMessage(LocalDate date, String response) {
+        return "Here are the tasks on: " + date + "\n" + response;
     }
 
-    public static String showFindTaskMessage(String keyword) {
-        return "Based on your keyword:" + keyword + " these are the tasks found:\n";
+    public static String showFindTaskMessage(String keyword, String response) {
+        return "Based on your keyword:" + keyword + " these are the tasks found:\n" + response;
     }
 
     /** Print the message when a list command is called. */
-    public static String showPrintListMessage() {
-        return "Here are the tasks in your list:\n";
+    public static String showPrintListMessage(String uncompletedTasks, String completedTasks) {
+        String reply = "Here are the tasks in your list:\n"
+                + "--------Uncompleted Tasks--------\n" + uncompletedTasks + "\n"
+                + "--------Completed Tasks--------\n" + completedTasks;
+        return reply;
     }
 }

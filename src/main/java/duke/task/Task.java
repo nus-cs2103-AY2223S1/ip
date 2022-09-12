@@ -50,6 +50,14 @@ public class Task {
     }
 
     /**
+     * Get the status of the task.
+     * @return The status of the task.
+     */
+    public boolean getStatus() {
+        return isDone;
+    }
+
+    /**
      * The string representation of task.
      *
      * @return Returns [X] + description if the task is done or

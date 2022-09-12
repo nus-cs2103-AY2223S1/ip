@@ -34,7 +34,7 @@ public class FindCommand extends Command {
                 response = response + i + "." + task + "\n";
             }
         }
-        return Ui.showFindTaskMessage(this.keyword) + response;
+        return Ui.showFindTaskMessage(this.keyword, response);
     }
 
     /**

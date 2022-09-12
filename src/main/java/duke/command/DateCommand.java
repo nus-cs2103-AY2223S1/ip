@@ -47,7 +47,7 @@ public class DateCommand extends Command {
                 }
             }
         }
-        return Ui.showTasksOnDateMessage(this.localDate) + response;
+        return Ui.showTasksOnDateMessage(this.localDate, response);
     }
 
     /**
