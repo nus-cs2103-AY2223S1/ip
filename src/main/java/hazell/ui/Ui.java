@@ -1,4 +1,6 @@
-package hazell;
+package hazell.ui;
+
+import hazell.Command;
 
 import java.util.Scanner;
 

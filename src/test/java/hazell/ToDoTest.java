@@ -1,5 +1,6 @@
 package hazell;
 
+import hazell.entities.ToDo;
 import hazell.exceptions.TaskDescriptionEmpty;
 import org.junit.jupiter.api.Test;
 
