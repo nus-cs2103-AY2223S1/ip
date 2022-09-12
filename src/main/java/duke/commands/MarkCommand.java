@@ -12,7 +12,7 @@ import duke.undo.UndoAction;
 public class MarkCommand extends Command {
     /** Command word of the mark command. */
     public static final String COMMAND_WORD = "mark";
-    private static final String USER_MESSAGE_FORMAT = "Marked task %d as done!\n  %s";
+    private static final String USER_MESSAGE_FORMAT = "*beep beep* Roger, task %d is done!\n  %s";
     private final int index;
 
     /**

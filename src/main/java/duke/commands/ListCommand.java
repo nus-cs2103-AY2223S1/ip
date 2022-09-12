@@ -6,18 +6,20 @@ package duke.commands;
 public class ListCommand extends Command {
     /** Command word of the list command. */
     public static final String COMMAND_WORD = "list";
+    private static final String LIST_MESSAGE = "*beeeeep* I've got your tasks!!\n";
+    private static final String NO_TASKS = "You have no tasks!!! :D";
     private static final String LINE_FORMAT = "%d: %s";
 
     private String getMessage() {
         if (tasks.size() == 0) {
-            return "There are no tasks yet!";
+            return NO_TASKS;
         }
 
         String[] lines = new String[tasks.size()];
         for (int i = 0; i < tasks.size(); i++) {
             lines[i] = String.format(LINE_FORMAT, i + 1, tasks.getTask(i));
         }
-        return String.join("\n", lines);
+        return LIST_MESSAGE + String.join("\n", lines);
     }
 
     @Override

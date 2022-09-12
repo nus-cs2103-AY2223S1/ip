@@ -19,6 +19,10 @@ Label {
     -fx-background-radius: 6;
 }
 
+TextField {
+    -fx-text-fill: white;
+}
+
 DialogBox {
     -fx-padding: 10px;
 }

@@ -12,7 +12,8 @@ import duke.undo.UndoAction;
 public class DeleteCommand extends Command {
     /** Command word of the delete command. */
     public static final String COMMAND_WORD = "delete";
-    private static final String USER_MESSAGE_FORMAT = "Removing this task!\n  %s\nNow you have %d tasks left.";
+    private static final String USER_MESSAGE_FORMAT = "*beeeeep* I've removed the task!\n  %s\n"
+            + "Now you have %d tasks left.";
     private final int index;
 
     /**
@@ -20,8 +21,12 @@ public class DeleteCommand extends Command {
      *
      * @param arguments Arguments string is to be of the format "N".
      */
-    public DeleteCommand(String arguments) {
-        index = Integer.parseInt(arguments);
+    public DeleteCommand(String arguments) throws DukeException {
+        try {
+            index = Integer.parseInt(arguments);
+        } catch (NumberFormatException e) {
+            throw new InvalidIndexException();
+        }
     }
 
     @Override

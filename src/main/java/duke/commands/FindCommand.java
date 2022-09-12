@@ -14,7 +14,8 @@ public class FindCommand extends Command {
     /** Command word of the find command. */
     public static final String COMMAND_WORD = "find";
     private static final String TASK_FORMAT = "%d: %s";
-    private static final String USER_MESSAGE_FORMAT = "Here are the matching tasks in your list!\n%s";
+    private static final String USER_MESSAGE_FORMAT = "*beeeeep* I've found some tasks!\n%s";
+    private static final String NO_TASKS_FOUND = "I didn't find any tasks... *sad beep*";
     private final String keyword;
 
     /**
@@ -45,7 +46,7 @@ public class FindCommand extends Command {
 
     private String getUserMessage(ArrayList<String> foundTasks) {
         if (foundTasks.isEmpty()) {
-            return "No tasks found!";
+            return NO_TASKS_FOUND;
         }
         String tasksString = String.join("\n", foundTasks);
         return String.format(USER_MESSAGE_FORMAT, tasksString);

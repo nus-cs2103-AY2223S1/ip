@@ -20,7 +20,9 @@ public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
     private static final Pattern ARGUMENTS_FORMAT =
         Pattern.compile("(?<description>.+)\\s+/by\\s+(?<deadline>\\d{4}-\\d{2}-\\d{2}\\s+\\d{4})");
-    private static final String USER_MESSAGE_FORMAT = "Added this deadline!\n  %s\nNow you have %d tasks.";
+    private static final String USER_MESSAGE_FORMAT = "*beep* I've added this deadline for you!\n"
+            + "  %s\n"
+            + "Now you have %d tasks!";
     private final Deadline deadline;
 
     /**

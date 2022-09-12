@@ -20,7 +20,9 @@ public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
     private static final Pattern ARGUMENTS_FORMAT =
         Pattern.compile("(?<description>.+)\\s+/at\\s+(?<date>\\d{4}-\\d{2}-\\d{2}\\s+\\d{4})");
-    private static final String USER_MESSAGE_FORMAT = "Added this event!\n  %s\nNow you have %d tasks.";
+    private static final String USER_MESSAGE_FORMAT = "*beep* I've added this event for you!\n"
+            + "  %s\n"
+            + "Now you have %d tasks!";
     private final Event event;
 
     /**

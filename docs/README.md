@@ -1,5 +1,9 @@
 # User Guide
 
+Little Duke is a great companion in helping you manage your tasks!
+
+![Image](Ui.png)
+
 ## Features 
 
 ### Tasks
@@ -48,7 +52,7 @@ Delete a task.
 
 ### Exit
 
-Exit the application with `bye`.
+Exits the application after a short delay.
 
 ### Resizable
 
@@ -71,9 +75,9 @@ Expected outcome:
 A Todo is created with the description and date/time provided.
 
 ```
-Added this todo!
+*beep* I've added this todo for you!
   [T][ ] Nice task.
-Now you have <x> tasks.
+Now you have <x> tasks!
 ```
 
 ### `deadline` - Create a Deadline task
@@ -91,9 +95,9 @@ Expected outcome:
 A Deadline is created with the description and date/time provided.
 
 ```
-Added this deadline!
+*beep* I've added this deadline for you!
   [D][ ] Submit XXX. (by: 11 Sep 22 23:59)
-Now you have <x> tasks.
+Now you have <x> tasks!
 ```
 
 ### `event` - Create an Event task
@@ -111,9 +115,9 @@ Expected outcome:
 An Event is created with the description and date/time provided.
 
 ```
-Added this event!
+*beep* I've added this event for you!
   [E][ ] Nice Event. (at: 11 Sep 22 23:59)
-Now you have <x> tasks.
+Now you have <x> tasks!
 ```
 
 ### `list` - List all tasks
@@ -131,6 +135,7 @@ Expected outcome:
 A list of all the tasks.
 
 ```
+*beeeeep* I've got your tasks!!
 1. [T][ ] Nice task.
 2. [D][ ] Submit XXX (by: 11 Sep 22 23:59).
 3. [E][ ] Nice Event. (at: 11 Sep 22 23:59).
@@ -151,7 +156,7 @@ Expected outcome:
 Task 2 will be marked as done.
 
 ```
-Marked task 2 as done!
+*beep beep* Roger, task 2 is done!
   [D][X] Submit XXX. (by: 11 Sep 22 23:59).
 ```
 
@@ -170,7 +175,7 @@ Expected outcome:
 Task 2 will be marked as not done.
 
 ```
-Marked task 2 as not done!
+*beep beep* Roger, task 2 is not done!
   [D][ ] Submit XXX. (by: 11 Sep 22 23:59).
 ```
 
@@ -189,7 +194,7 @@ Expected outcome:
 A list of tasks that match the keywords provided.
 
 ```
-Here are the matching tasks in your list!
+*beeeeep* I've found some tasks!
 1. [T][ ] Nice task.
 2. [E][ ] Nice Event. (at: 11 Sep 22 23:59).
 ```
@@ -209,7 +214,7 @@ Expected outcome:
 The previous command will be undone, if there are any.
 
 ```
-Undoing previous command!
+Whoops, undoing previous command!!
 ```
 
 ### `delete` - Delete a task
@@ -227,7 +232,7 @@ Expected outcome:
 Task at index 1 is deleted.
 
 ```
-Removing this task!
+*beeeeep* I've removed the task!
   [T][ ] Nice task.
 Now you have <x> tasks left.
 ```
@@ -244,4 +249,9 @@ Example of usage:
 
 Expected outcome:
 
-The application closes.
+The application closes after a short delay.
+
+```
+Bye! *sad beep*
+Hope to see you soon!
+```

@@ -11,7 +11,7 @@ import duke.undo.UndoAction;
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
-    private static final String USER_MESSAGE_FORMAT = "Marked task %d as not done!\n  %s";
+    private static final String USER_MESSAGE_FORMAT = "*beep beep* Roger, task %d is not done!\n  %s";
     private final int index;
 
     /**

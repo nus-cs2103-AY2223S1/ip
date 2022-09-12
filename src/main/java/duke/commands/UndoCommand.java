@@ -5,7 +5,7 @@ package duke.commands;
  */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
-    private static final String USER_MESSAGE_FORMAT = "Undoing previous command!";
+    private static final String USER_MESSAGE_FORMAT = "Whoops, undoing previous command!!";
 
     @Override
     public CommandResult execute() {

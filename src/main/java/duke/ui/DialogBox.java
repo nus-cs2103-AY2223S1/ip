@@ -14,7 +14,7 @@ import javafx.scene.layout.HBox;
  * Represents the controller for the dialog box of the Duke application.
  */
 public class DialogBox extends HBox {
-    private static final String dukeBackgroundStyle = "-fx-background-color: #333333;";
+    private static final String DUKE_BACKGROUND_STYLE = "-fx-background-color: #333333;";
     @FXML
     private final Label text;
     @FXML
@@ -69,7 +69,7 @@ public class DialogBox extends HBox {
     public static DialogBox getDukeDialog(String label, Image image) {
         DialogBox dialogBox = new DialogBox(label, image);
         dialogBox.flip();
-        dialogBox.setStyle(dukeBackgroundStyle);
+        dialogBox.setStyle(DUKE_BACKGROUND_STYLE);
         return dialogBox;
     }
 }

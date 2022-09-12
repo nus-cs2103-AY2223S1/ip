@@ -3,6 +3,8 @@ package duke;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import duke.commands.Command;
 import duke.commands.CommandResult;
@@ -19,6 +21,11 @@ import javafx.application.Platform;
  * Responsible for user interaction.
  */
 public class Duke {
+    private static final String WELCOME_MESSAGE = "Beep boop!\n"
+            + "I'm your friendly neighbourhood bot, Little Duke!";
+    // Delay is in milliseconds
+    private static final int DELAY_ON_EXIT = 1500;
+
     private final Parser parser;
     private final Storage storage;
     private final TaskList tasks;
@@ -107,7 +114,13 @@ public class Duke {
         if (!result.shouldExit()) {
             return;
         }
-        Platform.exit();
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.exit();
+                System.exit(0);
+            }
+        }, DELAY_ON_EXIT);
     }
 
     private void updateFileIfRequired(CommandResult result) throws IOException {
@@ -148,6 +161,15 @@ public class Duke {
         } catch (DukeException | IOException e) {
             return e.getMessage();
         }
+    }
+
+    /**
+     * Gets the welcome message from the Duke application.
+     *
+     * @return Gets the welcome message for the Duke application.
+     */
+    public String getWelcomeMessage() {
+        return WELCOME_MESSAGE;
     }
 
     /**

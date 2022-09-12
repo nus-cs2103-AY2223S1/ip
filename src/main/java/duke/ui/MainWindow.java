@@ -61,20 +61,29 @@ public class MainWindow extends VBox {
 
     /**
      * Sets the Duke instance for the main window.
+     * Also shows the welcome message to the user.
      *
      * @param duke Duke instance associated with the main window.
      */
     public void setDuke(Duke duke) {
         this.duke = duke;
+        String welcomeMessage = duke.getWelcomeMessage();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(welcomeMessage, dukeImage)
+        );
     }
 
     /**
+     * If user input is empty, do not parse anything.
      * Creates two dialog boxes, one for the user and one for Duke application
      * and then appends them to the dialog container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+        if (input.isEmpty()) {
+            return;
+        }
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),

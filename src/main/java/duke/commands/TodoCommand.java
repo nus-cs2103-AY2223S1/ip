@@ -11,7 +11,9 @@ import duke.undo.TaskUndo;
 public class TodoCommand extends Command {
     /** Command word of the todo command. */
     public static final String COMMAND_WORD = "todo";
-    private static final String USER_MESSAGE_FORMAT = "Added this todo!\n  %s\nNow you have %d tasks.";
+    private static final String USER_MESSAGE_FORMAT = "*beep* I've added this todo for you!\n"
+            + "  %s\n"
+            + "Now you have %d tasks!";
     private final Todo todo;
 
     /**
