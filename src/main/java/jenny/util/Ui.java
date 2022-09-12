@@ -44,8 +44,8 @@ public final class Ui {
      */
     public void greet() {
         print(new String[]{
-            "Hello! I'm JennyBot",
-            "What can I do for you?"
+                "Hello! I'm Jenny",
+                "What can I do for you Forest?"
         });
     }
 
@@ -63,7 +63,7 @@ public final class Ui {
      * Sends an exit message to the output stream.
      */
     public void exit() {
-        print("Bye. Hope to see you again soon!");
+        print("Bye Bye Forest!");
     }
 
     /**
