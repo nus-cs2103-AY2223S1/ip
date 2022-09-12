@@ -8,8 +8,6 @@ import duke.exception.MissingArgumentException;
 import duke.exception.MissingDescriptionException;
 import duke.exception.MissingIndexException;
 import duke.exception.MissingTimeException;
-import javafx.scene.image.Image;
-
 
 /**
  * Main class for Duke. Contains objects handling storage, the task list and Ui.
