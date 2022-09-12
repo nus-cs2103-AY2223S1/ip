@@ -3,6 +3,7 @@ package duke.storage;
 import duke.task.TaskList;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,13 +15,29 @@ public class Storage {
     }
 
     /**
-     * Encode the task list and store in specified file path.
+     * Encode the task list and store in specified file path (overwriting the file).
      *
      * @param taskList Task list to be saved.
      */
-    public void save(TaskList taskList) {
+    public void overwriteSave(TaskList taskList) {
         try {
-            FileEncoder.encodeFile(dataFile, taskList);
+            FileWriter fileWriter = new FileWriter(dataFile);
+            FileEncoder.encodeFile(fileWriter, taskList);
+        } catch (IOException ioe) {
+            System.err.println("Warning! Errors encountered when writing to file. "
+                    + "Your data might not be saved.");
+        }
+    }
+
+    /**
+     * Encode the task list and store in specified file path (append to the back of the file).
+     *
+     * @param taskList Task list to be saved.
+     */
+    public void appendSave(TaskList taskList) {
+        try {
+            FileWriter fileWriter = new FileWriter(dataFile, true);
+            FileEncoder.encodeFile(fileWriter, taskList);
         } catch (IOException ioe) {
             System.err.println("Warning! Errors encountered when writing to file. "
                     + "Your data might not be saved.");

@@ -1,5 +1,6 @@
 package duke.parser;
 
+import duke.commands.ArchiveCommand;
 import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.commands.DeadlineCommand;
@@ -46,6 +47,8 @@ public class Parser {
             return new DeleteCommand(userInput);
         case FIND:
             return new FindCommand(userInput);
+        case ARCHIVE:
+            return new ArchiveCommand();
         case BYE:
             return new ByeCommand();
         default:

@@ -36,4 +36,8 @@ public class TaskList {
     public ListIterator<Task> getListIterator() {
         return taskList.listIterator();
     }
+
+    public void clear() {
+        taskList.clear();
+    }
 }

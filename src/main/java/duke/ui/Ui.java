@@ -21,7 +21,7 @@ public class Ui {
         scanner.close();
         String message = command.execute(taskList);
         isExit = command.isExit();
-        storage.save(taskList);
+        storage.overwriteSave(taskList);
         return message;
     }
 }
