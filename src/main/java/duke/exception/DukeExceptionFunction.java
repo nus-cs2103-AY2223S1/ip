@@ -1,6 +1,8 @@
-package duke;
+package duke.exception;
 
 import java.util.function.Function;
+
+import duke.DukeResponse;
 
 /**
  * Defines an interface for functions that throw DukeException.

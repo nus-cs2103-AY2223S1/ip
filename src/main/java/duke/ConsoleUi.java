@@ -7,9 +7,9 @@ import java.io.Reader;
  * Handles console-based user interface. Used for sanity checks.
  */
 public class ConsoleUi implements UiInterface {
-    private static String UPPER_BAR = ",----------------------------------------------------------------";
-    private static String LOWER_BAR = "'----------------------------------------------------------------";
-    private static String LEFT_BAR = "| ";
+    private static final String UPPER_BAR = ",----------------------------------------------------------------";
+    private static final String LOWER_BAR = "'----------------------------------------------------------------";
+    private static final String LEFT_BAR = "| ";
 
     /**
      * {@inheritDoc}

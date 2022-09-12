@@ -1,4 +1,6 @@
-package duke;
+package duke.exception;
+
+import duke.DukeResponse;
 
 /**
  * An exception class that comes with a DukeResponse

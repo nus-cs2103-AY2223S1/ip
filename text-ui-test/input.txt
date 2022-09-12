@@ -29,7 +29,7 @@ mark 6
 list
 event meet friends
 event meet people at dinner /at 6:25 pm
-event meet people at function x/y/z whatever /at oh no not this /by /at 7:12am
+event meet people at function x/y/z whatever /at oh no not this /by /at 7:12am 1524 Fri NOV
 list
 deadline /at mysterious
 deadline /by mysterious number 2
@@ -48,4 +48,24 @@ find
 find 
 find  meet
 find      me
+find me
+find t
+note hello /content this is a great note
+note pi /content 3.14159265358979323
+note hello /content repeated title
+list notes
+delete note fails
+find notes he
+view note 1
+view note 2
+view note 3
+view note 0
+view note -1
+view note 12389
+view note okay
+reschedule 1 /at hi1 /by hi2
+reschedule 2 /at 1950 /by 1960
+reschedule 5 /at 1950 /by 1960
+delete note 3
+list notes
 bye

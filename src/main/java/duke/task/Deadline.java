@@ -27,7 +27,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by, boolean isDone) {
         super(description, isDone);
-        datetime = new ParsedDateTime(by);
+        datetime = ParsedDateTime.of(by, true);
         assert description != null;
         assert by != null;
     }

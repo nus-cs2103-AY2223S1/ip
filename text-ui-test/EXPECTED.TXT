@@ -126,7 +126,7 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | That's going to happen at some time later:
-| [E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| [E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here, your tasks:
@@ -135,7 +135,7 @@
 | 3.[T][X] project 12
 | 4.[E][ ] meet friends (at: [unknown])
 | 5.[E][ ] meet people at dinner (at: 6:25 pm)
-| 6.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 6.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Good luck with the deadline, here's the task:
@@ -156,7 +156,7 @@
 | 3.[T][X] project 12
 | 4.[E][ ] meet friends (at: [unknown])
 | 5.[E][ ] meet people at dinner (at: 6:25 pm)
-| 6.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 6.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 7.[D][ ] /at mysterious (by: [unknown])
 | 8.[D][ ] /by mysterious number 2 (by: [unknown])
 | 9.[D][ ] rush this please (by: when?)
@@ -176,7 +176,7 @@
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][ ] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -202,7 +202,7 @@
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: [unknown])
 | 3.[E][ ] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
@@ -219,6 +219,92 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here are the tasks that you might be looking for:
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here are the tasks that you might be looking for:
+| 1.[T][ ] homework
+| 2.[E][ ] meet friends (at: [unknown])
+| 3.[E][ ] meet people at dinner (at: 6:25 pm)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here are the tasks that you might be looking for:
+| 2.[E][ ] meet friends (at: [unknown])
+| 3.[E][ ] meet people at dinner (at: 6:25 pm)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 5.[D][ ] /at mysterious (by: [unknown])
+| 6.[D][ ] /by mysterious number 2 (by: [unknown])
+| 7.[D][ ] rush this please (by: when?)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Added your note about hello.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Added your note about pi.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Added your note about hello.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here, your notes:
+| 1.hello
+| 2.pi
+| 3.hello
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, I didn't understand fails, please give me a number.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| These notes match your query:
+| 1.hello
+| 3.hello
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here's the note:
+| hello
+| this is a great note
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here's the note:
+| pi
+| 3.14159265358979323
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here's the note:
+| hello
+| repeated title
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number 0, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number -1, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number 12389, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, I didn't understand okay, please give me a number.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| That's a todo, it doesn't have a date.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [E][ ] meet friends (at: 31 Dec 1950 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [D][ ] /at mysterious (by: 31 Dec 1960 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I removed this note:
+| hello
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here, your notes:
+| 1.hello
+| 2.pi
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | It was nice to have you around, I'm going back to sleep...

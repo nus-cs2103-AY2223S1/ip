@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import duke.note.NoteList;
 import duke.task.TaskList;
 
 /**
@@ -52,6 +53,7 @@ public class Duke {
         // initialization
         ui.greet();
         TaskList.initializeTaskList();
+        NoteList.initializeNoteList();
         commands = Parser.getCommands();
         BufferedReader input = new BufferedReader(ui.getReader());
 
@@ -75,6 +77,7 @@ public class Duke {
 
         // finalization
         TaskList.finalizeTaskList();
+        NoteList.finalizeNoteList();
         ui.leave();
     }
 }

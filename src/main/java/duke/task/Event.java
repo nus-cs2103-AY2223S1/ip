@@ -29,7 +29,7 @@ public class Event extends Task {
         super(description, isDone);
         assert description != null;
         assert at != null;
-        datetime = new ParsedDateTime(at);
+        datetime = ParsedDateTime.of(at, true);
     }
 
     /**
