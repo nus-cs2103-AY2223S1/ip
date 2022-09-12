@@ -3,8 +3,10 @@ package duke.fxwindows;
 import duke.TaskList;
 import duke.tasks.Task;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -13,27 +15,29 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class TaskListPane extends VBox {
+public class TaskListPane extends ScrollPane {
 
     private TaskList tasks;
     private Window parent;
 
+    @FXML
+    private VBox vBox;
+
     public TaskListPane(Window parent, TaskList tasks) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/TaskListPane.fxml"));
+            fxmlLoader.setRoot(this);
             fxmlLoader.setController(this);
-//            fxmlLoader.setRoot(this);
             fxmlLoader.load();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        HBox.setHgrow(this, Priority.ALWAYS);
+//        HBox.setHgrow(this, Priority.ALWAYS);
 
         this.setTasks(tasks);
         this.parent = parent;
         this.refresh();
-
 
         this.getStyleClass().add("pane");
         this.getStyleClass().add("listPane");
@@ -46,7 +50,7 @@ public class TaskListPane extends VBox {
     }
 
     private void refresh() {
-        this.getChildren().clear();
+        this.vBox.getChildren().clear();
         for (Iterator<Task> it = this.tasks.getIterator(); it.hasNext(); ) {
             Task t = it.next();
 
@@ -58,7 +62,9 @@ public class TaskListPane extends VBox {
                 }
             });
 
-            this.getChildren().add(l);
+//            System.out.println('l');
+            this.vBox.getChildren().add(l);
+//            this.vBox.getChildren().add(new Label("HI"));
         }
     }
 

@@ -38,7 +38,6 @@ public class TaskCategoryPane extends VBox {
         allLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("hi");
                 parent.updateTaskList(parent.duke.getTasks());
             }
         });
@@ -46,7 +45,6 @@ public class TaskCategoryPane extends VBox {
         todoLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("hi1");
                 parent.updateTaskList(
                         parent.duke.getTasks().filterByCategory(TaskList.Categories.TODO));
             }
@@ -55,7 +53,6 @@ public class TaskCategoryPane extends VBox {
         eventLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("hi2");
                 parent.updateTaskList(
                         parent.duke.getTasks().filterByCategory(TaskList.Categories.EVENT));
             }
@@ -64,7 +61,6 @@ public class TaskCategoryPane extends VBox {
         deadlineLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("hi3");
                 parent.updateTaskList(
                         parent.duke.getTasks().filterByCategory(TaskList.Categories.DEADLINE));
             }
