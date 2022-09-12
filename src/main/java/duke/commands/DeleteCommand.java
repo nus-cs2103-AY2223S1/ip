@@ -1,12 +1,13 @@
 package duke.commands;
 
-import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 
 import java.util.Scanner;
 
 public class DeleteCommand extends Command {
+    private static final int DISPLAYED_INDEX_OFFSET = 1;
+
     private final int deleteIndex;
 
     /**
@@ -22,13 +23,11 @@ public class DeleteCommand extends Command {
      * Delete specified task from the task list. Finally, save the task list in storage.
      *
      * @param taskList Task list that contains the specified task.
-     * @param storage File to be saved to.
      */
-    public void execute(TaskList taskList, Storage storage) {
-        Task deletedTask = taskList.get(deleteIndex - 1);
-        taskList.delete(deleteIndex - 1);
-        System.out.println("Noted. I've removed this task:\n" + deletedTask
-                + "\nNow you have " + taskList.getSize() + " tasks in the list.");
-        storage.save(taskList);
+    public String execute(TaskList taskList) {
+        Task deletedTask = taskList.get(deleteIndex - DISPLAYED_INDEX_OFFSET);
+        taskList.delete(deleteIndex - DISPLAYED_INDEX_OFFSET);
+        return String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in your list.",
+                deletedTask, taskList.getSize());
     }
 }

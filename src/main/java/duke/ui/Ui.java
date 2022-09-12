@@ -8,25 +8,23 @@ import duke.task.TaskList;
 import java.util.Scanner;
 
 public class Ui {
-    /**
-     * Prints welcome message.
-     */
-    public void showWelcomeMessage() {
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+    private static boolean isExit = false;
+
+    public static boolean isExit() {
+        return isExit;
     }
 
-    /**
-     * Read user input, execute the command and output the message.
-     */
-    public void readUserInputThenOutputMessage(TaskList taskList, Storage storage) {
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()) {
-            Command command = Parser.parseUserInput(scanner);
-            command.execute(taskList, storage);
-            if (command.isExit()) {
-                break;
-            }
-        }
+    public static String showWelcomeMessage() {
+        return "Hello! I'm Duke\nWhat can I do for you?";
+    }
+
+    public String readUserInputThenOutputMessage(TaskList taskList, Storage storage, String input) {
+        Scanner scanner = new Scanner(input);
+        Command command = Parser.parseUserInput(scanner);
         scanner.close();
+        String message = command.execute(taskList);
+        isExit = command.isExit();
+        storage.save(taskList);
+        return message;
     }
 }

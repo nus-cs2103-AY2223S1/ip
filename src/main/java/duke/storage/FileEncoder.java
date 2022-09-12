@@ -24,7 +24,7 @@ public class FileEncoder {
     }
 
     /**
-     * Encode task in file format.
+     * Encode task in file format for easier parsing during decoding.
      *
      * @param fileWriter File to be saved to.
      * @param task Task to be saved.

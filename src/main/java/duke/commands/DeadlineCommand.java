@@ -1,6 +1,5 @@
 package duke.commands;
 
-import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.TaskList;
 
@@ -26,13 +25,11 @@ public class DeadlineCommand extends Command {
      * Create new deadline task and store it in the task list. Finally, save the task list in storage.
      *
      * @param taskList Task list that stores new deadline task.
-     * @param storage File to be saved to.
      */
-    public void execute(TaskList taskList, Storage storage) {
+    public String execute(TaskList taskList) {
         Deadline deadlineTask = new Deadline(deadlineDescription, deadlineBy);
         taskList.add(deadlineTask);
-        System.out.println("Got it. I've added this task:\n" + deadlineTask
-                + "\nNow you have " + taskList.getSize() + " tasks in the list.");
-        storage.save(taskList);
+        return String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in your list.",
+                deadlineTask, taskList.getSize());
     }
 }

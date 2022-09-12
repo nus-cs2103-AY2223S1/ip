@@ -4,6 +4,7 @@ import duke.task.TaskList;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Storage {
     private final File dataFile;
@@ -21,19 +22,28 @@ public class Storage {
         try {
             FileEncoder.encodeFile(dataFile, taskList);
         } catch (IOException ioe) {
-            System.err.println("Warning! Errors encountered when writing to file. " +
-                    "Your data might not be saved.");
+            System.err.println("Warning! Errors encountered when writing to file. "
+                    + "Your data might not be saved.");
         }
     }
 
     /**
-     * Decode the task list from specified file path, if exists. Else, create a new file.
+     * Decode the file at specified file path and save the decoded tasks in a new task list, if such file exists.
+     * Else, create a new empty file at specified file path.
      *
-     * @return Task list containing tasks.
-     * @throws IOException If error occurs when trying to read from file.
+     * @return Task list containing decoded tasks.
      */
-    public TaskList load() throws IOException {
-        dataFile.createNewFile(); //temporary
-        return FileDecoder.decodeFile(dataFile);
+    public TaskList load() {
+        TaskList taskList = new TaskList(new ArrayList<>());
+        try {
+            if (dataFile.createNewFile()) {
+                System.out.println("Creating a new file...");
+            }
+            return FileDecoder.decodeFile(dataFile, taskList);
+        } catch (IllegalStateException | IOException e) {
+            System.err.println("Warning! Errors encountered when reading from file. "
+                    + "The rest of the data is discarded.");
+        }
+        return taskList;
     }
 }

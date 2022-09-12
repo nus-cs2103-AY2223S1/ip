@@ -1,32 +1,38 @@
 package duke.commands;
 
-import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
 
 public class FindCommand extends Command {
+    private static final int DISPLAYED_INDEX_OFFSET = 1;
+
     private final String keyword;
 
     public FindCommand(Scanner scanner) {
-        keyword = scanner.nextLine().strip();
+        keyword = scanner.skip(" ").nextLine();
     }
 
-    public void execute(TaskList tasklist, Storage storage) {
-        System.out.println("Here are the matching tasks in your list:");
+    public String execute(TaskList tasklist) {
+        System.out.println(keyword);
+        List<String> matchingTasks = new ArrayList<>();
+        matchingTasks.add("Here are the matching tasks in your list:");
         ListIterator<Task> listIterator = tasklist.getListIterator();
         while (listIterator.hasNext()) {
-            int taskIndex = listIterator.nextIndex() + 1;
+            int taskIndex = listIterator.nextIndex() + DISPLAYED_INDEX_OFFSET;
             Task task = listIterator.next();
-            printIfMatchingTask(taskIndex, task);
+            addMatchingTask(matchingTasks, taskIndex, task);
         }
+        return String.join("\n", matchingTasks);
     }
 
-    private void printIfMatchingTask(int taskIndex, Task task) {
+    private void addMatchingTask(List<String> matchingTasks, int taskIndex, Task task) {
         if (task.doesContain(keyword)) {
-            System.out.println(taskIndex + "." + task);
+            matchingTasks.add(taskIndex + "." + task);
         }
     }
 }
