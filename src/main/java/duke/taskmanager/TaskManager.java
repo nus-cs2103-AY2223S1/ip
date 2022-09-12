@@ -179,16 +179,11 @@ public class TaskManager {
     public String findTask(String keyword) {
         int[] keywordList = IntStream.range(0, this.taskList.size())
                 .filter(i -> this.taskList.get(i).getTaskName().contains(keyword)).toArray();
-        if (keywordList.length == 0) {
-            return "You have no tasks in your list with the keyword \"" + keyword + "\".\n";
-        } else {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("I have the matching tasks displayed below:\n");
-            for (Integer index : keywordList) {
-                stringBuilder.append(index + 1).append(") ").append(this.taskList.get(index)).append("\n");
-            }
-            return stringBuilder.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Integer index : keywordList) {
+            stringBuilder.append(index + 1).append(") ").append(this.taskList.get(index)).append("\n");
         }
+        return stringBuilder.toString();
     }
 
     /**

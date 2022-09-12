@@ -2,15 +2,7 @@ package duke.chatbot;
 
 import java.util.Scanner;
 
-import duke.chatbot.commands.ByeCommandHandler;
-import duke.chatbot.commands.DeadlineTaskCommandHandler;
-import duke.chatbot.commands.DeleteTaskCommandHandler;
-import duke.chatbot.commands.EventTaskCommandHandler;
-import duke.chatbot.commands.ListTaskCommandHandler;
-import duke.chatbot.commands.MarkTaskCommandHandler;
-import duke.chatbot.commands.TodoTaskCommandHandler;
-import duke.chatbot.commands.UnmarkTaskCommandHandler;
-import duke.chatbot.commands.UpdateTaskCommandHandler;
+import duke.chatbot.commands.*;
 import duke.chatbot.commands.exceptions.EmptyCommandException;
 import duke.chatbot.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commands.exceptions.InvalidCommandException;
@@ -118,11 +110,10 @@ public class ChatBot {
                 throw new EmptyCommandException();
             }
 
-            // Get commands and arguments
+            // Get command and arguments
             String command = inputScanner.next();
-            boolean hasArguments = inputScanner.hasNext();
             String arguments = "";
-            if (hasArguments) {
+            if (inputScanner.hasNext()) {
                 arguments = inputScanner.nextLine().strip();
             }
 
@@ -152,10 +143,7 @@ public class ChatBot {
                 response = new DeleteTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "find":
-                if (!hasArguments) {
-                    throw new InvalidArgumentsException();
-                }
-                response = taskManager.findTask(arguments);
+                response = new FindTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "update":
                 response = new UpdateTaskCommandHandler(this.taskManager).execute(arguments);
