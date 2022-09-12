@@ -1,5 +1,9 @@
 package duke.command;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import duke.common.Messages;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.util.TaskList;
@@ -22,7 +26,18 @@ public class ExitCommand extends Command {
     @Override
     public String execute(Storage storage, TaskList tasklist) throws DukeException {
         storage.writeToFile(tasklist);
-        System.exit(0);
-        return null;
+        /*
+          Code for exiting the program taken from
+          https://stackoverflow.com/questions/15747277/how-to-make-java-program-exit-after-a-couple-of-seconds
+         */
+        Timer timer = new Timer();
+        TimerTask exit = new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        };
+        timer.schedule(exit, 1000);
+        return Messages.GOODBYE;
     }
 }
