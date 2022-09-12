@@ -1,0 +1,15 @@
+todo eat
+todo cs2103 ip
+list
+mark 1
+unmark 1
+deadline cs2100 /by 2022-08-24 23:59
+deadline es2660 /by 2022-08-27 12:00
+mark 2
+event gathering with friends /at 2022-08-28 18:00
+event NUS Jazz Band Auditions /at 2022-08-27 19:30
+todo fill up tumblr
+list
+mark 7
+delete 7
+bye

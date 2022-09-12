@@ -1,0 +1,4 @@
+T | 1 | CS2103T Weekly Quiz
+D | 0 | CS2100 Quiz | 2022-12-01 23:59
+E | 0 | NUSSU Council AGM | 2022-09-11 10:00
+E | 0 | ES2660 Presentation | 2022-09-12 14:00

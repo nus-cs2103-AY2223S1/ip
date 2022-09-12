@@ -1,0 +1,30 @@
+T | 0 | eat
+T | 1 | cs2103 ip
+D | 0 | cs2100 | 2022-08-24 23:59
+D | 0 | es2660 | 2022-08-27 12:00
+E | 0 | gathering with friends | 2022-08-28 18:00
+E | 0 | NUS Jazz Band Auditions | 2022-08-27 19:30
+E | 0 | gathering with friends | 2022-08-28 18:00
+E | 0 | NUS Jazz Band Auditions | 2022-08-27 19:30
+T | 0 | fill up tumblr
+T | 0 | eat
+T | 0 | cs2103 ip
+D | 0 | cs2100 | 2022-08-24 23:59
+D | 0 | es2660 | 2022-08-27 12:00
+E | 0 | gathering with friends | 2022-08-28 18:00
+E | 0 | NUS Jazz Band Auditions | 2022-08-27 19:30
+T | 0 | fill up tumblr
+T | 0 | eat
+T | 0 | cs2103 ip
+D | 0 | cs2100 | 2022-08-24 23:59
+D | 0 | es2660 | 2022-08-27 12:00
+E | 0 | gathering with friends | 2022-08-28 18:00
+E | 0 | NUS Jazz Band Auditions | 2022-08-27 19:30
+T | 0 | fill up tumblr
+T | 0 | eat
+T | 0 | cs2103 ip
+D | 0 | cs2100 | 2022-08-24 23:59
+D | 0 | es2660 | 2022-08-27 12:00
+E | 0 | gathering with friends | 2022-08-28 18:00
+E | 0 | NUS Jazz Band Auditions | 2022-08-27 19:30
+T | 0 | fill up tumblr
