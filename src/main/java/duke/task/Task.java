@@ -1,5 +1,8 @@
 package duke.task;
 
+import static duke.ui.Messages.MESSAGE_TASK_ALREADY_MARKED;
+import static duke.ui.Messages.MESSAGE_TASK_ALREADY_UNMARKED;
+
 public abstract class Task {
     String description;
     boolean isDone;
@@ -15,7 +18,7 @@ public abstract class Task {
     }
 
     public boolean doesContain(String keyword) {
-        return description.contains(keyword);
+        return description.toLowerCase().contains(keyword.toLowerCase());
     }
 
     private String getStatusIcon() {
@@ -28,7 +31,7 @@ public abstract class Task {
      */
     public String markAsDone() {
         if (isDone) {
-            return "This task is already marked as done!";
+            return MESSAGE_TASK_ALREADY_MARKED;
         } else {
             this.isDone = true;
             return "Nice! I've marked this task as done:\n" + this;
@@ -41,7 +44,7 @@ public abstract class Task {
      */
     public String markAsUndone() {
         if (!isDone) {
-            return "This task is already marked as not done yet!";
+            return MESSAGE_TASK_ALREADY_UNMARKED;
         } else {
             this.isDone = false;
             return "OK, I've marked this task as not done yet:\n" + this;

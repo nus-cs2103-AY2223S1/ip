@@ -14,10 +14,6 @@ public class Ui {
         return isExit;
     }
 
-    public static String showWelcomeMessage() {
-        return "Hello! I'm Duke\nWhat can I do for you?";
-    }
-
     public String readUserInputThenOutputMessage(TaskList taskList, Storage storage, String input) {
         Scanner scanner = new Scanner(input);
         Command command = Parser.parseUserInput(scanner);
