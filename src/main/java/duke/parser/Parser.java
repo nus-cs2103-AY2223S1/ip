@@ -28,8 +28,10 @@ public class Parser {
             return addEvent(fullCommand);
         } else if (command.equals("todo")) {
             return addToDo(fullCommand);
-        } else if (command.equals("delete")){
+        } else if (command.equals("delete")) {
             return deleteTask(fullCommand);
+        } else if (command.equals("find")) {
+            return findTask(fullCommand);
         }
         throw new DukeException(Message.INVALID_USER_INPUT);
     }
@@ -51,8 +53,11 @@ public class Parser {
             String description = stringArray[0].strip();
             String by = stringArray[1].strip();
             LocalDate deadlineDate = LocalDate.parse(by);
-            if (deadlineDate.isBefore(LocalDate.now()) || description.equals("")) {
+            if (deadlineDate.isBefore(LocalDate.now())) {
                 throw new DukeException(Message.INVALID_DATE_INPUT);
+            }
+            if (description.equals("")) {
+                throw new DukeException(Message.INVALID_DEADLINE_INPUT);
             }
             Deadline newDeadline = new Deadline(description, deadlineDate);
             return new AddCommand(newDeadline);
@@ -105,6 +110,15 @@ public class Parser {
             return new DeleteCommand(taskIndexNum);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeException(Message.INVALID_DELETE_TASK_FORMAT);
+        }
+    }
+
+    private static FindCommand findTask(String command) throws DukeException {
+        String[] commandList = command.strip().split(" ");
+        try {
+            return new FindCommand(commandList[1]);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Message.INVALID_FIND_TASK_FORMAT);
         }
     }
 

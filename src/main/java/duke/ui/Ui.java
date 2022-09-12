@@ -119,4 +119,8 @@ public class Ui {
                 + "\nNow you have " + this.tasks.getCount() + " tasks in the list.");
     }
 
+    public void showFound(String foundTasks) {
+        showFullMessage("Here are the matching tasks in your list:\n" + foundTasks);
+    }
+
 }

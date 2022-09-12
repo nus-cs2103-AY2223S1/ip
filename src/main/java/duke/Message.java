@@ -28,6 +28,7 @@ public class Message {
     public static final String FILE_NOT_FOUND = "The memory file cannot be found.";
     public static final String FILE_READ_ERROR = "There is an error when reading the memory file.";
     public static final String FILE_CREATE_ERROR = "There is an error when creating the memory file";
+    public static final String INVALID_FIND_TASK_FORMAT = "To find a task, please input this format: find {Keyword}";
 
     /**
      * Returns a String that describes that the task does not exist within the specified tasklist

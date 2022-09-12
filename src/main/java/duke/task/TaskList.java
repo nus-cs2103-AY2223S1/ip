@@ -85,13 +85,41 @@ public class TaskList {
      *
      * @param position the index of the task in the list of tasks
      * @return the deleted task
-     * @throws IndexOutOfBoundsException the deleted task if given position > length of list of tasks or given position < 1
+     * @throws IndexOutOfBoundsException the deleted task if given position > length of list of tasks
+     * or given position < 1
      */
     public Task deleteTaskAtPos(int position) throws IndexOutOfBoundsException {
         Task deletedTask = getTask(position);
         this.taskArray.remove(position - 1);
         this.count -= 1;
         return deletedTask;
+    }
+
+    /**
+     * Returns a string listing all the tasks found that include the keyword parameters given
+     * in their descriptions
+     *
+     * @param keyword the word used to find tasks that have this keyword in their descriptions
+     * @return a list of tasks containing the keyword
+     */
+    public String findTasks(String keyword) {
+        String foundTasks = "";
+        int taskCount = 1;
+        for (Task task : this.taskArray) {
+            String description = task.getDescription();
+            String[] words = description.split(" ");
+            for (String word : words) {
+                if (word.equals(keyword)) {
+                    if (taskCount == 1) {
+                         foundTasks += taskCount + ". " + task;
+                    } else {
+                        foundTasks += "\n" + taskCount + ". " + task;
+                    }
+                    taskCount++;
+                }
+            }
+        }
+        return foundTasks;
     }
 
     /**
