@@ -1,8 +1,12 @@
-package Duke;
+package duke;
 
-import Duke.task.TaskList;
-import Duke.task.TaskStorage;
-import Duke.util.Ui;
+import duke.commands.Command;
+import duke.task.TaskList;
+import duke.task.TaskStorage;
+import duke.util.Parser;
+import duke.util.Ui;
+
+import java.util.ArrayList;
 
 /**
  * Represents a chat-bot that can be used to manage
@@ -13,6 +17,9 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
     private DukeHandler handler;
+
+    private Parser parser;
+
     public Duke(String filePath) {
         ui = new Ui();
         storage = new TaskStorage(filePath);
@@ -26,8 +33,12 @@ public class Duke {
      * object to handle this input.
      */
     public String run(String input) {
-        ui.displayWelcome();
-        return handler.handleResponse(input);
+        try {
+            ArrayList<String> parsedInput = new Parser().parse(input);
+            return new Command(storage, taskList, ui).execute(parsedInput);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
     public static void main(String[] args) {
         new Duke("data/Tasks.txt");

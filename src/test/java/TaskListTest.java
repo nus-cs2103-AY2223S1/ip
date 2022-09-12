@@ -1,9 +1,8 @@
-import Duke.DukeHandler;
-import Duke.task.Task;
-import Duke.task.TaskList;
-import Duke.task.Todo;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 import org.junit.jupiter.api.Test;
-import Duke.DukeException;
+import duke.DukeException;
 
 import java.util.ArrayList;
 import java.util.Arrays;

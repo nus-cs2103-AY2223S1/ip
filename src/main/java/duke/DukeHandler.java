@@ -1,18 +1,17 @@
-package Duke;
+package duke;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import Duke.task.Deadline;
-import Duke.task.Event;
-import Duke.task.Task;
-import Duke.task.TaskList;
-import Duke.task.TaskStorage;
-import Duke.task.Todo;
-import Duke.util.Ui;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.TaskStorage;
+import duke.task.Todo;
+import duke.util.Ui;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 
 /**
@@ -49,7 +48,7 @@ public class DukeHandler {
             }
             if (input.equals("list")) {
                 ArrayList<Task> list = tasks.listTasks();
-                response = ui.listTasks(list);
+                //response = ui.listTasks(list);
             } else if (input.matches("mark +\\d+") || input.matches("unmark +\\d+")) {
                 if (inputParts.get(0).equals("mark")) {
                     Task task = tasks.mark(Integer.parseInt(inputParts.get(1)));

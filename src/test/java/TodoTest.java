@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
-import Duke.DukeException;
-import Duke.task.Todo;
+import duke.DukeException;
+import duke.task.Todo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
