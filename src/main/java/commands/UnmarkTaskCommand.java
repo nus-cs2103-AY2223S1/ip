@@ -34,7 +34,7 @@ public class UnmarkTaskCommand extends Command {
         Task task = tasks.unmarkTask(taskIndex);
         String output = "";
         if (task != null) {
-            output += ui.notifyUser("Alright, I have unmarked this task:\n\t" + task);
+            output += ui.notifyUser("Alright, I have unmarked this task:\n    " + task);
         }
         saveUserTasks(storage, tasks, ui);
         return output;

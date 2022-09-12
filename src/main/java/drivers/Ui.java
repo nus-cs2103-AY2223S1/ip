@@ -9,7 +9,7 @@ public class Ui {
      */
     public String greeting() {
         return "Hi! I am Tumu. Nice to meet you!\n"
-                + "\tWhat is on your mind today?\n";
+                + "    What is on your mind today?\n";
     }
 
     /**

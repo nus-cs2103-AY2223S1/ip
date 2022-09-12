@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
         Task removedTask = tasks.deleteTask(taskIndex);
         String output = "";
         if (removedTask != null) {
-            output += ui.notifyUser("Alright, I have removed this task for you:\n\t\t" + removedTask);
+            output += ui.notifyUser("Alright, I have removed this task for you:\n    " + removedTask);
             output += ui.notifyUser(String.format("You have %d task(s) in the list.", tasks.getListSize()));
         }
         saveUserTasks(storage, tasks, ui);
