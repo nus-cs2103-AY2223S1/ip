@@ -26,13 +26,14 @@ public class Unmark extends Command {
      * {@inheritDoc}
      *
      * Unmarks the task with the given task number and rewrites the file.
-     * Displays a message to indicate the successful completion of unmarking the task.
+     * Returns a message to indicate the successful completion of unmarking the task.
+     * @return A message indicating completion of task.
      */
     @Override
-    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
+    public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.modifyTaskStatus(taskNumber, false);
         fileOperations.rewriteFile(taskList);
-        uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "unmarked: Task " + this.taskNumber);
+        return uI.returnText(">> " + "unmarked task: " + this.taskNumber);
     }
 
     /**

@@ -13,9 +13,12 @@ public class Exit extends Command {
      * {@inheritDoc}
      *
      * Executes nothing.
+     * Returns a message to indicate the completion of task.
+     * @return Message to display successful completion of task.
      */
     @Override
-    public void execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
+    public String execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
+        return uI.returnText(">> Bye, see you soon!");
     }
 
     /**

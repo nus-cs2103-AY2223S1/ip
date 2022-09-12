@@ -9,32 +9,32 @@ public class Ui {
 
     /** Ansi code to add white font colour to print statements */
     @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ANSI_WHITE = "\u001B[37m";
+    private final String ansiWhite = "\u001B[37m";
 
     /** Ansi code to add red font colour to print statements */
     @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ANSI_RED = "\u001B[31m";
+    private final String ansiRed = "\u001B[31m";
 
     /** Ansi code to add bold blue font colour to print statements */
     @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ANSI_BLUE_BOLD = "\033[1;36m";
+    private final String ansiBlueBold = "\033[1;36m";
 
     /** Ansi code to add blue font colour to print statements */
     @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ANSI_BLUE = "\u001B[36m";
+    private final String ansiBlue = "\u001B[36m";
 
     /** Ansi code to reset default font colour in print statements */
     @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ANSI_RESET = "\u001B[0m";
+    private final String ansiReset = "\u001B[0m";
 
     /**
      * Prints the message to be displayed at the start of the execution.
      */
     public void welcomeMessage() {
-        System.out.println("\n------------------\n" + ANSI_BLUE_BOLD
-                + "HELLO, I AM ALPHA!" + ANSI_RESET + "\n------------------");
-        System.out.println(ANSI_BLUE + "What can I do for you?" + ANSI_RESET);
-        System.out.println(ANSI_WHITE + "(enter help to learn about the commands)" + ANSI_RESET);
+        System.out.println("\n------------------\n" + ansiBlueBold
+                + "HELLO, I AM ALPHA!" + ansiReset + "\n------------------");
+        System.out.println(ansiBlue + "What can I do for you?" + ansiReset);
+        System.out.println(ansiWhite + "(enter help to learn about the commands)" + ansiReset);
 
     }
 
@@ -59,26 +59,25 @@ public class Ui {
     public String getAnsiCode(String ansiCode) {
         switch (ansiCode) {
         case ("ANSI_WHITE"):
-            return ANSI_WHITE;
+            return ansiWhite;
         case ("ANSI_RED"):
-            return ANSI_RED;
+            return ansiRed;
         case ("ANSI_BLUE"):
-            return ANSI_BLUE;
+            return ansiBlue;
         case ("ANS-_BLUE_BOLD"):
-            return ANSI_BLUE_BOLD;
+            return ansiBlueBold;
         default:
-            return ANSI_RESET;
+            return ansiReset;
         }
     }
 
     /**
-     * Prints text of the required colour.
+     * Returns text of the required colour.
      *
-     * @param colour Required font colour of the print statements.
      * @param text Text to be printed.
      */
-    public void colouredPrint(String colour, String text) {
-        System.out.println(colour + text + ANSI_RESET);
+    public String returnText(String text) {
+        return (text);
     }
 
 }

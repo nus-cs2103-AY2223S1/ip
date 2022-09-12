@@ -23,16 +23,16 @@ public class FileOperations {
 
     /** Directory of the file */
     @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String FILE_PATH;
+    private final String filePath;
 
     /**
      * Constructor to initialise the global variables.
      *
-     * @param FILE_PATH To initialise the directory of the file.
+     * @param filePath To initialise the directory of the file.
      */
-    public FileOperations(String FILE_PATH) {
-        this.FILE_PATH = FILE_PATH;
-        f = new File(FILE_PATH);
+    public FileOperations(String filePath) {
+        this.filePath = filePath;
+        f = new File(filePath);
     }
 
     /**
@@ -56,7 +56,7 @@ public class FileOperations {
      */
     public void writeToFile(String textToAppend) throws AlphaException {
         try {
-            FileWriter fw = new FileWriter(FILE_PATH, true); // create a FileWriter in append mode
+            FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
             fw.write(textToAppend);
             fw.close();
         } catch (IOException e) {
@@ -72,7 +72,7 @@ public class FileOperations {
      */
     public void rewriteFile(TaskList taskList) throws AlphaException {
         try {
-            FileWriter fw = new FileWriter(FILE_PATH);
+            FileWriter fw = new FileWriter(filePath);
             for (Task t: taskList.tasks) {
                 String textToAdd = t.getTaskType() + " | " + t.getStatus() + " | " + t.getDescription();
                 if (t instanceof Todo) {

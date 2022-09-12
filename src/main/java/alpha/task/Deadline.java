@@ -36,8 +36,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + String.format(uI.getAnsiCode("ANSI_RED")
-                + " (by: %s)", this.deadline + uI.getAnsiCode(""));
+        return super.toString() + String.format(" (by: %s)", this.deadline);
     }
 
     /**
