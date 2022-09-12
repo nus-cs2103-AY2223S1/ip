@@ -8,16 +8,12 @@ import java.util.List;
 
 public class Ui {
 
-    public String start() {
-        return "Hello! I'm duke.Duke\n" + "What can I do for you?";
-    }
-
     public String bye() {
         return "Bye. Hope to see you again soon!";
     }
 
     public String printOnAdd(Task task, TaskList taskList) {
-        return "Got it. I've added this duke.task:\n " + task.toString() +
+        return "Got it. I've added this task:\n " + task.toString() +
                 "\nNow you have " + taskList.size() + " tasks in the list.";
     }
 

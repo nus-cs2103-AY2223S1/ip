@@ -81,7 +81,6 @@ public class Duke extends Application {
     @Override
     public void start(Stage stage) {
         Duke duke = new Duke();
-        ui.start();
         loadWindow(stage);
     }
 
@@ -111,4 +110,7 @@ public class Duke extends Application {
         }
     }
 
+    public String greet() {
+        return "Bello! I'm Bob! \n" + "What can I do for you?";
+    }
 }
