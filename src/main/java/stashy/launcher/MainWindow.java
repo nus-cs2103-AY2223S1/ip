@@ -45,7 +45,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         Image randomStashyImage = stashyImages[rng.nextInt(stashyImages.length)];
         dialogContainer.getChildren().addAll(
-            DialogBox.getStashyDialog(Stashy.showWelcomeMessageGui(), randomStashyImage)
+            DialogBox.getStashyDialog(Stashy.showWelcomeMessageGui(), randomStashyImage, false)
         );
     }
 
@@ -60,6 +60,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         Image randomStashyImage = stashyImages[rng.nextInt(stashyImages.length)];
+        boolean isError = false;
 
         String input = userInput.getText().strip();
         if (input.isEmpty()) {
@@ -72,16 +73,17 @@ public class MainWindow extends AnchorPane {
                 response = stashy.executeCommandReturnString(c);
                 isExit = c.isExit();
             } else {
-                response = "..."; // Literally just an ellipsis
+                return;
             }
         } catch (StashyException se) {
+            isError = true;
             response = se.getMessage();
         }
 
         dialogContainer.getChildren().addAll(
-            DialogBox.getUserDialog(input, userImage),
+            DialogBox.getUserDialog(input, userImage, false),
             // Picks a random image for Stashy
-            DialogBox.getStashyDialog(response, randomStashyImage)
+            DialogBox.getStashyDialog(response, randomStashyImage, isError)
         );
         userInput.clear();
     }

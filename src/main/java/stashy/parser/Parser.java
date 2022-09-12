@@ -50,6 +50,7 @@ public class Parser {
      * Parses the user command into a Command object.
      *
      * @param fullCommand The full command provided by the user
+     * @param showHelp Whether to show help or not
      * @return A Command object to be executed
      * @throws StashyException If there is any issue encountered
      */
@@ -140,7 +141,7 @@ public class Parser {
             assert taskId > 0 : "Task ID cannot be negative";
             return new MarkCommand(taskId);
         } catch (NumberFormatException nfe) {
-            throw new StashyException("Invalid task ID given!");
+            throw new StashyException("Invalid task ID given! Please give an integer instead");
         }
     }
 
@@ -164,7 +165,7 @@ public class Parser {
             assert taskId > 0 : "Task ID cannot be negative";
             return new UnmarkCommand(taskId);
         } catch (NumberFormatException nfe) {
-            throw new StashyException("Invalid task ID given!");
+            throw new StashyException("Invalid task ID given! Please give an integer instead");
         }
     }
 
@@ -188,7 +189,7 @@ public class Parser {
             assert taskId > 0 : "Task ID cannot be negative";
             return new DeleteCommand(taskId);
         } catch (NumberFormatException nfe) {
-            throw new StashyException("Invalid task ID given!");
+            throw new StashyException("Invalid task ID given! Please give an integer instead");
         }
     }
 
@@ -213,7 +214,9 @@ public class Parser {
                 // Go to the next dateTimeFormat
             }
         }
-        throw new StashyException("Invalid datetime format given!");
+        throw new StashyException("Invalid datetime format given!\n"
+            + "Consider using \"dd MMM yyyy HH:mm\"\n"
+            + "Example: 20 Oct 2020 13:57");
     }
 
     /**
@@ -237,7 +240,9 @@ public class Parser {
                 // Go to the next dateTimeFormat
             }
         }
-        throw new StashyException("Invalid datetime format given!");
+        throw new StashyException("Invalid datetime format given!\n"
+            + "Consider using \"dd MMM yyyy HH:mm\"\n"
+            + "Example: 20 Oct 2020 13:57");
     }
 
     /**

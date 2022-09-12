@@ -28,6 +28,7 @@ public class Ui {
         "bye"};
     private static final String COMMANDS_STRING = Arrays
         .stream(COMMANDS)
+        .map(x -> "- " + x)
         .collect(Collectors.joining("\n"));
 
     /**
@@ -83,7 +84,7 @@ public class Ui {
     public String showCommandList() {
         return "List of available commands so far:\n"
             + COMMANDS_STRING
-            + "\n\nFor more detail, type 'help <command>', e.g. 'help todo'";
+            + "\n\nFor more details, type 'help <command>', e.g. 'help todo'";
     }
 
     /**

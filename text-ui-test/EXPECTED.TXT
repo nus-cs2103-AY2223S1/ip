@@ -7,36 +7,36 @@
 Beep boop! Stashy here! What can I do for you?
 
 List of available commands so far:
-todo
-deadline
-event
-list
-mark
-unmark
-find
-help
-delete
-bye
+- todo
+- deadline
+- event
+- list
+- mark
+- unmark
+- find
+- help
+- delete
+- bye
 
-For more detail, type 'help <command>', e.g. 'help todo'
+For more details, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Please don't give me an empty todo description :(
     __________________________________________________
     __________________________________________________
     List of available commands so far:
-    todo
-    deadline
-    event
-    list
-    mark
-    unmark
-    find
-    help
-    delete
-    bye
+    - todo
+    - deadline
+    - event
+    - list
+    - mark
+    - unmark
+    - find
+    - help
+    - delete
+    - bye
     
-    For more detail, type 'help <command>', e.g. 'help todo'
+    For more details, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
     There, we have a new todo:
@@ -64,18 +64,26 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
@@ -93,18 +101,26 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
@@ -138,7 +154,7 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
-    Invalid task ID given!
+    Invalid task ID given! Please give an integer instead
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
@@ -146,7 +162,7 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
-    Invalid task ID given!
+    Invalid task ID given! Please give an integer instead
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
@@ -217,7 +233,7 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
-    Invalid task ID given!
+    Invalid task ID given! Please give an integer instead
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
@@ -231,6 +247,8 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
@@ -243,6 +261,8 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     There, we have a new event:
@@ -270,6 +290,8 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     There, we have a new event:
@@ -279,10 +301,14 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Invalid datetime format given!
+    Consider using "dd MMM yyyy HH:mm"
+    Example: 20 Oct 2020 13:57
     __________________________________________________
     __________________________________________________
     L + ratio, unmarking this task as not done!
@@ -409,18 +435,18 @@ For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
     List of available commands so far:
-    todo
-    deadline
-    event
-    list
-    mark
-    unmark
-    find
-    help
-    delete
-    bye
+    - todo
+    - deadline
+    - event
+    - list
+    - mark
+    - unmark
+    - find
+    - help
+    - delete
+    - bye
     
-    For more detail, type 'help <command>', e.g. 'help todo'
+    For more details, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
     find
