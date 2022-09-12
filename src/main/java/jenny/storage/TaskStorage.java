@@ -113,6 +113,7 @@ public class TaskStorage<T> extends Storage<T> {
                 break;
             case "NoteTask":
                 loadNote(tasks, data);
+                break;
             default:
                 throw new JennyException(MESSAGE_SCOPE, ERROR_CORRUPTED_SAVE);
         }
