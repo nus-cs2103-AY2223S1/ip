@@ -10,6 +10,7 @@ public class FindCommand extends Command {
 
     public FindCommand(String keyword) {
         super("find");
+        assert keyword != null : "keyword for find command cannot be null";
         this.keyword = keyword;
     }
 

@@ -14,6 +14,7 @@ public class TimeTask extends Task {
      */
     public TimeTask(String description, String icon, LocalDateTime date) {
         super(description, icon);
+        assert date != null : "date for a TimeTask cannot be null";
         this.date = date;
     }
 

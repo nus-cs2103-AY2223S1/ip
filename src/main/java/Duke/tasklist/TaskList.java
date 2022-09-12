@@ -25,6 +25,7 @@ public class TaskList {
      * @param tasks List of tasks
      */
     public TaskList(List<Task> tasks) {
+        assert tasks != null : "tasks given cannot be null";
         this.tasks = tasks;
     }
 
@@ -69,6 +70,7 @@ public class TaskList {
      * @return string output of what task is added to the list
      */
     public String addTask(Task task) {
+        assert task != null : "task to add to task list cannot be null";
         tasks.add(task);
         String output = String.format("%s\n", task);
         return output;
@@ -86,6 +88,8 @@ public class TaskList {
         if (tasks.size() == 0) {
             throw new DukeException("empty taskslist");
         }
+        assert index >=0 && index < tasks.size(): "index of element to be removed must be non-negative " +
+                "and smaller than size of list";
         Task currTask = tasks.remove(index);
         String output = String.format("%s\n", currTask);
         return output;
@@ -100,6 +104,8 @@ public class TaskList {
      * @return string output of what task is marked in the list
      */
     public String mark(int index) {
+        assert index >=0 && index < tasks.size(): "index of element to be marked must be non-negative " +
+                "and smaller than size of list";
         Task currTask = tasks.get(index);
         currTask.mark();
         String message = String.format("%s\n", currTask);
@@ -114,6 +120,8 @@ public class TaskList {
      * @return string output of what task is unmarked in the list
      */
     public String unmark(int index) {
+        assert index >=0 && index < tasks.size(): "index of element to be unmarked must be non-negative " +
+                "and smaller than size of list";
         Task currTask = tasks.get(index);
         currTask.unmark();
         String message = String.format("%s\n", currTask);
@@ -128,6 +136,7 @@ public class TaskList {
      * contain they keyword
      */
     public String find(String keyword) {
+        assert keyword != null: "keyword used for searching cannot be null";
         int index = 1;
         String output = "";
         for (int i = 0; i < tasks.size(); i++) {

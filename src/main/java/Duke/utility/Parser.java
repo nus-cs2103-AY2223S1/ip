@@ -108,6 +108,9 @@ public class Parser {
         if (split.length == 1) {
             throw new DukeException("empty todo");
         }
+        if (split[1].isBlank()) {
+            throw new DukeException("empty todo");
+        }
         return new TodoCommand(split[1]);
 
         case "deadline":
@@ -120,6 +123,9 @@ public class Parser {
 
         if (index > -1) {
             String by = input.substring(index + 4, input.length());
+            if (index - 1 <= 0) {
+                throw new DukeException("invalid command event");
+            }
             input = input.substring(1, index - 1);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             boolean validTime = isValid(by, formatter);
@@ -143,6 +149,9 @@ public class Parser {
 
         if (index > -1) {
             String at = input.substring(index + 4, input.length());
+            if (index - 1 <= 0) {
+                throw new DukeException("invalid command event");
+            }
             input = input.substring(1, index - 1);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             boolean validTime = isValid(at, formatter);

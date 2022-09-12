@@ -64,6 +64,7 @@ public class Duke  {
      * Replace this stub with your completed method.
      */
     public String getResponse(String input) {
+        assert input != null : "user input cannot be null";
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {

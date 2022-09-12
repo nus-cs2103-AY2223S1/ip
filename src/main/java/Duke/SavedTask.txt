@@ -1,5 +1,3 @@
-[E][ ] sad (at: 2020-11-13 18:00)
-[T][ ] ksalfjdskajfksla
 [T][X] jak
 [T][X] dasf
 [T][ ] shfds
@@ -10,3 +8,7 @@
 [T][ ] dfhsajfhdjskahfjkdsakjfhkjdsahkfhdsakhfkjdaskh
 [E][ ] jdasklfjdskal (at: 2020-12-12 16:10)
 [T][ ] fdhjsak
+[T][ ] dnafj
+[E][ ] dsajkl (at: 2020-12-16 11:00)
+[E][ ]  (at: 2020-12-12 11:19)
+[E][ ]  (at: 2020-12-12 11:19)

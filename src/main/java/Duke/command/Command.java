@@ -14,6 +14,7 @@ public abstract class Command {
      * Instantiates a new command
      */
     public Command(String input) {
+        assert input != null : "input for command cannot be null";
         this.input = input;
     }
 
