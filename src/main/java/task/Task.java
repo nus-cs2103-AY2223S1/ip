@@ -1,16 +1,23 @@
 package task;
 
+/**
+ *  A class which encapsulates a task that can be added to the task list.
+ *  @author  Chen Guanzhou
+ *  @version v2
+ */
 public abstract class Task {
-
     private String description;
     private boolean isDone;
-
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * A method to delay the deadline of the task by 1 day.
+     * @return The snoozed task as Duke's response.
+     */
     public abstract String snooze();
     /**
      * A setter to change the task to be done.
@@ -34,6 +41,10 @@ public abstract class Task {
         return this.description;
     }
 
+    /**
+     * Gives the done status of the current task.
+     * @return The current done status of a task.
+     */
     public boolean getDoneStatus() {
         return this.isDone;
     }

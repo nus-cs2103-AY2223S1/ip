@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  *  A class which encapsulates the event type of task.
  *  @author  Chen Guanzhou
- *  @version v1
+ *  @version v2
  */
 public class Event extends Task {
     protected LocalDate date;
@@ -27,7 +27,7 @@ public class Event extends Task {
     }
 
     /**
-     * String representation of a event object.
+     * String representation of an event object.
      * @return The string representing the object with the state of the event task.
      */
     @Override

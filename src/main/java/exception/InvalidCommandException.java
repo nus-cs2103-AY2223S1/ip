@@ -3,7 +3,7 @@ package exception;
 /**
  *  A class which encapsulates the invalid command type of exception.
  *  @author  Chen Guanzhou
- *  @version v1
+ *  @version v2
  */
 public class InvalidCommandException extends DukeException {
 

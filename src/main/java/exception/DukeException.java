@@ -3,7 +3,7 @@ package exception;
 /**
  *  A class which encapsulates the exceptions that Duke throws
  *  @author  Chen Guanzhou
- *  @version v1
+ *  @version v2
  */
 public class DukeException extends Exception {
 

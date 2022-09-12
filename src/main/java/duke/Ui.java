@@ -5,7 +5,7 @@ import task.Task;
 /**
  *  A class which encapsulates the user interactions between Duke and the user.
  *  @author  Chen Guanzhou
- *  @version v1
+ *  @version v2
  */
 public class Ui {
 

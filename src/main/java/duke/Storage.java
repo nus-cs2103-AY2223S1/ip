@@ -17,7 +17,7 @@ import java.nio.file.Path;
 /**
  *  A class that handles reading and writing and processing file contents.
  *  @author  Chen Guanzhou
- *  @version v1
+ *  @version v2
  */
 public class Storage {
     protected static TaskList currList;

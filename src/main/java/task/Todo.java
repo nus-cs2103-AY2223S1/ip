@@ -3,7 +3,7 @@ package task;
 /**
  *  A class which encapsulates the todo type of task.
  *  @author  Chen Guanzhou
- *  @version v1
+ *  @version v2
  */
 public class Todo extends Task {
 
