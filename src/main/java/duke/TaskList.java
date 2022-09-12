@@ -1,9 +1,8 @@
 package duke;
 
-import task.Task;
-
 import java.util.ArrayList;
 import java.util.function.Predicate;
+import task.Task;
 
 /**
  * The class that contains the task list in the Duke program.
@@ -44,7 +43,6 @@ public class TaskList {
         return this.TASKS;
     }
 
-
     /**
      * Adds the given task.
      *
@@ -64,26 +62,6 @@ public class TaskList {
 
     public Task removeTask(int index) {
         return TASKS.remove(index);
-    }
-
-    /**
-     * Marks the given task through accessing its index.
-     *
-     * @param index The index of the task to be marked.
-     */
-
-    public void markTask(int index) {
-        TASKS.get(index).toggleDoneness();
-    }
-
-    /**
-     * Unmarks the given task through accessing its index.
-     *
-     * @param index The index of the task to be unmarked.
-     */
-
-    public void unmarkTask(int index) {
-        TASKS.get(index).toggleDoneness();
     }
 
     /**

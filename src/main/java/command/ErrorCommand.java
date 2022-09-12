@@ -1,18 +1,20 @@
 package command;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+
 public class ErrorCommand extends Command {
 
-    String error;
+    private final String ERROR;
 
     public ErrorCommand(String error) {
-        this.error = error;
+        this.ERROR = error;
     }
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        throw new DukeException(error);
+        throw new DukeException(ERROR);
     }
 }
