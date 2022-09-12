@@ -210,7 +210,7 @@ public class Ui {
 
     /**
      * Shows the message for the whole TaskList object.
-     * @param taskList ArrayList of Task object to be printed.
+     * @param taskList ArrayList of Task objects to be printed.
      */
     public void showList(ArrayList<Task> taskList) {
         StringBuilder output = new StringBuilder();
@@ -218,6 +218,26 @@ public class Ui {
         int number = 1;
         for (Task task : taskList) {
             output.append("\n" + number + NUMBER_SEPARATOR + task.toString());
+            number++;
+        }
+        output.append("\n" + AFTER_LIST[this.messageStatus]);
+        this.outputMessage(output.toString());
+    }
+
+    /**
+     * Shows the message after filtering the TaskList object.
+     * @param taskList ArrayList of Task objects to be printed.
+     * @param substring Substring to filter the Task objects by.
+     */
+    public void showFilteredList(ArrayList<Task> taskList, String substring) {
+        StringBuilder output = new StringBuilder();
+        output.append(BEFORE_LIST[this.messageStatus]);
+        int number = 1;
+        for (Task task : taskList) {
+            String check = "\n" + number + NUMBER_SEPARATOR + task.toString();
+            if (check.contains(substring)) {
+                output.append("\n" + number + NUMBER_SEPARATOR + task.toString());
+            }
             number++;
         }
         output.append("\n" + AFTER_LIST[this.messageStatus]);
