@@ -3,6 +3,7 @@ package duke.chatbot;
 import java.util.Scanner;
 
 import duke.chatbot.commands.ByeCommandHandler;
+import duke.chatbot.commands.ListTaskCommandHandler;
 import duke.chatbot.commands.exceptions.EmptyCommandException;
 import duke.chatbot.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commands.exceptions.InvalidCommandException;
@@ -127,10 +128,7 @@ public class ChatBot {
                 response = new ByeCommandHandler(this).execute(arguments);
                 break;
             case "list":
-                if (hasArguments) {
-                    throw new InvalidCommandException();
-                }
-                response = taskManager.listTask();
+                response = new ListTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "todo":
                 String todoTaskName = "";

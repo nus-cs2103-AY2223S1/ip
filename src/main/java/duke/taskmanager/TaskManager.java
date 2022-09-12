@@ -76,22 +76,16 @@ public class TaskManager {
     }
 
     /**
-     * List the task currently in its task list. Responds with an appropriate message
-     * depending on the number of items in the list.
+     * List the task currently in its task list.
      *
-     * @return response message detailing the task present in the task list
+     * @return string of the list of tasks
      */
     public String listTask() {
-        if (taskList.size() == 0) {
-            return "You have no tasks in your list.\n";
-        } else {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("I have your list of tasks displayed below:\n");
-            for (int i = 0; i < this.taskList.size(); i++) {
-                stringBuilder.append(i + 1).append(") ").append(taskList.get(i)).append("\n");
-            }
-            return stringBuilder.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < this.taskList.size(); i++) {
+            stringBuilder.append(i + 1).append(") ").append(taskList.get(i)).append("\n");
         }
+        return stringBuilder.toString();
     }
 
     /**
