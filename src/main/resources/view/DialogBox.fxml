@@ -10,7 +10,7 @@
     <children>
         <Label fx:id="dialog" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-family: Comic Sans MS;" text="Label" wrapText="true">
          <font>
-            <Font name="Comic Sans MS" size="18.0" />
+            <Font name="Comic Sans MS" size="15.0" />
          </font></Label>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>
