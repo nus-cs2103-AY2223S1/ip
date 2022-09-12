@@ -1,7 +1,6 @@
 package duke.gui;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -74,7 +73,7 @@ public class Ui {
      * @param taskList The list of matching tasks.
      * @return The string representation of the list of matching tasks.
      **/
-    public String getFindCommandMessage(ArrayList<Task> taskList) {
+    public String getFindCommandMessage(List<Task> taskList) {
         StringBuilder str = new StringBuilder();
         str.append("Here are the matching tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
