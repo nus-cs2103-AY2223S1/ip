@@ -81,15 +81,15 @@ public class Bocil {
      * @param input String that the user inputs.
      * @return Response of Bocil
      */
-    public String getResponse(String input) {
+    public String[] getResponse(String input) {
         assert input != null;
         if (this.isError()) {
-            return this.getErrorMessage();
+            return new String[]{"error", this.getErrorMessage()};
         }
         try {
-            return this.parser.processInput(input);
+            return new String[]{"valid", this.parser.processInput(input)};
         } catch (BocilException e) {
-            return this.ui.showError(e);
+            return new String[]{"error", this.ui.showError(e)};
         }
     }
 

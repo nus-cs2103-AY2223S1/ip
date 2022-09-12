@@ -30,7 +30,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
     private Bocil bocil;
-    private final Image bocilImage = new Image(this.getClass().getResourceAsStream("/images/bocil.png"));
+    private final Image normalBocilImage = new Image(this.getClass().getResourceAsStream("/images/normal_bocil.png"));
+    private final Image angryBocilImage = new Image(this.getClass().getResourceAsStream("/images/angry_bocil.png"));
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/bob.png"));
 
     /**
@@ -39,7 +40,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        dialogContainer.getChildren().add(DialogBox.getBocilDialog(Bocil.introduce(), bocilImage));
+        dialogContainer.getChildren().add(DialogBox.getBocilDialog(Bocil.introduce(), normalBocilImage));
     }
 
     /**
@@ -58,7 +59,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = bocil.getResponse(input);
+        String validity = bocil.getResponse(input)[0];
+        String response = bocil.getResponse(input)[1];
+        Image bocilImage = validity.equals("error") ? angryBocilImage : normalBocilImage;
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getBocilDialog(response, bocilImage)
