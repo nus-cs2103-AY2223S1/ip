@@ -24,9 +24,6 @@ class ParserTest {
             throw new RuntimeException("Could not delete file");
         }
     }
-
-    //    featureUnderTest_testScenario_expectedBehavior
-
     /**
      * Tests all possible commands, except find. Improper input and improper commands that throw exceptions are also
      * tested for.

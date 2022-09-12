@@ -24,8 +24,6 @@ public class Gui extends Application {
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
             stage.setTitle("Duke");
-            //            stage.setMinHeight(600.0);
-            //            stage.setMinWidth(400.0);
         } catch (IOException e) {
             e.printStackTrace();
         }

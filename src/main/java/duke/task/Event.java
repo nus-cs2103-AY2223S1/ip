@@ -9,7 +9,6 @@ import duke.Command;
  * A concrete implementation of {@code Event}
  */
 public class Event extends Task {
-    // original access modifier was protected
     private final LocalDateTime dateTime;
 
     /**

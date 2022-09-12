@@ -9,7 +9,6 @@ import duke.Command;
  *
  */
 public class Deadline extends Task {
-    // original access modifier was protected
     private final LocalDateTime dateTime;
 
     /**
