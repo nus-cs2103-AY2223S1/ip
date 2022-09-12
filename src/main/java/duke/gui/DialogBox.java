@@ -25,7 +25,7 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
     @FXML
-    private Circle clip = new Circle(46, 50, 45);
+    private Circle clip = new Circle(50, 50, 50);
 
 
 
