@@ -113,7 +113,7 @@ public class DobbyChat {
      * @param list list which user wishes to print from
      */
     public static void list(DobbyList list) {
-        String intro = "Here are the tasks in your list:\n\n\t";
+        String intro = "Here are the tasks Dobby has found:\n\n\t";
         String listString = list.toString();
         printChat(intro + listString);
     }
@@ -147,7 +147,8 @@ public class DobbyChat {
      * Error message when false command is entered.
      */
     public static void unknown() {
-        printChat("Dobby doesn't understand what you're saying...press help if you need assistance!");
+        printChat("Dobby doesn't understand what you're saying...press commands to see all commands that Dobby "
+                + "understands!");
     }
 
     /**
@@ -233,12 +234,5 @@ public class DobbyChat {
 
     public static void noCommandToSimplify() {
         printChat("Please tell dobby which command you wish to simplify.");
-    }
-
-    /**
-     * Error message to use when debugging.
-     */
-    public static void error() {
-        printChat("there is an error here");
     }
 }

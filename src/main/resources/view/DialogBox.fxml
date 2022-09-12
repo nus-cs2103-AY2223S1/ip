@@ -7,33 +7,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="500.0" maxWidth="700.0" prefWidth="700.0" style="-fx-background-color: #afb7c9;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="500.0" maxWidth="700.0" prefWidth="700.0"
+         style="-fx-background-color: #afb7c9;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11"
+         xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <TextFlow fx:id="textFlow" maxWidth="550.0" style="-fx-background-color: #e1e5ed; -fx-background-radius: 15;" textAlignment="RIGHT">
+        <TextFlow fx:id="textFlow" maxWidth="550.0" style="-fx-background-color: #e1e5ed; -fx-background-radius: 15;"
+                  textAlignment="RIGHT">
             <children>
                 <Label fx:id="dialog" maxWidth="380" text="Label" wrapText="true">
                     <padding>
-                        <Insets right="5.0" />
+                        <Insets right="5.0"/>
                     </padding>
                     <font>
-                        <Font name="Ubuntu Mono" size="12.0" />
+                        <Font name="Ubuntu Mono" size="12.0"/>
                     </font>
                 </Label>
             </children>
             <HBox.margin>
-                <Insets left="5.0" />
+                <Insets left="5.0"/>
             </HBox.margin>
             <padding>
-                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
             </padding>
         </TextFlow>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
             <HBox.margin>
-                <Insets left="10.0" />
+                <Insets left="10.0"/>
             </HBox.margin>
         </ImageView>
     </children>
     <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0"/>
     </padding>
 </fx:root>
