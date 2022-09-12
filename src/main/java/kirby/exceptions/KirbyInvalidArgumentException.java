@@ -11,6 +11,6 @@ public class KirbyInvalidArgumentException extends KirbyException {
      * @param message Type of task that is producing the error message.
      */
     public KirbyInvalidArgumentException(String message) {
-        super("Aaaaaaah, the description of a " + message + "\n" + "is invalid! \n Try again!");
+        super("Aaah you have indicated an invalid argument! " + message + " command is invalid! \nTry again!");
     }
 }

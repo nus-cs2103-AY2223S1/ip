@@ -9,6 +9,6 @@ public class KirbyInvalidCommandException extends KirbyException {
      * Constructor for the class KirbyInvalidCommandException.
      */
     public KirbyInvalidCommandException() {
-        super("Aaaaaaah, I don't understand you :(\n" + "Try adding a valid command \n" + "(todo, deadline, event)");
+        super("Aaah you have indicated a weird command :3 Type help for more info!");
     }
 }

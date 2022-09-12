@@ -22,14 +22,8 @@ public class EventCommand extends Command {
     public EventCommand(String[] arguments) throws KirbyMissingArgumentException {
         String taskName = null;
         String time = null;
-        for (int i = 0; i < arguments.length - 1; i++) {
-            if (arguments[i].equals("event")) {
-                taskName = arguments[i + 1];
-            }
-            if (arguments[i].equals("/by")) {
-                time = arguments[i + 1];
-            }
-        }
+        taskName = arguments[0];
+        time = arguments[1];
         if (taskName == null || time == null) {
             throw new KirbyMissingArgumentException("event");
         }

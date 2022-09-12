@@ -1,7 +1,5 @@
 package kirby;
 
-import java.util.Objects;
-
 import kirby.commands.Command;
 import kirby.commands.DeadlineCommand;
 import kirby.commands.DeleteCommand;
@@ -37,20 +35,38 @@ public class Parser {
     }
 
     /**
+     * Returns the placeholder of a Command based on users' input.
+     *
+     * @param taskType the type of task input by the user.
+     * @return placeholder word.
+     */
+    public static String getPlaceholder(String taskType) {
+        if (taskType.equals("event")) {
+            return "/at";
+        } else if (taskType.equals("deadline")) {
+            return "/by";
+        }
+        return null;
+    }
+
+    /**
      * Returns the arguments of a Command based on users' input.
      *
      * @param inputString the entire input by the user.
-     * @return am array of Strings of arguments.
+     * @return an array of Strings of arguments.
      */
     public static String[] getArguments(String inputString, String taskType) {
         String taskName = null;
         String taskTime = null;
-        if (Objects.equals(taskType, "event")) {
-            taskName = inputString.substring(inputString.indexOf("event") + 6, inputString.indexOf(" /at"));
-            taskTime = inputString.substring(inputString.indexOf("/at") + 4);
-        } else if (Objects.equals(taskType, "deadline")) {
-            taskName = inputString.substring(inputString.indexOf("deadline") + 7, inputString.indexOf(" /by"));
-            taskTime = inputString.substring(inputString.indexOf("/by") + 4);
+        int beginIndex = inputString.indexOf(taskType) + taskType.length() + 1;
+        String placeholder = getPlaceholder(taskType);
+        int afterPlaceholderIndex = inputString.indexOf(placeholder) + placeholder.length() + 1;
+        boolean taskNameExists = beginIndex < inputString.indexOf(placeholder);
+        boolean timeExists = inputString.length() - 1 >= afterPlaceholderIndex;
+        if (taskNameExists && timeExists) {
+            taskName = inputString.substring(beginIndex,
+                    inputString.indexOf(placeholder) - 1);
+            taskTime = inputString.substring(afterPlaceholderIndex);
         }
         return new String[] {taskName, taskTime};
     }
@@ -62,6 +78,9 @@ public class Parser {
      * @return an array of Strings of arguments.
      */
     static String getArgument(String inputString) {
+        if (inputString.split(" ").length == 1) {
+            return null;
+        }
         return inputString.substring(inputString.indexOf(" ") + 1);
     }
 
