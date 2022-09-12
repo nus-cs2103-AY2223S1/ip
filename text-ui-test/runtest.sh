@@ -24,6 +24,10 @@ if [ -e "./duke.txt" ]
 then
     rm duke.txt
 fi
+if [ -e "./dukeNotes.txt" ]
+then
+    rm dukeNotes.txt
+fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ../bin duke.Duke < input.txt > ACTUAL.TXT
