@@ -42,7 +42,11 @@ public class Command {
      * @return the string of the list
      */
     public static String list(TaskList list) {
-        return list.printTasks();
+        String message = list.printTasks();
+        if (message == "") {
+            return "Woohoo! You are all out of tasks!";
+        }
+        return message;
     }
 
     /**
