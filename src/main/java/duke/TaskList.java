@@ -235,17 +235,23 @@ public class TaskList {
         return list;
     }
 
+    /**
+     * Undo, and redo the most recent command that is not "undo".
+     *
+     * @return The string message from an undone action.
+     * @throws DukeException
+     */
     public String undo() throws DukeException {
         if(isUndoable) {
-            isUndoable = false;
             switch(storeUndoCommand) {
             case "addTask":
-                return deleteTask(String.valueOf(getLength() - 1));
+                return deleteTask(String.valueOf(getLength()));
             case "deleteTask":
                 String confirmation = "Got it. I've added this task:\n  ";
                 String number = "\nNow you have " + (numTasks + 1) + " tasks in the list.";
                 tasks.add(numTasks, this.storeTask);
                 numTasks ++;
+                storeUndoCommand = "addTask";
                 return (confirmation + tasks.get(numTasks - 1) + number);
             case "markTask":
                 return unmarkTask(storeUndoData);
@@ -255,7 +261,7 @@ public class TaskList {
                 return "";
             }
         } else {
-            throw new DukeException("An action has just been undone.");
+            throw new DukeException("No action to undo.");
         }
     }
 }
