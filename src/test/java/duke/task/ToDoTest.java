@@ -14,6 +14,6 @@ public class ToDoTest {
     @Test
     public void saveToDoTest() {
         ToDo toDo = new ToDo("ToDo 1");
-        assertEquals("T | 0 | ToDo 1", toDo.stringify());
+        assertEquals("T |   | ToDo 1", toDo.stringify());
     }
 }

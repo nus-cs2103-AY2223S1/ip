@@ -21,6 +21,6 @@ public class EventTest {
     @Test
     public void saveEventTest() {
         Event event = new Event("Event Test 1", LocalDate.parse("2022-08-21"));
-        assertEquals("E | 0 | Event Test 1 | 2022-08-21", event.stringify());
+        assertEquals("E |   | Event Test 1 | 2022-08-21", event.stringify());
     }
 }
