@@ -11,13 +11,13 @@ import dobby.UserInput;
 public class SimplifyCommand extends Command {
     @Override
     public void execute(DobbyList dl, UserInput ui) throws IOException {
-        String oldCmd = ui.getInitialCmd();
+        String initialCmd = ui.getInitialCmd();
         String newCmd = ui.getNewCmd();
-        if (oldCmd.equals("") | newCmd.equals("")) {
+        if (initialCmd.equals("") | newCmd.equals("")) {
             DobbyChat.noCommandToSimplify();
         } else {
             ui.setSimplifiedCommand();
-            DobbyChat.simplified(oldCmd, newCmd);
+            DobbyChat.simplified(initialCmd, newCmd);
         }
     }
 }

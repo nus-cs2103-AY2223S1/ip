@@ -15,8 +15,8 @@ public class UserInput {
     private static final String NO_DATE_ERROR = "noDate";
     private static final String WRONG_DEADLINE_FORMAT = "wrongDeadline";
     private static final String WRONG_EVENT_FORMAT = "wrongEvent";
-    private static final String DEADLINE_COMMAND = "/by";
-    private static final String EVENT_COMMAND = "/at";
+    private static final String DEADLINE_COMMAND = "by";
+    private static final String EVENT_COMMAND = "at";
     private static String mark = "m";
     private static String unmark = "um";
     private static String delete = "del";
@@ -84,9 +84,11 @@ public class UserInput {
                     String dateType = Parser.getDateType(rest);
                     if (dateType.equals(NO_DATE_ERROR)) {
                         date = NO_DATE_ERROR;
+                        desc = Parser.getDesc(rest);
 
                     } else if (!(dateType.equals(DEADLINE_COMMAND))) {
                         date = WRONG_DEADLINE_FORMAT;
+                        desc = Parser.getDesc(rest);
 
                     } else {
                         date = Parser.getDate(rest);
