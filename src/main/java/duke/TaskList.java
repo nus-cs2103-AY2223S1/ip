@@ -37,10 +37,11 @@ public class TaskList {
      * @return An ArrayList of Tasks that contains the inputted string.
      */
     public ArrayList<Task> find(String s) {
+        String sInLowerCase = s.toLowerCase();
         ArrayList<Task> result = new ArrayList<>();
         for (Task task : tasks) {
-            String taskInLowercase = task.toString().toLowerCase();
-            if (taskInLowercase.contains(s)) {
+            String taskInLowerCase = task.toString().toLowerCase();
+            if (taskInLowerCase.contains(sInLowerCase)) {
                 result.add(task);
             }
         }
