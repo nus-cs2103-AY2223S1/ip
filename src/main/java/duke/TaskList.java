@@ -44,9 +44,9 @@ public class TaskList {
      */
     public String delete(Task task) {
         lst.remove(task);
-        return "Noted I have removed this task\n"
+        return "I gotchu, I have removed this task\n"
                 + task.toString() + "\n" +
-                "Now you have" + " " + lst.size() + " " + "tasks in list";
+                "Now you gots" + " " + lst.size() + " " + "tasks in list";
     }
 
     /**
@@ -55,9 +55,9 @@ public class TaskList {
      */
     public String add(Task task) {
         lst.add(task);
-        return "Got it.I've added this task\n" +
+        return "I gotchu, I've added this task\n" +
                 task.toString()  + "\n" +
-                "Now you have" + " " + lst.size() + " " + "tasks in list";
+                "Now you gots" + " " + lst.size() + " " + "tasks in list";
     }
 
     /**
@@ -66,7 +66,7 @@ public class TaskList {
      */
     public String mark(Task task) {
         task.mark();
-        return "Nice I have marked this as done:\n" + " " + task;
+        return "Nice I marked this as done, SIUUUU:\n" + " " + task;
 
 
     }
@@ -78,7 +78,7 @@ public class TaskList {
      */
     public String unmark(Task task) {
         task.unmark();
-        return  "Ok I have marked this as still to be done:\n"  + " " + task;
+        return  "Ok I marked this as still to be done, not so SIUUUU:\n"  + " " + task;
     }
 
 
@@ -88,7 +88,7 @@ public class TaskList {
      */
     public String list() {
 
-        String lists = "This is your tasks in your list:\n";
+        String lists = "This what u gotta do:\n";
         for (Task item : lst) {
             if (item != null)
                 lists += lst.indexOf(item) + 1 + "." + item + "\n";;
@@ -97,7 +97,7 @@ public class TaskList {
     }
 
     public String find(String searchTask) {
-        String found = "Here are the matching tasks in your list:\n";
+        String found = "This what i found fam:\n";
         for (Task item:lst) {
             String taskName = item.description;
             if (taskName.contains(searchTask)) {

@@ -32,9 +32,36 @@ public class Duke {
         }
     }
 
-    String byeResponse() {
-        return "Bye see you again buddy !";
+    String helpResponse() {
+        return "Welcome to DukeHam\n\n"
+                + "Below are all the commands that you can use\n\n"
+                + "bye: to exit the program\n\n"
+                + "list: to view all tasks currently\n\n"
+                + "mark: follow this command with task number to mark it\n\n"
+                + "unmark: follow this command with task number to unmark it\n\n"
+                + "delete: follow this command with task number to delete it\n\n"
+                + "todo: follow command with 'task name' to add todo task\n\n"
+                + "deadline: follow command with 'task name /by YYYY-MM-DD' to add deadline tasl\n\n"
+                + "event: follow command with 'task name /at time' to add event task\n\n"
+                + "find: follow command with keyword to find tasks with that word\n\n" ;
     }
+
+    String hiResponse() {
+        double i =  Math.random();
+        if (i < 0.5) {
+            return "Muchas gracias aficion\n" + "SIUUUUUUUU";
+        }
+        return "Inshallah, hehehehe\n" + "SIUUUUUUUU";
+    }
+
+    String byeResponse() {
+        return "Crista ronaldo SuuWeee ! ";
+    }
+
+    String siuResponse() {
+        return "SSSIIIUUUUU!!!!";
+    }
+
 
     String listResponse() {
         return tLst.list();
@@ -68,7 +95,7 @@ public class Duke {
             Storage.writeToFile(tLst.getTasks());
             return response;
         }
-        return "Oops The description of deadline cannot be empty !";
+        return "The description of deadline cannot be empty my guy!";
     }
 
     String eventResponse(String str) throws IOException {
@@ -78,7 +105,7 @@ public class Duke {
             Storage.writeToFile(tLst.getTasks());
             return response;
         }
-        return "Oops The description of event cannot be empty !";
+        return "The description of event cannot be empty my guy!";
     }
 
     String todoResponse(String str) throws IOException {
@@ -88,12 +115,19 @@ public class Duke {
             Storage.writeToFile(tLst.getTasks());
             return response;
         }
-        return "Oops The description of todo cannot be empty !";
+        return "The description of todo cannot be empty my guy!";
     }
 
     String getResponse(String str) throws IOException {
         String first = str.split(" ")[0];
-        if (first.equals("bye")) {
+        if (first.equals("help")) {
+            return helpResponse();
+        } else if(first.equalsIgnoreCase("siu")) {
+            return siuResponse();
+        }
+        else if(first.equals("hi")) {
+            return hiResponse();
+        } else if (first.equals("bye")) {
             return byeResponse();
         } else if (first.equals("list")) {
             return listResponse();
@@ -112,7 +146,7 @@ public class Duke {
         } else if (first.equals("todo")) {
             return todoResponse(str);
         } else {
-                return "Oops Sorry I don't know what you are talking about :( ";
+              return "I prefer not to speak\n" + "If I speak I'm in big trouble\nIn big trouble ";
             }
         }
     }
