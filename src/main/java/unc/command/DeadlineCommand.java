@@ -18,6 +18,7 @@ public class DeadlineCommand extends Command {
      * @param input Description part of input following "deadline".
      */
     public DeadlineCommand(String input) {
+        assert input != null : "A deadline task shouldn't be created with null description.";
         this.description = input;
     }
 

@@ -18,7 +18,9 @@ public class Unc {
     public Unc(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        assert storage != null : "Storage should be created.";
         taskList = new TaskList(storage.load());
+        assert taskList != null : "Task list should be created.";
     }
 
     public String getResponse(String input) {
