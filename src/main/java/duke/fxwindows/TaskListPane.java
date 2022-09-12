@@ -2,26 +2,23 @@ package duke.fxwindows;
 
 import duke.TaskList;
 import duke.tasks.Task;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
-
-import static java.lang.Double.MAX_VALUE;
 
 public class TaskListPane extends VBox {
 
     private TaskList tasks;
-//    We have a hashmap here so that when you click on a label, you get a reference to a task
-    private HashMap<Label, Task> taskLabelMap= new HashMap<>();
+    private Window parent;
 
-    public TaskListPane(TaskList tasks) {
+    public TaskListPane(Window parent, TaskList tasks) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/TaskListPane.fxml"));
             fxmlLoader.setController(this);
@@ -33,8 +30,9 @@ public class TaskListPane extends VBox {
         }
         HBox.setHgrow(this, Priority.ALWAYS);
 
-        this.tasks = tasks;
-        this.addTasks();
+        this.setTasks(tasks);
+        this.parent = parent;
+        this.refresh();
 
 
         this.getStyleClass().add("pane");
@@ -42,15 +40,26 @@ public class TaskListPane extends VBox {
 
     }
 
-    private void addTasks() {
-        for (Iterator<Task> it = this.tasks.getIterator(); it.hasNext(); ) {
-            Task t = it.next();
-            this.getChildren().add(taskToLabel(t));
-        }
+    void setTasks(TaskList t) {
+        this.tasks = t;
+        this.refresh();
     }
 
-    private static Label taskToLabel(Task t) {
-        return new TaskCategoryLabel(t.toString());
+    private void refresh() {
+        this.getChildren().clear();
+        for (Iterator<Task> it = this.tasks.getIterator(); it.hasNext(); ) {
+            Task t = it.next();
+
+            Label l = new TaskCategoryLabel(t.toString());
+            l.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    parent.selectTask(t);
+                }
+            });
+
+            this.getChildren().add(l);
+        }
     }
 
     private static class TaskCategoryLabel extends TaskLabel {

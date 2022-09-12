@@ -1,5 +1,6 @@
 package duke.tasks;
 
+import duke.TaskList;
 import org.json.JSONObject;
 import duke.parser.JsonParsable;
 
@@ -12,6 +13,7 @@ public abstract class Task implements JsonParsable {
         this.isDone = false;
     }
 
+    public abstract boolean isCategory(TaskList.Categories c);
     /**
      * Get task description.
      * @return a string representing the task description.

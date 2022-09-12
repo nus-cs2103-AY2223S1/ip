@@ -1,5 +1,6 @@
 package duke.tasks;
 
+import duke.TaskList;
 import org.json.JSONObject;
 import duke.parser.Parser;
 
@@ -11,6 +12,11 @@ public class Event extends Task {
     public Event(String description, String at) {
         super(description);
         this.at = Parser.parseStringtoDate(at);
+    }
+
+    @Override
+    public boolean isCategory(TaskList.Categories c) {
+        return c == TaskList.Categories.EVENT;
     }
 
     @Override

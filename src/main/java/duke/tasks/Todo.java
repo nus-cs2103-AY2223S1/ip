@@ -1,11 +1,17 @@
 package duke.tasks;
 
+import duke.TaskList;
 import org.json.JSONObject;
 
 public class Todo extends Task {
 
     public Todo(String description) {
         super(description);
+    }
+
+    @Override
+    public boolean isCategory(TaskList.Categories c) {
+        return c == TaskList.Categories.TODO;
     }
 
     @Override

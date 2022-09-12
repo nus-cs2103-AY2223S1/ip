@@ -1,12 +1,13 @@
 package duke.fxwindows;
 
 import duke.Duke;
+import duke.TaskList;
+import duke.tasks.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 
 public class Window extends AnchorPane {
 
@@ -17,7 +18,7 @@ public class Window extends AnchorPane {
     @FXML
     private Button helpButton;
 
-    private Duke duke;
+    Duke duke;
 
     private TaskCategoryPane taskCategoryPane;
     private TaskListPane taskListPane;
@@ -35,12 +36,12 @@ public class Window extends AnchorPane {
     }
 
     private void loadTaskCategoryPane() {
-        this.taskCategoryPane = new TaskCategoryPane();
+        this.taskCategoryPane = new TaskCategoryPane(this);
         this.contentBox.getChildren().add(this.taskCategoryPane);
     }
 
     private void loadTaskListPane() {
-        this.taskListPane = new TaskListPane(this.duke.getTasks());
+        this.taskListPane = new TaskListPane(this, this.duke.getTasks());
         this.contentBox.getChildren().add(this.taskListPane);
     }
 
@@ -49,15 +50,24 @@ public class Window extends AnchorPane {
         this.contentBox.getChildren().add(this.taskDescriptionPane);
     }
 
+    void selectTask(Task t) {
+        this.taskDescriptionPane.displayTask(t);
+    }
+
+    void updateTaskList(TaskList tList) {
+        this.taskListPane.setTasks(tList);
+    }
+
+    void updateTaskList(){
+        this.taskListPane.setTasks(this.duke.getTasks());
+    }
+
     @FXML
     public void handleUserInput() {
         String input = userInput.getText();
         String response = duke.execCommand(input);
-//        dialogContainer.getChildren().addAll(
-//                DialogBox.getUserDialog(input, userImage),
-//                DialogBox.getDukeDialog(response, dukeImage)
-//        );
         System.out.println(response);
         userInput.setText("");
+        this.updateTaskList();
     }
 }

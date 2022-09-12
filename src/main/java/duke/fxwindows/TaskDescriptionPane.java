@@ -43,7 +43,7 @@ public class TaskDescriptionPane extends VBox {
 
     private void renderTask() {
         Task t = currentTask;
-
+        this.getChildren().clear();
         if (t instanceof Event) {
             this.getChildren().add(new TaskCategoryLabel(t.toString()));
         } else if (t instanceof Deadline) {
@@ -55,9 +55,16 @@ public class TaskDescriptionPane extends VBox {
         }
     }
 
+    void displayTask(Task t) {
+        currentTask = t;
+        renderTask();
+    }
+
     private static class TaskCategoryLabel extends TaskLabel {
         public TaskCategoryLabel(String str) {
             super(str);
         }
     }
+
+
 }

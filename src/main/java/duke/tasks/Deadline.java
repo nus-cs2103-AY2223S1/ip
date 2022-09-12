@@ -1,5 +1,6 @@
 package duke.tasks;
 
+import duke.TaskList;
 import org.json.JSONObject;
 import duke.parser.Parser;
 
@@ -35,5 +36,9 @@ public class Deadline extends Task {
 
         e.isDone = jsonObject.getBoolean("done");
         return e;
+    }
+
+    public boolean isCategory(TaskList.Categories c) {
+        return (c == TaskList.Categories.DEADLINE);
     }
 }
