@@ -45,7 +45,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.Main"
+    mainClassName = "Main"
 }
 
 checkstyle {
