@@ -50,6 +50,7 @@ public class EventHandler implements IHandler {
             Task event = new Event(this.eventName, this.flagOption);
             s.addToList(event);
             int size = s.getList().size();
+            assert size != 0;
             return String.format("Got it. I've added this task:\n  "
                     + event
                     + "\nNow you have %d task%s in the list.", size, size != 1 ? "s" : "");
