@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<!--@@author Eugene Tan-reused-->
+<!--Reused with minor modifications from https://github.com/felissaf/ip-->
+<fx:root alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Text fx:id="dialog" text="Label" wrappingWidth="300.0" />
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #9900e6 ; -fx-label-padding: 8; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-insets: 5; -fx-background-insets: 5;" text="Label" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font></Label>
+        <Circle fx:id="displayPicture" fill="#ffffff" radius="30.0" stroke="#ffffff" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.5" />
     </children>
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
