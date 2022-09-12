@@ -33,20 +33,26 @@ public class DeadlineHandler implements IHandler {
      * @throws DukeException
      */
     @Override
-    public void handle(Service s) throws DukeException {
+    public String handle(Service s) throws DukeException {
         if (this.deadlineName == null) {
-            throw new DukeException("Please enter a task name!");
+            throw new DukeException("Please enter a task name!\nUsage:`deadline return book /by Sunday`");
         }
-        // TODO: Refactor to enum
+        if (this.flag == null) {
+            throw new DukeException("Please enter a /by time!\nUsage:`deadline return book /by Sunday`");
+        }
         if (!flag.equals("by")) {
             throw new DukeException("Incorrect option flag!\nUsage:`deadline return book /by Sunday`");
         }
         if (this.flagOption == null) {
-            throw new DukeException("Please enter a deadline!");
+            throw new DukeException("Please enter a deadline!\nUsage:`deadline return book /by Sunday`");
         }
         try {
             Task deadline = new Deadline(this.deadlineName, this.flagOption);
             s.addToList(deadline);
+            int size = s.getList().size();
+            return String.format("Got it. I've added this task:\n  "
+                    + deadline
+                    + "\nNow you have %d task%s in the list.", size, size != 1 ? "s" : "");
         } catch (DateTimeParseException ex) {
             throw new DukeException("Invalid Date/Time!\nUsage: `deadline return book /at 2/12/2019 1800`");
         }

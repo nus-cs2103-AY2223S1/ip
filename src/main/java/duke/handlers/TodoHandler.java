@@ -20,11 +20,15 @@ public class TodoHandler implements IHandler {
      * @throws DukeException
      */
     @Override
-    public void handle(Service s) throws DukeException {
+    public String handle(Service s) throws DukeException {
         if (this.todoName == null) {
             throw new DukeException("Please enter a task name!");
         }
         Task todo = new Todo(this.todoName);
         s.addToList(todo);
+        int size = s.getList().size();
+        return String.format("Got it. I've added this task:\n  "
+                + todo
+                + "\nNow you have %d task%s in the list.", size, size != 1 ? "s" : "");
     }
 }

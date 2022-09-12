@@ -16,7 +16,7 @@ public class HandlerFactory {
 
     private static class UnknownHandler implements IHandler {
         @Override
-        public void handle(Service s) throws DukeException {
+        public String handle(Service s) throws DukeException {
             throw new DukeException("Unknown command! Please try again.");
         }
     }
@@ -80,6 +80,8 @@ public class HandlerFactory {
                 return new DeleteHandler(this);
             case FIND:
                 return new FindHandler(this);
+            case BYE:
+                return new ByeHandler();
             default:
                 return new UnknownHandler();
             }

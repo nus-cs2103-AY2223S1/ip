@@ -1,19 +1,21 @@
 package duke.gui;
 
+import java.io.File;
 import java.io.IOException;
 
+import duke.Duke;
+import duke.data.FileStorage;
+import duke.data.IStorage;
+import duke.service.Service;
+import duke.service.Ui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /** Gui for Duke Application */
 public class Gui extends Application {
-
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaDino.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @Override
     public void start(Stage stage) {
@@ -22,18 +24,20 @@ public class Gui extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(this);
+            Ui ui = new Ui();
+            File storageDirectory = new File("./data");
+            if (!storageDirectory.exists()) {
+                if (!storageDirectory.mkdir()) {
+                    ui.receiveMessage("Could not create /data directory");
+                }
+            }
+            IStorage storage = new FileStorage("./data/duke.txt");
+            Service service = new Service(storage, ui);
+            Duke duke = new Duke(service);
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
-    public String getResponse(String input) {
-        return "Duke heard: " + input;
     }
 }

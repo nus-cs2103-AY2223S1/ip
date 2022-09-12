@@ -21,20 +21,19 @@ public class MarkHandler implements IHandler {
      * @throws DukeException
      */
     @Override
-    public void handle(Service s) throws DukeException {
+    public String handle(Service s) throws DukeException {
         if (this.taskIndex == null) {
             throw new DukeException("Invalid list index!\nUsage: `mark 2`");
         }
         try {
             int number = Integer.parseInt(this.taskIndex);
             Tasklist list = s.getList();
-            Ui ui = s.getUi();
             if (number > list.size()) {
                 throw new DukeException("Task not found! Please try again.");
             }
             Task item = list.get(number - 1);
             item.setDone(true);
-            ui.customPrint("Nice! I've marked this task as done:\n  " + item);
+            return "Nice! I've marked this task as done:\n  " + item;
         } catch (NumberFormatException ex) {
             throw new DukeException("Invalid list index!\nUsage: `mark 2`");
         }

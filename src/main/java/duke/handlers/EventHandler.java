@@ -2,6 +2,7 @@ package duke.handlers;
 
 import java.time.format.DateTimeParseException;
 
+import duke.Duke;
 import duke.entities.Event;
 import duke.entities.Task;
 import duke.exceptions.DukeException;
@@ -32,20 +33,26 @@ public class EventHandler implements IHandler {
      * @throws DukeException
      */
     @Override
-    public void handle(Service s) throws DukeException {
+    public String handle(Service s) throws DukeException {
         if (this.eventName == null) {
-            throw new DukeException("Please enter a task name!");
+            throw new DukeException("Please enter a task name!\nUsage: `event project meeting /at 2/12/2019 1800`");
         }
-        // TODO refactor to enum
+        if (this.flag == null) {
+            throw new DukeException("Please enter /at time!\nUsage: `event project meeting /at 2/12/2019 1800`");
+        }
         if (!flag.equals("at")) {
             throw new DukeException("Incorrect option flag!\nUsage: `event project meeting /at 2/12/2019 1800`");
         }
         if (this.flagOption == null) {
-            throw new DukeException("Please enter a time!");
+            throw new DukeException("Please enter a time!\nUsage: `event project meeting /at 2/12/2019 1800`");
         }
         try {
             Task event = new Event(this.eventName, this.flagOption);
             s.addToList(event);
+            int size = s.getList().size();
+            return String.format("Got it. I've added this task:\n  "
+                    + event
+                    + "\nNow you have %d task%s in the list.", size, size != 1 ? "s" : "");
         } catch (DateTimeParseException ex) {
             throw new DukeException("Invalid Date/Time!\nUsage: `event project meeting /at 2/12/2019 1800`");
         }
