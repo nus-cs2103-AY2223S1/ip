@@ -8,7 +8,11 @@ public class MarkCommand extends Command {
 
     private int taskNumber;
 
-
+    /**
+     * Constructs an instance of MarkCommand which inherits from Command.
+     *
+     * @param taskNumber number of the task that needs to be marked.
+     */
     public MarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }

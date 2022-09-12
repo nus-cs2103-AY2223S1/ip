@@ -11,7 +11,7 @@ public class UpdateDateCommand extends Command {
     private String updatedDate;
 
     /**
-     * Class constructor for UpdateDateCommand
+     *  Constructs an instance of UpdateCommand which inherits from Command.
      *
      * @param taskNumber task number to update the date
      */

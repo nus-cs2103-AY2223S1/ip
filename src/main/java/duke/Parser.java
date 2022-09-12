@@ -183,6 +183,7 @@ public class Parser {
      * Converts string user input command into enum command to be used in switch.
      *
      * @param userInputCommand string user input command.
+     * @return an UserCommand
      * @throws DukeException if user input command is not any valid command.
      */
     public static UserCommand userInputToCommand(String userInputCommand) throws DukeException {

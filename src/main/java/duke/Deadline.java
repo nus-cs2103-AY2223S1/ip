@@ -12,7 +12,7 @@ public class Deadline extends Task {
     protected LocalDate by;
 
     /**
-     * Class constructor for Deadline.
+     * Constructs an instance of Deadline which inherits from Task.
      *
      * @param description Deadline's description.
      * @param by Deadline's by.

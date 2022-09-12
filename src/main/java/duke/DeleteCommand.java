@@ -9,7 +9,7 @@ public class DeleteCommand extends Command {
     private int taskNumber;
 
     /**
-     * Class constructor for DeleteCommand.
+     * Constructs an instance of DeleteCommand which inherits from Command.
      *
      * @param taskNumber number of the task to be deleted.
      */

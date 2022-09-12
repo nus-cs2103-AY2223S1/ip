@@ -6,7 +6,7 @@ package duke;
 public class Ui {
 
     /**
-     * Handles what to show during Duke's startup.
+     * Returns socDuke's response for startup.
      *
      * @return response of duke in string.
      */
@@ -15,7 +15,7 @@ public class Ui {
     }
 
     /**
-     * Handles user interface for loading error.
+     * Returns socDuke's response for loading error.
      *
      * @return response of duke in string.
      */
@@ -24,7 +24,7 @@ public class Ui {
     }
 
     /**
-     * Handles user interface for when adding new tasks.
+     * Returns socDuke's response for adding new tasks.
      *
      * @param taskToAdd task to be shown on ui.
      * @param tasks list of tasks to get number of existing tasks.
@@ -37,7 +37,7 @@ public class Ui {
     }
 
     /**
-     * Handles user interface for deleting tasks.
+     * Returns socDuke's response for deleting tasks.
      *
      * @param taskToRemove task to be shown on ui.
      * @param tasks list of tasks to get number of existing tasks.
@@ -49,7 +49,7 @@ public class Ui {
     }
 
     /**
-     * Handles user interface for marking task as done.
+     * Returns socDuke's response for for marking task as done.
      *
      * @param markedTask task to be shown on ui.
      * @return response of duke in string.
@@ -59,7 +59,7 @@ public class Ui {
     }
 
     /**
-     * Handles user interface showing updated task.
+     * Returns socDuke's response for showing updated task.
      *
      * @param updatedTask task to be shown on ui.
      * @return response of duke in string.
@@ -69,7 +69,7 @@ public class Ui {
     }
 
     /**
-     * Handles user interface for marking task as not done.
+     * Returns socDuke's response for marking task as not done.
      *
      * @param unmarkedTask task to be shown.
      * @return response of duke in string.
@@ -80,7 +80,7 @@ public class Ui {
     }
 
     /**
-     * Prints out all existing tasks in list.
+     * Returns all existing tasks in list.
      *
      * @param tasks list of existing tasks.
      * @return response of duke in string.

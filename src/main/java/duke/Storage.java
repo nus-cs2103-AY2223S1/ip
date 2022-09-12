@@ -18,7 +18,7 @@ public class Storage {
     private File dataFile;
 
     /**
-     * Class Constructor of Storage class.
+     * Constructs an instance of Storage.
      *
      * @param filePath path to store data file.
      */

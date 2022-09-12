@@ -10,7 +10,7 @@ public class UnmarkCommand extends Command {
 
 
     /**
-     * Class constructor for UnmarkCommand.
+     * Constructs an instance of UnmarkCommand which inherits from Command.
      *
      * @param taskNumber task number to mark as not done.
      */

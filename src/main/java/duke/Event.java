@@ -12,7 +12,7 @@ public class Event extends Task {
     protected LocalDate at;
 
     /**
-     * Class constructor for Event.
+     * Constructs an instance of Event which inherits from Task.
      *
      * @param description Event's description.
      * @param at Event's at.

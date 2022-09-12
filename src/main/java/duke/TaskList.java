@@ -11,7 +11,7 @@ public class TaskList {
     protected int length;
 
     /**
-     * Class constructor for ToDoList.
+     * Constructs an instance of TaskList.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -19,7 +19,7 @@ public class TaskList {
     }
 
     /**
-     * Class constructor for ToDoList with an ArrayList argument.
+     * Constructs an instance of TaskList.
      *
      * @param tasks arraylist of task.
      */

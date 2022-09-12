@@ -9,7 +9,7 @@ public class AddCommand extends Command {
     private Task newTask;
 
     /**
-     * Class constructor for AddCommand class.
+     * Constructs an instance of AddCommand which inherits from Command.
      *
      * @param newTask new task to be added.
      */

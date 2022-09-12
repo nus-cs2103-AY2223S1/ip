@@ -9,7 +9,7 @@ public class FindCommand extends Command {
     private String taskDescription;
 
     /**
-     * Class constructor of FindCommand.
+     * Constructs an instance of FindCommand which inherits from Command.
      *
      * @param taskDescription description of task that user wants to find.
      */

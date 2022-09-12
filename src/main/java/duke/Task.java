@@ -10,7 +10,7 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Class constructor for ListItem.
+     * Constructs an instance of Task.
      *
      * @param description name of item.
      */

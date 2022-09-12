@@ -10,7 +10,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Class constructor for Duke program.
+     * Constructs an instance of Duke.
      */
     public Duke() throws DukeException {
         String filePath = "./data";
