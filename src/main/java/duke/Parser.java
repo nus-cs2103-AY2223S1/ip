@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -27,8 +28,8 @@ public class Parser {
         return "OOPS!!! The description of a " + taskType + " cannot be empty.\n";
     }
 
-    private static String generateEmptyActionMessage(String action) {
-        return "OOPS!!! The action to " + action + " must have the index as an argument.\n";
+    private static String generateInvalidArgumentsMessage(String action) {
+        return "OOPS!!! The " + action + " must valid arguments.\n";
     }
 
     private String generateTasksNumberMessage() {
@@ -53,74 +54,65 @@ public class Parser {
             throw new CustomMessageException(("OOPS!!! I'm sorry, but I "
                     + "don't know what that means :-("));
         }
-        commands[0] = "";
+        commands = Arrays.copyOfRange(commands, 1, commands.length);
+        if (!taskType.isNumberOfArgsCorrect(commands.length)) {
+            throw new CustomMessageException((generateInvalidArgumentsMessage(taskType.getString())));
+        }
         int index;
-        String toPrint;
+        String displayString;
         switch (taskType) {
         case BYE:
-            toPrint = Responses.BYE_MESSAGE;
+            displayString = Responses.BYE_MESSAGE;
             break;
         case LIST:
             String tasks = taskList.getTextRepresentationOfAllTasks();
-            toPrint = tasks.length() > 0 ? "Here are the tasks in your list:"
+            displayString = tasks.length() > 0 ? "Here are the tasks in your list:"
                     + tasks : "No existing tasks found :(";
             break;
         case MARK:
-            if (commands.length == 1) {
-                throw new CustomMessageException((generateEmptyActionMessage("mark")));
-            }
-            index = Integer.parseInt(commands[1]) - 1;
+            index = Integer.parseInt(commands[0]) - 1;
             taskList.markTaskAsDone(index);
-            toPrint = "Nice! I've marked this task as done:\n    " + taskList.getTaskString(index);
+            displayString = "Nice! I've marked this task as done:\n    " + taskList.getTaskString(index);
             break;
         case UNMARK:
-            if (commands.length == 1) {
-                throw new CustomMessageException(generateEmptyActionMessage("unmark"));
-            }
-            index = Integer.parseInt(commands[1]) - 1;
+            index = Integer.parseInt(commands[0]) - 1;
             taskList.markTaskAsNotDone(index);
-            toPrint = "OK, I've marked this task as not done yet:\n    "
+            displayString = "OK, I've marked this task as not done yet:\n    "
                     + taskList.getTaskString(index);
             break;
         case DELETE:
-            if (commands.length == 1) {
-                throw new CustomMessageException((generateEmptyActionMessage("delete")));
-            }
-            index = Integer.parseInt(commands[1]) - 1;
+            index = Integer.parseInt(commands[0]) - 1;
             String deletedTaskDescription = taskList.getTaskString(index);
             taskList.removeTask(index);
-            toPrint = "Noted. I've removed this task:\n    "
+            displayString = "Noted. I've removed this task:\n    "
                     + deletedTaskDescription + "\n" + generateTasksNumberMessage();
             break;
         case TODO:
-            toPrint = parseNewTaskCommand(command, commands.length, Command.TODO, "");
+            displayString = parseNewTaskCommand(command, commands.length, Command.TODO, "");
             break;
         case DEADLINE:
-            toPrint = parseNewTaskCommand(command, commands.length, Command.DEADLINE, " /by ");
+            displayString = parseNewTaskCommand(command, commands.length, Command.DEADLINE, " /by ");
             break;
         case EVENT:
-            toPrint = parseNewTaskCommand(command, commands.length, Command.EVENT, " /at ");
+            displayString = parseNewTaskCommand(command, commands.length, Command.EVENT, " /at ");
             break;
         case FIND:
-            if (commands.length == 1) {
-                throw new CustomMessageException(generateEmptyActionMessage("find"));
-            }
-            toPrint = ("Here are the matching tasks in your list:"
-                    + taskList.getTextRepresentationOfKeywordTasks(commands[1]));
+            displayString = ("Here are the matching tasks in your list:"
+                    + taskList.getTextRepresentationOfKeywordTasks(commands[0]));
             break;
         default:
             throw new CustomMessageException((
                     "OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
         }
-        return toPrint.equals("") ? "" : toPrint + "\n";
+        return displayString.equals("") ? "" : displayString + "\n";
     }
 
     private String parseNewTaskCommand(String command, int commandsLen, Command taskCommand, String toSplitBy)
             throws CustomMessageException {
-        if (commandsLen == 1) {
+        if (commandsLen == 0) {
             throw new CustomMessageException((generateEmptyDescMessage(taskCommand.getString())));
         }
-        assert commandsLen > 1 : "There should be minimally 1 arguments to a new task";
+            assert commandsLen > 0 : "There should be minimally 1 arguments to a new task";
         if (taskCommand == Command.TODO) {
             taskList.addToTaskList(new ToDo(command.substring(5).strip(), duke.Command.TODO));
         } else if (taskCommand == Command.EVENT || taskCommand == Command.DEADLINE) {

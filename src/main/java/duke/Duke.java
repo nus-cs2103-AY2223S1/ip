@@ -16,11 +16,7 @@ public class Duke {
      */
     public Duke() {
         Storage storage = new Storage(FILE_PATH);
-        //        try {
         parser = new Parser(new TaskList(storage));
-        //        } catch (CustomMessageException e) {
-        //            ui.showLoadingError();
-        //        }
     }
 
     /**
@@ -29,7 +25,6 @@ public class Duke {
      * @return Duke's response
      */
     public String getResponse(String input) {
-        //        The initialisation code that starts the chatbot
         try {
             return parser.parseUserCommand(input);
             //                Command c = Parser.parse(fullCommand);

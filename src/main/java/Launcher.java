@@ -1,5 +1,4 @@
-package duke;
-
+import duke.Gui;
 import javafx.application.Application;
 
 /**
