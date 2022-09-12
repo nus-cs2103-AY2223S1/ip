@@ -94,6 +94,10 @@ public class Window extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+        if (input.strip().equalsIgnoreCase("help")) {
+            showHelpWindow();
+            return;
+        }
         Command c = duke.ui.readCommand(input);
         String response = duke.execCommand(c, taskList);
         userInput.setText("");

@@ -415,12 +415,12 @@ public abstract class Command {
 
         @Override
         public String exec(TaskList taskList) {
-            return "Unrecognized command";
+            return "Unrecognized command, type 'help' to get help.";
         }
 
         @Override
         public String exec(TaskList mainTaskList, TaskList targetTaskList) {
-            return "Unrecognized command";
+            return "Unrecognized command, type 'help' to get help.";
         }
     }
 }
