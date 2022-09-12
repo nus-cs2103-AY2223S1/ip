@@ -3,7 +3,7 @@
 This product is a desktop app for managing tasks mainly through the use of a Command Line Interface (CLI). This application supports the adding and tracking of various types of tasks.
 
 ## Features 
-- `help` - Viewing help
+- [`help` - Viewing help](https://github.com/NicholasTYD/ip/blob/master/docs/README.md#help---viewing-help)
 - `bye` - Exit the program
 - `list` - List stored tasks 
 - `todo` - Add a "Todo" task
