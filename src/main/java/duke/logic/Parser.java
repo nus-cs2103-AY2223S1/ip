@@ -14,11 +14,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
-import duke.exception.IllegalDescriptionException;
-import duke.exception.IllegalKeywordException;
-import duke.exception.IllegalTaskException;
-import duke.exception.IllegalDateException;
-import duke.exception.IllegalTokenException;
+import duke.exception.*;
 
 /**
  * Parser deals with making sense of user input.
@@ -109,6 +105,8 @@ public class Parser {
             return () -> "I'm sorry, but the date specified is either invalid or empty.";
         } catch (IllegalTokenException e) {
             return () -> "I'm sorry, but you are mising the \"/by\" or \"/at\" token.";
+        } catch (DuplicateTaskException e) {
+            return () -> "I'm sorry, but the task you specified already exists.";
         }
 
         return () -> "I'm sorry, but I don't know what that means.";
@@ -168,7 +166,7 @@ public class Parser {
         return new FindCommand(taskList, response.substring(5).stripLeading());
     }
 
-    private Supplier<String> executeOnTodo(String response) throws IllegalDescriptionException {
+    private Supplier<String> executeOnTodo(String response) throws IllegalDescriptionException, DuplicateTaskException {
         //completely nothing after command, todo<space> is 5 char long
         //todo command with whitespaces followed are not valid descriptions.
         if (response.length() < 6) {
@@ -176,12 +174,12 @@ public class Parser {
         }
         //taking index 5 onward as description
         //should be atleast 1 char by now
-        String description = response.substring(5);
+        String description = response.substring(5).strip();
         return new ToDoCommand(taskList, description);
     }
 
     private Supplier<String> executeOnDeadline(String response) throws IllegalTokenException,
-            IllegalDescriptionException, IllegalDateException {
+            IllegalDescriptionException, IllegalDateException, DuplicateTaskException {
         //completely nothing after command, deadline<space> is 9 char long
         if (response.length() < 10) {
             throw new IllegalTokenException("No token found.");
@@ -201,12 +199,12 @@ public class Parser {
         if (tokenPosition < 0) {
             throw new IllegalTokenException("No token found.");
         }
-        String description = response.substring(0, tokenPosition);
+        String description = response.substring(0, tokenPosition).strip();
         //starting from after /by<space>
         String date = response.substring(tokenPosition + 5);
         //as of now still can have e.g deadline <space><space><space> /by <date>
         //to ensure whitespaces alone as a description or date is not allowed
-        if (description.strip().length() == 0) {
+        if (description.length() == 0) {
             throw new IllegalDescriptionException("No description specified.");
         }
         //should not even come here as if date is pure whitespace, will be truncated
@@ -219,7 +217,7 @@ public class Parser {
     }
 
     private Supplier<String> executeOnEvent(String response) throws IllegalTokenException, IllegalDescriptionException,
-            IllegalDateException {
+            IllegalDateException, DuplicateTaskException {
         if (response.length() < 7) {
             throw new IllegalTokenException("No token found.");
         }
@@ -234,10 +232,10 @@ public class Parser {
         if (tokenPosition < 0) {
             throw new IllegalTokenException("No token found.");
         }
-        String description = response.substring(0, tokenPosition);
+        String description = response.substring(0, tokenPosition).strip();
         String date = response.substring(tokenPosition + 5);
         //to ensure whitespaces alone as a description or date is not allowed
-        if (description.strip().length() == 0) {
+        if (description.length() == 0) {
             throw new IllegalDescriptionException("No description specified.");
         }
         //should not even come here as if date is pure whitespace, will be truncated

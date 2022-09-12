@@ -44,4 +44,9 @@ public class Event extends Task {
     public String toStorageFormat() {
         return "E" + super.toStorageFormat() + this.date.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Event && super.equals(obj) && ((Event) obj).date.equals(this.date);
+    }
 }

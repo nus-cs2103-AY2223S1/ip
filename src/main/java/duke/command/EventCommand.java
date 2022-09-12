@@ -2,6 +2,7 @@ package duke.command;
 
 import java.time.LocalDate;
 
+import duke.exception.DuplicateTaskException;
 import duke.logic.TaskList;
 import duke.task.Event;
 
@@ -14,11 +15,7 @@ public class EventCommand extends Command {
     /** Task list the command has to add an event to. */
     private TaskList taskList;
 
-    /** Description of the event. */
-    private String description;
-
-    /** Date the event is at. */
-    private LocalDate date;
+    private Event event;
 
     /**
      * Constructor for the command.
@@ -26,17 +23,20 @@ public class EventCommand extends Command {
      * @param taskList the task list the command will modify.
      * @param description the description of the event.
      * @param date the date the event is at.
+     * @throws DuplicateTaskException If the event specified already exists.
      */
-    public EventCommand(TaskList taskList, String description, LocalDate date) {
+    public EventCommand(TaskList taskList, String description, LocalDate date) throws DuplicateTaskException {
         this.taskList = taskList;
         assert description.length() > 0;
-        this.description = description;
-        this.date = date;
+        this.event = new Event(description, date);
+        if (this.taskList.contains(this.event)) {
+            throw new DuplicateTaskException("duplicate event already exists");
+        }
     }
 
     @Override
     public String get() {
-        taskList.add(new Event(description, date));
+        taskList.add(this.event);
         return "Got it. I've added this task:\n"
                 + taskList.get(taskList.size() - 1).toString() + "\n"
                 + String.format("Now you have %d tasks in the list.", taskList.size());

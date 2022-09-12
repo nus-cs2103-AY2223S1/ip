@@ -44,4 +44,10 @@ public class Deadline extends Task {
     public String toStorageFormat() {
         return "D" + super.toStorageFormat() + this.date.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Deadline && super.equals(obj) && ((Deadline) obj).date.equals(this.date);
+    }
 }
+
