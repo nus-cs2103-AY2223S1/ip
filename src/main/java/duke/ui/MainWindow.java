@@ -48,7 +48,7 @@ public class MainWindow extends AnchorPane {
     }
 
     private String formatError(String errorMessage) {
-        return String.format("X %s", errorMessage);
+        return String.format("\u26A0 %s", errorMessage);
     }
 
     @FXML

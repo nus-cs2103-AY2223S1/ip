@@ -44,6 +44,6 @@ public class Duke {
     }
 
     public String getWelcomeMessage() {
-        return String.format("%s\n%s", "Hi I'm Duke", "What can I do for you?");
+        return String.format("%s\n%s", "Hi I'm Duke :D", "What can I do for you?");
     }
 }
