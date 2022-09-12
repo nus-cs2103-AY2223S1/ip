@@ -36,7 +36,7 @@ public class MarkTaskCommand extends Command {
         Task task = tasks.markTask(taskIndex);
         String output = "";
         if (task != null) {
-            output += ui.notifyUser("Alright, I have marked this task as done:\n\t" + task);
+            output += ui.notifyUser("Alright, I have marked this task as done:\n    " + task);
         }
         saveUserTasks(storage, tasks, ui);
         return output;

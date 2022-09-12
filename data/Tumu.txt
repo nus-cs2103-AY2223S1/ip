@@ -1,12 +1,5 @@
-D #   # v # 1212-12-12T12:12
-E #   # asd # 1213-12-12T12:12
-T #   # task1 # 
-T #   # task1 # 
-T #   # task1 # 
-T #   # task1 # 
-T #   # 1 # 
-T #   # 23 # 
-T #   # 45 # 
-T #   # efc # 
-T #   # soifj # 
-T #   # task1 # 
+E #   # Meeting with supervisor # 2022-09-12T12:00
+D #   # Take CS quiz # 2022-09-14T23:59
+D # X # Finish lab assignment # 2022-09-15T23:59
+E #   # Attend piano concert # 2022-09-21T20:00
+T #   # Buy porridge for Grandma # 
