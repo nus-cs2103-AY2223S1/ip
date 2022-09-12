@@ -156,7 +156,11 @@ public class Parser {
         case MARK:
         case DELETE:
         case UNMARK:
-            return parseCommandsWithOnlyTaskIndex(input, commandLine);
+            try {
+                return parseCommandsWithOnlyTaskIndex(input, commandLine);
+            } catch (NumberFormatException e) {
+                throw new IsaraException("☹ OOPS!! Please enter the task number after the command!");
+            }
         case FIND:
             return parseFindCommand(input);
         case RESCHEDULE:
