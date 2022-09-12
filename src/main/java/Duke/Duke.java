@@ -20,6 +20,8 @@ public class Duke {
         this.ui = new Ui();
         this.stringReplacer = new StringReplacer();
         this.parser = new Parser(this.storage, this.taskList);
+        storage.openFile();
+        storage.listInit(this.taskList.getList());
     }
 
     /**
