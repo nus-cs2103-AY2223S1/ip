@@ -96,6 +96,13 @@ public class TaskList {
     }
 
     /**
+     * Decreases count of todos.
+     */
+    public void decreaseTodoCount() {
+        this.todoCount--;
+    }
+
+    /**
      * Gets number of todos.
      *
      * @return Number of todos.
@@ -112,6 +119,13 @@ public class TaskList {
     }
 
     /**
+     * Decreases count of deadlines.
+     */
+    public void decreaseDeadlineCount() {
+        this.deadlineCount--;
+    }
+
+    /**
      * Gets number of deadlines.
      *
      * @return Number of deadlines.
@@ -125,6 +139,13 @@ public class TaskList {
      */
     public void increaseEventCount() {
         this.eventCount++;
+    }
+
+    /**
+     * Decreases count of events.
+     */
+    public void decreaseEventCount() {
+        this.eventCount--;
     }
 
     /**

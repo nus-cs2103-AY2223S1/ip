@@ -70,6 +70,7 @@ public class Storage {
             while (sc.hasNextLine()) {
                 String[] strArr = sc.nextLine().split("\\|");
                 if (strArr[0].contains("T")) {
+                    tdCount++;
                     String subStr = strArr[2].substring(1, strArr[2].length() - 1);
                     taskArr.add(new ToDos(subStr));
                 }
@@ -77,6 +78,7 @@ public class Storage {
                     String str = strArr[3];
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" dd MMM yyyy HH:mm");
                     LocalDateTime ldt = LocalDateTime.parse(str, formatter);
+                    eCount++;
                     String subStr = strArr[2].substring(1, strArr[2].length() - 1);
                     taskArr.add(new Events(subStr, ldt));
                 }
@@ -84,12 +86,13 @@ public class Storage {
                     String str = strArr[3];
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" dd MMM yyyy HH:mm");
                     LocalDateTime ldt = LocalDateTime.parse(str, formatter);
+                    dCount++;
                     String subStr = strArr[2].substring(1, strArr[2].length() - 1);
                     taskArr.add(new Deadlines(subStr, ldt));
                 }
             }
             sc.close();
-            //return new TaskList(taskArr);
+
             return new TaskList(taskArr, tdCount, dCount, eCount);
         } catch (FileNotFoundException fe) {
             throw new FileNotFoundException("Oops! No file is found.");

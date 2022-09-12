@@ -21,7 +21,7 @@ public class Ui {
      */
     public String printWelcomeMessage() {
         String str = "";
-        str += "Welcome to Duke bot!\n";
+        str += "Welcome to Margi bot!\n";
         str += "What tasks do you have to do today?\n";
         str += "To input a deadline or event, \n" +
                 "type the date and time in the format: 'yyyy-mm-ddThh:mm'\n";

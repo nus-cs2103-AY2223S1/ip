@@ -113,6 +113,7 @@ public class Parser {
         if (str.length() > lengthOfWordTodo) {
             String finalStr = "";
             ToDos newToDo = new ToDos(str.substring(lengthOfWordTodo));
+            tasklist.increaseTodoCount();
             int size = tasklist.getSize();
             assert size > 0 : "size should be more than 0";
             finalStr += ui.printTodo(tasklist.addTask(newToDo)) + "\n" + ui.printTasksLeft(tasklist.getSize());
@@ -141,6 +142,7 @@ public class Parser {
 
             String date = str.substring(k + 4);
             Deadlines newDeadline = new Deadlines(desc, LocalDateTime.parse(date));
+            tasklist.increaseDeadlineCount();
             String finalStr = "";
             int size = tasklist.getSize();
             assert size > 0 : "size should be more than 0";
@@ -170,6 +172,7 @@ public class Parser {
 
             String eventTime = str.substring(k + 4);
             Events newEvent = new Events(desc, LocalDateTime.parse(eventTime));
+            tasklist.increaseEventCount();
             String finalStr = "";
             int size = tasklist.getSize();
             assert size > 0 : "size should be more than 0";
@@ -193,13 +196,30 @@ public class Parser {
 
         if (taskToDel <= tasklist.getSize()) {
             String finalStr = "";
-            finalStr += ui.printDelete(tasklist.getTask(taskToDel - 1));
+            Task taskToDelete = tasklist.getTask(taskToDel - 1);
+            finalStr += ui.printDelete(taskToDelete);
+            reduceTaskCount(taskToDelete);
             tasklist.deleteTask(taskToDel - 1);
             finalStr += ui.printTasksLeft(tasklist.getSize());
             storage.save(tasklist);
             return finalStr;
         } else {
             throw new DukeException("No such task exist. Try again!");
+        }
+    }
+
+    /**
+     * Reduces task count when task is deleted
+     *
+     * @param task task that is deleted
+     */
+    public static void reduceTaskCount(Task task) {
+        if (task instanceof ToDos) {
+            tasklist.decreaseTodoCount();
+        } else if (task instanceof Deadlines) {
+            tasklist.decreaseDeadlineCount();
+        } else {
+            tasklist.decreaseEventCount();
         }
     }
 
