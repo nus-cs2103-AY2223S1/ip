@@ -3,22 +3,22 @@ package duke.tasks;
 public abstract class Task {
 
     private final String name;
-    private boolean marked;
+    private boolean isMarked;
 
     public Task(String name) {
         this.name = name;
     }
 
     public void mark() {
-        marked = true;
+        isMarked = true;
     }
 
     public void unmark() {
-        marked = false;
+        isMarked = false;
     }
 
     public boolean isMarked() {
-        return marked;
+        return isMarked;
     }
 
     public String getName() {
@@ -27,7 +27,7 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "[" + (marked ? "X" : " ") + "] " + name;
+        return "[" + (isMarked ? "X" : " ") + "] " + name;
     }
 
     public abstract String toDataString();
