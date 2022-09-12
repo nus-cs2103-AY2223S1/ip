@@ -6,6 +6,7 @@ import duke.events.Deadline;
 import duke.events.Event;
 import duke.events.Task;
 import duke.events.Todo;
+import duke.exceptions.InvalidReadTaskException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -77,6 +78,7 @@ public class Storage {
             String currentLine = "";
             BufferedReader reader = new BufferedReader(new FileReader(CSV_LOCATION));
             ArrayList<Task> readTasksList = new ArrayList<>();
+            int taskIndex = 1;
             while ((currentLine = reader.readLine()) != null) {
                 String[] readValues = currentLine.split("//");
                 String taskType = readValues[0];
@@ -84,9 +86,13 @@ public class Storage {
                     readTasksList.add(Todo.readTask(readValues));
                 } else if (taskType.equals("E")) {
                     readTasksList.add(Event.readTask(readValues));
-                } else {
+                } else if (taskType.equals("D")) {
                     readTasksList.add(Deadline.readTask(readValues));
+                } else {
+                    Exception invalidReadTask = new InvalidReadTaskException("Failed to read task at index: " + taskIndex);
+                    System.out.println(invalidReadTask);
                 }
+                taskIndex += 1;
             }
             return readTasksList;
 

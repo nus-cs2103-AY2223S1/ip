@@ -1,6 +1,15 @@
 # Our new and improved Duke 
 
-Duke simulates a task manager where you can add 3 types of events, individually known as: Todo / Event / Deadline. These all come with descriptions which you will specify You can mark/unmark/delete/view a list and more! 
+Do you every feel like you have too many things to do but no way to keep track of it? That's where duke comes in! Duke simulates a task manager to keep track of your daily life! 
+
+## List of Features
+- Add a task without a date associated (todo)
+- Add a task with a date associated (deadline/event)
+- Deletes Tasks (by index)
+-  Marks and unmarks tasks (by index)
+- List all tasks in an easy to read list format 
+- Views your schedule on a seperate day
+
 
 ## What do I need to use the project?
 
@@ -14,7 +23,10 @@ There are 3 simple steps!
 3. Execute the jar format
    1. Ensure you're on the correct working directory 
    2. Entering the command `java -jar duke.jar` in the terminal 
-3. If the setup is correct, you should see a something like this : ![welcome message as follows](./WelcomeDuke.JPG)
+3. If the setup is correct, you should see a something like this :
+
+
+![welcome message as follows](./WelcomeDuke.JPG)
 
 
 
@@ -28,21 +40,32 @@ There are 3 simple steps!
 
 
 
-
-
 ## Using our commands 
-Enter the corresponding input as required! 
+Refer to the handy table below to check our our syntax 
 
 | Command Functionality | Syntax Example | Format Example | Description |
 | --- | --- | --- | --- |
-| Add todo | `todo (description)` | todo clean dishes | Adds a todo event to the list |
-| Add event | `event <description> /at <date>`| event submit assignment  /at 2020-05-05 | Adds an event to the list. Notice that these have dates tagged to them, with the syntax: `YYYY-MM-DD`|
-| Add Deadline| `deadline <description> /by <date>` | deadline submit assignment  /at 2020-05-05 | Adds a deadline to the list. Same format as event
+| Add todo task | `todo (description)` | todo clean dishes | Adds a todo event to the list |
+| Add event task | `event <description> /at <date>`| event submit assignment  /at 2020-05-05 | Adds an event to the list. Notice that these have dates tagged to them, with the syntax: `YYYY-MM-DD`|
+| Add Deadline task | `deadline <description> /by <date>` | deadline submit assignment  /at 2020-05-05 | Adds a deadline to the list. Same format as event
 | Delete |  `delete <taskListNumber>` |  delete 5 | This deletes the specified task in the list. Note that the tasks go in running order, starting from 1 | 
-Find | `find <keyWord(s)>` | : find homework | Searches the descriptions of all the tasks in the list, and returns a list view of all the tasks which contain the specified keyword inside. |
-| List out a bunch of tasks | `list` | list (no further arguments) | Single word command that returns a list view of the tasks 
-| mark/unmark tasks | `(un)mark <taskListNumber>` | mark 3 / unmark 4 | Keeps track of whether tasks are done / undone. When loading in a task, it is not done (unmarked by default). Marking adds a cross next to the item in list view, and unmarking does the opposite.
+Find | `find <keyWord(s)>` | find homework | Searches the descriptions of all the tasks in the list, and returns a list view of all the tasks which contain the specified keyword inside. |
+| View tasks in List format | `list` | list (no further arguments) | Single word command that returns a list view of the tasks 
+| Mark/Unmark tasks | `(un)mark <taskListNumber>` | mark 3 / unmark 4 | Keeps track of whether tasks are done / undone. When loading in a task, it is not done (unmarked by default). Marking adds a cross next to the item in list view, and unmarking does the opposite.
 | view schedule on available day | `viewSchedule <date>` | viewSchedule 2022-05-05 | Returns a list view of tasks that happen on that specific day. Do take note of the standard date syntax: `YYYY-MM-DD` |
+|View a help sheet| `help`| help | Opens up a document in your browser with all the basic commands |
 
+## Advanced User Saving Guide 
+ For our more advanced users, you are able to `edit` the save file using the format specified by our save file. Each argument is deliminated by double backslashes `//`. 
+> Here's how to edit the save file yourself. The format for each task is specified by: `taskIndicator//0 or 1//description//date//`.
 
+1. Notice that each line of the text file (located under `SavedData/Save.txt` from your current JAR file directory) corresponds to one task 
 
+- The number `0` & `1` represents under `markindicator` indicates whether the task is marked or not.
+- The date follows our standard date syntax: `YYYY-MM-DD`.
+- The `description` can be any description of the task 
+
+2. For todo tasks: the format is specified as `T//markIndicator//description`
+3. For deadline tasks: The format is specified as `D//markIndicator//description/date//`
+4. Similarly, for event tasks: The format is specified as `E//markIndicator//description/date//`
+5. Finally, you can simply delete lines to delete the task, and it will be automatically re-ordered for you 

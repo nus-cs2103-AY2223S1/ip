@@ -41,8 +41,7 @@ public class TaskList {
     }
 
     /**
-     * searches the taskList based on taskIndex
-     * and marks it as done
+     * searches the taskList based on taskIndex and marks it as done.
      * @param taskIndex Index of task to be marked
      */
     public String markTask(int taskIndex) {
@@ -60,8 +59,7 @@ public class TaskList {
     }
 
     /**
-     * searches the taskList based on taskIndex
-     * and marks it as undone
+     * Marks tasklist as specified by taskIndex as undone.
      * @param taskIndex
      */
 

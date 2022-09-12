@@ -9,6 +9,7 @@ package duke.events;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 public class Deadline extends Task {
     protected LocalDate by;
