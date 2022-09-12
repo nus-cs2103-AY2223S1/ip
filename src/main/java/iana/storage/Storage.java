@@ -19,7 +19,7 @@ import iana.tasks.TaskList;
 public class Storage {
     private static final String FILE_STRING = "data/DataStorage.txt";
 
-    public static void initialise() throws IanaException {
+    private static void initialise() throws IanaException {
         try {
             Path filePath = Paths.get(Storage.FILE_STRING);
             if (!Files.exists(filePath)) {
@@ -41,7 +41,11 @@ public class Storage {
      * @throws IanaException if file or folder does not exist or file is corrupted.
      */
     public static TaskList load() throws IanaException {
+        initialise();
         TaskList taskList = new TaskList();
+
+        File file = new File(Storage.FILE_STRING);
+        assert file.exists() : "File does not exist.";
 
         try {
             FileInputStream fileIn = new FileInputStream(Storage.FILE_STRING);

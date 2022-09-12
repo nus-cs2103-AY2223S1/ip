@@ -18,7 +18,6 @@ public class Iana {
         tasks = new TaskList();
         ui = new Ui();
         try {
-            Storage.initialise();   
             tasks = Storage.load();
         } catch (IanaException e) {
             ui.say(e.getMessage());
