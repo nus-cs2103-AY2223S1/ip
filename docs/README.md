@@ -85,6 +85,6 @@ Your existing tasks would be stored locally and saved when you open Kirby again.
 **Q:** How do I transfer my data to another Computer? <br>
 **A:** Install the app in the other computer and overwrite the empty data file `kirby.txt` it creates with the file that contains the data of your previous Kirby folder (default would be `kirby.txt`). <br><br>
 **Q:** What if I added a task that has an invalid date format for `<time>`? <br>
-**A:** The `<time>` field need not be in the form of a date. If it is not in a standard form `yyyy-mm-dd`, it will saved as a raw input. <br>
-If it is in the `yyyy-mm-dd` format, it will then be displayed with the Date - Month - Year syntax.
+**A:** The `<time>` field need not be in the form of a date. If it is not in a standard form `yyyy-mm-dd`, it will be saved as a raw input. <br>
+If it is in the `yyyy-mm-dd` format, it will then be displayed in the Date - Month - Year syntax.
 
