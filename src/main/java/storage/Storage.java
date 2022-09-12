@@ -60,7 +60,22 @@ public class Storage {
         return arr;
     }
 
+    public String printOutContent() {
+        String out = "";
+        try {
+            Scanner myReader = new Scanner(file);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                out = out + "\n" + data;
+            }
+        } catch (IOException | StringIndexOutOfBoundsException e) {
+            throw new DukeException("");
+        }
+        return out;
+    }
+
     private static void checkTask(String str, TaskList arr) throws StringIndexOutOfBoundsException {
+        System.out.println("checking task");
         //check what task
         String task = Character.toString(str.charAt(1));
         String done = Character.toString(str.charAt(4));

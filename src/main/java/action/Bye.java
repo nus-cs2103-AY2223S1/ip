@@ -1,5 +1,6 @@
 package action;
 
+import reminder.Reminder;
 import task.Task;
 import task.TaskList;
 
@@ -19,21 +20,26 @@ public class Bye {
         }
 
         ArrayList<Task> listOfActions = taskList.getTaskList();
+        Reminder reminder = new Reminder();
         try {
             FileWriter writer = new FileWriter(file.getPath());
             for (Task t : listOfActions) {
+                System.out.println(t);
                 writer.write(t.toString() + System.lineSeparator());
+                System.out.println("here?");
+                reminder.addIfReminder(t);
             }
             writer.close();
         } catch (IOException e) {
             System.out.println("Oops");
         }
+        reminder.writeAllReminder();
         return "Goodbye hehe see u again";
-
     }
 
     @Override
     public String toString() {
         return "GoodBye and All the best";
     }
+
 }

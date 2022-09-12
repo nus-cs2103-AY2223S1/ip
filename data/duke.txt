@@ -1,6 +1,0 @@
-[T][ ] plau
-[T][ ] sleep at 10pm
-[T][ ] sleep
-[T][ ] sleep
-[T][ ] eat
-[T][ ] eat

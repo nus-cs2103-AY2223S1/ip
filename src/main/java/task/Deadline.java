@@ -37,4 +37,10 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " +
                 output + " " + string_Time + ")";
     }
+
+    public boolean isDueSoon() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate deadLine = currentDate.plusDays(6);
+        return !date.isAfter(deadLine);
+    }
 }
