@@ -9,7 +9,7 @@ Kirby is a desktop task management app, optimised via a Command Line interface (
 ## Quick Start (Installation Guide)
 To download and use Kirby: <br>
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `kirby.jar` from here.
+2. Download the latest `kirby.jar` from [here](https://github.com/sltsheryl/ip/releases/tag/A-Release).
 3. Open a command window in that folder.
 4. Run the command `java -jar kirby.jar` (i.e., run the command in the same folder as the jar file). 
 
