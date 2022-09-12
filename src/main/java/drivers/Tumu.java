@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  * Chatbot driver code. Receives the input from the user
  * and responds accordingly.
  */
-public class Tumu extends Application {
+public class Tumu {
     private final Storage storage;
     private final TaskList tasks;
     private final Ui ui;
@@ -94,7 +94,6 @@ public class Tumu extends Application {
         userInput.clear();
     }
 
-    @Override
     public void start(Stage stage) {
         // Step 1. Setting up required components
 
@@ -154,5 +153,9 @@ public class Tumu extends Application {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void main(String[] args) {
+        Launcher.launch(args);
     }
 }
