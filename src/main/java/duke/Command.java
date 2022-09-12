@@ -140,6 +140,7 @@ public enum Command {
     }
 
     private String listTasks(ArrayList<Task> tasks) {
+        assert tasks != null : "Cannot list tasks from null";
         String ret = "";
         for (int i = 0; i < tasks.size(); ++i) {
             ret += (i + 1) + ". " + tasks.get(i).toString() + "\n";
@@ -150,6 +151,9 @@ public enum Command {
     private String getUsageError(String args, Duke duke) {
         TaskList taskList = duke.getTaskList();
         String usage = getCorrectUsage();
+        assert taskList != null : "Task list is null";
+        assert !usage.isEmpty() : "Correct usage should not be empty";
+
         switch(name) {
         case "delete":
             if (args.isEmpty()) {
