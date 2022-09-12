@@ -39,7 +39,7 @@ public class Duke {
      * @param input The input given by the user.
      * @return  The response given by bot.
      */
-    public String getResponse(String input) {
+    public String[] getResponse(String input) {
         try {
             Command c = Parser.parseCommand(input);
             if (c.isExit()) {
@@ -48,9 +48,10 @@ public class Duke {
                 delay.play();
             }
             String response = c.execute(this.tasks);
-            return response;
+            return new String[]{response, "normal"};
         } catch (DukeException e) {
-            return ui.showError(e);
+            return new String[]{ui.showError(e), "error"};
+//            return ui.showError(e);
         }
     }
 }

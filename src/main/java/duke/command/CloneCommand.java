@@ -12,9 +12,9 @@ public class CloneCommand extends Command {
     private int taskNo;
 
     /**
-     * Constructor of delete command.
+     * Constructor of clone command.
      *
-     * @param taskNo The task number to be deleted.
+     * @param taskNo The task number to be cloned.
      */
     public CloneCommand(int taskNo) {
         this.taskNo = taskNo;

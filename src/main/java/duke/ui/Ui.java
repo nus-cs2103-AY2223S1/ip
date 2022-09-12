@@ -30,7 +30,7 @@ public class Ui {
 
     /** Print the error message. */
     public static String showError(Exception e) {
-        return "The following error occur: " + e;
+        return e.toString();
     }
 
     /** Print the reply when a new task is added. */

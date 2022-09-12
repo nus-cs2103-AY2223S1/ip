@@ -25,7 +25,7 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text, Image img, String style) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -36,6 +36,7 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
+        dialog.setStyle(style);
         dialog.setMinSize(10, 10);
         displayPicture.setImage(img);
     }
@@ -51,12 +52,25 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        String styleForDialog = "-fx-background-color: #0093F9; -fx-background-radius: 10; -fx-padding: 10; " +
+                "-fx-font: 13px Tahoma;" +
+                "-fx-text-fill: #FFFFFF;";
+        DialogBox dialogBox = new DialogBox(text, img, styleForDialog);
+//        dialogBox.setStyle("-fx-background-color:#0093F9");
+        return dialogBox ;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        db.flip();
-        return db;
+        String styleForDialog = "-fx-background-color:#EEE8E8; -fx-background-radius: 10; -fx-padding: 10; -fx-font: 13px Tahoma; -fx-text-fill: black;";
+        DialogBox dialogBox = new DialogBox(text, img, styleForDialog);
+        dialogBox.flip();
+        return dialogBox;
+    }
+
+    public static DialogBox getDukeErrorDialog(String text, Image img) {
+        String styleForDialog = "-fx-background-color:#EEEBEB; -fx-background-radius: 10; -fx-padding: 10; -fx-font: 13px Tahoma; -fx-text-fill: red;";
+        DialogBox dialogBox = new DialogBox(text, img, styleForDialog);
+        dialogBox.flip();
+        return dialogBox;
     }
 }

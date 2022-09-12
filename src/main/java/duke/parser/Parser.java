@@ -1,16 +1,15 @@
 package duke.parser;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import duke.command.*;
-import duke.exception.DukeException;
-import duke.exception.EmptyDateException;
-import duke.exception.EmptyDescriptionException;
-import duke.exception.InvalidInputException;
+import duke.exception.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.TaskList;
 import duke.task.ToDo;
+import duke.ui.Ui;
 
 
 /**
@@ -122,7 +121,7 @@ public class Parser {
         return new AddCommand(new Deadline(description, date, UNDONE_STATUS));
     }
 
-    private static Command addEvent(String[] arguments) throws EmptyDescriptionException, EmptyDateException {
+    private static Command addEvent(String[] arguments) throws EmptyDescriptionException, EmptyDateException, InvalidDateException {
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }
@@ -132,7 +131,12 @@ public class Parser {
             throw new EmptyDateException();
         }
         String description = inputs[0];
-        LocalDate date = LocalDate.parse(extractDateByKeyword("at", inputs[1]));
+        LocalDate date;
+        try {
+            date = LocalDate.parse(extractDateByKeyword("at", inputs[1]));
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException();
+        }
         return new AddCommand(new Event(description, date, UNDONE_STATUS));
     }
 

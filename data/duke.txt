@@ -2,4 +2,3 @@
 [T][X] read book
 [E][X] go buffet (2022-09-11)
 [D][ ] finish assignments (2022-09-11)
-[E][ ] test (2022-10-11)
