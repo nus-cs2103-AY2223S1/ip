@@ -146,7 +146,7 @@ public class Storage {
             return tasks;
 
         } catch (IOException e) {
-            throw new IsaraException("OOPS!! Failed to read file.");
+            throw new IsaraException("☹ OOPS!!! Failed to read file.");
         }
     }
 
@@ -168,7 +168,7 @@ public class Storage {
             }
             writer.close();
         } catch (IOException e) {
-            throw new IsaraException("OOPS!! Failed to write to file.");
+            throw new IsaraException("☹ OOPS!!! Failed to write to file.");
         }
     }
 }

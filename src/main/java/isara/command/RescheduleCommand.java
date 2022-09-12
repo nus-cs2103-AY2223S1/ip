@@ -73,7 +73,7 @@ public class RescheduleCommand extends Command {
             Task updatedTask = updateTask(tasks, task);
             return ui.reschedule(updatedTask);
         } else {
-            throw new IsaraException("I'm so sorry :-( you can only reschedule deadlines.");
+            throw new IsaraException("☹ OOPS!!! I'm so sorry :-( you can only reschedule deadlines.");
         }
     }
 }
