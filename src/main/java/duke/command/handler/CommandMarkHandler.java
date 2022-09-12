@@ -4,15 +4,16 @@ import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 import duke.command.CommandException;
+import duke.command.handler.base.CommandUpdateTaskHandler;
 import duke.command.response.CommandResponse;
 import duke.command.response.UpdateTaskResponse;
 import duke.command.response.UpdateTaskResponse.UpdateType;
 import duke.data.TaskList;
 import duke.data.tasks.Task;
 
-public class CommandMarkHandler extends CommandHandler {
+public class CommandMarkHandler extends CommandUpdateTaskHandler {
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `mark`/`unmark` command format!",
         "Expected format: mark <task-number> / unmark <task-number>",
         "Examples:",
@@ -27,39 +28,25 @@ public class CommandMarkHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
-    /**
-     * Update a task with a marked or unmarked status
-     *
-     * @param taskList task list
-     * @return update task response
-     * @throws CommandException if task number given is out of range or task number string cannot be
-     *                          parsed into a number
-     */
     @Override
-    public CommandResponse run(TaskList taskList) throws CommandException {
+    protected String getSelectedTaskIdStr() {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
+        return regexMatchResult.group(2);
+    }
 
+    @Override
+    protected CommandResponse updateTask(Task task, int taskIdx, TaskList taskList) {
+        MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
         boolean toMark = regexMatchResult.group(1).equals("mark");
-        String taskIdxStr = regexMatchResult.group(2);
-        try {
-            int taskIdx = Integer.parseInt(taskIdxStr);
-            if (taskIdx <= 0 || taskIdx > taskList.size()) {
-                throw new CommandException("Invalid task selected!");
-            }
-            Task task = taskList.getTask(taskIdx - 1);
-            if (toMark) {
-                task.mark();
-            } else {
-                task.unmark();
-            }
-            return new UpdateTaskResponse(task, toMark ? UpdateType.MARK : UpdateType.UNMARK);
-        } catch (NumberFormatException error) {
-            throw new CommandException(String.join("\n",
-                "Task number should be a number!",
-                "Got: %s", taskIdxStr));
+
+        if (toMark) {
+            task.mark();
+        } else {
+            task.unmark();
         }
+        return new UpdateTaskResponse(task, toMark ? UpdateType.MARK : UpdateType.UNMARK);
     }
 }

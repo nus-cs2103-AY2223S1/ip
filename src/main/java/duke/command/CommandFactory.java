@@ -4,20 +4,21 @@ import duke.command.handler.CommandDeadlineHandler;
 import duke.command.handler.CommandDeleteHandler;
 import duke.command.handler.CommandEventHandler;
 import duke.command.handler.CommandFindHandler;
-import duke.command.handler.CommandHandler;
 import duke.command.handler.CommandListHandler;
 import duke.command.handler.CommandMarkHandler;
+import duke.command.handler.CommandTagHandler;
 import duke.command.handler.CommandTerminateHandler;
 import duke.command.handler.CommandTodoHandler;
+import duke.command.handler.base.CommandHandler;
 
 public class CommandFactory {
 
     /**
-     * Parse command given by user to a predefined command enum
+     * Parses command given by user to a predefined command enum.
      *
-     * @param commandStr input command string
-     * @return enum representing a supported command
-     * @throws CommandException if command is unknown/unsupported
+     * @param commandStr input command string.
+     * @return enum representing a supported command.
+     * @throws CommandException if command is unknown/unsupported.
      */
     public static Command parseCommand(String commandStr) throws CommandException {
         String commandToken = commandStr.split(" ")[0];
@@ -29,12 +30,12 @@ public class CommandFactory {
     }
 
     /**
-     * Returns a CommandHandler based on given command enum
+     * Returns a CommandHandler based on given command enum.
      *
-     * @param commandStr input command string
-     * @return command handler to execute input command string
+     * @param commandStr input command string.
+     * @return command handler to execute input command string.
      * @throws CommandException if input command string does not pass validation checks in a command
-     *                          handler
+     *                          handler.
      */
     public static CommandHandler getCommandHandler(String commandStr) throws CommandException {
         switch (parseCommand(commandStr)) {
@@ -53,6 +54,8 @@ public class CommandFactory {
             return new CommandDeleteHandler(commandStr);
         case FIND:
             return new CommandFindHandler(commandStr);
+        case TAG:
+            return new CommandTagHandler(commandStr);
         case BYE:
             return new CommandTerminateHandler(commandStr);
         default:

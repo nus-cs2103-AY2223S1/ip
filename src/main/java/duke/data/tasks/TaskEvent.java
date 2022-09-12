@@ -10,10 +10,10 @@ public class TaskEvent extends Task {
     private final LocalDateTime timing;
 
     /**
-     * Constructor for TaskEvent class
+     * Constructor for TaskEvent class.
      *
-     * @param title title of the event task
-     * @param timing local date-time representing the timing of the event
+     * @param title title of the event task.
+     * @param timing local date-time representing the timing of the event.
      */
     public TaskEvent(String title, LocalDateTime timing) {
         super(title);

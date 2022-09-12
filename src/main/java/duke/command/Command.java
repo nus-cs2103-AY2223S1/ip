@@ -10,4 +10,5 @@ public enum Command {
     UNMARK, // unmark a task
     DELETE, // delete a task
     FIND, // find tasks
+    TAG, // tag tasks
 }

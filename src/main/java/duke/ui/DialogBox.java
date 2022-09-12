@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class DialogBox extends HBox {
     @FXML
@@ -45,6 +47,7 @@ public class DialogBox extends HBox {
 
     public static DialogBox getDukeDialogBox(String response, Image image) {
         DialogBox dukeDialogBox = new DialogBox(response, image);
+        dukeDialogBox.dialog.setFont(Font.font("Courier New", FontWeight.BOLD, 13.0));
         dukeDialogBox.flip();
         return dukeDialogBox;
     }

@@ -4,9 +4,9 @@ public class TaskTodo extends Task {
     private static final long serialVersionUID = 21L;
 
     /**
-     * Constructor for TaskTodo
+     * Constructor for TaskTodo.
      *
-     * @param title title of the todo task
+     * @param title title of the todo task.
      */
     public TaskTodo(String title) {
         super(title);
