@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
@@ -19,7 +20,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         return "Task deleted: " + tasks.remove(indexToDelete);
     }
 

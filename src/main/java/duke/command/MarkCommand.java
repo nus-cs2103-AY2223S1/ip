@@ -1,17 +1,18 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
 
 /**
- * Stores the index of the task to be marked when executed by MarkCommand.
+ * Stores the index of the task to be marked when executed by MarkCommand
  */
 public class MarkCommand extends Command {
-    private int indexToMark;
+    private final int indexToMark;
 
     /**
-     * @param number 1 based indexing for the Task to be marked.
+     * @param number 1 based indexing to remove from the task list
      */
     public MarkCommand(int number) {
         assert number >= 1 : "Number needs to be positive";
@@ -19,7 +20,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         return "Task marked: " + tasks.mark(indexToMark);
     }
 

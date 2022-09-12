@@ -28,9 +28,6 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        if (task == null) {
-            return "task in addcomand is null";
-        }
         tasks.add(task);
         return "Task added: " + task;
     }

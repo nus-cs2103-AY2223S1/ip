@@ -1,6 +1,7 @@
 package duke.command;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 import duke.Storage;
 import duke.Ui;
@@ -16,7 +17,15 @@ public class ExitCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         try { // saves after bye-command
             storage.save(tasks);
-            return "EXITED";
+            CompletableFuture.runAsync(() -> {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.exit(0);
+            });
+            return "Changes saved, exiting in 5s";
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Arrays;
-
 import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
@@ -50,24 +48,29 @@ public class Parser {
         String desc;
         String[] commandParts;
         String time;
-        switch (getFirstWord(fullCommand)) {
-        case TODO_SYNTAX:
-            desc = fullCommand.substring(TLENGTH);
-            return new Todo(desc);
-        case EVENT_SYNTAX:
-            commandParts = fullCommand.substring(ELENGTH).split(" /at ");
-            desc = commandParts[0];
-            time = commandParts[1];
-            return new Event(desc, time);
-        case DEADLINE_SYNTAX:
-            commandParts = fullCommand.substring(DLENGTH).split(" /by ");
-            desc = commandParts[0];
-            time = commandParts[1];
-            return new Deadline(desc, time);
-        default:
-            throw new DukeException("not planned task parser");
+        try {
+            switch (getFirstWord(fullCommand)) {
+            case TODO_SYNTAX:
+                desc = fullCommand.substring(TLENGTH);
+                return new Todo(desc);
+            case EVENT_SYNTAX:
+                commandParts = fullCommand.substring(ELENGTH).split(" /at ");
+                desc = commandParts[0];
+                time = commandParts[1];
+                return new Event(desc, time);
+            case DEADLINE_SYNTAX:
+                commandParts = fullCommand.substring(DLENGTH).split(" /by ");
+                desc = commandParts[0];
+                time = commandParts[1];
+                return new Deadline(desc, time);
+            default:
+                throw new DukeException("Add command have the wrong arguments");
+            }
+        } catch (Exception e) {
+            throw new DukeException("MISSING ADD COMMAND SYNTAX");
         }
     }
+
 
     private static boolean isAddCommand(String fullCommand) {
         for (String addCommands : ADD_COMMANDS) {
@@ -88,21 +91,25 @@ public class Parser {
         if (isAddCommand(fullCommand)) {
             return new AddCommand(fullCommand);
         }
-        switch (getFirstWord(fullCommand)) {
-        case FIND_SYNTAX:
-            return new FindCommand(fullCommand.substring(FIND_LENGTH));
-        case LIST_SYNTAX:
-            return new ListCommand();
-        case EXIT_SYNTAX:
-            return new ExitCommand();
-        case DELETE_SYNTAX:
-            return new DeleteCommand(Integer.parseInt(fullCommand.substring(DEL_LENGTH)));
-        case MARK_SYNTAX:
-            return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_LENGTH)));
-        case UNMARK_SYNTAX:
-            return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_LENGTH)));
-        default:
-            throw new DukeException("Parsing error");
+        try {
+            switch (getFirstWord(fullCommand)) {
+            case FIND_SYNTAX:
+                return new FindCommand(fullCommand.substring(FIND_LENGTH));
+            case LIST_SYNTAX:
+                return new ListCommand();
+            case EXIT_SYNTAX:
+                return new ExitCommand();
+            case DELETE_SYNTAX:
+                return new DeleteCommand(Integer.parseInt(fullCommand.substring(DEL_LENGTH)));
+            case MARK_SYNTAX:
+                return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_LENGTH)));
+            case UNMARK_SYNTAX:
+                return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_LENGTH)));
+            default:
+                throw new DukeException("Parsing error");
+            }
+        } catch (Exception e) {
+            throw new DukeException("INVALID COMMAND ARGUMENTS");
         }
     }
 

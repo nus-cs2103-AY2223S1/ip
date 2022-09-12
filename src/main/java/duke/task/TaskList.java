@@ -10,6 +10,7 @@ import duke.DukeException;
  * Datastructure class to store the list of tasks.
  */
 public class TaskList {
+    private static final DukeException INVALID_INDEX_EXCEPTION = new DukeException("INVALID INDEX");
     private List<Task> tasks;
 
     public TaskList() {
@@ -40,7 +41,10 @@ public class TaskList {
      * @param i 0-based index of the task to be removed
      * @return Task that was removed from the collection
      */
-    public Task remove(int i) {
+    public Task remove(int i) throws DukeException {
+        if (i >= tasks.size() || i < 0) {
+            throw INVALID_INDEX_EXCEPTION;
+        }
         return this.tasks.remove(i);
     }
 
@@ -48,7 +52,10 @@ public class TaskList {
      * @param i 0 based index of the task to be marked
      * @return toString() of the task
      */
-    public String mark(int i) {
+    public String mark(int i) throws DukeException {
+        if (i >= tasks.size() || i < 0) {
+            throw INVALID_INDEX_EXCEPTION;
+        }
         this.tasks.get(i).mark();
         return this.tasks.get(i).toString();
     }
@@ -57,7 +64,10 @@ public class TaskList {
      * @param i
      * @return
      */
-    public String unmark(int i) {
+    public String unmark(int i) throws DukeException {
+        if (i >= tasks.size() || i < 0) {
+            throw INVALID_INDEX_EXCEPTION;
+        }
         this.tasks.get(i).unMark();
         return this.tasks.get(i).toString();
     }

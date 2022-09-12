@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
@@ -15,7 +16,7 @@ public abstract class Command {
      * @param ui Ui object for decorative purposes.
      * @param storage Storage of app information.
      */
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * @return boolean of whether the app should stop running.
