@@ -13,9 +13,11 @@ import javafx.stage.Stage;
 import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
+/**
+ * The main class, mainly for run the launcher.
+ *
+ * @author Lan Jingbo, Jerry
+ */
 public class Main extends Application {
 
     private ScrollPane scrollPane;
@@ -26,6 +28,15 @@ public class Main extends Application {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/zsh.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/zmz.png"));
 
+    /**
+     * control the outlook of the launcher and table.
+     *
+     * @param stage the primary stage for this application, onto which
+     * the application scene can be set.
+     * Applications may create other stages, if needed, but they will not be
+     * primary stages.
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -39,7 +50,7 @@ public class Main extends Application {
         scene = new Scene(mainLayout);
         stage.setScene(scene);
         stage.show();
-// Step 2
+
         stage.setTitle("DUKE BOT");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -96,6 +107,9 @@ public class Main extends Application {
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
+     *
+     * @param str the input requirements
+     * @return String
      */
     private String getResponse(String str) {
         Parser ps = new Parser(new Duke("./src/main/files/taskset.txt"));
