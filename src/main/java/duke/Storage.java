@@ -108,7 +108,7 @@ public class Storage {
             tasks.addTask(new Event(description, status, date1, time1, date2, time2));
             break;
         default:
-            System.out.println("Unknown task type");
+            assert false : "Unknown task type";
         }
     }
 }
