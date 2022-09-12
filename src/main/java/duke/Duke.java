@@ -3,6 +3,12 @@ import duke.parser.Parser;
 import duke.taskList.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 import duke.tasks.Task;
 
 /**
@@ -19,13 +25,18 @@ public class Duke {
         Storage storage = new Storage();
         Parser parser = new Parser();
         TaskList taskList = new TaskList();
-        ui.greetingsPrint();
+
+        String greetings = ui.greetingsPrint();
+        System.out.println(greetings);
 
         //file creation
         try {
-            Storage.createFiles();
+            String fileCreated;
+            fileCreated = Storage.createFiles();
+            System.out.println(fileCreated);
         } catch (Exception e) {
-            ui.fileErrorPrint();
+            String fileErrorString = ui.fileErrorPrint();
+            System.out.println(fileErrorString);
         }
 
         //file reading
@@ -35,12 +46,13 @@ public class Duke {
         String command = ui.readInput();
         while (!command.split(" ")[0].equals("bye")) {
             taskList = parser.readInput(command, taskList, ui);
+            System.out.println(taskList.getToStage());
             command = ui.readInput();
         }
 
         //bye block
         storage.writerToDuke(taskList.getTasks(), taskList.getCurr());
-        ui.byePrint();
-
+        String byeString = ui.byePrint();
+        System.out.println(byeString);
     }
 }

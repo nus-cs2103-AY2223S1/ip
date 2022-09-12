@@ -20,16 +20,18 @@ public class Ui {
     /**
      * prints out welcome text
      */
-    public void greetingsPrint() {
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+    public String greetingsPrint() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Hello! I'm Duke\n");
+        sb.append("What can I do for you?");
+        return sb.toString();
     }
 
     /**
      * prints that error occur in reading of file
      */
-    public void fileErrorPrint() {
-        System.out.println("Throwing error in file");
+    public String fileErrorPrint() {
+        return ("Throwing error in file");
     }
 
     public void fileNotFoundPrint() {
@@ -55,43 +57,43 @@ public class Ui {
     /**
      * prints out empty numbers in mark command from users
      */
-    public void emptyMarkPrint() {
-        System.out.println(emptyPrint("mark"));
+    public String emptyMarkPrint() {
+        return (emptyPrint("mark"));
     }
 
     /**
      * prints out empty numbers in unmark command from users
      */
-    public void emptyUnmarkPrint() {
-        System.out.println(emptyPrint("unmark"));
+    public String emptyUnmarkPrint() {
+        return (emptyPrint("unmark"));
     }
 
     /**
      * prints out empty numbers in Delete command from users
      */
-    public void emptyDeletePrint() {
-        System.out.println(emptyPrint("delete"));
+    public String emptyDeletePrint() {
+        return (emptyPrint("delete"));
     }
 
     /**
      * prints out empty numbers in ToDo command from users
      */
-    public void emptyToDoPrint() {
-        System.out.println(emptyPrint("ToDo"));
+    public String emptyToDoPrint() {
+        return (emptyPrint("ToDo"));
     }
 
     /**
      * prints out empty numbers in Event command from users
      */
-    public void emptyEventPrint() {
-        System.out.println(emptyPrint("event"));
+    public String emptyEventPrint() {
+        return (emptyPrint("event"));
     }
 
     /**
      * prints out empty numbers in Deadline command from users
      */
-    public void emptyDeadlinePrint() {
-        System.out.println(emptyPrint("deadline"));
+    public String emptyDeadlinePrint() {
+        return (emptyPrint("deadline"));
     }
 
     /**
@@ -107,10 +109,13 @@ public class Ui {
      * @param count no of tasks left
      * prints task removed and total no of tasks left
      */
-    public void deletePrint(Task task, int count) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task);
-        System.out.println(countTasks(count));
+    public String deletePrint(Task task, int count) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Noted. I've removed this task:\n");
+        sb.append(task);
+        sb.append('\n');
+        sb.append(countTasks(count));
+        return sb.toString();
     }
 
     /**
@@ -118,45 +123,51 @@ public class Ui {
      * @param count no of tasks left
      * prints tasks removed and total no of tasks left
      */
-    public void addTaskPrint(Task task, int count) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task);
-        System.out.println(countTasks(count));
+    public String addTaskPrint(Task task, int count) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Got it. I've added this task:\n");
+        sb.append(task);
+        sb.append('\n');
+        sb.append(countTasks(count));
+        return sb.toString();
     }
 
     /**
      * no search results found for this find word
      */
-    public void findNothingPrint() {
-        System.out.println("Sorry, I cannot find what you are looking for");
+    public String findNothingPrint() {
+        return("Sorry, I cannot find what you are looking for");
     }
 
-    public void findPrint(List<Task> tasks) {
-        System.out.println("Here are the matching tasks in your list:");
+    public String findPrint(List<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the matching tasks in your list:\n");
         for(Task task : tasks) {
-            System.out.println(task);
+            sb.append(task);
+            sb.append("\n");
         }
+        return sb.toString();
     }
 
     /**
      * prints unable to comprehend the instructions of the users
      */
-    public void addUnknownPrint() {
-        System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+    public String addUnknownPrint() {
+        return ("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
     /**
      * prints user attempted to print an empty list of tasks
      */
 
-    public void emptyListPrint() {
-        System.out.println("☹ OOPS!!! I'm sorry, but cannot print empty list");
+    public String emptyListPrint() {
+        return ("☹ OOPS!!! I'm sorry, but cannot print empty list");
     }
     /**
      * prints at the end of programme, when bye is inserted as command
      */
-    public void byePrint() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String byePrint() {
+        return ("Bye. Hope to see you again soon!");
     }
 
     public void newDirectoryPrint() {
@@ -167,18 +178,24 @@ public class Ui {
      * @param task to be mark as done
      * prints the task as marked
      */
-    public void markTaskPrint(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task);
+    public String markTaskPrint(Task task) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nice! I've marked this task as done:\n");
+        sb.append(task);
+        sb.append("\n");
+        return sb.toString();
     }
 
     /**
      * @param task to be unmarked as done
      * prints the task as unmarked
      */
-    public void unmarkTaskPrint(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(task);
+    public String unmarkTaskPrint(Task task) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("OK, I've marked this task as not done yet:\n");
+        sb.append(task);
+        sb.append("\n");
+        return sb.toString();
     }
 
     /**

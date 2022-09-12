@@ -74,7 +74,7 @@ public class Storage {
         }
         myReader.close();
         writer.print("");
-        return new TaskList(tasks, curr);
+        return new TaskList(tasks, curr, "");
     }
 
     /**
@@ -115,15 +115,16 @@ public class Storage {
      * creats the necessary files if it is not found
      * @throws IOException unable to create new File in directory
      */
-    public static void createFiles() throws IOException {
+    public static String createFiles() throws IOException {
         String[] arr = FILE_PATH.split("/");
+        StringBuilder sb = new StringBuilder();
         java.nio.file.Path path = java.nio.file.Paths.get("");
         for (int i = 0; i < arr.length - 1; i++) {
             path = java.nio.file.Paths.get(String.valueOf(path),arr[i]);
             boolean directoryExists = java.nio.file.Files.exists(path);
             if(!directoryExists) {
                 new File(String.valueOf(path)).mkdirs();
-                System.out.println("hi, made new directory");
+                sb.append("hi, made new directory");
             }
         }
         java.nio.file.Path filePath = java.nio.file.Paths.get(FILE_PATH);
@@ -131,5 +132,6 @@ public class Storage {
         if(!directoryExists) {
             filePath.toFile().createNewFile();
         }
+        return sb.toString();
     }
 }

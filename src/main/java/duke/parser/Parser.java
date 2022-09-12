@@ -23,55 +23,54 @@ public class Parser {
 
             case "find":
                 return taskList.findTasks(command, ui);
+
             case "mark":
                 try {
                     return taskList.markTask(command.split(" "), ui);
                 } catch (Exception e) {
-                    ui.emptyMarkPrint();
+                    return new TaskList(taskList, ui.emptyMarkPrint());
                 }
 
             case "unmark":
                 try {
                     return taskList.unmarkTask(command.split(" "), ui);
                 } catch (Exception e) {
-                    ui.emptyUnmarkPrint();
+                    return new TaskList(taskList, ui.emptyUnmarkPrint());
                 }
 
             case "delete":
                 try {
                     return taskList.deleteTask(command.split(" "), ui);
                 } catch (Exception e) {
-                    ui.emptyDeletePrint();
+                    return new TaskList(taskList, ui.emptyDeletePrint());
                 }
 
             case "todo":
                 try {
                     return taskList.toDoTask(command, ui);
                 } catch (Exception e) {
-                    ui.emptyToDoPrint();
+                    return new TaskList(taskList, ui.emptyToDoPrint());
                 }
 
             case "deadline":
                 try {
                     return taskList.deadlineTask(command, ui);
                 } catch (Exception e) {
-                    ui.emptyDeadlinePrint();
+                    return new TaskList(taskList, ui.emptyDeadlinePrint());
                 }
 
             case "event":
                 try {
                     return taskList.eventTask(command, ui);
                 } catch (Exception e) {
-                    ui.emptyEventPrint();
+                    return new TaskList(taskList, ui.emptyEventPrint());
                 }
 
             case "things":
                 return taskList.thingsTask(command);
-            case "":
-                return taskList;
+
             default:
-                ui.addUnknownPrint();
-                return taskList;
+                return new TaskList(taskList, ui.addUnknownPrint());
         }
     }
 }

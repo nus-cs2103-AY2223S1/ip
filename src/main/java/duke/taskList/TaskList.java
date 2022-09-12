@@ -18,15 +18,19 @@ import java.util.List;
 public class TaskList {
     private final List<Task> tasks;
     private final int curr;//no of elements in list
+
+    private final String toStage;
     public TaskList() {
         this.tasks = new ArrayList<>(); //should be list as compile time type
         this.tasks.add(new Task("", ""));
         this.curr = 0;
+        this.toStage = "";
     }
 
     public TaskList(int curr) {
         this.tasks = new ArrayList<>(); //should be list as compile time type
         this.curr = curr;
+        this.toStage = "";
     }
 
     /**
@@ -34,9 +38,16 @@ public class TaskList {
      * @param tasks arraylist of tasks
      * @param curr no of tasks
      */
-    public TaskList(List<Task> tasks, int curr) {
+    public TaskList(List<Task> tasks, int curr, String toStage) {
         this.tasks = tasks;
         this.curr = curr;
+        this.toStage = toStage;
+    }
+
+    public TaskList(TaskList tasklist, String toStage) {
+        this.tasks = tasklist.getTasks();
+        this.curr = tasklist.getCurr();
+        this.toStage = toStage;
     }
 
     /**
@@ -46,12 +57,15 @@ public class TaskList {
      */
     public TaskList listTasks(Ui ui) {
         if(this.curr == 0) {
-            ui. emptyListPrint();
+            return new TaskList(this.tasks, this. curr, ui.emptyListPrint());
         }
-        for (int i = 0; i < curr; i++) {
-            System.out.println(tasks.get(i));
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are you tasks: \n");
+        for (Task task: tasks) {
+            sb.append(task);
+            sb.append("\n");
         }
-        return this;
+        return new TaskList(this.tasks, this.curr, sb.toString());
     }
 
     /**
@@ -63,8 +77,8 @@ public class TaskList {
     public TaskList markTask(String[] atMark, Ui ui) {
         int index = Integer.parseInt(atMark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markDone());
-        ui.markTaskPrint(tasks.get(index - 1));
-        return this;
+        String output = ui.markTaskPrint(tasks.get(index - 1));
+        return new TaskList(this.tasks, this.curr, output);
     }
 
     /**
@@ -76,8 +90,8 @@ public class TaskList {
     public TaskList unmarkTask(String[] atUnmark, Ui ui) {
         int index = Integer.parseInt(atUnmark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markUndone());
-        ui.unmarkTaskPrint(tasks.get(index - 1));
-        return this;
+        String output = ui.unmarkTaskPrint(tasks.get(index - 1));
+        return new TaskList(this.tasks, this.curr, output);
     }
 
     /**
@@ -92,11 +106,10 @@ public class TaskList {
         index--;
         Task del = tasks.get(index);
         for (int i = index; i < curr; i++) {
-            System.out.println("error here");
             tasks.set(i, tasks.get(i + 1));
         }
-        ui.deletePrint(del, curr - 1);
-        return(this.removeCurr());
+        String output = ui.deletePrint(del, curr - 1);
+        return(this.removeCurr(output));
     }
 
     /**
@@ -110,8 +123,8 @@ public class TaskList {
         String todo = command.substring(5);
         Task toDoTask = new ToDo(todo);
         tasks.add(curr, toDoTask);
-        ui.addTaskPrint(toDoTask, curr + 1);
-        return(this.addCurr());
+        String output = ui.addTaskPrint(toDoTask, curr + 1);
+        return(this.addCurr(output));
     }
 
     /**
@@ -130,8 +143,8 @@ public class TaskList {
         String dateDead = String.join("/", timeDead);
         Task deadlineTask = new Deadline(atDead[0], dateDead);
         tasks.add(curr, deadlineTask);
-        ui.addTaskPrint(deadlineTask, curr + 1);
-        return(this.addCurr());
+        String output = ui.addTaskPrint(deadlineTask, curr + 1);
+        return(this.addCurr(output));
     }
 
     /**
@@ -150,8 +163,8 @@ public class TaskList {
         String dateEvent = String.join("/", timeEvent);
         Task eventTask = new Event(atEvent[0], dateEvent);
         tasks.add(curr, eventTask);
-        ui.addTaskPrint(eventTask, curr + 1);
-        return(this.addCurr());
+        String output = ui.addTaskPrint(eventTask, curr + 1);
+        return(this.addCurr(output));
     }
 
     /**
@@ -168,20 +181,21 @@ public class TaskList {
         time[1] = String.format("%02d", Integer.parseInt(time[1]));
         String date = String.join("/", time);
         LocalDateTime dateTime = LocalDateTime.parse(date + " 0000", formatter);
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < curr; i++) {
             if (tasks.get(i).sameDay(dateTime)) {
-                System.out.println(tasks.get(i));
+                sb.append(tasks.get(i));
             }
         }
-        return this;
+        return new TaskList(this.tasks, this.curr, sb.toString());
     }
 
-    public TaskList addCurr() {
-        return new TaskList(this.tasks, this.curr + 1);
+    public TaskList addCurr(String output) {
+        return new TaskList(this.tasks, this.curr + 1, output);
     }
 
-    public TaskList removeCurr() {
-        return new TaskList(this.tasks, this.curr - 1);
+    public TaskList removeCurr(String output) {
+        return new TaskList(this.tasks, this.curr - 1, output);
     }
 
     /**
@@ -200,9 +214,18 @@ public class TaskList {
         return this.curr;
     }
 
+    /**
+     *
+     * @return the values to be printed
+     */
+    public String getToStage() {
+        return this.toStage;
+    }
+
     public TaskList findTasks(String command, Ui ui) {
         String subWord = command.substring(5);
-        List<Task> foundTasks= new ArrayList<Task>();
+        String output;
+        List<Task> foundTasks = new ArrayList<Task>();
         boolean hasTasks = false;
         for(int i = 0; i < curr; i++) {
             Task task = tasks.get(i);
@@ -212,11 +235,11 @@ public class TaskList {
             }
         }
         if(!hasTasks) {
-            ui.findNothingPrint();
+            output = ui.findNothingPrint();
         } else {
-            ui.findPrint(foundTasks);
+            output = ui.findPrint(foundTasks);
         }
-        return this;
+        return new TaskList(this.tasks, this.curr, output);
     }
 
 }

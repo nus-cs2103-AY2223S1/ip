@@ -20,7 +20,7 @@ class TaskListTest {
             Ui ui = new Ui();
             Task dummy = new Task("", "");
             tasks.add(dummy);
-            new TaskList(tasks, 1).listTasks(ui);
+            new TaskList(tasks, 1, "").listTasks(ui);
         } catch (Exception e) {
             assertEquals("☹ OOPS!!! I'm sorry, but cannot print empty list",
                     e.getMessage());
@@ -35,7 +35,7 @@ class TaskListTest {
             Task dummy = new Task("", "");
             tasks.add(dummy);
             String[] command = {"Mark", "1"};
-            new TaskList(tasks, 1).markTask(command, ui);
+            new TaskList(tasks, 1, "").markTask(command, ui);
         } catch (Exception e) {
             assertEquals("Mark error",
                     e.getMessage());
@@ -50,7 +50,7 @@ class TaskListTest {
             Task dummy = new Task("", "");
             tasks.add(dummy);
             String[] command = {"Mark", "1"};
-            new TaskList(tasks, 1).markTask(command, ui).unmarkTask(command, ui);
+            new TaskList(tasks, 1, "").markTask(command, ui).unmarkTask(command, ui);
         } catch (Exception e) {
             assertEquals("Unmark error",
                     e.getMessage());
@@ -67,7 +67,7 @@ class TaskListTest {
             tasks.add(dummy);
             tasks.add(dummy);
             String[] command = {"Delete", "2"};
-            new TaskList(tasks, 1).deleteTask(command, ui);
+            new TaskList(tasks, 1, "").deleteTask(command, ui);
         } catch (Exception e) {
             assertEquals("Delete error",
                     e.getMessage());
