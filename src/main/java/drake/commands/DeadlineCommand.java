@@ -28,6 +28,7 @@ public class DeadlineCommand extends CreateTaskCommand {
      */
     public DeadlineCommand(String fullInput) {
         super(fullInput);
+        assert fullInput.startsWith("deadline");
     }
 
     /**

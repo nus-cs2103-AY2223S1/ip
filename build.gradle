@@ -47,12 +47,13 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "drake"
     archiveClassifier = null
 }
 
-run{
+run {
     standardInput = System.in
+    enableAssertions = true
 }
 
 checkstyle {
