@@ -1,6 +1,8 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents a task list.
@@ -67,13 +69,9 @@ public class TaskList {
      * @param query The given search query.
      * @return The list of matching tasks
      */
-    public ArrayList<Task> findTask(String query) {
-        ArrayList<Task> foundTasks = new ArrayList<>();
-        for (Task task : this.taskList) {
-            if (task.containsQuery(query)) {
-                foundTasks.add(task);
-            }
-        }
-        return foundTasks;
+    public List<Task> findTask(String query) {
+        return this.taskList.stream()
+                .filter(task -> task.containsQuery(query))
+                .collect(Collectors.toList());
     }
 }

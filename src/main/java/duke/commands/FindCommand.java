@@ -1,7 +1,6 @@
 package duke.commands;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.Task;
@@ -28,7 +27,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        ArrayList<Task> foundTask = taskList.findTask(this.query);
+        List<Task> foundTask = taskList.findTask(this.query);
         return ui.getFindCommandMessage(foundTask);
     }
 
