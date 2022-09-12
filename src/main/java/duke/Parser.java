@@ -23,7 +23,7 @@ import duke.exception.InvalidTimeException;
 public class Parser {
 
     /**
-     * Parse user input and returns a command
+     * Parses user input and returns a command
      */
     public static Command parse(String fullCommand) throws InvalidInputException, InvalidIndexException,
             DateTimeParseException, InvalidDescriptionException, InvalidTimeException {

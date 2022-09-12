@@ -57,7 +57,7 @@ public class Ui {
     }
 
     /**
-     * Reset dukeResponse to an empty string
+     * Resets dukeResponse to an empty string
      */
     public static void clearDukeResponse() {
         dukeResponse = "";
