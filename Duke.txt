@@ -1,3 +1,0 @@
-T|X|borrow book
-D|X|return book|17th Sept
-E| |go out with friends|next thursday

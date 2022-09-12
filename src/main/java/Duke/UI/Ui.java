@@ -1,9 +1,13 @@
-package ip;
+package Duke.UI;
+
+import Duke.Task.Task;
+import Duke.TaskList.TaskList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-class Ui {
+public class Ui {
     private static final String TAB = "    ";
     private static final String LINE = String
             .format("%s%s", TAB, "____________________________________________________________");
@@ -18,21 +22,44 @@ class Ui {
 
     // Error Messages
     private static final String ERROR_PREFIX = "DukeError";
-    private static final String LOADING_ERROR_MESSAGE = "Error encountered while loading file!";
 
-    protected void printWelcome() {
+    // scanner
+    private final Scanner sc = new Scanner(System.in);
+
+    public void printWelcome() {
         prettyPrint(WELCOME_MESSAGE);
     }
 
-    protected void printGoodbye() {
+    public void printGoodbye() {
+        sc.close();
         prettyPrint(GOODBYE_MESSAGE);
     }
 
-    protected void printLoadingError(String errorMessage) {
-        prettyPrint(String.format("%s: %s - %s", ERROR_PREFIX, LOADING_ERROR_MESSAGE, errorMessage));
+    public void printException(Exception e) {
+        prettyPrint(String.format("%s: %s", ERROR_PREFIX, e.toString()));
     }
 
-    protected void printAll(TaskList taskList) {
+    public void printTaskCreated(Task task) {
+        String taskStr = task.toString();
+        prettyPrint(String.format("%s\n%s %s", CREATE_MESSAGE, TAB,  taskStr));
+    }
+
+    public void printTaskMarked(Task task) {
+        String taskStr = task.toString();
+        prettyPrint(String.format("%s\n%s %s", MARK_MESSAGE, TAB, taskStr));
+    }
+
+    public void printTaskUnmarked(Task task) {
+        String taskStr = task.toString();
+        prettyPrint(String.format("%s\n%s %s", UNMARK_MESSAGE, TAB, taskStr));
+    }
+
+    public void printTaskDeleted(Task task) {
+        String taskStr = task.toString();
+        prettyPrint(String.format("%s\n%s %s", DELETE_MESSAGE, TAB,  taskStr));
+    }
+
+    public void printAll(TaskList taskList) {
         List<Task> taskArrayList = taskList.getTaskList();
         List<String> printables = new ArrayList<>();
         printables.add(LIST_MESSAGE);
@@ -44,16 +71,16 @@ class Ui {
         prettyPrint(printables);
     }
 
-    protected void prettyPrint() {
+    private void prettyPrint() {
         prettyPrint("");
     }
 
-    protected void prettyPrint(String printable) {
+    private void prettyPrint(String printable) {
         String out = String.format("%s\n%s %s\n%s", LINE, TAB, printable, LINE);
         System.out.println(out);
     }
 
-    protected void prettyPrint(List<String> printables) {
+    private void prettyPrint(List<String> printables) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < printables.size(); i++) {
             String s = printables.get(i);
@@ -66,5 +93,13 @@ class Ui {
         }
         String printable = sb.toString();
         prettyPrint(printable);
+    }
+
+    public String getNext() {
+        return sc.next();
+    }
+
+    public String getNextLine() {
+        return sc.nextLine();
     }
 }

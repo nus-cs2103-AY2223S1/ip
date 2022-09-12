@@ -1,10 +1,15 @@
-package ip;
+package Duke.TaskList;
+
+import Duke.Exception.DukeException;
+import Duke.Parser.Parser;
+import Duke.Storage.Storage;
+import Duke.UI.Ui;
 
 public class Duke {
     private TaskList taskList;
-    private Storage storage;
-    private Ui ui;
-    private Parser parser;
+    private final Storage storage;
+    private final Ui ui;
+    private final Parser parser;
 
     public Duke(String filePath) {
         this.ui = new Ui();
@@ -12,27 +17,26 @@ public class Duke {
         try {
             this.taskList = new TaskList(storage.loadFile());
         } catch (DukeException de) {
-            ui.printLoadingError(de.toString());
+            ui.printException(de);
             this.taskList = new TaskList();
         }
         this.parser = new Parser(this.ui, this.taskList);
     }
 
-    private void run() throws DukeException {
+    private void run() {
         try {
             this.ui.printWelcome();
-            boolean canContinue = true;
-            while (this.parser.hasNext() && canContinue) {
-                canContinue = this.parser.handleNext();
+            while (this.parser.hasNext()) {
+                this.parser.handleNext();
             }
             this.storage.storeToFile(this.taskList);
-            this.ui.printGoodbye();
         } catch (DukeException de) {
-            this.ui.prettyPrint(de.toString());
+            this.ui.printException(de);
         }
+        this.ui.printGoodbye();
     }
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) {
         new Duke("Duke.txt").run();
     }
 }
