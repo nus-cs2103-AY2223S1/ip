@@ -5,7 +5,7 @@ package duke.task;
  */
 public class Task {
     private String task;
-    private boolean done;
+    private boolean isDone;
 
     /**
      * Creates a Task object.
@@ -13,15 +13,15 @@ public class Task {
      */
     public Task(String task) {
         this.task = task;
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
      * Marks a task as completed.
      * @return The new completion status of the task: true.
      */
-    public boolean done() {
-        done = true;
+    public boolean markAsDone() {
+        isDone = true;
         return true;
     }
 
@@ -29,8 +29,8 @@ public class Task {
      * Marks a task as not completed.
      * @return The new completion status of the task: false.
      */
-    public boolean notDone() {
-        done = false;
+    public boolean markAsNotDone() {
+        isDone = false;
         return false;
     }
 
@@ -40,7 +40,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        if (done) {
+        if (isDone) {
             return " | X | " + task;
         } else {
             return " |   |  " + task;

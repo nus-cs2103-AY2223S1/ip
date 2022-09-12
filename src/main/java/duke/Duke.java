@@ -21,7 +21,6 @@ public class Duke {
     private TaskList tasks;
     private Storage storage;
 
-
     private Duke(String filePath) {
         this.storage = new Storage(filePath);
         this.tasks = storage.load();
@@ -84,5 +83,4 @@ public class Duke {
             return Ui.wrongDateFormatToast(e);
         }
     }
-
 }

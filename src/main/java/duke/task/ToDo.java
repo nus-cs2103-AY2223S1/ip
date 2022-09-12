@@ -12,7 +12,7 @@ public class ToDo extends Task {
             String[] detailArr = taskText.replace('|', '/').split("/", 2);
             ToDo toDo = new ToDo(detailArr[1]);
             if (detailArr[0].contains("X")) {
-                toDo.done();
+                toDo.markAsDone();
             }
             return toDo;
         } else {

@@ -19,7 +19,7 @@ public class Event extends Task {
             DateTime date = new DateTime(DateTime.convertDate(detailArr[2].trim()));
             Event event = new Event(detailArr[1], date);
             if (detailArr[0].contains("X")) {
-                event.done();
+                event.markAsDone();
             }
             return event;
         } else {

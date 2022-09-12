@@ -20,6 +20,7 @@ public class TaskList {
         tasks = new ArrayList<>();
     }
 
+
     public String addTask(String input)
             throws TaskNotFoundException, ContentNotFoundException, DateNotFoundException, DateTimeParseException {
         TaskParser taskParser = new TaskParser(input);
@@ -95,13 +96,13 @@ public class TaskList {
 
     public Task markTask(Integer n) {
         Task taskMark = tasks.get(n.intValue() - 1);
-        taskMark.done();
+        taskMark.markAsDone();
         return taskMark;
     }
 
     public Task unmarkTask(Integer n) {
         Task taskMark = tasks.get(n.intValue() - 1);
-        taskMark.notDone();
+        taskMark.markAsNotDone();
         return taskMark;
     }
 
