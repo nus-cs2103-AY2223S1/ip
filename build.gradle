@@ -2,12 +2,12 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
-    id 'checkstyle'
+//    id 'checkstyle'
 }
 
-checkstyle {
-    toolVersion = '8.32'
-}
+//checkstyle {
+//    toolVersion = '10.2'
+//}
 
 repositories {
     mavenCentral()
@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "wanya.Wanya"
+    mainClassName = "wanya.Launcher"
 }
 
 shadowJar {

@@ -31,12 +31,14 @@ public abstract class Task {
      */
     public String setComplete() {
         if (hasCompleted) {
-            return("Wanya is confused errrrr... You have already marked this task as done!");
+            String taskAlreadyCompleteMsg = "Wanya is confused errrrr... You have already marked this task as done!";
+            return taskAlreadyCompleteMsg;
         }
         this.hasCompleted = true;
-        return("Hehe well done! One task down, one step closer to play time!\n"
+        String taskCompletedMsg = "Hehe well done! One task down, one step closer to play time!\n"
                 + "This task has been completed:\n"
-                + this);
+                + this;
+        return taskCompletedMsg;
     }
 
     /**
@@ -46,12 +48,14 @@ public abstract class Task {
      */
     public String setIncomplete() {
         if (!hasCompleted) {
-            return("Wanya is confused errrrr... This task is not done yet!");
+            String taskAlreadyIncompleteMsg = "Wanya is confused errrrr... This task is not done yet!";
+            return taskAlreadyIncompleteMsg;
         }
         hasCompleted = false;
-        return("Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.\n"
+        String taskIncompleteMsg = "Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.\n"
                 + "This task has not been completed:\n"
-                + this);
+                + this;
+        return taskIncompleteMsg;
     }
 
     /**

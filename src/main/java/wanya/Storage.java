@@ -3,7 +3,6 @@ package wanya;
 import wanya.task.TaskList;
 
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,12 +33,12 @@ public class Storage {
      *
      * @param tasks TaskList that contains list of tasks.
      */
-    public void save(TaskList tasks) throws WanyaException{
+    public void save(TaskList tasks) throws WanyaException {
         try {
             Files.write(path, tasks.saveToStorage());
         } catch (IOException e) {
-            throw new WanyaException("Oops! Problem encountered! " +
-                    "Wanya cannot save the task to hard disk.");
+            throw new WanyaException("Oops! Problem encountered! "
+                    + "Wanya cannot save the task to hard disk.");
         }
     }
 
@@ -53,8 +52,8 @@ public class Storage {
         try {
             return Files.readAllLines(path);
         } catch (IOException e) {
-            throw new WanyaException("Oops! File not found hehe maybe a spy stole the file awayyy...\n" +
-                    "Wanya shall create a new list for you");
+            throw new WanyaException("Oops! File not found hehe maybe a spy stole the file awayyy...\n"
+                    + "Wanya shall create a new list for you");
         }
     }
 }
