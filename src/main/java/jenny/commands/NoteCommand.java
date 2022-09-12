@@ -2,9 +2,9 @@ package jenny.commands;
 
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
+import jenny.tasks.NoteTask;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
-import jenny.tasks.TodoTask;
 import jenny.util.Ui;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class NoteCommand extends Command {
     @Override
     public void run(TaskList tasks, Ui ui, Storage<ArrayList<Task>> storage) throws JennyException {
         try {
-            TodoTask task = new TodoTask(arguments);
+            NoteTask task = new NoteTask(arguments);
             tasks.add(task);
             tasks.save(storage);
             ui.print(new String[]{
