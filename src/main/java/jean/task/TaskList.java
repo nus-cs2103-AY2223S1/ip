@@ -191,8 +191,8 @@ public class TaskList {
      */
     public String sortTask(Ui ui) {
         Collections.sort(this.taskList);
-        String message = ("The list has been sorted!"
-                          + "\nLa liste a été triée!");
+        String message = ("\tThe list has been sorted!"
+                          + "\n\tLa liste a été triée!");
         ui.printMessage(message);
         return message;
     }

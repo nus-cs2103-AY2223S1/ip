@@ -60,7 +60,7 @@ Adds a event task into the list.
 
 Format:
 
-`event TaskDescription /at time`
+`event TaskDescription /at Time`
 
 Example of usage:
 
@@ -129,10 +129,6 @@ Format:
 
 `list`
 
-Example of usage:
-
-`list`
-
 Expected outcome:
 
 All tasks in the list.
@@ -142,7 +138,7 @@ Here are your tasks!
 Voici vos tâches!
     1.  [T][] CS2103T ip
     2.  [D][] assignment1 (by: Sep 15 2022 21:00)
-    3.  [E][] assignment1 (at: tomorrow)
+    3.  [E][] meeting (at: tomorrow)
 ```
 
 ### delete
@@ -165,7 +161,7 @@ The task at index 1 is deleted.
     I have deleted the task:
     Je l'ai supprimé:
         [T][] CS2103T ip
-    You now have 2 tasks remaining!"
+    You now have 2 tasks remaining!
     Il vous reste maintenant 2 tâches!
 ```
 
@@ -175,7 +171,7 @@ Finds a task from the task list, matching the keyword.
 
 Format:
 
-`find keyword`
+`find Keyword`
 
 Example of usage:
 
@@ -200,17 +196,13 @@ Format:
 
 `sort`
 
-Example of usage:
-
-`sort`
-
 Expected outcome:
 
 The task list will be sorted in alphabetical order.
 
 ```
-The list has been sorted!
-La liste a été triée!
+    The list has been sorted!
+    La liste a été triée!
 ```
 
 ### bye
@@ -218,10 +210,6 @@ La liste a été triée!
 Terminates Jean.
 
 Format:
-
-`bye`
-
-Example of usage:
 
 `bye`
 
