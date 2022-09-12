@@ -1,6 +1,6 @@
 # User Guide
 
-Ado is a desktop chatbot app for managing and storing tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+Ado is a **desktop chatbot app for managing and storing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 - [Quick Start](#quick-start)
 - [Features](#features)
@@ -11,21 +11,20 @@ Ado is a desktop chatbot app for managing and storing tasks, optimized for use v
     * [Marking a task: `mark`](#marking-a-task-mark)
     * [Unmarking a task: `unmark`](#unmarking-a-task-unmark)
     * [Deleting a task: `delete`](#deleting-a-task-delete)
-    * [Finding a task: `find`](#finding-a-task-find)
+    * [Finding a task by description: `find`](#finding-a-task-by-description-find)
     * [Listing all tasks: `list`](#listing-all-tasks-list)
     * [Exiting the program: `bye`](#exiting-the-program-bye)
     * [Saving the data](#saving-the-data)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
-
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `Ado.jar` file from [here](https://github.com/jovitaanderson/ip/releases/tag/V0.1).
+2. Download the latest `Ado.jar` file from [here](https://github.com/jovitaanderson/ip/releases/tag/v0.1).
 3. Copy the file to the folder you want to use as the home folder for your task list.
 4. Double-click the file to start the app. If done correctly, the GUI should be similar as below. <br>
-[insert ado startup image]
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_startup.png?raw=true" alt="AdoStartUp" style="zoom:35%;" /> <br>
 5. Type the command in the command box and press Enter to execute it. You can try the follow example commands:
     - `list` : Lists all the tasks.
     - `deadline submit assignment /by 25 Sep 2022` : Adds a deadline task `submit assignment (by:25 Sep 2022)` to the list.
@@ -43,7 +42,8 @@ e.g. in `todo {description}` , `{description}` is a parameter which can be used 
 
 ### Viewing help: `help`
 Displays a list of avaible commands with examples. <br>
-[insert ado help image 1,2] <br>
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_1.png?raw=true" alt="AdoHelp1" style="zoom:35%;" />
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_2.png?raw=true" alt="AdoHelp2p" style="zoom:35%;" /> <br>
 Format: `help` **or** click on the `?` icon beside the send button
 
 ### Adding a todo task: `todo`
@@ -64,19 +64,38 @@ Exmaple: `event project meeting /at 18 Sep 2022 19:00`
 ### Marking a task: `mark`
 Marks a task in the list as completed.<br>
 Format: `mark {index}`
+Example: `mark 2` marks the task at index 2 of the list <br>
+Expected outcome:
+```
+[X] Yay! You've completed a task!
+[E][X] Team meeting (at: 22 Sep 2022 19:30)
+```
+`[X]` indicates a completed task
 
 ### Unmarking a task: `unmark`
 Unmarks a task in the list as incompleted.<br>
 Format: `unmark {index}`
+Example: `unmark 1` unmarks the task at index 1 of the list <br>
+Expected outcome:
+```
+[ ] I've marked this task as not done yet
+[T][ ] Feed cat
+```
+`[ ]` indicates a incompleted task
 
 ### Deleting a task: `delete`
 Deletes a task from the task list.<br>
 Format: `delete {index}`
+Example: `delete 1` deletes the task at index 1 of the list
 
-### Finding a task: `find`
-Finds all tasks with matching keyword.<br>
+### Finding a task by description: `find`
+Finds all tasks matching keyword.<br>
 Format: `find {keyword}`
--  All task description with the matching sequence of characters will be returned. e.g. me will match assignment and homework.
+- All task description with the matching sequence of characters will be returned. e.g. me will match assignment and homework.
+- The search is case-insensitive. e.g. `ASsignment` will match `assignment`.
+
+Example: `find assignment` <br>
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_find.png?raw=true" alt="AdoFind" style="zoom:35%;" /> <br>
 
 ### Listing all tasks: `list`
 Lists all the tasks in the task list.<br>
@@ -87,11 +106,14 @@ Exits the program.<br>
 Format: `bye`
 
 ### Saving the data
-Ado saves data automatically in the hard disk after any command that changes the data. There is no need to save manually.
+Ado saves data automatically in the hard disk after any valid command that changes the data. There is no need to save manually.
 
 ## FAQ
-Q: How do I transfer my data to another Computer?
-A: Install the app in the other computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Ado chatbot located at `[JAR file location]/data/tasks.txt`.
+**Q**: How do I transfer my data to another Computer? <br>
+**A**: Install the app in the other computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Ado chatbot located at `[JAR file location]/data/tasks.txt`. <br>
+**Q**: What does the red text message mean? <br>
+**A**: It means that you have entered a invalid command that Ado doesnt understand!To learn the proper usage of each command you can read [here](#features)
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_errorMessage.png?raw=true" alt="AdoErrorMessage" style="zoom:35%;" /> <br>
 
 ## Command summary
 
