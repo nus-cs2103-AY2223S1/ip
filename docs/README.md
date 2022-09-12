@@ -2,28 +2,145 @@
 
 ## Features 
 
-### Feature-ABC
+### Creation of tasks
 
-Description of the feature.
+Create a task of type (todo, deadline, event)
 
-### Feature-XYZ
+### Listing of tasks
 
-Description of the feature.
+List the tasks stored in Duke
+
+### Marking and unmarking of tasks
+
+Mark and unmark tasks
+
+### Removing of tasks
+
+Remove tasks from Duke 
+
+### Update tasks
+
+Update tasks previously stored in Duke
 
 ## Usage
 
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
+### `list` - List all tasks
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`list`
 
 Expected outcome:
 
-Description of the outcome.
+Duke will display a list of tasks previously created
 
-```
-expected output
-```
+
+
+### `find` - Find tasks matching the query
+
+Example of usage: 
+
+`find <query>`
+
+Expected outcome:
+
+Duke will display a list of tasks matching the query (case-sensitive)
+
+
+
+### `mark` - Mark a task as completed
+
+Example of usage: 
+
+`mark <index>`
+
+Expected outcome:
+
+Mark a task as completed 
+
+
+
+### `unmark` - Mark a task as incomplete
+
+Example of usage: 
+
+`mark <index>`
+
+Expected outcome:
+
+Unmark a completed task
+
+
+
+### `remove` / `delete` - Delete a task from Duke
+
+Example of usage: 
+`remove <index>`
+`delete <index>`
+
+Expected outcome:
+
+Delete a task from Duke
+
+
+
+### `update` - Update a task description
+
+Example of usage: 
+
+`update <index> <new description>`
+
+Expected outcome:
+
+Update the description of a task
+
+
+
+### `todo` - Creates a new todo task
+
+Example of usage: 
+
+`todo <description>`
+
+Expected outcome:
+
+Creates a new todo 
+
+
+
+### `deadline` - Creates a new deadline task
+
+Example of usage: 
+
+`deadline <description> /by <date>`
+
+Expected outcome:
+
+Creates a new deadline
+
+
+
+### `event` - Describe action
+
+Example of usage: 
+
+`event <description> /at <place>`
+
+Expected outcome:
+
+Creates a new event
+
+
+
+
+### `quit` / `exit` / `bye` - Quit the application
+
+Example of usage: 
+
+`quit`
+`exit`
+`bye`
+
+Expected outcome:
+
+Quit the application
