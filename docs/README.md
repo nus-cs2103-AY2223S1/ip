@@ -16,6 +16,7 @@ To download and use Kirby: <br>
 ## Features
 ### Create a Task 
 Create one of the three types of task supported by Kirby.
+
 | Types of Task  | Purpose | Command |
 | ------------- | ------------- |------------- |
 | Todo  | A simple to-do task with no time frame can be added.| `todo <task name>`|
@@ -63,6 +64,7 @@ Your existing tasks would be stored locally and saved when you open Kirby again.
 
 
 ## Command Summary
+
 | Action  | Format| Examples |
 | ------------- | ------------- |------------- |
 | **Add Todo**  | `todo <task name>`| `todo Clear the laundry`|
