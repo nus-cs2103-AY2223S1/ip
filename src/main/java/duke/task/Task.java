@@ -60,6 +60,15 @@ public abstract class Task {
     }
 
     /**
+     * Updates the description of the Task object.
+     *
+     * @param description Updated description.
+     */
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    /**
      * Return Task as a String to be saved in a .txt file.
      *
      * @return Task as a String.
