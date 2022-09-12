@@ -7,16 +7,26 @@ import ip.task.Task;
 
 /**
  * Encapsulation of a list of Tasks
- *
- * @author Jonathan Lam
  */
 public class TaskList {
+    /** List of tasks belonging to this task list */
     private LinkedList<Task> tasks = new LinkedList<>();
 
+    /**
+     * Set the list of tasks that is currently managed
+     * to a specified task list.
+     *
+     * @param taskList Task list that holds the list of tasks to be set.
+     */
     public void set(TaskList taskList) {
         this.tasks = taskList.tasks;
     }
 
+    /**
+     * Returns the list of tasks in this task list.
+     *
+     * @return The list of tasks in this task list.
+     */
     public LinkedList<Task> getTasks() {
         return tasks;
     }
@@ -45,7 +55,7 @@ public class TaskList {
     }
 
     /**
-     * Marks the task at the specified index.
+     * Marks the task at the specified index complete.
      *
      * @param taskIndex Index of task to be unmarked.
      * @throws NoTaskFound If there is no task at that index.
@@ -59,7 +69,7 @@ public class TaskList {
     }
 
     /**
-     * Unmarks the task at the specified index.
+     * Marks the task at the specified index incomplete.
      *
      * @param taskIndex Index of task to be unmarked.
      * @throws NoTaskFound If there is no task at that index.
@@ -73,7 +83,7 @@ public class TaskList {
     }
 
     /**
-     * Returns a list of all tasks in the task list.
+     * Returns a string of all tasks in the task list.
      *
      * @return String describing every task in the list.
      */

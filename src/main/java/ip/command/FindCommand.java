@@ -24,7 +24,7 @@ public class FindCommand extends DukeCommand {
      * Finds tasks with descriptions matching given keyword.
      *
      * @param taskList List to search.
-     * @param storage
+     * @param storage Storage related to this command.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) {

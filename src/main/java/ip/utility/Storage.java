@@ -15,8 +15,6 @@ import ip.task.ToDo;
 
 /**
  * Encapsulates the task data file stored in hard disk.
- *
- * @author Jonathan Lam
  */
 public class Storage {
     /** Path of the task data file */
@@ -72,8 +70,9 @@ public class Storage {
     }
 
     /**
-     * Loads the storage's file into a TaskList.
+     * Loads the saved file into a TaskList.
      *
+     * @param isFromBackup Whether to load the latest file or backup file.
      * @return The TaskList built from the task data file.
      */
     private TaskList getTaskList(boolean isFromBackup) {
@@ -107,8 +106,9 @@ public class Storage {
     }
 
     /**
-     * Write data from given TaskList to task data file.
+     * Writes data from given TaskList to task data file.
      *
+     * @param isToBackup Whether to save to the latest file or backup file.
      * @param taskList The TaskList to copy from.
      */
     private void saveTasks(TaskList taskList, boolean isToBackup) {

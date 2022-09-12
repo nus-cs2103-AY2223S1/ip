@@ -32,7 +32,7 @@ public class EditCommand extends DukeCommand {
      * Execute the given command to the specified task.
      *
      * @param taskList The task list to search the task for.
-     * @param storage
+     * @param storage The storage to save and backup to.
      * @throws IndexNotSpecified If no index number was specified.
      * @throws NoTaskFound       If there is no task at the index number specified.
      */

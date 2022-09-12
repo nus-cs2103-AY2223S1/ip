@@ -35,9 +35,9 @@ public class AddCommand extends DukeCommand {
      * Creates and adds the task to the task list.
      *
      * @param taskList The task list to add the task to.
-     * @param storage
+     * @param storage Storage that this command is being executed in.
      * @throws MissingDescription If there is no task description given.
-     * @throws BadTimespan        If the event's timespan is missing.
+     * @throws BadTimespan        If the event's time span is missing.
      * @throws BadDeadline        If the deadline is incorrectly formatted or missing.
      */
     @Override

@@ -21,7 +21,7 @@ public class Duke {
     /**
      * Constructor for Duke.
      *
-     * @param dataPath Path of file to load task data from.
+     * @param dataPath Path of directory to load task data from.
      */
     public Duke(String dataPath) {
         storage = new Storage(dataPath);
@@ -39,9 +39,7 @@ public class Duke {
         parser.loadUserInput(userInput);
         try {
             DukeCommand command = parser.getCommand();
-            String response = command.execute(taskList, storage);
-            System.out.println(taskList.listAllTasks());
-            return response;
+            return command.execute(taskList, storage);
         } catch (DukeException e) {
             return e.toString();
         }

@@ -7,8 +7,6 @@ import ip.exception.InvalidCommand;
 
 /**
  * Parses input from the user.
- *
- * @author Jonathan Lam
  */
 public class Parser {
     /** String that the user has entered */
@@ -24,10 +22,10 @@ public class Parser {
     }
 
     /**
-     * Parse user input for the command.
+     * Parses user input for the command.
      * If no input is detected, it returns a ByeCommand object.
      *
-     * @return The command entered by the user, as a DukeCommand object.
+     * @return An instance of the command entered by the user.
      * @throws InvalidCommand If the command entered is not recognised.
      */
     public DukeCommand getCommand() throws InvalidCommand {

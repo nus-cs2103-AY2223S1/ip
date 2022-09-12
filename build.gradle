@@ -54,7 +54,7 @@ test {
 }
 
 application {
-    mainClassName = "ip.Duke"
+    mainClassName = "ip.Main"
 }
 
 shadowJar {

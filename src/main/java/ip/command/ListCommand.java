@@ -11,7 +11,7 @@ public class ListCommand extends DukeCommand {
      * Lists all tasks in the given task list.
      *
      * @param taskList The task list to list out.
-     * @param storage
+     * @param storage Storage related to this command.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) {

@@ -4,7 +4,7 @@ package ip.exception;
  * Exception thrown on encountering deadline issues.
  */
 public class BadDeadline extends DukeException {
-    private String deadline;
+    private final String deadline;
 
     public BadDeadline(String s) {
         deadline = s;

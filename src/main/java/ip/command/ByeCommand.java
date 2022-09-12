@@ -10,11 +10,16 @@ import javafx.application.Platform;
 public class ByeCommand extends DukeCommand {
 
     /**
-     * Quits the GUI instance
+     * Exits the GUI and quits Duke.
+     *
+     * @param taskList Task list to save before exit.
+     * @param storage The storage to save the task list to.
+     * @return Farewell message string.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) {
+        storage.saveToLatest(taskList);
         Platform.exit();
-        return "";
+        return "Goodbye!";
     }
 }
