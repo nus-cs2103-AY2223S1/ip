@@ -14,7 +14,7 @@ public abstract class Command {
     public abstract boolean isExit();
 
     /**
-     * Default execute method.
+     * Acts as the default execute method.
      *
      * @param tasks The list of tasks
      * @param ui The UI of this application
@@ -26,7 +26,7 @@ public abstract class Command {
     }
 
     /**
-     * Stringtified execute method. Not applicable here.
+     * Represents the stringtified execute method. Not applicable here.
      *
      * @param tasks The list of tasks
      * @param ui The UI of this application

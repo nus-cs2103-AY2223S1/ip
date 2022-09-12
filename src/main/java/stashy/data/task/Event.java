@@ -14,7 +14,7 @@ public class Event extends Task {
     protected LocalDateTime atDateTime;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param description The event description
      * @param atDateTime The time of the event

@@ -15,21 +15,21 @@ public class AddTodoCommand extends Command {
         + "\n\nAdds a todo task."
         + "\n\nExample: todo buy book";
     private ToDo todo;
-    private boolean showHelp;
+    private boolean helpShown;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param todo The todo to be added
-     * @param showHelp Whether to show help or not
+     * @param helpShown Whether to show help or not
      */
-    private AddTodoCommand(ToDo todo, boolean showHelp) {
+    private AddTodoCommand(ToDo todo, boolean helpShown) {
         this.todo = todo;
-        this.showHelp = showHelp;
+        this.helpShown = helpShown;
     }
 
     /**
-     * Overloaded constructor method to add a todo.
+     * Overloads the constructor method to add a todo.
      *
      * @param todo The todo to be added
      */
@@ -38,7 +38,7 @@ public class AddTodoCommand extends Command {
     }
 
     /**
-     * Overloaded constructor method to show help.
+     * Overloads the constructor method to show help.
      */
     public AddTodoCommand() {
         this(null, true);
@@ -60,7 +60,7 @@ public class AddTodoCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (this.showHelp) {
+        if (this.helpShown) {
             return HELP_MESSAGE;
         } else {
             tasks.add(this.todo);

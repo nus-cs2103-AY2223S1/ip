@@ -14,7 +14,7 @@ public class TaskList {
     private ArrayList<Task> taskList;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param loadResult The load result from Storage
      */
@@ -30,14 +30,14 @@ public class TaskList {
     }
 
     /**
-     * Overloaded constructor method.
+     * Overloads the constructor method.
      */
     public TaskList() {
         this.taskList = new ArrayList<Task>();
     }
 
     /**
-     * Overloaded constructor method.
+     * Overloads the constructor method.
      * Only used to filter by a given query string.
      *
      * @param query The query string of interest

@@ -16,21 +16,21 @@ public class AddEventCommand extends Command {
         + "\n\nRequired: /at The delimiter to detect the date and time"
         + "\n\nExample: event buy coffee /at 10 Oct 2021 10:30";
     private Event event;
-    private boolean showHelp;
+    private boolean helpShown;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param event The event to be added
-     * @param showHelp Whether to show help or not
+     * @param helpShown Whether to show help or not
      */
-    private AddEventCommand(Event event, boolean showHelp) {
+    private AddEventCommand(Event event, boolean helpShown) {
         this.event = event;
-        this.showHelp = showHelp;
+        this.helpShown = helpShown;
     }
 
     /**
-     * Overloaded constructor method to add an event.
+     * Overloads the constructor method to add an event.
      *
      * @param event The event to be added
      */
@@ -39,7 +39,7 @@ public class AddEventCommand extends Command {
     }
 
     /**
-     * Overloaded constructor method to show help.
+     * Overloads the constructor method to show help.
      */
     public AddEventCommand() {
         this(null, true);
@@ -61,7 +61,7 @@ public class AddEventCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (this.showHelp) {
+        if (this.helpShown) {
             return HELP_MESSAGE;
         } else {
             tasks.add(this.event);

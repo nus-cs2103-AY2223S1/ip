@@ -13,19 +13,19 @@ public class ExitCommand extends Command {
     public static final String HELP_MESSAGE = KEYWORD
         + "\n\nExits the chatbot."
         + "\n\nExample: bye";
-    private boolean showHelp;
+    private boolean helpShown;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
-     * @param showHelp Whether to show help or not
+     * @param helpShown Whether to show help or not
      */
-    public ExitCommand(boolean showHelp) {
-        this.showHelp = showHelp;
+    public ExitCommand(boolean helpShown) {
+        this.helpShown = helpShown;
     }
 
     /**
-     * Overloaded constructor method to show help.
+     * Overloads the constructor method to show help.
      */
     public ExitCommand() {
         this(true);
@@ -33,7 +33,7 @@ public class ExitCommand extends Command {
 
     @Override
     public boolean isExit() {
-        return !this.showHelp;
+        return !this.helpShown;
     }
 
     /**
@@ -47,7 +47,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (this.showHelp) {
+        if (this.helpShown) {
             ui.showIndented(HELP_MESSAGE);
         } else {
             storage.writeTaskListToFile(tasks);
@@ -66,7 +66,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (this.showHelp) {
+        if (this.helpShown) {
             return HELP_MESSAGE;
         } else {
             storage.writeTaskListToFile(tasks);

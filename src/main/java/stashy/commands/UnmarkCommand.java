@@ -15,21 +15,21 @@ public class UnmarkCommand extends Command {
         + "\n\nUnmarks the task referenced by task ID as not done."
         + "\n\nExample: unmark 4";
     private int taskId;
-    private boolean showHelp;
+    private boolean helpShown;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param taskId Task ID from the task list
-     * @param showHelp Whether to show help or not
+     * @param helpShown Whether to show help or not
      */
-    private UnmarkCommand(Integer taskId, boolean showHelp) {
+    private UnmarkCommand(Integer taskId, boolean helpShown) {
         this.taskId = taskId;
-        this.showHelp = showHelp;
+        this.helpShown = helpShown;
     }
 
     /**
-     * Overloaded constructor method to unmark a task as not done.
+     * Overloads the constructor method to unmark a task as not done.
      *
      * @param taskId Task ID from the task list
      */
@@ -38,7 +38,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Overloaded constructor method to show help.
+     * Overloads the constructor method to show help.
      */
     public UnmarkCommand() {
         this(Integer.MIN_VALUE, true);
@@ -60,7 +60,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (this.showHelp) {
+        if (this.helpShown) {
             return HELP_MESSAGE;
         } else {
             if (1 <= this.taskId && this.taskId <= tasks.size()) {

@@ -14,7 +14,7 @@ public class Deadline extends Task {
     protected LocalDateTime byDateTime;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param description The event description
      * @param byDateTime The deadline of this task

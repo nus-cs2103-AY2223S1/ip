@@ -14,19 +14,19 @@ public class ListCommand extends Command {
     public static final String HELP_MESSAGE = KEYWORD
         + "\n\nLists all the tasks that you currently have."
         + "\n\nExample: list";
-    private boolean showHelp;
+    private boolean helpShown;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
-     * @param showHelp Whether to show help or not
+     * @param helpShown Whether to show help or not
      */
-    public ListCommand(boolean showHelp) {
-        this.showHelp = showHelp;
+    public ListCommand(boolean helpShown) {
+        this.helpShown = helpShown;
     }
 
     /**
-     * Overloaded constructor method to show help.
+     * Overloads the constructor method to show help.
      */
     public ListCommand() {
         this(true);
@@ -48,7 +48,7 @@ public class ListCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (this.showHelp) {
+        if (this.helpShown) {
             return HELP_MESSAGE;
         } else {
             return ui.showTasksString(tasks);

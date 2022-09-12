@@ -12,7 +12,7 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param description The description of the task
      * @param isDone The status of the task
@@ -23,7 +23,7 @@ public abstract class Task {
     }
 
     /**
-     * Overloaded constructor method.
+     * Overloads the constructor method.
      *
      * @param description The description of the event
      */

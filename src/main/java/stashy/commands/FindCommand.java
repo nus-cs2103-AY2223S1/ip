@@ -19,21 +19,21 @@ public class FindCommand extends Command {
      * The query string that filters the task list upon command execution.
      */
     private String query;
-    private boolean showHelp;
+    private boolean helpShown;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param query The query string of interest
-     * @param showHelp Whether to show help or not
+     * @param helpShown Whether to show help or not
      */
-    private FindCommand(String query, boolean showHelp) {
+    private FindCommand(String query, boolean helpShown) {
         this.query = query;
-        this.showHelp = showHelp;
+        this.helpShown = helpShown;
     }
 
     /**
-     * Overloaded constructor method to search filtered tasks.
+     * Overloads the constructor method to search filtered tasks.
      *
      * @param query The query string of interest
      */
@@ -42,7 +42,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Overloaded constructor method to show help.
+     * Overloads the constructor method to show help.
      */
     public FindCommand() {
         this(null, true);
@@ -64,7 +64,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (this.showHelp) {
+        if (this.helpShown) {
             return HELP_MESSAGE;
         } else {
             return ui.showFilteredTasksString(new TaskList(tasks.getArrayList(), this.query));

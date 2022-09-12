@@ -16,21 +16,21 @@ public class AddDeadlineCommand extends Command {
         + "\n\nRequired: /by The delimiter to detect the date and time"
         + "\n\nExample: deadline submit iP /by 10 Oct 2021 23:59";
     private Deadline deadline;
-    private boolean showHelp;
+    private boolean helpShown;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param deadline The deadline to be added
-     * @param showHelp Whether to show help or not
+     * @param helpShown Whether to show help or not
      */
-    private AddDeadlineCommand(Deadline deadline, boolean showHelp) {
+    private AddDeadlineCommand(Deadline deadline, boolean helpShown) {
         this.deadline = deadline;
-        this.showHelp = showHelp;
+        this.helpShown = helpShown;
     }
 
     /**
-     * Overloaded constructor method to add a deadline.
+     * Overloads the constructor method to add a deadline.
      *
      * @param deadline The deadline to be added
      */
@@ -39,7 +39,7 @@ public class AddDeadlineCommand extends Command {
     }
 
     /**
-     * Overloaded constructor method to show help.
+     * Overloads the constructor method to show help.
      */
     public AddDeadlineCommand() {
         this(null, true);
@@ -61,7 +61,7 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (this.showHelp) {
+        if (this.helpShown) {
             return HELP_MESSAGE;
         } else {
             tasks.add(this.deadline);

@@ -17,7 +17,7 @@ public class Storage {
     private String filePath;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param filePath The file path specified
      */

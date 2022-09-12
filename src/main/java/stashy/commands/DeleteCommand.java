@@ -15,21 +15,21 @@ public class DeleteCommand extends Command {
         + "\n\nDeletes a task based on the task ID provided."
         + "\n\nExample: delete 3";
     private int taskId;
-    private boolean showHelp;
+    private boolean helpShown;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param taskId Task ID from the task list
-     * @param showHelp Whether to show help or not
+     * @param helpShown Whether to show help or not
      */
-    private DeleteCommand(Integer taskId, boolean showHelp) {
+    private DeleteCommand(Integer taskId, boolean helpShown) {
         this.taskId = taskId;
-        this.showHelp = showHelp;
+        this.helpShown = helpShown;
     }
 
     /**
-     * Overloaded constructor method to delete a task.
+     * Overloads the constructor method to delete a task.
      *
      * @param taskId Task ID from the task list
      */
@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Overloaded constructor method to show help.
+     * Overloads the constructor method to show help.
      */
     public DeleteCommand() {
         this(Integer.MIN_VALUE, true);
@@ -60,7 +60,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (this.showHelp) {
+        if (this.helpShown) {
             return HELP_MESSAGE;
         } else {
             if (1 <= this.taskId && this.taskId <= tasks.size()) {

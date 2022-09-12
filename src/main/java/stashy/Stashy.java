@@ -25,7 +25,7 @@ public class Stashy {
     private static TaskList tasks;
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      */
     public Stashy() {
         ui = new Ui();
@@ -84,7 +84,7 @@ public class Stashy {
     }
 
     /**
-     * The main driver method of the chatbot.
+     * Represents the main driver method of the chatbot.
      *
      * @param args Command-line arguments for the application
      */

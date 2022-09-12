@@ -7,7 +7,7 @@ package stashy.data.task;
 public class ToDo extends Task {
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param description The description of this to-do
      * @param isDone Whether the task is done or not
@@ -17,7 +17,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Constructor method.
+     * Represents the constructor method.
      *
      * @param description The description of this to-do
      */
