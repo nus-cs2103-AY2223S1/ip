@@ -13,6 +13,7 @@ class Event extends Task {
     Event (int id, String name, String eventTime, boolean done) {
         super(id, name, done);
         this.eventTime = LocalDate.parse(eventTime.trim(), DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        assert(this.eventTime.isAfter(LocalDate.now()));
     }
 
     @Override
