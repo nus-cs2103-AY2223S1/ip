@@ -131,7 +131,7 @@ public class TaskList {
     private String handleDelete(String indexStr) throws DukeException {
         String[] outputMessage = new String[]{
             "Noted. I've removed this task:\n",
-            "Now you have ",
+            "\nNow you have ",
             " tasks in the list."
         };
         int index;
@@ -159,6 +159,7 @@ public class TaskList {
         for (int i = 0; i < arr.size(); i++) {
             if (i == index) {
                 i++;
+                continue;
             }
             newArr.add(arr.get(i));
         }

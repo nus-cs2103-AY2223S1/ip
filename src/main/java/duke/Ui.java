@@ -17,7 +17,7 @@ class Ui {
             + "deadline sleep3 /by 2019-10-10\nmark 1\nunmark 1\ndelete 1\n\n\n"
             + "Currently, only yyyy-mm-dd format is supported such as 2019-10-10.";
     private static final String ENDED_SESSION_MESSAGE = "This program has terminated. "
-        + "No input is taken any more. Please close and reopen program";
+        + "No input is taken any more. Please close and reopen program.";
 
     /**
      * Prints the given string in a formatted manner.
