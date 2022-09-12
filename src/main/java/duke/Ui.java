@@ -55,9 +55,14 @@ public class Ui {
      *
      * @param list The current list of tasks.
      * @return The current list of tasks, as a String.
+     * @throws DukeException if list is empty.
      */
-    public String getList(TaskList list) {
+    public String getList(TaskList list) throws DukeException {
         ArrayList<Task> tasks = list.getList();
+
+        if (tasks.isEmpty()) {
+            throw new DukeException("OOPS!!! List is empty! Try adding a task first :)");
+        }
 
         int count = 1;
         String strList = "";
@@ -65,10 +70,6 @@ public class Ui {
             String num = Integer.toString(count);
             strList = strList + num + ". " + t +"\n";
             count++;
-        }
-
-        if (tasks.isEmpty()) {
-            strList = "List is empty!";
         }
 
         return strList;
@@ -105,6 +106,12 @@ public class Ui {
         return "Here are the matching tasks in your list:\n" + tasks;
     }
 
+    /**
+     * Returns an error to the user if the given task already exists in
+     * the current list of tasks.
+     *
+     * @return An error when task given is a duplicate.
+     */
     public String getDuplicateTaskError() {
         return "OOPS!!! I'm sorry, this task already exists in your list! :)";
     }

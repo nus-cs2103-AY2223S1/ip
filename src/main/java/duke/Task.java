@@ -11,6 +11,11 @@ public class Task {
 
     protected boolean isDone;
 
+    /**
+     * Constructor for a Task.
+     *
+     * @param description Description of a Task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;

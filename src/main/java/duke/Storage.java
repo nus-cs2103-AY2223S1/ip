@@ -19,6 +19,11 @@ public class Storage {
 
     private final String filePath;
 
+    /**
+     * Constructor for Storage.
+     *
+     * @param filePath Name of file where tasks are saved.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }

@@ -15,14 +15,20 @@ public class Parser {
      * Parses user command into a String array.
      *
      * @param command User input
-     * @return A String array. First element of the array is the type of command;
-     *         i.e. "T" for todo, "D" for deadline, "E" for event, "d" for delete,
-     *         "M" for mark, "L" for list, "B" for bye and "U" for unknown input.
+     * @return A String array.
+     *         First element of the array is the type of command; i.e. "T" for todo,
+     *         "D" for deadline, "E" for event, "d" for delete, "M" for mark,
+     *         "L" for list, "F" for find, "B" for bye and "U" for unknown input.
+     *
      *         Second element of the array is either: the description of a todo/
-     *         deadline/event task or the number of task to be marked/deleted.
+     *         deadline/event task, the number of task to be marked/deleted,
+     *         or the keyword used to find matching tasks.
+     *
      *         The third element of the array is the time for deadline/event tasks.
-     *         If given task is empty, description and time of that task will both be
-     *         empty strings.
+     *
+     *         If the given task is empty, description and time of that task will both
+     *         be empty strings. Similarly, if no number is provided for delete and mark,
+     *         number of task to be marked/deleted will be an empty string.
      */
     public String[] parseCommand(String command) {
 

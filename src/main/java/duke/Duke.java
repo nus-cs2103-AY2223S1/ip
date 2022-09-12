@@ -40,7 +40,6 @@ public class Duke {
         String[] arr = new Parser().parseCommand(input);
         String typeOfTask = arr[0];
         String response;
-        Task t;
 
         // Check for duplicate task in current list.
         if (this.storage.isDuplicateTask(typeOfTask, arr)) {
@@ -49,40 +48,22 @@ public class Duke {
 
         switch (typeOfTask) {
         case "T":
-            try {
-                t = this.addAndGetTodo(arr[1]);
-            } catch (DukeException e) {
-                return e.toString();
-            }
-            response = this.ui.getTaskAddedReply(t, this.tasks);
+            response = this.getTodoResponse(arr[1]);
             break;
         case "D":
-            try {
-                t = this.addAndGetDeadline(arr[1], arr[2]);
-            } catch (DukeException e) {
-                return e.toString();
-            }
-            response = this.ui.getTaskAddedReply(t, this.tasks);
+            response = this.getDeadlineResponse(arr[1], arr[2]);
             break;
         case "E":
-            try {
-                t = this.addAndGetEvent(arr[1], arr[2]);
-            } catch (DukeException e) {
-                return e.toString();
-            }
-            response = this.ui.getTaskAddedReply(t, this.tasks);
+            response = this.getEventResponse(arr[1], arr[2]);
             break;
         case "d":
-            int taskNum = Integer.parseInt(arr[1]);
-            Task toBeDeleted = this.deleteAndGetDeletedTask(taskNum);
-            response = this.ui.getTaskDeletedReply(toBeDeleted, this.tasks);
+            response = this.getDeleteResponse(arr[1]);
             break;
         case "M":
-            t = this.markAndGetMarkedTask(arr[1]);
-            response = this.ui.getTaskMarkedReply(t);
+            response = this.getMarkResponse(arr[1]);
             break;
         case "L":
-            response = this.ui.getList(this.tasks);
+            response = this.getListResponse();
             break;
         case "F":
             response = this.ui.getTasksWithKeyword(arr[1], this.tasks);
@@ -95,6 +76,66 @@ public class Duke {
             response = this.ui.getUnknownInputError();
         }
 
+        return response;
+    }
+
+    private String getTodoResponse(String description) {
+        Task t;
+        try {
+            t = this.addAndGetTodo(description);
+        } catch (DukeException e) {
+            return e.toString();
+        }
+        return this.ui.getTaskAddedReply(t, this.tasks);
+    }
+
+    private String getDeadlineResponse(String description, String by) {
+        Task t;
+        try {
+            t = this.addAndGetDeadline(description, by);
+        } catch (DukeException e) {
+            return e.toString();
+        }
+        return this.ui.getTaskAddedReply(t, this.tasks);
+    }
+
+    private String getEventResponse(String description, String at) {
+        Task t;
+        try {
+            t = this.addAndGetEvent(description, at);
+        } catch (DukeException e) {
+            return e.toString();
+        }
+        return this.ui.getTaskAddedReply(t, this.tasks);
+    }
+
+    private String getDeleteResponse(String num) {
+        Task toBeDeleted;
+        try {
+            toBeDeleted = this.deleteAndGetDeletedTask(num);
+        } catch (DukeException e) {
+            return e.toString();
+        }
+        return this.ui.getTaskDeletedReply(toBeDeleted, this.tasks);
+    }
+
+    private String getMarkResponse(String num) {
+        Task t;
+        try {
+            t = this.markAndGetMarkedTask(num);
+        } catch (DukeException e) {
+            return e.toString();
+        }
+        return this.ui.getTaskMarkedReply(t);
+    }
+
+    private String getListResponse() {
+        String response;
+        try {
+            response = this.ui.getList(this.tasks);
+        } catch (DukeException e) {
+            return e.toString();
+        }
         return response;
     }
 
@@ -128,17 +169,40 @@ public class Duke {
         return t;
     }
 
-    private Task deleteAndGetDeletedTask(int taskNum) {
+    private Task deleteAndGetDeletedTask(String num) throws DukeException {
+        if (num.equals("")) {
+            throw new DukeException("OOPS!!! To delete a task, please enter number of task! :)");
+        }
+        int taskNum = Integer.parseInt(num);
+        this.checkNumValidity(taskNum);
         Task t = this.tasks.getTask(taskNum);
         this.tasks.delete(taskNum);
         this.storage.save(this.tasks);
         return t;
     }
 
-    private Task markAndGetMarkedTask(String input) {
-        Task t = this.tasks.getTask(Integer.parseInt(input));
-        this.tasks.getTask(Integer.parseInt(input)).markAsDone();
+    private Task markAndGetMarkedTask(String num) throws DukeException {
+        if (num.equals("")) {
+            throw new DukeException("OOPS!!! To mark a task as done, please enter " +
+                    "number of task! :)");
+        }
+        int taskNum = Integer.parseInt(num);
+        this.checkNumValidity(taskNum);
+        Task t = this.tasks.getTask(taskNum);
+        this.tasks.getTask(taskNum).markAsDone();
         this.storage.save(this.tasks);
         return t;
+    }
+
+    private void checkNumValidity(int taskNum) throws DukeException {
+        boolean isEmptyList = (this.tasks.size() == 0);
+        if (isEmptyList) {
+            throw new DukeException("OOPS!!! List is empty! Try adding a task first :)");
+        }
+
+        boolean validNum = (taskNum <= this.tasks.size()) && (taskNum >= 1);
+        if (!validNum) {
+            throw new DukeException("OOPS!!! Please enter a valid task number! :)");
+        }
     }
 }
