@@ -36,13 +36,15 @@ public abstract class Task {
     public String parseToSaveData() {
         assertDescriptionNotNull();
         int isDoneNum = isDone ? 1 : 0;
-        return isDoneNum + "|" + description;
+        String str = isDoneNum + "|" + description;
+        return str;
     }
 
     @Override
     public String toString() {
         assertDescriptionNotNull();
-        return "[" + getStatusIcon() + "] " + description;
+        String str = "[" + getStatusIcon() + "] " + description;
+        return str;
     }
 
     private void assertDescriptionNotNull() {

@@ -30,11 +30,13 @@ public class Todo extends Task {
      */
     @Override
     public String parseToSaveData() {
-        return "T" + "|" + super.parseToSaveData();
+        String str = "T" + "|" + super.parseToSaveData();
+        return str;
     }
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        String str = "[T]" + super.toString();
+        return str;
     }
 }

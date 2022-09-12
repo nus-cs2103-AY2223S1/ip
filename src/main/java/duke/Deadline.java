@@ -54,12 +54,14 @@ public class Deadline extends Task {
      */
     @Override
     public String parseToSaveData() {
-        return "D" + "|" + super.parseToSaveData() + "|" + date + "|" + time;
+        String str = "D" + "|" + super.parseToSaveData() + "|" + date + "|" + time;
+        return str;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString()
-                + " (by: " + formatAsMmmDdYyyy() + " " + formatAs12Hour() + ")";
+        String str = "[D]" + super.toString()
+                + " (By: " + formatAsMmmDdYyyy() + " " + formatAs12Hour() + ")";
+        return str;
     }
 }

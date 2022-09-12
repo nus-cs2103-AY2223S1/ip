@@ -67,14 +67,16 @@ public class Event extends Task {
      */
     @Override
     public String parseToSaveData() {
-        return "E" + "|" + super.parseToSaveData() + "|"
+        String str = "E" + "|" + super.parseToSaveData() + "|"
                 + dateStart + "|" + timeStart + "|" + dateEnd + "|" + timeEnd;
+        return str;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: "
+        String str ="[E]" + super.toString() + "\n" + " (At: "
                 + formatAsMmmDdYyyy(dateStart) + " " + formatAs12Hour(timeStart) + " - "
                 + formatAsMmmDdYyyy(dateEnd) + " " + formatAs12Hour(timeEnd) + ")";
+        return str;
     }
 }
