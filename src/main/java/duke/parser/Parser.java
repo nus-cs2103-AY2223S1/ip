@@ -343,7 +343,7 @@ public class Parser {
         case DEADLINE:
         case EVENT: {
             components = input.split(" \\| ", 4);
-            task = createTaskWithDate(Priority.valueOf(components[0]), components[2], components[3], type);
+            task = createTaskWithDate(Priority.valueOf(components[0]), components[3], components[2], type);
             taskStatus = Integer.parseInt(components[1]);
             break;
         }

@@ -51,9 +51,9 @@ public class Deadline extends Task {
     @Override
     public String getDescription() {
         if (time == null) {
-            return super.getDescription() + " | " + by;
+            return by + " | " + super.getDescription();
         } else {
-            return super.getDescription() + " | " + by + " " + time;
+            return by + " " + time + " | " + super.getDescription();
         }
     }
 

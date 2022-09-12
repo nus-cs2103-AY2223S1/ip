@@ -51,7 +51,7 @@ public class Event extends Task {
      */
     @Override
     public String getDescription() {
-        return super.getDescription() + " | " + on + " " + timeStart + "-" + timeEnd;
+        return on + " " + timeStart + "-" + timeEnd + " | " + super.getDescription();
     }
     @Override
     public boolean isDateEqual(LocalDate date) {
