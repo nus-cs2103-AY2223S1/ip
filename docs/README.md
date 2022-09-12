@@ -2,13 +2,29 @@
 
 ## Features 
 
-### Feature- Add Tasks
+### Feature - Add Tasks
 
 Able to add tasks to the todo list.
 
-### Feature- View all Tasks
+### Feature - View all Tasks
 
 Able to view all the tasks added to the todo list
+
+### Feature - Delete Tasks
+
+Able to delete the tasks added to the todo list
+
+### Feature - Exit
+
+Able to exit the program
+
+### Feature Mark
+
+Able to mark a task as completed or incomplete
+
+### Feature - Undo
+
+Able to restore the list to the previous command
 
 ## Usage
 

@@ -122,6 +122,7 @@ class BotList {
     String undo() {
         if (hasUndo) {
             userInstructions = new ArrayList<>(storedList);
+            storage.save(userInstructions);
             hasUndo = false;
             return "I have undo-ed your last command";
         }
