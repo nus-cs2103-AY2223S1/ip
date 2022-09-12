@@ -105,4 +105,14 @@ public class Ui {
         return result;
     }
 
+    /**
+     * Prints out the updated task that has been postponed
+     * @param t ${@code Task} that has been postponed
+     * @return String to print out the updated task
+     */
+    public String showPostponedTask(Task t) {
+        return "Noted. I've postponed this task:\n"
+                + t + "\n";
+    }
+
 }

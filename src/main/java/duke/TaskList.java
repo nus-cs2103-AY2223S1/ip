@@ -1,12 +1,11 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import duke.models.Task;
-
 
 
 /**
@@ -72,16 +71,11 @@ public class TaskList {
      * @return
      */
     public List<Task> findTask(String query) {
-        List<Task> result = new ArrayList<>();
-        Iterator<Task> iterator = this.tasks.iterator();
-        while (iterator.hasNext()) {
-            Task t = iterator.next();
-            System.out.println(t);
-            if (t.getDescription().contains(query)) {
-                result.add(t);
-            }
-        }
-        return result;
+        List<Task> resultList = tasks
+                                    .stream()
+                                    .filter(e -> e.getDescription().contains(query))
+                                    .collect(Collectors.toList());
+        return resultList;
     }
 
     /**
@@ -92,4 +86,12 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * Postpone the {@code Task} at the given index by one day
+     * @param index
+     */
+    public void postponeTask(int index) {
+        Task task = tasks.get(index - 1);
+        task.postponeTask();
+    }
 }

@@ -36,6 +36,10 @@ public class Todo extends Task {
         return this.getSymbol() + "|" + (super.isDone ? "1" : "0") + "|" + this.getDescription();
     }
 
+    public void postponeTask() {
+        // do nothing
+    }
+
     /**
      * Returns the string representation of the {@code Todo} object
      * @return string representation of the {@code Todo} object

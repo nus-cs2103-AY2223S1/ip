@@ -1,5 +1,7 @@
 package duke.models;
 
+import duke.Postponable;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -37,9 +39,19 @@ public class Deadline extends Task {
         return this.description;
     }
 
+    /**
+     * Returns the string representation of the {@code Deadline} object
+     * in a format that is convenient to save and load files
+     * @return String to write to file
+     */
     @Override
     public String stringToWrite() {
         return this.getSymbol() + " | " + (super.isDone ? "1" : "0") + " | " + this.getDescription() + " | " + this.by;
+    }
+
+    @Override
+    public void postponeTask() {
+        this.by = this.by.plusDays(1);
     }
 
     @Override

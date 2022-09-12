@@ -57,6 +57,8 @@ public abstract class Task {
      */
     public abstract String stringToWrite();
 
+    public abstract void postponeTask();
+
     /**
      * Returns the string representation of the {@code Task} object
      * @return

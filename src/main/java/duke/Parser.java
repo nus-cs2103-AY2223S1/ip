@@ -13,6 +13,7 @@ import duke.command.HelpCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.PostponeCommand;
 import duke.command.QuackCommand;
 import duke.command.UnmarkCommand;
 import duke.constants.Constants;
@@ -87,13 +88,15 @@ public class Parser {
             return new FindCommand(query);
         case Constants.QUACK_STRING:
             return new QuackCommand();
+        case Constants.POSTPONE:
+            int postponeIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
+            return new PostponeCommand(postponeIndex);
         case Constants.HELP_STRING:
             return new HelpCommand();
         case Constants.BYE_STRING:
             return new ByeCommand();
         default:
             return new InvalidCommand();
-
         }
     }
 }
