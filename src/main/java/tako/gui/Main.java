@@ -29,6 +29,7 @@ public class Main extends Application {
             MainWindow controller = fxmlLoader.getController();
             controller.setTako(tako);
             controller.showWelcome();
+            stage.setTitle("Tako");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
