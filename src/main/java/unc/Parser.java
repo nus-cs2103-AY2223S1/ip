@@ -40,26 +40,18 @@ public class Parser {
         switch (verb) {
         case LIST:
             return new ListCommand();
-        //break;
         case MARK:
             return new MarkCommand(Integer.parseInt(words[1]));
-        //break;
         case UNMARK:
             return new UnmarkCommand(Integer.parseInt(words[1]));
-        //break;
         case DELETE:
             return new DeleteCommand(Integer.parseInt(words[1]));
-        //break;
         case TODO:
             return new TodoCommand(words[1]);
-
-        //break;
         case DEADLINE:
             return new DeadlineCommand(words[1]);
-        //break;
         case EVENT:
             return new EventCommand(words[1]);
-        //break;
         case BYE:
             return new ExitCommand();
         case FIND:

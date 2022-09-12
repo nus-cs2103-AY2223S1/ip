@@ -31,8 +31,6 @@ public class Unc {
             }
             return c.execute(taskList, ui, storage);
         } catch (UncException e) {
-            //ui.showError(e.getMessage());
-        } finally {
         }
         return "Duke heard: " + input;
     }
