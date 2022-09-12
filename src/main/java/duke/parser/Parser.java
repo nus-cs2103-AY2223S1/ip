@@ -88,7 +88,6 @@ public class Parser {
             throw new DukeException("OOPS!!! The date of a deadline cannot be empty.\n");
         }
 
-
         try {
             LocalDateTime eventTiming = LocalDateTime.parse(deadlineInputs[1], Task.DATE_TIME_FORMATTER);
             return new DeadlineCommand(deadlineInputs[0], eventTiming);
@@ -119,21 +118,14 @@ public class Parser {
     }
 
     private static MarkCommand prepareMarkCommand(String[] inputs) throws DukeException {
-        if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("OOPS!!! The task index cannot be empty.\n");
-        }
-
-        try {
-            // Tasks are stored as 0-index but display as 1-index
-            // Minus 1 to get the correct task in the taskList
-            int taskIndex = Integer.parseInt(inputs[1]) - 1;
-            return new MarkCommand(taskIndex);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeException("OOPS!!! The task index specified is not valid.\n");
-        }
+        return (MarkCommand) UpdateTaskCompletionStatus(inputs, true);
     }
 
     private static UnmarkCommand prepareUnmarkCommand(String[] inputs) throws DukeException {
+        return (UnmarkCommand) UpdateTaskCompletionStatus(inputs, false);
+    }
+
+    private static Command UpdateTaskCompletionStatus(String[] inputs, boolean isDone) {
         if (inputs.length == 1 || inputs[1].equals("")) {
             throw new DukeException("OOPS!!! The task index cannot be empty.\n");
         }
@@ -142,7 +134,7 @@ public class Parser {
             // Tasks are stored as 0-index but display as 1-index
             // Minus 1 to get the correct task in the taskList
             int taskIndex = Integer.parseInt(inputs[1]) - 1;
-            return new UnmarkCommand(taskIndex);
+            return isDone ? new MarkCommand(taskIndex) : new UnmarkCommand(taskIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeException("OOPS!!! The task index specified is not valid.\n");
         }
