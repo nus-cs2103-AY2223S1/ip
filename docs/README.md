@@ -83,11 +83,12 @@ The task list now contains X task(s).
 ### `event` - Add event task
 
 Adds an event task with a description provided by the user, and a start time and an end time which must be in a [supported date/time format](#supported-date-and-time-formats).
+The start time of an event task cannot be after the end time.
 
 Format: `event DESCRIPTION /from START_TIME /to END_TIME`
 - DESCRIPTION is the description provided by the user
 - START_TIME is the corresponding start time of the event
-- END_TIME is the corresponding end time of the event
+- END_TIME is the corresponding end time of the event. This must be on or after START_TIME.
 
 Example of usage: `event CS2103T Week 6 Lecture /from 2022-09-16 16:00 /to 2022-09-16 17:59`
 

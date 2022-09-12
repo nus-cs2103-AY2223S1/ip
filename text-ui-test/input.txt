@@ -73,4 +73,7 @@ list
 remindme
 unmark 5
 remindme
+event task8 /from 2022-08-12 4:00PM /to 2022-08-12 3:00PM
+event task8 /from 2022-08-12 4:00PM /to 2021-08-12 5:00PM
+list
 bye

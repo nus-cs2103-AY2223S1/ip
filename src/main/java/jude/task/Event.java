@@ -5,6 +5,7 @@ import static jude.Parser.DEFAULT_DATE_FORMAT;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import jude.Parser;
 import jude.util.DateUtils;
 
 // The idea to add a start and end time for an Event is adapted from
@@ -24,11 +25,19 @@ public class Event extends Task {
      * @param isDone Whether the event is marked as done.
      * @param start The start time of the event.
      * @param end The end time of the event.
+     * @throws IllegalArgumentException If the start time is after the end time.
      */
     public Event(String description, boolean isDone, String start, String end) {
         super(description, isDone);
         this.start = start;
         this.end = end;
+
+        long duration = DateUtils.calculateTimeDifference(LocalDateTime.parse(start,
+                DateTimeFormatter.ofPattern(Parser.DEFAULT_DATE_FORMAT)),
+                LocalDateTime.parse(end, DateTimeFormatter.ofPattern(Parser.DEFAULT_DATE_FORMAT)));
+        if (duration < 0) {
+            throw new IllegalArgumentException("Start time cannot be after end time.");
+        }
     }
 
     /**
@@ -61,7 +70,8 @@ public class Event extends Task {
      * Task Type Code, i.e. "E" for {@code Event} objects
      * Description
      * 1 if the task is done, and 0 otherwise
-     * The time which the {@code Event} takes place
+     * The start time of the {@code Event}
+     * The end time of the {@code Event}
      *
      * @return The String representation of the {@code Event} object.
      */

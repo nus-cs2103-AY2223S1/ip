@@ -297,8 +297,11 @@ public class Parser {
 
         String startTime = convertToDate(startAndEndTime[0].strip());
         String endTime = convertToDate(startAndEndTime[1].strip());
-        Task taskAdded = new Event(description, false, startTime, endTime);
-        return taskAdded;
+        try {
+            return new Event(description, false, startTime, endTime);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalCommandException(ex.getMessage());
+        }
     }
 
     /**
