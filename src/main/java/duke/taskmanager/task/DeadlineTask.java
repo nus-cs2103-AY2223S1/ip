@@ -14,7 +14,6 @@ import duke.chatbot.commands.exceptions.InvalidDeadlineException;
 public class DeadlineTask extends Task {
     public static final String TASK_DELIMITER = "/by ";
     private static final String TASK_TYPE = "D";
-    private final String dateFormat;
     private LocalDateTime deadline;
 
     /**
@@ -24,87 +23,34 @@ public class DeadlineTask extends Task {
      *
      * @param taskName string of the name of the task
      * @param deadline string of the deadline of the task in the format of dateFormat
-     * @param dateFormat string of the accepted format of dates.
-     * @throws EmptyTaskException if taskName is empty
-     * @throws InvalidDeadlineException if the format of taskTime does not follow dateFormat
      */
-    public DeadlineTask(String taskName, String deadline, String dateFormat)
-            throws EmptyTaskException, InvalidDeadlineException {
+    public DeadlineTask(String taskName, LocalDateTime deadline) {
         super(TASK_TYPE, taskName);
-        this.dateFormat = dateFormat;
-        try {
-            this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(this.dateFormat));
-        } catch (DateTimeParseException exception) {
-            throw new InvalidDeadlineException(this.dateFormat);
-        }
+        this.deadline = deadline;
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**
      * Creates a new deadline task with information indicating the name of the task and
-     * the deadline of the task provided in the form of a date specified by the dateFormat.
+     * the deadline of the task provided.
      *
      * @param taskName string of the name of the task
-     * @param deadline string of the deadline of the task in the format of dateFormat
+     * @param deadline localDateTime of the deadline of the task
      * @param isCompleted boolean of the completion status of the task.
-     * @param dateFormat string of the accepted format of dates.
-     * @throws EmptyTaskException if taskName is empty
-     * @throws InvalidDeadlineException if the format of taskTime does not follow dateFormat
      */
-    public DeadlineTask(String taskName, String deadline, boolean isCompleted, String dateFormat)
-            throws EmptyTaskException, InvalidDeadlineException {
+    public DeadlineTask(String taskName, LocalDateTime deadline, boolean isCompleted) {
         super(TASK_TYPE, taskName, isCompleted);
-        this.dateFormat = dateFormat;
-        try {
-            this.deadline = LocalDateTime.parse(deadline);
-        } catch (DateTimeParseException exception) {
-            throw new InvalidDeadlineException(this.dateFormat);
-        }
+        this.deadline = deadline;
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**
-     * Sets the deadline of the task with the given string
+     * Returns the deadline of the task.
      *
-     * @param deadline string of the deadline
-     * @throws InvalidDeadlineException when date format is invalid
+     * @return localDateTime of the deadline of the task
      */
-    private void setDeadline(String deadline) throws InvalidDeadlineException {
-        try {
-            this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(this.dateFormat));
-        } catch (DateTimeParseException exception) {
-            throw new InvalidDeadlineException(this.dateFormat);
-        }
-    }
-
-    /**
-     * Updates the task with the given arguments
-     *
-     * @param arguments string of arguments to update the task
-     * @throws InvalidArgumentsException when the arguments given are empty or date format is invalid
-     */
-    @Override
-    public void update(String arguments) throws InvalidArgumentsException, InvalidDeadlineException {
-        if (arguments.length() <= 0) {
-            throw new InvalidArgumentsException();
-        }
-        String[] argumentList = arguments.split(TASK_DELIMITER);
-        if (argumentList.length <= 0) {
-            throw new InvalidArgumentsException();
-        }
-
-        if (arguments.startsWith(TASK_DELIMITER)) {
-            setDeadline(argumentList[1]);
-        } else {
-            if (argumentList.length == 1) {
-                setTaskName(argumentList[0]);
-            } else if (argumentList.length == 2) {
-                setTaskName(argumentList[0]);
-                setDeadline(argumentList[1]);
-            } else {
-                throw new InvalidArgumentsException();
-            }
-        }
+    private LocalDateTime getDeadline() {
+        return this.deadline;
     }
 
     /**
@@ -116,6 +62,16 @@ public class DeadlineTask extends Task {
     @Override
     public String getFormattedString(String attributeSeparator) {
         return super.getFormattedString(attributeSeparator) + attributeSeparator + this.deadline;
+    }
+
+    /**
+     * Updates the deadline task with the new task with updated task name and deadline.
+     *
+     * @param newTask the new task to update the current deadline task with
+     */
+    public void update(DeadlineTask newTask) {
+        super.update(newTask);
+        this.deadline = newTask.getDeadline();
     }
 
     /**

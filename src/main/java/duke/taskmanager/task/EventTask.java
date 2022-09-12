@@ -1,12 +1,6 @@
 package duke.taskmanager.task;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-import duke.chatbot.commands.exceptions.EmptyTaskException;
-import duke.chatbot.commands.exceptions.InvalidArgumentsException;
-import duke.chatbot.commands.exceptions.InvalidEventException;
 
 /**
  * Event Task is a Task with the additional event time information.
@@ -14,7 +8,6 @@ import duke.chatbot.commands.exceptions.InvalidEventException;
 public class EventTask extends Task {
     public static final String TASK_DELIMITER = "/at ";
     private static final String TASK_TYPE = "E";
-    private final String dateFormat;
     private LocalDateTime eventTime;
 
     /**
@@ -24,19 +17,10 @@ public class EventTask extends Task {
      *
      * @param taskName string of the name of the task
      * @param eventTime string of the event time of the task in the format of dateFormat
-     * @param dateFormat string of the accepted format of dates.
-     * @throws EmptyTaskException if taskName is empty
-     * @throws InvalidEventException if the format of taskTime does not follow dateFormat
      */
-    public EventTask(String taskName, String eventTime, String dateFormat)
-            throws EmptyTaskException, InvalidEventException {
+    public EventTask(String taskName, LocalDateTime eventTime) {
         super(TASK_TYPE, taskName);
-        this.dateFormat = dateFormat;
-        try {
-            this.eventTime = LocalDateTime.parse(eventTime, DateTimeFormatter.ofPattern(this.dateFormat));
-        } catch (DateTimeParseException exception) {
-            throw new InvalidEventException(this.dateFormat);
-        }
+        this.eventTime = eventTime;
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
@@ -47,64 +31,20 @@ public class EventTask extends Task {
      * @param taskName string of the name of the task
      * @param eventTime string of the event time of the task in the format of dateFormat
      * @param isCompleted boolean of the completion status of the task.
-     * @param dateFormat string of the accepted format of dates.
-     * @throws EmptyTaskException if taskName is empty
-     * @throws InvalidEventException if the format of taskTime does not follow dateFormat
      */
-    public EventTask(String taskName, String eventTime, boolean isCompleted, String dateFormat)
-            throws EmptyTaskException, InvalidEventException {
+    public EventTask(String taskName, LocalDateTime eventTime, boolean isCompleted) {
         super(TASK_TYPE, taskName, isCompleted);
-        this.dateFormat = dateFormat;
-        try {
-            this.eventTime = LocalDateTime.parse(eventTime);
-        } catch (DateTimeParseException exception) {
-            throw new InvalidEventException(this.dateFormat);
-        }
+        this.eventTime = eventTime;
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**
-     * Sets the event time of the task with the given string
+     * Returns the event time of the task.
      *
-     * @param eventTime string of the event time
-     * @throws InvalidEventException when date format is invalid
+     * @return localDateTime of the event time of the task
      */
-    private void setEventTime(String eventTime) throws InvalidEventException {
-        try {
-            this.eventTime = LocalDateTime.parse(eventTime, DateTimeFormatter.ofPattern(this.dateFormat));
-        } catch (DateTimeParseException exception) {
-            throw new InvalidEventException(this.dateFormat);
-        }
-    }
-
-    /**
-     * Updates the task with the given arguments
-     *
-     * @param arguments string of arguments to update the task
-     * @throws InvalidArgumentsException when the arguments given are empty or date format is invalid
-     */
-    @Override
-    public void update(String arguments) throws InvalidArgumentsException, InvalidEventException {
-        if (arguments.length() <= 0) {
-            throw new InvalidArgumentsException();
-        }
-        String[] argumentList = arguments.split(TASK_DELIMITER);
-        if (argumentList.length <= 0) {
-            throw new InvalidArgumentsException();
-        }
-
-        if (arguments.startsWith(TASK_DELIMITER)) {
-            setEventTime(argumentList[1]);
-        } else {
-            if (argumentList.length == 1) {
-                setTaskName(argumentList[0]);
-            } else if (argumentList.length == 2) {
-                setTaskName(argumentList[0]);
-                setEventTime(argumentList[1]);
-            } else {
-                throw new InvalidArgumentsException();
-            }
-        }
+    private LocalDateTime getEventTime() {
+        return getEventTime();
     }
 
     /**
@@ -116,6 +56,17 @@ public class EventTask extends Task {
     @Override
     public String getFormattedString(String attributeSeparator) {
         return super.getFormattedString(attributeSeparator) + attributeSeparator + this.eventTime;
+    }
+
+    /**
+     * Updates the event task with the new task with updated task name and event time.
+     *
+     * @param newTask the new task to update the current event task with
+     */
+    public void update(EventTask newTask) {
+
+        super.update(newTask);
+        this.eventTime = newTask.getEventTime();
     }
 
     /**

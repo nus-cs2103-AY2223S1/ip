@@ -2,8 +2,7 @@ package duke.chatbot;
 
 import java.util.Scanner;
 
-import duke.chatbot.commands.ByeCommandHandler;
-import duke.chatbot.commands.ListTaskCommandHandler;
+import duke.chatbot.commands.*;
 import duke.chatbot.commands.exceptions.EmptyCommandException;
 import duke.chatbot.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commands.exceptions.InvalidCommandException;
@@ -131,39 +130,13 @@ public class ChatBot {
                 response = new ListTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "todo":
-                String todoTaskName = "";
-                if (hasArguments) {
-                    todoTaskName = arguments;
-                }
-                response = taskManager.addTask(new ToDoTask(todoTaskName));
+                response = new TodoTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "deadline":
-                String deadlineTaskName = "";
-                String deadline = "";
-                if (hasArguments) {
-                    String[] argumentList = arguments.split(DeadlineTask.TASK_DELIMITER);
-                    if (argumentList.length < 2) {
-                        throw new InvalidArgumentsException();
-                    }
-                    deadlineTaskName = argumentList[0];
-                    deadline = argumentList[1];
-                }
-                response = taskManager.addTask(new DeadlineTask(deadlineTaskName, deadline,
-                        taskManager.getDateFormat()));
+                response = new DeadlineTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "event":
-                String eventTaskName = "";
-                String eventTime = "";
-                if (hasArguments) {
-                    String[] argumentList = arguments.split(EventTask.TASK_DELIMITER);
-                    if (argumentList.length < 2) {
-                        throw new InvalidArgumentsException();
-                    }
-                    eventTaskName = argumentList[0];
-                    eventTime = argumentList[1];
-                }
-                response = taskManager.addTask(new EventTask(eventTaskName, eventTime,
-                        taskManager.getDateFormat()));
+                response = new EventTaskCommandHandler(this.taskManager).execute(arguments);
                 break;
             case "mark":
                 response = taskManager.markTask(parseNumber(arguments));
@@ -181,15 +154,7 @@ public class ChatBot {
                 response = taskManager.findTask(arguments);
                 break;
             case "update":
-                if (!hasArguments) {
-                    throw new InvalidArgumentsException();
-                }
-
-                String[] argumentList = arguments.split(TaskManager.UPDATE_DELIMITER);
-                if (argumentList.length < 2) {
-                    throw new InvalidArgumentsException();
-                }
-                response = taskManager.updateTask(parseNumber(argumentList[0]), argumentList[1]);
+                response = "";
                 break;
             default:
                 throw new InvalidCommandException();

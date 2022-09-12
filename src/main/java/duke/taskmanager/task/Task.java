@@ -1,7 +1,5 @@
 package duke.taskmanager.task;
 
-import duke.chatbot.commands.exceptions.EmptyTaskException;
-
 /**
  * Task is am abstract class to be inherited by other types of tasks.
  */
@@ -17,15 +15,11 @@ public abstract class Task {
      *
      * @param taskType string of the type of task
      * @param taskName string of the name of the task
-     * @throws EmptyTaskException if taskName is empty
      */
-    Task(String taskType, String taskName) throws EmptyTaskException {
+    Task(String taskType, String taskName) {
         this.taskType = taskType;
         this.taskName = taskName;
         this.isCompleted = false;
-        if (taskName.equals("")) {
-            throw new EmptyTaskException();
-        }
     }
 
     /**
@@ -35,15 +29,11 @@ public abstract class Task {
      * @param taskType string of the type of task
      * @param taskName string of the name of the task
      * @param isCompleted boolean of the completion status of the task.
-     * @throws EmptyTaskException if taskName is empty
      */
-    Task(String taskType, String taskName, boolean isCompleted) throws EmptyTaskException {
+    Task(String taskType, String taskName, boolean isCompleted) {
         this.taskType = taskType;
         this.taskName = taskName;
         this.isCompleted = isCompleted;
-        if (taskName.equals("")) {
-            throw new EmptyTaskException();
-        }
     }
 
     public String getTaskType() {
@@ -70,7 +60,15 @@ public abstract class Task {
         this.isCompleted = false;
     }
 
-    public abstract void update(String arguments) throws Exception;
+    /**
+     * Updates the task with the new task with updated attributes
+     *
+     * @param newTask the new task to update the current task with
+     */
+    public void update(Task newTask) {
+        this.taskName = newTask.getTaskName();
+        this.isCompleted = newTask.isCompleted();
+    };
 
     /**
      * Formats the details of the task into a format that can be read and written by

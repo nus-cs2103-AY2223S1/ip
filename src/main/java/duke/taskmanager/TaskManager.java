@@ -2,6 +2,9 @@ package duke.taskmanager;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -65,14 +68,23 @@ public class TaskManager {
         case "T":
             return new ToDoTask(taskName, isCompleted);
         case "D":
-            String deadline = arguments[3];
-            return new DeadlineTask(taskName, deadline, isCompleted, DATE_FORMAT);
+            try {
+                LocalDateTime deadline = LocalDateTime.parse(arguments[3], DateTimeFormatter.ofPattern(DATE_FORMAT));
+                return new DeadlineTask(taskName, deadline, isCompleted);
+            } catch (DateTimeParseException exception) {
+                throw new InvalidDeadlineException(DATE_FORMAT);
+            }
         case "E":
-            String eventTime = arguments[3];
-            return new EventTask(taskName, eventTime, isCompleted, DATE_FORMAT);
+            try {
+                LocalDateTime eventTime = LocalDateTime.parse(arguments[3], DateTimeFormatter.ofPattern(DATE_FORMAT));
+                return new EventTask(taskName, eventTime, isCompleted);
+            } catch (DateTimeParseException exception) {
+                throw new InvalidEventException(DATE_FORMAT);
+            }
         default:
             return new EmptyTask();
         }
+
     }
 
     /**
@@ -89,15 +101,14 @@ public class TaskManager {
     }
 
     /**
-     * Adds a new task to the current task list. Responds with a message indicating the
-     * addition of the new task.
+     * Adds a new task to the current task list. Responds with the name of the new task added.
      *
      * @param task task to be added to the task list
-     * @return response message indicating the addition of the new task
+     * @return name of the new task added
      */
     public String addTask(Task task) {
         this.taskList.add(task);
-        return ("> Added: " + task.getTaskName() + "\n");
+        return task.getTaskName();
     }
 
     /**
@@ -183,16 +194,16 @@ public class TaskManager {
     }
 
     /**
-     * Updates a task according to item number and the arguments provided.
+     * Updates a task according to item number and a new task with updated attributes.
      *
      * @param itemNumber index of the task to be updated
-     * @param arguments string of the arguments to update the task with
+     * @param newTask new task with updated attributes
      * @return a response message indicating that the task has been updated
      */
-    public String updateTask(int itemNumber, String arguments) throws Exception {
+    public String updateTask(int itemNumber, Task newTask) {
         StringBuilder stringBuilder = new StringBuilder();
         if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
-            this.taskList.get(itemNumber - 1).update(arguments);
+            this.taskList.get(itemNumber - 1).update(newTask);
             stringBuilder.append("The following item has been updated.\n");
             stringBuilder.append(itemNumber).append(") ")
                     .append(this.taskList.get(itemNumber - 1).toString()).append("\n");

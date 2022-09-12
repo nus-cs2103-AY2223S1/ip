@@ -1,6 +1,5 @@
 package duke.taskmanager.task;
 
-import duke.chatbot.commands.exceptions.EmptyTaskException;
 import duke.chatbot.commands.exceptions.InvalidArgumentsException;
 
 /**
@@ -14,11 +13,10 @@ public class ToDoTask extends Task {
      * Default completion status of the task is false.
      *
      * @param taskName string of the name of the task
-     * @throws EmptyTaskException if taskName is empty
      */
-    public ToDoTask(String taskName) throws EmptyTaskException {
+    public ToDoTask(String taskName) {
         super(TASK_TYPE, taskName);
-        assert !(super.getTaskName().equals("")) : "Task should not be empty";
+        assert super.getTaskName().length() != 0 : "Task should not be empty";
     }
 
     /**
@@ -26,24 +24,18 @@ public class ToDoTask extends Task {
      *
      * @param taskName string of the name of the task
      * @param isCompleted boolean of the completion status of the task.
-     * @throws EmptyTaskException if taskName is empty
      */
-    public ToDoTask(String taskName, boolean isCompleted) throws EmptyTaskException {
+    public ToDoTask(String taskName, boolean isCompleted) {
         super(TASK_TYPE, taskName, isCompleted);
-        assert !(super.getTaskName().equals("")) : "Task should not be empty";
+        assert super.getTaskName().length() != 0 : "Task should not be empty";
     }
 
     /**
-     * Updates the task with the given arguments
+     * Updates the to do task with the new task with updated task name.
      *
-     * @param arguments string of arguments to update the task
-     * @throws InvalidArgumentsException when the arguments given are empty
+     * @param newTask the new task to update the current to do task with
      */
-    @Override
-    public void update(String arguments) throws InvalidArgumentsException {
-        if (arguments.length() <= 0) {
-            throw new InvalidArgumentsException();
-        }
-        super.setTaskName(arguments);
+    public void update(ToDoTask newTask) {
+        super.update(newTask);
     }
 }
