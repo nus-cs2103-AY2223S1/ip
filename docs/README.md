@@ -1,29 +1,175 @@
 # User Guide
 
+> "Your mind is for having ideas, not holding them." - David Allen ([source](https://dansilvestre.com/productivity-quotes))
+
+Duke is a desktop app for managing your tasks, optimized for use via a command
+line interface (CLI). Duke frees your mind of having to remember things you need to do. It's,
+* text-based
+* easy to learn
+* ~~FAST~~ _SUPER_ FAST to use
+
 ## Features 
 
-### Feature-ABC
+### Listing all tasks: `list`
 
-Description of the feature.
+Lists all tasks currently stored in Duke task manager.
 
-### Feature-XYZ
+Format: `list`
 
-Description of the feature.
+### Greeting the user: `hello`
 
-## Usage
+Displays Duke's greeting to greet the user.
 
-### `Keyword` - Describe action
+Format: `hello`
 
-Describe the action and its outcome.
+### Exiting the application: `bye`
 
-Example of usage: 
+Exits the program and saves the user's tasks to memory.
 
-`keyword (optional arguments)`
+Format `bye`
 
-Expected outcome:
+### Marking a task as complete: `mark`
 
-Description of the outcome.
+Marks the specified task in Duke task manager as completed.
 
-```
-expected output
-```
+Format: `mark INDEX`
+
+* Marks the task specified by the `INDEX` as completed.
+* The index refers to the index number of the task as displayed in the task list.
+* The index **must be a positive integer 1, 2, 3,...**
+
+Examples:
+
+* `list` followed by `mark 1` marks the task at index 1 as done.
+
+### Un-marking a task as incomplete: `unmark`
+
+Un-marks the specified task in Duke task manager as not completed.
+
+Format: `unmark INDEX`
+
+* Un-marks the task specified by the `INDEX` as not completed.
+* The index refers to the index number of the task as displayed in the task list.
+* The index **must be a positive integer 1, 2, 3,...**
+
+Examples:
+
+* `list` followed by `unmark 1` marks the task at index 1 as not done.
+
+### Deleting a task: `delete`
+
+Delete the specified task in Duke task manager.
+
+Format: `delete INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number of the task as displayed in the task list.
+* The index **must be a positive integer 1, 2, 3,...**
+
+Examples:
+
+* `list` followed by `delete 1` deletes the task at index 1.
+
+### Locating a task by keywords: `find`
+
+Finds tasks that have descriptions that contain a keyword.
+
+Format: `find KEYWORD`
+
+* Search is case-sensitive. e.g. `BOOK` will not match `book`.
+* Only the description of a task is searched.
+* Partial words are searched as well. e.g. `boo` with match `book`.
+* Will return all tasks that contain the specified keyword.
+
+Examples:
+
+* `find book` returns all tasks that contain the keyword `book` as part of
+the description of the task.
+
+### Reminders for time-sensitive tasks: `remind`
+
+Finds the time until the start of all `event` and `deadline` tasks for
+reminder purposes.
+
+Format: `remind TASK_TYPE`
+
+* The `TASK_TYPE` is either `deadline` or `event` tasks only. Note
+that the task type can be specified case insensitively.
+* Returns the time until the `deadline` or the time until
+the start of the `event` task in hours (h).
+
+Examples:
+
+* `remind deadline` finds all the deadlines tasks in the current
+task list and returns all of them to the user, along with the
+time until the `deadline`.
+* `remind event` finds all the event tasks in the current task list
+and returns all of them to the user, along with the time until to
+start of the `event`.
+
+### Adding a todo task: `todo`
+
+Adds a todo task to the Duke task manager.
+
+Format: `todo DESCRIPTION`
+
+* The `DESCRIPTION` is any sentence describing the task and 
+includes the spaces used.
+
+Examples:
+
+* `todo read book` adds the `todo` task `read book` to the Duke task
+manager.
+
+### Adding a deadline task: `deadline`
+
+Adds a deadline task to the Duke task manager.
+
+Format: `deadline DESCRIPTION /BY`
+
+* The `DESCRIPTION` is any sentence describing the task and
+includes the spaces used.
+* The `BY` time specifies the deadline, it is a time. e.g. 2022-09-23 16:00.
+* The `BY` time must be in the format `yyyy-MM-dd HH:mm`.
+
+Examples:
+
+* `deadline return book /2022-08-23 18:00` adds the `deadline` task
+`return book` to the Duke task manager and it sets the time by which
+to complete the task, i.e. the deadline, to be `2022-08-23 18:00`.
+
+### Adding an event task: `event`
+
+Adds an event task to the Duke task manager.
+
+Format: `event DESCRIPTION /START /END`
+
+* The `DESCRIPTION` is any sentence describing the task and 
+includes the spaces used.
+* The `START` time specifies the start of the event.
+The `END` time specifies the end of the event. Both are
+times. e.g. `2022-08-23 18:00`.
+* The `START` and `END` times must be in the format `yyyy-MM-dd HH:mm`.
+
+
+Examples:
+
+* `event library event /2022-08-23 18:00 /2022-08-23 19:00` adds
+the `event` task `library event` to the Duke task manager. It sets
+the start time to `2022-08-23 18:00` and the end time to `2022-08-23 19:00`.
+
+## Command Summary
+
+| **Command**   | **Format, Examples**                                                                              |
+|---------------|---------------------------------------------------------------------------------------------------|
+| **List**      | `list`                                                                                            |
+| **Hello**     | `hello`                                                                                           |
+| **Exit**      | `bye`                                                                                             |
+| **Mark**      | `mark INDEX`, e.g. `mark 1`                                                                       |
+| **Un-mark**   | `unmark INDEX`, e.g. `unmark 1`                                                                   |
+| **Delete**    | `delete INDEX`, e.g. `delete 1`                                                                   |
+| **Find**      | `find KEYWORD`, e.g. `find book`                                                                  |
+| **Reminder**  | `remind TASK_TYPE`, e.g. `remind deadline`                                                        |
+| **Todo**      | `todo DESCRIPTION`, e.g. `todo read book`                                                         |
+| **Deadline**  | `deadline DESCRIPTION /BY`, e.g. `deadline return book /2022-08-23 18:00`                         |
+| **Event**     | `event DESCRIPTION /START /END`, e.g. `event library event /2022-08-23 18:00 /2022-08-23 19:00`   |
