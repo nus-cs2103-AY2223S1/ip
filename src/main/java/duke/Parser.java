@@ -61,8 +61,9 @@ public class Parser {
             toPrint = Responses.BYE_MESSAGE;
             break;
         case LIST:
-            toPrint = (("Here are the tasks in your list:"
-                    + taskList.getTextRepresentationOfAllTasks()));
+            String tasks = taskList.getTextRepresentationOfAllTasks();
+            toPrint = tasks.length() > 0 ? "Here are the tasks in your list:"
+                    + tasks : "No existing tasks found :(";
             break;
         case MARK:
             if (commands.length == 1) {
@@ -119,6 +120,7 @@ public class Parser {
         if (commandsLen == 1) {
             throw new CustomMessageException((generateEmptyDescMessage(taskCommand.getString())));
         }
+        assert commandsLen > 1 : "There should be minimally 1 arguments to a new task";
         if (taskCommand == Command.TODO) {
             taskList.addToTaskList(new ToDo(command.substring(5).strip(), duke.Command.TODO));
         } else if (taskCommand == Command.EVENT || taskCommand == Command.DEADLINE) {
