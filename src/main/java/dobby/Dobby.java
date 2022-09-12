@@ -83,11 +83,11 @@ public class Dobby {
     }
 
     /**
-     * Gets the help message.
+     * Gets the list of commands.
      */
-    public String getHelp() {
+    public String getCommands() {
         outputStream.reset();
-        DobbyChat.getHelp();
+        DobbyChat.getCommands();
         return outputStream.toString(StandardCharsets.UTF_8);
     }
 }

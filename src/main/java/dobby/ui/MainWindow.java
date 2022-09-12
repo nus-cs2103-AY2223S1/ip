@@ -74,8 +74,8 @@ public class MainWindow extends AnchorPane {
      * Prints the help message containing list of commands Dobby can understand.
      */
     @FXML
-    private void printHelp() {
-        String response = dobby.getHelp();
+    private void printCommands() {
+        String response = dobby.getCommands();
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(response, dobbyImage)
         );

@@ -38,7 +38,7 @@ public class DobbyChat {
         printChat("Byebye. Dobby will miss you!");
     }
 
-    public static void getHelp() {
+    public static void getCommands() {
         printChat("Here are some commands Dobby understands:\n"
                 + "\t1. todo [task name]\n"
                 + "\t2. deadline [task name] /by [YYYY-MM-DD HHMM]\n"
