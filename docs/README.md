@@ -113,7 +113,7 @@ Deletes a given task from the task list.
 
 Alternate command: `del`
 
-Format: `del [TASK_NUMBER]`
+Format: `delete [TASK_NUMBER]`
 
 Examples:
 
