@@ -1,11 +1,11 @@
-package Duke;
+package duke;
 
-import Duke.command.Command;
-import Duke.exception.DukeException;
-import Duke.tasklist.TaskList;
-import Duke.utility.Parser;
-import Duke.utility.Storage;
-import Duke.utility.Ui;
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.tasklist.TaskList;
+import duke.utility.Parser;
+import duke.utility.Storage;
+import duke.utility.Ui;
 
 
 import javafx.application.Platform;

@@ -1,9 +1,10 @@
-package Duke.command;
+package duke.command;
 
-import Duke.command.Command;
-import Duke.tasklist.TaskList;
-import Duke.utility.Storage;
-import Duke.utility.Ui;
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.tasklist.TaskList;
+import duke.utility.Storage;
+import duke.utility.Ui;
 
 /**
  * Represents command for Unmark keyword
@@ -28,9 +29,15 @@ public class UnmarkCommand extends Command {
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         //create new task here
-        String message = tasks.unmark(index - 1);
-        String output = ui.unmark(message);
-        storage.update(tasks.getTasks());
-        return output;
+        try {
+            String message = tasks.unmark(index - 1);
+            String output = ui.unmark(message);
+            storage.update(tasks.getTasks());
+            return output;
+        } catch (DukeException e) {
+            String output = ui.showLoadingError(e.getMessage());
+            return output;
+        }
+
     }
 }

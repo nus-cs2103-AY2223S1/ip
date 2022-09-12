@@ -1,8 +1,8 @@
-package Duke.command;
+package duke.command;
 
-import Duke.tasklist.TaskList;
-import Duke.utility.Storage;
-import Duke.utility.Ui;
+import duke.tasklist.TaskList;
+import duke.utility.Storage;
+import duke.utility.Ui;
 
 /**
  * Represents all different types of command

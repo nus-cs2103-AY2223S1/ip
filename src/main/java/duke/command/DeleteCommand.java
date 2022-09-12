@@ -1,10 +1,10 @@
-package Duke.command;
+package duke.command;
 
-import Duke.command.Command;
-import Duke.exception.DukeException;
-import Duke.tasklist.TaskList;
-import Duke.utility.Storage;
-import Duke.utility.Ui;
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.tasklist.TaskList;
+import duke.utility.Storage;
+import duke.utility.Ui;
 
 /**
  * Represents command for delete keyword

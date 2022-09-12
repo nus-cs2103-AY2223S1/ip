@@ -1,13 +1,13 @@
-package Duke.command;
+package duke.command;
 import java.time.LocalDateTime;
 
-import Duke.command.Command;
-import Duke.task.Deadline;
-import Duke.task.Event;
-import Duke.task.Task;
-import Duke.tasklist.TaskList;
-import Duke.utility.Storage;
-import Duke.utility.Ui;
+import duke.command.Command;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.tasklist.TaskList;
+import duke.utility.Storage;
+import duke.utility.Ui;
 
 /**
  * Represents command for TimeTask keyword

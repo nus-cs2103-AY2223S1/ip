@@ -1,4 +1,4 @@
-package Duke.utility;
+package duke.utility;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import Duke.task.Deadline;
-import Duke.task.Event;
-import Duke.task.Task;
-import Duke.task.Todo;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Represents class for storing

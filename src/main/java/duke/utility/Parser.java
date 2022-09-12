@@ -1,18 +1,18 @@
-package Duke.utility;
+package duke.utility;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import Duke.command.ByeCommand;
-import Duke.command.Command;
-import Duke.command.DeleteCommand;
-import Duke.command.ListCommand;
-import Duke.command.MarkCommand;
-import Duke.command.TimeTaskCommand;
-import Duke.command.TodoCommand;
-import Duke.command.UnmarkCommand;
-import Duke.command.FindCommand;
-import Duke.exception.DukeException;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TimeTaskCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
+import duke.command.FindCommand;
+import duke.exception.DukeException;
 
 /**
  * Represents parser for duke

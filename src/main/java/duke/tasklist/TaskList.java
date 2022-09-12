@@ -1,9 +1,9 @@
-package Duke.tasklist;
+package duke.tasklist;
 import java.util.ArrayList;
 import java.util.List;
 
-import Duke.exception.DukeException;
-import Duke.task.Task;
+import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
  * Represents a lists of Tasks
@@ -86,6 +86,9 @@ public class TaskList {
         if (tasks.size() == 0) {
             throw new DukeException("empty taskslist");
         }
+        if (index < 0 || index >= tasks.size()) {
+            throw new DukeException("invalid command delete");
+        }
         Task currTask = tasks.remove(index);
         String output = String.format("%s\n", currTask);
         return output;
@@ -99,7 +102,10 @@ public class TaskList {
      * @param index position of task in which we want to mark
      * @return string output of what task is marked in the list
      */
-    public String mark(int index) {
+    public String mark(int index) throws DukeException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DukeException("invalid command mark");
+        }
         Task currTask = tasks.get(index);
         currTask.mark();
         String message = String.format("%s\n", currTask);
@@ -113,7 +119,10 @@ public class TaskList {
      * @param index position of task in which we want to unmark
      * @return string output of what task is unmarked in the list
      */
-    public String unmark(int index) {
+    public String unmark(int index) throws DukeException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DukeException("invalid command unmark");
+        }
         Task currTask = tasks.get(index);
         currTask.unmark();
         String message = String.format("%s\n", currTask);

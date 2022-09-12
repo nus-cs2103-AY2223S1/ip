@@ -1,10 +1,10 @@
-package Duke.command;
-import Duke.command.Command;
-import Duke.task.Task;
-import Duke.tasklist.TaskList;
-import Duke.task.Todo;
-import Duke.utility.Storage;
-import Duke.utility.Ui;
+package duke.command;
+import duke.command.Command;
+import duke.task.Task;
+import duke.tasklist.TaskList;
+import duke.task.Todo;
+import duke.utility.Storage;
+import duke.utility.Ui;
 
 /**
  * Represents command for Todo keyword
