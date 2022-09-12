@@ -1,4 +1,2 @@
-1.[T][ ] task
-2.[T][ ] make cookie
-3.[T][ ] hi
-4.[T][ ] hi
+1.[T][X] hi
+2.[T][ ] hi
