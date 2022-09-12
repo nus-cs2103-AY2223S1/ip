@@ -30,6 +30,7 @@ public class Parser {
     private static final String TODO_REGEX = "(?<desc>.+)";
     private static final String DEADLINE_REGEX = "(?<desc>.+)/by(?<date>.+)";
     private static final String EVENT_REGEX = "(?<desc>.+)/at(?<date>.+)";
+    private static final String NUMBER_REGEX = "[0-9]+";
 
     /**
      * Makes sense of the commands provided by the user
@@ -69,8 +70,7 @@ public class Parser {
 
     /**
      * Checks if the date provided is valid
-     * @param date
-     * @throws DukeException If the date's is not valid
+     * @param date The task's date
      */
     public static boolean isDateValid(String date) {
         try {
@@ -94,7 +94,7 @@ public class Parser {
     }
 
     private static MarkCommand prepareMark(String args) throws DukeException {
-        if (!args.matches("[0-9]+")) {
+        if (!args.matches(Parser.NUMBER_REGEX)) {
             throw new DukeException(Parser.INVALID_INPUT);
         }
 
@@ -102,7 +102,7 @@ public class Parser {
     }
 
     private static UnmarkCommand prepareUnmark(String args) throws DukeException {
-        if (!args.matches("[0-9]+")) {
+        if (!args.matches(Parser.NUMBER_REGEX)) {
             throw new DukeException(Parser.INVALID_INPUT);
         }
 
@@ -154,7 +154,7 @@ public class Parser {
     }
 
     private static DeleteCommand prepareDelete(String args) throws DukeException {
-        if (!args.matches("[0-9]+")) {
+        if (!args.matches(Parser.NUMBER_REGEX)) {
             throw new DukeException(Parser.INVALID_INPUT);
         }
 
