@@ -80,7 +80,8 @@ public class Parser {
      * @return LocalDate object
      */
     public static LocalDate convertStringToDate(String stringDate) {
-        return LocalDate.parse(stringDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        return LocalDate.parse(stringDate, formatter);
     }
 
     /**
