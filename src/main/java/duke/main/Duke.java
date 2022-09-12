@@ -6,7 +6,6 @@ import duke.DialogueBox;
 import duke.parser.Parser;
 import duke.save.Storage;
 import duke.TaskList;
-import duke.ui.Ui;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
