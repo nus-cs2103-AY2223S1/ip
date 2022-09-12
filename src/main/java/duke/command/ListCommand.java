@@ -22,7 +22,6 @@ public class ListCommand extends Command {
             i = i + 1;
             response = response + i + ". " + task + "\n";
         }
-
         return Ui.showPrintListMessage() + response;
     }
 

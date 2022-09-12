@@ -61,7 +61,7 @@ public class Ui {
 
     /** Print the message when a task is marked. */
     public static String unMarkTaskMessage(Task task) {
-        return "OK, I've marked this task as not done yet:\n" + task;
+        return "OK, I've marked this task as not done:\n" + task;
     }
 
     /** Print the message when a date command is called. */

@@ -9,6 +9,6 @@ public class EmptyDateException extends DukeException {
      * Constructor for empty description exception.
      */
     public EmptyDateException() {
-        super("☹ OOPS!!! The date cannot be empty.");
+        super("\nThe date cannot be empty.");
     }
 }

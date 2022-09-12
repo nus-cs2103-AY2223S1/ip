@@ -9,6 +9,6 @@ public class InvalidInputException extends DukeException {
      * Constructor for invalid input exception.
      */
     public InvalidInputException() {
-        super("OOPS!!! I'm sorry, but I don't know what that means :-(");
+        super("\nPlease enter a valid command.");
     }
 }
