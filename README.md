@@ -35,13 +35,13 @@ Examples:
 ### Adding an Event : `event`
 Adds an todo task into the tasklist.
 
-Format:  `event priority description /at date time-time`
+Format:  `event priority description /on date time-time`
 
 Note: priority is optional, default priority is set to low.
 
 Examples:
-- `event low club meeting /at 2019-12-10 16:30-20:30`
-- `event club meeting /at 2019-12-10 16:30-20:30`
+- `event low club meeting /on 2019-12-10 16:30-20:30`
+- `event club meeting /on 2019-12-10 16:30-20:30`
 
 ***
 
