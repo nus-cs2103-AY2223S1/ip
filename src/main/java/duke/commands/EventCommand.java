@@ -1,6 +1,5 @@
 package duke.commands;
 
-import duke.storage.Storage;
 import duke.task.Event;
 import duke.task.TaskList;
 
@@ -26,13 +25,11 @@ public class EventCommand extends Command {
      * Create new event task and store it in the task list. Finally, save the task list in storage.
      *
      * @param taskList Task list that stores new event task.
-     * @param storage File to be saved to.
      */
-    public void execute(TaskList taskList, Storage storage) {
+    public String execute(TaskList taskList) {
         Event eventTask = new Event(eventDescription, eventAt);
         taskList.add(eventTask);
-        System.out.println("Got it. I've added this task:\n" + eventTask
-                + "\nNow you have " + taskList.getSize() + " tasks in the list.");
-        storage.save(taskList);
+        return String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in your list.",
+                eventTask, taskList.getSize());
     }
 }

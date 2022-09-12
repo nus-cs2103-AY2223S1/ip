@@ -1,6 +1,5 @@
 package duke.commands;
 
-import duke.storage.Storage;
 import duke.task.TaskList;
 
 public abstract class Command {
@@ -10,9 +9,9 @@ public abstract class Command {
         return isExit;
     }
 
-    protected void setIsExitToTrue() {
+    void setIsExitToTrue() {
         isExit = true;
     }
 
-    public abstract void execute(TaskList taskList, Storage storage);
+    public abstract String execute(TaskList taskList);
 }

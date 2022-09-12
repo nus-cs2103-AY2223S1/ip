@@ -4,24 +4,29 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    protected LocalDate by;
+    private final LocalDate eventBy;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String eventBy) {
         super(description);
-        this.by = LocalDate.parse(by);
+        this.eventBy = LocalDate.parse(eventBy);
     }
 
-    @Override
-    public String convertToFileFormat() {
-        return String.format("deadline | %s | %s | %b", super.description, by, super.isDone);
+    public Deadline(String description, String eventBy, boolean isDone) {
+        super(description, isDone);
+        this.eventBy = LocalDate.parse(eventBy);
     }
 
     /**
-     * Returns string representation of this task.
-     * @return String representation of this task.
+     * {@inheritDoc}
      */
     @Override
+    public String convertToFileFormat() {
+        return String.format("deadline | %s | %s | %b", super.description, eventBy, super.isDone);
+    }
+
+    @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+        return String.format("[D]%s (by: %s)", super.toString(),
+                eventBy.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
     }
 }

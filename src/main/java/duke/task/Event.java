@@ -1,24 +1,28 @@
 package duke.task;
 
 public class Event extends Task {
-    protected String at;
+    private final String eventAt;
 
-    public Event(String description, String at) {
+    public Event(String description, String eventAt) {
         super(description);
-        this.at = at;
+        this.eventAt = eventAt;
     }
 
-    @Override
-    public String convertToFileFormat() {
-        return String.format("event | %s | %s | %b", super.description, at, super.isDone);
+    public Event(String description, String eventAt, boolean isDone) {
+        super(description, isDone);
+        this.eventAt = eventAt;
     }
 
     /**
-     * Returns string representation of this task.
-     * @return String representation of this task.
+     * {@inheritDoc}
      */
     @Override
+    public String convertToFileFormat() {
+        return String.format("event | %s | %s | %b", super.description, eventAt, super.isDone);
+    }
+
+    @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), at);
+        return String.format("[E]%s (at: %s)", super.toString(), eventAt);
     }
 }
