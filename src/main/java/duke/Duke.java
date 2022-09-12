@@ -1,7 +1,6 @@
 package duke;
 
 import duke.exception.DukeException;
-import duke.ui.Launcher;
 
 /**
  * Duke is the main class of the program to save and keep track of ur task in a text file.
