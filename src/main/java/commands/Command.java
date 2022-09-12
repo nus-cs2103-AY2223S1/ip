@@ -22,7 +22,7 @@ public abstract class Command {
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException;
 
     /**
-     * Add a task to the task list.
+     * Adds a task to the task list.
      * @param task Specifies the task to be added to the task list.
      * @param tasks TaskList containing all the tasks currently available.
      * @param ui Specifies how the program interacts with the user.
@@ -36,7 +36,7 @@ public abstract class Command {
     }
 
     /**
-     * Save the task list into the local txt file.
+     * Saves the task list into the local txt file.
      * @param storage Stores and retrieves data from a local .txt file.
      * @param tasks TaskList containing all the tasks currently available.
      */

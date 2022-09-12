@@ -30,7 +30,7 @@ public class Parser {
     private static final String SORT_CMD = "sort";
 
     /**
-     * Parse the command and calls the correct classes
+     * Parses the command and calls the correct classes
      * to give the appropriate output.
      * @param fullCommand Full command given by the user.
      * @param ui Specifies how the program interacts with the user.
