@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private static String filePath = "/Users/shamustan/Desktop/ip/src/main/resources/data/scruffles.txt";
+    private static String filePath = "scruffles.txt";
 
     public Storage() {}
 
@@ -25,35 +25,39 @@ public class Storage {
      * @throws FileNotFoundException when there is no file found at the filepath
      * @returns the TaskList that was saved in the file
      */
-    public static ArrayList<Task> load() throws FileNotFoundException {
-        File newFile = new File(filePath);
-        Scanner scan = new Scanner(newFile);
-        ArrayList<Task> result = new ArrayList<>();
+    public static TaskList load() {
+        try {
+            File newFile = new File(filePath);
+            Scanner scan = new Scanner(newFile);
+            ArrayList<Task> result = new ArrayList<>();
 
-        while (scan.hasNext()) {
-            String taskString = scan.nextLine();
-            String[] inputs = taskString.split(" / ");
-            Task task = new Task("");
-            boolean isDone = inputs[1].equals("X");
+            while (scan.hasNext()) {
+                String taskString = scan.nextLine();
+                String[] inputs = taskString.split(" / ");
+                Task task = new Task("");
+                boolean isDone = inputs[1].equals("X");
 
-            switch (inputs[0]) {
-            case "T":
-                task = new Todo(inputs[2], isDone);
-                break;
-            case "D":
-                task = new Deadline(inputs[2], LocalDate.parse(inputs[3]), isDone);
-                break;
-            case "E":
-                task = new Event(inputs[2], LocalDate.parse(inputs[3]), LocalTime.parse(inputs[4]),
+                switch (inputs[0]) {
+                case "T":
+                    task = new Todo(inputs[2], isDone);
+                    break;
+                case "D":
+                    task = new Deadline(inputs[2], LocalDate.parse(inputs[3]), isDone);
+                    break;
+                case "E":
+                    task = new Event(inputs[2], LocalDate.parse(inputs[3]), LocalTime.parse(inputs[4]),
                             LocalTime.parse(inputs[5]), isDone);
-                break;
-            default:
-                continue;
-            }
+                    break;
+                default:
+                    continue;
+                }
 
-            result.add(task);
+                result.add(task);
+            }
+            return new TaskList(result);
+        } catch (FileNotFoundException e) {
+            return new TaskList();
         }
-        return result;
     }
 
     /**
@@ -63,7 +67,7 @@ public class Storage {
         try {
             File newFile = new File(filePath);
             newFile.createNewFile();
-            FileWriter fileWriter = new FileWriter(filePath, true);
+            FileWriter fileWriter = new FileWriter(filePath, false);
             fileWriter.write(tasks.saveToFile());
             fileWriter.close();
         } catch (IOException e) {

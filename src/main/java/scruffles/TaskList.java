@@ -17,6 +17,11 @@ public class TaskList {
         this.taskCount = 0;
     }
 
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+        this.taskCount = tasks.size();
+    }
+
     /**
      * Used to convert the current TaskList into a string format that can be easily read by the program after saving
      *
@@ -40,7 +45,7 @@ public class TaskList {
                 textInput = "E / " + isDone + task.taskName + " / " + ((Event) task).at + " / "
                         + ((Event) task).startTime + " / " + ((Event) task).endTime + "\n";
             }
-            output.concat(textInput);
+            output += textInput;
         }
         return output;
     }

@@ -7,7 +7,11 @@ package scruffles;
  */
 public class Parser {
 
-    private TaskList tasks = new TaskList();
+    private TaskList tasks;
+
+    public Parser() {
+        tasks = Storage.load();
+    }
 
     /**
      * The method of the parser that's used to parse inputs the program receives
