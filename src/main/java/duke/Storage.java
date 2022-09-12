@@ -81,20 +81,20 @@ public class Storage {
             File file = new File(FILEPATH);
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             for (Task task : tasks) {
+                String appendToEnd = task.getStatus() ? "1|" : "0|" + task.getDescription();
                 if (task instanceof ToDo) {
                     writer.write("T|");
-                    writer.write(task.getStatus() ? "1|" : "0|");
-                    writer.write(task.getDescription());
+                    writer.append(appendToEnd);
                 } else if (task instanceof Deadline) {
                     writer.write("D|");
-                    writer.write(task.getStatus() ? "1|" : "0|");
-                    writer.write(task.getDescription() + "|");
-                    writer.write(((Deadline) task).getBy().format(DATE_TIME_FORMATTER));
+                    writer.append(appendToEnd);
+                    writer.append("|").append(((Deadline) task).getBy().format(DATE_TIME_FORMATTER));
                 } else if (task instanceof Event) {
                     writer.write("E|");
-                    writer.write(task.getStatus() ? "1|" : "0|");
-                    writer.write(task.getDescription() + "|");
-                    writer.write(((Event) task).getDuration().format(DATE_TIME_FORMATTER));
+                    writer.append(appendToEnd);
+                    writer.append("|").append(((Event) task).getDuration().format(DATE_TIME_FORMATTER));
+                } else {
+                    System.out.println("SoCCat cannot recognise the type of this task and will not save it into disk.");
                 }
                 writer.write("\n");
             }
