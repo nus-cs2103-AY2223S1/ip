@@ -22,7 +22,10 @@ Features:
 
 ---
 
-If you Java programmer, you can use it to practice Java too. Here's the main method:
+If you Java programmer, you can use it to practice Java too. 
+> "Java language itself for any programming language is so precise that you can say something in a small one or two statements. But if you try to explain that in English it takes a lot more."
+> 
+Here's the main method:
 ```java
 public class Main {
     public static void main(String[] args) {
