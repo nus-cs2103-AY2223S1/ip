@@ -21,7 +21,7 @@ public abstract class Command {
     /**
      * Represents whether commands can still be made.
      */
-    protected boolean ongoing;
+    protected boolean isOngoing;
 
     /**
      * Represents the type of commands the class understands.
@@ -42,7 +42,7 @@ public abstract class Command {
      * Represents the constructor method for Command class.
      */
     private Command() {
-        this.ongoing = true;
+        this.isOngoing = true;
     }
 
     /**
@@ -55,76 +55,99 @@ public abstract class Command {
         String[] splitResponse = s.split(" ");
         String keyword = splitResponse[0];
         if (splitResponse.length == 1) {
-            if (keyword.equals("todo") || keyword.equals("deadline") || keyword.equals("event")
-                    || keyword.equals("delete") || keyword.equals("mark") || keyword.equals("unmark")
-                    || keyword.equals("find")) {
-                throw new DukeException(keyword);
-            } else if (keyword.equals("list")) {
-                return new ListCommand();
-            } else if (keyword.equals("bye")) {
-                return new ExitCommand();
-            } else if (keyword.equals("reminders")) {
-                return new RemindCommand();
-            } else {
-                throw new DukeException("unknown");
-            }
+            return handleSingleWordCommand(keyword);
         } else {
-            switch (keyword) {
-            case "todo":
-                return new AddCommand(Task.TaskType.TODO, s.substring(5), null);
-            case "deadline": {
-                try {
-                    String[] tempSplit = s.substring(9).split(" /by ");
-                    if (tempSplit.length == 1) {
-                        throw new DukeException("deadline format");
-                    } else {
-                        return new AddCommand(Task.TaskType.DEADLINE, tempSplit[0], LocalDate.parse(tempSplit[1]));
-                    }
-                } catch (DateTimeParseException e) {
+            return handleMultiWordCommand(keyword, s);
+        }
+    }
+
+    /**
+     * Constructs command when given a one-word response.
+     * @param keyword command given by user
+     * @return Command
+     * @throws DukeException should there be no valid command
+     */
+    public static Command handleSingleWordCommand(String keyword) throws DukeException {
+        switch (keyword) {
+        case "deadline":
+        case "event":
+        case "delete":
+        case "mark":
+        case "unmark":
+        case "find":
+            throw new DukeException(keyword);
+        case "list":
+            return new ListCommand();
+        case "bye":
+            return new ExitCommand();
+        case "reminders":
+            return new RemindCommand();
+        default:
+            throw new DukeException("unknown");
+        }
+    }
+
+    /**
+     * Constructs Command object when given a multi-word response.
+     * @param keyword first word given by user
+     * @param s full command given by user
+     * @return Command
+     * @throws DukeException should there be no valid command
+     */
+    public static Command handleMultiWordCommand(String keyword, String s) throws DukeException {
+        switch (keyword) {
+        case "todo":
+            return new AddCommand(Task.TaskType.TODO, s.substring(5), null);
+        case "deadline": {
+            try {
+                String[] tempSplit = s.substring(9).split(" /by ");
+                if (tempSplit.length == 1) {
                     throw new DukeException("deadline format");
+                } else {
+                    return new AddCommand(Task.TaskType.DEADLINE, tempSplit[0], LocalDate.parse(tempSplit[1]));
                 }
+            } catch (DateTimeParseException e) {
+                throw new DukeException("deadline format");
             }
-            case "event": {
-                try {
-                    String[] tempSplit = s.substring(6).split(" /at ");
-                    if (tempSplit.length == 1) {
-                        throw new DukeException("event format");
-                    } else {
-                        return new AddCommand(Task.TaskType.EVENT, tempSplit[0], LocalDate.parse(tempSplit[1]));
-                    }
-                } catch (DateTimeParseException e) {
+        }
+        case "event": {
+            try {
+                String[] tempSplit = s.substring(6).split(" /at ");
+                if (tempSplit.length == 1) {
                     throw new DukeException("event format");
+                } else {
+                    return new AddCommand(Task.TaskType.EVENT, tempSplit[0], LocalDate.parse(tempSplit[1]));
                 }
+            } catch (DateTimeParseException e) {
+                throw new DukeException("event format");
             }
-            case "delete":
-                try {
-                    int location = Integer.parseInt(s.substring(7)) - 1;
-                    return new DeleteCommand(location);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("non integer input when deleting");
-                }
-
-
-            case "mark":
-                try {
-                    int location = Integer.parseInt(s.substring(5)) - 1;
-                    return new MarkCommand(true, location);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("non integer input when marking");
-                }
-            case "unmark":
-                try {
-                    int location = Integer.parseInt(s.substring(7)) - 1;
-                    return new MarkCommand(false, location);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("non integer input when marking");
-                }
-            case "find":
-                String substring = s.substring(5);
-                return new FindCommand(substring);
-            default:
-                throw new DukeException("unknown");
+        }
+        case "delete":
+            try {
+                int location = Integer.parseInt(s.substring(7)) - 1;
+                return new DeleteCommand(location);
+            } catch (NumberFormatException e) {
+                throw new DukeException("non integer input when deleting");
             }
+        case "mark":
+            try {
+                int location = Integer.parseInt(s.substring(5)) - 1;
+                return new MarkCommand(true, location);
+            } catch (NumberFormatException e) {
+                throw new DukeException("non integer input when marking");
+            }
+        case "unmark":
+            try {
+                int location = Integer.parseInt(s.substring(7)) - 1;
+                return new MarkCommand(false, location);
+            } catch (NumberFormatException e) {
+                throw new DukeException("non integer input when marking");
+            }
+        case "find":
+            String substring = s.substring(5);
+            return new FindCommand(substring);
+        default:
+            throw new DukeException("unknown");
         }
     }
 
@@ -246,7 +269,7 @@ public abstract class Command {
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
-            this.ongoing = false;
+            this.isOngoing = false;
             String message = tasks.craftTextMessageForFile();
             storage.editStorage(message);
             return ui.sayBye();
@@ -393,10 +416,10 @@ public abstract class Command {
     public abstract String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException, IOException;
 
     /**
-     * Checks if one can still give more commands
+     * Checks if one can still give more commands.
      * @return boolean
      */
     public boolean isExit() {
-        return !ongoing;
+        return !isOngoing;
     }
 }

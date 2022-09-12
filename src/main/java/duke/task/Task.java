@@ -20,15 +20,15 @@ public abstract class Task {
     }
 
     /**
-     * Represents whether the task is completed.
+     * Represents whether the task is Completed.
      */
-    private boolean completed;
+    private boolean isCompleted;
 
     /**
      * Constructor for Task.
      */
     private Task() {
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     /**
@@ -57,28 +57,28 @@ public abstract class Task {
      * @return String representation of status
      */
     public String checkBox() {
-        return this.completed ? "[X]" : "[ ]";
+        return this.isCompleted ? "[X]" : "[ ]";
     }
 
     /**
      * Makes the status of a task complete.
      */
     public void markComplete() {
-        this.completed = true;
+        this.isCompleted = true;
     }
 
     /**
      * Makes the status of a task incomplete.
      */
     public void markIncomplete() {
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     /**
      * Checks if a task is completed.
      */
     public boolean checkIfCompleted() {
-        return this.completed;
+        return this.isCompleted;
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class Task {
      * @return String representation of status
      */
     public String completionStatusForFile() {
-        return this.completed ? "1" : "0";
+        return this.isCompleted ? "1" : "0";
     }
 
     /**

@@ -100,22 +100,26 @@ public class Ui {
         if (values.length >= 2) {
             message = values[1];
         }
-        if (keyword == Command.ActionKeywords.DEADLINE || keyword == Command.ActionKeywords.TODO
-                || keyword == Command.ActionKeywords.EVENT) {
+        switch (keyword) {
+        case DEADLINE:
+        case TODO:
+        case EVENT: {
             String msg = formatMessage("Got it. I've added this task:\n"
                     + INDENTATION + EXTRA_INDENTATION + task + "\n"
                     + INDENTATION + "Now you have " + numOfTasks
                     + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.ActionKeywords.DELETE) {
+        }
+        case DELETE: {
             String msg = formatMessage("Noted. I've removed the task:\n"
                     + INDENTATION + EXTRA_INDENTATION + task + "\n"
                     + INDENTATION + "Now you have " + numOfTasks
                     + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.ActionKeywords.LIST) {
+        }
+        case LIST: {
             String msg;
             if (message.equals("")) {
                 msg = formatMessage("There are currently no tasks in your list");
@@ -125,17 +129,20 @@ public class Ui {
             }
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.ActionKeywords.MARK) {
+        }
+        case MARK: {
             String msg = formatMessage("Nice! I've marked this task as done:\n"
                     + INDENTATION + EXTRA_INDENTATION + task);
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.ActionKeywords.UNMARK) {
+        }
+        case UNMARK: {
             String msg = formatMessage("OK, I've marked this task as not done yet:\n"
                     + INDENTATION + EXTRA_INDENTATION + task);
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.ActionKeywords.FIND) {
+        }
+        case FIND: {
             String msg;
             if (message.equals("")) {
                 msg = formatMessage("Sorry, there are no matching tasks in your list");
@@ -145,7 +152,8 @@ public class Ui {
             }
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.ActionKeywords.REMIND) {
+        }
+        case REMIND: {
             String msg;
             if (message.equals("")) {
                 msg = formatMessage("You have no uncompleted deadline tasks!");
@@ -155,7 +163,8 @@ public class Ui {
             }
             System.out.println(msg);
             return msg;
-        } else {
+        }
+        default:
             return null;
         }
     }
