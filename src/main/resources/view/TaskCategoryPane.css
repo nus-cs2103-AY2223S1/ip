@@ -1,25 +1,12 @@
-
-
 /* We try to use a OOCSS methodology here */
 /* Color scheme from: https://colorswall.com/palette/38872*/
-.hoverableText:hover {
-    -fx-text-fill: blue;
-}
 
-.hoverableLabel:hover {
-    -fx-background-color: lightgray;
-}
-
-.label-skin {
-    -fx-font-family: Helvetica;
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-
-}
-
-.label {
+/* Scene background */
+.root {
     -fx-background-color: white;
 }
+
+/* Panes */
 
 .pane {
     -fx-border-color: darkgray;
@@ -42,8 +29,24 @@
     -fx-background-color: lightgray;
 }
 
-.toolbar {
-    -fx-background-color: linear-gradient(to bottom right, #004999, #0055b3)
+/* Label Formatting */
+.label {
+    -fx-background-color: white;
+}
+
+.label-skin {
+    -fx-font-family: Helvetica;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+
+}
+
+.hoverableText:hover {
+    -fx-text-fill: blue;
+}
+
+.hoverableLabel:hover {
+    -fx-background-color: lightgray;
 }
 
 .selectedFill {
@@ -54,11 +57,12 @@
     -fx-background-color:#308df2;
 }
 
-/* Scene background */
-.root {
-    -fx-background-color: white;
+/* Toolbar */
+.toolbar {
+    -fx-background-color: linear-gradient(to bottom right, #004999, #0055b3)
 }
 
+/* Command Bar */
 .commandField {
     -fx-border-radius: 0px;
     -fx-border-width: 0px;
@@ -68,6 +72,4 @@
 .commandField:focused {
     -fx-background-insets: 0, 0;
     -fx-background-radius: 0px;
-    /* -fx-border-radius: 0px;
-    -fx-border-width: 0px; */
 }
