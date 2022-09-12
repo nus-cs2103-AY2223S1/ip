@@ -175,11 +175,11 @@ public class TaskList {
 
     public String findTask(String name) {
         StringBuilder ret = new StringBuilder();
-        ret.append("Here are the matching tasks in your list:");
+        ret.append("Here are the matching tasks in your list: \n ");
         for (int i = 0; i < taskList.size(); i++) {
             Task task = taskList.get(i);
             if (task.getTaskName().contains(name)) {
-                ret.append(i).append(". ").append(task);
+                ret.append(i).append(". ").append(task).append("\n");
             }
         }
         return ret.toString();

@@ -1,3 +1,3 @@
-todo|0|task1
-deadline|1|return book|by 2/12/2019
-event|1|event|at 2/12/2022
+todo|1|homework
+todo|0|homework1
+todo|0|homework 2
