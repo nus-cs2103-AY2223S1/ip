@@ -23,7 +23,7 @@ public class Event extends Task {
     /**
      * Encodes the event into a decodable and readable string representation for storage.
      *
-     * @return The encoded string representation of an event for storage
+     * @return The encoded string representation of an event for storage.
      */
     @Override
     public String encode() {
