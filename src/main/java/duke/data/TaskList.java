@@ -7,8 +7,6 @@ import java.util.function.Predicate;
 
 import duke.data.tasks.Task;
 
-import duke.data.tasks.Task;
-
 public class TaskList implements Serializable {
 
     private static final long serialVersionUID = 1L;

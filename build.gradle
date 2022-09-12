@@ -32,10 +32,6 @@ checkstyle {
     toolVersion = '10.2'
 }
 
-checkstyle {
-    toolVersion = '10.2'
-}
-
 application {
     mainClassName = "duke.Launcher"
 }
