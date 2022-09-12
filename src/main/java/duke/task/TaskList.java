@@ -20,62 +20,61 @@ public class TaskList {
         tasks = new ArrayList<>();
     }
 
-    public ArrayList<Task> addTask(String input)
+    public String addTask(String input)
             throws TaskNotFoundException, ContentNotFoundException, DateNotFoundException, DateTimeParseException {
         TaskParser taskParser = new TaskParser(input);
         String taskInfo = taskParser.getTaskInfo();
+        String response = "";
 
         switch (taskParser.getCommand()) {
         case TODO:
             ToDo todo = ToDo.of(taskInfo, "UI");
             tasks.add(todo);
-            Ui.addTaskToast(TaskParser.TASKS.TODO, todo, tasks.size());
+            response = Ui.addTaskToast(TaskParser.Tasks.TODO, todo, tasks.size());
             break;
         case DEADLINE:
             Deadline deadline = Deadline.of(taskInfo, "UI");
             tasks.add(deadline);
-            Ui.addTaskToast(TaskParser.TASKS.DEADLINE, deadline, tasks.size());
+            response = Ui.addTaskToast(TaskParser.Tasks.DEADLINE, deadline, tasks.size());
             break;
         case EVENT:
             Event event = Event.of(taskInfo, "UI");
             tasks.add(event);
-            Ui.addTaskToast(TaskParser.TASKS.EVENT, event, tasks.size());
+            response = Ui.addTaskToast(TaskParser.Tasks.EVENT, event, tasks.size());
             break;
         default:
             throw new TaskNotFoundException(
                     "Command not found: " + taskParser.getCommand());
         }
-        return tasks;
+        return response;
     }
 
     public TaskList loadTask(String[] details) {
         try {
-            if (details[0].trim().contentEquals("T")) {
-                if (details.length > 1) {
-                    ToDo todo = ToDo.of(details[1], "FILE");
-                    tasks.add(todo);
-
-                    Ui.loadTaskToast(todo, tasks.size());
-                }
-            } else if (details[0].trim().contentEquals("D")) {
-                if (details.length > 1) {
-                    Deadline deadline = Deadline.of(details[1], "FILE");
-                    tasks.add(deadline);
-
-                    Ui.loadTaskToast(deadline, tasks.size());
-                }
-            } else if (details[0].trim().contentEquals("E")) {
-                if (details.length > 1) {
-                    Event event = Event.of(details[1], "FILE");
-                    tasks.add(event);
-
-                    Ui.loadTaskToast(event, tasks.size());
-                }
-            }
+            loadLogic(details);
         } catch (DateNotFoundException e) {
-            Ui.noDateExceptionToast(e);
+            System.out.println(Ui.noDateExceptionToast(e));
         } finally {
             return this;
+        }
+    }
+
+    private void loadLogic(String[] details) throws DateNotFoundException {
+        if (details.length <= 1) {
+            return;
+        }
+        if (details[0].trim().contentEquals("T")) {
+            ToDo todo = ToDo.of(details[1], "FILE");
+            tasks.add(todo);
+            System.out.println(Ui.loadTaskToast(todo, tasks.size()));
+        } else if (details[0].trim().contentEquals("D")) {
+            Deadline deadline = Deadline.of(details[1], "FILE");
+            tasks.add(deadline);
+            System.out.println(Ui.loadTaskToast(deadline, tasks.size()));
+        } else if (details[0].trim().contentEquals("E")) {
+            Event event = Event.of(details[1], "FILE");
+            tasks.add(event);
+            System.out.println(Ui.loadTaskToast(event, tasks.size()));
         }
     }
 
@@ -89,9 +88,9 @@ public class TaskList {
         return tasks.size();
     }
 
-    public void list() {
+    public String list() {
 
-        Ui.printList(tasks);
+        return Ui.printList(tasks);
     }
 
     public Task markTask(Integer n) {
@@ -108,7 +107,6 @@ public class TaskList {
 
     public Task deleteTask(Integer n) {
         Task deletedTask = tasks.remove(n.intValue() - 1);
-        Ui.deleteTaskToast(deletedTask, tasks.size());
         return deletedTask;
     }
 
