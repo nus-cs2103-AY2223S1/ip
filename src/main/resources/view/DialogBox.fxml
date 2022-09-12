@@ -8,7 +8,7 @@
 
 <!--@@author Eugene Tan-reused-->
 <!--Reused with minor modifications from https://github.com/felissaf/ip-->
-<fx:root alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #9900e6 ; -fx-label-padding: 8; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-insets: 5; -fx-background-insets: 5;" text="Label" textFill="WHITE" wrapText="true">
          <font>
