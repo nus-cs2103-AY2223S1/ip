@@ -3,16 +3,16 @@
 This product is a desktop app for managing tasks mainly through the use of a Command Line Interface (CLI). This application supports the adding and tracking of various types of tasks.
 
 ## Features 
-- [`help` - Viewing help](https://github.com/NicholasTYD/ip/blob/master/docs/README.md#help---viewing-help)
-- `bye` - Exit the program
-- `list` - List stored tasks 
-- `todo` - Add a "Todo" task
-- `deadline`- Add a "Deadline" task 
-- `event` - Add an "Event" task
-- `mark`- Mark a task as complete
-- `unmark` - Mark a task as incomplete
-- `delete` - Delete a task
-- `find` - Search for a given task
+- [`help` - Viewing help](#help---viewing-help)
+- [`bye` - Exit the program](d#bye---exit-the-program)
+- [`list` - List stored tasks](#list---list-stored-tasks)
+- [`todo` - Add a "Todo" task](#todo---add-a-todo-task)
+- [`deadline`- Add a "Deadline" task](#deadline---add-a-deadline-task)
+- [`event` - Add an "Event" task](#event---add-an-event-task)
+- [`mark`- Mark a task as complete](https://github.com/NicholasTYD/ip/blob/master/docs/README.md#mark--mark-a-task-as-complete)
+- [`unmark` - Mark a task as incomplete](#unmark---mark-a-task-as-incomplete)
+- [`delete` - Delete a task](#delete---delete-a-task)
+- [`find` - Search for a given task](#find---search-for-a-given-task)
 
 ### Feature - Case insensitive keywords
 
