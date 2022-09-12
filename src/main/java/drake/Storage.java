@@ -39,7 +39,7 @@ public class Storage {
      *
      * @return A list of Tasks present in the task file.
      */
-    public List<Task> fileToList() {
+    public List<Task> fileToList() throws UnknownCommandException {
         ArrayList<Task> list = new ArrayList<>();
         Scanner fileReader;
         try {
@@ -71,6 +71,8 @@ public class Storage {
                 }
                 list.add(event);
                 break;
+            default:
+                throw new UnknownCommandException();
             }
         }
         return list;
