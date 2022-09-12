@@ -1,5 +1,8 @@
 package sally.task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Deadline class to represent new Deadline task
  *
@@ -8,22 +11,41 @@ package sally.task;
 
 public class Deadline extends Task {
     protected String moreInfo;
+    protected LocalDate byDate;
 
     /**
      * Constructor for Deadline class
      *
      * @param description description of Deadline task
-     * @param moreInfo due date for Deadline task
-     * @param saveTask indicates if the task should be saved to file
+     * @param moreInfo due date for Deadline task in String
      */
-    public Deadline(String description, String moreInfo, boolean saveTask) {
-        super(description, moreInfo, saveTask);
+    public Deadline(String description, String moreInfo) {
+        super(description);
         this.moreInfo = moreInfo;
-        this.taskType = Type.DEADLINE;
+    }
+
+    /**
+     * Constructor for Deadline class, specific to LocalDateTime dates
+     *
+     * @param description description of Deadline task
+     * @param byDate due date for Deadline task in LocalDateTime
+     */
+    public Deadline(String description, LocalDate byDate) {
+        super(description);
+        this.byDate = byDate;
+    }
+
+    public String getOutput() {
+        return String.format("D | %d | %s | %s", isDone ? 1 : 0, description, (byDate == null) ? moreInfo : byDate);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.moreInfo + ")";
+        if (byDate != null) {
+            return "[D]" + super.toString() + " (by: " + byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        } else {
+            return "[D]" + super.toString() + " (by: " + moreInfo + ")";
+        }
+
     }
 }

@@ -2,8 +2,14 @@ package sally.ui;
 
 import sally.task.TaskList;
 
-
+import java.util.ArrayList;
 import java.util.Scanner;
+
+/**
+ * Ui class where all ui is handled.
+ *
+ * @author liviamil
+ */
 
 public class Ui {
     protected String BORDER ="-------------------------------------------------------------------------------------";
@@ -37,8 +43,6 @@ public class Ui {
     }
 
     public void showList(TaskList tasks) {
-        System.out.println("enters showList in sally.ui.Ui");
-        System.out.println("numoftasks: " + tasks.getNumOfTasks());
         if (tasks.getNumOfTasks() == 0) {
             printWithBorder("You don't have any list right now");
         } else {
@@ -66,18 +70,19 @@ public class Ui {
         printWithBorder("You have previously done: \n" + marked);
     }
 
-    public void showAddedTask(String task, int totalTasks) {
-        String message = (totalTasks == 1)
+    public void showAddedTask(TaskList tasks) {
+        int taskNum = tasks.getNumOfTasks();
+        String message = (taskNum == 1)
             ? "Now you have 1 task in your list."
-            : "Now you have " + totalTasks + " tasks in your list.";
-        printWithBorder("Got it. I've added this task:\n" + task + "\nto your list! " + message);
+            : "Now you have " + taskNum + " tasks in your list.";
+        printWithBorder("Got it. I've added this task:\n" + tasks.getTask(taskNum - 1).toString() + "\nto your list! " + message);
     }
 
     public void showGoodbye() {
         printWithBorder("Ok, until next time!");
     }
 
-    public void showError() {
-        System.out.println("Sorry, an error has occurred. Please try again :)");
+    public void showError(String error) {
+        printWithBorder(error);
     }
 }

@@ -1,19 +1,20 @@
 package sally.parser;
 
-import sally.command.AddCommand;
+import sally.command.AddDeadlineCommand;
+import sally.command.AddEventCommand;
+import sally.command.AddTodoCommand;
 import sally.command.ByeCommand;
 import sally.command.Command;
 import sally.command.DeleteCommand;
+import sally.command.ListCommand;
 import sally.command.MarkCommand;
 import sally.command.UnmarkCommand;
 import sally.exception.SallyException;
-import sally.storage.Storage;
-import sally.task.*;
-import sally.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Parser class to parse inputs into commands.
@@ -22,31 +23,23 @@ import java.time.format.DateTimeParseException;
  */
 
 public class Parser {
-    private Storage storage;
-    private static TaskList tasks;
-    private static Ui ui;
 
-    public Parser(Storage storage, Ui ui, TaskList tasks) {
-        this.storage = storage;
-        this.ui = ui;
-        this.tasks = tasks;
-    }
-
+    /**
+     * Returns command according to the parsed string.
+     *
+     * @param command user input
+     * @return Command to be executed
+     * @throws SallyException when illegal input is encountered
+     */
     public static Command parseCommand(String command) throws SallyException {
         // Bye
         if (command.equals("bye")) {
-            new ByeCommand();
+            return new ByeCommand();
         }
 
         // List
         else if (command.startsWith("list")) {
-            System.out.println("enters list");
-            System.out.println("tasks: " + tasks);
-            if (tasks == null) {
-                System.out.println("You currently have no list :(");
-            } else {
-                ui.showList(tasks);
-            }
+            return new ListCommand();
         }
 
         // Delete
@@ -62,55 +55,43 @@ public class Parser {
         // Unmark
         else if (command.startsWith("unmark")) {
             int taskNum = Integer.parseInt(command.substring(7)) - 1; // -1 so that index is constant
-            if (taskNum >= 0 && taskNum < tasks.getNumOfTasks()) {
-                return new UnmarkCommand(taskNum);
-            } else {
-                throw new SallyException.SallyTaskNotFoundException();
-            }
+            checkUnmarkValidity(taskNum);
+            return new UnmarkCommand(taskNum);
         }
 
         // Mark
         else if (command.startsWith("mark")) {
             int taskNum = Integer.parseInt(command.substring(5)) - 1; // -1 so that index is constant
-            if (taskNum >= 0 && taskNum < tasks.getNumOfTasks()) {
-                return new MarkCommand(taskNum);
-            } else {
-                throw new SallyException.SallyTaskNotFoundException();
-            }
+            checkMarkValidity(taskNum);
+            return new MarkCommand(taskNum);
         }
 
         // sally.task.Task Commands
         else {
             // ToDos
             if (command.startsWith("todo")) {
-                if (command.length() > 4) {
-                    String description = command.substring(5);
-                    Task task = new ToDo(description, true);
-                    return new AddCommand(task);
-                } else {
-                    throw new SallyException.SallyNoDescriptionException();
-                }
+                String todo = command.replace("todo ", "");
+                checkTodoValidity(todo);
+                assert !todo.isEmpty();
+                return new AddTodoCommand(todo);
             }
 
             // Deadlines
             else if (command.startsWith("deadline")) {
-                String description, by;
-                if (command.length() <= 8) {
-                    throw new SallyException.SallyInvalidInputException();
-                } else if (command.contains("/by ")) {
-                    description = command.substring(9, command.indexOf("/by") - 1);
-                    by = command.substring(command.indexOf("/by") + 4);
-                    LocalDate localDate;
+                String description = command.substring(9, command.indexOf("/by") - 1);
+                String by = command.substring(command.indexOf("/by") + 4);
+                if (isDate(by)) {
+                    LocalDate byDate;
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
                     try {
-                        localDate = LocalDate.parse(by);
-                        by = localDate.format(DateTimeFormatter.ofPattern("MMM dd yyy"));
+                        byDate = LocalDate.parse(by, formatter);
                     } catch (DateTimeParseException e) {
-                        System.out.println("Oops! Date has to be in the format of yyyy-mm-dd");
+                        throw new SallyException(e.getMessage());
                     }
-                    Task task = new Deadline(description, by,true);
-                    return new AddCommand(task);
+                    assert isDate(by);
+                    return new AddDeadlineCommand(description, byDate);
                 } else {
-                    throw new SallyException.SallyNoDeadlineException();
+                    return new AddDeadlineCommand(description, by);
                 }
             }
 
@@ -122,8 +103,7 @@ public class Parser {
                 } else if (command.contains("/at ")) {
                     description = command.substring(6, command.indexOf("/at") - 1);
                     at = command.substring(command.indexOf("/at") + 4);
-                    Task task = new Event(description, at, true);
-                    return new AddCommand(task);
+                    return new AddEventCommand(description, at);
                 } else {
                     throw new SallyException.SallyNoPlaceException();
                 }
@@ -134,7 +114,56 @@ public class Parser {
                 throw new SallyException.SallyInvalidInputException();
             }
         }
+    }
 
-        return new ByeCommand(); // Perlu diganti
+    /**
+     * Validates whether task is available to unmark
+     *
+     * @param taskNum task index to be unmarked
+     * @throws SallyException when invalid input is encountered
+     */
+    public static void checkUnmarkValidity(int taskNum) throws SallyException {
+        if (taskNum < 1) {
+            throw new SallyException.SallyTaskNotFoundException();
+        }
+    }
+
+    /**
+     * Validates whether task is available to mark
+     *
+     * @param taskNum task index to be marked
+     * @throws SallyException when invalid input is encountered
+     */
+    public static void checkMarkValidity(int taskNum) throws SallyException {
+        if (taskNum < 1) {
+            throw new SallyException.SallyTaskNotFoundException();
+        }
+    }
+
+    /**
+     * Validates whether task is a valid todo command
+     *
+     * @param todo command string of todo description
+     * @throws SallyException when invalid input is encountered
+     */
+    public static void checkTodoValidity(String todo) throws SallyException {
+        if (todo.isEmpty()) {
+            throw new SallyException.SallyNoDescriptionException();
+        }
+    }
+
+    /**
+     * Returns true if deadline entered is date, returns false otherwise.
+     *
+     * @param by deadline parsed in
+     * @return true if deadline parsed is valid date.
+     */
+    protected static boolean isDate(String by) {
+        // Expected input date format: dd-mmm-yyyy
+        String[] splitBy = by.split("-");
+        if (splitBy.length != 3) {
+            return false;
+        }
+        return true;
     }
 }

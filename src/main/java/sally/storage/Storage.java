@@ -1,148 +1,111 @@
 package sally.storage;
 
 import sally.exception.SallyException;
-import sally.task.*;
-import sally.storage.Storage;
-import sally.ui.Ui;
+import sally.task.Deadline;
+import sally.task.Event;
+import sally.task.Task;
+import sally.task.TaskList;
+import sally.task.ToDo;
 
+import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
- * Storage class to store tasks into tasklist, reads tasks from files, and saves tasks to files.
+ * Storage class to store tasks into task list, reads tasks from files, and saves tasks to files.
  *
  * @author liviamil
  */
 
 public class Storage {
-    protected static final String FILEPATH = System.getProperty("user.home") + "/Sally/Sally.txt";
-    protected File file;
-    protected TaskList tasks;
+    private final String filePath;
 
-    public Storage(String filePath) throws SallyException {
+    /**
+     * Constructor for Storage class
+     *
+     * @param filePath Path to file for storage.
+     */
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
+
+    /**
+     * Loads tasks from storage
+     *
+     * @return inputs in the form of List of String.
+     */
+    public ArrayList<Task> load() throws SallyException {
+        ArrayList<Task> tasks = new ArrayList<>();
+
         try {
-            File parentDir = new File(FILEPATH).getParentFile();
-
-            if (!parentDir.exists()) {
-                parentDir.mkdir();
-            }
-
-            file = new File(FILEPATH);
-
+            File file = new File(filePath);
             if (!file.exists()) {
-                file.createNewFile();
+                return tasks;
             }
 
-            Paths.get(FILEPATH);
-        } catch (IOException e) {
-            throw new SallyException("Oops! There's some trouble in creating your new file. Please try again.");
-        }
-    }
-
-    public void readsFile(TaskList tasks) throws SallyException {
-        this.tasks = tasks;
-        try {
             Scanner sc = new Scanner(file);
+
             while (sc.hasNext()) {
-                String commands = sc.nextLine(); //scans the next input of file for command
-                String[] arrOfCommands = commands.split("\\|");
+                String input = sc.nextLine();
+                String[] splitInput = input.split(" \\| ");
 
-                //Variables to create new sally.task.Task
-                String taskTypeString = arrOfCommands[0].trim();
-                String isDoneString = arrOfCommands[1].trim();
-                String taskName = arrOfCommands[2].trim();
-                String moreInfo = ""; //by for sally.task.Deadline, at for sally.task.Event
+                switch (splitInput[0]) {
+                    case "T":
+                        ToDo todo = new ToDo(splitInput[2]);
+                        if (Integer.parseInt(splitInput[1]) == 1) {
+                            todo.markAsDone();
+                        }
+                        tasks.add(todo);
+                        break;
 
-                if (taskTypeString.equals("E") || taskTypeString.equals("D")) {
-                    moreInfo = moreInfo + arrOfCommands[3].trim();
-                }
+                    case "D":
+                        Deadline deadline = new Deadline(splitInput[2], splitInput[3]);
+                        if (Integer.parseInt(splitInput[1]) == 1) {
+                            deadline.markAsDone();
+                        }
+                        tasks.add(deadline);
+                        break;
 
-                if (taskTypeString.equals("T")) {
-                    Task todo = new ToDo(taskName, false);
-                    tasks.addTask(todo);
-                } else if (taskTypeString.equals("D")) {
-                    Task deadline = new Deadline(taskName, moreInfo, false);
-                    tasks.addTask(deadline);
-                } else if (taskTypeString.equals("E")) {
-                    Task event = new Event(taskName, moreInfo, false);
-                    tasks.addTask(event);
-                }
+                    case "E":
+                        Event event = new Event(splitInput[2], splitInput[3]);
+                        if (Integer.parseInt(splitInput[1]) == 1) {
+                            event.markAsDone();
+                        }
+                        tasks.add(event);
+                        break;
 
-                boolean isDone = toIsDone(isDoneString);
-
-                int maxLength = tasks.getNumOfTasks();
-                Task task = tasks.getTask(maxLength - 1);
-
-                if (isDone) {
-                    task.markAsDone();
-                } else {
-                    task.markAsUndone();
+                    default:
+                        throw new SallyException("Oops! Please enter a valid task type (i.e. todo, deadline, event).");
                 }
             }
         } catch (IOException e) {
-            throw new SallyException("File Not Found. Check your file path input!");
+            throw new SallyException("Oops! An IOException occurred.");
+        } catch (NumberFormatException e) {
+            throw new SallyException("Oops! Please enter 0/1 to mark the tasks.");
         }
+
+        return tasks;
     }
 
-    // Complementary method for readsFile
-    public static boolean toIsDone(String s) {
-        if (s.contains("1")) {
-            return true;
-        } else if (s.contains("0")) {
-            return false;
-        }
-        return false;
-    }
-
+    /**
+     * Saves task list to file.
+     *
+     * @param tasks task list to be saved.
+     */
     public void savesFile(TaskList tasks) throws SallyException {
-        this.tasks = tasks;
-//        System.out.println("enters savesFile");
         try {
-            FileWriter writer = new FileWriter(file);
+            File file = new File(filePath);
+            FileWriter fw = new FileWriter(filePath);
 
-            String typeSymbol;
-            String description;
-            String moreInfo;
-            String separator = " | ";
-            String newFile = "";
-
-            int numOfTasks = tasks.getNumOfTasks();
-
-            for (int i = 0; i < numOfTasks; i++) {
-                Task task = tasks.getTask(i);
-
-                int indexDone = task.getDoneStatus() ? 1 : 0;
-                description = task.getDescription();
-                moreInfo = task.getMoreInfo();
-
-                System.out.println("taskType = " + task.getTaskType());
-
-                String type = task.getTaskType();
-
-                switch (type) {
-                    case "TODO":
-                        typeSymbol = "T";
-                        newFile = newFile + (typeSymbol + separator + indexDone + separator + description + "\n");
-                        break;
-                    case "DEADLINE":
-                        typeSymbol = "D";
-                        newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
-                        break;
-                    case "EVENT":
-                        typeSymbol = "E";
-                        newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
-                        break;
-                }
-
+            for (Task task : tasks.getAllTasks()) {
+                fw.write(task.getOutput() + "\n");
             }
-            writer.write((newFile));
-            writer.close();
 
+            fw.close();
         } catch (IOException e) {
-            throw new SallyException("Sorry, there was an error in saving the file.");
+            throw new SallyException("Oops! An IOException has occurred.");
         }
     }
 

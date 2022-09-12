@@ -1,7 +1,5 @@
 package sally.task;
 
-import sally.task.Task;
-
 /**
  * Event class to represent new Event task
  *
@@ -9,11 +7,15 @@ import sally.task.Task;
  */
 
 public class Event extends Task {
-    String moreInfo;
-    public Event(String description, String moreInfo, boolean saveTask) {
-        super(description, moreInfo, saveTask);
+    protected String moreInfo;
+
+    public Event(String description, String moreInfo) {
+        super(description);
         this.moreInfo = moreInfo;
-        this.taskType = Type.EVENT;
+    }
+
+    public String getOutput() {
+        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, moreInfo);
     }
 
     @Override

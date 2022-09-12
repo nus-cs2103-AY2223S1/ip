@@ -7,7 +7,6 @@ import java.util.ArrayList;
  *
  * @author liviamil
  */
-
 public class TaskList {
     protected ArrayList<Task> tasks;
     protected int numOfTasks;
@@ -19,32 +18,52 @@ public class TaskList {
 
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
-        this.numOfTasks = tasks.size();
     }
 
+    /**
+     * Gets total number of tasks in task list.
+     *
+     * @return total number of tasks in task list.
+     */
     public int getNumOfTasks() {
-        return numOfTasks;
+        return tasks.size();
     }
 
+    /**
+     * Gets specific task according to their index.
+     *
+     * @param index the task index to be returned
+     * @return the task of the specific index
+     */
     public Task getTask(int index) {
         return tasks.get(index);
     }
 
+    /**
+     * Deletes specific task according to their index.
+     *
+     * @param index the task index to be deleted
+     */
     public void deleteTask(int index) {
         tasks.remove(index);
     }
 
+    /**
+     * Gets all tasks from task list in ArrayList<Task>
+     *
+     * @return task list in the form of ArrayList
+     */
+    public ArrayList<Task> getAllTasks() {
+        return tasks;
+    }
+
+    /**
+     * Adds inputted task to the existing task list
+     *
+     * @param task to be added in
+     */
     public void addTask(Task task) {
-//        System.out.println("enters addTask in TaskLIst");
-//        System.out.println("task parsed: " + task);
         tasks.add(task);
-//        System.out.println("tasks.add(task) executed");
-//        String printTask = "";
-//        for (int i = 0; i < tasks.size(); i++) {
-//            printTask = printTask + tasks.get(i).toString();
-//        }
-//        System.out.println("local tasks in sally.task.TaskList: " + printTask);
-//        System.out.println("task number: " + tasks.size());
     }
 
 }

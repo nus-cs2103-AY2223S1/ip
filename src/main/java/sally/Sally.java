@@ -1,5 +1,8 @@
 package sally;
 
+import java.io.File;
+import java.io.IOException;
+
 import sally.command.Command;
 import sally.exception.SallyException;
 import sally.parser.Parser;
@@ -17,30 +20,50 @@ public class Sally {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    boolean isBye = false;
 
+    /**
+     * Constructor for Sally
+     *
+     * @param filePath Path to file for storage.
+     */
     public Sally(String filePath) {
         ui = new Ui();
-        try  {
-            storage = new Storage(filePath);
-        } catch (SallyException e) {
-            ui.showError();
-        }
+        storage = new Storage(filePath);
         try {
-            tasks = new TaskList();
-            storage.readsFile(tasks);
+            tasks = new TaskList(storage.load());
         } catch (SallyException e) {
-            ui.showError();
+            ui.showError(e.getMessage());
             tasks = new TaskList();
         }
     }
 
     public static void main(String[] args) {
-        new Sally("Sally/Sally.txt").run();
+        File directory = new File("data/");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
+        File saved = new File("data/Sally.txt");
+        if (!saved.exists()) {
+            try {
+                saved.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Oops! Unable to create a new file.");
+            }
+        }
+
+        new Sally("data/Sally.txt").run();
     }
 
     public void run() {
+        try {
+            storage.load();
+        } catch (SallyException e) {
+            ui.printWithBorder(e.getMessage());
+        }
+
         ui.showGreeting();
+        boolean isBye = false;
 
         while (!isBye) {
             try {
@@ -49,7 +72,7 @@ public class Sally {
                 command.execute(tasks, ui, storage);
                 isBye = command.isBye();
             } catch (SallyException e) {
-                System.out.println(e);
+                ui.showError(e.getMessage());
             }
         }
     }

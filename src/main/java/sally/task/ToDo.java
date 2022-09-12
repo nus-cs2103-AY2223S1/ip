@@ -1,7 +1,5 @@
 package sally.task;
 
-import sally.task.Task;
-
 /**
  * ToDo class to represent new Todo task
  *
@@ -9,9 +7,12 @@ import sally.task.Task;
  */
 
 public class ToDo extends Task {
-    public ToDo(String description, boolean saveTask) {
-        super(description, saveTask);
-        this.taskType = Type.TODO;
+    public ToDo(String description) {
+        super(description);
+    }
+
+    public String getOutput() {
+        return String.format("T | %d | %s", isDone ? 1 : 0, description);
     }
 
     @Override

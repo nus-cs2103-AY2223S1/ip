@@ -1,8 +1,5 @@
 package sally.task;
 
-import sally.exception.SallyException;
-import sally.storage.Storage;
-
 /**
  * Task class to represent generic task
  *
@@ -12,30 +9,24 @@ import sally.storage.Storage;
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected Type taskType;
-    protected String moreInfo;
-    protected boolean saveTask;
-    protected Storage storage;
 
-    protected enum Type {
-        TODO, DEADLINE, EVENT
+    /**
+     * Constructor for todo tasks
+     *
+     * @param description description for the todo task
+     */
+    public Task(String description) {
+        this.description = description;
+        this.isDone = false;
     }
 
-    //Todo
-    public Task(String description, boolean saveTask) {
+    public Task(String description, boolean isDone) {
         this.description = description;
-        this.saveTask = saveTask;
-    }
-
-    //sally.task.Event and sally.task.Deadline
-    public Task(String description, String moreInfo, boolean saveTask) {
-        this.description = description;
-        this.moreInfo = moreInfo;
-        this.saveTask = saveTask;
+        this.isDone = isDone;
     }
 
     public String getMoreInfo() {
-        return this.moreInfo;
+        return this.description;
     }
 
     public String getStatusIcon() {
@@ -54,16 +45,12 @@ public class Task {
         return this.isDone;
     }
 
-    public String getTaskType() {
-        return taskType.toString();
+    public String toStorage() {
+        return (isDone ? "1" : "0") + " | " + this.description;
     }
 
-    public void setTaskType(Type taskType) {
-        this.taskType = taskType;
-    }
-
-    public String getDescription() {
-        return description;
+    public String getOutput() {
+        return String.format("O | %d | %s", isDone ? 1 : 0, description);
     }
 
     @Override
