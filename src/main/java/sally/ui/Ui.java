@@ -3,7 +3,6 @@ package sally.ui;
 import sally.task.Task;
 import sally.task.TaskList;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
