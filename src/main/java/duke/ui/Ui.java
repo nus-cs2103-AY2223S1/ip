@@ -19,6 +19,7 @@ public class Ui {
     }
 
     public String readUserInputThenOutputMessage(TaskList taskList, Storage storage, String input) {
+        assert !isExit : "isExit should be false here, and can only be changed after this line of code";
         Scanner scanner = new Scanner(input);
         Command command = Parser.parseUserInput(scanner);
         scanner.close();
