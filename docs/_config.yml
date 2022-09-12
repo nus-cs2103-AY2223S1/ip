@@ -5,3 +5,4 @@ plugins:
 title: <h1 align = "center">✨️ L&emsp;U&emsp;N&emsp;A 🌙</h1>
 logo: assets/luna.png
 description: <p align = "center">Complete your tasks by night.<p align = "center">
+background-color: #FFF8F4
