@@ -40,6 +40,7 @@ abstract public class Task {
 
     abstract LocalDateTime getDateTime();
     abstract boolean isToDo();
+    abstract void editDate(String newDate);
 
     @Override
     public String toString() {

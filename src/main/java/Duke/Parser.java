@@ -24,7 +24,28 @@ public class Parser {
         try {
             String toReply = "";
 
-            if (input.equals("list")) {
+            if (input.startsWith("update")) {
+                String in = stringReplacer.replaceAll(input, "update");
+                if (in.isEmpty()) {
+                    throw new TaskStatusException("Please provid valid input");
+                }
+                String[] inputs = stringReplacer.editCommandHelper(in);
+                int index = Integer.parseInt(inputs[0]) - 1;
+                if (index >= taskList.getList().size() || index < 0) {
+                    throw new TaskStatusException("Please provide correct task number");
+                }
+                assert index >= 0 && index < taskList.getList().size() :
+                        "Accessing index out of bounds for taskList";
+                if (taskList.getList().get(index).isToDo()) {
+                    throw new DukeException("ToDo task has no date to update!");
+                }
+                Task toUpdate = taskList.getList().get(index);
+                toUpdate.editDate(inputs[1]);
+                this.storage.taskEdit(toUpdate, index);
+                toReply += "I've updated the following task:\n";
+                toReply += taskList.getList().get(index).toString();
+                return toReply;
+            } else if (input.equals("list")) {
                 toReply += taskList.getAllTasks();
                 System.out.println(toReply);
                 return toReply;

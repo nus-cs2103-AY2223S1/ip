@@ -60,6 +60,26 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates file content when a task is edited
+     * @param newTask task that was edited
+     * @param index task number to update
+     */
+    public void taskEdit(Task newTask, int index) {
+        try {
+            List<String> list = Files.readAllLines(Path.of(this.filePath));
+            list.set(index, newTask.toString());
+
+            FileWriter writer = new FileWriter(this.filePath, false);
+            for (String x : list) {
+                writer.write(x + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error occured while updating the file");
+        }
+    }
+
 
     /**
      * Initialises the list from the .txt file

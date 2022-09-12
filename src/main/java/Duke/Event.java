@@ -51,6 +51,20 @@ public class Event extends Task {
         return this.dateTime;
     }
 
+    /**
+     * Updates the date associated with this task
+     * @param newDate string containing the new date and time
+     */
+    @Override
+    void editDate(String newDate) {
+        try {
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            this.dateTime = LocalDateTime.parse(newDate, format);
+        } catch (DateTimeParseException e) {
+            System.out.println("Incorrect date format");
+        }
+    }
+
     @Override
     public String toString() {
         String out = "[E]";
