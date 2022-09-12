@@ -19,8 +19,8 @@ import ava.task.Todo;
  * Utility class that handles reading from and writing to device storage.
  */
 public class Storage {
-    private final String FILE_PATH;
-    private final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private final String filePath;
+    private final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Constructor for Storage.
@@ -28,7 +28,7 @@ public class Storage {
      * @param filePath The path to the file.
      */
     public Storage(String filePath) {
-        this.FILE_PATH = filePath;
+        this.filePath = filePath;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
-            File myData = new File(FILE_PATH);
+            File myData = new File(filePath);
             Scanner scanner = new Scanner(myData);
             while (scanner.hasNext()) {
                 String input = scanner.nextLine();
@@ -51,9 +51,9 @@ public class Storage {
                 if (task[0].equals("T")) {
                     tasks.add(new Todo(task[2], isDone));
                 } else if (task[0].equals("D")) {
-                    tasks.add(new Deadline(task[2], isDone, LocalDateTime.parse(task[3], TIME_FORMAT)));
+                    tasks.add(new Deadline(task[2], isDone, LocalDateTime.parse(task[3], timeFormat)));
                 } else if (task[0].equals("E")) {
-                    tasks.add(new Event(task[2], isDone, LocalDateTime.parse(task[3], TIME_FORMAT)));
+                    tasks.add(new Event(task[2], isDone, LocalDateTime.parse(task[3], timeFormat)));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -73,7 +73,7 @@ public class Storage {
      */
     public void write(ArrayList<Task> tasks) {
         try {
-            FileWriter fileWriter = new FileWriter(FILE_PATH, false);
+            FileWriter fileWriter = new FileWriter(filePath, false);
             for (Task t : tasks) {
                 fileWriter.write(t.formatChange() + "\n");
             }
