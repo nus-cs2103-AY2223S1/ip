@@ -56,5 +56,4 @@ public abstract class Task implements JsonParsable {
         return null;
     }
 
-
 }

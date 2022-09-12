@@ -28,6 +28,14 @@ public class Duke {
         String returnStr = c.exec(this.tasks);
         this.storage.save(this.tasks);
         return returnStr;
+    }
+
+    public String execCommand(Command c, TaskList customTaskList) {
+        assert (tasks != null);
+        assert (storage != null);
+        String returnStr = c.exec(customTaskList);
+        this.storage.save(this.tasks);
+        return returnStr;
 
     }
 

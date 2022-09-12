@@ -31,6 +31,7 @@ public class Window extends AnchorPane {
     private TaskCategoryPane taskCategoryPane;
     private TaskListPane taskListPane;
     private TaskDescriptionPane taskDescriptionPane;
+    private TaskList taskList;
 
     public void initialise(Duke duke) {
 //        Setup duke
@@ -43,7 +44,6 @@ public class Window extends AnchorPane {
         this.loadTaskListPane();
         this.loadTaskDescPane();
         this.loadBottomBar();
-
 
     }
 
@@ -77,11 +77,13 @@ public class Window extends AnchorPane {
 
     void updateTaskList(TaskList tList) {
         this.taskListPane.setTasks(tList);
+        this.taskList = tList;
         selectTask(tList.get(0));
     }
 
     void updateTaskList() {
         this.taskListPane.setTasks(this.duke.getTasks());
+        this.taskList = this.duke.getTasks();
         selectTask(this.duke.getTasks().get(0));
     }
 
@@ -89,14 +91,16 @@ public class Window extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         Command c = duke.ui.readCommand(input);
-        String response = duke.execCommand(c);
+        String response = duke.execCommand(c, taskList);
         userInput.setText("");
         showNotification(response);
         if (c.returnsTaskList()) {
             updateTaskList(c.getTaskList());
-        } else {
-            updateTaskList();
         }
+        taskListPane.refresh();
+//        else {
+//            updateTaskList();
+//        }
     }
 
     @FXML

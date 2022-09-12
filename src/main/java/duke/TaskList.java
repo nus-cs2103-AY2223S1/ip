@@ -97,6 +97,14 @@ public class TaskList {
     }
 
     /**
+     * Find the index of a task in the list.
+     * @param t task to find
+     * @return index if found, else return -1.
+     */
+    public int indexOf(Task t) {
+        return this.list.indexOf(t);
+    }
+    /**
      * Replace the current task list with the saved list of tasks from storage.
      *
      * @param storage a Storage object to load the data from.
@@ -130,4 +138,5 @@ public class TaskList {
             return t.isCategory(c);
         });
     }
+
 }

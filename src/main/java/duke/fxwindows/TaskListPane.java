@@ -33,7 +33,6 @@ public class TaskListPane extends ScrollPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        HBox.setHgrow(this, Priority.ALWAYS);
 
         this.setTasks(tasks);
         this.parent = parent;
@@ -49,22 +48,17 @@ public class TaskListPane extends ScrollPane {
         this.refresh();
     }
 
-    private void refresh() {
+     void refresh() {
         this.vBox.getChildren().clear();
-        for (Iterator<Task> it = this.tasks.getIterator(); it.hasNext(); ) {
-            Task t = it.next();
+        for (int i = 0; i < this.tasks.size(); i ++) {
+            Task t = this.tasks.get(i);
 
-            Label l = new TaskCategoryLabel(t.toString());
-            l.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    parent.selectTask(t);
-                }
+            Label l = new TaskCategoryLabel((i+1) + ". " + t.toString());
+            l.setOnMouseClicked((MouseEvent event) -> {
+                parent.selectTask(t);
             });
 
-//            System.out.println('l');
             this.vBox.getChildren().add(l);
-//            this.vBox.getChildren().add(new Label("HI"));
         }
     }
 
