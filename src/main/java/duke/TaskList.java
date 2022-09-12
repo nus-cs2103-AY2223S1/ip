@@ -29,7 +29,7 @@ public class TaskList {
     }
 
     /**
-     * Add a to-do to the task list.
+     * Adds a to-do to the task list.
      *
      * @param input the description of the to-do
      *
@@ -55,7 +55,7 @@ public class TaskList {
     }
 
     /**
-     * Add a duke.Deadline to the items list.
+     * Adds a duke.Deadline to the items list.
      *
      * @param input A String to be added to the list.
      *
@@ -91,7 +91,7 @@ public class TaskList {
     }
 
     /**
-     * Add a duke Event to the items list.
+     * Adds a duke Event to the items list.
      *
      * @param input A String to be added to the list.
      *

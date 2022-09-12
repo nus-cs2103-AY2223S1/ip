@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -8,9 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -116,8 +117,8 @@ public class Duke extends Application {
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         // Scroll down to the end every time dialogContainer's height changes.
-        dialogContainer.heightProperty().addListener(
-                (observable) -> scrollPane.setVvalue(1.0));
+        dialogContainer.heightProperty().addListener((
+                observable) -> scrollPane.setVvalue(1.0));
 
     }
 
@@ -136,7 +137,7 @@ public class Duke extends Application {
     }
 
     /**
-     * Display the greeting message on the GUI.
+     * Displays the greeting message on the GUI.
      */
     private void showGreeting() {
         Label greeting = new Label(this.ui.getGreeting());
