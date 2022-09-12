@@ -32,6 +32,10 @@ The index is one-based (starts from 1).
 ### Mark a Task: `mark <task index>` 
 If a task is completed, mark it so that it is shown as marked in the list of tasks when `show` is called. <br> 
 The index is one-based (starts from 1). <br>
+<p align="center">
+<img width="596" alt="marked" src="https://user-images.githubusercontent.com/96589109/189592390-72b776bb-3349-4ea9-a2f7-209c5921057f.png"> <br>
+Marked tasks are represented with checkboxes.
+</p>
 
 ### Unmark a Task: `unmark <task index>`
 If a task is incomplete, unmark it so that it is shown as pending in the list of tasks when `show` is called. <br>
@@ -39,6 +43,10 @@ The index is one-based (starts from 1). <br>
 
 ### Show All Tasks: `show`
 Display the list of all tasks that are currently in the list. <br> 
+<p align="center">
+<img width="591" align="center" alt="show" src="https://user-images.githubusercontent.com/96589109/189591911-e6247836-80bc-4a0d-b4c6-451a109400a7.png"> <br>
+List of tasks displayed
+</p>
 
 ### Find Tasks Corresponding to a Keyword: `find <keyword>`
 List down all the tasks that contain a specified keyword. <br>
