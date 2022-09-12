@@ -29,11 +29,6 @@ istoday command can be used to check if a task is due today
 delete command can be replaced with "d", "remove", "r"
 
 
-
-### Feature-XYZ
-
-Description of the feature.
-
 ## Usage
 
 ### `Keyword` - Describe action
