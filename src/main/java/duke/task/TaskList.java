@@ -51,6 +51,26 @@ public class TaskList {
         return deletedTask;
     }
 
+    public String findTasks(String keyword) {
+        String foundTasks = "";
+        int taskCount = 1;
+        for (Task task : this.taskArray) {
+            String description = task.getDescription();
+            String[] words = description.split(" ");
+            for (String word : words) {
+                if (word.equals(keyword)) {
+                    if (taskCount == 1) {
+                         foundTasks += taskCount + ". " + task;
+                    } else {
+                        foundTasks += "\n" + taskCount + ". " + task;
+                    }
+                    taskCount++;
+                }
+            }
+        }
+        return foundTasks;
+    }
+
     public String toSimpleStrings() {
         String stringedList = "";
         for (int i = 0; i < this.count; i++) {

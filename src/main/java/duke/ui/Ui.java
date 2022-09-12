@@ -61,4 +61,8 @@ public class Ui {
         showFullMessage("Noted. I've removed this task:\n" + task + "\nNow you have " + this.tasks.getCount() + " tasks in the list.");
     }
 
+    public void showFound(String foundTasks) {
+        showFullMessage("Here are the matching tasks in your list:\n" + foundTasks);
+    }
+
 }
