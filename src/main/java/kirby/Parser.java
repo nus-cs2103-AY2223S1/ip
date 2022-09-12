@@ -61,7 +61,7 @@ public class Parser {
      * @param inputString the entire input by the user.
      * @return an array of Strings of arguments.
      */
-    private static String getArgument(String inputString) {
+    static String getArgument(String inputString) {
         return inputString.substring(inputString.indexOf(" ") + 1);
     }
 
