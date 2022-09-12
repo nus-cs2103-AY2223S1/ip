@@ -9,10 +9,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 /**
  * An example of a custom control using FXML. This control represents a dialog
@@ -35,8 +41,23 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        // Referencing
+        // https://stackoverflow.com/questions/20489908/border-radius-and-shadow-on-imageview
         dialog.setText(text);
         displayPicture.setImage(img);
+        Rectangle clip = new Rectangle(displayPicture.getFitWidth(), displayPicture.getFitHeight());
+        clip.setArcWidth(30);
+        clip.setArcHeight(30);
+        displayPicture.setClip(clip);
+
+        // snapshot the rounded image.
+        SnapshotParameters parameters = new SnapshotParameters();
+        parameters.setFill(Color.TRANSPARENT);
+        WritableImage image = displayPicture.snapshot(parameters, null);
+
+        // remove the rounding clip so that our effect can show through.
+        displayPicture.setClip(null);
+        displayPicture.setImage(image);
     }
 
     /**
