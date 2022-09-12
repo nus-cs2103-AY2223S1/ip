@@ -27,6 +27,7 @@ public class TodoHandler implements IHandler {
         Task todo = new Todo(this.todoName);
         s.addToList(todo);
         int size = s.getList().size();
+        assert size != 0;
         return String.format("Got it. I've added this task:\n  "
                 + todo
                 + "\nNow you have %d task%s in the list.", size, size != 1 ? "s" : "");

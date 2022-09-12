@@ -50,6 +50,7 @@ public class DeadlineHandler implements IHandler {
             Task deadline = new Deadline(this.deadlineName, this.flagOption);
             s.addToList(deadline);
             int size = s.getList().size();
+            assert size != 0;
             return String.format("Got it. I've added this task:\n  "
                     + deadline
                     + "\nNow you have %d task%s in the list.", size, size != 1 ? "s" : "");
