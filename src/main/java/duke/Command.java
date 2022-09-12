@@ -101,6 +101,9 @@ public enum Command {
     private String getUsageError(String args, Duke duke) {
         TaskList taskList = duke.getTaskList();
         String usage = getCorrectUsage();
+        assert taskList != null : "Task list is null";
+        assert !usage.isEmpty() : "Correct usage should not be empty";
+
         switch(name) {
         case "delete":
             if (args.isEmpty()) {
