@@ -105,7 +105,7 @@ following 24-hour format: `yyyy-mm-dd hhmm`.
 
 ### Viewing all tasks: `list`
 
-_Shows a list of all tasks stored in *Artemis*._  
+_Shows a list of all tasks stored in Artemis._  
 **Usage:** `list`
 
 ### Marking a task as complete: `mark`
@@ -171,14 +171,14 @@ _Removes all messages from the application window._
 
 ### Deleting all tasks: `reset`
 
-_Deletes all tasks that *Artemis* is aware of._  
+_Deletes all tasks that Artemis is aware of._  
 **Note:** This command is **nuclear**, and cannot be undone if saved. Please only use it
 if deleting all tasks is your intended goal.  
 **Usage:** `reset`
 
 ### Saving and exiting: `bye`
 
-_Saves and exits *Artemis*._  
+_Saves and exits Artemis._  
 **Note:** This command is important if task data is to be saved for the future.  
 **Usage:** `bye`
 
