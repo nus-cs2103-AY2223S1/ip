@@ -32,23 +32,17 @@ test {
     useJUnitPlatform()
 
     testLogging {
-        events "passed", "skipped", "failed"
-
-        showExceptions true
-        exceptionFormat "full"
-        showCauses true
-        showStackTraces true
         showStandardStreams = false
     }
 }
 
 application {
-    mainClassName = "Duke.Duke"
+    mainClassName = "duke.Launcher"
 }
 
 shadowJar {
     archiveBaseName = "duke"
-    archiveClassifier = "v0"
+    archiveClassifier = "v0.1"
 }
 
 run {

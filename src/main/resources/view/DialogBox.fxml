@@ -6,8 +6,8 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <fx:root
-        xmlns:fx="http://javafx.com/fxml/1"
-        xmlns="http://javafx.com/javafx/18"
+        xmlns:fx="http://javafx.com/fxml"
+        xmlns="http://javafx.com/javafx"
         alignment="TOP_RIGHT"
         type="javafx.scene.layout.HBox"
 >
