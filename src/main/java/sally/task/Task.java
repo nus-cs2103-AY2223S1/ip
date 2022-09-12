@@ -11,44 +11,61 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for todo tasks
+     * Constructor for tasks
      *
-     * @param description description for the todo task
+     * @param description description for the task
      */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
-    public Task(String description, boolean isDone) {
-        this.description = description;
-        this.isDone = isDone;
-    }
-
-    public String getMoreInfo() {
-        return this.description;
-    }
-
+    /**
+     * Gets done status for tasks
+     *
+     * @return X if done and " " if undone
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
+    /**
+     * Marks a task as done
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks a task as undone
+     */
     public void markAsUndone() {
         this.isDone = false;
     }
 
+    /**
+     * gets the status of a task
+     *
+     * @return true if done, false otherwise
+     */
     public boolean getDoneStatus() {
         return this.isDone;
     }
 
+    /**
+     * Converts task to save to file format
+     *
+     * @return task in save to file String format
+     */
     public String toStorage() {
         return (isDone ? "1" : "0") + " | " + this.description;
     }
 
+    /**
+     * Gets the output string for save to file
+     *
+     * @return output string for save to file
+     */
     public String getOutput() {
         return String.format("O | %d | %s", isDone ? 1 : 0, description);
     }

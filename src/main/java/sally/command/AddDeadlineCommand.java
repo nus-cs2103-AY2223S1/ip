@@ -1,9 +1,7 @@
 package sally.command;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import sally.Sally;
 import sally.exception.SallyException;
 import sally.storage.Storage;
 import sally.task.Deadline;

@@ -12,6 +12,9 @@ import sally.ui.Ui;
  */
 
 public class ByeCommand extends Command {
+    /**
+     * ByeCommand constructor for bye command.
+     */
     public ByeCommand() {};
 
     @Override

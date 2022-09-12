@@ -37,6 +37,11 @@ public class Sally {
         }
     }
 
+    /**
+     * Main method to run Sally
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         File directory = new File("data/");
         if (!directory.exists()) {
@@ -55,6 +60,9 @@ public class Sally {
         new Sally("data/Sally.txt").run();
     }
 
+    /**
+     * Runs the Sally bot
+     */
     public void run() {
         try {
             storage.load();

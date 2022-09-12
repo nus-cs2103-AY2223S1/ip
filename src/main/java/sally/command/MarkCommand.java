@@ -15,6 +15,11 @@ import sally.ui.Ui;
 public class MarkCommand extends Command {
     private final int index;
 
+    /**
+     * Marks a given task
+     *
+     * @param index of task to be marked
+     */
     public MarkCommand(int index) {
         this.index= index;
     }

@@ -15,6 +15,11 @@ import sally.ui.Ui;
 public class UnmarkCommand extends Command {
     private final int index;
 
+    /**
+     * Unmarks a task
+     *
+     * @param index of the task to be unmarked
+     */
     public UnmarkCommand(int index) {
         this.index= index;
     }

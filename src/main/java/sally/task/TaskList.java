@@ -11,11 +11,19 @@ public class TaskList {
     protected ArrayList<Task> tasks;
     protected int numOfTasks;
 
+    /**
+     * Constructor for TaskList starting with null
+     */
     public TaskList() {
         this.tasks = new ArrayList<Task>();
         this.numOfTasks = 0;
     }
 
+    /**
+     * Constructor for TaskList starting with a given task list
+     *
+     * @param tasks given task list to be parsed in
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }

@@ -8,14 +8,28 @@ package sally.exception;
  */
 
 public class SallyException extends Exception {
+    /**
+     * Constructor for SallyException with a given message.
+     *
+     * @param message for a specific exception.
+     */
     public SallyException(String message) {
         super(message);
     }
 
+    /**
+     * Constructor for SallyException.
+     */
     public SallyException() {};
 
+    /**
+     * Border used to print.
+     */
     protected String BORDER ="-------------------------------------------------------------------------------------\n";
 
+    /**
+     * Throws task not found exception.
+     */
     public static class SallyTaskNotFoundException extends SallyException {
         @Override
         public String toString() {
@@ -23,6 +37,9 @@ public class SallyException extends Exception {
         }
     }
 
+    /**
+     * Throws no description exception for tasks
+     */
     public static class SallyNoDescriptionException extends SallyException {
         @Override
         public String toString() {
@@ -30,6 +47,9 @@ public class SallyException extends Exception {
         }
     }
 
+    /**
+     * Throws invalid input exception throughout the program
+     */
     public static class SallyInvalidInputException extends SallyException {
         @Override
         public String toString() {
@@ -37,6 +57,9 @@ public class SallyException extends Exception {
         }
     }
 
+    /**
+     * Throws no deadline description exception.
+     */
     public static class SallyNoDeadlineException extends SallyException {
         @Override
         public String toString() {
@@ -44,6 +67,9 @@ public class SallyException extends Exception {
         }
     }
 
+    /**
+     * Throws no venue exception for events.
+     */
     public static class SallyNoPlaceException extends SallyException {
         @Override
         public String toString() {

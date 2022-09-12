@@ -14,6 +14,11 @@ import sally.task.ToDo;
 public class AddTodoCommand extends Command {
     private final String description;
 
+    /**
+     * AddTodoComamnd constructor to add todo tasks
+     *
+     * @param description todo task description
+     */
     public AddTodoCommand(String description) {
         this.description = description;
     }

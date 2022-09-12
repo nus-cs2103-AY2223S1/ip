@@ -35,6 +35,11 @@ public class Deadline extends Task {
         this.byDate = byDate;
     }
 
+    /**
+     * Gets the output string for save to file
+     *
+     * @return output string for save to file
+     */
     public String getOutput() {
         return String.format("D | %d | %s | %s", isDone ? 1 : 0, description, (byDate == null) ? moreInfo : byDate);
     }

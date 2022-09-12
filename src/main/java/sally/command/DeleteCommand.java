@@ -14,6 +14,11 @@ import sally.ui.Ui;
 public class DeleteCommand extends Command {
     private final int index;
 
+    /**
+     * Deletes task of a given index
+     *
+     * @param index of task to be deleted
+     */
     public DeleteCommand(int index) {
         this.index= index;
     }
