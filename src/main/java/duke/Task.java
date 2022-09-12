@@ -61,7 +61,7 @@ public class Task {
     }
 
     /**
-     * Marks task as incomplet by modifying boolean
+     * Marks task as incomplete by modifying boolean
      */
     protected void unmarkTask() {
         this.isCompleted = false;
