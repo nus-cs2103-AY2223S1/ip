@@ -24,6 +24,8 @@ public class Parser {
         switch (keyWord) {
             case "list":
                 return new ListCommand();
+            case "help":
+                return new HelpCommand();
             case "bye":
                 return new ExitCommand();
             case "mark":

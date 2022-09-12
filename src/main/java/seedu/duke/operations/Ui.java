@@ -217,4 +217,39 @@ public class Ui {
                 + "\n New Task:      %s"
                 , task, clashingTask);
     }
+
+    public String getHelpMessage() {
+        return "Hello, thank you for using Duke chat-bot."
+                + "\nBelow are a list of commands:"
+                + "\n"
+                + "\ntodo [Task description]"
+                + "\nThis creates a new todo task in your list of tasks."
+                + "\n"
+                + "\ndeadline [description] /[due date]"
+                + "\nThis creates a new task with deadline in your list of tasks."
+                + "\n"
+                + "\nevent [description] /[event date]"
+                + "\nThis creates a new event with its date in your list of tasks."
+                + "\n"
+                + "\nlist"
+                + "\nThis displays all your current tasks."
+                + "\n"
+                + "\nmark [index]"
+                + "\nThis marks the task with the given index."
+                + "\n"
+                + "\nunmark [index]"
+                + "\nThis unmarks the task with the given index."
+                + "\n"
+                + "\ndelete [index]"
+                + "\nThis deletes the task with the given index."
+                + "\n"
+                + "\nfind [keyword]"
+                + "\nThis searches the tasks with the provided keyword."
+                + "\n"
+                + "\nbye"
+                + "\nThis closes the application."
+                + "\n"
+                + "\nhelp"
+                + "\nThis displays the command guide.";
+    }
 }
