@@ -13,8 +13,8 @@ import Duke.task.TaskDeadline;
 import Duke.task.TaskEvent;
 import Duke.task.TaskList;
 import Duke.task.TaskTodo;
-import Duke.ui.DukeResponses;
 import Duke.ui.GuiUi;
+import Duke.ui.NekoResponses;
 import Duke.utils.Utils;
 
 import java.io.File;
@@ -36,7 +36,7 @@ public class Duke {
     // Stores all the current task created by the user.
     private TaskList tasks;
     // Handles how to respond to user inputs.
-    private final DukeResponses dukeResponses = new DukeResponses();
+    private final NekoResponses nekoResponses = new NekoResponses();
     // Handles how to display the UI.
     private GuiUi guiUi;
     // String to specify location of previous information.
@@ -58,7 +58,7 @@ public class Duke {
         try {
             storage = new Storage(filepath);
         } catch (DukeException | IOException e) {
-            guiUi.displayOutput(dukeResponses.loadFileFailed() + '\n' + e.getMessage());
+            guiUi.displayOutput(nekoResponses.loadFileFailed() + '\n' + e.getMessage());
         }
     }
 
@@ -70,11 +70,11 @@ public class Duke {
             assert storage != null : "The storage should not be null when loading tasks";
             tasks = new TaskList(storage.load());
             if (tasks.isNotEmpty()) {
-                guiUi.displayOutput(dukeResponses.loadTaskSuccessfully() + '\n' + dukeResponses.listTasks(tasks));
+                guiUi.displayOutput(nekoResponses.loadTaskSuccessfully() + '\n' + nekoResponses.listTasks(tasks));
             }
         } catch (DukeException e) {
             tasks = new TaskList();
-            guiUi.displayOutput(dukeResponses.loadTaskFailed() + '\n' + e.getMessage());
+            guiUi.displayOutput(nekoResponses.loadTaskFailed() + '\n' + e.getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ public class Duke {
      * Display a welcome message to the user.
      */
     private void welcomeUser() {
-        guiUi.displayOutput(dukeResponses.startPrompt());
+        guiUi.displayOutput(nekoResponses.startPrompt());
     }
 
     /**
@@ -103,7 +103,7 @@ public class Duke {
                 terminate();
                 return null;
             case HELP:
-                response = dukeResponses.showHelp();
+                response = nekoResponses.showHelp();
                 break;
             case LIST:
                 response = listTasks();
@@ -134,13 +134,13 @@ public class Duke {
             }
         } catch (InvalidCommandException err) {
             response = String.format("%s is not a valid command\n%s", err.getMessage(),
-                    dukeResponses.hintUserOfHelpCommand());
+                    nekoResponses.hintUserOfHelpCommand());
         } catch (InvalidTaskNameException | InvalidIndexException | InvalidFindException err) {
             response = err.getMessage();
         } catch (InvalidSecondaryCommandException err) {
             response = String.format("Please include %s command and the necessary information", err.getMessage());
         } catch (InvalidDateException err) {
-            response = String.format("%s\n%s", err.getMessage(), dukeResponses.listValidDateFormats());
+            response = String.format("%s\n%s", err.getMessage(), nekoResponses.listValidDateFormats());
         } catch (DukeException err) {
             response = String.format("Unhandled Duke Exception: %s", err.getMessage());
         } catch (Exception err) {
@@ -156,7 +156,7 @@ public class Duke {
         try {
             assert tasks != null : "The tasks should not be null when storing them in storage";
             storage.storeTask(tasks);
-            guiUi.displayOutput(dukeResponses.endPrompt());
+            guiUi.displayOutput(nekoResponses.endPrompt());
             TimerTask exitApp = new TimerTask() {
                 @Override
                 public void run() {
@@ -175,7 +175,7 @@ public class Duke {
      */
     private String listTasks() {
         assert tasks != null : "The tasks should not be null when listing them";
-        return dukeResponses.listTasks(tasks);
+        return nekoResponses.listTasks(tasks);
     }
 
     /**
@@ -183,7 +183,7 @@ public class Duke {
      */
     private String findTasks(String string) {
         assert tasks != null : "The tasks should not be null when finding tasks";
-        return dukeResponses.findTasks(tasks, string);
+        return nekoResponses.findTasks(tasks, string);
     }
 
     /**
@@ -197,7 +197,7 @@ public class Duke {
         }
         assert tasks != null : "The tasks should not be null when checking tasks";
         Task task = tasks.checkTask(Integer.parseInt(index));
-        return dukeResponses.markDone(task.getTaskName()) + "\n" + dukeResponses.listTasks(tasks);
+        return nekoResponses.markDone(task.getTaskName()) + "\n" + nekoResponses.listTasks(tasks);
     }
 
     /**
@@ -211,7 +211,7 @@ public class Duke {
         }
         assert tasks != null : "The tasks should not be null when unchecking tasks";
         Task task = tasks.uncheckTask(Integer.parseInt(index));
-        return dukeResponses.markUndone(task.getTaskName()) + "\n" + dukeResponses.listTasks(tasks);
+        return nekoResponses.markUndone(task.getTaskName()) + "\n" + nekoResponses.listTasks(tasks);
     }
 
     /**
@@ -225,7 +225,7 @@ public class Duke {
         }
         assert tasks != null : "The tasks should not be null when deleting tasks";
         Task task = tasks.deleteTask(Integer.parseInt(index));
-        return dukeResponses.deleteTask(task) + "\n" + dukeResponses.listTasks(tasks);
+        return nekoResponses.deleteTask(task) + "\n" + nekoResponses.listTasks(tasks);
     }
 
     /**
@@ -237,7 +237,7 @@ public class Duke {
     private <T extends Task> String addTask(T task) {
         assert tasks != null : "The tasks should not be null when adding tasks";
         tasks.addTask(task);
-        return dukeResponses.addTask(task) + "\n" + dukeResponses.listTasks(tasks);
+        return nekoResponses.addTask(task) + "\n" + nekoResponses.listTasks(tasks);
     }
 
     /**

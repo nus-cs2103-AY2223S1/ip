@@ -1,5 +1,5 @@
 import Duke.task.TaskTodo;
-import Duke.ui.DukeResponses;
+import Duke.ui.NekoResponses;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -18,7 +18,7 @@ public class UiTest {
 
     @Test
     public void endPromptTest() {
-        DukeResponses ui = new DukeResponses();
+        NekoResponses ui = new NekoResponses();
         System.setOut(new PrintStream(outputStream));
         ui.endPrompt();
         assertEquals("Goodbye" + "\n", outputStream.toString());

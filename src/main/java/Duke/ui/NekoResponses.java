@@ -8,7 +8,11 @@ import Duke.task.TaskList;
 /**
  * The {@code CliUi} class contains string outputs used throughout the application for Cli.
  */
-public class DukeResponses {
+public class NekoResponses {
+
+    private static final String name = "Neko Neko";
+
+    private static final String catchPhrase = "Meow Meow! \n";
 
     /**
      * Returns a string of the messages to be seen when the application is started.
@@ -18,7 +22,7 @@ public class DukeResponses {
      * @return a string of the messages to be seen when the application is started.
      */
     public String startPrompt() {
-        return String.format("%s \n %s", "Hi from Yi Xian", showHelp());
+        return String.format("Hi from %s!\n%s", name, showHelp());
     }
 
     /**
@@ -27,7 +31,7 @@ public class DukeResponses {
      * @return a string of the messages that serves as instructions of how to use Duke.
      */
     public String showHelp() {
-        return "What can I do for you?\n" +
+        return catchPhrase + " What can I do for you?\n" +
                 String.format("- %s \n", Command.HELP.getValue()) +
                 String.format("- %s (task name) \n", Command.TODO.getValue()) +
                 String.format("- %s (task name) %s (date) \n",
@@ -61,7 +65,7 @@ public class DukeResponses {
      * @return a string of a messages to hint the user of the help command.
      */
     public String hintUserOfHelpCommand() {
-        return "Consider using the 'help' command by sending the word 'help' to me.";
+        return String.format("%s Consider using the 'help' command by sending the word 'help' to me.", catchPhrase);
     }
 
     /**
@@ -70,7 +74,7 @@ public class DukeResponses {
      * @return a string of the messages to be seen when the application is started.
      */
     public String listValidDateFormats() {
-        return "These are the following accepted formats: \n 1) yyyy-mm-dd";
+        return String.format("%s These are the following accepted formats: \n 1) yyyy-mm-dd", catchPhrase);
     }
 
     /**
@@ -79,7 +83,7 @@ public class DukeResponses {
      * @return a string of the messages to be seen when the application is started.
      */
     public String markDone(String taskName) {
-        return "Nice! I have marked (" + taskName + ") as done!";
+        return String.format("%sNice! I have marked (%s) as done!", catchPhrase, taskName);
     }
 
     /**
@@ -88,7 +92,7 @@ public class DukeResponses {
      * @return a string of the message after marking a task as undone.
      */
     public String markUndone(String taskName) {
-        return "Nice! I have marked (" + taskName + ") as undone!";
+        return String.format("%sNice! I have marked (%s) as undone!", catchPhrase, taskName);
     }
 
     /**
@@ -104,6 +108,7 @@ public class DukeResponses {
             output.append(String.format("%d) %s\n", i + 1, taskList.getTask(i)));
         }
         output.append("Number of tasking: ").append(taskList.getNumberOfTask());
+        output.append("\n" + catchPhrase);
         return output.toString();
     }
 
@@ -117,6 +122,7 @@ public class DukeResponses {
     public String findTasks(TaskList taskList, String search) {
         StringBuilder output = new StringBuilder();
         int count = 0;
+        output.append(catchPhrase + "\n");
         output.append("Search Results\n");
         for (int i = 0; i < taskList.getNumberOfTask(); i++) {
             Task task = taskList.getTask(i);
@@ -136,7 +142,7 @@ public class DukeResponses {
      * @return a string of the message after marking adding a task.
      */
     public String addTask(Task task) {
-        return String.format("Successfully added: %s", task.getTaskName());
+        return String.format("%sSuccessfully added: %s", catchPhrase, task.getTaskName());
     }
 
     /**
@@ -146,7 +152,7 @@ public class DukeResponses {
      * @return a string of the message after marking deleting a task.
      */
     public String deleteTask(Task task) {
-        return String.format("Successfully deleted: %s", task.getTaskName());
+        return String.format("%sSuccessfully deleted: %s", catchPhrase, task.getTaskName());
     }
 
     /**
@@ -155,7 +161,7 @@ public class DukeResponses {
      * @return a string of the message that should be displayed before closing the application.
      */
     public String endPrompt() {
-        return "Goodbye";
+        return String.format("%sGoodbye", catchPhrase);
     }
 
     /**
@@ -164,7 +170,7 @@ public class DukeResponses {
      * @return a string of the success message when the tasks are successfully loaded.
      */
     public String loadTaskSuccessfully() {
-        return "Tasks loaded successfully!";
+        return String.format("%sTasks loaded successfully!", catchPhrase);
     }
 
     /**
@@ -173,7 +179,8 @@ public class DukeResponses {
      * @return a string of the success message when a file failed to load.
      */
     public String loadFileFailed() {
-        return "There seems to be an issue with accessing the data file. Will clear the current list";
+        return String.format("%s There seems to be an issue with accessing the data file. Will clear the current list",
+                catchPhrase);
     }
 
     /**
@@ -182,7 +189,8 @@ public class DukeResponses {
      * @return a string of the success message when the task failed to load.
      */
     public String loadTaskFailed() {
-        return "There seems to be an issue with format of the data file. Will clear the current list";
+        return String.format("%s There seems to be an issue with format of the data file. Will clear the current list",
+                catchPhrase);
     }
 
 }
