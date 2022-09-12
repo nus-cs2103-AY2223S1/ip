@@ -46,9 +46,22 @@ public class Duke {
                 + "find: follow command with keyword to find tasks with that word\n\n" ;
     }
 
-    String byeResponse() {
-        return "Bye see you again buddy !";
+    String hiResponse() {
+        double i =  Math.random();
+        if (i < 0.5) {
+            return "Muchas gracias aficion\n" + "SIUUUUUUUU";
+        }
+        return "Inshallah, hehehehe\n" + "SIUUUUUUUU";
     }
+
+    String byeResponse() {
+        return "Crista ronaldo SuuWeee ! ";
+    }
+
+    String siuResponse() {
+        return "SSSIIIUUUUU!!!!";
+    }
+
 
     String listResponse() {
         return tLst.list();
@@ -82,7 +95,7 @@ public class Duke {
             Storage.writeToFile(tLst.getTasks());
             return response;
         }
-        return "Oops The description of deadline cannot be empty !";
+        return "The description of deadline cannot be empty my guy!";
     }
 
     String eventResponse(String str) throws IOException {
@@ -92,7 +105,7 @@ public class Duke {
             Storage.writeToFile(tLst.getTasks());
             return response;
         }
-        return "Oops The description of event cannot be empty !";
+        return "The description of event cannot be empty my guy!";
     }
 
     String todoResponse(String str) throws IOException {
@@ -102,13 +115,18 @@ public class Duke {
             Storage.writeToFile(tLst.getTasks());
             return response;
         }
-        return "Oops The description of todo cannot be empty !";
+        return "The description of todo cannot be empty my guy!";
     }
 
     String getResponse(String str) throws IOException {
         String first = str.split(" ")[0];
         if (first.equals("help")) {
             return helpResponse();
+        } else if(first.equalsIgnoreCase("siu")) {
+            return siuResponse();
+        }
+        else if(first.equals("hi")) {
+            return hiResponse();
         } else if (first.equals("bye")) {
             return byeResponse();
         } else if (first.equals("list")) {
@@ -128,7 +146,7 @@ public class Duke {
         } else if (first.equals("todo")) {
             return todoResponse(str);
         } else {
-                return "Oops Sorry I don't know what you are talking about :( ";
+              return "I prefer not to speak\n" + "If I speak I'm in big trouble\nIn big trouble ";
             }
         }
     }
