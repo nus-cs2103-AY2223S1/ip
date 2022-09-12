@@ -37,7 +37,7 @@ public class Hazell {
     private Image hazell = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
-     * Create a new instance of the chatbot.
+     * Creates a new instance of the chatbot.
      *
      * @param filePath Path to store chatbot data for persistence
      */
@@ -60,7 +60,7 @@ public class Hazell {
     }
 
     /**
-     * Start the chatbot.
+     * Starts the chatbot.
      */
     public void run() {
         ui.reply("Hello, I am Hazell!\nWhat can I do for you?");

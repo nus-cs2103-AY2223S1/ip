@@ -18,10 +18,5 @@ public class CommandTest {
         Command parsed = Command.parse("deadline return book /by Sunday");
         assertEquals(parsed.getKwarg("by"), "Sunday");
     }
-
-//    @Test
-//    public void test3() {
-//        System.out.println(Command.parse("event project meeting /at Mon 2-4pm"));
-//    }
 }
 

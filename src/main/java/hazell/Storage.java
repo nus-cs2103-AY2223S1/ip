@@ -49,7 +49,7 @@ public class Storage {
     }
 
     /**
-     * Store tasks to local storage.
+     * Stores tasks to local storage.
      *
      * @param tasks Lists of tasks to be serialised
      * @throws IOException

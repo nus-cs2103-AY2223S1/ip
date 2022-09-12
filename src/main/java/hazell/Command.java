@@ -58,7 +58,7 @@ public class Command {
     }
 
     /**
-     * Get arguments excluding the first argument.
+     * Gets arguments excluding the first argument.
      *
      * @return Arguments excluding first argument.
      */
