@@ -20,7 +20,7 @@ The name Duke+ was chosen in honor of Duke, the Java Mascot.
     - **`delete 3`** : Deletes the 3rd item shown in the current list.
     - **`bye`** : Exits the application. 
     
-6. Refer to the [Features](#Features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 ---
 ## Features
