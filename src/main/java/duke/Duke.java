@@ -114,6 +114,7 @@ public class Duke {
         if (!result.shouldExit()) {
             return;
         }
+        // Timer solution below adapted from: https://stackoverflow.com/a/21974490/
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
