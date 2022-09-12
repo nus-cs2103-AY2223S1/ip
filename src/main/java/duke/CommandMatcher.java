@@ -3,6 +3,8 @@ package duke;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import duke.exception.DukeExceptionFunction;
+
 /**
  * This class serves as a way to abstract the idea of making a command
  * as a matching process and an action.

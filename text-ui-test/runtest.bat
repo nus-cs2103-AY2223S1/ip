@@ -16,6 +16,7 @@ REM no error here, errorlevel == 0
 
 REM delete data
 if exist duke.txt del duke.txt
+if exist dukeNotes.txt del dukeNotes.txt
 
 REM run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ..\bin duke.Duke < input.txt > ACTUAL.TXT

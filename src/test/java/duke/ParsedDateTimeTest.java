@@ -19,13 +19,20 @@ public class ParsedDateTimeTest {
         assertEquals(ParsedDateTime.of("Jan 1984", false).toString(), "01 Jan 1984 0000");
         assertEquals(ParsedDateTime.of("Friday MAY 1984", true).toString(), "04 May 1984 2359");
         assertEquals(ParsedDateTime.of("Friday MAY 1984", false).toString(), "04 May 1984 0000");
-        assertEquals(ParsedDateTime.of("12:34", true).toString(), ParsedDateTime.of("12:34", false).toString());
-        assertEquals(ParsedDateTime.of("12:34pm", true).toString(), ParsedDateTime.of("12:34", false).toString());
-        assertEquals(ParsedDateTime.of("11:34am", true).toString(), ParsedDateTime.of("11:34", false).toString());
-        assertEquals(ParsedDateTime.of("11:34pm", true).toString(), ParsedDateTime.of("23:34", false).toString());
-        assertEquals(ParsedDateTime.of("12:34am", true).toString(), ParsedDateTime.of("00:34", false).toString());
-        assertEquals(ParsedDateTime.of("12:34Am", true).toString(), ParsedDateTime.of("12:34aM", false).toString());
-        assertEquals(ParsedDateTime.of("1st 1th 1St 1/1/1950 January Jan jan 1950", true).toString(), "01 Jan 1950 2359");
+        assertEquals(ParsedDateTime.of("12:34", true).toString(),
+                ParsedDateTime.of("12:34", false).toString());
+        assertEquals(ParsedDateTime.of("12:34pm", true).toString(),
+                ParsedDateTime.of("12:34", false).toString());
+        assertEquals(ParsedDateTime.of("11:34am", true).toString(),
+                ParsedDateTime.of("11:34", false).toString());
+        assertEquals(ParsedDateTime.of("11:34pm", true).toString(),
+                ParsedDateTime.of("23:34", false).toString());
+        assertEquals(ParsedDateTime.of("12:34am", true).toString(),
+                ParsedDateTime.of("00:34", false).toString());
+        assertEquals(ParsedDateTime.of("12:34Am", true).toString(),
+                ParsedDateTime.of("12:34aM", false).toString());
+        assertEquals(ParsedDateTime.of("1st 1th 1St 1/1/1950 January Jan jan 1950", true).toString(),
+                "01 Jan 1950 2359");
     }
 
     @Test

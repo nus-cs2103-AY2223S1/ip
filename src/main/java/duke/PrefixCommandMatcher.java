@@ -5,6 +5,10 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
+import duke.exception.DukeException;
+import duke.exception.DukeExceptionBiFunction;
+import duke.exception.DukeExceptionFunction;
+
 /**
  * Makes a command matcher based on prefix.
  * It splits the slash options "/by /at" and other parts as a Map&lt;String, String&gt;
@@ -31,7 +35,7 @@ public class PrefixCommandMatcher extends CommandMatcher {
                     }
 
                     // map processing
-                    String withoutPrefix = cmd.split(" ", 2)[1];
+                    String withoutPrefix = cmd.substring(prefix.length() + 1);
                     String[] commandParts = withoutPrefix.split(" /");
                     Map<String, String> map = new HashMap<>();
                     for (int i = 1; i < commandParts.length; i++) {
