@@ -20,6 +20,13 @@ public class TodoTaskCommandHandler implements Command {
         this.taskManager = taskManager;
     }
 
+    /**
+     * Adds a new to do task to the task manager with the given attributes and responds with a confirmation message.
+     *
+     * @param arguments string of the task name
+     * @return the string of the response stating the successful addition of the new to do task
+     * @throws EmptyTaskException thrown when the task name is empty
+     */
     @Override
     public String execute(String arguments) throws EmptyTaskException {
         if (arguments.length() == 0) {

@@ -18,6 +18,13 @@ public class ListTaskCommandHandler implements Command {
         this.taskManager = taskManager;
     }
 
+    /**
+     * Displays the list of task provided by the task manager.
+     *
+     * @param arguments string of arguments
+     * @return the string of the list of task provided by the task manager
+     * @throws InvalidCommandException thrown when there are unwanted arguments
+     */
     @Override
     public String execute(String arguments) throws InvalidCommandException {
         if (arguments.length() > 0) {

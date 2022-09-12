@@ -26,6 +26,14 @@ public class UpdateTaskCommandHandler implements Command {
         this.taskManager = taskManager;
     }
 
+    /**
+     * Updates the task specified in the arguments with updated attributes.
+     *
+     * @param arguments string of the item number and updated attributes for the update task command
+     * @return the string of the response stating the updated task
+     * @throws InvalidCommandException thrown when there are no arguments
+     * @throws InvalidArgumentsException thrown when various invalid arguments are present
+     */
     @Override
     public String execute(String arguments) throws InvalidCommandException, InvalidArgumentsException {
         if (arguments.length() == 0) {
@@ -35,7 +43,7 @@ public class UpdateTaskCommandHandler implements Command {
         Scanner argumentScanner = new Scanner(arguments);
         int itemNumber = 0;
 
-        // Guard clause when a integer is not provided or when integer is out of range of the list size.
+        // Guard clause when an integer is not provided or when integer is out of range of the list size.
         try {
             itemNumber = Integer.parseInt(argumentScanner.next());
         } catch (NumberFormatException exception) {

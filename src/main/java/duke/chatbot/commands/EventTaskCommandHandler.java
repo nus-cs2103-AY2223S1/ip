@@ -27,6 +27,14 @@ public class EventTaskCommandHandler implements Command {
         this.taskManager = taskManager;
     }
 
+    /**
+     * Adds a new event task to the task manager with the given attributes and responds with a confirmation message.
+     *
+     * @param arguments string of the attributes of the event task
+     * @return the string of the response stating the successful addition of the new event task
+     * @throws InvalidCommandException thrown when there are no arguments
+     * @throws InvalidArgumentsException thrown when various invalid arguments are present
+     */
     @Override
     public String execute(String arguments) throws InvalidCommandException, InvalidArgumentsException {
         if (arguments.length() == 0) {
