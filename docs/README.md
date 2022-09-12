@@ -7,12 +7,12 @@ Duke is an interactive chatbot that can **help manage tasks**. It is in the form
 3. Copy the file to the folder you want to use as the home folder for Duke.
 
 ## Features 
-- [Adding a task](https://github.com/hanwenlai/ip/edit/master/docs/README.md#todo---adding-a-todo)
-- [Marking a task as done](https://github.com/hanwenlai/ip/edit/master/docs/README.md#mark---marking-a-task-as-done)
-- [Deleting a task](https://github.com/hanwenlai/ip/edit/master/docs/README.md#delete---deleting-a-task)
-- [Listing all tasks](https://github.com/hanwenlai/ip/edit/master/docs/README.md#list---listing-all-tasks)
-- [Finding a task by keyword](https://github.com/hanwenlai/ip/edit/master/docs/README.md#find---finding-a-task-by-keyword)
-- [Saving the data](https://github.com/hanwenlai/ip/edit/master/docs/README.md#saving-the-data)
+- [Adding a task](https://hanwenlai.github.io/ip/#todo---adding-a-todo)
+- [Marking a task as done](https://hanwenlai.github.io/ip/#mark---marking-a-task-as-done)
+- [Deleting a task](https://hanwenlai.github.io/ip/#delete---deleting-a-task)
+- [Listing all tasks](https://hanwenlai.github.io/ip/#list---listing-all-tasks)
+- [Finding a task by keyword](https://hanwenlai.github.io/ip/#find---finding-a-task-by-keyword)
+- [Saving the data](https://hanwenlai.github.io/ip/#saving-the-data)
 
 ## `todo` - Adding a todo
 
