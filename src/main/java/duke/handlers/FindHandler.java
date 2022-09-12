@@ -1,6 +1,7 @@
 package duke.handlers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import duke.entities.Task;
 import duke.entities.Tasklist;
@@ -31,16 +32,11 @@ public class FindHandler implements IHandler {
      */
     @Override
     public String handle(Service s) throws DukeException {
-        ArrayList<Task> results = new ArrayList<>();
-        Tasklist list = s.getList();
         if (this.taskName == null) {
             throw new DukeException("Please enter a task name!");
         }
-        for (Task t: list) {
-            if (t.toString().contains(this.taskName)) {
-                results.add(t);
-            }
-        }
+        Tasklist list = s.getList();
+        List<Task> results = list.find(this.taskName);
         StringBuilder sb = new StringBuilder();
         int index = 1;
         for (Task t: results) {
