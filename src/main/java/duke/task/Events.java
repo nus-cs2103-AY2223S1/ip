@@ -16,6 +16,7 @@ public class Events extends Task {
      */
     public Events(String description, String specificTime) {
         super(description);
+        assert !specificTime.isEmpty() : "Specific Time should not be empty";
         this.specificTime = specificTime;
     }
 

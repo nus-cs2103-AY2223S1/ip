@@ -20,6 +20,7 @@ public class Deadlines extends Task {
      */
     public Deadlines(String description, String dateTime, LocalDate date) {
         super(description);
+        assert !dateTime.isEmpty() : "Date Time should not be empty";
         this.dateTime = dateTime;
         this.date = date;
     }

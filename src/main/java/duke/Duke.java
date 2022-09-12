@@ -25,6 +25,8 @@ public class Duke {
      * Constructor for Duke class.
      */
     public Duke() {
+        assert !FILE_DIR.isEmpty() : "File Directory should not be empty";
+        assert !FILE_PATH.isEmpty() : "File Path should not be empty";
         this.storedTasks = new StoredTasks(FILE_DIR, FILE_PATH);
         this.ui = new Ui();
         try {
