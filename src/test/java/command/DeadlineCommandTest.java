@@ -16,7 +16,7 @@ public class DeadlineCommandTest {
     private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n %1$s";
     private static final String DESCRIPTION = "test";
     private static final LocalDateTime DATE_TIME = LocalDateTime.now();
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm a");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mm a");
 
     @Test
     public void testDeadlineCommand() {
