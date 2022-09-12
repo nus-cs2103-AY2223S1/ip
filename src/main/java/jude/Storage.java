@@ -7,6 +7,7 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import jude.task.Deadline;
@@ -74,25 +75,29 @@ public class Storage {
                 continue;
             }
 
-            String taskName = sc.nextLine();
-            String done = sc.nextLine();
-            boolean isDone = Integer.parseInt(done) == 1;
+            try {
+                String taskName = sc.nextLine();
+                String done = sc.nextLine();
+                boolean isDone = Integer.parseInt(done) == 1;
 
-            Task task;
-            if (taskType.equals("T")) {
-                task = new Todo(taskName, isDone);
-            } else if (taskType.equals("D")) {
-                String deadline = sc.nextLine();
-                task = new Deadline(taskName, isDone, deadline);
-            } else if (taskType.equals("E")) {
-                String eventStartTime = sc.nextLine();
-                String eventEndTime = sc.nextLine();
-                task = new Event(taskName, isDone, eventStartTime, eventEndTime);
-            } else {
-                throw new RuntimeException(String.format(
-                        "Jude cannot understand the input file %s.", filePath));
+                Task task = null;
+                if (taskType.equals("T")) {
+                    task = new Todo(taskName, isDone);
+                } else if (taskType.equals("D")) {
+                    String deadline = sc.nextLine();
+                    task = new Deadline(taskName, isDone, deadline);
+                } else if (taskType.equals("E")) {
+                    String eventStartTime = sc.nextLine();
+                    String eventEndTime = sc.nextLine();
+                    task = new Event(taskName, isDone, eventStartTime, eventEndTime);
+                } else {
+                    throw new NoSuchElementException("No such task type: " + taskType);
+                }
+                tasks.add(task);
+            } catch (NoSuchElementException | NumberFormatException ex) {
+                // Jude cannot understand the input file from this point onwards.
+                return tasks;
             }
-            tasks.add(task);
         }
         return tasks;
     }

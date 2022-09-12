@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    private static final Number IMAGE_SIZE_WITH_PADDING = 130.0;
     @FXML
     private Text dialog;
     @FXML
@@ -45,10 +46,20 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        assert(dialog != null);
-        assert(displayPicture != null);
+        assert dialog != null : "Dialog text component cannot be null.";
+        assert displayPicture != null : "Display picture cannot be null.";
         dialog.setText(text);
         displayPicture.setImage(img);
+
+        //@@author cheeheng-reused
+        // Reused from https://stackoverflow.com/questions/38216268/how-to-listen-resize-event-of-stage-in-javafx
+        // with some modifications.
+        this.widthProperty().addListener((obs, oldVal, newVal) -> {
+            double curSize = newVal.doubleValue();
+            // Set text box size accordingly when resize occurs
+            dialog.setWrappingWidth(newVal.doubleValue() - IMAGE_SIZE_WITH_PADDING.doubleValue());
+        });
+        //@@author
     }
 
     /**

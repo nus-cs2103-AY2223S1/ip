@@ -45,9 +45,9 @@ public class MainWindow {
         userImage = new Image(userImageResource);
         chatbotImage = new Image(chatbotImageResource);
 
-        assert(scrollPane != null);
-        assert(dialogContainer != null);
-        assert(userInput != null);
+        assert scrollPane != null : "Scroll pane cannot be null";
+        assert dialogContainer != null : "Dialog container cannot be null";
+        assert userInput != null : "User input cannot be null";
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
