@@ -29,14 +29,6 @@ public class CommandDeleteHandler extends CommandUpdateTaskHandler {
         return INVALID_FORMAT_MESSAGE;
     }
 
-    /**
-     * Delete a task from the task list
-     *
-     * @param taskList task list
-     * @return delete task response
-     * @throws CommandException if task number given is out of range or task number string cannot be
-     *                          parsed into a number
-     */
     @Override
     protected String getSelectedTaskIdStr() {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();

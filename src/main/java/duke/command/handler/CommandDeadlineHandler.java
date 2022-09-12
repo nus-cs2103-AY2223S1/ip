@@ -29,13 +29,6 @@ public class CommandDeadlineHandler extends CommandAddTaskHandler {
         return INVALID_FORMAT_MESSAGE;
     }
 
-    /**
-     * Add a deadline event to the task list
-     *
-     * @param taskList task list
-     * @return add task response
-     * @throws CommandException if date-time for event task cannot be parsed
-     */
     @Override
     protected Task getTaskFromCommand() throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
