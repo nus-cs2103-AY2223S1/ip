@@ -1,0 +1,21 @@
+list
+todo first task
+list
+deadline second task /by 2022-09-20
+event third task /at 2022-11-03
+list
+mark 1
+list
+unmark 1
+list
+delete 1
+list
+blah
+mark 66
+unmark 99
+delete 42
+todo
+deadline fourth task /by
+event /at date
+list
+bye
