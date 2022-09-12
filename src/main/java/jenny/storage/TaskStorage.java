@@ -1,10 +1,7 @@
 package jenny.storage;
 
 import jenny.exceptions.JennyException;
-import jenny.tasks.DeadlineTask;
-import jenny.tasks.EventTask;
-import jenny.tasks.Task;
-import jenny.tasks.TodoTask;
+import jenny.tasks.*;
 import jenny.util.Validator;
 
 import java.io.FileNotFoundException;
@@ -105,17 +102,19 @@ public class TaskStorage<T> extends Storage<T> {
 
     private void loadHelper(ArrayList<Task> tasks, String[] data) throws JennyException {
         switch (data[0]) {
-        case "DeadlineTask":
-            loadDeadline(tasks, data);
-            break;
-        case "EventTask":
-            loadEvent(tasks, data);
-            break;
-        case "TodoTask":
-            loadTodo(tasks, data);
-            break;
-        default:
-            throw new JennyException(MESSAGE_SCOPE, ERROR_CORRUPTED_SAVE);
+            case "DeadlineTask":
+                loadDeadline(tasks, data);
+                break;
+            case "EventTask":
+                loadEvent(tasks, data);
+                break;
+            case "TodoTask":
+                loadTodo(tasks, data);
+                break;
+            case "NoteTask":
+                loadNote(tasks, data);
+            default:
+                throw new JennyException(MESSAGE_SCOPE, ERROR_CORRUPTED_SAVE);
         }
     }
 
@@ -153,6 +152,16 @@ public class TaskStorage<T> extends Storage<T> {
 
     private void loadTodo(ArrayList<Task> tasks, String[] data) throws JennyException {
         Task task = new TodoTask(data[2]);
+        tasks.add(task);
+        if ((Objects.equals(data[1], "true"))) {
+            task.mark();
+        } else {
+            task.unmark();
+        }
+    }
+
+    private void loadNote(ArrayList<Task> tasks, String[] data) throws JennyException {
+        Task task = new NoteTask(data[2]);
         tasks.add(task);
         if ((Objects.equals(data[1], "true"))) {
             task.mark();
