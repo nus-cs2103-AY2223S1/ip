@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Main extends Application {
 
     private ScrollPane scrollPane;
@@ -85,27 +88,24 @@ public class Main extends Application {
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
         userInput.clear();
+        if (userText.getText().equals("bye")) {
+            System.exit(0);
+        }
     }
 
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input) {
-        return "Reply: " + input;
+    private String getResponse(String str) {
+        Parser ps = new Parser(new Duke("./src/main/files/taskset.txt"));
+        return ps.run(str);
     }
 
     private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
 
         return textToAdd;
-    }
-
-    public static void main(String[] args) {
-        Duke duke = new Duke("./src/main/files/taskset.txt");
-        duke.run();
-        System.exit(0);
     }
 }

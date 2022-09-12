@@ -12,12 +12,13 @@ import java.util.stream.Collectors;
  * @author Lan Jingbo, Jerry
  */
 public class Duke {
-    private Ui ui;
+    private static Ui ui;
     private TaskList tasks;
     private Storage storage;
 
     /**
      * The constructor for duke.
+     *
      * @param filePath the path of the .txt file
      */
     public Duke(String filePath) {
@@ -32,16 +33,72 @@ public class Duke {
         }
     }
 
+    public String todo(String require) throws WrongMessageException {
+        try {
+            String content = require.substring(4).trim();
+            if (content.equals("")) {
+                throw new WrongMessageException();
+            }
+            Todo todo = new Todo(content);
+            tasks.addTask(todo);
+            int size = tasks.getSize();
+            storage.saveFile(tasks);
+            return "add task " + todo.toString() + "\n"
+                    + "now you have " + size + " tasks";
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+    }
+
+    public String deadline(String require) throws WrongMessageException {
+        try {
+            String info = require.substring(8).trim();
+            String ddlDate = require.split("/by")[1].trim();
+            String content = info.split("/by")[0].trim();
+            if (content.equals("") || info.startsWith("/by")) {
+                throw new WrongMessageException();
+            }
+            Deadline ddl = new Deadline(content, ddlDate);
+            tasks.addTask(ddl);
+            int size = tasks.getSize();
+            storage.saveFile(tasks);
+            return "add task " + ddl.toString() + "\n"
+                    + "now you have " + size + " tasks";
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+    }
+
+    public String event(String require) throws WrongMessageException {
+        try {
+            String info = require.substring(5).trim();
+            String happenTime = require.split("/at")[1].trim();
+            String content = info.split("/at")[0].trim();
+            if (content.equals("") || info.startsWith("/at")) {
+                throw new WrongMessageException();
+            }
+            Event evt = new Event(content, happenTime);
+            tasks.addTask(evt);
+            int size = tasks.getSize();
+            storage.saveFile(tasks);
+            return "add task " + evt.toString() + "\n"
+                    + "now you have " + size + " tasks";
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+    }
+
     /**
      * mark the targeted task to "complete".
      *
      * @param target the index of task
      * @throws WrongMessageException potential exception
      */
-    public void mark(int target) throws WrongMessageException {
+    public String mark(int target) throws WrongMessageException, IOException {
         Task willMark = tasks.getTask(target - 1);
         willMark.donelah();
-        System.out.println("Congratulations! you complete this task:\n"
+        storage.saveFile(tasks);
+        return ("Congratulations! you complete this task:\n"
                 + willMark.toString());
     }
 
@@ -51,10 +108,11 @@ public class Duke {
      * @param target the index of task
      * @throws WrongMessageException potential exception
      */
-    public void unmark(int target) throws WrongMessageException {
+    public String unmark(int target) throws WrongMessageException, IOException {
         Task willUnmark = tasks.getTask(target - 1);
         willUnmark.nodone();
-        System.out.println("You undone this task:\n"
+        storage.saveFile(tasks);
+        return ("You undone this task:\n"
                 + willUnmark.toString());
     }
 
@@ -63,12 +121,13 @@ public class Duke {
      *
      * @throws WrongMessageException potential exception
      */
-    public void showList() throws WrongMessageException {
-        System.out.println("Your list is as following");
+    public String showList() throws WrongMessageException {
+        String s = "";
         for (int i = 1; i <= tasks.getSize(); i++) {
             Task temp = tasks.getTask(i);
-            System.out.println((i) + "." + temp.toString());
+            s += (i) + "." + temp.toString() + "\n";
         }
+        return s;
     }
 
     /**
@@ -77,11 +136,14 @@ public class Duke {
      * @param str the index of task
      * @throws WrongMessageException potential exception
      */
-    public void delete(String str) throws WrongMessageException {
+    public String delete(String str) throws WrongMessageException, IOException {
         String[] temp = str.split(" ");
+        String s = "";
         int key3 = Integer.decode(temp[1]);
-        System.out.println("ok I will delete the task " + tasks.deleteTask(key3 - 1) + " right now!");
-        System.out.println("now you have " + tasks.getSize() + " tasks in the list");
+        s += ("ok I will delete the task " + tasks.deleteTask(key3) + " right now!") + "\n"
+                + "now you have " + tasks.getSize() + " tasks in the list";
+        storage.saveFile(tasks);
+        return s;
     }
 
     /**
@@ -89,16 +151,18 @@ public class Duke {
      *
      * @param localDate the given date
      */
-    public void getOnDate(LocalDate localDate) {
+    public String getOnDate(LocalDate localDate) {
+        String s = "";
         List<Task> shortList = tasks.getTaskList().stream().filter(task -> task.isOnDate(localDate))
                 .collect(Collectors.toList());
         int i = 0;
-        System.out.println("Hey, these are what you need to do on this date: "
-                + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy")));
         for (Task t : shortList) {
-            System.out.println((i + 1) + "." + t);
+            s += ((i + 1) + "." + t) + "\n";
             i++;
         }
+        return ("Hey, these are what you need to do on this date: "
+                + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy"))) + "\n"
+                + s;
     }
 
     /**
@@ -106,28 +170,39 @@ public class Duke {
      *
      * @param require the given string
      */
-    public void search(String require) {
+    public String search(String require) {
+        String s = "";
         List<Task> shortList = tasks.getTaskList().stream()
                 .filter(task -> task.hasThis(require))
                 .collect(Collectors.toList());
         int i = 0;
         if (shortList.size() > 0) {
-            System.out.println("search result of " + require + " are here: ");
             for (Task t : shortList) {
-                System.out.println((i + 1) + "." + t);
+                s += ((i + 1) + "." + t) + "\n";
                 i++;
             }
+            return ("search result of " + require + " are here: ") + "\n"
+                    + s;
         } else {
-            System.out.println("Sorry, We cannot find those for you");
+            return ("Sorry, We cannot find those for you");
         }
+    }
+
+    public String bye() {
+        return "Bye! Hope to see you again soon!";
+    }
+
+    public String hi() {
+        return ui.greet();
     }
 
     /**
      * Run the chatbot, Life is good.
      */
-    public void run() {
+    /*public void run() {
 
         ui.greet();
+        String s;
 
         while (true) {
             String str = ui.requirement();
@@ -177,5 +252,5 @@ public class Duke {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-    }
+    }*/
 }
