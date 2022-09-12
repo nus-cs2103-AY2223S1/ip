@@ -15,6 +15,7 @@ class Deadline extends Task {
     Deadline (int id, String name, String deadline, boolean done) {
         super(id, name, done);
         this.deadline = LocalDate.parse(deadline.trim(), DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        assert(this.deadline.isAfter(LocalDate.now()));
     }
 
     @Override

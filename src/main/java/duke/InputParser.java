@@ -7,7 +7,9 @@ import duke.exceptions.IllegalCommandException;
 class InputParser {
     String parse(String input, TaskList taskList, Storage storage) throws EmptyTextException, IllegalCommandException, EndProgramException {
         String response = "";
+        assert(input.length() > 0);
         if (input.startsWith("find")) {
+            assert(input.length() > 5);
             response = taskList.find(input.substring(6));
 
         } else if (input.equals("bye")) {
@@ -18,9 +20,11 @@ class InputParser {
             response = taskList.list();
 
         } else if (input.startsWith("mark")) {
+            assert(input.length() > 5);
             response = taskList.mark(Integer.parseInt(input.substring(5)), true);
 
         } else if (input.startsWith("unmark")) {
+            assert(input.length() > 7);
             response = taskList.mark(Integer.parseInt(input.substring(7)), false);
 
         } else if (input.startsWith("delete")) {
