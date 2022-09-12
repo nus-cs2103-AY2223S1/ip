@@ -31,8 +31,7 @@ public class Storage {
     /**
      * @return
      */
-    public List<Task> load() {
-
+    public List<Task> load() throws DukeException {
         parseFileToTasks(filepath);
         return tasks;
     }
@@ -56,42 +55,35 @@ public class Storage {
      *
      * @param filepath location of file stored
      */
-    private void parseFileToTasks(String filepath) {
+    private void parseFileToTasks(String filepath) throws DukeException {
+        new File(filepath).getParentFile().mkdir(); // create directory if it does not exist
+        Scanner in;
         try {
-            new File(filepath).getParentFile().mkdir();
-            Scanner in = new Scanner(new FileReader(filepath));
-            while (in.hasNextLine()) {
-                String line = in.nextLine();
-                String[] data = line.split(" \\| ");
-                Task task = null;
-                switch (data[0]) {
-                case "T":
-                    task = new Todo(data[2]);
-                    break;
-                case "D":
-                    task = new Deadline(data[2], data[3]);
-                    break;
-                case "E":
-                    task = new Event(data[2], data[3]);
-                    break;
-                default:
-                    System.out.println("something is wrong with the strings in file storage");
-                }
-
-                if (task == null) {
-                    throw new DukeException("task is null");
-                }
-                if (data[1].equals("X")) {
-                    task.mark();
-                }
-                this.tasks.add(task);
+            in = new Scanner(new FileReader(filepath));
+        } catch (FileNotFoundException e) {
+            throw new DukeException("Storage file is not found");
+        }
+        while (in.hasNextLine()) {
+            String line = in.nextLine();
+            String[] data = line.split(" \\| ");
+            Task task;
+            switch (data[0]) {
+            case "T":
+                task = new Todo(data[2]);
+                break;
+            case "D":
+                task = new Deadline(data[2], data[3]);
+                break;
+            case "E":
+                task = new Event(data[2], data[3]);
+                break;
+            default:
+                throw new DukeException("Something is wrong is the tasks stored in file");
             }
-        } catch (FileNotFoundException | DukeException e) {
-            try {
-                new File(filepath).createNewFile();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+            if (data[1].equals("X")) {
+                task.mark();
             }
+            this.tasks.add(task);
         }
     }
 

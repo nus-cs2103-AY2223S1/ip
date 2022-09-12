@@ -32,8 +32,8 @@ public class Duke {
     }
 
     /**
-     * Begins the console Duke app.
-     * Calling the run() method starts the interaction with the program.
+     * Begins the console Duke app
+     * Calling the run() method starts the interaction with the program
      */
     public void run() {
         // ui.showWelcome();
@@ -55,9 +55,8 @@ public class Duke {
     }
 
     /**
-     * Driver of Duke app.
-     *
-     * @param args arguments from the commandline.
+     * Driver of Duke app
+     * @param args arguments from the commandline
      */
     public static void main(String[] args) {
         new Duke("data//duke.txt").run();
@@ -65,8 +64,8 @@ public class Duke {
 
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * @param input Input from the user
+     * @return String that is the reply from Duke
      */
     public String getResponse(String input) {
         try {

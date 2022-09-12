@@ -88,6 +88,7 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeException {
         // DO NOT USE ARROW SWTICH AS IT IS A JAVA12 FEATURE
+        fullCommand = fullCommand.trim();
         if (isAddCommand(fullCommand)) {
             return new AddCommand(fullCommand);
         }
