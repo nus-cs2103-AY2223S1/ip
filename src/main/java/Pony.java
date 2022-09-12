@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 public class Pony {
 
     private String greet = "Hello! I'm Pony" + "\n" + "What can I do for you?";
@@ -110,7 +113,9 @@ public class Pony {
                         throw new PonyException.taskFormatError(format);
                     } else {
                         String description = taskInfoArr[0];
-                        String time = taskInfoArr[1];
+                        String timeInfo = taskInfoArr[1];
+                        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        LocalDateTime time = LocalDateTime.parse(timeInfo, format);
                         Task newTask = new Deadline(description, time);
                         this.tasks.add(newTask);
                         System.out.println("Got it. I've added this task: " + newTask.toString());
@@ -119,6 +124,8 @@ public class Pony {
                 }
             } catch (PonyException.taskMissingError | PonyException.taskFormatError e) {
                 System.out.println(e.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("Please follow this date format: yyyy-MM-dd HH:mm");
             } finally {
                 run();
             }
@@ -136,7 +143,9 @@ public class Pony {
                         throw new PonyException.taskFormatError(format);
                     } else {
                         String description = taskInfoArr[0];
-                        String time = taskInfoArr[1];
+                        String timeInfo = taskInfoArr[1];
+                        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        LocalDateTime time = LocalDateTime.parse(timeInfo, format);
                         Task newTask = new Event(description, time);
                         this.tasks.add(newTask);
                         System.out.println("Got it. I've added this task: " + newTask.toString());
@@ -145,6 +154,8 @@ public class Pony {
                 }
             } catch (PonyException.taskMissingError | PonyException.taskFormatError e) {
                 System.out.println(e.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("Please follow this date format: yyyy-MM-dd HH:mm");
             } finally {
                 run();
             }
