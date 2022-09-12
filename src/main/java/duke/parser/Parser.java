@@ -118,14 +118,14 @@ public class Parser {
     }
 
     private static MarkCommand prepareMarkCommand(String[] inputs) throws DukeException {
-        return (MarkCommand) UpdateTaskCompletionStatus(inputs, true);
+        return (MarkCommand) updateTaskCompletionStatus(inputs, true);
     }
 
     private static UnmarkCommand prepareUnmarkCommand(String[] inputs) throws DukeException {
-        return (UnmarkCommand) UpdateTaskCompletionStatus(inputs, false);
+        return (UnmarkCommand) updateTaskCompletionStatus(inputs, false);
     }
 
-    private static Command UpdateTaskCompletionStatus(String[] inputs, boolean isDone) {
+    private static Command updateTaskCompletionStatus(String[] inputs, boolean isDone) {
         if (inputs.length == 1 || inputs[1].equals("")) {
             throw new DukeException("OOPS!!! The task index cannot be empty.\n");
         }
