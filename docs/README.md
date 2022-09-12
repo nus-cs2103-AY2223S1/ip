@@ -4,7 +4,7 @@ This product is a desktop app for managing tasks mainly through the use of a Com
 
 ## Features 
 - [`help` - Viewing help](#help---viewing-help)
-- [`bye` - Exit the program](d#bye---exit-the-program)
+- [`bye` - Exit the program](#bye---exit-the-program)
 - [`list` - List stored tasks](#list---list-stored-tasks)
 - [`todo` - Add a "Todo" task](#todo---add-a-todo-task)
 - [`deadline`- Add a "Deadline" task](#deadline---add-a-deadline-task)
