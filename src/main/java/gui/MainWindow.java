@@ -32,6 +32,7 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/monke.png"));
     private Image botImage = new Image(this.getClass().getResourceAsStream("/images/monke2.png"));
+    private Image bananaImage = new Image(this.getClass().getResourceAsStream("/images/banana.png"));
 
     @FXML
     public void initialize() {
@@ -63,6 +64,9 @@ public class MainWindow extends AnchorPane {
                 case "bruh":
                     response = "bruh";
                     break;
+                case "monkey see":
+                    response = "monkey do HOOHOOHAHA";
+                    break;
                 case "banana":
                     response = "HOOHOOHAHA nomnom";
                     gaveBanana = true;
@@ -78,7 +82,11 @@ public class MainWindow extends AnchorPane {
             gaveBanana = false;
         }
 
+
         DialogBox userDialog = DialogBox.getUserDialog(input, userImage);
+        if (input.equals("banana")) {
+            userDialog = DialogBox.getUserDialog(input, bananaImage);
+        }
         DialogBox botResponse = DialogBox.getBotDialog(response, botImage);
 
         dialogContainer.getChildren().addAll(
@@ -91,7 +99,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void sendIntro() {
         dialogContainer.getChildren().addAll(
-                DialogBox.getBotDialog("HOOHOOHAHA\n Gimme banana", botImage)
+                DialogBox.getBotDialog("HOOHOOHAHA\n type \"banana\" to give me banana :D", botImage)
         );
     }
 }

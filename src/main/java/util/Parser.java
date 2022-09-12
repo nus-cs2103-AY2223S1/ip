@@ -13,6 +13,7 @@ enum InputType {
     find,
     akw,
     rkw,
+    help,
 }
 
 /**
@@ -39,7 +40,8 @@ public class Parser {
                 result = parseTimedTask(input);
                 break;
             case find:
-                result = parseFind(input);
+            case help:
+                result = singleInput(input);
                 break;
             case akw:
                 result = parseAkw(input);
@@ -55,7 +57,7 @@ public class Parser {
         return result;
     }
 
-    private ParsedData parseFind(String input) throws AlanException {
+    private ParsedData singleInput(String input) throws AlanException {
         String[] firstSplit = input.split(" ", 2);
         String command = firstSplit[0];
         String keyword;

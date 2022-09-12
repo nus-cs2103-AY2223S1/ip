@@ -1,10 +1,14 @@
 package util;
 
+import alan.Alan;
 import alanExceptions.AlanException;
 import alanExceptions.InvalidValueException;
+import keyword.Keywords;
 import tasks.*;
 
 import java.util.List;
+
+import static util.InputType.help;
 
 /**
  * This class is used for executing commands.
@@ -184,6 +188,19 @@ public class Executor {
         keyword.Keywords.getInstance().remove(parsedData.getDescription());
 
         return ui.rkw(parsedData.getDescription());
+    }
+
+    public String excHelp(String userInput) throws AlanException{
+        ParsedData parsedData;
+        try {
+            parsedData = parser.parse(help, userInput);
+        } catch (AlanException e) {
+            return "For more specific instructions, type \"help\" followed by a command.\n" +
+                    "Here are the available commands:\n" + Keywords.getInstance().getDefaultKeywords();
+        }
+
+        return Keywords.getInstance().getHelpMsg(parsedData.getDescription());
+
     }
 
     public String excBye() {

@@ -30,8 +30,8 @@ public class Ui {
      */
     public String addTask(Task task, int listLength) {
         String tasksGrammar = listLength > 1 ? " tasks" : " task";
-        return addSeparator("Alright, I have added the following task to the list!\n  "
-                + task + "\nYou currently have " + listLength + tasksGrammar + ".");
+        return addSeparator("hoohoohaha, monke has added the following task to the list!\n  "
+                + task + "\nu currently have " + listLength + tasksGrammar + ".");
     }
 
     /**
@@ -42,7 +42,7 @@ public class Ui {
      */
     public String list(List<Task> taskList) {
         StringBuilder reply = new StringBuilder();
-        reply.append("Here are the tasks you have added:\n");
+        reply.append("u monke gotta do these:\n");
         int count = 1;
         for (Task task: taskList) {
             reply.append("  ").append(count++).append(". ").append(task.toString()).append("\n");
@@ -53,9 +53,9 @@ public class Ui {
 
     public String find(TaskList taskList, List<Task> result) {
         StringBuilder reply = new StringBuilder();
-        reply.append("Here are the matching tasks in your list:\n");
+        reply.append("u monke has these monkey doos:\n");
         if (result.isEmpty()) {
-            return addSeparator("There are no matching tasks.");
+            return addSeparator("u monke, u didn't add anything with that.");
         }
         for (Task task: result) {
             int index = taskList.getTaskList().indexOf(task) + 1;
@@ -71,7 +71,7 @@ public class Ui {
      * @return Formatted text.
      */
     public String markDone(Task task) {
-        return addSeparator( "Yay! I have marked this task as done!\n  " + task);
+        return addSeparator( "HOOHOOHAHA! GOOD MONKE!!\n monke has marked this task as done!\n  " + task);
     }
 
     /**
@@ -81,7 +81,7 @@ public class Ui {
      * @return Formatted text.
      */
     public String markUndone(Task task) {
-        return addSeparator("Got it, I have marked this task as undone.\n  " + task);
+        return addSeparator("hoohoohaha, monke has marked this task as undone.\n  " + task);
     }
 
     /**
@@ -93,16 +93,16 @@ public class Ui {
      */
     public String delete(Task task, int listLength) {
         String tasksGrammar = listLength > 1 ? " tasks" : " task";
-        return addSeparator("Alright, I have removed the following task from the list!\n  "
-                + task + "\nYou currently have " + listLength + tasksGrammar + ".");
+        return addSeparator("hoohoohaha, monke has removed the following task from the list!\n  "
+                + task + "\nu currently have " + listLength + tasksGrammar + ".");
     }
 
     public String akw(String kw, String commandkw) {
-        return addSeparator("I have assigned " + kw + " to " + commandkw + ".");
+        return addSeparator("monke has assigned " + kw + " to " + commandkw + ".");
     }
 
     public String rkw(String kw) {
-        return addSeparator("I have removed " + kw + " as a keyword.");
+        return addSeparator("monke has removed " + kw + " as a keyword.");
     }
 
     /**
@@ -111,7 +111,7 @@ public class Ui {
      * @return Error message.
      */
     public String invalid() {
-        return addSeparator("I'm afraid i can't help you with that.\nType \"help\" for the list of things I can do for you.");
+        return addSeparator("hoohoohaha? monke dunno what dat is.\nsay \"help\" for the things I can do for u.");
     }
 
     /**

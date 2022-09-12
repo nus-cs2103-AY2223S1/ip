@@ -97,7 +97,7 @@ public class Alan {
                     response = executor.excDelete(taskList, input);
                     break;
                 case "help":
-                    response = "keyword.Keywords.java: " + keyword.Keywords.getInstance().getDefaultKeywords();
+                    response = executor.excHelp(input);
                     break;
                 case "addkw":
                     response = executor.excAkw(input);
