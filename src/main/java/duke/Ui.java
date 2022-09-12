@@ -32,15 +32,15 @@ public class Ui {
     /**
      * Displays a welcome message to the user.
      */
-    protected void printWelcomeMessage() {
-        out.println("Hello! I'm SoCCat\nWhat can I do for you?");
+    protected String printWelcomeMessage() {
+        return "Hello! I'm SoCCat\nWhat can I do for you?";
     }
 
     /**
      * Displays a farewell message to the user.
      */
-    protected void printGoodbyeMessage() {
-        out.println("Goodbye! SoCCat wishes to see you again soon!");
+    protected String printGoodbyeMessage() {
+        return "Goodbye! SoCCat wishes to see you again soon!";
     }
 
     /**
@@ -48,18 +48,20 @@ public class Ui {
      *
      * @param tasks all the current tasks in the task list
      */
-    protected void printAllTasks(ArrayList<Task> tasks) {
-        out.println("Here are the tasks in your list: ");
-        loopThroughTasks(tasks);
-    }
-    protected void printMatchingTasks(ArrayList<Task> tasks) {
-        out.println("Here are the matching tasks in your list: ");
-        loopThroughTasks(tasks);
-    }
-    protected void loopThroughTasks(ArrayList<Task> tasks) {
+    protected String printAllTasks(ArrayList<Task> tasks) {
+        String allTasks = "";
         for (int i = 0; i < tasks.size(); i++) {
-            out.println(i + 1 + "." + tasks.get(i));
+            allTasks = allTasks.concat(i + 1 + "." + tasks.get(i) + "\n");
         }
+        return "Here are the tasks in your list: " + "\n" + allTasks;
+    }
+    
+    protected String printMatchingTasks(ArrayList<Task> tasks) {
+        String allTasks = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            allTasks = allTasks.concat(i + 1 + "." + tasks.get(i) + "\n");
+        }
+        return "Here are the matching tasks in your list: " + allTasks;
     }
 
     /**
@@ -77,8 +79,8 @@ public class Ui {
      *
      * @param task the task that is marked
      */
-    protected void printTaskMarked(Task task) {
-        out.println("Nice! I've marked this task as done: \n" + task);
+    protected String printTaskMarked(Task task) {
+        return "Nice! I've marked this task as done: \n" + task;
     }
 
     /**
@@ -86,8 +88,8 @@ public class Ui {
      *
      * @param task the task that is unmarked
      */
-    protected void printTaskUnmarked(Task task) {
-        out.println("Ok! I've marked this task as not done yet: \n" + task);
+    protected String printTaskUnmarked(Task task) {
+        return "Ok! I've marked this task as not done yet: \n" + task;
     }
 
     /**
@@ -96,8 +98,8 @@ public class Ui {
      * @param task the task that was added
      * @param size the total number of tasks in the task list
      */
-    protected void printTaskAdded(Task task, int size) {
-        out.println("Got it. I've added this task: \n" + task + "\n" + printNumberOfTasks(size));
+    protected String printTaskAdded(Task task, int size) {
+        return "Got it. I've added this task: \n" + task + "\n" + printNumberOfTasks(size);
     }
 
     /**
@@ -106,7 +108,7 @@ public class Ui {
      * @param task the task that was deleted
      * @param size the total number of tasks in the task list
      */
-    protected void printTaskDeleted(Task task, int size) {
-        out.println("Noted. I've removed this task: \n" + task + "\n" + printNumberOfTasks(size));
+    protected String printTaskDeleted(Task task, int size) {
+        return "Noted. I've removed this task: \n" + task + "\n" + printNumberOfTasks(size);
     }
 }

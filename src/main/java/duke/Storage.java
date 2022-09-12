@@ -32,7 +32,7 @@ public class Storage {
      * @return An ArrayList of type Task that consists of all the given tasks that were previously saved.
      * @throws DukeException if an I/O error occurs when locating or creating the file with the given pathname.
      */
-    protected ArrayList<Task> loadFromDisk() throws DukeException {
+    protected ArrayList<Task> loadFromDisk() {
 
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -67,7 +67,7 @@ public class Storage {
             }
             reader.close();
         } catch (IOException ex) {
-            throw new DukeException(ex.getMessage());
+            ex.printStackTrace();
         }
         return tasks;
     }

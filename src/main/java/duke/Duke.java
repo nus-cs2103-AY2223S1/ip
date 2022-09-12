@@ -33,108 +33,63 @@ public class Duke {
         ui = new Ui();
         storage = new Storage();
         parser = new Parser();
+        tasks = new TaskList(storage.loadFromDisk());
     }
 
     public static void main(String[] args) {
         new Duke().start();
     }
+    
     private void start() {
         ui.printWelcomeMessage();
-        try {
-            tasks = new TaskList(storage.loadFromDisk());
-            repeatUntilQuit();
-            exit();
-        } catch (DukeException ex) {
-            System.out.println(ex.getMessage());
-        }
+        tasks = new TaskList(storage.loadFromDisk());
+//            repeatUntilQuit();
+        exit();
     }
 
     private void exit() {
         ui.printGoodbyeMessage();
     }
 
-    private void repeatUntilQuit() {
-        while (true) {
-            String input = ui.getUserInput();
-            String[] words = parser.parseInput(input);
-            String keyword = parser.getKeyword(input);
-
-            try {
-                switch (keyword) {
-                    case "bye":
-                        return;
-                    case "list":
-                        ui.printAllTasks(tasks.getTaskList());
-                        break;
-                    case "todo":
-                        createToDo(words);
-                        break;
-                    case "deadline":
-                        createDeadline(words);
-                        break;
-                    case "event":
-                        createEvent(words);
-                        break;
-                    case "mark":
-                        mark(words);
-                        break;
-                    case "unmark":
-                        unmark(words);
-                        break;
-                    case "delete":
-                        deleteTask(words);
-                        break;
-                    case "find":
-                        findTask(words);
-                        break;
-                    default:
-                        throw new DukeInvalidException();
-                }
-            } catch (DukeException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-    }
-
-    private void mark(String[] input) throws DukeException {
+    private String mark(String[] input) throws DukeException {
         parser.checkArg(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task markedTask = tasks.getTask(taskIndex);
             markedTask.markAsDone();
-            ui.printTaskMarked(markedTask);
             storage.saveToDisk(tasks.getTaskList());
+            return ui.printTaskMarked(markedTask);
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         }
     }
 
-    private void unmark(String[] input) throws DukeException {
+    private String unmark(String[] input) throws DukeException {
         parser.checkArg(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task unmarkedTask = tasks.getTask(taskIndex);
             unmarkedTask.unmarkAsNotDone();
-            ui.printTaskUnmarked(unmarkedTask);
             storage.saveToDisk(tasks.getTaskList());
+            return ui.printTaskUnmarked(unmarkedTask);
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         }
     }
 
-    private void createToDo(String[] input) throws DukeException {
+    private String createToDo(String[] input) throws DukeException {
         parser.checkArg(input);
         try {
             ToDo task = new ToDo(input[1]);
             tasks.addTask(task);
-            ui.printTaskAdded(task, tasks.getSize());
             storage.saveToDisk(tasks.getTaskList());
+            return ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         }
     }
 
-    private void createDeadline(String[] input) throws DukeException {
+    private String createDeadline(String[] input) throws DukeException {
         parser.checkArg(input);
         try {
             String[] taskDetails = input[1].split(" /by ", 2);
@@ -143,8 +98,8 @@ public class Duke {
             LocalDateTime dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMATTER);
             Deadline task = new Deadline(tasking, dateTime);
             tasks.addTask(task);
-            ui.printTaskAdded(task, tasks.getSize());
             storage.saveToDisk(tasks.getTaskList());
+            return ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         } catch (DateTimeException ex) {
@@ -152,7 +107,7 @@ public class Duke {
         }
     }
 
-    private void createEvent(String[] input) throws DukeException {
+    private String createEvent(String[] input) throws DukeException {
         parser.checkArg(input);
         try {
             String[] taskDetails = input[1].split(" /at ", 2);
@@ -161,8 +116,8 @@ public class Duke {
             LocalDateTime dateTime = LocalDateTime.parse(eventTime, DATE_TIME_FORMATTER);
             Event task = new Event(tasking, dateTime);
             tasks.addTask(task);
-            ui.printTaskAdded(task, tasks.getSize());
             storage.saveToDisk(tasks.getTaskList());
+            return ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         } catch (DateTimeException ex) {
@@ -170,27 +125,54 @@ public class Duke {
         }
     }
 
-    private void deleteTask(String[] input) throws DukeException {
+    private String deleteTask(String[] input) throws DukeException {
         parser.checkArg(input);
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task deletedTask = tasks.deleteTask(taskIndex);
-            ui.printTaskDeleted(deletedTask, tasks.getSize());
             storage.saveToDisk(tasks.getTaskList());
+            return ui.printTaskDeleted(deletedTask, tasks.getSize());
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         }
     }
 
-    private void findTask(String[] input) throws DukeException {
+    private String findTask(String[] input) throws DukeException {
         parser.checkArg(input);
         String searchTerm = input[1];
         ArrayList<Task> results = tasks.find(searchTerm);
-        ui.printMatchingTasks(results);
+        return ui.printMatchingTasks(results);
     }
 
     public String getResponse(String input) {
-        return "apple";
+            String[] words = parser.parseInput(input);
+            String keyword = parser.getKeyword(input);
+
+            try {
+                switch (keyword) {
+                    case "bye":
+                        return ui.printGoodbyeMessage();
+                    case "list":
+                        return ui.printAllTasks(tasks.getTaskList());
+                    case "todo":
+                        return createToDo(words);
+                    case "deadline":
+                        return createDeadline(words);
+                    case "event":
+                        return createEvent(words);
+                    case "mark":
+                        return mark(words);
+                    case "unmark":
+                        return unmark(words);
+                    case "delete":
+                        return deleteTask(words);
+                    case "find":
+                        return findTask(words);
+                    default:
+                        throw new DukeInvalidException();
+                }
+            } catch (DukeException ex) {
+                return ex.getMessage();
+            } 
     }
-    
 }
