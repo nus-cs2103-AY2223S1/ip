@@ -58,6 +58,9 @@ public class Parser {
             } else if (input.startsWith("event")) {
                 return event(input);
 
+            }else if (input.equals("reminder")) {
+                return reminder();
+
             } else { //random input
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
@@ -173,5 +176,16 @@ public class Parser {
         storage.saveFile(tasks);
         return String.format("OK, I've marked this task as not done yet:\n" +
                 "[" + tasks.getTask(counter).getStatusIcon() + "] " + tasks.getTask(counter).getDescription());
+    }
+
+    private String reminder() {
+        String responseString = String.format("Reminder for tasks in the upcoming week:\n");
+        int counter = 1;
+        List<Integer> searchResults = tasks.getUpcomingTasks();
+        for (int index : searchResults) {
+            responseString += String.format("%s.%s\n",counter, tasks.getTask(index).toString());
+            counter += 1;
+        }
+        return responseString;
     }
 }

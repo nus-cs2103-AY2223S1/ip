@@ -1,5 +1,7 @@
 package duke;
 
+import java.time.LocalDate;
+
 /**
  * The Task class is an abstract class that has a description and an indicator depicting whether
  * it has been done.
@@ -76,6 +78,8 @@ public abstract class Task {
     String saveStringToFile() {
         return String.format("%s\n%s\n%d\n", getTaskType(), description, isDone ? 1 : 0);
     }
+
+    public abstract LocalDate getDate();
 }
 
 
