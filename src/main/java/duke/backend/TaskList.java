@@ -59,7 +59,7 @@ public class TaskList {
      * Appends a new DeadLine object to the userTasks ArrayList
      * @param taskDescription string of TaskDescription for a DeadLine object to be created
      * @param date represents date Task is to be completed by
-     * @throws DukeException
+     * @throws DukeException error message
      */
     public void appendDeadline(String taskDescription, String date) throws DukeException {
         date = date.replace("by ","");
@@ -71,7 +71,7 @@ public class TaskList {
      * @param taskDescription string of TaskDescription for a DeadLine object to be created
      * @param date represents date Task is to be completed by
      * @param isCompleted boolean representing completion status of DeadLine object
-     * @throws DukeException
+     * @throws DukeException error message
      */
     public void appendDeadlineFromFile(String taskDescription, String date, boolean isCompleted) throws DukeException {
         userTasks.add(new Deadline(taskDescription, date, isCompleted));
@@ -81,7 +81,7 @@ public class TaskList {
      * Appends a new Event object to the userTasks ArrayList
      * @param taskDescription string of TaskDescription for an Event object to be created
      * @param dateTime represents dateTime for Task to be completed by
-     * @throws DukeException
+     * @throws DukeException error message
      */
     public void appendEvent(String taskDescription, String dateTime) throws DukeException {
         dateTime = dateTime.replace("at ","");
@@ -93,7 +93,7 @@ public class TaskList {
      * @param taskDescription string of TaskDescription for an Event object to be created
      * @param dateTime represents dateTime for Task to be completed by
      * @param isCompleted boolean representing completion status of Event object
-     * @throws DukeException
+     * @throws DukeException error message
      */
     public void appendEventFromFile(String taskDescription, String dateTime, boolean isCompleted) throws DukeException {
         userTasks.add(new Event(taskDescription, dateTime, isCompleted));

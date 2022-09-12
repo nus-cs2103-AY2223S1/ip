@@ -13,8 +13,7 @@ public class Ui {
     private static final String MATCH_TEXT_MESSAGE = "Here are the matching tasks in your list: \n";
 
     private String getTaskListSizeMessage(TaskList tasklist) {
-        String content = "\nNow you have " + tasklist.getSize() + " tasks in the list.";
-        return content;
+        return "\nNow you have " + tasklist.getSize() + " tasks in the list.";
     }
 
     public String showAddedTask(TaskList tasklist) {

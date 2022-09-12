@@ -96,11 +96,6 @@ public class Duke extends Application{
         }
     }
 
-    /**
-     * Iteration 2:
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
-     */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
@@ -112,21 +107,26 @@ public class Duke extends Application{
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generate a reply by Duke for the given input by User
+     * @param input user's input to the GUI
+     * @return String that contains the reply by Duke based on the given input
      */
     private String getResponse(String input) {
         return dukeReply(input);
     }
 
-    @Override
-    public void start(Stage stage) {
-
+    private void createOrLoadDataStorage() {
         try {
             storage.checkExistsOrCreateNewFile(tasklist);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public void start(Stage stage) {
+
+        createOrLoadDataStorage();
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
@@ -176,14 +176,11 @@ public class Duke extends Application{
         );
 
         userInput.setPrefWidth(325.0);
-
         sendButton.setPrefWidth(55.0);
 
         AnchorPane.setTopAnchor(scrollPane, 1.0);
-
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
-
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 

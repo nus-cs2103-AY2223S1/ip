@@ -14,8 +14,8 @@ import duke.DukeException;
  * Storage class manages the saving of data and loading of saved data
  */
 public class Storage {
-    private String saveFilePath;
-    private String saveDirectoryPath;
+    private final String saveFilePath;
+    private final String saveDirectoryPath;
 
     /**
      * Class Constructor for storage using directory and file paths
@@ -41,7 +41,7 @@ public class Storage {
 
     /**
      * Checks if the specified file exists, otherwise creates the directory and file accordingly
-     * @param tasklist list of tasks to be save
+     * @param tasklist list of tasks to be saved
      * @throws IOException error if specified file cannot be read
      * @throws FileNotFoundException error if specified file cannot be found
      */
