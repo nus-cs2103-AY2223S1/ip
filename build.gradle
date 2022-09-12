@@ -47,11 +47,11 @@ test {
 }
 
 application {
-    mainClassName = "kirby.Kirby"
+    mainClassName = "kirby.Launcher"
 }
 
 shadowJar {
-    archiveBaseName = "kirby.Kirby"
+    archiveBaseName = "kirby"
     archiveClassifier = null
 }
 
