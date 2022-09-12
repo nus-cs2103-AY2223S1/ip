@@ -3,7 +3,6 @@ package duke;
 import duke.task.TaskList;
 import duke.util.Parser;
 import duke.util.StoredTasks;
-import duke.util.Ui;
 import duke.util.command.Command;
 
 import java.io.File;
@@ -19,7 +18,6 @@ public class Duke {
 
     private StoredTasks storedTasks;
     private TaskList taskList;
-    private Ui ui;
 
     /**
      * Constructor for Duke class.
@@ -28,7 +26,6 @@ public class Duke {
         assert !FILE_DIR.isEmpty() : "File Directory should not be empty";
         assert !FILE_PATH.isEmpty() : "File Path should not be empty";
         this.storedTasks = new StoredTasks(FILE_DIR, FILE_PATH);
-        this.ui = new Ui();
         try {
             this.taskList = new TaskList(this.storedTasks.load());
         } catch (DukeException e) {
