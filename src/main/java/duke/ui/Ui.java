@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import duke.data.exception.DukeException;
 import duke.tasks.Task;
@@ -22,29 +21,12 @@ public class Ui {
     private static final String NO_MATCHING_TASKS = "No matching tasks!";
     private static final String NUMBER_OF_TASKS_LEFT_FORMAT = "\n\nNow you have %d %s in the list!";
     private static final String UNMARK_TASK_FORMAT = "Okay! I have marked this task as not done:\n\n%s";
-    private static final String WELCOME_MESSAGE = "Hello! I'm Pixel\nWhat can I do for you? ^_^";
-    private final Scanner scanner;
-    /**
-     * Constructs a new Ui
-     */
-    public Ui() {
-        scanner = new Scanner(System.in);
-    }
-
-    /**
-     * Greets the user whenever the application starts
-     * @return The welcome message
-     */
-    public String printWelcome() {
-        return WELCOME_MESSAGE;
-    }
 
     /**
      * Exits when the user chooses to stop the application
      * @return The exit message
      */
     public String printExit() {
-        scanner.close();
         return EXIT_MESSAGE;
     }
 
@@ -88,23 +70,6 @@ public class Ui {
      */
     public String printUnmarkTask(Task task) {
         return String.format(UNMARK_TASK_FORMAT, task);
-    }
-
-    /**
-     * Prints the exception's message
-     * @param exception The exception thrown and caught
-     * @return The exception's message
-     */
-    public String printException(Exception exception) {
-        return exception.getMessage();
-    }
-
-    /**
-     * Gets the input provided by the user
-     * @return The input provided
-     */
-    public String input() {
-        return scanner.nextLine();
     }
 
     /**
