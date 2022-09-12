@@ -23,7 +23,7 @@ public class Storage {
 
     /**
      * Loads the list of tasks from the save file.
-     * @return List of tasks
+     * @return List of tasks.
      */
     public List<Task> loadFromFile() {
         boolean isSaveFileCreated = saveFile.exists();
@@ -43,7 +43,7 @@ public class Storage {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(saveFile));
             taskList.clear();
-            reader.lines().forEach((s) -> taskList.add(fromDataString(s)));
+            reader.lines().forEach((s) -> taskList.add(stringToTask(s)));
         } catch (IOException e) {
             System.out.println("Error while loading from file: " + e);
         }
@@ -69,7 +69,7 @@ public class Storage {
 
     }
 
-    private static Task fromDataString(String dataString) {
+    private static Task stringToTask(String dataString) {
         String[] arr = dataString.split("\\|");
         Task ret;
         for (int i = 0; i < arr.length; i++) {

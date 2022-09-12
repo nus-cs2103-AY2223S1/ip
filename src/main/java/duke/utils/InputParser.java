@@ -16,16 +16,13 @@ public class InputParser {
      * @return Command to be executed.
      */
     public Command parse(String input, TaskList tasks, Storage storage, Ui ui) {
-        int spaceIndex = input.indexOf(' ');
-        String command, body;
-        if (spaceIndex == -1) {
-            command = input;
-            body = "";
-        } else {
-            command = input.substring(0, spaceIndex);
-            body = input.substring(spaceIndex + 1);
-        }
+        String[] splitStr = splitInput(input);
+        String command = splitStr[0];
+        String body = splitStr[1];
+        return parseCommand(command, body, tasks, storage, ui);
+    }
 
+    private Command parseCommand(String command, String body, TaskList tasks, Storage storage, Ui ui) {
         if ("bye".equals(command)) {
             return new ExitCommand(ui);
         } else if ("list".equals(command)) {
@@ -44,6 +41,21 @@ public class InputParser {
         } else {
             return new UnrecognisedCommand(ui);
         }
+    }
+
+    private String[] splitInput(String input) {
+        String[] ret = new String[2];
+
+        int spaceIndex = input.indexOf(' ');
+        if (spaceIndex == -1) {
+            ret[0] = input;
+            ret[1] = "";
+        } else {
+            ret[0] = input.substring(0, spaceIndex);
+            ret[1] = input.substring(spaceIndex + 1);
+        }
+
+        return ret;
     }
 
     private boolean isTaskType(String s) {

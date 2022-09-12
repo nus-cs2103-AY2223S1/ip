@@ -12,7 +12,9 @@ import duke.utils.TaskParser;
 public class AddTaskCommand extends Command {
 
     private Storage storage;
+
     private Ui ui;
+
     private TaskList tasks;
 
     private TaskType type;
