@@ -209,17 +209,6 @@ public class Parser {
                     listNumberedObjects("Here are the tasks that you might be looking for:", tasks));
         }));
 
-        commands.add(PrefixCommandMatcher.of("delete", (str, map) -> {
-            assert str != null;
-            assert map != null;
-            Task task = TaskList.getTask(str);
-            TaskList.getTaskList().remove(task);
-            return new DukeResponse(
-                    "It seems you didn't need this task anymore, so I removed it:",
-                    task.toString(),
-                    String.format("You have %d tasks left.", TaskList.getTaskList().size()));
-        }));
-
         return commands;
     }
 
