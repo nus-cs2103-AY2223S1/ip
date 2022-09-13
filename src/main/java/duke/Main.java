@@ -27,5 +27,7 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        stage.setTitle("Duke");
+        stage.setResizable(false);
     }
 }
