@@ -12,10 +12,10 @@ import utility.Parser;
  * Returns true if the task is due today.
  */
 public class CheckIsTodayCommand extends Command {
-    private String[] slicedUserCommands;
+    private int index;
 
-    public CheckIsTodayCommand(String[] slicedUserInput) {
-        this.slicedUserCommands = slicedUserInput;
+    public CheckIsTodayCommand(int index) {
+        this.index = index;
     }
     /**
      * Checks if task at index n in taskList
@@ -28,8 +28,7 @@ public class CheckIsTodayCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
-        if (taskList.checkIsToday(n)) {
+        if (taskList.checkIsToday(index)) {
             ui.showMessage("Yes due today");
         } else {
             ui.showMessage("No not due today");
