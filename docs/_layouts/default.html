@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {{title}}
+    </title>
+    <meta name="description" content="{{description}}"/>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<header>
+    <div>The John Chatbot User Guide</div>
+    <!--    <button id="color-mode" ></button>-->
+    <a href="https://github.com/lesterong" target="_blank">
+        <button>GitHub</button>
+    </a>
+</header>
+{{ content | safe }}
+<script>
+    let mode;
+    (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)"))
+        ? mode = "Dark"
+        : mode = "Light"
+    document.getElementById("color-mode").textContent = "Lester Ong"
+</script>
+</body>
+</html>
