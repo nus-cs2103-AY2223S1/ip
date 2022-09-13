@@ -56,7 +56,7 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
 
-        if (input.equals("bye")) {
+        if (input.equalsIgnoreCase("bye")) {
 
             Platform.exit();
 
