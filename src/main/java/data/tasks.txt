@@ -1,3 +1,6 @@
 [E][ ] aviaryOpening (at: 2022-10-10)
 [T][1] buildCage
 [D][ ] cleanSouvenirShop (by: 2022-09-13)
+[T][ ] t1
+[T][ ] t1ismytaskfortoday
+[D][ ] dqjddjqwdd (by: 2022-04-04)

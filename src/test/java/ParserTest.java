@@ -18,23 +18,4 @@ public class ParserTest {
     private UiStub uiStub = new UiStub();
     private StorageStub storageStub = new StorageStub(Paths.get("tasksStub.txt"));
 
-    @Test
-    public void findCommand_plainString_plainStringReturned() {
-        try {
-            FindCommand findCommand = new FindCommand(new String [] {"find"});
-            assertEquals(true, Parser.parse("find notebook") instanceof FindCommand);
-        } catch (DukeException d) {
-            fail();
-        }
-    }
-
-    @Test
-    public void getTaskNumber_taskNumberDoesNotExist_dukeExceptionThrown() {
-        try {
-            int n = Parser.getTaskNumber("1", 0);
-            fail();
-        } catch (DukeException d) {
-            assertEquals(d.getMessage(), "DUKEERROR: task does not exist in list");
-        }
-    }
 }

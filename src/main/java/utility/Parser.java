@@ -91,7 +91,7 @@ public class Parser {
         int index;
         switch (stringCommand) {
         case "todo":
-            Task t = createTask(inputSections);
+            Task task = createTask(inputSections);
             return new AddTaskCommand(task);
         case "event":
             Event event = createEvent(inputSections);
@@ -221,7 +221,7 @@ public class Parser {
         throw new DukeException("No index given");
     }
     private static String getKeyword(String[] userInput) {
-        String keyword = "";
+        String keyword = getStringBetweenIndices(1, userInput.length, userInput);
         return keyword;
     }
 
@@ -300,29 +300,6 @@ public class Parser {
         }
     }
 
-
-    /**
-     * Extracts task number from user input string.
-     *
-     * @param s User input string to get number from.
-     * @param listSize TaskList size to check if number is valid.
-     * @return Index of the task in the list plus one.
-     * @throws DukeException when conditions not met.
-     */
-    public static int getTaskNumber(String s, int listSize) throws DukeException {
-        // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
-        String numberOnly = s.replaceAll("[^0-9]", "");
-        if (numberOnly.length() <= 0) {
-            throw new DukeException("no number given");
-        }
-        int n = Integer.parseInt(numberOnly);
-        if (n <= listSize) {
-            return n;
-        } else {
-            throw new DukeException("Task does not exist in list");
-        }
-
-    }
 
     /**
      * Extracts keyword to user is looking up from user input.
