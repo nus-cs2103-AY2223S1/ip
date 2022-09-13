@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.File;
 import java.util.Scanner;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -49,6 +50,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
 
         if (input.equals("bye")) {
+            Platform.exit();
             return ui.bye();
         }
 

@@ -52,6 +52,7 @@ public class Task {
         }
         else if(str.split(" ", 2)[0].equals("deadline")) {
             int index = str.indexOf("/");
+            assert str.contains("/by"): "Please enter task in the format <desc> /by <date>";
             String taskNameWithType = str.substring(0, index - 1);
             String taskNameOnly = taskNameWithType.split(" ",2)[1];
             Deadline input = new Deadline(taskNameOnly);
@@ -60,6 +61,7 @@ public class Task {
         }
         else if(str.split(" ", 2)[0].equals("event")) {
             int index = str.indexOf("/");
+            assert str.contains("/at"): "Please enter task in the format <desc> /at <date>";
             String taskNameWithType = str.substring(0, index - 1);
             String taskNameOnly = taskNameWithType.split(" ",2)[1];
             Event input = new Event(taskNameOnly);

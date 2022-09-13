@@ -12,6 +12,7 @@ public class TaskList extends ArrayList<Task> {
      */
     public String deleteTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
+        assert number > 0 && number <= task.size(): "Task index should be from 1 to length of list";
         if (1 <= number && number <= task.size()) {
             Task currTask = task.get(number - 1);
             task.remove(number - 1);
@@ -34,6 +35,7 @@ public class TaskList extends ArrayList<Task> {
      */
     public String markTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
+        assert number > 0 && number <= task.size(): "Task index should be from 1 to length of list";
         if (1 <= number && number <= task.size()) {
             Task currTask = task.get(number - 1);
             currTask.markAsDone();
