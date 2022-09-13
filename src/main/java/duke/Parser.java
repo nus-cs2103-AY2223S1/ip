@@ -17,11 +17,6 @@ import duke.command.UnmarkCommand;
  * A class to parse user input
  */
 public class Parser {
-    /**
-     * Takes in a list of the tasks where the parsed tasks will be stored.
-     */
-    public Parser() {
-    }
     private static String generateInvalidArgumentsMessage(String action) {
         return "OOPS!!! The " + action + " must have valid arguments.\n";
     }
@@ -32,7 +27,7 @@ public class Parser {
      * @return A {@code String} representing the input
      * @throws CustomMessageException if invalid input is given
      */
-    public Command parseUserCommand(String command)
+    public static Command parseUserCommand(String command)
             throws CustomMessageException {
         String[] arguments = command.split("\\s+");
         CommandType taskType;

@@ -20,7 +20,7 @@ public class DeleteCommand extends CommandWithTasklistAndCommands {
         int index = Integer.parseInt(arguments[0]) - 1;
         String deletedTaskDescription = taskList.getTaskString(index);
         taskList.removeTask(index);
-        saveTaskListToStorage(storage, taskList);
+        saveTaskListToStorageAndUnlockUndo(storage, taskList);
         return "Noted. I've removed this task:\n    "
                 + deletedTaskDescription + "\n" + Responses.generateTasksNumberMessage(taskList);
     }

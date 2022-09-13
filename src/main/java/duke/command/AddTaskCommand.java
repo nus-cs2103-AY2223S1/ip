@@ -62,7 +62,7 @@ public class AddTaskCommand extends CommandWithTasklistAndCommands {
             taskList.addToTaskList(newTask);
         }
 
-        saveTaskListToStorage(storage, taskList);
+        saveTaskListToStorageAndUnlockUndo(storage, taskList);
         return (("Got it. I've added this task:\n    "
                 + taskList.getTaskString(taskList.sizeOfList() - 1) + "\n"
                 + Responses.generateTasksNumberMessage(taskList)));

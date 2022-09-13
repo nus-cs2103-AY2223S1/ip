@@ -17,7 +17,7 @@ public class MarkCommand extends CommandWithTasklistAndCommands {
     public String execute(Storage storage, TaskList taskList) {
         int index = Integer.parseInt(arguments[0]) - 1;
         taskList.markTaskAsDone(index);
-        saveTaskListToStorage(storage, taskList);
+        saveTaskListToStorageAndUnlockUndo(storage, taskList);
         return "Nice! I've marked this task as done:\n    " + taskList.getTaskString(index);
     }
 }

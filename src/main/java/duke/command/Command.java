@@ -9,6 +9,12 @@ import duke.tasklist.TaskList;
  */
 public abstract class Command {
     /**
+     * If there are no preceding commands that have been run, this variable prevents the UNDO
+     * command from running as there is nothing to undo.
+     */
+    protected static boolean isFirstUndoableCommandRun = true;
+
+    /**
      * Executes the Command.
      * @param storage The {@code Storage} object
      * @param taskList The {@code TaskList} object
@@ -22,7 +28,8 @@ public abstract class Command {
      * @param storage The {@code Storage} object
      * @param taskList The {@code TaskList} object
      */
-    public void saveTaskListToStorage(Storage storage, TaskList taskList) {
+    public void saveTaskListToStorageAndUnlockUndo(Storage storage, TaskList taskList) {
         storage.writeToDisk(taskList.getTextRepresentationOfAllTasksForStorage());
+        isFirstUndoableCommandRun = false;
     }
 }

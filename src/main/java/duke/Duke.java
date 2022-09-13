@@ -13,7 +13,6 @@ public class Duke {
     private static final Duke duke = new Duke();
 
     private final Storage storage;
-    private final Parser parser;
     private final TaskList taskList;
 
     /**
@@ -21,7 +20,6 @@ public class Duke {
      */
     private Duke() {
         storage = new Storage();
-        parser = new Parser();
         taskList = new TaskList();
         parseTasksFromStorage();
     }
@@ -30,7 +28,7 @@ public class Duke {
         try {
             Scanner fileScanner = storage.getScannerForTasksFile();
             while (fileScanner.hasNextLine()) {
-                Command parsedCommand = parser.parseUserCommand(fileScanner.nextLine());
+                Command parsedCommand = Parser.parseUserCommand(fileScanner.nextLine());
                 parsedCommand.execute(storage, taskList);
             }
             fileScanner.close();
@@ -54,7 +52,7 @@ public class Duke {
      */
     public String getResponse(String input) {
         try {
-            Command parsedCommand = parser.parseUserCommand(input);
+            Command parsedCommand = Parser.parseUserCommand(input);
             String output = parsedCommand.execute(storage, taskList);
             return output + "\n";
         } catch (CustomMessageException e) {

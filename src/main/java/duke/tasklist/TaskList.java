@@ -62,6 +62,13 @@ public class TaskList {
     }
 
     /**
+     * Deletes all the specified {@code Tasks}
+     */
+    public void removeAllTasks() {
+        userTasks.clear();
+    }
+
+    /**
      * Gets a {@code String} representation of the {@code Task}
      *
      * @param index The index of the {@code Task}

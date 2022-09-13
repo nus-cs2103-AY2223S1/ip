@@ -12,7 +12,8 @@ public enum CommandType {
     TODO("todo", 0, Operator.GREATER_THAN),
     DEADLINE("deadline", 2, Operator.GREATER_THAN),
     EVENT("event", 2, Operator.GREATER_THAN),
-    FIND("find", 1, Operator.EQUAL);
+    FIND("find", 1, Operator.EQUAL),
+    UNDO("undo", 0, Operator.EQUAL);
 
     private final String commandString;
     private final int numberOfArgs;

@@ -18,7 +18,7 @@ public class UnmarkCommand extends CommandWithTasklistAndCommands {
     public String execute(Storage storage, TaskList taskList) {
         int index = Integer.parseInt(arguments[0]) - 1;
         taskList.markTaskAsNotDone(index);
-        saveTaskListToStorage(storage, taskList);
+        saveTaskListToStorageAndUnlockUndo(storage, taskList);
         return "OK, I've marked this task as not done yet:\n    "
                 + taskList.getTaskString(index);
     }
