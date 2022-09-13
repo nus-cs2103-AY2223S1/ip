@@ -11,10 +11,10 @@ import utility.Parser;
  * Command that handles adding Deadline to TaskList and Storage.
  */
 public class AddDeadlineCommand extends Command {
-    private String[] slicedUserCommands;
+    private Deadline deadline;
 
-    public AddDeadlineCommand(String[] slicedUserInput) {
-        this.slicedUserCommands = slicedUserInput;
+    public AddDeadlineCommand(Deadline deadline) {
+        this.deadline = deadline;
     }
 
     /**
@@ -27,10 +27,9 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        Deadline deadlineToAdd = Parser.stringToDeadline(slicedUserCommands[1], slicedUserCommands[2]);
-        String storableLine = deadlineToAdd + "\n";
+        String storableLine = deadline + "\n";
         if (storage.isLineAppended(storableLine)) {
-            taskList.addTask(deadlineToAdd);
+            taskList.addTask(deadline);
             ui.showMessage("added deadline");
         }
     }
