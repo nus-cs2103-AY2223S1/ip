@@ -247,9 +247,9 @@ public class TaskList {
         return response.toString();
     }
     /**
-     * Returns the ArrayLIst of Task objects
+     * Returns the ArrayList of Task objects
      *
-     * @return ArrayLIst of Task objects
+     * @return ArrayList of Task objects
      */
     public ArrayList<Task> getTasks() {
         return tasks;

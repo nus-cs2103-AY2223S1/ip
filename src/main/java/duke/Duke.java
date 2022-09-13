@@ -51,6 +51,11 @@ public class Duke {
         return response;
     }
 
+    /**
+     * Saves the data into the text file.
+     *
+     * @throws DukeException if there is an error with writing to the text file
+     */
     public void saveData() throws DukeException {
         storage.saveData(taskList.getTasks());
     }
