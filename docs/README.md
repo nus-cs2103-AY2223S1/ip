@@ -20,7 +20,7 @@ Duke is a **portable desktop app for managing tasks**<br>
 1. Open the `terminal`
 2. Navigate to the folder where `Duke.jar` is saved.
 3. Input the following command into the `terminal` and hit `Enter`
-   `java -jar Duke.jar`
+   * `java -jar Duke.jar`
 
 --------------------------------------------------------------------------------------------------------------------
 
