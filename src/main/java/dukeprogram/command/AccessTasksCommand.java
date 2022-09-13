@@ -1,110 +1,60 @@
 package dukeprogram.command;
 
+import java.util.Iterator;
+
 import dukeprogram.Duke;
-import dukeprogram.InternalAction;
-import dukeprogram.facilities.TaskList;
+import exceptions.IncompleteCommandException;
+import exceptions.InvalidCommandException;
 
 /**
  * Access all the available tasks
  */
 public class AccessTasksCommand extends Command {
-
-    private Command nextCommand;
-
-    @Override
-    public InternalAction onEnter() {
-        nextCommand = new ListTasksCommand();
-        return new InternalAction(
-                //CHECKSTYLE.OFF: SeparatorWrap
-                () -> {
-                    Duke.exitCurrentState();
-                    Duke.setState(this);
-                }
-        );
-    }
-
-    @Override
-    public InternalAction onStay() {
-        return new InternalAction("Input one of these command:"
-                + "\n[add | list | mark | unmark | find | delete]");
+    /**
+     * Creates an AccessTasksCommand
+     * @param duke the instance of duke that spawns this command
+     */
+    public AccessTasksCommand(Duke duke) {
+        super(duke);
     }
 
 
     @Override
-    public InternalAction onParse(String input) {
-        String[] separatedCommands = input.split(" ");
+    public void parse(Iterator<String> elements)
+            throws IncompleteCommandException, InvalidCommandException {
+        if (!elements.hasNext()) {
+            throw new IncompleteCommandException("You need to specify what to do in tasks");
+        }
 
-        switch (separatedCommands[0]) {
+        String thisElement = elements.next();
+
+        switch (thisElement) {
         case "list":
-            nextCommand = new ListTasksCommand();
-            return new InternalAction(() -> {
-                Duke.exitCurrentState();
-                Duke.setState(this);
-            });
+            new ListTasksCommand(duke).listTasksToGui();
+            break;
 
         case "find":
-            nextCommand = this;
-            return new FindTaskCommand().onParse(input);
+            new FindTaskCommand(duke).parse(elements);
+            break;
 
         case "add":
-            nextCommand = this;
-            return new AddTaskCommand().onParse(input);
+            new AddTaskCommand(duke).parse(elements);
+            break;
 
         case "mark":
-            nextCommand = this;
-            return annotateTask(separatedCommands, true);
+            new MarkTaskCommand(duke).parse(elements);
+            break;
 
         case "unmark":
-            nextCommand = this;
-            return annotateTask(separatedCommands, false);
+            new UnmarkTaskCommand(duke).parse(elements);
+            break;
 
         case "delete":
-            nextCommand = this;
-            return new DeleteTaskCommand().onParse(input);
-
-        case "back":
-            nextCommand = this;
-            return new InternalAction(Duke::exitCurrentState);
+            new DeleteTaskCommand(duke).parse(elements);
+            break;
 
         default:
-            nextCommand = this;
-            return new InternalAction("I didn't understand that!", Duke::exitCurrentState);
+            throw new InvalidCommandException(String.format("I'm cannot perform %s", thisElement));
         }
-    }
-
-    @Override
-    public Command onExit() {
-        return nextCommand;
-    }
-
-
-    private InternalAction annotateTask(String[] separatedCommands, boolean isMarking) {
-        nextCommand = this;
-
-        if (separatedCommands.length < 2) {
-            return new InternalAction(
-                    String.format("You have to specify which task index you want to %s!",
-                            isMarking ? "mark" : "unmark")
-            );
-        }
-
-        int index;
-        try {
-            index = Integer.parseInt(separatedCommands[1]) - 1;
-            if (index < 0 || index >= TaskList.current().getSize()) {
-                throw new NumberFormatException();
-            }
-        } catch (NumberFormatException e) {
-            return new InternalAction("You have to specify a valid task index man...");
-        }
-
-        return new InternalAction(
-                String.format("Alright, I'll %s task %d", isMarking ? "mark" : "unmark", index + 1),
-                //CHECKSTYLE.OFF: SeparatorWrap
-                () -> { // On this line, the () is interpreted to be part of a function declaration
-                    TaskList.current().get(index).markJobState(isMarking);
-                    Duke.exitCurrentState();
-                }
-        );
     }
 }

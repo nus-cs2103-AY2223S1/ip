@@ -33,8 +33,8 @@ public class DukeResponse {
      */
     public DialogBox createDialogBox() {
         return optionalWidget
-                .map(widget -> new DialogBox(text, User.DUKE, Color.BURLYWOOD, widget))
-                .orElseGet(() -> new DialogBox(text, User.DUKE, Color.BURLYWOOD));
+                .map(widget -> DialogBox.ofDuke(text, widget))
+                .orElseGet(() -> DialogBox.ofDuke(text));
     }
 
     @Override

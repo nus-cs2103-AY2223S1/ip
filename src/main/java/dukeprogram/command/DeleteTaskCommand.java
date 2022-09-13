@@ -1,103 +1,86 @@
 package dukeprogram.command;
 
+import java.util.Iterator;
+
 import dukeprogram.Duke;
-import dukeprogram.InternalAction;
-import dukeprogram.Task;
-import dukeprogram.facilities.TaskList;
+import exceptions.InvalidCommandException;
 
 /**
  * Deletes a task by index
  */
-public class DeleteTaskCommand extends Command {
+public class DeleteTaskCommand extends Command implements ContinuableCommand {
 
-    @Override
-    protected InternalAction onEnter() {
-        return new InternalAction("I can help you delete tasks!");
+    /**
+     * Creates a new DeleteTaskCommand
+     * @param duke the instance of duke that spawned this command
+     */
+    public DeleteTaskCommand(Duke duke) {
+        super(duke);
     }
 
     @Override
-    protected InternalAction onStay() {
-        return onEnter();
-    }
-
-    @Override
-    public InternalAction onParse(String input) {
-        String[] fullCommandParameters = input.split(" ");
-        if (fullCommandParameters.length < 2) {
-            return new InternalAction(
-                    "You gotta tell me which index what want me to delete!");
+    public void parse(Iterator<String> elements) throws InvalidCommandException {
+        if (!elements.hasNext()) {
+            duke.sendMessage("You have to specify what you want me to delete.");
         }
 
-        TaskList currentTaskList = TaskList.current();
-        int index;
-        if (fullCommandParameters[1].equals("all")) {
-            index = -1;
+        String thisElement = elements.next();
+
+        if (thisElement.equals("all")) {
+            askToDeleteAllTasks();
         } else {
+            int index;
+
             try {
-                index = Integer.parseInt(fullCommandParameters[1]) - 1;
-                if (index < 0 || index >= currentTaskList.getSize()) {
+                index = Integer.parseInt(thisElement) - 1;
+                if (index < 0 || index >= duke.getTaskList().getSize()) {
                     throw new NumberFormatException();
                 }
             } catch (NumberFormatException e) {
-                return new InternalAction("You gotta give me a valid index man...");
+                throw new InvalidCommandException("This index is out of range");
             }
-        }
 
-        if (index == -1) {
-            return new InternalAction(
-                    //CHECKSTYLE.OFF: SeparatorWrap
-                    () -> Duke.setState(new Command() {
-                        @Override
-                        protected InternalAction onEnter() {
-                            return new InternalAction(
-                                    "Are you sure you want to delete all tasks?");
-                        }
-
-                        @Override
-                        protected InternalAction onStay() {
-                            return onEnter();
-                        }
-
-                        @Override
-                        public InternalAction onParse(String input) {
-                            if (input.equals("yes")) {
-                                TaskList.current().clear();
-                                return new InternalAction(
-                                        String.format("Ok, I've deleted all the items in %s.",
-                                                TaskList.current().getName()),
-                                        Duke::exitCurrentState
-                                );
-                            } else if (!input.equals("no")) {
-                                return new InternalAction("Please only input \"yes\" or \" no\"");
-                            }
-
-                            return new InternalAction("Suits you man.",
-                                    Duke::exitCurrentState);
-                        }
-
-                        @Override
-                        public Command onExit() {
-                            assert TaskList.current().getSize() == 0;
-                            return DeleteTaskCommand.this.onExit();
-                        }
-                    })
-            );
-        } else {
-            int sizeBefore = TaskList.current().getSize();
-            Task task = TaskList.current().get(index);
-            currentTaskList.remove(index);
-
-            assert TaskList.current().getSize() + 1 == sizeBefore;
-
-            return new InternalAction(
-                    "Okay, I've removed this task as requested:\n" + task.toString(),
-                    Duke::exitCurrentState
-            );
+            deleteAt(index);
+            duke.sendMessage("Okay, I've removed this task,");
         }
     }
 
     @Override
-    public Command onExit() {
-        return new AccessTasksCommand();
+    public void continueParse(Iterator<String> elements) throws InvalidCommandException {
+        if (!elements.hasNext()) {
+            throw new InvalidCommandException("Nothing was given.");
+        }
+
+        String thisElement = elements.next();
+
+        switch (thisElement.toLowerCase()) {
+        case "y":
+        case "yes":
+            deleteAllTasks();
+            duke.sendMessage("Okay, all your tasks are cleared.");
+            break;
+
+        case "n":
+        case "no":
+            duke.sendMessage("I'll leave the task list as is");
+            break;
+
+        default:
+            throw new InvalidCommandException("The previous command was ignored.");
+        }
+    }
+
+    private void deleteAt(int index) {
+        assert index >= 0 && index < duke.getTaskList().getSize();
+        duke.getTaskList().remove(index);
+    }
+
+    private void askToDeleteAllTasks() {
+        duke.attachState(this);
+        duke.sendMessage("Are you sure you want to delete all tasks?");
+    }
+
+    private void deleteAllTasks() {
+        duke.getTaskList().clear();
     }
 }

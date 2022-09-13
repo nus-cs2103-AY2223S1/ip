@@ -1,7 +1,7 @@
 package dukeprogram;
 
-import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -25,16 +25,18 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    private Duke duke;
+
+    private boolean hasStoppedResponse = true;
+    private final LinkedList<DukeResponse> queuedResponses = new LinkedList<>();
+
     /**
      * Initialises the main window
      */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-
-        for (DukeResponse response : Duke.start()) {
-            dialogContainer.getChildren().add(response.createDialogBox());
-        }
+        duke = new Duke(this);
     }
 
     /**
@@ -45,13 +47,9 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         System.out.println("Handling");
         String input = userInput.getText();
-        DukeResponse[] responses = Duke.getResponses(input);
-        System.out.println(Arrays.toString(responses));
+        dialogContainer.getChildren().add(DialogBox.ofUser(input, duke.getUser()));
 
-        dialogContainer.getChildren().add(DialogBox.getUserDialog(input));
-
-        Iterator<DukeResponse> responseStream = Arrays.stream(responses).iterator();
-        consumeResponse(responseStream);
+        duke.parseInput(input);
 
         userInput.clear();
     }
@@ -64,6 +62,33 @@ public class MainWindow extends AnchorPane {
                 consumeResponse(responseIterator);
             });
             pause.play();
+        }
+    }
+
+    private void consumeResponse() {
+        hasStoppedResponse = false;
+        if (!queuedResponses.isEmpty()) {
+            DukeResponse nextResponse = queuedResponses.poll();
+            PauseTransition pause = new PauseTransition(Duration.millis(500));
+            pause.setOnFinished(event -> {
+                dialogContainer.getChildren().add(nextResponse.createDialogBox());
+                consumeResponse();
+            });
+            pause.play();
+        } else {
+            hasStoppedResponse = true;
+        }
+    }
+
+    /**
+     * Sends a dialog from Duke to the user
+     * @param response the response to show to the user
+     */
+    public void sendDukeDialog(DukeResponse response) {
+        queuedResponses.addLast(response);
+
+        if (hasStoppedResponse) {
+            consumeResponse();
         }
     }
 }

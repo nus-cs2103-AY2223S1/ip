@@ -1,17 +1,11 @@
 package dukeprogram.command;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.Iterator;
 
-import dukeprogram.Deadline;
 import dukeprogram.Duke;
-import dukeprogram.Event;
-import dukeprogram.InternalAction;
-import dukeprogram.Task;
-import dukeprogram.ToDo;
-import dukeprogram.facilities.TaskList;
-import exceptions.JobNameException;
-import utilities.StringUtilities;
+import dukeprogram.storage.SaveManager;
+import exceptions.IncompleteCommandException;
+import exceptions.InvalidCommandException;
 
 
 /**
@@ -19,92 +13,42 @@ import utilities.StringUtilities;
  */
 public class AddTaskCommand extends Command {
 
-    @Override
-    protected InternalAction onEnter() {
-        return new InternalAction("I can help you add tasks");
+    /**
+     * Creates an AddTaskCommand
+     * @param duke the instance of duke that spawned this command
+     */
+    public AddTaskCommand(Duke duke) {
+        super(duke);
     }
 
     @Override
-    protected InternalAction onStay() {
-        return new InternalAction("Is there another task you wanted to add?");
-    }
-
-    @Override
-    public InternalAction onParse(String input) {
-        String[] separatedCommands = input.split(" ");
-        if (separatedCommands.length < 2) {
-            return new InternalAction("Hmm, you need to tell me what you want to add...",
-                    "Usage: add <task_type> <task_name>");
+    public void parse(Iterator<String> elements) throws IncompleteCommandException {
+        if (!elements.hasNext()) {
+            duke.sendMessage("Hmm, you need to tell me what you want to add...");
+            throw new IncompleteCommandException("Usage: add <task_type> <task_name>");
         }
 
-        String[][] nameAndDate;
-        Task taskAdded;
+        String thisElement = elements.next();
 
-        switch (separatedCommands[1]) {
-        case "todo":
-            try {
-                taskAdded = new ToDo(concatName(separatedCommands));
-                TaskList.current().add(taskAdded);
+        try {
+            switch (thisElement) {
+            case "todo":
+                new AddTodoTaskCommand(duke).parse(elements);
                 break;
-            } catch (JobNameException e) {
-                return new InternalAction("My bro, I cannot add a task with no name...");
-            }
 
-        case "event":
-            nameAndDate = StringUtilities
-                    .splitStringArray(separatedCommands, "/at");
-
-            if (nameAndDate.length != 2) {
-                return new InternalAction("Please use /at to set a time");
-            }
-
-            try {
-                taskAdded = new Event(concatName(nameAndDate[0]),
-                        String.join(" ", nameAndDate[1]));
-
-                TaskList.current().add(taskAdded);
+            case "event":
+                new AddEventTaskCommand(duke).parse(elements);
                 break;
-            } catch (JobNameException e) {
-                return new InternalAction("My bro, I cannot add a task with no name...");
-            }
 
-        case "deadline":
-            nameAndDate = StringUtilities
-                    .splitStringArray(separatedCommands, "/by");
-
-            if (nameAndDate.length != 2) {
-                return new InternalAction("Please use /by to set a time");
-            }
-
-            try {
-                taskAdded = new Deadline(concatName(nameAndDate[0]),
-                        String.join(" ", nameAndDate[1]));
-
-                TaskList.current().add(taskAdded);
+            case "deadline":
+                new AddDeadlineTaskCommand(duke).parse(elements);
                 break;
-            } catch (JobNameException e) {
-                return new InternalAction("My bro, I cannot add a task with no name...");
-            }
 
-        default:
-            return new InternalAction("Hmm, I don't think that's a valid task type...");
+            default:
+                duke.sendMessage(String.format("Sorry, %s is not a valid task type", thisElement));
+            }
+        } catch (InvalidCommandException e) {
+            duke.sendMessage(e.getMessage());
         }
-
-        return new InternalAction(
-                String.format("Got it mate... Here's your task added: \n%s", taskAdded),
-                Duke::exitCurrentState);
-    }
-
-    @Override
-    public Command onExit() {
-        return new AccessTasksCommand();
-    }
-
-    private static String concatName(String[] input) throws JobNameException {
-        String name = Arrays.stream(input).skip(2).collect(Collectors.joining(" "));
-        if (name.equals("")) {
-            throw new JobNameException(input[0]);
-        }
-        return name;
     }
 }

@@ -1,8 +1,10 @@
 package dukeprogram.command;
 
+import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import dukeprogram.Duke;
 import dukeprogram.DukeResponse;
 import dukeprogram.InternalAction;
 import dukeprogram.Widget;
@@ -13,31 +15,32 @@ import dukeprogram.facilities.TaskList;
  * to list out all the tasks presently stored in the task list.
  */
 public class ListTasksCommand extends Command {
+
+    /**
+     * Creates a ListTasksCommand
+     * @param duke the instance of duke that spawned this command
+     */
+    public ListTasksCommand(Duke duke) {
+        super(duke);
+    }
+
     @Override
-    protected InternalAction onEnter() {
-        TaskList currentTaskList = TaskList.current();
+    public void parse(Iterator<String> elements) {
+
+    }
+
+    /**
+     * Sends a message to the window of the Duke instance to list
+     * all the tasks to the GUI window
+     */
+    public void listTasksToGui() {
+        TaskList currentTaskList = duke.getTaskList();
 
         String formattedTaskListString = IntStream.range(0, currentTaskList.getSize())
-                        .mapToObj(i -> i + 1 + ". " + currentTaskList.get(i).toString())
-                        .collect(Collectors.joining("\n"));
+                .mapToObj(i -> i + 1 + ". " + currentTaskList.get(i).toString())
+                .collect(Collectors.joining("\n"));
 
-        return new InternalAction(new DukeResponse(
-                "Here is your task list:",
-                new Widget("Tasks:", formattedTaskListString)));
-    }
-
-    @Override
-    protected InternalAction onStay() {
-        return onEnter();
-    }
-
-    @Override
-    public InternalAction onParse(String input) {
-        return new InternalAction("Uh... I'm not sure what to do with that...");
-    }
-
-    @Override
-    public Command onExit() {
-        return null;
+        duke.sendMessage("Here is your task list:",
+                new Widget("Tasks", formattedTaskListString));
     }
 }

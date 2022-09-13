@@ -12,8 +12,6 @@ import exceptions.KeyNotFoundException;
  * of each task list. It also organises all the collected task lists.
  */
 public class TaskList implements Serializable {
-    private static TaskList current;
-
     private final ArrayList<Task> taskArrayList = new ArrayList<>(100);
     private String name;
 
@@ -24,10 +22,8 @@ public class TaskList implements Serializable {
     /**
      * Initialises a new task list from the saved objects
      */
-    public static void initialise() {
-        if (current != null) {
-            return;
-        }
+    public static TaskList loadTaskList() {
+        TaskList current;
 
         try {
             current = SaveManager.load("tasklist");
@@ -35,16 +31,7 @@ public class TaskList implements Serializable {
             current = new TaskList("my tasks");
             SaveManager.save("tasklist", current);
         }
-    }
 
-    /**
-     * Retrieves the current task list
-     * @return the current task list
-     */
-    public static TaskList current() {
-        if (current == null) {
-            initialise();
-        }
         return current;
     }
 
@@ -53,21 +40,6 @@ public class TaskList implements Serializable {
         return name;
     }
 
-    /**
-     * Changes the name of this current task list
-     * @param newName the new name to rename this task list to
-     */
-    public void changeName(String newName) {
-        this.name = newName;
-
-        try {
-            SaveManager.load("tasklist");
-        } catch (KeyNotFoundException e) {
-            assert false;
-        }
-
-        SaveManager.save("tasklist", this);
-    }
 
     public Task[] getAllTasks() {
         return taskArrayList.toArray(Task[]::new);
@@ -95,6 +67,7 @@ public class TaskList implements Serializable {
 
     public void clear() {
         taskArrayList.clear();
+        SaveManager.save("tasklist", this);
     }
 
     public Task get(int index) {

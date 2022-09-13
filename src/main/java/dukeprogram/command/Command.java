@@ -1,7 +1,12 @@
 package dukeprogram.command;
 
 
+import dukeprogram.Duke;
 import dukeprogram.InternalAction;
+import exceptions.IncompleteCommandException;
+import exceptions.InvalidCommandException;
+
+import java.util.Iterator;
 
 /**
  * A general purpose Command that allows the executing without additional
@@ -10,47 +15,21 @@ import dukeprogram.InternalAction;
 public abstract class Command {
 
     private int numberOfInvokes = 0;
+    protected Duke duke;
 
     /**
-     * Supplies an InternalAction that defines what the main program
-     * should do the moment this command state is entered. Repeated
-     * calls to the same object will not trigger this function, but
-     * instead trigger onStay().
-     * @return an InternalAction to be performed
+     * Creates a command
+     * @param duke the instance of duke this is associated to
      */
-    protected abstract InternalAction onEnter();
-
-    /**
-     * Supplies an InternalAction that defines what the main program should
-     * do when the state remains the same after an action.
-     * @return an InternalAction to be performed
-     */
-    protected abstract InternalAction onStay();
-
-    /**
-     * Parses an input string and supplies an InternalAction corresponding
-     * to the input string
-     * @param input the input string that was sent
-     * @return an InternalAction to be performed
-     */
-    public abstract InternalAction onParse(String input);
-
-    /**
-     * Supplies an InternalAction that defines what the main program
-     * should do the moment this command state is exited.
-     * @return the next command to go to
-     */
-    public abstract Command onExit();
-
-    /**
-     * Invokes this command
-     * @return the InternalAction to be performed
-     */
-    public InternalAction onInvoke() {
-        numberOfInvokes++;
-        if (numberOfInvokes > 1) {
-            return onStay();
-        }
-        return onEnter();
+    public Command(Duke duke) {
+        this.duke = duke;
     }
+
+    /**
+     * Parses the elements of the user input relevant to this command
+     * to continue execution of the method
+     * @param elements the continued iterator of elements
+     */
+    public abstract void parse(Iterator<String> elements)
+            throws IncompleteCommandException, InvalidCommandException;
 }

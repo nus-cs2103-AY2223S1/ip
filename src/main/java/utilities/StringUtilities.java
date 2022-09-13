@@ -1,5 +1,6 @@
 package utilities;
 
+import java.util.Iterator;
 import java.util.stream.IntStream;
 
 /**
@@ -57,5 +58,24 @@ public class StringUtilities {
                 0, splitArrays[splitArrays.length - 1].length);
 
         return splitArrays;
+    }
+
+    /**
+     * Concats an iterator into a single string separated by a delimiter for each element
+     * @param iterator the iterator to concat
+     * @param delimiter the delimiter between each element
+     * @return the joined String
+     */
+    public static String concatByDelimiter(Iterator<String> iterator, String delimiter) {
+        StringBuilder sb = new StringBuilder();
+
+        while (iterator.hasNext()) {
+            sb.append(iterator.next());
+            if (iterator.hasNext()) {
+                sb.append(delimiter);
+            }
+        }
+
+        return sb.toString();
     }
 }

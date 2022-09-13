@@ -8,9 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import dukeprogram.Duke;
 import exceptions.KeyNotFoundException;
-import utilities.SerializedNamesFormatter;
 
 /**
  * SaveManager manages all the save functionalities
@@ -95,15 +93,5 @@ public class SaveManager {
             dataInMemory = new Storage();
             return false;
         }
-    }
-
-    /**
-     * Erases all the data of this current save file.
-     * @return
-     */
-    public static boolean wipeData() {
-        File saveFile = new File(PATH.toString(),
-                SerializedNamesFormatter.createFileNameForUser(Duke.getUser().getName()));
-        return saveFile.delete();
     }
 }

@@ -14,8 +14,8 @@
       <Region prefWidth="10" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" style="-fx-background-color: #ff00ef; -fx-background-radius: 3 0 0 3"/>
         <VBox AnchorPane.leftAnchor="25" AnchorPane.topAnchor="25" spacing="10">
             <children>
-                <Label fx:id="titleLabel" style="-fx-font-family: Corbel; -fx-font-weight: bold; -fx-font-size: 23px; -fx-text-fill: #FFFFFF" text="Label" wrapText="true"/>
-                <Label fx:id="descriptionLabel" style="-fx-font-family: Corbel; -fx-text-fill: #FFFFFF" text="Label" wrapText="true">
+                <Label fx:id="titleLabel" style="-fx-font-weight: bold; -fx-font-size: 23px; -fx-text-fill: #FFFFFF" text="Label" wrapText="true"/>
+                <Label fx:id="descriptionLabel" style="-fx-text-fill: #FFFFFF" text="Label" wrapText="true">
                     <padding>
                         <Insets bottom="20.0" left="5.0" right="5.0" />
                     </padding>

@@ -1,88 +1,117 @@
 package dukeprogram;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import dukeprogram.command.Command;
-import dukeprogram.command.HomePageCommand;
+import dukeprogram.command.ContinuableCommand;
+import dukeprogram.command.LoadUserCommand;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.parser.Parser;
 import dukeprogram.storage.SaveManager;
-
+import exceptions.IncompleteCommandException;
+import exceptions.InvalidCommandException;
 
 /**
  * This is the main Duke Program
  */
 public class Duke {
-    private static User user;
+    private final MainWindow mainWindow;
 
-    private static Command currentContext;
+    private User user;
+    private TaskList taskList;
+    private final Parser parser;
 
-    private static final ArrayList<DukeResponse> responseLog = new ArrayList<>();
-
+    private Optional<ContinuableCommand> attachedState = Optional.empty();
 
     /**
-     * Begins the Duke program from GUI
-     * @return the welcoming message of the beginning of the program
+     * Creates an instance of Duke
+     * @param mainWindow the window is attached this instance
      */
-    public static DukeResponse[] start() {
-        System.out.println("Starting");
-        currentContext = new HomePageCommand();
-        InternalAction internalAction = currentContext.onInvoke();
-        user = ((HomePageCommand) currentContext).getUser();
+    public Duke(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
+        this.parser = new Parser(this);
+        LoadUserCommand loadUserCommand = new LoadUserCommand(this);
+        loadUserCommand.load().ifPresentOrElse(
+                loadedUser -> {
+                    this.user = loadedUser;
+                    this.taskList = loadUserCommand.getTaskList().orElseThrow(NullPointerException::new);
+                },
+                //CHECKSTYLE.OFF: SeparatorWrap
+                () -> sendMessage("I can't identify you, file was corrupted...")
+        );
 
-        return internalAction.getAllResponses();
+        Timer saveTimer = new Timer();
+        saveTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    SaveManager.serialize("savefile");
+                    sendMessage("Oh, by the way, I just saved your file.");
+                } catch (IOException e) {
+                    sendMessage("I tried to save this file, but I couldn't for some reason...");
+                    sendMessage("Is the save file open on your computer?");
+                }
+            }
+        }, 300_000, 300_000);
     }
 
 
     /**
-     * Gets responses from Duke
-     * @param input the input to hand to Duke
-     * @return all the responses from Duke
+     * Sends a message to the GUI of this current instance
      */
-    public static DukeResponse[] getResponses(String input) {
-        InternalAction internalAction = currentContext.onParse(input);
-        responseLog.addAll(List.of(internalAction.getAllResponses()));
-        internalAction.doRunnable();
-        DukeResponse[] responses = responseLog.toArray(DukeResponse[]::new);
-        responseLog.clear();
+    public void sendMessage(String message) {
+        mainWindow.sendDukeDialog(new DukeResponse(message));
+    }
 
-        return responses;
+    /**
+     * Sends a message to the GUI of this current instance
+     */
+    public void sendMessage(String message, Widget widget) {
+        mainWindow.sendDukeDialog(new DukeResponse(message, widget));
     }
 
 
     /**
-     * Exits the current state
+     * Parses the input given
+     * @param userInput the user input given
      */
-    public static void exitCurrentState() {
-        assert currentContext != null;
-        try {
-            SaveManager.serialize("saveFile");
-        } catch (IOException e) {
-            System.out.println(e);
-            responseLog.add(new DukeResponse("Wait... I had some issues saving your progress"));
+    public void parseInput(String userInput) {
+        if (attachedState.isPresent()) {
+            System.out.println("Caught attachment");
+            try {
+                attachedState.get().continueParse(parser.convertToIterator(userInput));
+            } catch (InvalidCommandException e) {
+                // ignores the attached state and resends input as a new command
+                System.out.println("Ignored");
+                attachedState = Optional.empty();
+                parseInput(userInput);
+            }
+        } else {
+            try {
+                parser.parse(userInput);
+            } catch (IncompleteCommandException e) {
+                sendMessage("You need to finish the command.");
+            }
         }
-        currentContext = currentContext.onExit();
-        InternalAction internalAction = currentContext.onInvoke();
-        responseLog.addAll(List.of(internalAction.getAllResponses()));
-        internalAction.doRunnable();
     }
 
     /**
-     * Sets the current state
-     * @param state the state to be in
+     * Attaches a state to parse for the next command
+     * @param state the state to attach
      */
-    public static void setState(Command state) {
-        currentContext = state;
-        InternalAction internalAction = currentContext.onInvoke();
-        responseLog.addAll(List.of(internalAction.getAllResponses()));
-        internalAction.doRunnable();
+    public void attachState(ContinuableCommand state) {
+        attachedState = Optional.of(state);
     }
 
-    /**
-     * Returns the current user profile loaded in this profile
-     * @return the current user profile using the program
-     */
-    public static User getUser() {
+    public TaskList getTaskList() {
+        assert taskList != null : "Task list doesn't exist!";
+
+        return taskList;
+    }
+
+    public User getUser() {
         return user;
     }
 }

@@ -9,24 +9,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Separator?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" style="-fx-font-family: Corbel;">
     <children>
         <HBox fx:id="parentPanel" alignment="TOP_RIGHT">
                 <children>
                     <VBox fx:id="dialogLayout" alignment="TOP_RIGHT" spacing="1">
                         <children>
-                            <Label fx:id="name" text="Label" wrapText="true" style="-fx-font-family: Corbel; -fx-font-weight: bold;-fx-font-size: 15px;">
+                            <Label fx:id="name" text="Label" wrapText="true" style="-fx-font-weight: bold;-fx-font-size: 15px;">
                                 <padding>
                                     <Insets left="5.0" right="5.0"/>
                                 </padding>
                             </Label>
-                            <Separator style="-fx-background-color: #e79423; -fx-background-radius: 2;"/>
-                            <Label fx:id="dialog" text="Label" wrapText="true" maxHeight="Infinity">
-                                <font>
-                                    <Font name="Corbel" size="13.0" />
-                                </font>
-                            </Label>
+                            <Label fx:id="dialog" text="Label" wrapText="true" maxHeight="Infinity" style="-fx-font-size: 13.0px" />
                         </children>
                     </VBox>
                     <ImageView fx:id="displayPicture" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />

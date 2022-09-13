@@ -2,11 +2,14 @@ package dukeprogram.command;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import dukeprogram.Duke;
 import dukeprogram.InternalAction;
 import dukeprogram.Task;
+import dukeprogram.Widget;
 import dukeprogram.facilities.TaskList;
 
 /**
@@ -14,39 +17,39 @@ import dukeprogram.facilities.TaskList;
  */
 public class FindTaskCommand extends Command {
 
-    @Override
-    protected InternalAction onEnter() {
-        return new InternalAction("I can help you find tasks!");
+    /**
+     * Creates a FindTaskCommand
+     * @param duke the instance of Duke that spawned this command
+     */
+    public FindTaskCommand(Duke duke) {
+        super(duke);
+
     }
 
     @Override
-    protected InternalAction onStay() {
-        return new InternalAction("Is there another task you want me to find?");
-    }
+    public void parse(Iterator<String> elements) {
+        StringBuilder sb = new StringBuilder();
 
-    @Override
-    public InternalAction onParse(String input) {
-        String[] separatedCommands = input.split(" ");
+        while (elements.hasNext()) {
+            sb.append(elements.next());
+            if (elements.hasNext()) {
+                sb.append(" ");
+            }
+        }
 
-        Pattern pattern = Pattern.compile(String.format("(.*)%s(.*)",
-                String.join(" ",
-                        Arrays.copyOfRange(separatedCommands, 1, separatedCommands.length)))
-        );
+        Pattern pattern = Pattern.compile(String.format("(.*)%s(.*)", sb));
 
         ArrayList<Task> matches = new ArrayList<>();
-        Arrays.stream(TaskList.current().getAllTasks())
+        Arrays.stream(duke.getTaskList().getAllTasks())
                 .filter(task -> pattern.matcher(task.getName()).matches())
                 .forEach(matches::add);
 
-        return new InternalAction(
-                "Here are the matches that I've found:\n"
-                        + matches.stream()
-                        .map(Task::toString)
-                        .collect(Collectors.joining("\n")));
-    }
-
-    @Override
-    public Command onExit() {
-        return new AccessTasksCommand();
+        duke.sendMessage("Here are the matches that I've found:",
+                new Widget("Matches",
+                        matches.stream()
+                                .map(Task::toString)
+                                .collect(Collectors.joining("\n"))
+                )
+        );
     }
 }

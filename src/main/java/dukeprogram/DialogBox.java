@@ -29,6 +29,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
@@ -38,6 +41,9 @@ import javafx.util.Duration;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+
+    private static final Color DUKE_COLOR = Color.color(0.15, 0.15, 0.15);
+    private static final Color USER_COLOR = Color.color(1, 0.5, 0);
 
     @FXML
     private HBox parentPanel;
@@ -51,6 +57,8 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
     @FXML
     private Widget widget;
+
+    private boolean isDuke;
 
     protected DialogBox(String dialogText, User user, Color backgroundColor, Widget widget) {
         this(dialogText, user, backgroundColor);
@@ -75,23 +83,21 @@ public class DialogBox extends HBox {
 
         dialog.setPadding(new Insets(5, 5, 5, 5));
 
-        this.setBackground(new Background(new BackgroundFill(
-                backgroundColor,
-                new CornerRadii(10),
-                new Insets(5, 5, 5, 5)))
-        );
-
-        if (!user.equals(Duke.getUser())) {
+        if (user.equals(User.DUKE)) {
+            isDuke = true;
             this.flip();
         }
 
         this.layoutBoundsProperty().addListener(new ChangeListener<Bounds>() {
             @Override
             public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
+                double width = getBoundsInParent().getWidth();
+                double height = getBoundsInParent().getHeight();
+
                 TranslateTransition translateTransition = new TranslateTransition(Duration.millis(500),
                         DialogBox.this);
-                translateTransition.setFromX((user.equals(Duke.getUser()) ? 1 : -1) * newValue.getWidth() / 2);
-                translateTransition.setFromY(-newValue.getHeight() / 2);
+                translateTransition.setFromX((user.equals(User.DUKE) ? -1 : 1) * width / 2);
+                translateTransition.setFromY(-height / 2);
                 translateTransition.setToX(0);
                 translateTransition.setToY(0);
 
@@ -155,11 +161,70 @@ public class DialogBox extends HBox {
         return timeline;
     }
 
-    public static DialogBox getUserDialog(String text) {
-        return new DialogBox(text, Duke.getUser(), Color.TURQUOISE);
+    /**
+     * Creates a dialog box belonging to the user
+     * @param text the text to show in the dialog box
+     * @param user the user profile who sent the text
+     * @return the constructed dialog box
+     */
+    public static DialogBox ofUser(String text, User user) {
+        DialogBox dialogBox = new DialogBox(text, user, USER_COLOR);
+        setBackground(dialogBox);
+        return dialogBox;
     }
 
-    public static DialogBox getDukeDialog(String text) {
-        return new DialogBox(text, User.DUKE, Color.BURLYWOOD);
+    /**
+     * Creates a dialog box belonging to Duke
+     * @param text the text to show in the dialog box
+     * @return the constructed dialog box
+     */
+    public static DialogBox ofDuke(String text) {
+        DialogBox dialogBox = new DialogBox(text, User.DUKE, DUKE_COLOR);
+        setBackground(dialogBox);
+        return dialogBox;
+    }
+
+    /**
+     * Creates a dialog box belonging to Duke
+     * @param text the text to show in the dialog box
+     * @return the constructed dialog box
+     */
+    public static DialogBox ofDuke(String text, Widget widget) {
+        DialogBox dialogBox = new DialogBox(text, User.DUKE, DUKE_COLOR, widget);
+        setBackground(dialogBox);
+        return dialogBox;
+    }
+
+    private static void setBackground(DialogBox box) {
+        double startX;
+        double endX;
+        double offsetDuke;
+        double offsetUser;
+
+        if (box.isDuke) {
+            startX = 0.8;
+            endX = 1;
+            offsetDuke = 0.9;
+            offsetUser = 1;
+        } else {
+            startX = 0;
+            endX = 0.2;
+            offsetDuke = 0.1;
+            offsetUser = 0;
+        }
+
+        box.setBackground(new Background(new BackgroundFill(
+                new LinearGradient(startX,
+                        0.5,
+                        endX,
+                        0.5,
+                        true,
+                        CycleMethod.NO_CYCLE,
+                        new Stop(offsetDuke, DUKE_COLOR),
+                        new Stop(offsetUser, USER_COLOR)
+                ),
+                new CornerRadii(10),
+                new Insets(5, 5, 5, 5)))
+        );
     }
 }
