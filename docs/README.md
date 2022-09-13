@@ -101,3 +101,36 @@ Description of the outcome.
 ```
 Good Job! The following task "{Task}" has been marked as done!"
 ```
+
+### `unmark` - mark a task as incomplete
+
+Mark a task as incomplete given the task index.
+
+Example of usage: 
+
+`unmark 1`{.java}
+
+Expected outcome:
+
+Description of the outcome.
+
+```
+Okay! The following task "{Task}" has been marked as not done!"
+```
+
+### `find` - search for tasks containing a given keyword
+
+Display list of tasks that contain a given keyword.
+
+Example of usage: 
+
+`find **lunch**`
+
+Expected outcome:
+
+Description of the outcome.
+
+```
+1. [T][ ] Buy **Lunch**{.java}
+2. [E][ ] [E][ ] **Lunch** (at: SEP 13 2022 1250 to SEP 13 2022 1400){.java}
+```
