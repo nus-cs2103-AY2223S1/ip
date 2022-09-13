@@ -45,7 +45,6 @@ public class Sus {
      */
     private void exit() {
         textUi.showExit();
-        textUi.unloadJansi();
         System.exit(0);
     }
 

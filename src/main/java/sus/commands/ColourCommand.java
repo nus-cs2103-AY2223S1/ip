@@ -13,7 +13,7 @@ public class ColourCommand extends Command {
     public static final String COMMAND_WORD = "colour";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Set text output colour.\n"
-            + "\tColours supported: black, red, green, yellow, blue, magenta, cyan, white\n"
+            + "\tColours supported: black, red, green, yellow, blue, purple, cyan, white\n"
             + "\tEx: " + COMMAND_WORD + " <colour>";
 
     private final String colour;
