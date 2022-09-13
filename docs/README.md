@@ -35,6 +35,7 @@ you will find that this is faster than traditional GUI task managers.
 
 > If you are experiencing issues with opening the app through double-clicking the file, you may alternatively open it by
 >  going into command prompt, navigating to the home folder of the app and using `java -jar duke.jar` to open it.
+
 5. Type the command in the text box and press Enter to execute it. e.g. typing <code><b>help</b></code> and pressing 
 Enter will reveal the command guide. 
    
@@ -43,6 +44,7 @@ Enter will reveal the command guide.
    - <code><b>todo</b> Go to the beach with family</code>: Adds a todo task to the list of tasks
    - <code><b>delete</b> 2</code>: Deletes the 2nd task shown in the task list
    - <code><b>bye</b></code>: Exits the app
+
 6. Refer to the [Features](#features) below for detail of each command.
 
 ---
