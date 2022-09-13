@@ -25,14 +25,14 @@ public class ManageEvents {
      * @throws BlankDescriptionException The exception thrown when
      *                                   user enter a blank field
      */
-    void addTodo(String input) throws BlankDescriptionException {
+    public String addTodo(String input) throws BlankDescriptionException {
         if (input.length() == 4) {
             throw new BlankDescriptionException();
         }
         String description = input.substring(5);
         ToDo temp = new ToDo(description);
         this.taskList.add(temp);
-        graphics.addMessage(temp);
+        return graphics.addMessage(temp);
     }
 
     /**
@@ -41,7 +41,7 @@ public class ManageEvents {
      * @throws BlankDescriptionException The exception thrown when
      *                                   user enter a blank field
      */
-    void addDeadline(String input) throws BlankDescriptionException {
+    public String addDeadline(String input) throws BlankDescriptionException {
         if (input.length() == 8) {
             throw new BlankDescriptionException();
         }
@@ -51,7 +51,7 @@ public class ManageEvents {
 
         Deadline tempTask = new Deadline(description, by);
         this.taskList.add(tempTask);
-        graphics.addMessage(tempTask);
+        return graphics.addMessage(tempTask);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ManageEvents {
      * @throws BlankDescriptionException The exception thrown when user
      *                                   enter a blank field
      */
-    void addEvent(String input) throws BlankDescriptionException {
+    public String addEvent(String input) throws BlankDescriptionException {
         if (input.length() == 5) {
             throw new BlankDescriptionException();
         }
@@ -70,27 +70,27 @@ public class ManageEvents {
 
         Event tempTask = new Event(description, at);
         this.taskList.add(tempTask);
-        graphics.addMessage(tempTask);
+        return graphics.addMessage(tempTask);
     }
 
     /**
      * Method to mark a task in the task list as done
      * @param input The input by the user
      */
-    public void markTask(String input) {
+    public String markTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(5)) - 1;
         taskList.get(taskIndex).markAsDone();
-        graphics.markMessage(taskIndex);
+        return graphics.markMessage(taskIndex);
     }
 
     /**
      * Method to mark a task in the task list as not done
      * @param input The input by the user
      */
-    public void unmarkTask(String input) {
+    public String unmarkTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(7)) - 1;
         taskList.get(taskIndex).markAsUndone();
-        graphics.unmarkMessage(taskIndex);
+        return graphics.unmarkMessage(taskIndex);
     }
 
     /**
@@ -98,15 +98,16 @@ public class ManageEvents {
      * @param taskIndex The position of the task that the
      *                  user want to delete from the task list
      */
-    public void deleteTask(int taskIndex) {
-        Graphics.deleteMessage(this.taskList, taskIndex);
+    public String deleteTask(int taskIndex) {
+        String response = Graphics.deleteMessage(this.taskList, taskIndex);
         this.taskList.remove(taskIndex);
+        return response;
     }
 
-    public void find(String input) {
+    public String find(String input) {
         String keyword = input.substring(5);
         TaskList results = taskList.findTasks(keyword);
-        graphics.printSearches(results);
+        return graphics.printSearches(results);
 
     }
 
