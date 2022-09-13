@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "pikachu.Pikachu"
+    mainClassName = "pikachu.Main"
 }
 
 shadowJar {
