@@ -26,6 +26,10 @@ Mark a task as complete in the task list.
 
 Mark a task as incomplete in the task list. Tasks are marked as incomplete by default.
 
+### Tag
+
+Tag a task in task list with a custom tag message.
+
 <hr />
 
 ## Usage
@@ -86,6 +90,54 @@ You have 1 task in your Task
 
 ```
 
+### `list` - display task list.
+
+Displays current task list.
+
+Example of usage: 
+
+`list`
+
+Current task list.
+
+```
+1. [T][ ] Buy Lunch 
+2. [D][ ] Homework (by: SEP 13 2022 1400)
+```
+
+### `delete` - delete task with a given task index
+
+Delete task with a given task index.
+Displays a success message when task is deleted successfully.
+
+Example of usage: 
+
+`delete 1`
+
+Success message containing task that has been deleted.
+
+```
+You have deleted "{Task}" from your Task List!
+You have 0 tasks in your Task List!
+```
+
+### `find` - search for tasks containing a given keyword
+
+Display list of tasks that contain a given keyword.
+
+Example of usage: 
+
+`find lunch`
+
+Expected outcome:
+
+List of tasks containing search keyword (eg. **lunch**)
+
+```
+1. [T][ ] Buy Lunch
+2. [E][ ] [E][ ] Lunch (at: SEP 13 2022 1250 to SEP 13 2022 1400)
+```
+
 ### `mark` - mark a task as complete
 
 Mark a task as complete given the task index.
@@ -118,36 +170,19 @@ Success message containing task that has been unmarked.
 Okay! The following task "{Task}" has been marked as not done!"
 ```
 
-### `find` - search for tasks containing a given keyword
+### `tag` - tag a task with a custom tag message
 
-Display list of tasks that contain a given keyword.
+Tag a task given the task index and a custom tag message.
+Display success message with tagged task.
 
 Example of usage: 
 
-`find **lunch**`
+`tag 1 Excited`
 
 Expected outcome:
 
-List of tasks containing search keyword (eg. **lunch**)
+Success message containing task that has been tagged.
 
 ```
-1. [T][ ] Buy **Lunch**
-2. [E][ ] [E][ ] **Lunch** (at: SEP 13 2022 1250 to SEP 13 2022 1400)
-```
-### `delete` - delete task with a given task index
-
-Delete task with a given task index.
-Displays a success message when task is deleted successfully.
-
-Example of usage: 
-
-`delete 1`
-
-Success message containing task that has been deleted.
-
-Description of the outcome.
-
-```
-You have deleted "{Task}" from your Task List!
-You have 0 tasks in your Task List!
+Sure! I'll tag this task, take a look: [T][ ] Lunch [Tag: #Excited]"
 ```
