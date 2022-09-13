@@ -28,62 +28,63 @@ public class Parser {
      */
     public void readInput() throws DukeException, IOException {
         while (true) {
+            
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
 
-            Scanner input = new Scanner(System.in);
-            String s = input.nextLine();
-
-            if (s.equals("bye")) {
+            if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon.");
                 break;
             }
 
-            String[] word = s.split(" ");
+            String[] inputByWords = input.split(" ");
+            String firstWord = inputByWords[0];
 
-            if (s.equals("list")) {
+            if (input.equals("list")) {
                 taskList.list();
 
-            } else if (word[0].equals("mark")) {
-                Integer num = Integer.parseInt(word[1]);
-                taskList.mark(num);
+            } else if (firstWord.equals("mark")) {
+                Integer indexOfTask = Integer.parseInt(inputByWords[1]);
+                taskList.mark(indexOfTask);
 
-            } else if (word[0].equals("unmark")) {
-                Integer num = Integer.parseInt(word[1]);
-                taskList.unmark(num);
+            } else if (firstWord.equals("unmark")) {
+                Integer indexOfTask = Integer.parseInt(inputByWords[1]);
+                taskList.unmark(indexOfTask);
 
-            } else if (word[0].equals("todo")) {
-                if (s.endsWith("todo")) {
+            } else if (firstWord.equals("todo")) {
+                if (input.endsWith("todo")) {
                     throw new DukeException("Ooops, the description of todo cannot be empty!");
                 }
 
-                String substringtd = s.replaceAll("todo ", "");
-                taskList.todo(substringtd);
+                String todoTask = input.replaceAll("todo ", "");
+                taskList.todo(todoTask);
 
-            } else if (word[0].equals("deadline")) {
-                if (s.endsWith("deadline")) {
+            } else if (firstWord.equals("deadline")) {
+                if (input.endsWith("deadline")) {
                     throw new DukeException("Ooops, the description of deadline cannot be empty!");
                 }
 
-                String[] phrase = s.split("/by");
-                String substringdl1 = phrase[0].replaceAll("deadline", "");
-                String substringdl2 = phrase[1];
-                taskList.deadline(substringdl1, substringdl2);
-
-            } else if (word[0].equals("event")) {
-                if (s.endsWith("event")) {
+                String[] inputSplit = input.split("/by");
+                String deadlineTask = inputSplit[0].replaceAll("deadline", "");
+                String deadlineBy = inputSplit[1];
+                taskList.deadline(deadlineTask, deadlineBy);
+                
+            } else if (firstWord.equals("event")) {
+                if (input.endsWith("event")) {
                     throw new DukeException("Ooops, the description of event cannot be empty!");
                 }
 
-                String[] phrase = s.split("/at");
-                String substringdl1 = phrase[0].replaceAll("event", "");
-                String substringdl2 = phrase[1];
-                taskList.event(substringdl1, substringdl2);
+                String[] inputSplit = input.split("/at");
+                String eventTask = inputSplit[0].replaceAll("event", "");
+                String eventBy = inputSplit[1];
+                taskList.event(eventTask, eventBy);
 
-            } else if (word[0].equals("delete")) {
-                Integer num = Integer.parseInt(word[1]);
-                taskList.delete(num);
+            } else if (firstWord.equals("delete")) {
+                Integer indexOfTask = Integer.parseInt(inputByWords[1]);
+                taskList.delete(indexOfTask);
 
-            } else if (word[0].equals("find")) {
-                String content = s.replace("find", "");
+            } else if (firstWord.equals("find")) {
+                String content = input.replace("find", "");
                 taskList.find(content);
 
             } else {
