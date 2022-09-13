@@ -227,6 +227,7 @@ public class Duke extends Application {
      * @return a String representing all the tasks that match the keywords
      */
     public String findMatchingTasks(List<Task> taskArrayList, String[] keywords) {
+        int count = 0;
         String outputString = "";
         outputString += "Here are the matching tasks in your list:\n";
 
@@ -235,10 +236,15 @@ public class Duke extends Application {
             for (String keyword : keywords) {
                 if (task.getDescription().contains(keyword)) {
                     outputString += task.toString() + "\n";
+                    count += 1;
                     break;
                 }
             }
         }
+        if (count == 0) {
+            return "No matching Tasks Found!";
+        }
+
         return outputString;
 
     }
@@ -300,10 +306,19 @@ public class Duke extends Application {
                         if (Parser.isAddTodoTask(words)) {
                             createAndAddTodo(words);
                         } else if (Parser.isAddDeadlineTask(words)) {
+                            if (words.length == 0) {
+                                throw new DukeException("No keywords entered!");
+                            }
                             createAndAddDeadline(words);
                         } else if (Parser.isAddEventTask(words)) {
+                            if (words.length == 0) {
+                                throw new DukeException("No keywords entered!");
+                            }
                             createAndAddEvent(words);
                         } else if (Parser.isFindTask(words)) {
+                            if (words.length == 0) {
+                                throw new DukeException("No keywords entered!");
+                            }
                             String keywords = Parser.joinString(words, 1);
                             keywords = keywords.substring(0, keywords.length() - 1);
                             System.out.println("Here are the matching tasks in your list:");
