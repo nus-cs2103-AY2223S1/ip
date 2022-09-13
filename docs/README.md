@@ -40,11 +40,11 @@ NyanDuke can find tasks using keywords or by dates so you won't have to scour th
 
 Add a task that you are planning to do (eventually) to NyanDuke.
 
-Format: `todo DESCRIPTION`
+**Format:** `todo DESCRIPTION`
 
-Example of usage: `todo sleep`
+**Example of usage:** `todo sleep`
 
-Expected outcome:
+**Expected outcome:**
 
 A Todo-type task (represented by the letter T) will be added to NyanDuke.
 
@@ -59,17 +59,17 @@ Now you have 1 task in your list.
 Add a task that you have to do by a specified deadline to NyanDuke.<br>
 The deadline can be (i) a date and time; (ii) a date; or (iii) a written description.
 
-Formats:
+**Formats:**
 1. `deadline DESCRIPTION /by DATE TIME`
 1. `deadline DESCRIPTION /by DATE`
 1. `deadline DESCRIPTION /by TIME_DESCRIPTION`
 
-Examples of usage:
+**Examples of usage:**
 1. `deadline submit HW1 /by 2022-10-12 2359`
 1. `deadline submit HW1 /by 2022-10-13`
 1. `deadline submit HW1 /by next week`
 
-Expected outcome:
+**Expected outcome:**
 
 A Deadline-type task (represented by the letter D) will be added to NyanDuke.
 
@@ -102,17 +102,17 @@ Now you have 2 tasks in your list.
 Add an event task that you have to do at a specified time to NyanDuke.<br>
 The time can be (i) a date and time; (ii) a date; or (iii) a written description.
 
-Formats:
+**Formats:**
 1. `event DESCRIPTION /by DATE TIME`
 1. `event DESCRIPTION /by DATE`
 1. `event DESCRIPTION /by TIME_DESCRIPTION`
 
-Examples of usage:
+**Examples of usage:**
 1. `event party /at 2022-10-12 2000`
 1. `event party /at 2022-10-13`
 1. `event party /at tonight!!`
 
-Expected outcome:
+**Expected outcome:**
 
 An Event-type task (represented by the letter E) will be added to NyanDuke.
 
@@ -144,9 +144,9 @@ Now you have 3 tasks in your list.
 
 List all the tasks that you have added to NyanDuke.
 
-Format: `list`
+**Format:** `list`
 
-Expected outcome:
+**Expected outcome:**
 
 A list of all the tasks you have added to NyanDuke will be shown.
 
@@ -161,13 +161,13 @@ Here are the tasks in your list:
 
 Mark specified tasks in NyanDuke as complete.
 
-Format: `mark TASK_NUMBER ...`
+**Format:** `mark TASK_NUMBER ...`
 
-Examples of usage:
+**Examples of usage:**
 1. `mark 1`
 1. `mark 1 3`
 
-Expected outcome:
+**Expected outcome:**
 
 The tasks that you have specified by number to NyanDuke will no longer be marked with an `X`.
 
@@ -192,13 +192,13 @@ Now you have 3 tasks in your list.
 
 Mark specified tasks in NyanDuke as not complete.
 
-Format: `unmark TASK_NUMBER ...`
+**Format:** `unmark TASK_NUMBER ...`
 
-Examples of usage:
+**Examples of usage:**
 1. `unmark 1`
 1. `unmark 1 3`
 
-Expected outcome:
+**Expected outcome:**
 
 The tasks that you have specified by number to NyanDuke will be marked with an `X`.
 
@@ -223,13 +223,13 @@ Now you have 1 task in your list.
 
 Delete specified tasks from NyanDuke.
 
-Format: `delete TASK_NUMBER ...`
+**Format:** `delete TASK_NUMBER ...`
 
-Examples of usage:
+**Examples of usage:**
 1. `delete 1`
 1. `delete 1 3`
 
-Expected outcome:
+**Expected outcome:**
 
 The tasks that you have specified by number to NyanDuke will be deleted.
 
@@ -254,13 +254,13 @@ Now you have 1 task in your list.
 
 Find all the tasks that you have added to NyanDuke containing a specified keyword (or phrase).
 
-Format: `find KEYWORD`
+**Format:** `find KEYWORD`
 
-Example of usage: `find sleep`
+**Example of usage:** `find sleep`
 
-Expected outcome:
+**Expected outcome:**
 
-A list of all the tasks you have added to NyanDuke will be shown.
+A list of all the tasks you have added to NyanDuke containing the specified keyword will be shown.
 
 ```
 Here are the meow-tching tasks in your list:
@@ -271,13 +271,13 @@ Here are the meow-tching tasks in your list:
 
 Find all the tasks that you have added to NyanDuke to be done by or at a specified date.
 
-Format: `on DATE`
+**Format:** `on DATE`
 
-Example of usage: `on 2022-10-12`
+**Example of usage:** `on 2022-10-12`
 
-Expected outcome:
+**Expected outcome:**
 
-A list of all the tasks you have added to NyanDuke will be shown.
+A list of all the tasks you have added to NyanDuke that are to be done by or at the specified date will be shown.
 
 ```
 Here are the tasks in your list on this date:
@@ -289,8 +289,8 @@ Here are the tasks in your list on this date:
 
 Exit the NyanDuke app by bidding NyanDuke goodbye!
 
-Format: `exit`
+**Format:** `exit`
 
-Expected outcome:
+**Expected outcome:**
 
 The app will close. Until you open it again!
