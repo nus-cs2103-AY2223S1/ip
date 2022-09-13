@@ -1,16 +1,16 @@
 package duke;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.scene.layout.Region;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 
+import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -57,8 +57,10 @@ public class Duke extends Application {
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
 
+
         userInput = new TextField();
         sendButton = new Button("Send");
+        sendButton.setStyle("-fx-background-color: #ff0000; ");
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
@@ -204,7 +206,7 @@ public class Duke extends Application {
                         String[] allKeywords = keywords.split(" ");
                         return findMatchingTasks(taskArrayList, allKeywords);
                     } else {
-                        String outputString = "I don't know what you mean, so I will just echo you\n";
+                        String outputString = "I don't know what you mean, so I will just echo what you said!\n";
                         outputString += input;
                         return outputString;
                     }
