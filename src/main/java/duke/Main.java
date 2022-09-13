@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,12 @@ import javafx.stage.Stage;
  * A class to that setups the GUI for Duke.
  */
 public class Main extends Application {
-    private Duke duke = new Duke("savedata/", "duke.txt");
+    private final String USER_HOME = System.getProperty("user.home");
+    private final String SAVE_FOLDER = "dukeData";
+    private final String SAVE_FOLDER_LOCATION = Paths.get(USER_HOME, SAVE_FOLDER).toString();
+    private final String SAVE_NAME = "duke.txt";
+
+    private Duke duke = new Duke(SAVE_FOLDER_LOCATION, SAVE_NAME);
 
     @Override
     public void start(Stage stage) {

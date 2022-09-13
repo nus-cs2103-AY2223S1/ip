@@ -16,7 +16,8 @@ public class Storage {
 
     public Storage(String savePath, String saveName) {
         this.saveFolder = new File(savePath);
-        this.saveFile = new File(savePath + saveName);
+        String saveFileLocation = savePath + "/" + saveName;
+        this.saveFile = new File(saveFileLocation);
     }
 
     /**
@@ -84,7 +85,8 @@ public class Storage {
     private String[] parseSavedTask(String line) {
         // There are at most 7 parameters in a saved task, including status.
         int parsedArraySize = 7;
-        String[] temp = line.split("\\|");
+        String parameterSeparator = "\\|";
+        String[] temp = line.split(parameterSeparator);
         String[] info = Arrays.copyOf(temp, parsedArraySize);
         return info;
     }
