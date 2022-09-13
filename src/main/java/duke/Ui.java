@@ -114,25 +114,25 @@ public class Ui {
      */
     public String printHelpList() {
         String listHelpMessage = "List: List all tasks\n"
-                + "Command: list\n";
+                + "Command: List\n";
 
-        String findHelpMessage = "find: Find tasks with matching keyword\n"
-                + "Command: find (keyword)\n";
+        String findHelpMessage = "Find: Find tasks with matching keyword\n"
+                + "Command: Find (keyword)\n";
 
         String markHelpMessage = "Mark: Set selected task as completed\n"
-                + "Command: mark (index of task)\n";
+                + "Command: Mark (index of task)\n";
 
         String unmarkHelpMessage = "Unmark: Set selected task as not completed\n"
-                + "Command: unmark (index of task)\n";
+                + "Command: Unmark (index of task)\n";
 
         String deleteHelpMessage = "Delete: Delete selected task\n"
-                + "Command: delete (index of task)\n";
+                + "Command: Delete (index of task)\n";
 
         String batchTypeDeleteHelpMessage = "BatchTypeDelete: Delete all tasks of type specified\n"
-                + "Command: batchtypedelete (type of task: todo/deadline/event)\n";
+                + "Command: Batchtypedelete (type of task: todo/deadline/event)\n";
 
         String batchDescDeleteHelpMessage = "BatchTypeDelete: Delete all tasks with matching keyword\n"
-                + "Command: batchdescdelete (keyword)\n";
+                + "Command: Batchdescdelete (keyword)\n";
 
         String todoHelpMessage = "ToDo: Adds a Todo Task\n"
                 + "Command: Todo (description)\n";
@@ -144,7 +144,7 @@ public class Ui {
                 + "Command: Event (description) /at (YYYY-MM-DD 24hr)\n";
 
         String byeHelpMessage = "Bye: Exits the program\n"
-                + "Command: bye\n";
+                + "Command: Bye\n";
 
         StringBuilder sb = new StringBuilder();
 
