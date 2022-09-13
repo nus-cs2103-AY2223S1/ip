@@ -1,0 +1,6 @@
+T | 0 | buy milk
+D | 1 | Geog Assignment | 2022-09-17
+D | 0 | CS2102 Project | 2022-09-17
+E | 0 | Dragon Boat Trial Session by UTR | 2022-09-18
+T | 0 | print CS2100 Lab sheet
+D | 0 | CS2103T iP finalization | 2022-09-16

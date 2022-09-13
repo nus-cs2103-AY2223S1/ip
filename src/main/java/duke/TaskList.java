@@ -67,7 +67,6 @@ public class TaskList {
         case "T":
             // example: T | 0 | sleep1
             description = line.split(separator, 3)[2];
-            description = description.substring(1);
             curr = new Todo(description);
             setIsDoneAndAddTask(curr, isDone);
             break;
