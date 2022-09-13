@@ -44,12 +44,7 @@ public class Storage {
 
             // Read and process lines
             Stream<String> content = reader.lines();
-            content.forEach(s -> {
-                Task task = Parser.parseSaved(s);
-                if (task != null) {
-                    tasks.add(task);
-                }
-            });
+            content.forEach(s -> addToList(s, tasks));
 
             // Informs UI of stored tasks
             ui.setLoaded();
@@ -64,6 +59,13 @@ public class Storage {
             writer.close();
         } finally {
             return tasks;
+        }
+    }
+
+    private void addToList(String text, ArrayList<Task> tasks) {
+        Task task = Parser.parseSaved(text);
+        if (task != null) {
+            tasks.add(task);
         }
     }
 

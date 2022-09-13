@@ -61,22 +61,27 @@ public class Ui {
         if (!this.isLoaded) {
             toPrint += "\n  You don't have anything to do yet!\n  Tell Luna your tasks for the day ☀️";
         } else {
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader("data/luna.txt"));
-                Stream<String> contentStream = reader.lines();
-                List<String> contentList = contentStream.collect(Collectors.toList());
-
-                for (String content : contentList) {
-                    toPrint += "\n" + content;
-                }
-
-            } catch (FileNotFoundException e) {
-                showError(new LunaLoadingException());
-            }
+            toPrint += getSavedString();
         }
 
         // Print final separation line
         return addLine(toPrint);
+    }
+
+    private String getSavedString() {
+        String toAdd = "";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("data/luna.txt"));
+            Stream<String> contentStream = reader.lines();
+            List<String> contentList = contentStream.collect(Collectors.toList());
+
+            for (String content : contentList) {
+                toAdd += "\n" + content;
+            }
+        } catch (FileNotFoundException e) {
+            showError(new LunaLoadingException());
+        }
+        return toAdd;
     }
 
     /**
