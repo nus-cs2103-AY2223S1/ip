@@ -22,7 +22,7 @@ NyanDuke can find tasks using keywords or by dates so you won't have to scour th
 
 ## Usage
 
-###Notes:
+### Notes:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `todo sleep`.
