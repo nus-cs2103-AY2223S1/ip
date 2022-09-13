@@ -1,23 +1,26 @@
 package duke.chatbot.commandmanager;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.junit.jupiter.api.Test;
+
 import duke.chatbot.ChatBot;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.DeadlineTask;
 import duke.chatbot.taskmanager.task.EventTask;
 import duke.chatbot.taskmanager.task.ToDoTask;
 
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class CommandManagerTest {
     private final CommandManager commandManager = new CommandManager();
 
     @Test
-    public void ByeCommandHandler() {
+    public void byeCommandHandler() {
         String command = "bye";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -36,7 +39,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void ListCommandHandler() {
+    public void listCommandHandler() {
         String command = "list";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -57,7 +60,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void TodoTaskCommandHandler() {
+    public void todoTaskCommandHandler() {
         String command = "todo";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -77,7 +80,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void DeadlineTaskCommandHandler() {
+    public void deadlineTaskCommandHandler() {
         String command = "deadline";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -136,7 +139,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void EventTaskCommandHandler() {
+    public void eventTaskCommandHandler() {
         String command = "event";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -195,7 +198,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void MarkTaskCommandHandler() {
+    public void markTaskCommandHandler() {
         String command = "mark";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -246,7 +249,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void UnmarkTaskCommandHandler() {
+    public void unmarkTaskCommandHandler() {
         String command = "unmark";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -298,7 +301,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void DeleteTaskCommandHandler() {
+    public void deleteTaskCommandHandler() {
         String command = "delete";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -348,7 +351,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void FindTaskCommandHandler() {
+    public void findTaskCommandHandler() {
         String command = "find";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -378,7 +381,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void UpdateTaskCommandHandler() {
+    public void updateTaskCommandHandler() {
         String command = "update";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
@@ -401,11 +404,11 @@ public class CommandManagerTest {
             taskManager.addTask(task3);
 
             assertEquals(commandManager.getCommand(command).execute("1 test1"),
-                    ("The following item has been updated.\n1) " +  task1.toString() + "\n"));
+                    "The following item has been updated.\n1) " + task1.toString() + "\n");
             assertEquals(commandManager.getCommand(command).execute("2 test2"),
-                    ("The following item has been updated.\n2) " +  task2.toString() + "\n"));
+                    "The following item has been updated.\n2) " + task2.toString() + "\n");
             assertEquals(commandManager.getCommand(command).execute("3 test3"),
-                    ("The following item has been updated.\n3) " +  task3.toString() + "\n"));
+                    "The following item has been updated.\n3) " + task3.toString() + "\n");
             assertNotEquals(task1String, task1.toString());
             assertNotEquals(task2String, task2.toString());
             assertNotEquals(task3String, task3.toString());
@@ -414,23 +417,23 @@ public class CommandManagerTest {
             String test3String = task3.toString();
 
             assertEquals(commandManager.getCommand(command).execute("2 task2 /by "),
-                    ("The following item has been updated.\n2) " +  task2.toString() + "\n"));
+                    "The following item has been updated.\n2) " + task2.toString() + "\n");
             assertEquals(commandManager.getCommand(command).execute("3 task3 /at "),
-                    ("The following item has been updated.\n3) " +  task3.toString() + "\n"));
+                    "The following item has been updated.\n3) " + task3.toString() + "\n");
             assertEquals(task2String, task2.toString());
             assertEquals(task3String, task3.toString());
 
             assertEquals(commandManager.getCommand(command).execute("2 /by 01/01/2022,1111"),
-                    ("The following item has been updated.\n2) " +  task2.toString() + "\n"));
+                    "The following item has been updated.\n2) " + task2.toString() + "\n");
             assertEquals(commandManager.getCommand(command).execute("3 /at 01/01/2022,1111"),
-                    ("The following item has been updated.\n3) " +  task3.toString() + "\n"));
+                    "The following item has been updated.\n3) " + task3.toString() + "\n");
             assertNotEquals(task2String, task2.toString());
             assertNotEquals(task3String, task3.toString());
 
             assertEquals(commandManager.getCommand(command).execute("2 test2 /by 01/01/2022,0000"),
-                    ("The following item has been updated.\n2) " +  task2.toString() + "\n"));
+                    "The following item has been updated.\n2) " + task2.toString() + "\n");
             assertEquals(commandManager.getCommand(command).execute("3 test3 /at 01/01/2022,0000"),
-                    ("The following item has been updated.\n3) " +  task3.toString() + "\n"));
+                    "The following item has been updated.\n3) " + task3.toString() + "\n");
             assertEquals(test2String, task2.toString());
             assertEquals(test3String, task3.toString());
 

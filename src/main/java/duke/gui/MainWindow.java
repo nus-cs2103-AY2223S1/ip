@@ -1,12 +1,12 @@
 package duke.gui;
 
 import duke.chatbot.ChatBot;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 /**
  * MainWindow is an AnchorPane that anchors the various containers present in the main application.
  */
-public class MainWindow extends AnchorPane {
+public class MainWindow extends GridPane {
     private DialogContainer dialogContainer;
     private InputContainer userInputContainer;
     private ChatBot chatBot;
@@ -18,12 +18,9 @@ public class MainWindow extends AnchorPane {
      */
     public MainWindow(ChatBot chatBot) {
         this.chatBot = chatBot;
-        this.dialogContainer = new DialogContainer();
-        this.userInputContainer = new InputContainer();
-        this.getChildren().addAll(this.dialogContainer, this.userInputContainer);
-
-        this.setTopAnchor(dialogContainer, 1.0);
-        this.setBottomAnchor(userInputContainer, 1.0);
+        this.dialogContainer = new DialogContainer(this);
+        this.userInputContainer = new InputContainer(this);
+        this.addColumn(0, dialogContainer, userInputContainer);
     }
 
     /**
@@ -33,7 +30,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         this.chatBot.initialize();
         this.dialogContainer.initializeDialog(this.chatBot.getLatestResponse());
-        this.userInputContainer.initializeEventHandlers(this);
+        this.userInputContainer.initializeEventHandlers(this, this.chatBot);
     }
 
     /**
