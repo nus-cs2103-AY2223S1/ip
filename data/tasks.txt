@@ -1,3 +1,2 @@
-T|0|buy books
-D|1|assignment|tmr 2359
-E|0|bath|Sep 12 2022
+T|1|return book
+D|0|homework|2359 Friday
