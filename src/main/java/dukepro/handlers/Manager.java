@@ -1,6 +1,7 @@
 package dukepro.handlers;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.function.Function;
 
@@ -101,7 +102,7 @@ public class Manager <T extends StorableObjects> {
         for (int i = 0; i < storedObjects.size(); i++) {
             T currT = storedObjects.get(i);
             if (currT.getMatching(match)) {
-                ret += currT;
+                ret += currT + "\n";
             }
         }
         return ret;
@@ -134,7 +135,8 @@ public class Manager <T extends StorableObjects> {
      * @return String.
      */
     public String showDate(LocalDate localDate) {
-        String ret = "These tasks are due on " + localDate + "\n";
+        String date = localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String ret = "These tasks are due on " + date + "\n";
         for (int i = 0; i < storedObjects.size(); i++) {
             if (storedObjects.get(i).compareDate(localDate)) {
                 ret += storedObjects.get(i) + "\n";

@@ -1,6 +1,7 @@
 package dukepro.expenses;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import dukepro.StorableObjects;
 
@@ -74,7 +75,8 @@ public class Expense extends StorableObjects {
      */
     @Override
     public String toString() {
-        String ret = name + ": $" + amount + " at " + localDate;
+        String date = localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String ret = name + ": $" + amount + " at " + date;
         return ret;
     }
 }
