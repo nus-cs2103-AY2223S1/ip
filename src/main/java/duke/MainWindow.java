@@ -31,18 +31,19 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.jpeg"));
 
+    /**
+     * Initialize the Main Window
+     */
     @FXML
     public void initialize() {
+        String greetings = new Ui().greet();
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        this.dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(greetings, dukeImage));
     }
 
     public void setDuke(Duke d) {
-        String greet = "Hello! I'm the Magical ChatBot, Duke!\n"
-                + "What can I help you with today?";
         duke = d;
 
-        // Initial Input
-        this.dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(greet, dukeImage));
     }
 
     /**

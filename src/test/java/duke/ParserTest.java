@@ -6,20 +6,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
+import duke.exception.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import duke.command.Command;
-import duke.exception.DukeEmptyDeadlineException;
-import duke.exception.DukeEmptyEventException;
-import duke.exception.DukeEmptyToDoException;
-import duke.exception.DukeException;
-import duke.exception.DukeInvalidDeadlineSeparatorException;
-import duke.exception.DukeInvalidEventSeparatorException;
-import duke.exception.DukeInvalidTimeFormatException;
-import duke.exception.DukeInvalidTypeException;
-import duke.exception.DukeNoIndexException;
-import duke.exception.DukeNoKeywordException;
 import duke.task.TaskList;
 import duke.task.ToDo;
 
@@ -290,6 +281,19 @@ public class ParserTest {
             Command c = Parser.parse(input);
             fail("DukeEmptyEventException not thrown");
         } catch (DukeEmptyEventException e) {
+            assertTrue(true);
+        } catch (DukeException e) {
+            fail("Wrong exception thrown");
+        }
+    }
+
+    @Test
+    public void parser_invalidCommand_exceptionThrown() {
+        try {
+            String input = "hehe jam";
+            Command c = Parser.parse(input);
+            fail("DukeInvalidCommandException not thrown");
+        } catch (DukeInvalidCommandException e) {
             assertTrue(true);
         } catch (DukeException e) {
             fail("Wrong exception thrown");

@@ -12,6 +12,15 @@ import duke.task.Task;
  * @author Tan Jia Rong
  */
 public class Ui {
+    /**
+     * Return greetings message.
+     *
+     * @return greetings message.
+     */
+    public String greet() {
+        return "Hello! I'm the Magical ChatBot, Duke!\n"
+                + "What can I help you with today?";
+    }
 
     /**
      * Return farewell message.
