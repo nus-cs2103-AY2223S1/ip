@@ -225,7 +225,7 @@ I am adding your task to the list:
 3 tasks remain in your list.
 ```
 
-### `Find` - Find tasks with a keyword
+### `find` - Find tasks with a keyword
 
 Searches for all tasks with descriptions or tags containing a given keyword.
 > Note: Because the specified term is key**word**, the implication is that find only accepts **1** argument.
@@ -245,7 +245,7 @@ Here are the matching tasks in your list:
 1. [D] [ ] CS3230 Assignment 5 (by: 13 Sep 1999)
 ```
 
-### `Tag` - Tags a task
+### `tag` - Tags a task
 
 Tags a task with additional information. In a list, tags are prefixed with '#'.</br>
 A task has no practical limit as to how many tags it can have, but too many tags can make a 
