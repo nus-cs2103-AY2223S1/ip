@@ -28,6 +28,8 @@ public class FindCommand extends Command {
      * @return Pikachu's reply.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        assert input.startsWith("find ");
+
         //Initialise variables
         String keyword = input.substring(5);
         StringBuilder output = new StringBuilder();

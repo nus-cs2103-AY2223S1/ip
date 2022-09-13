@@ -27,6 +27,9 @@ public class ListCommand extends Command {
             output.append("You have completed all the tasks!");
             return String.valueOf(output);
         }
+
+        assert tasks.getTaskList().isEmpty();
+
         for (Task task: tasks.getTaskList()) {
             output.append(tasks.getTaskList().indexOf(task) + 1).append('.').append(task).append('\n');
         }
