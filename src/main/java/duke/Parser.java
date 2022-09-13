@@ -105,7 +105,7 @@ public class Parser {
     }
 
     private static BatchTypeDeleteCommand parseBatchTypeDeleteCommand(String[] data) throws DukeException {
-        String type = data[1];
+        String type = data[1].toLowerCase();
 
         if (type.isEmpty()) {
             throw new DukeNoKeywordException();

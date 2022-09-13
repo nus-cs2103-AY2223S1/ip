@@ -166,7 +166,7 @@ public class TaskList {
     private void deleteIfTypeMatch(String taskType, int taskIndex) throws DukeException {
         Task currentTask = tasks.get(taskIndex);
         String typeCompare = getTypeofTask(currentTask);
-        if (typeCompare.equals(taskType)) {
+        if (typeCompare.equalsIgnoreCase(taskType)) {
             this.delete(taskIndex);
         }
     }

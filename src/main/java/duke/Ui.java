@@ -116,8 +116,8 @@ public class Ui {
         String listHelpMessage = "List: List all tasks\n"
                 + "Command: list\n";
 
-        String findHelpMessage = "find: Find tasks with batching description\n"
-                + "Command: find (description of tasks)\n";
+        String findHelpMessage = "find: Find tasks with matching keyword\n"
+                + "Command: find (keyword)\n";
 
         String markHelpMessage = "Mark: Set selected task as completed\n"
                 + "Command: mark (index of task)\n";
@@ -131,8 +131,8 @@ public class Ui {
         String batchTypeDeleteHelpMessage = "BatchTypeDelete: Delete all tasks of type specified\n"
                 + "Command: batchtypedelete (type of task: todo/deadline/event)\n";
 
-        String batchDescDeleteHelpMessage = "BatchTypeDelete: Delete all tasks with description given\n"
-                + "Command: batchdescdelete (description of tasks)\n";
+        String batchDescDeleteHelpMessage = "BatchTypeDelete: Delete all tasks with matching keyword\n"
+                + "Command: batchdescdelete (keyword)\n";
 
         String todoHelpMessage = "ToDo: Adds a Todo Task\n"
                 + "Command: Todo (description)\n";

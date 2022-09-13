@@ -8,7 +8,6 @@ package duke.task;
  * @author Tan Jia Rong
  */
 public class ToDo extends Task {
-
     /**
      * Constructor for Todo Task.
      *
