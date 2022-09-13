@@ -59,12 +59,11 @@ public class TaskListTest {
     public void testDelete_exceptionThrown() {
         try {
             TaskList testList = new TaskList();
-            Integer[] testArray = {1};
+            Integer[] testArray = {0};
             testList.delete(testArray);
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("There's a specified task that does not exist ;-;\n"
-                    + "The other tasks have been deleted.",
+            assertEquals("There's a specified task that does not exist ;-;\n",
                     e.getMessage());
         }
     }
@@ -87,12 +86,11 @@ public class TaskListTest {
     public void testMark_exceptionThrown() {
         try {
             TaskList testList = new TaskList();
-            Integer[] testArray = {1};
+            Integer[] testArray = {-1};
             testList.mark(testArray);
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("There's a specified task that does not exist ;-;\n"
-                    + "The other tasks have been marked.",
+            assertEquals("There's a specified task that does not exist ;-;\n",
                     e.getMessage());
         }
     }
@@ -120,8 +118,7 @@ public class TaskListTest {
             testList.unmark(testArray);
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("There's a specified task that does not exist ;-;\n"
-                    + "The other tasks have been unmarked.",
+            assertEquals("There's a specified task that does not exist ;-;\n",
                     e.getMessage());
         }
     }

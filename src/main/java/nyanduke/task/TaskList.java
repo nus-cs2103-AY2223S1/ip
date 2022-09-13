@@ -117,23 +117,23 @@ public class TaskList {
      * @throws NyanDukeException when the task corresponding to the specified number does not exist.
      */
     public ArrayList<Task> delete(Integer[] numbers) throws NyanDukeException {
-        assert numbers.length != 0 : "TaskList::delete invoked with empty array.";
+        int len = numbers.length;
+        assert len != 0 : "TaskList::delete invoked with empty array.";
         Arrays.sort(numbers);
-        if (numbers[0] <= 0) {
+        boolean hasNonPositiveNumbers = numbers[0] <= 0;
+        boolean hasOversizedNumbers = numbers[len - 1] > tasks.size();
+        boolean hasInvalidNumbers = hasNonPositiveNumbers || hasOversizedNumbers;
+        if (hasInvalidNumbers) {
             throw new NyanDukeException("There's a specified task that does not exist ;-;\n");
         }
+
         ArrayList<Task> deletedTasks = new ArrayList<>();
-        try {
-            for (int i = 0; i < numbers.length; i++) {
-                Task task = tasks.get(numbers[i] - i - 1);
-                tasks.remove(task);
-                deletedTasks.add(task);
-            }
-            return deletedTasks;
-        } catch (IndexOutOfBoundsException e) {
-            throw new NyanDukeException("There's a specified task that does not exist ;-;\n"
-                    + "The other tasks have been deleted.");
+        for (int i = 0; i < numbers.length; i++) {
+            Task task = tasks.get(numbers[i] - i - 1);
+            tasks.remove(task);
+            deletedTasks.add(task);
         }
+        return deletedTasks;
     }
 
     /**
@@ -144,23 +144,23 @@ public class TaskList {
      * @throws NyanDukeException when the task corresponding to the specified number does not exist.
      */
     public ArrayList<Task> mark(Integer[] numbers) throws NyanDukeException {
-        assert numbers.length != 0 : "TaskList::mark invoked with empty array.";
+        int len = numbers.length;
+        assert len != 0 : "TaskList::mark invoked with empty array.";
         Arrays.sort(numbers);
-        if (numbers[0] <= 0) {
+        boolean hasNonPositiveNumbers = numbers[0] <= 0;
+        boolean hasOversizedNumbers = numbers[len - 1] > tasks.size();
+        boolean hasInvalidNumbers = hasNonPositiveNumbers || hasOversizedNumbers;
+        if (hasInvalidNumbers) {
             throw new NyanDukeException("There's a specified task that does not exist ;-;\n");
         }
+
         ArrayList<Task> markedTasks = new ArrayList<>();
-        try {
-            for (Integer number : numbers) {
-                Task task = tasks.get(number - 1);
-                task.markAsDone();
-                markedTasks.add(task);
-            }
-            return markedTasks;
-        } catch (IndexOutOfBoundsException e) {
-            throw new NyanDukeException("There's a specified task that does not exist ;-;\n"
-                    + "The other tasks have been marked.");
+        for (Integer number : numbers) {
+            Task task = tasks.get(number - 1);
+            task.markAsDone();
+            markedTasks.add(task);
         }
+        return markedTasks;
     }
 
     /**
@@ -171,23 +171,23 @@ public class TaskList {
      * @throws NyanDukeException when the task corresponding to the specified number does not exist.
      */
     public ArrayList<Task> unmark(Integer[] numbers) throws NyanDukeException {
-        assert numbers.length != 0 : "TaskList::unmark invoked with empty array.";
+        int len = numbers.length;
+        assert len != 0 : "TaskList::unmark invoked with empty array.";
         Arrays.sort(numbers);
-        if (numbers[0] <= 0) {
+        boolean hasNonPositiveNumbers = numbers[0] <= 0;
+        boolean hasOversizedNumbers = numbers[len - 1] > tasks.size();
+        boolean hasInvalidNumbers = hasNonPositiveNumbers || hasOversizedNumbers;
+        if (hasInvalidNumbers) {
             throw new NyanDukeException("There's a specified task that does not exist ;-;\n");
         }
         ArrayList<Task> unmarkedTasks = new ArrayList<>();
-        try {
-            for (Integer number : numbers) {
-                Task task = tasks.get(number - 1);
-                task.markAsNotDone();
-                unmarkedTasks.add(task);
-            }
-            return unmarkedTasks;
-        } catch (IndexOutOfBoundsException e) {
-            throw new NyanDukeException("There's a specified task that does not exist ;-;\n"
-                    + "The other tasks have been unmarked.");
+
+        for (Integer number : numbers) {
+            Task task = tasks.get(number - 1);
+            task.markAsNotDone();
+            unmarkedTasks.add(task);
         }
+        return unmarkedTasks;
     }
 
     /**
