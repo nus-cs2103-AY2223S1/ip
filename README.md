@@ -2,6 +2,8 @@
 
 Your friendly chatbot to help you keep track of tasks.
 
+![Ui](https://user-images.githubusercontent.com/97219114/189934119-1ae25142-9970-4bc8-9fd2-34f0be61523d.png)
+
 ## Installation
 1. Ensure you have Java 11 installed
 2. Download the latest version of the jar file in the Releases tab on the right
