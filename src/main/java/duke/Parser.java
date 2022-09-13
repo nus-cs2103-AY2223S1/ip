@@ -20,7 +20,8 @@ public class Parser {
 
     /**
      * Parses and executes the given input using the given module instances.
-     * @param line The input given to the bot.
+     *
+     * @param line  The input given to the bot.
      * @param todos The Todos module instance to use.
      * @return Whether the process should exit after this command.
      */

@@ -24,7 +24,7 @@ public class Deadline extends Task {
     /**
      * Constructor
      *
-     * @param name The name of the task.
+     * @param name     The name of the task.
      * @param deadline The deadline of the task.
      */
     public Deadline(String name, Instant deadline) {

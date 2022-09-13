@@ -5,32 +5,36 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
-<fx:root fx:id="root" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="359.0" spacing="4.0" type="VBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-            <HBox fx:id="header" alignment="TOP_RIGHT" spacing="8.0">
-               <children>
-                  <Label fx:id="name" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="32.0" text="Duke" HBox.hgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="4.0" top="4.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-                  <ImageView fx:id="profilePicture" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </HBox>
-            <Label fx:id="message" style="-fx-background-color: #22ccff; -fx-background-radius: 8;" text="salt" wrapText="true" VBox.vgrow="ALWAYS">
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-            </Label>
-   </children>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
+<fx:root fx:id="root" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+         minWidth="-Infinity" prefWidth="359.0" spacing="4.0" type="VBox" xmlns="http://javafx.com/javafx/11"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <HBox fx:id="header" alignment="TOP_RIGHT" spacing="8.0">
+            <children>
+                <Label fx:id="name" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="32.0" text="Duke"
+                       HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="4.0" top="4.0"/>
+                    </padding>
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                </Label>
+                <ImageView fx:id="profilePicture" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                           preserveRatio="true"/>
+            </children>
+        </HBox>
+        <Label fx:id="message" style="-fx-background-color: #22ccff; -fx-background-radius: 8;" text="salt"
+               wrapText="true" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+            </padding>
+        </Label>
+    </children>
+    <opaqueInsets>
+        <Insets/>
+    </opaqueInsets>
 </fx:root>

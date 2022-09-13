@@ -25,7 +25,7 @@ public abstract class Task {
     /**
      * Constructor
      *
-     * @param name The name of the task
+     * @param name   The name of the task
      * @param isDone Whether the task is done.
      */
     public Task(String name, boolean isDone) {

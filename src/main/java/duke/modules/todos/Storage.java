@@ -21,7 +21,7 @@ public class Storage {
     /**
      * Constructor
      *
-     * @param fileDir The path, relative to the current directory, of the save file.
+     * @param fileDir  The path, relative to the current directory, of the save file.
      * @param fileName The name of the save file.
      */
     public Storage(String fileDir, String fileName) {

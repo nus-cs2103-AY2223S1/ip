@@ -7,7 +7,9 @@ import com.mdimension.jchronic.utils.Span;
 
 import java.time.Instant;
 
-/** A simple JChronic-based date parser. */
+/**
+ * A simple JChronic-based date parser.
+ */
 
 public class NaturalDateParser {
     public static Instant parse(String input) throws DateNotFoundException {

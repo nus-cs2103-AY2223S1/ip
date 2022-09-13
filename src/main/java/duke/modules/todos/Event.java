@@ -19,7 +19,7 @@ public class Event extends Task {
     /**
      * Constructor
      *
-     * @param name The name of the task.
+     * @param name      The name of the task.
      * @param timeRange The time range of the task.
      */
     public Event(String name, String timeRange) {

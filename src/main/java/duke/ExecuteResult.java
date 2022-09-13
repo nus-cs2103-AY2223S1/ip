@@ -20,7 +20,7 @@ public class ExecuteResult {
      * Constructor
      *
      * @param shouldExitAfter Whether the program should exit after this command
-     * @param replyLines The reply message
+     * @param replyLines      The reply message
      */
     public ExecuteResult(boolean shouldExitAfter, List<String> replyLines) {
         this.shouldExitAfter = shouldExitAfter;
