@@ -10,7 +10,7 @@ import duke.util.TaskList;
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
-    private static final String TASK_DELETE = "Noted. I've removed this task:";
+    private static final String TASK_DELETE = "Alright, I've removed this task:";
     private int index;
 
     /**

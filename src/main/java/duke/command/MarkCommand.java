@@ -11,7 +11,7 @@ import duke.util.TaskList;
  */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
-    private static final String TASK_MARK = "Good Job! I will mark this task as done: ";
+    private static final String TASK_MARK = "Splendid, I knew you are efficient! Marking this task as done: ";
     private int index;
 
     /**

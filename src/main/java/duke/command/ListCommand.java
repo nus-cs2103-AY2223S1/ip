@@ -9,7 +9,7 @@ import duke.util.TaskList;
  */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
-    private static final String TASK_LIST = "Here are the tasks in your list:";
+    private static final String TASK_LIST = "Alright, here are all your tasks:";
 
     /**
      * Executes ListCommand by listing the task stored in tasks.

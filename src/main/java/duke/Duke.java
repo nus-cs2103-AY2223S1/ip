@@ -16,8 +16,8 @@ import duke.util.TaskList;
  * @author Rexong
  */
 public class Duke {
-    private static final String DUKE_INTRODUCTION = "Hello, I'm your personal assistant, Duke.";
-    private static final String DUKE_HELP = "How can I assist you today?";
+    private static final String DUKE_INTRODUCTION = "Hello Sheldon, I'm your clone, Sheldon!";
+    private static final String DUKE_HELP = "I am pleasured to be at your service, although we both know you are smart and don't need any help.";
 
     private static final String FILE_NAME = "duke.txt";
     private Storage storage;
