@@ -10,8 +10,4 @@ public class Launcher {
     public static void launch(String[] args) {
         Application.launch(Main.class, args);
     }
-
-    public static void main(String[] args) {
-        Application.launch(Main.class, args);
-    }
 }
