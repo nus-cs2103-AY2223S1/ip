@@ -42,7 +42,7 @@ Marked tasks are represented with checkboxes
 If a task is incomplete, unmark it so that it is shown as pending in the list of tasks when `show` is called. <br>
 The index is one-based (starts from 1). <br>
 
-### Show All Tasks: `show`
+### Show All Tasks: `list`
 Display the list of all tasks that are currently in the list. <br> 
 <p align="center">
 <img width="591" align="center" alt="show" src="https://user-images.githubusercontent.com/96589109/189591911-e6247836-80bc-4a0d-b4c6-451a109400a7.png"> <br>
@@ -69,8 +69,9 @@ Your existing tasks would be stored locally and saved when you open Kirby again.
 | ------------- | ------------- |------------- |
 | **Add Todo**  | `todo <task name>`| `todo Clear the laundry`|
 | **Add Event** | `event <task name> /at <time>`  | `event CS2100 exam /at 2022-09-13`, `event d1NNer dAt3 /at 5pm`|
-| **Add Deadline** | `deadline <task name> /by <time>`  | `Finish marking duty /by 2022-12-01`, `deadline st2334 assignment /by tomorrow`|
+| **Add Deadline** | `deadline <task name> /by <time>`  | `deadline Finish marking duty /by 2022-12-01`, `deadline st2334 assignment /by tomorrow`|
 | **Help**  | `help`| `help`|
+| **List All Tasks**  | `list`| `list`|
 | **Delete Task**  | `delete <task index>`| `delete 2`|
 | **Mark Task**  | `mark <task index>`| `mark 1`, `mark 2`|
 | **Unmark Task**  | `unmark <task index>`| `unmark 1`, `unmark 2`|
