@@ -20,6 +20,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/Window.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
             Scene scene = new Scene(anchorPane);
+            scene.getStylesheets().add("/view/styles.css");
             stage.setScene(scene);
             stage.show();
             stage.setTitle("Drake");

@@ -11,14 +11,14 @@
     <children>
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <content>
-                <VBox fx:id="dialogContainer" alignment="TOP_CENTER" prefHeight="552.0" prefWidth="375.0" spacing="8.0" />
+                <VBox fx:id="dialogContainer" style="-fx-background-image: url(/media/background.png); -fx-background-size: 100%;" alignment="TOP_CENTER" prefHeight="552.0" prefWidth="375.0" spacing="8.0" />
             </content>
         </ScrollPane>
-      <HBox layoutY="500.0" prefHeight="40.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-              <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="40.0" HBox.hgrow="ALWAYS" />
-              <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="40.0" text="Send" />
-         </children>
-      </HBox>
+        <HBox layoutY="500.0" prefHeight="40.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="40.0" HBox.hgrow="ALWAYS" />
+                <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="40.0" text="Send" />
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

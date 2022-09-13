@@ -31,7 +31,7 @@ public class ChatMessage extends AnchorPane {
     @FXML
     private HBox header;
 
-    private ChatMessage(String name, String text, Image img) {
+    private ChatMessage(String name, String text, Image img, boolean isWhiteBackground) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Window.class.getResource("/view/ChatMessage.fxml"));
             fxmlLoader.setController(this);
@@ -44,6 +44,9 @@ public class ChatMessage extends AnchorPane {
         this.name.setText(name);
         message.setText(text);
         profilePicture.setImage(img);
+        if (isWhiteBackground) {
+            message.setStyle("-fx-text-fill : #000000; -fx-background-color: white;");
+        }
     }
 
     /**
@@ -58,11 +61,11 @@ public class ChatMessage extends AnchorPane {
     }
 
     public static ChatMessage getUserDialog(String text, Image img) {
-        return new ChatMessage("Lost Soul", text, img);
+        return new ChatMessage("Lost Soul", text, img, true);
     }
 
     public static ChatMessage getDrakeDialog(String text, Image img) {
-        var db = new ChatMessage("Drake", text, img);
+        var db = new ChatMessage("Drake", text, img, false);
         db.flip();
         return db;
     }

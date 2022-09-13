@@ -50,8 +50,8 @@ public class Ui {
         ArrayList<String> reply = new ArrayList<>();
         reply.add("You used to call me on my cellphone");
         reply.add("!@#$%^&*()-+!@#$%^&*()`~`!@#$");
-        reply.add("Drake's (me) the kind of guy to help you out uwu");
-        reply.add("Go ahead, make that hotline bling");
+        reply.add("Drake's the kind of guy to help you out uwu");
+        reply.add("Go ahead, make that hotline bling ☎");
         return reply;
     }
 
@@ -78,7 +78,7 @@ public class Ui {
      *
      */
     public String replyBye() {
-        return "I'm down for you always. See you " + ANSI_RED + "<3" + ANSI_RESET;
+        return "I'm down for you always. See you ❤";
     }
 
     /**
