@@ -19,14 +19,14 @@ Duke allows you to create and track your tasks!
 
 ### Feature-ABC
 
-Todo: Allows you to create a todo task
-Event: Allows you to create an event with a date
-Deadline: Allows you to create an event with a deadline
-List: List all tasks
-Find: Find a task
-Mark/Unmark: Toggle the task status (Done/Undone)
-Delete: Delete a task
-Help: Shows the list of commands 
+Todo: Allows you to create a todo task <br />
+Event: Allows you to create an event with a date <br />
+Deadline: Allows you to create an event with a deadline <br />
+List: List all tasks <br />
+Find: Find a task <br />
+Mark/Unmark: Toggle the task status (Done/Undone) <br />
+Delete: Delete a task <br />
+Help: Shows the list of commands  <br />
 
 ### Feature-XYZ
 
