@@ -10,7 +10,7 @@
             fx:controller="cheese.ui.controller.MainWindow">
     <children>
         <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0"
-                   AnchorPane.bottomAnchor="1.0"/>
+                   AnchorPane.bottomAnchor="1.0" promptText="Enter a command..."/>
         <Button fx:id="sendButton" layoutX="324.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput"
                 prefHeight="41.0" prefWidth="76.0" text="Send"/>
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0"
