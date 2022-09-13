@@ -59,6 +59,7 @@ public class UnmarkCommand extends Command {
             }
 
             tasks.get(index - 1).unmark();
+            ui.output("Marked task " + index + " as incomplete.");
         } catch (NumberFormatException e) {
             throw new TedException("The number of task to be unmarked passed must be a number.");
         }

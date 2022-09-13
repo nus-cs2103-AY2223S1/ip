@@ -54,6 +54,7 @@ public class MarkCommand extends Command {
             }
 
             tasks.get(index - 1).markAsDone();
+            ui.outputLine("Marked task " + index + " as done.");
         } catch (NumberFormatException e) {
             throw new TedException("The number of task to be marked passed must be a number.");
         }
