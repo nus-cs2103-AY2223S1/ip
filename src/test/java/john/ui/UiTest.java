@@ -85,20 +85,4 @@ public class UiTest {
         assertEquals("This is an invalid HELLO format." + sep + "The correct format is 'world'.",
                 new Ui().showIncorrectCommandWithFormat("hello", "world"));
     }
-
-    @Test
-    public void showHelpTest() {
-        String sep = System.lineSeparator();
-        assertEquals("Here's the list of commands that I know! The commands are not case-sensitive."
-                + sep + sep + "Creating Tasks" + sep + "1. todo <description>: Add a todo task" + sep
-                + "2. deadline <description> /by <dd/mm/yyyy> <hhmm | optional>: Add a deadline task" + sep
-                + "3. event <description> /at <dd/mm/yyyy> <hhmm | optional>: Add a event task" + sep + sep
-                + "Editing Tasks" + sep + "1. mark <positive integer>: Mark task as done" + sep
-                + "2. unmark <positive integer>: Unmark task" + sep + sep
-                + "Deleting Tasks" + sep + "1. delete <positive integer>: Delete specified task" + sep + sep
-                + "Showing Tasks" + sep + "1. list <dd/mm/yyyy | optional>: Lists tasks (on a specific date)" + sep
-                + "2. find <keyword>: Find tasks by keyword" + sep + sep
-                + "Exiting" + sep + "1. bye: Exiting the application",
-                new Ui().showHelp());
-    }
 }
