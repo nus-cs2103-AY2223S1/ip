@@ -34,31 +34,50 @@ public class StorageWriter {
     }
 
     /**
-     * Removes everything from file at path.
-     * Rewrites to file from userInputHistory arraylist in DukeToStorage class.
+     * Removes everything from file storage.
+     * Rewrites to file from userInputHistory arraylist.
      *
      * @param index index of line to delete (1-indexed).
      * @return true if line deleted successfully.
      */
     public boolean deleteLine(int index) {
         try {
-            String temp = "";
             List<String> history = Files.readAllLines(path);
-            Files.write(path, temp.getBytes(StandardCharsets.UTF_8));
-            int n = history.size();
-            int i;
-            for (i = 0; i < n; i++) {
-                if (i != index - 1) {
-                    temp = history.get(i) + "\n";
-                    Files.write(path, temp.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
-                }
-            }
+            emptyFile(path);
+            writeNewHistoryToFile(history, index);
             return true;
         } catch (IOException e) {
             System.out.println("IOException: " + e);
         }
         return false;
     }
+
+    private void writeNewHistoryToFile(List<String> history, int index) {
+        int n = history.size();
+        int i;
+        for (i = 0; i < n; i++) {
+            if (isSkipLine(index, i)) {
+                writeToFile(addNewlineCharacter(history.get(i)));
+            }
+        }
+    }
+
+    private void emptyFile(Path path) throws IOException{
+        Files.write(path, "".getBytes(StandardCharsets.UTF_8));
+    }
+
+    private void writeToFile(String text) {
+        appendLine(text);
+    }
+
+    private String addNewlineCharacter(String line) {
+        return line += "\n";
+    }
+
+    private boolean isSkipLine(int index, int currIndex) {
+        return index - 1 != currIndex;
+    }
+
 
     /**
      * Changes line at index (index - 1) in storage file, by:
