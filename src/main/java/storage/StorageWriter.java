@@ -56,9 +56,13 @@ public class StorageWriter {
         int n = history.size();
         int i;
         for (i = 0; i < n; i++) {
-            if (isSkipLine(index, i)) {
-                writeToFile(addNewlineCharacter(history.get(i)));
-            }
+            writeAllExceptSkipped(index, i, history.get(i));
+        }
+    }
+
+    private void writeAllExceptSkipped(int index, int i, String line) {
+        if (!isSkipLine(index, i)) {
+            writeToFile(addNewlineCharacter(line));
         }
     }
 
@@ -75,7 +79,7 @@ public class StorageWriter {
     }
 
     private boolean isSkipLine(int index, int currIndex) {
-        return index - 1 != currIndex;
+        return index - 1 == currIndex;
     }
 
 

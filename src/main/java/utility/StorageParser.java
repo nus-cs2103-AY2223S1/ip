@@ -82,6 +82,7 @@ public class StorageParser {
         }
         return deadline;
     }
+
     private static Event createEvent(String description, String date, boolean isMarked)
             throws DukeException {
         Event event = stringToEvent(description, date);

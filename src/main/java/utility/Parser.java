@@ -207,7 +207,7 @@ public class Parser {
     }
 
     private static int findIntInStringArray(String[] array) throws DukeException {
-        String intRegex = "\\*d";
+        String intRegex = "\\d*";
         for (String s: array) {
             if (Pattern.matches(intRegex, s)) {
                 return Integer.parseInt(s);
