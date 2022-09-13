@@ -26,20 +26,7 @@ Mark a task as complete in the task list.
 
 Mark a task as incomplete in the task list. Tasks are marked as incomplete by default.
 
-
-
-
-
-  **Example: ** `todo {Task Name}`
- 
-**2. `event` Task**
-  
-  **Example: ** `event {Task Name} /at {Event Start Date/Time} to {Event End Date/Time}`
-  
-**3. `deadline` Task**
-  
-  **Example: ** `deadline {Task Name} /by {Deadline Date/Time}`
-
+<hr />
 
 ## Usage
 
