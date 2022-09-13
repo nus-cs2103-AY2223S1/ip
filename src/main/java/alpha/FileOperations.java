@@ -77,11 +77,11 @@ public class FileOperations {
                 String textToAdd = t.getTaskType() + " | " + t.getStatus() + " | " + t.getDescription();
                 if (t instanceof Todo) {
                     textToAdd += "\n";
-                }
-                if (t instanceof Event) {
+                } else if (t instanceof Event) {
                     Event e = (Event) t;
                     textToAdd += " | " + e.getDate() + "\n";
-                } else if (t instanceof Deadline) {
+                } else {
+                    assert t instanceof Deadline;
                     Deadline d = (Deadline) t;
                     textToAdd += " | " + d.getDeadline() + "\n";
                 }
