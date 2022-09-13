@@ -88,7 +88,7 @@ public class TaskList {
     }
 
     /**
-     *
+     * Sorts the list of tasks
      */
     public void sort() {
         tasks.sort((t1, t2) -> {

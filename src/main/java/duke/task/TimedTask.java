@@ -16,6 +16,7 @@ public abstract class TimedTask extends Task implements Comparable<Task> {
         this.by = by;
         this.localDate = LocalDate.parse(by);
     }
+
     @Override
     public int compareTo(Task o) {
         boolean sameType = (this instanceof Event && o instanceof Event)

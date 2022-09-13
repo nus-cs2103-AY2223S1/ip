@@ -31,4 +31,13 @@ public class UnmarkCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
+    /**
+     * @param o Other object we are comparing with
+     * @return whether each objects are of the same type
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof UnmarkCommand;
+    }
 }

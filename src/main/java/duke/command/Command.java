@@ -22,4 +22,11 @@ public abstract class Command {
      * @return boolean of whether the app should stop running.
      */
     public abstract boolean isExit();
+
+    /**
+     * @param o Other object we are comparing with
+     * @return whether each objects are of the same type
+     */
+    @Override
+    public abstract boolean equals(Object o);
 }

@@ -24,12 +24,4 @@ public class Todo extends Task {
     public String toFileString() {
         return String.format("T | %s | %s", getStatusIcon(), this.description);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o instanceof Todo) {
-            return this.description.equals(((Todo) o).description);
-        }
-        return false;
-    }
 }

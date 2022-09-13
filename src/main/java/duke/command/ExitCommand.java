@@ -38,4 +38,13 @@ public class ExitCommand extends Command {
     public boolean isExit() {
         return true;
     }
+
+    /**
+     * @param o Other object we are comparing with
+     * @return whether each objects are of the same type
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof ExitCommand;
+    }
 }
