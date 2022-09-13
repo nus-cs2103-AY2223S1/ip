@@ -29,11 +29,13 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
+        scrollPane.setFitToWidth(true);
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
     /**
      * Set ui controller
+     *
      * @param uiController
      */
     public void setUiController(UiController uiController) {
@@ -57,11 +59,18 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Add a dialog box to output a message
+     *
      * @param message
      */
     public void output(String message) {
         dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(message, tedImage)
+                DialogBox.getTedDialog(message, tedImage)
+        );
+    }
+
+    public void outputError(String message) {
+        dialogContainer.getChildren().add(
+                DialogBox.getErrorDialog(message, tedImage)
         );
     }
 }

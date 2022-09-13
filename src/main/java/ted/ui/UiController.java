@@ -78,7 +78,7 @@ public class UiController {
     }
 
     public void showInputError(TedException e) {
-        outputLine(e.getMessage());
+        mainWindow.outputError(e.getMessage());
     }
 
     public void showUnknownCommandError() {
