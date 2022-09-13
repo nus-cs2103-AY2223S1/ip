@@ -20,8 +20,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
 
     private Duke duke;
 
@@ -59,17 +57,6 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
-
-        if (input.equals("bye")) {
-            TimerTask task = new TimerTask() {
-            @Override
-                public void run() {
-                    System.exit(0);
-                }
-            };
-            Timer timer = new Timer();
-            timer.schedule(task, 800);
-        }
         userInput.clear();
     }
 
