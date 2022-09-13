@@ -17,4 +17,8 @@ public class Deadline extends Task {
     public String toSave() {
         return "D" + super.toSave() + this.description + "| " + this.date;
     }
+
+    public void snooze(String newDate) {
+        this.date = new FormatDate(newDate);
+    }
 }

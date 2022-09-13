@@ -58,6 +58,9 @@ public class Duke {
             case FIND:
                 response = FindHandler.getResponse(taskList, wholeCommand[1]);
                 break;
+            case SNOOZE:
+                response = SnoozeHandler.getResponse(taskList, wholeCommand[1]);
+                break;
             default:
                 response = "Unknown command";
                 break;

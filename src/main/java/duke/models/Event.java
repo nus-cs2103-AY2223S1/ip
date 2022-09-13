@@ -1,5 +1,7 @@
 package duke.models;
 
+import duke.exceptions.DukeException;
+
 public class Event extends Task {
     protected FormatDate date;
 
@@ -16,5 +18,10 @@ public class Event extends Task {
     @Override
     public String toSave() {
         return "E" + super.toSave() + this.description + "| " + this.date;
+    }
+
+    @Override
+    public void snooze(String newDate) throws DukeException {
+        this.date = new FormatDate(newDate);
     }
 }

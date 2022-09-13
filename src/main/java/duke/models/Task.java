@@ -1,5 +1,7 @@
 package duke.models;
 
+import duke.exceptions.DukeException;
+
 public class Task {
     protected boolean isDone;
     protected String description;
@@ -35,5 +37,9 @@ public class Task {
 
     public int getTaskNumber() {
         return this.taskNumber;
+    }
+
+    public void snooze(String newDate) throws DukeException {
+        return ;
     }
 }
