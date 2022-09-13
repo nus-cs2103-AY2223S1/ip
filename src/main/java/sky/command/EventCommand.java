@@ -55,22 +55,13 @@ public class EventCommand extends Command {
 
     private String produceDateAndTimeForEvent(String s) throws TextNoMeaningException {
         try {
-            String[] arrOfStrings = s.split(" ");
-            if (arrOfStrings.length != 2) {
-                throw new TextNoMeaningException("Provide the date and time after \"/at\""
-                        + " as: \"yyyy/mm/dd XXXX-XXXX\", where XXXX is time in 24-hours.");
-            }
-            String dateGiven = arrOfStrings[0].replaceAll("/", "-");
-            LocalDate d1 = LocalDate.parse(dateGiven);
-            String dateString = d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+            String[] arrOfStrings = getDateAndTime(s);
+            String dateGiven = arrOfStrings[0];
+            String dateString = handleDate(dateGiven);
 
             String timeGiven1 = arrOfStrings[1].substring(0, 2) + ":" + arrOfStrings[1].substring(2, 4);
             String timeGiven2 = arrOfStrings[1].substring(5, 7) + ":" + arrOfStrings[1].substring(7);
-            LocalTime t1 = LocalTime.parse(timeGiven1);
-            LocalTime t2 = LocalTime.parse(timeGiven2);
-            String timeString1 = t1.format(DateTimeFormatter.ofPattern("h:mma"));
-            String timeString2 = t2.format(DateTimeFormatter.ofPattern("h:mma"));
-            String finalTimeString = timeString1 + "-" + timeString2;
+            String finalTimeString = handleTime(timeGiven1, timeGiven2);
 
             return dateString + ", " + finalTimeString;
         } catch (PatternSyntaxException e) {
@@ -104,5 +95,28 @@ public class EventCommand extends Command {
                 + "    " + task
                 + "\nNow you have " + taskList.getSize()
                 + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
+    }
+
+    private String[] getDateAndTime(String s) throws TextNoMeaningException {
+        String[] arrOfStrings = s.split(" ");
+        if (arrOfStrings.length != 2) {
+            throw new TextNoMeaningException("Provide the date and time after \"/at\""
+                    + " as: \"yyyy/mm/dd XXXX-XXXX\", where XXXX is time in 24-hours.");
+        }
+        return arrOfStrings;
+    }
+
+    private String handleDate(String dateGiven) {
+        String modifiedDateGiven = dateGiven.replaceAll("/", "-");
+        LocalDate d1 = LocalDate.parse(modifiedDateGiven);
+        return d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    private String handleTime(String timeGiven1, String timeGiven2) {
+        LocalTime t1 = LocalTime.parse(timeGiven1);
+        LocalTime t2 = LocalTime.parse(timeGiven2);
+        String timeString1 = t1.format(DateTimeFormatter.ofPattern("h:mma"));
+        String timeString2 = t2.format(DateTimeFormatter.ofPattern("h:mma"));
+        return timeString1 + "-" + timeString2;
     }
 }

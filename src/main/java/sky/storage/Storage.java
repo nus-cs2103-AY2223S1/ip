@@ -46,34 +46,13 @@ public class Storage {
                 String description = textLine.substring(7);
 
                 if (taskType == 'T') {
-                    Task task = new ToDo(description);
-                    taskList.add(task);
+                    handleLoadingToDo(taskList, description);
                 } else if (taskType == 'D') {
-                    int indexOfBracket = -1;
-                    for (int i = 0; i < description.length(); i++) {
-                        if (description.charAt(i) == '(') {
-                            indexOfBracket = i;
-                        }
-                    }
-                    String taskDescription = description.substring(0, indexOfBracket - 1);
-                    String taskBy = description.substring(indexOfBracket + 5, description.length() - 1);
-                    Task task = new Deadline(taskDescription, taskBy);
-                    taskList.add(task);
+                    handleLoadingDeadline(taskList, description);
                 } else if (taskType == 'E') {
-                    int indexOfBracket = -1;
-                    for (int i = 0; i < description.length(); i++) {
-                        if (description.charAt(i) == '(') {
-                            indexOfBracket = i;
-                        }
-                    }
-                    String taskDescription = description.substring(0, indexOfBracket - 1);
-                    String taskDuration = description.substring(indexOfBracket + 5, description.length() - 1);
-                    Task task = new Event(taskDescription, taskDuration);
-                    taskList.add(task);
+                    handleLoadingEvent(taskList, description);
                 }
-                if (isMarked) {
-                    taskList.get(taskList.size() - 1).markAsDone();
-                }
+                handleIsMarked(taskList, isMarked);
             }
             return taskList;
         } catch (FileNotFoundException e) {
@@ -131,6 +110,55 @@ public class Storage {
             } else {
                 this.append(taskList.getTask(i).toString());
             }
+        }
+    }
+
+    private void handleLoadingToDo(List<Task> taskList, String description) {
+        Task task = new ToDo(description);
+        taskList.add(task);
+    }
+
+    private void handleLoadingDeadline(List<Task> taskList, String description) {
+        int indexOfBracket = getIndexOfBracket(description);
+        String taskDescription = getTaskDescription(description, indexOfBracket);
+        String taskBy = getTaskBy(description, indexOfBracket);
+        Task task = new Deadline(taskDescription, taskBy);
+        taskList.add(task);
+    }
+
+    private void handleLoadingEvent(List<Task> taskList, String description) {
+        int indexOfBracket = getIndexOfBracket(description);
+        String taskDescription = getTaskDescription(description, indexOfBracket);
+        String taskDuration = getTaskDuration(description, indexOfBracket);
+        Task task = new Event(taskDescription, taskDuration);
+        taskList.add(task);
+    }
+
+    private int getIndexOfBracket(String description) {
+        int indexOfBracket = -1;
+        for (int i = 0; i < description.length(); i++) {
+            if (description.charAt(i) == '(') {
+                indexOfBracket = i;
+            }
+        }
+        return indexOfBracket;
+    }
+
+    private String getTaskDescription(String description, int indexOfBracket) {
+        return description.substring(0, indexOfBracket - 1);
+    }
+
+    private String getTaskBy(String description, int indexOfBracket) {
+        return description.substring(indexOfBracket + 5, description.length() - 1);
+    }
+
+    private String getTaskDuration(String description, int indexOfBracket) {
+        return description.substring(indexOfBracket + 5, description.length() - 1);
+    }
+
+    private void handleIsMarked(List<Task> taskList, boolean isMarked) {
+        if (isMarked) {
+            taskList.get(taskList.size() - 1).markAsDone();
         }
     }
 }
