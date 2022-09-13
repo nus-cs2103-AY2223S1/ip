@@ -1,5 +1,7 @@
 # User Guide
-
+<div align = "center"> 
+<img src ="./Ui.png" width = "720" height = "1000">
+</div>
 ## Features 
 
 ### Feature-ABC
