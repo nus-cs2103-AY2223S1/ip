@@ -1,27 +1,15 @@
 package duke.main;
 
+import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
-import duke.storage.Storage;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-import duke.tasklist.TaskList;
-import duke.ui.Ui;
-import duke.updater.Updater;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * Represents the karen chatbot.
  */
 public class Karen {
 
-    private Storage storage;
-    private TaskList tasks;
-    private Ui ui;
+    private Command command;
 
     /**
      * Creates instance of karen.
@@ -29,14 +17,7 @@ public class Karen {
      * @param filePath Location to create the storage
      */
     public Karen(String filePath) {
-        this.ui = new Ui();
-        this.storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.loadData());
-        } catch (DukeException e) {
-            ui.showLoadingError();
-            tasks = new TaskList(new ArrayList<>());
-        }
+        this.command = new Command(filePath);
     }
 
     /**
@@ -48,83 +29,41 @@ public class Karen {
             String firstWord = parser.getFirstText();
 
             switch (firstWord) {
-            //terminate chat
             case "bye": {
-                storage.saveData(tasks);
-                return ui.getByeMessage();
+                return command.byeCommand();
             }
-            //view list of tasks
             case "list": {
-                return ui.getListMessage(tasks);
+                return command.listCommand();
             }
-            //mark a task
             case "mark": {
-                int taskNumber = parser.getTaskNumber();
-                tasks.validateTaskNumber(taskNumber);
-                Task task = tasks.getTask(taskNumber);
-                task.setAsDone();
-                return ui.getMarkMessage(task);
+                return command.markCommand(parser);
             }
-            //unmark a task
             case "unmark": {
-                int taskNumber = parser.getTaskNumber();
-                tasks.validateTaskNumber(taskNumber);
-                Task task = tasks.getTask(taskNumber);
-                task.setAsUndone();
-                return ui.getUnmarkMessage(task);
+                return command.unmarkCommand(parser);
             }
-            //add a to-do task
             case "todo": {
-                String desc = parser.getTodoDescription();
-                Todo todo = new Todo(desc);
-                tasks.addTask(todo);
-                return ui.getAddTaskMessage(todo, tasks.getSize());
+                return command.todoCommand(parser);
             }
-            //add a deadline task
             case "deadline": {
-                String desc = parser.getDeadlineDescription();
-                LocalDate byDate = parser.getDeadlineDate();
-                Deadline deadline = new Deadline(desc, byDate);
-                tasks.addTask(deadline);
-                return ui.getAddTaskMessage(deadline, tasks.getSize());
+                return command.deadlineCommand(parser);
             }
-            //add an event task
             case "event": {
-                String desc = parser.getEventDescription();
-                LocalDate atDate = parser.getEventDate();
-                Event event = new Event(desc, atDate);
-                tasks.addTask(event);
-                return ui.getAddTaskMessage(event, tasks.getSize());
+                return command.eventCommand(parser);
             }
-            //delete a task from the task list
             case "delete": {
-                int taskNumber = parser.getTaskNumber();
-                tasks.validateTaskNumber(taskNumber);
-                Task task = tasks.getTask(taskNumber);
-                tasks.removeTask(taskNumber);
-                return ui.getDeleteMessage(task, tasks.getSize());
+                return command.deleteCommand(parser);
             }
-            //find a related task from the task list
             case "find": {
-                String keyword = parser.getKeyword();
-                TaskList relatedTasks = tasks.findRelatedTask(keyword);
-                return ui.getFindMessage(relatedTasks);
+                return command.findCommand(parser);
             }
-            //update a task
             case "update": {
-                int taskNumber = parser.getTaskNumber();
-                tasks.validateTaskNumber(taskNumber);
-                Task task = tasks.getTask(taskNumber);
-                Updater updater = new Updater();
-                updater.updateTask(task, parser);
-                return ui.getUpdateMessage(task);
+                return command.updateCommand(parser);
             }
-            //unknown input
             default:
-                return ui.getUnknownMessage();
+                return command.unknownCommand();
             }
         } catch (DukeException e) {
-            return ui.getErrorMessage(e.getMessage());
+            return command.exceptionCommand(e);
         }
     }
 }

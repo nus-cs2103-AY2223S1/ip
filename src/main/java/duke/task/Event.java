@@ -1,7 +1,5 @@
 package duke.task;
 
-import duke.exception.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -23,7 +21,7 @@ public class Event extends Task {
     }
 
     public String getEventAt() {
-        return this.atDate.toString();
+        return atDate.toString();
     }
 
     /**
@@ -55,6 +53,16 @@ public class Event extends Task {
     @Override
     public void updateDate(LocalDate date) {
         atDate = date;
+    }
+
+    @Override
+    public boolean isTaskTypeEvent() {
+        return true;
+    }
+
+    @Override
+    public boolean isTaskTypeDeadline() {
+        return false;
     }
 
 

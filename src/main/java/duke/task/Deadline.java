@@ -35,12 +35,12 @@ public class Deadline extends Task {
      * @return String representation of date
      */
     public String getDeadlineBy() {
-        return this.byDate.toString();
+        return byDate.toString();
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.byDate
+        return "[D]" + super.toString() + " (by: " + byDate
                 .format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
@@ -57,5 +57,15 @@ public class Deadline extends Task {
     @Override
     public void updateDate(LocalDate date) {
         byDate = date;
+    }
+
+    @Override
+    public boolean isTaskTypeEvent() {
+        return false;
+    }
+
+    @Override
+    public boolean isTaskTypeDeadline() {
+        return true;
     }
 }

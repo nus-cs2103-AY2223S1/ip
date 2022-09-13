@@ -17,10 +17,11 @@ public class Updater {
      */
     public void updateTask(Task task, Parser parser) throws DukeException {
         boolean hasUpdateDateClause = parser.hasUpdateDateClause();
-        if (hasUpdateDateClause && task.getTaskType().equals("E")) {
+
+        if (hasUpdateDateClause && task.isTaskTypeEvent()) {
             LocalDate updatedDate = parser.getEventDate();
             task.updateDate(updatedDate);
-        } else if (hasUpdateDateClause && task.getTaskType().equals("D")) {
+        } else if (hasUpdateDateClause && task.isTaskTypeDeadline()) {
             LocalDate updatedDate = parser.getDeadlineDate();
             task.updateDate(updatedDate);
         }

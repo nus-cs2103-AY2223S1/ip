@@ -37,6 +37,7 @@ public class TaskList {
      */
     public Task getTask(int index) {
         //-1 to index because of 0 indexing
+        assert list.size() != 0: "list is empty thus unable to get task";
         return list.get(index - 1);
     }
 
@@ -56,6 +57,7 @@ public class TaskList {
      */
     public void removeTask(int index) {
         //-1 because of 0 indexing
+        assert list.size() != 0: "list is empty thus unable to delete";
         list.remove(index - 1);
     }
 

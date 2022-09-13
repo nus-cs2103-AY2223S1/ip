@@ -22,6 +22,10 @@ public abstract class Task {
 
     public abstract void updateDate(LocalDate date) throws DukeException;
 
+    public abstract boolean isTaskTypeEvent();
+
+    public abstract boolean isTaskTypeDeadline();
+
     /**
      * Returns icon of marked or unmarked status of the task.
      *
@@ -35,11 +39,11 @@ public abstract class Task {
         return isDone;
     }
 
-    public void setAsDone() {
+    public void setAsMarked() {
         isDone = true;
     }
 
-    public void setAsUndone() {
+    public void setAsUnmarked() {
         isDone = false;
     }
 

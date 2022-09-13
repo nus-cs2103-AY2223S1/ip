@@ -47,4 +47,14 @@ public class Todo extends Task {
     public void updateDate(LocalDate date) throws DukeException {
         throw new DukeException("There is no date clause in a todo task dummy!");
     }
+
+    @Override
+    public boolean isTaskTypeEvent() {
+        return false;
+    }
+
+    @Override
+    public boolean isTaskTypeDeadline() {
+        return false;
+    }
 }
