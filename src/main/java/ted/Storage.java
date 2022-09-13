@@ -23,10 +23,11 @@ public class Storage {
     }
 
     /**
-     * Load tasks from storage, return empty array if file not found
+     * Loads tasks from storage, return empty array if file not found
      * or cannot be opened.
      *
      * @return TaskList
+     * @throws InvalidEncodingException
      */
     public TaskList loadTasks() throws InvalidEncodingException {
         File file = new File(filePath);
@@ -56,9 +57,9 @@ public class Storage {
     }
 
     /**
-     * Save tasks to storage.
+     * Saves tasks into starage.
      *
-     * @param tasks
+     * @param tasks Tasks list to save
      * @throws IOException
      * @throws SecurityException
      */

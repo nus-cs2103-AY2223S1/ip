@@ -28,6 +28,7 @@ public class Parser {
 
     /**
      * Parse the command and construct the command
+     *
      * @param input
      * @return command that can be executed and parsed from user's input
      * @throws TedException
