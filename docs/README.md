@@ -212,8 +212,8 @@ Task data are saved in the hard disk automatically after any command that change
 
 ## Command summary
 | Action | Format | Example |
-| -------- | -------- | -------- |
-| **List** | `list` | - |
+| --- | --- | --- |
+| **List** | `list` | `list` |
 | **Add ToDo** | `todo DESCRIPTION` | `todo Tutorial 1` |
 | **Add Deadline** | `deadline DESCRIPTION /by DATE` | `deadline Lab 2 /by 2022-08-25` |
 | **Add Event** | `event DESCRIPTION /at DATE` | `event Lecture 3 /at 2022-08-25` |
@@ -222,4 +222,4 @@ Task data are saved in the hard disk automatically after any command that change
 | **Find** | `find KEYWORD [MORE_KEYWORDS]` | `find Tutorial` |
 | **Prioritise** | `high INDEX` | `high 1` |
 | **Delete** | `delete INDEX` | `delete 1` |
-| **Exit** | `bye` | - |
+| **Exit** | `bye` | `bye` |
