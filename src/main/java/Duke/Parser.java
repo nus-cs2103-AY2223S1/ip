@@ -1,5 +1,7 @@
 package Duke;
 
+import javafx.application.Platform;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,7 +22,7 @@ public class Parser {
     }
 
     /**
-     * Reads user input and performs action depending on input
+     * Reads user input and performs action depending on input.
      *
      * @param str User input.
      * @return String representing bot's reply to user.
@@ -116,6 +118,7 @@ public class Parser {
                 stringReturned += task;
             } else if (str.equals("bye")) {
                 stringReturned = bot.goodBye2();
+                Platform.exit();
             } else{
                 bot.displayError();
             }

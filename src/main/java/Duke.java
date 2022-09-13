@@ -35,9 +35,15 @@ public class Duke{
     private Scene scene;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-    /*
-     * A method that takes in a string input and performs actions based on the string input
-     * */
+
+    /**
+     * Takes in a string input by user and returns a string output by the bot.
+     *
+     * @param input input by user.
+     * @return the output of the bot.
+     * @throws DukeException If input command is not recognised or if input is blank.
+     * @throws IOException If there is an error writing to file.
+     */
     public String DukeTask(String input) throws DukeException, IOException {
         bot = new Ui();
         bot.welcome();
@@ -52,7 +58,6 @@ public class Duke{
         }
         Scanner filescanner = new Scanner(f);
         List<Task> newTasks = new ArrayList<>();
-        //This part, im loading all the strings in the pre existing file
         List<Task> oldTasks = storage.readTasks(filescanner,f);
         tasklist = new TaskList(oldTasks);
         System.out.println("code comes to Duke");
@@ -72,13 +77,14 @@ public class Duke{
             e.printStackTrace();
         } catch (IOException e) {
             System.out.println("Path name cannot be found");
-            //e.printStackTrace();
         }
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns the string response from the bot.
+     *
+     * @param input input of user.
+     * @return output of bot.
      */
     public String getResponse(String input) {
         String response = "";
@@ -90,7 +96,6 @@ public class Duke{
             response = e.getMessage();
         }
         return response;
-        //return "Duke heard: " + input;
     }
 }
 

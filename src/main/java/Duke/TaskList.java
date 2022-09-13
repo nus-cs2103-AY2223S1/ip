@@ -74,7 +74,7 @@ public class TaskList {
     }
 
     /**
-     * Replacing the Task of oldtask.
+     * Replaces the Task of oldtask.
      *
      * @param index Position of task in list.
      * @param Task Task.
@@ -85,7 +85,7 @@ public class TaskList {
     }
 
     /**
-     * Return list of old tasks.
+     * Returns list of old tasks.
      *
      * @return List of old tasks.
      */

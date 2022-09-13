@@ -70,7 +70,7 @@ public class Storage {
     }
 
     /**
-     * Overwrite the current file if list is not empty.
+     * Overwrites the current file if list is not empty.
      *
      * @param pathName Pathname of file.
      * @param lst1 First list to write to file.
@@ -116,6 +116,12 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Converts a String to its respective month
+     *
+     * @param str
+     * @return
+     */
     public int convertToInt(String str){
         int month = 0;
         switch (str){
