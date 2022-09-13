@@ -33,7 +33,7 @@ public class TaskList {
     }
 
     private String printAddedTask(Task task) {
-        return String.format("Got it. I've added this task: \n%s \nNow you have %d tasks in the list",
+        return String.format("Sure, just keep working till you die: \n%s \n%d outstanding tasks",
                 task.toString(), tasks.size());
     }
 
@@ -49,7 +49,7 @@ public class TaskList {
             throw new OutOfRangeException();
         } else {
             tasks.get(index).markAsDone();
-            return String.format("Nice! I've marked this task as done: \n%s", printTask(index));
+            return String.format("Finally getting something done, huh? \n%s", printTask(index));
         }
     }
 
@@ -59,7 +59,7 @@ public class TaskList {
             throw new OutOfRangeException();
         } else {
             tasks.get(index).markAsUndone();
-            return String.format("Okay! I've marked this task as undone: \n%s", printTask(index));
+            return String.format("One step forward. Two step backwards. \n%s", printTask(index));
         }
     }
 
@@ -76,7 +76,7 @@ public class TaskList {
         } else {
             Task currentTask = tasks.get(index);
             tasks.remove(index);
-            return String.format("Noted. I've removed this task: \n%s \nNow you have %d tasks in the list",
+            return String.format("Giving up, huh? \n%s \n%d outstanding tasks",
                     currentTask, tasks.size());
         }
     }
@@ -163,7 +163,7 @@ public class TaskList {
      * Prints current list.
      */
     public String printList() {
-        return "Here are the tasks in your list:\n" + this;
+        return "Think you are free?\n" + this;
     }
 
     /**
