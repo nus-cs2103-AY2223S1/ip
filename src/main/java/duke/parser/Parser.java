@@ -26,7 +26,6 @@ public class Parser {
      */
     public static Command parse(String command) {
         String currCmd = command.split(" ")[0];
-
         switch (currCmd) {
         case "bye":
             return createExitCommand(command);
@@ -49,7 +48,7 @@ public class Parser {
         default:
             throw new InvalidCommandException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
-        
+
     }
 
     private static String getArguments(String command) {

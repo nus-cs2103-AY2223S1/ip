@@ -42,6 +42,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Initialises Duke class with UI, Storage and TaskList initialization
+     */
     public Duke() {
         ui = new Ui();
         try {
