@@ -11,6 +11,7 @@
     -fx-border-color: black;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
+    -fx-background-insets: 1px;
 }
 
 .textfieldbg {
