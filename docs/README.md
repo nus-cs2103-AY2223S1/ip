@@ -3,21 +3,22 @@
 Duke is a **Command Line Interface (CLI) based application** for managing your tasks. If you are familiar with CLI, 
 you will find that this is faster than traditional GUI task managers.
 
-[Quick start](#quick-start)
+- [Quick start](#quick-start)
 
-Features
-- Viewing help: `help`
-- Listing tasks: `list`
-- Add todo task: `todo`
-- Add deadline task: `deadline`
-- Add event: `event`
-- Mark task as done: `mark`
-- Unmark done task: `unmark`
-- Delete task: `delete`
-- Find task by keyword: `find`
-- Close the app: `bye`
+- [Features](#features)
+  - Viewing help: `help`
+  - Listing tasks: `list`
+  - Add todo task: `todo`
+  - Add deadline task: `deadline`
+  - Add event: `event`
+  - Mark task as done: `mark`
+  - Unmark done task: `unmark`
+  - Delete task: `delete`
+  - Find task by keyword: `find`
+  - Close the app: `bye`
 
-Command summary
+- FAQ
+- Command summary
 
 ---
 
@@ -28,20 +29,63 @@ Command summary
 2. Download the latest `duke.jar` from [here](https://github.com/Bacon-Strips/ip/releases)
 3. Copy the file to the folder you want to use as the _home folder_ for Duke.
 4. Double-click the file to start the app. The GUI below should appear in a few seconds. 
+
+
 ![This should be the startup screen you see](/Startup_screen.png)
-> If you are experiencing issue with opening the app by double-clicking the file, you may alternatively open it by going
-> into command prompt, navigating to the home folder of the app and using `java -jar duke.jar` to open it.
-5. Type the command in the text box and press Enter to execute it. e.g. typing <code><b>help</b></code> and pressing Enter will reveal the
-command guide. 
+
+
+> If you are experiencing issues with opening the app through double-clicking the file, you may alternatively open it by
+>  going into command prompt, navigating to the home folder of the app and using `java -jar duke.jar` to open it.
+5. Type the command in the text box and press Enter to execute it. e.g. typing <code><b>help</b></code> and pressing 
+Enter will reveal the command guide. 
    
    Some example commands you can try:
-   - `list`: Lists all your current tasks
-   - `todo Go to the beach with family`: Adds a todo task to the list of tasks
-   - `delete 2`: Deletes the 2nd task shown in the task list
-   - `bye`: Exits the app
+   - <code><b>list</code></b>: Lists all your current tasks
+   - <code><b>todo</b> Go to the beach with family</code>: Adds a todo task to the list of tasks
+   - <code><b>delete</b> 2</code>: Deletes the 2nd task shown in the task list
+   - <code><b>bye</b></code>: Exits the app
 6. Refer to the [Features](#features) below for detail of each command.
 
+---
 
+## Features
+
+> Notes about the command format:
+> - All commands are in `smaller_case`, and are separated from parameters by a white space.
+> - Words in `UPPER_CASE` are parameters to be supplied by the user.
+> - For commands that do not take in parameters (such as `help`, `list` and `bye`), parameters that follow the command
+> will be ignored
+
+### Viewing help: `help`
+Shows a message displaying various possible commands and what they do.
+
+
+![This is what will happen will you send the help command](/help_command.png)
+
+
+Format:`help`
+
+### Listing tasks: `list`
+
+### Add todo task: `todo`
+
+### Add deadline task: `deadline`
+
+### Add event: `event`
+
+### Mark task as done: `mark`
+
+### Unmark done task: `unmark`
+
+### Delete task: `delete`
+
+### Find task by keyword: `find`
+
+### Close the app: `bye`
+
+## FAQ
+
+## Command summary
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
 
