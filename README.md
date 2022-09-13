@@ -1,8 +1,8 @@
 # <div align="center"> ✧&nbsp;&nbsp;&nbsp;✮✧︎&nbsp;&nbsp; ✦ ✨️ L&emsp;&emsp;U&emsp;&emsp;N&emsp;&emsp;A ✨ ✫❍&nbsp;&nbsp;&nbsp;❈ &nbsp;&nbsp;✶</div>
-
+Visit Luna at this [page](https://fannyjian.github.io/ip/) 🌸
 <details>
 
-<summary>Contents</summary>
+<summary>Jump to a section 🍃</summary>
 
 1. [About Luna](#about-luna)
 2. [Getting Started](#getting-started)
