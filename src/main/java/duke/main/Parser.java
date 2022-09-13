@@ -127,7 +127,7 @@ public class Parser {
         return description;
     }
 
-    private static int validateBy(String[] splitReply) {
+    private static int validateBy(String[] splitReply) throws DukeException {
         int by = -1;
         for (int i = 0; i < splitReply.length; i++) {
             if (splitReply[i].equals("/by")) {
@@ -135,16 +135,22 @@ public class Parser {
                 break;
             }
         }
+        if (by == -1) {
+            throw new DukeException("invalid duration");
+        }
         return by;
     }
 
-    private static int validateAt(String[] splitReply) {
+    private static int validateAt(String[] splitReply) throws DukeException {
         int by = -1;
         for (int i = 0; i < splitReply.length; i++) {
             if (splitReply[i].equals("/at")) {
                 by = i;
                 break;
             }
+        }
+        if (by == -1) {
+            throw new DukeException("invalid duration");
         }
         return by;
     }

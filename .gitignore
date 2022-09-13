@@ -20,5 +20,6 @@ bin/
 #text-ui-test/runtest.bat
 #text-ui-test/runtest.sh
 data/
+jar/
 
 
