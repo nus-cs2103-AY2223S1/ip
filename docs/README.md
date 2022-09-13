@@ -6,9 +6,10 @@
 
 You can use LishBot's Task Management feature to: 
 1. add and delete task
-2. mark task as done or not done
-3. list all your task
-4. find task by related keyword
+2. categorize task into ToDo, Deadline and Event
+3. mark task as done or not done
+4. list all your task
+5. find task by related keyword
 
 ### NEW FEATURE!!! Trivia
 
@@ -16,18 +17,18 @@ You can use LishBot's Trivia feature to make LishBot memorize new commands and r
 
 ## Usage
 
-### `Keyword` - Describe action
+### `todo` - create a ToDo task (a task with no associated time)
 
-Describe the action and its outcome.
+example usage:
 
-Example of usage: 
+todo do homework
 
-`keyword (optional arguments)`
+LishBot's response:
 
-Expected outcome:
+Got it! I will add that task now
+\[T\]\[\] do homework
+Now, the number of tasks you have is 4
 
-Description of the outcome.
+### `list` - list all of your current tasks and status
 
-```
-expected output
-```
+### 
