@@ -65,7 +65,6 @@ public class Duke extends Application {
         scrollPane.setPrefSize(385, 535);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
