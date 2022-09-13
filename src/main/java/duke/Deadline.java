@@ -58,7 +58,7 @@ public class Deadline extends Task {
                 + " (by: "
                 + date.format(DATE_FORMAT)
                 + ", "
-                + time.format(DATE_FORMAT)
+                + time.format(TIME_FORMAT)
                 + ")";
     }
 
