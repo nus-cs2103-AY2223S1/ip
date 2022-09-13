@@ -61,8 +61,8 @@ public class Contact {
     @Override
     public String toString() {
         String amountDescription = this.isOwe
-                ? "You owe him " + this.amount
-                : "He/She owes you " + this.amount;
+                ? "You owe him $" + this.amount
+                : "He/She owes you $" + this.amount;
         return name + ", " + phoneNumber + "\n" + "   " + amountDescription;
     }
 }

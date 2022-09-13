@@ -25,7 +25,7 @@
          <VBox.margin>
             <Insets bottom="10.0" left="3.0" right="3.0" top="3.0" />
          </VBox.margin></TextField>
-      <Button fx:id="submitBtn" contentDisplay="CENTER" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#submitHandler" text="Submit Command" textAlignment="CENTER">
+      <Button fx:id="submitBtn" contentDisplay="CENTER" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#submitHandler" text="Send Message" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>

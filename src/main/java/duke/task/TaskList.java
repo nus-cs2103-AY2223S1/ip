@@ -210,7 +210,7 @@ public class TaskList {
         for (int i = 0; i < TaskList.tasks.size(); i++) {
             int itemIndex = i + 1;
 
-            sb.append(itemIndex).append(".").append(TaskList.tasks.get(i)).append("\n");
+            sb.append(itemIndex).append(". ").append(TaskList.tasks.get(i)).append("\n");
         }
 
         return sb.toString();
