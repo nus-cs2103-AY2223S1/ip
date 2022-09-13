@@ -68,4 +68,31 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the main logic of the program.
+     *
+     * @return The response from executing the command.
+     * @throws DukeException If there are no commands.
+     */
+    public String getResponse(String input) {
+        String output = "";
+        try {
+            Command c = parser.parse(input);
+            output = c.execute(tasks, ui, storage);
+            isClosed = c.isByeCommand();
+        } catch (DukeException e) {
+            ui.showErrorMessage(e.getMessage());
+        }
+        return output;
+    }
+
+    /**
+     * Checks if the last user command is a bye command
+     *
+     * @return true if the last user command is a bye command, false otherwise
+     */
+    public boolean isClosed() {
+        return isClosed;
+    }
+
 }

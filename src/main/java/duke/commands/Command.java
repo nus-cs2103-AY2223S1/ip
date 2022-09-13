@@ -25,8 +25,9 @@ public abstract class Command {
      * @param tasks The current list of tasks
      * @param ui The Ui instance to return the result to the user
      * @param storage The Storage instance to store the result to local storage
+     * @return the string representation of the result
      * @throws DukeException if errors are encountered during execution
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
 }
