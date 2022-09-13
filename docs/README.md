@@ -8,16 +8,16 @@ This Duke chatbot allows you to keep track of your tasks! It is
 Download the chatbot [here](https://github.com/KJunWei/ip) and try it now!
 
 ## Features 
-#### `Bye` - Quits the application
-#### `Deadline` - Adds a deadline task
-#### `Delete` - Deletes task from the task list
-#### `Event` - Adds an event task
-#### `Find` - Finds task in task list
-#### `List` - Lists out all the tasks
-#### `Mark` - Marks task as complete
-#### `Reminders` - Checks for upcoming deadlines
-#### `Todo` - Adds a todo task
-#### `Unmark` - Marks task as incomplete
+#### `Bye` - Quits the application [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#bye---quits-the-application-1)
+#### `Deadline` - Adds a deadline task [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#deadline---adds-a-deadline-task-1)
+#### `Delete` - Deletes task from the task list [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#delete---deletes-task-from-the-task-list-1)
+#### `Event` - Adds an event task [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#event---adds-an-event-task-1)
+#### `Find` - Finds task in task list [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#find---finds-task-in-task-list-1)
+#### `List` - Lists out all the tasks [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#list---lists-out-all-the-tasks-1)
+#### `Mark` - Marks task as complete [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#mark---marks-task-as-complete-1)
+#### `Reminders` - Checks for upcoming deadlines [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#reminders---checks-for-upcoming-deadlines-1)
+#### `Todo` - Adds a todo task [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#todo---adds-a-todo-task-1)
+#### `Unmark` - Marks task as incomplete [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#unmark---marks-task-as-incomplete-1)
 
 ### Feature-ABC
 
@@ -45,7 +45,7 @@ Description of the feature.
 
 ### `Deadline` - Adds a deadline task
 
-Formatting should be in the form "deadline __ /by yyyy-mm-dd".
+Formatting should be in the form **"deadline xx /by yyyy-mm-dd"**.
 
 *Example of usage*: 
 
@@ -65,7 +65,7 @@ Deadline task is added into the list of tasks!
 
 ### `Delete` - Deletes task from the task list
 
-Formatting should be in the form "delete x", where x is a non-negative integer.
+Formatting should be in the form **"delete x"**, where x is a non-negative integer.
 
 *Example of usage*: (Assuming 1 task is already in the task list)
 
@@ -90,7 +90,7 @@ Task is deleted from the task list!
 
 ### `Event` - Adds an event task
 
-Formatting should be in the form "event __ /at yyyy-mm-dd".
+Formatting should be in the form **"event xx /at yyyy-mm-dd"**.
 
 *Example of usage*: 
 
@@ -110,7 +110,7 @@ Event task is added into the list of tasks!
 
 ### `Find` - Finds task in task list
 
-Searches tasks that contains a string (Could be a date too!)
+Searches tasks that contains a string **(Could be a date too!)**
 
 *Example of usage*: 
 
@@ -156,7 +156,7 @@ Shows all the task in the task list!
 
 ### `Mark` - Marks task as complete
 
-Formatting should be in the form "mark x", where x is a non-negative integer.
+Formatting should be in the form **"mark x"**, where x is a non-negative integer.
 
 *Example of usage*: 
 
@@ -182,7 +182,7 @@ Marks the first task as completed!
 
 ### `Reminders` - Checks for upcoming deadlines
 
-Shows the deadlines that have not been marked as completed yet, even if the date has passed
+Shows the deadlines that have not been marked as completed yet, **even if the date has passed**
 
 *Example of usage*: 
 
@@ -208,7 +208,7 @@ Assume the current tasks in the list are
 
 ### `Todo` - Adds a todo task
 
-Formatting should be in the form "todo __".
+Formatting should be in the form **"todo xx"**. Todo tasks has no deadlines!
 
 *Example of usage*: 
 
@@ -228,7 +228,7 @@ Deadline task is added into the list of tasks!
 
 ### `Unmark` - Marks task as incomplete
 
-Formatting should be in the form "unmark x", where x is a non-negative integer.
+Formatting should be in the form **"unmark x"**, where x is a non-negative integer.
 
 *Example of usage*: 
 
