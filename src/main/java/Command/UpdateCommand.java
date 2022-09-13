@@ -27,9 +27,9 @@ public class UpdateCommand extends Command {
             storage.save();
             return updateMessage;
         } catch (NumberFormatException e1) {
-            throw new DukeException("Oops ! The index has to be a number !!");
+            throw new DukeException(DukeUi.INVALID_INDEX);
         } catch (IndexOutOfBoundsException e2) {
-            throw new DukeException("You need to provide a description to update !!");
+            throw new DukeException(DukeUi.INVALID_DESCRIPTION);
         } catch (IOException e3) {
             throw new DukeException(e3.getMessage());
         } catch (DukeException e4) {

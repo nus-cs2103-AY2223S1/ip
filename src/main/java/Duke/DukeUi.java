@@ -13,7 +13,7 @@ public class DukeUi {
     private static final String END_MESSAGE = " Bye. Hope to see you again soon!";
     static final String INVALID_COMMAND = " is not a valid command !! " +
             "valid commands are list, mark (number), unmark (number), todo (task), deadline (task) /by yyyy/mm/dd," +
-            "event (task) /at (time), delete (number), find (keyword)";
+            "event (task) /at (time), delete (number), find (keyword), update (index) (new description)";
     public static final String INVALID_DESCRIPTION = "You need to provide a description for the command !";
     public static final String INVALID_INDEX = "The index provided needs to be a number!";
     public static final String INDEX_OUT_OF_RANGE = "I'm sorry, but the index you provided is out of range :-(";

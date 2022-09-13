@@ -30,10 +30,10 @@ public class EventCommand extends Command {
             storage.save();
             return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
                     + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
-        } catch (ArrayIndexOutOfBoundsException e2) {
-            throw new DukeException(DukeUi.INVALID_EVENT);
-        } catch (IOException e1) {
-            throw new DukeException(e1.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e1) {
+            throw new DukeException(DukeUi.INVALID_DEADLINE);
+        } catch (IOException e2) {
+            throw new DukeException(e2.getMessage());
         } catch (DukeException e3) {
             return e3.toString();
         }
