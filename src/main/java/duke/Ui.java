@@ -6,8 +6,8 @@ import java.util.Scanner;
  * Deals with interactions with the user.
  */
 public class Ui {
-    public String showError(String message) {
-        return message;
+    public String showError(String... message) {
+        return String.join(" \n\n", message);
     }
 
     public void showLine() {

@@ -12,8 +12,7 @@ public class FindCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList foundTasks = tasks.find(searchTerm);
         if (foundTasks.size() == 0) {
-            ui.showError("No tasks found.");
-            return "No tasks found.";
+            return ui.showError("No tasks found.");
         } else {
             return ui.showList(foundTasks);
         }
