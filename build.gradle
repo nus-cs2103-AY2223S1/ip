@@ -50,13 +50,15 @@ test {
 
 application {
     mainClassName = "duke.Launcher"
+    enableAssertions = true
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "duke.Launcher"
     archiveClassifier = null
 }
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }

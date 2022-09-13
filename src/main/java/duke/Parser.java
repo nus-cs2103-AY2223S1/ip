@@ -15,6 +15,7 @@ import duke.ui.Ui;
 public class Parser {
 
     public static Command parseInput(String input, Ui ui, Storage storage, TaskList taskList) {
+        assert input != null;
         String[] splitInput = input.split(" ");
         String command = splitInput[0];
             if (command.equals("bye")) {
