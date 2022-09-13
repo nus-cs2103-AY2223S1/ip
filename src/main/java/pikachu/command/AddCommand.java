@@ -40,6 +40,9 @@ public class AddCommand extends Command {
                 LocalDate date = LocalDate.parse(temp2[1]);
                 Deadline newDdl = new Deadline(temp2[0], date);
                 tasks.getTaskList().add(newDdl);
+
+                assert !tasks.getTaskList().isEmpty();
+
                 tempStr = "Pikapi(added): " + newDdl + '\n';
                 tempStr += "Pikaaaaa: " + tasks.getTaskList().size()
                         + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
@@ -52,6 +55,9 @@ public class AddCommand extends Command {
                 throw new PikachuException("Pi-cannot be empty-pi");
             } else {
                 tasks.getTaskList().add(newTodo);
+
+                assert !tasks.getTaskList().isEmpty();
+
                 tempStr = "Pikapi(added): " + newTodo + '\n';
                 tempStr += "Pikaaaaa: " + tasks.getTaskList().size()
                         + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
@@ -61,6 +67,9 @@ public class AddCommand extends Command {
             String[] temp2 = temp1.split(" /at ", 2);
             Event newEvent = new Event(temp2[0], temp2[1]);
             tasks.getTaskList().add(newEvent);
+
+            assert !tasks.getTaskList().isEmpty();
+
             tempStr = "Pikapi(added): " + newEvent + '\n';
             tempStr += "Pikaaaaa: " + tasks.getTaskList().size()
                     + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
