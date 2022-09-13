@@ -2,6 +2,7 @@ package utility;
 
 import java.time.LocalDate;
 
+import duke.Duke;
 import exceptions.DukeException;
 import task.Deadline;
 import task.Event;
@@ -35,10 +36,8 @@ public class StorageParser {
         Task t = null;
         switch(type) {
         case 'T':
-            t = Parser.stringToTask(line.substring(START_OF_DESCRIPTION_IN_TASK));
-            if (isMarked) {
-                t.markAsDone();
-            }
+            String taskDescription = getTaskDescription(line);
+            t = createTask(taskDescription, isMarked);
             break;
         case 'D':
             dateAndDescription = getDateAndDescription(line);
@@ -68,6 +67,17 @@ public class StorageParser {
 
     private static char typeOfRecord(String record) {
         return record.charAt(INDEX_OF_TYPE_CHAR);
+    }
+
+    private static String getTaskDescription(String record) {
+        return record.substring(START_OF_DESCRIPTION_IN_TASK);
+    }
+    private static Task createTask(String description, boolean isMarked) throws DukeException {
+        Task task = Parser.stringToTask(description);
+        if (isMarked) {
+            task.markAsDone();
+        }
+        return task;
     }
 
     private static String[] getDateAndDescription(String line) {
