@@ -9,7 +9,7 @@ public abstract class Task {
     protected boolean isMarked;
 
     /**
-     * Constructor when taking user input.
+     * Describes the constructor when taking user input.
      * @param description description of the task.
      */
     public Task(String description) {
@@ -18,7 +18,7 @@ public abstract class Task {
     }
 
     /**
-     * Constructor when reading from database.
+     * Describes the constructor when reading from database.
      * @param isMarked boolean value of whether the task is marked.
      * @param description description of the task.
      */

@@ -20,7 +20,7 @@ public class Duke {
     private final CommandHandlerFactory commandHandlerFactory;
 
     /**
-     * Constructor of Duke.
+     * Describes the constructor of Duke.
      */
     public Duke() {
         File storageDirectory = new File("./data");
@@ -56,7 +56,7 @@ public class Duke {
     }
 
     /**
-     * The welcome message when duke initialises.
+     * Returns the welcome message when duke initialises.
      * @return the welcome message.
      */
     public String getWelcomeMessage() {

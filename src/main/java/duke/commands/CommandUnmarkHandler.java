@@ -5,7 +5,7 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 
 /**
- * Handler for the Unmark command.
+ * Describes the handler for the Unmark command.
  */
 public class CommandUnmarkHandler extends CommandHandler {
 

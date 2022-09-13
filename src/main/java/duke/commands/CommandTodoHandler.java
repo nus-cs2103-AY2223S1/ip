@@ -6,7 +6,7 @@ import duke.tasks.TaskList;
 import duke.tasks.ToDo;
 
 /**
- * Handler for the Todo command.
+ * Describes the handler for the Todo command.
  */
 public class CommandTodoHandler extends CommandHandler {
 

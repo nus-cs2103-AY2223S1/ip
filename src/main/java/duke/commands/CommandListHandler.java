@@ -4,7 +4,7 @@ import duke.exceptions.DukeException;
 import duke.tasks.TaskList;
 
 /**
- * Handler for the List command.
+ * Describes the handler for the List command.
  */
 public class CommandListHandler extends CommandHandler {
 

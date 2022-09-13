@@ -9,7 +9,7 @@ import duke.tasks.TaskList;
 import duke.utils.DateTime;
 
 /**
- * Handler for the Deadline command.
+ * Describes the handler for the Deadline command.
  */
 public class CommandDeadlineHandler extends CommandHandler {
 

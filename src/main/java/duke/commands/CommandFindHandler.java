@@ -4,7 +4,7 @@ import duke.exceptions.DukeException;
 import duke.tasks.TaskList;
 
 /**
- * Handler the Find command.
+ * Describes the handler the Find command.
  */
 public class CommandFindHandler extends CommandHandler {
 

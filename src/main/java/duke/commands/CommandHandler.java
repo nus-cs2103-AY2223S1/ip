@@ -4,7 +4,7 @@ import duke.exceptions.DukeException;
 import duke.tasks.TaskList;
 
 /**
- * The abstract class for describes what functions every handler must have.
+ * Describes what functions every handler must have.
  */
 public abstract class CommandHandler {
     protected final String value;
@@ -12,7 +12,7 @@ public abstract class CommandHandler {
     protected final String additionalValue;
 
     /**
-     * Constructor of CommandHandler that abstracts all the common fields of all the subclasses.
+     * Describes the constructor of CommandHandler that abstracts all the common fields of all the subclasses.
      * @param value parameter 1
      * @param flag parameter 2
      * @param additionalValue parameter 3

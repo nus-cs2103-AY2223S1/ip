@@ -5,7 +5,6 @@ import java.util.List;
 import duke.exceptions.DukeException;
 
 /**
- * Factory class for the handlers.
  * Parses the command that is input by user and returns the corresponding handler based on the command given.
  */
 public class CommandHandlerFactory {

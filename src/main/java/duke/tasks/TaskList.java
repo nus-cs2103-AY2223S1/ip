@@ -14,7 +14,7 @@ public class TaskList {
     private boolean isClosed;
 
     /**
-     * Constructor of taskList linked to a Storage.
+     * Describes the constructor of taskList linked to a Storage.
      * @param db the database where taskList stores the tasks.
      */
     public TaskList(Storage db) {
@@ -47,7 +47,7 @@ public class TaskList {
     }
 
     /**
-     * Add tasks into the taskList and updates the database.
+     * Adds tasks into the taskList and updates the database.
      * @param task the task to be added.
      * @return the reply when adding a task.
      */
@@ -126,7 +126,7 @@ public class TaskList {
     }
 
     /**
-     * Find task that matches the searchParams.
+     * Finds all tasks that matches the searchParams.
      * @param searchParams the searchParameters.
      * @return the string representation of the tasks.
      */
@@ -152,7 +152,7 @@ public class TaskList {
     }
 
     /**
-     * The string representation of the TaskList class which shows the tasks that are currently saved.
+     * Returns the string representation of the TaskList class which shows the tasks that are currently saved.
      * @return string representation.
      */
     public String toString() {

@@ -5,7 +5,7 @@ import duke.tasks.TaskList;
 
 
 /**
- * Handler for the Delete command.
+ * Describes the handler for the Delete command.
  */
 public class CommandDeleteHandler extends CommandHandler {
 

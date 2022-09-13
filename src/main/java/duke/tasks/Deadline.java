@@ -13,7 +13,7 @@ public class Deadline extends Task {
     private final LocalDateTime time;
 
     /**
-     * Constructor when taking user input.
+     * Describes the constructor when taking user input.
      * @param description description of the deadline.
      * @param time the time of the deadline.
      */
@@ -23,7 +23,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructor when reading from database.
+     * Describes the constructor when reading from database.
      * @param isMarked boolean value of whether the task is marked.
      * @param description description of the deadline.
      * @param time the time of the deadline.

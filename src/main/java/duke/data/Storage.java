@@ -12,15 +12,15 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 
 /**
- * The Storage class handles the storing of tasks so that we can save our tasks.
- * Then, they can be loaded in the next session.
+ * Handles the storing of tasks so that we can save our tasks.
+ * Loads in the next session.
  */
 public class Storage {
     private final String filePath;
     private File db;
 
     /**
-     * Constructor of the Storage.
+     * Describes the constructor of the Storage.
      * @param filePath the file path of where the txt file is stored.
      */
     public Storage(String filePath) {

@@ -5,7 +5,7 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 
 /**
- * Handler for the Mark command.
+ * Describes the handler for the Mark command.
  */
 public class CommandMarkHandler extends CommandHandler {
 

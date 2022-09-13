@@ -11,7 +11,7 @@ import duke.utils.DateTime;
 
 
 /**
- * Handler for the Event command.
+ * Describes the handler for the Event command.
  */
 public class CommandEventHandler extends CommandHandler {
 
