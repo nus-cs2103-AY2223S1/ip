@@ -50,7 +50,7 @@ public class Storage {
                 } else if (words[0].equals("E")) {
                     newTask = new Event(words[3], words[4]);
                 } else {
-                    newTask = new Deadline(words[4], LocalDate.parse(words[3]));
+                    newTask = new Deadline(words[3], LocalDate.parse(words[4]));
                 }
                 if (words[1].equals("1")) {
                     newTask.setDone();
@@ -89,11 +89,12 @@ public class Storage {
                     output.append("T | ").append(number).append(" | ").append(priority).
                             append(" | ").append(task.getDescription()).append("\n");
                 } else if (task instanceof Event) {
-                    output.append("E | ").append(number).append(" | ").append(task.getDescription()).append(" | ")
-                            .append(priority).append(" | ").append(((Event) task).getTiming()).append("\n");
+                    output.append("E | ").append(number).append(" | ").append(priority).append(" | ")
+                            .append(task.getDescription()).append(" | ").append(((Event) task).getTiming())
+                            .append("\n");
                 } else {
                     output.append("D | ").append(number).append(" | ").append(priority).append(" | ")
-                            .append(((Deadline) task).getDeadline()).append(" | ").append(task.getDescription()).
+                            .append(task.getDescription()).append(" | ").append(((Deadline) task).getDeadline()).
                             append("\n");
                 }
             }
