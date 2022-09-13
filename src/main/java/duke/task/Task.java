@@ -20,6 +20,16 @@ public class Task {
         DEADLINE;
     }
 
+    /**
+     * Determines the priority that this task has.
+     */
+    public enum Priority {
+        HIGH,
+        MED,
+        LOW,
+        NONE
+    }
+
     protected String taskDescription;
     protected String miscDescription;
     protected LocalDate taskDate;
@@ -27,6 +37,7 @@ public class Task {
     protected boolean isDone;
 
     private Type taskType;
+    private Priority priority = Priority.NONE;
 
     /**
      * Constructor for a TODO task.
@@ -69,6 +80,15 @@ public class Task {
         }
     }
 
+    /**
+     * Sets this tasks's priority to the input priority.
+     *
+     * @param priority The priority to set to.
+     */
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
     private String getStatusIcon() {
         return ("[" + (isDone ? "X" : " ") + "]");
     }
@@ -105,11 +125,11 @@ public class Task {
     public String toString() {
         switch (taskType) {
         case TODO:
-            return "[T]" + getStatusIcon() + " " + taskDescription;
+            return "[T]" + getStatusIcon() + " " + taskDescription + " || Priority: " + priority;
         case DEADLINE:
-            return "[D]" + getStatusIcon() + " " + taskDescription + " (by: " + miscDescription + ")";
+            return "[D]" + getStatusIcon() + " " + taskDescription + " (by: " + miscDescription + ")" + " || Priority: " + priority;
         case EVENT:
-            return "[E]" + getStatusIcon() + " " + taskDescription + " (at: " + miscDescription + ")";
+            return "[E]" + getStatusIcon() + " " + taskDescription + " (at: " + miscDescription + ")" + " || Priority: " + priority;
         default:
             return "";
         }

@@ -8,6 +8,7 @@ import duke.command.DeleteCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.PriorityCommand;
 import duke.command.TaskCommand;
 import duke.exception.DukeException;
 import duke.task.TaskList;
@@ -35,8 +36,6 @@ public class Parser {
      *                       - The input is for a deadline or event, but it has no ' /by ' or ' /at ' keyword -
      *                       respectively - in the middle of its task and date description.
      */
-    // private static String[] parseString(String action, String[] splitInput) throws DukeException {
-
     private static String[] parseString(String... input) throws DukeException {
         String[] newSplitInput = new String[3];
         String action = input[0];
@@ -75,6 +74,18 @@ public class Parser {
         }
         return newSplitInput;
     }
+
+    /**
+     * Parses a 'priority' command.
+     *
+     * @param splitInput The input given by the user, that has been split into
+     *                   an array of individual words.
+     * @return Returns the message that the MumBot should output, in respone to the input.
+     */
+    private static String parsePriorityCommand(String[] splitInput, TaskList tasks) {
+        Command command = new PriorityCommand(splitInput, tasks);
+        return command.performAction();
+    }
     
     /**
      * Parses a `bye` command.
@@ -83,7 +94,7 @@ public class Parser {
      *                   an array of individual words.
      * @return Returns the message that the MumBot should output, in respone to the input.
      */
-    private static String parseByeCommand(String[] splitInput) {
+    private static String parseByeCommand(String[] splitInput, TaskList tasks) {
         Command command = new ByeCommand(splitInput, tasks);
         return command.performAction();
     }
@@ -96,7 +107,7 @@ public class Parser {
      * @return Returns the message that the MumBot should output, in respone to the input.
      * @throws DukeException Throws a DukeException.
      */
-    private static String parseListCommand(String[] splitInput) throws DukeException {
+    private static String parseListCommand(String[] splitInput, TaskList tasks) throws DukeException {
         // Throw error if the input contains anything other than 'list'
         if (!(splitInput.length == 1)) {
             throw new DukeException("</3 your formatting for the list command is wrong - please just type list!");
@@ -113,7 +124,8 @@ public class Parser {
      * @return Returns the message that the MumBot should output, in respone to the input.
      * @throws DukeException Throws a DukeException.
      */
-    private static String parseMarkCommand(String[] splitInput) throws DukeException {
+    private static String parseMarkCommand(String[] splitInput, TaskList tasks) throws DukeException {
+        String action = splitInput[0];
         if (!(splitInput.length == 2)) {
             throw new DukeException(
                     "Your formatting for the " + action + " command is wrong...sigh\n"
@@ -147,7 +159,7 @@ public class Parser {
      *                   an array of individual words.
      * @return Returns the message that the MumBot should output, in respone to the input.
      */
-    private static String parseTaskCommand(String[] splitInput) {
+    private static String parseTaskCommand(String[] splitInput, TaskList tasks) throws DukeException {
         String[] newSplitInput = parseString(splitInput);
         Command command = new TaskCommand(newSplitInput, tasks);
         return command.performAction();
@@ -161,7 +173,8 @@ public class Parser {
      * @return Returns the message that the MumBot should output, in respone to the input.
      * @throws DukeException Throws a DukeException.
      */
-    private static String parseFindCommand(String[] splitInput) throws DukeException {
+    private static String parseFindCommand(String[] splitInput, TaskList tasks) throws DukeException {
+        String action = splitInput[0];
         // Throw an error  if the formatting for the 'find' command is wrong
         if (!(splitInput.length == 2)) {
             throw new DukeException(
@@ -181,7 +194,8 @@ public class Parser {
      * @return Returns the message that the MumBot should output, in respone to the input.
      * @throws DukeException Throws a DukeException.
      */
-    private static String parseDeleteCommand(String[] splitInput) throws DukeException {
+    private static String parseDeleteCommand(String[] splitInput, TaskList tasks) throws DukeException {
+        String action = splitInput[0];
         // Throw an error if the formatting for the 'delete' command is wrong
         if (!(splitInput.length == 2)) {
             throw new DukeException(
@@ -219,6 +233,7 @@ public class Parser {
      *   - 'todo *', where * refers to any input: Create a Todo task.
      *   - 'event x /at y', where x and y refers to any input: Create an Event task that will happen at y.
      *   - 'deadline x /by y', where x and y refers to any input: Create a Deadline task that is due by y.
+     *   - 'priority x y', where x is valid task index and y is a valid task Priority: Assigns the priority to the task.
      *
      * @param input The input given by the user.
      * @param tasks The TaskList to perform appropriate actions on, after
@@ -230,29 +245,32 @@ public class Parser {
         String[] splitInput = input.split(" ");
         String action = splitInput[0];
         if (action.equals("Bye")) {
-            return parseByeCommand(splitInput);
+            return parseByeCommand(splitInput, tasks);
+
+        } else if (action.equals("priority")) {
+            return parsePriorityCommand(splitInput, tasks);
 
         } else if (action.equals("list")) {
-            return parseListCommand(splitInput);
+            return parseListCommand(splitInput, tasks);
 
         } else if (
                 action.equals("mark")
                 || action.equals("unmark")
         ) {
-            return parseMarkCommand(splitInput);
+            return parseMarkCommand(splitInput, tasks);
 
         } else if (
                 action.equals("event")
                 || action.equals("deadline")
                 || action.equals("todo")
         ) {
-            return parseTaskCommand(splitInput);
+            return parseTaskCommand(splitInput, tasks);
 
         } else if (action.equals("find")) {
-            return parseFindCommand(splitInput);
+            return parseFindCommand(splitInput, tasks);
 
         } else if (action.equals("delete")) {
-            return parseDeleteCommand(splitInput);
+            return parseDeleteCommand(splitInput, tasks);
 
         } else {
             return "Your input is not recognised :(. It has to start with a command "

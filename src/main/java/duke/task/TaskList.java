@@ -2,6 +2,7 @@ package duke.task;
 
 import java.util.ArrayList;
 
+import duke.task.Task.Priority;
 import duke.ui.Ui;
 
 /**
@@ -45,10 +46,10 @@ public class TaskList {
      * @param index The index of the tasks to delete.
      */
     public void deleteTaskByIndex(int index) {
-        int taskSizeBeforeDeletion = tasks.length;
+        int taskSizeBeforeDeletion = tasks.size();
         Task taskToRemove = tasks.get(index);
         tasks.remove(index);
-        assert tasks.length == taskSizeBeforeDeletion - 1: "Length of tasks should have dropped by 1";
+        assert tasks.size() == taskSizeBeforeDeletion - 1: "Length of tasks should have dropped by 1";
         Ui.print(
                 "I've successfully removed this task:\n"
                 + taskToRemove
@@ -81,7 +82,6 @@ public class TaskList {
      */
     public void mark(int index) {
         Task task = tasks.get(index);
-        Ui.print(task.updateStatus(true));
     }
 
     /**
@@ -91,7 +91,6 @@ public class TaskList {
      */
     public void unmark(int index) {
         Task task = tasks.get(index);
-        Ui.print(task.updateStatus(false));
     }
 
     /**
@@ -131,5 +130,16 @@ public class TaskList {
         }
 
         return new TaskList(foundTasks);
+    }
+
+    /**
+     * Sets the priority of a task to the given priority.
+     *
+     * @param index    The index of the task in `tasks`
+     * @param priority The priority that the task should be set to.
+     */
+    public void setPriority(int index, Priority priority) {
+        Task task = tasks.get(index);
+        task.setPriority(priority);
     }
 }
