@@ -6,6 +6,7 @@ import dobby.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -16,6 +17,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     private Dobby dobby = new Dobby();
+    private Image applicationLogo = new Image(this.getClass().getResourceAsStream("/images/dobbyLogo.png"));
+    private String applicationTitle = "Dobby the Chat-bot";
 
     /**
      * Starts the application.
@@ -25,10 +28,13 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) {
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            stage.getIcons().add(applicationLogo);
+            stage.setTitle(applicationTitle);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDobby(dobby);
             stage.show();

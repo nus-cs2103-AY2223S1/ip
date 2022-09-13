@@ -64,8 +64,8 @@ public class MainWindow extends AnchorPane {
             termination.play();
         }
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dobbyImage)
+                UserDialogBox.getUserDialog(input, userImage),
+                DobbyDialogBox.getDobbyDialog(response, dobbyImage)
         );
         userInput.clear();
     }
@@ -77,7 +77,7 @@ public class MainWindow extends AnchorPane {
     private void printCommands() {
         String response = dobby.getCommands();
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(response, dobbyImage)
+                DobbyDialogBox.getDobbyDialog(response, dobbyImage)
         );
     }
 
@@ -87,7 +87,7 @@ public class MainWindow extends AnchorPane {
     private void printGreeting() {
         String response = dobby.getGreetings();
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(response, dobbyImage)
+                DobbyDialogBox.getDobbyDialog(response, dobbyImage)
         );
     }
 }

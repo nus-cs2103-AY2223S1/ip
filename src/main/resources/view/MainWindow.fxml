@@ -8,11 +8,12 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="701.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="dobby.ui.MainWindow">
+            prefWidth="701.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="dobby.ui.MainWindow">
     <children>
-        <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="42.0" prefWidth="541.0"
-                   style="-fx-background-color: #afb7c9;" AnchorPane.bottomAnchor="1.0">
+        <TextField fx:id="userInput" layoutY="556.0" onAction="#handleUserInput" prefHeight="42.0" prefWidth="540.0"
+                   promptText="How can Dobby help you today?" style="-fx-background-color: white;"
+                   AnchorPane.bottomAnchor="2.0">
             <font>
                 <Font name="Ubuntu Mono" size="14.0"/>
             </font>
@@ -24,8 +25,8 @@
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="700.0"
                     vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="555.0" prefWidth="702.0"
-                      style="-fx-background-color: #afb7c9;"/>
+                <VBox fx:id="dialogContainer" prefHeight="558.0" prefWidth="687.0"
+                      style="-fx-background-color: white;"/>
             </content>
         </ScrollPane>
     </children>

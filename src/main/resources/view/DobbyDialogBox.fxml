@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<fx:root alignment="TOP_RIGHT" maxHeight="500.0" maxWidth="700.0" prefWidth="700.0" style="-fx-background-color: white;"
+         type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TextFlow fx:id="textFlow" maxWidth="550.0" style="-fx-background-color: #43CC47; -fx-background-radius: 11;"
+                  textAlignment="RIGHT">
+            <children>
+                <Label fx:id="dialog" maxWidth="380" text="Label" textFill="WHITE" wrapText="true">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="12.0"/>
+                    </font>
+                    <padding>
+                        <Insets right="5.0"/>
+                    </padding>
+                </Label>
+            </children>
+            <HBox.margin>
+                <Insets left="5.0"/>
+            </HBox.margin>
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+        </TextFlow>
+        <ImageView fx:id="displayPicture" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets left="10.0"/>
+            </HBox.margin>
+        </ImageView>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0"/>
+    </padding>
+</fx:root>

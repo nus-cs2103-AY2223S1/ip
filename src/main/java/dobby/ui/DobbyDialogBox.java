@@ -22,7 +22,7 @@ import javafx.scene.text.TextFlow;
  *
  * <p> Adapted from <a href="https://se-education.org/guides/tutorials/javaFxPart4.html">se-education</a> </p>
  */
-public class DialogBox extends HBox {
+public class DobbyDialogBox extends HBox {
     @FXML
     private Label dialog;
     @FXML
@@ -36,9 +36,9 @@ public class DialogBox extends HBox {
      * @param text the text to be displayed in the dialog box
      * @param img the image to be displayed in the dialog box
      */
-    private DialogBox(String text, Image img) {
+    private DobbyDialogBox(String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DobbyDialogBox.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
@@ -66,25 +66,14 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Creates a dialog box for the user.
-     *
-     * @param text the text to be displayed
-     * @param img the image to be displayed
-     * @return a dialog box for the user
-     */
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
-    }
-
-    /**
      * Creates a dialog box for Duke.
      *
      * @param text the text to be displayed
      * @param img the image to be displayed
      * @return a dialog box for Duke
      */
-    public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+    public static DobbyDialogBox getDobbyDialog(String text, Image img) {
+        var db = new DobbyDialogBox(text, img);
         db.flip();
         return db;
     }
