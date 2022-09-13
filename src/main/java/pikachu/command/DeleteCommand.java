@@ -29,6 +29,9 @@ public class DeleteCommand extends Command {
      * @throws PikachuException If invalid format or the index of task out of range.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
+
+        assert input.startsWith("delete ");
+
         if (!Pikachu.isNumeric(input.substring(7))) {
             throw new PikachuException("Pi-must be numbers behind-pi!");
         } else if (Integer.parseInt(input.substring(7)) > tasks.getTaskList().size()
