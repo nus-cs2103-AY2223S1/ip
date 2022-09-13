@@ -35,7 +35,6 @@ Able to filter tasks by searching for a keyword or date
 Able to exit the program
 ## Usage
 
----
 ### `list` - View all Tasks
 
 The user is able to see all tasks on the right screen beside the main chat.
