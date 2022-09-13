@@ -11,7 +11,7 @@ import duke.ui.Ui;
 
 
 /**
- * Represents a Command class
+ * Represents a Command class.
  *
  * @author Khor Jun Wei
  * @version CS2103T AY22/23 Sem 1
@@ -39,17 +39,17 @@ public abstract class Command {
     }
 
     /**
-     * Represents the constructor method for Command class.
+     * Constructs a Command class.
      */
     private Command() {
         this.isOngoing = true;
     }
 
     /**
-     * Creates Command class through a constructor method
-     * @param s String of details
-     * @return Command
-     * @throws DukeException if any is found
+     * Creates Command class through a constructor method.
+     * @param s String of details.
+     * @return Command.
+     * @throws DukeException If any is found.
      */
     public static Command of(String s) throws DukeException {
         String[] splitResponse = s.split(" ");
@@ -62,10 +62,10 @@ public abstract class Command {
     }
 
     /**
-     * Constructs command when given a one-word response.
-     * @param keyword command given by user
-     * @return Command
-     * @throws DukeException should there be no valid command
+     * Constructs Command object when given a one-word response.
+     * @param keyword Command given by user.
+     * @return Command.
+     * @throws DukeException If there is no valid command.
      */
     public static Command handleSingleWordCommand(String keyword) throws DukeException {
         switch (keyword) {
@@ -89,10 +89,10 @@ public abstract class Command {
 
     /**
      * Constructs Command object when given a multi-word response.
-     * @param keyword first word given by user
-     * @param s full command given by user
-     * @return Command
-     * @throws DukeException should there be no valid command
+     * @param keyword First word given by user.
+     * @param s Full command given by user.
+     * @return Command.
+     * @throws DukeException should there be no valid command.
      */
     public static Command handleMultiWordCommand(String keyword, String s) throws DukeException {
         switch (keyword) {
@@ -173,9 +173,9 @@ public abstract class Command {
 
         /**
          * Creates Add Command Class through a constructor method.
-         * @param type task type
-         * @param todo task to be done
-         * @param by date when task has to be done, if any
+         * @param type Task type.
+         * @param todo Task to be done.
+         * @param by Date when task has to be done, if any.
          */
         public AddCommand(Task.TaskType type, String todo, LocalDate by) {
             this.taskType = type;
@@ -185,10 +185,10 @@ public abstract class Command {
 
         /**
          * Executes task.
-         * @param tasks list of tasks
-         * @param ui user interface being used
-         * @param storage place where text is stored
-         * @return message
+         * @param tasks List of tasks.
+         * @param ui User interface being used.
+         * @param storage Storage where text is stored.
+         * @return Message.
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
@@ -222,7 +222,7 @@ public abstract class Command {
 
         /**
          * Creates Delete Command through a constructor method.
-         * @param location where the task is located
+         * @param location Index where the task is located
          */
         public DeleteCommand(int location) {
             this.location = location;
@@ -230,11 +230,11 @@ public abstract class Command {
 
         /**
          * Executes task.
-         * @param tasks list of tasks
-         * @param ui user interface being used
-         * @param storage place where text is stored
-         * @return message
-         * @throws DukeException if it is found
+         * @param tasks List of tasks.
+         * @param ui User interface being used.
+         * @param storage Storage where text is stored.
+         * @return Message.
+         * @throws DukeException If it is found.
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
@@ -261,11 +261,11 @@ public abstract class Command {
 
         /**
          * Executes task.
-         * @param tasks list of tasks
-         * @param ui user interface being used
-         * @param storage place where text is stored
-         * @return message
-         * @throws IOException if there is such an exception
+         * @param tasks List of tasks.
+         * @param ui User interface being used.
+         * @param storage Storage where text is stored.
+         * @return Message.
+         * @throws IOException If there is such an exception.
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
@@ -281,7 +281,11 @@ public abstract class Command {
      */
     public static class FindCommand extends Command {
 
+        /**
+         * Represents string to be used to filter tasks.
+         */
         private final String s;
+
         /**
          * Creates Final Command through a constructor method.
          */
@@ -291,10 +295,10 @@ public abstract class Command {
 
         /**
          * Executes task.
-         * @param tasks list of tasks
-         * @param ui user interface being used
-         * @param storage place where text is stored
-         * @return message
+         * @param tasks List of tasks.
+         * @param ui User interface being used.
+         * @param storage Storage where text is stored.
+         * @return Message.
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
@@ -320,21 +324,21 @@ public abstract class Command {
 
         /**
          * Creates a Mark Command class through a constructor method.
-         * @param bool whether the task is completed
-         * @param location where the task is located
+         * @param isCompleted Whether task is completed.
+         * @param location Index where the task is located.
          */
-        public MarkCommand(boolean bool, int location) {
-            this.isCompleted = bool;
+        public MarkCommand(boolean isCompleted, int location) {
+            this.isCompleted = isCompleted;
             this.location = location;
         }
 
         /**
          * Executes task.
-         * @param tasks list of tasks
-         * @param ui user interface being used
-         * @param storage place where text is stored
-         * @return message
-         * @throws DukeException if it is found
+         * @param tasks List of tasks.
+         * @param ui User interface being used.
+         * @param storage Storage where text is stored.
+         * @return Message.
+         * @throws DukeException If it is found.
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
@@ -366,10 +370,10 @@ public abstract class Command {
 
         /**
          * Executes task.
-         * @param tasks list of tasks
-         * @param ui user interface being used
-         * @param storage place where text is stored
-         * @return message
+         * @param tasks List of tasks.
+         * @param ui User interface being used.
+         * @param storage Storage where text is stored.
+         * @return Message.
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
@@ -391,10 +395,10 @@ public abstract class Command {
 
         /**
          * Executes task.
-         * @param tasks list of tasks
-         * @param ui user interface being used
-         * @param storage place where text is stored
-         * @return message
+         * @param tasks list of tasks.
+         * @param ui User interface being used.
+         * @param storage Storage where text is stored.
+         * @return Message.
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
@@ -406,18 +410,18 @@ public abstract class Command {
 
     /**
      * Executes task.
-     * @param tasks list of tasks
-     * @param ui user interface being used
-     * @param storage place where text is stored
-     * @return message
-     * @throws DukeException if it is found
-     * @throws IOException if there is such an exception
+     * @param tasks List of tasks.
+     * @param ui User interface being used.
+     * @param storage Storage where text is stored.
+     * @return Message.
+     * @throws DukeException If it is found.
+     * @throws IOException If there is such an exception.
      */
     public abstract String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException, IOException;
 
     /**
      * Checks if one can still give more commands.
-     * @return boolean
+     * @return boolean.
      */
     public boolean isExit() {
         return !isOngoing;

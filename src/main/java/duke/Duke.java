@@ -8,10 +8,8 @@ import duke.storage.Storage;
 import duke.task.TaskManager;
 import duke.ui.Ui;
 
-
-
 /**
- * Represents a Duke class
+ * Represents a Duke class.
  *
  * @author Khor Jun Wei
  * @version CS2103T AY22/23 Sem 1
@@ -34,7 +32,7 @@ public class Duke {
     private final Ui ui;
 
     /**
-     * Basic constructor required for Launcher to work.
+     * Constructor method for Duke class.
      */
     public Duke() {
         this.ui = new Ui();
@@ -43,13 +41,21 @@ public class Duke {
     }
 
     /**
-     * Represents a constructor method for Duke class
-     * @param filepath path to file
+     * Represents a constructor method for Duke class.
+     * @param filepath Path to file.
      */
     public Duke(String filepath) {
         this.ui = new Ui();
         this.storage = new Storage(filepath);
         this.taskManager = new TaskManager(storage.load());
+    }
+
+    /**
+     * Gets the Ui in the duke object.
+     * @return Ui object.
+     */
+    public Ui getUi() {
+        return this.ui;
     }
 
     /**
@@ -78,7 +84,7 @@ public class Duke {
     /**
      * Main method.
      *
-     * @param args given arguments
+     * @param args Given arguments.
      */
     public static void main(String[] args) {
 

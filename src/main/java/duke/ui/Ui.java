@@ -6,7 +6,7 @@ import duke.command.Command;
 import duke.task.Task;
 
 /**
- * Represents a User interface class
+ * Represents a User interface class.
  *
  * @author Khor Jun Wei
  * @version CS2103T AY22/23 Sem 1
@@ -24,12 +24,12 @@ public class Ui {
     private static final String EXTRA_INDENTATION = "  ";
 
     /**
-     * Represents a scanner.
+     * Represents a scanner object in Ui.
      */
     private final Scanner scanner;
 
     /**
-     * Constructs a UI class through a constructor
+     * Constructs a UI class through a constructor.
      */
     public Ui() {
         this.scanner = new Scanner(System.in);
@@ -37,8 +37,8 @@ public class Ui {
 
     /**
      * Formats given string message.
-     * @param s String message
-     * @return formatted string message
+     * @param s String message.
+     * @return Formatted string message.
      */
     private String formatMessage(String s) {
         return INDENTATION + s;
@@ -47,11 +47,13 @@ public class Ui {
     /**
      * Greets the user.
      */
-    public void showWelcome() {
+    public String showWelcome() {
         showLine();
-        System.out.println(formatMessage("Hello! I'm Duke\n"
-                + "     What can I do for you?"));
+        String msg = formatMessage("Hello! I'm Duke\n"
+                + "     What can I do for you?");
+        System.out.println(msg);
         showLine();
+        return msg;
     }
 
     /**
@@ -65,7 +67,7 @@ public class Ui {
 
     /**
      * Reads the command given by the user.
-     * @return String representing the command
+     * @return String representing the command.
      */
     public String readCommand() {
         return scanner.nextLine();
@@ -80,7 +82,7 @@ public class Ui {
 
     /**
      * Shows error in a formatted way.
-     * @param s error message
+     * @param s Error message.
      */
     public void showError(String s) {
         System.out.println(formatMessage(s));
@@ -88,8 +90,8 @@ public class Ui {
 
     /**
      * Sends a message to user.
-     * @param keyword Type of command
-     * @param task a task for the message, if required
+     * @param keyword Type of command.
+     * @param task Task for the message, if required.
      */
     public String sendAndReturnMessage(Command.ActionKeywords keyword, Task task, String... values) {
         int numOfTasks = 0;

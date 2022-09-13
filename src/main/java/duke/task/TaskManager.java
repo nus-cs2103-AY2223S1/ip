@@ -30,7 +30,7 @@ public class TaskManager {
 
     /**
      * Constructor for Task Manager.
-     * @param fw file writer
+     * @param fw File writer.
      */
     public TaskManager(FileWriter fw) {
         this.arr = new ArrayList<>(100);
@@ -39,7 +39,7 @@ public class TaskManager {
 
     /**
      * Crafts a list of tasks.
-     * @return String describing the list
+     * @return String formatting of tasks in the task list.
      */
     public String craftTaskList() {
         int length = arr.size();
@@ -61,8 +61,8 @@ public class TaskManager {
 
     /**
      * Finds tasks that contain a certain string.
-     * @param s String
-     * @return message shows the matching tasks
+     * @param s String.
+     * @return String formatting of tasks in the task list.
      */
     public String findAndCraftTaskList(String s) {
         List<Task> filteredList = arr.stream()
@@ -73,14 +73,13 @@ public class TaskManager {
 
     /**
      * Converts a List of Tasks to a formatted String message.
-     * @param filteredList a List containing Task objects
-     * @return String message
+     * @param filteredList List containing Task objects.
+     * @return String message.
      */
     private String convertListToFormattedString(List<Task> filteredList) {
         int counter = 1;
         String result = "";
-        for (int i = 0; i < filteredList.size(); i++) {
-            Task task = filteredList.get(i);
+        for (Task task : filteredList) {
             if (counter == 1) {
                 result += counter + "." + task;
             } else {
@@ -93,7 +92,7 @@ public class TaskManager {
 
     /**
      * Crafts a message to be added into the file.
-     * @return String representing the message
+     * @return String representing the message.
      */
     public String craftTextMessageForFile() {
         int length = arr.size();
@@ -116,7 +115,7 @@ public class TaskManager {
     /**
      * Crafts a Reminders List.
      *
-     * @return String representing the message
+     * @return String representing the message.
      */
     public String craftRemindersList() {
         List<Task> filteredList = arr.stream()
@@ -128,7 +127,7 @@ public class TaskManager {
 
     /**
      * Adds task into array of tasks.
-     * @param task given task
+     * @param task Given task.
      */
     public void addTask(Task task) {
         arr.add(task);
@@ -136,8 +135,8 @@ public class TaskManager {
 
     /**
      * Removes a task.
-     * @param location where the task is located
-     * @return Task
+     * @param location Index where the task is located.
+     * @return Task.
      */
     public Task removeTask(int location) {
         assert location >= 0 : "the task number should not be negative";
@@ -148,7 +147,7 @@ public class TaskManager {
 
     /**
      * Represents the number of task is the task list.
-     * @return number of tasks
+     * @return Number of tasks in task list.
      */
     public int numOfTasks() {
         return arr.size();
@@ -156,8 +155,8 @@ public class TaskManager {
 
     /**
      * Represents the number of task is the task list that corresponds to the given Task Type.
-     * @param type task type
-     * @return number of tasks
+     * @param type Task type.
+     * @return Number of tasks.
      */
     public int numOfTaskType(Task.TaskType type) {
         return (int) arr.stream()
@@ -167,8 +166,8 @@ public class TaskManager {
 
     /**
      * Marks a task as completed.
-     * @param location where the task is located
-     * @return Task
+     * @param location Index where the task is located.
+     * @return Task.
      */
     public Task markTaskComplete(int location) {
         assert location >= 0 : "the task number should not be negative";
@@ -179,8 +178,8 @@ public class TaskManager {
 
     /**
      * Marks a task as incomplete.
-     * @param location where the task is located
-     * @return Task
+     * @param location Index where the task is located.
+     * @return Task.
      */
     public Task markTaskIncomplete(int location) {
         assert location >= 0 : "the task number should not be negative";

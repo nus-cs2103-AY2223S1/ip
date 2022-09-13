@@ -34,9 +34,9 @@ public abstract class Task {
     /**
      * Creates tasks through a factory method.
      *
-     * @param x       Type of task
-     * @param details Additional details of the task
-     * @return Task created
+     * @param x Type of task.
+     * @param details Additional details of the task.
+     * @return Task object created.
      */
     public static Task of(TaskType x, String details) {
         switch (x) {
@@ -54,7 +54,7 @@ public abstract class Task {
     /**
      * Represents what should be shown to describe the task's completion status.
      *
-     * @return String representation of status
+     * @return String representation of status.
      */
     public String checkBox() {
         return this.isCompleted ? "[X]" : "[ ]";
@@ -84,7 +84,7 @@ public abstract class Task {
     /**
      * Represents the completion status to be added into the file.
      *
-     * @return String representation of status
+     * @return String representation of status.
      */
     public String completionStatusForFile() {
         return this.isCompleted ? "1" : "0";
@@ -93,8 +93,8 @@ public abstract class Task {
     /**
      * Crafts message for file given various parameters.
      *
-     * @param arr array consisting of various strings
-     * @return String message
+     * @param arr Array consisting of various strings.
+     * @return String message.
      */
     public String craftStringForFile(String[] arr) {
         int length = arr.length;
@@ -122,7 +122,7 @@ public abstract class Task {
         /**
          * Creates a task through a constructor method.
          *
-         * @param s details of task
+         * @param s Details of task.
          */
         private ToDo(String s) {
             super();
@@ -132,7 +132,7 @@ public abstract class Task {
         /**
          * Represents the icon to be shown to describe the work type.
          *
-         * @return String representation of work type
+         * @return String representation of work type.
          */
         @Override
         public String workTypeBox() {
@@ -142,7 +142,7 @@ public abstract class Task {
         /**
          * Represents a modified version of the Task.
          *
-         * @return String representation of the task
+         * @return String representation of the task.
          */
         @Override
         public String toString() {
@@ -152,7 +152,7 @@ public abstract class Task {
         /**
          * Crafts message to be added into text file.
          *
-         * @return String message
+         * @return String message.
          */
         @Override
         public String textFileMessage() {
@@ -161,8 +161,8 @@ public abstract class Task {
 
         /**
          * Checks whether task contains certain String.
-         * @param s String
-         * @return boolean
+         * @param s String.
+         * @return Boolean.
          */
         @Override
         public boolean contains(String s) {
@@ -171,7 +171,7 @@ public abstract class Task {
 
         /**
          * Gets the task type of task.
-         * @return TaskType
+         * @return TaskType.
          */
         @Override
         public TaskType getTaskType() {
@@ -197,7 +197,7 @@ public abstract class Task {
         /**
          * Returns a Deadline task, a constructor method.
          *
-         * @param s details of deadline
+         * @param s Details of deadline.
          */
         private Deadline(String s) {
             super();
@@ -209,7 +209,7 @@ public abstract class Task {
         /**
          * Represents the icon to be shown to describe the work type.
          *
-         * @return String representation of work type
+         * @return String representation of work type.
          */
         @Override
         public String workTypeBox() {
@@ -219,7 +219,7 @@ public abstract class Task {
         /**
          * Represents a modified version of the Task.
          *
-         * @return String representation of the task
+         * @return String representation of the task.
          */
         @Override
         public String toString() {
@@ -229,7 +229,7 @@ public abstract class Task {
         /**
          * Crafts message to be added into text file.
          *
-         * @return String message
+         * @return String message.
          */
         @Override
         public String textFileMessage() {
@@ -238,9 +238,9 @@ public abstract class Task {
         }
 
         /**
-         * Checks whether task contains certain String.
-         * @param s String
-         * @return boolean
+         * Checks whether task object contains certain String.
+         * @param s String.
+         * @return Boolean.
          */
         @Override
         public boolean contains(String s) {
@@ -249,7 +249,7 @@ public abstract class Task {
 
         /**
          * Gets the task type of task.
-         * @return TaskType
+         * @return TaskType.
          */
         @Override
         public TaskType getTaskType() {
@@ -275,7 +275,7 @@ public abstract class Task {
         /**
          * Returns an Event task, a constructor method.
          *
-         * @param s details of event
+         * @param s Details of event.
          */
         private Event(String s) {
             super();
@@ -287,7 +287,7 @@ public abstract class Task {
         /**
          * Represents the icon to be shown to describe the work type.
          *
-         * @return String representation of work type
+         * @return String representation of work type.
          */
         @Override
         public String workTypeBox() {
@@ -297,7 +297,7 @@ public abstract class Task {
         /**
          * Represents a modified version of the Task.
          *
-         * @return String representation of the task
+         * @return String representation of the task.
          */
         @Override
         public String toString() {
@@ -307,7 +307,7 @@ public abstract class Task {
         /**
          * Crafts message to be added into text file.
          *
-         * @return String message
+         * @return String message.
          */
         @Override
         public String textFileMessage() {
@@ -316,9 +316,9 @@ public abstract class Task {
         }
 
         /**
-         * Checks whether task contains certain String.
-         * @param s String
-         * @return boolean
+         * Checks whether task object contains certain String.
+         * @param s String.
+         * @return Boolean.
          */
         @Override
         public boolean contains(String s) {
@@ -327,7 +327,7 @@ public abstract class Task {
 
         /**
          * Gets the task type of task.
-         * @return TaskType
+         * @return TaskType.
          */
         @Override
         public TaskType getTaskType() {
@@ -338,27 +338,27 @@ public abstract class Task {
     /**
      * Represents the icon to describe the work type.
      *
-     * @return String representation of the work type
+     * @return String representation of the work type.
      */
     abstract String workTypeBox();
 
     /**
      * Crafts message to be added into text file.
      *
-     * @return String message
+     * @return String message.
      */
     public abstract String textFileMessage();
 
     /**
-     * Checks whether task contains certain String.
-     * @param s String
-     * @return boolean
+     * Checks whether task object contains certain String.
+     * @param s String.
+     * @return Boolean.
      */
     public abstract boolean contains(String s);
 
     /**
      * Gets the task type of task.
-     * @return TaskType
+     * @return TaskType.
      */
     public abstract TaskType getTaskType();
 }
