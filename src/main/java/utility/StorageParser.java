@@ -29,39 +29,46 @@ public class StorageParser {
      * @return Task object.
      */
     public static Task fileLineToTask(String line) throws DukeException {
-        char type = line.charAt(INDEX_OF_TYPE_CHAR);
-        boolean isMarked = line.charAt(MARKED_STATUS) != UNMARKED_SYMBOL;
+        char type = typeOfRecord(line);
+        boolean isMarked = isTaskMarked(line);
         String[] dateAndDescription;
-        LocalDate date;
-        Task t;
+        Task t = null;
         switch(type) {
         case 'T':
             t = Parser.stringToTask(line.substring(START_OF_DESCRIPTION_IN_TASK));
             if (isMarked) {
                 t.markAsDone();
             }
-            return t;
+            break;
         case 'D':
             dateAndDescription = getDateAndDescription(line);
-            t = Parser.stringToDeadline(dateAndDescription[DESCRIPTION], dateAndDescription[DATE]);
+            t = Parser.stringToDeadline(dateAndDescription[DESCRIPTION],
+                    dateAndDescription[DATE]);
             if (isMarked) {
                 t.markAsDone();
             }
-            return t;
+            break;
         case 'E':
             dateAndDescription = getDateAndDescription(line);
-            date = LocalDate.parse(dateAndDescription[DATE]);
-            t = new Event(dateAndDescription[DESCRIPTION], date);
+            t = Parser.stringToEvent(dateAndDescription[DESCRIPTION],
+                    dateAndDescription[DATE]);
             if (isMarked) {
                 t.markAsDone();
             }
-            return t;
+            break;
         default:
-            return null;
+            // do nothing
         }
-
+        return t;
     }
 
+    private static boolean isTaskMarked(String task) {
+        return task.charAt(MARKED_STATUS) != UNMARKED_SYMBOL;
+    }
+
+    private static char typeOfRecord(String record) {
+        return record.charAt(INDEX_OF_TYPE_CHAR);
+    }
 
     private static String[] getDateAndDescription(String line) {
         String[] dateAndDescription = new String[2];
