@@ -29,6 +29,19 @@ public class Duke {
         String returnStr = c.exec(this.tasks);
         this.storage.save(this.tasks);
         return returnStr;
+<<<<<<< Updated upstream
+=======
+    }
+
+    public String execCommand(Command c, TaskList customTaskList) {
+        assert tasks != null : "task list is not null";
+        assert storage != null : "storage is not null";
+        String returnStr = c.exec(this.tasks, customTaskList);
+        this.storage.save(this.tasks);
+        return returnStr;
+
+    }
+>>>>>>> Stashed changes
 
     }
 
