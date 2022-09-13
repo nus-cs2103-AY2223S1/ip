@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.ClientList;
 import duke.DukeException;
-import duke.Storage;
 import duke.task.TaskList;
 import duke.task.Task;
 
@@ -13,7 +12,7 @@ public class DeleteTaskCommand extends Command {
     private final int index;
 
     /**
-     * Constructor for DeleteCommand class.
+     * Constructs a Delete Command object.
      *
      * @param index index of task to delete in task list.
      */
@@ -25,13 +24,12 @@ public class DeleteTaskCommand extends Command {
      * Deletes task from task list and saves changes made to task list.
      *
      * @param taskList task list.
-     * @param storage  files storing task list.
      * @param clientList client list.
      * @return String representation of deleted task.
      * @throws DukeException if index does is out of bounds in the task list.
      */
     @Override
-    public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList taskList, ClientList clientList) throws DukeException {
         Task deletedTask;
         try {
             deletedTask = taskList.get(index);
@@ -39,7 +37,7 @@ public class DeleteTaskCommand extends Command {
             throw new DukeException(String.format("Index %s does not exist on the list.", index + 1));
         }
         taskList.delete(index);
-        new SaveTaskListCommand().execute(taskList, storage, clientList);
+        SaveTaskListCommand.of().execute(taskList, clientList);
         return CommandOutputs.showDelete(taskList, deletedTask);
     }
 }

@@ -12,7 +12,7 @@ public class Deadlines extends Task {
     private final LocalDateTime deadline;
 
     /**
-     * Constructor for Deadlines class.
+     * Constructs a Deadline object.
      *
      * @param task task in String.
      * @param deadline deadline task is due by in String.

@@ -16,7 +16,7 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Constructor for Task class.
+     * Constructs a Task object.
      *
      * @param task task in String.
      * @param isDone whether task is done.

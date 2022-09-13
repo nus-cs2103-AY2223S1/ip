@@ -1,13 +1,15 @@
 package duke.command;
 
-import duke.*;
+import duke.Client;
+import duke.ClientList;
+import duke.DukeException;
 import duke.task.TaskList;
 
 public class DeleteClientCommand extends Command {
-    int phoneNumber;
+     private final int phoneNumber;
 
     /**
-     * Constructor for Delete Client Command.
+     * Constructs Delete Client Command object.
      *
      * @param phoneNumber phone number of client.
      */
@@ -20,15 +22,14 @@ public class DeleteClientCommand extends Command {
      * Deletes client from client list and returns String representation of deleted client.
      *
      * @param taskList task list.
-     * @param storage files storing task list.
      * @param clientList client list.
      * @return String representation of deleted client.
      * @throws DukeException if no client has this phone number.
      */
     @Override
-    public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList taskList, ClientList clientList) throws DukeException {
         Client deletedClient = clientList.delete(phoneNumber);
-        new SaveClientListCommand().execute(taskList, storage, clientList);
+        SaveClientListCommand.of().execute(taskList, clientList);
         return CommandOutputs.showDeletedClient(deletedClient);
     }
 }

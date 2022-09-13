@@ -1,6 +1,11 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import duke.ClientList;
+import duke.Storage;
+import duke.command.CommandOutputs;
+import duke.task.TaskList;
+import duke.task.ToDos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,5 +30,14 @@ public class ParserTest {
         }
         assertEquals(ExitCommand.of(), c1);
         assertEquals(ListTaskCommand.of(), c2);
+        try {
+            ClientList clientList = new ClientList();
+            TaskList taskList = new TaskList();
+            Command toDo = Parser.parseInput("todo read book");
+            String output = toDo.execute(taskList, clientList);
+            assertEquals(output, CommandOutputs.showAdd(taskList, new ToDos("read book", false)));;
+        } catch (DukeException e) {
+            fail(e.getMessage());
+        }
     }
 }

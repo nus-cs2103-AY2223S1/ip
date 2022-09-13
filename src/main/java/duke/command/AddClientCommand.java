@@ -1,6 +1,9 @@
 package duke.command;
 
-import duke.*;
+
+import duke.Client;
+import duke.ClientList;
+import duke.DukeException;
 import duke.task.TaskList;
 
 public class AddClientCommand extends Command {
@@ -8,7 +11,7 @@ public class AddClientCommand extends Command {
     private final Client client;
 
     /**
-     * Constructor for Add Client Command.
+     * Constructs Add Client Command objects.
      *
      * @param name name of client.
      * @param phoneNumber phone number of client.
@@ -26,14 +29,13 @@ public class AddClientCommand extends Command {
      * Adds client to client list and saves it in save file.
      *
      * @param taskList list of tasks.
-     * @param storage files storing task list.
      * @param clientList list of clients.
      * @return String representation of how client list changed.
      */
     @Override
-    public String execute(TaskList taskList, Storage storage, ClientList clientList) {
+    public String execute(TaskList taskList, ClientList clientList) {
         clientList.add(client);
-        new SaveClientListCommand().execute(taskList, storage, clientList);
+        SaveClientListCommand.of();
         return CommandOutputs.showNewClient(client, clientList);
     }
 }

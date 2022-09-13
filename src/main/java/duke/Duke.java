@@ -18,18 +18,16 @@ import duke.task.TaskList;
  */
 public class Duke {
 
-    private final Storage storage;
     private final TaskList taskList;
     private final ClientList clientList;
 
     /**
-     * Constructor for class Duke.
+     * Constructs a Duke object.
      */
     public Duke() {
         this.taskList = new TaskList();
         this.clientList = new ClientList();
-        this.storage = new Storage("data", "data/Tasks.txt", "data/Clients.txt");
-        storage.startUpPullStorage(taskList, clientList);
+        Storage.startUpPullStorage(taskList, clientList);
     }
 
     /**
@@ -41,7 +39,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parseInput(input);
-            return c.execute(taskList, storage, clientList);
+            return c.execute(taskList, clientList);
         } catch (DukeException e) {
             return e.getMessage();
         }

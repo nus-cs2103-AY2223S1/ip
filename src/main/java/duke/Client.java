@@ -9,7 +9,7 @@ public class Client {
     private final String address;
 
     /**
-     * Constructor for client class.
+     * Constructs a client object.
      *
      * @param name name of client.
      * @param phoneNumber phone number of client.

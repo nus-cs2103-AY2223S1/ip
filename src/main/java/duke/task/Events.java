@@ -12,7 +12,7 @@ public class Events extends Task {
     private final LocalDateTime timing;
 
     /**
-     * Constructor for Events class.
+     * Constructs an Event object.
      *
      * @param task task in String.
      * @param timing timing event occurs in String.

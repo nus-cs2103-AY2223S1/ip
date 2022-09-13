@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.ClientList;
 import duke.DukeException;
-import duke.Storage;
 import duke.task.TaskList;
 
 /**
@@ -10,17 +9,27 @@ import duke.task.TaskList;
  */
 public class ListKeywordCommand extends Command {
 
+    private static final ListKeywordCommand LIST_KEYWORD_COMMAND = new ListKeywordCommand();
+
     /**
-     * Communicates with user interface to print list of tasks containing the keyword.
+     * Returns the list keyword command.
+     *
+     * @return list keyword command.
+     */
+    public static ListKeywordCommand of() {
+        return LIST_KEYWORD_COMMAND;
+    }
+
+    /**
+     * Returns String representation of keyword list.
      *
      * @param keywordList list of tasks containing the keyword.
-     * @param storage files storing task list.
      * @param clientList client list.
      * @return String representation of keyword list.
      * @throws DukeException if keyword list is empty.
      */
     @Override
-    public String execute(TaskList keywordList, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList keywordList, ClientList clientList) throws DukeException {
         return CommandOutputs.showKeywordList(keywordList);
     }
 }

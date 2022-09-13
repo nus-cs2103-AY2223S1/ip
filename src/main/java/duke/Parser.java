@@ -39,7 +39,7 @@ public class Parser {
         case event:
             throw new DukeException(String.format("The description of a %s cannot be empty.", input));
         case delete:
-            throw new DukeException("Choose which index to delete.");
+            throw new DukeException("Choose which index in task list to delete or phone number of client to delete.");
         case find:
             throw new DukeException("Input a keyword to find.");
         case client:
@@ -86,8 +86,8 @@ public class Parser {
     private static Command parseDelete(String info) throws DukeException {
         try {
             if (info.contains("client ")) {
-                String index = info.split("client ")[1];
-                return new DeleteClientCommand(Integer.parseInt(index));
+                String phoneNumber = info.split("client ")[1];
+                return new DeleteClientCommand(Integer.parseInt(phoneNumber));
             }
             return new DeleteTaskCommand(Integer.parseInt(info) - 1);
         } catch (NumberFormatException e) {
@@ -141,18 +141,23 @@ public class Parser {
     }
 
     private static Command parseClient(String info) throws DukeException {
-        String[] nameNumberAddress = info.split(" ", 3);
-        if (nameNumberAddress.length != 3) { //Guard clause
+        String[] clientInformationList = info.split(" ", 3);
+        if (clientInformationList.length != 3) { //Guard clause
             throw new DukeException("client needs to have a name, phone number and address");
         }
-        String name = nameNumberAddress[0];
-        int number = Integer.parseInt(nameNumberAddress[1]);
-        String address = nameNumberAddress[2];
+        String name = clientInformationList[0];
+        int number = Integer.parseInt(clientInformationList[1]);
+        String address = clientInformationList[2];
         return new AddClientCommand(name, number, address);
     }
 
-    private static Command parseList(String info) {
-        return info.equals("task") ? ListTaskCommand.of() : ListClientCommand.of();
+    private static Command parseList(String info) throws DukeException {
+        if (info.equals("task")) {
+            return ListTaskCommand.of();
+        } else if (info.equals("client")) {
+            return ListClientCommand.of();
+        }
+        throw new DukeException("We only can list tasks or clients");
     }
 
     /**

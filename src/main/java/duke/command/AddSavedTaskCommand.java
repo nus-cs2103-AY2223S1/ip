@@ -15,7 +15,7 @@ public class AddSavedTaskCommand extends Command {
     private final boolean done;
 
     /**
-     * Constructor for AddSavedTaskCommand class,
+     * Constructs Add Saved Task Command objects,
      * to add todo tasks.
      *
      * @param task task in String.
@@ -31,7 +31,7 @@ public class AddSavedTaskCommand extends Command {
     }
 
     /**
-     * Another Constructor for AddSavedTaskCommand class,
+     * Constructs Add Saved Task Command objects,
      * to add deadline or event tasks.
      *
      * @param task task in String.
@@ -52,13 +52,12 @@ public class AddSavedTaskCommand extends Command {
      * Adds task to task list.
      *
      * @param taskList list of tasks.
-     * @param storage files storing task list.
      * @param clientList list of clients.
      * @return nothing.
      * @throws DukeException if format of save file is wrong.
      */
     @Override
-    public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList taskList, ClientList clientList) throws DukeException {
         Task savedTask;
         switch (type) {
         case todo:

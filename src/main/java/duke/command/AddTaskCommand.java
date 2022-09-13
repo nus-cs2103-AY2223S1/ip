@@ -1,6 +1,8 @@
 package duke.command;
 
-import duke.*;
+import duke.ClientList;
+import duke.DukeException;
+import duke.Instructions;
 import duke.task.*;
 
 /**
@@ -14,7 +16,8 @@ public class AddTaskCommand extends Command {
     private final String timing;
 
     /**
-     * Constructor for AddUserCommand class.
+     * Constructs Add User Command objects,
+     * to add new tasks.
      *
      * @param task task in String.
      */
@@ -25,7 +28,8 @@ public class AddTaskCommand extends Command {
     }
 
     /**
-     * Constructor for AddUserCommand class.
+     * Constructs Add User Command objects,
+     * to add tasks from saved task file.
      *
      * @param task task in String.
      * @param instruction specific instruction.
@@ -41,12 +45,11 @@ public class AddTaskCommand extends Command {
      * Adds new task into task list and saves it in save file.
      *
      * @param taskList task list.
-     * @param storage files storing task list.
      * @return String representation of how task list changed.
      * @throws DukeException if timing is of the wrong format.
      */
     @Override
-    public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList taskList, ClientList clientList) throws DukeException {
         Task newTask;
         switch (type) {
         case todo:
@@ -62,7 +65,7 @@ public class AddTaskCommand extends Command {
             throw new DukeException("Unknown Error");
         }
         taskList.add(newTask);
-        new SaveTaskListCommand().execute(taskList, storage, clientList);
+        SaveTaskListCommand.of().execute(taskList, clientList);
         return CommandOutputs.showAdd(taskList, newTask);
     }
 }
