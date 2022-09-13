@@ -16,7 +16,7 @@ public class SortCommand extends Command {
     private String order;
 
     /**
-     * Constructor for SortCommand.
+     * Initializes a SortCommand object.
      *
      * @param order The order in which the list should be ordered.
      */

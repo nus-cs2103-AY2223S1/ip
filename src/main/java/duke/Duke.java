@@ -14,7 +14,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor for Duke.
+     * Initializes a Duke object.
      */
     public Duke() {
         ui = new Ui();

@@ -14,7 +14,7 @@ public class AddDeadlineCommand extends Command {
     private String details;
 
     /**
-     * Constructor for AddDeadlineCommand.
+     * Initializes an AddDeadlineCommand object.
      *
      * @param details The details of the task.
      */

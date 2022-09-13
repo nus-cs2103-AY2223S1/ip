@@ -23,7 +23,7 @@ public class Parser {
     private static final String UNKNOWN_COMMAND = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String INVALID_COMMAND = "OOPS!!! This command is invalid";
     /**
-     * Parse the inputted user command.
+     * Parses the inputted user command.
      *
      * @param fullCommand The full user input.
      * @return Command corresponding to the input.

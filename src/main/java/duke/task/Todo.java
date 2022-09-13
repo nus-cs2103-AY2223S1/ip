@@ -9,7 +9,7 @@ public class Todo extends Task {
 
     private static final LocalDate DATE = LocalDate.MIN;
     /**
-     * Constructor for Todo.
+     * Initializes a Todo object.
      *
      * @param description The description of the task.
      */

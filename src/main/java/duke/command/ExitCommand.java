@@ -10,7 +10,7 @@ import duke.Ui;
 public class ExitCommand extends Command {
     private static final String EMPTY = "";
     /**
-     * Constructor for ExitCommand.
+     * Initializes an ExitCommand object.
      */
     public ExitCommand() {
         super();

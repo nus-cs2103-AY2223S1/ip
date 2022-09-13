@@ -17,7 +17,7 @@ public class TaskList {
     private int size;
 
     /**
-     * Constructor for TaskList, if no past data exists.
+     * Initializes a TaskList object, if no past data exists.
      */
     public TaskList() {
         this.tasks = new ArrayList<>(MAX_TASKS);
@@ -25,7 +25,7 @@ public class TaskList {
     }
 
     /**
-     * Constructor for TaskList, if past data exists.
+     * Initializes a TaskList object, if past data exists.
      *
      * @param tasks The ArrayList that contains saved tasks.
      */

@@ -18,7 +18,7 @@ public class UnmarkCommand extends Command {
     private int index;
 
     /**
-     * Constuctor for UnmarkCommand.
+     * Initializes an UnmarkCommand object.
      *
      * @param index The index of the task to be marked as not done.
      */

@@ -13,7 +13,7 @@ public class AddTodoCommand extends Command {
     private String desc;
 
     /**
-     * Constructor for AddTodoCommand.
+     * Initializes an AddTodoCommand object.
      *
      * @param desc The description of the task.
      */

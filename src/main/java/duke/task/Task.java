@@ -17,7 +17,7 @@ public class Task {
     private LocalDate date;
 
     /**
-     * Constructor for Task.
+     * Initializes a Task object.
      *
      * @param description The description of the task.
      */

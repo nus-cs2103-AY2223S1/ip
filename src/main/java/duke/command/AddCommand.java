@@ -16,7 +16,7 @@ public class AddCommand extends Command {
     private String cmd;
 
     /**
-     * Constructor for AddCommand.
+     * Initializes an AddCommand object.
      *
      * @param cmd The command inputted by the user.
      */

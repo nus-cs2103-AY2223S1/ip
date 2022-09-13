@@ -14,7 +14,7 @@ public class AddEventCommand extends Command {
     private String details;
 
     /**
-     * Constructor for AddEventCommand.
+     * Initializes an AddEventCommand object.
      *
      * @param details The details of the task.
      */

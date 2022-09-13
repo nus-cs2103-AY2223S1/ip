@@ -11,7 +11,7 @@ public abstract class Command {
     protected boolean isExit;
 
     /**
-     * Constructor for Command.
+     * Initializes a Command object.
      */
     public Command() {
         this.isExit = false;
