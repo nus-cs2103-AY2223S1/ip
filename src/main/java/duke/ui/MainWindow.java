@@ -3,12 +3,8 @@ package duke.ui;
 // @@author j-lum-reused
 // Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
 // with some modifications
-import java.util.Timer;
-import java.util.TimerTask;
-
 import duke.Duke;
 import duke.commands.CommandResult;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;

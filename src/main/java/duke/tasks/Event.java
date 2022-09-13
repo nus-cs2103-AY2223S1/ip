@@ -18,11 +18,11 @@ public class Event extends Task {
      * Initializes a new Event instance.
      *
      * @param description Description of the task
-     * @param done Whether the task is completed or not
+     * @param isDone Whether the task is completed or not
      * @param at The event duration for this task
      */
-    public Event(String description, boolean done, LocalDateTime at) {
-        super(description, done);
+    public Event(String description, boolean isDone, LocalDateTime at) {
+        super(description, isDone);
         this.at = at;
     }
 
@@ -51,7 +51,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String checkbox = this.getDone() ? "[E][X]" : "[E][ ]";
+        String checkbox = this.getIsDone() ? "[E][X]" : "[E][ ]";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
         String dateFormatted = "(at: " + this.at.format(formatter) + ")";
         return checkbox + " " + super.getDescription() + " " + dateFormatted;

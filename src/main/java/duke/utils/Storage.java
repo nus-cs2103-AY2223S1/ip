@@ -132,7 +132,7 @@ public class Storage {
     private static String taskStrRepresentation(Task task) {
         String taskType = task.getTaskWord();
         String taskDescription = task.getDescription();
-        String taskDone = task.getDone() ? "1" : "0";
+        String taskDone = task.getIsDone() ? "1" : "0";
         String taskTime = task.getTime().map(LocalDateTime::toString).orElse(" ");
         return taskType + "|" + taskDescription + "|" + taskDone + "|" + taskTime + "\n";
     }

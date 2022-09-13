@@ -68,7 +68,7 @@ public class TaskList {
      */
     public void markTask(int index) {
         Task task = this.tasks.get(index);
-        task.setDone();
+        task.setIsDone();
     }
 
     /**
@@ -79,7 +79,7 @@ public class TaskList {
      */
     public void unmarkTask(int index) {
         Task task = this.tasks.get(index);
-        task.setNotDone();
+        task.setIsNotDone();
     }
 
     /**

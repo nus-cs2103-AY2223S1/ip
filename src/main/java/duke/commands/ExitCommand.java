@@ -1,11 +1,11 @@
 package duke.commands;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import javafx.application.Platform;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Represents an executable command to exit the program.

@@ -11,7 +11,7 @@ import duke.utils.TaskList;
  * This class also serves as the main entry point of application.
  */
 public class Duke {
-    private TaskList taskList;
+    private final TaskList taskList;
     private final Parser parser;
     private final Storage storage;
 

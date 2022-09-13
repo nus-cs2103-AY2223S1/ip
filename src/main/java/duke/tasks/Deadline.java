@@ -17,11 +17,11 @@ public class Deadline extends Task {
     /**
      * Initializes a new Deadline instance.
      * @param description Description of the task
-     * @param done Whether the task is completed or not
+     * @param isDone Whether the task is completed or not
      * @param by The deadline for this task
      */
-    public Deadline(String description, boolean done, LocalDateTime by) {
-        super(description, done);
+    public Deadline(String description, boolean isDone, LocalDateTime by) {
+        super(description, isDone);
         this.by = by;
     }
 
@@ -48,7 +48,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String checkbox = this.getDone() ? "[D][X]" : "[D][ ]";
+        String checkbox = this.getIsDone() ? "[D][X]" : "[D][ ]";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
         String dateFormatted = "(by: " + this.by.format(formatter) + ")";
         return checkbox + " " + super.getDescription() + " " + dateFormatted;

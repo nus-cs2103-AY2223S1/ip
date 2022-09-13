@@ -16,10 +16,10 @@ public class Todo extends Task {
      * Initializes a new Todo instance.
      *
      * @param description Description of the task
-     * @param done Whether the task is completed or not
+     * @param isDone Whether the task is completed or not
      */
-    public Todo(String description, boolean done) {
-        super(description, done);
+    public Todo(String description, boolean isDone) {
+        super(description, isDone);
     }
 
     /**
@@ -47,7 +47,7 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        String checkbox = this.getDone() ? "[T][X]" : "[T][ ]";
+        String checkbox = this.getIsDone() ? "[T][X]" : "[T][ ]";
         return checkbox + " " + super.getDescription();
     }
 }

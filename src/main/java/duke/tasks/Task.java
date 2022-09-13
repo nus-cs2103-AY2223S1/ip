@@ -10,17 +10,17 @@ import java.util.Optional;
  */
 public abstract class Task {
     private final String description;
-    private boolean done;
+    private boolean isDone;
 
     /**
      * Initializes a new Task instance.
      *
      * @param description Description of the task
-     * @param done Whether the task is completed or not
+     * @param isDone Whether the task is completed or not
      */
-    public Task(String description, boolean done) {
+    public Task(String description, boolean isDone) {
         this.description = description;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     /**
@@ -52,22 +52,22 @@ public abstract class Task {
      *
      * @return Whether the task is done or not
      */
-    public boolean getDone() {
-        return this.done;
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
     /**
      * Sets the task as done.
      */
-    public void setDone() {
-        this.done = true;
+    public void setIsDone() {
+        this.isDone = true;
     }
 
     /**
      * Sets the task as not done.
      */
-    public void setNotDone() {
+    public void setIsNotDone() {
         // This method is preferred over a toggle method as it is clearer with its effects.
-        this.done = false;
+        this.isDone = false;
     }
 }
