@@ -87,7 +87,6 @@ public class Parser {
     public static Command parse(String userInput) throws DukeException {
         String[] inputSections = userInput.split(" ");
         String stringCommand = extractCommand(inputSections[0]);
-        assert !stringCommand.equals("");
         switch (stringCommand) {
         case "todo":
             return new AddTaskCommand(inputSections);
