@@ -130,17 +130,22 @@ public class Parser {
     }
 
     private static Task createTask(String[] userInput) {
-        Task task = null;
+        String description = getTaskDescription(userInput);
+        Task task = new Task(description);
         return task;
     }
 
     private static Event createEvent(String[] userInput) {
-        Event event = null;
+        String description = getEventDescription(userInput);
+        LocalDate date = getEventDate(userInput);
+        Event event = new Event(description, date);
         return event;
     }
 
     private static Deadline createDeadline(String[] userInput) {
-        Deadline deadline = null;
+        String description = getDeadlineDescription(userInput);
+        LocalDate date = getDeadlineDate(userInput);
+        Deadline deadline = new Deadline(description, date);
         return deadline;
     }
 
