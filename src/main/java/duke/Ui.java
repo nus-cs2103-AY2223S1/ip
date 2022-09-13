@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class Ui {
     private static final String OPENING =
             "    Hello! I'm Duke\n    What can I do for you?\n    Type help for detailed useful guide.";
-    private static final String ENDING = "    Bye. Hope to see you again soon!";
+    private static final String ENDING = "    Bye. Hope to see you again soon! Please close the app!";
     private static final String ERROR_DEFAULT_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String ERROR_UNFOUND_MESSAGE = "OOPS!!! There is no record matching your keyword :(";
     private static final String ERROR_PROCESS_MESSAGE =
