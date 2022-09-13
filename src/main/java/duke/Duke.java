@@ -39,6 +39,7 @@ public class Duke {
     public void run() {
         ui.greetings();
         boolean isExit = false;
+        assert this.storage != null && this.tasks != null && this.ui != null : "The Duke object is not initialized!";
 
         while (!isExit) {
             try {
