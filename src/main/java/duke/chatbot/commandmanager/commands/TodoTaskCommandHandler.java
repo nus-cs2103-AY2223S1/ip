@@ -29,13 +29,14 @@ public class TodoTaskCommandHandler implements Command {
      */
     @Override
     public String execute(String arguments) throws EmptyTaskException {
-        if (arguments.length() == 0) {
+        String todoTaskName = arguments.strip();
+        if (todoTaskName.length() == 0) {
             throw new EmptyTaskException();
         }
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("> Added: ");
-        stringBuilder.append(taskManager.addTask(new ToDoTask(arguments)));
+        stringBuilder.append(taskManager.addTask(new ToDoTask(todoTaskName)));
         stringBuilder.append("\n");
         return stringBuilder.toString();
     }

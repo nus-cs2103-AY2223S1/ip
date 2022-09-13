@@ -51,7 +51,7 @@ public class UpdateEventTaskCommandHandler implements UpdateCommand {
         String eventTimeString = "";
 
         if (argumentList.length == 1) {
-            eventTaskName = argumentList[0];
+            eventTaskName = argumentList[0].strip();
         } else if (argumentList.length == 2) {
             eventTaskName = argumentList[0].strip();
             eventTimeString = argumentList[1].strip();

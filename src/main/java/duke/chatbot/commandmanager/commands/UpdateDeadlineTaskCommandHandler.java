@@ -51,7 +51,7 @@ public class UpdateDeadlineTaskCommandHandler implements UpdateCommand {
         String deadlineString = "";
 
         if (argumentList.length == 1) {
-            deadlineTaskName = argumentList[0];
+            deadlineTaskName = argumentList[0].strip();
         } else if (argumentList.length == 2) {
             deadlineTaskName = argumentList[0].strip();
             deadlineString = argumentList[1].strip();

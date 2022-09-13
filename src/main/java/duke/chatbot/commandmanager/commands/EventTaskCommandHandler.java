@@ -4,10 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
-import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
-import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
-import duke.chatbot.commandmanager.commands.exceptions.InvalidDeadlineException;
+import duke.chatbot.commandmanager.commands.exceptions.*;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.EventTask;
 
@@ -57,7 +54,7 @@ public class EventTaskCommandHandler implements Command {
         try {
             eventTime = LocalDateTime.parse(eventTimeString, DateTimeFormatter.ofPattern(taskManager.getDateFormat()));
         } catch (DateTimeParseException exception) {
-            throw new InvalidDeadlineException(taskManager.getDateFormat());
+            throw new InvalidEventException(taskManager.getDateFormat());
         }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("> Added: ");
