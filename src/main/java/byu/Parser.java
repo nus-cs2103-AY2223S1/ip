@@ -23,7 +23,7 @@ import task.Event;
 import task.ToDo;
 
 /**
- * Represents a parser, that interprets a given string and translates them into commands.
+ *  A parser that interprets a given string and translates them into commands.
  */
 public class Parser {
 
@@ -38,10 +38,10 @@ public class Parser {
         String description = getDescription(instruction, fullCommand);
         switch (instruction) {
         case MARK:
-            command = new MarkCommand(getDescriptionAsIntegerValue(description));
+            command = new MarkCommand(getDescriptionAsIntegerValue(Instruction.MARK, description));
             break;
         case UNMARK:
-            command = new UnmarkCommand(getDescriptionAsIntegerValue(description));
+            command = new UnmarkCommand(getDescriptionAsIntegerValue(Instruction.UNMARK, description));
             break;
         case DEADLINE:
             command = prepareDeadline(description);
@@ -53,7 +53,7 @@ public class Parser {
             command = prepareToDo(description);
             break;
         case DELETE:
-            command = new DeleteCommand(getDescriptionAsIntegerValue(description));
+            command = new DeleteCommand(getDescriptionAsIntegerValue(Instruction.DELETE, description));
             break;
         case BYE:
             command = new ByeCommand();
@@ -105,7 +105,7 @@ public class Parser {
             String[] words = fullCommand.split(" ");
             boolean hasDescription = words.length > 1;
             if (!hasDescription) {
-                throw new EmptyDescriptionException(i.name());
+                throw new EmptyDescriptionException(i);
             }
             int indexOfDescription = words[0].length() + 1;
             String description = fullCommand.substring(indexOfDescription);
@@ -122,12 +122,12 @@ public class Parser {
      * @return an integer representing the index of a task.
      * @throws InvalidDescriptionException if the description cannot be converted to an integer.
      */
-    private static int getDescriptionAsIntegerValue(String d) throws InvalidDescriptionException {
+    private static int getDescriptionAsIntegerValue(Instruction i, String d) throws InvalidDescriptionException {
         try {
             int index = Integer.parseInt(d);
             return index;
         } catch (NumberFormatException e) {
-            throw new InvalidDescriptionException("index");
+            throw new InvalidDescriptionException(i);
         }
     }
 
@@ -141,7 +141,7 @@ public class Parser {
     private static AddCommand prepareEvent(String d) throws InvalidDescriptionException {
         String[] substrings = d.split(" /at ");
         if (substrings.length == 1) {
-            throw new InvalidDescriptionException("event");
+            throw new InvalidDescriptionException(Instruction.EVENT);
         } else {
             Event e = new Event(substrings[0], substrings[1]);
             return new AddCommand(e);
@@ -158,7 +158,7 @@ public class Parser {
     private static AddCommand prepareDeadline(String d) throws InvalidDescriptionException {
         String[] substrings = d.split(" /by ");
         if (substrings.length == 1) {
-            throw new InvalidDescriptionException("deadline");
+            throw new InvalidDescriptionException(Instruction.DEADLINE);
         }
         LocalDateTime dateTime;
         try {
@@ -166,7 +166,7 @@ public class Parser {
             DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
             dateTime = LocalDateTime.parse(substrings[1], inputFormatter);
         } catch (DateTimeParseException e) {
-            throw new InvalidDescriptionException("deadline");
+            throw new InvalidDescriptionException(Instruction.DEADLINE);
         }
         Deadline deadline = new Deadline(substrings[0], dateTime);
         return new AddCommand(deadline);

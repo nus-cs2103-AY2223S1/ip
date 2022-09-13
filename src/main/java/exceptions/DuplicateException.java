@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * An exception that indicates a task already exists.
+ */
 public class DuplicateException extends DukeException {
 
     @Override

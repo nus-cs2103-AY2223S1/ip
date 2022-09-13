@@ -15,7 +15,7 @@ public class Deadline extends Task {
     private static final String WRITE_FORMAT = "D | %d | %s | %s\n";
 
     private final LocalDateTime dateTime;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy h:mma");
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d MMM yyyy h:mma");
 
     /**
      * Creates a task with a deadline.
@@ -33,7 +33,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format(Deadline.PRINT_FORMAT, super.toString(), this.dateTime.format(formatter));
+        return String.format(Deadline.PRINT_FORMAT, super.toString(), this.dateTime.format(dateTimeFormatter));
     }
 
     @Override
