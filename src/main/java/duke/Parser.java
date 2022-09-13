@@ -91,7 +91,7 @@ public class Parser {
      */
     private static LocalDate getDate(String[] input) throws DukeException {
         try {
-            if (input.length == 2 && input[1].matches("^[0-9]*$")) {
+            if (input.length == 2 && input[1].matches("^[0-9-]*$")) {
                 return LocalDate.parse(input[1]);
             }
             throw new DukeException("OOPS!!! I didn't understand that");

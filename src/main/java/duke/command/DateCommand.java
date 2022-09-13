@@ -53,11 +53,11 @@ public class DateCommand extends Command {
         }
         returnString = "Things on this day :" ;
         for(String s : onThisDate) {
-            returnString += (s + "\n");
+            returnString += ("\n" + s);
         }
-        System.out.println("Things to do by this day :" );
+        returnString += ("\n" + "Things to do by this day :" );
         for(String s : byThisDate) {
-            returnString += (s + "\n");
+            returnString += ("\n" + s);
         }
         return returnString;
     }

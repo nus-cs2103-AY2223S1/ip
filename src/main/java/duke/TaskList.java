@@ -30,9 +30,11 @@ public class TaskList {
      */
     public String printTaskList(){
         String returnString = "";
-        for(int i = 0; i<taskList.size(); i++){
-            Integer index = i+1;
-            returnString += "\n" + (index + ". " + taskList.get(i));
+        if(!taskList.isEmpty()){
+            for(int i = 0; i<taskList.size(); i++){
+                Integer index = i+1;
+                returnString += "\n" + (index + ". " + taskList.get(i));
+            }
         }
         return returnString;
     }
@@ -81,10 +83,12 @@ public class TaskList {
      */
     public void addTask(Task task) throws DukeException {
         assert task != null;
-        for(int i = 0; i<taskList.size(); i++){
-            if(Objects.equals(task.toString(), taskList.get(i).toString())) {
-                throw new DukeException("OOPS!!! You've added that task.");
-            };
+        if(!taskList.isEmpty()){
+            for(int i = 0; i<taskList.size(); i++){
+                if(Objects.equals(task.toString(), taskList.get(i).toString())) {
+                    throw new DukeException("OOPS!!! You've added that task.");
+                };
+            }
         }
         taskList.add(task);
     }
