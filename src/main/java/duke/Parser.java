@@ -1,5 +1,12 @@
 package duke;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+
+import org.apache.commons.text.WordUtils;
+
 import duke.command.AddTaskCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
@@ -14,19 +21,12 @@ import duke.task.EventTask;
 import duke.task.Task;
 import duke.task.TodoTask;
 
-import org.apache.commons.text.WordUtils;
-
-import java.util.Arrays;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 public class Parser {
-
-    private static final String LINE = "──────────────────────────────────────────\n";
 
     public static final DateTimeFormatter DATETIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("d-M-y HHmm");
     public static final DateTimeFormatter DATETIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a");
+
+    private static final String LINE = "──────────────────────────────────────────\n";
 
     /**
      * Pretty-prints an output string

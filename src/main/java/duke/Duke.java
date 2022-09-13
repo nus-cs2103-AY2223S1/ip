@@ -1,9 +1,10 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.task.TaskList;
-import java.util.Scanner;
 
 public class Duke {
 

@@ -1,14 +1,14 @@
 package duke.task;
 
-import duke.Parser;
-
 import java.time.LocalDateTime;
+
+import duke.Parser;
 
 public class DeadlineTask extends Task {
     private final LocalDateTime deadline;
 
     public DeadlineTask(String description, LocalDateTime deadline, boolean isDone) {
-        super( 'D', description, isDone);
+        super('D', description, isDone);
         this.deadline = deadline;
     }
 
