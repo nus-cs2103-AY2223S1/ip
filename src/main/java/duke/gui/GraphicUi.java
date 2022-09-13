@@ -8,6 +8,11 @@ import java.io.Reader;
 
 import duke.UiInterface;
 
+//@@author clarence-chew-reused
+// Reused from this tutorial
+// https://se-education.org/guides/tutorials/javaFx.html
+// with minor modifications at most
+
 /**
  * Used for GUI.
  */
@@ -80,3 +85,5 @@ public class GraphicUi implements UiInterface {
                 "(close the window yourself)");
     }
 }
+
+//@@author

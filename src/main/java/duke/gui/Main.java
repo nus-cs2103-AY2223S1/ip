@@ -9,6 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+//@@author clarence-chew-reused
+// Reused from this tutorial
+// https://se-education.org/guides/tutorials/javaFx.html
+// with minor modifications at most
+
 /**
  * A GUI for Duke using FXML.
  */
@@ -41,3 +46,5 @@ public class Main extends Application {
         }
     }
 }
+
+//@@author
