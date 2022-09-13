@@ -51,49 +51,54 @@ public class Storage {
     /**
      * Loads the file.
      * @return the tasklist.
-     * @throws DukeException
+     * @throws DukeException when file is invalid.
      */
     public TaskList loadFile() throws DukeException {
         BufferedReader reader = null;
         TaskList items = new TaskList(new ArrayList<>());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss");
 
         try {
             reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
             while (line != null) {
-                String[] parse = line.split(" ~ ");
-                Task tsk = null;
-                if (parse[0].equals("T")) {
-                    tsk = new Todo(parse[2]);
-                } else if (parse[0].equals("E")) {
-                    tsk = new Event(parse[2], parse[3]);
-                } else if (parse[0].equals("D")) {
-                    tsk = new Deadline(parse[2], parse[3], formatter);
-                } else {
-                    throw new DukeException("Invalid File");
-                }
-                if (parse[1].equals("X")) {
-                    tsk.markAsDone();
-                }
-                items.addTask(tsk);
+                items = addToTaskList(items, line);
                 line = reader.readLine();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                } finally {
-                    return items;
-                }
-            } else {
-                return items;
+        }
+        if (reader != null) {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
         }
+        return items;
+    }
+
+    public TaskList addToTaskList(TaskList items, String line) throws DukeException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss");
+        String[] parse = line.split(" ~ ");
+        Task tsk = null;
+        switch (parse[0]) {
+            case "T":
+                tsk = new Todo(parse[2]);
+                break;
+            case "E":
+                tsk = new Event(parse[2], parse[3]);
+                break;
+            case "D":
+                tsk = new Deadline(parse[2], parse[3], formatter);
+                break;
+            default:
+                throw new DukeException("Invalid File");
+        }
+        if (parse[1].equals("X")) {
+            tsk.markAsDone();
+        }
+        items.addTask(tsk);
+        return items;
     }
 }
 
