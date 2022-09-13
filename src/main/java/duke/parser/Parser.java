@@ -40,12 +40,7 @@ public class Parser {
         case "find":
             return new FindCommand();
         case "todo":
-            if (commandInput.length < 2) {
-                System.out.println("     ☹ OOPS!!! The description of a todo cannot be empty.");
-                return new HelpCommand();
-            } else {
-                return new TodoCommand();
-            }
+            return new TodoCommand();
         case "deadline":
             return new DeadlineCommand();
         case "event":
