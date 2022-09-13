@@ -2,7 +2,8 @@
 
 ## Overview
 
-Tutter is **not** your average chat bot! Modelled after our favourite loveable rat, Tutter can help you organise your tasks in a fun and interactive way!
+Tutter is **not** your average chat bot! Modelled after our favourite loveable rat, Tutter can 
+help you organise your tasks in a fun and interactive way!
 
 ## Features 
 
