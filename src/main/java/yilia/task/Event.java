@@ -30,4 +30,17 @@ public class Event extends Task {
     public String parse() {
         return "E / " + (status() ? "1" : "0") + " / " + super.parse() + " / " + date;
     }
+    /**
+     * Checks if two events are the same.
+     *
+     * @param obj The other object to compare with.
+     * @return A boolean value indicating if two tasks are the same.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Event)) {
+            return false;
+        }
+        return super.equals(obj) && this.date.equals(((Event) obj).date);
+    }
 }

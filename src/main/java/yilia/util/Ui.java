@@ -52,6 +52,7 @@ public class Ui {
      * @return The error message.
      */
     public String showError(String message) {
+        message = "(｀･д･′) " + message;
         System.out.println(message);
         return message;
     }
@@ -69,7 +70,7 @@ public class Ui {
      * @return The status after adding.
      */
     public String showAddStatus(TaskList tasks) {
-        String message = "Got it. I've added this task:\n  " + tasks.get(tasks.size())
+        String message = "ヾ（′▽｀*）ゝGot it! \nI've added this task:\n  " + tasks.get(tasks.size())
                 + "\nNow you have " + tasks.size() + (tasks.size() < 2 ? " task" : " tasks") + " in the list.";
         System.out.println(message);
         return message;
@@ -81,7 +82,7 @@ public class Ui {
      * @return The status after marking.
      */
     public String showMarkStatus(Task task) {
-        String message = "Nice! I've marked this task as done:\n  " + task;
+        String message = "Nice! (o≖◡≖)\nI've marked this task as done:\n  " + task;
         System.out.println(message);
         return message;
     }
@@ -92,7 +93,7 @@ public class Ui {
      * @return The status after unmarking.
      */
     public String showUnmarkStatus(Task task) {
-        String message = "Nice! I've marked this task as done:\n  " + task;
+        String message = "Nice! (o≖◡≖)\nI've marked this task as done:\n  " + task;
         System.out.println(message);
         return message;
     }
@@ -104,7 +105,7 @@ public class Ui {
      * @return The status after deleting.
      */
     public String showDeleteStatus(Task task, TaskList tasks) {
-        String message = "Noted. I've removed this task:\n  " + task + "\nNow you have "
+        String message = "Noted. |･ω･｀) I've removed this task:\n  " + task + "\nNow you have "
                 + tasks.size() + " tasks in the list.";
         System.out.println(message);
         return message;
@@ -117,9 +118,10 @@ public class Ui {
      */
     public String showTask(TaskList tasks) {
         StringBuilder message = new StringBuilder();
+        message.append("ヾ(◍°∇°◍)ﾉﾞHere are your tasks:");
         for (int i = 1; i <= tasks.size(); i++) {
-            message.append(tasks.get(i));
             message.append("\n");
+            message.append(tasks.get(i));
         }
         System.out.println(message.toString());
         return message.toString();
@@ -131,16 +133,27 @@ public class Ui {
      * @return An error message.
      */
     public String showIndexOutOfBounds(int index) {
-        String message = "Index " + index + " out of bounds\nPlease input another index";
+        String message = "(＃｀д´)ﾉ Index " + index + " out of bound.\nPlease input another index";
+        System.out.println(message);
+        return message;
+    }
+    /**
+     * Shows duplicate task.
+     *
+     * @param task The task that already exists in the task list.
+     * @return A message to inform users of the duplicate task.
+     */
+    public String showDuplicate(Task task) {
+        String message = "The task " + task + " already exists\n in the task list.( ´･ω･)ﾉ(._.`)";
         System.out.println(message);
         return message;
     }
     /**
      * Farewells to users.
-     * @return A good bye message.
+     * @return A goodbye message.
      */
     public String showBye() {
-        String message = "Bye. Hope to see you again soon!";
+        String message = "Bye. Hope to see you again soon! (｡･ω･｡)ﾉ♡";
         System.out.println(message);
         return message;
     }

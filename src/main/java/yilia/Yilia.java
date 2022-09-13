@@ -3,11 +3,6 @@ package yilia;
 import java.io.IOException;
 
 import yilia.command.Command;
-import yilia.exception.DescriptionEmptyException;
-import yilia.exception.KeywordMissingException;
-import yilia.exception.NoIndexException;
-import yilia.exception.TimeFormatException;
-import yilia.exception.YiliaException;
 import yilia.task.TaskList;
 import yilia.util.Parser;
 import yilia.util.Storage;
@@ -38,15 +33,7 @@ public class Yilia {
         try {
             Command c = Parser.parse(input);
             return c.execute(tasks, ui, storage);
-        } catch (DescriptionEmptyException e) {
-            return ui.showError(e.getMessage());
-        } catch (KeywordMissingException e) {
-            return ui.showError(e.getMessage());
-        } catch (NoIndexException e) {
-            return ui.showError(e.getMessage());
-        } catch (TimeFormatException e) {
-            return ui.showError(e.getMessage());
-        } catch (YiliaException e) {
+        } catch (Exception e) {
             return ui.showError(e.getMessage());
         }
     }
@@ -63,15 +50,7 @@ public class Yilia {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
-            } catch (DescriptionEmptyException e) {
-                ui.showError(e.getMessage());
-            } catch (KeywordMissingException e) {
-                ui.showError(e.getMessage());
-            } catch (NoIndexException e) {
-                ui.showError(e.getMessage());
-            } catch (TimeFormatException e) {
-                ui.showError(e.getMessage());
-            } catch (YiliaException e) {
+            } catch (Exception e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();

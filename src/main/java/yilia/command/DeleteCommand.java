@@ -39,6 +39,7 @@ public class DeleteCommand extends Command {
                 message.append(ui.showDeleteStatus(task, tasks));
             } catch (IndexOutOfBoundsException e) {
                 message.append(ui.showIndexOutOfBounds(index));
+                message.append("◎_◎;");
                 message.append("\n");
             }
         }

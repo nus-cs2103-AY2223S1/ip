@@ -2,3 +2,4 @@ D / 1 / read a book / 2019-12-01
 E / 0 / return a book / 2020-01-20
 T / 1 / go to sleep
 T / 1 / swim
+T / 0 / haha

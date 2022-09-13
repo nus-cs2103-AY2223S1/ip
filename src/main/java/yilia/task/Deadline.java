@@ -30,4 +30,17 @@ public class Deadline extends Task {
     public String parse() {
         return "D / " + (status() ? "1" : "0") + " / " + super.parse() + " / " + date;
     }
+    /**
+     * Checks if two deadlines are the same.
+     *
+     * @param obj The other object to compare with.
+     * @return A boolean value indicating if two tasks are the same.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Deadline)) {
+            return false;
+        }
+        return super.equals(obj) && this.date.equals(((Deadline) obj).date);
+    }
 }

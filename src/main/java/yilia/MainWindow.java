@@ -25,7 +25,9 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpeg"));
     private Image yiliaImage = new Image(this.getClass().getResourceAsStream("/images/yilia.jpg"));
-
+    /**
+     * Initializes the window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -33,6 +35,9 @@ public class MainWindow extends AnchorPane {
 
     public void setYilia(Yilia y) {
         yilia = y;
+        dialogContainer.getChildren().addAll(
+                DialogBox.getYiliaDialog("Hello! I'm Yilia. ( ° ∀ ° )ﾉﾞ \nWhat can I do for you?", yiliaImage)
+        );
     }
 
     /**

@@ -64,7 +64,7 @@ public abstract class Task {
         if (!(obj instanceof Task)) {
             return false;
         }
-        return this.content == ((Task) obj).content;
+        return this.content.equals(((Task) obj).content);
     }
     /**
      * Returns how the task should appear on a file.
