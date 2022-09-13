@@ -21,7 +21,6 @@ import command.HelpCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.UnmarkCommand;
-import duke.Duke;
 import exceptions.DukeException;
 import task.Deadline;
 import task.Event;
@@ -298,16 +297,5 @@ public class Parser {
         } catch (DateTimeParseException dtpe) {
             throw new DukeException("Date is not valid, require format YYYY-MM-DD");
         }
-    }
-
-
-    /**
-     * Extracts keyword to user is looking up from user input.
-     *
-     * @param userInput User input to extract keyword from.
-     * @return Keyword required to perform Find operation.
-     */
-    public static String stringToFind(String userInput) {
-        return userInput.substring(userInput.indexOf("find") + 5);
     }
 }
