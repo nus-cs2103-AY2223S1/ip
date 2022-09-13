@@ -1,5 +1,6 @@
 package duke;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 
 /**
  * The main class, mainly for run the launcher.
@@ -100,7 +102,9 @@ public class Main extends Application {
         );
         userInput.clear();
         if (userText.getText().equals("bye")) {
-            System.exit(0);
+            PauseTransition delay = new PauseTransition(Duration.seconds(4));
+            delay.setOnFinished(event -> System.exit(0));
+            delay.play();
         }
     }
 
