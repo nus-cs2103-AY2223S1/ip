@@ -25,7 +25,7 @@ public class Ui extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-
+            stage.setTitle("Duke");
             dukey = new Duke("data/duke.txt", fxmlLoader);
             fxmlLoader.<MainWindow>getController().setDuke(dukey);
             stage.show();
