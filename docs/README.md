@@ -1,15 +1,9 @@
-# `DukePro` User Guide
+# DukePro Task Manager
 ![Photo](Ui.png)
 
-####`DukePro` is a powerful and reliable chatbot that allows user to keep track of tasks, events and deadlines.
+####DukePro is a powerful and reliable chatbot that allows user to keep track of tasks, events and deadlines.
 
 ## Features 
-
-### Type of tasks
-
-- `todo`: A task that has to be done
-- `event`: An event with a date and time
-- `deadline`: A task with a deadline
 
 ### Feature 1 - Welcome and Display Instructions
 
