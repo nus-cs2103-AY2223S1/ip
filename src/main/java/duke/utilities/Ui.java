@@ -51,7 +51,7 @@ public class Ui {
      * @return Tells user that there is error.
      */
     public String printDukeException(DukeException e) {
-        String output = "OOPS!!!" + e.getMessage() + "\n";
+        String output = "OOPS!!! " + e.getMessage() + "\n";
         System.out.println(output);
         System.out.println(LINE);
         return output;
