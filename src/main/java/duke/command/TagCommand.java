@@ -52,7 +52,7 @@ public class TagCommand extends Command {
         }
         int taskId = Parser.parseTaskId(returnedArray[1]);
         if (taskId < 0 || taskId >= tasks.size()) {
-            throw new DukeException("the task you are attempting to tag does no exist.");
+            throw new DukeException("the task you are attempting to tag does not exist.");
         }
         assert(taskId >= 0 && taskId < tasks.size());
         this.tag = returnedArray[2];
