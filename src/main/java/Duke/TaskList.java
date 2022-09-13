@@ -1,5 +1,5 @@
 package Duke;
-
+import java.util.ArrayList;
 import Duke.tasks.Task;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class TaskList {
 
 
     public boolean isValidTaskNumber(int taskNumber) {
-        return taskNumber <= list.size();
+        return taskNumber <= list.size() && taskNumber >= 1;
     }
 
     public void markAsDone(int taskNumber) {
@@ -40,5 +40,17 @@ public class TaskList {
     public Task addTask(Task task) {
         list.add(task);
         return task;
+    }
+
+    public TaskList filter(List<String> Keywords) {
+        TaskList result = new TaskList(new ArrayList<>());
+
+        for (Task task : list) {
+            if (task.isMatching(Keywords)) {
+                result.addTask(task);
+            }
+        }
+
+        return result;
     }
 }

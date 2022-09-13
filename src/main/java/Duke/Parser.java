@@ -33,6 +33,8 @@ public class Parser {
                 return new DeleteCommands(input);
             case "bye":
                 return new ByeCommands();
+            case "find":
+                return new FindCommands(input);
             default:
                 throw new DukeException("Unknown commands has been thrown.");
         }

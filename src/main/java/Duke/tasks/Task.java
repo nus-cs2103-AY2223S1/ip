@@ -36,6 +36,10 @@ public abstract class Task {
         return String.format("todo | %s | %b", description, isDone);
     }
 
+    public boolean isMatching(List<String> keywords) {
+        return keywords.stream().allMatch(description::contains);
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + description;
