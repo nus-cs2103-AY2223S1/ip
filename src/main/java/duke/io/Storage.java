@@ -19,14 +19,16 @@ import duke.types.Todo;
  */
 public class Storage {
 
-    private static final File FILE_PATH = new File("src/main/java/data/duke.txt");
+    private static final File FILE_PATH = new File("data/duke.txt");
+    private static final String FILE_NAME = "duke.txt";
+    private static final String FILE_FOLDER = "data";
 
     /**
      * Loads data from a save file.
      *
      * @return A TaskList with data loaded from a savefile.
      */
-    public static TaskList readData() {
+    public static TaskList readData() throws DukeException {
         try {
             Scanner fileScanner = new Scanner(FILE_PATH);
             TaskList tasks = new TaskList();
@@ -53,8 +55,9 @@ public class Storage {
             }
             fileScanner.close();
             return tasks;
-        } catch (FileNotFoundException e) {
-            System.out.println("data cannot be found");
+        } catch (IOException e) {
+            createNewStorageFile();
+            throw new DukeException("data cannot be found, making new folder");
         } catch (DukeException e) {
             System.out.println("data cannot be read");
         }
@@ -66,7 +69,7 @@ public class Storage {
      *
      * @param tasks TaskList to be saved.
      */
-    public void saveData(TaskList tasks) {
+    public void saveData(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(FILE_PATH);
             for (int i = 0; i < tasks.size(); i++) {
@@ -76,7 +79,18 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("data cannot be saved");
+            throw new DukeException("data cannot be saved");
+        }
+    }
+
+    private static void createNewStorageFile() throws DukeException {
+        try {
+            File folder = new File(FILE_FOLDER);
+            folder.mkdir();
+            File file = new File(folder, FILE_NAME);
+            file.createNewFile();
+        } catch (IOException e) {
+            throw new DukeException("folder cannot be created");
         }
     }
 }
