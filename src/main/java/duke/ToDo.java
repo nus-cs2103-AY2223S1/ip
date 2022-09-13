@@ -21,6 +21,16 @@ public class ToDo extends Task {
     }
 
     @Override
+    public int getPeriod() {
+        return 0;
+    }
+
+    @Override
+    public void updateDate() {
+        return;
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

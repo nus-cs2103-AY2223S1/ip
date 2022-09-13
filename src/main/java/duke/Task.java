@@ -21,6 +21,8 @@ public abstract class Task {
 
     public abstract String getType();
     public abstract LocalDate getDate();
+    public abstract int getPeriod();
+    public abstract void updateDate();
 
     public String getDescription() {
         return description;

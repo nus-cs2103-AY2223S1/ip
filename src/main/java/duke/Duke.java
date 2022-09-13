@@ -93,21 +93,24 @@ public class Duke {
      * @return The response string.
      */
     public String markTask(int index, boolean b) {
+        String ret;
         Task t = taskList.getTasks().get(index);
         taskList.markTask(t, b);
+        if (b) {
+            ret = "Nice! I've marked this task as done: \n"
+                    + "  " + t;
+        } else {
+            ret = "OK, I've marked this task as not done: \n"
+                    + "  " + t;
+        }
+        taskList.updateDate(t);
+
         try {
             storage.rewriteFile(taskList.getTasks());
         } catch (IOException e) {
             return "Unable to write to file.";
         }
-
-        if (b) {
-            return "Nice! I've marked this task as done: \n"
-                    + "  " + t;
-        } else {
-            return "OK, I've marked this task as not done: \n"
-                    + "  " + t;
-        }
+        return ret;
     }
 
     protected String getResponse(String input) {
