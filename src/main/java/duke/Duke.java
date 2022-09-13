@@ -201,7 +201,7 @@ public class Duke extends Application {
 
     /**
      * Returns the response to the user after parsing through his command.
-     * 
+     *
      * @param input
      * @return a String of representing the response a user gets from his input.
      * @throws DukeException
