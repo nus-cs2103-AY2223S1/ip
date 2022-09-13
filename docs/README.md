@@ -1,9 +1,3 @@
----
-layout: default
-title: John Chatbot User Guide
-description: A user guide for the John chatbot.
----
-
 # User Guide
 
 ## Features
