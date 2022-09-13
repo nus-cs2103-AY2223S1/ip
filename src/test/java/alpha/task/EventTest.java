@@ -27,8 +27,6 @@ public class EventTest {
      */
     @Test
     public void toString_noInput_string() {
-        assertEquals(String.format(uI.getAnsiCode("ANSI_BLUE") + "[ %s ] [ %s ] %s", "E", " ", "birthday"
-                + uI.getAnsiCode("")) + String.format(uI.getAnsiCode("ANSI_RED") + " (on: %s)", "Sep 04 2022"
-                + uI.getAnsiCode("")), event.toString());
+        assertEquals(String.format("[ %s ] [ %s ] %s (on: %s)", "E", " ", "birthday", "Sep 04 2022"), event.toString());
     }
 }

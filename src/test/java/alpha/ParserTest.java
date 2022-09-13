@@ -49,14 +49,14 @@ public class ParserTest {
         try {
             parser.interpretMessage("event xyz /on 22");
         } catch (AlphaException e) {
-            assertEquals(new AlphaException("Invalid input: Input date must be an actual date "
-                    + "in YYYY-MM-DD format!"), e);
+            assertEquals(new AlphaException("Invalid input: Input date must be an actual date in YYYY-MM-DD format!"),
+                    e);
         }
         try {
             parser.interpretMessage("deadline xyz /on 22");
         } catch (AlphaException e) {
             assertEquals(new AlphaException("Invalid input: Incorrect format! "
-                    + "Enter help to learn about the command formats."), e);
+                    + "(enter help to know more)"), e);
         }
     }
 }
