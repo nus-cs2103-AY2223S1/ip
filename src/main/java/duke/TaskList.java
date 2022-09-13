@@ -121,7 +121,7 @@ public class TaskList {
 
         for (Task t : result) {
             count++;
-            output += "\n    " + count + ". " + t.toString();
+            output += "\n" + count + ". " + t.toString();
         }
 
         return output;
