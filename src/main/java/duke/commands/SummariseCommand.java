@@ -14,7 +14,7 @@ import duke.ui.Ui;
  * Executing this command gives users a summary of their
  * activities so far
  */
-public class SummaryCommand extends Command {
+public class SummariseCommand extends Command {
 
     @Override
     public boolean isExit() {
