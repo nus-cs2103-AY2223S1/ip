@@ -12,6 +12,7 @@ public abstract class Command {
 
     /**
      * Executes the command.
+     * Generates and sets Byu's response if no exceptions thrown.
      *
      * @param tasks the TaskList containing all the tasks.
      * @param ui the Ui that interacts with users.
@@ -27,5 +28,13 @@ public abstract class Command {
      * @return true if command is an instance of ExitCommand, false otherwise.
      */
     public abstract boolean isExit();
+
+    /**
+     * Generates the response of Byu to the command.
+     *
+     * @param tasks the TaskList containing all the tasks.
+     * @return the response of Byu to the command.
+     */
+    public abstract String generateResponse(TaskList tasks);
 
 }

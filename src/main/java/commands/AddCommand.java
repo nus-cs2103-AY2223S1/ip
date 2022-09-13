@@ -24,10 +24,25 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui) throws DuplicateException {
         tasks.addTask(task);
+        String response = generateResponse(tasks);
+        ui.setOutput(response);
     }
 
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public String generateResponse(TaskList tasks) {
+        String responseForOneTask = "Added: %s\nNow you have %d task in the list.\n";
+        String responseForManyTasks = "Added: %s\nNow you have %d tasks in the list.\n";
+
+        int numOfTasks = tasks.getNumOfTasks();
+        if (numOfTasks == 1) {
+            return String.format(responseForOneTask, this.task.toString(), numOfTasks);
+        } else {
+            return String.format(responseForManyTasks, this.task.toString(), numOfTasks);
+        }
     }
 }

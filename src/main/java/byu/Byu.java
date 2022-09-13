@@ -8,7 +8,7 @@ import exceptions.DuplicateException;
 import exceptions.IncorrectFileInputException;
 
 /**
- * Represents a chatbot that helps to organize tasks.
+ * Byu is a chatbot that helps to organize tasks.
  */
 public class Byu {
 
@@ -61,8 +61,9 @@ public class Byu {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates a response to user input.
+     *
+     * @param input the user input Byu generates a response to.
      */
     public String getResponse(String input) {
         try {

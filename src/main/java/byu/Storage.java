@@ -19,15 +19,15 @@ import task.ToDo;
 
 
 /**
- * Represents a storage that deals with loading tasks from the file
- * and saving tasks in a file.
+ * A storage that deals with loading tasks from the file
+ * and saving tasks to a file.
  */
 public class Storage {
 
     private static final String TEXT_FILE = "./Duke.txt";
     private File file;
-    private Scanner sc;
-    private TaskList tasks;
+    private Scanner scanner;
+    private final TaskList tasks;
     private Ui ui;
 
     /**
@@ -38,15 +38,15 @@ public class Storage {
      */
     public Storage(Ui ui) throws IOException {
         try {
-            this.file = new File(TEXT_FILE);
-            this.sc = new Scanner(file);
             this.ui = ui;
-            this.tasks = new TaskList(this.ui);
+            this.file = new File(TEXT_FILE);
+            this.scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
             Path textFilePath = Paths.get(TEXT_FILE);
             Files.createFile(textFilePath);
             this.file = new File(TEXT_FILE);
-            this.sc = new Scanner(file);
+            this.scanner = new Scanner(file);
+        } finally {
             this.tasks = new TaskList(this.ui);
         }
     }
@@ -54,19 +54,21 @@ public class Storage {
     /**
      * Loads the data of tasks previously added from the file.
      *
-     * @return TaskList that contains the previously added tasks.
+     * @return a TaskList that contains the tasks in the file.
+     * @throws IncorrectFileInputException if tasks in the file cannot be loaded to the TaskList.
+     * @throws DuplicateException if two same tasks are found in the file.
      */
     public TaskList load() throws IncorrectFileInputException, DuplicateException {
-        while (sc.hasNext()) {
-            String nextLine = sc.nextLine();
-            Task task = getTask(nextLine);
+        while (scanner.hasNext()) {
+            String nextLine = scanner.nextLine();
+            Task task = getTaskFromFile(nextLine);
             tasks.addTask(task);
         }
-        sc.close();
+        scanner.close();
         return this.tasks;
     }
 
-    private Task getTask(String nextLine) throws IncorrectFileInputException {
+    private Task getTaskFromFile(String nextLine) throws IncorrectFileInputException {
         String[] details = nextLine.split(" \\| ");
         String symbol = details[0];
         String isDoneValue = details[1];
@@ -96,16 +98,16 @@ public class Storage {
     }
 
     /**
-     * Updates the file.
+     * Updates the file with the current state of the Tasklist.
      */
     public void save() {
         try {
-            FileWriter fw = new FileWriter("./Duke.txt");
+            FileWriter fileWriter = new FileWriter(this.file);
             for (int i = 1; i <= tasks.getNumOfTasks(); i++) {
-                Task t = tasks.getTask(i);
-                t.write(fw);
+                Task task = tasks.getTask(i);
+                task.write(fileWriter);
             }
-            fw.close();
+            fileWriter.close();
         } catch (IOException e) {
             System.out.print(e.getMessage());
         }

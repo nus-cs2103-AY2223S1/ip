@@ -52,9 +52,9 @@ public class DialogBox extends HBox {
     /**
      * Creates the dialog box containing the user input.
      * @param text the user input.
-     * @param img the image representing user.
+     * @param img the image representing the user.
      *
-     * @return a dialog box containing the user input.
+     * @return a dialog box containing the user icon and input.
      */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
@@ -65,7 +65,7 @@ public class DialogBox extends HBox {
      * @param text the response from Byu.
      * @param img the image representing Byu.
      *
-     * @return a dialog box containing Byu's response.
+     * @return a dialog box containing Byu's icon and response.
      */
     public static DialogBox getByuDialog(String text, Image img) {
         var db = new DialogBox(text, img);

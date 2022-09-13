@@ -5,7 +5,7 @@ import java.util.Scanner;
 import exceptions.DukeException;
 
 /**
- * Represents a user interface that deals with the interaction with users.
+ * A user interface that deals with the interaction with users.
  */
 public class Ui {
 
@@ -56,4 +56,5 @@ public class Ui {
     public String showOutput() {
         return this.output;
     }
+
 }

@@ -3,6 +3,7 @@ package commands;
 import byu.TaskList;
 import byu.Ui;
 import exceptions.InvalidIndexException;
+import task.Task;
 
 /**
  * A command to mark a task as done.
@@ -10,6 +11,7 @@ import exceptions.InvalidIndexException;
 public class MarkCommand extends Command {
 
     private final int index;
+    private Task task;
 
     /**
      * Creates a MarkCommand with the index of the Task to be marked as done.
@@ -22,7 +24,9 @@ public class MarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
-        tasks.mark(this.index);
+        this.task = tasks.mark(this.index);
+        String response = generateResponse(tasks);
+        ui.setOutput(response);
     }
 
     @Override
@@ -30,4 +34,8 @@ public class MarkCommand extends Command {
         return false;
     }
 
+    @Override
+    public String generateResponse(TaskList tasks) {
+        return String.format("Nice! I've marked this task as done:\n%s\n", this.task);
+    }
 }

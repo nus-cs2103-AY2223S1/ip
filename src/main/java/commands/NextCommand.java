@@ -17,4 +17,8 @@ public class NextCommand extends Command {
         return false;
     }
 
+    @Override
+    public String generateResponse(TaskList tasks) {
+        return "";
+    }
 }

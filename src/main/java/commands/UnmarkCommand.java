@@ -3,6 +3,7 @@ package commands;
 import byu.TaskList;
 import byu.Ui;
 import exceptions.InvalidIndexException;
+import task.Task;
 
 /**
  * A command to mark a task as incomplete.
@@ -10,6 +11,7 @@ import exceptions.InvalidIndexException;
 public class UnmarkCommand extends Command {
 
     private final int index;
+    private Task task;
 
     /**
      * Creates an UnmarkCommand with the index of the Task to be marked as incomplete.
@@ -22,7 +24,9 @@ public class UnmarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
-        tasks.unmark(this.index);
+        this.task = tasks.unmark(this.index);
+        String response = generateResponse(tasks);
+        ui.setOutput(response);
     }
 
     @Override
@@ -30,4 +34,8 @@ public class UnmarkCommand extends Command {
         return false;
     }
 
+    @Override
+    public String generateResponse(TaskList tasks) {
+        return String.format("OK, I've marked this task as not done yet:\n%s\n", this.task);
+    }
 }

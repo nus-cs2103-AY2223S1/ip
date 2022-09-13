@@ -3,7 +3,7 @@ package byu;
 import javafx.application.Application;
 
 /**
- * A launcher class to workaround classpath issues.
+ * A launcher class to workaround classpath issues and to run Byu using a GUI.
  */
 public class Launcher {
     public static void main(String[] args) {
