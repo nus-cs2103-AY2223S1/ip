@@ -10,6 +10,14 @@ import duke.utilities.DukeException;
 public class TodoTest {
     private Todo t;
 
+    {
+        try {
+            t = new Todo("This is a dummy to do task");
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     @Test
     public void todo_emptyDescription_exceptionThrown() {
         DukeException de = assertThrows(DukeException.class, () -> {
@@ -21,11 +29,6 @@ public class TodoTest {
 
     @Test
     public void toString_stringRepresentation_correct() {
-        try {
-            t = new Todo("This is a dummy to do task");
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
-        }
         assertEquals("[T][ ] This is a dummy to do task", t.toString());
     }
 
