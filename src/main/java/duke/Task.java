@@ -13,6 +13,7 @@ public class Task {
      * @param taskName name of task
      */
     public Task(String taskName) {
+        assert taskName != null;
         name = taskName;
         isDone = false;
     }

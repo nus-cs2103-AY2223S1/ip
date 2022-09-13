@@ -78,6 +78,7 @@ public class Duke extends Application {
     }
 
     public String getResponse(String input) {
+        assert input != null;
         try {
             Command c = parser.parseInput(input, ui, storage, taskList);
             String response = c.execute();
