@@ -22,38 +22,38 @@ public class Parser {
 
     private String markMultiple(String[] strArray) {
 
-        String output = "";
+        StringBuilder output = new StringBuilder();
 
         for (int i = 1; i < strArray.length; i++) {
 
             int index = Integer.parseInt(strArray[i]) - 1;
 
             try {
-                output += this.taskList.markTaskDoneAt(index);
+                output.append(this.taskList.markTaskDoneAt(index));
             } catch (IOException e) {
                 return "Unable to save to file";
             }
         }
 
-        return output;
+        return output.toString();
     }
 
     private String unmarkMultiple(String[] strArray) {
 
-        String output = "";
+        StringBuilder output = new StringBuilder();
 
         for (int i = 1; i < strArray.length; i++) {
 
             int index = Integer.parseInt(strArray[i]) - 1;
 
             try {
-                output += this.taskList.markTaskNotDoneAt(index);
+                output.append(this.taskList.markTaskNotDoneAt(index));
             } catch (IOException e) {
                 return "Unable to save to file";
             }
         }
 
-        return output;
+        return output.toString();
     }
 
     private String deleteMultiple(String[] strArray) {
@@ -64,7 +64,7 @@ public class Parser {
                 .map(Integer::parseInt)
                 .toArray(Integer[]::new);
 
-        String output = "";
+        StringBuilder output = new StringBuilder();
         int offset = 0;
 
         for (Integer i : sortedIntArray) {
@@ -72,7 +72,7 @@ public class Parser {
             int index = i - 1 - offset;
 
             try {
-                output += this.taskList.deleteTaskAt(index);
+                output.append(this.taskList.deleteTaskAt(index));
             } catch (IOException e) {
                 return "Unable to save to file";
             }
@@ -80,7 +80,7 @@ public class Parser {
             offset++;
         }
 
-        return output;
+        return output.toString();
     }
 
     private String parseDeadlineOrEvent(String[] strArray) throws DukeException, IOException {
@@ -104,8 +104,7 @@ public class Parser {
             throw new DukeException("Date/Time cannot be empty!");
         }
 
-        LocalDate localDate;
-        //LocalDateTime dateTime = null; //no time functionality for now
+        LocalDate localDate; //no time functionality for now
 
         try {
             localDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("yyyy-MMM-d"));
@@ -118,6 +117,15 @@ public class Parser {
         } else {
             return this.taskList.addEvent(taskname, localDate);
         }
+    }
+
+    private String parseTodo(String[] strArray) throws IOException {
+
+        String taskname = Arrays.stream(strArray)
+                .skip(1)
+                .reduce("", (acc, current) -> acc + " " + current);
+
+        return this.taskList.addToDo(taskname);
     }
 
 
@@ -149,11 +157,7 @@ public class Parser {
         case "find":
             return this.taskList.findAllTasksWith(strArray[1]);
         case "todo":
-            String taskname = Arrays.stream(strArray)
-                    .skip(1)
-                    .reduce("", (acc, current) -> acc + " " + current);
-
-            return this.taskList.addToDo(taskname);
+            return parseTodo(strArray);
         default:
             return "Please enter a valid input";
         }

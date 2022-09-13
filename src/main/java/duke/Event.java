@@ -13,7 +13,6 @@ public class Event extends Task {
     private LocalDate time;
     private static final char TYPE = 'E';
 
-    /** Constructor for an Event object */
     public Event(String taskname, LocalDate time) {
         super(taskname);
         this.time = time;

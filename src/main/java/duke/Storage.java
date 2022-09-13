@@ -39,13 +39,13 @@ public class Storage {
 
         String fullPath = dataDir.getPath() + File.separator + "Save.txt";
         savedFile = new File(fullPath);
-        boolean fileCreated = false;
+        boolean isFileCreated = false;
         ArrayList<Task> arrayList = null;
 
         try {
-            fileCreated = savedFile.createNewFile();
+            isFileCreated = savedFile.createNewFile();
 
-            if (!fileCreated) {
+            if (!isFileCreated) {
                 System.out.println("Save file detected, reading it...");
                 arrayList = readData();
             } else {

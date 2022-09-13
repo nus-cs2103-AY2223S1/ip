@@ -36,8 +36,7 @@ public class Duke extends Application {
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
-    
-    /** Constructor for Duke, needs to be public for Launcher to work */
+
     public Duke() {
         this.ui = new Ui();
         this.parser = new Parser();
@@ -111,13 +110,12 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 1:
+     *
      * Creates a label with the specified text and adds it to the dialog container.
      * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
+     * @return a label with the specified text that has word wrap enabled
      */
     private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
 
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
@@ -125,11 +123,6 @@ public class Duke extends Application {
         return textToAdd;
     }
 
-    /**
-     * Iteration 3:
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
-     */
     private void handleUserInput() {
 
         dialogContainer.getChildren().addAll(
