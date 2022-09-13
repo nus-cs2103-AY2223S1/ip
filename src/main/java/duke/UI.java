@@ -18,5 +18,4 @@ public class UI {
     public static String INDEX_IS_INVALID = "Sorry, I cannot do this because your index is invalid\n";
     public static String TASK_DOES_NOT_EXIST = "Sorry, I cannot do this because the task you are referring to does not exist\n";
     public static String COMMAND_MEMORIZED = "Okay, I have memorized that command!\n";
-
 }
