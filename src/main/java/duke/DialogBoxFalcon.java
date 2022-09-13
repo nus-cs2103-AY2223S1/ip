@@ -26,7 +26,8 @@ public class DialogBoxFalcon extends HBox {
 
     private DialogBoxFalcon(String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBoxFalcon.fxml"));
+            String resourceName = "/view/DialogBoxFalcon.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource(resourceName));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
