@@ -87,6 +87,7 @@ public class Parser {
     public static Command parse(String userInput) throws DukeException {
         String[] inputSections = userInput.split(" ");
         String stringCommand = extractCommand(inputSections[0]);
+        int index;
         switch (stringCommand) {
         case "todo":
             Task t = createTask(inputSections);
@@ -98,20 +99,20 @@ public class Parser {
             Deadline deadline = createDeadline(inputSections);
             return new AddDeadlineCommand(deadline);
         case "delete":
-            int index = getIndex(inputSections);
+            index = getIndex(inputSections);
             return new DeleteTaskCommand(index);
         case "mark":
-            int index = getIndex(inputSections);
+            index = getIndex(inputSections);
             return new MarkCommand(index);
         case "unmark":
-            int index = getIndex(inputSections);
+            index = getIndex(inputSections);
             return new UnmarkCommand(index);
         case "istoday":
-            int index = getIndex(inputSections);
+            index = getIndex(inputSections);
             return new CheckIsTodayCommand(index);
         case "longdesc":
-            int index = getIndex(inputSections);
-            return new GetLongDescriptionCommand();
+            index = getIndex(inputSections);
+            return new GetLongDescriptionCommand(index);
         case "list":
             return new ListCommand();
         case "bye":
@@ -143,6 +144,15 @@ public class Parser {
         return deadline;
     }
 
+    private static int getIndex(String[] userInput) {
+        int index = 0;
+        return index;
+    }
+
+    private static String getKeyword(String[] userInput) {
+        String keyword = "";
+        return keyword;
+    }
 
     /**
      * Matches command to its formal format, and
