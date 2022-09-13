@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="TOP_RIGHT" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" prefWidth="400.0"
+         spacing="10.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #97FFFF; -fx-opacity: 1; -fx-background-radius: 5; -fx-label-padding: 8;"
+               textAlignment="LEFT" wrapText="true" textFill="#000000">
+            <font>
+                <Font name="Poppins" size="14.0" />
+            </font>
+            <HBox.margin>
+                <Insets left="5.0"/>
+                <Insets right="5.0"/>
+            </HBox.margin>
+        </Label>
+
+        <HBox>
+            <ImageView fx:id="displayPicture" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" />
+        </HBox>
+
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+    </padding>
+</fx:root>
