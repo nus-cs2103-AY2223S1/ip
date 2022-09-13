@@ -2,7 +2,7 @@ package hazell;
 
 import hazell.entities.TaskList;
 import hazell.exceptions.HazellException;
-import hazell.ui.Ui;
+import hazell.ui.Cli;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -20,7 +20,7 @@ public class Hazell {
     private Storage storage;
     private TaskList taskList;
     private Dispatcher dispatcher;
-    private Ui ui;
+    private Cli cli;
 
     private static final String APP_LOGO = "  _    _               _ _ \n"
             + " | |  | |             | | |\n"
@@ -35,14 +35,14 @@ public class Hazell {
      * @param filePath Path to store chatbot data for persistence
      */
     public Hazell(String filePath) {
-        ui = new Ui();
+        cli = new Cli();
         System.out.println(APP_LOGO);
         try {
             storage = new Storage(filePath);
             taskList = new TaskList(storage.load());
         } catch (IOException e) {
             taskList = new TaskList();
-            ui.reply("Looks like this is the first time you started me up. "
+            cli.reply("Looks like this is the first time you started me up. "
                     + "I'll be saving your tasks to data/hazell.txt!");
         }
         taskList.setStorage(storage);
@@ -56,12 +56,12 @@ public class Hazell {
      * Starts the chatbot.
      */
     public void run() {
-        ui.reply("Hello, I am Hazell!\nWhat can I do for you?");
+        cli.reply("Hello, I am Hazell!\nWhat can I do for you?");
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String input = scanner.nextLine().strip();
             String response = getResponse(input);
-            ui.reply(response);
+            cli.reply(response);
             if (input.equals("bye")) {
                 System.exit(0);
             }
@@ -82,6 +82,7 @@ public class Hazell {
         } catch (HazellException ex) {
             response = ex.toString();
         }
+        assert !response.equals("") : "Response should not be an empty string";
         return response;
     }
 

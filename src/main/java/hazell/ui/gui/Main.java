@@ -1,8 +1,8 @@
-package hazell;
+package hazell.ui.gui;
 
 import java.io.IOException;
 
-import hazell.ui.MainWindow;
+import hazell.Hazell;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

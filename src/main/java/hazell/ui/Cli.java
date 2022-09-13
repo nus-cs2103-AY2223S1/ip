@@ -7,13 +7,21 @@ import java.util.Scanner;
 /**
  * A class that abstracts the interactions with user.
  */
-public class Ui {
+public class Cli {
     Scanner scanner;
+
+    private static final String APP_LOGO = "  _    _               _ _ \n"
+            + " | |  | |             | | |\n"
+            + " | |__| | __ _ _______| | |\n"
+            + " |  __  |/ _` |_  / _ \\ | |\n"
+            + " | |  | | (_| |/ /  __/ | |\n"
+            + " |_|  |_|\\__,_/___\\___|_|_|\n";
+
 
     /**
      * Create a new Ui instance.
      */
-    public Ui() {
+    public Cli() {
         this.scanner = new Scanner(System.in);
     }
 
@@ -47,5 +55,9 @@ public class Ui {
             System.out.println("\t" + line);
         }
         System.out.println(DIVIDER);
+    }
+
+    public void sendSplash() {
+        System.out.println(APP_LOGO);
     }
 }

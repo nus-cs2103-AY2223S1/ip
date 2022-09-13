@@ -1,4 +1,4 @@
-package hazell.ui;
+package hazell.ui.gui;
 
 import java.io.IOException;
 import java.util.Collections;
