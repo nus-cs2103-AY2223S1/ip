@@ -12,8 +12,8 @@ import ted.ui.Ui;
  * and keeps track of user's tasks.
  */
 public class Ted {
-    private static final String WELCOME_MESSAGE = "Hello! " +
-            "I'm Ted and I'm here to help you keep track of your tasks |._.|\n" + "How can I assist you today?\n";
+    private static final String WELCOME_MESSAGE = "Hello! "
+            + "I'm Ted and I'm here to help you keep track of your tasks |._.|\n" + "How can I assist you today?\n";
     private Storage storage;
     private TaskList tasks;
     private Ui ui;

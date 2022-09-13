@@ -71,17 +71,17 @@ public class Storage {
                 }
 
                 switch (st[0]) {
-                    case "T":
-                        temp.add(new Todo(st[2], isTaskDone));
-                        break;
-                    case "D":
-                        temp.add(new Deadline(st[2], isTaskDone, st[3]));
-                        break;
-                    case "E":
-                        temp.add(new Event(st[2], isTaskDone, st[3]));
-                        break;
-                    default:
-                        break;
+                case "T":
+                    temp.add(new Todo(st[2], isTaskDone));
+                    break;
+                case "D":
+                    temp.add(new Deadline(st[2], isTaskDone, st[3]));
+                    break;
+                case "E":
+                    temp.add(new Event(st[2], isTaskDone, st[3]));
+                    break;
+                default:
+                    break;
                 }
             }
             sc.close();

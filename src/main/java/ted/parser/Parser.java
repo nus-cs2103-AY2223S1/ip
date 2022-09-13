@@ -2,7 +2,15 @@ package ted.parser;
 
 import java.time.format.DateTimeParseException;
 
-import ted.command.*;
+import ted.command.AddCommand;
+import ted.command.ByeCommand;
+import ted.command.Command;
+import ted.command.DeleteCommand;
+import ted.command.FindCommand;
+import ted.command.ListCommand;
+import ted.command.MarkCommand;
+import ted.command.RemindCommand;
+import ted.command.UnmarkCommand;
 import ted.exception.TedException;
 import ted.task.Deadline;
 import ted.task.Event;
@@ -16,8 +24,8 @@ public class Parser {
     private static final String NONCOMMAND_ERROR_MESSAGE = "Oh no, I don't understand T_T\n";
     private static final String MISSING_TASKNUMBER_ERROR_MESSAGE = "Oh no, please indicate task to ";
     private static final String NO_TASK_ERROR_MESSAGE = "Oh no, please include task description T_T\n";
-    private static final String MISSING_DESCRIPTION_ERROR_MESSAGE = "Oh no, " +
-            "please include both description and time T_T\n";
+    private static final String MISSING_DESCRIPTION_ERROR_MESSAGE = "Oh no, "
+            + "please include both description and time T_T\n";
 
     /**
      * Returns a Command object based on the parsed user input command.
