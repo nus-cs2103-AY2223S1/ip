@@ -110,6 +110,11 @@ public class TaskList {
      * @param task Task to be added to list
      */
     public String addTask(Task task) {
+        for (Task t : tasks) {
+            if (t.toString().equals(task.toString())) {
+                return "This task is a duplicate! Please add a unique task that is not in the list.";
+            }
+        }
         tasks.add(task);
         return printOnAdd(task);
     }
