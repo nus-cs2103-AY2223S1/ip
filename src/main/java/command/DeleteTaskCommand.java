@@ -10,16 +10,15 @@ import utility.Parser;
  * Deletes task.
  */
 public class DeleteTaskCommand extends Command {
-    private String[] slicedUserCommands;
+    private int index;
 
-    public DeleteTaskCommand(String[] slicedUserInput) {
-        this.slicedUserCommands = slicedUserInput;
+    public DeleteTaskCommand(int index) {
+        this.index = index;
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        int n = Integer.parseInt(slicedUserCommands[1]);
-        taskList.deleteTask(n);
-        if (storage.isLineDeleted(n)) {
+        if (storage.isLineDeleted(index)) {
+            taskList.deleteTask(index);
             ui.showMessage("Deleted task");
         }
     }
