@@ -10,7 +10,9 @@ import duke.task.Todo;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 import duke.updater.Updater;
+import javafx.animation.PauseTransition;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
