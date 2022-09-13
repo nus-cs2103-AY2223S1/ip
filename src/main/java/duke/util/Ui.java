@@ -13,7 +13,7 @@ public class Ui {
 
     /**
      * A method that reads the input of the user
-     * @return
+     * @return a string input by the user.
      */
     public String readInput() {
         return this.command.nextLine();
