@@ -123,12 +123,13 @@ Example of usage: `delete 1`
 Expected outputs:
 
 1) Nice reply by Deku, followed by the task deleted.
-    ```
-    Deku Responds:
-    Noted.
-    [E][] - How is your day? (at 2-4pm)
-    has been deleted
-    ```
+   ```
+   Deku Responds:
+   Noted.
+   [E][] - How is your day? (at 2-4pm)
+   has been deleted
+   ```
+   
 2) If the index is out of range, Deku will reply with annoyance
    ```
    Deku Responds:
@@ -147,11 +148,11 @@ Example of usage: `mark 1`
 Expected outputs:
 
 1) Nice reply by Deku, followed by the task deleted.
-    ```
-    Deku Responds:
-    Good Job! This task is now completed:
-    [E][X] - How is your day? (at 2-4pm)
-    ```
+   ```
+   Deku Responds:
+   Good Job! This task is now completed:
+   [E][X] - How is your day? (at 2-4pm)
+   ```
    
 2) If the index is out of range, Deku will reply with annoyance
    ```
@@ -171,11 +172,11 @@ Example of usage: `unmark 1`
 Expected outputs:
 
 1) Nice reply by Deku, followed by the task deleted.
-    ```
-    Deku Responds:
-    This task is not yet to be done
-    [E][] - How is your day? (at 2-4pm)
-    ```
+   ```
+   Deku Responds:
+   This task is not yet to be done
+   [E][] - How is your day? (at 2-4pm)
+   ```
    
 2) If the index is out of range, Deku will reply with annoyance
    ```
