@@ -9,6 +9,7 @@ import Command.ListCommand;
 import Command.MarkCommand;
 import Command.TodoCommand;
 import Command.UnmarkCommand;
+import Command.UpdateCommand;
 
 /**
 * Parser deals with making sense of the user command by formatting user inputs
@@ -58,6 +59,8 @@ public class Parser {
                 return new DeleteCommand(userAction);
             case "find":
                 return new FindCommand(userAction);
+            case "update":
+                return new UpdateCommand(userAction);
             case "bye" :
                 return new ExitCommand();
             default:

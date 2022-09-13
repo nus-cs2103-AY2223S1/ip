@@ -59,6 +59,21 @@ public class TaskList {
     }
 
     /**
+     * Updates a task to the ArrayList of Task objects using the index.
+     *
+     * @param index the index of the task in TaskList to update its description.
+     * @param newDescription the new description of the task to be updated.
+     */
+    public String updateTask(int index, String newDescription) throws DukeException {
+        Task task = tasks.get(index - 1);
+        String initialDescription = task.description;
+        task.updateDescription(newDescription);
+        assert task.description != initialDescription : "Error updating description, please try again!";
+        return "OK !! I have updated task " + index + " with the new description : " + newDescription;
+    }
+
+    /**
+     * Builds a string based on the list of tasks contained in the ArrayList of Task objects
      * Deletes the task in the specified index from TaskList.
      *
      * @param index the index of the task in TaskList to be deleted.
