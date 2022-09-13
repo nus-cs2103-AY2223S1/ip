@@ -3,7 +3,7 @@
 Duke is a **Command Line Interface (CLI) based application** for managing your tasks. If you are familiar with CLI, 
 you will find that this is faster than traditional GUI task managers.
 
-[Quick start](##quick-start)
+[Quick start](#quick-start)
 
 Features
 - Viewing help: `help`
@@ -15,7 +15,7 @@ Features
 - Unmark done task: `unmark`
 - Delete task: `delete`
 - Find task by keyword: `find`
-- Close the application: `bye`
+- Close the app: `bye`
 
 Command summary
 
@@ -26,14 +26,22 @@ Command summary
 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `duke.jar` from [here](https://github.com/Bacon-Strips/ip/releases)
-3. Copy the file to the folder you want to use as the __home folder__ for Duke.
+3. Copy the file to the folder you want to use as the _home folder_ for Duke.
 4. Double-click the file to start the app. The GUI below should appear in a few seconds. 
-
-5. Type the command in the text box and press Enter to execute it. e.g. typing `help` and pressing Enter will reveal the command guide. 
+![This should be the startup screen you see](/Startup_screen.png)
+> If you are experiencing issue with opening the app by double-clicking the file, you may alternatively open it by going
+> into command prompt, navigating to the home folder of the app and using `java -jar duke.jar` to open it.
+5. Type the command in the text box and press Enter to execute it. e.g. typing <code>**help**</code> and pressing Enter will reveal the
+command guide. 
    
    Some example commands you can try:
    - `list`: Lists all your current tasks
-   - 
+   - `todo Go to the beach with family`: Adds a todo task to the list of tasks
+   - `delete 2`: Deletes the 2nd task shown in the task list
+   - `bye`: Exits the app
+6. Refer to the [Features](#features) below for detail of each command.
+
+
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
 
