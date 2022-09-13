@@ -9,7 +9,7 @@ Duke is a **portable desktop app for managing tasks**<br>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `Duke.jar` from [here].
+2. Download the latest `Duke.jar` from [here](https://github.com/Tan-Jia-Rong/ip/releases/tag/A-Release).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Duke ChatBot.
 
