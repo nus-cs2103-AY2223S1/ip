@@ -169,3 +169,18 @@ Expected outcome:
 ```
 Delete alias: ls
 ```
+
+### Exit duke:`bye`
+
+Exit duke.
+
+Format: `bye`
+
+Example:
+`bye`
+
+Expected outcome:
+
+```
+Bye. Hope to see you again soon!
+```
