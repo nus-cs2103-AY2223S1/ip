@@ -1,11 +1,16 @@
 package duke.gui;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+
 
 /**
  * DialogContainer is a container to contain dialog boxes generated through user interaction.
@@ -16,9 +21,13 @@ public class DialogContainer extends ScrollPane {
 
     private final VBox dialogBoxContainer;
 
-    private Image userPicture = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
-    private Image chatbotPicture = new Image(this.getClass().getResourceAsStream("/images/Christina.jpg"));
+    private final Image userPicture = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
+    private final Image chatbotPicture = new Image(this.getClass().getResourceAsStream("/images/Christina.jpg"));
 
+    private final Background userBackground = new Background(new BackgroundFill(Color.web("#e7e7e7"),
+            new CornerRadii(20), Insets.EMPTY));
+    private final Background chatbotBackground = new Background(new BackgroundFill(Color.web("#e7e7e7"),
+            new CornerRadii(20), Insets.EMPTY));
     /**
      * Creates a container to contain the dialog boxes generated through user interaction.
      */
@@ -44,7 +53,7 @@ public class DialogContainer extends ScrollPane {
     public void initializeDialog(String initializationText) {
         Label initializationTextLabel = new Label(initializationText);
         this.dialogBoxContainer.getChildren().addAll(
-                DialogBox.getResponseDialog(initializationTextLabel, new ImageView(chatbotPicture)));
+                DialogBox.getResponseDialog(initializationTextLabel, chatbotPicture, chatbotBackground));
     }
 
     /**
@@ -57,8 +66,8 @@ public class DialogContainer extends ScrollPane {
         Label userTextLabel = new Label(userText);
         Label responseTextLabel = new Label(responseText);
         this.dialogBoxContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userTextLabel, new ImageView(userPicture)),
-                DialogBox.getResponseDialog(responseTextLabel, new ImageView(chatbotPicture))
+                DialogBox.getUserDialog(userTextLabel, userPicture, userBackground),
+                DialogBox.getResponseDialog(responseTextLabel, chatbotPicture, chatbotBackground)
         );
     }
 }

@@ -6,18 +6,29 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 
 /**
  * DialogBox is a HBox that contains a single entry of display text and display picture.
  */
 public class DialogBox extends HBox {
+    private static final Pos USER_ALIGNMENT = Pos.BOTTOM_RIGHT;
+    private static final Pos CHATBOT_ALIGNMENT = Pos.BOTTOM_LEFT;
+    private static final double DIALOG_BOX_PADDING = 5.0;
+    private static final double DIALOG_BOX_SPACING = 10.0;
     private static final double DISPLAY_TEXT_PADDING = 10.0;
     private static final double DISPLAY_TEXT_FONT_SIZE = 12.0;
+    private static final double DISPLAY_PICTURE_BUBBLE_RADIUS = 45.0;
     private Label displayText;
-    private ImageView displayPicture;
+    private Circle displayPictureBubble;
+    private VBox displayTextBox;
 
     /**
      * Creates a new dialog box with a display text and display picture.
@@ -25,19 +36,25 @@ public class DialogBox extends HBox {
      * @param displayText Label containing String of text to be displayed
      * @param displayPicture ImageView containing Image of the display picture
      */
-    private DialogBox(Label displayText, ImageView displayPicture) {
+    private DialogBox(Label displayText, Image displayPicture, Background background) {
         this.displayText = displayText;
-        this.displayPicture = displayPicture;
+        this.displayPictureBubble = new Circle();
 
         this.displayText.setPadding(new Insets(DISPLAY_TEXT_PADDING));
         this.displayText.setFont(new Font(DISPLAY_TEXT_FONT_SIZE));
         this.displayText.setWrapText(true);
 
-        this.displayPicture.setFitWidth(100.0);
-        this.displayPicture.setFitHeight(100.0);
+        this.displayPictureBubble.setRadius(DISPLAY_PICTURE_BUBBLE_RADIUS);
+        this.displayPictureBubble.setFill(new ImagePattern(displayPicture));
 
-        this.setAlignment(Pos.TOP_RIGHT);
-        this.getChildren().addAll(displayText, displayPicture);
+        this.displayTextBox = new VBox();
+        this.displayTextBox.setBackground(background);
+        this.displayTextBox.getChildren().add(displayText);
+
+        this.setPadding(new Insets(DIALOG_BOX_PADDING));
+        this.setSpacing(DIALOG_BOX_SPACING);
+        this.setAlignment(USER_ALIGNMENT);
+        this.getChildren().addAll(displayTextBox, displayPictureBubble);
     }
 
     /**
@@ -45,7 +62,7 @@ public class DialogBox extends HBox {
      * display text and display picture. Used for factory methods getResponseDialog.
      */
     private void flip() {
-        this.setAlignment(Pos.TOP_LEFT);
+        this.setAlignment(CHATBOT_ALIGNMENT);
         ObservableList<Node> nodeList = FXCollections.observableArrayList(this.getChildren());
         FXCollections.reverse(nodeList);
         this.getChildren().setAll(nodeList);
@@ -59,8 +76,8 @@ public class DialogBox extends HBox {
      * @param displayPicture ImageView containing Image of the display picture
      * @return the dialog box of the user
      */
-    public static DialogBox getUserDialog(Label displayText, ImageView displayPicture) {
-        return new DialogBox(displayText, displayPicture);
+    public static DialogBox getUserDialog(Label displayText, Image displayPicture, Background background) {
+        return new DialogBox(displayText, displayPicture, background);
     }
 
     /**
@@ -71,8 +88,8 @@ public class DialogBox extends HBox {
      * @param displayPicture ImageView containing Image of the display picture
      * @return the dialog box of the response to the user
      */
-    public static DialogBox getResponseDialog(Label displayText, ImageView displayPicture) {
-        DialogBox dialogBox = new DialogBox(displayText, displayPicture);
+    public static DialogBox getResponseDialog(Label displayText, Image displayPicture, Background background) {
+        DialogBox dialogBox = new DialogBox(displayText, displayPicture, background);
         dialogBox.flip();
         return dialogBox;
     }
