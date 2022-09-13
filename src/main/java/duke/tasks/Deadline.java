@@ -1,35 +1,31 @@
 package duke.tasks;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import duke.parser.Parser;
+import duke.parser.DateParser;
 
 /**
  * Represents a task that needs to be done before a specific date.
  */
 public class Deadline extends Task {
     private static final String TASK_SYMBOL = "D";
-    private static final String DATE_OUTPUT_FORMAT = "d MMM yyyy";
-    private String by;
+    private String date;
 
     /**
-     * Constructor for a Deadline.
+     * Constructor for a Deadline task.
      * @param description The description of the task.
-     * @param by The date that the task needs to be done before.
+     * @param date The date that the task needs to be done before.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String date) {
         super(description);
-        this.by = by;
+        this.date = date;
     }
 
     /**
      * Returns the String representation of the Deadline task.
-     * @return a String indicating the Deadline task's symbol, status, description and date.
+     * @return A String indicating the Deadline task's symbol, status, description and date.
      */
     @Override
     public String toString() {
-        return String.format("[%s]%s (by: %s)", Deadline.TASK_SYMBOL, super.toString(), getFormattedDate());
+        return String.format("[%s]%s (by: %s)", Deadline.TASK_SYMBOL, super.toString(), DateParser.getParsedDate(date));
     }
 
     /**
@@ -43,11 +39,11 @@ public class Deadline extends Task {
 
     /**
      * Returns the date of the Deadline task.
-     * @return the date of the Deadline task.
+     * @return The date of the Deadline task.
      */
     @Override
     public String getDate() {
-        return by;
+        return date;
     }
 
     /**
@@ -57,11 +53,6 @@ public class Deadline extends Task {
      */
     @Override
     public boolean isOnDate(String date) {
-        return by.equals(date);
-    }
-
-    private String getFormattedDate() {
-        LocalDate date = Parser.parseDate(by);
-        return date.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_FORMAT));
+        return this.date.equals(date);
     }
 }

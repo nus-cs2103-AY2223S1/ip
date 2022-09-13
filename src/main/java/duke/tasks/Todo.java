@@ -7,7 +7,7 @@ public class Todo extends Task {
     private static final String TASK_SYMBOL = "T";
 
     /**
-     * Constructor for a Todo.
+     * Constructor for a Todo task.
      * @param description The description of the task.
      */
     public Todo(String description) {
@@ -16,7 +16,7 @@ public class Todo extends Task {
 
     /**
      * Returns the String representation of the Todo task.
-     * @return a String indicating the Todo task's symbol, status and description.
+     * @return A String indicating the Todo task's symbol, status and description.
      */
     @Override
     public String toString() {
@@ -34,7 +34,7 @@ public class Todo extends Task {
 
     /**
      * Returns the date of the Todo task.
-     * @return an empty String.
+     * @return A blank string.
      */
     @Override
     public String getDate() {

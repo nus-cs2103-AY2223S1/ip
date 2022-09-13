@@ -20,6 +20,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+//@@author ruiqi7-reused
+//Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html#javafx-tutorial-part-4-using-fxml
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.

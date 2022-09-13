@@ -1,10 +1,11 @@
 package duke;
 
 import duke.commands.Command;
-import duke.common.exceptions.DukeException;
 import duke.data.TaskList;
-import duke.parser.Parser;
+import duke.exception.DukeException;
+import duke.parser.InputParser;
 import duke.storage.Storage;
+import duke.storage.exceptions.StorageException;
 import duke.ui.Ui;
 import javafx.util.Pair;
 
@@ -26,7 +27,7 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
             loadingError = "";
-        } catch (DukeException e) {
+        } catch (StorageException e) {
             tasks = new TaskList();
             loadingError = e.getMessage();
         }
@@ -34,7 +35,7 @@ public class Duke {
 
     /**
      * Returns the loading error while trying to retrieve the tasks.
-     * @return The loading error or an empty string if the tasks are loaded successfully.
+     * @return The loading error, or an empty string if the tasks are loaded successfully.
      */
     public String showLoadingError() {
         return loadingError;
@@ -51,12 +52,12 @@ public class Duke {
     /**
      * Generates a response to the user input.
      * @param input The user input.
-     * @return A Pair object containing the response as a string and
-     *         a boolean indicating if the response is an error message.
+     * @return A Pair object containing the response as its key and a boolean
+     *         indicating if the response is an error message as its value.
      */
     public Pair<String, Boolean> getResponse(String input) {
         try {
-            Command command = Parser.parse(input);
+            Command command = InputParser.parse(input);
             String response = command.execute(tasks, ui, storage);
             return new Pair<>(response, false);
         } catch (DukeException e) {

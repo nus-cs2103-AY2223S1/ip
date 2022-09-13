@@ -1,8 +1,9 @@
 package duke.commands;
 
-import duke.common.exceptions.DukeException;
 import duke.data.TaskList;
+import duke.data.exceptions.InvalidTaskException;
 import duke.storage.Storage;
+import duke.storage.exceptions.StorageException;
 import duke.tasks.Task;
 import duke.ui.Ui;
 
@@ -28,11 +29,11 @@ public class MarkCommand extends Command {
      * @param ui Shows the Task marked as done.
      * @param storage Saves the modified list of tasks.
      * @return The message indicating that the Task has been marked as done.
-     * @throws DukeException If an invalid task number is provided by the user or if there
-     *         is an error saving the modified list of tasks.
+     * @throws InvalidTaskException If an invalid task number is provided by the user.
+     * @throws StorageException If there is an error saving the modified list of tasks.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskException, StorageException {
         Task markedTask = taskList.changeTaskStatus(taskIndex, true);
         storage.save(taskList);
         return ui.showTaskDone(markedTask);

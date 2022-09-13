@@ -1,8 +1,8 @@
 package duke.commands;
 
-import duke.common.exceptions.StorageException;
 import duke.data.TaskList;
 import duke.storage.Storage;
+import duke.storage.exceptions.StorageException;
 import duke.tasks.Event;
 import duke.ui.Ui;
 
@@ -11,18 +11,19 @@ import duke.ui.Ui;
  */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
+    public static final String DATE_INDICATOR = " /at ";
     private String description;
-    private String at;
+    private String date;
 
     /**
      * Constructor for an EventCommand.
      * @param description The description of the task.
-     * @param at The date of the task.
+     * @param date The date of the task.
      */
-    public EventCommand(String description, String at) {
+    public EventCommand(String description, String date) {
         super();
         this.description = description;
-        this.at = at;
+        this.date = date;
     }
 
     /**
@@ -35,7 +36,7 @@ public class EventCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws StorageException {
-        Event event = new Event(description, at);
+        Event event = new Event(description, date);
         taskList.addTask(event);
         storage.save(taskList);
         return ui.showTaskAdded(event) + ui.showNumberOfTasks(taskList.numTasks());

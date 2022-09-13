@@ -1,4 +1,4 @@
-package duke.common.exceptions;
+package duke.exception;
 
 /**
  * Represents a Duke exception to be thrown.

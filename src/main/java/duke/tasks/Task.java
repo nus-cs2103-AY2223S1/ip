@@ -18,7 +18,7 @@ public abstract class Task {
 
     /**
      * Returns the status of the Task.
-     * @return "X" if the Task is done or an empty String is the Task is not done.
+     * @return "X" if the Task is done or a blank String is the Task is not done.
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
@@ -45,8 +45,13 @@ public abstract class Task {
      * Checks if the description of the Task contains the keyword.
      * @param keyword The keyword to check the Task's description for.
      * @return True if the description of the Task contains the keyword.
+     *         If the keyword is an empty string, return False.
      */
     public boolean hasKeyword(String keyword) {
+        if (keyword.isEmpty()) {
+            return false;
+        }
+
         return description.contains(keyword);
     }
 

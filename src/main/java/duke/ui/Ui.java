@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import duke.common.Messages;
 import duke.data.TaskList;
 import duke.tasks.Task;
 
@@ -13,15 +12,15 @@ import duke.tasks.Task;
  */
 public class Ui {
     /**
-     * Returns the greeting message to be shown to the user.
+     * Returns the greeting message.
      * @return The greeting message.
      */
     public String showGreeting() {
-        return Messages.MESSAGE_GREETING;
+        return "Hello! I'm Pip :)\nWhat can I do for you?";
     }
 
     /**
-     * Returns the goodbye message to be shown to the user.
+     * Returns the goodbye message and closes the program.
      * @return The goodbye message.
      */
     public String showGoodbye() {
@@ -30,92 +29,72 @@ public class Ui {
                 System.exit(0);
             }
         }, 1000);
-        return Messages.MESSAGE_GOODBYE;
+        return "Goodbye and see you again soon!";
     }
 
     /**
-     * Returns the message that the Task has been added to be shown to the user.
+     * Returns the message that the Task has been added.
      * @param task The Task that has been added.
      * @return The message that the Task has been added.
      */
     public String showTaskAdded(Task task) {
-        return Messages.MESSAGE_TASK_ADDED + task;
+        return "Sure! Task added:\n  " + task;
     }
 
     /**
-     * Returns the message that the Task has been removed to be shown to the user.
+     * Returns the message that the Task has been removed.
      * @param task The Task that has been removed.
      * @return The message that the Task has been removed.
      */
     public String showTaskRemoved(Task task) {
-        return Messages.MESSAGE_TASK_REMOVED + task;
+        return "Alright! Task removed:\n  " + task;
     }
 
     /**
-     * Returns the message that the Task has been marked as done to be shown to the user.
+     * Returns the message that the Task has been marked as done.
      * @param task The Task that has been marked as done.
      * @return The message that the Task has been marked as done.
      */
     public String showTaskDone(Task task) {
-        return Messages.MESSAGE_TASK_DONE + task;
+        return "Speedy, keep it up!\n\nTask marked as done:\n  " + task;
     }
 
     /**
-     * Returns the message that the Task has been marked as done to be shown to the user.
+     * Returns the message that the Task has been marked as done.
      * @param task The Task that has been marked as done.
      * @return The message that the Task has been marked as done.
      */
     public String showTaskNotDone(Task task) {
-        return Messages.MESSAGE_TASK_NOT_DONE + task;
+        return "Welp, don't fall behind!\n\nTask marked as not done:\n  " + task;
     }
 
     /**
-     * Returns a message indicating the number of tasks to be shown to the user.
+     * Returns a message indicating the number of tasks.
      * @param count The number of tasks.
      * @return A message indicating the number of tasks.
      */
     public String showNumberOfTasks(int count) {
-        return String.format(Messages.MESSAGE_NUMBER_OF_TASKS, count);
+        return String.format("\n\nYou have %d task(s) in the list.", count);
     }
 
     /**
-     * Returns a message indicating all tasks on the list to be shown to the user.
+     * Returns a message indicating all tasks on the list.
      * @param taskList The list of tasks.
      * @return A message indicating all the tasks on the list.
      */
     public String showAllTasks(TaskList taskList) {
         int size = taskList.numTasks();
-        if (size != 0) {
-            StringBuilder sb = new StringBuilder(Messages.MESSAGE_TASK_LIST);
-            for (int i = 0; i < size; i++) {
-                int taskNum = i + 1;
-                Task task = taskList.getTask(i);
-                sb.append(taskNum + "." + task + "\n");
-            }
-            return sb.toString();
-        } else {
-            return Messages.MESSAGE_EMPTY_TASK_LIST;
+        if (size == 0) {
+            return "Your task list is empty!";
         }
-    }
 
-    /**
-     * Returns a message indicating all matching tasks on the list to be shown to the user.
-     * @param matchingTasks The list of matching tasks.
-     * @return A message indicating all matching tasks on the list.
-     */
-    public String showMatchingTasks(List<Task> matchingTasks) {
-        int size = matchingTasks.size();
-        if (size != 0) {
-            StringBuilder sb = new StringBuilder(Messages.MESSAGE_MATCHING_TASKS);
-            int taskNum = 1;
-            for (Task task : matchingTasks) {
-                sb.append(taskNum + "." + task + "\n");
-                taskNum++;
-            }
-            return sb.toString();
-        } else {
-            return Messages.MESSAGE_NO_MATCHING_TASKS;
+        StringBuilder sb = new StringBuilder("Here's your task list:\n");
+        for (int i = 0; i < size; i++) {
+            int taskNum = i + 1;
+            Task task = taskList.getTask(i);
+            sb.append(String.format("%d.%s\n", taskNum, task));
         }
+        return sb.toString();
     }
 
     /**
@@ -123,6 +102,25 @@ public class Ui {
      * @return A message indicating the updated list of tasks.
      */
     public String showUndo(TaskList taskList) {
-        return Messages.MESSAGE_UNDO + showAllTasks(taskList);
+        return "Easy-peasy! The most recent change to your task list has been undone!\n\n" + showAllTasks(taskList);
+    }
+
+    /**
+     * Returns a message indicating all matching tasks on the list.
+     * @param matchingTasks The list of matching tasks.
+     * @return A message indicating all matching tasks on the list.
+     */
+    public String showMatchingTasks(List<Task> matchingTasks) {
+        if (matchingTasks.size() == 0) {
+            return "Hmm... there are no matching tasks in your list!";
+        }
+
+        StringBuilder sb = new StringBuilder("Aha, found them!\n\nHere are your matching task(s):\n");
+        int taskNum = 1;
+        for (Task task : matchingTasks) {
+            sb.append(String.format("%d.%s\n", taskNum, task));
+            taskNum++;
+        }
+        return sb.toString();
     }
 }

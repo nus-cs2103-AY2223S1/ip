@@ -1,4 +1,6 @@
-package duke.common.exceptions;
+package duke.storage.exceptions;
+
+import duke.exception.DukeException;
 
 /**
  * Represents an exception for errors when saving or loading data files.

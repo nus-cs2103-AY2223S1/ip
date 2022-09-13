@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 
+//@@author ruiqi7-reused
+//Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html#javafx-tutorial-part-4-using-fxml
 /**
  * Controller for MainWindow that provides the layout for the other controls.
  */
@@ -29,7 +31,7 @@ public class MainWindow extends AnchorPane {
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
     /**
-     * Ensures that the ScrollPane shows the most recent message on the screen.
+     * Allows scrolling with the mouse and ensures that the ScrollPane shows the most recent message on the screen.
      */
     @FXML
     public void initialize() {
@@ -41,7 +43,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Initialises Duke. Shows loading errors if any and the greeting message to the user.
+     * Initialises Duke. Shows loading errors if any, and the greeting message to the user.
      */
     public void setDuke(Duke d) {
         duke = d;

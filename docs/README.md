@@ -166,7 +166,7 @@ Expected outcome:
 Aha, found them!
 
 Here are your matching task(s):
-1.[E][ ] meeting (by: 13 Sep 2022)
+1.[E][ ] meeting (at: 13 Sep 2022)
 ```
 
 ### Undoing the last edit

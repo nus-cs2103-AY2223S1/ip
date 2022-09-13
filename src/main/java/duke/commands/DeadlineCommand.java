@@ -1,8 +1,8 @@
 package duke.commands;
 
-import duke.common.exceptions.StorageException;
 import duke.data.TaskList;
 import duke.storage.Storage;
+import duke.storage.exceptions.StorageException;
 import duke.tasks.Deadline;
 import duke.ui.Ui;
 
@@ -11,18 +11,19 @@ import duke.ui.Ui;
  */
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
+    public static final String DATE_INDICATOR = " /by ";
     private String description;
-    private String by;
+    private String date;
 
     /**
      * Constructor for a DeadlineCommand.
      * @param description The description of the task.
      * @param by The date of the task.
      */
-    public DeadlineCommand(String description, String by) {
+    public DeadlineCommand(String description, String date) {
         super();
         this.description = description;
-        this.by = by;
+        this.date = date;
     }
 
     /**
@@ -35,7 +36,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws StorageException {
-        Deadline deadline = new Deadline(description, by);
+        Deadline deadline = new Deadline(description, date);
         taskList.addTask(deadline);
         storage.save(taskList);
         return ui.showTaskAdded(deadline) + ui.showNumberOfTasks(taskList.numTasks());

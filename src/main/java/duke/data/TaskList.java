@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import duke.common.exceptions.InvalidTaskException;
+import duke.data.exceptions.InvalidTaskException;
 import duke.tasks.Task;
 
 /**
@@ -55,13 +55,13 @@ public class TaskList {
      * @throws InvalidTaskException If the task number is negative or greater than the number of tasks.
      */
     public Task changeTaskStatus(int index, boolean isDone) throws InvalidTaskException {
-        if (index >= 0 && index < tasks.size()) {
-            Task task = tasks.get(index);
-            task.changeStatus(isDone);
-            return task;
-        } else {
+        if (index < 0 || index >= tasks.size()) {
             throw new InvalidTaskException();
         }
+
+        Task task = tasks.get(index);
+        task.changeStatus(isDone);
+        return task;
     }
 
     /**
@@ -79,13 +79,13 @@ public class TaskList {
      * @throws InvalidTaskException If the task number is negative or greater than the number of tasks.
      */
     public Task deleteTask(int index) throws InvalidTaskException {
-        if (index >= 0 && index < tasks.size()) {
-            Task task = tasks.get(index);
-            tasks.remove(task);
-            return task;
-        } else {
+        if (index < 0 || index >= tasks.size()) {
             throw new InvalidTaskException();
         }
+
+        Task task = tasks.get(index);
+        tasks.remove(task);
+        return task;
     }
 
     /**
@@ -108,7 +108,7 @@ public class TaskList {
     public List<Task> getTasksWithKeywords(String ... keywords) {
         return tasks
             .stream()
-            .filter(task -> Arrays.stream(keywords).anyMatch(keyword -> !keyword.isEmpty() && task.hasKeyword(keyword)))
+            .filter(task -> Arrays.stream(keywords).anyMatch(task::hasKeyword))
             .collect(Collectors.toList());
     }
 

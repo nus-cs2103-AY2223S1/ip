@@ -1,35 +1,31 @@
 package duke.tasks;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import duke.parser.Parser;
+import duke.parser.DateParser;
 
 /**
  * Represents a task that occurs on a specific date.
  */
 public class Event extends Task {
     private static final String TASK_SYMBOL = "E";
-    private static final String DATE_OUTPUT_FORMAT = "d MMM yyyy";
-    private String at;
+    private String date;
 
     /**
-     * Constructor for an Event.
+     * Constructor for an Event task.
      * @param description The description of the task.
-     * @param at The date that the task occurs on.
+     * @param date The date that the task occurs on.
      */
-    public Event(String description, String at) {
+    public Event(String description, String date) {
         super(description);
-        this.at = at;
+        this.date = date;
     }
 
     /**
      * Returns the String representation of the Event task.
-     * @return a String indicating the Event task's symbol, status, description and date.
+     * @return A String indicating the Event task's symbol, status, description and date.
      */
     @Override
     public String toString() {
-        return String.format("[%s]%s (by: %s)", Event.TASK_SYMBOL, super.toString(), getFormattedDate());
+        return String.format("[%s]%s (at: %s)", Event.TASK_SYMBOL, super.toString(), DateParser.getParsedDate(date));
     }
 
     /**
@@ -43,11 +39,11 @@ public class Event extends Task {
 
     /**
      * Returns the date of the Event task.
-     * @return the date of the Event task.
+     * @return The date of the Event task.
      */
     @Override
     public String getDate() {
-        return at;
+        return date;
     }
 
     /**
@@ -57,11 +53,6 @@ public class Event extends Task {
      */
     @Override
     public boolean isOnDate(String date) {
-        return at.equals(date);
-    }
-
-    private String getFormattedDate() {
-        LocalDate date = Parser.parseDate(at);
-        return date.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_FORMAT));
+        return this.date.equals(date);
     }
 }

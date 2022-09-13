@@ -1,6 +1,6 @@
-package duke.common.exceptions;
+package duke.parser.exceptions;
 
-import duke.common.Messages;
+import duke.exception.DukeException;
 
 /**
  * Represents an exception for invalid date formats.
@@ -11,6 +11,6 @@ public class InvalidDateException extends DukeException {
      * @param dateFormat The format the date should be in.
      */
     public InvalidDateException(String dateFormat) {
-        super(String.format(Messages.MESSAGE_INVALID_DATE_FORMAT, dateFormat));
+        super(String.format("Please specify a date in this format: %s!", dateFormat));
     }
 }

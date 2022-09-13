@@ -1,8 +1,8 @@
 package duke.commands;
 
-import duke.common.exceptions.StorageException;
 import duke.data.TaskList;
 import duke.storage.Storage;
+import duke.storage.exceptions.StorageException;
 import duke.ui.Ui;
 
 /**
