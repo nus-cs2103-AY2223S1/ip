@@ -4,18 +4,18 @@ import duke.DukeException;
 import duke.backend.TaskList;
 
 public class Ui {
-    private static final String GREET_MESSAGE = "Hello! I'm Duke \nWhat can I do for you?";
-    private static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
-    private static final String ADD_TASK_MESSAGE = "Got it. I've added this task: \n";
-    private static final String DELETE_TASK_MESSAGE = "Noted. I've removed this task: \n";
-    private static final String LIST_MESSAGE = "Here are the tasks in your list: \n";
-    private static final String MARK_TEXT_MESSAGE = "Nice! I've marked this task as done: \n";
-    private static final String UNMARK_TEXT_MESSAGE = "OK, I've marked this task as not done yet: \n";
-    private static final String MATCH_TEXT_MESSAGE = "Here are the matching tasks in your list: \n";
-    private static final String REMINDER_MESSAGE = "Here are the reminders for tasks in the upcoming week: \n";
+    private static final String GREET_MESSAGE = "Hello Imposter! Welcome onboard the spaceship. I'm CrewMate! \nWhat can I help you with?";
+    private static final String BYE_MESSAGE = "Alright, you can leave the spaceship now. Cya!";
+    private static final String ADD_TASK_MESSAGE = "Got it. I've added this mission: \n";
+    private static final String DELETE_TASK_MESSAGE = "Noted. I've cancelled this mission: \n";
+    private static final String LIST_MESSAGE = "Here are the missions in your list: \n";
+    private static final String MARK_TEXT_MESSAGE = "Great Execution! I've marked this mission as done: \n";
+    private static final String UNMARK_TEXT_MESSAGE = "OK, I've marked this mission as incomplete: \n";
+    private static final String MATCH_TEXT_MESSAGE = "Here're the matching tasks in your list: \n";
+    private static final String REMINDER_MESSAGE = "Here're your missions for the upcoming week: \n";
 
     private String getTaskListSizeMessage(TaskList tasklist) {
-        return "\nNow you have " + tasklist.getSize() + " tasks in the list.";
+        return "\nNow you have " + tasklist.getSize() + " missions in the list.";
     }
 
     public String showAddedTask(TaskList tasklist) {
