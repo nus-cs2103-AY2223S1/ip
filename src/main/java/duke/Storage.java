@@ -86,6 +86,7 @@ public class Storage {
                 String[] innerSplitString = splitString[1].split("/", 2);
                 String name = innerSplitString[0];
                 String info = innerSplitString[1];
+                info = info.replaceFirst("by ", "");
                 if (type.equals(TaskTypeEnum.deadline.toString()) || type.equals("D")) {
                     combiStr = new String[]{type, "0", name, info};
                 } else {
