@@ -5,11 +5,13 @@ public class Task {
     protected boolean isDone;
 
     public Task(String description) {
+        assert description != "": "Description should not be empty";
         this.description = description;
         this.isDone = false;
     }
 
     public String getDescription() {
+
         return this.description;
     }
 
