@@ -1,8 +1,13 @@
 package duke.parser;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Random;
 
 import duke.exceptions.DukeException;
 import duke.tasks.TaskList;
@@ -19,7 +24,8 @@ public class CommandParser {
         FIND,
         TODO,
         EVENT,
-        DEADLINE
+        DEADLINE,
+        JOKE
     }
 
     private static final Pattern COMMAND_PATTERN =
@@ -89,6 +95,9 @@ public class CommandParser {
             case DEADLINE:
                 response = taskList.addDeadline(desc, time);
                 break;
+            case JOKE:
+                response = joke();
+                break;
             default:
                 throw new DukeException("You are incomprehensible. Apply yourself.");
             }
@@ -99,4 +108,28 @@ public class CommandParser {
         }
         return response;
     }
+
+    private String joke() {
+        String result = "Just do your work...";
+        try {
+            Random rand = new Random();
+            BufferedReader in = new BufferedReader(new FileReader("joke.txt"));
+            String line = in.readLine();
+            while (line != null) {
+                if (rand.nextInt(20) == 0) {
+                    result = line;
+                }
+                line = in.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Joke file not found...");
+        } catch (IllegalStateException e) {
+            System.out.println("Joke is invalid...");
+        } catch (IOException e) {
+            System.out.println("Joke cannot be read...");
+        }
+        return result;
+    }
 }
+
+
