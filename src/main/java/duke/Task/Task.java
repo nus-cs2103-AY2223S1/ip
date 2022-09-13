@@ -29,20 +29,5 @@ public abstract class Task {
 
     public abstract String formatTaskString();
 
-    public static Task MakeTask(String type, Boolean isDone, String description, LocalDateTime dateTime) {
-
-
-//        System.out.println(info[0]);
-//        System.out.println(info[1]);
-//        System.out.println(info[2]);
-//        System.out.println(info[3]);
-
-        if (type.equals("D")) {
-            return new Deadline(isDone, description, dateTime);
-        } else if (type.equals("E")) {
-            return new Event(isDone, description, dateTime);
-        }
-        return new Todo(description, isDone);
-    }
 
 }

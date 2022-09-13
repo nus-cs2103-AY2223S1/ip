@@ -107,7 +107,7 @@ public class Parser {
     }
 
     private String handleTodoCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
-        if (input.strip() == "") {
+        if (input.isEmpty()) {
             throw new DukeException("Description cannot be empty");
         }
         Task task = new Todo(input);
@@ -122,7 +122,7 @@ public class Parser {
             throw new DukeException("Event command must have /at param");
         }
         String[] inputArr = input.split("/at");
-        if (inputArr[0].strip() == "") {
+        if (inputArr[0].isEmpty()) {
             throw new DukeException("Description cannot be empty");
         }
         String description = inputArr[0];
@@ -143,7 +143,7 @@ public class Parser {
             throw new DukeException("Deadline command must have /by param");
         }
         String[] inputArr = input.split("/by");
-        if (inputArr[0].strip() == "") {
+        if (inputArr[0].isEmpty()) {
             throw new DukeException("Description cannot be empty");
         }
         try {
@@ -203,7 +203,7 @@ public class Parser {
 
     }
     private String handleFindCommand(Ui ui, TaskList taskList, String input) throws DukeException {
-        if (input.strip() == "") {
+        if (input.isEmpty()) {
             throw new DukeException("Param cannot be empty");
 
         }

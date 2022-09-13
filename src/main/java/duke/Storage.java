@@ -6,7 +6,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.Task.Deadline;
+import duke.Task.Event;
 import duke.Task.Task;
+import duke.Task.Todo;
+
 public class Storage {
     boolean directoryExist;
     java.nio.file.Path path;
@@ -28,10 +33,17 @@ public class Storage {
             Scanner reader = new Scanner(this.file);
             while (reader.hasNextLine()) {
                 String[] taskInfo = reader.nextLine().split("\\|");
-                if (taskInfo.length == 3) {
-                    data.add(Task.MakeTask(taskInfo[0], Boolean.parseBoolean(taskInfo[1]), taskInfo[2], null));
-                } else {
-                    data.add(Task.MakeTask(taskInfo[0], Boolean.parseBoolean(taskInfo[1]), taskInfo[2], LocalDateTime.parse(taskInfo[3])));
+                if (taskInfo[0] == "T") {
+                    data.add(new Todo(taskInfo[1], Boolean.parseBoolean(taskInfo[2])));
+                } else if (taskInfo[0] == "E") {
+                    data.add(new Event(taskInfo[1],
+                            Boolean.parseBoolean(taskInfo[2]),
+                            LocalDateTime.parse(taskInfo[3])));
+
+                } else if (taskInfo[0] == "D") {
+                    data.add(new Deadline(taskInfo[1],
+                            Boolean.parseBoolean(taskInfo[2]),
+                            LocalDateTime.parse(taskInfo[3])));
                 }
 
             }
