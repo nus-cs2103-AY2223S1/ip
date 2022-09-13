@@ -44,6 +44,12 @@ public class Parser {
     // AIML BOT
     private final Chat chatSession;
 
+    /**
+     * Instantiates a new Parser object and a new
+     * Bot object. The Parser is responsible for hard-coded
+     * commands, while the Bot is responsible for AIML language
+     * processing.
+     */
     public Parser() {
         String botName = "henry";
         String resourcesPath = getResourcesPath();

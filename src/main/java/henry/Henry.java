@@ -2,6 +2,7 @@ package henry;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Objects;
 
 import command.Command;
 import command.CommandResult;
@@ -13,6 +14,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -30,7 +32,7 @@ public class Henry extends Application {
     private final Storage storage;
     private final TaskList taskList;
     private final Parser parser;
-    private final int EXIT_DELAY = 2;
+    private final int exitDelay = 2;
 
     /**
      * The constructor for the logical component of Henry.
@@ -50,6 +52,9 @@ public class Henry extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Henry, the Helpful Chatbot");
+            stage.getIcons().add(new Image(
+                Objects.requireNonNull(this.getClass().getResourceAsStream("/images/henry.png"))));
             fxmlLoader.<MainWindow>getController().setHenry(this);
             stage.show();
         } catch (Exception e) {
@@ -67,7 +72,7 @@ public class Henry extends Application {
         assert input != null : "Input is null!";
 
         if (input.equalsIgnoreCase("bye")) {
-            PauseTransition delay = new PauseTransition(Duration.seconds(EXIT_DELAY));
+            PauseTransition delay = new PauseTransition(Duration.seconds(exitDelay));
             delay.setOnFinished(event -> Platform.exit());
             delay.play();
             return TextUtils.TASKS_SAVED_MESSAGE;

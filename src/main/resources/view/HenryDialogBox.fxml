@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Circle?>
 <fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0"
-         style="-fx-font-family: Courier New; -fx-background-color: #f5ebe0; -fx-border-radius: 2; -fx-border-color: #000000; -fx-border-width: 1; -fx-padding: 5px; -fx-border-insets: 5px; -fx-background-insets: 5px;"
+         style="-fx-font-family: Courier New; -fx-background-color: #f5ebe0; -fx-border-radius: 2; -fx-border-color: #000000; -fx-border-width: 1; -fx-padding: 3px; -fx-border-insets: 4px; -fx-background-insets: 4px;"
          type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>
         <Circle fx:id="displayPicture" radius="50.0"/>
