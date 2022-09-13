@@ -138,6 +138,14 @@ public class TaskList {
      */
     public String findTaskString(ArrayList<Task> tasks) {
         StringBuilder taskListPara = new StringBuilder();
+        if (tasks.size() < 1) {
+            taskListPara.append("There is no task ongoing!");
+            return taskListPara.toString();
+        } else if (tasks.size() == 1) {
+            taskListPara.append("Here is your list of tasks: \n");
+        } else {
+            taskListPara.append("Here are your list of tasks: \n");
+        }
         for (Task task: tasks) {
             taskListPara.append(task.toString()).append("\n");
         }

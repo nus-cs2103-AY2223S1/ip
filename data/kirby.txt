@@ -1,6 +1,0 @@
-kirby.tasks.Deadline~cs1231 assignment ~tonight 8pm
-kirby.tasks.Todo~sleep
-kirby.tasks.Todo~st2334 ex02
-kirby.tasks.Todo~todo
-kirby.tasks.Todo~hi
-kirby.tasks.Event~Mom's birthday~2022-12-02
