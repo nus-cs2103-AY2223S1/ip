@@ -46,6 +46,11 @@ public class TaskList {
         this.tasks.add(task);
     }
 
+    /**
+     * This method filters task based on the keyword
+     * @param keyword the keyword to filter against
+     * @return a list of task that contains the keyword
+     */
     public TaskList filter(String keyword) {
         List<Task> task = this.tasks.stream()
                 .filter(x -> x.description.contains(keyword))
