@@ -93,44 +93,41 @@ Note: All commands are case insensitive
 
 &nbsp;&nbsp;Mark task at index as completed. See delete command for a more thorough explanation of an index.
 
-&nbsp;&nbsp;Has aliases "m"
+&nbsp;&nbsp;Has alias "m"
 
 &nbsp;&nbsp;Format: `mark|m index`
 
 ### Unmark command: `unmark`
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;Mark task at index as not completed. See delete command for a more thorough explanation of an index.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;Has alias "um"
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;Format: `unmark|um index`
 
 ### Find command `find`
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;Returns all tasks in the planner that contain the given keyword in their description.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;This helps speed up search operation on the planner.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;Note: indices shown in the returned are not the actual indices as stored in the planner. Commands that rely on indices will not work as expected.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp; Has alias "f"
+
+&nbsp;&nbsp;Format: `find|f keyword`
 
 ### LongDesc command: `longdesc`
 
-&nbsp;&nbsp;
-&nbsp;&nbsp;
-&nbsp;&nbsp;
-&nbsp;&nbsp;
+&nbsp;&nbsp; Returns a comprehensive description of the task at the given index
+
+&nbsp;&nbsp; Format: `longdesc index`
 
 ### isToday command: `istoday`
 
-&nbsp;&nbsp;
-&nbsp;&nbsp;
-&nbsp;&nbsp;
-&nbsp;&nbsp;
+&nbsp;&nbsp; Returns true if task given at index in the planner is due today.
 
-
-
+&nbsp;&nbsp; Format: `istoday index`
 
 ## FAQ
 
