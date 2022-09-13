@@ -18,6 +18,11 @@ This product is a desktop app for managing tasks mainly through the use of a Com
 
 Keywords (E.g `help`, `mark` etc) are case insensitive. Keywords such as `HeLP`, `D`, `TOdo` etc are accepted as valid keywords.
 
+## IMPORTANT
+The save file is saved at your home directory in the `dukeData` folder as `duke.txt`. 
+
+If you experience issues with starting the app, crashes or irresponsive commands, ensure that you do not have an existing `duke.txt` file in that same folder from another different version of Duke (i.e from someone else's iP).
+
 ## Usage
 
 ### `help` - Viewing Help
