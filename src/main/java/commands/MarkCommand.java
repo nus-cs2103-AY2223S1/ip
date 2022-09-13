@@ -5,25 +5,27 @@ import byu.Ui;
 import exceptions.InvalidIndexException;
 
 /**
- * Represents a command to mark a task as done.
+ * A command to mark a task as done.
  */
 public class MarkCommand extends Command {
 
-    private int index;
+    private final int index;
 
     /**
      * Creates a MarkCommand with the index of the Task to be marked as done.
      *
-     * @param index the index of the Task to be deleted.
+     * @param index the index of the Task to be marked as done.
      */
     public MarkCommand(int index) {
         this.index = index;
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
         tasks.mark(this.index);
     }
 
+    @Override
     public boolean isExit() {
         return false;
     }

@@ -5,14 +5,16 @@ import byu.Ui;
 import exceptions.InvalidIndexException;
 
 /**
- * Represents a command to exit the chatbot.
+ * A command to exit Byu.
  */
-public class ByeCommand extends Command {
+public class ExitCommand extends Command {
 
+    @Override
     public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
         ui.exit();
     }
 
+    @Override
     public boolean isExit() {
         return true;
     }

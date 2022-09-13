@@ -6,14 +6,14 @@ import exceptions.DuplicateException;
 import task.Task;
 
 /**
- * Represents a command to add a task to the list.
+ * A command to add a task to the list.
  */
 public class AddCommand extends Command {
 
-    private Task task;
+    private final Task task;
 
     /**
-     * Creates an AddCommand with the Task to be added.
+     * Creates a command to add a task.
      *
      * @param task the Task to be added.
      */
@@ -21,10 +21,12 @@ public class AddCommand extends Command {
         this.task = task;
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui) throws DuplicateException {
         tasks.addTask(task);
     }
 
+    @Override
     public boolean isExit() {
         return false;
     }

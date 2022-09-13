@@ -5,25 +5,27 @@ import byu.Ui;
 import exceptions.InvalidIndexException;
 
 /**
- * Represents a command to mark a task as undone.
+ * A command to mark a task as incomplete.
  */
 public class UnmarkCommand extends Command {
 
-    private int index;
+    private final int index;
 
     /**
-     * Creates an UnmarkCommand with the index of the Task to be marked as undone.
+     * Creates an UnmarkCommand with the index of the Task to be marked as incomplete.
      *
-     * @param index the index of the Task to be marked as undone.
+     * @param index the index of the Task to be marked as incomplete.
      */
     public UnmarkCommand(int index) {
         this.index = index;
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
         tasks.unmark(this.index);
     }
 
+    @Override
     public boolean isExit() {
         return false;
     }

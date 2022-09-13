@@ -3,12 +3,13 @@ package commands;
 import byu.TaskList;
 import byu.Ui;
 import exceptions.InvalidIndexException;
+
 /**
- * Represents a command to delete a task to the list.
+ * A command to delete a task in the list.
  */
 public class DeleteCommand extends Command {
 
-    private int index;
+    private final int index;
 
     /**
      * Creates a DeleteCommand with the index of the Task to be deleted.
@@ -19,10 +20,12 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
         tasks.delete(this.index);
     }
 
+    @Override
     public boolean isExit() {
         return false;
     }

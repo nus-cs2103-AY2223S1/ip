@@ -4,13 +4,15 @@ import byu.TaskList;
 import byu.Ui;
 
 /**
- * Represents a command to do nothing and move ot the next command.
+ * A command to do nothing and move on to the next command.
  */
 public class NextCommand extends Command {
 
+    @Override
     public void execute(TaskList tasks, Ui ui) {
     }
 
+    @Override
     public boolean isExit() {
         return false;
     }

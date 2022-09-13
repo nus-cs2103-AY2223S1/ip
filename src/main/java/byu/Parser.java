@@ -6,9 +6,9 @@ import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
 import commands.AddCommand;
-import commands.ByeCommand;
 import commands.Command;
 import commands.DeleteCommand;
+import commands.ExitCommand;
 import commands.FindCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
@@ -56,7 +56,7 @@ public class Parser {
             command = new DeleteCommand(getDescriptionAsIntegerValue(Instruction.DELETE, description));
             break;
         case BYE:
-            command = new ByeCommand();
+            command = new ExitCommand();
             break;
         case LIST:
             command = new ListCommand();

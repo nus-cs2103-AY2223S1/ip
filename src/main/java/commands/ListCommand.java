@@ -4,14 +4,16 @@ import byu.TaskList;
 import byu.Ui;
 
 /**
- * Represents a command to list all the tasks in the list.
+ * A command to list all the tasks in the TaskList.
  */
 public class ListCommand extends Command {
 
+    @Override
     public void execute(TaskList tasks, Ui ui) {
         tasks.list();
     }
 
+    @Override
     public boolean isExit() {
         return false;
     }
