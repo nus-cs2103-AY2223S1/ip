@@ -23,7 +23,6 @@ public class Storage {
      * @throws IOException
      */
     public void writeToFile(TaskList tasks) throws IOException {
-       //file = new File("src/main/java/duke.txt");
 
         FileWriter fw = new FileWriter(file);
 
@@ -40,7 +39,6 @@ public class Storage {
      * @throws IOException
      */
     public TaskList loadFile() throws IOException {
-        //file = new File("src/main/java/duke.txt");
 
         if (!file.exists()) {
             file.createNewFile();
