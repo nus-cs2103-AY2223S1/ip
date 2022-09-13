@@ -14,6 +14,7 @@ import chatbot.ui.UI;
 public class AddDeadline implements Command {
     private String taskName;
     private LocalDate date;
+    private String[] tags;
 
     /**
      * The constructor of the AddDeadline command.
@@ -21,20 +22,21 @@ public class AddDeadline implements Command {
      * @param taskName Name of the Deadline type task.
      * @param date Date of the deadline.
      */
-    public AddDeadline(String taskName, LocalDate date) {
+    public AddDeadline(String taskName, LocalDate date, String[] tags) {
         this.taskName = taskName;
         this.date = date;
+        this.tags = tags;
     }
 
     @Override
     public void execute(TaskList todos, UI ui) {
-        Task deadline = todos.addDeadline(this.taskName, this.date);
+        Task deadline = todos.addDeadline(this.taskName, this.date, this.tags);
         ui.add(deadline, todos.getNumberOfTasks());
     }
 
     @Override
     public String execute(TaskList todos, Response resp) {
-        Task deadline = todos.addDeadline(this.taskName, this.date);
+        Task deadline = todos.addDeadline(this.taskName, this.date, this.tags);
         return resp.add(deadline, todos.getNumberOfTasks());
     }
 

@@ -5,17 +5,16 @@ import java.util.List;
 
 /**
  * The class represents a group of task which shares a certain attribute.
- * For the current use case, all tasks in a specific instance will have
- * the same date.
+ * Currently, the shared attribute can be a date or a tag.
  */
 public class TaskBucket {
-    private List<Task> tasksToday = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     public void addTask(Task task) {
-        this.tasksToday.add(task);
+        this.tasks.add(task);
     }
 
     public List<Task> getTasks() {
-        return this.tasksToday;
+        return this.tasks;
     }
 }

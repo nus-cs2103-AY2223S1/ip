@@ -19,8 +19,8 @@ public class Event extends Task {
      * @param taskName Name of the event.
      * @param date Date of the event.
      */
-    public Event(String taskName, LocalDate date) {
-        super(taskName);
+    public Event(String taskName, LocalDate date, String[] tags) {
+        super(taskName, tags);
         this.date = date;
     }
 
@@ -31,6 +31,10 @@ public class Event extends Task {
 
     @Override
     public String save() {
-        return "E | " + this.getStatus() + " | " + this.getTaskName() + " | " + this.date;
+        String tagsString = this.saveTags();
+        if (tagsString != null) {
+            return String.format("E | %s | %s | %s | %s", this.getStatus(), this.getTaskName(), this.date, tagsString);
+        }
+        return String.format("E | %s | %s | %s", this.getStatus(), this.getTaskName(), this.date);
     }
 }

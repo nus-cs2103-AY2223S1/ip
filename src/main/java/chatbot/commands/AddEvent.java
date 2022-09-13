@@ -14,6 +14,7 @@ import chatbot.ui.UI;
 public class AddEvent implements Command {
     private String taskName;
     private LocalDate date;
+    private String[] tags;
 
     /**
      * The constructor of the AddEvent command.
@@ -21,20 +22,21 @@ public class AddEvent implements Command {
      * @param taskName Name of the event
      * @param date Date of the event.
      */
-    public AddEvent(String taskName, LocalDate date) {
+    public AddEvent(String taskName, LocalDate date, String[] tags) {
         this.taskName = taskName;
         this.date = date;
+        this.tags = tags;
     }
 
     @Override
     public void execute(TaskList todos, UI ui) {
-        Task event = todos.addEvent(this.taskName, this.date);
+        Task event = todos.addEvent(this.taskName, this.date, this.tags);
         ui.add(event, todos.getNumberOfTasks());
     }
 
     @Override
     public String execute(TaskList todos, Response resp) {
-        Task event = todos.addEvent(this.taskName, this.date);
+        Task event = todos.addEvent(this.taskName, this.date, this.tags);
         return resp.add(event, todos.getNumberOfTasks());
     }
 

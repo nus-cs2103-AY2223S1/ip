@@ -16,6 +16,7 @@ public class DukeException extends Exception {
             "Read the index of the existing tasks carefully...");
     public static final DukeException INVALID_DATE_FORMAT = new DukeException("Your date is rubbish");
     public static final DukeException MISSING_FIND_KEYWORD = new DukeException("What you want me to find? Nothing?");
+    public static final DukeException MISSING_TAG = new DukeException("Am I supposed to infer the tag you are looking for?");
 
     public DukeException(String message) {
         super(message);

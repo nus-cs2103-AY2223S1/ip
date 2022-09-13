@@ -17,6 +17,7 @@ import chatbot.exceptions.DukeException;
 public class TaskList {
     private List<Task> todos = new ArrayList<>();
     private HashMap<LocalDate, TaskBucket> taskByDates = new HashMap<>();
+    private HashMap<String, TaskBucket> taskByTags = new HashMap<>();
 
     public int getNumberOfTasks() {
         return todos.size();
@@ -28,9 +29,12 @@ public class TaskList {
      * @param taskName Name of the task.
      * @return The corresponding Todo task.
      */
-    public Task addTodo(String taskName) {
-        Task newTask = new Todo(taskName);
+    public Task addTodo(String taskName, String[] tags) {
+        Task newTask = new Todo(taskName, tags);
         todos.add(newTask);
+        for (String tag : tags) {
+            bucketTasks(tag, newTask);
+        }
         return newTask;
     }
 
@@ -41,10 +45,13 @@ public class TaskList {
      * @param date Date that the task should be completed by.
      * @return The corresponding Deadline task.
      */
-    public Task addDeadline(String taskName, LocalDate date) {
-        Task newTask = new Deadline(taskName, date);
+    public Task addDeadline(String taskName, LocalDate date, String[] tags) {
+        Task newTask = new Deadline(taskName, date, tags);
         todos.add(newTask);
         bucketTasks(date, newTask);
+        for (String tag : tags) {
+            bucketTasks(tag, newTask);
+        }
         return newTask;
     }
 
@@ -55,10 +62,13 @@ public class TaskList {
      * @param date Date that the event is happening.
      * @return The corresponding Event.
      */
-    public Task addEvent(String taskName, LocalDate date) {
-        Task newTask = new Event(taskName, date);
+    public Task addEvent(String taskName, LocalDate date, String[] tags) {
+        Task newTask = new Event(taskName, date, tags);
         todos.add(newTask);
         bucketTasks(date, newTask);
+        for (String tag : tags) {
+            bucketTasks(tag, newTask);
+        }
         return newTask;
     }
 
@@ -81,6 +91,20 @@ public class TaskList {
         if (taskByDates.containsKey(date)) {
             assert date != null : "Date object not provided";
             return taskByDates.get(date).getTasks();
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Gets the tasks with the specified tag.
+     *
+     * @param tag
+     * @return The list containing all the relevant task.
+     */
+    public List<Task> getTaskWithTag(String tag) {
+        if (taskByTags.containsKey(tag)) {
+            return taskByTags.get(tag).getTasks();
         } else {
             return null;
         }
@@ -151,7 +175,7 @@ public class TaskList {
     }
 
     /**
-     * Finds all the tasks in the todo list containing the keyword.
+     * Finds all the tasks in the todo list containing the keyword using stream filter.
      *
      * @param keyword The keyword in user's search
      * @return The list of tasks containing the keyword.
@@ -173,6 +197,16 @@ public class TaskList {
             TaskBucket newBucket = new TaskBucket();
             newBucket.addTask(task);
             taskByDates.put(date, newBucket);
+        }
+    }
+
+    private void bucketTasks(String tag, Task task) {
+        if (taskByTags.containsKey(tag)) {
+            taskByTags.get(tag).addTask(task);
+        } else {
+            TaskBucket newTagBucket = new TaskBucket();
+            newTagBucket.addTask(task);
+            taskByTags.put(tag, newTagBucket);
         }
     }
 }

@@ -20,6 +20,7 @@ public class Response {
 
     /**
      * The method determines the response after users query for all tasks in the todo list.
+     *
      * @param tasks The list containing all the tasks.
      * @return
      */
@@ -29,6 +30,7 @@ public class Response {
 
     /**
      * The method determines the response after users query for tasks in the todo list on the specified date.
+     *
      * @param tasks The list containing the relevant tasks.
      */
     public String listTaskOn(List<Task> tasks) {
@@ -40,7 +42,21 @@ public class Response {
     }
 
     /**
+     * The method determines the response after users query for tasks in the todo list with the specified tag.
+     *
+     * @param tasks The list containing the relevant tasks.
+     */
+    public String listTaskWith(List<Task> tasks) {
+        if (tasks != null) {
+            return String.format("These are your tasks with the given tag\n%s", list(tasks));
+        } else {
+            return "There are no tasks with this tag";
+        }
+    }
+
+    /**
      * The method determines the response after users query for tasks that contain a given keyword.
+     *
      * @param tasks The list containing the relevant tasks.
      */
     public String listFound(List<Task> tasks) {

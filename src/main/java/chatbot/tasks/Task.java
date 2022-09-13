@@ -8,9 +8,11 @@ package chatbot.tasks;
 public abstract class Task {
     private boolean isComplete = false;
     private String taskName;
+    private String[] tags;
 
-    public Task(String taskName) {
+    public Task(String taskName, String[] tags) {
         this.taskName = taskName;
+        this.tags = tags;
     }
 
     public void mark() {
@@ -36,6 +38,25 @@ public abstract class Task {
 
     public int getStatus() {
         return this.isComplete ? 1 : 0;
+    }
+
+    /**
+     * The method returns a string representation of all the tags associated with the task
+     * for data storage purpose.
+     */
+    public String saveTags() {
+        if (this.tags.length > 0) {
+            StringBuffer sb = new StringBuffer();
+            System.out.println(tags.length);
+            for (int i = 0; i < tags.length; i++) {
+                sb.append(tags[i]);
+                sb.append("#");
+            }
+            sb.deleteCharAt(sb.length() - 1);
+            return sb.toString();
+        }
+
+        return null;
     }
 
     /**
