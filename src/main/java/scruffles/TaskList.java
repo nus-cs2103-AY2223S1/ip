@@ -37,6 +37,8 @@ public class TaskList {
             return deadline(str);
         case EVENT:
             return event(str);
+        case DOWITHINPERIOD:
+            return doWithinPeriod(str);
         default:
             assert false: "is not a correct type";
             return "";
@@ -77,8 +79,8 @@ public class TaskList {
             if (str.equals("deadline") || str.equals("deadline ")) {
                 throw new DescriptionEmptyException();
             }
-            String[] input = str.split("/by ");
-            String name = input[0].replace("deadline", "");
+            String[] input = str.split(" /by ");
+            String name = input[0].replace("deadline ", "");
             LocalDate date = LocalDate.parse(input[1]);
             tasks.add(new Deadline(name, date));
             taskCount++;
@@ -107,8 +109,8 @@ public class TaskList {
             if (str.equals("event") || str.equals("event ")) {
                 throw new DescriptionEmptyException();
             }
-            String[] input = str.split("/at ");
-            String name = input[0].replace("event", "");
+            String[] input = str.split(" /at ");
+            String name = input[0].replace("event ", "");
             tasks.add(new Event(name, input[1]));
             taskCount++;
             return String.format("Got it. I've added this task:\n" +
@@ -116,13 +118,48 @@ public class TaskList {
                             "you now have %d tasks in the list woof!",
                     tasks.get(taskCount - 1).toString(),
                     taskCount);
-        } catch (DescriptionEmptyException e) {
+        } catch (DescriptionEmptyException | TimeErrorException e) {
             return e.getMessage();
         } catch (ArrayIndexOutOfBoundsException e) {
             return "grrrr >:( when is your event?? woof woof!";
         } catch (DateTimeParseException e) {
             return "grrrr >:( please input event date as 'yyyy-mm-dd from hh:mm to hh:mm' format" +
                     " woof woof!";
+        }
+    }
+
+    /**
+     * Adds a task that has to be done within a certain period into the TaskList
+     *
+     * @param str the input string of the DoWithinPeriod
+     * @return the respective output messages
+     */
+    private String doWithinPeriod(String str) {
+        try {
+            if (str.equals("dowithinperiod") || str.equals("dowithinperiod ")) {
+                throw new DescriptionEmptyException();
+            }
+            String[] input = str.split(" /btw ");
+            String name = input[0].replace("dowithinperiod ", "");
+            String[] dates = input[1].split(" and ");
+            LocalDate startDate = LocalDate.parse(dates[0]);
+            LocalDate endDate = LocalDate.parse(dates[1]);
+            if (startDate.isAfter(endDate)) {
+                throw new TimeErrorException("grrrr >:( end date must be after start date woof woof!");
+            }
+            tasks.add(new DoWithinPeriod(name, startDate, endDate));
+            taskCount++;
+            return String.format("woof! the task is added woof!\n" +
+                            "%s\n" +
+                            "you now have %d tasks in the list woof!",
+                    tasks.get(taskCount - 1).toString(),
+                    taskCount);
+        } catch (DescriptionEmptyException | TimeErrorException e) {
+            return e.getMessage();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "grrrr >:( when do you need to do this within?? woof woof!";
+        } catch (DateTimeParseException e) {
+            return "grrrr >:( please input dates in yyyy-mm-dd format woof woof!";
         }
     }
 
@@ -258,6 +295,9 @@ public class TaskList {
             } else if (task instanceof Event) {
                 textInput = "E / " + isDone + task.taskName + " / " + ((Event) task).at + " / "
                         + ((Event) task).startTime + " / " + ((Event) task).endTime + "\n";
+            } else if (task instanceof DoWithinPeriod) {
+                textInput = "P / " + isDone + task.taskName + " / " + ((DoWithinPeriod) task).startDate + " / "
+                        + ((DoWithinPeriod) task).endDate + "\n";
             }
             output.append(textInput);
         }

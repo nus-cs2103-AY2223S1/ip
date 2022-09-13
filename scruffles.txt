@@ -1,4 +1,4 @@
-T / O / k
-T / O / l
-T / O / g
-T / O / j
+E / O / cs2103T team meeting  / 2022-09-14 / 12:00 / 14:00
+D / O / ip  / 2022-09-16
+D / O / cs2103t tutorial homework  / 2022-10-01
+T / O / hi

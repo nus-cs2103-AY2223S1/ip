@@ -31,6 +31,8 @@ public class Parser {
                 return tasks.add(input, Scruffles.Type.DEADLINE);
             } else if (input.startsWith("event")) {
                 return tasks.add(input, Scruffles.Type.EVENT);
+            } else if (input.startsWith("dowithinperiod")) {
+                return tasks.add(input, Scruffles.Type.DOWITHINPERIOD);
             } else if (input.startsWith("delete")) {
                 return tasks.delete(input);
             } else if (input.startsWith("find")) {

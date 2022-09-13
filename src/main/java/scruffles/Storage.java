@@ -47,6 +47,9 @@ public class Storage {
                     task = new Event(inputs[2], LocalDate.parse(inputs[3]), LocalTime.parse(inputs[4]),
                             LocalTime.parse(inputs[5]), isDone);
                     break;
+                case "P":
+                    task = new DoWithinPeriod(inputs[2], LocalDate.parse(inputs[3]), LocalDate.parse(inputs[4]),
+                            isDone);
                 default:
                     continue;
                 }

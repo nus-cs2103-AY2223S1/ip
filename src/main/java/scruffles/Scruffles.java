@@ -26,7 +26,8 @@ public class Scruffles extends Application {
     enum Type {
         TODO,
         DEADLINE,
-        EVENT
+        EVENT,
+        DOWITHINPERIOD
     }
 
     public Scruffles() {}
