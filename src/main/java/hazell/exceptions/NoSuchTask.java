@@ -2,7 +2,7 @@ package hazell.exceptions;
 
 public class NoSuchTask extends HazellException {
 
-    private int maxNumberOfTasks;
+    private final int maxNumberOfTasks;
     public NoSuchTask(int maxNumberOfTasks) {
         this.maxNumberOfTasks = maxNumberOfTasks;
     }

@@ -16,10 +16,10 @@ public class Storage {
 
     /**
      * Returns a Storage object pointing to the file used to store Hazell data locally.
-     *
      * Before doing so, it ensures that the folder exists.
+     *
      * @param filePath The path of file to be used by Hazell for local storage
-     * @throws IOException
+     * @throws IOException If error occurs while accessing file
      */
     public Storage(String filePath) throws IOException {
         Path path = Path.of(filePath);
@@ -36,7 +36,7 @@ public class Storage {
      * Load from local storage.
      *
      * @return List of tasks, unserialised
-     * @throws IOException
+     * @throws IOException If error occurs while accessing file
      */
     public List<Task> load() throws IOException {
         Scanner sc = new Scanner(this.path);
@@ -52,7 +52,7 @@ public class Storage {
      * Stores tasks to local storage.
      *
      * @param tasks Lists of tasks to be serialised
-     * @throws IOException
+     * @throws IOException If error occurs while accessing file
      */
     public void store(List<Task> tasks) throws IOException {
         FileWriter writer = new FileWriter(this.path.toFile(), false);

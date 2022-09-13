@@ -20,8 +20,8 @@ public class Command {
      * - Doesn't allow for multiple repeated options
      */
 
-    private List<String> args;
-    private Map<String, String> kwargs;
+    private final List<String> args;
+    private final Map<String, String> kwargs;
 
     private Command(List<String> args, Map<String, String> kwargs) {
         this.args = args;
@@ -48,13 +48,12 @@ public class Command {
     }
 
     /**
-     * Checks whether the first arg matches `word`.
+     * Gets the first argument.
      *
-     * @param word The first word in the command.
-     * @return True or false
+     * @return The first argument
      */
-    public boolean startsWith(String word) {
-        return this.args.get(0).equals(word);
+    public String getFirstArg() {
+        return this.args.get(0);
     }
 
     /**
@@ -68,16 +67,16 @@ public class Command {
 
     public String getKwarg(String key) throws KwargNotFound {
         String value = this.kwargs.get(key);
-        if (value == null) throw new KwargNotFound(this.args.get(0), key);
+        if (value == null) {
+            throw new KwargNotFound(this.args.get(0), key);
+        }
         return value;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.args.toString());
-        sb.append("\n");
-        sb.append(this.kwargs.toString());
-        return sb.toString();
+        return this.args.toString() +
+                "\n" +
+                this.kwargs.toString();
     }
 }

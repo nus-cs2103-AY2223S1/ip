@@ -21,18 +21,18 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Hazell hazell;
+    private Hazell bot;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image hazellImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image botImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setHazell(Hazell h) {
-        hazell = h;
+    public void setBot(Hazell bot) {
+        this.bot = bot;
     }
 
     /**
@@ -42,10 +42,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = hazell.getResponse(input);
+        String response = bot.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getHazellDialog(response, hazellImage)
+                DialogBox.getBotDialog(response, botImage)
         );
         userInput.clear();
     }
