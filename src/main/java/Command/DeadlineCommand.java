@@ -30,14 +30,14 @@ public class DeadlineCommand extends Command {
             storage.save();
             return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
                     + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException e1) {
             throw new DukeException(DukeUi.INVALID_DATE);
         } catch (ArrayIndexOutOfBoundsException e2) {
             throw new DukeException(DukeUi.INVALID_DEADLINE);
-        } catch (IOException e) {
-            throw new DukeException(e.getMessage());
-        } catch (DukeException e2) {
-            return e2.toString();
+        } catch (IOException e3) {
+            throw new DukeException(e3.getMessage());
+        } catch (DukeException e4) {
+            return e4.toString();
         }
     }
 

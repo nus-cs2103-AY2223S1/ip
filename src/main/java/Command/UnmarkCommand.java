@@ -16,14 +16,6 @@ public class UnmarkCommand extends Command {
         this.isExit = false;
         this.userAction = userAction;
     }
-    public boolean isNumeric(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 
     @Override
     public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {

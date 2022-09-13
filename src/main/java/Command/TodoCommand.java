@@ -28,8 +28,8 @@ public class TodoCommand extends Command {
             storage.save();
             return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
                     + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
-        } catch (IOException e) {
-            throw new DukeException(e.getMessage());
+        } catch (IOException e1) {
+            throw new DukeException(e1.getMessage());
         } catch (DukeException e2) {
             return e2.toString();
         }

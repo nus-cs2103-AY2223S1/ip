@@ -20,8 +20,8 @@ public class ExitCommand extends Command {
     public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
             storage.save();
-        } catch (IOException e) {
-            throw new DukeException(e.getMessage());
+        } catch (IOException e1) {
+            throw new DukeException(e1.getMessage());
         } catch (DukeException e2) {
             return e2.toString();
         }

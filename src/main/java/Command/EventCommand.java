@@ -32,8 +32,8 @@ public class EventCommand extends Command {
                     + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
         } catch (ArrayIndexOutOfBoundsException e2) {
             throw new DukeException(DukeUi.INVALID_EVENT);
-        } catch (IOException e) {
-            throw new DukeException(e.getMessage());
+        } catch (IOException e1) {
+            throw new DukeException(e1.getMessage());
         } catch (DukeException e3) {
             return e3.toString();
         }
