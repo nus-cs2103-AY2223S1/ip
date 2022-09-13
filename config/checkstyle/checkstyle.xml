@@ -4,6 +4,10 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <!--
+    Copied from https://github.com/se-edu/addressbook-level3/blob/master/config/checkstyle/checkstyle.xml
+-->
+
+<!--
     This configuration file enforces rules for the coding standard at
     https://se-education.org/guides/conventions/java/intermediate.html
 -->

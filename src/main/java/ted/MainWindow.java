@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+//Reused from https://se-education.org/guides/tutorials/javaFx.html with minor modifications
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
