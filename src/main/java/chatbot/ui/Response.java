@@ -40,6 +40,18 @@ public class Response {
     }
 
     /**
+     * The method determines the response after users query for tasks in the todo list with the specified tag.
+     * @param tasks The list containing the relevant tasks.
+     */
+    public String listTaskWith(List<Task> tasks) {
+        if (tasks != null) {
+            return String.format("These are your tasks with the given tag\n%s", list(tasks));
+        } else {
+            return "There are no tasks with this tag";
+        }
+    }
+
+    /**
      * The method determines the response after users query for tasks that contain a given keyword.
      * @param tasks The list containing the relevant tasks.
      */

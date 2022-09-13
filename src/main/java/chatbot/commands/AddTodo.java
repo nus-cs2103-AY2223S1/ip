@@ -11,20 +11,28 @@ import chatbot.ui.UI;
  */
 public class AddTodo implements Command {
     private String taskName;
+    private String[] tags;
 
-    public AddTodo(String taskName) {
+    /**
+     * The constructor of the AddTodo command.
+     *
+     * @param taskName
+     * @param tags
+     */
+    public AddTodo(String taskName, String[] tags) {
         this.taskName = taskName;
+        this.tags = tags;
     }
 
     @Override
     public void execute(TaskList todos, UI ui) {
-        Task todo = todos.addTodo(this.taskName);
+        Task todo = todos.addTodo(this.taskName, this.tags);
         ui.add(todo, todos.getNumberOfTasks());
     }
 
     @Override
     public String execute(TaskList todos, Response resp) {
-        Task todo = todos.addTodo(this.taskName);
+        Task todo = todos.addTodo(this.taskName, this.tags);
         return resp.add(todo, todos.getNumberOfTasks());
     }
 

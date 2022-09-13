@@ -20,6 +20,7 @@ import chatbot.tasks.TaskList;
  */
 public class Storage {
     private static final String DIVIDER = " \\| ";
+    private static final String TAG_DIVIDER = "#";
     private static final String ROOT = System.getProperty("user.dir");
     private static final Path DATA_PATH = Paths.get(ROOT, "data", "data.txt");
 
@@ -37,21 +38,31 @@ public class Storage {
             while (in.hasNextLine()) {
                 String[] nextTaskInfo = in.nextLine().split(DIVIDER);
                 Task newTask;
+                String[] tags = new String[0];
                 switch (nextTaskInfo[0]) {
                 case "T":
-                    newTask = todos.addTodo(nextTaskInfo[2]);
+                    if (nextTaskInfo.length == 4) {
+                        tags = nextTaskInfo[3].split(TAG_DIVIDER);
+                    }
+                    newTask = todos.addTodo(nextTaskInfo[2], tags);
                     if (nextTaskInfo[1].equals("1")) {
                         newTask.mark();
                     }
                     break;
                 case "D":
-                    newTask = todos.addDeadline(nextTaskInfo[2], LocalDate.parse(nextTaskInfo[3]));
+                    if (nextTaskInfo.length == 5) {
+                        tags = nextTaskInfo[4].split(TAG_DIVIDER);
+                    }
+                    newTask = todos.addDeadline(nextTaskInfo[2], LocalDate.parse(nextTaskInfo[3]), tags);
                     if (nextTaskInfo[1].equals("1")) {
                         newTask.mark();
                     }
                     break;
                 case "E":
-                    newTask = todos.addEvent(nextTaskInfo[2], LocalDate.parse(nextTaskInfo[3]));
+                    if (nextTaskInfo.length == 5) {
+                        tags = nextTaskInfo[4].split(TAG_DIVIDER);
+                    }
+                    newTask = todos.addEvent(nextTaskInfo[2], LocalDate.parse(nextTaskInfo[3]), tags);
                     if (nextTaskInfo[1].equals("1")) {
                         newTask.mark();
                     }

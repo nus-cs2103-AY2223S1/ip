@@ -18,8 +18,8 @@ public class Deadline extends Task {
      * @param taskName Name of the Deadline task.
      * @param date Date of the Deadline.
      */
-    public Deadline(String taskName, LocalDate date) {
-        super(taskName);
+    public Deadline(String taskName, LocalDate date, String[] tags) {
+        super(taskName, tags);
         this.date = date;
     }
 
@@ -30,6 +30,10 @@ public class Deadline extends Task {
 
     @Override
     public String save() {
-        return "D | " + this.getStatus() + " | " + this.getTaskName() + " | " + this.date;
+        String tagsString = this.saveTags();
+        if (tagsString != null) {
+            return String.format("D | %s | %s | %s | %s", this.getStatus(), this.getTaskName(), this.date, tagsString);
+        }
+        return String.format("D | %s | %s | %s", this.getStatus(), this.getTaskName(), this.date);
     }
 }
