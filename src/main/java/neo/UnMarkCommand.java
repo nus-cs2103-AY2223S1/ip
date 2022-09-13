@@ -36,10 +36,8 @@ public class UnMarkCommand extends Command{
     String complete(String tempi) throws NeoException, IOException {
         int tempii = Integer.valueOf(tempi);
         arrayLL.getTask(tempii-1).setIsDone(false);
-        //System.out.println("ohk I've marked this task as not done");
-        //System.out.println(arrayLL.getTask(tempii-1).toString());
         stor.writeData(arrayLL.getTask(0));
-        for(int i =1; i<arrayLL.arrayL.size(); i++) {
+        for (int i = 1; i < arrayLL.arrayL.size(); i++) {
             stor.storeData(arrayLL.getTask(i));
         }
         return "ohk I've marked this task as not done" + "\n" +arrayLL.getTask(tempii-1).toString();
