@@ -33,7 +33,7 @@ public class TaskList {
      * Returns the number of tasks in the list.
      * @return The number of tasks in the list.
      */
-    public int numTasks() {
+    public int getNumberOfTasks() {
         return tasks.size();
     }
 
@@ -43,6 +43,7 @@ public class TaskList {
      * @return The Task at the given index on the list.
      */
     public Task getTask(int index) {
+        assert index >= 0 && index < tasks.size() : "Index should not be out of bounds";
         return tasks.get(index);
     }
 

@@ -88,10 +88,10 @@ public class Storage {
      * @throws StorageException If there is an IOException saving the list of tasks to the file.
      */
     public void save(TaskList taskList) throws StorageException {
-        int numTasks = taskList.numTasks();
+        int numOfTasks = taskList.getNumberOfTasks();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             Files.copy(Paths.get(FILE_PATH), Paths.get(PREV_FILE_PATH), REPLACE_EXISTING);
-            for (int i = 0; i < numTasks; i++) {
+            for (int i = 0; i < numOfTasks; i++) {
                 Task task = taskList.getTask(i);
                 writer.write(formatTask(task));
             }

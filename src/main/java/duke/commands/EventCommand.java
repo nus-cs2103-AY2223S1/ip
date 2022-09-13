@@ -39,6 +39,6 @@ public class EventCommand extends Command {
         Event event = new Event(description, date);
         taskList.addTask(event);
         storage.save(taskList);
-        return ui.showTaskAdded(event) + ui.showNumberOfTasks(taskList.numTasks());
+        return ui.showTaskAdded(event) + ui.showNumberOfTasks(taskList.getNumberOfTasks());
     }
 }

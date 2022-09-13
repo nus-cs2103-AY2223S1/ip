@@ -74,6 +74,7 @@ public class Ui {
      * @return A message indicating the number of tasks.
      */
     public String showNumberOfTasks(int count) {
+        assert count >= 0 : "Number of tasks should not be negative";
         return String.format("\n\nYou have %d task(s) in the list.", count);
     }
 
@@ -83,7 +84,7 @@ public class Ui {
      * @return A message indicating all the tasks on the list.
      */
     public String showAllTasks(TaskList taskList) {
-        int size = taskList.numTasks();
+        int size = taskList.getNumberOfTasks();
         if (size == 0) {
             return "Your task list is empty!";
         }
