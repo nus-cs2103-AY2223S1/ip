@@ -37,10 +37,10 @@ public class Parser {
         String value = matcher.group(2);
         String flag = matcher.group(3);
         String additionalValue = matcher.group(4);
-        List<String> result = new ArrayList<>();
-        result.add(value);
-        result.add(flag);
-        result.add(additionalValue);
-        return result;
+        List<String> results = new ArrayList<>();
+        results.add(value);
+        results.add(flag);
+        results.add(additionalValue);
+        return results;
     }
 }

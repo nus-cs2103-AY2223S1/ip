@@ -24,10 +24,8 @@ public class Duke {
      */
     public Duke() {
         File storageDirectory = new File("./data");
-        if (!storageDirectory.exists()) {
-            if (!storageDirectory.mkdir()) {
-                wrapWithLines("Could not create /duke.data directory");
-            }
+        if (!storageDirectory.exists() && !storageDirectory.mkdir()) {
+            wrapWithLines("Could not create /duke.data directory");
         }
 
         Storage db = new Storage("./data/duke.txt");
