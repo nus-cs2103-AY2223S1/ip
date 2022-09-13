@@ -18,3 +18,5 @@ text-ui-test/EXPECTED-UNIX.TXT
 
 # Project files
 Duke.txt
+/out/artifacts/ip_jar/*.jar
+/build/libs/*.jar
