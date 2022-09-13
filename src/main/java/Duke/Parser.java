@@ -18,6 +18,12 @@ import Command.UnmarkCommand;
 */
 public class Parser {
 
+    public static boolean hasDescription(String[] command) {
+        return command[0].equals("mark") || command[0].equals("unmark") ||
+                command[0].equals("todo") || command[0].equals("deadline") ||
+                command[0].equals("event") || command[0].equals("find");
+    }
+
     /**
      * Parses the user input and splits the input into a user command and user action
      * to be passed into a Command object to execute the respective commands.
@@ -28,11 +34,9 @@ public class Parser {
      */
     public static Command parse(String[] command) throws DukeException {
         String userAction = "";
-        boolean isDescriptionNeeded = command[0].equals("mark") || command[0].equals("unmark") ||
-                command[0].equals("todo")  || command[0].equals("deadline") || command[0].equals("delete") ||
-                command[0].equals("event") || command[0].equals("find");
+        boolean isDescriptionNeeded = Parser.hasDescription(command);
         if (isDescriptionNeeded && (command.length == 1)) {
-            throw new DukeException("You need to provide a description for the command !");
+            throw new DukeException(DukeUi.INVALID_DESCRIPTION);
         } else if (isDescriptionNeeded) {
             userAction = command[1].trim();
         }
