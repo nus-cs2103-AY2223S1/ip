@@ -160,14 +160,26 @@ public class Parser {
         return event;
     }
 
-    private static String getEventDescription(String userInput) throws DukeException{
-        if (userInput.length() >= 2) {
+    private static String getEventDescription(String[] userInput) throws DukeException{
+        if (userInput.length >= 2) {
             int startIndexOfDescription = 1;
             int endIndexOfDescription = getStartOfDate(userInput);
             String description = getStringBetweenIndices(startIndexOfDescription, endIndexOfDescription, userInput);
         } else {
             throw new DukeException("Invalid description provided");
         }
+    }
+
+    private static int getStartOfDate(String[] userInput) throws DukeException {
+        String regex = "\\d\\d\\d\\d-\\d\\d-\\d\\d";
+        Pattern datePattern = Pattern.compile(regex);
+        for (int i = 1;i < userInput.length; i ++) {
+            Matcher dateMatcher = datePattern.matcher(userInput[i]);
+            if (dateMatcher.matches()) {
+                return i;
+            }
+        }
+        throw new DukeException("No date given");
     }
 
     private static Deadline createDeadline(String[] userInput) {
