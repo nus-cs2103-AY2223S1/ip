@@ -20,5 +20,9 @@ public class Duke {
             return e.getMessage();
         }
     }
+
+    public static void main(String[] args) {
+        Launcher.launch(args);
+    }
 }
 
