@@ -61,7 +61,7 @@ public class Duke {
      * @throws DukeException
      */
     public static void main(String[] args) {
-        new Duke("./data/saved.txt").run();
+        new Duke("/data/saved.txt").run();
     }
 
     public String getResponse(String input) {

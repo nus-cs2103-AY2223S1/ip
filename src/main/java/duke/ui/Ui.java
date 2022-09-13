@@ -39,7 +39,8 @@ public class Ui {
      * @param size
      */
     public String newItemAdded(Task t, int size) {
-        return "Got it. I've added this task:\n"
+        String taskType = t.getSymbol() == "NOTE" ? "note" : "task";
+        return "Got it. I've added this " + taskType + ":\n"
                 + t + "\n" + "Now you have " + size + " tasks in the list.\n";
     }
 
@@ -66,7 +67,9 @@ public class Ui {
      * @param size
      */
     public String showTaskDeletedMessage(Task t, int size) {
-        return "Noted. I've removed this task:\n"
+        String taskType = t.getSymbol() == "NOTE" ? "note" : "task";
+
+        return "Noted. I've removed this " + taskType + ":\n"
                 + t + "\n" + "Now you have " + size + " tasks in the list.\n";
     }
 

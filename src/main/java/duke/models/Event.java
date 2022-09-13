@@ -44,7 +44,7 @@ public class Event extends Task {
      */
     @Override
     public String stringToWrite() {
-        return this.getSymbol() + " | " + (super.isDone ? "1" : "0") + " | " + this.getDescription() + " | " + this.at;
+        return this.getSymbol() + "|" + (super.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.at;
     }
 
     /**

@@ -58,19 +58,21 @@ public class Storage {
     public List<Task> loadData() {
         List<Task> result = new ArrayList<>();
         try {
-            File myObj = new File(filePath);
+            String currentDirectory = System.getProperty("user.dir");
+            File myObj = new File(currentDirectory + "/data/saved.txt");
             Scanner myReader = new Scanner(myObj);
+            System.out.println(myReader);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] split = data.split("\\| ", 4);
                 switch (split[0]) {
-                case "T ":
+                case "T":
                     result.add(new Todo(split[2]));
                     break;
-                case "D ":
+                case "D":
                     result.add(new Deadline(split[2], LocalDate.parse(split[3])));
                     break;
-                case "E ":
+                case "E":
                     result.add(new Event(split[2], LocalDate.parse(split[3])));
                     break;
                 default:
