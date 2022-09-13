@@ -1,24 +1,136 @@
-# Duke project template
+# Gigachad User Guide
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Gigachad will help you keep track of all your tasks.
 
-## Setting up in Intellij
+## Features
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+### Autosave
+Tasks are automatically written into your home directory in a dukeData folder in a Duke.txt.
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+Important: Ensure this file doesn't exist (from previous iP checks) so that it works properly.
+
+***
+
+### Viewing Help : `help`
+Views a list of available commands.
+
+Format: `help`
+
+***
+
+### Adding a ToDo : `todo`
+Adds a todo task into the tasklist.
+
+Format:  `todo priority description`
+
+Note: priority is optional, default priority is set to low.
+
+Examples:
+- `todo high read book`
+- `todo read book`
+
+***
+
+### Adding a Deadline : `deadline`
+Adds a deadline task into the tasklist.
+
+Format:  `deadline priority description /by date time`
+
+Note: 
+- priority is optional, default priority is set to low.
+- time is optional.
+
+Examples:
+- `deadline medium lab /by 2019-12-10`
+- `deadline lab /by 2019-12-10 16:30`
+
+***
+
+### Adding an Event : `event`
+Adds an todo task into the tasklist.
+
+Format:  `event priority description /on date time-time`
+
+Note: priority is optional, default priority is set to low.
+
+Examples:
+- `event low club meeting /on 2019-12-10 16:30-20:30`
+- `event club meeting /on 2019-12-10 16:30-20:30`
+
+***
+
+### Listing all tasks : `list`
+Shows a list of all tasks, sorted based on priority.
+
+Format:  `list`
+
+***
+
+### Marking task as done : `mark`
+Marks a task as done at the given index, assuming a task exists there.
+
+Format:  `mark index`
+
+Example: `mark 3`
+
+***
+
+### Marking task as undone : `unmark`
+Marks a task as undone at the given index, assuming a task exists there.
+
+Format:  `unmark index`
+
+Example: `unmark 3`
+
+***
+
+### Deleting a task : `delete`
+Delete the task at the given index, assuming a task exists there.
+
+Format:  `delete index`
+
+Example: `delete 3`
+
+***
+
+### Setting task priority : `priority`
+Sets a task's priority at the given index with the given priority.
+
+Assumptions: 
+- Task exists at index.
+- Given priority is valid.
+
+Format:  `priority index value`
+
+Example: `priority 3 medium`
+
+***
+
+### Retrieving due tasks : `due`
+Shows a list of tasks due at the given date.
+
+Format:  `due date`
+
+Example: `due 2022-10-10`
+
+***
+
+### Finding tasks by description : `find`
+Shows a list of tasks found with the given queries.
+
+Note: Can have single query or multiple queries at once.
+
+Format:  `find query`
+
+Examples: 
+- `find book lab`
+- `find lab`
+
+***
+
+### Exiting the program : `bye`
+Exits the program.
+
+Format:  `bye`
+
+***

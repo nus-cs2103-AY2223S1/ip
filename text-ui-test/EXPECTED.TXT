@@ -1,7 +1,36 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+_________________________________________________________________
+Hello I'm Duke
+What can I do for you?
+_________________________________________________________________
+Got it. I've added this task:
+  [T][ ] return book
+Now you have 1 tasks in the list.
+_________________________________________________________________
+Got it. I've added this task:
+  [D][ ] lab (by: 10:00 Nov 12 2019)
+Now you have 2 tasks in the list.
+_________________________________________________________________
+Got it. I've added this task:
+  [E][ ] meeting (at: 16:00 to 18:00 Nov 12 2019)
+Now you have 3 tasks in the list.
+_________________________________________________________________
+Nice! I've marked this task as done:
+  [D][X] lab (by: 10:00 Nov 12 2019)
+_________________________________________________________________
+Nice! I've marked this task as done:
+  [E][X] meeting (at: 16:00 to 18:00 Nov 12 2019)
+_________________________________________________________________
+Here are the tasks in your list:
+1.[T][ ] return book
+2.[D][X] lab (by: 10:00 Nov 12 2019)
+3.[E][X] meeting (at: 16:00 to 18:00 Nov 12 2019)
+_________________________________________________________________
+Noted. I've removed this task:
+  [D][X] lab (by: 10:00 Nov 12 2019)
+Now you have 2 tasks in the list.
+_________________________________________________________________
+Here are the tasks due at this date:
+1.[E][X] meeting (at: 16:00 to 18:00 Nov 12 2019)
+_________________________________________________________________
+Bye. Hope to see you again soon!
+_________________________________________________________________
