@@ -32,6 +32,24 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        // Generate the background colour for the Dialog
+        java.awt.Color awtColor = Color.cyan ;
+        int r = awtColor.getRed();
+        int g = awtColor.getGreen();
+        int b = awtColor.getBlue();
+        int a = awtColor.getAlpha();
+        double opacity = 0.5;
+        javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.rgb(r, g, b, opacity);
+
+        dialogContainer.getStyleClass().add("color-palette");
+        dialogContainer.setBackground(new Background(new BackgroundFill(fxColor, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        String userText = userInput.getText();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog("Hello! I'm Dukity Duke! How can I help you?", dukeImage)
+        );
+        userInput.clear();
     }
 
     public void setDuke(Duke d) {
@@ -47,17 +65,7 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = duke.getResponse(input);
 
-        // Generate the background colour for the Dialog
-        java.awt.Color awtColor = Color.cyan ;
-        int r = awtColor.getRed();
-        int g = awtColor.getGreen();
-        int b = awtColor.getBlue();
-        int a = awtColor.getAlpha();
-        double opacity = 0.5;
-        javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.rgb(r, g, b, opacity);
 
-        dialogContainer.getStyleClass().add("color-palette");
-        dialogContainer.setBackground(new Background(new BackgroundFill(fxColor, CornerRadii.EMPTY, Insets.EMPTY)));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
