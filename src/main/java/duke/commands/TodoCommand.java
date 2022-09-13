@@ -19,6 +19,7 @@ public class TodoCommand extends Command {
         assert ui.userString().split(" ").length >= 2
                 : "     ☹ OOPS!!! The description of a todo cannot be empty.";
 
+
         String userInput = ui.userString();
         String[] splitInput = userInput.split(" ");
         StringBuilder todo = new StringBuilder();
