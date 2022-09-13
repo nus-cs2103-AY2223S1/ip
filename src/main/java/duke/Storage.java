@@ -1,18 +1,32 @@
 package duke;
 
+
 import java.io.*;
 import java.util.ArrayList;
 
 
+
 public class Storage {
 
-    private final String filePath = "duke.txt";
-    private ArrayList<Task> arr;
+    private String filePath = "duke.txt";
+    private File file;
 
 
     //constructor
     public Storage() {
 
+        File newFile = new File(filePath);
+        if (!newFile.exists()) {
+            try {
+                boolean result = newFile.createNewFile();
+                if (result) {
+                    System.out.println("New file created");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        this.file = newFile;
     }
 
     //methods
@@ -22,19 +36,21 @@ public class Storage {
      * @param object of type ArrayList<Task> which content is written to txt
      */
     public void writer(ArrayList<Task> arr) {
-        String temp = "";
-
-        for (Task item: arr) {
-            temp += (item.toString() + "\n");
-        }
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-            writer.write(temp);
-            writer.close();
+            FileWriter fw = new FileWriter(filePath);
+            String temp = "";
+            for (Task item : arr) {
+                temp += item.toString();
+                temp += "\n";
+            }
+            fw.write(temp);
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
 
     }
 
@@ -44,6 +60,7 @@ public class Storage {
      * @return object of type String which is a String of saved information to be processed
      */
     public String reader() {
+
         String s = "";
         int counter_mark = 1;
         StringBuilder builder = new StringBuilder();
