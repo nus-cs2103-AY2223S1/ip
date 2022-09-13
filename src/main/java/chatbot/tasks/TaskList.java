@@ -149,6 +149,16 @@ public class TaskList {
     }
 
     /**
+     * Finds all the tasks in the todo list containing the keyword.
+     *
+     * @param keyword The keyword in user's search
+     * @return The list of tasks containing the keyword.
+     */
+    public Task[] streamFind(String keyword) {
+        return (Task[]) todos.stream().filter(todo -> todo.getTaskName().contains(keyword)).toArray();
+    }
+
+    /**
      * The method assigns the task to a group by its date.
      *
      * @param date The date associated with the task.
