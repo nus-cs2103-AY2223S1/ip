@@ -52,6 +52,7 @@ public class Task {
     /**
      * Returns a string that contains the status icon and description of the task that
      * is used for saving.
+     * 
      * @return A string that contains the status icon and description of the task that
      * is used for saving.
      */
@@ -69,32 +70,27 @@ public class Task {
     }
 
     public String getTaskPriority() {
-        switch (this.taskPriority) {
-            case HIGH:
-                return "HIGH";
-            case MEDIUM:
-                return "MEDIUM";
-            case LOW :
-                return "LOW";
-            default:
-                assert false;
-                return null;
+        if (this.taskPriority == taskPriority.HIGH) {
+            return "HIGH";
+        } else if (this.taskPriority == taskPriority.MEDIUM) {
+            return "MEDIUM";
+        } else if (this.taskPriority == taskPriority.LOW) {
+            return "LOW";
+        } else {
+            assert false;
+            return null;
         }
     }
 
     public void setTaskPriority(String priority) {
-        switch (priority) {
-            case "high" :
-                this.taskPriority = taskPriority.HIGH;
-                break;
-            case "medium" :
-                this.taskPriority = taskPriority.MEDIUM;
-                break;
-            case "low" :
-                this.taskPriority = taskPriority.LOW;
-                break;
-            default:
-                assert false;
+        if (priority.equals("high")) {
+            this.taskPriority = taskPriority.HIGH;
+        } else if (priority.equals("medium")) {
+            this.taskPriority = taskPriority.MEDIUM;
+        } else if (priority.equals("low")) {
+            this.taskPriority = taskPriority.LOW;
+        } else {
+            assert false;
         }
     }
 

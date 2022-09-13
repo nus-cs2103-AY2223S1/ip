@@ -1,9 +1,8 @@
 package duke.task;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalTime;
-
+import java.time.format.DateTimeFormatter;
 
 /**
  * Encapsulate a task that needs to be done before a specific date/time.

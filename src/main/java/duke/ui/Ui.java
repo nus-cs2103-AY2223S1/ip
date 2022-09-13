@@ -1,10 +1,9 @@
 package duke.ui;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.task.Task;
 /**
  * Part of the chatbot that display messages to the user.
  */

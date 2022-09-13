@@ -1,5 +1,10 @@
 package duke.parse;
 
+import java.time.DateTimeException;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -18,12 +23,6 @@ import duke.exception.MissingDeadlineDescriptionException;
 import duke.exception.MissingDescriptionException;
 import duke.exception.MissingEventDescriptionException;
 import duke.exception.MissingTargetException;
-
-import java.time.DateTimeException;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 
 /**
  * Part of the chatbot that deals with user commands.
@@ -95,13 +94,15 @@ public class Parser {
         if (prioritySpilt.length != 2) {
             throw new InvalidPriorityException();
         }
-        switch (prioritySpilt[1]) {
-            case "high" :
-            case "medium" :
-            case "low" :
-                return new PriorityCommand(taskToChangePriority, prioritySpilt[1]);
-            default:
-                throw new InvalidPriorityException();
+
+        if (prioritySpilt[1].equals("high")) {
+            return new PriorityCommand(taskToChangePriority, prioritySpilt[1]);
+        } else if (prioritySpilt[1].equals("medium")) {
+            return new PriorityCommand(taskToChangePriority, prioritySpilt[1]);
+        } else if (prioritySpilt[1].equals("low")) {
+            return new PriorityCommand(taskToChangePriority, prioritySpilt[1]);
+        } else {
+            throw new InvalidPriorityException();
         }
 
     }

@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command for exiting the chatbot.

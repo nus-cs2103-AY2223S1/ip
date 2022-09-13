@@ -15,11 +15,25 @@ public class PriorityCommand extends Command {
     private int toChangePriority;
     private String priorityLevel;
 
+    /**
+     * Constructor for the PriorityCommand Object.
+     *
+     * @param toChangePriority The index of the task to change its priority level.
+     * @param priorityLevel The priority level to change to.
+     */
     public PriorityCommand(int toChangePriority, String priorityLevel) {
         this.toChangePriority = toChangePriority - 1;
         this.priorityLevel = priorityLevel;
     }
 
+    /**
+     * Change the priority level of the specific task in the task list and return a message that the
+     * priority of the task has been changed.
+     *
+     * @param tasks The TaskList object of the chatbot.
+     * @param storage The storage object of the chatbot.
+     * @return The message that the priority of the task has been changed.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         try {

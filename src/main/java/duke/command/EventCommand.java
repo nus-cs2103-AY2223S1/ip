@@ -37,7 +37,7 @@ public class EventCommand extends Command {
         Event currEvent = new Event(this.description, this.duration);
         task.addTask(currEvent);
         return "Got it. I've added this task:\n " + currEvent.taskInfo()
-                + "\nNow you have "  + task.getTaskSize() + " tasks in the list.";
+                + "\nNow you have " + task.getTaskSize() + " tasks in the list.";
     }
 
 }

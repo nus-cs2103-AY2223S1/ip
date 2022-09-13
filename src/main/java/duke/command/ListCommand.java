@@ -1,10 +1,10 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-
-import java.util.ArrayList;
 
 /**
  * Command for listing all the tasks in the task list.

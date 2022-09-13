@@ -1,19 +1,19 @@
 package duke;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parse.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
 /**
  * The main class of chatbot Duke.
  */
 
-public class Duke  {
+public class Duke {
 
     private Parser parser;
     private Storage storage;

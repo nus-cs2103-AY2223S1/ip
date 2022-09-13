@@ -1,5 +1,8 @@
 package duke.gui;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,8 +28,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/huh.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/xdd.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Penguin.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Molediver.png"));
 
     @FXML
     public void initialize() {
@@ -45,10 +48,25 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        checkByeMessage(response);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
     }
+
+    private void checkByeMessage(String response) {
+        String byeMessage = "Bye. Hope to see you again soon!";
+        if (response == byeMessage) {
+            TimerTask exitTask = new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            };
+            new Timer().schedule(exitTask, 750);
+        }
+    }
+
 }

@@ -35,7 +35,7 @@ public class ToDoCommand extends Command {
         ToDo currToDo = new ToDo(this.description);
         task.addTask(currToDo);
         return "Got it. I've added this task:\n " + currToDo.taskInfo()
-                + "\nNow you have "  + task.getTaskSize() + " tasks in the list.";
+                + "\nNow you have " + task.getTaskSize() + " tasks in the list.";
     }
 
 }

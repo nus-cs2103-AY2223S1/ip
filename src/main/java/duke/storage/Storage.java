@@ -1,11 +1,5 @@
 package duke.storage;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.ToDo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -14,6 +8,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 /**
  * Part of the chatbot that deals with reading and writing of task information in files.
@@ -62,7 +62,7 @@ public class Storage {
         if (spiltCurrDeadline.length == 5) {
             localDate = LocalDate.parse(spiltCurrDeadline[2]);
             localTime = LocalTime.parse(spiltCurrDeadline[3]);
-        } else if (spiltCurrDeadline.length == 4){
+        } else if (spiltCurrDeadline.length == 4) {
             localDate = LocalDate.parse(spiltCurrDeadline[2]);
         } else {
             assert false;
