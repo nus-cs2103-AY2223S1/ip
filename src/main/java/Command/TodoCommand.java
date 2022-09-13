@@ -21,15 +21,13 @@ public class TodoCommand extends Command {
     @Override
     public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
+            int initialSize = tasks.getTaskListSize();
             Task newTodo = new Todo(userAction);
-            if (this.userAction.equals("")) {
-                throw new DukeException("The description of a todo cannot be empty.");
-            } else{
-                tasks.addTask(newTodo);
-                storage.save();
-                return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
-                        + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
-            }
+            tasks.addTask(newTodo);
+            assert tasks.getTaskListSize() == initialSize + 1 : DukeUi.ADD_TASK_ERROR;
+            storage.save();
+            return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
+                    + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
         } catch (DukeException e2) {

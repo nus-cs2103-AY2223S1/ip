@@ -14,6 +14,13 @@ public class DukeUi {
     static final String INVALID_COMMAND = " is not a valid command !! " +
             "valid commands are list, mark (number), unmark (number), todo (task), deadline (task) /by yyyy/mm/dd," +
             "event (task) /at (time), delete (number), find (keyword)";
+    public static final String INVALID_INDEX = "The index provided needs to be a number!";
+    public static final String INDEX_OUT_OF_RANGE = "I'm sorry, but the index you provided is out of range :-(";
+    public static final String INVALID_EVENT = "The description/time of an event cannot be empty!";
+    public static final String INVALID_DEADLINE = "The description/time of a deadline cannot be empty!";
+    public static final String INVALID_DATE = "Deadline date must be of format yyyy-mm-dd";
+    public static final String ADD_TASK_ERROR = "Error adding task, please try again";
+    public static final String DELETE_TASK_ERROR = "Error deleting task, please try again";
 
     /**
      * Splits user input into a String array of length 2.
@@ -23,6 +30,7 @@ public class DukeUi {
      * where index 0 is the command and index 1 is the input.
      */
     public String[] readCommand(String input) {
+        assert input != "" : "Please input a command!";
         String[] command = input.split(" ", 2);
         return command;
     }
