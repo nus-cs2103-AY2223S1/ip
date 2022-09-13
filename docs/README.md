@@ -71,3 +71,60 @@ Preview the save file as shown here
 4. Similarly, for event tasks: The format is specified as `E//markIndicator//description/date//`
 5. Finally, you can simply delete lines to delete the task, and it will be automatically re-ordered for you 
 
+#  Acknowledgements
+
+Credit where it's due to the people who helped along the way! 
+
+## Images 
+
+ - User Icon: @Author: Unknown
+    - Retrieved from: "https://www.kindpng.com/imgv/iwoRiix_transparent-clipart-free-download-ajit-pai-hd-png/"
+
+ - User profile: @Author: 
+
+ - App Icon: @Author: UrieW.
+    -  Retrieved from OpenGameArt.org @ "https://opengameart.org/content/device-app-icons-with-template"
+
+
+ ## Code
+ 1. GUI Inspiration and formatting 
+ -  @@author `PinranJ` - reused
+    - Reused code from batchmate for GUI styling. Specifically, to shape the user profile into a circle
+    - Fit my own ratios into the code
+    -  {
+        `double circleRadius = displayPicture.getFitWidth() / 2;`
+        `double circleX = displayPicture.getX() + circleRadius;`
+        `double circleY = displayPicture.getY() + circleRadius;`
+
+        `Circle clip = new Circle(circleX, circleY, circleRadius);`
+
+        `dialog.setText(text);`
+        `displayPicture.setImage(img);`
+        `displayPicture.setClip(clip);`
+        }
+        
+
+2. Save System implementation 
+- @@ author `Jindra Helcl` - referenced
+    - Read solution from stackoverflow to debug fileWriter class not saving properly 
+    - Reused from: https://stackoverflow.com/questions/30525437/filewriter-is-not-writing-in-to-a-file
+
+
+3. Parser switch statements 
+ - @@ author `Sergey Kalinichenko` - referenced 
+     - Idea to use `toString` method of enums to pass into switch statement for parser
+     - Used code block inside my commands 
+     - Reused from: https://stackoverflow.com/questions/10387329/using-string-representations-of-enum-values-in-switch-case with heavy modifications 
+     - `public enum MyType {`
+            `VALUE1 {`
+                `public String toString() {`
+                    `return "this is my value one";`
+                `}`
+            `},`
+
+
+        `VALUE2 {`
+                `public String toString() {`
+                    `return "this is my value two";`
+                `}`
+            `}`
