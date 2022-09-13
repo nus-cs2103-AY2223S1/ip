@@ -17,37 +17,117 @@ It has been designed to improve syntax friendliness.
 
 ## Features 
 
+Note: All commands are case insensitive
+
 1. Basic Commands
 
 ### Adding tasks: `task`
 
-Add a task your planner list.
+&nbsp;&nbsp;Add a task to your planner.
 
-Format: `task|t|todo taskDescription`
+&nbsp;&nbsp;Has aliases `t` and `todo`
+
+&nbsp;&nbsp;Format: `task|t|todo taskDescription`
 
 ### Adding Deadlines: `deadline`
 
+&nbsp;&nbsp;Add a deadline to your planner.
+
+&nbsp;&nbsp;Every deadline should have a due date.
+
+&nbsp;&nbsp;Has alias `d`.
+
+&nbsp;&nbsp;Format: `deadline|d deadlineDescription date<YYYY-MM-DD>`
+
 ### Adding Events: `event`
+
+&nbsp;&nbsp; Add an event to your planner.
+
+&nbsp;&nbsp;Every event should have a date.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Has alias `e`.
+
+&nbsp;&nbsp;Format: `event|e eventDescription date<YYYY-MM-DD>`
 
 ### Viewing list: `list`
 
+&nbsp;&nbsp;View all tasks, events, and deadlines in your planner.
+
+&nbsp;&nbsp;Has alias `l`
+
+&nbsp;&nbsp;Format: `list|l`
+
 ### Delete item: `delete`
+
+&nbsp;&nbsp;Delete an item from your planner. 
+
+&nbsp;&nbsp;You need to provide the index of the task to be deleted.
+
+&nbsp;&nbsp;This index is the position at which the task appears in your planner list.
+
+&nbsp;&nbsp;Suggested: use list command to check the index required.
+
+&nbsp;&nbsp;Had aliases: "d", "remove", "r"
+
+&nbsp;&nbsp;Format: `delete|d|remove|r index`
 
 ### Exit command: `exit`
 
+&nbsp;&nbsp;Close the planner.
+
+&nbsp;&nbsp;Has aliases "b", "quit", "q", "bye" 
+
+&nbsp;&nbsp;Format: `exit|b|bye|quit|q`
+
 ### Help command
+
+&nbsp;&nbsp;Shows a list of all commands supported by Falcon.
+
+&nbsp;&nbsp;Has alias "h".
+
+&nbsp;&nbsp;Format: `h|help`
 
 2. Intermediate Commands
 
 ### Mark command: `mark`
 
+&nbsp;&nbsp;Mark task at index as completed. See delete command for a more thorough explanation of an index.
+
+&nbsp;&nbsp;Has aliases "m"
+
+&nbsp;&nbsp;Format: `mark|m index`
+
 ### Unmark command: `unmark`
+
+&nbsp;&nbsp;
+
+&nbsp;&nbsp;
+
+&nbsp;&nbsp;
 
 ### Find command `find`
 
+&nbsp;&nbsp;
+
+&nbsp;&nbsp;
+
+&nbsp;&nbsp;
+
+&nbsp;&nbsp;
+
 ### LongDesc command: `longdesc`
 
+&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;
+
 ### isToday command: `istoday`
+
+&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;
 
 
 
@@ -59,12 +139,6 @@ Format: `task|t|todo taskDescription`
 ### Friendlier Syntax
 
 #### Command aliases available:
-
-todo command can be replaced with "task" or "t" 
-
-event command can be replaced with "e"
-
-deadline command can be replaced with "d"
 
 mark command can be replaced with "m"
 
@@ -82,8 +156,6 @@ istoday command can be used to check if a task is due today
 
 delete command can be replaced with "d", "remove", "r"
 
-
-## Usage
 
 ### `Keyword` - Describe action
 
