@@ -185,6 +185,8 @@ public class InputParser {
             }
         } catch (DekuExceptions e) {
             reply = e.toString();
+        } catch (NumberFormatException e) {
+            reply = new DekuExceptions("I have no idea what that means. (T _ T)").toString();
         }
         return "\n" + reply;
     }

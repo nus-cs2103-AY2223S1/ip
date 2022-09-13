@@ -68,7 +68,13 @@ public class MainWindow extends AnchorPane {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
-                new BackgroundSize(1.0, 1.0, true, true, false, false)
+                new BackgroundSize(1.0,
+                        1.0,
+                        true,
+                        true,
+                        false,
+                        false
+                )
         );
 
         return new Background(bImg);
