@@ -10,21 +10,17 @@ import duke.command.DeleteCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.UndoCommand;
 import duke.command.UnmarkCommand;
 
 /**
  * A class to parse user input
  */
 public class Parser {
-    private final TaskList taskList;
-
     /**
      * Takes in a list of the tasks where the parsed tasks will be stored.
-     *
-     * @param taskList A list of the tasks
      */
-    public Parser(TaskList taskList) {
-        this.taskList = taskList;
+    public Parser() {
     }
     private static String generateInvalidArgumentsMessage(String action) {
         return "OOPS!!! The " + action + " must have valid arguments.\n";
@@ -54,21 +50,23 @@ public class Parser {
         case BYE:
             return new ByeCommand();
         case LIST:
-            return new ListCommand(taskList);
+            return new ListCommand();
         case MARK:
-            return new MarkCommand(taskList, arguments);
+            return new MarkCommand(arguments);
         case UNMARK:
-            return new UnmarkCommand(taskList, arguments);
+            return new UnmarkCommand(arguments);
         case DELETE:
-            return new DeleteCommand(taskList, arguments);
+            return new DeleteCommand(arguments);
         case TODO:
-            return new AddTaskCommand(taskList, arguments, command, arguments.length, CommandType.TODO, "");
+            return new AddTaskCommand(arguments, command, arguments.length, CommandType.TODO, "");
         case DEADLINE:
-            return new AddTaskCommand(taskList, arguments, command, arguments.length, CommandType.DEADLINE, " /by ");
+            return new AddTaskCommand(arguments, command, arguments.length, CommandType.DEADLINE, " /by ");
         case EVENT:
-            return new AddTaskCommand(taskList, arguments, command, arguments.length, CommandType.EVENT, " /at ");
+            return new AddTaskCommand(arguments, command, arguments.length, CommandType.EVENT, " /at ");
         case FIND:
-            return new FindCommand(taskList, arguments);
+            return new FindCommand(arguments);
+        case UNDO:
+            return new UndoCommand();
         default:
             throw new CustomMessageException((
                     "OOPS!!! I'm sorry, but I don't know what that means :-(\n"));

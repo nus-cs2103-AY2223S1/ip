@@ -1,6 +1,7 @@
 package duke.command;
 
-import duke.TaskList;
+import duke.Storage;
+import duke.tasklist.TaskList;
 
 /**
  * Concrete class representing UNMARK
@@ -8,16 +9,16 @@ import duke.TaskList;
 public class UnmarkCommand extends CommandWithTasklistAndCommands {
     /**
      * Constructs an instance of UnmarkCommand
-     * @param taskList The tasks list
      * @param arguments The arguments
      */
-    public UnmarkCommand(TaskList taskList, String[] arguments) {
-        super(taskList, arguments);
+    public UnmarkCommand(String[] arguments) {
+        super(arguments);
     }
     @Override
-    public String execute() {
+    public String execute(Storage storage, TaskList taskList) {
         int index = Integer.parseInt(arguments[0]) - 1;
         taskList.markTaskAsNotDone(index);
+        saveTaskListToStorage(storage, taskList);
         return "OK, I've marked this task as not done yet:\n    "
                 + taskList.getTaskString(index);
     }

@@ -1,6 +1,10 @@
 package duke;
 
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import duke.command.Command;
+import duke.tasklist.TaskList;
 
 /**
  * The driving engine for Duke
@@ -10,15 +14,45 @@ public class Duke {
      * The path to the file containing the user data
      */
     public static final String FILE_PATH = "tasks.txt";
+    /**
+     * The path to the file containing the previous user's data
+     */
+    public static final String PREVIOUS_TASKS_FILE_PATH = "tasksOld.txt";
+    private static final Duke duke = new Duke();
 
+    private final Storage storage;
     private final Parser parser;
+    private final TaskList taskList;
 
     /**
      * Constructs an instance with the default file path
      */
-    public Duke() {
-        Storage storage = new Storage(FILE_PATH);
-        parser = new Parser(new TaskList(storage));
+    private Duke() {
+        storage = new Storage(FILE_PATH, PREVIOUS_TASKS_FILE_PATH);
+        parser = new Parser();
+        taskList = new TaskList();
+        parseTasksFromStorage();
+    }
+
+    private void parseTasksFromStorage() {
+        try {
+            Scanner fileScanner = storage.getScannerForTasksFile();
+            while (fileScanner.hasNextLine()) {
+                Command parsedCommand = parser.parseUserCommand(fileScanner.nextLine());
+                parsedCommand.execute(storage, taskList);
+            }
+            fileScanner.close();
+        } catch (FileNotFoundException | CustomMessageException e) {
+            System.out.println("No existing data was found");
+        }
+    }
+
+    /**
+     * Returns the single instance of {@code Duke}
+     * @return The {@code Duke} instance
+     */
+    public static Duke getDukeInstance() {
+        return duke;
     }
 
     /**
@@ -29,7 +63,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command parsedCommand = parser.parseUserCommand(input);
-            String output = parsedCommand.execute();
+            String output = parsedCommand.execute(storage, taskList);
             return output + "\n";
         } catch (CustomMessageException e) {
             return e.getMessage();

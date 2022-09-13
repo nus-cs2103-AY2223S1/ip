@@ -1,15 +1,9 @@
 package duke.tasklist;
 
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Scanner;
 
-import duke.CustomMessageException;
-import duke.Parser;
-import duke.Storage;
-import duke.command.Command;
 import duke.task.Task;
 
 /**
@@ -46,23 +40,5 @@ public class TaskListSerialiser {
                 new StringBuilder(), (stringToBuild, currentEntry) -> stringToBuild.append(
                         currentEntry.getValue().getFileStorageString(currentEntry.getKey())), StringBuilder::append);
         return listOfUserText.toString();
-    }
-    /**
-     * Updates the TaskList
-     * @param curr The TaskList object
-     * @param storage The Storage object
-     */
-    public static void deserialiseStorageString(TaskList curr, Storage storage) {
-        Parser parser = new Parser(curr);
-        try {
-            Scanner fileScanner = storage.getScannerForTasksFile();
-            while (fileScanner.hasNextLine()) {
-                Command parsedCommand = parser.parseUserCommand(fileScanner.nextLine());
-                parsedCommand.execute();
-            }
-            fileScanner.close();
-        } catch (FileNotFoundException | CustomMessageException e) {
-            System.out.println("No existing data was found");
-        }
     }
 }

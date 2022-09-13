@@ -12,8 +12,6 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Gui extends Application {
-    private final Duke duke = new Duke();
-
     @Override
     public void start(Stage stage) {
         try {
@@ -21,7 +19,7 @@ public class Gui extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().setDuke(Duke.getDukeInstance());
             stage.show();
             stage.setTitle("Duke");
         } catch (IOException e) {

@@ -1,5 +1,7 @@
 package duke;
 
+import duke.tasklist.TaskList;
+
 /**
  * A representation for the UI the user will see.
  */

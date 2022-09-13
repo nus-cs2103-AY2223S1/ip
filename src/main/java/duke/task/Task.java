@@ -71,7 +71,6 @@ public abstract class Task {
      * @return True if the keyword is present
      */
     public boolean isMatchingKeywordInDescription(String keyword) {
-        System.out.println(description);
         return description.contains(keyword);
     }
 

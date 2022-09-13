@@ -1,23 +1,23 @@
 package duke.command;
 
-import duke.TaskList;
+import duke.Storage;
+import duke.tasklist.TaskList;
 
 /**
  * Concrete class representing FIND
  */
 public class FindCommand extends CommandWithTasklistAndCommands {
     /**
-     * @param taskList  The tasks list
      * @param arguments The arguments
      */
-    public FindCommand(TaskList taskList, String[] arguments) {
-        super(taskList, arguments);
+    public FindCommand(String[] arguments) {
+        super(arguments);
     }
 
     @Override
-    public String execute() {
+    public String execute(Storage storage, TaskList taskList) {
         return ("Here are the matching tasks in your list:"
-                + taskList.getTextRepresentationOfKeywordTasks(arguments[0]));
+                + taskList.getTextRepresentationOfTasksMatchingKeyword(arguments[0]));
     }
 }
 
