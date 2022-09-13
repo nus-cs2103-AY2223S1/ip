@@ -1,5 +1,7 @@
 # User Guide
 
+Falcon is a planner app for aviculturists, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+
 ## Quick Start
 
 ## Features 
