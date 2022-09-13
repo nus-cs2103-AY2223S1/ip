@@ -36,15 +36,14 @@ public class StorageParser {
         Task t;
         switch(type) {
         case 'T':
-            t = new Task(line.substring(START_OF_DESCRIPTION_IN_TASK));
+            t = Parser.stringToTask(line.substring(START_OF_DESCRIPTION_IN_TASK));
             if (isMarked) {
                 t.markAsDone();
             }
             return t;
         case 'D':
             dateAndDescription = getDateAndDescription(line);
-            date = LocalDate.parse(dateAndDescription[DATE]);
-            t = new Deadline(dateAndDescription[DESCRIPTION], date);
+            t = Parser.stringToDeadline(dateAndDescription[DESCRIPTION], dateAndDescription[DATE]);
             if (isMarked) {
                 t.markAsDone();
             }
@@ -63,12 +62,16 @@ public class StorageParser {
 
     }
 
+
     private static String[] getDateAndDescription(String line) {
         String[] dateAndDescription = new String[2];
         int endOfDescriptionIndex = line.indexOf(END_OF_DESCRIPTION_STRING);
-        String description = line.substring(START_OF_DESCRIPTION_IN_TASK, endOfDescriptionIndex);
-        int startDate = line.indexOf(START_OF_DATE_STRING) + START_OF_DATE_STRING_OFFSET;
-        String date = line.substring(startDate, startDate + DATE_LENGTH);
+        String description = line.substring(START_OF_DESCRIPTION_IN_TASK,
+                endOfDescriptionIndex);
+        int startDate = line.indexOf(START_OF_DATE_STRING)
+                + START_OF_DATE_STRING_OFFSET;
+        String date = line.substring(startDate,
+                startDate + DATE_LENGTH);
         dateAndDescription[DATE] = date;
         dateAndDescription[DESCRIPTION] = description;
         return dateAndDescription;

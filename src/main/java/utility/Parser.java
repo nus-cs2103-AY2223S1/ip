@@ -121,11 +121,12 @@ public class Parser {
 
 
     /**
-     * Extracts shortcut or formal command used and returns formal command/
-     * If input does not follow valid format, return empty string.
+     * Matches command to its formal format, and
+     * returns the same.
+     * If command has no match, returns empty string.
      *
-     * @param command
-     * @return
+     * @param command Command to be matched.
+     * @return Formal format of command.
      */
     private static String extractCommand(String command) {
         // Make sure commandAliases are not empty
