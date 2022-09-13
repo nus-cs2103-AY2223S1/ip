@@ -38,7 +38,7 @@ Description of the feature.
 
 - Expected outcome:
 
-A list of tasks.
+  - A list of tasks.
 
 ### `mark` `unmark` - mark or unmark one task in your task list.
 
