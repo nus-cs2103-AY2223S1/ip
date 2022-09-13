@@ -38,7 +38,10 @@ public abstract class Task implements Serializable {
         while (matcher.find()) {
             // 1st capture group: #tag
             // 2nd capture group: tag
-            tags.add(matcher.group(2));
+            String tag = matcher.group(2);
+            if (!hasTag(tag)) {
+                tags.add(tag);
+            }
         }
         title = title.replaceAll(tagRegexPattern.toString(), "")
                      .replaceAll("\\s\\s", " ") // handle extra whitespace when tag is in middle
@@ -50,7 +53,9 @@ public abstract class Task implements Serializable {
     }
 
     public void addTag(String newTag) {
-        tags.add(newTag);
+        if (!hasTag(newTag)) {
+            tags.add(newTag);
+        }
     }
 
     /**
