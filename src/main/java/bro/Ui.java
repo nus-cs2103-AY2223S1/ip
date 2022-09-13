@@ -91,4 +91,23 @@ public class Ui {
     public static String errorMessage(String msg) {
         return msg + "\n";
     }
+    /**
+     * Returns the task with the keyword.
+     * @param tasks The ArrayList containing the tasks.
+     * @return The tasks with keyword.
+     */
+    public static String findUi(ArrayList<Task> tasks) {
+        String result = "";
+        if (tasks.size() == 0) {
+            result += "Word could not be found!";
+        }
+        else {
+            int count = 1;
+            for (Task t : tasks) {
+                result += count + "." + t + "\n";
+                count++;
+            }
+        }
+        return result;
+    }
 }

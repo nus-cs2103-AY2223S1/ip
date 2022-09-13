@@ -2,8 +2,6 @@ package bro;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import bro.task.Task;
 
@@ -47,7 +45,8 @@ public class TaskList {
 
     /**
      * Marks the task as done by setting isDone boolean to true.
-     * @param n Index of the task to be marked.
+     *
+     * @param n   Index of the task to be marked.
      * @param sto Storage location of the file.
      */
     public String markTask(int n, Storage sto) {
@@ -65,7 +64,8 @@ public class TaskList {
 
     /**
      * Unmarks the task as done by setting isDone boolean to false.
-     * @param n Index of the task to be unmarked.
+     *
+     * @param n   Index of the task to be unmarked.
      * @param sto Storage location of the file.
      */
     public String unmarkTask(int n, Storage sto) {
@@ -83,7 +83,8 @@ public class TaskList {
 
     /**
      * Adds todo task to the list of the tasks.
-     * @param t Task to be added
+     *
+     * @param t   Task to be added
      * @param sto Storage location of the file.
      */
     public String todoTask(Task t, Storage sto) {
@@ -102,7 +103,8 @@ public class TaskList {
 
     /**
      * Adds deadline task to the list of the tasks.
-     * @param t Task to be added
+     *
+     * @param t   Task to be added
      * @param sto Storage location of the file.
      */
     public String deadlineTask(Task t, Storage sto) {
@@ -121,7 +123,8 @@ public class TaskList {
 
     /**
      * Adds event task to the list of the tasks.
-     * @param t Task to be added
+     *
+     * @param t   Task to be added
      * @param sto Storage location of the file.
      */
     public String eventTask(Task t, Storage sto) {
@@ -140,7 +143,8 @@ public class TaskList {
 
     /**
      * Deletes the task from the task list.
-     * @param n Index of the task to be deleted.
+     *
+     * @param n   Index of the task to be deleted.
      * @param sto Storage location of the file.
      */
     public String deleteTask(int n, Storage sto) {
@@ -158,25 +162,12 @@ public class TaskList {
 
     /**
      * Returns tasks with the given keyword.
+     *
      * @param keyword The word which has to be found in the file.
      */
     public String findTask(String keyword) {
-        boolean isContain = false;
-        String result = "";
-        int count = 1;
-        for (Task task : this.tasks) {
-            String[] sample = task.toString().split(" ");
-            List<String> sampleList = new ArrayList<>(Arrays.asList(sample));
-            if (sampleList.contains(keyword)) {
-                result += count + "." + task.toString() + "\n";
-                isContain = true;
-                count++;
-            }
-        }
-        if (!isContain) {
-            result += "Word could not be found!";
-        }
-        return result;
+        ArrayList<Task> found = new ArrayList<>();
+        tasks.stream().filter(t -> t.toString().contains(keyword)).forEach(found::add);
+        return ui.findUi(found);
     }
 }
-
