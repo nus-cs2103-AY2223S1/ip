@@ -50,7 +50,6 @@ test {
 
 application {
     mainClassName = "duke.Launcher"
-    enableAssertions = true
 }
 
 shadowJar {
