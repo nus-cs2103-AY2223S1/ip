@@ -43,6 +43,7 @@ public class Duke {
             ui.showResponse(result);
             return result;
         } catch (DukeException e) {
+            assert e.getMessage() == null : "No Duke Exception message.";
             ui.showError(e.getMessage());
             return e.getMessage();
         }
