@@ -12,6 +12,7 @@ import pluto.command.Command;
 import pluto.command.DeleteCommand;
 import pluto.command.ExitCommand;
 import pluto.command.FindCommand;
+import pluto.command.HelpCommand;
 import pluto.command.ListCommand;
 import pluto.command.RescheduleCommand;
 import pluto.command.ShowCommand;
@@ -36,6 +37,7 @@ public class Parser {
         SHOW,
         FIND,
         RESCHEDULE,
+        HELP,
         BYE
     }
 
@@ -86,6 +88,8 @@ public class Parser {
             return new FindCommand(textArr[1]);
         case RESCHEDULE:
             return parseRescheduleTask(textArr[1].strip());
+        case HELP:
+            return new HelpCommand();
         case BYE:
             return new ExitCommand();
         default:
@@ -134,7 +138,7 @@ public class Parser {
         if (arrReschedule.length == 1) {
             throw new PlutoException("OOPS!!! 'reschedule <task number> <date>' format required.");
         }
-        Integer taskNumber;
+        int taskNumber;
         try {
             taskNumber = parseIdx(arrReschedule[0].strip());
         } catch (PlutoException e) {

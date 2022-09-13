@@ -87,6 +87,26 @@ public class Ui {
     }
 
     /**
+     * Returns message for printing all commands.
+     * @return Help message.
+     */
+    public String helpUi() {
+        StringBuilder helpMessage = new StringBuilder();
+        helpMessage.append("Add a todo task     \n\t todo <task name>\n");
+        helpMessage.append("Add a event task    \n\t event <task name> /at <date>\n");
+        helpMessage.append("Add a deadline task \n\t deadline <task name> /by <date>\n");
+        helpMessage.append("Delete a task       \n\t delete <task number>\n");
+        helpMessage.append("Find a keyword      \n\t find <keyword(s)>\n");
+        helpMessage.append("List all tasks      \n\t list\n");
+        helpMessage.append("Mark as done        \n\t mark <task number>\n");
+        helpMessage.append("Unmark              \n\t unmark <task number>\n");
+        helpMessage.append("Reschedule a task   \n\t reschedule <task number> <date>\n");
+        helpMessage.append("Show day schedule   \n\t show <dd-MM-yyyy HHmm>\n");
+        helpMessage.append("Exit                \n\t bye\n");
+        return helpMessage.toString();
+    }
+
+    /**
      * Returns message for showing tasks on a particular date.
      * @param tasks Tasklist.
      * @return Show message.
