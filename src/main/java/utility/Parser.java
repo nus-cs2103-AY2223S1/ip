@@ -2,6 +2,7 @@ package utility;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -31,40 +32,15 @@ import task.Task;
  */
 public class Parser {
     private static HashMap<String, Pattern> commandAliasesHashMap = new HashMap<>();
-
     /**
      * Initializes hashmap which stores Pattern
-     * required to determine corresponding
-     * String command.
+     * required to determine String command used.
      *
      */
     public static void initialiseCommandAliases() {
+        String[] aliases = new String[] {"todo|task|t"}
         if (commandAliasesHashMap.isEmpty()) {
             HashMap<String, Pattern> commandAliases = new HashMap<>();
-            Pattern todoRegex = Pattern.compile("t|todo|task",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern listRegex = Pattern.compile("l|list",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern deadlineRegex = Pattern.compile("deadline|d",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern eventRegex = Pattern.compile("event|e",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern markRegex = Pattern.compile("mark|m",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern unmarkRegex = Pattern.compile("unmark|um",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern byeRegex = Pattern.compile("bye|b|quit|q|exit",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern findRegex = Pattern.compile("find|f",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern longdescRegex = Pattern.compile("longdesc",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern istodayRegex = Pattern.compile("istoday",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern helpRegex = Pattern.compile("help|h",
-                    Pattern.CASE_INSENSITIVE);
-            Pattern deleteRegex = Pattern.compile("delete|remove|r",
-                    Pattern.CASE_INSENSITIVE);
             commandAliases.put("todo", todoRegex);
             commandAliases.put("list", listRegex);
             commandAliases.put("deadline", deadlineRegex);
@@ -79,6 +55,39 @@ public class Parser {
             commandAliases.put("delete", deleteRegex);
             commandAliasesHashMap = commandAliases;
         }
+    }
+
+    private Pattern[] makePatterns(String[] aliases) {
+        ArrayList<Pattern> patterns = new ArrayList<>();
+        Pattern tempPattern;
+        for (String alias: aliases) {
+            tempPattern =  Pattern.compile(alias,
+                    Pattern.CASE_INSENSITIVE);
+            patterns.add(tempPattern);
+        }
+
+        Pattern listRegex = Pattern.compile("l|list",
+                Pattern.CASE_INSENSITIVE);
+        Pattern deadlineRegex = Pattern.compile("deadline|d",
+                Pattern.CASE_INSENSITIVE);
+        Pattern eventRegex = Pattern.compile("event|e",
+                Pattern.CASE_INSENSITIVE);
+        Pattern markRegex = Pattern.compile("mark|m",
+                Pattern.CASE_INSENSITIVE);
+        Pattern unmarkRegex = Pattern.compile("unmark|um",
+                Pattern.CASE_INSENSITIVE);
+        Pattern byeRegex = Pattern.compile("bye|b|quit|q|exit",
+                Pattern.CASE_INSENSITIVE);
+        Pattern findRegex = Pattern.compile("find|f",
+                Pattern.CASE_INSENSITIVE);
+        Pattern longdescRegex = Pattern.compile("longdesc",
+                Pattern.CASE_INSENSITIVE);
+        Pattern istodayRegex = Pattern.compile("istoday",
+                Pattern.CASE_INSENSITIVE);
+        Pattern helpRegex = Pattern.compile("help|h",
+                Pattern.CASE_INSENSITIVE);
+        Pattern deleteRegex = Pattern.compile("delete|remove|r",
+                Pattern.CASE_INSENSITIVE);
     }
 
     /**
