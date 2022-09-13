@@ -6,6 +6,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 
+/**
+ * Parses string representations of time into DateTimeFormatter format.
+ */
 public class TimeParser {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d/MM/yyyy[ HHmm]");

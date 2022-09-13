@@ -5,6 +5,9 @@ import java.time.format.DateTimeParseException;
 
 import duke.parser.TimeParser;
 
+/**
+ * Represents event task with event date.
+ */
 public class Event extends Task {
 
     protected LocalDateTime deadline;

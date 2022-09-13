@@ -12,9 +12,11 @@ import java.util.Random;
 import duke.exceptions.DukeException;
 import duke.tasks.TaskList;
 
-
-
+/**
+ * Parses user input commands and returns response.
+ */
 public class CommandParser {
+
     enum Command {
         LIST,
         DELETE,

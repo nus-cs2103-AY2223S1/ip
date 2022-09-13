@@ -9,6 +9,9 @@ import java.io.IOException;
 import duke.parser.FileParser;
 import duke.tasks.TaskList;
 
+/**
+ * Loads tasklist from fixed path and saves tasklist from current session into same path.
+ */
 public class Storage {
 
     private static final TaskList TASK_LIST = new TaskList();

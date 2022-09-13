@@ -9,7 +9,9 @@ import duke.tasks.Event;
 import duke.tasks.TaskList;
 import duke.tasks.ToDo;
 
-
+/**
+ * Parses tasklist.txt file.
+ */
 public class FileParser {
     enum Symbol {
         T,

@@ -1,2 +1,2 @@
 1.[T][✓] return book
-2.[T][✘] die
+2.[T][✘] throw book

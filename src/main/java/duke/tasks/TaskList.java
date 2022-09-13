@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 import duke.exceptions.DukeException;
 
+/**
+ * Tasklist for managing tasks.
+ */
 public class TaskList {
 
     private final List<Task> tasks;
@@ -23,6 +26,10 @@ public class TaskList {
         return tasks.size();
     }
 
+    private boolean isEmpty() {
+        return getSize() == 0;
+    }
+
     private String printTask(int index) {
         return tasks.get(index).toString();
     }
@@ -30,6 +37,15 @@ public class TaskList {
     private String printAddedTask(Task task) {
         return String.format("Wow, so productive... \n%s \n%d outstanding tasks",
                 task.toString(), tasks.size());
+    }
+
+    private TaskList filterTasks(Predicate<? super Task> cond) {
+        return new TaskList(tasks.stream().filter(cond).collect(Collectors.toList()));
+
+    }
+
+    private boolean hasDuplicate(String desc) {
+        return filterTasks(t -> t.isSame(desc)).getSize() != 0;
     }
 
     /**b
@@ -157,6 +173,9 @@ public class TaskList {
      * Prints current list.
      */
     public String printList() {
+        if (isEmpty()) {
+            return "You really have nothing to do, huh?";
+        }
         return "Think you are free?\n" + this;
     }
 
@@ -173,15 +192,6 @@ public class TaskList {
         return filterTasks(t -> t.isBefore(deadline)).toString();
     }
 
-    private TaskList filterTasks(Predicate<? super Task> cond) {
-        return new TaskList(tasks.stream().filter(cond).collect(Collectors.toList()));
-
-    }
-
-    private boolean hasDuplicate(String desc) {
-        return filterTasks(t -> t.isSame(desc)).getSize() != 0;
-    }
-
     /**
      * Returns string representation of list.
      *
@@ -189,14 +199,14 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        if (isEmpty()) {
+            return "No such task, my friend.";
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
             int j = i + 1;
             Task item = tasks.get(i);
             sb.append(j).append(".").append(item.toString()).append("\n");
-        }
-        if (sb.toString().isBlank()) {
-            return "No such task, my friend.";
         }
         return sb.toString();
     }

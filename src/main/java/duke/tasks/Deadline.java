@@ -5,6 +5,9 @@ import java.time.format.DateTimeParseException;
 
 import duke.parser.TimeParser;
 
+/**
+ * Represents deadline task with specified deadline.
+ */
 public class Deadline extends Task {
 
     protected LocalDateTime deadline;

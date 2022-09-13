@@ -2,7 +2,12 @@ package duke.tasks;
 
 import java.time.format.DateTimeParseException;
 
+
+/**
+ * Represents task with description and status.
+ */
 public class Task {
+
     protected String description;
     protected boolean isDone;
 
@@ -39,10 +44,15 @@ public class Task {
         this.isDone = false;
     }
 
-    public boolean hasDescription(String description) {
-        return this.description.toLowerCase().contains(description.toLowerCase());
+    /**
+     * Checks if task contains given description
+     *
+     * @param desc the specified description to check for
+     * @return true if task contains specified description; false otherwise
+     */
+    public boolean hasDescription(String desc) {
+        return this.description.toLowerCase().contains(desc.toLowerCase());
     }
-
 
     /**
      * Checks if task is before given deadline
@@ -55,6 +65,12 @@ public class Task {
         return false;
     }
 
+    /**
+     * Checks if task contains duplicate description
+     *
+     * @param desc the specified description to check for
+     * @return true if task contains duplicate description; false otherwise
+     */
     public boolean isSame(String desc) {
         return desc.equals(this.description);
     }
