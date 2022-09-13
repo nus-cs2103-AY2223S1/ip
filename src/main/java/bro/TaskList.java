@@ -28,9 +28,25 @@ public class TaskList {
     public TaskList(ArrayList<Task> task) {
         this.tasks = task;
     }
+    /**
+     * Returns the size of task.
+     * @return The TaskList size.
+     */
+    public int size() {
+        return tasks.size();
+    }
+    /**
+     * Returns the task in the particular index.
+     * @param index The index of the task.
+     * @return The task at the particular index.
+     */
+    public Task get(int index) {
+        return tasks.get(index);
+    }
 
     /**
      * Lists all the task in the ArrayList tasks.
+     * @return The list of the tasks.
      */
     public String listAll() {
         String result = "Here are the tasks:" + "\n";
@@ -58,8 +74,8 @@ public class TaskList {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        result += ui.markUi(tasks, n);
-        result += ui.listSize(tasks);
+        result += ui.markUi(this, n);
+        result += ui.listSize(this);
         return result;
     }
 
@@ -76,8 +92,8 @@ public class TaskList {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        result += ui.unmarkUi(tasks, n);
-        result += ui.listSize(tasks);
+        result += ui.unmarkUi(this, n);
+        result += ui.listSize(this);
         return result;
     }
 
@@ -96,7 +112,7 @@ public class TaskList {
             e.printStackTrace();
         }
         result += ui.printAdd(t);
-        result += ui.listSize(tasks);
+        result += ui.listSize(this);
         return result;
     }
 
@@ -115,7 +131,7 @@ public class TaskList {
             e.printStackTrace();
         }
         result += ui.printAdd(t);
-        result += ui.listSize(tasks);
+        result += ui.listSize(this);
         return result;
     }
 
@@ -134,7 +150,7 @@ public class TaskList {
             e.printStackTrace();
         }
         result += ui.printAdd(t);
-        result += ui.listSize(tasks);
+        result += ui.listSize(this);
         return result;
     }
 
@@ -145,14 +161,14 @@ public class TaskList {
      */
     public String deleteTask(int n, Storage sto) {
         String result = "";
-        result += ui.deleteUi(tasks, n);
+        result += ui.deleteUi(this, n);
         tasks.remove(n - 1);
         try {
             sto.modifyTaskFile(tasks);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        result += ui.listSize(tasks);
+        result += ui.listSize(this);
         return result;
     }
 

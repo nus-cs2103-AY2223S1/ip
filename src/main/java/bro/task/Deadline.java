@@ -27,7 +27,7 @@ public class Deadline extends Task {
         if (by.trim().split(" ").length == 4) {
             isMonthFormat = true;
         } else {
-            byStore = Parser.deadlineParser(by);
+            byStore = Parser.timeParser(by);
         }
     }
 

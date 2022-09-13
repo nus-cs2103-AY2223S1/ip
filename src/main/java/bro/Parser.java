@@ -103,27 +103,13 @@ public class Parser {
 
     /**
      * Converts the string date into LocalDateTime.
-     * @param by The date and time provided for the deadline task.
+     * @param time The date and time provided for the deadline or event task.
      * @return The LocalDateTime format of the date and time.
      * @throws BroException If the by is of invalid format.
      */
-    public static LocalDateTime deadlineParser(String by) throws BroException {
+    public static LocalDateTime timeParser(String time) throws BroException {
         try {
-            return LocalDateTime.parse(by.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
-        } catch (DateTimeParseException e) {
-            throw new BroException("Please enter the date in the format dd/MM/yyyy kkmm");
-        }
-    }
-
-    /**
-     * Converts the string date into LocalDateTime.
-     * @param at The date and time provided for the event task.
-     * @return The LocalDateTime format of the date and time.
-     * @throws BroException If the by is of invalid format.
-     */
-    public static LocalDateTime eventParser(String at) throws BroException {
-        try {
-            return LocalDateTime.parse(at.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
+            return LocalDateTime.parse(time.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
         } catch (DateTimeParseException e) {
             throw new BroException("Please enter the date in the format dd/MM/yyyy kkmm");
         }

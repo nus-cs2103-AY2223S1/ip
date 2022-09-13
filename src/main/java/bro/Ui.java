@@ -1,6 +1,5 @@
 package bro;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import bro.task.Task;
@@ -18,21 +17,16 @@ public class Ui {
     public static String welcome() {
         return "Hello! I'm THE BRO\n" + "What can I do for you?";
     }
-
-    /**
-     * Gets the inout from the user.
-     * @return The next line given by the user.
-     */
-    public String readCommand() {
-        return Input.nextLine();
-    }
-
     /**
      * Prints out the size of the ArrayList.
      * @param list1 The ArrayList
      */
-    public static String listSize(ArrayList<Task> list1) {
-        return "You have " + list1.size() + " tasks left!" + "\n";
+    public static String listSize(TaskList list1) {
+        if (list1.size() == 1) {
+            return "You have " + list1.size() + " task left!" + "\n";
+        } else {
+            return "You have " + list1.size() + " tasks left!" + "\n";
+        }
     }
 
     /**
@@ -48,7 +42,7 @@ public class Ui {
      * @param list1 ArrayList of Task where the task has to be marked.
      * @param n Index of the task to be marked.
      */
-    public static String markUi(ArrayList<Task> list1, int n) {
+    public static String markUi(TaskList list1, int n) {
         return "I have marked this task\n" + (list1.get(n - 1)).toString() + "\n";
     }
 
@@ -57,7 +51,7 @@ public class Ui {
      * @param list1 ArrayList of Task where the task has to be unmarked.
      * @param n Index of the task to be unmarked.
      */
-    public static String unmarkUi(ArrayList<Task> list1, int n) {
+    public static String unmarkUi(TaskList list1, int n) {
         return "I have unmarked this task\n" + (list1.get(n - 1)).toString() + "\n";
     }
 
@@ -66,7 +60,7 @@ public class Ui {
      * @param list1 ArrayList of Task where the task has to be deleted.
      * @param n Index of the task to be deleted.
      */
-    public static String deleteUi(ArrayList<Task> list1, int n) {
+    public static String deleteUi(TaskList list1, int n) {
         return "I have removed this task.\n" + (list1.get(n - 1)).toString() + "\n";
     }
 
