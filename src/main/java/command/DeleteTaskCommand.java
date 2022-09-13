@@ -4,7 +4,6 @@ import exceptions.DukeException;
 import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;
-import utility.Parser;
 
 /**
  * Deletes task.
