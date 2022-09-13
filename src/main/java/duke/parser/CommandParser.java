@@ -5,7 +5,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import duke.exceptions.DukeException;
-import duke.exceptions.InvalidCommandException;
 import duke.tasks.TaskList;
 
 
@@ -36,11 +35,11 @@ public class CommandParser {
         this.taskList = tasks;
     }
 
-    private Command generator(String action) throws InvalidCommandException {
+    private Command generator(String action) throws DukeException {
         try {
             return Command.valueOf(action.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new InvalidCommandException();
+            throw new DukeException("You are incomprehensible. Apply yourself.");
         }
     }
 
@@ -91,7 +90,7 @@ public class CommandParser {
                 response = taskList.addDeadline(desc, time);
                 break;
             default:
-                throw new InvalidCommandException();
+                throw new DukeException("You are incomprehensible. Apply yourself.");
             }
         } catch (DukeException e) {
             return e.toString();

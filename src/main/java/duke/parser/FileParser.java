@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import duke.exceptions.DukeException;
-import duke.exceptions.InvalidCommandException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.TaskList;
@@ -31,11 +30,11 @@ public class FileParser {
         this.taskList = tasks;
     }
 
-    private Symbol generator(String action) throws InvalidCommandException {
+    private Symbol generator(String action) throws DukeException {
         try {
             return Symbol.valueOf(action.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new InvalidCommandException();
+            throw new DukeException("Invalid command");
         }
     }
 

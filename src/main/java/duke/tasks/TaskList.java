@@ -6,11 +6,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import duke.exceptions.DukeException;
-import duke.exceptions.DuplicateTaskException;
-import duke.exceptions.EmptyCommandException;
-import duke.exceptions.NoBeforeException;
-import duke.exceptions.NoTimeException;
-import duke.exceptions.OutOfRangeException;
 
 public class TaskList {
 
@@ -46,7 +41,7 @@ public class TaskList {
     public String markDone(String value) throws DukeException {
         int index = Integer.parseInt(value) - 1;
         if (index < 0 || index > tasks.size() - 1) {
-            throw new OutOfRangeException();
+            throw new DukeException("Task not found!");
         }
         tasks.get(index).markAsDone();
         return String.format("Finally getting something done, huh? \n%s", printTask(index));
@@ -55,7 +50,7 @@ public class TaskList {
     public String markUndone(String value) throws DukeException {
         int index = Integer.parseInt(value) - 1;
         if (index < 0 || index > tasks.size() - 1) {
-            throw new OutOfRangeException();
+            throw new DukeException("Task not found!");
         } else {
             tasks.get(index).markAsUndone();
             return String.format("One step forward. Two step backwards. \n%s", printTask(index));
@@ -71,7 +66,7 @@ public class TaskList {
     public String delete(String value) throws DukeException {
         int index = Integer.parseInt(value) - 1;
         if (index < 0 || index > tasks.size() - 1) {
-            throw new OutOfRangeException();
+            throw new DukeException("Task not found!");
         } else {
             Task currentTask = tasks.get(index);
             tasks.remove(index);
@@ -97,10 +92,10 @@ public class TaskList {
      */
     public String addToDo(String desc) throws DukeException {
         if (desc == null || desc.isBlank()) {
-            throw new EmptyCommandException("todo");
+            throw new DukeException("Please enter a valid description!");
         }
         if (hasDuplicate(desc)) {
-            throw new DuplicateTaskException();
+            throw new DukeException("Task already exists!");
         }
         ToDo newTask = new ToDo(desc);
         addTask(newTask);
@@ -116,13 +111,13 @@ public class TaskList {
      */
     public String addDeadline(String desc, String time) throws DukeException {
         if (desc == null || desc.isBlank()) {
-            throw new EmptyCommandException("deadline");
+            throw new DukeException("Please enter a valid description!");
         }
         if (time == null || time.isBlank()) {
-            throw new NoTimeException("deadline");
+            throw new DukeException("Please enter a valid deadline!");
         }
         if (hasDuplicate(desc)) {
-            throw new DuplicateTaskException();
+            throw new DukeException("Task already exists!");
         }
         Deadline newTask = new Deadline(desc, time);
         addTask(newTask);
@@ -138,22 +133,22 @@ public class TaskList {
      */
     public String addEvent(String desc, String time) throws DukeException {
         if (desc == null || desc.isBlank()) {
-            throw new EmptyCommandException("event");
+            throw new DukeException("Please enter a valid description!");
         }
         if (time == null || time.isBlank()) {
-            throw new NoTimeException("event");
+            throw new DukeException("Please enter a valid deadline!");
         }
         if (hasDuplicate(desc)) {
-            throw new DuplicateTaskException();
+            throw new DukeException("Task already exists!");
         }
         Event newTask = new Event(desc, time);
         addTask(newTask);
         return printAddedTask(newTask);
     }
 
-    public String find(String desc) throws EmptyCommandException {
+    public String find(String desc) throws DukeException {
         if (desc == null || desc.isBlank()) {
-            throw new EmptyCommandException("find");
+            throw new DukeException("Please enter a valid description!");
         }
         return filterTasks(t -> t.hasDescription(desc)).toString();
     }
@@ -169,11 +164,11 @@ public class TaskList {
      * Prints list of task before specified deadline.
      *
      * @param deadline the deadline to check
-     * @throws NoBeforeException if no deadline is given
+     * @throws DukeException if no deadline is given
      */
-    public String printDeadline(String deadline) throws NoBeforeException {
+    public String printDeadline(String deadline) throws DukeException {
         if (deadline == null || deadline.isBlank()) {
-            throw new NoBeforeException();
+            throw new DukeException("Please enter a valid deadline!");
         }
         return filterTasks(t -> t.isBefore(deadline)).toString();
     }
