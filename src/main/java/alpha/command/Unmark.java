@@ -33,7 +33,7 @@ public class Unmark extends Command {
     public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.modifyTaskStatus(taskNumber, false);
         fileOperations.rewriteFile(taskList);
-        return uI.returnText(">> " + "unmarked task: " + this.taskNumber);
+        return uI.generateCommandExecutionMessage(this, null, taskNumber);
     }
 
     /**

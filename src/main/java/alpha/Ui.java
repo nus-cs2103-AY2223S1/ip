@@ -1,83 +1,75 @@
 package alpha;
 
-import java.util.Scanner;
+import java.util.List;
+
+import alpha.command.Add;
+import alpha.command.Command;
+import alpha.command.Delete;
+import alpha.command.Exit;
+import alpha.command.Help;
+import alpha.command.Mark;
+import alpha.command.Unmark;
+import alpha.task.Task;
 
 /**
  * Displays messages.
  */
 public class Ui {
 
-    /** Ansi code to add white font colour to print statements */
-    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ansiWhite = "\u001B[37m";
-
-    /** Ansi code to add red font colour to print statements */
-    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ansiRed = "\u001B[31m";
-
-    /** Ansi code to add bold blue font colour to print statements */
-    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ansiBlueBold = "\033[1;36m";
-
-    /** Ansi code to add blue font colour to print statements */
-    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ansiBlue = "\u001B[36m";
-
-    /** Ansi code to reset default font colour in print statements */
-    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String ansiReset = "\u001B[0m";
-
     /**
-     * Prints the message to be displayed at the start of the execution.
-     */
-    public void welcomeMessage() {
-        System.out.println("\n------------------\n" + ansiBlueBold
-                + "HELLO, I AM ALPHA!" + ansiReset + "\n------------------");
-        System.out.println(ansiBlue + "What can I do for you?" + ansiReset);
-        System.out.println(ansiWhite + "(enter help to learn about the commands)" + ansiReset);
-
-    }
-
-    /**
-     * Takes and returns inputs from the user.
+     * Returns text of the required colour.
      *
-     * @param in Scanner object to take inputs from the user.
-     * @return User input.
+     * @param command Command for which the execution message is to be generated.
+     * @param task Task for which the command was executed.
+     * @param taskNumber Task number of the task on which the command was executed.
      */
-    public String takeUserInput(Scanner in) {
-        String input = in.nextLine();
-        return input;
-    }
-
-    /**
-     * Returns the required ANSI_CODE.
-     *
-     * @param ansiCode ANSI_CODE required.
-     * @return ANSI_CODE.
-     */
-    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    public String getAnsiCode(String ansiCode) {
-        switch (ansiCode) {
-        case ("ANSI_WHITE"):
-            return ansiWhite;
-        case ("ANSI_RED"):
-            return ansiRed;
-        case ("ANSI_BLUE"):
-            return ansiBlue;
-        case ("ANS-_BLUE_BOLD"):
-            return ansiBlueBold;
-        default:
-            return ansiReset;
+    @SuppressWarnings("checkstyle:Indentation")
+    public String generateCommandExecutionMessage(Command command, Task task, int taskNumber) {
+        if (command instanceof Add) {
+            return (">> " + "added task: " + task.getDescription());
+        } else if (command instanceof Delete) {
+            return (">> " + "deleted task: " + taskNumber);
+        } else if (command instanceof Exit) {
+            return (">> Come back later to continue from where you left!\n See you, Bye!");
+        } else if (command instanceof Help) {
+            return "COMMAND\t" + "FORMAT\n"
+                    + "1. todo    \t\t" + "todo description\n"
+                    + "2. event   \t\t" + "event description /on yyyy-mm-dd\n"
+                    + "3. deadline\t" + "deadline description /by yyyy-mm-dd\n"
+                    + "4. mark    \t\t" + "mark task number\n"
+                    + "5. unmark  \t" + "unmark task number\n"
+                    + "6. delete  \t\t" + "delete task number\n"
+                    + "7. list    \t\t" + "list\n"
+                    + "8. find    \t\t" + "find keyword";
+        } else if (command instanceof Mark) {
+            return (">> " + "marked task: " + taskNumber);
+        } else {
+            assert command instanceof Unmark;
+            return (">> " + "unmarked task: " + taskNumber);
         }
     }
 
     /**
-     * Returns text of the required colour.
+     * Returns the list of tasks.
      *
-     * @param text Text to be printed.
+     * @param  taskList Object of TaksList class that contains the list of tasks to be printed.
+     * @return A string containing a list of tasks.
      */
-    public String returnText(String text) {
-        return (text);
+    public String generateTaskListToBePrinted(TaskList taskList) {
+        List<Task> tasks = taskList.getTaskList();
+        if (tasks.isEmpty()) {
+            return (">> " + "Your task list is empty!");
+        } else {
+            String tasksToBePrinted = "";
+            tasksToBePrinted += (">> "
+                    + "Your task list is as follows:\n");
+            int count = 1;
+            for (Task task : tasks) {
+                tasksToBePrinted += (count + ") "
+                        + task.toString() + "\n");
+                count++;
+            }
+            return tasksToBePrinted;
+        }
     }
-
 }
