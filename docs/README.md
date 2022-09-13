@@ -1,6 +1,7 @@
 # User Guide
 
 This application helps a beginner user manage a todo-list.
+It operates on an input-by-input basis.
 
 ## Features
 - Help
