@@ -16,14 +16,14 @@ public class Storage {
 
     private static String filePath;
     private File file;
-    private FileWriter fw;
     private static ArrayList<Task> inputList;
 
     /**
      * Constructor to create Storage object.
+     *
      * @param filePath Location of the file that stores the data as a result of running the main class.
      */
-    public Storage (String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
         this.inputList = new ArrayList<>();
         this.file = new File(filePath);
@@ -40,13 +40,14 @@ public class Storage {
             throw new IOException("File does not exist.");
         }
 
-        FileWriter fw = new FileWriter(filePath);
+        FileWriter fwriter = new FileWriter(filePath);
         String output = "";
         for (Task item : textToAdd) {
-            output = output + (textToAdd.indexOf(item) + 1) + "." + item  + "\n";
+            output += (textToAdd.indexOf(item) + 1) + "." + item  + "\n";
         }
-        fw.write(output);
-        fw.close();
+
+        fwriter.write(output);
+        fwriter.close();
     }
 
     /**
@@ -60,10 +61,16 @@ public class Storage {
             Scanner scanner = new Scanner(file);
             if (file.length() == 0) {
                 throw new DukeException ("File is Empty!");
+
             } else {
                 while (scanner.hasNextLine()) {
                     String task = scanner.nextLine();
+<<<<<<< Updated upstream
                     String type = String.valueOf(task.charAt(1));
+=======
+                    String type = String.valueOf(task.charAt(3));
+                    assert type.equals("T") || type.equals("E") || type.equals("D");
+>>>>>>> Stashed changes
 
                     if (type.equals("T")) {
                         String currTask = task.substring(9);
