@@ -66,21 +66,24 @@ public class StorageParser {
     private static String getTaskDescription(String record) {
         return record.substring(START_OF_DESCRIPTION_IN_TASK);
     }
-    private static Task createTask(String description, boolean isMarked) throws DukeException {
+    private static Task createTask(String description, boolean isMarked)
+            throws DukeException {
         Task task = Parser.stringToTask(description);
         if (isMarked) {
             task.markAsDone();
         }
         return task;
     }
-    private static Deadline createDeadline(String description, String date, boolean isMarked) throws DukeException {
+    private static Deadline createDeadline(String description, String date, boolean isMarked)
+            throws DukeException {
         Deadline deadline = Parser.stringToDeadline(description, date);
         if (isMarked) {
             deadline.markAsDone();
         }
         return deadline;
     }
-    private static Event createEvent(String description, String date, boolean isMarked) throws DukeException{
+    private static Event createEvent(String description, String date, boolean isMarked)
+            throws DukeException{
         Event event = Parser.stringToEvent(description, date);
         if (isMarked) {
             event.markAsDone();
@@ -103,6 +106,4 @@ public class StorageParser {
         dateAndDescription[DESCRIPTION] = description;
         return dateAndDescription;
     }
-
-
 }

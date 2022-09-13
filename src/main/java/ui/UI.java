@@ -42,7 +42,7 @@ public class UI {
     }
 
     /**
-     * Prints when user inputs
+     * Prints when user types
      * help command.
      */
     public void showHelpMessage() {

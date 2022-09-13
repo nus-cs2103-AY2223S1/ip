@@ -1,5 +1,6 @@
 package storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,26 +39,52 @@ public class Storage {
     private void getPath(String pathString) throws DukeException, IOException {
         String currPath = System.getProperty("user.dir");
         String[] pathElements = pathString.split("/");
-        Path tempPath;
+        buildPath(currPath, pathElements);
+    }
+
+    private void buildPath(String currPath, String[] pathElements) throws  IOException{
+        Path tempPath = Path.of(currPath);
         for (String s: pathElements) {
-            currPath += "\\" + s;
-            tempPath = Path.of(currPath);
-            if (isFileExtension(s)) {
-                if (!Files.exists(tempPath)) {
-                    Files.createFile(tempPath);
-                }
-                this.path = tempPath;
+            tempPath = makePathFromName(tempPath.toString(), s);
+            handleExtension(s, tempPath);
+            if (isEndOfPath(s)) {
                 break;
-            } else if (isFolderExtension(s)) {
-                if (!Files.exists(tempPath)) {
-                    Files.createDirectory(tempPath);
-                }
             }
         }
     }
 
+    private void createFile(Path path) throws IOException {
+        if (!Files.exists(path)) {
+            Files.createFile(path);
+        }
+    }
+
+    private void createDirectory(Path path) throws IOException {
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+        }
+    }
+
+    private  Path makePathFromName(String currPath, String name) {
+        currPath += "\\" + name;
+        return Path.of(currPath);
+    }
+
     private static boolean isFileExtension(String extension) {
         return extension.contains(".");
+    }
+
+    private boolean isEndOfPath(String extension) {
+        return isFileExtension(extension);
+    }
+
+    private void handleExtension(String extension, Path pathToExtension) throws IOException {
+        if (isFileExtension(extension)) {
+            createFile(pathToExtension);
+            this.path = pathToExtension;
+        } else if (isFolderExtension(extension)) {
+            createDirectory(pathToExtension);
+        }
     }
 
     private static boolean isFolderExtension(String extension) {
