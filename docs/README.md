@@ -29,6 +29,7 @@ Example usage:
 todo Do homework
 ```
 
+<img width="399" alt="feature 2" src="https://user-images.githubusercontent.com/62635032/189613027-c1cfacab-d4dd-46e2-afb1-1b4dd5bd10f9.png">
 
 ### Feature 3: Add deadline
 Adds a deadline task
@@ -40,6 +41,7 @@ Eg: deadline assignment 1 /by 20/10/2022
 ```
 
 Expected outcome:
+<img width="403" alt="feature 3" src="https://user-images.githubusercontent.com/62635032/189613211-b8c7c7ba-3680-486e-9231-a6dcc5ad9aaf.png">
 
 
 ### Feature 4: Adds event
@@ -52,6 +54,7 @@ Eg: event Hackarthon /at 05/10/2022
 ```
 
 Expected outcome:
+<img width="397" alt="feature 4" src="https://user-images.githubusercontent.com/62635032/189613233-2fa3ee8a-0cef-46b2-bf4d-5150c3333eea.png">
 
 
 ### Feature 5: Marks task as done
@@ -64,6 +67,8 @@ Eg: mark 2
 ```
 
 Expected outcome:
+<img width="399" alt="feature 5" src="https://user-images.githubusercontent.com/62635032/189613264-096c1ea4-e511-40bd-bc5f-b7b97d6844b6.png">
+
 
 
 ### Feature 6: List all tasks
@@ -74,6 +79,7 @@ Example usage:
 list
 ```
 Expected outcome:
+<img width="385" alt="feature 6" src="https://user-images.githubusercontent.com/62635032/189613292-1e26004b-1837-4675-9411-b3264e33cd26.png">
 
 
 ### Feature 7: Delete task
@@ -84,6 +90,7 @@ delete <Given index of the item>
 Eg: delete 0
 ```
 Expected outcome:
+<img width="379" alt="feature 7" src="https://user-images.githubusercontent.com/62635032/189613312-e9db8c6b-8987-4845-9805-94d8d561975b.png">
 
 
 ### Feature 8: Search keyword in list
@@ -94,9 +101,10 @@ find <description>
 Eg: find Homework
 ```
 Expected outcome:
+<img width="385" alt="feature 8" src="https://user-images.githubusercontent.com/62635032/189613356-22b1523e-d90f-48de-a969-3b61b6870fe1.png">
 
 
-### Feature 8: Tag task in list
+### Feature 9: Tag task in list
 Add tags to the task so that you can better categorise your task 
 Example usage:
 ```
@@ -104,6 +112,9 @@ tag <taskName> <tagName>
 Eg: tag homework1 hard
 ```
 Expected outcome:
+<img width="378" alt="feature 9_1" src="https://user-images.githubusercontent.com/62635032/189613392-80db54af-b38a-47fa-8557-a6dea8a24d16.png">
+<img width="382" alt="feature 9_2" src="https://user-images.githubusercontent.com/62635032/189613411-1dd0f456-3f99-4611-ba14-6188000845c9.png">
+
 
 ### Feature 10: Exit application
 Type bye to exit the application 
@@ -112,3 +123,4 @@ bye
 ```
 
 Expected outcome:
+<img width="389" alt="feature 10" src="https://user-images.githubusercontent.com/62635032/189613435-60288a17-03e9-4293-a39d-00a6d954b817.png">
