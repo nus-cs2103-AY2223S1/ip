@@ -12,6 +12,8 @@ Long time no see uses the interface of a chat bot for users to track tasks. Thes
 
 ## Usage
 
+<br>
+
 ### `todo` - Adding a task to do
 
 Adds a task to be done 
@@ -29,6 +31,8 @@ Expected outcome:
 
 ⬆️LTNS logs down the task to be done!
 
+<br>
+
 ### `event` - set an event
 
 Setting an event with a location
@@ -45,6 +49,8 @@ Expected outcome:
 
 ⬆️LTNS logs down the event with a stipulated location!
 
+<br>
+
 ### `deadline` - set a task with deadline
 
 Setting a task with a date
@@ -56,9 +62,12 @@ Example of usage:
 `deadline` return book /by 2/12/2019 1800
 
 Expected outcome:
+
 ![](deadline.png)
 
 ⬆️LTNS logs down the task with a stipulated date and time!
+
+<br>
 
 ### `snooze` - to move the deadline further
 
@@ -71,10 +80,12 @@ Example of usage:
 `snooze` 6 5
 
 Expected outcome:
+
 ![](snooze.png)
 
 ⬆️LTNS allows you to procrastinate!
 
+<br>
 
 ### `list` - lists all tasks previously set
 
@@ -87,9 +98,12 @@ Example of usage:
 `list`
 
 Expected outcome:
+
 ![](list.png)
 
 ⬆️LTNS lists down all the tasks you set! 
+
+<br>
 
 ### `mark` - to mark a task 
 
@@ -102,9 +116,12 @@ Example of usage:
 `mark` 3
 
 Expected outcome:
+
 ![](mark.png)
 
 ⬆️LTNS allows you to distinguish tasks!
+
+<br>
 
 ### `delete` - to delete a task
 
@@ -117,9 +134,12 @@ Example of usage:
 `delete` 3
 
 Expected outcome:
+
 ![](delete.png)
 
 ⬆️remove tasks you set previously
+
+<br>
 
 ### `find` - to find a task
 
@@ -132,9 +152,12 @@ Example of usage:
 `find` CS2103T 
 
 Expected outcome:
+
 ![](find.png)
 
 ⬆️LTNS lets you find the 1001 tasks you have!
+
+<br>
 
 ### `bye` - to exit
 
@@ -147,6 +170,7 @@ Example of usage:
 `bye`
 
 Expected outcome:
+
 ![](bye.png)
 
 ⬆️LTNS let's you leave Duke!
