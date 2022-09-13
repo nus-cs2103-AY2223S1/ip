@@ -12,7 +12,6 @@ public class Parser {
      * @throws DukeException error message for DukeException
      */
     public static String parse(String str, TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        String keyword = str.split(" ")[0];
         String taskFirstWord = str.split(" ", 2)[0];
 
         try {
@@ -24,6 +23,9 @@ public class Parser {
                 }
                 else if (taskFirstWord.equals("todo") || taskFirstWord.equals("event") || taskFirstWord.equals("deadline")) {
                     return parseTaskType(str, storage, taskList);
+                }
+                else if (taskFirstWord.equals("snooze")) {
+                    return Task.snoozeTask(str, taskList);
                 } else {
                     return parseTaskChanger(str, storage, taskList);
                 }
@@ -42,7 +44,6 @@ public class Parser {
      * @throws DukeException error message for DukeException
      */
     public static String parseTaskType(String str, Storage storage, TaskList taskList) throws IOException, DukeException {
-        storage.writeToFile(taskList);
         String taskFirstWord = str.split(" ", 2)[0];
 
         if (taskFirstWord.equals("todo")) {
@@ -68,15 +69,12 @@ public class Parser {
         String keyword = str.split(" ")[0];
 
         if (keyword.equals("mark")) {
-            storage.writeToFile(taskList);
             return taskList.markTask(str, taskList);
         }
         else if (keyword.equals("unmark")) {
-            storage.writeToFile(taskList);
             return taskList.unmarkTask(str, taskList);
         }
         else if (keyword.equals("delete")) {
-            storage.writeToFile(taskList);
             return taskList.deleteTask(str, taskList);
         }
         else if (keyword.equals("find")) {

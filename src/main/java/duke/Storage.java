@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.FileReader;
 
 public class Storage {
-    private File file;
+    private static File file;
 
     /**
      *
@@ -22,7 +22,7 @@ public class Storage {
      * @param tasks tasks from taskList which are written into the text file
      * @throws IOException
      */
-    public void writeToFile(TaskList tasks) throws IOException {
+    public static void writeToFile(TaskList tasks) throws IOException {
 
         FileWriter fw = new FileWriter(file);
 
