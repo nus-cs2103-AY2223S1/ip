@@ -14,7 +14,7 @@ public class Deadline extends Task {
      * @param by          Date the task is due
      */
     public Deadline(String description, String by) {
-        super(description, by);
+        super(description, by, TaskType.DEADLINE);
     }
 
     @Override

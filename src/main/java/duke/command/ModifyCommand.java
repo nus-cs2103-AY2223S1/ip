@@ -43,10 +43,10 @@ public class ModifyCommand extends Command {
         String toReturn = "";
         switch (modifyCommandType) {
         case DONE:
-            toReturn = tasks.markAsDone(index, ui);
+            toReturn = tasks.markAsDone(index);
             break;
         case UNDONE:
-            toReturn = tasks.markAsUndone(index, ui);
+            toReturn = tasks.markAsUndone(index);
             break;
         case LIST:
             toReturn = tasks.listTasks(ui);
