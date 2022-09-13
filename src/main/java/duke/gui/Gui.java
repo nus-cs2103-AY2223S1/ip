@@ -51,6 +51,8 @@ public class Gui extends Application {
     public void initialize() {
         // Let scrollbar follow the last message
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
         // Let Duke create a dialogue box to greet the user
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(GuiText.formatGreetString(), dukeImage));
         Background background = new Background(new BackgroundImage(backgroundImage,
@@ -77,14 +79,8 @@ public class Gui extends Application {
             stage.setScene(scene);
 
             // Window formatting
-            stage.setTitle("Shiro Task Manager"); // Set the title of the application
-            stage.setResizable(false);
+            stage.setTitle("Shiro Task Manager");
             stage.getIcons().add(applicationIcon);
-
-            /* Other possible configurations that are currently unused. */
-            // scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-            // scrollPane.setFitToWidth(true);
-            // dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
             stage.show();
         } catch (IOException e) {
@@ -104,8 +100,6 @@ public class Gui extends Application {
                 DialogBox.getUserDialog(userText, userImage),
                 DialogBox.getDukeDialog(dukeText, dukeImage)
         );
-        double height = userInput.getMaxHeight();
-        dialogContainer.setPrefHeight(height);
         userInput.clear();
     }
 

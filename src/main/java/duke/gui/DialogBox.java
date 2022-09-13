@@ -1,6 +1,5 @@
 package duke.gui;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.Collections;
 
@@ -44,6 +43,7 @@ public class DialogBox extends HBox {
         displayPicture.setPreserveRatio(true);
         displayPicture.setFitWidth(150);
         displayPicture.setClip(clip);
+        this.setMinHeight(USE_PREF_SIZE);
     }
 
     /**
