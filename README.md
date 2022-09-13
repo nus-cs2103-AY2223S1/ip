@@ -16,6 +16,7 @@ Currently, **Henry** supports the following commands:
 - **Unmark:** marks a task as incomplete
 - **Delete:** deletes a task from the task list
 - **Find:** finds any matching tasks given a key word
+- **Interact:** rudimentary interaction feature that supports learning and memory
 
 **Henry** is able to store a task list to the user's desktop. When **Henry** starts up, the following occurs:
 
@@ -52,3 +53,13 @@ This description contains the following formatting guidelines:
 - [x] a hyper link
 - [x] inline code
 - [x] some text formatting: bold, italic, strikethrough etc.
+
+## **Acknowledgements**
+
+### **Third-party libraries**
+
+1) https://mvnrepository.com/artifact/org.goldrenard/ab (ALICE chatbot implementation)
+2) https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku (Dependency for ALICE)
+3) https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku-feature-ex (Dependency for ALICE)
+4) https://mvnrepository.com/artifact/org.slf4j/slf4j-api (Dependency for ALICE)
+5) https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j (Dependency for ALICE)
