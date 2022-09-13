@@ -69,7 +69,7 @@ public class Todo extends Task {
     public Todo(List<? extends String> l) {
         super(l);
         if (!l.get(0).equals(TYPE_CODE)) {
-            throw new IllegalArgumentException("Trying to hydrate non-todo as todo: " + l);
+            throw new IllegalArgumentException("Trying to unpack non-todo as todo: " + l);
         }
     }
 

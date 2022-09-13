@@ -99,7 +99,7 @@ public class Deadline extends Task {
     public Deadline(List<? extends String> l) {
         super(l);
         if (!l.get(0).equals(TYPE_CODE)) {
-            throw new IllegalArgumentException("Trying to hydrate non-deadline as deadline: " + l);
+            throw new IllegalArgumentException("Trying to unpack non-deadline as deadline: " + l);
         }
         this.deadline = Instant.parse(l.get(3));
     }

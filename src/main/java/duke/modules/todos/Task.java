@@ -51,6 +51,9 @@ public abstract class Task {
         return this.name;
     }
 
+    /**
+     * The unique code of the task type. Used to identify the type of task being unpacked.
+     */
     public static final String TYPE_CODE = "B";
     private final String doneSerialization = "X";
     private final String undoneSerialization = "-";
@@ -78,7 +81,7 @@ public abstract class Task {
         } else if (undoneSerialization.equals(doneStr)) {
             this.isDone = false;
         } else {
-            throw new IllegalArgumentException("Invalid done value found while hydrating task: " + doneStr);
+            throw new IllegalArgumentException("Invalid done value found while unpacking task: " + doneStr);
         }
     }
 
