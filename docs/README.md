@@ -7,7 +7,7 @@ faster than traditional GUI apps.
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your computer.
-2. Download the latest `duke.jar` from here.
+2. Download the latest `duke.jar` from [here](https://github.com/LikHern/ip/releases/tag/v1.0).
 3. Copy the file to the folder you want to use as the _home folder_.
 4. Double-click the file to start the app. 
 5. Refer to the Features below for details of each command.
@@ -27,18 +27,17 @@ e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 Duke supports tracking three types of tasks:
 
-1. To-do: task without any date/time attached to it *_e.g., visit new theme park_* 
+1. To-do: task without any date/time attached to it **_e.g., visit new theme park_** 
 :memo:
-2. Deadline: task that need to be done before a specific date *_e.g., submit
-report by 11/10/2019_* :calendar:
-3. Event: task that start at a specific time and ends at a specific time *_e.g., 
-team project meeting on 2/10/2019 2-4pm_* :alarm_clock:
+2. Deadline: task that need to be done before a specific date **_e.g., submit
+report by 11/10/2019_** :calendar:
+3. Event: task that start at a specific time and ends at a specific time **_e.g., 
+team project meeting on 2/10/2019 2-4pm_** :alarm_clock:
 
-Format: `todo DESCRIPTION`, `deadline DESCRIPTION /by DATE`,  
-`event DESCRIPTION /at DATETIME`
+Format: `todo DESCRIPTION`, `deadline DESCRIPTION /by DATE`, `event DESCRIPTION /at DATETIME`
 
-*:warning: `DATE` in deadline can only take in date in "yyyy-MM-dd" format, e.g., 
-2022-12-06*
+:warning: **`DATE` in deadline can only take in date in "yyyy-MM-dd" format, e.g., 
+2022-12-06**
 
 Examples:
 - todo read book
@@ -82,7 +81,7 @@ Archive the tasks saved in Duke to back-up file.
 
 Format: `archive`
 
-:warning: After this operation, all the tasks in Duke will be cleared!
+:warning: **After this operation, all the tasks in Duke will be cleared!**
 
 ### Exiting the program: `bye`
 
@@ -101,8 +100,8 @@ Duke data and back-up data are saved as a txt file in
 `[JAR file location]/duke.txt` and `[JAR file location]/duke-backup.txt` respectively.
 Advanced users are welcome to update data directly by editing that data file.
 
-:warning: If your changes to the data file makes its format invalid, Duke will 
-discard all data and start with an empty data file at the next run.
+:warning: **If your changes to the data file makes its format invalid, Duke will 
+discard all data and start with an empty data file at the next run.**
 
 ### Retrieving data from archive [coming in v2.0]
 
