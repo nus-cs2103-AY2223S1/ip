@@ -57,6 +57,7 @@ Find | `find <keyWord(s)>` | find homework | Searches the descriptions of all th
 ## Advanced User Saving Guide 
 Preview the save file as shown here 
 ![SaveFile](./SaveScreenShot.png)
+
  For our more advanced users, you are able to `edit` the save file using the format specified by our save file. Each argument is deliminated by double backslashes `//`. 
 > Here's how to edit the save file yourself. The format for each task is specified by: `taskIndicator//0 or 1//description//date//`.
 
@@ -80,7 +81,8 @@ Credit where it's due to the people who helped along the way!
  - User Icon: @Author: Unknown
     - Retrieved from: "https://www.kindpng.com/imgv/iwoRiix_transparent-clipart-free-download-ajit-pai-hd-png/"
 
- - User profile: @Author: 
+ - User profile: @Author: FreePlk
+   - Retrieved from: "https://www.flaticon.com/free-icon/multiple-users-silhouette_33308"
 
  - App Icon: @Author: UrieW.
     -  Retrieved from OpenGameArt.org @ "https://opengameart.org/content/device-app-icons-with-template"
