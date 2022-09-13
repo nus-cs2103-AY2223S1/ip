@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'OpenSansEmoji';
+    src: url('/fonts/OpenSansEmoji.ttf');
+}
+
+.dialog-text {
+    font-family: 'OpenSansEmoji';
+    -fx-font-family: 'OpenSansEmoji';
+}

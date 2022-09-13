@@ -1,6 +1,7 @@
 package duke.gui;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Collections;
 
 import javafx.collections.FXCollections;
@@ -9,10 +10,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 /**
  * An example of a custom control using FXML.
@@ -22,7 +24,7 @@ import javafx.scene.layout.HBox;
  */
 public class DialogBox extends HBox {
     @FXML
-    private Text dialog;
+    private TextFlow dialog;
     @FXML
     private ImageView displayPicture;
 
@@ -35,8 +37,10 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        dialog.setText(text);
+        Text dialogText = new Text(text.replace("☹", sweatEmoji()));
+        dialogText.getStyleClass().add("dialog-text");
+        System.out.println("dialogText.getStyleClass() = " + dialogText.getStyleClass());
+        dialog.getChildren().add(dialogText);
         displayPicture.setImage(img);
     }
 
@@ -59,5 +63,14 @@ public class DialogBox extends HBox {
         var db = new DialogBox(text, img);
         db.flip();
         return db;
+    }
+
+    /**
+     * Returns sweat emoji in UTF-8 encoding.
+     * @return String sweat emoji
+     */
+    public static String sweatEmoji() {
+        byte[] emojiBytes = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0x93};
+        return new String(emojiBytes, Charset.forName("UTF-8"));
     }
 }
