@@ -21,6 +21,7 @@ import command.HelpCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.UnmarkCommand;
+import duke.Duke;
 import exceptions.DukeException;
 import task.Deadline;
 import task.Event;
@@ -129,10 +130,27 @@ public class Parser {
         }
     }
 
-    private static Task createTask(String[] userInput) {
+    private static Task createTask(String[] userInput) throws DukeException {
         String description = getTaskDescription(userInput);
         Task task = new Task(description);
         return task;
+    }
+
+    private static String getTaskDescription(String[] userInput) throws DukeException {
+        if (userInput.length >= 2) {
+            String description = getStringBetweenIndices(1, userInput.length, userInput);
+            return description;
+        } else {
+            throw new DukeException("Invalid description provided");
+        }
+    }
+
+    private static String getStringBetweenIndices(int i, int j, String[] array) {
+        StringBuffer str = new StringBuffer();
+        for (; i < j; i++) {
+            str.append(array[i]);
+        }
+        return str.toString();
     }
 
     private static Event createEvent(String[] userInput) {
@@ -140,6 +158,16 @@ public class Parser {
         LocalDate date = getEventDate(userInput);
         Event event = new Event(description, date);
         return event;
+    }
+
+    private static String getEventDescription(String userInput) throws DukeException{
+        if (userInput.length() >= 2) {
+            int startIndexOfDescription = 1;
+            int endIndexOfDescription = getStartOfDate(userInput);
+            String description = getStringBetweenIndices(startIndexOfDescription, endIndexOfDescription, userInput);
+        } else {
+            throw new DukeException("Invalid description provided");
+        }
     }
 
     private static Deadline createDeadline(String[] userInput) {
