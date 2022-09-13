@@ -25,7 +25,7 @@ import duke.data.exception.DukeException;
  * the validity of inputs provided
  */
 public class Parser {
-    private static final String INVALID_INPUT = "Invalid input!";
+    private static final String INVALID_INPUT = "Invalid arguments provided!";
     private static final String INCORRECT_DATE_FORMAT = "Incorrect date format!";
     private static final String TODO_REGEX = "(?<desc>.+)";
     private static final String DEADLINE_REGEX = "(?<desc>.+)/by(?<date>.+)";
