@@ -22,19 +22,12 @@ public class Hazell {
     private Dispatcher dispatcher;
     private Ui ui;
 
-    private ScrollPane scrollPane;
-    private VBox dialogContainer;
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
     private static final String APP_LOGO = "  _    _               _ _ \n"
             + " | |  | |             | | |\n"
             + " | |__| | __ _ _______| | |\n"
             + " |  __  |/ _` |_  / _ \\ | |\n"
             + " | |  | | (_| |/ /  __/ | |\n"
             + " |_|  |_|\\__,_/___\\___|_|_|\n";
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image hazell = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
      * Creates a new instance of the chatbot.
@@ -76,7 +69,7 @@ public class Hazell {
     }
 
     /**
-     * Given a user input, returns the response that the bot should reply.
+     * Returns the response that the bot should reply, given a user input.
      *
      * @param input User input
      * @return Bot response

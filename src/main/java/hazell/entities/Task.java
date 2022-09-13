@@ -46,10 +46,10 @@ public abstract class Task {
     public abstract String serialise();
 
     /**
-     * Factory method that unserialises data.
+     * Unserialses data to create a Task (factory method).
      *
      * @param s Input string to parse data from
-     * @return
+     * @return A subclass object
      */
     public static Task unserialise(String s) {
         String[] words = s.split(" \\| ");
