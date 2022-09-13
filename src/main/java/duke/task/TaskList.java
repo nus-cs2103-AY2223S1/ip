@@ -29,7 +29,7 @@ public class TaskList {
     }
 
     /**
-     * Getter for the tasks in the task list.
+     * Gets for the tasks in the task list.
      *
      * @return Returns this.tasks.
      */
@@ -38,7 +38,7 @@ public class TaskList {
     }
 
     /**
-     * Get the number of tasks in current task list.
+     * Gets the number of tasks in current task list.
      *
      * @return An integer representing the number of tasks in the current list.
      */
@@ -47,7 +47,7 @@ public class TaskList {
     }
 
     /**
-     * Add a task to the current task list.
+     * Adds a task to the current task list.
      *
      * @param task The task to add to the list.
      */
@@ -56,7 +56,7 @@ public class TaskList {
     }
 
     /**
-     * Delete a task from the current task list.
+     * Deletes a task from the current task list.
      *
      * @param index The index of the task to remove from our task list.
      * @return Returns the task object that was deleted.

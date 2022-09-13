@@ -30,7 +30,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor for Duke instance.
+     * Constructs a Duke Instance.
      *
      * @param filePath The location to store the saved tasks to.
      */
@@ -49,7 +49,7 @@ public class Duke {
     }
 
     /**
-     * Driver method for the CLI Duke Program.
+     * Drives the Duke CLI program.
      */
     public void run() {
         this.ui.printDukeOpening();
@@ -207,7 +207,7 @@ public class Duke {
 
 
     /**
-     * The main method that is the entry to the Duke Application.
+     * Runs the Duke Application in CLI mode.
      *
      * @param args Command line arguments that we can pass to the main function.
      */

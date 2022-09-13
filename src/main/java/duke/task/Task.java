@@ -30,7 +30,7 @@ public class Task {
     }
 
     /**
-     * Setter for updating the isDone variable.
+     * Sets the isDone variable for the task.
      *
      * @param isDone the new value to update isDone to.
      */
@@ -39,7 +39,7 @@ public class Task {
     }
 
     /**
-     * Getter for the description of the task.
+     * Gets the description of the task.
      *
      * @return Returns the description of the task.
      */

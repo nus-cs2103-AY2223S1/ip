@@ -33,7 +33,7 @@ public class Event extends Task {
     }
 
     /**
-     * Getter for the start time of event.
+     * Gets the start time of event.
      *
      * @return Returns the date of the event in String format.
      */
@@ -43,7 +43,7 @@ public class Event extends Task {
     }
 
     /**
-     * Getter for the end time of event.
+     * Gets the end time of event.
      *
      * @return Returns the date of the event in String format.
      */

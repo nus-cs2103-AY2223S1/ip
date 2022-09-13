@@ -104,7 +104,7 @@ public class Ui {
     }
 
     /**
-     * Method to print the matching tasks after filtering for tasks that contains
+     * Prints the matching tasks after filtering for tasks that contains
      * the query term.
      *
      * @param tasks The input task list to print to the user.
@@ -167,14 +167,14 @@ public class Ui {
     }
 
     /**
-     * Method to close the scanner object.
+     * Closes the scanner object.
      */
     public void closeScanner() {
         this.sc.close();
     }
 
     /**
-     * Method to read the next line from the standard input.
+     * Reads the next line from the standard input.
      *
      * @return Returns the next line as a String.
      */
@@ -318,6 +318,17 @@ public class Ui {
         return response.toString();
     }
 
+    /**
+     * Gets the string representation of the tasks to remind users about the time
+     * until the start of the task.
+     *
+     * @param taskList The taskList to find the tasks from.
+     * @param type The type of task that we want to get reminders on, can only be
+     *             deadline or event tasks.
+     * @return The string representation of the deadline or event tasks, along with
+     *         the time until the deadline for deadline tasks or the time until the
+     *         start of the event for event tasks.
+     */
     public String getReminders(TaskList taskList, String type) {
         StringBuilder response = new StringBuilder();
         String reminder = "Here are the " + type.toLowerCase() + "s you want reminders for:\n";
@@ -364,10 +375,15 @@ public class Ui {
         return response.toString();
     }
 
+    /**
+     * Gets the time from now until some time specified in hours.
+     *
+     * @param localDateTime The time that we want the number of hours until.
+     * @return The time from now until the time specified in hours.
+     */
     public long getTimeFromNowUntil(LocalDateTime localDateTime) {
         LocalDateTime now = LocalDateTime.now();
         Duration timeBetween = Duration.between(now, localDateTime);
         return timeBetween.toHours();
     }
-
 }

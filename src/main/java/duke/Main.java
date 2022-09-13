@@ -16,7 +16,7 @@ public class Main extends Application {
     private Duke duke = new Duke("data/tasks.txt");
 
     /**
-     * Method to start the GUI for Duke.
+     * Starts the GUI for Duke program.
      *
      * @param stage the primary stage for this application, onto which
      *              the application scene can be set.

@@ -28,7 +28,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Getter for the deadline.
+     * Gets the deadline.
      *
      * @return Returns the deadline by which the event must be completed in string format.
      */

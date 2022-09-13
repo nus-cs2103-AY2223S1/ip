@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class Parser {
     /**
-     * Static method for parsing the user commands and returning them as a formatted
+     * Parses the user commands and returns them as a formatted
      * String separated by the | character.
      *
      * @param line The line from the standard input we want to parse.
