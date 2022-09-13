@@ -1,7 +1,7 @@
 # About Luna 🌙
 Luna is your nature-themed desktop app that helps you complete your tasks in the ~~most extra~~ prettiest way possible 🌻
 
-✨ Take a sneak peek at Luna's GUI ✨
+<div align="center"><i> ✨ Take a sneak peek at Luna's GUI ✨ </i></div>
 
 ![image](Ui.png)
 <br/><br/>
@@ -104,7 +104,7 @@ Output:
     Marked as completed 🌈️
     [D][✧] wash laundry BY 16 Sep 2022
 ```
-### 4. `unmark` 🥀
+### 6. `unmark` 🥀
 Update the status of a specific task in your list as uncompleted.
 
 Tell Luna your command in the format:
@@ -120,7 +120,7 @@ Output:
     [D][ ] wash laundry BY 16 Sep 2022
 ```
 ---
-### 5. `find` 🌷
+### 7. `find` 🌷
 Search for specific tasks in your list by a keyword (partial match supported).
 
 Tell Luna your command in the format:
@@ -137,7 +137,7 @@ Output:
         1. [D][ ] wash laundry BY 16 Sep 2022
 ```
 ---
-### 6. `bye` 💐
+### 8. `bye` 💐
 Exit Luna. 
 
 **⚡️ Please only use this command to exit Luna instead of closing the window, 
