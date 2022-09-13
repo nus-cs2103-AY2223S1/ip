@@ -67,6 +67,10 @@ public class TaskList {
         return tasks;
     }
 
+    public void updateDate(Task t) {
+        t.updateDate();
+    }
+
     /**
      * Returns a list of tasks from the task list that contain the given keyword(s).
      *

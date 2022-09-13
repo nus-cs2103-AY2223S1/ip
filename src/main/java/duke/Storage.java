@@ -46,6 +46,7 @@ public class Storage {
             Boolean isMarked = (Boolean) props.get("isMarked");
             LocalDate date = (LocalDate) props.get("date");
             String description = (String) props.get("description");
+            int period = (int) props.get("period");
 
             switch(type) {
             case 'T':
@@ -53,7 +54,7 @@ public class Storage {
                 break;
 
             case 'D':
-                addTask(tasks, new Deadline(description, date), isMarked);
+                addTask(tasks, new Deadline(description, date, period), isMarked);
                 break;
 
             case 'E':
@@ -73,7 +74,7 @@ public class Storage {
         ret.put("type", temp[1].charAt(0));
         ret.put("isMarked", temp[2].charAt(0) == 'X');
 
-        String dateTemp = temp[temp.length - 1];
+        String dateTemp = temp[temp.length - 2];
         dateTemp = dateTemp.substring(0, dateTemp.length() - 1);
         LocalDate date = LocalDate.now();
         if (!dateTemp.isEmpty()) {
@@ -81,9 +82,12 @@ public class Storage {
         }
         ret.put("date", date);
 
+        int period = temp[temp.length - 1].charAt(0) - '0';
+        ret.put("period", period);
+
         String description = "";
-        for (int i = 3; i < temp.length - 1; ++i) {
-            if (i < temp.length - 2) {
+        for (int i = 3; i < temp.length - 2; ++i) {
+            if (i < temp.length - 3) {
                 description += temp[i];
                 description += "[";
             } else {
@@ -129,11 +133,12 @@ public class Storage {
         String marked = t.getMarked() ? "X" : " ";
         String description = t.getDescription();
         LocalDate date = t.getDate();
+        int period = t.getPeriod();
 
         String dateString = date == null ? "" : date.toString();
 
         fw.write("[" + type + "][" + marked + "][" + description + "]["
-                + dateString + "]" + System.lineSeparator());
+                + dateString + "][" + period + "]" + System.lineSeparator());
         fw.close();
     }
 }

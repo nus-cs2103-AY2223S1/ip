@@ -30,6 +30,16 @@ public class Event extends Task {
     }
 
     @Override
+    public int getPeriod() {
+        return 0;
+    }
+
+    @Override
+    public void updateDate() {
+        return;
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + eventDate + ")";
     }

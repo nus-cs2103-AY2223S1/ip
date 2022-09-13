@@ -54,8 +54,10 @@ public enum Command {
 
         case "deadline":
             String[] temp = args.split(" /by ", 2);
-            Task t = new Deadline(temp[0], LocalDate.parse(temp[1],
-                    DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)));
+            String[] recurring = temp[1].split(" /every ", 2);
+            int period = getPeriod(temp[1]);
+            Task t = new Deadline(temp[0], LocalDate.parse(recurring[0],
+                    DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)), period);;
             return duke.addTask(t);
 
         case "event":
@@ -102,7 +104,6 @@ public enum Command {
         TaskList taskList = duke.getTaskList();
         String usage = getCorrectUsage();
         assert taskList != null : "Task list is null";
-        assert !usage.isEmpty() : "Correct usage should not be empty";
 
         switch(name) {
         case "delete":
@@ -136,8 +137,15 @@ public enum Command {
             String[] temp = args.split(" /by ", 2);
             if (temp.length < 2) {
                 return "Please specify a task and deadline.\n\n" + usage;
-            } else if (!isValidDate(temp[1])) {
-                return "Please specify the due date in the right format.\n\n" + usage;
+            } else {
+                int period = getPeriod(temp[1]);
+                if (period < 0) {
+                    return "Please specify a valid period for recurring tasks.\n\n" + usage;
+                } else if (period == 0) {
+                    if (!isValidDate(temp[1])) {
+                        return "Please specify the due date in the right format.\n\n" + usage;
+                    }
+                }
             }
             return "";
 
@@ -182,6 +190,21 @@ public enum Command {
         }
     }
 
+    private int getPeriod(String args) {
+        int period = 0;
+        String[] temp = args.split(" /every ", 2);
+        if (temp.length < 2) {
+            return period; // No period supplied
+        } else {
+            try {
+                period = Integer.parseInt(temp[1]);
+                return period > 0 ? period : -1;
+            } catch (NumberFormatException e) {
+                return -1; // Invalid period supplied
+            }
+        }
+    }
+
     private String getCorrectUsage() {
         String ret = "Correct usage: ";
         switch(name) {
@@ -192,7 +215,8 @@ public enum Command {
             return ret + "find [keyword(s)]";
 
         case "deadline":
-            return ret + "deadline [task-description] /by [DD-MM-YYYY]";
+            return ret + "deadline [task-description] /by [DD-MM-YYYY] /every [how-many-days]\n\n"
+                    + "NOTE: /every is optional and used only for\n recurring tasks.";
 
         case "event":
             return ret + "event [task-description] /at [DD-MM-YYYY]";
