@@ -89,6 +89,7 @@ public class Hazell {
         } catch (HazellException ex) {
             response = ex.toString();
         }
+        assert !response.equals("") : "Response should not be an empty string";
         return response;
     }
 
