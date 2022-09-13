@@ -1,6 +1,7 @@
 package unc;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import unc.task.Task;
@@ -97,4 +98,9 @@ public class TaskList {
         }
         return new TaskList(temp);
     }
+
+    public void sort() {
+        taskList.sort(Comparator.comparing(Task::getDateTime));
+    }
+
 }

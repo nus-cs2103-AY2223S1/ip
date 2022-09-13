@@ -47,6 +47,11 @@ public class Event extends Task {
     }
 
     @Override
+    public LocalDate getDateTime() {
+        return this.at;
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ")";
     }

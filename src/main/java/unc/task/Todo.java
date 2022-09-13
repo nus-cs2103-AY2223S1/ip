@@ -1,5 +1,7 @@
 package unc.task;
 
+import java.time.LocalDate;
+
 /**
  * A type of task without any date/time attached to it.
  */
@@ -22,6 +24,11 @@ public class Todo extends Task {
      */
     public Todo(String description, String done) {
         super(description, done == "true");
+    }
+
+    @Override
+    public LocalDate getDateTime() {
+        return LocalDate.MAX;
     }
 
     @Override
