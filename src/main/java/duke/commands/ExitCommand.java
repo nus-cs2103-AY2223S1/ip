@@ -30,6 +30,6 @@ public class ExitCommand extends Command {
                 System.exit(0); // Platform.exit() does not end the run
             }
         }, 1000);
-        return new CommandResult(msg, true);
+        return new CommandResult(msg);
     }
 }
