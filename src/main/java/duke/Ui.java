@@ -26,7 +26,7 @@ public class Ui {
             + "7) deadline <description of task> /by <date in DD/MM/YYYY format> \n"
             + "8) event <description of task> /at <date in DD/MM/YYYY format> \n"
             + "9) delete <index of task in list to delete> \n"
-            + "10) find <keywords of task in list to find> \n"
+            + "10) find <keyword(s) of task in list to find> \n"
             + "11) priority <priority level> /for <index of task in list to update> (default priority level is 0)";
 
     private Scanner scan;
