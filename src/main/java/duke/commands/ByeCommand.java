@@ -36,11 +36,13 @@ public class ByeCommand extends Command {
      * @param tasks The current list of tasks
      * @param ui The Ui instance to return the result to the user
      * @param storage The Storage instance to store the result to local storage
+     * @return the string representation of the execution result
      * @throws DukeException if errors are encountered during execution
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         storage.writeToFile(tasks.toArrayList());
         ui.showMessage("Shiba hope you had a productive time today!\nDon't forget to come and work with me again \uD83D\uDC36");
+        return "Shiba hope you had a productive time today!\nDon't forget to come and work with me again \uD83D\uDC36";
     }
 }

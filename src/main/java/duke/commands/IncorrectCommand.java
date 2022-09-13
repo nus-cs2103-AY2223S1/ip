@@ -39,10 +39,12 @@ public class IncorrectCommand extends Command {
      * @param tasks The current list of tasks
      * @param ui The Ui instance to return the result to the user
      * @param storage The Storage instance to store the result to local storage
+     * @return the string representation of the execution result
      * @throws DukeException if errors are encountered during execution
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showErrorMessage(message);
+        return message;
     }
 }

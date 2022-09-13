@@ -42,10 +42,13 @@ public class FindCommand extends Command {
      * @param tasks The current list of tasks
      * @param ui The Ui instance to return the result to the user
      * @param storage The Storage instance to store the result to local storage
+     * @return the string representation of the execution result
      * @throws DukeException if task is not found, or cannot be marked
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        ui.showMessage(String.format(MESSAGE_SUCCESS, keyword) + System.lineSeparator() + tasks.showFilteredList(keyword));
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        String result = String.format(MESSAGE_SUCCESS, keyword) + System.lineSeparator() + tasks.showFilteredList(keyword);
+        ui.showMessage(result);
+        return result;
     }
 }
