@@ -65,7 +65,7 @@ public class Interact {
             return expenseManager.delete(Decoder.deleteExpense(word, expenseManager.numStored()));
         } else if (word.startsWith("totalSpent")) {
             int total = expenseManager.operateOnList(arr -> ExpenseCalculator.sumArrayList(arr));
-            return "You spent a total of " + total;
+            return "You spent a total of $" + total;
         } else if (word.startsWith("spentOn")) {
             return handleSpentOn(word);
         }
@@ -98,7 +98,7 @@ public class Interact {
     public String handleSpentOn(String word) throws DukeException {
         LocalDate ld = Decoder.parseLD(word);
         int total = expenseManager.operateOnList(arr -> ExpenseCalculator.spentDay(arr, ld));
-        return "You spent a total of " + total;
+        return "You spent a total of $" + total;
     }
 
     /**

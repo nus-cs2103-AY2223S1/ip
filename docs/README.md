@@ -22,6 +22,22 @@ The Expense Manager comes with the following features
 4. Display the total amount of money spent on a particular date.
 5. Display all expenses in the Expense Manager.
 
+## Usage (General)
+
+### `bye/Bye` - Add a deadline
+
+This command shuts down the DukePro app.
+
+Example of usage:
+
+`bye`
+
+`Bye`
+
+Expected outcome:
+
+The DukePro app is shut down. The app closes.
+
 ## Usage (Task Manager)
 
 ### `deadline` - Add a deadline
@@ -83,7 +99,9 @@ Deletes a generic task with no deadline or specific location.
 
 Example of usage:
 
-`delete 1` or `Delete 1`
+`delete 1`
+
+`Delete 1`
 
 Expected outcome:
 
@@ -100,7 +118,9 @@ Marks a task as "done", to indicate the task is finished
 
 Example of usage:
 
-`done 1` or `Done 1`
+`done 1`
+
+`Done 1`
 
 Expected outcome:
 
@@ -117,7 +137,9 @@ Displays every task stored in the Task Manager for the user to see.
 
 Example of usage:
 
-`list 1` or `List 1`
+`list 1`
+
+`List 1`
 
 Expected outcome:
 
@@ -136,7 +158,9 @@ Displays every task due on a specific date, which must be in the format of YYYY-
 
 Example of usage:
 
-`date 2022-09-16` or `Date 2022-09-16`
+`date 2022-09-16`
+
+`Date 2022-09-16`
 
 Expected outcome:
 
@@ -153,7 +177,9 @@ Search for every task with a matching keyword that you key in.
 
 Example of usage:
 
-`find 2022-09-16` or `Date 2022-09-16`
+`find 2022-09-16`
+
+`Find 2022-09-16`
 
 Expected outcome:
 
@@ -162,4 +188,91 @@ All tasks due on the matching date are displayed and shown to the user
 ```
 Duke heard: The following tasks match your search
 [D][X] CS2103T IP (by:Sep 16 2022)
+```
+
+## Usage (Expense Manager)
+
+### `expense/Expense` - Add an expense
+
+This command adds an expense to the Expense Manager.
+
+Example of usage:
+
+`expense Textbook /amount 15 /on 2022-08-08`
+
+Expected outcome:
+
+An expense is added to your Expense Manager. The format of the date is in YYYY-MM-DD. You should not add any symbol in front of the amount (ie. $).
+
+```
+Duke heard: Got it. I've added this task:
+[D][X] CS2103T IP (by:Sep 16 2022)
+Now you have 5 tasks in your list
+```
+
+### `showExpense` - Displays all expenses
+
+This command displays all expenses stored in the Expense Manager.
+
+Example of usage:
+
+`showExpense`
+
+Expected outcome:
+
+A list of all expenses is displayed.
+
+```
+Duke heard: Here are the expense in your list:
+1. waacow: $14 at Sep 13 2022
+2. waacow chirashi: $15 at Oct 10 2022
+```
+
+### `delExpense` - Deletes an expense
+
+This command deletes an expense from the Expense Manager.
+
+Example of usage:
+
+`delExpense 1`
+
+Expected outcome:
+
+An expense is deleted from your Expense Manager.
+
+```
+Duke heard: The following expense has been deleted:
+waacow chirashi: $15 at Oct 10 2022
+```
+
+### `totalSpent` - Displays the total expenditure
+
+This command sums up all expenses in the Expense Manager and shows the user this total expenditure.
+
+Example of usage:
+
+`totalSpent`
+
+Expected outcome:
+
+The total expenditure of all expenses in the Expense Manager is calculated and shown to the user.
+
+```
+Duke heard: You spent a total of $20
+```
+
+### `spentOn` - Displays total amount spent on a day
+
+This command sums up the total expenditure on a specific date and displays it to the user.
+
+Example of usage:
+
+`spentOn 2022-08-08`
+
+Expected outcome:
+
+An expense is added to your Expense Manager. The format of the date is in YYYY-MM-DD. You should not add any symbol in front of the amount (ie. $).
+
+```
+Duke heard: You spent a total of $40
 ```

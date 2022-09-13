@@ -85,7 +85,7 @@ public class Manager <T extends StorableObjects> {
     public String delete(int n) {
         T deleted = this.storedObjects.remove(n - 1);
         storage.rewriteFile(this.storedObjects);
-        String ret = "The following task has been deleted:\n" + deleted;
+        String ret = "The following " + this.decorator + " has been deleted:\n" + deleted;
         return ret;
     }
 
