@@ -27,10 +27,14 @@ public class CheckIsTodayCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        if (taskList.checkIsToday(index)) {
+        if (isDueToday(index, taskList)) {
             ui.showMessage("Yes due today");
         } else {
             ui.showMessage("No not due today");
         }
+    }
+
+    private boolean isDueToday(int index, TaskList taskList) {
+        return taskList.checkIsToday(index);
     }
 }

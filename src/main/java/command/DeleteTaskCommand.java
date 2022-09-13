@@ -16,10 +16,14 @@ public class DeleteTaskCommand extends Command {
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        if (storage.isLineDeleted(index)) {
+        if (isLineDeleted(index, storage)) {
             taskList.deleteTask(index);
             ui.showMessage("Deleted task");
         }
+    }
+
+    private boolean isLineDeleted(int index, Storage storage) {
+        return storage.isLineDeleted(index);
     }
 
     /**
