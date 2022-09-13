@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * A class that abstracts the interactions with user.
  */
-public class Cli {
+public class Cli implements UiInterface {
     Scanner scanner;
 
     private static final String APP_LOGO = "  _    _               _ _ \n"
@@ -22,7 +22,7 @@ public class Cli {
      * Create a new Ui instance.
      */
     public Cli() {
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
     /**
@@ -30,8 +30,9 @@ public class Cli {
      *
      * @return Whether user has entered a new command
      */
-    public boolean hasNextCommand() {
-        return this.scanner.hasNextLine();
+    @Override
+    public boolean hasNextUserInput() {
+        return scanner.hasNextLine();
     }
 
     /**
@@ -39,16 +40,23 @@ public class Cli {
      *
      * @return A parsed Command object
      */
-    public Command getNextCommand() {
-        return Command.parse(this.scanner.nextLine().strip());
+    public String getNextUserInput() {
+        return scanner.nextLine().strip();
     }
+
+    @Override
+    public void displayUserInput(String input) {
+        System.out.println(input);
+    }
+
 
     /**
      * Replies user in a formatted way.
      *
      * @param msg The message to be pretty-printed to user
      */
-    public void reply(String msg) {
+    @Override
+    public void displayBotResponse(String msg) {
         String DIVIDER = "\t____________________________________________________________";
         System.out.println(DIVIDER);
         for (String line : msg.split("\n")) {

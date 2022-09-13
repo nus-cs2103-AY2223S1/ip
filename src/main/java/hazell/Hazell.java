@@ -3,15 +3,9 @@ package hazell;
 import hazell.entities.TaskList;
 import hazell.exceptions.HazellException;
 import hazell.ui.Cli;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
+import hazell.ui.UiInterface;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Main class of the chatbot.
@@ -20,7 +14,7 @@ public class Hazell {
     private Storage storage;
     private TaskList taskList;
     private Dispatcher dispatcher;
-    private Cli cli;
+    private UiInterface ui;
 
     private static final String APP_LOGO = "  _    _               _ _ \n"
             + " | |  | |             | | |\n"
@@ -35,14 +29,14 @@ public class Hazell {
      * @param filePath Path to store chatbot data for persistence
      */
     public Hazell(String filePath) {
-        cli = new Cli();
+        ui = new Cli();
         System.out.println(APP_LOGO);
         try {
             storage = new Storage(filePath);
             taskList = new TaskList(storage.load());
         } catch (IOException e) {
             taskList = new TaskList();
-            cli.reply("Looks like this is the first time you started me up. "
+            ui.displayBotResponse("Looks like this is the first time you started me up. "
                     + "I'll be saving your tasks to data/hazell.txt!");
         }
         taskList.setStorage(storage);
@@ -56,12 +50,11 @@ public class Hazell {
      * Starts the chatbot.
      */
     public void run() {
-        cli.reply("Hello, I am Hazell!\nWhat can I do for you?");
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()) {
-            String input = scanner.nextLine().strip();
+        ui.displayBotResponse("Hello, I am Hazell!\nWhat can I do for you?");
+        while (ui.hasNextUserInput()) {
+            String input = ui.getNextUserInput();
             String response = getResponse(input);
-            cli.reply(response);
+            ui.displayBotResponse(response);
             if (input.equals("bye")) {
                 System.exit(0);
             }
