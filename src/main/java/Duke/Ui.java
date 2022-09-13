@@ -1,6 +1,10 @@
 package Duke;
 
+import javafx.application.Platform;
+
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Ui {
     private Scanner scanner;
@@ -107,7 +111,7 @@ public class Ui {
                 try {
                     Task t2 = new Deadline(input[1], input[2]);
                     if (items.containDuplicate(t2)) {
-                        return "There are duplicates in list";
+                        return "Task not added. There are duplicates in list";
                     } else {
                         output = items.addTask(t2);
                     }
@@ -120,7 +124,7 @@ public class Ui {
                 // when user wants to add event task
                 Task t3 = new Event(input[1], input[2]);
                 if (items.containDuplicate(t3)) {
-                    return "There are duplicates in list";
+                    return "Task not added. There are duplicates in list";
                 } else {
                     output = items.addTask(t3);
                 }
@@ -136,6 +140,17 @@ public class Ui {
                 break;
 
             case "bye":
+                Timer t = new Timer();
+                t.schedule(
+                    new TimerTask() {
+                        @Override
+                        public void run() {
+                            Platform.exit();
+                            t.cancel();
+                        }
+                    },
+                        2500
+                );
                 return "Bye. Hope to see you again soon!";
 
             default:
