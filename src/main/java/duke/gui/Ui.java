@@ -12,8 +12,8 @@ public class Ui {
                                         + "     / _____ \\   _| |_  | | | |   | |    |  __/ | (_| |\n"
                                         + "    /_/     \\_\\ |_____| |_| |_|   |_|     \\___|  \\__,_|\n";
 
-    private static final String UI_GREETING = "\nHello! I am AIlfred \n"
-                                            + "Your personal assistant. What can I do for you?\n";
+    private static final String UI_GREETING = "\nHello! I am AIlfred, your personal assistant. \n"
+                                            + "What can I do for you?\n";
 
 
     private static final String UI_GOODBYE = "☺ Saving your data before you go...\n"
