@@ -2,7 +2,8 @@ package duke.task;
 import java.time.LocalDateTime;
 
 /**
- * Represents a deadline task
+ * Represents a deadline task it is a task that has
+ * deadline
  */
 public class Deadline extends TimeTask {
 
@@ -15,6 +16,11 @@ public class Deadline extends TimeTask {
         super(description, ICON, time);
     }
 
+    /**
+     * Returns the string format of a Deadline task
+     *
+     * @return Returns String format of a Deadline task
+     */
     @Override
     public String toString() {
         return String.format("[D]" + "[%s] " + super.toString()
@@ -22,9 +28,11 @@ public class Deadline extends TimeTask {
     }
 
     /**
-     * Returns the string format for saving into a file
+     * Returns the string format of a Deadline task
+     * that is used for saving into a file
      *
-     * @return String format for saving into a file
+     * @return Returns String format of a Deadline task
+     * used for saving into a file
      */
     public String toSave() {
         return String.format("[D]" + "[%s] " + super.toString()

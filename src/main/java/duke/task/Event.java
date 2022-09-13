@@ -2,7 +2,8 @@ package duke.task;
 import java.time.LocalDateTime;
 
 /**
- * Represents a deadline task
+ * Represents an Event task it is a task that shows
+ * when the event starts
  */
 public class Event extends TimeTask {
 
@@ -15,6 +16,11 @@ public class Event extends TimeTask {
         super(description, ICON, time);
     }
 
+    /**
+     * Returns the string format of an Event task
+     *
+     * @return Returns String format of an Event task
+     */
     @Override
     public String toString() {
         return String.format("[E]" + "[%s] " + super.toString()
@@ -22,9 +28,11 @@ public class Event extends TimeTask {
     }
 
     /**
-     * Returns the string format for saving into a file
+     * Returns the string format of an event task
+     * when saving into a file
      *
-     * @return String format for saving into a file
+     * @return Returns String format of an event task
+     * when saving into a file
      */
     public String toSave() {
         return String.format("[E]" + "[%s] " + super.toString()

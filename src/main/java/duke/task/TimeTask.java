@@ -3,7 +3,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a TimeTask
+ * Represents a TimeTask which is a task that has an
+ * element of time
  */
 public class TimeTask extends Task {
 

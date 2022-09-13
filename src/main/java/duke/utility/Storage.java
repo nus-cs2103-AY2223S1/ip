@@ -29,7 +29,7 @@ public class Storage {
     }
 
     /**
-     * Instantiates a new mark command
+     * Instantiates a new Storage object
      */
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -46,9 +46,9 @@ public class Storage {
     }
 
     /**
-     * Adds task to text file
+     * Adds task to text file to be saved
      *
-     * @param task tasks we want to add to text file
+     * @param task tasks we want to add to text file to be saved
      */
     public void save(Task task) {
         try {

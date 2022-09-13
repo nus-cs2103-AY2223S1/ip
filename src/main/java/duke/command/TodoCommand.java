@@ -7,7 +7,8 @@ import duke.utility.Storage;
 import duke.utility.Ui;
 
 /**
- * Represents command for Todo keyword
+ * Represents command for Todo keyword which creates
+ * a Todo task
  */
 public class TodoCommand extends Command {
 
@@ -19,11 +20,13 @@ public class TodoCommand extends Command {
     }
 
     /**
-     * Executes the Todo command
+     * Executes the Todo command which creates
+     * a Todo task
      *
      * @param tasks The list containing all the tasks
      * @param ui User interface for printing the message
      * @param storage To write and read from a text file
+     * @return Returns String that contains message to be printed by gui
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         //create new task here

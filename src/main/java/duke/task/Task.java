@@ -20,7 +20,7 @@ public class Task {
     /**
      * Returns the status icon for the task
      *
-     * @return String format for the status icon for the task
+     * @return Returns String format for the status icon for the task
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
@@ -50,7 +50,12 @@ public class Task {
         this.isDone = false;
     }
 
-
+    /**
+     * Returns a boolean whether two task are equal
+     *
+     * @return Returns true if tasks are equal
+     * else returns False
+     */
     @Override
     public boolean equals(Object o) {
         // If the object is compared with itself then return true
@@ -65,11 +70,14 @@ public class Task {
 
         Task c = (Task) o;
 
-        // Compare the data members and return accordingly
-
         return this.description.equals(c.description);
     }
 
+    /**
+     * Returns the string format of a task
+     *
+     * @return Returns String format of a task
+     */
     @Override
     public String toString() {
         return this.description;

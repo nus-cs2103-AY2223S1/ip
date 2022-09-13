@@ -32,6 +32,8 @@ public class Ui {
 
     /**
      * Reads next line from the scanner
+     *
+     * @return String representation of command given in the scanner
      */
     public String readCommand() {
         if (sc.hasNextLine()) {
@@ -52,90 +54,103 @@ public class Ui {
     }
 
     /**
-     * Prints bye text
+     * Represents the bye text in String format
+     *
+     * @return String representation of the bye text
      */
     public String bye() {
          return "Bye. Hope to see you again soon!\n";
-        //printWithDivider(output);
     }
 
     /**
-     * Prints the list of tasks
+     * Represents list of tasks in String format that will be printed
+     * to the user
      *
      * @param tasks String representation of tasks
+     * @return String representation of the lists of tasks
      */
     public String list(String tasks) {
         String output = "Here are the tasks in your list:\n";
         output += tasks;
         return output;
-        //printWithDivider(output);
     }
 
     /**
-     * Prints the text for adding tasks
+     * Represents the text for adding tasks in String format that will be printed
+     * to the user
      *
      * @param message String representation on the task added
      * @param numOfTasks number of tasks in the TaskList
+     * @return String representation for the adding of tasks
      */
     public String add(int numOfTasks, String message) {
         String output = "Got it. I've added this task:\n";
         output += message;
         output += String.format("Now you have %d tasks in the list.\n", numOfTasks);
         return output;
-        //printWithDivider(output);
     }
 
     /**
-     * Prints the item that is marked
+     * Represents the item that is marked in String format that
+     * will be printed to the user
      *
      * @param message String representation of the item marked
+     * @return String representation for the marking of tasks
      */
     public String mark(String message) {
         String output = "Nice! I've marked this task as done:\n";
         output += message;
         return output;
-        //printWithDivider(output);
     }
 
     /**
-     * Prints the item that is unmarked
+     * Represents the item that is unmark in String format that
+     * will be printed to the user
      *
      * @param message String representation of the item unmarked
+     * @return String representation for the unmarking of tasks
      */
     public String unmark(String message) {
         String output = "OK, I've marked this task as not done yet:\n";
         output += message;
         return output;
-        //printWithDivider(output);
     }
 
     /**
-     * Prints the text for deleting tasks
+     * Represents the item that is deleted in String format that
+     * will be printed to the user
      *
      * @param message String representation on the task deleted
      * @param numOfTask number of tasks in the TaskList
+     * @return String representation for the deleting of tasks
      */
     public String delete(int numOfTask, String message) {
         String output = "Noted. I've removed this task:\n";
         output += message;
         output += String.format("Now you have %d tasks in the list.\n", numOfTask);
         return output;
-        //printWithDivider(output);
     }
 
     /**
-     * Prints the error message
+     * Represents the item that is found using the keyword in String format that
+     * will be printed to the user
      *
-     * @param tasks error type
+     * @param tasks tasks that is found using the keyword in String format
+     * @return String representation for the tasks found using the keyword
      */
     public String find(String tasks) {
         String output = "Here are the matching tasks in your list:\n";
         output += tasks;
         return output;
-        //printWithDivider(output);
     }
 
-
+    /**
+     * Represents the error message String format that
+     * will be printed to the user
+     *
+     * @param message error messages
+     * @return String representation for the error message to be printed to user
+     */
     public String showLoadingError(String message) {
         switch (message) {
         case "empty command":

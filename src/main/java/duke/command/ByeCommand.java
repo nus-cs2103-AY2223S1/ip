@@ -5,7 +5,7 @@ import duke.utility.Storage;
 import duke.utility.Ui;
 
 /**
- * Represents command for bye keyword
+ * Represents command for bye keyword to end duke
  */
 public class ByeCommand extends Command {
 
@@ -17,11 +17,12 @@ public class ByeCommand extends Command {
     }
 
     /**
-     * Executes the bye command
+     * Executes the bye command to end duke and stop gui
      *
      * @param tasks The list containing all the tasks
      * @param ui User interface for printing the message
      * @param storage To write and read from a text file
+     * @return Returns String that contains message to be printed by gui
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         return ui.bye();
@@ -30,7 +31,8 @@ public class ByeCommand extends Command {
     /**
      * Returns true if bye command is executed to
      * end the program
-     * @return Returns true if bye command is executed
+     *
+     * @return Returns true if byeCommand is executed
      */
     @Override
     public boolean isExit() {

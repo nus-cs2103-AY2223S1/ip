@@ -16,7 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 
-
+/**
+ * Contains the logic for the Duke program
+ */
 public class Duke  {
     private Storage storage;
     private TaskList tasks;
@@ -28,12 +30,22 @@ public class Duke  {
     private Button sendButton;
     private Scene scene;
 
+    /**
+     * Instantiates a new duke object that load previous saved task from
+     * SavedTask.txt
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage("src/main/java/Duke/SavedTask.txt");
         tasks = new TaskList(storage.load());
     }
 
+    /**
+     * Instantiates a new duke object that load previous saved task from
+     * a specified file path
+     *
+     * @param filePath file path that a user wants to load and save tasks objects to
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -41,27 +53,11 @@ public class Duke  {
     }
 
 
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showLoadingError(e.getMessage());
-            }
-        }
-    }
-
-
-
-
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets a response from a given input
+     *
+     * @param input input given by user
+     * @return String response
      */
     public String getResponse(String input) {
         ui.showWelcome();
@@ -82,10 +78,5 @@ public class Duke  {
             }
         }
         return "";
-    }
-
-
-    public static void main(String[] args) {
-        new Duke("src/main/java/Duke/SavedTask.txt").run();
     }
 }

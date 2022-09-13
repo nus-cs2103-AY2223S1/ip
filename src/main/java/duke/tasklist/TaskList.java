@@ -101,6 +101,7 @@ public class TaskList {
      *
      * @param index position of task in which we want to mark
      * @return string output of what task is marked in the list
+     * @throws DukeException  If index < 0 || index >= tasks.size().
      */
     public String mark(int index) throws DukeException {
         if (index < 0 || index >= tasks.size()) {
@@ -118,6 +119,7 @@ public class TaskList {
      *
      * @param index position of task in which we want to unmark
      * @return string output of what task is unmarked in the list
+     * @throws DukeException  If index < 0 || index >= tasks.size().
      */
     public String unmark(int index) throws DukeException {
         if (index < 0 || index >= tasks.size()) {

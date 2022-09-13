@@ -7,7 +7,8 @@ import duke.utility.Storage;
 import duke.utility.Ui;
 
 /**
- * Represents command for Unmark keyword
+ * Represents command for Unmark keyword that will
+ * unmark a task to not completed at a specified index
  */
 public class UnmarkCommand extends Command {
     private int index;
@@ -21,14 +22,14 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Executes the Unmark command
+     * Executes the Unmark command that will
+     * unmark a task to not completed at a specified index
      *
      * @param tasks The list containing all the tasks
      * @param ui User interface for printing the message
      * @param storage To write and read from a text file
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        //create new task here
         try {
             String message = tasks.unmark(index - 1);
             String output = ui.unmark(message);

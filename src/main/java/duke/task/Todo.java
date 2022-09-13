@@ -15,6 +15,12 @@ public class Todo extends Task {
         super(description, ICON);
     }
 
+
+    /**
+     * Returns the string format of a Todo task
+     *
+     * @return Returns String format of a Todo task
+     */
     @Override
     public String toString() {
         return String.format("[T]" + "[%s] " + super.toString(), super.getStatusIcon());
