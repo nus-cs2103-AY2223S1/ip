@@ -12,8 +12,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds a task corresponding to the string.\n"
-            + "\tEx. " + COMMAND_WORD;
+            + ": Finds a task corresponding to the string.";
 
     private final String taskSubstring;
 

@@ -53,6 +53,7 @@ public class Ui {
         StringBuilder sb = new StringBuilder();
         for (String m : messages) {
             sb.append(m);
+            sb.append("\n");
         }
         assert !sb.toString().isEmpty() : "String must contain something!";
         return sb.toString();

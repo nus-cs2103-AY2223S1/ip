@@ -1,4 +1,4 @@
-Hello!! I'm duke.Duke, and I can help you do up a simple to-do list!
+Hello!! I'm duke.application.DukeOld, and I can help you do up a simple to-do list!
 The following commands are valid:
 --------------
 todo (creates a new todo duke.task)

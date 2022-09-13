@@ -12,8 +12,7 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Bye!!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Exits Duke.\n"
-            + "\tEx. " + COMMAND_WORD;
+            + ": Exits Duke.";
 
     @Override
     public String execute(TaskList taskList, Ui ui, StorageFile storage) {

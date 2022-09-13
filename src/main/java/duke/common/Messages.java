@@ -23,6 +23,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND = "Invalid command!";
     public static final String MESSAGE_EMPTY_TASK_DESCRIPTION = "Task description cannot be nothing!";
     public static final String MESSAGE_NO_TASK_FOUND = "No tasks matching keyword found!";
+    public static final String MESSAGE_HELP_COMMANDS = "Here are the list of commands and their usages.";
 
     public static final String MESSAGE_OTHER_ACTIONS = "What else would you like to do?\n";
 }

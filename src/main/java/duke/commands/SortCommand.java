@@ -14,8 +14,7 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts task chronologically.\n"
-            + "\tEx. " + COMMAND_WORD ;
+            + ": Sorts tasks chronologically.";
     
     
     @Override

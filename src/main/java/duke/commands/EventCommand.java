@@ -13,8 +13,7 @@ public class EventCommand extends Command {
 
     public static final String COMMAND_WORD = "event";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Creates a new Event.\n"
-            + "\tEx. " + COMMAND_WORD;
+            + ": Creates a new Event.";
 
     private final String description;
     private final String eventDate;

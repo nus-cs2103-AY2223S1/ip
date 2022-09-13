@@ -1,5 +1,6 @@
-package duke.application;
+package duke;
 
+import duke.application.DialogBox;
 import duke.commands.Command;
 import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
@@ -31,7 +32,7 @@ import javafx.stage.Stage;
 
 import java.util.Optional;
 
-public class DukeApplication extends Application {
+public class Duke extends Application {
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;
@@ -49,7 +50,7 @@ public class DukeApplication extends Application {
      * Sets up required objects, loads the data from the storage file.
      * Prints welcome message.
      */
-    public DukeApplication() {
+    public Duke() {
         ui = new Ui();
         storageFile = new StorageFile();
         tasks = new TaskList(storageFile.loadTasks());
@@ -83,7 +84,7 @@ public class DukeApplication extends Application {
     }
 
     public static void main(String[] args) {
-        new DukeApplication().run();
+        new Duke().run();
     }
 
     /*------------------------------------------------------------------*/
@@ -182,7 +183,7 @@ public class DukeApplication extends Application {
                 dialog.setHeaderText(null);
                 dialog.setGraphic(null);
                 dialog.setTitle("Second input");
-                dialog.setContentText("Your task description: ");
+                dialog.setContentText("Your task: ");
                 Optional<String> result = dialog.showAndWait();
 
                 if (result.isEmpty()) {

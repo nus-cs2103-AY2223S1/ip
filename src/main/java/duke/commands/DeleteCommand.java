@@ -14,8 +14,7 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a task from the list.\n"
-            + "\tEx. " + COMMAND_WORD;
+            + ": Deletes a task from the list.";
 
     private final int taskNumber;
 
