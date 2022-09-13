@@ -52,6 +52,14 @@ public class Parser {
         }
     }
 
+
+    /**
+     * Checks the validity of user command type, throws DukeException if the command type
+     * is invalid or required parameter is missing.
+     *
+     * @param taskString a String array containing a user command, the first element in the array is the command type
+     * @throws DukeException If the command is regarded invalid/incomplete by duke chatbot.
+     */
     public void parseCommandType(String[] taskString) throws duke.exception.DukeException {
         String type = taskString[0];
         if (taskString.length == 1 && (type.equals("todo") || type.equals("deadline") || type.equals("event"))) {
@@ -63,6 +71,8 @@ public class Parser {
             throw new DukeException(INVALID_COMMAND_TYPE, type);
         }
     }
+
+
     /**
      * Returns simplified command string parsed from a user command.
      * If the command is invalid, exception is thrown.

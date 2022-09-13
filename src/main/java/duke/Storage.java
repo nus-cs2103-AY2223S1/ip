@@ -14,12 +14,19 @@ import java.util.Scanner;
  */
 public class Storage {
     private String filepath;
+
+    /**
+     * This method is Storage object constructor that creates task list storage.
+     *
+     * @param filepath path to the file that stores the task list
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
     }
 
     /**
      * Saves the task list in the location indicated by filepath as a txt file.
+     * The task list store the status (done/undone), task type, description, date and tag information of each task.
      *
      * @param taskList list of tasks.
      */
@@ -46,7 +53,7 @@ public class Storage {
      * Loads the task list from the location indicated by filepath.
      * If the filepath doesn't exist, empty task list is loaded.
      *
-     * @return task list.
+     * @return task list in the storage.
      */
     public TaskList load() {
         int i = filepath.lastIndexOf('/');

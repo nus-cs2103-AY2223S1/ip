@@ -16,8 +16,10 @@ public class Duke {
     private boolean isExit;
 
     /**
-     * Creates Duke chatbot object,
-     * creates ui, parser, storage and tasklist objects
+     * This method is Duke object constructor that creates Duke chatbot object.
+     *
+     * A Duke object contains ui, parser, storage and tasklist objects and a boolean attribute isExit.
+     * isExit represents the chatbot exit status (true: ready to exit; false: running)
      */
     public Duke() {}
     public Duke(String filePath) {
@@ -28,16 +30,22 @@ public class Duke {
         isExit = false;
     }
 
+    /**
+     * This method is a getter function, it returns the duke exit status (isExit attribute).
+     *
+     * @return duke exit status (isExit attribute).
+     */
     public boolean getExitStatus() {
         return isExit;
     }
 
     /**
-     * Get response from duke chatbot,
+     * Returns a list of String containing chatbot response ui.
+     * getResponse function make sense of user input command string, perform command and get response ui texts.
+     *
      * @param input
-     * @return list of strings
+     * @return list of strings containing chatbot response ui texts.
      */
-
     public List<String> getResponse(String input) {
         if (!input.equals("yes")) isExit = false;
         try {
