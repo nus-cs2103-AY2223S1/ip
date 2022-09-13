@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 /**
  * An example of a custom control using FXML.
@@ -20,10 +21,12 @@ import javafx.scene.layout.HBox;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    private static final String ERROR_COLOUR = "pink";
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+    private Circle clipCircle = new Circle(50,50,50);
 
     private DialogBox(String text, Image img) {
         try {
@@ -37,6 +40,14 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+        displayPicture.setClip(clipCircle);
+    }
+
+    private DialogBox(String text, Image img, boolean hasError) {
+        this(text, img);
+        if (hasError) {
+            dialog.setStyle("-fx-background-color: " + ERROR_COLOUR + "; -fx-background-radius: 10;");
+        }
     }
 
     /**
@@ -53,8 +64,8 @@ public class DialogBox extends HBox {
         return new DialogBox(text, img);
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+    public static DialogBox getDukeDialog(String text, Image img, boolean hasError) {
+        DialogBox db = new DialogBox(text, img, hasError);
         db.flip();
         return db;
     }
