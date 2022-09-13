@@ -31,7 +31,7 @@ Command summary
 ![This should be the startup screen you see](/Startup_screen.png)
 > If you are experiencing issue with opening the app by double-clicking the file, you may alternatively open it by going
 > into command prompt, navigating to the home folder of the app and using `java -jar duke.jar` to open it.
-5. Type the command in the text box and press Enter to execute it. e.g. typing <code>**help**</code> and pressing Enter will reveal the
+5. Type the command in the text box and press Enter to execute it. e.g. typing <code><b>help</b></code> and pressing Enter will reveal the
 command guide. 
    
    Some example commands you can try:
