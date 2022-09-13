@@ -36,25 +36,9 @@ public class Parser {
             return new ListCommand();
         case "mark":
         case "unmark":
-            // Error handling
-            if (inputSplit.length < 2) {
-                throw new DukeException(
-                        "You did not specify what task number to mark as done. Unable to mark task.");
-            } else if (!isNumeric(inputSplit[1])) {
-                throw new DukeException(
-                        String.format("Invalid task number provided: %s. Unable to mark task.",
-                                inputSplit[1]));
-            }
-            // Return the command
-            return new MarkCommand(Integer.parseInt(inputSplit[1]) - 1,
-                    inputSplit[0].equals("mark") ? true : false);
+            return parseMarkUnmark(inputSplit);
         case "note":
-            // Error handling
-            if (inputSplit.length < 2) {
-                throw new DukeException("Please provide a description for your new note.");
-            }
-            // Return the command
-            return new NoteCommand(input.substring(5));
+            return parseNote(input, inputSplit);
         case "todo":
             // Error handling
             if (inputSplit.length < 2) {
@@ -64,52 +48,88 @@ public class Parser {
             return new TodoCommand(input.substring(5));
         case "deadline":
         case "event":
-            String[] inputSlashSplit = input.split("/");
-            // Error handling
-            if (inputSlashSplit.length < 2 || inputSlashSplit[1].split(" ").length < 2) {
-                throw new DukeException(String.format(
-                        "Please specify a time for your %s.", inputSplit[0]));
-            }
-            if (inputSlashSplit[0].split(" ").length < 2) {
-                throw new DukeException(String.format(
-                        "Please provide a description for your %s.", inputSplit[0]));
-            }
-            // Return the commands
-            String date = input.split("/")[1];
-            String[] description = inputSlashSplit[0].split(" ");
-            if (inputSplit[0].equals("deadline")) {
-                return new DeadlineCommand(String.join(
-                        " ", Arrays.copyOfRange(description, 1, description.length)), date);
-            } else {
-                return new EventCommand(String.join(
-                        " ", Arrays.copyOfRange(description, 1, description.length)), date);
-            }
+            return parseDeadlineEvent(input, inputSplit);
         case "delete":
-            ListObject type = ListObject.TASK;
-            // Error handling
-            if (inputSplit.length < 2) {
-                throw new DukeException("You did not specify what number to delete.");
-            }
-            if (inputSplit[1].startsWith("N")) {
-                type = ListObject.NOTE;
-                inputSplit[1] = inputSplit[1].substring(1);
-            }
-            if (!isNumeric(inputSplit[1])) {
-                throw new DukeException(String.format(
-                        "Invalid %s number provided: %s. Unable to delete %s.", type.label, inputSplit[1], type.label));
-            }
-            // Return the command
-            return new DeleteCommand(type, Integer.parseInt(inputSplit[1]) - 1);
+            return parseDelete(inputSplit);
         case "find":
-            // Error handling
-            if (inputSplit.length < 2) {
-                throw new DukeException("Please provide a search term.");
-            }
-            // Return the command
-            return new FindCommand(input.substring(5));
+            return parseFind(input, inputSplit);
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
+    }
+
+    private static MarkCommand parseMarkUnmark(String[] inputSplit) throws DukeException {
+        // Error handling
+        if (inputSplit.length < 2) {
+            throw new DukeException(
+                    "You did not specify what task number to mark as done. Unable to mark task.");
+        } else if (!isNumeric(inputSplit[1])) {
+            throw new DukeException(
+                    String.format("Invalid task number provided: %s. Unable to mark task.",
+                            inputSplit[1]));
+        }
+        // Return the command
+        return new MarkCommand(Integer.parseInt(inputSplit[1]) - 1,
+                inputSplit[0].equals("mark") ? true : false);
+    }
+
+    private static NoteCommand parseNote(String input, String[] inputSplit) throws DukeException {
+        // Error handling
+        if (inputSplit.length < 2) {
+            throw new DukeException("Please provide a description for your new note.");
+        }
+        // Return the command
+        return new NoteCommand(input.substring(5));
+    }
+
+    private static Command parseDeadlineEvent(String input, String[] inputSplit) throws DukeException {
+        String[] inputSlashSplit = input.split("/");
+        // Error handling
+        if (inputSlashSplit.length < 2 || inputSlashSplit[1].split(" ").length < 2) {
+            throw new DukeException(String.format(
+                    "Please specify a time for your %s.", inputSplit[0]));
+        }
+        if (inputSlashSplit[0].split(" ").length < 2) {
+            throw new DukeException(String.format(
+                    "Please provide a description for your %s.", inputSplit[0]));
+        }
+        // Return the commands
+        String date = input.split("/")[1];
+        String[] description = inputSlashSplit[0].split(" ");
+        if (inputSplit[0].equals("deadline")) {
+            return new DeadlineCommand(String.join(
+                    " ", Arrays.copyOfRange(description, 1, description.length)), date);
+        } else {
+            return new EventCommand(String.join(
+                    " ", Arrays.copyOfRange(description, 1, description.length)), date);
+        }
+    }
+
+    private static DeleteCommand parseDelete(String[] inputSplit) throws DukeException {
+        ListObject type = ListObject.TASK;
+        // Error handling
+        if (inputSplit.length < 2) {
+            throw new DukeException("You did not specify what number to delete.");
+        }
+        if (inputSplit[1].startsWith("N")) {
+            type = ListObject.NOTE;
+            inputSplit[1] = inputSplit[1].substring(1);
+        }
+        if (!isNumeric(inputSplit[1])) {
+            throw new DukeException(String.format(
+                    "Invalid %s number provided: %s. Unable to delete %s.", type.label, inputSplit[1], type.label));
+        }
+        // Return the command
+        return new DeleteCommand(type, Integer.parseInt(inputSplit[1]) - 1);
+    }
+
+    private static FindCommand parseFind(String input, String[] inputSplit) throws DukeException {
+        // Error handling
+        if (inputSplit.length < 2) {
+            throw new DukeException("Please provide a search term.");
+        }
+        // Return the command
+        return new FindCommand(input.substring(5));
     }
 
     private static boolean isNumeric(String str) {

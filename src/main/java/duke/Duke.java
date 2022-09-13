@@ -20,9 +20,10 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Create a new Duke application.
+     * Creates a new Duke application.
      *
      * @param filePath path to the save file
+     * @param notesFilePath path to the notes save file
      */
     public Duke(String tasksFilePath, String notesFilePath) {
         storage = new Storage(tasksFilePath, notesFilePath);
@@ -37,14 +38,14 @@ public class Duke {
     }
 
     /**
-     * Create a new Duke application with the default save file path.
+     * Creates a new Duke application with the default save file path.
      */
     public Duke() {
         this(TASKS_SAVE_FILE_PATH, NOTES_SAVE_FILE_PATH);
     }
 
     /**
-     * Run the Duke application in CLI mode.
+     * Runs the Duke application in CLI mode.
      */
     public void runCli() {
         ui.greet();
@@ -74,7 +75,7 @@ public class Duke {
     }
 
     /**
-     * Entry point for the Duke application.
+     * Executes the entry point for the Duke application.
      *
      * @param args command line arguments
      */
