@@ -13,6 +13,7 @@ import duke.task.TaskList;
  */
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
+    public static final String SHORTER_COMMAND_WORD = "d";
 
     private Deadline deadlineTask;
 

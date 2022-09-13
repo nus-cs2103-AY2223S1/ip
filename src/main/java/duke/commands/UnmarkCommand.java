@@ -10,6 +10,7 @@ import duke.task.TaskList;
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
+    public static final String SHORTER_COMMAND_WORD = "u";
 
     private final int taskIndex;
 

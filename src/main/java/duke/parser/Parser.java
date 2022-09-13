@@ -32,27 +32,35 @@ public class Parser {
         String[] inputs = fullCommand.trim().split(" ", 2);
         switch (inputs[0]) {
         // List out all tasks
+        case ListCommand.SHORTER_COMMAND_WORD:
         case ListCommand.COMMAND_WORD:
             return prepareListCommand(inputs);
         // Add todo task
+        case TodoCommand.SHORTER_COMMAND_WORD:
         case TodoCommand.COMMAND_WORD:
             return prepareTodoCommand(inputs);
         // Add deadline task
+        case DeadlineCommand.SHORTER_COMMAND_WORD:
         case DeadlineCommand.COMMAND_WORD:
             return prepareDeadlineCommand(inputs);
         // Add event task
+        case EventCommand.SHORTER_COMMAND_WORD:
         case EventCommand.COMMAND_WORD:
             return prepareEventCommand(inputs);
         // Mark task as done
+        case MarkCommand.SHORTER_COMMAND_WORD:
         case MarkCommand.COMMAND_WORD:
             return prepareMarkCommand(inputs);
         // Mark task as undone
+        case UnmarkCommand.SHORTER_COMMAND_WORD:
         case UnmarkCommand.COMMAND_WORD:
             return prepareUnmarkCommand(inputs);
         // Delete task
+        case DeleteCommand.SHORTER_COMMAND_WORD:
         case DeleteCommand.COMMAND_WORD:
             return prepareDeleteCommand(inputs);
         // Find tasks by keyword
+        case FindCommand.SHORTER_COMMAND_WORD:
         case FindCommand.COMMAND_WORD:
             return prepareFindCommand(inputs);
         // Exits the application
