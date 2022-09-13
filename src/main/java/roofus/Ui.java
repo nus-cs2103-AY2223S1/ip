@@ -79,7 +79,7 @@ public class Ui {
         for (int i = 0; i < taskList.length(); i++) {
             String taskString = taskList.getTask(i).toString();
             if (taskString.contains(key)) {
-                finalString += String.format("%d. %s", i + 1, taskString);
+                finalString += String.format("%d. %s\n", i + 1, taskString);
             }
         }
         return finalString;
