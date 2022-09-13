@@ -33,7 +33,7 @@ public class Ui {
     }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
 
     public static String showHello() {
-        return "Hello! What plans do you currently have?" + "\nUse /? for help";
+        return "Hello, my name is Doomba!\nWhat plans do you currently have?" + "\n(psst... use /? for help)";
     }
 
     public static String showBye() {

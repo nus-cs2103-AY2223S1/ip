@@ -22,7 +22,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setResizable(false);
             stage.setScene(scene);
-            stage.setTitle("Duke");
+            stage.setTitle("Doomba");
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {
