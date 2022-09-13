@@ -1,20 +1,6 @@
 package duke;
 
 import java.io.IOException;
-import java.util.Scanner;
-
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.layout.Region;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 
 /**
@@ -28,14 +14,6 @@ public class Duke {
     private String filePath = "data/duke.txt";
     private TaskList taskList;
     private Ui ui;
-    private ScrollPane scrollPane;
-    private VBox dialogContainer;
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/Spongebob.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/Squidward.png"));
-    
 
     /**
      * Constructor for the Duke main class.
@@ -52,81 +30,116 @@ public class Duke {
     }
 
     /**
-     * Iteration 1:
-     * Creates a label with the specified text and adds it to the dialog container.
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
-     */
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
-    }
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Method that generates a response to the input from the user.
+     *
+     * @param input the text given from the user.
+     * @return A string of response from Duke.
+     * @throws DukeException
+     * @throws IOException
      */
     String getResponse(String input) throws DukeException, IOException {
-        if (input.equals("bye")) {
-            String response = "Bye. Hope to see you again soon.";
+        if (input.equals("hi")) {
+            String response = "Ayo wagwan, chat to me blud.";
             return response;
         }
 
-        String[] word = input.split(" ");
+        if (input.equals("bye")) {
+            String response = "See you later fam. Ciao!";
+            return response;
+        }
+
+        String[] inputByWords = input.split(" ");
+        String firstWord = inputByWords[0];
 
         if (input.equals("list")) {
             return taskList.list();
 
-        } else if (word[0].equals("mark")) {
-            Integer num = Integer.parseInt(word[1]);
-            return taskList.mark(num);
+        } else if (firstWord.equals("mark")) {
+            Integer indexOfTask = Integer.parseInt(inputByWords[1]);
+            return taskList.mark(indexOfTask);
 
-        } else if (word[0].equals("unmark")) {
-            Integer num = Integer.parseInt(word[1]);
-            return taskList.unmark(num);
+        } else if (firstWord.equals("unmark")) {
+            Integer indexOfTask = Integer.parseInt(inputByWords[1]);
+            return taskList.unmark(indexOfTask);
 
-        } else if (word[0].equals("todo")) {
-            if (input.endsWith("todo")) {
-                throw new DukeException("Ooops, the description of todo cannot be empty!");
-            }
+        } else if (firstWord.equals("todo")) {
+            return getStringForTodo(input);
 
-            String substringtd = input.replaceAll("todo ", "");
-            return taskList.todo(substringtd);
+        } else if (firstWord.equals("deadline")) {
+            return getStringForDeadline(input);
 
-        } else if (word[0].equals("deadline")) {
-            if (input.endsWith("deadline")) {
-                throw new DukeException("Ooops, the description of deadline cannot be empty!");
-            }
+        } else if (firstWord.equals("event")) {
+            return getStringForEvent(input);
 
-            String[] phrase = input.split("/by");
-            String substringdl1 = phrase[0].replaceAll("deadline", "");
-            String substringdl2 = phrase[1];
-            return taskList.deadline(substringdl1, substringdl2);
+        } else if (firstWord.equals("delete")) {
+            Integer indexOfTask = Integer.parseInt(inputByWords[1]);
+            return taskList.delete(indexOfTask);
 
-        } else if (word[0].equals("event")) {
-            if (input.endsWith("event")) {
-                throw new DukeException("Ooops, the description of event cannot be empty!");
-            }
-
-            String[] phrase = input.split("/at");
-            String substringdl1 = phrase[0].replaceAll("event", "");
-            String substringdl2 = phrase[1];
-            return taskList.event(substringdl1, substringdl2);
-
-        } else if (word[0].equals("delete")) {
-            Integer num = Integer.parseInt(word[1]);
-            return taskList.delete(num);
-
-        } else if (word[0].equals("find")) {
+        } else if (firstWord.equals("find")) {
             String content = input.replace("find", "");
             return taskList.find(content);
 
+        } else if (firstWord.equals("help")) {
+            String response = "link";
+            return response;
+
         } else {
-            throw new DukeException("Oooops, sorry I don't know what you are talking about :(");
+            String response = "Oops, sorry I don't know what you are talking about :(\n" +
+                    "I require a specific set of commands, type 'help' to know more!";
+            return response;
+        }
+    }
+
+    /**
+     * Method to get response for Todo task inputs.
+     * @param input the text given from the user.
+     * @return A string of response from Duke.
+     * @throws DukeException
+     * @throws IOException
+     */
+    private String getStringForTodo(String input) throws DukeException, IOException {
+        if (input.endsWith("todo")) {
+            throw new DukeException("Oops, the description of todo cannot be empty!");
         }
 
+        String todoTask = input.replaceAll("todo ", "");
+        return taskList.todo(todoTask);
     }
+
+    /**
+     * Method to get response for Deadline task inputs.
+     * @param input the text given from the user.
+     * @return A string of response from Duke.
+     * @throws DukeException
+     * @throws IOException
+     */
+    private String getStringForDeadline(String input) throws DukeException, IOException {
+        if (input.endsWith("deadline")) {
+            throw new DukeException("Ooops, the description of deadline cannot be empty!");
+        }
+
+        String[] inputSplit = input.split("/by");
+        String deadlineTask = inputSplit[0].replaceAll("deadline ", "");
+        String deadlineBy = inputSplit[1];
+        return taskList.deadline(deadlineTask, deadlineBy);
+    }
+
+    /**
+     * Method to get response for Event task inputs.
+     * @param input the text given from the user.
+     * @return A string of response from Duke.
+     * @throws DukeException
+     * @throws IOException
+     */
+    private String getStringForEvent(String input) throws DukeException, IOException {
+        if (input.endsWith("event")) {
+            throw new DukeException("Ooops, the description of event cannot be empty!");
+        }
+
+        String[] inputSplit = input.split("/at");
+        String eventTask = inputSplit[0].replaceAll("event ", "");
+        String eventAt = inputSplit[1];
+        return taskList.event(eventTask, eventAt);
+    }
+
 }
