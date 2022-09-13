@@ -33,6 +33,7 @@ public class Duke {
                 + "cs2103/projects/ip/data/duke.txt";
         storage = new Storage(filePath);
         tasks = storage.getTasks();
+        assert tasks != null: "tasks should not be null";
     }
 
     /**
