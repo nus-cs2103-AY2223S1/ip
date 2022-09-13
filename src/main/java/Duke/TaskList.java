@@ -42,6 +42,7 @@ public class TaskList {
      * @throws DukeException if the task is not an instance of a To-do, Deadline or Event object.
      */
     public void addTask(Task task) throws DukeException {
+        int initialSize = this.tasks.size();
         if (task instanceof Todo) {
             Todo todo = (Todo) task;
             this.tasks.add(todo);
@@ -54,6 +55,7 @@ public class TaskList {
         } else {
             throw new DukeException("Invalid task encountered !!");
         }
+        assert this.tasks.size() > initialSize : "Error adding todo / event / deadline";
     }
 
     /**
@@ -70,9 +72,49 @@ public class TaskList {
         return "OK !! I have updated task " + index + " with the new description : " + newDescription;
     }
 
+    /**
+     * Builds a string based on the list of tasks contained in the ArrayList of Task objects
+     * Deletes the task in the specified index from TaskList.
+     *
+     * @param index the index of the task in TaskList to be deleted.
+     * @return a message to tell the user that the task has been deleted and how many tasks
+     * are left in the list.
+     */
+    public String deleteTask(int index) {
+        int initialSize = this.tasks.size();
+        Task task = this.tasks.get(index - 1);
+        tasks.remove(index);
+        assert tasks.size() == initialSize - 1 : DukeUi.DELETE_TASK_ERROR;
+        return DukeUi.sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
+                + "\n Now you have " + tasks.size() + " tasks in the list.");
+    }
 
     /**
-     * builds a string based on the list of tasks contained in the ArrayList of Task objects
+     * Marks the task in the specified index from TaskList as done.
+     *
+     * @param index the index of the task in TaskList to be marked as done.
+     * @return a message to tell the user that the task has been marked as done.
+     */
+    public String markTaskAsDone(int index) {
+        Task task = this.tasks.get(index - 1);
+        task.markAsDone();
+        return DukeUi.sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
+    }
+
+    /**
+     * Marks the task in the specified index from TaskList as undone.
+     *
+     * @param index the index of the task in TaskList to be marked as undone.
+     * @return a message to tell the user that the task has been marked as undone.
+     */
+    public String markTaskAsUndone(int index) {
+        Task task = this.tasks.get(index - 1);
+        task.markAsUndone();
+        return DukeUi.sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
+    }
+
+    /**
+     * Builds a string based on the list of tasks contained in the ArrayList of Task objects
      * to be displayed to the user filtered using the specified keyword by using command "find"
      *
      * @param keyword the keyword to search for tasks containing the keyword.
