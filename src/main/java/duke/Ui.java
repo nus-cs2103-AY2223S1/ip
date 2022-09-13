@@ -7,28 +7,33 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Represents duke chatbot Ui that user sees.
+ * Represents TaskDive chatbot response Ui that user see after he/she send command to chatbot.
+ * Chatbot response messages are represented as a list of Strings, each String represents a single message.
  */
 public class Ui {
-
     /**
-     * Prints duke chatbot start up message that user sees when he/her opens duke chatbot.
+     * Returns TaskDive start up messages that a user see when TaskDive is opened.
+     *
+     * @return List of messages.
      */
     public java.util.List<String> printStartUpUi() {
         List<String> texts = new ArrayList<>();
-        texts.add("Hello! I'm Duke, your personalized chatbot to arrange your tasks!");
-        texts.add("Duke allows you to freely add, delete, mark task status, search tasks by time, "
+        texts.add("Hello! I'm TaskDive, your personalized chatbot to arrange your tasks!");
+        texts.add("TaskDive allows you to freely add, delete, mark task status, search tasks by time, "
                 + "and list all tasks");
         texts.add("To display full text in a dialog box, please use the scroll bar, "
-                + "or click on the dialog and scroll up.");
-        texts.add("Please type 'help' command for more information on Duke task types and command format.");
+                + "or click on the dialog and scroll all the way up.");
+        texts.add("Please type 'help' command for more information on accepted task types and command format.");
         return texts;
     }
 
     /**
-     * Prints duke information message that user sees when he/her uses help command to get information
-     * about duke chatbot.
-     * The information includes task type, command format, and other notes.
+     * Returns TaskDive information message that a user sees when he/her uses help command to see more information
+     * about TaskDive chatbot.
+     * The information includes task type, command format, and other notes
+     * (TaskDive features and other formatting issues).
+     *
+     * @return List of messages.
      */
     public List<String> printDukeInfo() {
         List<String> texts = new ArrayList<>();
@@ -49,7 +54,7 @@ public class Ui {
                 + "  10. List unfinished tasks by date : list {date}\n"
                 + "  11. List tasks by description keyword : list {keyword}\n"
                 + "  12. List tasks by tag : list #{tag}\n"
-                + "  13. Exit duke chatbot : bye");
+                + "  13. Exit TaskDive chatbot : bye");
         texts.add("Other Remarks: \n"
                 + "  1. Acceptable date formats include dd/MM/yyyy, yyyy/MM/dd, yyyy-MM-dd, dd-MM-yyyy, "
                 + "dd MM yyyy, yyyy MM dd.\n"
@@ -60,17 +65,18 @@ public class Ui {
     }
 
     /**
-     * Prints duke chatbot message after user add, delete task, and mark tasks as done or undone.
+     * Returns TaskDive response messages after a user add/ delete/ mark/ unmark a ToDo/ Deadline/ Event task.
      *
-     * @param command user command.
-     * @param index index of a task that is added / deleted / marked / unmarked.
-     * @param taskList task list.
+     * @param command String containing user command type (todo/ deadline/ event/ delete/ mark/ unmark).
+     * @param index index is the index of the task added (1-indexed),
+     *              specially for delete command, index is a String representation of a task deleted.
+     * @param taskList a TaskList.
+     * @return List of messages.
      */
     public List<String> printAddCommandUi(String command, String index, TaskList taskList) {
         List<String> texts = new ArrayList<>();
-        // for add, delete, mark / unmark
         assert !command.equals("") : "empty command.";
-        if (command.equals("delete")) {  // special case: index represents a task string instead of a task index
+        if (command.equals("delete")) {  //delete (special case): index is a String representation of a task
             texts.add("Noted. I've removed this task:\n" + String.format("  %s", index));
             texts.add(String.format("Now you have %d tasks in the list.", taskList.getSize()));
             return texts;
@@ -89,6 +95,14 @@ public class Ui {
         return texts;
     }
 
+    /**
+     * Returns TaskDive response messages after a user tag/ untag a ToDo/ Deadline/ Event task.
+     *
+     * @param command String containing user command type (tag/ untag).
+     * @param index index is the index of the task added (1-indexed).
+     * @param taskList a TaskList.
+     * @return List of messages.
+     */
     public List<String> printTagCommandUi(String command, String index, String tag, TaskList taskList) {
         List<String> texts = new ArrayList<>();
         Task task = taskList.getTask(Integer.parseInt(index) - 1);
@@ -103,11 +117,15 @@ public class Ui {
     }
 
     /**
-     * Prints duke chatbot message after user list tasks and list unfinished tasks at a date.
+     * Returns TaskDive response messages after a user enters a list related command,
+     * including list all tasks, list unfinished tasks at a date, list tasks whose description contains a keyword,
+     * list tasks with a tag.
      *
-     * @param command user command.
-     * @param str string containing a date.
-     * @param taskList task list to be printed.
+     * @param command String containing user command type (list).
+     * @param str string containing the list parameter, including 0 (represents all tasks), a date, a keyword or a tag.
+     * @param taskList a TaskList.
+     * @return List of messages.
+     * @return List of messages.
      */
     public List<String> printListCommandUi(String command, String str, TaskList taskList) {
         List<String> texts = new ArrayList<>();
@@ -132,18 +150,22 @@ public class Ui {
 
 
     /**
-     * Prints duke chatbot ending message that user sees when he/her stops/exits duke chatbot.
+     * Returns TaskDive response messages after a user enters bye command to exit TaskDive.
+     *
+     * @return List of messages.
      */
     public List<String> printEndingUi() {
         List<String> texts = new ArrayList<>();
-        texts.add("Duke Chatbot will stop, all previous tasks will be auto-saved :D \n"
+        texts.add("TaskDive Chatbot will stop, all previous tasks will be auto-saved :D \n"
                 + "Bye, Hope to see you again soon!");
         texts.add("Please type 'yes' to confirm exit or close the window.");
         return texts;
     }
 
     /**
-     * Prints message when task list storage loading occurs.
+     * Returns TaskDive response messages when task list storage loading error occurs.
+     *
+     * @return List of messages.
      */
     public List<String> showLoadingError() {
         List<String> texts = new ArrayList<>();
@@ -152,7 +174,9 @@ public class Ui {
     }
 
     /**
-     * Prints message when task list storage saving occurs.
+     * Returns TaskDive response messages when task list storage saving error occurs.
+     *
+     * @return List of messages.
      */
     public List<String> showSavingError() {
         List<String> texts = new ArrayList<>();
@@ -161,9 +185,10 @@ public class Ui {
     }
 
     /**
-     * Prints error message when an exception is raised possibly because of inproper commands.
+     * Returns TaskDive response messages after user enters an invalid/ not properly formatted command.
      *
-     * @param e exception.
+     * @param e exception raised from the invalid/ not properly formatted user command.
+     * @return List of messages.
      */
     public List<String> showException(Exception e) {
         List<String> texts = new ArrayList<>();

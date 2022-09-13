@@ -4,7 +4,7 @@ import java.util.List;
 
 
 /**
- * Represents a duke chatbot object that stores a task list,
+ * Represents a TaskDive chatbot object that stores a task list,
  * users can add / delete / mark / unmark / list tasks using this chatbot.
  */
 public class Duke {
@@ -16,12 +16,11 @@ public class Duke {
     private boolean isExit;
 
     /**
-     * This method is Duke object constructor that creates Duke chatbot object.
+     * This method is Duke object constructor.
      *
      * A Duke object contains ui, parser, storage and tasklist objects and a boolean attribute isExit.
      * isExit represents the chatbot exit status (true: ready to exit; false: running)
      */
-    public Duke() {}
     public Duke(String filePath) {
         ui = new Ui();
         parser = new Parser();
@@ -31,9 +30,9 @@ public class Duke {
     }
 
     /**
-     * This method is a getter function, it returns the duke exit status (isExit attribute).
+     * This method is a getter function, it returns the chatbot exit status (isExit attribute).
      *
-     * @return duke exit status (isExit attribute).
+     * @return chatbot exit status (isExit attribute).
      */
     public boolean getExitStatus() {
         return isExit;

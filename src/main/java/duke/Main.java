@@ -10,19 +10,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for TaskDive using FXML.
  */
 public class Main extends Application {
 
     private Duke duke = new Duke("data/Duke.txt");
 
     /**
-     * This is the method to start Duke chatbot GUI.
+     * This is the method to start TaskDive chatbot GUI.
      *
-     * @param stage the primary stage for this application, onto which
-     * the application scene can be set.
-     * Applications may create other stages, if needed, but they will not be
-     * primary stages.
+     * @param stage the primary stage for this application, onto which the application scene can be set.
+     * Applications may create other stages, if needed, but they will not be primary stages.
      */
     @Override
     public void start(Stage stage) {

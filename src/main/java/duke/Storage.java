@@ -61,7 +61,7 @@ public class Storage {
         File dir = new File(filepath.substring(0, i));
         if (!dir.exists()) {
             dir.mkdirs();
-        }
+        } //create file directory if the directory does not exist
         TaskList l = new TaskList();
         try {
             File f = new File(filepath);
@@ -69,7 +69,7 @@ public class Storage {
             s.nextLine(); //skip header line
             while (s.hasNext()) {
                 l.addTask(Task.stringToTask(s.nextLine()));
-            }
+            } //convert text String to tasks
             return l;
         } catch (Exception e) {
             new Ui().showLoadingError();

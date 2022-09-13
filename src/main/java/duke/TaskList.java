@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Represents a list of tasks.
- * Chatbot users can perform add/delete/mark operations on the tasks in the list.
+ * TaskDive chatbot users can perform add/delete/mark operations on the tasks in the list.
  */
 public class TaskList {
     private List<Task> tasks;
@@ -29,10 +29,14 @@ public class TaskList {
     }
 
     /**
-     * Prints all tasks in the task list.
-     * Each task printed consists of task type, status, description, (date);
-     * task types (todo, event, deadline) are represented by [T], [E], [D],
-     * task status (done, undone) are represented by [X], [ ].
+     * Returns a String representation of all tasks in the task list.
+     * String representation of each task consists of task type, status, description, (date), tags.
+     *
+     * Task types (todo, event, deadline) are represented by [T], [E], [D],
+     * task status (done, undone) are represented by [X], [ ],
+     * task date is represented as the format yyyy-MM-dd, task tags are represented as {tag1, tag2, tag3} (if any).
+     *
+     * @return String representation of TaskList.
      */
     public String printTaskList() {
         if (this.getSize() == 0) {
@@ -49,9 +53,9 @@ public class TaskList {
     }
 
     /**
-     * Returns the string format of task list to be saved to storage.
-     * Each task string consists of task type, status, description, (date);
-     * The format is | task type | status | description | time
+     * Returns the string format of task list to be saved in storage.
+     * String representation of each task consists of task type, status, description, (date), tags;
+     * The format is | task type | status | description | time | tags
      *
      * @return string format of task list.
      */
@@ -73,8 +77,7 @@ public class TaskList {
     }
 
     /**
-     * Returns the task at an index in the task list (the index method starts from 0).
-     * The task at index is deleted from the task list.
+     * Returns the task at an index in the task list (0-indexed).
      *
      * @param index task index.
      * @return Task object.
@@ -85,7 +88,8 @@ public class TaskList {
     }
 
     /**
-     * Returns the task at an index in the task list (the index method starts from 1).
+     * Returns the task at an index in the task list (1-indexed).
+     * The task at index is then deleted from the task list.
      *
      * @param index task index.
      * @return Task object.
@@ -96,16 +100,16 @@ public class TaskList {
     }
 
     /**
-     * Adds the task at the end of the task list.
+     * Adds a new task at the end of the task list.
      *
-     * @param t task to add to list.
+     * @param task a new task.
      */
-    public void addTask(Task t) {
-        this.tasks.add(t);
+    public void addTask(Task task) {
+        this.tasks.add(task);
     }
 
     /**
-     * Marks a task at task index as done and returns the marked task.
+     * Marks the status of the task at task index as done and returns the marked task (1-indexed).
      *
      * @param index task index.
      * @return marked task.
@@ -118,7 +122,7 @@ public class TaskList {
     }
 
     /**
-     * Marks a task at task index as undone and returns the marked task.
+     * Marks the status of the task at task index as undone and returns the marked task.
      *
      * @param index task index.
      * @return marked task.
@@ -131,9 +135,9 @@ public class TaskList {
     }
 
     /**
-     * Returns a task list containing unfinished tasks on the date.
-     * The task list includes unfinished deadline tasks with end date after/on the specified date,
-     * and unfinished event tasks with the specified date between start and end date.
+     * Searches taskList and returns a TaskList containing unfinished tasks on the date.
+     * The task list includes unfinished deadline tasks with end date after/on the date,
+     * and unfinished event tasks with the specified date between start and end date (inclusive).
      *
      * @param date LocalDate object.
      * @return task list.
@@ -158,6 +162,12 @@ public class TaskList {
         return new TaskList(tasksAtDate);
     }
 
+    /**
+     * Searches taskList and returns a new TaskList of tasks that has the tag.
+     *
+     * @param tag task tag.
+     * @return task list.
+     */
     public TaskList searchByTag(String tag) {
         TaskList tasksByTag = new duke.TaskList();
         for (Task t : tasks) {
@@ -169,7 +179,7 @@ public class TaskList {
     }
 
     /**
-     * Returns a task list containing tasks that have task description related to keyword.
+     * Searches taskList and returns a TaskList of tasks whose task description contains keyword.
      *
      * @param keyword task description keyword.
      * @return task list.

@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import static duke.exception.ErrorMessage.*;
 
 /**
- * Represents duke chatbot parser that make sense of user commands.
+ * Represents TaskDive chatbot parser that make sense of user commands.
  * If there is any invalid user input detected, the parser returns the error message (exception)
  * instead of the parsed command
  */
@@ -26,10 +26,9 @@ public class Parser {
      *
      * @param str a string containing a date.
      * @return LocalDate object.
-     * @throws DukeException If the string date format is not accepted by duke chatbot.
+     * @throws DukeException If the string date format is not accepted by TaskDive chatbot.
      */
     public static LocalDate parseDate(String str) throws DukeException {
-        // parse string format date to LocalDate object -> to String format yyyy-MM-dd, exception
         String time = str.trim();
         try {
             if (time.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) {
@@ -58,7 +57,7 @@ public class Parser {
      * is invalid or required parameter is missing.
      *
      * @param taskString a String array containing a user command, the first element in the array is the command type
-     * @throws DukeException If the command is regarded invalid/incomplete by duke chatbot.
+     * @throws DukeException If the command is regarded invalid/incomplete by TaskDive chatbot.
      */
     public void parseCommandType(String[] taskString) throws duke.exception.DukeException {
         String type = taskString[0];
@@ -80,7 +79,7 @@ public class Parser {
      * @param line a string containing a user command.
      * @param taskList a List of tasks.
      * @return command string understandable by other methods/classes.
-     * @throws DukeException If the command is regarded invalid/incomplete by duke chatbot.
+     * @throws DukeException If the command is regarded invalid/incomplete by TaskDive chatbot.
      */
     public String parseCommand(String line, TaskList taskList) throws DukeException {
         String[] taskString = line.split(" ", 2); //split by first white space
@@ -93,10 +92,10 @@ public class Parser {
         } else if (taskType.equals("event")) {
             return new AddEventCommand(taskList, taskString[1].trim()).execute();
         } else if (taskType.equals("list")) {
-            if (taskString.length == 1 || taskString[1].trim().equals("")) { //list all
+            if (taskString.length == 1 || taskString[1].trim().equals("")) { //list all tasks
                 return "list 0";
             } else {
-                return new ListCommand(taskList, taskString[1].trim()).execute();
+                return new ListCommand(taskList, taskString[1].trim()).execute(); // list by date/ keyword/ tag
             }
         } else if (taskType.equals("mark") || taskType.equals("unmark") || taskType.equals("delete")) {
             return new MarkCommand(taskList, taskType, taskString[1].trim()).execute();
