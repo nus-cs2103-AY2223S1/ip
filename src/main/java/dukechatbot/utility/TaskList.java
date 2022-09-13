@@ -34,10 +34,14 @@ public class TaskList {
     }
 
     /**
-     * Adds task into the array list associated with the TaskList instance.
+     * Adds task into the array list associated with the TaskList instance
+     * if duplicate is not detected else tells user that the task is a duplicate.
      * @param t the task to be added into the array list.
      */
     public String add(Task t) {
+        if (isDuplicate(t)) {
+            return this.ui.foundDuplicate(t);
+        }
         this.tl.add(t);
         return this.ui.added(t);
     }
@@ -137,5 +141,23 @@ public class TaskList {
             }
         }
         return ui.listMatch(tempList);
+    }
+
+    /**
+     * Checks whether the task to be added is a duplicate of an
+     * existing task within the task list.
+     * @param t the task to be added.
+     * @return true when duplicate is detected and false
+     *         when there is no duplicates detected.
+     */
+    public boolean isDuplicate(Task t) {
+        Iterator<Task> iter = this.tl.iterator();
+        while (iter.hasNext()) {
+            Task curr = iter.next();
+            if (curr.toString().substring(7).equals(t.toString().substring(7))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

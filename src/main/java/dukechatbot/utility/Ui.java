@@ -165,4 +165,13 @@ public class Ui {
         return response.toString();
     }
 
+    /**
+     * Tells user that user is trying to add a duplicate task.
+     * @param t the task that is a duplicate.
+     * @return the message to tell user the task was a duplicate.
+     */
+    public String foundDuplicate(Task t) {
+        return "Sorry! " + t.toString() + " is a duplicate of an item in the current task list.";
+    }
+
 }
