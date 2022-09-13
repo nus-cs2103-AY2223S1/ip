@@ -84,7 +84,7 @@ public abstract class Task {
      */
     public boolean isQueriesPresent(String ... queries) {
         for (String query : queries) {
-            if (this.description.contains(query)) {
+            if (this.description.contains(query.toLowerCase())) {
                 return true;
             }
         }
