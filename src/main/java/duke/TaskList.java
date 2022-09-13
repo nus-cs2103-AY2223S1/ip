@@ -156,4 +156,19 @@ public class TaskList {
     public int getEventCount() {
         return this.eventCount;
     }
+
+    /**
+     * Reduces task count when task is deleted
+     *
+     * @param task task that is deleted
+     */
+    public void reduceTaskCount(Task task) {
+        if (task instanceof ToDos) {
+            decreaseTodoCount();
+        } else if (task instanceof Deadlines) {
+            decreaseDeadlineCount();
+        } else {
+            decreaseEventCount();
+        }
+    }
 }

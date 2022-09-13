@@ -72,7 +72,9 @@ public class Storage {
                 if (strArr[0].contains("T")) {
                     tdCount++;
                     String subStr = strArr[2].substring(1, strArr[2].length() - 1);
-                    taskArr.add(new ToDos(subStr));
+                    ToDos todo = new ToDos(subStr);
+                    checkIfDone(strArr[1], todo);
+                    taskArr.add(todo);
                 }
                 if (strArr[0].contains("E")) {
                     String str = strArr[3];
@@ -80,7 +82,9 @@ public class Storage {
                     LocalDateTime ldt = LocalDateTime.parse(str, formatter);
                     eCount++;
                     String subStr = strArr[2].substring(1, strArr[2].length() - 1);
-                    taskArr.add(new Events(subStr, ldt));
+                    Events event = new Events(subStr, ldt);
+                    checkIfDone(strArr[1], event);
+                    taskArr.add((event));
                 }
                 if (strArr[0].contains("D")) {
                     String str = strArr[3];
@@ -88,7 +92,9 @@ public class Storage {
                     LocalDateTime ldt = LocalDateTime.parse(str, formatter);
                     dCount++;
                     String subStr = strArr[2].substring(1, strArr[2].length() - 1);
-                    taskArr.add(new Deadlines(subStr, ldt));
+                    Deadlines deadline = new Deadlines(subStr, ldt);
+                    checkIfDone(strArr[1], deadline);
+                    taskArr.add(deadline);
                 }
             }
             sc.close();
@@ -96,6 +102,20 @@ public class Storage {
             return new TaskList(taskArr, tdCount, dCount, eCount);
         } catch (FileNotFoundException fe) {
             throw new FileNotFoundException("Oops! No file is found.");
+        }
+    }
+
+    /**
+     * Checks if task is marked as done.
+     *
+     * @param str String of whether task is done.
+     * @param task Task being checked if done.
+     */
+    public static void checkIfDone(String str, Task task) {
+        if (str.contains("X")) {
+            task.isDone = true;
+        } else {
+            task.isDone = false;
         }
     }
 

@@ -9,14 +9,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.MainWindow">
     <children>
-        <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="315.0" AnchorPane.bottomAnchor="1.0" />
-        <Button fx:id="sendButton" layoutX="315.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="85.0" text="Send" textFill="#001aff">
+        <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="315.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="1.0">
          <font>
-            <Font name="Comic Sans MS" size="13.0" />
+            <Font name="Toppan Bunkyu Mincho Regular" size="15.0" />
+         </font></TextField>
+        <Button fx:id="sendButton" layoutX="315.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #D8FDE1#D8FDE1;" text="Send">
+         <font>
+            <Font name="Toppan Bunkyu Midashi Mincho Extrabold" size="21.0" />
          </font></Button>
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" />
+                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" style="-fx-background-color: #FFF8E7#FFF8E7;" />
             </content>
         </ScrollPane>
     </children>

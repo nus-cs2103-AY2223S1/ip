@@ -23,8 +23,17 @@ public class Ui {
         String str = "";
         str += "Welcome to Margi bot!\n";
         str += "What tasks do you have to do today?\n";
-        str += "To input a deadline or event, \n" +
-                "type the date and time in the format: 'yyyy-mm-ddThh:mm'\n";
+        return str;
+    }
+
+    /**
+     * Returns instructions.
+     *
+     * @return String of instruction message.
+     */
+    public String printInstructions() {
+        String str = "";
+        str += "To input a deadline or event, type the date and time in the format: 'yyyy-mm-ddThh:mm'\n";
         return str;
     }
 

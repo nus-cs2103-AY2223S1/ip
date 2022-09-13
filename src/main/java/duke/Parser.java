@@ -48,7 +48,7 @@ public class Parser {
             return countTasks("deadline");
         } else if (userInput.equals("count event")) {
             return countTasks("event");
-        } else if (userInput.equals("bye")) {
+        } else if (userInput.contains("bye") || userInput.equals("adios")) {
             return ui.printGoodbyeMessage();
         } else {
             return "I'm sorry, but I don't know what that means. Try typing something else!";
@@ -198,7 +198,7 @@ public class Parser {
             String finalStr = "";
             Task taskToDelete = tasklist.getTask(taskToDel - 1);
             finalStr += ui.printDelete(taskToDelete);
-            reduceTaskCount(taskToDelete);
+            tasklist.reduceTaskCount(taskToDelete);
             tasklist.deleteTask(taskToDel - 1);
             finalStr += ui.printTasksLeft(tasklist.getSize());
             storage.save(tasklist);
@@ -209,27 +209,12 @@ public class Parser {
     }
 
     /**
-     * Reduces task count when task is deleted
-     *
-     * @param task task that is deleted
-     */
-    public static void reduceTaskCount(Task task) {
-        if (task instanceof ToDos) {
-            tasklist.decreaseTodoCount();
-        } else if (task instanceof Deadlines) {
-            tasklist.decreaseDeadlineCount();
-        } else {
-            tasklist.decreaseEventCount();
-        }
-    }
-
-    /**
      * Finds task with matching keyword.
      *
      * @param str User input.
      * @return String of list of tasks that matches keyword.
      */
-    public static String findTask(String str) {
+    public static String findTask(String str) throws DukeException {
         String keyword = str.substring(5);
         ArrayList<Task> matchedTasks = new ArrayList<>();
 
@@ -239,6 +224,10 @@ public class Parser {
                 matchedTasks.add(tasklist.getTask(i));
             }
             i++;
+        }
+
+        if (matchedTasks.isEmpty()) {
+            throw new DukeException("There aren't any tasks that matches what you are looking for :(");
         }
 
         return ui.printFind(matchedTasks);
