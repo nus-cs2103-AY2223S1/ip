@@ -59,8 +59,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String validity = bocil.getResponse(input)[0];
-        String response = bocil.getResponse(input)[1];
+        String[] result = bocil.getResponse(input);
+        String validity = result[0];
+        String response = result[1];
         Image bocilImage = validity.equals("error") ? angryBocilImage : normalBocilImage;
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),

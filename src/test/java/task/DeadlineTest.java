@@ -21,13 +21,13 @@ public class DeadlineTest {
 
     @Test
     public void testMarkedToString() {
-        String correct = "[D][X] Marked (by: 5 January 2020 05:05)";
+        String correct = "[D][X][ ] Marked (by: 5 January 2020 05:05)";
         Assertions.assertEquals(correct, this.markedTask.toString());
     }
 
     @Test
     public void testUnmarkedToString() {
-        String correct = "[D][ ] Unmarked (by: 5 January 2020 05:05)";
+        String correct = "[D][ ][ ] Unmarked (by: 5 January 2020 05:05)";
         Assertions.assertEquals(correct, this.unmarkedTask.toString());
     }
 }

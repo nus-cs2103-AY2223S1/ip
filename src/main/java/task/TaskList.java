@@ -85,7 +85,7 @@ public class TaskList {
      * @param num The index + 1 of the task to be removed.
      */
     public void removeTask(int num) {
-        Task task = this.taskList.get(num);
+        Task task = this.getTask(num);
         if (task.isDone()) {
             this.marked -= 1;
         } else {
