@@ -1,0 +1,5 @@
+T |   | c
+T |   | d
+T | X | read book
+T |   | j
+D |   | homework | 01 Jan 2022

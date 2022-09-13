@@ -8,7 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 
+import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
@@ -28,9 +31,16 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         this.dialog.setText(text);
+        this.dialog.setPadding(new Insets(10));
         this.displayPicture.setImage(img);
+
+        double picX = this.displayPicture.getX();
+        double picY = this.displayPicture.getY();
+        double height = this.displayPicture.getFitHeight();
+        double width = this.displayPicture.getFitWidth();
+        Circle clip = new Circle(picX + width/2, picY + height/2, Math.min(height/3, width/3));
+        this.displayPicture.setClip(clip);
     }
 
     /**
@@ -47,6 +57,7 @@ public class DialogBox extends HBox {
         DialogBox db = new DialogBox(text, img);
         db.setSpacing(10);
         db.setPadding(new Insets(10, 10, 10, 10));
+        db.dialog.setStyle("-fx-background-color: GOLDENROD; -fx-background-radius: 20");
         return db;
     }
 
@@ -55,18 +66,6 @@ public class DialogBox extends HBox {
         db.flip();
         db.setSpacing(10);
         db.setPadding(new Insets(10, 10, 10, 10));
-        db.setStyle("-fx-background-color: #FFB6C1; ");
         return db;
     }
 }
-
-
-//        text = l;
-//        displayPicture = iv;
-//
-//        text.setWrapText(true);
-//        displayPicture.setFitWidth(100.0);
-//        displayPicture.setFitHeight(100.0);
-//
-//        this.setAlignment(Pos.TOP_RIGHT);
-//        this.getChildren().addAll(text, displayPicture);

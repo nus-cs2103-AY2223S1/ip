@@ -28,6 +28,9 @@ public class Parser {
         if (!scanner.hasNext()) {
             return new ResponseCommand("OOPS!! Deadline description should not be empty!");
         }
+        if (!desc.contains("/by")) {
+            return new ResponseCommand("OOPS!! Please enter a date for the deadline. Enter \"help\" for more info.");
+        }
         String description = "";
         String date;
         while (!scanner.hasNext("/by")) {
@@ -42,6 +45,9 @@ public class Parser {
         Scanner scanner = new Scanner(desc);
         if (!scanner.hasNext()) {
             return new ResponseCommand("OOPS!! Event description should not be empty!");
+        }
+        if (!desc.contains("/at")) {
+            return new ResponseCommand("OOPS!! Please enter a date for the event. Enter \"help\" for more info.");
         }
         String description = "";
         String date;
@@ -61,7 +67,13 @@ public class Parser {
         int[] taskNosInt = new int[taskNosString.length];
         int currIndex = 0;
         for (String string : taskNosString) {
-            int taskNo = Integer.parseInt(string) - 1;
+            int taskNo;
+            try {
+                taskNo = Integer.parseInt(string) - 1;
+            } catch (NumberFormatException ne) {
+                return new ResponseCommand("OOPS!! Please enter a valid task number. " +
+                        "To unmark multiple tasks, add a comma between the task numbers.");
+            }
             if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
                 return new ResponseCommand("Task number " + (taskNo + 1) + " does not exist.");
             }
@@ -79,7 +91,13 @@ public class Parser {
         int[] taskNosInt = new int[taskNosString.length];
         int currIndex = 0;
         for (String string : taskNosString) {
-            int taskNo = Integer.parseInt(string) - 1;
+            int taskNo;
+            try {
+                taskNo = Integer.parseInt(string) - 1;
+            } catch (NumberFormatException ne) {
+                return new ResponseCommand("OOPS!! Please enter a valid task number. " +
+                        "To mark multiple tasks, add a comma between the task numbers.");
+            }
             if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
                 return new ResponseCommand("OOPS!! Task number " + (taskNo + 1) + " does not exist.");
             }
@@ -98,7 +116,13 @@ public class Parser {
         int[] taskNosInt = new int[taskNosString.length];
         int currIndex = 0;
         for (String string : taskNosString) {
-            int taskNo = Integer.parseInt(string) - 1;
+            int taskNo;
+            try {
+                taskNo = Integer.parseInt(string) - 1;
+            } catch (NumberFormatException ne) {
+                return new ResponseCommand("OOPS!! Please enter a valid task number. " +
+                        "To mark multiple tasks, add a comma between the task numbers.");
+            }
             System.out.println(taskNo);
             if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
                 return new ResponseCommand("OOPS!! Task number " + (taskNo + 1) + " does not exist.");
@@ -110,7 +134,6 @@ public class Parser {
     }
 
     public static Command parseFind(String desc) {
-        //assert !desc.equals("") : " Cannot find an empty string";
         return new FindCommand(desc);
     }
 
@@ -130,6 +153,8 @@ public class Parser {
             case "description":
                 return new UpdateTaskDescriptionCommand(taskNo, updatedField);
 
+                // more additions can be made (e.g. update date for deadlines and events)
+
             default:
                 return new InvalidCommand();
         }
@@ -144,7 +169,11 @@ public class Parser {
         if (sc.hasNext()) {
             desc = sc.nextLine().trim();
         }
+        try {
             switch (first) {
+                case ("help"):
+                    return new HelpCommand();
+
                 case ("bye"):
                     return new ByeCommand();
 
@@ -183,6 +212,9 @@ public class Parser {
                 default:
                     return new InvalidCommand();
             }
+        } catch (AssertionError ae) {
+            return new ResponseCommand("OOPS!! " + ae.getMessage());
+        }
 
     }
 

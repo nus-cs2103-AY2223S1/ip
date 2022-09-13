@@ -65,6 +65,7 @@ public class Duke {
             } catch (AssertionError ae) {
                 UI.response(ae.getMessage());
                 Command c = new ResponseCommand(ae.getMessage());
+//                c.execute(taskList, storage);
             } catch (DukeException de) {
                 System.out.println(de);
             }
@@ -73,7 +74,7 @@ public class Duke {
 
 
     public static void main(String[] args) {
-        Duke d = new Duke("data/duke.txt");
+        Duke d = new Duke("duke.txt");
         d.run();
     }
 }

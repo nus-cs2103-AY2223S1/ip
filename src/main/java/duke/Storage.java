@@ -65,7 +65,7 @@ public class Storage {
             } //for every task in the task list, write it to the empty FileWriter object.
             fw.close(); // close FileWriter
         } catch (IOException i) {
-            throw new DukeException("OOPS!! data/duke.txt file does not exist");
+            throw new DukeException("OOPS!! File does not exist");
         }
     }
 

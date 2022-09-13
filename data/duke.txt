@@ -1,3 +1,2 @@
-T | X |  cook lunch
-T |   | read book
 D | X | homework | 11 Jan 2022
+T |   | read book

@@ -24,11 +24,11 @@ public class UI {
     public static String getResponse(String text) { return text; }
 
     public static void welcome() {
-        System.out.println("Hello! I am Duke. Please enter your command: ");
+        System.out.println("Hello Spongebob! Anything you want me to do?\n Enter \"help\" for more info.");
     }
 
     public static String welcomeResponse() {
-        return "Hello! I am Duke. Please enter your command: ";
+        return "Hello Spongebob! This is Captain Duke-it! Anything you want me to do?\n Enter \"help\" for more info.";
     }
 
     public static void bye() {
@@ -47,6 +47,56 @@ public class UI {
         return "OOPS!! Please enter a valid command!";
     }
 
+    public static void help() { System.out.println(
+            "I'm here to keep your life in check. \n" +
+                    "You may enter the following commands: \n" +
+                    "1. todo <task>:\n" +
+                    "\t Saves a task\n" +
+                    "2. deadline <task> /by <date>: \n" +
+                    "\t Saves a task with a deadline\n" +
+                    "3. event <task> /at <date>: \n" +
+                    "\t Saves an event with a date\n" +
+                    "4. list: \n" +
+                    "\t Lists out all the tasks you have\n" +
+                    "5. mark <task number(s)>: \n" +
+                    "\t Marks all the tasks stated as done\n" +
+                    "6. unmark <task number(s)>: \n" +
+                    "\t Marks all the tasks stated as undone\n" +
+                    "7. delete <task number(s)>: \n" +
+                    "\t Deletes all the tasks stated\n" +
+                    "8. find <keyword>: \n" +
+                    "\t Finds all tasks containing the keyword\n" +
+                    "9. update description <task number> <new description>: \n" +
+                    "\t Updates the task description\n" +
+                    "10. bye: \n" +
+                    "\t Exits the program\n");}
+
+    public static String helpResponse() {
+        return
+                "I'm here to keep your life in check. \n" +
+                        "You may enter the following commands: \n" +
+                        "1. todo <task>:\n" +
+                        "\t Saves a task\n" +
+                        "2. deadline <task> /by <date>: \n" +
+                        "\t Saves a task with a deadline\n" +
+                        "3. event <task> /at <date>: \n" +
+                        "\t Saves an event with a date\n" +
+                        "4. list: \n" +
+                        "\t Lists out all the tasks you have\n" +
+                        "5. mark <task number(s)>: \n" +
+                        "\t Marks all the tasks stated as done\n" +
+                        "6. unmark <task number(s)>: \n" +
+                        "\t Marks all the tasks stated as undone\n" +
+                        "7. delete <task number(s)>: \n" +
+                        "\t Deletes all the tasks stated\n" +
+                        "8. find <keyword>: \n" +
+                        "\t Finds all tasks containing the keyword\n" +
+                        "9. update description <task number> <new description>: \n" +
+                        "\t Updates the task description\n" +
+                        "10. bye: \n" +
+                        "\t Exits the program\n";
+    }
+
 
     public static void added(Task task) {
         System.out.println(DIVIDER);
@@ -55,9 +105,7 @@ public class UI {
     }
 
     public static String addedResponse(Task task) {
-        return DIVIDER
-                + task.added() + System.lineSeparator()
-                + DIVIDER;
+        return task.added() + System.lineSeparator();
     }
 
     public static void delete(int[] taskNos, TaskList taskList) {
@@ -68,7 +116,7 @@ public class UI {
         System.out.println(DIVIDER);
         System.out.printf("Noted. I've removed the task(s):\n" +
                 "%s" +
-                "Now you have %d tasks in the list.\n", tasks, Task.getTaskCount());
+                "Now you have %d tasks in the list.\n", tasks, Task.getTaskCount()-taskNos.length);
         System.out.println(DIVIDER);
     }
 
@@ -77,11 +125,9 @@ public class UI {
         for (int taskNo : taskNos) {
             tasks += taskList.getTask(taskNo).toString() + System.lineSeparator();
         }
-        return DIVIDER
-                + "Noted. I've removed this task:\n"
+        return "Noted. I've removed this task:\n"
                 + tasks
-                + String.format("Now you have %d tasks in the list.\n", Task.getTaskCount())
-                + DIVIDER;
+                + String.format("Now you have %d tasks in the list.\n", Task.getTaskCount()-taskNos.length);
     }
 
     public static void list(TaskList taskList) {
@@ -98,10 +144,8 @@ public class UI {
         for (int i = 0; i < Task.getTaskCount(); i++) {
             tasks += String.format(" %d. %s\n", i + 1, taskList.getTask(i));
         }
-        return DIVIDER
-                + "Here are the tasks in your list:\n"
-                + tasks
-                + DIVIDER;
+        return "Here are the tasks in your list:\n"
+                + tasks;
     }
 
     public static void markAsDone(int[] taskNos, TaskList taskList) {
@@ -120,10 +164,8 @@ public class UI {
         for (int taskNo : taskNos) {
             tasks += taskList.getTask(taskNo).toString() + System.lineSeparator();
         }
-        return DIVIDER
-                + "Nice! I've marked the task(s) as done: \n"
-                + tasks
-                + DIVIDER;
+        return "Nice! I've marked the task(s) as done: \n"
+                + tasks;
     }
 
     public static void markAsUndone(int[] taskNos, TaskList taskList) {
@@ -142,10 +184,8 @@ public class UI {
         for (int taskNo : taskNos) {
             tasks += taskList.getTask(taskNo).toString() + System.lineSeparator();
         }
-        return DIVIDER
-                + "OK, I've marked the task(s) as not done yet: \n"
-                + tasks + System.lineSeparator()
-                + DIVIDER;
+        return "OK, I've marked the task(s) as not done yet: \n"
+                + tasks + System.lineSeparator();
     }
 
     public static void find(TaskList tasks, String desc) {
@@ -170,24 +210,19 @@ public class UI {
                 count++;
             }
         }
-
-        return DIVIDER
-                + "Here are the matching tasks in your list: \n"
-                + matchedTasks
-                + DIVIDER;
+        return "Here are the matching tasks in your list: \n"
+                + matchedTasks;
     }
 
     public static void updateTaskDesc(Task task) {
         System.out.println(DIVIDER);
-        System.out.println("The following task has been updated:");
+        System.out.println("The following task (" + " has been updated:");
         System.out.println(task);
         System.out.println(DIVIDER);
     }
 
     public static String updateTaskDescResponse(Task task) {
-        return DIVIDER
-                + "The following task has been updated: \n"
-                + task + System.lineSeparator()
-                + DIVIDER;
+        return "The following task has been updated: \n"
+                + task + System.lineSeparator();
     }
 }
