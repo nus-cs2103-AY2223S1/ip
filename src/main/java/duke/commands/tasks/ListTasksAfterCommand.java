@@ -9,7 +9,7 @@ import duke.commands.CommandResult;
  * ListTasksAfterCommand class
  */
 public class ListTasksAfterCommand extends ListTasksCommand {
-    public static final String SUBCOMMAND_WORD = "/after ";
+    public static final String SUBCOMMAND_WORD = "after";
     private final LocalDateTime dateTime;
     private String successMessage = "Here are your tasks:\n";
 

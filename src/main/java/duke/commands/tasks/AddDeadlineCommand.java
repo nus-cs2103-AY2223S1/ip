@@ -8,7 +8,7 @@ import duke.domain.Deadline;
  */
 public class AddDeadlineCommand extends BaseTaskCommand {
     public static final String COMMAND_WORD = "deadline";
-    public static final String SUBCOMMAND_WORD = " by ";
+    public static final String SUBCOMMAND_WORD = "by";
     private final Deadline deadline;
     private String successMessage = "This task has been successfully added!\n";
 

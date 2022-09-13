@@ -8,7 +8,7 @@ import duke.domain.Event;
  */
 public class AddEventCommand extends BaseTaskCommand {
     public static final String COMMAND_WORD = "event";
-    public static final String SUBCOMMAND_WORD = " at ";
+    public static final String SUBCOMMAND_WORD = "at";
     private final Event event;
     private String successMessage = "This task has been successfully added!\n";
 

@@ -26,10 +26,12 @@ import duke.exceptions.ParseException;
 public class Parser {
 
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "You don't seem to be using that wish correctly.";
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Im sorry I don't understand your wish! You can use the wish 'help' for help.";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Im sorry I don't understand your wish!"
+            + "\nYou can use the wish 'help' for help.";
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
-            "(?<commandWord>\\S+)(?<arguments>.*)");
+            "(?<commandWord>^\\s*\\w+)(?<arguments>.*)");
     private final Set<String> availableCommands;
+    private Matcher matcher;
 
     /**
      * Parser constructor method
@@ -62,7 +64,10 @@ public class Parser {
      * @throws ParseException
      */
     public BaseCommand parse(String userInput) throws NoCommandException, ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        matcher = BASIC_COMMAND_FORMAT.matcher(
+                userInput
+                        .trim()
+                        .replaceAll(" +", " "));
         if (userInput.trim().isEmpty()) {
             throw new NoCommandException();
         }

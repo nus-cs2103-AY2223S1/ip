@@ -1,18 +1,18 @@
 todo borrow book
 list
-deadline return book /by 02-12-2019 18:00
-event project meeting /at 05-12-2019 12:00
-deadline do homework /by 05-02-2020 12:00
+deadline return book by 02-12-2019 18:00
+event project meeting at 05-12-2019 12:00
+deadline do homework by 05-02-2020 12:00
 todo
 blah
 todo read book
-deadline return book /by 06-06-2019 00:00
+deadline return book by 06-06-2019 00:00
 todo join sports club
 mark 5
 list
 delete 3
 list
-list /before 21-02-2019 19:00
-list /after 03-12-2019 19:00
+list before 21-02-2019 19:00
+list after 03-12-2019 19:00
 find book
 bye

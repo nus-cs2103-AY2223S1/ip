@@ -9,7 +9,7 @@ import duke.commands.CommandResult;
  * ListTasksBeforeCommand class
  */
 public class ListTasksBeforeCommand extends ListTasksCommand {
-    public static final String SUBCOMMAND_WORD = "/before ";
+    public static final String SUBCOMMAND_WORD = "before";
     private final LocalDateTime dateTime;
     private String successMessage = "Here are your tasks:\n";
 
