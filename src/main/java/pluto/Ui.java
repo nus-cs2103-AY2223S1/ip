@@ -23,7 +23,7 @@ public class Ui {
     }
 
     /**
-     * Displays welcome message.
+     * Returns the welcome message.
      */
     public static String showWelcome() {
         String introduction = String.format("Hello I am %s.\nWhat can I do for you?", CHATBOT);
