@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 import java.util.Objects;
 
 public class MainWindow extends AnchorPane {
@@ -57,7 +58,6 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
 
         if (input.equalsIgnoreCase("bye")) {
-
             Platform.exit();
 
         }
