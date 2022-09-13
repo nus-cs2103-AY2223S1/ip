@@ -151,6 +151,9 @@ public class Ui {
             Task t = tasks.get(i);
             output.append((i + 1) + "." + t.toString() + "\n");
         }
+        if (output.toString().isEmpty()) {
+            output.append("No task found");
+        }
         System.out.println(output.toString());
         System.out.println(LINE);
         return (output.toString());

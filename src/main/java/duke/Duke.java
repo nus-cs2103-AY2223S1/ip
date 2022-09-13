@@ -99,6 +99,10 @@ public class Duke {
                     ArrayList<Task> targetTasks = this.tasks.findMatchTasks(parts[1]);
                     this.ui.printMatchTask(targetTasks);
                     break;
+                case "remind":
+                    ArrayList<Task> remindTasks = this.tasks.findRemindTasks();
+                    this.ui.printMatchTask(remindTasks);
+                    break;
                 default:
                     throw new DukeException("I'm sorry but I don't know what that means!");
                 }
@@ -165,6 +169,10 @@ public class Duke {
                 case "find":
                     ArrayList<Task> targetTasks = this.tasks.findMatchTasks(infoArray[1]);
                     response = this.ui.printMatchTask(targetTasks);
+                    break;
+                case "remind":
+                    ArrayList<Task> findTasks = this.tasks.findRemindTasks();
+                    response = this.ui.printMatchTask(findTasks);
                     break;
                 case "todo":
                     Task todo = new Todo(infoArray[1]);

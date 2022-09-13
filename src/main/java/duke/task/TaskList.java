@@ -75,7 +75,7 @@ public class TaskList {
     //@@author DanielLimWeiEn -reused
 
     /**
-     * Find tasks with user input.
+     * Finds tasks with user input.
      * @param target The user input.
      * @return The ArrayList of task with user input.
      */
@@ -94,4 +94,20 @@ public class TaskList {
         return filtered;
     }
     //@@author
+
+    /**
+     * Finds deadline which are unmarked
+     * @return The ArrayList of deadlines which are unmarked.
+     */
+    public ArrayList<Task> findRemindTasks() {
+        ArrayList<Task> filtered = new ArrayList<>();
+
+        for (Task task : this.tasks) {
+            if (task.toString().contains("[D]") && task.getStatusIcon().equals(" ")) {
+                filtered.add(task);
+            }
+        }
+
+        return filtered;
+    }
 }

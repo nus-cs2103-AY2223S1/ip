@@ -24,7 +24,9 @@ public class Parser {
             return "list|";
         } else if (input.equals("bye")) {
             return "bye|";
-        } else if (segments[0].equals("find")) {
+        } else if (segments[0].equals("remind")) {
+            return "remind|";
+        }else if (segments[0].equals("find")) {
             return findCommand(input);
         } else if (segments[0].equals("mark")) {
             return markCommand(segments);
