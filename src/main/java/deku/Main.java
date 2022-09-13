@@ -15,7 +15,9 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-    //Solution below adapted and modified from https://stackoverflow.com/questions/24709769/
+    //@@author Bubbl3T-reused
+    //getting file relative directory reused from https://github.com/Bubbl3T/ip/
+    //with minor modifications
     private static final Path DIRECTORY_PATH = Paths.get(System.getProperty("user.dir"), "data");
     private static final Path FILE_PATH = DIRECTORY_PATH.resolve("save.txt");
     private Deku deku = new Deku(DIRECTORY_PATH, FILE_PATH);
