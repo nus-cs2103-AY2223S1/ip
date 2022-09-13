@@ -31,7 +31,7 @@ public class Interact {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        return "Hello from\n" + logo + "\nHow can I help you";
+        return "Hello from\n"  + "\nHow can I help you";
     }
 
     /**
