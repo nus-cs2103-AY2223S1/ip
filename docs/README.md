@@ -1,10 +1,16 @@
 # DukePro Task Manager
 ![Photo](Ui.png)
 
-####DukePro is a powerful and reliable chatbot that allows user to keep track of tasks, events and deadlines.
+#### DukePro is a powerful and reliable chatbot that allows user to keep track of tasks, events and deadlines.
 
 ## Features 
 
+### Type of tasks
+
+- `todo`: A task that has to be done
+- `event`: An event with a date and time
+- `deadline`: A task with a deadline
+- 
 ### Feature 1 - Welcome and Display Instructions
 
 Greet DukePro and DukePro will display all commands/instructions available.
@@ -12,11 +18,11 @@ Greet DukePro and DukePro will display all commands/instructions available.
 #### Usage/Command: 
 `hi`
 
-####Expected outcome:
+#### Expected outcome:
 
 A welcome message from DukePro will be displayed, together with the list of available instructions and command that DukePro consist of.
 
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 Hello! I'm Duke! What can I do for you?
@@ -40,11 +46,11 @@ Terminate DukePro and Exit Program after all operations ceased.
 #### Usage/Command:
 `bye`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will be terminated, list will be cleared and program will after all operations ceased.
 
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 <Exit the program>
@@ -56,11 +62,11 @@ List out all Tasks that was input by user.
 #### Usage/Command:
 ### `list`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will list out all tasks that have been input by user.
 
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 Here are the tasks in your list:
@@ -74,11 +80,11 @@ Mark the Task as done based on index of task in list input by user.
 #### Usage/Command:
 ### `mark <index of task in list to mark>`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will mark the task based on index of task in list by user as done.
 
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 Nice! I've marked this task as done :)
@@ -90,11 +96,11 @@ Mark the Task as not done based on index of task in list input by user.
 #### Usage/Command:
 ### `unmark <index of task in list to unmark>`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will unmark (if it is initially marked) the task based on index of task in list by user as not done.
 
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 ok I mark this task as not done yet...
@@ -106,10 +112,10 @@ Create a Todo task - a task that has to be done by the user.
 #### Usage/Command:
 ### `todo <description of task>`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will create a task, one that has to be done by the user. DukePro will add the task into the list of tasks the user already has.
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 Got it, I've added this task:
@@ -122,10 +128,10 @@ Create a Deadline task - a task that has a deadline which needs to be followed b
 #### Usage/Command:
 ### `deadline <description of task> /by <date in DD/MM/YYYY format>`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will create a Deadline task, one that has a deadline which the user would like to meet. DukePro will add the task into the list of tasks the user already has.
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 Got it, I've added this task:
@@ -138,10 +144,10 @@ Create an Event task - a task that has a date where the event will be happening 
 #### Usage/Command:
 ### `event <description of task> /at <date in DD/MM/YYYY format>`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will create an Event task, one that has a date which the event will be happening on. DukePro will add the task into the list of tasks the user already has.
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 Got it, I've added this task:
@@ -154,10 +160,10 @@ Delete the task based on index of the task in list input by the user.
 #### Usage/Command:
 ### `delete <index of task in list to delete>`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will delete the task in the list based on index that user indicate.
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 Noted. I've deleted this task:
@@ -170,10 +176,10 @@ Find the task(s) in the list based on keyword(s) of the task input by the user.
 #### Usage/Command:
 ### `find <keyword(s) of task in list to find>`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will find and list out the task(s) in the list that matches the keyword(s) of the task input by the user.
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 Here are the matching tasks in your list:
@@ -185,10 +191,10 @@ Update the priority level of the tasks based on input by user. Default priority 
 #### Usage/Command:
 ### `priority <priority level> /for <index of task in list to update>`
 
-####Expected outcome:
+#### Expected outcome:
 
 DukePro will update the priority to the priority level as specified by user, for the specific task based on the index of task input by the user. Priority level of tasks is indicated with integers.
-####Description of the outcome:
+#### Description of the outcome:
 
 ```
 Nice! I've marked this task to your specific priority level :)
