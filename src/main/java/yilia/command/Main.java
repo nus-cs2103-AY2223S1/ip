@@ -1,4 +1,4 @@
-package yilia;
+package yilia.command;
 
 import java.io.IOException;
 
@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import yilia.Yilia;
+import yilia.controller.MainWindow;
 
 /**
  * A GUI for Yilia using FXML.

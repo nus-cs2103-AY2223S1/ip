@@ -1,6 +1,7 @@
 package yilia;
 
 import javafx.application.Application;
+import yilia.command.Main;
 
 /**
  * A class to launch Yilia.

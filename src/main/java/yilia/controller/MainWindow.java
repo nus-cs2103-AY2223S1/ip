@@ -1,4 +1,7 @@
-package yilia;
+package yilia.controller;
+
+import yilia.Yilia;
+import yilia.DialogBox;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
