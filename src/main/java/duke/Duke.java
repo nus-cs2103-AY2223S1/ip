@@ -145,6 +145,7 @@ public class Duke{
                 response = "Unknown Command!";
                 break;
             }
+            System.out.print(list);
             storage.write(list);
         } catch (DukeException dukeException) {
             response = (dukeException.getMessage());
