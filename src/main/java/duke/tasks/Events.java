@@ -1,4 +1,4 @@
-package duke;
+package duke.tasks;
 
 /**
  *  Represents a <code>Event</code>. An <code>Event</code> is a <code>Task</code> with an <code>at</code>

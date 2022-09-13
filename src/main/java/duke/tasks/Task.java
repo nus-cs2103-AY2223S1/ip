@@ -1,4 +1,4 @@
-package duke;
+package duke.tasks;
 
 /**
  * Represents a task. A <code>Task</code> object has two attributes: task name and if the task is done.
