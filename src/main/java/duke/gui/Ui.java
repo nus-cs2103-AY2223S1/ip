@@ -10,7 +10,7 @@ import duke.task.TaskList;
  * An Ui class to deal with the interactions with the user.
  */
 public class Ui {
-    public static final String WELCOME_MESSAGE = "Hello! I'm duke.Duke\n"
+    public static final String WELCOME_MESSAGE = "Hello! I'm Duke\n"
             + "What can I do for you?\n";
 
     public static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!\n";
