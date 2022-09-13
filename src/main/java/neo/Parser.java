@@ -44,6 +44,7 @@ public class Parser {
         }
         String arr[];
         arr = userText.split(" ", 2);
+        assert arr.length >= 2: "array length is less than 2";
         if (arr.length>1 && arr[0].equals("mark")){
             this.mark = new MarkCommand(ui, stor, arrayLL);
             return mark.complete(arr[1]);
