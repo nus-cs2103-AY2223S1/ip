@@ -1,18 +1,23 @@
 package deku.ui;
 
-import java.io.IOException;
-import java.util.Collections;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
+import java.io.IOException;
+import java.util.Collections;
 
 /**
  * An example of a custom control using FXML.
@@ -37,6 +42,23 @@ public class DialogBox extends HBox {
         }
         dialog.setText(text);
         displayPicture.setImage(img);
+        imageBorderRadius(displayPicture);
+    }
+
+    // Rounds image, adapted from https://stackoverflow.com/questions/20489908/border-radius-and-shadow-on-imageview
+    private void imageBorderRadius(ImageView imageView) {
+        Rectangle clip = new Rectangle(imageView.getFitWidth(), imageView.getFitHeight());
+        clip.setArcHeight(20);
+        clip.setArcWidth(20);
+        imageView.setClip(clip);
+
+        SnapshotParameters parameters = new SnapshotParameters();
+        parameters.setFill((Color.TRANSPARENT));
+        WritableImage image = imageView.snapshot(parameters, null);
+
+        imageView.setClip(null);
+        imageView.setEffect(new DropShadow(20, Color.BLACK));
+        imageView.setImage(image);
     }
 
     /**

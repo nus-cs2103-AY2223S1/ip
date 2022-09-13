@@ -3,13 +3,14 @@ package deku.ui;
 import deku.Deku;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 /**
  * Setup for main display window for JavaFX
@@ -36,6 +37,12 @@ public class MainWindow extends AnchorPane {
 
     // Image taken from https://pixabay.com/vectors/robot-icon-flat-flat-design-2192617/
     private Image dekuImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
+
+    //image taken from https://unsplash.com/photos/zA7I5BtFbvw
+    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.jpg"));
+    private Image backgroundImageFlipped = new Image(this.getClass()
+            .getResourceAsStream("/images/backgroundFlipped.jpg")
+    );
     private Label previousNode;
 
     /**
@@ -45,6 +52,21 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         listPane.vvalueProperty().bind(listContainer.heightProperty());
+        dialogContainer.setBackground(getBackground(backgroundImage));
+        listContainer.setBackground(getBackground(backgroundImageFlipped));
+    }
+
+
+    // adapted from https://stackoverflow.com/questions/54876509/how-to-fit-the-background-size-into-the-window-size-in-javafx
+    private Background getBackground(Image background) {
+        BackgroundImage bImg = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(1.0, 1.0, true, true, false, false)
+        );
+
+        return new Background(bImg);
     }
 
     /**

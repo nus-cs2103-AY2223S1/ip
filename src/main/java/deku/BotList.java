@@ -25,9 +25,7 @@ class BotList {
         StringBuilder output = new StringBuilder("I've added this task:\n").append(task);
         userInstructions.add(task);
         storage.save(userInstructions);
-        return output.append("\n")
-                .append(getNoTasks())
-                .toString();
+        return output.toString();
     }
 
     /**
@@ -61,13 +59,6 @@ class BotList {
                + userInstructions.get(taskIndex - 1);
     }
 
-    private String getNoTasks() {
-        return "Now you have "
-               + (userInstructions.size())
-               + " task(s) in total.";
-    }
-
-
     /**
      * Deletes the task from the array of stored tasks.
      *
@@ -81,8 +72,7 @@ class BotList {
             storage.save(userInstructions);
             return "Noted.\n"
                     + task.toString()
-                    + "\nhas been deleted.\n"
-                    + getNoTasks();
+                    + "\nhas been deleted.\n";
         } catch (IndexOutOfBoundsException e) {
             throw new DekuExceptions("There is no task: " + taskIndex);
         }
