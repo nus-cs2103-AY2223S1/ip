@@ -83,7 +83,7 @@ public class DeadlineTask extends Task {
     public String toString() {
         return super.toString() + " (by: "
                 + this.deadline.getDayOfMonth() + " "
-                + this.deadline.getMonth() + " "
+                + this.deadline.getMonth().toString().substring(0, 3) + " "
                 + this.deadline.getYear() + " | "
                 + this.deadline.getHour() + ":" + String.format("%02d", this.deadline.getMinute()) + ")";
     }

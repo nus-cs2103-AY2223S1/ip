@@ -83,7 +83,7 @@ public class EventTask extends Task {
     public String toString() {
         return super.toString() + " (at: "
                 + this.eventTime.getDayOfMonth() + " "
-                + this.eventTime.getMonth() + " "
+                + this.eventTime.getMonth().toString().substring(0, 3) + " "
                 + this.eventTime.getYear() + " | "
                 + this.eventTime.getHour() + ":" + String.format("%02d", this.eventTime.getMinute()) + ")";
     }
