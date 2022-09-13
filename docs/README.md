@@ -73,7 +73,95 @@ Gotcha! I have a paw-fect memory!
 You have 1 task(s) in the list.
 ```
 
-### bye
+### `list`
+
+Display the task list.
+
+**Syntax:** `list`
+
+- Dates are displayed in `dd-MM-YYYY HH:mm` format.
+- `[T]` indicates a todo. `[D]` indicates a deadline. `[E]` indicates an event.
+- `[X]` indicates task is completed. `[ ]` indicates task is incomplete.
+
+### `mark`
+
+Mark a task as done.
+
+**Syntax:** `mark <task number>`
+
+**Sample usage:** `task 1`
+
+Expected outcome: The first task will be marked as done.
+
+```
+Paw-some! Another task done!
+  [T][X] Read book
+```
+
+### `unmark`
+
+Mark a task as incomplete.
+
+**Syntax:** `unmark <task number>`
+
+**Sample usage:** `unmark 1`
+
+Expected outcome: The first task will be marked as incomplete.
+
+```
+Okay master, I've marked this task as incomplete.
+  [T][ ] Read book
+```
+
+### `snooze`
+
+Delay date of task by 1 day.
+
+**Syntax:** `snooze <task number>`
+
+**Sample usage:** `snooze 1`
+
+Expected outcome: The first task will be delayed by 1 day.
+
+```
+Gotcha! I've snoozed this task by 1 day. Wanna go for a walk now??
+  [D][ ] Read book (by: 29-08-2022 12:30)
+```
+
+### `delete`
+
+Delete a task from the task list.
+
+**Syntax:** `delete <task number>`
+
+**Sample usage:** `delete 1`
+
+Expected outcome: The first task will be deleted.
+
+```
+Gotcha master! I'll forget about this task!
+  [T][ ] Read book
+You have 0 task(s) remaining.
+```
+
+### `find`
+
+Search for a task from the task list.
+
+**Syntax:** `find <search query>`
+
+**Sample usage:** `find book`
+
+- Search is case-insensitive.
+
+Expected outcome: A list of tasks with descriptions containing the given query will be displayed.
+
+```
+1. [T][ ] Read book
+2. [T][X] Write a book
+```
+
+### `bye`
 
 Exit Cheese.
 
