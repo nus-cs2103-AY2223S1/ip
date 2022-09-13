@@ -1,14 +1,14 @@
 package duke.task;
 
-import duke.Parser;
-
 import java.time.LocalDateTime;
+
+import duke.Parser;
 
 public class EventTask extends Task {
     private final LocalDateTime time;
 
     public EventTask(String description, LocalDateTime time, boolean isDone) {
-        super( 'E', description, isDone);
+        super('E', description, isDone);
         this.time = time;
     }
 

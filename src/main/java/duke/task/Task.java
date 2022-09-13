@@ -7,7 +7,7 @@ public abstract class Task {
 
     /**
      * Initialises a {@code Task} with a symbol and description.
-     * 
+     *
      * @param symbol The char representing the {@code Task}'s type.
      * @param description A string representing the {@code Task}'s description.
      * @param isDone The boolean representing whether the {@code Task} is done.
