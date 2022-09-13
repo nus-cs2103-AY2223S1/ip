@@ -10,14 +10,6 @@ package duke.task;
 public class ToDo extends Task {
 
     /**
-     * Constructor for Dummy Todo.
-     *
-     */
-    public ToDo() {
-        super();
-    }
-
-    /**
      * Constructor for Todo Task.
      *
      * @param description Description of the Todo Task.

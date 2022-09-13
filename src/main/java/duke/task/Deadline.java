@@ -17,17 +17,6 @@ public class Deadline extends Task {
     protected LocalDateTime by;
 
     /**
-     * Constructor for Dummy Deadline.
-     *
-     */
-    public Deadline() {
-        super();
-
-        LocalDateTime dummyBy = LocalDateTime.now();
-        this.by = dummyBy;
-    }
-
-    /**
      * Constructor for Deadline.
      *
      * @param description Description of the Deadline.

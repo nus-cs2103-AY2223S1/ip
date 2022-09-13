@@ -107,6 +107,9 @@ public class Ui {
         String listHelpMessage = "List: List all tasks\n"
                 + "Command: list\n";
 
+        String findHelpMessage = "find: Find tasks with batching description\n"
+                + "Command: find (description of tasks)\n";
+
         String markHelpMessage = "Mark: Set selected task as completed\n"
                 + "Command: mark (index of task)\n";
 
@@ -116,14 +119,23 @@ public class Ui {
         String deleteHelpMessage = "Delete: Delete selected task\n"
                 + "Command: delete (index of task)\n";
 
-        String todoHelpMessage = "ToDo: adds a Todo Task\n"
+        String batchTypeDeleteHelpMessage = "BatchTypeDelete: Delete all tasks of type specified\n"
+                + "Command: batchtypedelete (type of task: todo/deadline/event)\n";
+
+        String batchDescDeleteHelpMessage = "BatchTypeDelete: Delete all tasks with description given\n"
+                + "Command: batchdescdelete (description of tasks)\n";
+
+        String todoHelpMessage = "ToDo: Adds a Todo Task\n"
                 + "Command: Todo (description)\n";
 
-        String deadlineHelpMessage = "Deadline: adds a Deadline Task\n"
+        String deadlineHelpMessage = "Deadline: Adds a Deadline Task\n"
                 + "Command: Deadline (description) /by (YYYY-MM-DD 24hr)\n";
 
-        String eventHelpMessage = "Event: adds a Event Task\n"
+        String eventHelpMessage = "Event: Adds a Event Task\n"
                 + "Command: Event (description) /at (YYYY-MM-DD 24hr)\n";
+
+        String byeHelpMessage = "Bye: Exits the program\n"
+                + "Command: bye\n";
 
         StringBuilder sb = new StringBuilder();
 
@@ -132,9 +144,13 @@ public class Ui {
         sb.append(markHelpMessage).append('\n');
         sb.append(unmarkHelpMessage).append('\n');
         sb.append(deleteHelpMessage).append('\n');
+        sb.append(batchTypeDeleteHelpMessage).append('\n');
+        sb.append(batchDescDeleteHelpMessage).append('\n');
         sb.append(todoHelpMessage).append('\n');
         sb.append(deadlineHelpMessage).append('\n');
         sb.append(eventHelpMessage).append('\n');
+        sb.append(findHelpMessage).append('\n');
+        sb.append(byeHelpMessage).append('\n');
 
         return sb.toString();
     }

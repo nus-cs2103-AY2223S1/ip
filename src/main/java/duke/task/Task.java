@@ -1,7 +1,5 @@
 package duke.task;
 
-import java.time.LocalDateTime;
-
 /**
  * A Task class that stores the Description and State of the Task.
  *

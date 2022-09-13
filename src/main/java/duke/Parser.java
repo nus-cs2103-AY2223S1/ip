@@ -263,7 +263,7 @@ public class Parser {
      * @param type The formatted Type.
      * @param description The formatted Description.
      * @param dateTime The formatted dateTime.
-     * @return True is valid Fromatted Data, false otherwise.
+     * @return True is valid Formatted Data, false otherwise.
      */
     private static boolean isValidFormat(String type, String description, String dateTime) {
         return isValidType(type) && isValidDescription(description) && isValidDateTime(dateTime);

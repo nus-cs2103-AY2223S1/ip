@@ -18,17 +18,6 @@ public class Event extends Task {
     protected LocalDateTime at;
 
     /**
-     * Constructor for Dummy Event.
-     *
-     */
-    public Event() {
-        super();
-
-        LocalDateTime dummyAt = LocalDateTime.now();
-        this.at = dummyAt;
-    }
-
-    /**
      * Constructor for Event.
      *
      * @param description Description of the Event.
