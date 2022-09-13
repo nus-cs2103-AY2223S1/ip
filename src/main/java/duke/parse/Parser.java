@@ -75,6 +75,139 @@ public class Parser {
         }
         return newSplitInput;
     }
+    
+    /**
+     * Parses a `bye` command.
+     *
+     * @param splitInput The input given by the user, that has been split into
+     *                   an array of individual words.
+     * @return Returns the message that the MumBot should output, in respone to the input.
+     */
+    private static String parseByeCommand(String[] splitInput) {
+        Command command = new ByeCommand(splitInput, tasks);
+        return command.performAction();
+    }
+
+    /**
+     * Parses a `list` command.
+     *
+     * @param splitInput The input given by the user, that has been split into
+     *                   an array of individual words.
+     * @return Returns the message that the MumBot should output, in respone to the input.
+     * @throws DukeException Throws a DukeException.
+     */
+    private static String parseListCommand(String[] splitInput) throws DukeException {
+        // Throw error if the input contains anything other than 'list'
+        if (!(splitInput.length == 1)) {
+            throw new DukeException("</3 your formatting for the list command is wrong - please just type list!");
+        }
+        Command command = new ListCommand(splitInput, tasks);
+        return command.performAction();
+    }
+
+    /**
+     * Parses a `mark` or `unmark` command.
+     *
+     * @param splitInput The input given by the user, that has been split into
+     *                   an array of individual words.
+     * @return Returns the message that the MumBot should output, in respone to the input.
+     * @throws DukeException Throws a DukeException.
+     */
+    private static String parseMarkCommand(String[] splitInput) throws DukeException {
+        if (!(splitInput.length == 2)) {
+            throw new DukeException(
+                    "Your formatting for the " + action + " command is wrong...sigh\n"
+                    + "In future, please do: " + action + " <index of task>\n"
+                    + "You can do it peepaw!");
+        }
+
+        Integer index;
+        // Throw an error if the character after the 'mark' or 'unmark' string is not an integer
+        try {
+            index = Integer.parseInt(splitInput[1]);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Index was not properly specified (has to be an integer) for your "
+                    + action + " command!");
+        }
+
+        // Throw an error if there isn't a task with that index
+        index = Integer.parseInt(splitInput[1]);
+        if (index > tasks.getSize()) {
+            throw new DukeException("There isn't a task with that index !!!");
+        }
+
+        Command command = new MarkCommand(splitInput, tasks);
+        return command.performAction();
+    }
+
+    /**
+     * Parses a `todo`, `deadline` or `event` command.
+     *
+     * @param splitInput The input given by the user, that has been split into
+     *                   an array of individual words.
+     * @return Returns the message that the MumBot should output, in respone to the input.
+     */
+    private static String parseTaskCommand(String[] splitInput) {
+        String[] newSplitInput = parseString(splitInput);
+        Command command = new TaskCommand(newSplitInput, tasks);
+        return command.performAction();
+    }
+
+    /**
+     * Parses a `find` command.
+     *
+     * @param splitInput The input given by the user, that has been split into
+     *                   an array of individual words.
+     * @return Returns the message that the MumBot should output, in respone to the input.
+     * @throws DukeException Throws a DukeException.
+     */
+    private static String parseFindCommand(String[] splitInput) throws DukeException {
+        // Throw an error  if the formatting for the 'find' command is wrong
+        if (!(splitInput.length == 2)) {
+            throw new DukeException(
+                    "Your formatting for the " + action + " command is wrong!!\n"
+                    + "In future, please do: " + action + " <search string>");
+        }
+
+        Command command = new FindCommand(splitInput, tasks);
+        return command.performAction();
+    }
+
+    /**
+     * Parses a `delete` command.
+     *
+     * @param splitInput The input given by the user, that has been split into
+     *                   an array of individual words.
+     * @return Returns the message that the MumBot should output, in respone to the input.
+     * @throws DukeException Throws a DukeException.
+     */
+    private static String parseDeleteCommand(String[] splitInput) throws DukeException {
+        // Throw an error if the formatting for the 'delete' command is wrong
+        if (!(splitInput.length == 2)) {
+            throw new DukeException(
+                    "Your formatting for the " + action + " command is wrong...sigh\n"
+                    + "In future, please do: " + action + " <index of task>\n"
+                    + "You can do it peepaw!");
+        }
+
+        Integer index;
+        // Throw an error if the character after the 'delete' string is not an integer
+        try {
+            index = Integer.parseInt(splitInput[1]);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Index was not properly specified (has to be an integer) for your "
+                    + action + " command!");
+        }
+
+        // Throw an error if there isn't a task with that index
+        index = Integer.parseInt(splitInput[1]);
+        if (index > tasks.getSize()) {
+            throw new DukeException("There isn't a task with that index !!!");
+        }
+
+        Command command = new DeleteCommand(splitInput, tasks);
+        return command.performAction();
+    }
 
     /**
      * Performs actions based on the input.
@@ -97,94 +230,30 @@ public class Parser {
         String[] splitInput = input.split(" ");
         String action = splitInput[0];
         if (action.equals("Bye")) {
-            Command command = new ByeCommand(splitInput, tasks);
-            return command.performAction();
+            return parseByeCommand(splitInput);
 
         } else if (action.equals("list")) {
-            // Throw error if the input contains anything other than 'list'
-            if (!(splitInput.length == 1)) {
-                throw new DukeException("</3 your formatting for the list command is wrong - please just type list!");
-            }
-            Command command = new ListCommand(splitInput, tasks);
-            return command.performAction();
+            return parseListCommand(splitInput);
 
         } else if (
                 action.equals("mark")
                 || action.equals("unmark")
         ) {
-            // Throw an error if the formatting for the 'mark' or 'unmark' command is wrong
-            if (!(splitInput.length == 2)) {
-                throw new DukeException(
-                        "Your formatting for the " + action + " command is wrong...sigh\n"
-                        + "In future, please do: " + action + " <index of task>\n"
-                        + "You can do it peepaw!");
-            }
-
-            Integer index;
-            // Throw an error if the character after the 'mark' or 'unmark' string is not an integer
-            try {
-                index = Integer.parseInt(splitInput[1]);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Index was not properly specified (has to be an integer) for your "
-                        + action + " command!");
-            }
-
-            // Throw an error if there isn't a task with that index
-            index = Integer.parseInt(splitInput[1]);
-            if (index > tasks.getSize()) {
-                throw new DukeException("There isn't a task with that index !!!");
-            }
-
-            Command command = new MarkCommand(splitInput, tasks);
-            return command.performAction();
+            return parseMarkCommand(splitInput);
 
         } else if (
                 action.equals("event")
                 || action.equals("deadline")
                 || action.equals("todo")
         ) {
-            String[] newSplitInput = parseString(splitInput);
-            Command command = new TaskCommand(newSplitInput, tasks);
-            return command.performAction();
+            return parseTaskCommand(splitInput);
+
         } else if (action.equals("find")) {
-
-            // Throw an error  if the formatting for the 'find' command is wrong
-            if (!(splitInput.length == 2)) {
-                throw new DukeException(
-                        "Your formatting for the " + action + " command is wrong!!\n"
-                        + "In future, please do: " + action + " <search string>");
-            }
-
-            Command command = new FindCommand(splitInput, tasks);
-            return command.performAction();
+            return parseFindCommand(splitInput);
 
         } else if (action.equals("delete")) {
+            return parseDeleteCommand(splitInput);
 
-            // Throw an error if the formatting for the 'delete' command is wrong
-            if (!(splitInput.length == 2)) {
-                throw new DukeException(
-                        "Your formatting for the " + action + " command is wrong...sigh\n"
-                        + "In future, please do: " + action + " <index of task>\n"
-                        + "You can do it peepaw!");
-            }
-
-            Integer index;
-            // Throw an error if the character after the 'delete' string is not an integer
-            try {
-                index = Integer.parseInt(splitInput[1]);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Index was not properly specified (has to be an integer) for your "
-                        + action + " command!");
-            }
-
-            // Throw an error if there isn't a task with that index
-            index = Integer.parseInt(splitInput[1]);
-            if (index > tasks.getSize()) {
-                throw new DukeException("There isn't a task with that index !!!");
-            }
-
-            Command command = new DeleteCommand(splitInput, tasks);
-            return command.performAction();
         } else {
             return "Your input is not recognised :(. It has to start with a command "
                     + "(todo, deadline, event, mark, unmark, list, Bye)";

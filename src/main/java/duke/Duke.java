@@ -37,8 +37,11 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets MumBot's response to an input by the user.
+     *
+     * @param input The input of the user.
+     * @return The response of MumBot.
+     * @throws DukeException Throws a DukeException.
      */
     public String getResponse(String input) throws DukeException {
         return Parser.settleInput(input, tasks);
