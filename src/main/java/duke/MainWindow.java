@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -31,13 +34,12 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
-
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
+        sendButton.setFont(Font.font("Roboto", FontWeight.BOLD, 13));
+        userInput.setFont(Font.font("Helvetica"));
+        String greeting = "Hello! I'm Duke.\nWhat you want sir?";
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(greeting, dukeImage)
+        );
     }
 
     public void setDuke(Duke d) {
