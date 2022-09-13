@@ -13,7 +13,7 @@ import duke.task.Task;
  */
 public class Ui {
     /**
-     * Return greetings message.
+     * Returns greetings message.
      *
      * @return greetings message.
      */
@@ -23,7 +23,7 @@ public class Ui {
     }
 
     /**
-     * Return farewell message.
+     * Returns farewell message.
      *
      * @return Farewell message.
      */

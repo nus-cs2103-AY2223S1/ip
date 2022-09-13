@@ -211,7 +211,7 @@ public class Parser {
     }
 
     /**
-     * Format data from user input for parsing
+     * Formats data from user input for parsing
      *
      * @param input user Input to be parsed.
      * @return A String array of size 3, where 1 = type of Task, 2 = description, 3 = dateTime

@@ -12,7 +12,7 @@ import duke.task.TaskList;
  */
 public abstract class Command {
     /**
-     * Execute the command
+     * Executes the command
      *
      * @param taskList Task list that contains all the tasks.
      * @param ui ui prints output to the user.
