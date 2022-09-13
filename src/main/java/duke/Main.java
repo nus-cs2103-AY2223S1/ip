@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     private static final String FXML_FILE_LOCATION = "/view/MainWindow.fxml";
+    private static final String BOT_NAME = "SHELBOT";
 
     private Duke duke;
 
@@ -26,6 +27,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
+            stage.setTitle(BOT_NAME);
             stage.show();
             stage.setResizable(false);
         } catch (IOException e) {
