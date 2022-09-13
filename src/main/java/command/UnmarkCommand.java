@@ -11,17 +11,16 @@ import utility.Parser;
  * status in TaskList and Storage.
  */
 public class UnmarkCommand extends Command {
-    private String[] slicedUserCommands;
+    private int index;
 
-    public UnmarkCommand(String[] slicedUserInput) {
-        this.slicedUserCommands = slicedUserInput;
+    public UnmarkCommand(int index) {
+        this.index = index;
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
-        taskList.unmarkTask(n);
-        String storeLine = taskList.getTask(n).toString() + "\n";
-        if (storage.isLineChanged(n, storeLine)) {
+        taskList.unmarkTask(index);
+        String storeLine = taskList.getTask(index).toString() + "\n";
+        if (storage.isLineChanged(index, storeLine)) {
             ui.showMessage("unmarked task");
         }
     }
