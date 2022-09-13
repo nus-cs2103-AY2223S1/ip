@@ -46,7 +46,7 @@ public class Ui {
         tasks.add(input);
         String result = "Got it. I've added this task: \n";
         result += input.toString();
-        String line = String.format("Now you have %d tasks in the list.\n", tasks.size());
+        String line = String.format("\nNow you have %d tasks in the list.\n", tasks.size());
         result += line;
         return result;
     }

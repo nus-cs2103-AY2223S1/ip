@@ -18,7 +18,7 @@ public class TaskList extends ArrayList<Task> {
             String result ="Noted. I've removed this task:\n";
             String checkbox = String.format("%s", currTask);
             result += checkbox;
-            String line = String.format("Now you have %d tasks int the list. \n", task.size());
+            String line = String.format("\nNow you have %d tasks in the list. \n", task.size());
             result += line;
             return result;
         } else {
