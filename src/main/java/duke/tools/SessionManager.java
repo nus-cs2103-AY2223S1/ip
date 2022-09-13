@@ -20,7 +20,7 @@ public class SessionManager {
     private SessionManager() {}
 
     /**
-     * Initialize the SessionManager with the TaskList and Storage for the session.
+     * Initializes the SessionManager with the TaskList and Storage for the session.
      */
     public static void startSession() {
         storage = new Storage();
