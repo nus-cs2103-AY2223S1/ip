@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.tasks.Task;
+import duke.ui.ListBox;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
@@ -32,11 +33,10 @@ public class AddCommand extends Command {
 
         int size = taskList.size();
         String taskString = size > 1 ? "tasks" : "task";
-        String msgBegin = "Got it. I've added this task:\n";
-        String msgEnd = "\nNow you have " + size + " " + taskString + " in this list.";
-        String msg = msgBegin + "  " + task + msgEnd;
+        String msg = "Got it. I've added the task.\nNow you have " + size + " " + taskString + " in this list.";
+        ListBox lb = ListBox.getListBox(this.task);
 
         storage.appendTaskToStorage(task);
-        return new CommandResult(msg);
+        return new CommandResult(msg, lb);
     }
 }

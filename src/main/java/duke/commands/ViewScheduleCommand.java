@@ -2,6 +2,7 @@ package duke.commands;
 
 import java.time.LocalDateTime;
 
+import duke.ui.ListBox;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 /**
@@ -32,12 +33,11 @@ public class ViewScheduleCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Storage storage) {
         TaskList results = taskList.findDatedTasks(this.startDateRange, this.endDateRange);
-        String msg = "Here are the matching tasks in your list:\n";
         if (results.size() > 0) {
-            msg += results.toString();
+            ListBox lb = ListBox.getListBox(results);
+            return new CommandResult("Here are the matching tasks in your list:\n", lb);
         } else {
-            msg = "There are no matching tasks in your list.";
+            return new CommandResult("There are no matching tasks in your list.");
         }
-        return new CommandResult(msg);
     }
 }

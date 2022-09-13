@@ -40,6 +40,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        scrollPane.setFitToWidth(true);
         // Greet user upon GUI initialize
         String greetingMsg = "Hello! I'm Duke!\nWhat can I do for you?";
         dialogContainer.getChildren().add(
@@ -63,6 +64,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response.getMessage(), dukeImage)
         );
+        if (response.hasNode()) {
+            dialogContainer.getChildren().add(response.getNode());
+        }
         userInput.clear();
     }
 }

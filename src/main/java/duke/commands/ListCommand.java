@@ -1,7 +1,9 @@
 package duke.commands;
 
+import duke.ui.ListBox;
 import duke.utils.Storage;
 import duke.utils.TaskList;
+
 
 /**
  * Represents an executable command prints an overview of all added tasks and their status.
@@ -21,8 +23,9 @@ public class ListCommand extends Command {
         if (taskList.size() <= 0) {
             msg = "You currently have no task in your list! Great job for completing all your tasks :-)";
         } else {
-            msg = "Here are the tasks in your list:\n" + taskList;
+            msg = "Here are the tasks in your list:\n";
         }
-        return new CommandResult(msg);
+        ListBox lb = ListBox.getListBox(taskList);
+        return new CommandResult(msg, lb);
     }
 }

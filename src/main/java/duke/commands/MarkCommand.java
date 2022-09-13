@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.ui.ListBox;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
@@ -33,10 +34,10 @@ public class MarkCommand extends Command {
         }
         taskList.markTask(this.taskIndex);
 
-        String msgBegin = "Nice! I've marked this task as done:\n ";
-        String msg = msgBegin + taskList.getTask(this.taskIndex);
+        String msg = "Nice! I've marked this task as done:\n ";
+        ListBox lb = ListBox.getListBox(taskList.getTask(this.taskIndex));
 
         storage.writeAllToStorage(taskList);
-        return new CommandResult(msg);
+        return new CommandResult(msg, lb);
     }
 }

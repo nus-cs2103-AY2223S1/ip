@@ -32,7 +32,7 @@ public class Parser {
     // Constants used by parseDateTime and its helper methods
     private static final String DATETIME_DELIMITER = "[-:.|/]";
     private static final ParseDateTimeException ERR_WRONG_DATETIME_FORMAT = new ParseDateTimeException("Date and time"
-            + "is in the wrong format! Correct format: yyyy-mm-dd HH:MM");
+            + " is in the wrong format! Correct format: yyyy-mm-dd HH:MM");
 
     /**
      * Parses the user input and returns the appropriate Command.

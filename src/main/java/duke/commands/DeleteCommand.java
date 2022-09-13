@@ -1,5 +1,7 @@
 package duke.commands;
 
+import duke.tasks.Task;
+import duke.ui.ListBox;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
@@ -31,16 +33,15 @@ public class DeleteCommand extends Command {
             String msg = "There is no such task index... Try 'list' to view all the tasks and their index!";
             return new CommandResult(msg);
         }
-        String task = taskList.getTask(taskIndex).toString();
+        Task task = taskList.getTask(taskIndex);
         taskList.deleteTask(taskIndex);
 
         int size = taskList.size();
         String taskString = size > 1 ? "tasks" : "task";
-        String msgBegin = "Noted. I've removed this task:\n";
-        String msgEnd = "\nNow you have " + size + " " + taskString + " in this list.";
-        String msg = msgBegin + " " + task + msgEnd;
+        String msg = "Noted. I've removed the task.\nNow you have " + size + " " + taskString + " in this list.";
+        ListBox lb = ListBox.getListBox(task);
 
         storage.writeAllToStorage(taskList);
-        return new CommandResult(msg);
+        return new CommandResult(msg, lb);
     }
 }
