@@ -7,6 +7,7 @@ package duke;
 import java.util.Scanner;
 
 import duke.task.Task;
+import javafx.application.Platform;
 
 /**
  * public class Ui to handle text shown to users when command is typed in to Duke.
@@ -18,7 +19,7 @@ public class Ui {
     private static final String endText = "Bye bye! Hope to see you again soon!";
 
     private static final String instructions = "1) hi\n"
-            + "2) bye \n"
+            + "2) bye (to exit and close the program) \n"
             + "3) list \n"
             + "4) mark <index of task in list to mark> \n"
             + "5) unmark <index of task in list to unmark> \n"
@@ -57,6 +58,7 @@ public class Ui {
      * class method to print bye message.
      */
     public String printBye() {
+        Platform.exit();
         return printMessage(endText);
     }
 

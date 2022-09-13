@@ -142,12 +142,4 @@ public class Parser {
             throw new DukeException("hihi please provide date in dd/mm/yyyy format :)");
         }
     }
-
-    /**
-     * Public method to check whether application should terminate.
-     * @return Boolean result of whether application should terminate.
-     */
-    public boolean isBye(String input) {
-        return input.equals(CommandCases.BYE);
-    }
 }

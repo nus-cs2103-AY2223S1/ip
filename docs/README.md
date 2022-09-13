@@ -22,7 +22,7 @@ A welcome message from DukePro will be displayed, together with the list of avai
 Hello! I'm Duke! What can I do for you?
 The commands I currently have are as follows:
 1) hi
-2) bye
+2) bye  (to exit and close the program)
 3) list
 4) mark <index of task in list to mark>
 5) unmark <index of task in list to unmark>
@@ -35,19 +35,19 @@ The commands I currently have are as follows:
 ```
 
 ### Feature 2 - Bye
-Terminate DukePro and Exit Program.
+Terminate DukePro and Exit Program after all operations ceased.
 
 #### Usage/Command:
 `bye`
 
 ####Expected outcome:
 
-DukePro will be terminated, list will be cleared and program will exit.
+DukePro will be terminated, list will be cleared and program will after all operations ceased.
 
 ####Description of the outcome:
 
 ```
-Bye bye! Hope to see you again soon!
+<Exit the program>
 ```
 
 ### Feature 3 - List

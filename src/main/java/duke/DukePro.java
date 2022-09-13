@@ -6,10 +6,9 @@ package duke;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import javafx.application.Platform;
 
 import duke.command.Command;
-
+import javafx.application.Platform;
 /**
  * class Duke that runs chat bot Duke.
  */
