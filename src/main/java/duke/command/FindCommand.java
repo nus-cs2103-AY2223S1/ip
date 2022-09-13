@@ -10,7 +10,7 @@ import duke.util.TaskList;
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
-    private static final String TASK_FIND = "Here are the matching tasks in your list:";
+    private static final String TASK_FIND = "Alright, here are the matching tasks in your list:";
     private String description;
 
     /**

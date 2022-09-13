@@ -9,7 +9,7 @@ import duke.util.TaskList;
  * Represents a AddCommand object.
  */
 public abstract class AddCommand extends Command {
-    public static final String TASK_ADD = "Got it. I've added this task";
+    public static final String TASK_ADD = "Alright, I have noted it down, Sheldon.";
     private Task task;
 
     /**

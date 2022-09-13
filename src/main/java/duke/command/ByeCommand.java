@@ -9,7 +9,7 @@ import duke.util.TaskList;
 public class ByeCommand extends Command {
     public static final String COMMAND_WORD = "bye";
     public static final String DUKE_END =
-            "Pleasure to be at your service! Run me again if you need more assistance! :)";
+            "I'm glad I could help, my brilliant scientist! All the best in your research!";
 
     /**
      * Return message when bye command executes.
