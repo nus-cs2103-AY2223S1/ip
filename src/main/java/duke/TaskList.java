@@ -122,9 +122,9 @@ public class TaskList {
         StringBuilder str = new StringBuilder();
         for (Task t : this.taskArrayList) {
             String description = t.toString();
-            String[] descriptionArr = description.split(" ");
-            for (int i = 0; i < descriptionArr.length; i++) {
-                boolean hasWord = descriptionArr[i].equals(s);
+            String[] descriptionArray = description.split(" ");
+            for (String word : descriptionArray) {
+                boolean hasWord = word.equals(s);
                 if (hasWord) {
                     String index = counter + ". ";
                     String taskDescription = t + "\n";
