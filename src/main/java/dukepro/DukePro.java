@@ -2,7 +2,6 @@ package dukepro;
 
 import dukepro.exceptions.DukeException;
 import dukepro.handlers.Interact;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,7 +30,6 @@ public class DukePro extends Application {
     private Scene scene;
 
     /**
-     * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
@@ -44,7 +42,6 @@ public class DukePro extends Application {
     }
 
     /**
-     * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      *
@@ -65,6 +62,11 @@ public class DukePro extends Application {
         userInput.clear();
     }
 
+    /**
+     * Sets up the fields of this class.
+     *
+     * @return void.
+     */
     private void setup() {
         interact = new Interact();
         scrollPane = new ScrollPane();
@@ -79,11 +81,14 @@ public class DukePro extends Application {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
+
+        userInput.setPrefWidth(325.0);
+        sendButton.setPrefWidth(55.0);
+        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets a response from DukePro.
      *
      * @param input the input String.
      * @return A String.
@@ -92,60 +97,60 @@ public class DukePro extends Application {
         return "Duke heard: " + input;
     }
 
-    @Override
-    public void start(Stage stage) {
-        setup();
-
-        String startTxt = interact.start();
-        AnchorPane mainLayout = new AnchorPane();
-        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
-        scene = new Scene(mainLayout);
-
-        stage.setScene(scene);
-        stage.show();
-
-        stage.setTitle("dukepro");
-        stage.setResizable(false);
-        stage.setMinHeight(600.0);
-        stage.setMinWidth(400.0);
-
-        mainLayout.setPrefSize(400.0, 600.0);
-
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        userInput.setPrefWidth(325.0);
-        sendButton.setPrefWidth(55.0);
-
+    /**
+     * Sets Anchor Pane of the GUI.
+     *
+     * @return void.
+     */
+    private void setAnchorPane() {
         AnchorPane.setTopAnchor(scrollPane, 1.0);
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+    }
 
-        //step 2.5: greet the user
+    /**
+     * Sets the Stage for the GUI.
+     *
+     * @return void.
+     */
+    private void setStage(Stage stage, double height, double width) {
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("dukepro");
+        stage.setResizable(false);
+        stage.setMinHeight(height);
+        stage.setMinWidth(width);
+    }
+
+    @Override
+    public void start(Stage stage) {
+        setup();
+        String startTxt = interact.start();
+        AnchorPane mainLayout = new AnchorPane();
+        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
+        scene = new Scene(mainLayout);
+        setStage(stage, 600.0, 400.0);
+        mainLayout.setPrefSize(400.0, 600.0);
+        setAnchorPane();
+
         Label dukeText = new Label(getResponse(startTxt));
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
-
-        //Step 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
             dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
             userInput.clear();
         });
-
         userInput.setOnAction((event) -> {
             dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
             userInput.clear();
         });
-
-        //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-
-        //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
         });
-
         userInput.setOnAction((event) -> {
             handleUserInput();
         });

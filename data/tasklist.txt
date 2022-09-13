@@ -1,1 +1,3 @@
-D,true,listen to music ,2022-10-10
+T,true,CS2103T
+E,true,stage , botanic
+T,true,nothing

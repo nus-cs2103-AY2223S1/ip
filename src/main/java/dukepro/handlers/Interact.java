@@ -68,11 +68,9 @@ public class Interact {
             return "You spent a total of " + total;
         } else if (word.startsWith("spentOn")) {
             return handleSpentOn(word);
-        } else {
-            throw new DukeException("bad input");
         }
         assert false;
-        return null;
+        throw new DukeException("bad input");
     }
 
     /**
