@@ -89,29 +89,30 @@ public class Parser {
         String stringCommand = extractCommand(inputSections[0]);
         switch (stringCommand) {
         case "todo":
-            return new AddTaskCommand(inputSections);
+            Task t;
+            return new AddTaskCommand(task);
         case "event":
-            return new AddEventCommand(inputSections);
+            return new AddEventCommand(event);
         case "deadline":
-            return new AddDeadlineCommand(inputSections);
+            return new AddDeadlineCommand(deadline);
         case "delete":
-            return new DeleteTaskCommand(inputSections);
+            return new DeleteTaskCommand(index);
         case "mark":
-            return new MarkCommand(inputSections);
+            return new MarkCommand(index);
         case "unmark":
-            return new UnmarkCommand(inputSections);
+            return new UnmarkCommand(index);
         case "istoday":
-            return new CheckIsTodayCommand(inputSections);
+            return new CheckIsTodayCommand(index);
         case "longdesc":
-            return new GetLongDescriptionCommand(inputSections);
+            return new GetLongDescriptionCommand();
         case "list":
-            return new ListCommand(inputSections);
+            return new ListCommand();
         case "bye":
-            return new ExitCommand(inputSections);
+            return new ExitCommand();
         case "help":
-            return new HelpCommand(inputSections);
+            return new HelpCommand();
         case "find":
-            return new FindCommand(inputSections);
+            return new FindCommand(keyword);
         default:
             String message = "Command invalid. Type help for more information."
                     + stringCommand;
