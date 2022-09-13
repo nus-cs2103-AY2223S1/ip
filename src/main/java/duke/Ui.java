@@ -27,7 +27,9 @@ public class Ui {
     /**
      * Greets the user
      */
-    public String greet() { return GREETING;}
+    public String greet() {
+        return GREETING;
+    }
 
     /**
      * Say bye to the user

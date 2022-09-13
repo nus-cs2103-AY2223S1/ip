@@ -1,15 +1,20 @@
 package duke;
 
+import java.awt.Color;
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
 
-import java.awt.*;
-import java.io.IOException;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -29,12 +34,15 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/user2.png"));
 
+    /**
+     * Initialise the window
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
 
         // Generate the background colour for the Dialog
-        java.awt.Color awtColor = Color.cyan ;
+        java.awt.Color awtColor = Color.cyan;
         int r = awtColor.getRed();
         int g = awtColor.getGreen();
         int b = awtColor.getBlue();

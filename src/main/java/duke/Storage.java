@@ -1,9 +1,6 @@
 package duke;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -21,8 +18,14 @@ public class Storage {
      * Constructor for the Storage class
      * @param fileDestination the destination filepath of the file
      */
-    public Storage(String fileDestination) {
+    public Storage(String fileDestination) throws IOException {
         this.fileDestination = fileDestination;
+        File file = new File(fileDestination);
+        if (file.exists()) {
+            return;
+        }
+        file.getParentFile().mkdirs();
+        file.createNewFile();
     }
 
     /**

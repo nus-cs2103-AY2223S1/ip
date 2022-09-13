@@ -1,15 +1,18 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
 
 public class DeadlineTest {
 
     @Test
     public void toStringTest() throws DukeException {
         LocalDate by = LocalDate.parse("2019-12-02");
-        Deadline newDeadline = new Deadline("Deadline", by, "1800" );
+        Deadline newDeadline = new Deadline("Deadline", by, "1800");
         assertEquals("[D][] Deadline (by: 2019-12-02 1800)", newDeadline.toString());
     }
 

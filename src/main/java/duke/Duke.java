@@ -1,21 +1,22 @@
 package duke;
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-
-import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+
 
 /**
  * This class is responsible for the bot Duke
@@ -25,7 +26,7 @@ import java.util.stream.Collectors;
 public class Duke extends Application {
 
     // Attributes of a Duke object
-    private static final String FILEDESTINATION = "./src/main/duke.txt";
+    private static final String FILEDESTINATION = "./duke.txt";
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
@@ -42,7 +43,7 @@ public class Duke extends Application {
     /**
      * The constructor for the Duke class
      */
-    public Duke() {
+    public Duke() throws IOException {
         ui = new Ui();
         storage = new Storage(FILEDESTINATION);
         taskList = new TaskList();
@@ -161,6 +162,8 @@ public class Duke extends Application {
             String userCommand = input;
             if (userCommand.equals("bye")) {
                 return ui.bye();
+            } else if (userCommand.equals("hello")) {
+                return ui.greet();
             } else if (userCommand.equals("list")) {
                 return ui.showTaskList();
             } else {
@@ -340,6 +343,12 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Find matching tasks from the keywords
+     * @param taskArrayList the list of all the tasks
+     * @param keywords the keywords that the user entered
+     * @return the string listing all the tasks that match the keywords
+     */
     public String findMatchingTasksFromKeywords(List<Task> taskArrayList, String keywords) {
         String outputString = "";
         outputString += "Here are the matching tasks in your list:\n";
