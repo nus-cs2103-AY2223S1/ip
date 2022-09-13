@@ -12,17 +12,15 @@ public class Duke {
     private final Parser parser;
     private TaskList taskList;
 
-    /**
-     * Constructor for a Duke instance.
-     */
     public Duke() {
         parser = new Parser();
         storage = new Storage();
         taskList = new TaskList();
     }
 
+
     /**
-     * Run method to execute the Duke instance.
+     * Runs method to execute the Duke instance.
      */
     public String generateResponse(String input) {
         taskList = storage.load();
