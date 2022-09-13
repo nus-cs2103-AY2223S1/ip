@@ -11,17 +11,16 @@ import utility.Parser;
  * status in TaskList and Storage.
  */
 public class MarkCommand extends Command {
-    private String[] slicedUserCommands;
+    private int index;
 
-    public MarkCommand(String[] slicedUserInput) {
-        this.slicedUserCommands = slicedUserInput;
+    public MarkCommand(int index) {
+        this.index = index;
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
-        taskList.markTask(n);
-        String storeLine = taskList.getTask(n).toString() + "\n";
-        if (storage.isLineChanged(n, storeLine)) {
+        taskList.markTask(index);
+        String storeLine = taskList.getTask(index).toString() + "\n";
+        if (storage.isLineChanged(index, storeLine)) {
             ui.showMessage("marked task");
         }
     }
