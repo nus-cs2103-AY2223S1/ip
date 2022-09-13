@@ -10,9 +10,9 @@ import duke.task.TaskList;
  */
 public class NekoResponses {
 
-    private static final String name = "Neko Neko";
+    private static final String NAME = "Neko Neko";
 
-    private static final String catchPhrase = "Meow Meow! \n";
+    private static final String CATCH_PHRASE = "Meow Meow! \n";
 
     /**
      * Returns a string of the messages to be seen when the application is started.
@@ -22,7 +22,7 @@ public class NekoResponses {
      * @return a string of the messages to be seen when the application is started.
      */
     public String startPrompt() {
-        return String.format("Hi from %s!\n%s", name, showHelp());
+        return String.format("Hi from %s!\n%s", NAME, showHelp());
     }
 
     /**
@@ -31,7 +31,7 @@ public class NekoResponses {
      * @return a string of the messages that serves as instructions of how to use Duke.
      */
     public String showHelp() {
-        return catchPhrase + "What can I do for you?\n" +
+        return CATCH_PHRASE + "What can I do for you?\n" +
                 String.format("- %s (task name) \n", Command.TODO.getValue()) +
                 String.format("- %s (task name) %s (date) \n",
                         Command.DEADLINE.getValue(), SecondaryCommand.BY.getValue()) +
@@ -65,7 +65,7 @@ public class NekoResponses {
      * @return a string of a messages to hint the user of the help command.
      */
     public String hintUserOfHelpCommand() {
-        return String.format("%s Consider using the 'help' command by sending the word 'help' to me.", catchPhrase);
+        return String.format("%s Consider using the 'help' command by sending the word 'help' to me.", CATCH_PHRASE);
     }
 
     /**
@@ -74,7 +74,7 @@ public class NekoResponses {
      * @return a string of the messages to be seen when the application is started.
      */
     public String listValidDateFormats() {
-        return String.format("%s These are the following accepted formats: \n 1) yyyy-mm-dd", catchPhrase);
+        return String.format("%s These are the following accepted formats: \n 1) yyyy-mm-dd", CATCH_PHRASE);
     }
 
     /**
@@ -83,7 +83,7 @@ public class NekoResponses {
      * @return a string of the messages to be seen when the application is started.
      */
     public String markDone(String taskName) {
-        return String.format("%sNice! I have marked (%s) as done!", catchPhrase, taskName);
+        return String.format("%sNice! I have marked (%s) as done!", CATCH_PHRASE, taskName);
     }
 
     /**
@@ -92,7 +92,7 @@ public class NekoResponses {
      * @return a string of the message after marking a task as undone.
      */
     public String markUndone(String taskName) {
-        return String.format("%sNice! I have marked (%s) as undone!", catchPhrase, taskName);
+        return String.format("%sNice! I have marked (%s) as undone!", CATCH_PHRASE, taskName);
     }
 
     /**
@@ -108,7 +108,7 @@ public class NekoResponses {
             output.append(String.format("%d) %s\n", i + 1, taskList.getTask(i)));
         }
         output.append("Number of tasking: ").append(taskList.getNumberOfTask());
-        output.append("\n" + catchPhrase);
+        output.append("\n" + CATCH_PHRASE);
         return output.toString();
     }
 
@@ -122,7 +122,7 @@ public class NekoResponses {
     public String findTasks(TaskList taskList, String search) {
         StringBuilder output = new StringBuilder();
         int count = 0;
-        output.append(catchPhrase + "\n");
+        output.append(CATCH_PHRASE + "\n");
         output.append("Search Results\n");
         for (int i = 0; i < taskList.getNumberOfTask(); i++) {
             Task task = taskList.getTask(i);
@@ -142,7 +142,7 @@ public class NekoResponses {
      * @return a string of the message after marking adding a task.
      */
     public String addTask(Task task) {
-        return String.format("%sSuccessfully added: %s", catchPhrase, task.getTaskName());
+        return String.format("%sSuccessfully added: %s", CATCH_PHRASE, task.getTaskName());
     }
 
     /**
@@ -152,7 +152,7 @@ public class NekoResponses {
      * @return a string of the message after marking deleting a task.
      */
     public String deleteTask(Task task) {
-        return String.format("%sSuccessfully deleted: %s", catchPhrase, task.getTaskName());
+        return String.format("%sSuccessfully deleted: %s", CATCH_PHRASE, task.getTaskName());
     }
 
     /**
@@ -161,7 +161,7 @@ public class NekoResponses {
      * @return a string of the message that should be displayed before closing the application.
      */
     public String endPrompt() {
-        return String.format("%sGoodbye", catchPhrase);
+        return String.format("%sGoodbye", CATCH_PHRASE);
     }
 
     /**
@@ -170,7 +170,7 @@ public class NekoResponses {
      * @return a string of the success message when the tasks are successfully loaded.
      */
     public String loadTaskSuccessfully() {
-        return String.format("%sTasks loaded successfully!", catchPhrase);
+        return String.format("%sTasks loaded successfully!", CATCH_PHRASE);
     }
 
     /**
@@ -180,7 +180,7 @@ public class NekoResponses {
      */
     public String loadFileFailed() {
         return String.format("%s There seems to be an issue with accessing the data file. Will clear the current list",
-                catchPhrase);
+                CATCH_PHRASE);
     }
 
     /**
@@ -190,7 +190,7 @@ public class NekoResponses {
      */
     public String loadTaskFailed() {
         return String.format("%s There seems to be an issue with format of the data file. Will clear the current list",
-                catchPhrase);
+                CATCH_PHRASE);
     }
 
 }

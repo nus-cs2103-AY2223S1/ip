@@ -40,7 +40,7 @@ public class Duke {
     // Handles how to display the UI.
     private GuiUi guiUi;
     // String to specify location of previous information.
-    private static final String filepath = "data" + File.separator + "dukeData.txt";
+    private static final String FILEPATH = "data" + File.separator + "dukeData.txt";
 
     /**
      * Loads the {@link Duke#storage storage} and {@link Duke#tasks tasklist} for Duke.
@@ -52,11 +52,11 @@ public class Duke {
     }
 
     /**
-     * Creates a {@link Duke#storage storage} based on the specified {@link Duke#filepath}.
+     * Creates a {@link Duke#storage storage} based on the specified {@link Duke#FILEPATH}.
      */
     private void initialiseStorage() {
         try {
-            storage = new Storage(filepath);
+            storage = new Storage(FILEPATH);
         } catch (DukeException | IOException e) {
             guiUi.displayOutput(nekoResponses.loadFileFailed() + '\n' + e.getMessage());
         }
