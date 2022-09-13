@@ -53,7 +53,7 @@ public class TaskList {
      *
      */
     public void delete(int number) {
-        tasks.remove(number - 1);
+        tasks.remove(number);
     }
 
     /**

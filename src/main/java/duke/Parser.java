@@ -4,15 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
-import duke.command.AddCommand;
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DefaultCommand;
-import duke.command.DeleteCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnMarkedCommand;
+import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
@@ -42,6 +34,7 @@ public class Parser {
             return byecommand;
 
         case "mark":
+
             MarkCommand markcommand = new MarkCommand(Integer.parseInt(strArr[1]));
             return markcommand;
 
@@ -63,7 +56,7 @@ public class Parser {
                 AddCommand addToDoCommand = new AddCommand(toDo);
                 return addToDoCommand;
             } catch (StringIndexOutOfBoundsException e) {
-                throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
+                throw new DukeException("OOPS!!! \n The description of a todo cannot be empty.\n");
             }
 
         case "deadline":
@@ -100,6 +93,30 @@ public class Parser {
             FindCommand findCommand = new FindCommand(keyword);
             return findCommand;
 
+
+        case "addContact":
+            int length = strArr.length;
+            String contactName = getName(strArr,length);
+            Contact contact = createContact(contactName,strArr[length-1]);
+            AddContactCommand addContactCommand = new AddContactCommand(contact);
+            return addContactCommand;
+
+        case "deleteContact":
+            int lengthOfArr = strArr.length;
+            String nameToDelete = getName(strArr, lengthOfArr + 1);
+            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(nameToDelete);
+            return deleteContactCommand;
+
+        case "contactList":
+            ListContactCommand listContactCommand = new ListContactCommand();
+            return listContactCommand;
+
+        case "findContact":
+            int arrLength = strArr.length;
+            String nameToFind = getName(strArr, arrLength + 1);
+            FindContactCommand findContactCommand = new FindContactCommand(nameToFind);
+            return findContactCommand;
+
         default:
             DefaultCommand defaultCommand = new DefaultCommand();
             return defaultCommand;
@@ -117,6 +134,20 @@ public class Parser {
         String[] arrOfStr = dateTime.split(" ");
         return LocalTime.of(Integer.parseInt(arrOfStr[1].substring(0, 2)),
                 Integer.parseInt(arrOfStr[1].substring(2)));
+    }
+
+    public static Contact createContact(String name,String number) {
+        return new Contact(name,number);
+    }
+
+    public static String getName(String[] strArray, int length) {
+        String contactName = "";
+        for (int i = 1; i < length - 1; i++) {
+            contactName += strArray[i];
+            contactName += " ";
+        }
+        return contactName;
+
     }
 
 

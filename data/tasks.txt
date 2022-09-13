@@ -1,9 +1,2 @@
-T#0#borrow book
-D#0#null#Dec 01 2019#06:00 PM
-E#0#null#Dec 01 2019#02:00 PM
-T#0#borrow book
-T#0#haha
-T#0#haha
-T#0#yo
-T#0#see
-T#0#haha
+D#0#return book#Dec 01 2019#06:00 PM
+E#0#project meeting#Dec 01 2019#02:00 PM
