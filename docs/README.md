@@ -1,29 +1,60 @@
 # User Guide
 
-## Features 
+This application helps a beginner user manage a todo-list.
 
-### Feature-ABC
+## Features
+- Help
+- Find
+- Sort
+- Todo
+- Deadline
+- Event
+- List
+- Mark
+- Delete
+- Exit
 
-Description of the feature.
+### Help Command: `help`
 
-### Feature-XYZ
+Displays a help message to show users list of available commands.
 
-Description of the feature.
+### Find Command: `find`
 
-## Usage
+Finds related tasks after prompted a task substring to be searched for. 
 
-### `Keyword` - Describe action
+### Sort Command: `sort`
 
-Describe the action and its outcome.
+Sorts the tasks in alphabetical order.
 
-Example of usage: 
+### Todo Command: `todo`
 
-`keyword (optional arguments)`
+Adds a todo task into the list. 
+Follows up with a prompt to ask for task description.
 
-Expected outcome:
+### Deadline Command: `deadline`
 
-Description of the outcome.
+Adds a deadline task into the list. 
+Follows up with a prompt to ask for task description and another for the date.
 
-```
-expected output
-```
+### Event Command: `event`
+
+Adds an event task into the list.
+Follows up with a prompt to ask for task description and another for the date.
+
+### List Command: `list`
+
+Lists all tasks in the todo-list.
+
+### Mark Command: `mark`
+
+Marks a task as complete.
+Follows up with a prompt to ask for task number. (According to the list)
+
+### Delete Command: `delete`
+
+Deletes a task.
+Follows up with a prompt to ask for task number. (According to the list)
+
+### Exit Command: `bye`
+
+Exits the program.
