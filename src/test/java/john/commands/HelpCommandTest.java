@@ -23,7 +23,7 @@ public class HelpCommandTest {
                         + "Showing Tasks" + sep + "1. list <dd/mm/yyyy | optional>: Lists tasks (on a specific date)"
                         + sep
                         + "2. find <keyword>: Find tasks by keyword" + sep + sep
-                        + "Exiting" + sep + "1. bye: Exiting the application" + sep,
+                        + "Exiting" + sep + "1. bye: Exiting the application",
                 cmd.execute());
     }
 }

@@ -167,6 +167,6 @@ public class Ui {
                 + String.format("1. %s: Lists tasks (on a specific date)\n", ListCommand.FORMAT)
                 + String.format("2. %s: Find tasks by keyword\n\n", FindCommand.FORMAT)
                 + "Exiting\n"
-                + String.format("1. %s: Exiting the application\n", ByeCommand.FORMAT);
+                + String.format("1. %s: Exiting the application", ByeCommand.FORMAT);
     }
 }
