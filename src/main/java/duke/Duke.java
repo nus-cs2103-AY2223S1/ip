@@ -4,7 +4,6 @@ import static duke.utils.Ui.LOGO;
 import static duke.utils.Ui.wrapWithLines;
 
 import java.io.File;
-import java.util.Scanner;
 
 import duke.commands.CommandHandler;
 import duke.commands.CommandHandlerFactory;
@@ -59,7 +58,7 @@ public class Duke {
             CommandHandler commandHandler = commandHandlerFactory.getHandler(input);
             return commandHandler.handle(taskList);
         } catch (DukeException e) {
-            return "☹ OOPS!!! " + e.getMessage();
+            return "OOPS!!! " + e.getMessage();
         }
     }
 
@@ -71,30 +70,4 @@ public class Duke {
         return "Hello from\n" + LOGO;
     }
 
-    private void initialise() {
-        wrapWithLines("Hello from\n" + LOGO);
-
-        Scanner sc = new Scanner(System.in);
-        CommandHandlerFactory commandHandlerFactory = new CommandHandlerFactory();
-        String command;
-        while (!(command = sc.nextLine()).equals("bye")) {
-            try {
-                CommandHandler commandHandler = commandHandlerFactory.getHandler(command);
-                String message = commandHandler.handle(taskList);
-                wrapWithLines(message);
-            } catch (DukeException e) {
-                wrapWithLines("☹ OOPS!!! " + e.getMessage());
-            }
-        }
-        wrapWithLines("Bye. Hope to see you again soon!");
-    }
-
-    /**
-     * Calls the initializer of Duke.
-     * @param args any command line arguments given.
-     */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.initialise();
-    }
 }
