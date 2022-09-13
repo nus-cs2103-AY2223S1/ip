@@ -1,9 +1,5 @@
 # User Guide
 
-1. Start by entering 'help'
-2. It shows the list of commands you can use with Duke
-3. Have fun and begin marking down your tasks! :)
-
 ## Features
 
 Duke allows you to create and track your tasks!
@@ -17,35 +13,33 @@ Duke allows you to create and track your tasks!
 7. Delete task
 8. Help 
 
-### Feature-ABC
+### Feature Description
 
-Todo: Allows you to create a todo task <br />
-Event: Allows you to create an event with a date <br />
-Deadline: Allows you to create an event with a deadline <br />
-List: List all tasks <br />
-Find: Find a task <br />
-Mark/Unmark: Toggle the task status (Done/Undone) <br />
-Delete: Delete a task <br />
-Help: Shows the list of commands  <br />
-
-### Feature-XYZ
-
-Description of the feature.
+- `Todo`: Allows you to create a todo task <br />
+- `Event`: Allows you to create an event with a date <br />
+- `Deadline`: Allows you to create an event with a deadline <br />
+- `List`: List all tasks <br />
+- `Find`: Find a task <br />
+- `Mark`/`Unmark`: Toggle the task status (Done/Undone) <br />
+- `Delete`: Delete a task <br />
+- `Help`: Shows the list of commands  <br />
 
 ## Usage
 
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
+1. Start by entering 'help'
+2. It shows the list of commands you can use with Duke
+3. Have fun and begin marking down your tasks! :)
 
 Example of usage: 
 
-`keyword (optional arguments)`
+```todo buy new book```
 
 Expected outcome:
 
-Description of the outcome.
-
 ```
-expected output
+
+Got it. I've added this task:
+[T][] buy new book
+Now you have 1 task(s) in the list.
+
 ```
