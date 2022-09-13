@@ -34,6 +34,7 @@ public class Parser {
             return byecommand;
 
         case "mark":
+
             MarkCommand markcommand = new MarkCommand(Integer.parseInt(strArr[1]));
             return markcommand;
 
@@ -55,7 +56,7 @@ public class Parser {
                 AddCommand addToDoCommand = new AddCommand(toDo);
                 return addToDoCommand;
             } catch (StringIndexOutOfBoundsException e) {
-                throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
+                throw new DukeException("OOPS!!! \n The description of a todo cannot be empty.\n");
             }
 
         case "deadline":
@@ -94,13 +95,16 @@ public class Parser {
 
 
         case "addContact":
-            Contact contact = createContact(strArr[1],strArr[2]);
+            int length = strArr.length;
+            String contactName = getName(strArr,length);
+            Contact contact = createContact(contactName,strArr[length-1]);
             AddContactCommand addContactCommand = new AddContactCommand(contact);
             return addContactCommand;
 
         case "deleteContact":
-            String ContactName = strArr[1];
-            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(ContactName);
+            int lengthOfArr = strArr.length;
+            String nameToDelete = getName(strArr, lengthOfArr + 1);
+            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(nameToDelete);
             return deleteContactCommand;
 
         case "contactList":
@@ -108,7 +112,8 @@ public class Parser {
             return listContactCommand;
 
         case "findContact":
-            String nameToFind = strArr[1];
+            int arrLength = strArr.length;
+            String nameToFind = getName(strArr, arrLength + 1);
             FindContactCommand findContactCommand = new FindContactCommand(nameToFind);
             return findContactCommand;
 
@@ -133,6 +138,16 @@ public class Parser {
 
     public static Contact createContact(String name,String number) {
         return new Contact(name,number);
+    }
+
+    public static String getName(String[] strArray, int length) {
+        String contactName = "";
+        for (int i = 1; i < length - 1; i++) {
+            contactName += strArray[i];
+            contactName += " ";
+        }
+        return contactName;
+
     }
 
 

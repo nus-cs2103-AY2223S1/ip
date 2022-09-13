@@ -19,11 +19,8 @@ public class Container {
         File newFile = new File(filepath);
         if (!newFile.exists()) {
             try {
-                boolean result = newFile.createNewFile();
-                if (result) {
-                    throw new DukeException("New file created since no contacts.txt is found");
-                }
-
+                newFile.getParentFile().mkdir();
+                newFile.createNewFile();
             } catch (IOException e) {
                 throw new DukeException(e.getMessage());
             }

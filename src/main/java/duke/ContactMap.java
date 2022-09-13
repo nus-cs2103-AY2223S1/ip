@@ -28,7 +28,7 @@ public class ContactMap {
     public void deleteContact(String name) throws DukeException {
         Contact returned_value = this.contactTreeMap.remove(name);
         if (returned_value == null) {
-            throw new DukeException("No contact is deleted as name not found in contacts!");
+            throw new DukeException("No contact is deleted \n As name not found in contacts!");
         }
     }
 
@@ -39,7 +39,7 @@ public class ContactMap {
     public void addContact(Contact contact) throws DukeException {
         String name = contact.getName();
         if (this.contactTreeMap.containsKey(name)) {
-            throw new DukeException("Duplicate name detected! Please choose another name");
+            throw new DukeException("Duplicate name detected! \n Please choose another name");
         } else {
             this.contactTreeMap.put(name,contact);
         }
@@ -48,8 +48,9 @@ public class ContactMap {
     public Contact findContact(String name) throws DukeException {
         if (this.contactTreeMap.containsKey(name)) {
             return this.contactTreeMap.get(name);
+        } else {
+            throw new DukeException("Contact not found");
         }
-        throw new DukeException("Contact not found");
     }
 
 

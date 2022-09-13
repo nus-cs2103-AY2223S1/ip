@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.Command;
+import javafx.application.Application;
 
 /**
  * Represents main class for the Duke programme
@@ -47,6 +48,7 @@ public class Duke {
         }
         return output;
     }
+
 
 
 }
