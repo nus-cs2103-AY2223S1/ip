@@ -5,6 +5,7 @@ public class ToDo extends Task {
     public ToDo(String description) {
 
         super(description);
+        assert description != "": "Description should not be empty";
     }
 
     public static ToDo fromString(String data) {

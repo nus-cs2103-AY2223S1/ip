@@ -80,6 +80,7 @@ public class ManageEvents {
     public String markTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(5)) - 1;
         taskList.get(taskIndex).markAsDone();
+        assert taskIndex >= 0: "task index should not be negative";
         return graphics.markMessage(taskIndex);
     }
 
@@ -90,6 +91,7 @@ public class ManageEvents {
     public String unmarkTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(7)) - 1;
         taskList.get(taskIndex).markAsUndone();
+        assert taskIndex >= 0: "task index should not be negative";
         return graphics.unmarkMessage(taskIndex);
     }
 
@@ -99,6 +101,7 @@ public class ManageEvents {
      *                  user want to delete from the task list
      */
     public String deleteTask(int taskIndex) {
+        assert taskIndex >= 0: "task index should not be negative";
         String response = Graphics.deleteMessage(this.taskList, taskIndex);
         this.taskList.remove(taskIndex);
         return response;

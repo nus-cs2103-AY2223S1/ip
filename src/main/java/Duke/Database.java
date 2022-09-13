@@ -9,6 +9,7 @@ public class Database {
     public TaskList taskList;
 
     public Database(String directory, TaskList taskList) {
+        assert directory != "": "directory should not empty";
         this.directory = directory;
         this.taskList = taskList;
     }

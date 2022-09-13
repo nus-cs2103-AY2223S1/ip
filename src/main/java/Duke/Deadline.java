@@ -14,6 +14,7 @@ public class Deadline extends Task{
      */
     public Deadline(String description, String by) {
         super(description);
+        assert description != "": "Description should not be empty";
         this.by = by;
     }
     @Override

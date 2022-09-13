@@ -14,6 +14,7 @@ public class Event extends Task{
      */
     public Event(String description, String at) {
         super(description);
+        assert description != "": "Description should not be empty";
         this.at = at;
     }
     @Override

@@ -22,7 +22,6 @@ public class TaskList {
     }
 
     public Task get(int index) {
-
         return taskList.get(index);
     }
 
