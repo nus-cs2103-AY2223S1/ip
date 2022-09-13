@@ -11,10 +11,10 @@ import utility.Parser;
  * Command that handles adding Event to TaskList and Storage.
  */
 public class AddEventCommand extends Command {
-    private String[] slicedUserCommands;
+    private Event event;
 
-    public AddEventCommand(String[] slicedUserInput) {
-        this.slicedUserCommands = slicedUserInput;
+    public AddEventCommand(Event event) {
+        this.event = event;
     }
 
     /**
@@ -27,10 +27,9 @@ public class AddEventCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        Event eventToAdd = Parser.stringToEvent(slicedUserCommands[1], slicedUserCommands[2]);
-        taskList.addTask(eventToAdd);
-        String storableLine = eventToAdd + "\n";
+        String storableLine = event + "\n";
         if (storage.isLineAppended(storableLine)) {
+            taskList.addTask(event);
             ui.showMessage("Added event");
         }
     }
