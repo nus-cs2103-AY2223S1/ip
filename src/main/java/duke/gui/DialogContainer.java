@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -16,32 +15,38 @@ import javafx.scene.paint.Color;
  * DialogContainer is a container to contain dialog boxes generated through user interaction.
  */
 public class DialogContainer extends ScrollPane {
-    private static final double CONTAINER_PREF_WIDTH = 400.0;
-    private static final double CONTAINER_PREF_HEIGHT = 550.0;
+    private static final double DIALOG_BOX_BACKGROUND_CORNER_RADII = 10.0;
+    private static final Color USER_DIALOG_BACKGROUND_COLOUR = Color.web("84c4f4");
+    private static final Color CHATBOT_DIALOG_BACKGROUND_COLOUR = Color.web("ffcb8c");
 
     private final VBox dialogBoxContainer;
 
-    private final Image userPicture = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
-    private final Image chatbotPicture = new Image(this.getClass().getResourceAsStream("/images/Christina.jpg"));
-
-    private final Background userBackground = new Background(new BackgroundFill(Color.web("#e7e7e7"),
-            new CornerRadii(20), Insets.EMPTY));
-    private final Background chatbotBackground = new Background(new BackgroundFill(Color.web("#e7e7e7"),
-            new CornerRadii(20), Insets.EMPTY));
+    private final Image userPicture;
+    private final Image chatbotPicture;
+    private final Background userBackground;
+    private final Background chatbotBackground;
     /**
      * Creates a container to contain the dialog boxes generated through user interaction.
      */
-    public DialogContainer() {
+    public DialogContainer(MainWindow mainWindow) {
+        this.userPicture = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
+        this.chatbotPicture = new Image(this.getClass().getResourceAsStream("/images/Christina.jpg"));
+        this.userBackground = new Background(new BackgroundFill(USER_DIALOG_BACKGROUND_COLOUR,
+                new CornerRadii(DIALOG_BOX_BACKGROUND_CORNER_RADII), Insets.EMPTY));
+        this.chatbotBackground = new Background(new BackgroundFill(CHATBOT_DIALOG_BACKGROUND_COLOUR,
+                new CornerRadii(DIALOG_BOX_BACKGROUND_CORNER_RADII), Insets.EMPTY));
+
         this.dialogBoxContainer = new VBox();
         this.setContent(dialogBoxContainer);
 
-        this.setPrefSize(CONTAINER_PREF_WIDTH, CONTAINER_PREF_HEIGHT);
         this.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         this.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         this.setVvalue(1.0);
-        this.setFitToWidth(true);
+        this.prefWidthProperty().bind(mainWindow.widthProperty());
+        this.prefHeightProperty().bind(mainWindow.heightProperty());
 
-        this.dialogBoxContainer.setMinHeight(Region.USE_COMPUTED_SIZE);
+        this.dialogBoxContainer.setPadding(new Insets(0, 15, 0, 0));
+        this.dialogBoxContainer.prefWidthProperty().bind(this.widthProperty());
         this.dialogBoxContainer.heightProperty().addListener((observable) -> this.setVvalue(1.0));
     }
 

@@ -14,8 +14,6 @@ import javafx.scene.layout.HBox;
 public class InputContainer extends HBox {
     private static final double PADDING_VALUE = 10.0;
     private static final double SPACING_VALUE = 10.0;
-    private static final double CONTAINER_MIN_WIDTH = 400.0;
-    private static final double INPUT_FIELD_MIN_WIDTH = 320.0;
     private static final double BUTTON_MIN_WIDTH = 50.0;
 
     private TextField userInputField;
@@ -24,14 +22,17 @@ public class InputContainer extends HBox {
     /**
      * Creates a container to contain the input text field and the "send" button.
      */
-    public InputContainer() {
+    public InputContainer(MainWindow mainWindow) {
         this.userInputField = new TextField();
         this.sendButton = new Button("Send");
 
-        this.setMinWidth(CONTAINER_MIN_WIDTH);
-        this.userInputField.setMinWidth(INPUT_FIELD_MIN_WIDTH);
+        this.setMinWidth(mainWindow.getMinWidth());
+        this.userInputField.setMinWidth(mainWindow.getMinWidth()
+                - BUTTON_MIN_WIDTH - 2 * PADDING_VALUE - SPACING_VALUE);
         this.sendButton.setMinWidth(BUTTON_MIN_WIDTH);
 
+        this.userInputField.prefWidthProperty().bind(this.widthProperty());
+        this.prefWidthProperty().bind(mainWindow.widthProperty());
         this.setPadding(new Insets(PADDING_VALUE));
         this.setSpacing(SPACING_VALUE);
         this.setAlignment(Pos.CENTER_LEFT);

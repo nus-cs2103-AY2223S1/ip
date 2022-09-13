@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -40,6 +39,7 @@ public class DialogBox extends HBox {
         this.displayText = displayText;
         this.displayPictureBubble = new Circle();
 
+        this.displayText.setBackground(background);
         this.displayText.setPadding(new Insets(DISPLAY_TEXT_PADDING));
         this.displayText.setFont(new Font(DISPLAY_TEXT_FONT_SIZE));
         this.displayText.setWrapText(true);
@@ -48,13 +48,12 @@ public class DialogBox extends HBox {
         this.displayPictureBubble.setFill(new ImagePattern(displayPicture));
 
         this.displayTextBox = new VBox();
-        this.displayTextBox.setBackground(background);
         this.displayTextBox.getChildren().add(displayText);
 
         this.setPadding(new Insets(DIALOG_BOX_PADDING));
         this.setSpacing(DIALOG_BOX_SPACING);
         this.setAlignment(USER_ALIGNMENT);
-        this.getChildren().addAll(displayTextBox, displayPictureBubble);
+        this.getChildren().addAll(this.displayTextBox, this.displayPictureBubble);
     }
 
     /**
