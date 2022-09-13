@@ -4,6 +4,13 @@ Gigachad will help you keep track of all your tasks.
 
 ## Features
 
+### Autosave
+Tasks are automatically written into your home directory in a dukeData folder in a Duke.txt.
+
+Important: Ensure this file doesn't exist (from previous iP checks) so that it works properly.
+
+***
+
 ### Viewing Help : `help`
 Views a list of available commands.
 
