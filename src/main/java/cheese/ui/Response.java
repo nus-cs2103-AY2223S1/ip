@@ -37,7 +37,7 @@ public class Response {
      * @return Message to display after deleting task.
      */
     public static String getDeleteTaskMessage(Task deletedTask, int remainingListSize) {
-        return "Gotcha! I'll forget about this task!\n" + "  " + deletedTask + "\n" + "You have " + remainingListSize + " task(s) remaining.";
+        return "Gotcha master! I'll forget about this task!\n" + "  " + deletedTask + "\n" + "You have " + remainingListSize + " task(s) remaining.";
     }
 
     /**
@@ -57,7 +57,7 @@ public class Response {
      * @return Message to display after marking task as incomplete.
      */
     public static String getMarkTaskAsNotDoneMessage(Task taskNotDone) {
-        return "Okay, I've marked this task as not done yet.\n" + "  " + taskNotDone;
+        return "Okay master, I've marked this task as incomplete.\n" + "  " + taskNotDone;
     }
 
     /**
@@ -67,7 +67,7 @@ public class Response {
      * @return Message to display after snoozing task.
      */
     public static String getSnoozeTaskMessage(Task taskSnoozed) {
-        return "Gotcha! I've snoozed this task by 1 day.\n" + "  " + taskSnoozed;
+        return "Gotcha! I've snoozed this task by 1 day. Wanna go for a walk now??\n" + "  " + taskSnoozed;
     }
 
     /**
@@ -100,7 +100,7 @@ public class Response {
      * @return Message to display unknown command.
      */
     public static String getUnknownCommandMessage() {
-        return "Sowwy, I don't understand";
+        return "Sowwy master, my puppy brain doesn't understand";
     }
 
     /**
