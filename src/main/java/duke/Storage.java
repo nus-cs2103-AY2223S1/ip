@@ -20,6 +20,8 @@ import duke.task.Todo;
  * @author Perry Wong
  */
 public class Storage {
+    private static final DateTimeFormatter DATE_FORMAT_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter DATE_FORMAT_NEW = DateTimeFormatter.ofPattern("MMM d yyyy");
 
     private final String filePath;
 
@@ -46,71 +48,26 @@ public class Storage {
      */
     public ArrayList<Task> load() throws IOException, DukeException {
         File file = new File(filePath);
-        boolean hasFile = file.exists();
-
-        if (!hasFile) {
+        if (!file.exists()) {
             this.createFile(file);
             String errorMessage = "There was an error loading your file. Starting a new list...\n";
             throw new DukeException(errorMessage);
         } else {
-            System.out.println("Saved tasks retrieved!\n");
             ArrayList<Task> tasks = new ArrayList<>(100);
             Scanner sc = new Scanner(file);
-
             while (sc.hasNextLine()) {
-                String text = sc.nextLine();
-                Scanner temp = new Scanner(text);
-                String filter = "\\[|\\]\\s*|by:\\s*|at:\\s*|\\s*\\(|\\s*\\)";
-                temp.useDelimiter(filter);
-
+                Scanner temp = tempScanner(sc);
                 String taskType = temp.next();
-                temp.next();
-                String markStatus = temp.next();
-                String description = temp.next();
-                boolean isTodo = taskType.equals("T");
-                boolean isDeadline = taskType.equals("D");
-                boolean isEvent = taskType.equals("E");
-
-                DateTimeFormatter inputDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                DateTimeFormatter newDateFormat = DateTimeFormatter.ofPattern("MMM d yyyy");
-                String date;
-                String formattedDate;
-
                 switch (taskType) {
-
                 case "D":
-                    assert (isDeadline);
-                    temp.next();
-                    date = temp.next();
-                    formattedDate = inputDateFormat.format(newDateFormat.parse(date));
-                    Deadline deadline = new Deadline(description, formattedDate);
-                    if (isMarked(markStatus)) {
-                        deadline.mark();
-                    }
-                    tasks.add(deadline);
+                    handleDeadline(temp, tasks, taskType);
                     break;
-
                 case "E":
-                    assert (isEvent);
-                    temp.next();
-                    date = temp.next();
-                    formattedDate = inputDateFormat.format(newDateFormat.parse(date));
-                    Event event = new Event(description, formattedDate);
-                    if (isMarked(markStatus)) {
-                        event.mark();
-                    }
-                    tasks.add(event);
+                    handleEvent(temp, tasks, taskType);
                     break;
-
                 case "T":
-                    assert (isTodo);
-                    Todo todo = new Todo(description);
-                    if (isMarked(markStatus)) {
-                        todo.mark();
-                    }
-                    tasks.add(todo);
+                    handleTodo(temp, tasks, taskType);
                     break;
-
                 default:
                     throw new DukeException("Invalid or no input read.");
                 }
@@ -131,6 +88,61 @@ public class Storage {
             fw.write(task.toString() + System.lineSeparator());
         }
         fw.close();
+    }
+
+    private void handleDeadline(Scanner temp, ArrayList<Task> tasks, String taskType) throws DukeException {
+        boolean isDeadline = taskType.equals("D");
+        assert (isDeadline);
+        temp.next();
+        String markStatus = temp.next();
+        String description = temp.next();
+
+        temp.next();
+        String date = temp.next();
+        String formattedDate = DATE_FORMAT_INPUT.format(DATE_FORMAT_NEW.parse(date));
+        Deadline deadline = new Deadline(description, formattedDate);
+        if (isMarked(markStatus)) {
+            deadline.mark();
+        }
+        tasks.add(deadline);
+    }
+
+    private void handleEvent(Scanner temp, ArrayList<Task> tasks, String taskType) throws DukeException {
+        boolean isEvent = taskType.equals("E");
+        assert (isEvent);
+        temp.next();
+        String markStatus = temp.next();
+        String description = temp.next();
+
+        temp.next();
+        String date = temp.next();
+        String formattedDate = DATE_FORMAT_INPUT.format(DATE_FORMAT_NEW.parse(date));
+        Event event = new Event(description, formattedDate);
+        if (isMarked(markStatus)) {
+            event.mark();
+        }
+        tasks.add(event);
+    }
+
+    private void handleTodo(Scanner temp, ArrayList<Task> tasks, String taskType) {
+        boolean isTodo = taskType.equals("T");
+        assert (isTodo);
+        temp.next();
+        String markStatus = temp.next();
+        String description = temp.next();
+        Todo todo = new Todo(description);
+        if (isMarked(markStatus)) {
+            todo.mark();
+        }
+        tasks.add(todo);
+    }
+
+    private Scanner tempScanner(Scanner sc) {
+        String text = sc.nextLine();
+        Scanner temp = new Scanner(text);
+        String filter = "\\[|\\]\\s*|by:\\s*|at:\\s*|\\s*\\(|\\s*\\)";
+        temp.useDelimiter(filter);
+        return temp;
     }
 
 }
