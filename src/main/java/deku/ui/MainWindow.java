@@ -3,14 +3,18 @@ package deku.ui;
 import deku.Deku;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.VBox;
 
 /**
  * Setup for main display window for JavaFX
@@ -57,7 +61,8 @@ public class MainWindow extends AnchorPane {
     }
 
 
-    // adapted from https://stackoverflow.com/questions/54876509/how-to-fit-the-background-size-into-the-window-size-in-javafx
+    // adapted from
+    // https://stackoverflow.com/questions/54876509/how-to-fit-the-background-size-into-the-window-size-in-javafx
     private Background getBackground(Image background) {
         BackgroundImage bImg = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
