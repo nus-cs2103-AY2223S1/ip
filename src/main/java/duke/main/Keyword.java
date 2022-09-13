@@ -30,7 +30,7 @@ public enum Keyword {
     }
 
     /**
-     * Retrieve Keyword enum value given input key string.
+     * Retrieves Keyword enum value given input key string.
      * Throws DukeException if corresponding value is not found.
      *
      * @param inputKey Input key string.

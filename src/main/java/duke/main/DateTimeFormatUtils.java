@@ -54,7 +54,7 @@ public class DateTimeFormatUtils {
     }
 
     /**
-     * Return string representation of given LocalDateTime object in valid output format.
+     * Returns string representation of given LocalDateTime object in valid output format.
      *
      * @param date LocalDateTime object.
      * @return String representation of given LocalDatetime object.

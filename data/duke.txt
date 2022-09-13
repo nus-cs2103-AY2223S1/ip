@@ -1,4 +1,5 @@
-D | 0 | CS2103T IP | 2022-09-16 2359 | 
-T | 1 | ST2334 Tutorial | 
+D | 0 | CS2103T IP | 2022-09-16 2359 | happy
 T | 0 | Pack clothes | 
-T | 0 | Buy groceries | 
+T | 0 | Buy groceries | mdmdm
+T | 0 | 3 | 
+T | 0 | 45 | 
