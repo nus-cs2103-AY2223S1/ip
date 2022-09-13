@@ -1,7 +1,7 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -16,6 +16,14 @@ public class Task {
 
     public void mark() {
         this.isDone = true;
+    }
+
+    public void markAsNotDone() {
+        isDone = false;
+    }
+
+    public List<String> toList() {
+        return Arrays.asList(description, getStatusIcon());
     }
 
     public void unmark() {
