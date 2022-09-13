@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+import pluto.PlutoException;
+
 /**
  * Tasks that can be created by the user.
  */
@@ -57,14 +59,21 @@ public abstract class Task {
     public abstract String toFile();
 
     /**
-     * Returns the time of an task as a string.
+     * Returns the time of a task as a string.
      * @param dt Date and time of task in LocalDateTime format.
      * @return Date and time of task as a string.
      */
-    public String getDateTime(LocalDateTime dt) {
+    protected String getDateTime(LocalDateTime dt) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         return dtf.format(dt);
     }
+
+    /**
+     * Returns date of task.
+     * @return Date of task.
+     * @throws PlutoException If task is a Todo task.
+     */
+    public abstract LocalDateTime getDate() throws PlutoException;
 
     /**
      * Returns the date of a task if it exists.
@@ -72,6 +81,18 @@ public abstract class Task {
      */
     public abstract LocalDate getDateMaybe();
 
+    /**
+     * Changes date of task.
+     * @param time new Date.
+     * @throws PlutoException If task is Todo task.
+     */
+    public abstract void changeTime(LocalDateTime time) throws PlutoException;
+
+    /**
+     * Check if all keywords are in the task description.
+     * @param keywords Array of keywords.
+     * @return If all keywords are present in task description.
+     */
     public boolean contains(String[] keywords) {
         return Arrays.stream(keywords).allMatch(x -> description.toUpperCase().contains(x.toUpperCase()));
     }

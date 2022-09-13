@@ -13,6 +13,7 @@ import pluto.command.DeleteCommand;
 import pluto.command.ExitCommand;
 import pluto.command.FindCommand;
 import pluto.command.ListCommand;
+import pluto.command.RescheduleCommand;
 import pluto.command.ShowCommand;
 import pluto.command.UpdateStatusCommand;
 import pluto.task.Deadline;
@@ -34,6 +35,7 @@ public class Parser {
         LIST,
         SHOW,
         FIND,
+        RESCHEDULE,
         BYE
     }
 
@@ -58,13 +60,13 @@ public class Parser {
         switch (enumCommand) {
         case TODO:
             assert textArr.length == 2 : "textArr should have length 2";
-            return parseTask(textArr[1].strip(), Type.TODO);
+            return parseAddTask(textArr[1].strip(), Type.TODO);
         case DEADLINE:
             assert textArr.length == 2 : "textArr should have length 2";
-            return parseTask(textArr[1].strip(), Type.DEADLINE);
+            return parseAddTask(textArr[1].strip(), Type.DEADLINE);
         case EVENT:
             assert textArr.length == 2 : "textArr should have length 2";
-            return parseTask(textArr[1].strip(), Type.EVENT);
+            return parseAddTask(textArr[1].strip(), Type.EVENT);
         case MARK:
             assert textArr.length == 2 : "textArr should have length 2";
             return new UpdateStatusCommand(parseIdx(textArr[1]), true);
@@ -82,6 +84,8 @@ public class Parser {
         case FIND:
             assert textArr.length == 2 : "textArr should have length 2";
             return new FindCommand(textArr[1]);
+        case RESCHEDULE:
+            return parseRescheduleTask(textArr[1].strip());
         case BYE:
             return new ExitCommand();
         default:
@@ -96,7 +100,7 @@ public class Parser {
      * @return Corresponding AddCommand.
      * @throws PlutoException If input cannot be parsed properly.
      */
-    public static Command parseTask(String input, Type type) throws PlutoException {
+    public static Command parseAddTask(String input, Type type) throws PlutoException {
         switch (type) {
         case TODO:
             return new AddCommand(new Todo(input));
@@ -120,13 +124,33 @@ public class Parser {
     }
 
     /**
+     * Returns command to reschedule tasks.
+     * @param input Input entered by the user.
+     * @return Reschedule command.
+     * @throws PlutoException If input is not parsed correctly.
+     */
+    public static RescheduleCommand parseRescheduleTask(String input) throws PlutoException {
+        String[] arrReschedule = input.split("\\s+", 2);
+        if (arrReschedule.length == 1) {
+            throw new PlutoException("OOPS!!! 'reschedule <task number> <date>' format required.");
+        }
+        Integer taskNumber;
+        try {
+            taskNumber = parseIdx(arrReschedule[0].strip());
+        } catch (PlutoException e) {
+            throw new PlutoException("OOPS!!! 'reschedule <task number> <date>' format required.");
+        }
+        return new RescheduleCommand(taskNumber, parseDate(arrReschedule[1].strip()));
+    }
+
+    /**
      * Checks whether command description is missing or not.
      * @param str Input by the user.
      * @throws PlutoException If str doesn't have a description.
      */
     public static void isOnlyCommand(String str) throws PlutoException {
         HashSet<String> commands = new HashSet<>(Arrays.asList("todo", "deadline", "event", "mark",
-                "unmark", "delete", "show"));
+                "unmark", "delete", "show", "reschedule"));
         if (commands.contains(str.strip())) {
             throw new PlutoException(String.format("OOPS!!! The description of %s cannot be empty.", str));
         }

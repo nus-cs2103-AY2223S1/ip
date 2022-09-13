@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import pluto.PlutoException;
+
 /**
  * Deadline task.
  */
@@ -36,6 +38,15 @@ public class Deadline extends Task {
     @Override
     public LocalDate getDateMaybe() {
         return by.toLocalDate();
+    }
+
+    @Override
+    public void changeTime(LocalDateTime time) throws PlutoException {
+        this.by = time;
+    }
+    @Override
+    public LocalDateTime getDate() {
+        return by;
     }
 
     @Override

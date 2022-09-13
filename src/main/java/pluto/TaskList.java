@@ -1,5 +1,6 @@
 package pluto;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import pluto.task.Task;
@@ -89,6 +90,20 @@ public class TaskList {
             } else {
                 missions.get(idx).markAsUndone();
             }
+        } catch (IndexOutOfBoundsException e) {
+            throw new PlutoException("OOPS!!! Valid index required.");
+        }
+    }
+
+    /**
+     * Changes the time of a task.
+     * @param idx Index of the task to be modified.
+     * @param newTime New time of task.
+     * @throws PlutoException If invalid index is accessed.
+     */
+    public void updateTime(int idx, LocalDateTime newTime) throws PlutoException {
+        try {
+            missions.get(idx).changeTime(newTime);
         } catch (IndexOutOfBoundsException e) {
             throw new PlutoException("OOPS!!! Valid index required.");
         }
