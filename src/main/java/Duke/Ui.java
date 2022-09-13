@@ -94,14 +94,23 @@ public class Ui {
                 // when user wants to add todo task
                 Task t1 = new Todo(input[1]);
                 assert !t1.getDescription().equals(""):"Description cannot be empty";
-                output = items.addTask(t1);
+                // items.checkDuplicates(
+                if (items.containDuplicate(t1)) {
+                    return "Task not added. There are duplicates in list";
+                } else {
+                    output = items.addTask(t1);
+                }
                 break;
 
             case "deadline":
                 // when user wants to add deadline task
                 try {
                     Task t2 = new Deadline(input[1], input[2]);
-                    output = items.addTask(t2);
+                    if (items.containDuplicate(t2)) {
+                        return "There are duplicates in list";
+                    } else {
+                        output = items.addTask(t2);
+                    }
                 } catch (DukeException ex) {
                     return ex.getMessage();
                 }
@@ -110,7 +119,11 @@ public class Ui {
             case "event":
                 // when user wants to add event task
                 Task t3 = new Event(input[1], input[2]);
-                output = items.addTask(t3);
+                if (items.containDuplicate(t3)) {
+                    return "There are duplicates in list";
+                } else {
+                    output = items.addTask(t3);
+                }
                 break;
 
             case "delete":

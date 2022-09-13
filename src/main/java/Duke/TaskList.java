@@ -28,8 +28,23 @@ public class TaskList {
     }
 
     /**
+     * Checks for duplicates in list.
+     * @param t the task to be added.
+     * @return true if there are duplicates in list.
+     */
+    public Boolean containDuplicate(Task t) {
+        for (Task tsk : lst) {
+            if (tsk.getDescription().equals(t.getDescription())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Adds task to list.
      * @param t task to add.
+     * @return The output to user after the successful addition of task.
      */
     public String addTask(Task t) {
         assert t != null:"Input task should not be null";
