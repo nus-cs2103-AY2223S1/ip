@@ -1,8 +1,8 @@
 package duke.ui;
 
 import duke.DukeException;
-import duke.Task;
-import duke.TaskList;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
 
 import java.util.List;
 
@@ -37,20 +37,28 @@ public class Ui {
     public String printOnFind(List<Task> found) {
         StringBuilder sb = new StringBuilder();
         if (found.size() == 0) {
-            String str = ("There are currently no tasks in the list.");
-            sb.append(str);
+            printNoTasks(found, sb);
         } else {
-            String str = ("Here are the tasks in your list: \n");
-            sb.append(str);
-            for (int i = 0; i < found.size(); i++) {
-                str = ("\t" + (i+1) + ".\t " + found.get(i).toString());
-                sb.append(str);
-                if (i != found.size() - 1) {
-                    sb.append("\n");
-                }
-            }
+            printTasks(found, sb);
         }
         return sb.toString();
+    }
+
+    public void printNoTasks(List<Task> found, StringBuilder sb) {
+        String str = ("There are currently no tasks in the list.");
+        sb.append(str);
+    }
+
+    public void printTasks(List<Task> found, StringBuilder sb) {
+        String str = ("Here are the tasks in your list: \n");
+        sb.append(str);
+        for (int i = 0; i < found.size(); i++) {
+            str = ("\t" + (i+1) + ".\t " + found.get(i).toString());
+            sb.append(str);
+            if (i != found.size() - 1) {
+                sb.append("\n");
+            }
+        }
     }
 
     public String showDukeException(DukeException e) {

@@ -1,9 +1,9 @@
 package duke.commands;
 
-import duke.Deadlines;
+import duke.tasks.Deadlines;
 import duke.ui.Ui;
-import duke.Task;
-import duke.TaskList;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
 import duke.DukeException;
 
 import java.time.format.DateTimeParseException;
@@ -21,8 +21,8 @@ public class DeadlineCommand extends Command {
     }
 
     public String execute() throws DukeException, DateTimeParseException {
-        String[] breakitdown = input.split(" ");
-        if (breakitdown.length == 1) {
+        String[] splitInput = input.split(" ");
+        if (splitInput.length == 1) {
             throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
         }
         String desc = input.substring(9);
