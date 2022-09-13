@@ -1,6 +1,6 @@
 package yilia.exception;
 
-import yilia.Type;
+import yilia.task.Type;
 
 /**
  * Represents an exception to be thrown when the description of a task is empty.

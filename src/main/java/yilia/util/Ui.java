@@ -1,4 +1,4 @@
-package yilia;
+package yilia.util;
 
 import java.util.Scanner;
 
@@ -121,6 +121,7 @@ public class Ui {
             message.append(tasks.get(i));
             message.append("\n");
         }
+        System.out.println(message.toString());
         return message.toString();
     }
     /**

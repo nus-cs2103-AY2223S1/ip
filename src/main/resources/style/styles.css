@@ -1,0 +1,28 @@
+.scroll-pane .viewport {
+    -fx-background-image: url('../images/cat.jpg');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.userInput {
+    -fx-background-color: WHITE;
+    -fx-border-color: rgb(49, 74, 67);
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
+
+.sendBtn {
+    -fx-background-color: rgb(43, 174, 133);
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+.textBox {
+    -fx-background-color: rgba(43, 174, 133, 0.8);
+    -fx-border-color: rgb(49, 74, 67);
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}

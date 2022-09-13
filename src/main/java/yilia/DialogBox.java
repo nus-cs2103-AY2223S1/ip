@@ -37,6 +37,18 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+
+    }
+    public DialogBox(Label l, ImageView iv) {
+        dialog = l;
+        displayPicture = iv;
+
+        dialog.setWrapText(true);
+        displayPicture.setFitWidth(100.0);
+        displayPicture.setFitHeight(100.0);
+
+        this.setAlignment(Pos.TOP_RIGHT);
+        this.getChildren().addAll(dialog, displayPicture);
     }
 
     /**
@@ -48,24 +60,31 @@ public class DialogBox extends HBox {
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
     }
-
     /**
      * Shows a dialog.
      *
-     * @param text The text to be shown.
-     * @param img The image to be shown.
-     * @return The DialogBox object containing the text and image.
+     * @param l The label to be shown.
+     * @param iv The imageview to be shown.
+     * @return The DialogBox object containing the label and imageview.
      */
+    public static DialogBox getUserDialog(Label l, ImageView iv) {
+        return new DialogBox(l, iv);
+    }
+    /**
+     * Shows a Yilia dialog.
+     * @param l The label to be shown.
+     * @param iv The imageview to be shown.
+     * @return The DialogBox object containing the label and imageview.
+     */
+    public static DialogBox getYiliaDialog(Label l, ImageView iv) {
+        var db = new DialogBox(l, iv);
+        db.flip();
+        return db;
+    }
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
-    /**
-     * Shows a Yilia dialog.
-     * @param text The text to be shown.
-     * @param img The image to be shown.
-     * @return The DialogBox object containing the text and image.
-     */
     public static DialogBox getYiliaDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

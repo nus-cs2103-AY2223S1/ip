@@ -1,4 +1,4 @@
-package yilia;
+package yilia.util;
 
 import yilia.command.AddCommand;
 import yilia.command.Command;
@@ -13,6 +13,7 @@ import yilia.exception.KeywordMissingException;
 import yilia.exception.NoIndexException;
 import yilia.exception.TimeFormatException;
 import yilia.exception.YiliaException;
+import yilia.task.Type;
 
 /**
  * Represents the parser to parse text to other meaning types.

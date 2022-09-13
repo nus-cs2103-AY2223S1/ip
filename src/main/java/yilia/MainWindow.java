@@ -31,8 +31,8 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setYilia(Yilia d) {
-        yilia = d;
+    public void setYilia(Yilia y) {
+        yilia = y;
     }
 
     /**

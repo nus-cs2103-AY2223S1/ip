@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Yilia yilia = new Yilia();
+    private final Yilia yilia = new Yilia();
 
     @Override
     public void start(Stage stage) {

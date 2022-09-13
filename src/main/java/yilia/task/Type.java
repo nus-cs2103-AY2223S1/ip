@@ -1,4 +1,4 @@
-package yilia;
+package yilia.task;
 
 /**
  * Represents four different types of a task.
