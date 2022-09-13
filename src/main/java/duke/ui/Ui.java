@@ -200,7 +200,7 @@ public class Ui {
 
     private String printCompleted(List<Task> list) {
         if (list.size() == 0) {
-            return "0 tasks completed!\n";
+            return "0 tasks completed!\n\n";
         }
 
         String header = String.format("\nYou have completed %d %s in your list!\n", list.size(),
@@ -216,7 +216,7 @@ public class Ui {
 
     private String printUpcoming(List<Task> list) {
         if (list.size() == 0) {
-            return "No upcoming tasks!\n";
+            return "No upcoming tasks!\n\n";
         }
 
         String header = String.format("You have %d upcoming %s in your list!\n",

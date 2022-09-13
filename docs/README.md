@@ -175,16 +175,16 @@ Here is the matching task in your list:
 1. [T][ ] read book
 ```
 
-### `summary` - Providing an overview
+### `summarise` - Providing an overview
 
 Lists the following items
 - Upcoming tasks (if any).
 - Tasks completed over the week (if any). 
 - All tasks that are marked as completed (if any).
 
-Format: `summary`
+Format: `summarise`
 
-Example of usage: `summary`
+Example of usage: `summarise`
 
 Expected outcome:
 
