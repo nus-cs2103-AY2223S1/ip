@@ -1,7 +1,83 @@
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
+ ____        _
+|  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+----------------------------------------
+Hello! I'm Duke
+What can I do for you?
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list:
+----------------------------------------
+----------------------------------------
+Got it. I've added this task:
+  [T][ ] read book
+Now you have 1 tasks in the list.
+----------------------------------------
+----------------------------------------
+Got it. I've added this task:
+  [D][ ] return book (by: Aug 23 2022 18:00)
+Now you have 2 tasks in the list.
+----------------------------------------
+----------------------------------------
+Got it. I've added this task:
+  [E][ ] library event (at: Aug 23 2022 18:00 to Aug 24 2022 18:00)
+Now you have 3 tasks in the list.
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list:
+1.[T][ ] read book
+2.[D][ ] return book (by: Aug 23 2022 18:00)
+3.[E][ ] library event (at: Aug 23 2022 18:00 to Aug 24 2022 18:00)
+----------------------------------------
+----------------------------------------
+Nice! I've marked this task as done:
+  [T][X] read book
+----------------------------------------
+----------------------------------------
+OK, I've marked this task as not done yet:
+  [T][ ] read book
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list:
+1.[T][ ] read book
+2.[D][ ] return book (by: Aug 23 2022 18:00)
+3.[E][ ] library event (at: Aug 23 2022 18:00 to Aug 24 2022 18:00)
+----------------------------------------
+----------------------------------------
+Noted. I've removed this task:
+  [T][ ] read book
+Now you have 2 tasks in the list.
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list:
+1.[D][ ] return book (by: Aug 23 2022 18:00)
+2.[E][ ] library event (at: Aug 23 2022 18:00 to Aug 24 2022 18:00)
+----------------------------------------
+----------------------------------------
+OOPS!!! I'm sorry but I don't know what that means!
+----------------------------------------
+----------------------------------------
+OOPS!!! The description of a todo should not be empty!
+----------------------------------------
+----------------------------------------
+OOPS!!! The description/by time of a deadline should not be empty!
+----------------------------------------
+----------------------------------------
+OOPS!!! The description/from/end of an event should not be empty!
+----------------------------------------
+----------------------------------------
+OOPS!!! You must specify which task to mark or unmark!
+----------------------------------------
+----------------------------------------
+OOPS!!! You must specify which task to mark or unmark!
+----------------------------------------
+----------------------------------------
+OOPS!!! You must specify which task to delete!
+----------------------------------------
+----------------------------------------
+Bye. Hope to see you again soon!
+----------------------------------------
