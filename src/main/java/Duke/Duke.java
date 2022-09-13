@@ -1,8 +1,9 @@
-package Duke.TaskList;
+package Duke;
 
 import Duke.Exception.DukeException;
 import Duke.Parser.Parser;
 import Duke.Storage.Storage;
+import Duke.TaskList.TaskList;
 import Duke.UI.Ui;
 
 public class Duke {
