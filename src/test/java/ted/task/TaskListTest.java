@@ -27,7 +27,7 @@ public class TaskListTest {
         tasks.add(new Todo("read book"));
         tasks.add(new Deadline("quiz", "2022-12-12 10:30"));
         tasks.add(new Event("lecture", "fri 4-6pm"));
-        String output = "Your tasklist:\n" + "1. [T][ ] read book\n"
+        String output = "1. [T][ ] read book\n"
                 + "2. [D][ ] quiz (by: 12 Dec 2022 10:30 AM)\n" + "3. [E][ ] lecture (at: fri 4-6pm)\n";
         assertEquals(output, new TaskList(tasks).list());
     }
