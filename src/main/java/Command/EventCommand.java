@@ -13,6 +13,7 @@ import java.io.IOException;
 public class EventCommand extends Command {
     boolean isExit;
     private String userAction;
+
     public EventCommand(String userAction) {
         this.isExit = false;
         this.userAction = userAction;
@@ -21,22 +22,20 @@ public class EventCommand extends Command {
     @Override
     public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
+            int initialSize = tasks.getTaskListSize();
             String[] eventString = userAction.split("/at ");
-            if (eventString[0].equals("")) {
-                throw new DukeException("The description of an event cannot be empty.");
-            } else if (eventString.length == 1) {
-                throw new DukeException("The description or date/time of an event cannot be empty.");
-            } else {
-                Task newEvent = new Event(eventString[0], eventString[1]);
-                tasks.addTask(newEvent);
-                storage.save();
-                return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
-                        + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
-            }
+            Task newEvent = new Event(eventString[0], eventString[1]);
+            tasks.addTask(newEvent);
+            assert tasks.getTaskListSize() == initialSize + 1 : DukeUi.ADD_TASK_ERROR;
+            storage.save();
+            return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
+                    + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
+        } catch (ArrayIndexOutOfBoundsException e2) {
+            throw new DukeException(DukeUi.INVALID_EVENT);
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
-        } catch (DukeException e2) {
-            return e2.toString();
+        } catch (DukeException e3) {
+            return e3.toString();
         }
     }
 

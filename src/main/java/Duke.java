@@ -29,7 +29,7 @@ public class Duke {
         }
     }
 
-    public String getResponse(String input) throws DukeException {
+    public String getResponse(String input) {
         try {
             String[] userCommand = ui.readCommand(input);
             Command c = Parser.parse(userCommand);

@@ -22,18 +22,18 @@ public class DeadlineCommand extends Command {
     @Override
     public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
+            int initialSize = tasks.getTaskListSize();
             String[] deadlineString = userAction.split("/by ", 2);
-            if (deadlineString.length == 1) {
-                throw new DukeException("The description or date/time of a deadline cannot be empty.");
-            } else {
-                Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);
-                tasks.addTask(newDeadline);
-                storage.save();
-                return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
-                        + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
-            }
+            Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);
+            tasks.addTask(newDeadline);
+            assert tasks.getTaskListSize() == initialSize + 1 : DukeUi.ADD_TASK_ERROR;
+            storage.save();
+            return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
+                    + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
         } catch (DateTimeParseException e) {
-            throw new DukeException("deadline must be of form yyyy-mm-dd");
+            throw new DukeException(DukeUi.INVALID_DATE);
+        } catch (ArrayIndexOutOfBoundsException e2) {
+            throw new DukeException(DukeUi.INVALID_DEADLINE);
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
         } catch (DukeException e2) {
