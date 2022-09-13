@@ -184,5 +184,5 @@ Expected outcome:
 Success message containing task that has been tagged.
 
 ```
-Sure! I'll tag this task, take a look: [T][ ] Lunch [Tag: #Excited]"
+Sure! I'll tag this task, take a look: "[T][ ] Lunch [Tag: #Excited]"
 ```
