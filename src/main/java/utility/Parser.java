@@ -39,10 +39,12 @@ public class Parser {
      *
      */
     public static void initialiseCommandAliasesHashMap() {
-        String[] aliasRegexes = new String[]{"todo|task|t", "l|list", "deadline|d", "event|e", "mark|m", "unmark|um","bye|b|quit|q|exit", "find|f", "longdesc", "istoday", "help|h", "delete|remove|r"
-        };
+        String[] aliasRegexes = {"todo|task|t", "l|list", "deadline|d", "event|e",
+                "mark|m", "unmark|um","bye|b|quit|q|exit", "find|f", "longdesc", "istoday",
+                "help|h", "delete|remove|r"};
 
-        String[] actualCommands = new String[] {"todo", "list", "deadline", "event", "mark", "unmark", "bye", "find", "longdesc", "istoday", "help", "delete"};
+        String[] actualCommands = {"todo", "list", "deadline", "event", "mark",
+                "unmark", "bye", "find", "longdesc", "istoday", "help", "delete"};
 
         if (commandAliasesHashMap.isEmpty()) {
             ArrayList<Pattern> patterns = makePatterns(aliasRegexes);

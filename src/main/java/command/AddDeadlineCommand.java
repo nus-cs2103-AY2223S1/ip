@@ -5,7 +5,6 @@ import storage.Storage;
 import task.Deadline;
 import tasklist.TaskList;
 import ui.UI;
-import utility.Parser;
 
 /**
  * Command that handles adding Deadline to TaskList and Storage.
