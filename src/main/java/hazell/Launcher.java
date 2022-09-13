@@ -1,5 +1,6 @@
 package hazell;
 
+import hazell.ui.gui.Main;
 import javafx.application.Application;
 
 public class Launcher {

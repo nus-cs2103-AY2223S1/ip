@@ -1,4 +1,4 @@
-package hazell.ui;
+package hazell.ui.gui;
 
 import hazell.Hazell;
 import javafx.fxml.FXML;
