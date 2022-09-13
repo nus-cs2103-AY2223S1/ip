@@ -19,6 +19,7 @@ public class ChatBot {
     private static final String HORIZONTAL_BAR = "------------------------------------------------------------";
 
     private final String name;
+    private final Logger logger;
     private final TaskManager taskManager;
     private boolean isRunning;
     private String latestResponse;
@@ -30,6 +31,7 @@ public class ChatBot {
      */
     public ChatBot(String name) {
         this.name = name;
+        this.logger = new Logger();
         this.taskManager = new TaskManager();
         this.isRunning = false;
         this.latestResponse = "";
@@ -42,6 +44,24 @@ public class ChatBot {
      */
     public boolean isRunning() {
         return this.isRunning;
+    }
+
+    /**
+     * Returns the next log stored by the logger.
+     *
+     * @return the string of the next log
+     */
+    public String getNextLog() {
+        return this.logger.getNext();
+    }
+
+    /**
+     * Returns the previous log stored by the logger.
+     *
+     * @return the string of the previous log
+     */
+    public String getPreviousLog() {
+        return this.logger.getPrevious();
     }
 
     /**
@@ -105,6 +125,7 @@ public class ChatBot {
      * @param input string of the input provided by the user
      */
     public void processCommand(String input) {
+        this.logger.updateLog(input);
         assert isRunning == true : "chatbot should be running";
         Scanner inputScanner = new Scanner(input);
         String response = "";

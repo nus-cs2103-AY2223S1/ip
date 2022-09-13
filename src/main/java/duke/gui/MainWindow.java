@@ -33,7 +33,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         this.chatBot.initialize();
         this.dialogContainer.initializeDialog(this.chatBot.getLatestResponse());
-        this.userInputContainer.initializeEventHandlers(this);
+        this.userInputContainer.initializeEventHandlers(this, this.chatBot);
     }
 
     /**

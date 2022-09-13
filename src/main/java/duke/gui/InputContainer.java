@@ -1,9 +1,11 @@
 package duke.gui;
 
+import duke.chatbot.ChatBot;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 
 /**
@@ -41,11 +43,27 @@ public class InputContainer extends HBox {
      * Signals the main window to handle user input when an event is triggered.
      *
      * @param mainWindow the main window to signal when an event is triggered
+     * @param chatBot a reference to the chatbot to access logs
      */
-    public void initializeEventHandlers(MainWindow mainWindow) {
-        this.userInputField.setOnAction((event) -> {
-            mainWindow.handleUserInput(this.userInputField.getText());
-            this.userInputField.clear();
+    public void initializeEventHandlers(MainWindow mainWindow, ChatBot chatBot) {
+        this.userInputField.setOnKeyPressed((event) -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                mainWindow.handleUserInput(this.userInputField.getText());
+                this.userInputField.clear();
+            }
+
+            if (chatBot.isRunning()) {
+                if (event.getCode().equals(KeyCode.UP)) {
+                    this.userInputField.clear();
+                    this.userInputField.setText(chatBot.getPreviousLog());
+                    this.userInputField.end();
+                }
+                if (event.getCode().equals(KeyCode.DOWN)) {
+                    this.userInputField.clear();
+                    this.userInputField.setText(chatBot.getNextLog());
+                    this.userInputField.end();
+                }
+            }
         });
         this.sendButton.setOnMouseClicked((event) -> {
             mainWindow.handleUserInput(this.userInputField.getText());
