@@ -50,7 +50,7 @@ public class MarkCommand extends Command {
     }
 
     private String generateResponse(Task task) {
-        return "Well, that's disappointing. I've marked this task as undone: \n"
+        return "Amazing stuff. I've marked this task as done: \n"
                 + "    " + task;
     }
 }
