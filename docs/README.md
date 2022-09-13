@@ -23,7 +23,7 @@ Command summary
 
 ## Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `duke.jar` from here
+2. Download the latest `duke.jar` from [here](https://github.com/Bacon-Strips/ip/releases)
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
 
