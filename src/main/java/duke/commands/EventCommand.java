@@ -12,6 +12,7 @@ import duke.task.TaskList;
  */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
+    public static final String SHORTER_COMMAND_WORD = "e";
 
     private final Event eventTask;
 

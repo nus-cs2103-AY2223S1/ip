@@ -12,6 +12,8 @@ import duke.task.TaskList;
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
+    public static final String SHORTER_COMMAND_WORD = "f";
+
     private String query;
 
     public FindCommand(String query) {

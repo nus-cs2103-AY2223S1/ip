@@ -9,6 +9,7 @@ import duke.task.TaskList;
  */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
+    public static final String SHORTER_COMMAND_WORD = "l";
 
     /**
      * Lists the current tasks in the task list.
