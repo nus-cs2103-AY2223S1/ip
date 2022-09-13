@@ -35,11 +35,7 @@ public class AddCommand extends Command {
         try {
             storage.appendToFile(t.toFile());
             tasks.addTask(t);
-            StringBuilder addMessage = new StringBuilder();
-            addMessage.append("Got it. I've added this task:\n");
-            addMessage.append("\t" + t.toString() + "\n");
-            addMessage.append(String.format("Now you have %d tasks in the list.", tasks.nTasks()));
-            return ui.print(addMessage);
+            return ui.addUi(t) + ui.numTasks(tasks);
         } catch (IOException e) {
             throw new PlutoException("OOPS!!! Couldn't add task. Try again!");
         }
