@@ -26,6 +26,7 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    //Styling adapted from https://github.com/Darren12345677/ip/blob/master/src/main/java/roofus/DialogBox.java
     private DialogBox(String text, Image img, String style) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -40,9 +41,7 @@ public class DialogBox extends HBox {
         displayPicture.setImage(img);
         displayPicture.setClip(
                 new Circle(
-                        displayPicture.getFitWidth() / 2,
-                        displayPicture.getFitHeight() / 2,
-                        displayPicture.getFitWidth() / 2
+                        50, 45, 45
                 )
         );
     }
@@ -58,14 +57,14 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        String styling = "-fx-background-color: azure; -fx-background-radius: 30;"
-                + " -fx-padding: 10;";
+        String styling = "-fx-background-color: bisque; -fx-background-radius: 50;"
+                + " -fx-padding: 10;" ;
         return new DialogBox(text, img, styling);
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        String stlying = "-fx-background-color: beige; -fx-background-radius: 30; "
-                + "-fx-padding: 10;";
+        String stlying = "-fx-background-color: lightgreen; -fx-background-radius: 30; "
+                + "-fx-padding: 12;";
         var db = new DialogBox(text, img, stlying);
         db.flip();
         return db;

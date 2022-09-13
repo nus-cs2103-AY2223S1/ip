@@ -35,7 +35,7 @@ public class TaskList {
 
     /**
      * Delete task from TaskList at specified position and display
-     * information of deleted task.
+     *     information of deleted task.
      *
      * @param pos Number position of task to delete
      * @return Task that is deleted, with all its information before
@@ -52,7 +52,7 @@ public class TaskList {
     }
 
     /**
-     * Number of tasks currently within TaskList.
+     * Get the number of task current within the TaskList object.
      *
      * @return Number of task in TaskList
      */
@@ -76,7 +76,7 @@ public class TaskList {
 
     /**
      * String showing number of task currently in TaskList then displays all the task
-     * in order of which was inputted first.
+     *     in order of which was inputted first.
      *
      * @return String representation of all tasks within the TaskList
      */
