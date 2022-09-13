@@ -22,24 +22,24 @@ public class Task {
     }
 
     /**
-     * set isDone to true
+     * Set isDone to true
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * set isDone to false
+     * Set isDone to false
      */
     public void unmark() {
         this.isDone = false;
     }
 
     /**
-     * use duke.todo, duke.event, deadlines
+     * Use duke todo, duke.event, deadlines
      *
-     * @param tasks
-     * @param str
+     * @param tasks the taskList where tasks are stored and loaded from
+     * @param str description of the task
      */
     public static String makeTask(TaskList tasks, String str) throws DukeException {
         if(str.split(" ", 2)[0].equals("todo")) {
