@@ -1,29 +1,35 @@
 package duke;
 
-import duke.exceptions.ImproperDeadlineFormatException;
-import duke.exceptions.ImproperFormatException;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.exceptions.ImproperDeadlineFormatException;
+
+/**
+ * Represents a deadline task.
+ * A <code>Deadline</code> object corresponds to
+ * a description of a task and a deadline
+ */
 public class Deadline extends Task {
-
-    private LocalTime time;
-    private LocalDate date;
-
-    private String by;
-
     private static final DateTimeFormatter DATE_FORMAT =
             DateTimeFormatter.ofPattern("MMM dd yyyy");
     private static final DateTimeFormatter TIME_FORMAT =
             DateTimeFormatter.ofPattern("h:mm a");
 
-    /*
-     * Create Deadline with description, date in MMM DD YYYY, time in hh:mm aa
-     * @throws ImproperFormatException when by does not follow specified format
+    private LocalTime time;
+    private LocalDate date;
+    private String by;
+
+    /**
+     * Deadline consist of description and deadline.
+     *
+     * @param description description of task.
+     * @param by deadline of task.
+     * @throws ImproperDeadlineFormatException if deadline does not follow the format of
+     *                                         deadline (description) /by YYYY-MM-DD hh:mm
      */
     public Deadline(String description, String by) throws ImproperDeadlineFormatException {
         super(description);
@@ -39,9 +45,10 @@ public class Deadline extends Task {
         }
     }
 
-    /*
-     * @return String representation in
-     *         "[D] [status] task (by: MMM DD YYYY h:mm a)"
+    /**
+     * Returns String representation of deadline
+     *
+     * @return String representation.
      */
     @Override
     public String toString() {
@@ -55,11 +62,12 @@ public class Deadline extends Task {
                 + ")";
     }
 
-    /*
-     * return String representation of deadline to be stored in Storage
-     * @return String representation in
-     *         "D|0 or 1|task|by|"
-     *         where 1 represents the task is marked and 0 otherwise
+    /**
+     * Returns String representation in
+     * "D|0 or 1|task|by|"
+     * where 1 represents the task is marked and 0 otherwise
+     *
+     * @return String representation.
      */
     @Override
     public String toSaveVersion() {
@@ -76,6 +84,14 @@ public class Deadline extends Task {
                 + this.by
                 + "\n";
     }
+
+    /**
+     * Returns true if two deadlines share the same
+     * description and deadline.
+     *
+     * @param obj target Object of comparison
+     * @return boolean.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Deadline) {
@@ -93,14 +109,38 @@ public class Deadline extends Task {
         return false;
     }
 
+    /**
+     * Returns date and time representation.
+     *
+     * @return LocalDateTime.
+     */
     private LocalDateTime getDateTime() {
         return LocalDateTime.of(this.date, this.time);
     }
 
+    /**
+     * Returns 1 if this deadline's deadline is larger than
+     * target's deadline.
+     * 0 if both deadlines are the same.
+     * -1 if deadline is smaller than target's deadline.
+     *
+     * @param deadline target deadline of comparison.
+     * @return int.
+     */
     public int compareChronologically(Deadline deadline) {
         return this.getDateTime().compareTo(deadline.getDateTime());
     }
 
+
+    /**
+     * Returns 1 if this deadline's description's is larger than
+     * target's description.
+     * 0 if both description are the same.
+     * -1 if description is smaller than target's description.
+     *
+     * @param deadline target deadline of comparison.
+     * @return int.
+     */
     public int compareLexicographically(Deadline deadline) {
         return this.description.compareTo(deadline.description);
     }

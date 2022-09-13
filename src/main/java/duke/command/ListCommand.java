@@ -3,6 +3,10 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+
+/**
+ * Representation of a command to list out all task in taskList.
+ */
 public class ListCommand extends Command {
 
     /*

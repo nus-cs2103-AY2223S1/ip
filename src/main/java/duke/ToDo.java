@@ -1,6 +1,9 @@
 package duke;
 
-public class ToDo extends Task{
+/**
+ * Represents a ToDo task where it only has description with no time expiry.
+ */
+public class ToDo extends Task {
 
     public ToDo(String description) {
         super(description);

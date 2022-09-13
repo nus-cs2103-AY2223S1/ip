@@ -6,6 +6,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exceptions.DukeException;
 
+/**
+ * Representation of a command to unmark a task as done.
+ */
 public class UnmarkStatusCommand extends Command {
     private int toggleTask;
 
@@ -23,6 +26,7 @@ public class UnmarkStatusCommand extends Command {
         storage.save(taskList);
         return ui.showToggleSuccess(success);
     }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof UnmarkStatusCommand) {

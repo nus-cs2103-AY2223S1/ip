@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Representation of a command for Duke to perform exit.
+ */
 public class ExitCommand extends Command {
 
     /*
@@ -14,6 +17,7 @@ public class ExitCommand extends Command {
         toggleExit();
         return ui.showBye();
     }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ExitCommand) {

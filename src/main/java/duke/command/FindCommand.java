@@ -5,6 +5,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exceptions.NoMatchingKeywordException;
 
+/**
+ * Representation of a command to find a task in taskList.
+ */
 public class FindCommand extends Command {
 
     private String keyword;

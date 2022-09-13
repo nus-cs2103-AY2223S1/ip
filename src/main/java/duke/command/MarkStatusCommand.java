@@ -6,9 +6,15 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exceptions.DukeException;
 
+/**
+ * Representation of a command to mark a task as done.
+ */
 public class MarkStatusCommand extends Command {
     private int toggleTask;
 
+    /**
+     * Representation of a command to mark a task with a specified index.
+     */
     public MarkStatusCommand(int toggleTask) {
 
         this.toggleTask = toggleTask;
@@ -24,6 +30,7 @@ public class MarkStatusCommand extends Command {
         storage.save(taskList);
         return ui.showToggleSuccess(success);
     }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof MarkStatusCommand) {

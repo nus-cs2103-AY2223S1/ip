@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -37,6 +38,7 @@ public class MainWindow extends AnchorPane {
     public void greet() {
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(Ui.showGreet(), dukeImage));
     }
+
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.

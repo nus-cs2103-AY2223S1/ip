@@ -1,7 +1,7 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.exceptions.ImproperFormatException;
+import duke.exceptions.ImproperDeadlineFormatException;
+import duke.exceptions.ImproperEventFormatException;
 import duke.exceptions.NoMatchingKeywordException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,7 +27,9 @@ public class TaskListTest {
             event1 = new Event("test1", " 2000-10-10 23:00");
             event2 = new Event("test2", " 2000-10-10 23:00");
             event3 = new Event("test3", " 2000-10-10 23:00");
-        } catch (ImproperFormatException e) {
+        } catch (ImproperDeadlineFormatException e) {
+            throw new RuntimeException(e);
+        } catch (ImproperEventFormatException e) {
             throw new RuntimeException(e);
         }
     }

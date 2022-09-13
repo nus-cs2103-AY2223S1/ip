@@ -6,6 +6,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exceptions.DukeException;
 
+/**
+ * Representation of a command to delete task to the taskList.
+ */
 public class DeleteCommand extends Command {
 
     private int deleteTask;

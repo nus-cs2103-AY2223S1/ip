@@ -5,12 +5,15 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exceptions.DukeException;
 
+/**
+ * Representation of a command passed to Duke to be processed.
+ */
 public abstract class Command {
 
     private boolean isExit = false;
 
-    /*
-     * Toggle Command to exit for Duke to stop scanning for next line.
+    /**
+     * Change if the current command is an exit command.
      */
     public void toggleExit() {
 
