@@ -3,7 +3,6 @@ package utility;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import duke.Duke;
 import exceptions.DukeException;
 import task.Deadline;
 import task.Event;
@@ -84,7 +83,7 @@ public class StorageParser {
         return deadline;
     }
     private static Event createEvent(String description, String date, boolean isMarked)
-            throws DukeException{
+            throws DukeException {
         Event event = stringToEvent(description, date);
         if (isMarked) {
             event.markAsDone();

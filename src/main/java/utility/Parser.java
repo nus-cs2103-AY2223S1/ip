@@ -1,7 +1,6 @@
 package utility;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +31,7 @@ import task.Task;
  */
 public class Parser {
     private static HashMap<String, Pattern> commandAliasesHashMap = new HashMap<>();
-    private static final int NO_OF_COMMANDS_SUPPORTED =12;
+    private static final int NO_OF_COMMANDS_SUPPORTED = 12;
 
     /**
      * Initializes hashmap which stores Patterns
@@ -40,16 +39,14 @@ public class Parser {
      *
      */
     public static void initialiseCommandAliasesHashMap() {
-        String[] aliasRegexes = new String[]{"todo|task|t", "l|list",
-                "deadline|d", "event|e", "mark|m", "unmark|um","bye|b|quit|q|exit",
-                "find|f", "longdesc", "istoday", "help|h", "delete|remove|r"
+        String[] aliasRegexes = new String[]{"todo|task|t", "l|list", "deadline|d", "event|e", "mark|m", "unmark|um","bye|b|quit|q|exit", "find|f", "longdesc", "istoday", "help|h", "delete|remove|r"
         };
-        String[] actualCommands = new String[] {"todo", "list", "deadline", "event",
-            "mark", "unmark", "bye", "find", "longdesc", "istoday", "help", "delete"};
+
+        String[] actualCommands = new String[] {"todo", "list", "deadline", "event", "mark", "unmark", "bye", "find", "longdesc", "istoday", "help", "delete"};
 
         if (commandAliasesHashMap.isEmpty()) {
             ArrayList<Pattern> patterns = makePatterns(aliasRegexes);
-            for(int i = 0; i < NO_OF_COMMANDS_SUPPORTED; i ++) {
+            for (int i = 0; i < NO_OF_COMMANDS_SUPPORTED; i++) {
                 commandAliasesHashMap.put(actualCommands[i], patterns.get(i));
             }
         }
@@ -67,7 +64,7 @@ public class Parser {
         ArrayList<Pattern> patterns = new ArrayList<>();
         Pattern tempPattern;
         for (String alias: regexes) {
-            tempPattern =  Pattern.compile(alias,
+            tempPattern = Pattern.compile(alias,
                     Pattern.CASE_INSENSITIVE);
             patterns.add(tempPattern);
         }
@@ -152,14 +149,14 @@ public class Parser {
         return str.toString();
     }
 
-    private static Event createEvent(String[] userInput) throws DukeException{
+    private static Event createEvent(String[] userInput) throws DukeException {
         String description = getEventDescription(userInput);
         LocalDate date = getEventDate(userInput);
         Event event = new Event(description, date);
         return event;
     }
 
-    private static String getEventDescription(String[] userInput) throws DukeException{
+    private static String getEventDescription(String[] userInput) throws DukeException {
         if (userInput.length >= 2) {
             int startIndexOfDescription = 1;
             int endIndexOfDescription = getStartOfDate(userInput);
@@ -174,7 +171,7 @@ public class Parser {
         String regex = "\\d\\d\\d\\d-\\d\\d-\\d\\d";
         Pattern datePattern = Pattern.compile(regex);
         Matcher dateMatcher;
-        for (int i = 1;i < userInput.length; i ++) {
+        for (int i = 1; i < userInput.length; i++) {
             dateMatcher = datePattern.matcher(userInput[i]);
             if (dateMatcher.matches()) {
                 return i;
@@ -183,7 +180,7 @@ public class Parser {
         throw new DukeException("No date given");
     }
 
-    private static LocalDate getEventDate(String[] userInput) throws DukeException{
+    private static LocalDate getEventDate(String[] userInput) throws DukeException {
         int indexOfDate = getStartOfDate(userInput);
         return LocalDate.parse(userInput[indexOfDate]);
     }
@@ -199,7 +196,7 @@ public class Parser {
         return getEventDescription(userInput);
     }
 
-    private static LocalDate getDeadlineDate(String[] userInput) throws DukeException{
+    private static LocalDate getDeadlineDate(String[] userInput) throws DukeException {
         return getEventDate(userInput);
     }
 
@@ -207,7 +204,7 @@ public class Parser {
         return findIntInStringArray(userInput);
     }
 
-    private static int findIntInStringArray(String[] array) throws DukeException{
+    private static int findIntInStringArray(String[] array) throws DukeException {
         String intRegex = "\\*d";
         Pattern intPattern = Pattern.compile(intRegex);
         Matcher matchInt;
