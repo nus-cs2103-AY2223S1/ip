@@ -48,7 +48,6 @@ public class Storage {
                 inputs.addTask(newTask);
             } else if (taskType.equals("D")) {
                 String[] timingContent = taskContentHelper.split("[\\(||\\)]");//this is to split up and obtain time segment.
-                System.out.println("timingContent: " + timingContent[1]);
                 String time[] = timingContent[1].split(" ");//array of the elements in the time segment.
                 String dateHelper = "";// the specific date.
                 for (int i = 1; i < time.length; i++) {

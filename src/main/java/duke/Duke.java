@@ -198,9 +198,13 @@ public class Duke extends Application {
         userInput.clear();
     }
     //exception added
+
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns the response to the user after parsing through his command.
+     * 
+     * @param input
+     * @return a String of representing the response a user gets from his input.
+     * @throws DukeException
      */
     String getResponse(String input) throws DukeException {
         //parses the user input and store the input accordingly in storage and taskList.
