@@ -1,6 +1,6 @@
 # User Guide
 
-![UI](UI.png)
+![Ui](Ui.png)
 
 ## Quick start
 1. Ensure you have Java `11` or above installed in your Computer.
