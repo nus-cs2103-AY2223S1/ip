@@ -94,7 +94,7 @@ public class DukePro extends Application {
      * @return A String.
      */
     private String getResponse(String input) {
-        return "Duke heard: " + input;
+        return "Bubbles heard: " + input;
     }
 
     /**
@@ -135,7 +135,7 @@ public class DukePro extends Application {
         mainLayout.setPrefSize(400.0, 600.0);
         setAnchorPane();
 
-        Label dukeText = new Label(getResponse(startTxt));
+        Label dukeText = new Label(startTxt);
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
