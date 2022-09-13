@@ -1,8 +1,8 @@
-# Duke project v2.0
+# Duke
 
 Your friendly chatbot to help you keep track of tasks.
 
-![Ui](https://user-images.githubusercontent.com/97219114/189934119-1ae25142-9970-4bc8-9fd2-34f0be61523d.png)
+![Ui](https://user-images.githubusercontent.com/97219114/189935865-837c4d56-6f3e-41a7-8ec3-6cfba626f311.png)
 
 ## Installation
 1. Ensure you have Java 11 installed
