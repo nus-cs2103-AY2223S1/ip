@@ -1,6 +1,9 @@
 package duke.commands;
 
 import duke.*;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+import duke.tasks.ToDos;
 import duke.ui.Ui;
 
 public class ToDoCommand extends Command {
@@ -16,9 +19,8 @@ public class ToDoCommand extends Command {
     }
 
     public String execute() throws DukeException{
-        String response = "";
-        String[] breakitdown = input.split(" ");
-        if (breakitdown.length == 1) {
+        String[] splitInput = input.split(" ");
+        if (splitInput.length == 1) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         }
         String taskName = input.substring(5);

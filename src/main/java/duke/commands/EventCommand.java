@@ -1,6 +1,9 @@
 package duke.commands;
 
 import duke.*;
+import duke.tasks.Events;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
 import duke.ui.Ui;
 
 public class EventCommand extends Command {
@@ -16,8 +19,8 @@ public class EventCommand extends Command {
     }
 
     public String execute() throws DukeException {
-        String[] breakitdown = input.split(" ");
-        if (breakitdown.length == 1) {
+        String[] splitInput = input.split(" ");
+        if (splitInput.length == 1) {
             throw new DukeException("OOPS!!! The description of an event cannot be empty.");
         }
         String desc = input.substring(6);

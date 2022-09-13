@@ -2,9 +2,9 @@ package duke;
 
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
 
 import duke.commands.Command;
+import duke.tasks.TaskList;
 import duke.ui.MainWindow;
 import duke.ui.Ui;
 import javafx.application.Application;
