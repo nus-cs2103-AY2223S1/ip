@@ -56,6 +56,7 @@ public class Duke {
         System.out.println("Got it. I've added this task:" + "\n" + toDo + "\n" + "Now you have " + tasks.getSize()
                 + " tasks in your list.");
         System.out.println(HORIZONTAL_LINE_BREAK);
+        storage.save(tasks);
     }
 
     public void setDeadLine(String description, String by) {
@@ -65,6 +66,7 @@ public class Duke {
         System.out.println("Got it. I've added this task:" + "\n" + deadLine + "\n" + "Now you have " + tasks.getSize()
                 + " tasks in your list.");
         System.out.println(HORIZONTAL_LINE_BREAK);
+        storage.save(tasks);
     }
 
     public void setEvent(String description, String at) {
@@ -74,6 +76,7 @@ public class Duke {
         System.out.println("Got it. I've added this task:" + "\n" + event + "\n" + "Now you have " + tasks.getSize()
                 + " tasks in your list.");
         System.out.println(HORIZONTAL_LINE_BREAK);
+        storage.save(tasks);
     }
 
     public void mark(int index) throws DukeException {
