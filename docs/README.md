@@ -22,9 +22,7 @@ NyanDuke can find tasks using keywords or by dates so you won't have to scour th
 
 ## Usage
 
-<div markdown="block" "class="alert alert-info>
-
-**:information_source: Notes about the command format:**<br>
+###Notes:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `todo sleep`.
@@ -37,8 +35,6 @@ NyanDuke can find tasks using keywords or by dates so you won't have to scour th
   e.g. in `delete TASK_NUMBER ...`, `TASK_NUMBER` is a parameter which can be used as `delete 1` or `delete 1 3 5`.
 
 * The parameter `TASK_NUMBER` refers to the number index of the task as given by the `list` command.
-
-</div>
 
 ### `todo` - Adding a todo task
 
