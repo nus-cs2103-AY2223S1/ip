@@ -19,11 +19,11 @@ public class Parser {
         try {
             todo = todo.split(" ", 2)[1].trim();
             ToDo taskToDo = new ToDo(todo);
+            //will not add the task if its a duplicate
             if (taskList.isDuplicateTask(taskToDo)) {
-                taskList.addTask(taskToDo);
-                throw new DukeException("Duplicated task detected, I have added\n" +
-                        "the task to your list but you might want\n" +
-                        "to check on it.");
+                throw new DukeException("Duplicate task detected, you might want\n" +
+                        "to be more specific if this task is\n" +
+                        "similar to another task on your list.");
             }
             taskList.addTask(taskToDo);
             return (ui.printAddedTask(taskToDo.toString()));
@@ -44,12 +44,12 @@ public class Parser {
             String desc = deadline.split("/by")[0].trim();
             String by = deadline.split("/by")[1].trim();
             Deadline taskDeadline = new Deadline(desc, by);
+            //will not add the task if it's a duplicate
             if (taskList.isDuplicateTask(taskDeadline)) {
                 //throws exception for duplicate warning and adds task to the list.
-                taskList.addTask(taskDeadline);
-                throw new DukeException("Duplicated task detected, I have added\n" +
-                        "the task to your list but you might want\n" +
-                        "to check on it.");
+                throw new DukeException("Duplicate task detected, you might want\n" +
+                        "to be more specific if this task is\n" +
+                        "similar to another task on your list.");
             }
             taskList.addTask(taskDeadline);
             return (ui.printAddedTask(taskDeadline.toString()));
@@ -63,16 +63,16 @@ public class Parser {
     private static String parseEvent(String event, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
-            //splits away event into its description and date
+            //splits away event into it's description and date
             event = event.split(" ", 2)[1];
             String desc = event.split("/at")[0].trim();
             String at = event.split("/at")[1].trim();
             Event taskEvent = new Event(desc, at);
+            //will not add the task if its a duplicate
             if (taskList.isDuplicateTask(taskEvent)) {
-                taskList.addTask(taskEvent);
-                throw new DukeException("Duplicated task detected, I have added\n" +
-                        "the task to your list but you might want\n" +
-                        "to check on it.");
+                throw new DukeException("Duplicate task detected, you might want\n" +
+                        "to be more specific if this task is\n" +
+                        "similar to another task on your list.");
             }
             taskList.addTask(taskEvent);
             return (ui.printAddedTask(taskEvent.toString()));
@@ -153,8 +153,6 @@ public class Parser {
                     response += (ui.printMarkUndone(taskList.getTask(index).toString()));
 
                 } else if (instruction.equals("todo")) {
-                    String todoTask = str.split(" ", 2)[1].trim();
-
                     response += parseToDo(str, taskList);
 
                 } else if (instruction.equals("deadline")) {
