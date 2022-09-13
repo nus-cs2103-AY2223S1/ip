@@ -16,28 +16,28 @@ Simply type `list` to display all the tasks you currently have.
 ### Create a Task:
 Tasks are your things to do. They are categorised into 3 types: Todo, Event and Deadline.
 
-Create a new Todo task by simply typing `todo` followed by a spacing and your task name.
+Create a new Todo task by simply typing `todo` followed by a spacing and your task name.  
 Example: `todo homework`
 
-For tasks that will happen at a particular date, use the Event task type instead. To create an event, type `event` followed by your task name and then  `/at` and a date specified in the YYYY-MMM-D format.
+For tasks that will happen at a particular date, use the Event task type instead. To create an event, type `event` followed by your task name and then  `/at` and a date specified in the YYYY-MMM-D format.  
 Example: `event visit friend /at 2022-Mar-12`
 
-For tasks that must be done before a particular date, use the Deadline task type instead. To create a deadline, type `deadline` followed by your task name and then  `/by` and a date specified in the YYYY-MMM-D format.
+For tasks that must be done before a particular date, use the Deadline task type instead. To create a deadline, type `deadline` followed by your task name and then  `/by` and a date specified in the YYYY-MMM-D format.  
 Example: `deadline Assignment 1 /by 2022-Mar-12`
 
 ### Mark and Unmark Tasks:
-Mark some tasks as complete by using the `mark` command followed by the task number(s). For example, marking tasks 1, 2 and 4 as complete can be done by typing:
+Mark some tasks as complete by using the `mark` command followed by the task number(s). For example, marking tasks 1, 2 and 4 as complete can be done by typing:  
 `mark 1 2 4`
 
-Unmark some tasks as incomplete by using the `unmark` command followed by the task number(s). For example, unmarking tasks 1, 2 and 4 as incomplete can be done by typing:
+Unmark some tasks as incomplete by using the `unmark` command followed by the task number(s). For example, unmarking tasks 1, 2 and 4 as incomplete can be done by typing:  
 `unmark 1 2 4`
 
 ### Delete Tasks:
-Delete some tasks from the list by using the `delete` command followed by the task number(s). For example, deleting tasks 1, 2 and 4 from your list can be done by typing:
+Delete some tasks from the list by using the `delete` command followed by the task number(s). For example, deleting tasks 1, 2 and 4 from your list can be done by typing:  
 `delete 1 2 4`
 
 ### Find Tasks:
-Find all tasks from the list by using the `find` command followed by your search term (only 1 word long). For example, finding all tasks with the word "homework" in them can be done by typing:
+Find all tasks from the list by using the `find` command followed by your search term (only 1 word long). For example, finding all tasks with the word "homework" in them can be done by typing:  
 `find homework`
 
 ### Exit Duke
