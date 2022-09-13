@@ -31,7 +31,7 @@ public class MainWindow extends AnchorPane {
     /** Image of the user */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     /** Image of Pluto */
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image plutoImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
      * Initializes the window.
@@ -39,8 +39,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        scrollPane.setFitToWidth(true);
+        DialogBox display = DialogBox.getPlutoDialog(Ui.showWelcome());
+        display.setDialogImage(plutoImage);
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(Ui.showWelcome(), dukeImage)
+                display
         );
     }
 
@@ -59,14 +62,16 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
-        String response = pluto.getResponse(input);
+        DialogBox input = DialogBox.getUserDialog(userInput.getText());
+        input.setDialogImage(userImage);
+        DialogBox response = pluto.getResponse(userInput.getText());
+        response.setDialogImage(plutoImage);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                input,
+                response
         );
         userInput.clear();
-        if (response.equals("See You Later!")) {
+        if (response.isExitDialogBox()) {
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {

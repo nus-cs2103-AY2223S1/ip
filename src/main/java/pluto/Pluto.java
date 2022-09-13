@@ -1,6 +1,7 @@
 package pluto;
 
 import pluto.command.Command;
+import pluto.controller.DialogBox;
 
 /**
  * Logic of chatbot.
@@ -33,12 +34,12 @@ public class Pluto {
      * @param input Input by the user.
      * @return Response generated.
      */
-    public String getResponse(String input) {
+    public DialogBox getResponse(String input) {
         try {
             Command c = Parser.parse(input.strip());
-            return c.execute(tasks, ui, storage);
+            return DialogBox.getPlutoDialog(c.execute(tasks, ui, storage));
         } catch (PlutoException e) {
-            return ui.showError(e.getMessage());
+            return DialogBox.getPlutoErrorDialog(ui.showError(e.getMessage()));
         }
     }
 }
