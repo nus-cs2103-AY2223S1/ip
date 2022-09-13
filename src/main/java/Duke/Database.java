@@ -39,6 +39,7 @@ public class Database {
             String type = data.substring(1,2);
             String status = data.substring(4,5);
 
+            String substring = data.substring(data.indexOf("(") + 5, data.length() - 1);
             switch (type) {
                 case "T":
                     String todoDescription = data.substring(7);
@@ -46,12 +47,12 @@ public class Database {
                     break;
                 case "D":
                     String deadlineDescription = data.substring(7, data.indexOf("("));
-                    String by = data.substring(data.indexOf("(") + 5, data.length() - 1);
+                    String by = substring;
                     curr = new Deadline(deadlineDescription, by);
                     break;
                 case "E":
                     String eventDescription = data.substring(7, data.indexOf("("));
-                    String at = data.substring(data.indexOf("(") + 5, data.length() - 1);
+                    String at = substring;
                     curr = new Deadline(eventDescription, at);
                     break;
                 default:
