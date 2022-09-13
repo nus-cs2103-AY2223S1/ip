@@ -1,5 +1,8 @@
 package duke.gui;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.core.Duke;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -8,9 +11,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -33,10 +33,14 @@ public class MainWindow {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/hoshiyomi.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/sui.jpg"));
 
+    /**
+     * Initializes the Main Window.
+     *
+     * @since 0.3
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-
     }
 
     public void setDuke(Duke d) {

@@ -2,7 +2,7 @@
 ![](Ui.png)
 ---
 
-##Quick Start
+## Quick Start
 
 ---
 1. Ensure you have Java ```11``` or above installed on your computer.
@@ -24,6 +24,7 @@ Information attached to tasks:</br>
 - Completion status
 - Time (In the case of Deadlines and Events)
 - Tags
+
 ### Feature-Help
 View all commands available to Duke within the application.
 ### Feature-Mark

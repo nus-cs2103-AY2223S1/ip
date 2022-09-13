@@ -1,6 +1,17 @@
 package duke.util;
 
-import duke.command.*;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.HelpCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TagCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 
 /**
@@ -61,7 +72,7 @@ public class Parser {
         }
     }
 
-    public static int parseTaskId (String taskIdString) {
+    public static int parseTaskId(String taskIdString) {
         return Integer.parseInt(taskIdString) - 1;
     }
 }

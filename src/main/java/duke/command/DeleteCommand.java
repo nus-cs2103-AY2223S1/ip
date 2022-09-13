@@ -81,7 +81,7 @@ public class DeleteCommand extends Command {
      * @throws DukeException
      * @since 0.3
      */
-    private String checkTaskIdThenDelete (int taskId, Storage storage) throws DukeException {
+    private String checkTaskIdThenDelete(int taskId, Storage storage) throws DukeException {
         if (tasks.size() <= taskId || taskId < 0) {
             throw new DukeException("that task you want to delete does not exist."
                     + "\nUse the [list] command to check what tasks are available.");
@@ -97,7 +97,7 @@ public class DeleteCommand extends Command {
      * @return Duke's response
      * @since 0.3
      */
-    private String deleteTaskGetResponse (int taskId, Storage storage) {
+    private String deleteTaskGetResponse(int taskId, Storage storage) {
         String response = ui.delete(tasks.getTask(taskId), (tasks.size() - 1));
         tasks.remove(taskId);
         storage.saveDuke(tasks);

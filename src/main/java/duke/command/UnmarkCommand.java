@@ -81,7 +81,7 @@ public class UnmarkCommand extends Command {
      * @throws DukeException
      * @since 0.3
      */
-    private String checkTaskIdThenUnmark (int taskId, Storage storage) throws DukeException {
+    private String checkTaskIdThenUnmark(int taskId, Storage storage) throws DukeException {
         if (tasks.size() <= taskId || taskId < 0) {
             throw new DukeException("that task you want to delete does not exist."
                     + "\nUse the [list] command to check what tasks are available.");
@@ -97,7 +97,7 @@ public class UnmarkCommand extends Command {
      * @return Duke's response
      * @since 0.3
      */
-    private String unmarkTaskGetResponse (int taskId, Storage storage) {
+    private String unmarkTaskGetResponse(int taskId, Storage storage) {
         unmarkTask(taskId);
         String response = ui.unmark(tasks.getTask(taskId));
         storage.saveDuke(tasks);
