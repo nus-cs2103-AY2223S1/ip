@@ -53,6 +53,16 @@ public class TaskList {
         }
     }
 
+    public String markUndone(String value) throws DukeException {
+        int index = Integer.parseInt(value) - 1;
+        if (index < 0 || index > tasks.size() - 1) {
+            throw new OutOfRangeException();
+        } else {
+            tasks.get(index).markAsUndone();
+            return String.format("Okay! I've marked this task as undone: \n%s", printTask(index));
+        }
+    }
+
     /**
      * Deletes numbered task in task list.
      *
@@ -189,7 +199,7 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             int j = i + 1;
             Task item = tasks.get(i);
-            sb.append(j).append(".").append(item.toString()).append("\n");
+            sb.append(j).append(". ").append(item.toString()).append("\n");
         }
         return sb.toString();
     }

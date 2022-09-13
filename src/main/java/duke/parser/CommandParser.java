@@ -15,6 +15,7 @@ public class CommandParser {
         LIST,
         DELETE,
         DONE,
+        UNDONE,
         BEFORE,
         FIND,
         TODO,
@@ -67,6 +68,9 @@ public class CommandParser {
                 break;
             case DONE:
                 response = taskList.markDone(desc);
+                break;
+            case UNDONE:
+                response = taskList.markUndone(desc);
                 break;
             case BEFORE:
                 response = taskList.printDeadline(time);

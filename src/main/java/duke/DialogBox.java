@@ -12,9 +12,14 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 
-import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 /**
  * An example of a custom control using FXML.
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
@@ -36,8 +41,10 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-//        txt.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
         dialog.setText(text);
+        dialog.setTextFill(Color.web("#FFFFFF"));
+        dialog.setBackground(new Background(new BackgroundFill(Color.web("#0076a3"),
+                new CornerRadii(5.0), new Insets(-5.0))));
         displayPicture.setImage(img);
     }
 
@@ -49,6 +56,8 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        dialog.setBackground(new Background(new BackgroundFill(Color.web("#03AC13"),
+                new CornerRadii(5.0), new Insets(-5.0))));
     }
 
     public static DialogBox getUserDialog(String text, Image img) {

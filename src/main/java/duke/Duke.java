@@ -33,7 +33,4 @@ public class Duke {
         return COMMAND_PARSER.handle(command);
     }
 
-    public boolean isHasTerminated() {
-        return hasTerminated;
-    }
 }
