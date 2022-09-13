@@ -17,8 +17,7 @@ public class Todo extends Task {
 
     @Override
     public String toString() {
-        String color = (isDone ? Task.ANSI_GREEN : Task.ANSI_RED);
-        return color + "[T]" + super.toString() + Task.ANSI_RESET;
+        return "[T]" + super.toString();
     }
 
     @Override

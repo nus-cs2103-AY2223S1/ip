@@ -38,11 +38,7 @@ public class ShowCommand extends Command {
                 filteredTasks.addTask(t);
             }
         }
-        if (filteredTasks.nTasks() == 0) {
-            return ui.print("No tasks found on this date.");
-        } else {
-            return ui.print("Here are the tasks on this date:\n" + ui.print(filteredTasks.toString()));
-        }
+        return ui.showUi(filteredTasks);
     }
 
     @Override

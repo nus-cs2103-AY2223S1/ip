@@ -16,11 +16,7 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        if (tasks.nTasks() == 0) {
-            return ui.print("No tasks added yet.");
-        } else {
-            return ui.print("Here are the tasks in your list:\n" + ui.print(tasks.toString()));
-        }
+        return ui.listUi(tasks);
     }
 
     @Override

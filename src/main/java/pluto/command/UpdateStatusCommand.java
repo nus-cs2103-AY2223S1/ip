@@ -6,6 +6,7 @@ import pluto.PlutoException;
 import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
+import pluto.task.Task;
 
 /**
  * Command to update status of a task.
@@ -38,14 +39,8 @@ public class UpdateStatusCommand extends Command {
         tasks.markTask(idx, isDone);
         try {
             storage.rewriteFile(tasks);
-            StringBuilder markMessage = new StringBuilder();
-            if (isDone) {
-                markMessage.append("Nice! I've marked this task as done:\n");
-            } else {
-                markMessage.append("OK, I've marked this task as not done yet:\n");
-            }
-            markMessage.append("\t" + tasks.getTask(idx).toString());
-            return ui.print(markMessage);
+            Task t = tasks.getTask(idx);
+            return ui.updateStatusUi(t, isDone);
         } catch (IOException e) {
             tasks.markTask(idx, !isDone);
             throw new PlutoException("OOPS!!! Couldn't update task status. Try again!");

@@ -23,8 +23,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        String color = (isDone ? Task.ANSI_GREEN : Task.ANSI_RED);
-        return color + "[D]" + super.toString() + " (by: " + getDateTime(by) + ")" + Task.ANSI_RESET;
+        return "[D]" + super.toString() + " (by: " + getDateTime(by) + ")";
     }
 
     @Override

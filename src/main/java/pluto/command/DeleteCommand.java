@@ -34,11 +34,7 @@ public class DeleteCommand extends Command {
         Task t = tasks.deleteTask(idx);
         try {
             storage.rewriteFile(tasks);
-            StringBuilder deleteMessage = new StringBuilder();
-            deleteMessage.append("Noted. I've removed this task:\n");
-            deleteMessage.append(String.format("\t%s\n", t.toString()));
-            deleteMessage.append(String.format("Now you have %d tasks in the list.", tasks.nTasks()));
-            return ui.print(deleteMessage);
+            return ui.deleteUi(t) + ui.numTasks(tasks);
         } catch (IOException e) {
             tasks.addTask(idx - 1, t);
             throw new PlutoException("OOPS!!! Couldn't delete task. Try again!");

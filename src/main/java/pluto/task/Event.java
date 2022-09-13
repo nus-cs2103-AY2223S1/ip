@@ -23,8 +23,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        String color = (isDone ? Task.ANSI_GREEN : Task.ANSI_RED);
-        return color + "[E]" + super.toString() + " (at: " + getDateTime(at) + ")" + Task.ANSI_RESET;
+        return "[E]" + super.toString() + " (at: " + getDateTime(at) + ")";
     }
 
     @Override
