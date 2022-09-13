@@ -31,11 +31,13 @@ public class EventCommand extends Command {
             return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
                     + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
         } catch (ArrayIndexOutOfBoundsException e1) {
-            throw new DukeException(DukeUi.INVALID_DEADLINE);
-        } catch (IOException e2) {
-            throw new DukeException(e2.getMessage());
-        } catch (DukeException e3) {
-            return e3.toString();
+            throw new DukeException(DukeUi.INVALID_EVENT);
+        } catch (ClassCastException e2) {
+            throw new DukeException(DukeUi.CLASS_CAST_ERROR);
+        } catch (IOException e3) {
+            throw new DukeException(e3.getMessage());
+        } catch (DukeException e4) {
+            return e4.toString();
         }
     }
 

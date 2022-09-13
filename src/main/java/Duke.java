@@ -36,8 +36,6 @@ public class Duke {
             return c.execute(tasks, ui, storage);
         } catch (DukeException e) {
             return e.toString();
-        } catch (DateTimeParseException e2) {
-            return "deadline must be of form yyyy-mm-dd";
         }
     }
 }

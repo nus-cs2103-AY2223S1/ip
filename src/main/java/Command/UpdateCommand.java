@@ -7,6 +7,9 @@ import Duke.TaskList;
 
 import java.io.IOException;
 
+/**
+* Command that updates a description of a specified task when executed.
+*/
 public class UpdateCommand extends Command {
 
     boolean isExit;

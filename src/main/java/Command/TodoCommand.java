@@ -30,8 +30,10 @@ public class TodoCommand extends Command {
                     + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
         } catch (IOException e1) {
             throw new DukeException(e1.getMessage());
-        } catch (DukeException e2) {
-            return e2.toString();
+        } catch (ClassCastException e2) {
+            throw new DukeException(DukeUi.CLASS_CAST_ERROR);
+        } catch (DukeException e3) {
+            return e3.toString();
         }
     }
 

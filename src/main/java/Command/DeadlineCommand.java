@@ -34,10 +34,12 @@ public class DeadlineCommand extends Command {
             throw new DukeException(DukeUi.INVALID_DATE);
         } catch (ArrayIndexOutOfBoundsException e2) {
             throw new DukeException(DukeUi.INVALID_DEADLINE);
-        } catch (IOException e3) {
-            throw new DukeException(e3.getMessage());
-        } catch (DukeException e4) {
-            return e4.toString();
+        } catch (ClassCastException e3) {
+            throw new DukeException(DukeUi.CLASS_CAST_ERROR);
+        } catch (IOException e4) {
+            throw new DukeException(e4.getMessage());
+        } catch (DukeException e5) {
+            return e5.toString();
         }
     }
 

@@ -22,8 +22,8 @@ public class DukeUi {
     public static final String INVALID_DATE = "Deadline date must be of format yyyy-mm-dd";
     public static final String ADD_TASK_ERROR = "Error adding task, please try again";
     public static final String DELETE_TASK_ERROR = "Error deleting task, please try again";
-
-
+    public static final String CLASS_CAST_ERROR = "Error occured when adding categorising task, please try again";
+    public static final String FILE_NOT_FOUND_ERROR = "Error finding file, the file might have been deleted from your computer.";
     /**
      * Splits user input into a String array of length 2.
      *
@@ -71,7 +71,7 @@ public class DukeUi {
 
     /**
      * Prints the error message.
-     * @param errorMessage
+     * @param errorMessage the error message to be printed.
      */
     public void showError(String errorMessage) {
         System.out.println(errorMessage);
