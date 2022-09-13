@@ -1,3 +1,6 @@
+package Duke.commands;
+
+import Duke.*;
 import java.io.IOException;
 
 
@@ -16,7 +19,7 @@ public class UnmarkCommands extends TaskCommands {
             storage.updateTask(taskNumber, Constants.UNMARK);
             ui.printLine(tasks.getTaskToString(taskNumber));
         } else {
-            throw new DukeException("Task does not exist.");
+            throw new DukeException("tasks.Task does not exist.");
         }
     }
 }

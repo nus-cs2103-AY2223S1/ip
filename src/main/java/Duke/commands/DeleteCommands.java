@@ -1,3 +1,7 @@
+package Duke.commands;
+
+import Duke.*;
+
 import java.io.IOException;
 
 public class DeleteCommands extends TaskCommands {

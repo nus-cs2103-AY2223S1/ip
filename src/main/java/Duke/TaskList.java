@@ -1,3 +1,7 @@
+package Duke;
+
+import Duke.tasks.Task;
+
 import java.util.List;
 
 public class TaskList {

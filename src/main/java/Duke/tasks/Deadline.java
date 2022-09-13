@@ -1,17 +1,20 @@
+package Duke.tasks;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event extends Task{
 
-    protected final LocalDate at;
+public class Deadline extends Task {
 
+    protected final LocalDate by;
 
-    public Event(String description, String at) {
+    public Deadline(String description, String by) {
         super(description);
-        this.at = LocalDate.parse(at);
+        this.by = LocalDate.parse(by);
     }
+
 
     public String format(LocalDate time) {
         return time.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
@@ -20,16 +23,15 @@ public class Event extends Task{
     @Override
     public List<String> toList() {
         List<String> product = new ArrayList<>();
-        product.add("E");
+        product.add("D");
         product.addAll(super.toList());
-        product.add(at.toString());
+        product.add(by.toString());
         return product;
     }
 
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at:" + format(at) + ")";
-
+        return "[D]" + super.toString() + " (by:" + format(by) + ")";
     }
 }

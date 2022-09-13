@@ -1,3 +1,5 @@
+package Duke;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -18,7 +20,7 @@ public class Ui {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("___________________________________");
-        System.out.println("Hello! I'm Duke\n What can I do for you?");
+        System.out.println("Hello! I'm Duke.Duke\n What can I do for you?");
         System.out.println("____________________________________");
     }
 

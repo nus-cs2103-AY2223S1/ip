@@ -1,3 +1,7 @@
+package Duke;
+
+import Duke.commands.Command;
+
 import java.io.IOException;
 
 
