@@ -1,5 +1,7 @@
 package duke.parse;
 
+import java.util.Arrays;
+
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
@@ -33,16 +35,14 @@ public class Parser {
      *                       - The input is for a deadline or event, but it has no ' /by ' or ' /at ' keyword -
      *                       respectively - in the middle of its task and date description.
      */
-    private static String[] parseString(String action, String[] splitInput) throws DukeException {
+    // private static String[] parseString(String action, String[] splitInput) throws DukeException {
+
+    private static String[] parseString(String... input) throws DukeException {
         String[] newSplitInput = new String[3];
+        String action = input[0];
         newSplitInput[0] = action;
 
-        String[] splitInputWithoutCommand = new String[splitInput.length - 1];
-        for (int i = 1; i < splitInput.length; i++) {
-            splitInputWithoutCommand[i - 1] = splitInput[i];
-        }
-
-        String fullTaskDetails = String.join(" ", splitInputWithoutCommand);
+        String fullTaskDetails = String.join(" ", Arrays.copyOfRange(input, 1, input.length));
 
         if (action.equals("todo")) {
             if (fullTaskDetails.equals("")) {
@@ -143,7 +143,7 @@ public class Parser {
                 || action.equals("deadline")
                 || action.equals("todo")
         ) {
-            String[] newSplitInput = parseString(action, splitInput);
+            String[] newSplitInput = parseString(splitInput);
             Command command = new TaskCommand(newSplitInput, tasks);
             return command.performAction();
         } else if (action.equals("find")) {
