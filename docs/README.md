@@ -5,10 +5,18 @@
 ### Add Tasks
 
 Add new tasks to your task list. Tasks can be of the following types: 
-1. `todo` 
-2. `event` 
-3. `deadline`
 
+**1. `Todo` Task**
+
+  **Example: ** `todo {Task Name}`
+ 
+**2. `event` Task**
+  
+  **Example: ** `event {Task Name} /at {Event Start Date/Time} to {Event End Date/Time}`
+  
+**3. `deadline` Task**
+  
+  **Example: ** `deadline {Task Name} /by {Deadline Date/Time}`
 
 ### Feature-XYZ
 
