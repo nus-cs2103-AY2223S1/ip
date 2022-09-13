@@ -153,7 +153,7 @@ public class Parser {
         return str.toString();
     }
 
-    private static Event createEvent(String[] userInput) {
+    private static Event createEvent(String[] userInput) throws DukeException{
         String description = getEventDescription(userInput);
         LocalDate date = getEventDate(userInput);
         Event event = new Event(description, date);
@@ -165,6 +165,7 @@ public class Parser {
             int startIndexOfDescription = 1;
             int endIndexOfDescription = getStartOfDate(userInput);
             String description = getStringBetweenIndices(startIndexOfDescription, endIndexOfDescription, userInput);
+            return description;
         } else {
             throw new DukeException("Invalid description provided");
         }
@@ -180,6 +181,11 @@ public class Parser {
             }
         }
         throw new DukeException("No date given");
+    }
+
+    private static LocalDate getEventDate(String[] userInput) throws DukeException{
+        int indexOfDate = getStartOfDate(userInput);
+        return LocalDate.parse(userInput[indexOfDate]);
     }
 
     private static Deadline createDeadline(String[] userInput) {
