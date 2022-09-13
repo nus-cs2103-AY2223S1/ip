@@ -2,15 +2,10 @@ package duke.chatbot;
 
 import java.util.Scanner;
 
-import duke.taskmanager.TaskManager;
-import duke.taskmanager.exceptions.EmptyCommandException;
-import duke.taskmanager.exceptions.InvalidArgumentsException;
-import duke.taskmanager.exceptions.InvalidCommandException;
-import duke.taskmanager.exceptions.InvalidIndexException;
-import duke.taskmanager.exceptions.LoadDataException;
-import duke.taskmanager.task.DeadlineTask;
-import duke.taskmanager.task.EventTask;
-import duke.taskmanager.task.ToDoTask;
+import duke.chatbot.commandmanager.CommandManager;
+import duke.chatbot.commandmanager.commands.exceptions.EmptyCommandException;
+import duke.chatbot.taskmanager.TaskManager;
+import duke.chatbot.taskmanager.exceptions.LoadDataException;
 
 /**
  * Chatbot that processes commands.
@@ -20,6 +15,7 @@ public class ChatBot {
 
     private final String name;
     private final TaskManager taskManager;
+    private final CommandManager commandManager;
     private boolean isRunning;
     private String latestResponse;
     /**
@@ -31,12 +27,13 @@ public class ChatBot {
     public ChatBot(String name) {
         this.name = name;
         this.taskManager = new TaskManager();
+        this.commandManager = new CommandManager();
         this.isRunning = false;
         this.latestResponse = "";
     }
 
     /**
-     * Returns the runningState of the chatbot
+     * Returns the running state of the chatbot
      *
      * @return running state of the chatbot
      */
@@ -57,7 +54,7 @@ public class ChatBot {
      *
      * @return the greeting message
      */
-    private String getGreetingResponse() {
+    public String getGreetingResponse() {
         return "Greetings, " + this.name + " at your service.\n"
                 + "How may I help you today?\n";
     }
@@ -67,19 +64,20 @@ public class ChatBot {
      *
      * @return the goodbye message
      */
-    private String getGoodbyeResponse() {
+    public String getGoodbyeResponse() {
         return "Goodbye! It was nice seeing you.\n"
-                + "Enter anything to exit!\n";
+                + "Press enter to exit!\n";
     }
 
     /**
-     * Initializes the chatbot by setting its runningState to true and responds
+     * Initializes the chatbot by setting its running state to true and responds
      * with a greeting message. The task manager is also initialized by loading
      * any pre-existing data.
      */
     public void initialize() {
         this.isRunning = true;
         this.latestResponse = getGreetingResponse();
+        this.commandManager.initialize(this, this.taskManager);
         try {
             taskManager.loadData();
         } catch (LoadDataException exception) {
@@ -88,12 +86,10 @@ public class ChatBot {
     }
 
     /**
-     * Terminates the chatbot by setting its runningState to false and responds
-     * with a goodbye message.
+     * Terminates the chatbot by setting its running state to false
      */
     public void terminate() {
         this.isRunning = false;
-        this.latestResponse = getGoodbyeResponse();
     }
 
     /**
@@ -105,122 +101,31 @@ public class ChatBot {
      * @param input string of the input provided by the user
      */
     public void processCommand(String input) {
-        assert isRunning == true : "chatbot should be running";
-        Scanner inputScanner = new Scanner(input);
+        assert isRunning : "chatbot should be running";
+        input = input.strip();
         String response = "";
         try {
             // Guard Clause for empty commands
-            if (input.length() <= 0) {
+            if (input.length() == 0) {
                 throw new EmptyCommandException();
             }
 
-            // Get commands and arguments
+            // Get command and arguments
+            Scanner inputScanner = new Scanner(input);
             String command = inputScanner.next();
-            boolean hasArguments = inputScanner.hasNext();
             String arguments = "";
-            if (hasArguments) {
-                arguments = inputScanner.nextLine().substring(1);
+            if (inputScanner.hasNext()) {
+                arguments = inputScanner.nextLine().strip();
             }
+            inputScanner.close();
 
-            switch (command) {
-            case "bye":
-                if (hasArguments) {
-                    throw new InvalidCommandException(input);
-                }
-                terminate();
-                response = getLatestResponse();
-                break;
-            case "list":
-                if (hasArguments) {
-                    throw new InvalidCommandException(input);
-                }
-                response = taskManager.listTask();
-                break;
-            case "todo":
-                String todoTaskName = "";
-                if (hasArguments) {
-                    todoTaskName = arguments;
-                }
-                response = taskManager.addTask(new ToDoTask(todoTaskName));
-                break;
-            case "deadline":
-                String deadlineTaskName = "";
-                String deadline = "";
-                if (hasArguments) {
-                    String[] argumentList = arguments.split(DeadlineTask.TASK_DELIMITER);
-                    if (argumentList.length < 2) {
-                        throw new InvalidArgumentsException();
-                    }
-                    deadlineTaskName = argumentList[0];
-                    deadline = argumentList[1];
-                }
-                response = taskManager.addTask(new DeadlineTask(deadlineTaskName, deadline,
-                        taskManager.getDateFormat()));
-                break;
-            case "event":
-                String eventTaskName = "";
-                String eventTime = "";
-                if (hasArguments) {
-                    String[] argumentList = arguments.split(EventTask.TASK_DELIMITER);
-                    if (argumentList.length < 2) {
-                        throw new InvalidArgumentsException();
-                    }
-                    eventTaskName = argumentList[0];
-                    eventTime = argumentList[1];
-                }
-                response = taskManager.addTask(new EventTask(eventTaskName, eventTime,
-                        taskManager.getDateFormat()));
-                break;
-            case "mark":
-                response = taskManager.markTask(parseNumber(arguments));
-                break;
-            case "unmark":
-                response = taskManager.unmarkTask(parseNumber(arguments));
-                break;
-            case "delete":
-                response = taskManager.deleteTask(parseNumber(arguments));
-                break;
-            case "find":
-                if (!hasArguments) {
-                    throw new InvalidArgumentsException();
-                }
-                response = taskManager.findTask(arguments);
-                break;
-            case "update":
-                if (!hasArguments) {
-                    throw new InvalidArgumentsException();
-                }
-
-                String[] argumentList = arguments.split(TaskManager.UPDATE_DELIMITER);
-                if (argumentList.length < 2) {
-                    throw new InvalidArgumentsException();
-                }
-                response = taskManager.updateTask(parseNumber(argumentList[0]), argumentList[1]);
-                break;
-            default:
-                throw new InvalidCommandException(input);
-            }
+            response = this.commandManager.getCommand(command).execute(arguments);
+            this.taskManager.saveData();
             System.out.println(wrapMessage(response));
-            taskManager.saveData();
         } catch (Exception exception) {
             response = exception.getMessage();
         } finally {
-            inputScanner.close();
             this.latestResponse = response;
-        }
-    }
-
-    /**
-     * Parses a string argument into a number.
-     *
-     * @throws InvalidIndexException when the string argument is not a number
-     */
-    private int parseNumber(String argument) throws InvalidIndexException {
-        try {
-            int itemNumber = Integer.parseInt(argument);
-            return itemNumber;
-        } catch (NumberFormatException exception) {
-            throw new InvalidIndexException();
         }
     }
 

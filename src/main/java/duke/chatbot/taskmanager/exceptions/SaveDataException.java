@@ -1,4 +1,4 @@
-package duke.taskmanager.exceptions;
+package duke.chatbot.taskmanager.exceptions;
 
 /**
  * Exception that is thrown when there is a problem when saving data.

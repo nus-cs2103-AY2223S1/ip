@@ -1,13 +1,13 @@
-package duke.taskmanager.exceptions;
+package duke.chatbot.commandmanager.commands.exceptions;
 
 /**
  * Exception that is thrown when there are invalid arguments to a command
  */
 public class InvalidArgumentsException extends Exception {
-    /**
-     * Exception that handles commands that has invalid arguments
-     */
     public InvalidArgumentsException() {
         super("You placed invalid arguments!\n");
+    }
+    public InvalidArgumentsException(String exceptionMessage) {
+        super(exceptionMessage);
     }
 }

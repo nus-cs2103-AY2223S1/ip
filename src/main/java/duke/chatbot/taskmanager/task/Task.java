@@ -1,7 +1,4 @@
-package duke.taskmanager.task;
-
-import duke.taskmanager.exceptions.EmptyTaskException;
-import duke.taskmanager.exceptions.InvalidArgumentsException;
+package duke.chatbot.taskmanager.task;
 
 /**
  * Task is am abstract class to be inherited by other types of tasks.
@@ -18,15 +15,11 @@ public abstract class Task {
      *
      * @param taskType string of the type of task
      * @param taskName string of the name of the task
-     * @throws EmptyTaskException if taskName is empty
      */
-    Task(String taskType, String taskName) throws EmptyTaskException {
+    Task(String taskType, String taskName) {
         this.taskType = taskType;
         this.taskName = taskName;
         this.isCompleted = false;
-        if (taskName.equals("")) {
-            throw new EmptyTaskException();
-        }
     }
 
     /**
@@ -36,19 +29,11 @@ public abstract class Task {
      * @param taskType string of the type of task
      * @param taskName string of the name of the task
      * @param isCompleted boolean of the completion status of the task.
-     * @throws EmptyTaskException if taskName is empty
      */
-    Task(String taskType, String taskName, boolean isCompleted) throws EmptyTaskException {
+    Task(String taskType, String taskName, boolean isCompleted) {
         this.taskType = taskType;
         this.taskName = taskName;
         this.isCompleted = isCompleted;
-        if (taskName.equals("")) {
-            throw new EmptyTaskException();
-        }
-    }
-
-    protected void setTaskName(String taskName) {
-        this.taskName = taskName;
     }
 
     public String getTaskType() {
@@ -63,6 +48,10 @@ public abstract class Task {
         return this.isCompleted;
     }
 
+    protected void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
     public void setCompleted() {
         this.isCompleted = true;
     }
@@ -71,7 +60,7 @@ public abstract class Task {
         this.isCompleted = false;
     }
 
-    public abstract void update(String arguments) throws Exception;
+    public abstract void update(String... arguments);
 
     /**
      * Formats the details of the task into a format that can be read and written by
