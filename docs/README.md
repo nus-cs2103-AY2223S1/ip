@@ -4,21 +4,20 @@ Duke is a **Command Line Interface (CLI) based application** for managing your t
 you will find that this is faster than traditional GUI task managers.
 
 - [Quick start](#quick-start)
-
 - [Features](#features)
-  - Viewing help: `help`
-  - Listing tasks: `list`
-  - Add todo task: `todo`
-  - Add deadline task: `deadline`
-  - Add event: `event`
-  - Mark task as done: `mark`
-  - Unmark done task: `unmark`
-  - Delete task: `delete`
-  - Find task by keyword: `find`
-  - Close the app: `bye`
+  - [Viewing help: `help`](#viewing-help-help)
+  - [Listing tasks: `list`](#listing-tasks-list)
+  - [Add todo task: `todo`](#add-todo-task-todo)
+  - [Add deadline task: `deadline`](#add-deadline-task-deadline)
+  - [Add event: `event`](#add-event-event)
+  - [Mark task as done: `mark`](#mark-task-as-done-mark)
+  - [Unmark done task: `unmark`](#unmark-done-task-unmark)
+  - [Delete task: `delete`](#delete-task-delete)
+  - [Find task by keyword: `find`](#find-task-by-keyword-find)
+  - [Close the app: `bye`](#close-the-app-bye)
 
-- FAQ
-- Command summary
+- [FAQ](#faq)
+- [Command summary](#command-summary)
 
 ---
 
@@ -31,7 +30,7 @@ you will find that this is faster than traditional GUI task managers.
 4. Double-click the file to start the app. The GUI below should appear in a few seconds. 
 
 
-![This should be the startup screen you see](/Startup_screen.png)
+![Startup_screen.png](Startup_screen.png)
 
 
 > If you are experiencing issues with opening the app through double-clicking the file, you may alternatively open it by
@@ -40,7 +39,7 @@ you will find that this is faster than traditional GUI task managers.
 Enter will reveal the command guide. 
    
    Some example commands you can try:
-   - <code><b>list</code></b>: Lists all your current tasks
+   - <code><b>list</b></code>: Lists all your current tasks
    - <code><b>todo</b> Go to the beach with family</code>: Adds a todo task to the list of tasks
    - <code><b>delete</b> 2</code>: Deletes the 2nd task shown in the task list
    - <code><b>bye</b></code>: Exits the app
@@ -59,49 +58,111 @@ Enter will reveal the command guide.
 ### Viewing help: `help`
 Shows a message displaying various possible commands and what they do.
 
-
-![This is what will happen will you send the help command](/help_command.png)
-
+![help_command.png](help_command.png)
 
 Format:`help`
 
 ### Listing tasks: `list`
 
+Lists all your current tasks from the app.
+
+Format:`list`
+
 ### Add todo task: `todo`
+
+Adds a todo task to your list of tasks. This task will be unmarked when added to the list.
+
+Format: <code><b>todo</b> TASK_DESCRIPTION</code>
+
+![img.png](img.png)
+
+Examples:
+- <code><b>todo</b> Go to Egypt with grandfather</code>
+- <code><b>todo</b> Buy a gift for Mom</code>
 
 ### Add deadline task: `deadline`
 
+Adds a deadline task to your list of tasks. This task will be unmarked when added to the list.
+
+Format: <code><b>deadline</b> TASK_DESCRIPTION /YYYY-MM-DD</code>
+
+Examples:
+- <code><b>deadline</b> Software Engineering individual project /2022-09-16</code>
+- <code><b>deadline</b> Complete tutorial worksheet /2022-09-14</code>
+
 ### Add event: `event`
+
+Adds an event task to your list of tasks. This task will be unmarked when added to the list.
+
+Format: <code><b>event</b> TASK_DESCRIPTION /YYYY-MM-DD</code>
+
+>You cannot add an Event that is on the same day as an existing Event.
+
+Examples:
+- <code><b>event</b> Examination /2022-10-03</code>
+- <code><b>event</b> Birthday party /2022-10-15</code>
 
 ### Mark task as done: `mark`
 
+Marks one of the task within your list of tasks by index. Marked task will be indicated by a `X`.
+
+Format: <code><b>mark</b> INDEX_OF_TASK</code>
+
+Example: <code><b>mark</b> 4</code>
+
+![Marked_task.png](Marked_task.png)
+
 ### Unmark done task: `unmark`
+
+Unmarks one of the task within your list of tasks by index. Unmarked task will lose their mark `X`.
+
+Format: <code><b>unmark</b> 5</code>
 
 ### Delete task: `delete`
 
+Deletes a task from your list of tasks by index.
+
+Example: <code><b>delete</b> 6</code>
+
 ### Find task by keyword: `find`
+
+Find tasks based on given keyword. This command will display every task that contain the keyword.
+
+>The keyword is **case sensitive**.
+
+Format: <code><b>find</b> KEYWORD</code>
+
+Example: <code><b>find</b> Finish</code>
+
+![img_2.png](img_2.png)
 
 ### Close the app: `bye`
 
+Exits the application.
+
+Format: `bye`
+
+---
+
 ## FAQ
+**Q:** How do I transfer my data to another computer?
+
+**A:** After starting the app on the other computer, overwrite their empty data folder with the data folder from 
+your previous Duke home folder.
+
+---
 
 ## Command summary
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
-
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/duke.Duke.java` file, right-click it, and choose `Run duke.Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+| **Command** | **Format** |
+| --- | --- |
+| <code><b>help</b></code> | `help` |
+| <code><b>list</b></code> | `list` |
+| <code><b>todo</b></code> | `todo DESCRIPTION` |
+| <code><b>deadline</b></code> | `deadline DESCRIPTION /YYYY-MM-DD` |
+| <code><b>event</b></code> | `event DESCRIPTION /YYYY-MM-DD` |
+| <code><b>mark</b></code> | `mark INDEX` |
+| <code><b>unmark</b></code> | `unmark INDEX` |
+| <code><b>delete</b></code> | `delete INDEX` |
+| <code><b>find</b></code> | `find KEYWORD` |
+| <code><b>bye</b></code> | `bye` |
