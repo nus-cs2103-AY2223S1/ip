@@ -56,27 +56,6 @@ public class Duke extends Application {
         }
      }
 
-//    /**
-//     * Loads task list from storage and passes user input into parser.
-//     */
-//    public Command run() {
-//        Scanner sc = new Scanner(System.in);
-//        ui.start();
-//        try {
-//            storage.read(taskList);
-//            while (sc.hasNext()) {
-//                String input = sc.nextLine();
-//                return parser.parseInput(input, ui, storage, taskList);
-//            }
-//        } catch (IOException e) {
-//            System.out.println(e.toString());
-//        }
-//    }
-//
-//    public static void main(String[] args) {
-//        Duke duke = new Duke();
-//        duke.run();
-//    }
 
     @Override
     public void start(Stage stage) {
@@ -107,6 +86,8 @@ public class Duke extends Application {
             return ui.showDukeException(e);
         } catch (DateTimeParseException e) {
             return "OOPS!!! Please enter date in YYYY-MM-DD format!";
+        } catch (IndexOutOfBoundsException e) {
+            return "OOPS!!! Please make sure index is valid!";
         }
     }
 

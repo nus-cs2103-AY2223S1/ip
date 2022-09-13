@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
         this.taskList = taskList;
     }
 
-    public String execute() {
+    public String execute() throws IndexOutOfBoundsException {
         Task toDelete = taskList.delete(idx);
         return ui.printOnDelete(toDelete, taskList);
     }
