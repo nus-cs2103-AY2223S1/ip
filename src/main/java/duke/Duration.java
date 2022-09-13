@@ -40,7 +40,7 @@ public class Duration extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (needs " + duration + ")";
+        return "[DT]" + super.toString() + " (needs " + duration + ")";
     }
 
     /**

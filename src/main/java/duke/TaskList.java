@@ -83,6 +83,6 @@ public class TaskList {
      * @param toBeUnmarked The task to be unmarked.
      */
     public void unmark(Task toBeUnmarked) {
-        toBeUnmarked.setIsDone(true);
+        toBeUnmarked.setIsDone(false);
     }
 }
