@@ -10,14 +10,6 @@ import duke.tasklist.TaskList;
  * The driving engine for Duke
  */
 public class Duke {
-    /**
-     * The path to the file containing the user data
-     */
-    public static final String FILE_PATH = "tasks.txt";
-    /**
-     * The path to the file containing the previous user's data
-     */
-    public static final String PREVIOUS_TASKS_FILE_PATH = "tasksOld.txt";
     private static final Duke duke = new Duke();
 
     private final Storage storage;
@@ -28,7 +20,7 @@ public class Duke {
      * Constructs an instance with the default file path
      */
     private Duke() {
-        storage = new Storage(FILE_PATH, PREVIOUS_TASKS_FILE_PATH);
+        storage = new Storage();
         parser = new Parser();
         taskList = new TaskList();
         parseTasksFromStorage();

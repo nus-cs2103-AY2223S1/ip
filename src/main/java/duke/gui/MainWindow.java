@@ -1,7 +1,9 @@
-package duke;
+package duke.gui;
 
 import java.util.Objects;
 
+import duke.Duke;
+import duke.Responses;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;

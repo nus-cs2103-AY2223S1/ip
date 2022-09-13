@@ -10,17 +10,14 @@ import java.util.Scanner;
  * Represents the storage of the tasks on disk
  */
 public class Storage {
-    private final String filePath;
-
     /**
-     * Constructor for {@code Storage}
-     *
-     * @param filePath The filepath on the local Unix or Unix-like system
+     * The path to the file containing the user data
      */
-    public Storage(String filePath) {
-        this.filePath = filePath;
-    }
-
+    public static final String FILE_PATH = "tasks.txt";
+    /**
+     * The path to the file containing the previous user's data
+     */
+    public static final String PREVIOUS_TASKS_FILE_PATH = "tasksOld.txt";
     /**
      * Returns a {@code Scanner} to allow the client to read the file
      *
@@ -28,7 +25,7 @@ public class Storage {
      * @throws FileNotFoundException if the file does not exist
      */
     public Scanner getScannerForTasksFile() throws FileNotFoundException {
-        File tasksFile = new File(filePath);
+        File tasksFile = new File(Storage.FILE_PATH);
         if (tasksFile.exists()) {
             return new Scanner(tasksFile);
         }
@@ -41,11 +38,14 @@ public class Storage {
      * @param stringToWrite The {@code String} to write
      */
     public void writeToDisk(String stringToWrite) {
-        File tasksFile = new File(filePath);
+        File tasksFile = new File(Storage.FILE_PATH);
         boolean hasTasksFile = tasksFile.exists();
-        boolean isTasksFileDeleted = hasTasksFile && tasksFile.delete();
-        if (isTasksFileDeleted || !hasTasksFile) {
-            try (FileWriter fileWriter = new FileWriter(filePath)) {
+        boolean isTasksFileSaved = hasTasksFile && tasksFile.delete();
+
+        // rename
+
+        if (isTasksFileSaved || !hasTasksFile) {
+            try (FileWriter fileWriter = new FileWriter(Storage.FILE_PATH)) {
                 fileWriter.write(stringToWrite);
             } catch (IOException e) {
                 e.printStackTrace();
