@@ -58,7 +58,7 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         String styling = "-fx-background-color: bisque; -fx-background-radius: 50;"
-                + " -fx-padding: 10;" ;
+                + " -fx-padding: 10;";
         return new DialogBox(text, img, styling);
     }
 
