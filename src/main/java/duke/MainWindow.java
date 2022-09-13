@@ -22,8 +22,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Design (2).png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Design (3).png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/My Timetable .png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Design (2).png"));
 
     /**
      * Initializes the components within the MainWindow.
@@ -41,6 +41,7 @@ public class MainWindow extends AnchorPane {
     }
 
     public void setDuke(Duke d) {
+        assert d != null;
         duke = d;
     }
 
