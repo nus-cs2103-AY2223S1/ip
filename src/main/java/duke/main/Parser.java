@@ -19,7 +19,7 @@ public class Parser {
      */
     public static void parse(String input) throws DukeException {
         // Delimit over " " to extract first keyword
-        String[] inputTokens = input.split(" ", 3);
+        String[] inputTokens = input.split(" ", 2);
 
         try {
             command = Keyword.getKeyword(inputTokens[0]);
@@ -28,8 +28,10 @@ public class Parser {
             if (command == Keyword.LIST || command == Keyword.BYE) {
                 argument = null;
             } else if (command == Keyword.TAG) {
-                String taskNumber = inputTokens[1]; // Throws AOOIBE
-                String tagName = inputTokens[2]; // Throws AOOIBE
+                String argumentString = inputTokens[1]; // Throws AOOIBE
+                String[] tokens = argumentString.split(" ", 2);
+                String taskNumber = tokens[0];
+                String tagName = tokens[1];
 
                 // Only need to check task number, empty tag name is caught by AOOIBE
                 validateArgument(taskNumber, tagName);

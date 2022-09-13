@@ -41,7 +41,6 @@ public class TaskList {
     public Task getTask(String indexString) throws DukeException {
         try {
             int index = Integer.parseInt(indexString); // Throw NFE if invalid int
-            //assert (index > 0 && index < tasks.size()) : "Index out of range of task list";
             Task task = this.tasks.get(index - 1); // Throws IOOBE if invalid index
             return task;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {

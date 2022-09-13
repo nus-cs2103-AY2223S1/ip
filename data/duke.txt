@@ -1,0 +1,4 @@
+D | 0 | CS2103T IP | 2022-09-16 2359 | 
+T | 1 | ST2334 Tutorial | 
+T | 0 | Pack clothes | 
+T | 0 | Buy groceries | 
