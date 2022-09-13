@@ -17,7 +17,7 @@ public class List extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) {
-        return taskList.printTasks(uI);
+        return uI.generateTaskListToBePrinted(taskList);
     }
 
     /**

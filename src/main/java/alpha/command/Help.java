@@ -16,14 +16,6 @@ public class Help extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
-        return uI.returnText(
-                "COMMAND\t" + "FORMAT\n"
-                + "1. todo    \t\t" + "todo description\n"
-                + "2. event   \t\t" + "event description /on yyyy-mm-dd\n"
-                + "3. deadline\t" + "deadline description /by yyyy-mm-dd\n"
-                + "4. mark    \t\t" + "mark task number\n"
-                + "5. unmark  \t" + "unmark task number\n"
-                + "6. delete  \t\t" + "delete task number\n"
-                + "7. list    \t\t" + "list\n");
+        return uI.generateCommandExecutionMessage(this, null, 0);
     }
 }

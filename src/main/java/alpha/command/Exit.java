@@ -18,7 +18,7 @@ public class Exit extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
-        return uI.returnText(">> Bye, see you soon!");
+        return uI.generateCommandExecutionMessage(this, null, 0);
     }
 
     /**

@@ -33,7 +33,7 @@ public class Mark extends Command {
     public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.modifyTaskStatus(taskNumber, true);
         fileOperations.rewriteFile(taskList);
-        return uI.returnText(">> " + "marked task: " + this.taskNumber);
+        return uI.generateCommandExecutionMessage(this, null, taskNumber);
     }
 
     /**

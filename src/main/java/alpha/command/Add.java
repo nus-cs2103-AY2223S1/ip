@@ -14,7 +14,7 @@ import alpha.task.Task;
 public class Add extends Command {
 
     /** Task to be added to tbe list */
-    private Task task;
+    protected Task task;
 
     /**
      * Constructor that initialises the global variables.
@@ -48,7 +48,7 @@ public class Add extends Command {
             textToAppend = "[" + task.getTaskType() + "] [" + task.getStatus() + "] " + task.getDescription() + "\n";
         }
         fileOperations.writeToFile(textToAppend);
-        return uI.returnText(">> " + "added task: " + task.getDescription());
+        return uI.generateCommandExecutionMessage(this, task, 0);
     }
 
     /**
