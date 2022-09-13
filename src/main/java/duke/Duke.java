@@ -68,16 +68,15 @@ public class Duke {
             try {
                 ui.showPrompt();
                 String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.getExit();
+                Command command = Parser.parse(fullCommand);
+                command.execute(tasks, ui, storage);
+                isExit = command.getExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             }
         }
 
         ui.showExit();
-
     }
 
     /**
@@ -97,8 +96,8 @@ public class Duke {
 
     public String getResponse(String input) {
         try {
-            Command c = Parser.parse(input);
-            return c.execute(tasks, ui, storage);
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui, storage);
         } catch (Exception e) {
             return e.getMessage();
         }

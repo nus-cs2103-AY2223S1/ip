@@ -10,11 +10,8 @@ import java.util.ArrayList;
 
 import duke.exceptions.DukeException;
 import duke.exceptions.InputOutputException;
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.task.Todo;
 
 /**
  * Class dealing with storage of tasks.
@@ -68,37 +65,19 @@ public class Storage {
             }
             reader.close();
         } catch (IOException e) {
-            e.printStackTrace();
-            throw new InputOutputException("Error reading from data file");
+            throw new InputOutputException("Error reading from data file: " + e.getMessage());
         }
         return toReturn;
     }
 
     private ArrayList<String> tasksToString(TaskList tasks) {
-        ArrayList<String> tasksAsStrings = new ArrayList<>();
-        String currString;
+        ArrayList<String> tasksStrings = new ArrayList<>();
 
         for (Task currTask : tasks.get()) {
-            currString = "";
-            if (currTask instanceof Todo) {
-                currString += "T | ";
-                currString += currTask.isDone() ? "1 | " : "0 | ";
-                currString += currTask.getDescription();
-            } else if (currTask instanceof Deadline) {
-                currString += "D | ";
-                currString += currTask.isDone() ? "1 | " : "0 | ";
-                currString += currTask.getDescription() + " | ";
-                currString += currTask.getDate();
-            } else if (currTask instanceof Event) {
-                currString += "E | ";
-                currString += currTask.isDone() ? "1 | " : "0 | ";
-                currString += currTask.getDescription() + " | ";
-                currString += currTask.getDate();
-            }
-            tasksAsStrings.add(currString);
+            tasksStrings.add(currTask.getSaveString());
         }
 
-        return tasksAsStrings;
+        return tasksStrings;
     }
 
     /**

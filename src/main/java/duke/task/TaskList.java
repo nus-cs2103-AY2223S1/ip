@@ -46,9 +46,11 @@ public class TaskList {
 
         switch (parts[1]) {
         case "0":
+            assert task != null;
             task.markAsUndone();
             break;
         case "1":
+            assert task != null;
             task.markAsDone();
             break;
         default:
@@ -70,9 +72,8 @@ public class TaskList {
      * Marks specified task as done and displays result to user.
      *
      * @param taskNumber Index of task to be marked as done
-     * @param ui         UI object to display result
      */
-    public String markAsDone(int taskNumber, Ui ui) {
+    public String markAsDone(int taskNumber) {
         try {
             tasks.get(taskNumber).markAsDone();
             return "Nice! I've marked this task as done:\n  " + tasks.get(taskNumber);
@@ -85,9 +86,8 @@ public class TaskList {
      * Marks specified task as undone and displays result to user.
      *
      * @param taskNumber Index of task to be marked as undone
-     * @param ui         UI object to display result
      */
-    public String markAsUndone(int taskNumber, Ui ui) {
+    public String markAsUndone(int taskNumber) {
         try {
             tasks.get(taskNumber).markAsUndone();
             return "OK, I've marked this task as not done yet:\n  " + tasks.get(taskNumber);
@@ -96,7 +96,7 @@ public class TaskList {
         }
     }
 
-    private String printOnAdd(Task task, Ui ui) {
+    private String printOnAdd(Task task) {
         return "Got it. I've added this task:\n  "
                 + task
                 + "\nNow you have "
@@ -108,14 +108,13 @@ public class TaskList {
      * Adds task to TaskList and displays success to user.
      *
      * @param task Task to be added to list
-     * @param ui   UI object to display result
      */
-    public String addTask(Task task, Ui ui) {
+    public String addTask(Task task) {
         tasks.add(task);
-        return printOnAdd(task, ui);
+        return printOnAdd(task);
     }
 
-    private String printOnDelete(int taskNum, Ui ui) {
+    private String printOnDelete(int taskNum) {
         return "Noted. I've deleted this task:\n  "
                 + tasks.get(taskNum)
                 + "\nNow you have "
@@ -127,11 +126,10 @@ public class TaskList {
      * Deletes specified task and displays result to user.
      *
      * @param taskNumber Index of task to be deleted
-     * @param ui         UI object to display result
      */
-    public String deleteTask(int taskNumber, Ui ui) {
+    public String deleteTask(int taskNumber) {
         if (taskNumber >= 0 && taskNumber < tasks.size()) {
-            String toReturn = printOnDelete(taskNumber, ui);
+            String toReturn = printOnDelete(taskNumber);
             tasks.remove(taskNumber);
             return toReturn;
         } else {

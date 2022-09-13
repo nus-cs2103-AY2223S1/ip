@@ -14,7 +14,7 @@ public class Event extends Task {
      * @param at          Date the event is on
      */
     public Event(String description, String at) {
-        super(description, at);
+        super(description, at, TaskType.EVENT);
     }
 
     @Override

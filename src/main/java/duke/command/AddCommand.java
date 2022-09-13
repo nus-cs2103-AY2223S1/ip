@@ -26,7 +26,7 @@ public class AddCommand extends Command {
      * @param storage Storage object to save data after execution
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String toReturn = tasks.addTask(task, ui);
+        String toReturn = tasks.addTask(task);
         storage.saveToFile(tasks);
         return toReturn;
     }

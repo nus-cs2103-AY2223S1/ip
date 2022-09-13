@@ -16,16 +16,18 @@ public class Task {
     private final String description;
     private boolean isDone = false;
 
+    private TaskType taskType;
 
     /**
      * Creates new Task object with specified description.
      *
      * @param description Description for task
      */
-    public Task(String description) {
+    public Task(String description, TaskType taskType) {
         this.description = description;
         this.isDone = false;
         this.date = LocalDate.parse("1970-01-01");
+        this.taskType = taskType;
     }
 
     /**
@@ -34,8 +36,9 @@ public class Task {
      * @param description Description for task
      * @param date        Date to be attached to task
      */
-    public Task(String description, String date) {
+    public Task(String description, String date, TaskType taskType) {
         this.description = description;
+        this.taskType = taskType;
         try {
             this.date = LocalDate.parse(date);
         } catch (DateTimeParseException e) {
@@ -71,6 +74,21 @@ public class Task {
      */
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    public String getSaveString() {
+        String task = "";
+        if (taskType == TaskType.DEADLINE) {
+            task += "D | ";
+        } else if (taskType == TaskType.EVENT) {
+            task += "E | ";
+        } else {
+            task += "T | ";
+        }
+        task += isDone() ? "1 | " : "0 | ";
+        task += getDescription();
+
+        return task;
     }
 
     @Override

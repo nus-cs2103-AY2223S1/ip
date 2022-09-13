@@ -11,7 +11,7 @@ import duke.ui.Ui;
 /**
  * Generic Command parent class.
  */
-public class Command {
+public abstract class Command {
     protected Task task;
     protected int index;
     protected boolean isExit = false;

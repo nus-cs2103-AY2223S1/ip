@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
      * @param storage Storage object to save data after execution
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String toReturn = tasks.deleteTask(index, ui);
+        String toReturn = tasks.deleteTask(index);
         storage.saveToFile(tasks);
         return toReturn;
     }

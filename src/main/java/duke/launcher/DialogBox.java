@@ -3,6 +3,7 @@ package duke.launcher;
 import java.io.IOException;
 import java.util.Collections;
 
+import duke.exceptions.InputOutputException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,7 +34,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new InputOutputException(e.getMessage());
         }
 
         dialog.setText(text);
