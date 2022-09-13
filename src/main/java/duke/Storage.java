@@ -55,7 +55,7 @@ public class Storage {
      * @return A list of all the tasks in the file, in the type of an ArrayList.
      * @throws DukeException
      */
-    public ArrayList<Task> load() throws DukeException{
+    public ArrayList<Task> load() throws DukeException {
 
         try {
             Scanner scanner = new Scanner(file);
@@ -65,12 +65,8 @@ public class Storage {
             } else {
                 while (scanner.hasNextLine()) {
                     String task = scanner.nextLine();
-<<<<<<< Updated upstream
-                    String type = String.valueOf(task.charAt(1));
-=======
                     String type = String.valueOf(task.charAt(3));
                     assert type.equals("T") || type.equals("E") || type.equals("D");
->>>>>>> Stashed changes
 
                     if (type.equals("T")) {
                         String currTask = task.substring(9);
