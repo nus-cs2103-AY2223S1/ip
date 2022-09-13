@@ -8,11 +8,6 @@ import pluto.Ui;
  * Command to exit programme.
  */
 public class ExitCommand extends Command {
-    @Override
-    public boolean isExit() {
-        return true;
-    }
-
     /**
      * {@inheritDoc}
      *

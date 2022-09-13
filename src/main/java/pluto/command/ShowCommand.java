@@ -34,6 +34,7 @@ public class ShowCommand extends Command {
         for (int i = 0; i < tasks.nTasks(); i++) {
             Task t = tasks.getTask(i);
             LocalDate date = ((Task) t).getDateMaybe();
+            assert date != null : "Date cannot be null";
             if (this.date.equals(date)) {
                 filteredTasks.addTask(t);
             }
