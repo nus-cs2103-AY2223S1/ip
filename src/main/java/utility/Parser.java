@@ -208,16 +208,14 @@ public class Parser {
 
     private static int findIntInStringArray(String[] array) throws DukeException {
         String intRegex = "\\*d";
-        Pattern intPattern = Pattern.compile(intRegex);
-        Matcher matchInt;
         for (String s: array) {
-            matchInt = intPattern.matcher(s);
-            if (matchInt.matches()) {
+            if (Pattern.matches(intRegex, s)) {
                 return Integer.parseInt(s);
             }
         }
         throw new DukeException("No index given");
     }
+
     private static String getKeyword(String[] userInput) {
         String keyword = getStringBetweenIndices(1, userInput.length, userInput);
         return keyword;
