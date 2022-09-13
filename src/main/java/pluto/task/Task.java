@@ -10,13 +10,6 @@ import java.util.Locale;
  * Tasks that can be created by the user.
  */
 public abstract class Task {
-    /** Reset display color */
-    protected static final String ANSI_RESET = "";
-    /** Red display color */
-    protected static final String ANSI_RED = "";
-    /** Green display color */
-    protected static final String ANSI_GREEN = "";
-
     /** Task description */
     protected String description;
     /** Task status */

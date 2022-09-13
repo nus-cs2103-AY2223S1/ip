@@ -22,13 +22,8 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        TaskList t = tasks.filter(keyword);
-        if (t.nTasks() == 0) {
-            return ui.print("No tasks found.");
-        } else {
-            return ui.print("Here are the matching tasks in your list:\n" + ui.print(t.toString()));
-        }
-
+        TaskList filteredTasks = tasks.filter(keyword);
+        return ui.findUi(filteredTasks);
     }
 
     @Override
