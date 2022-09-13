@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.exception.DukeException;
+import duke.exception.InvalidIndexException;
 import duke.task.Task;
 
 /**
@@ -19,7 +21,7 @@ public class TaskList {
     private List<Task> tasks;
 
     /**
-     * Constructor for a TaskList instance containing a list of tasks.
+     * Creates a TaskList instance containing the given list of tasks.
      *
      * @param tasks The List of Tasks.
      */
@@ -35,7 +37,7 @@ public class TaskList {
     }
 
     /**
-     * Method that returns the number of Tasks in the List.
+     * Returns the number of Tasks in the List.
      *
      * @return The number of Tasks in the list.
      */
@@ -44,7 +46,7 @@ public class TaskList {
     }
 
     /**
-     * Method that returns a Task at a given index of the List.
+     * Returns a Task at a given index of the List.
      *
      * @param idx The index of the task.
      * @return The Task at the given index.
@@ -54,7 +56,7 @@ public class TaskList {
     }
 
     /**
-     * Method that adds a Task to the List.
+     * Adds a Task to the List.
      *
      * @param task The Task to add to the List.
      */
@@ -63,12 +65,16 @@ public class TaskList {
     }
 
     /**
-     * Method that deletes a Task at a given index of the List.
+     * Deletes a Task at a given index of the List.
      *
      * @param idx The index of the Task.
      * @return The deleted Task.
+     * @throws DukeException If the index is out of range.
      */
-    public Task deleteTask(int idx) {
+    public Task deleteTask(int idx) throws DukeException {
+        if (idx >= tasks.size()) {
+            throw new InvalidIndexException();
+        }
         Task deleted = tasks.get(idx);
         assert deleted != null;
         tasks.remove(idx);
@@ -76,12 +82,16 @@ public class TaskList {
     }
 
     /**
-     * Method that marks a Task (as done) at a given index of the List.
+     * Marks a Task (as done) at a given index of the List.
      *
      * @param idx The index of the Task.
      * @return The Task marked as done.
+     * @throws DukeException If the index is out of range.
      */
-    public Task markTask(int idx) {
+    public Task markTask(int idx) throws DukeException {
+        if (idx >= tasks.size()) {
+            throw new InvalidIndexException();
+        }
         Task task = tasks.get(idx);
         assert task != null;
         task.mark();
@@ -89,12 +99,16 @@ public class TaskList {
     }
 
     /**
-     * Method that marks a Task (as not done) at a given index of the List.
+     * Marks a Task (as not done) at a given index of the List.
      *
      * @param idx The index of the Task.
      * @return The Task marked as not done.
+     * @throws DukeException If the index is out of range.
      */
-    public Task unmarkTask(int idx) {
+    public Task unmarkTask(int idx) throws DukeException {
+        if (idx >= tasks.size()) {
+            throw new InvalidIndexException();
+        }
         Task task = tasks.get(idx);
         assert task != null;
         task.unmark();
@@ -102,7 +116,7 @@ public class TaskList {
     }
 
     /**
-     * Method that saves and updates the data file.
+     * Saves and updates the data file.
      *
      * @param filePath The filePath to the data file to write to.
      * @throws IOException if filePath is invalid.
@@ -117,7 +131,7 @@ public class TaskList {
     }
 
     /**
-     * Method that finds tasks that are similar to a given keyword.
+     * Returns matching tasks, given a keyword.
      *
      * @param keyword The String representing the matching keyword.
      * @return The TaskList containing the matching words.

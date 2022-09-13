@@ -18,7 +18,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor for a Duke instance based on a given data file.
+     * Creates a Duke instance based on a given data file.
      *
      * @param filePath The filePath of the data file.
      */
@@ -67,8 +67,10 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns a response to user input.
+     *
+     * @param input The user input.
+     * @return A String containing the response to the given user input.
      */
     public String getResponse(String input) {
         try {

@@ -14,14 +14,14 @@ public class Ui {
     private Scanner sc;
 
     /**
-     * Constructor for a Ui instance.
+     * Creates a Ui instance.
      */
     public Ui() {
         this.sc = new Scanner(System.in);
     }
 
     /**
-     * Method that returns a welcome message for the user.
+     * Returns a welcome message for the user.
      *
      * @return A welcome message for the user.
      */
@@ -30,7 +30,7 @@ public class Ui {
     }
 
     /**
-     * Method that returns a goodbye message for the user.
+     * Returns a goodbye message for the user.
      *
      * @return A goodbye message for the user.
      */
@@ -39,14 +39,14 @@ public class Ui {
     }
 
     /**
-     * Method that prints a divider line.
+     * Prints a divider line.
      */
     public void showLine() {
         System.out.println("__________________________________________________________");
     }
 
     /**
-     * Method that returns a message to indicate a given error.
+     * Returns a message to indicate a given error.
      *
      * @param message The error message to be displayed.
      */
@@ -55,7 +55,7 @@ public class Ui {
     }
 
     /**
-     * Method that prints a message to indicate a task has been added to the list.
+     * Returns a message to indicate a task has been added to the list.
      *
      * @param task The task that has been added to the list.
      * @param tasks The current list of tasks.
@@ -68,7 +68,7 @@ public class Ui {
     }
 
     /**
-     * Method that prints a message to indicate a task has been deleted from the list.
+     * Returns a message to indicate a task has been deleted from the list.
      *
      * @param task The task that has been deleted from the list.
      * @param tasks The current list of tasks.
@@ -81,7 +81,7 @@ public class Ui {
     }
 
     /**
-     * Method that prints a message to indicate a task has been marked as done.
+     * Returns a message to indicate a task has been marked as done.
      *
      * @param task The task that has been marked as done.
      * @return A message to indicate a task has been marked as done.
@@ -92,7 +92,7 @@ public class Ui {
     }
 
     /**
-     * Method that prints a message to indicate a task has been marked as not done.
+     * Returns a message to indicate a task has been marked as not done.
      *
      * @param task The task that has been marked as not done.
      * @return A message to indicate a task has been marked as not done.
@@ -103,7 +103,7 @@ public class Ui {
     }
 
     /**
-     * Method that prints all the Tasks in the TaskList.
+     * Returns a message containing all the Tasks in the given TaskList.
      *
      * @param tasks The List of Tasks.
      * @param message The message to be shown before the tasks.
@@ -119,7 +119,7 @@ public class Ui {
     }
 
     /**
-     * Method that returns a String given a text command inputted by the user.
+     * Returns the user input.
      *
      * @return A String representing the full command inputted by the user.
      */

@@ -14,7 +14,7 @@ import duke.Ui;
 public class ExitCommand extends Command {
 
     /**
-     * Method that checks if the Command is an ExitCommand.
+     * Returns true if the Command is an ExitCommand.
      *
      * @return True for all ExitCommands.
      */
@@ -24,11 +24,13 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * Method that exits the task manager, and saves the tasks in the storage file.
+     * Returns a message to indicate exits the task manager.
+     * Writes the current tasks into the storage file.
      *
      * @param tasks   The TaskList instance for the task manager.
      * @param ui      The Ui instance for the task manager.
      * @param storage The Storage instance for the task manager.
+     * @return A message to say goodbye to the user.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
@@ -41,7 +43,7 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * Method that returns the String representation of an ExitCommand.
+     * Returns the String representation of an ExitCommand.
      *
      * @return String representation of an ExitCommand.
      */

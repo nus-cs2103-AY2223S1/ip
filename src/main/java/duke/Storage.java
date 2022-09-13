@@ -24,7 +24,7 @@ public class Storage {
     private String filePath;
 
     /**
-     * Constructor for a Storage instance based on a given data file.
+     * Creates a Storage instance based on a given data file.
      *
      * @param filePath The filePath of the data file.
      */
@@ -33,7 +33,7 @@ public class Storage {
     }
 
     /**
-     * Method that loads the saved data file.
+     * Returns the list of tasks from the saved data file.
      *
      * @return A List of Tasks that have been stored in the data file.
      * @throws FileNotFoundException if unable to read from data file.
@@ -77,7 +77,7 @@ public class Storage {
     }
 
     /**
-     * Method that saves the current tasks in the data file.
+     * Writes the current tasks into the data file.
      *
      * @param tasks The current List of Tasks.
      * @throws IOException if unable to save to data file.

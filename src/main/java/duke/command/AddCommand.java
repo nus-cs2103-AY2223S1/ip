@@ -15,7 +15,7 @@ public class AddCommand extends Command {
     private Task task;
 
     /**
-     * Constructor for a AddCommand instance, given a Task to be added.
+     * Creates a AddCommand instance, given a Task to be added.
      *
      * @param task The Task to be added to the TaskList.
      */
@@ -24,11 +24,13 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Method that adds the Task to the TaskList.
+     * Returns a message to indicate a Task has been added.
+     * Adds the Task to the TaskList.
      *
      * @param tasks   The TaskList instance for the task manager.
      * @param ui      The Ui instance for the task manager.
      * @param storage The Storage instance for the task manager.
+     * @return A message to indicate a Task has been added.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
@@ -37,7 +39,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Method that returns the String representation of an AddCommand.
+     * Returns the String representation of an AddCommand.
      *
      * @return String representation of an AddCommand.
      */

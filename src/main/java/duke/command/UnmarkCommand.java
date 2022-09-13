@@ -3,6 +3,7 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.Task;
 
 /**
@@ -16,7 +17,7 @@ public class UnmarkCommand extends Command {
     private int idx;
 
     /**
-     * Constructor for a UnmarkCommand instance, given a Task.
+     * Creates an UnmarkCommand instance, given an index.
      *
      * @param idx The index of the Task in the TaskList to be marked
      *            as not done.
@@ -26,20 +27,22 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Method that marks the Task in the TaskList as not done.
+     * Returns a message that a Task has been marked as not done.
      *
      * @param tasks   The TaskList instance for the task manager.
      * @param ui      The Ui instance for the task manager.
      * @param storage The Storage instance for the task manager.
+     * @return A message to indicate the task has been marked as not done.
+     * @throws DukeException If the user input is invalid.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = tasks.unmarkTask(idx);
         return ui.showUnmarkTask(task);
     }
 
     /**
-     * Method that returns the String representation of a UnmarkCommand.
+     * Returns the String representation of a UnmarkCommand.
      *
      * @return String representation of a UnmarkCommand.
      */

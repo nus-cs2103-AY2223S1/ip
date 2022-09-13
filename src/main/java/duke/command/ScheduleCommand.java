@@ -15,7 +15,7 @@ public class ScheduleCommand extends Command {
     private String date;
 
     /**
-     * Constructor for a FindCommand, given a keyword.
+     * Creates a ScheduleCommand instance, given a date.
      *
      * @param date The String representing the formatted date.
      */
@@ -24,11 +24,13 @@ public class ScheduleCommand extends Command {
     }
 
     /**
-     * Method that finds matching tasks, given a keyword.
+     * Returns a message containing all scheduled tasks.
+     * Finds all scheduled tasks.
      *
      * @param tasks   The TaskList instance of the task manager.
      * @param ui      The Ui instance of the task manager.
      * @param storage The Storage instance of the task manager.
+     * @return A message displaying all scheduled tasks.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
@@ -37,8 +39,7 @@ public class ScheduleCommand extends Command {
     }
 
     /**
-     * Method that returns the String representation of a ScheduleCommand.
-     * Useful for testing input and output.
+     * Returns the String representation of a ScheduleCommand.
      *
      * @return The String representation of the ScheduleCommand.
      */

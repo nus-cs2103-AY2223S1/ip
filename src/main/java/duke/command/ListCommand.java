@@ -13,11 +13,12 @@ import duke.Ui;
 public class ListCommand extends Command {
 
     /**
-     * Method that prints all the Tasks currently in the TaskList.
+     * Returns a message including all the Tasks currently in the TaskList.
      *
      * @param tasks   The TaskList instance for the task manager.
      * @param ui      The Ui instance for the task manager.
      * @param storage The Storage instance for the task manager.
+     * @return A message that displays all the current tasks.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
@@ -25,7 +26,7 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Method that returns the String representation of an ListCommand.
+     * Returns the String representation of an ListCommand.
      *
      * @return String representation of an ListCommand.
      */

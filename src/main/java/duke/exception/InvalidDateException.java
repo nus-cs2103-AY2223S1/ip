@@ -8,7 +8,7 @@ package duke.exception;
  */
 public class InvalidDateException extends DukeException {
     /**
-     * Constructor for a EmptyDateException.
+     * Creates an EmptyDateException instance.
      */
     public InvalidDateException() {
         super("Invalid Date format! Use a YYYY-MM-DD format!");

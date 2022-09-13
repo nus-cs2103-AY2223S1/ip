@@ -22,11 +22,13 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Method that finds matching tasks, given a keyword.
+     * Returns a message that finds matching tasks, given a keyword.
+     * Finds the matching tasks.
      *
      * @param tasks   The TaskList instance of the task manager.
      * @param ui      The Ui instance of the task manager.
      * @param storage The Storage instance of the task manager.
+     * @return A message that displays the matching tasks.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
@@ -35,7 +37,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Method that returns the String representation of a FindCommand.
+     * Returns the String representation of a FindCommand.
      *
      * @return The String representation of the FindCommand.
      */
