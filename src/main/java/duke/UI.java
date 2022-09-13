@@ -6,7 +6,7 @@ public class UI {
     public static String NO_LIST_FOUND = "Congrats! You have finished all your task!\n";
     public static String FINDING_RELATED_TASK = "Let me find tasks that match your description...\n";
     public static String NO_RELATED_TASK_FOUND = "I cannot find any tasks that match that description :(\n";
-    public static String GOODBYE = "Glad to be of help! See you later~\n";
+    public static String GOODBYE = "Glad to be of help! I have saved all your task progress and the new commands you taught me :) See you later~\n";
     public static String MARK_AS_DONE = "Great! You have finished a task. I will mark this as done\n";
     public static String MARK_AS_NOT_DONE = "Okay. I will mark this task as not done yet\n";
     public static String REMOVE_TASK = "Roger that! I will remove this task\n";

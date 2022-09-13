@@ -2,6 +2,8 @@ package duke;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Duke {
     private static final String LOAD_STORAGE_SUCCESSFUL = "Load Storage is Successful";
@@ -47,6 +49,12 @@ public class Duke {
         if (input.equals("list" ) || input.equals("list\n")) {
             response = taskList.printTaskList();
         } else if (input.equals("bye") || input.equals("bye\n")) {
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            }, 1500);
             response = UI.GOODBYE;
             try {
                 storage.updateTaskAndMemoryData(taskList, memory);
