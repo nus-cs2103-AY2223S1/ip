@@ -14,7 +14,7 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor that inializes global variables.
+     * Initializes global variables.
      * @param description Task description.
      */
     public Task(String description) {

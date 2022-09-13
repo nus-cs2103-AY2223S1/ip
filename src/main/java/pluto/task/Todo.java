@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Todo extends Task {
 
     /**
-     * Constructor that initializes global variables.
+     * Initializes global variables.
      * @param description Task description.
      */
     public Todo(String description) {

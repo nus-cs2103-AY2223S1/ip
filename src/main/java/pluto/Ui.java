@@ -10,7 +10,7 @@ public class Ui {
     /** Name of chat bot */
     private static final String CHATBOT = "Pluto";
     /**
-     * Displays welcome message.
+     * Returns welcome message.
      */
     public static String showWelcome() {
         String introduction = String.format("Hello I am %s.\nWhat can I do for you?", CHATBOT);

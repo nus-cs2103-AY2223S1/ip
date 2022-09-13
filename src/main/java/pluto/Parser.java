@@ -47,6 +47,7 @@ public class Parser {
 
         isOnlyCommand(inputLine.toLowerCase());
         String[] textArr = inputLine.split("\\s+", 2);
+        assert textArr.length != 0 : "textArr shouldn't be empty";
         String command = textArr[0].strip();
         Type enumCommand;
         try {
@@ -56,22 +57,30 @@ public class Parser {
         }
         switch (enumCommand) {
         case TODO:
+            assert textArr.length == 2 : "textArr should have length 2";
             return parseTask(textArr[1].strip(), Type.TODO);
         case DEADLINE:
+            assert textArr.length == 2 : "textArr should have length 2";
             return parseTask(textArr[1].strip(), Type.DEADLINE);
         case EVENT:
+            assert textArr.length == 2 : "textArr should have length 2";
             return parseTask(textArr[1].strip(), Type.EVENT);
         case MARK:
+            assert textArr.length == 2 : "textArr should have length 2";
             return new UpdateStatusCommand(parseIdx(textArr[1]), true);
         case UNMARK:
+            assert textArr.length == 2 : "textArr should have length 2";
             return new UpdateStatusCommand(parseIdx(textArr[1]), false);
         case DELETE:
+            assert textArr.length == 2 : "textArr should have length 2";
             return new DeleteCommand(parseIdx(textArr[1]));
         case LIST:
             return new ListCommand();
         case SHOW:
+            assert textArr.length == 2 : "textArr should have length 2";
             return new ShowCommand(parseDateOnly(textArr[1]));
         case FIND:
+            assert textArr.length == 2 : "textArr should have length 2";
             return new FindCommand(textArr[1]);
         case BYE:
             return new ExitCommand();
@@ -96,12 +105,14 @@ public class Parser {
             if (arrDeadline.length == 1) {
                 throw new PlutoException("OOPS!!! The deadline date is required.");
             }
+            assert arrDeadline.length == 2 : "textArr should have length 2";
             return new AddCommand(new Deadline(arrDeadline[0].strip(), parseDate(arrDeadline[1].strip())));
         case EVENT:
             String[] arrEvent = input.split("/at", 2);
             if (arrEvent.length == 1) {
                 throw new PlutoException("OOPS!!! The event date is required.");
             }
+            assert arrEvent.length == 2 : "textArr should have length 2";
             return new AddCommand(new Event(arrEvent[0].strip(), parseDate(arrEvent[1].strip())));
         default:
             throw new PlutoException("OOPS!!! Task must be a Todo, Deadline or Event.");

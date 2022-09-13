@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
     private int idx;
 
     /**
-     * Constructor that initializes global variables.
+     * Initializes global variables.
      * @param idx Index of task to delete.
      */
     public DeleteCommand(int idx) {

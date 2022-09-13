@@ -16,7 +16,7 @@ public class ShowCommand extends Command {
     private LocalDate date;
 
     /**
-     * Constructor that initializes global variables.
+     * Initializes global variables.
      * @param date Date to find tasks.
      */
     public ShowCommand(LocalDate date) {

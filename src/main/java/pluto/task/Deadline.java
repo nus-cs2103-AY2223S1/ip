@@ -12,7 +12,7 @@ public class Deadline extends Task {
     private LocalDateTime by;
 
     /**
-     * Constructor that initializes global variables.
+     * Initializes global variables.
      * @param description Deadline description.
      * @param by Task deadline.
      */
