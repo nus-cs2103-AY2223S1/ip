@@ -21,14 +21,14 @@ public class Ui {
     }
 
     /**
-     * Greetings.
+     * Greets the user.
      */
     public static String greet() {
         return formatMessage(GREET);
     }
 
     /**
-     * Bye.
+     * Says farewell to the user.
      */
     public static String bye() {
         return formatMessage(BYE);

@@ -20,7 +20,7 @@ import duke.command.UnmarkCommand;
 public class Parser {
 
     /**
-     * Parse the user input.
+     * Parses the user input.
      *
      * @param input the input
      * @return the command to be executed

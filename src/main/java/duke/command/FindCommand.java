@@ -36,7 +36,7 @@ public class FindCommand extends Command {
      */
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
-        String message = "Here are the matching tasks in your list:\n";
+        String message = "Here are the matching tasks in your list:";
 
         if (isValidFind()) {
             ArrayList<Integer> indexList = new ArrayList<>();
@@ -52,7 +52,7 @@ public class FindCommand extends Command {
             } else {
                 assert indexList.size() > 0 : "There should be tasks found within the list";
                 for (Integer index : indexList) {
-                    message += (index + 1) + ": " + taskList.getTask(index).toString() + "\n";
+                    message += "\n" + (index + 1) + ": " + taskList.getTask(index).toString();
                 }
                 builder.append(message);
             }

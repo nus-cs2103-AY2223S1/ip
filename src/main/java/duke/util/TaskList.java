@@ -42,7 +42,7 @@ public class TaskList {
     }
 
     /**
-     * Delete task.
+     * Deletes task.
      *
      * @param index the index
      */
