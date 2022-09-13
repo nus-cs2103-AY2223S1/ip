@@ -1,0 +1,119 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ConfigureShadowRelocation
+
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.gradle.publish:plugin-publish-plugin:0.16.0"
+        classpath 'org.ajoberstar:gradle-git-publish:3.0.0'
+        classpath "com.github.node-gradle:gradle-node-plugin:3.1.1"
+    }
+}
+
+plugins {
+    id 'groovy'
+    id 'project-report'
+    id 'idea'
+    id 'java-gradle-plugin'
+    id 'signing'
+}
+
+// Remove the gradleApi so it isn't merged into the jar file.
+configurations.named(JavaPlugin.API_CONFIGURATION_NAME) {
+    dependencies.remove(project.dependencies.gradleApi())
+}
+
+gradlePlugin {
+    automatedPublishing = false
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
+    if (System.env.CI == 'true') {
+        tag 'CI'
+        if (System.env.CIRCLE_TAG) {
+            link 'VCS', "https://github.com/johnrengelman/shadow/tree/${System.env.CIRCLE_TAG}"
+        } else {
+            link 'VCS', "https://github.com/johnrengelman/shadow/tree/${System.env.CIRCLE_BRANCH}"
+        }
+        link 'VCS Commit', "https://github.com/johnrengelman/shadow/commit/${System.env.CIRCLE_SHA1}"
+        if (System.env.CI_PULL_REQUEST) {
+            link 'Pull Request', "${System.env.CI_PULL_REQUEST}"
+        }
+    }
+}
+
+apply from: file('gradle/docs.gradle')
+apply from: file('gradle/publish.gradle')
+apply from: file('gradle/vuepress.gradle')
+apply from: file('gradle/ghPages.gradle')
+apply from: file('gradle/dependencies.gradle')
+
+repositories {
+    gradlePluginPortal()
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+
+    if (System.env.CI == 'true') {
+        testLogging.showStandardStreams = true
+        minHeapSize "1g"
+        maxHeapSize "1g"
+    }
+
+    systemProperty 'java.io.tmpdir', buildDir.absolutePath
+}
+
+jar {
+    from rootProject.file('LICENSE')
+    from rootProject.file('NOTICE')
+}
+
+jar.enabled = false
+
+shadowJar {
+    classifier = ''
+}
+
+idea {
+    project {
+        languageLevel = '1.8'
+    }
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+task downloadDependencies(type: Exec) {
+    dependsOn configurations.testRuntimeClasspath
+    commandLine 'echo', 'Downloaded all dependencies'
+}
+
+tasks.build.dependsOn tasks.shadowJar
+
+project.tasks.withType(JavaCompile) {
+    // This will be the default in Gradle 5.0
+    if (!options.compilerArgs.contains("-processor")) {
+        options.compilerArgs << '-proc:none'
+    }
+}
+
+project.tasks.withType(GroovyCompile) {
+    // This will be the default in Gradle 5.0
+    if (!options.compilerArgs.contains("-processor")) {
+        options.compilerArgs << '-proc:none'
+    }
+}
+
+task relocateShadowJar(type: ConfigureShadowRelocation) {
+    target = tasks.shadowJar
+}
+
+tasks.shadowJar.dependsOn tasks.relocateShadowJar

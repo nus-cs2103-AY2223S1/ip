@@ -1,8 +1,29 @@
-# Duke project template
+# User Guide for Duke
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Duke is a **Command Line Interface (CLI) based application** for managing your tasks. If you are familiar with CLI, 
+you will find that this is faster than traditional GUI task managers.
 
-## Setting up in Intellij
+[Quick start](##Quick Start)
+
+Features
+- Help
+- List
+- Todo
+- Deadline
+- Event
+- Mark
+- Unmark
+- Delete
+- Find
+- Bye
+
+Command summary
+
+---
+
+## Quick Start
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `duke.jar` from here
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
 
