@@ -7,6 +7,12 @@
     - [`todo`](#todo)
     - [`deadline`](#deadline)
     - [`event`](#event)
+    - [`list`](#list)
+    - [`mark`](#mark)
+    - [`unmark`](#unmark)
+    - [`snooze`](#snooze)
+    - [`delete`](#delete)
+    - [`find`](#find)
     - [`bye`](#bye)
 
 ## Features
