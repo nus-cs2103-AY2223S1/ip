@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -33,7 +35,7 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void initialize() {
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(Duke.welcomeText(), dukeImage));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(Duke.welcomeText(), dukeImage, false));
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
@@ -52,12 +54,14 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        Pair<String, Boolean> response = duke.getResponse(input);
+        String message = response.getKey();
+        Boolean hasError = response.getValue();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(message, dukeImage, hasError)
         );
-        if (response == ByeCommand.DUKE_END) {
+        if (message == ByeCommand.DUKE_END) {
             Platform.exit();
         }
         userInput.clear();

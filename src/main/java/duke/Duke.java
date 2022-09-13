@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import javafx.util.Pair;
 
 import duke.command.Command;
 import duke.exception.DukeException;
@@ -30,12 +31,12 @@ public class Duke {
         tasks = storage.setUp();
     }
 
-    public String getResponse(String input) {
+    public Pair<String, Boolean> getResponse(String input) {
         try {
             Command command = Parser.parse(input);
-            return command.execute(tasks, storage);
+            return new Pair<>(command.execute(tasks, storage), false);
         } catch (DukeException e) {
-            return e.getMessage();
+            return new Pair<>(e.getMessage(), true);
         }
     }
 
