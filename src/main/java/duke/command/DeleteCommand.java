@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        if (taskNum < 0 || taskNum >= tasks.size() + 1) {
+        if (taskNum < 1 || taskNum > tasks.size()) {
             throw new DukeException("OOPS!!! The index of the task is not in the list.");
         }
 

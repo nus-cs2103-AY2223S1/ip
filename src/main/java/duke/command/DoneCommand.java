@@ -22,7 +22,7 @@ public class DoneCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        if (taskNum < 1 || taskNum >= tasks.size()) {
+        if (taskNum < 1 || taskNum > tasks.size()) {
             throw new DukeException("OOPS!!! The index of the task is not in the list.");
         }
 

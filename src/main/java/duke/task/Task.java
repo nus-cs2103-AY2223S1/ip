@@ -6,15 +6,12 @@ package duke.task;
 public class Task {
     private String description;
     private boolean isDone;
+    String tag;
 
     Task(String description) {
         this.description = description;
         this.isDone = false;
-    }
-
-    Task(String description, boolean isDone) {
-        this.description = description;
-        this.isDone = false;
+        this.tag = "no tag";
     }
 
     public String getDescription() {
@@ -43,5 +40,13 @@ public class Task {
 
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), description);
+    }
+
+    public void addTag(String tag) {
+        this.tag = tag;
+    }
+
+    public void loadTag(String tag) {
+        this.tag = tag;
     }
 }

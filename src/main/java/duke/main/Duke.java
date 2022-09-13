@@ -55,7 +55,7 @@ public class Duke {
             Command c = Parser.parse(input);
             c.execute(this.tasks, this.ui, this.storage);
         } catch (DukeException e) {
-            this.ui.outputMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            this.ui.outputMessage(e.getMessage());
         }
 
         try {
