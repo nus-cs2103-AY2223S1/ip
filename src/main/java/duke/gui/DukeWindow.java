@@ -46,13 +46,13 @@ public class DukeWindow extends AnchorPane {
      */
     public DukeWindow(Duke duke) {
         try {
+            this.duke = duke;
             String dukeWindowPath = "/view/DukeWindow.fxml";
             FXMLLoader fxmlLoader = new FXMLLoader(
                     this.getClass().getResource(dukeWindowPath));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
-            this.duke = duke;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,6 +65,10 @@ public class DukeWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        String welcomeMessage = duke.getWelcomeMessage();
+        dialogContainer.getChildren().addAll(
+                DukeDialogBox.getDukeDialog(welcomeMessage, dukeImage));
     }
 
     /**

@@ -18,6 +18,7 @@ import duke.ui.Ui;
 public class Duke {
 
     private static final String defaultFilePath = "src/main/java/duke/data/tasks.txt";
+    private static final String greetingMessage = "Welcome to Aladdin Services";
     private final Storage storage;
     private final TaskList tasks;
     private final Ui ui;
@@ -158,5 +159,12 @@ public class Duke {
         }
         CommandResult result = runCommand(command);
         return result.getMessage();
+    }
+
+    /**
+     * The getWelcomeMessage function returns the greeting message.
+     */
+    public String getWelcomeMessage() {
+        return greetingMessage;
     }
 }
