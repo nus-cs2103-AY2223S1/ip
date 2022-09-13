@@ -89,28 +89,28 @@ public class Parser {
         String stringCommand = extractCommand(inputSections[0]);
         switch (stringCommand) {
         case "todo":
-            Task t;
+            Task t = createTask(inputSections);
             return new AddTaskCommand(task);
         case "event":
-            Event event;
+            Event event = createEvent(inputSections);
             return new AddEventCommand(event);
         case "deadline":
-            Deadline deadline;
+            Deadline deadline = createDeadline(inputSections);
             return new AddDeadlineCommand(deadline);
         case "delete":
-            int index;
+            int index = getIndex(inputSections);
             return new DeleteTaskCommand(index);
         case "mark":
-            int index;
+            int index = getIndex(inputSections);
             return new MarkCommand(index);
         case "unmark":
-            int index;
+            int index = getIndex(inputSections);
             return new UnmarkCommand(index);
         case "istoday":
-            int index;
+            int index = getIndex(inputSections);
             return new CheckIsTodayCommand(index);
         case "longdesc":
-            int index;
+            int index = getIndex(inputSections);
             return new GetLongDescriptionCommand();
         case "list":
             return new ListCommand();
@@ -119,7 +119,7 @@ public class Parser {
         case "help":
             return new HelpCommand();
         case "find":
-            String keyword;
+            String keyword = getKeyword(inputSections);
             return new FindCommand(keyword);
         default:
             String message = "Command invalid. Type help for more information."
