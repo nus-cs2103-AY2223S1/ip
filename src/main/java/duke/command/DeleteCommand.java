@@ -6,7 +6,7 @@ import duke.storage.TaskList;
 import duke.ui.BotUI;
 
 /**
- * Represents a deleting command of task. A <code>DeleteCommand</code> object stores
+ * Represents a delete command of task. A <code>DeleteCommand</code> object stores
  * the details of the task as a String type Integer. eg. "1"
  *
  */

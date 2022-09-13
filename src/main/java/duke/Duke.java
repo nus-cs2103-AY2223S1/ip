@@ -1,6 +1,5 @@
 package duke;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import duke.command.Command;
@@ -28,13 +27,7 @@ public class Duke {
     public Duke() {
         this.ui = new BotUI();
         this.anomaliesManger = new AnomaliesManager();
-        TaskList temp;
-        try {
-            temp = FileManager.read();
-        } catch (FileNotFoundException ex) {
-            temp = new TaskList();
-        }
-        this.taskList = temp;
+        this.taskList = FileManager.read();
     }
 
     //Runs the duke chatBot program.
@@ -53,6 +46,7 @@ public class Duke {
                 System.out.println(de.getMessage());
             } catch (IOException ex) {
                 System.out.println("Error while Saving File!");
+                System.out.println(ex.getMessage());
             }
         }
     }
@@ -77,10 +71,8 @@ public class Duke {
             String response = c.execute(this.taskList, ui, anomaliesManger);
             FileManager.write(this.taskList);
             return response;
-        } catch (DukeException de) {
+        } catch (DukeException | IOException de) {
             return de.getMessage();
-        } catch (IOException ex) {
-            return "Error while Saving File!";
         }
     }
 

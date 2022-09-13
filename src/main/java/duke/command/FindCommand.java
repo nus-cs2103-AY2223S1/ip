@@ -15,7 +15,7 @@ public class FindCommand extends Command {
     private final String detail;
 
     /**
-     * Constructs DeleteCommand object
+     * Constructs FindCommand object
      *
      * @param command command of the user input
      * @param detail detail of the user input as String type Integer

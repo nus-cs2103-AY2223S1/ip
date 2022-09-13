@@ -51,6 +51,14 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(BotUI.userSpeak() + input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+        //@@author jhchee18-reused
+        //Adopted idea of handle bye command
+        //https://github.com/jhchee18/ip/blob/master/src/main/java/duke/frontend/MainWindow.java
+        if (response.contains("Goodbye")) {
+            sendButton.setDisable(true);
+            userInput.setDisable(true);
+        }
+        //@@author
         userInput.clear();
     }
 }

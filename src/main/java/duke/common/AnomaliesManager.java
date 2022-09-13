@@ -29,6 +29,10 @@ public class AnomaliesManager {
         this.previousCommand[0] = anomaliesCommand;
     }
 
+    /**
+     * Modifies the isRaised status to false.
+     * Indicates that no anomaly in user input command.
+     */
     public void resolveAnomalies() {
         this.isRaised[0] = false;
     }

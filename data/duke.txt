@@ -1,0 +1,3 @@
+[T] __ false __ sleep early __ 
+[E] __ false __ attend group project meeting __ Sep 11 2022 21:00 __ 
+[E] __ false __ project submission __ Sep 16 2022 23:59 __ 

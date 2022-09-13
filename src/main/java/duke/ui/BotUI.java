@@ -86,8 +86,8 @@ public class BotUI {
         }
     }
     /**
-     * Returns complete status of the task.
-     * @param task Task that have been mark after the user command.
+     * Returns mark/unmark status of the task.
+     * @param task Task that have been mark/unmark after the user command.
      * @return The String of completed task.
      */
     public String informMarkStatus(Task task) {
@@ -106,16 +106,16 @@ public class BotUI {
     }
     /**
      * Returns task removed from the TaskList.
-     * @param task Task that have been added by user.
+     * @param task Task that have been removed by user.
      * @param taskList the updated TaskList to show user the updated number of tasks in it.
-     * @return The String of task added.
+     * @return The String of task removed.
      */
     public String successRemoveTask(TaskList taskList, Task task) {
         ArrayList<Task> list = taskList.getList();
         return botSpeak(String.format(DELETE_SUCCESS, task, list.size()));
     }
     /**
-     * Returns the list of tasks found in the TaskList according to user find command.
+     * Returns the list of tasks found in the TaskList according to user find command keyword.
      * @param foundTaskList the updated TaskList to show user the updated number of tasks in it.
      * @return The String task found.
      */
@@ -167,19 +167,38 @@ public class BotUI {
     public String invalidDateFormat() {
         return botSpeak(INVALID_DATE_FORMAT);
     }
-
+    /**
+     * Returns the message of error when user type invalid response after anomaly raised.
+     * Informs user to try again.
+     * @return String of correct input format wrapped by the bot and user divider.
+     */
     public String unknownResponseDetected() {
         return botSpeak(UNKNOWN_RESPONSE);
     }
 
+    /**
+     * Returns the message of anomaly detection.
+     * Informs user which two tasks has same task detail.
+     * @return String of correct input format wrapped by the bot and user divider.
+     */
     public String sameTaskDetected(Task newTask, Task oldTask) {
         return botSpeak(String.format(SAME_TASK_DETECTED, newTask.toString(), oldTask.toString()));
     }
 
+    /**
+     * Returns the message of  detection.
+     * Informs user which two tasks has close task timing.
+     * @return String of correct input format wrapped by the bot and user divider.
+     */
     public String closeTimeDetected(Task newTask, Task oldTask) {
         return botSpeak(String.format(SAME_DATE_DETECTED, newTask.toString(), oldTask.toString()));
     }
 
+    /**
+     * Returns the message of command cancellation.
+     * Informs user that the previous anomaly detected command is cancelled.
+     * @return String of correct input format wrapped by the bot and user divider.
+     */
     public String cancelCommand() {
         return botSpeak(COMMAND_CANCELED);
     }

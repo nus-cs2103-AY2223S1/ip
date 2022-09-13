@@ -55,6 +55,7 @@ public class AddCommand extends Command {
     private boolean isTimeClose(Task oldTask, Task newTask) {
         return Math.abs(oldTask.getTime().getHour() - newTask.getTime().getHour()) < MIN_HOUR_DIFFERENCE;
     }
+
     private boolean checkTimeClash(TaskList taskList, Task newTask) {
         for (Task t : taskList.getList()) {
             if (taskHasTime(t) && isSameDay(t, newTask) && isTimeClose(t, newTask)) {
@@ -124,7 +125,7 @@ public class AddCommand extends Command {
                 newTask = new Event(eventDetail, eventDateTime);
                 break;
             default:
-                assert false : "task command does not match with any add command";
+                assert false : "task command does not match with any add command but parsed as AddCommand";
                 return "";
             }
 

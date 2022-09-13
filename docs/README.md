@@ -1,13 +1,14 @@
 # User Guide
 
-Duke is a dedicated task manager chatBot app that helps you **record and manage your tasks.** It is designed to free user mind and **ease them in remembering all the different tasks and crucial dates in their life.** It uses **Command Line Interface (CLI)** to operate and **integrates with Graphical User Interfaces (GUI)** to enhance user experiences.
-
+Duke is a dedicated task manager chatBot app that helps you **record and manage your tasks.** It is designed to free user mind and **ease them in remembering all the different tasks and crucial dates in their life.** It uses **Command Line Interface (CLI)** to operate and **integrates with Graphical User Interfaces (GUI)** to enhance user experiences.<br>
+<br><img src="Ui.png" height = "400">
 ## Quick start
 
 1. Download the latest release of **duke.jar** from [here](https://github.com/eesung00/ip/releases).
 2. Move the duke.jar folder to your desire home folder.
 3. Double click to run it.
-4. Have fun!
+4. **Sample data** are available for new user.
+5. Have fun!
 
 To know all `command` to use this app, user can simply send anything to the bot. Duke will respond the list of `command`. They are simple and easy to use!
 
@@ -19,6 +20,7 @@ Mark Task as "done": `mark`<br/>
 Mark Task as "undone": `unmark`<br/>
 Find Task: `find`<br/>
 Show all Tasks: `list`<br/>
+Stop using app: `bye` <br/>
 
 Extension: Duke is able to detect anomalies of task to be added. Confirmation will be needed from user if two tasks happen in very close timing or task to be added is already added before. `(Y/N)`
 
@@ -26,9 +28,9 @@ Extension: Duke is able to detect anomalies of task to be added. Confirmation wi
 
 Adds any three type of tasks into the list shown in sample below:
 
-- todo tasks: `todo dummyTask`
-- event tasks: `event dummyEvent /at 2022-09-10 2214`
-- deadline tasks: `deadline dummyDeadline /by 2022-09-10 2215`
+- todo tasks: `todo visit Singapore`
+- event tasks: `event go birthday party /at 2022-09-10 2214`
+- deadline tasks: `deadline final year project /by 2022-09-10 2215`
 
 <details><summary><mark>Tips!</mark></summary>
 Please follow the format shown above! Every first word in the input line is a command. (Case-sensitive)
@@ -57,6 +59,8 @@ Use list command to show the current tasks list you have if you are not sure wha
 
 * Use command `list` to show all the tasks and their current status.
 
+### Feature-`bye`
+* Use command `bye` to stop using the program. User text field and send button will be disabled.
 
 ## Usage
 
@@ -116,7 +120,7 @@ Use list command to show the current tasks list you have if you are not sure wha
   [E][ ] exam at Utown (at: Nov 12 2022 19:00) </code></pre>
   </li>
 
-  <li><b>Description:</b> There is currently 2 tasks in user's list with "exam" detail.</li>
+  <li><b>Description:</b> There are currently 2 tasks in user's list with "exam" detail.</li>
 </ul>
 </details>
 
@@ -161,7 +165,7 @@ Use list command to show the current tasks list you have if you are not sure wha
   [E][ ] dummyEvent (at: Sep 11 2011 11:30)</code></pre>
   </li>
 
-  <li> <b>Description:</b> The event task is mark as "done" and unmark as "undone" respectively</li>
+  <li> <b>Description:</b> The event task is mark as "done" and unmark as "undone" respectively. "X" in the second brackets indicate the task is marked.</li>
 </ul>
 </details>
 
@@ -220,4 +224,5 @@ Use list command to show the current tasks list you have if you are not sure wha
   </li>
 
   <li><b>Description:</b> Duke will show the correct date format that user should use while interacting with the app.</li>
+</ul>
 </details>

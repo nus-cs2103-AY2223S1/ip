@@ -12,7 +12,7 @@
         <Button fx:id="sendButton" layoutX="524.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" AnchorPane.bottomAnchor="1.0" prefHeight="41.0" prefWidth="76.0" text="Send" />
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="600.0" vvalue="1.0" AnchorPane.bottomAnchor="42" AnchorPane.topAnchor="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="588.0" style="-fx-background-color: #FFFFF0;" AnchorPane.bottomAnchor="42" AnchorPane.topAnchor="1.0"/>
+                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="588.0" style="-fx-background-color: #FFFFF0;" AnchorPane.bottomAnchor="42" AnchorPane.topAnchor="1.0" />
             </content>
         </ScrollPane>
     </children>

@@ -6,7 +6,7 @@ import duke.ui.BotUI;
 
 /**
  * Represents a CancelCommand.
- * Utilizes when user reject to accept anomaly
+ * Utilizes when user reject to proceed with the anomaly detected.
  */
 public class CancelCommand extends Command {
 

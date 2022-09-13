@@ -8,7 +8,6 @@ import duke.ui.BotUI;
  * Represents an exit command of task. A <code>ExitCommand</code> object
  * will allow user to exit from duke.
  */
-
 public class ExitCommand extends Command {
 
     /**

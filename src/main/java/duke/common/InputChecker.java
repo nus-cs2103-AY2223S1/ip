@@ -17,7 +17,7 @@ public class InputChecker {
     private static void checkDeadlineAndEvent(String trimmedInput, String command,
                                               String detailDateSplitter) throws DukeException {
 
-        String description = trimmedInput.replace(command, "").replace(" ", "");
+        String description = trimmedInput.replace(command, "").trim();
         boolean isSplittable = description.contains(detailDateSplitter);
         if (!isSplittable) {
             throw new DukeException(UI.invalidFormat());
