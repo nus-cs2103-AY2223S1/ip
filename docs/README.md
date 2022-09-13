@@ -1,3 +1,8 @@
+<!-- 
+@@author LikHern-reused
+Reused from https://se-education.org/addressbook-level3/UserGuide.html
+with minor modifications
+-->
 # User Guide
 
 Duke is a desktop app for managing tasks, optimized for use via a Command Line 
