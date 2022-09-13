@@ -30,9 +30,9 @@ public class Pluto {
     }
 
     /**
-     * Returns response to user input.
+     * Returns response DialogBox for user input.
      * @param input Input by the user.
-     * @return Response generated.
+     * @return Response DialogBox generated.
      */
     public DialogBox getResponse(String input) {
         try {

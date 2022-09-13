@@ -57,7 +57,7 @@ public class Ui {
      * @return Exit message.
      */
     public String exitUi() {
-        return "See You Later!";
+        return Ui.exitMessage();
     }
 
     /**
@@ -151,5 +151,12 @@ public class Ui {
      */
     public String showError(String emessage) {
         return emessage;
+    }
+
+    /**
+     * Returns exit message.
+     */
+    public static String exitMessage() {
+        return "See You Later!";
     }
 }
