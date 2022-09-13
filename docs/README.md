@@ -45,7 +45,7 @@ Description of the feature.
 \[ \] are for arguments with description/format specified
 < > are for optional arguments
 
-##### `todo` - Add ToDo into list:
+### `todo` - Add ToDo into list:
 `todo [description]`
 
 Example: `todo buy groceries`
@@ -55,7 +55,7 @@ added: [T][ ] buy groceries
 You currently have 1 tasks in the list
 ```
 
-##### `deadline` - Add deadline into list:
+### `deadline` - Add deadline into list:
 `deadline [ description ] /by [ date ] < time >`
 - date is in dd/MM/yy format
 - time is in HHmm format
@@ -67,7 +67,7 @@ added: [D][ ] submit project (by: 06 Sep 22 11:59PM)
 You currently have 2 tasks in the list
 ```
 
-##### `event` - Add event into list:
+### `event` - Add event into list:
 `event [ description ] /at [ dd/MM/yy ] < time >`
 - date is in dd/MM/yy format
 - time is in HHmm format
@@ -79,7 +79,7 @@ added: [E][ ] Alec Benjamin Concert (at: 04 Dec 22)
 You currently have 3 tasks in your list
 ```
 
-##### `recurring` - Add recurring task into list:
+### `recurring` - Add recurring task into list:
 `recurring [ description ] /every [ frequency ] </at time> *[ number of times ]`
 frequency options: format
 - Yearly: dd/MM/yy
@@ -95,16 +95,16 @@ added: [R][ ] go climbing (next: 14 Sep 22 1:30PM; remaining: 8)
 You currently have 4 tasks in the list
 ```
 
-##### `list` - Shows all tasks currently in list:
+### `list` - Shows all tasks currently in list:
 `list`
 Doomba will display all tasks in the list, sorted by order added. Index for each task and total number of tasks in the list will also be shown.
 
-##### `delete`
-##### `mark`
-##### `unmark`
-##### `remaining`
-##### `/?`
-##### `bye`
+### `delete`
+### `mark`
+### `unmark`
+### `remaining`
+### `/?`
+### `bye`
 
 
 
