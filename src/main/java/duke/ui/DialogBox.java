@@ -13,6 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class DialogBox extends HBox {
     @FXML
@@ -40,6 +42,10 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    private void setErrorStyle() {
+        this.label.setStyle("-fx-text-fill: #ff4d4d;");
+    }
+
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
@@ -47,6 +53,9 @@ public class DialogBox extends HBox {
     public static DialogBox getLurchDialog(String text, Image img) {
         DialogBox d = new DialogBox(text, img);
         d.flip();
+        if (text.contains(Message.ERROR.toString())) {
+            d.setErrorStyle();
+        }
         return d;
     }
 }
