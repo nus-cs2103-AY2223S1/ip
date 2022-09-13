@@ -49,7 +49,8 @@ public class Task {
             if (str.equals("todo")) {
                 throw new DukeException("The description of a todo cannot be empty.");
             }
-                ToDo input = new ToDo(str);
+                String result = str.substring(5);
+                ToDo input = new ToDo(result);
                 Storage.writeToFile(tasks);
                 return Ui.addedTask(tasks, input);
         }
