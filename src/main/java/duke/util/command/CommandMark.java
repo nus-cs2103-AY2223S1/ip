@@ -1,7 +1,7 @@
 package duke.util.command;
 
 import duke.task.TaskList;
-import duke.util.SaveTasks;
+import duke.util.StoredTasks;
 
 public class CommandMark extends Command {
 
@@ -10,7 +10,7 @@ public class CommandMark extends Command {
     }
 
     @Override
-    public String handleCommand(TaskList taskList, SaveTasks saveTasks) {
+    public String handleCommand(TaskList taskList, StoredTasks storedTasks) {
         Integer taskNo = Integer.parseInt(command.split(" ")[1]) - 1;
         taskList.get(taskNo).markAsDone();
         return "Nice! I've marked this task as done:\n"

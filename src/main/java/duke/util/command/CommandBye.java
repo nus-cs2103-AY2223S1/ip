@@ -1,7 +1,7 @@
 package duke.util.command;
 
 import duke.task.TaskList;
-import duke.util.SaveTasks;
+import duke.util.StoredTasks;
 
 public class CommandBye extends Command{
 
@@ -10,8 +10,8 @@ public class CommandBye extends Command{
     }
 
     @Override
-    public String handleCommand(TaskList taskList, SaveTasks saveTasks) {
-        saveTasks.save(taskList);
+    public String handleCommand(TaskList taskList, StoredTasks storedTasks) {
+        storedTasks.save(taskList);
         return "Bye. Hope to see you again!";
     }
 }

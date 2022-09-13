@@ -4,7 +4,7 @@ import duke.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todos;
-import duke.util.SaveTasks;
+import duke.util.StoredTasks;
 
 public class CommandTodo extends Command{
 
@@ -13,11 +13,11 @@ public class CommandTodo extends Command{
     }
 
     @Override
-    public String handleCommand(TaskList taskList, SaveTasks saveTasks) throws DukeException{
+    public String handleCommand(TaskList taskList, StoredTasks storedTasks) throws DukeException{
         StringBuilder description = new StringBuilder();
         String[] words = command.split("\\s");
         if (words.length <= 1) {
-            throw new DukeException("The description of a todo cannot be empty");
+            throw new DukeException("Eh this can't be empty bro");
         }
         for (int i = 1; i < words.length; i++) {
             description.append(words[i]);
