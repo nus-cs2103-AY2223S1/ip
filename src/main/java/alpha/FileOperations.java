@@ -101,7 +101,7 @@ public class FileOperations {
      * @return List of tasks.
      * @throws AlphaException If file is not found or cannot be read.
      */
-    public List<Task> readFile() throws AlphaException {
+    protected List<Task> readFile() throws AlphaException {
         List<Task> tasksInFile = new ArrayList<>();
         Scanner s;
         try {
@@ -138,6 +138,7 @@ public class FileOperations {
                 break;
             }
             default:
+                assert false : taskType;
             }
         }
         return tasksInFile;

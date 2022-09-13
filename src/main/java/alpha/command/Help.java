@@ -24,6 +24,7 @@ public class Help extends Command {
                 + "4. mark    \t\t" + "mark task number\n"
                 + "5. unmark  \t" + "unmark task number\n"
                 + "6. delete  \t\t" + "delete task number\n"
-                + "7. list    \t\t" + "list\n");
+                + "7. list    \t\t" + "list\n"
+                + "8. find    \t\t" + "find keyword");
     }
 }

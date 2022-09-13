@@ -31,50 +31,59 @@ public class Parser {
         String[] inputTokens = input.split(" ", 2);
         switch (inputTokens[0].toLowerCase()) {
         case "todo": {
-            checkInvalidInput(input, 4);
+            checkInvalidInput(inputTokens);
+            assert inputTokens.length == 2;
             return new Add(new Todo(input.substring(5), "T"));
         }
         case "event": {
-            checkInvalidInput(input, 5);
+            checkInvalidInput(inputTokens);
+            assert inputTokens.length == 2;
             String[] taskInfo = inputTokens[1].split(" /on ", 2);
             if (taskInfo.length <= 1) {
                 throw new AlphaException("Invalid input: Incorrect format! "
                         + "(enter help to know more)");
             }
+            assert taskInfo.length == 2;
             String formattedDate = checkDateFormat(taskInfo[1]);
             return new Add(new Event(taskInfo[0], formattedDate, "E"));
 
         }
         case "deadline": {
-            checkInvalidInput(input, 8);
+            checkInvalidInput(inputTokens);
+            assert inputTokens.length == 2;
             String[] taskInfo = inputTokens[1].split(" /by ", 2);
             if (taskInfo.length <= 1) {
                 throw new AlphaException("Invalid input: Incorrect format! "
                         + "(enter help to know more)");
             }
+            assert taskInfo.length == 2;
             String formattedDate = checkDateFormat(taskInfo[1]);
             return new Add(new Deadline(taskInfo[0], formattedDate, "D"));
         }
         case "mark": {
-            checkInvalidInput(input, 4);
+            checkInvalidInput(inputTokens);
+            assert inputTokens.length == 2;
             return new Mark(Integer.parseInt(inputTokens[1]));
         }
         case "unmark": {
-            checkInvalidInput(input, 6);
+            checkInvalidInput(inputTokens);
+            assert inputTokens.length == 2;
             return new Unmark(Integer.parseInt(inputTokens[1]));
         }
         case "list": {
             return new List();
         }
         case "delete": {
-            checkInvalidInput(input, 6);
+            checkInvalidInput(inputTokens);
+            assert inputTokens.length == 2;
             return new Delete(Integer.parseInt(inputTokens[1]));
         }
         case "help": {
             return new Help();
         }
         case "find": {
-            checkInvalidInput(input, 4);
+            checkInvalidInput(inputTokens);
+            assert inputTokens.length == 2;
             return new Find(inputTokens[1]);
         }
         case "bye": {
@@ -90,11 +99,10 @@ public class Parser {
      * Checks the validity of the input message.
      *
      * @param input Input message whose validity needs to be checked.
-     * @param commandLength The required length of the input message.
      * @throws AlphaException If the task description is missing.
      */
-    public void checkInvalidInput(String input, int commandLength) throws AlphaException {
-        if (input.length() == commandLength) {
+    private void checkInvalidInput(String[] input) throws AlphaException {
+        if (input.length < 2 || input[1].length() == 0) {
             throw new AlphaException("Invalid input: Task description is missing!");
         }
     }
@@ -105,7 +113,8 @@ public class Parser {
      * @param date Input date whose validity needs to be checked.
      * @throws AlphaException If the date is not entered in the required format.
      */
-    public String checkDateFormat(String date) throws AlphaException {
+    private String checkDateFormat(String date) throws AlphaException {
+        assert date != null;
         DateTimeFormatter dTF = DateTimeFormatter.ofPattern("MMM d yyyy");
         String formattedDeadline;
         try {
