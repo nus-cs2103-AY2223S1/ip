@@ -1,6 +1,7 @@
 # User Guide
 
 Falcon is a planner app for aviculturists, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+It has been designed to improve syntax friendliness.
 
 ## Quick Start
 
@@ -15,6 +16,40 @@ Falcon is a planner app for aviculturists, optimized for use via a Command Line 
 6. Refers to the Features list below for more command details.
 
 ## Features 
+
+1. Basic Commands
+
+### Adding tasks: `task`
+
+Add a task your planner list.
+
+Format: `task|t|todo taskDescription`
+
+### Adding Deadlines: `deadline`
+
+### Adding Events: `event`
+
+### Viewing list: `list`
+
+### Delete item: `delete`
+
+### Exit command: `exit`
+
+### Help command
+
+2. Intermediate Commands
+
+### Mark command: `mark`
+
+### Unmark command: `unmark`
+
+### Find command `find`
+
+### LongDesc command: `longdesc`
+
+### isToday command: `istoday`
+
+
 
 
 ## FAQ
