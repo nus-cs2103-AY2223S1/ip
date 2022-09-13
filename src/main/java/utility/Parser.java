@@ -92,18 +92,25 @@ public class Parser {
             Task t;
             return new AddTaskCommand(task);
         case "event":
+            Event event;
             return new AddEventCommand(event);
         case "deadline":
+            Deadline deadline;
             return new AddDeadlineCommand(deadline);
         case "delete":
+            int index;
             return new DeleteTaskCommand(index);
         case "mark":
+            int index;
             return new MarkCommand(index);
         case "unmark":
+            int index;
             return new UnmarkCommand(index);
         case "istoday":
+            int index;
             return new CheckIsTodayCommand(index);
         case "longdesc":
+            int index;
             return new GetLongDescriptionCommand();
         case "list":
             return new ListCommand();
@@ -112,6 +119,7 @@ public class Parser {
         case "help":
             return new HelpCommand();
         case "find":
+            String keyword;
             return new FindCommand(keyword);
         default:
             String message = "Command invalid. Type help for more information."
