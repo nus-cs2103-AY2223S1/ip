@@ -10,6 +10,7 @@ import drake.commands.ListCommand;
 import drake.commands.MarkCommand;
 import drake.commands.TodoCommand;
 import drake.commands.UnmarkCommand;
+import drake.commands.WithinCommand;
 
 /**
  * Command parser.
@@ -53,6 +54,8 @@ public class Parser {
             return new ByeCommand();
         case "find":
             return new FindCommand(fullInput);
+        case "within":
+            return new WithinCommand(fullInput);
         default:
             throw new UnknownCommandException();
         }

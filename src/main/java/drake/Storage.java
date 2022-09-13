@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import drake.commands.CommandType;
 import drake.tasks.Deadline;
+import drake.tasks.DoWithinPeriod;
 import drake.tasks.Event;
 import drake.tasks.Task;
 import drake.tasks.Todo;
@@ -70,6 +71,13 @@ public class Storage {
                     event.markAsDone();
                 }
                 list.add(event);
+                break;
+            case "W":
+                DoWithinPeriod doWithinPeriod = new DoWithinPeriod(taskParts[1], taskParts[3], taskParts[4]);
+                if (taskParts[2].equals("X")) {
+                    doWithinPeriod.markAsDone();
+                }
+                list.add(doWithinPeriod);
                 break;
             default:
                 throw new UnknownCommandException();
