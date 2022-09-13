@@ -12,7 +12,7 @@ public class Event extends Task {
     private LocalDateTime at;
 
     /**
-     * Constructor that initializes global variables.
+     * Initializes global variables.
      * @param description Event description.
      * @param at Event time.
      */

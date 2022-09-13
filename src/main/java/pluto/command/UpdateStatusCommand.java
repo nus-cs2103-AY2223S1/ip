@@ -18,7 +18,7 @@ public class UpdateStatusCommand extends Command {
     private boolean isDone;
 
     /**
-     * Constructor that initializes global variables.
+     * Initializes global variables.
      * @param idx Index of task to update status.
      * @param isDone Status of the task.
      */

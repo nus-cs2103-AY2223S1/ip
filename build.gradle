@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClassName = "pluto.Pluto"
+    mainClassName = "pluto.Launcher"
 }
 
 shadowJar {

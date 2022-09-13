@@ -16,7 +16,7 @@ public class AddCommand extends Command {
     private Task t;
 
     /**
-     * Constructor that initializes global variables.
+     * Initializes global variables.
      * @param t Task to add.
      */
     public AddCommand(Task t) {
