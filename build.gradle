@@ -61,7 +61,4 @@ checkstyle {
     toolVersion = '10.2'
 }
 
-// javafx {
-//     version = "11.0.2"
-//     modules = [ 'javafx.controls' ]
-// }
+
