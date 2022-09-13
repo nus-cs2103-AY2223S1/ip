@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Represents a Task, with no reference to date or time.
+ * A Task, with no reference to date or time.
  */
 public class ToDo extends Task {
 
@@ -12,14 +12,14 @@ public class ToDo extends Task {
     private static final String PRINT_FORMAT = "[T]%s";
     private static final String WRITE_FORMAT = "T | %d | %s\n";
 
-    public ToDo(String s) {
-        super(s);
+    public ToDo(String name) {
+        super(name);
     }
 
     @Override
     public void write(FileWriter fw) throws IOException {
-        String str = String.format(ToDo.WRITE_FORMAT, this.getDoneInt(), this.getName());
-        fw.write(str);
+        String line = String.format(ToDo.WRITE_FORMAT, this.getDoneInt(), this.getName());
+        fw.write(line);
     }
 
     @Override

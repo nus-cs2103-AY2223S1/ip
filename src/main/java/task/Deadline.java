@@ -6,32 +6,34 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a Task with a deadline
+ *  A Task with a deadline.
  */
 public class Deadline extends Task {
 
     public static final String SYMBOL = "D";
-    private static final String FORMAT = "[D]%s (by: %s)";
-    // format: 2019/12/02 16:00
+    private static final String PRINT_FORMAT = "[D]%s (by: %s)";
     private static final String WRITE_FORMAT = "D | %d | %s | %s\n";
 
-    private LocalDateTime deadline;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy h:mma");
+    private final LocalDateTime dateTime;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy h:mma");
 
-    public Deadline(String s1, String s2) {
-        super(s1);
-        this.deadline = LocalDateTime.parse(s2.replace(' ', 'T').replaceAll("/", "-"));
+    /**
+     * Creates a task with a deadline.
+     */
+    public Deadline(String name, LocalDateTime dateTime) {
+        super(name);
+        this.dateTime = dateTime;
     }
 
     @Override
-    public void write(FileWriter fw) throws IOException {
-        String str = String.format(Deadline.WRITE_FORMAT, this.getDoneInt(), this.getName(), this.deadline);
-        fw.write(str);
+    public void write(FileWriter fileWriter) throws IOException {
+        String line = String.format(Deadline.WRITE_FORMAT, this.getDoneInt(), this.getName(), this.dateTime);
+        fileWriter.write(line);
     }
 
     @Override
     public String toString() {
-        return String.format(Deadline.FORMAT, super.toString(), this.deadline.format(formatter));
+        return String.format(Deadline.PRINT_FORMAT, super.toString(), this.dateTime.format(formatter));
     }
 
     @Override
@@ -41,8 +43,9 @@ public class Deadline extends Task {
         } else if (!(task instanceof Deadline)) {
             return false;
         } else if (this.getName().equals(task.getName())) {
-            Deadline d = (Deadline) task;
-            return this.deadline.isEqual(d.deadline);
+            // to compare the dateTimes of the two events
+            Deadline deadline = (Deadline) task;
+            return this.dateTime.isEqual(deadline.dateTime);
         } else {
             return false;
         }

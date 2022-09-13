@@ -1,5 +1,8 @@
 package byu;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
 import commands.AddCommand;
@@ -156,10 +159,17 @@ public class Parser {
         String[] substrings = d.split(" /by ");
         if (substrings.length == 1) {
             throw new InvalidDescriptionException("deadline");
-        } else {
-            Deadline deadline = new Deadline(substrings[0], substrings[1]);
-            return new AddCommand(deadline);
         }
+        LocalDateTime dateTime;
+        try {
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("d MMM yyyy h:mma");
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+            dateTime = LocalDateTime.parse(substrings[1], inputFormatter);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDescriptionException("deadline");
+        }
+        Deadline deadline = new Deadline(substrings[0], dateTime);
+        return new AddCommand(deadline);
     }
 
     /**

@@ -22,7 +22,7 @@ public class InvalidDescriptionException extends DukeException {
             s = "Description of EVENT must be in the format (EVENT /at YYYY/MM/DD TT:TT)!";
             break;
         case DEADLINE:
-            s = "Description of DEADLINE must be in the format (EVENT /by YYYY/MM/DD TT:TT)!";
+            s = "Description of DEADLINE must be in the format (DEADLINE /by YYYY/MM/DD TT:TT)!";
             break;
         default:
             s = "";

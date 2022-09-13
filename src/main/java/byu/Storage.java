@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import exceptions.DuplicateException;
@@ -75,7 +76,8 @@ public class Storage {
         switch (symbol) {
         case Deadline.SYMBOL:
             description = details[3];
-            task = new Deadline(taskName, description);
+            LocalDateTime dateTime = LocalDateTime.parse(description);
+            task = new Deadline(taskName, dateTime);
             break;
         case Event.SYMBOL:
             description = details[3];
