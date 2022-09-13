@@ -1,0 +1,22 @@
+.bodybg {
+    -fx-background-color: #E8DCCA;
+    -fx-border-color: black;
+}
+
+.buttonbg {
+    -fx-background-color: #F8C2B1;
+    -fx-border-color: black;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.textfieldbg {
+    -fx-background-color: #F8D6C5;
+    -fx-border-color: black;
+}
+
+textfieldbg:focused {
+    -fx-background-color: #F8D6C5;
+    -fx-border-color: black;
+}
+
