@@ -21,17 +21,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-
-            String message = "";
-            String logo = " ____        _        \n"
-                    + "|  _ \\ _   _| | _____ \n"
-                    + "| | | | | | | |/ / _ \\\n"
-                    + "| |_| | |_| |   <  __/\n"
-                    + "|____/ \\__,_|_|\\_\\___|\n";
-            message += "Hello from\n" + logo;
-            message += "___________________________________\n";
-            message += "Hello! I'm Duke\n What can I do for you?\n";
-            message += "___________________________________\n";
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
