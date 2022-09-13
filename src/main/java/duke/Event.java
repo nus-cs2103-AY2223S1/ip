@@ -7,6 +7,7 @@ import java.time.LocalDate;
  */
 public class Event extends Task {
     private LocalDate eventDate;
+    private int period;
 
     /**
      * Constructor for the Event class.
@@ -14,9 +15,10 @@ public class Event extends Task {
      * @param description The task description.
      * @param eventDate The event date.
      */
-    public Event(String description, LocalDate eventDate) {
+    public Event(String description, LocalDate eventDate, int period) {
         super(description);
         this.eventDate = eventDate;
+        this.period = period;
     }
 
     @Override
@@ -31,16 +33,29 @@ public class Event extends Task {
 
     @Override
     public int getPeriod() {
-        return 0;
+        return period;
     }
 
     @Override
     public void updateDate() {
-        return;
+        if (period == 0) {
+            return;
+        }
+        if (!this.getMarked()) {
+            return;
+        }
+        this.setMarked(false);
+        this.eventDate = eventDate.plusDays(period);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + eventDate + ")";
+        String ret = "[E]" + super.toString() + " (at: " + eventDate + ")";
+        if (period > 1) {
+            ret += " (recurs: Every " + period + " days)";
+        } else if (period == 1) {
+            ret += " (recurs: Every day)";
+        }
+        return ret;
     }
 }

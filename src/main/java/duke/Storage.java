@@ -58,7 +58,7 @@ public class Storage {
                 break;
 
             case 'E':
-                addTask(tasks, new Event(description, date), isMarked);
+                addTask(tasks, new Event(description, date, period), isMarked);
                 break;
 
             default:
