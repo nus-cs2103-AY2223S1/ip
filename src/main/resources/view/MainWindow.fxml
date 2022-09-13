@@ -21,7 +21,8 @@
                     AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0"
                     AnchorPane.bottomAnchor="41.0" AnchorPane.topAnchor="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" />
+                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0"
+                      style="-fx-background-image: url(./images/VBox-BG.png); -fx-background-size: auto;" />
             </content>
         </ScrollPane>
     </children>

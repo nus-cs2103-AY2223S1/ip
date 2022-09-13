@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -22,6 +23,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("Rem Taskhelper");
+            stage.getIcons().add(new Image("/images/Icon.png"));
             fxmlLoader.<duke.ui.MainWindow>getController().setDuke(duke);
             fxmlLoader.<duke.ui.MainWindow>getController().showWelcome();
             stage.show();
