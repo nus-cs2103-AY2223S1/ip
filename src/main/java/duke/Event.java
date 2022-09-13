@@ -38,6 +38,7 @@ public class Event extends Task{
      * @return The formatted description and date
      */
     public String toStringDate() {
+        assert super.toString() != null;
         return super.toString() + " (by: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
