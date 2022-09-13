@@ -34,16 +34,16 @@ public class Deadline extends Task {
     }
 
     public String getOutput() {
-        return String.format("D | %d | %s | %s", getIsDone() ? 1 : 0, getDescription(), by);
+        return String.format("D | %d | %s | %s | %s", getIsDone() ? 1 : 0, getDescription(), by, this.tag);
     }
 
     @Override
     public String toString() {
         if (byDate != null) {
             return "[D]" + super.toString()
-                    + " (by: " + byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm")) + ")";
+                    + " (by: " + byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm")) + ")" + this.tag;
         } else {
-            return "[D]" + super.toString() + " (by: " + by + ")";
+            return "[D]" + super.toString() + " (by: " + by + ") # " + this.tag;
         }
     }
 }

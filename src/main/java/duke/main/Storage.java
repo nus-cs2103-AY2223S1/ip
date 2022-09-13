@@ -41,28 +41,37 @@ public class Storage {
 
             while (sc.hasNext()) {
                 String input = sc.nextLine();
-                String[] splitInput = input.split(" \\| ");
+                //String[] splitInput = input.split(" \\| ");
 
-                switch (splitInput[0]) {
-                case "T":
+                switch (input.charAt(0)) {
+                case 'T':
+                    String[] splitInput = input.split(" \\| ");
                     Todo todo = new Todo(splitInput[2]);
                     if (Integer.parseInt(splitInput[1]) == 1) {
                         todo.markAsDone();
                     }
+                    String tag = splitInput[3];
+                    todo.loadTag(tag);
                     tasks.add(todo);
                     break;
-                case "D":
-                    Deadline deadline = new Deadline(splitInput[2], splitInput[3]);
-                    if (Integer.parseInt(splitInput[1]) == 1) {
+                case 'D':
+                    String[] splitInputD = input.split(" \\| ");
+                    Deadline deadline = new Deadline(splitInputD[2], splitInputD[3]);
+                    if (Integer.parseInt(splitInputD[1]) == 1) {
                         deadline.markAsDone();
                     }
+                    String tagD = splitInputD[4];
+                    deadline.loadTag(tagD);
                     tasks.add(deadline);
                     break;
-                case "E":
-                    Event event = new Event(splitInput[2], splitInput[3]);
-                    if (Integer.parseInt(splitInput[1]) == 1) {
+                case 'E':
+                    String[] splitInputE = input.split(" \\| ");
+                    Event event = new Event(splitInputE[2], splitInputE[3]);
+                    if (Integer.parseInt(splitInputE[1]) == 1) {
                         event.markAsDone();
                     }
+                    String tagE = splitInputE[4];
+                    event.loadTag(tagE);
                     tasks.add(event);
                     break;
                 default:

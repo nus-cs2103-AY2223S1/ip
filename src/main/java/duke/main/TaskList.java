@@ -104,4 +104,13 @@ public class TaskList {
         }
         return foundTasks;
     }
+
+    public String tagTask(int index, String tag) {
+        try {
+            this.tasks.get(index).addTag(tag);
+        } catch (IndexOutOfBoundsException e) {
+            return "Task number to be tagged does not exist.";
+        }
+        return "Nice! I've tagged this task:\n" + this.tasks.get(index).toString();
+    }
 }

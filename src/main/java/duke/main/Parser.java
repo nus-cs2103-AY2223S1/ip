@@ -3,16 +3,7 @@ package duke.main;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import duke.command.AddDeadlineCommand;
-import duke.command.AddEventCommand;
-import duke.command.AddTodoCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.DoneCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.UndoneCommand;
+import duke.command.*;
 import duke.exception.DukeException;
 
 /**
@@ -66,6 +57,14 @@ public class Parser {
             validateFind(toFind);
             assert !toFind.isEmpty();
             return new FindCommand(toFind);
+        } else if (input.startsWith("tag ")) {
+            String toTag = input.replace("tag ", "");
+            String[] tagSplit = toTag.split(" ", 2);
+            String tag = tagSplit[1];
+            int index = Integer.parseInt(tagSplit[0]) - 1;
+            System.out.println(index);
+            System.out.println(tag);
+            return new TagCommand(index, tag);
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }

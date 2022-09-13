@@ -16,15 +16,6 @@ public class Ui {
         sc = new Scanner(System.in);
     }
 
-    /**
-     * Prints a greeting message when the bot is opened.
-     */
-    public void greetingMessage() {
-        String greeting = "Hello! I'm Duke\n\t"
-                + "What can I do for you?";
-        this.outputMessage(greeting);
-    }
-
     public void setMainWindow(MainWindow window) {
         this.mainWindow = window;
     }
@@ -37,25 +28,12 @@ public class Ui {
      * Prints an exit message.
      */
     public void exitMessage() {
-        String exit = "Bye. Hope to see you again soon!";
+        String exit = "\tBye. Hope to see you again soon!";
         this.outputMessage(exit);
     }
 
     public void showLoadingError() {
-        this.outputMessage("An error occurred when loading the file :(");
-    }
-
-    public void showError(String message) {
-        this.outputMessage(message);
-    }
-
-    /**
-     * Reads user command.
-     *
-     * @return command entered.
-     */
-    public String readCommand() {
-        return sc.nextLine();
+        this.outputMessage("\tAn error occurred when loading the file :(");
     }
 
     /**

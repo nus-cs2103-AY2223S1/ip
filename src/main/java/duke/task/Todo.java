@@ -10,11 +10,11 @@ public class Todo extends Task {
     }
 
     public String getOutput() {
-        return String.format("T | %d | %s", getIsDone() ? 1 : 0, getDescription());
+        return String.format("T | %d | %s | %s", getIsDone() ? 1 : 0, getDescription(), this.tag);
     }
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[T]" + super.toString() + " # " + this.tag;
     }
 }

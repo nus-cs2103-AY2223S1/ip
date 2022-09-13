@@ -18,11 +18,11 @@ public class Event extends Task {
     }
 
     public String getOutput() {
-        return String.format("E | %d | %s | %s", getIsDone() ? 1 : 0, getDescription(), time);
+        return String.format("E | %d | %s | %s | %s", getIsDone() ? 1 : 0, getDescription(), time, this.tag);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + time + ")";
+        return "[E]" + super.toString() + " (at: " + time + ") # " + this.tag;
     }
 }
