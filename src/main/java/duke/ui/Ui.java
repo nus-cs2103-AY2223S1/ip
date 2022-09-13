@@ -64,4 +64,18 @@ public class Ui {
     public String showDukeException(DukeException e) {
         return e.toString();
     }
+
+    public String printOnHelp() {
+        return "Need help? I got you!\n " +
+                "1) To add a task, type: \n " +
+                "i. todo <name of todo> OR \n" +
+                "ii. deadline <name of deadline> /by <date in YYYY-MM-DD> OR \n" +
+                "iii. event <name of event> /at <event location>\n" +
+                "2) To mark/unmark a task, type: \n" +
+                "i. mark <index of task> OR \n" +
+                "ii. unmark <index of task> \n" +
+                "3) To delete a task, type: delete <index of task> \n" +
+                "4) To view the tasklist, type: list" +
+                "5) To search for a keyword, type: find <keyword>";
+    }
 }

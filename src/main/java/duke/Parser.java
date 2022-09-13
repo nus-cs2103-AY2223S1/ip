@@ -4,6 +4,7 @@ import duke.commands.DeleteCommand;
 import duke.commands.DeadlineCommand;
 import duke.commands.EventCommand;
 import duke.commands.FindCommand;
+import duke.commands.HelpCommand;
 import duke.commands.MarkCommand;
 import duke.commands.ListCommand;
 import duke.commands.ToDoCommand;
@@ -43,6 +44,8 @@ public class Parser {
             } else if (command.equals("find")) {
                 String toFind = splitInput[1];
                 return new FindCommand(toFind, taskList, ui);
+            } else if (command.equals("help")){
+                return new HelpCommand(ui);
             } else {
                 return new UnknownCommand();
             }
