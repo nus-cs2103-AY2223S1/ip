@@ -16,7 +16,7 @@ public class Task {
     private final List<String> taskArray;
     private final String task;
     private final String icon;
-    private Boolean completionStatus;
+    private Boolean isCompleted;
     private String completionIcon;
     private final InputParser parser = new InputParser();
 
@@ -28,7 +28,7 @@ public class Task {
         this.task = parser.parseTask(task);
         this.taskArray = task;
         this.icon = icon;
-        this.completionStatus = false;
+        this.isCompleted = false;
         this.completionIcon = "[ ]";
     }
 
@@ -95,8 +95,8 @@ public class Task {
      * @param set 1 = Task completed, 0 = Task incomplete
      */
     public void setCompletionStatus(boolean set) {
-        completionStatus = set;
-        if (completionStatus) {
+        isCompleted = set;
+        if (isCompleted) {
             completionIcon = "[X]";
         } else {
             completionIcon = "[ ]";
@@ -104,7 +104,7 @@ public class Task {
     }
 
     /**
-     * Parse the current task to custom data structure to write to file for storage
+     * Parses the current task to custom data structure to write to file for storage
      *
      * @return custom data structure for file
      */

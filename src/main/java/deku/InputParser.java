@@ -87,6 +87,7 @@ public class InputParser {
                                           StringBuilder time,
                                           StringBuilder misc,
                                           List<String> tasks) {
+        assert(index >= 0);
         for (int i = index; i < tasks.size(); i++) {
             String top = tasks.get(i);
             if (date.length() == 0) {

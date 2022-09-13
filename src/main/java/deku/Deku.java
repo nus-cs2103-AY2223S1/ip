@@ -22,7 +22,7 @@ public class Deku {
     }
 
     /**
-     * Output message by deku
+     * Outputs message by deku
      *
      * @param input content Deku will say
      * @return Full string of the reply by Deku

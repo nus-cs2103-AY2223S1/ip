@@ -75,7 +75,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Set the logic for the input Deku class.
+     * Sets the logic for the input Deku class.
      *
      * @param d A new instance for Deku bot class
      */
