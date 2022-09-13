@@ -19,7 +19,7 @@ public class Duke {
      * Creates a Duke object.
      */
     public Duke() {
-        storage = new FileStorage(System.getProperty("user.home"));
+        storage = new FileStorage();
         parser = new Parser();
         ui = new Ui();
         try {

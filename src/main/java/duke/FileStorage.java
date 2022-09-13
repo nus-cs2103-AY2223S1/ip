@@ -15,21 +15,20 @@ import duke.task.Task;
  * A component of the chatBot Duke that handles reading and writing of data.
  */
 public class FileStorage {
-    private static final String directoryName = "dukeData";
-    private static final String fileName = "Duke.txt";
+    private static final String HOME = System.getProperty("user.home");
+    private static final String DIRECTORY_NAME = "dukeData";
+    private static final String FILE_NAME = "Duke.txt";
     private Path directoryPath;
     private Path filePath;
     private Parser parser;
 
     /**
      * Creates a fileStorage object with the given OS path.
-     *
-     * @param home The string for the OS of the user.
      */
-    public FileStorage(String home) {
+    public FileStorage() {
         this.parser = new Parser();
-        this.directoryPath = Paths.get(home, directoryName);
-        this.filePath = Paths.get(home, directoryName, fileName);
+        this.directoryPath = Paths.get(HOME, DIRECTORY_NAME);
+        this.filePath = Paths.get(HOME, DIRECTORY_NAME, FILE_NAME);
     }
 
     public boolean isDirectoryPresent() {
