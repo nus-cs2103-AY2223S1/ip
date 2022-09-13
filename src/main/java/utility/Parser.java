@@ -32,62 +32,46 @@ import task.Task;
  */
 public class Parser {
     private static HashMap<String, Pattern> commandAliasesHashMap = new HashMap<>();
+    private static final int NO_OF_COMMANDS_SUPPORTED =12;
+
     /**
-     * Initializes hashmap which stores Pattern
+     * Initializes hashmap which stores Patterns
      * required to determine String command used.
      *
      */
-    public static void initialiseCommandAliases() {
-        String[] aliases = new String[] {"todo|task|t"}
+    public static void initialiseCommandAliasesHashMap() {
+        String[] aliasRegexes = new String[]{"todo|task|t", "l|list",
+                "deadline|d", "event|e", "mark|m", "unmark|um","bye|b|quit|q|exit",
+                "find|f", "longdesc", "istoday", "help|h", "delete|remove|r"
+        };
+        String[] actualCommands = new String[] {"todo", "list", "deadline", "event",
+            "mark", "unmark", "bye", "find", "longdesc", "istoday", "help", "delete"};
+
         if (commandAliasesHashMap.isEmpty()) {
-            HashMap<String, Pattern> commandAliases = new HashMap<>();
-            commandAliases.put("todo", todoRegex);
-            commandAliases.put("list", listRegex);
-            commandAliases.put("deadline", deadlineRegex);
-            commandAliases.put("event", eventRegex);
-            commandAliases.put("mark", markRegex);
-            commandAliases.put("unmark", unmarkRegex);
-            commandAliases.put("bye", byeRegex);
-            commandAliases.put("find", findRegex);
-            commandAliases.put("longdesc", longdescRegex);
-            commandAliases.put("istoday", istodayRegex);
-            commandAliases.put("help", helpRegex);
-            commandAliases.put("delete", deleteRegex);
-            commandAliasesHashMap = commandAliases;
+            ArrayList<Pattern> patterns = makePatterns(aliasRegexes);
+            for(int i = 0; i < NO_OF_COMMANDS_SUPPORTED; i ++) {
+                commandAliasesHashMap.put(actualCommands[i], patterns.get(i));
+            }
         }
     }
 
-    private Pattern[] makePatterns(String[] aliases) {
+    /**
+     * Converts a string of regex to Pattern
+     * which can be used to find matches.
+     * Pattern created is case-insensitive.
+     *
+     * @param regexes array of regexes to be converted.
+     * @return ArrayList of patterns.
+     */
+    private static ArrayList<Pattern> makePatterns(String[] regexes) {
         ArrayList<Pattern> patterns = new ArrayList<>();
         Pattern tempPattern;
-        for (String alias: aliases) {
+        for (String alias: regexes) {
             tempPattern =  Pattern.compile(alias,
                     Pattern.CASE_INSENSITIVE);
             patterns.add(tempPattern);
         }
-
-        Pattern listRegex = Pattern.compile("l|list",
-                Pattern.CASE_INSENSITIVE);
-        Pattern deadlineRegex = Pattern.compile("deadline|d",
-                Pattern.CASE_INSENSITIVE);
-        Pattern eventRegex = Pattern.compile("event|e",
-                Pattern.CASE_INSENSITIVE);
-        Pattern markRegex = Pattern.compile("mark|m",
-                Pattern.CASE_INSENSITIVE);
-        Pattern unmarkRegex = Pattern.compile("unmark|um",
-                Pattern.CASE_INSENSITIVE);
-        Pattern byeRegex = Pattern.compile("bye|b|quit|q|exit",
-                Pattern.CASE_INSENSITIVE);
-        Pattern findRegex = Pattern.compile("find|f",
-                Pattern.CASE_INSENSITIVE);
-        Pattern longdescRegex = Pattern.compile("longdesc",
-                Pattern.CASE_INSENSITIVE);
-        Pattern istodayRegex = Pattern.compile("istoday",
-                Pattern.CASE_INSENSITIVE);
-        Pattern helpRegex = Pattern.compile("help|h",
-                Pattern.CASE_INSENSITIVE);
-        Pattern deleteRegex = Pattern.compile("delete|remove|r",
-                Pattern.CASE_INSENSITIVE);
+        return patterns;
     }
 
     /**
@@ -146,7 +130,7 @@ public class Parser {
      */
     private static String extractCommand(String command) {
         // Make sure commandAliases are not empty
-        initialiseCommandAliases();
+        initialiseCommandAliasesHashMap();
         Matcher matcher;
         for (Map.Entry<String, Pattern> patternAndString : commandAliasesHashMap.entrySet()) {
             matcher = patternAndString.getValue().matcher(command);
