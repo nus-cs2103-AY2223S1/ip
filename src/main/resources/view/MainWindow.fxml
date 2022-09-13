@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.ui.MainWindow">
+<VBox maxHeight="1.7976931348623157E308" minHeight="600.0" prefHeight="600.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.ui.MainWindow">
       <children>
-      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="500.0" prefWidth="200.0" vvalue="1.0">
+      <ScrollPane fx:id="scrollPane" VBox.vgrow="ALWAYS" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="1.7976931348623157E308" minWidth="390.0" prefHeight="500.0" prefWidth="200.0" vvalue="1.0">
          <content>
-            <VBox fx:id="dialogContainer" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="dialogContainer" maxWidth="1.7976931348623157E308" minWidth="390.0" prefHeight="200.0" />
          </content>
          <VBox.margin>
             <Insets left="5.0" right="5.0" top="10.0" />
@@ -40,4 +40,7 @@
          </VBox.margin>
       </Button>
       </children>
+   <padding>
+      <Insets bottom="10.0" />
+   </padding>
 </VBox>
