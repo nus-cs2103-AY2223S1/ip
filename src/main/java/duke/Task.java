@@ -62,7 +62,7 @@ public abstract class Task {
     }
 
     /**
-     * Return String representation of Task to be saved in Txt file
+     * Returns String representation of Task to be saved in Txt file
      *
      * @return String representation of Task to be saved in Txt file
      */
