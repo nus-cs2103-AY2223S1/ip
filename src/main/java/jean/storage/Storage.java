@@ -3,6 +3,7 @@ package jean.storage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,14 +20,14 @@ import jean.task.Todo;
  * A class which handles the saving and loading of data from data files.
  */
 public class Storage {
-    private String filepath;
+    private Path filepath;
 
     /**
      * Constructs a Storage object with the corresponding filepath.
      *
      * @param filepath Filepath of the data.
      */
-    public Storage(String filepath) {
+    public Storage(Path filepath) {
         this.filepath = filepath;
     }
 
@@ -38,7 +39,7 @@ public class Storage {
      * @throws IOException When the designated filepath cannot be found.
      */
     public ArrayList<Task> load() throws JeanException, IOException {
-        File f = new File(this.filepath);
+        File f = new File(String.valueOf(this.filepath));
         ArrayList<Task> taskList = new ArrayList<>();
 
         if (!f.createNewFile()) {
@@ -80,7 +81,7 @@ public class Storage {
      * @throws IOException When the designated filepath cannot be found.
      */
     public void saveFile(TaskList taskList) throws IOException {
-        FileWriter fw = new FileWriter(this.filepath);
+        FileWriter fw = new FileWriter(String.valueOf(this.filepath));
         for (Task x : taskList.getTaskList()) {
             fw.write(x.getSaveData());
             fw.write("\n");

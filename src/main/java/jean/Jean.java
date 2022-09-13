@@ -2,6 +2,7 @@ package jean;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 
 import jean.command.Command;
@@ -25,7 +26,7 @@ public class Jean {
      */
     public Jean() {
         this.ui = new Ui();
-        this.storage = new Storage("data/list.txt");
+        this.storage = new Storage(Paths.get("data/list.txt"));
         TaskList tasks = null;
         try {
             File dir = new File("data");
