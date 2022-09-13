@@ -51,7 +51,6 @@ public class Task {
             }
                 String result = str.substring(5);
                 ToDo input = new ToDo(result);
-                Storage.writeToFile(tasks);
                 return Ui.addedTask(tasks, input);
         }
         else if(str.split(" ", 2)[0].equals("deadline")) {
@@ -61,7 +60,6 @@ public class Task {
             String taskNameOnly = taskNameWithType.split(" ",2)[1];
             Deadline input = new Deadline(taskNameOnly);
             input.date = new FormatDate(str.substring(index + 4));
-            Storage.writeToFile(tasks);
             return Ui.addedTask(tasks, input);
         }
         else if(str.split(" ", 2)[0].equals("event")) {
@@ -71,7 +69,6 @@ public class Task {
             String taskNameOnly = taskNameWithType.split(" ",2)[1];
             Event input = new Event(taskNameOnly);
             input.day = new FormatDate(str.substring(index + 4));
-            Storage.writeToFile(tasks);
             return Ui.addedTask(tasks, input);
         }
         throw new DukeException("Command not recognised.");

@@ -1,5 +1,6 @@
 package duke;
 
+import java.io.IOException;
 import java.util.Scanner;
 public class Ui {
     private Scanner sc;
@@ -42,8 +43,9 @@ public class Ui {
      * @param tasks add task into this taskList
      * @param input prints out the task added
      */
-    public static String addedTask(TaskList tasks, Task input) {
+    public static String addedTask(TaskList tasks, Task input) throws IOException {
         tasks.add(input);
+        Storage.writeToFile(tasks);
         String result = "Got it. I've added this task: \n";
         result += input.toString();
         String line = String.format("\nNow you have %d tasks in the list.\n", tasks.size());

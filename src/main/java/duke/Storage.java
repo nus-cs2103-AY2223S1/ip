@@ -51,7 +51,7 @@ public class Storage {
         while((str = reader.readLine()) != null) {
 
             if(str.charAt(1) == 'T') {
-                String task = str.substring(2);
+                String task = str.substring(7);
                 ToDo input = new ToDo(task);
                 if (str.charAt(4) == 'X') {
                     input.markAsDone();
