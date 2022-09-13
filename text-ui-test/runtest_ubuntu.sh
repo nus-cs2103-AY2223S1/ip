@@ -3,4 +3,4 @@
 # default Java version is different.
 
 cd "$(dirname "$0")"
-JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/ ./runtest_gradle.sh
+JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/ ./runtest.sh
