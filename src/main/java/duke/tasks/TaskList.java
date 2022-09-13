@@ -28,7 +28,7 @@ public class TaskList {
     }
 
     private String printAddedTask(Task task) {
-        return String.format("Wow, so productive... \n%s \n\n%d outstanding tasks",
+        return String.format("Wow, so productive... \n%s \n%d outstanding tasks",
                 task.toString(), tasks.size());
     }
 
@@ -70,7 +70,7 @@ public class TaskList {
         } else {
             Task currentTask = tasks.get(index);
             tasks.remove(index);
-            return String.format("Giving up, huh? \n%s \n\n%d outstanding tasks",
+            return String.format("Giving up, huh? \n%s \n%d outstanding tasks",
                     currentTask, tasks.size());
         }
     }
@@ -194,6 +194,9 @@ public class TaskList {
             int j = i + 1;
             Task item = tasks.get(i);
             sb.append(j).append(".").append(item.toString()).append("\n");
+        }
+        if (sb.toString().isBlank()) {
+            return "No such task, my friend.";
         }
         return sb.toString();
     }

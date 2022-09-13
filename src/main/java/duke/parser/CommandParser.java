@@ -116,7 +116,7 @@ public class CommandParser {
             BufferedReader in = new BufferedReader(new FileReader("joke.txt"));
             String line = in.readLine();
             while (line != null) {
-                if (rand.nextInt(20) == 0) {
+                if (rand.nextInt(10) == 0) {
                     result = line;
                 }
                 line = in.readLine();

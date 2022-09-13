@@ -87,8 +87,8 @@ public class MainWindow extends AnchorPane {
                 "\n • find [string]" +
                 "\n • delete [index] "+
                 "\n • todo [description]" +
-                "\n • deadline [description] \\by [d/mm/yyyy]" +
-                "\n • event [description] \\at [d/mm/yyyy]" +
+                "\n • deadline [description] [d/mm/yyyy]" +
+                "\n • event [description] [d/mm/yyyy]" +
                 "\n • joke";
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(commands, dukeImage)
