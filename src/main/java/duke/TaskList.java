@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-    private List<Task> list;
+    private ArrayList<Task> list;
     private final String HORIZONTAL_LINE_BREAK = "-------------------------";
 
     public TaskList() {
         this.list = new ArrayList<>();
     }
 
-    public TaskList(List<Task> list) {
+    public TaskList(ArrayList<Task> list) {
         this.list = list;
     }
 
-    public List<Task> getAllTasks() {
+    public ArrayList<Task> getAllTasks() {
         return list;
     }
 

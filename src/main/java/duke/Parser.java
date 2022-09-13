@@ -67,6 +67,12 @@ public class Parser {
                     break;
                 }
 
+                case "find": {
+                    String string = sc.next() + sc.nextLine();
+                    duke.find(string);
+                    break;
+                }
+
                 default:
                     sc.nextLine();
                     throw new DukeException("I'm sorry, but I don't know what that means.");

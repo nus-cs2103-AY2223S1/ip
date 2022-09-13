@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Duke {
 
@@ -92,6 +93,23 @@ public class Duke {
     public void delete(int index) throws  DukeException {
         tasks.deleteTask(index);
         storage.save(tasks);
+    }
+
+    public void find(String keyword) {
+        ArrayList<Task> taskList = tasks.getAllTasks();
+        ArrayList<Task> filteredTasks = new ArrayList<>();
+        for (Task task : taskList) {
+            String description = task.description;
+            if (description.contains(keyword)) {
+                filteredTasks.add(task);
+            }
+        }
+        System.out.println(HORIZONTAL_LINE_BREAK);
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < filteredTasks.size(); i++) {
+            System.out.println((i + 1) + ". " + filteredTasks.get(i));
+        }
+        System.out.println(HORIZONTAL_LINE_BREAK);
     }
 
 }
