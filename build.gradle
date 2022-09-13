@@ -56,7 +56,7 @@ run{
     standardInput = System.in
 }
 
-javafx {
-    version = "18.0.2"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
-}
+// javafx {
+//     version = "11"
+//     modules = [ 'javafx.controls', 'javafx.fxml' ]
+// }
