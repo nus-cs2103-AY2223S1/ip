@@ -1,10 +1,14 @@
-# User Guide
+# Tutter User Guide
 
 ## Features 
 
-### Feature-ABC
+### Add Tasks
 
-Description of the feature.
+Add new tasks to your task list. Tasks can be of the following types: 
+1. `todo` 
+2. `event` 
+3. `deadline`
+
 
 ### Feature-XYZ
 
