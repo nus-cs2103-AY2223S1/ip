@@ -20,7 +20,7 @@ public class Duke {
     /**
      * Constructs an instance of Duke.
      */
-    public Duke() {
+    public Duke() throws DukeException {
         ui = new Ui();
         storage = new Storage();
         parser = new Parser();
@@ -28,20 +28,16 @@ public class Duke {
     }
 
 
-    private void run() {
+    private void run() throws DukeException {
         ui.introduction();
         tasks = storage.readData();
     }
-    public static void main(String[] args) {
-        new Duke().run();
-    }
-
 
     /**
      * @param input User input to parse
      * @return Returns a String to respond to the user input.
      */
-    public String getResponse(String input) {
+    public String getResponse(String input) throws DukeException {
         if (input.equals("bye")) {
             storage.saveData(tasks);
         }

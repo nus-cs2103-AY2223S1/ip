@@ -276,7 +276,6 @@ public class Parser {
             if (type.equals("duke.types.Deadline") || type.equals("duke.types.Event")) {
                 reminders.add(task);
             }
-            System.out.println(task.getClass());
         }
 
         if (reminders.isEmpty()) {
