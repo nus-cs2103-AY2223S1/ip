@@ -9,6 +9,6 @@ public class DukeCannotCreateFileException extends DukeException {
      * Constructs a DukeCannotCreateFileException exception.
      */
     public DukeCannotCreateFileException() {
-        super("Exception: Unable to create file.");
+        super("Exception: Unable to create file.", "Oh no, even I can't create any files... I need my brother.");
     }
 }

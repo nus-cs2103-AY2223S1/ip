@@ -14,6 +14,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -34,9 +39,10 @@ public class Gui extends Application {
     private Button sendButton;
     private Scene scene;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/UserPic.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DukePic.png"));
-    private Image applicationIcon = new Image(this.getClass().getResourceAsStream("/images/NGNL.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/userPic.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/dukePic.png"));
+    private Image applicationIcon = new Image(this.getClass().getResourceAsStream("/images/ngnl.png"));
+    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.jpg"));
 
     /**
      * Initialize the FXML controller.
@@ -47,6 +53,12 @@ public class Gui extends Application {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         // Let Duke create a dialogue box to greet the user
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(GuiText.formatGreetString(), dukeImage));
+        Background background = new Background(new BackgroundImage(backgroundImage,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(100, 100, true, true, true, false)));
+        dialogContainer.setBackground(background);
     }
 
     @Override
@@ -69,12 +81,10 @@ public class Gui extends Application {
             stage.setResizable(false);
             stage.getIcons().add(applicationIcon);
 
-            // Other possible configurations that are currently unused.
-            /*
-            scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-            scrollPane.setFitToWidth(true);
-            dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-             */
+            /* Other possible configurations that are currently unused. */
+            // scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+            // scrollPane.setFitToWidth(true);
+            // dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
             stage.show();
         } catch (IOException e) {
@@ -94,6 +104,8 @@ public class Gui extends Application {
                 DialogBox.getUserDialog(userText, userImage),
                 DialogBox.getDukeDialog(dukeText, dukeImage)
         );
+        double height = userInput.getMaxHeight();
+        dialogContainer.setPrefHeight(height);
         userInput.clear();
     }
 

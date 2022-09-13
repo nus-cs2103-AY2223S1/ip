@@ -9,6 +9,6 @@ public class DukeInvalidIndexException extends DukeException {
      * Constructs a DukeInvalidIndexException exception.
      */
     public DukeInvalidIndexException() {
-        super("Exception: Invalid task index.");
+        super("Exception: Invalid task index.", "I can't find what you are looking for.");
     }
 }

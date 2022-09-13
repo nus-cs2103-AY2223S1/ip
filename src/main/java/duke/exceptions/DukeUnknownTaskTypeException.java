@@ -9,6 +9,6 @@ public class DukeUnknownTaskTypeException extends DukeException {
      * Constructs a DukeUnknownTaskTypeException exception.
      */
     public DukeUnknownTaskTypeException() {
-        super("Exception: Unknown task type encountered.");
+        super("Exception: Unknown task type encountered.", "So... what is this task?");
     }
 }

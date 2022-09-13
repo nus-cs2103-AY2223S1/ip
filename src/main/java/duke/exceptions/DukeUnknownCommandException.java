@@ -9,6 +9,6 @@ public class DukeUnknownCommandException extends DukeException {
      * Constructs a DukeUnknownCommandException exception.
      */
     public DukeUnknownCommandException() {
-        super("Exception: Unknown user command encountered.");
+        super("Exception: Unknown user command encountered.", "Are we talking the same language?");
     }
 }

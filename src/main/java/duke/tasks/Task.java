@@ -1,6 +1,7 @@
 package duke.tasks;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeUnknownTaskTypeException;
 
 /**
  * This abstract class encapsulates the task that the user is trying to store on Duke.
@@ -42,7 +43,7 @@ public abstract class Task {
             case "E":
                 return EVENT;
             default:
-                throw new DukeException("Exception: Unknown task type.");
+                throw new DukeUnknownTaskTypeException();
             }
         }
     }

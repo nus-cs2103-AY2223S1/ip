@@ -3,6 +3,7 @@ package duke.commands;
 import java.time.LocalDateTime;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeNoDateTimeException;
 import duke.gui.GuiText;
 import duke.tasks.Task;
 import duke.tasks.TaskWithDateTime;
@@ -45,7 +46,24 @@ public class SnoozeCommand implements Command {
             storage.writeToFile(taskList);
             return GuiText.formatSnooze(index, ((TaskWithDateTime) task));
         } else {
-            throw new DukeException("Exception: This task does not have a date and time.");
+            throw new DukeNoDateTimeException();
         }
+    }
+
+    /**
+     * Checks if the other object is equals to this one.
+     *
+     * @param o The other object to check on equality.
+     * @return Boolean representing the equality of the object with this one.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof SnoozeCommand) {
+            SnoozeCommand that = (SnoozeCommand) o;
+            if (index == that.index) {
+                return true;
+            }
+        }
+        return false;
     }
 }

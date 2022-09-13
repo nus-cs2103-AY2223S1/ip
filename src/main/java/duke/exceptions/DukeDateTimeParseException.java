@@ -9,6 +9,6 @@ public class DukeDateTimeParseException extends DukeException {
      * Constructs a DukeDateTimeParseException exception.
      */
     public DukeDateTimeParseException() {
-        super("Exception: Cannot parse datetime");
+        super("Exception: Cannot parse datetime", "I can't believe there is something I don't understand!");
     }
 }

@@ -178,6 +178,6 @@ public class GuiText {
      * @return A String to describe the exception that occurred during the program run.
      */
     public static String formatExceptionString(DukeException e) {
-        return e.getMessage();
+        return e.getGuiMessage();
     }
 }

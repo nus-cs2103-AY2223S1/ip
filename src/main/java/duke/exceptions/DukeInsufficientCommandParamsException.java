@@ -9,6 +9,6 @@ public class DukeInsufficientCommandParamsException extends DukeException {
      * Constructs a DukeInsufficientCommandParamsException exception.
      */
     public DukeInsufficientCommandParamsException() {
-        super("Exception: Insufficient command parameters.");
+        super("Exception: Insufficient command parameters.", "Please complete your sentence.");
     }
 }
