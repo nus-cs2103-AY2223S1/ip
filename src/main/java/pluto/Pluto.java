@@ -35,7 +35,7 @@ public class Pluto {
      */
     public String getResponse(String input) {
         try {
-            Command c = Parser.parse(input);
+            Command c = Parser.parse(input.strip());
             return c.execute(tasks, ui, storage);
         } catch (PlutoException e) {
             return ui.showError(e.getMessage());

@@ -41,6 +41,18 @@ public class Ui {
     }
 
     /**
+     * Returns message for rescheduling a task.
+     * @param t Task rescheduled.
+     * @return Reschedule message.
+     */
+    public String rescheduleUi(Task t) {
+        StringBuilder rescheduleMessage = new StringBuilder();
+        rescheduleMessage.append("Noted. I've rescheduled this task:\n");
+        rescheduleMessage.append(String.format("\t%s\n", t.toString()));
+        return rescheduleMessage.toString();
+    }
+
+    /**
      * Returns exit message.
      * @return Exit message.
      */

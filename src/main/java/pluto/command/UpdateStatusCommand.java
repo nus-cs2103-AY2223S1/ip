@@ -36,13 +36,14 @@ public class UpdateStatusCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
+        boolean currStatus = tasks.getTask(idx).getStatusIcon().equals("X");
         tasks.markTask(idx, isDone);
         try {
             storage.rewriteFile(tasks);
             Task t = tasks.getTask(idx);
             return ui.updateStatusUi(t, isDone);
         } catch (IOException e) {
-            tasks.markTask(idx, !isDone);
+            tasks.markTask(idx, currStatus);
             throw new PlutoException("OOPS!!! Couldn't update task status. Try again!");
         }
     }

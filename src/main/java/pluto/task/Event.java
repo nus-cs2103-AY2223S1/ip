@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import pluto.PlutoException;
+
 /**
  * Event task.
  */
@@ -36,6 +38,16 @@ public class Event extends Task {
     @Override
     public LocalDate getDateMaybe() {
         return at.toLocalDate();
+    }
+
+    @Override
+    public void changeTime(LocalDateTime time) throws PlutoException {
+        this.at = time;
+    }
+
+    @Override
+    public LocalDateTime getDate() {
+        return at;
     }
 
     @Override

@@ -1,6 +1,9 @@
 package pluto.task;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import pluto.PlutoException;
 
 /**
  * Todo task.
@@ -29,6 +32,14 @@ public class Todo extends Task {
     @Override
     public LocalDate getDateMaybe() {
         return null;
+    }
+    @Override
+    public void changeTime(LocalDateTime time) throws PlutoException {
+        throw new PlutoException("OOPS!!! Cannot change date of todo task.");
+    }
+    @Override
+    public LocalDateTime getDate() throws PlutoException {
+        throw new PlutoException("OOPS!!! Todo task doesn't have a date.");
     }
 
     @Override
