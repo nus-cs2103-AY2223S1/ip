@@ -23,34 +23,6 @@ public class TaskList {
     }
 
     /**
-     * Used to convert the current TaskList into a string format that can be easily read by the program after saving
-     *
-     * @return the TaskList in the required string format for saving to file
-     */
-    public String saveToFile() {
-        String output = "";
-        for (Task task : tasks) {
-            String textInput = "";
-            String isDone = "O / ";
-
-            if (task.isDone) {
-                isDone = "X / ";
-            }
-
-            if (task instanceof Todo) {
-                textInput = "T / " + isDone + task.taskName + "\n";
-            } else if (task instanceof Deadline) {
-                textInput = "D / " + isDone + task.taskName + " / " + ((Deadline) task).by + "\n";
-            } else if (task instanceof Event) {
-                textInput = "E / " + isDone + task.taskName + " / " + ((Event) task).at + " / "
-                        + ((Event) task).startTime + " / " + ((Event) task).endTime + "\n";
-            }
-            output += textInput;
-        }
-        return output;
-    }
-
-    /**
      * Adds the tasks into the TaskList
      *
      * @param str the input string of the Task
@@ -155,6 +127,22 @@ public class TaskList {
     }
 
     /**
+     * Displays the TaskList in the program
+     *
+     * @return the list of tasks as a string
+     */
+    public String list() {
+        StringBuilder output = new StringBuilder();
+        if (tasks.isEmpty()) {
+            output = new StringBuilder("you have no tasks woof woof!");
+        }
+        for (int i = 0; i < tasks.size(); i++) {
+            output.append(i + 1).append(".").append(tasks.get(i).toString()).append("\n");
+        }
+        return output.toString();
+    }
+
+    /**
      * Deletes the task of given number from the TaskList
      *
      * @param input the input string of the message
@@ -165,18 +153,17 @@ public class TaskList {
             if (input.equals("delete") || input.equals("delete ")) {
                 throw new DescriptionEmptyException("grrrr >:( you need to delete something woof woof!");
             } else {
-                int i = Integer.valueOf(input.replace("delete ", ""));
+                int i = Integer.parseInt(input.replace("delete ", ""));
                 if (i > tasks.size() || i <= 0) {
                     throw new OutOfBoundsException(i);
                 } else {
                     Task t = tasks.remove(i - 1);
                     taskCount--;
-                    String str = String.format("woof! the task is now deleted woof!\n" +
+                    return String.format("woof! the task is now deleted woof!\n" +
                                     "%s\n" +
                                     "you now have %d tasks in the list woof!",
                             t.toString(),
                             taskCount);
-                    return str;
                 }
             }
         } catch (OutOfBoundsException | DescriptionEmptyException e) {
@@ -198,7 +185,7 @@ public class TaskList {
                 throw new DescriptionEmptyException("grrrr >:( you need to mark something woof woof!");
             } else {
                 String str = input.replace("mark ", "");
-                int j = Integer.valueOf(str);
+                int j = Integer.parseInt(str);
                 if (j > tasks.size() || j <= 0) {
                     throw new OutOfBoundsException(j);
                 } else {
@@ -226,38 +213,54 @@ public class TaskList {
                 throw new DescriptionEmptyException("grrrr >:( what do you want to find woof woof!");
             } else {
                 String keyword = input.replace("find ", "");
-                String output = "woof here are the tasks i found that have this keyword woof:";
-                for (int i = 0; i < tasks.size(); i++) {
-                    Task task = tasks.get(i);
+                StringBuilder output = new StringBuilder("woof here are the tasks i found that have this keyword woof:");
+                for (Task task : tasks) {
                     if (task.taskName.contains(keyword)) {
-                        output += "\n" + task.toString();
+                        output.append("\n").append(task);
                     }
                 }
-                return output;
+                return output.toString();
             }
         } catch (DescriptionEmptyException e) {
             return e.getMessage();
         }
     }
 
+    /**
+     * Saves the data of the TaskList into the file and displays a goodbye message
+     *
+     * @return a goodbye message
+     */
     public String bye() {
         Storage.save(this);
         return Ui.bye();
     }
 
     /**
-     * Displays the list in the program
+     * Converts the current TaskList into a string format that can be easily read by the program after saving
      *
-     * @return the list of tasks as a string
+     * @return the TaskList in the required string format for saving to file
      */
-    public String list() {
-        String output = "";
-        if (tasks.isEmpty()) {
-            output = "you have no tasks woof woof!";
+    public String saveToFile() {
+        StringBuilder output = new StringBuilder();
+        for (Task task : tasks) {
+            String textInput = "";
+            String isDone = "O / ";
+
+            if (task.isDone) {
+                isDone = "X / ";
+            }
+
+            if (task instanceof Todo) {
+                textInput = "T / " + isDone + task.taskName + "\n";
+            } else if (task instanceof Deadline) {
+                textInput = "D / " + isDone + task.taskName + " / " + ((Deadline) task).by + "\n";
+            } else if (task instanceof Event) {
+                textInput = "E / " + isDone + task.taskName + " / " + ((Event) task).at + " / "
+                        + ((Event) task).startTime + " / " + ((Event) task).endTime + "\n";
+            }
+            output.append(textInput);
         }
-        for (int i = 0; i < tasks.size(); i++) {
-            output += ((i + 1) + "." + tasks.get(i).toString() + "\n");
-        }
-        return output;
+        return output.toString();
     }
 }

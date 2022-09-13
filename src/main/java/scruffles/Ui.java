@@ -32,6 +32,8 @@ public class Ui {
 
     /**
      * Greets the user when they exit the program
+     *
+     * @return goodbye message
      */
     public static String bye() {
         return "woof see you again woof!";

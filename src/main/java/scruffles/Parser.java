@@ -14,11 +14,9 @@ public class Parser {
     }
 
     /**
-     * The method of the parser that's used to parse inputs the program receives
+     * Parses the input received by the program
      *
      * @param input the string input of the program
-     * @throws UnknownArgumentException when input is an unknown command
-     * @throws DescriptionEmptyException when a Task command has an incomplete input
      * @return the output string of Scruffles
      */
     public String parse(String input) {

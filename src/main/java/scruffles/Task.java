@@ -15,9 +15,9 @@ public class Task {
     }
 
     /**
-     * Used to display the status icon of whether a task is marked as done or not
+     * Gets the status icon which shows whether a task is marked as done or not
      *
-     * @returns the required status icon
+     * @return the required status icon
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X

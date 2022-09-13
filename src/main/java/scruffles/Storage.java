@@ -15,15 +15,14 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private static String filePath = "scruffles.txt";
+    private static final String filePath = "scruffles.txt";
 
     public Storage() {}
 
     /**
      * Loads the existing file from the filepath
      *
-     * @throws FileNotFoundException when there is no file found at the filepath
-     * @returns the TaskList that was saved in the file
+     * @return the TaskList that was saved in the file
      */
     public static TaskList load() {
         try {
