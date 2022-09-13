@@ -30,6 +30,7 @@ public class Henry extends Application {
     private final Storage storage;
     private final TaskList taskList;
     private final Parser parser;
+    private final int EXIT_DELAY = 2;
 
     /**
      * The constructor for the logical component of Henry.
@@ -51,7 +52,7 @@ public class Henry extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setHenry(this);
             stage.show();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -66,7 +67,7 @@ public class Henry extends Application {
         assert input != null : "Input is null!";
 
         if (input.equalsIgnoreCase("bye")) {
-            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            PauseTransition delay = new PauseTransition(Duration.seconds(EXIT_DELAY));
             delay.setOnFinished(event -> Platform.exit());
             delay.play();
             return TextUtils.TASKS_SAVED_MESSAGE;
