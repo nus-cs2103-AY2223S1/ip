@@ -111,7 +111,7 @@ public class Duke {
                 memory.put(question, answer);
                 response = UI.COMMAND_MEMORIZED;
             } else {
-                Task newTask;
+                Task newTask; 
                 if (commands[0].equals("todo")) {
                     newTask = parser.generateToDoFromInput(input);
                 } else if (commands[0].equals("deadline")) {
