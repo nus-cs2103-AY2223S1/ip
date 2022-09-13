@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Ui {
     /**
-     * Format a line of text according to the format for bot messages.
+     * Formats a line of text according to the format for bot messages.
      * Do not use \n for multiline text - use the list version.
      *
      * @param text The text to output.
@@ -20,7 +20,7 @@ public class Ui {
     }
 
     /**
-     * Format some multiline text according to the format for bot messages.
+     * Formats some multiline text according to the format for bot messages.
      *
      * @param lines A list of lines of text to output.
      */
@@ -36,15 +36,15 @@ public class Ui {
         return result;
     }
 
-    private static final boolean DEV_MODE = false;
+    private static final boolean IS_IN_DEV_MODE = false;
 
     /**
-     * Format an error message.
+     * Formats an error message.
      *
      * @param e The MessagefulException to output.
      */
     public static List<String> sayError(MessagefulException e) {
-        if (DEV_MODE) {
+        if (IS_IN_DEV_MODE) {
             return sayAsError(e.toString());
         } else {
             return sayAsError(e.getHint());
@@ -52,7 +52,7 @@ public class Ui {
     }
 
     /**
-     * Format an arbitrary string as if it is an error message.
+     * Formats an arbitrary string as if it is an error message.
      *
      * @param message The message to output.
      */

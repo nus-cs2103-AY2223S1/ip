@@ -45,7 +45,7 @@ public class Deadline extends Task {
 
     //@@author parnikkapore-reused
     // Adapted from https://stackoverflow.com/questions/54593569/#54593895
-    private final static Pattern chatPattern = Pattern.compile("(?<name>.*) /by (?<time>.*)");
+    private final static Pattern CHAT_PATTERN = Pattern.compile("(?<name>.*) /by (?<time>.*)");
 
     /**
      * Constructs a Deadline from a Scanner with arguments.
@@ -56,7 +56,7 @@ public class Deadline extends Task {
      */
     public static Deadline fromChat(Scanner sc) throws MessagefulException {
         String rest = sc.hasNextLine() ? sc.nextLine() : "";
-        Matcher match = chatPattern.matcher(rest);
+        Matcher match = CHAT_PATTERN.matcher(rest);
         if (match.matches()) {
             try {
                 return new Deadline(
@@ -75,7 +75,7 @@ public class Deadline extends Task {
         }
     }
 
-    public static final String typeCode = "D";
+    public static final String TYPE_CODE = "D";
 
     /**
      * Packs the task's data into a List.
@@ -85,7 +85,7 @@ public class Deadline extends Task {
     @Override
     public List<String> flatPack() {
         List<String> result = new ArrayList<>(super.flatPack());
-        result.set(0, typeCode);
+        result.set(0, TYPE_CODE);
         result.add(deadline.toString());
 
         return result;
@@ -98,7 +98,7 @@ public class Deadline extends Task {
      */
     public Deadline(List<? extends String> l) {
         super(l);
-        if (!l.get(0).equals(typeCode)) {
+        if (!l.get(0).equals(TYPE_CODE)) {
             throw new IllegalArgumentException("Trying to hydrate non-deadline as deadline: " + l);
         }
         this.deadline = Instant.parse(l.get(3));

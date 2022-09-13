@@ -46,7 +46,7 @@ public class Todo extends Task {
         return new Todo(sc.nextLine());
     }
 
-    public static final String typeCode = "T";
+    public static final String TYPE_CODE = "T";
 
     /**
      * Packs the task's data into a List.
@@ -56,7 +56,7 @@ public class Todo extends Task {
     @Override
     public List<String> flatPack() {
         List<String> result = new ArrayList<>(super.flatPack());
-        result.set(0, typeCode);
+        result.set(0, TYPE_CODE);
 
         return result;
     }
@@ -68,7 +68,7 @@ public class Todo extends Task {
      */
     public Todo(List<? extends String> l) {
         super(l);
-        if (!l.get(0).equals(typeCode)) {
+        if (!l.get(0).equals(TYPE_CODE)) {
             throw new IllegalArgumentException("Trying to hydrate non-todo as todo: " + l);
         }
     }

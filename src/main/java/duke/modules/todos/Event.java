@@ -40,7 +40,7 @@ public class Event extends Task {
 
     //@@author parnikkapore-reused
     // Adapted from https://stackoverflow.com/questions/54593569/#54593895
-    private final static Pattern chatPattern = Pattern.compile("(?<name>.*) /at (?<timeRange>.*)");
+    private final static Pattern CHAT_PATTERN = Pattern.compile("(?<name>.*) /at (?<timeRange>.*)");
 
     /**
      * Constructs an Event from a Scanner with arguments.
@@ -51,7 +51,7 @@ public class Event extends Task {
      */
     public static Event fromChat(Scanner sc) throws MessagefulException {
         String rest = sc.hasNextLine() ? sc.nextLine() : "";
-        Matcher match = chatPattern.matcher(rest);
+        Matcher match = CHAT_PATTERN.matcher(rest);
         if (match.matches()) {
             return new Event(match.group("name"), match.group("timeRange"));
         } else {
@@ -62,7 +62,7 @@ public class Event extends Task {
         }
     }
 
-    public static final String typeCode = "E";
+    public static final String TYPE_CODE = "E";
 
     /**
      * Packs the task's data into a List.
@@ -72,7 +72,7 @@ public class Event extends Task {
     @Override
     public List<String> flatPack() {
         List<String> result = new ArrayList<>(super.flatPack());
-        result.set(0, typeCode);
+        result.set(0, TYPE_CODE);
         result.add(timeRange);
 
         return result;
@@ -85,7 +85,7 @@ public class Event extends Task {
      */
     public Event(List<? extends String> l) {
         super(l);
-        if (!l.get(0).equals(typeCode)) {
+        if (!l.get(0).equals(TYPE_CODE)) {
             throw new IllegalArgumentException("Trying to hydrate non-event as event: " + l);
         }
         this.timeRange = l.get(3);

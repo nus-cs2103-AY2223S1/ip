@@ -11,7 +11,7 @@ import static java.lang.String.format;
  */
 public abstract class Task {
     private final String name;
-    private boolean done;
+    private boolean isDone;
 
     /**
      * Constructor
@@ -26,11 +26,11 @@ public abstract class Task {
      * Constructor
      *
      * @param name The name of the task
-     * @param done Whether the task is done.
+     * @param isDone Whether the task is done.
      */
-    public Task(String name, boolean done) {
+    public Task(String name, boolean isDone) {
         this.name = name;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     /**
@@ -39,7 +39,7 @@ public abstract class Task {
      * @param done Whether the task is done.
      */
     public void setDone(boolean done) {
-        this.done = done;
+        this.isDone = done;
     }
 
     /**
@@ -51,9 +51,9 @@ public abstract class Task {
         return this.name;
     }
 
-    public static final String typeCode = "B";
-    private final String doneSer = "X";
-    private final String undoneSer = "-";
+    public static final String TYPE_CODE = "B";
+    private final String doneSerialization = "X";
+    private final String undoneSerialization = "-";
 
     /**
      * Packs the task's data into a List.
@@ -61,7 +61,7 @@ public abstract class Task {
      * @return The packed data.
      */
     public List<String> flatPack() {
-        return List.of(typeCode, this.done ? doneSer : undoneSer, this.name);
+        return List.of(TYPE_CODE, this.isDone ? doneSerialization : undoneSerialization, this.name);
     }
 
     /**
@@ -73,10 +73,10 @@ public abstract class Task {
         this.name = l.get(2);
 
         final String doneStr = l.get(1);
-        if (doneSer.equals(doneStr)) {
-            this.done = true;
-        } else if (undoneSer.equals(doneStr)) {
-            this.done = false;
+        if (doneSerialization.equals(doneStr)) {
+            this.isDone = true;
+        } else if (undoneSerialization.equals(doneStr)) {
+            this.isDone = false;
         } else {
             throw new IllegalArgumentException("Invalid done value found while hydrating task: " + doneStr);
         }
@@ -91,12 +91,12 @@ public abstract class Task {
      */
     static Task fromFlatpack(List<String> line) throws MessagefulException {
         switch (line.get(0)) {
-        case typeCode:
-        case Todo.typeCode:
+        case TYPE_CODE:
+        case Todo.TYPE_CODE:
             return new Todo(line);
-        case Deadline.typeCode:
+        case Deadline.TYPE_CODE:
             return new Deadline(line);
-        case Event.typeCode:
+        case Event.TYPE_CODE:
             return new Event(line);
         default:
             throw new MessagefulException(
@@ -107,6 +107,6 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return format("[%s] %s", this.done ? "X" : " ", this.name);
+        return format("[%s] %s", this.isDone ? "X" : " ", this.name);
     }
 }

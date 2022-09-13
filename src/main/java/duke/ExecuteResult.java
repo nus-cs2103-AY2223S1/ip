@@ -14,24 +14,24 @@ public class ExecuteResult {
     /**
      * Lines of text to be sent as a reply from this command
      */
-    private final List<String> reply;
+    private final List<String> replyLines;
 
     /**
      * Constructor
      *
      * @param shouldExitAfter Whether the program should exit after this command
-     * @param reply The reply message
+     * @param replyLines The reply message
      */
-    public ExecuteResult(boolean shouldExitAfter, List<String> reply) {
+    public ExecuteResult(boolean shouldExitAfter, List<String> replyLines) {
         this.shouldExitAfter = shouldExitAfter;
-        this.reply = reply;
+        this.replyLines = replyLines;
     }
 
     public boolean shouldExitAfter() {
         return shouldExitAfter;
     }
 
-    public List<String> getReply() {
-        return this.reply;
+    public List<String> getReplyLines() {
+        return this.replyLines;
     }
 }

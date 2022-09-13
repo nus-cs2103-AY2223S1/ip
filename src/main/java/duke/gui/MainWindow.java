@@ -59,7 +59,7 @@ public class MainWindow extends AnchorPane {
         ExecuteResult result = Parser.execute(input, todos);
         dialogContainer.getChildren().add(ChatMessage.getUserDialog(input, userImage));
         dialogContainer.getChildren().add(
-                        ChatMessage.getDukeDialog(String.join("\n", result.getReply()), dukeImage));
+                        ChatMessage.getDukeDialog(String.join("\n", result.getReplyLines()), dukeImage));
         userInput.clear();
 
         if (result.shouldExitAfter()) {

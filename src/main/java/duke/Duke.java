@@ -15,7 +15,7 @@ import static duke.Ui.say;
  */
 public class Duke {
     /**
-     * Entrypoint.
+     * Executes the CLI version of the bot.
      *
      * @param args Command-line arguments.
      */
@@ -32,15 +32,15 @@ public class Duke {
 
         printLines(messages);
 
-        boolean fExit = false;
-        while (!fExit) {
+        boolean willExit = false;
+        while (!willExit) {
             try {
                 String line = readLine();
                 ExecuteResult result = Parser.execute(line, todos);
-                printLines(result.getReply());
-                fExit = result.shouldExitAfter();
+                printLines(result.getReplyLines());
+                willExit = result.shouldExitAfter();
             } catch (NoSuchElementException e) {
-                fExit = true;
+                willExit = true;
             }
         }
     }
