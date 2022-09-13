@@ -1,11 +1,14 @@
-# User Guide
+# User Guide: ChadBot
 
 ChadBot is a **desktop app that helps users keep track of their tasks, optimised for use via a Control Line Interface** (CLI).
 
 ## Table of Content
-- [Quick Start](#quick-start)
-- [Features](#features)
-- [Command summary](#command-summary)
+
+* [Quick Start](#quick-start)
+
+* [Features](#features)
+
+* [Command summary](#command-summary)
 
 ## Quick Start
 
@@ -208,15 +211,15 @@ Format: `bye`
 Task data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ## Command summary
-| Action           | Format                          | Example                          |
-|------------------|---------------------------------|----------------------------------|
-| **List**         | `list`                          | -                                |
-| **Add ToDo**     | `todo DESCRIPTION`              | `todo Tutorial 1`                |
-| **Add Deadline** | `deadline DESCRIPTION /by DATE` | `deadline Lab 2 /by 2022-08-25`  |
-| **Add Event**    | `event DESCRIPTION /at DATE`    | `event Lecture 3 /at 2022-08-25` |
-| **Mark**         | `mark INDEX`                    | `mark 1`                         |
-| **Unmark**       | `unmark INDEX`                  | `unmark 1`                       |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]`  | `find Tutorial`                  |
-| **Prioritise**   | `high INDEX`                    | `high 1`                         |
-| **Delete**       | `delete INDEX`                  | `delete 1`                       |
-| **Exit**         | `bye`                           | -                                |
+Action | Format | Example
+--------|--------|--------
+**List** | `list` | -  
+**Add ToDo** | `todo DESCRIPTION` | `todo Tutorial 1`
+**Add Deadline** | `deadline DESCRIPTION /by DATE` | `deadline Lab 2 /by 2022-08-25`
+**Add Event** | `event DESCRIPTION /at DATE` | `event Lecture 3 /at 2022-08-25` 
+**Mark** | `mark INDEX` | `mark 1`                         
+**Unmark** | `unmark INDEX` | `unmark 1`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` | `find Tutorial`
+**Prioritise** | `high INDEX` | `high 1`
+**Delete** | `delete INDEX` | `delete 1`                       
+**Exit** | `bye` | -                                
