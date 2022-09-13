@@ -68,16 +68,5 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response.getMessage(), dukeImage)
         );
         userInput.clear();
-
-        if (response.getShouldExit()) {
-            // Delay the exit, so that the goodbye message is shown
-            new Timer().schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    Platform.exit();
-                    System.exit(0); // Platform.exit() does not end the run
-                }
-            }, 1000);
-        }
     }
 }
