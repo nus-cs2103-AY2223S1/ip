@@ -21,11 +21,11 @@ public class Storage {
      */
     public void update(String str) {
         try {
-            //System.out.println(filePath);
             FileWriter fw = new FileWriter(filePath);
             fw.write(str);
             fw.close();
-        }  // Catch block to handle the exception
+        }
+        // Catch block to handle the exception
         catch (IOException ex) {
             System.out.print("Invalid Path");
         }

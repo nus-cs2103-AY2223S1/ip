@@ -18,9 +18,7 @@ public class AddTodoCommand extends Command{
         Todo newTodo = new Todo(todoTask);
         taskList.getTasks().add(newTodo);
         storage.update(ui.listAllItems(taskList.getTasks()));
-//        return ui.addTwoLines("Got it. I've added this task:\n" + newTodo.toString()
-//                + "\nNow you have " + taskList.getTasks().size() + " tasks in the list.");
-        return "Got it. I've added this task:\n" + newTodo.toString()
+        return "Got it. I've added this task:\n" + newTodo
                 + "\nNow you have " + taskList.getTasks().size() + " tasks in the list.";
 
     }

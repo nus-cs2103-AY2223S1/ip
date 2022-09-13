@@ -91,19 +91,13 @@ public class TaskList {
                 DukeException e = new DukeException(" OOPS!!! I'm sorry, but I don't know what that means :-(");
                 throw e;
         }
-
-        //Ui.printLine();
         int numOfTasks = tasks.size();
-//        System.out.println("Got it. I've added this task:" + "\n" + tasks.get(numOfTasks - 1).toString() +
-//                "\n" + "Now you have " + numOfTasks + " tasks in the list.");
         String a = "\"Got it. I've added this task:\" + \"\\n\" + tasks.get(numOfTasks - 1).toString() +\n" +
                 "                \"\\n\" + \"Now you have \" + numOfTasks + \" tasks in the list.\"";
         return "hahaha";
-        //Ui.printLine();
     }
 
     public void find(String str, Ui ui) {
-        //ArrayList<Task> result = new ArrayList<>();
         String result = "";
         for (Task task : tasks) {
             if (task.name.contains(str)) {
