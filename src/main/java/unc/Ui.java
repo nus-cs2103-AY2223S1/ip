@@ -42,7 +42,7 @@ public class Ui {
     public String displayList(TaskList taskList) {
         String s = "";
         for (int i = 0; i < taskList.size(); i++) {
-            s = s + ("\n" + i + 1 + ". " + taskList.get(i));
+            s = s + ("\n" + (i + 1) + ". " + taskList.get(i));
         }
         return s;
     }

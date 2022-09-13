@@ -8,6 +8,7 @@ import unc.command.ExitCommand;
 import unc.command.FindCommand;
 import unc.command.ListCommand;
 import unc.command.MarkCommand;
+import unc.command.SortCommand;
 import unc.command.TodoCommand;
 import unc.command.UnmarkCommand;
 
@@ -24,7 +25,8 @@ public class Parser {
         DEADLINE,
         EVENT,
         BYE,
-        FIND
+        FIND,
+        SORT
 
     }
 
@@ -56,6 +58,8 @@ public class Parser {
             return new ExitCommand();
         case FIND:
             return new FindCommand(words[1]);
+        case SORT:
+            return new SortCommand();
         default:
             throw new RuntimeException();
         }

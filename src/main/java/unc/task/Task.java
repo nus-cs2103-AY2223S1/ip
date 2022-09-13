@@ -1,5 +1,7 @@
 package unc.task;
 
+import java.time.LocalDate;
+
 /**
  * Abstract class for all variations of tasks.
  */
@@ -36,6 +38,8 @@ public abstract class Task {
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
+
+    public abstract LocalDate getDateTime();
 
     /**
      * Sets the status to done.
