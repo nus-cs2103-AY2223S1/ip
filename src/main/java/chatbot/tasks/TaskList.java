@@ -79,6 +79,7 @@ public class TaskList {
      */
     public List<Task> getTaskOn(LocalDate date) {
         if (taskByDates.containsKey(date)) {
+            assert date != null : "Date object not provided";
             return taskByDates.get(date).getTasks();
         } else {
             return null;
@@ -138,6 +139,7 @@ public class TaskList {
      * @return The list of tasks containing the keyword.
      */
     public List<Task> find(String keyword) {
+        assert !keyword.isEmpty() : "Keyword should not be empty";
         List<Task> matches = new ArrayList<>();
         for (Task task : todos) {
             if (task.getTaskName().contains(keyword)) {
