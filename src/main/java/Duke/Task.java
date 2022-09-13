@@ -46,6 +46,13 @@ public class Task {
     }
 
     /**
+     * A setter method to update the description of a task.
+     */
+    public void updateDescription(String newDescription) {
+        this.description = newDescription;
+    }
+
+    /**
      * Builds the template of displaying the list of tasks to the user
      * based on the task's completion status and task description.
      *

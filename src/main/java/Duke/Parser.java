@@ -9,6 +9,7 @@ import Command.ListCommand;
 import Command.MarkCommand;
 import Command.TodoCommand;
 import Command.UnmarkCommand;
+import Command.UpdateCommand;
 
 /**
 * Parser deals with making sense of the user command by formatting user inputs
@@ -28,8 +29,9 @@ public class Parser {
      */
     public static Command parse(String[] command) throws DukeException {
         String userAction = "";
-        boolean isDescriptionNeeded = command[0].equals("mark") || command[0].equals("unmark") || command[0].equals("todo")
-                || command[0].equals("deadline") || command[0].equals("event") || command[0].equals("find");
+        boolean isDescriptionNeeded = command[0].equals("mark") || command[0].equals("unmark") ||
+                command[0].equals("todo") || command[0].equals("deadline") || command[0].equals("event") ||
+                command[0].equals("find") || command[0].equals("update") || command[0].equals("delete");
         if (isDescriptionNeeded && (command.length == 1)) {
             throw new DukeException("You need to provide a description for the command !");
         } else if (isDescriptionNeeded) {
@@ -53,6 +55,8 @@ public class Parser {
                 return new DeleteCommand(userAction);
             case "find":
                 return new FindCommand(userAction);
+            case "update":
+                return new UpdateCommand(userAction);
             case "bye" :
                 return new ExitCommand();
             default:
