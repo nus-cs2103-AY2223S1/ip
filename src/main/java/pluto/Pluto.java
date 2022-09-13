@@ -3,7 +3,7 @@ package pluto;
 import pluto.command.Command;
 
 /**
- * Chat bot.
+ * Logic of chatbot.
  */
 public class Pluto {
     /** Writer and reader from local file */

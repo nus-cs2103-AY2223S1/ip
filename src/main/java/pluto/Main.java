@@ -14,6 +14,7 @@ import pluto.controller.MainWindow;
  */
 public class Main extends Application {
 
+    /** Instance of Pluto */
     private Pluto pluto = new Pluto();
 
     @Override

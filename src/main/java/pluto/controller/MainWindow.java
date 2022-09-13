@@ -4,7 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -17,18 +16,21 @@ import pluto.Ui;
  * Layout of application.
  */
 public class MainWindow extends AnchorPane {
+    /** Scrollpane for the GUI */
     @FXML
     private ScrollPane scrollPane;
+    /** Container for all Dialog Boxes */
     @FXML
     private VBox dialogContainer;
+    /** Input field for the user */
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
-
+    /** Bot generating responses based on user input */
     private Pluto pluto;
 
+    /** Image of the user */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    /** Image of Pluto */
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
@@ -51,8 +53,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other
+     * containing Duke's reply and then appends them to the
+     * dialog container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {

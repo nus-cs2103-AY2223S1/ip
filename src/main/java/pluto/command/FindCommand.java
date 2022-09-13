@@ -9,6 +9,7 @@ import pluto.Ui;
  */
 public class FindCommand extends Command {
 
+    /** Keyword to search */
     private String keyword;
 
     public FindCommand(String keyword) {
