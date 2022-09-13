@@ -61,6 +61,7 @@ public class Task {
      */
     public boolean find_word(String word) {
         for (String storedWord: taskArray) {
+            System.out.println(storedWord);
             boolean isEmpty = (storedWord.length() <= 1);
             boolean isSpecialChar = (storedWord.charAt(0) == SPECIAL_CHAR);
             if (storedWord.equals(word)) {

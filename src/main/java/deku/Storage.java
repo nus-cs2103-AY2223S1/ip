@@ -55,7 +55,7 @@ class Storage {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String data = scanner.nextLine();
-                List<String> stored = new ArrayList<>(List.of(data.split("\\|")));
+                List<String> stored = new ArrayList<>(List.of(data.split("\\s+|\\|")));
                 stored = stored
                         .stream()
                         .filter(e -> !e.equals("") && !e.equals("null"))

@@ -12,7 +12,7 @@ class BotList {
     private final Storage storage;
 
     BotList(List<Task> userInstructions, Storage storage) {
-        this.userInstructions = userInstructions;
+        this.userInstructions = new ArrayList<>(userInstructions);
         this.storage = storage;
     }
     /**
@@ -66,7 +66,6 @@ class BotList {
      * @return String of the task deleted
      */
     String delete(int taskIndex) throws DekuExceptions {
-        assert(taskIndex > 0);
         try {
             Task task = userInstructions.remove(taskIndex - 1);
             storage.save(userInstructions);
