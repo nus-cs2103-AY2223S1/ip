@@ -110,18 +110,7 @@ public class TaskList {
     public TaskList filter(String keyword) {
         TaskList filtered = new TaskList();
         String[] keywords = keyword.split("\\s+");
-        for (Task t: missions) {
-            boolean allFound = true;
-            for (String s: keywords) {
-                if (!t.getDescription().toUpperCase().contains(s.toUpperCase())) {
-                    allFound = false;
-                    break;
-                }
-            }
-            if (allFound) {
-                filtered.addTask(t);
-            }
-        }
+        missions.stream().filter(t -> t.contains(keywords)).forEach(filtered::addTask);
         return filtered;
     }
 

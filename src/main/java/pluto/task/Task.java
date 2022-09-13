@@ -3,6 +3,8 @@ package pluto.task;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Tasks that can be created by the user.
@@ -35,10 +37,6 @@ public abstract class Task {
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     @Override
@@ -81,5 +79,9 @@ public abstract class Task {
      * @return Date of task.
      */
     public abstract LocalDate getDateMaybe();
+
+    public boolean contains(String[] keywords) {
+        return Arrays.stream(keywords).allMatch(x -> description.toUpperCase().contains(x.toUpperCase()));
+    }
 
 }
