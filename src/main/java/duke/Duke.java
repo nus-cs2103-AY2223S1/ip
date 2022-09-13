@@ -3,6 +3,9 @@ package duke;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Is an interactive chatbot that keep tracks of to-do inputted by the user.
+ */
 public class Duke {
 
     private Storage storage;
@@ -37,6 +40,9 @@ public class Duke {
         duke.run(parser);
     }
 
+    /**
+     * Returns the list of all current tasks.
+     */
     public void showList() {
         System.out.println(HORIZONTAL_LINE_BREAK + "\n" + "Here are the tasks in your list:");
         for (int i = 0; i < tasks.getSize(); i++) {
@@ -45,8 +51,11 @@ public class Duke {
         System.out.println(HORIZONTAL_LINE_BREAK);
     }
 
-
-
+    /**
+     * Calls TaskList object to handle a ToDo task inputted by the user.
+     * @param description String description of the task.
+     * @throws DukeException
+     */
     public void setToDo(String description) throws DukeException {
         if (description.isEmpty()) {
             throw new DukeException("The description of todo cannot be empty");
@@ -60,6 +69,11 @@ public class Duke {
         storage.save(tasks);
     }
 
+    /**
+     * Calls TaskList object to handle a DeadLine task inputted by the user.
+     * @param description String description of the task.
+     * @param by String representation of the deadline of the task.
+     */
     public void setDeadLine(String description, String by) {
         Task deadLine = new Deadline(description, by);
         tasks.addTask(deadLine);
@@ -70,6 +84,11 @@ public class Duke {
         storage.save(tasks);
     }
 
+    /**
+     * Calls TaskList object to handle a Event task inputted by the user.
+     * @param description String description of the task.
+     * @param at String representation of when the task will happen.
+     */
     public void setEvent(String description, String at) {
         Task event = new Event(description, at);
         tasks.addTask(event);
@@ -80,16 +99,31 @@ public class Duke {
         storage.save(tasks);
     }
 
+    /**
+     * Calls TaskList object to handle the marking of a task.
+     * @param index Index of the task to be marked.
+     * @throws DukeException
+     */
     public void mark(int index) throws DukeException {
         tasks.markTask(index);
         storage.save(tasks);
     }
 
+    /**
+     * Calls TaskList object to handle the unmarking of a task.
+     * @param index Index of the task to be unmarked.
+     * @throws DukeException
+     */
     public void unmark(int index) throws DukeException {
         tasks.unMarkTask(index);
         storage.save(tasks);
     }
 
+    /**
+     * Calls TaskList object to handle the deletion of a task.
+     * @param index Index of the task to be deleted.
+     * @throws DukeException
+     */
     public void delete(int index) throws  DukeException {
         tasks.deleteTask(index);
         storage.save(tasks);
