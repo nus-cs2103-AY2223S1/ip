@@ -29,12 +29,15 @@ public class MarkCommand extends Command {
      * @throws PikachuException If invalid format or out of range of the task index.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
+        boolean isValidNumber = Pikachu.isNumeric(input.substring(5));
+        boolean isWithinRange = Integer.parseInt(input.substring(5)) <= tasks.getTaskList().size()
+                && Integer.parseInt(input.substring(5)) > 0;
+                
         assert input.startsWith("mark ");
-
-        if (!Pikachu.isNumeric(input.substring(5))) {
+        
+        if (!isValidNumber) {
             throw new PikachuException("Pi-must be numbers behind-pi!");
-        } else if (Integer.parseInt(input.substring(5)) > tasks.getTaskList().size()
-                || Integer.parseInt(input.substring(5)) <= 0) {
+        } else if (!isWithinRange) {
             throw new PikachuException("Pi-not within range-pi!");
         } else {
             int temp = Integer.parseInt(input.substring(5));

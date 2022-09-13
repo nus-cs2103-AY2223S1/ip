@@ -33,7 +33,10 @@ public class AddCommand extends Command {
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         String tempStr = "";
-        if (input.startsWith("deadline ") && input.contains(" /by ")) {
+        boolean isValidDdl = input.startsWith("deadline ") && input.contains(" /by ");
+        boolean isValidTodo = input.startsWith("todo ");
+        boolean isValidEvent = input.startsWith("event ") && input.contains(" /at ");
+        if (isValidDdl) {
             String temp1 = input.split(" ", 2)[1];
             String[] temp2 = temp1.split(" /by ", 2);
             try {
@@ -49,7 +52,7 @@ public class AddCommand extends Command {
             } catch (Exception e) {
                 throw new PikachuException("Need valid date format(yyyy-mm-dd) Pikaaaa");
             }
-        } else if (input.startsWith("todo ")) { //add as tasks
+        } else if (isValidTodo) { //add as tasks
             Todo newTodo = new Todo(input.substring(5));
             if (newTodo.getDescription().equals("")) {
                 throw new PikachuException("Pi-cannot be empty-pi");
@@ -62,7 +65,7 @@ public class AddCommand extends Command {
                 tempStr += "Pikaaaaa: " + tasks.getTaskList().size()
                         + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
             }
-        } else if (input.startsWith("event ") && input.contains(" /at ")) {
+        } else if (isValidEvent) {
             String temp1 = input.split(" ", 2)[1];
             String[] temp2 = temp1.split(" /at ", 2);
             Event newEvent = new Event(temp2[0], temp2[1]);

@@ -27,6 +27,8 @@ public class Pikachu extends Application {
     private TaskList tasks;
     private final Ui ui;
 
+    private boolean isExit = false;
+
     /**
      * Initialises Pikachu bot.
      */
@@ -41,6 +43,13 @@ public class Pikachu extends Application {
         }
     }
 
+    /**
+     * Get the exit status of the chatbot.
+     * @return exit status of pikachu chatbot.
+     */
+    boolean getIsExit() {
+        return isExit;
+    }
     /**
      * Initialise Pikachu
      */
@@ -62,6 +71,7 @@ public class Pikachu extends Application {
     String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
+            isExit = c.isExit();
             return c.execute(tasks, ui, storage);
         } catch (PikachuException e) {
             return e.getMessage();
@@ -135,20 +145,6 @@ public class Pikachu extends Application {
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-    }
-
-    /**
-     * Iteration 1:
-     * Creates a label with the specified text and adds it to the dialog container.
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
-     */
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
     }
 
     /**
