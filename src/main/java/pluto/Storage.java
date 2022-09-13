@@ -47,7 +47,9 @@ public class Storage {
             while (sc.hasNext()) {
                 String text = sc.nextLine().strip();
                 String[] textArr = text.split("\\s+\\|\\s+", 3);
+                assert textArr.length != 0 : "textArr shouldn't be empty";
                 String command = textArr[0];
+                assert textArr.length == 3 : "textArr should have 3 elements";
                 int lastPipe = textArr[2].lastIndexOf("|");
                 String date = null;
                 String description = null;
@@ -62,11 +64,15 @@ public class Storage {
                     missions.add(todo);
                     break;
                 case "D":
+                    assert date != null : "Deadline date cannot be null";
+                    assert description != null : "Deadline description cannot be null";
                     Task deadline = new Deadline(description, Parser.parseDate(date));
                     markTasks(deadline, textArr[1]);
                     missions.add(deadline);
                     break;
                 case "E":
+                    assert date != null : "Event date cannot be null";
+                    assert description != null : "Event description cannot be null";
                     Task event = new Event(description, Parser.parseDate(date));
                     markTasks(event, textArr[1]);
                     missions.add(event);

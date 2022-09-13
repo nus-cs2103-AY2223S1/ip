@@ -77,7 +77,7 @@ public class TaskList {
     }
 
     /**
-     * Change the status of a task.
+     * Changes the status of a task.
      * @param idx Index of the task whose status is to be changed.
      * @param isDone Status of the task after changing.
      * @throws PlutoException If invalid idx.
@@ -111,14 +111,14 @@ public class TaskList {
         TaskList filtered = new TaskList();
         String[] keywords = keyword.split("\\s+");
         for (Task t: missions) {
-            boolean allFound = true;
+            boolean isFoundAll = true;
             for (String s: keywords) {
                 if (!t.getDescription().toUpperCase().contains(s.toUpperCase())) {
-                    allFound = false;
+                    isFoundAll = false;
                     break;
                 }
             }
-            if (allFound) {
+            if (isFoundAll) {
                 filtered.addTask(t);
             }
         }

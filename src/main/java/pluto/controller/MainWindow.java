@@ -32,7 +32,7 @@ public class MainWindow extends AnchorPane {
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
-     * Initialize the window.
+     * Initializes the window.
      */
     @FXML
     public void initialize() {
@@ -42,8 +42,12 @@ public class MainWindow extends AnchorPane {
         );
     }
 
-    public void setPluto(Pluto d) {
-        pluto = d;
+    /**
+     * Sets the chatbot for the application.
+     * @param bot Pluto chatbot.
+     */
+    public void setPluto(Pluto bot) {
+        pluto = bot;
     }
 
     /**
