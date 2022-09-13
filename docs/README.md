@@ -96,7 +96,7 @@ Example of usage:
 
 Expected outcome:
 
-Description of the outcome.
+Success message containing task that has been marked.
 
 ```
 Good Job! The following task "{Task}" has been marked as done!"
@@ -108,11 +108,11 @@ Mark a task as incomplete given the task index.
 
 Example of usage: 
 
-`unmark 1`{.java}
+`unmark 1`
 
 Expected outcome:
 
-Description of the outcome.
+Success message containing task that has been unmarked.
 
 ```
 Okay! The following task "{Task}" has been marked as not done!"
@@ -128,9 +128,26 @@ Example of usage:
 
 Expected outcome:
 
+List of tasks containing search keyword (eg. **lunch**)
+
+```
+1. [T][ ] Buy **Lunch**
+2. [E][ ] [E][ ] **Lunch** (at: SEP 13 2022 1250 to SEP 13 2022 1400)
+```
+### `delete` - delete task with a given task index
+
+Delete task with a given task index.
+Displays a success message when task is deleted successfully.
+
+Example of usage: 
+
+`delete 1`
+
+Success message containing task that has been deleted.
+
 Description of the outcome.
 
 ```
-1. [T][ ] Buy **Lunch**{.java}
-2. [E][ ] [E][ ] **Lunch** (at: SEP 13 2022 1250 to SEP 13 2022 1400){.java}
+You have deleted "{Task}" from your Task List!
+You have 0 tasks in your Task List!
 ```
