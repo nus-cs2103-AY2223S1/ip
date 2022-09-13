@@ -30,8 +30,6 @@ Mark a task as incomplete in the task list. Tasks are marked as incomplete by de
 
 Tag a task in task list with a custom tag message.
 
-<hr />
-
 ## Usage
 
 ### `todo` - adds a todo task to the task list.
