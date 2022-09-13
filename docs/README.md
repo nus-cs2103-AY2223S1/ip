@@ -12,24 +12,6 @@ Long time no see uses the interface of a chat bot for users to track tasks. Thes
 
 ## Usage
 
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
-
-## Usage
-
 ### `todo` - Adding a task to do
 
 Adds a task to be done 
