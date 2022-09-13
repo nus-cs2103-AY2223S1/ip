@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 
 /**
  * Represents the chat window.
+ * Inspired by parnikkapore's PR.
  */
 public class Window extends AnchorPane {
     @FXML
@@ -74,20 +75,8 @@ public class Window extends AnchorPane {
         List<String> reply = command.execute(taskList, ui, storage);
         dialogContainer.getChildren().add(ChatMessage.getUserDialog(input, userImage));
 
-        // Split the reply into groups of 5 lines (the maximum that fits in a single message balloon)
-        List<String> currentLines = new ArrayList<>();
-        for (String line : reply) {
-            currentLines.add(line);
-            if (currentLines.size() >= 5) {
-                dialogContainer.getChildren().add(
-                        ChatMessage.getDrakeDialog(String.join("\n", currentLines), drakeImage));
-                currentLines.clear();
-            }
-        }
-        if (currentLines.size() > 0) {
-            dialogContainer.getChildren().add(
-                    ChatMessage.getDrakeDialog(String.join("\n", currentLines), drakeImage));
-        }
+        dialogContainer.getChildren().add(
+                ChatMessage.getDrakeDialog(String.join("\n", reply), drakeImage));
 
         userInput.clear();
     }
