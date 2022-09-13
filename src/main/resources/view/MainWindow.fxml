@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" scaleShape="false" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.MainWindow">
     <children>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0">
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" style="-fx-background-image: url('./images/wallpaper.png'); ">
          <bottom>
             <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="450.0" BorderPane.alignment="CENTER">
                <children>
@@ -27,7 +27,7 @@
          <center>
               <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="556.0" prefWidth="450.0" vvalue="1.0" BorderPane.alignment="CENTER">
                   <content>
-                      <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="438.0" />
+                      <VBox fx:id="dialogContainer" prefHeight="557.0" prefWidth="440.0" style="-fx-background-image: url('./images/wallpaper.png')"/>
                   </content>
               </ScrollPane>
          </center>
