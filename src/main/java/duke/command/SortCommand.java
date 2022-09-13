@@ -1,19 +1,16 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.DukeException;
 import duke.TaskList;
-import duke.task.Task;
 import duke.utils.Storage;
-
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Handles the "sort" command.
  * @author Jason
  */
-public class SortCommand extends  Command {
+public class SortCommand extends Command {
     /**
      * Sorts the task list.
      * @param taskList TaskList to sort.
@@ -22,7 +19,10 @@ public class SortCommand extends  Command {
      */
     @Override
     public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
-        taskList.getList().sort((o1, o2) -> o1.getDate().compareTo(o2.getDate()));
+        //@@author Stimpson Cat-reused
+        //Reused from https://stackoverflow.com/questions/5927109/sort-objects-in-arraylist-by-date
+        // with minor modifications
+        taskList.getList().sort((task1, task2) -> task1.getDate().compareTo(task2.getDate()));
         storage.saveData(taskList.getList());
         return "Your Tasks has been sorted!";
     }

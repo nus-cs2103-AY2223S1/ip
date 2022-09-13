@@ -12,9 +12,9 @@ import java.util.List;
 
 import duke.Date;
 import duke.DukeException;
-import duke.task.Task;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.Todo;
 
 /**
@@ -58,7 +58,7 @@ public class Storage {
             while (data != null) {
                 String[] dataDetails = data.split(" \\| ");
                 String command = dataDetails[0];
-                boolean marked; // 1 = marked, 0 = unmarked
+                boolean isMarked; // 1 = marked, 0 = unmarked
                 String description = dataDetails[2];
                 Task task;
 
@@ -67,10 +67,10 @@ public class Storage {
                         throw new DukeException("\uD83D\uDE14 OOPS!!! The save file is corrupted, "
                                 + "please delete the file and retry!");
                     } else {
-                        marked = false;
+                        isMarked = false;
                     }
                 } else {
-                    marked = true;
+                    isMarked = true;
                 }
 
                 switch (command) {
@@ -93,10 +93,11 @@ public class Storage {
                     task = new Event(description, eventDate);
                     break;
                 default:
-                    throw new DukeException("\uD83D\uDE14 OOPS!!! The save file is corrupted, please delete the file and retry!");
+                    throw new DukeException("\uD83D\uDE14 OOPS!!! The save file is corrupted, "
+                            + "please delete the file and retry!");
                 }
 
-                if (marked) {
+                if (isMarked) {
                     task.markAsDone();
                 }
 

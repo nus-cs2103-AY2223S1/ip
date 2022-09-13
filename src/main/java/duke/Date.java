@@ -24,10 +24,10 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Compare 2 dates with one another.
+     * Compares 2 dates with one another.
      * @param otherDate The other date to be compared.
      * @return  A negative integer, zero, or a positive integer as this date
-     * is less than, equal to, or greater than the supplied date object.
+     *          is less than, equal to, or greater than the supplied date object.
      */
     @Override
     public int compareTo(Date otherDate) {

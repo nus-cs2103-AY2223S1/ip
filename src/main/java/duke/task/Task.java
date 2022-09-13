@@ -72,10 +72,10 @@ public abstract class Task {
     }
 
     /**
-     * Compare 2 Tasks based on their dates.
+     * Compares 2 Tasks based on their dates.
      * @param   anotherTask - The task to be compared.
      * @return  A negative integer, zero, or a positive integer as this task
-     * is less than, equal to, or greater than the supplied task object.
+     *          is less than, equal to, or greater than the supplied task object.
      */
     public int compareTo(Task anotherTask) {
         return this.getDate().compareTo(anotherTask.getDate());

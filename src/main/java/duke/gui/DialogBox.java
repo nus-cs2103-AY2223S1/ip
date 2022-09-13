@@ -31,8 +31,6 @@ public class DialogBox extends HBox {
             new BackgroundFill(Color.valueOf("#192734"), new CornerRadii(20), Insets.EMPTY));
     private static final Background BG_DUKE = new Background(
             new BackgroundFill(Color.valueOf("#22303C"), new CornerRadii(20), Insets.EMPTY));
-//    @FXML
-//    private Label dialog;
     @FXML
     private TextFlow dialog;
     @FXML

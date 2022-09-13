@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 import duke.command.Command;
 import duke.command.ExitCommand;
+import duke.gui.Ui;
 import duke.utils.Parser;
 import duke.utils.Storage;
-import duke.gui.Ui;
 
 /**
  * Stores the main logic of the AIlfred bot.
@@ -90,8 +90,7 @@ public class Duke {
 
     /**
      * Checks if exit command has been executed.
-     * @return State of current command,
-     * if current command is the exit command or not.
+     * @return State of current command, if current command is the exit command or not.
      */
     public boolean isExitCommand() {
         return this.isExit;
