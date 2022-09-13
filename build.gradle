@@ -17,6 +17,10 @@ checkstyle {
 
 repositories {
     mavenCentral()
+    jcenter();
+    maven {
+        url 'https://nexus.bippo.co.id/nexus/content/groups/public/'
+    }
 }
 
 dependencies {
@@ -43,6 +47,24 @@ dependencies {
     testImplementation "org.testfx:openjfx-monocle:jdk-11+26" // For Java 11
 
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
+
+    // https://mvnrepository.com/artifact/org.goldrenard/ab
+    implementation group: 'org.goldrenard', name: 'ab', version: '1.0.3'
+
+    // https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku
+    implementation group: 'net.reduls.sanmoku', name: 'sanmoku', version: '0.0.5'
+
+    // https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku-feature-ex
+    implementation group: 'net.reduls.sanmoku', name: 'sanmoku-feature-ex', version: '0.0.1'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0'
+
+    // https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.0'
+
+
+
 }
 
 test {

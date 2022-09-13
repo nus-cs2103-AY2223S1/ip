@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
  */
 public class MainWindow extends AnchorPane {
 
-    private static final String GREETING = "HELLO. I AM HENRY. HOW MAY I ASSIST YOU TODAY?";
+    private static final String GREETING = "Hello! I am Henry! How may I assist you today?";
 
     // FXML
     @FXML

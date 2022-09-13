@@ -1,8 +1,12 @@
 package henry;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.alicebot.ab.Bot;
+import org.alicebot.ab.Chat;
 
 import command.Command;
 import command.Commands;
@@ -11,6 +15,7 @@ import command.DeleteCommand;
 import command.EchoCommand;
 import command.EventCommand;
 import command.FindCommand;
+import command.InteractCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.TentativeCommand;
@@ -27,6 +32,7 @@ import util.TextUtils;
 public class Parser {
 
     // REGEX PATTERNS
+    // Regex idea adopted from AB2: https://se-education.org/addressbook-level2/
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<command>\\S*)(?<args>.*)");
     private static final Pattern DATE_FORMAT = Pattern.compile("(?<desc>.+) /(at|by) "
                                                                + "(?<dateTime>.*)");
@@ -34,6 +40,16 @@ public class Parser {
         Pattern.compile("(?<index>\\d+) (?<dateTime>.*)");
     private static final Pattern TENTATIVE_CONFIRM_DATE_FORMAT =
         Pattern.compile("(?<index>\\d+) (--confirm) (?<chosenDateIndex>\\d+)");
+
+    // AIML BOT
+    private final Chat chatSession;
+
+    public Parser() {
+        String botName = "henry";
+        String resourcesPath = getResourcesPath();
+        Bot bot = new Bot(botName, resourcesPath);
+        chatSession = new Chat(bot);
+    }
 
     /**
      * Parses a command from a string. There are two types of commands:
@@ -59,6 +75,8 @@ public class Parser {
             return new ListCommand();
         case TentativeCommand.COMMAND_WORD:
             return handleTentativeCommand(args);
+        case InteractCommand.COMMAND_WORD:
+            return handleInteractCommand(args);
 
         case MarkCommand.COMMAND_WORD:
         case UnmarkCommand.COMMAND_WORD:
@@ -72,6 +90,18 @@ public class Parser {
         default:
             throw new HenryException(TextUtils.UNKNOWN_COMMAND_ERROR);
         }
+    }
+
+    private Command handleInteractCommand(String args) {
+        String response = chatSession.multisentenceRespond(args);
+        while (response.contains("&lt;")) {
+            response = response.replace("&lt;", "<");
+        }
+        while (response.contains("&gt;")) {
+            response = response.replace("&gt;", ">");
+        }
+        response = response.replaceAll(" {2}", " ");
+        return new InteractCommand(response);
     }
 
     private String[] performTextGrouping(String text) {
@@ -198,5 +228,12 @@ public class Parser {
     private boolean isInputNumeric(String args) {
         assert args != null : "Arguments are null!";
         return args.matches("\\d+");
+    }
+
+    private static String getResourcesPath() {
+        File currDir = new File(".");
+        String path = currDir.getAbsolutePath();
+        path = path.substring(0, path.length() - 2);
+        return path + File.separator + "src" + File.separator + "main" + File.separator + "resources";
     }
 }

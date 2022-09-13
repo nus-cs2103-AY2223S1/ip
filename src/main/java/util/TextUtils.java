@@ -22,6 +22,6 @@ public class TextUtils {
     public static final String INDEX_OUT_OF_RANGE_ERROR = "INDEX IS OUT OF RANGE! YOUR TASK LIST HAS %1$d ITEMS.";
 
     // OTHER MESSAGES
-    public static final String TASKS_SAVED_MESSAGE = "GOODBYE! YOUR TASK LIST HAS BEEN SAVED!";
+    public static final String TASKS_SAVED_MESSAGE = "Goodbye! Your task list has been saved!";
 
 }
