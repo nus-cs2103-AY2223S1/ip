@@ -19,7 +19,8 @@ public enum Message {
     DATE_FORMAT_ERROR("That is not how you write a date"),
     NO_RESULTS_FOUND("No matches for your request."),
     DESCRIPTION_EMPTY("You will need to describe your task."),
-    INVALID_SNOOZE_TYPE("You have not entered a valid snooze type.");
+    INVALID_SNOOZE_TYPE("You have not entered a valid snooze type."),
+    EMPTY_COMMAND_ERROR("You have not entered anything. Very funny.");
 
     private String value;
 

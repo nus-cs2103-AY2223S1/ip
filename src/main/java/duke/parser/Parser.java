@@ -36,6 +36,7 @@ public class Parser {
      * @throws DukeException If user input is invalid.
      */
     public static Command getCommand(String input) throws DukeException {
+        checkEmptyInput(input);
         String[] commandTokens = input.split("\\s+", 2);
         String direction = commandTokens[0];
         assert direction != null : "Direction cannot be null";
@@ -74,6 +75,12 @@ public class Parser {
             return new SnoozeCommand(extractIndex(snoozeTokens[0]), snoozeAmount, snoozeType);
         default:
             throw new DukeException(Message.INVALID);
+        }
+    }
+
+    public static void checkEmptyInput(String input) throws DukeException {
+        if (input.replace("\\s", "").isEmpty()) {
+            throw new DukeException(Message.EMPTY_COMMAND_ERROR);
         }
     }
 
