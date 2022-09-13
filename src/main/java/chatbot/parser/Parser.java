@@ -142,8 +142,10 @@ public class Parser {
         Matcher matcher;
         if (type == Deadline.TYPE) {
             matcher = DEADLINE_FORMAT.matcher(args);
-        } else {
+        } else if (type == Event.TYPE) {
             matcher = EVENT_FORMAT.matcher(args);
+        } else {
+            throw new RuntimeException("Internal Program Error");
         }
 
         if (!matcher.matches()) {
@@ -152,7 +154,6 @@ public class Parser {
 
         String taskName = matcher.group("taskName").trim();
         String date = matcher.group("date");
-
 
         return new String[] {taskName, date};
     }
