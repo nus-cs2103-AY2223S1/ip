@@ -4,8 +4,24 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.commands.*;
+import duke.commands.ByeCommand;
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
+import duke.commands.FindCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.SnoozeCommand;
+import duke.commands.TodoCommand;
+import duke.commands.UnmarkCommand;
+import duke.commands.WithinDateTimeCommand;
+import duke.exceptions.DukeDateTimeParseException;
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeIncorrectCommandParamsException;
+import duke.exceptions.DukeInsufficientCommandParamsException;
+import duke.exceptions.DukeUnknownCommandException;
+
 
 /**
  * This class makes sense of the user's input commands.
@@ -17,6 +33,10 @@ public class Parser {
     private static final DateTimeFormatter DT_PARSE_FORMAT = DateTimeFormatter.ofPattern("[yyyy][yy]-M-d HHmm");
     /** The date and time format printed out by Duke. */
     private static final DateTimeFormatter DT_PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy, KK:mm a");
+    /** Text separator for datetime of a deadline task. */
+    private static final String DEADLINE_SEPARATOR = "/by ";
+    /** Text separator for datetime of an event. */
+    private static final String EVENT_SEPARATOR = "/at ";
 
     /**
      * Private constructor to prevent object creation.
@@ -28,7 +48,7 @@ public class Parser {
      *
      * @param str The input String from the user.
      * @return The Command representing the user's input.
-     * @throws DukeException
+     * @throws DukeException When there is a problem with the user's input command.
      */
     public static Command parseCommand(String str) throws DukeException {
         try {
@@ -55,14 +75,14 @@ public class Parser {
             case "between":
                 return parseBetweenCommand(inputLine[1].strip());
             case "snooze":
-                return parseSnoozeCommand(inputLine[1].strip());
+                return new SnoozeCommand(parseTaskIndex(inputLine[1].strip()));
             default:
-                throw new DukeException("Exception: Unknown command.");
+                throw new DukeUnknownCommandException();
             }
         } catch (NumberFormatException e) {
-            throw new DukeException("Exception: Incorrect command parameters.");
+            throw new DukeIncorrectCommandParamsException();
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Insufficient command parameters.");
+            throw new DukeInsufficientCommandParamsException();
         }
     }
 
@@ -81,14 +101,14 @@ public class Parser {
      *
      * @param str The input String from the user specifying the parameters of the task with deadline.
      * @return The DeadLineCommand representing the user's input
-     * @throws DukeException
+     * @throws DukeException When encountering a user command with insufficient parameters.
      */
     private static DeadlineCommand parseDeadlineCommand(String str) throws DukeException {
         try {
-            String[] descDateTime = str.split("/by", 2);
+            String[] descDateTime = str.split(DEADLINE_SEPARATOR, 2);
             return new DeadlineCommand(descDateTime[0].strip(), parseDateTime(descDateTime[1].strip()));
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Insufficient command parameters.");
+            throw new DukeInsufficientCommandParamsException();
         }
     }
 
@@ -97,14 +117,14 @@ public class Parser {
      *
      * @param str The input String from the user specifying the parameters of the event.
      * @return The EventCommand representing the user's input
-     * @throws DukeException
+     * @throws DukeException When encountering a user command with insufficient parameters.
      */
     private static EventCommand parseEventCommand(String str) throws DukeException {
         try {
-            String[] descDateTime = str.split("/at", 2);
+            String[] descDateTime = str.split(EVENT_SEPARATOR, 2);
             return new EventCommand(descDateTime[0].strip(), parseDateTime(descDateTime[1].strip()));
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Insufficient command parameters.");
+            throw new DukeInsufficientCommandParamsException();
         }
     }
 
@@ -113,7 +133,7 @@ public class Parser {
      *
      * @param str The input String from the user specifying the starting and ending date and time to filter.
      * @return The WithinDateTimeCommand representing the user's input.
-     * @throws DukeException
+     * @throws DukeException When encountering a user command with insufficient parameters.
      */
     private static WithinDateTimeCommand parseBetweenCommand(String str) throws DukeException {
         try {
@@ -122,18 +142,7 @@ public class Parser {
             LocalDateTime end = parseDateTime(dateTimes[2] + " " + dateTimes[3]);
             return new WithinDateTimeCommand(start, end);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Insufficient command parameters.");
-        }
-    }
-
-    private static SnoozeCommand parseSnoozeCommand(String str) throws DukeException {
-        try {
-            String[] indexAndDateTime = str.split(" ", 2);
-            int index = Parser.parseTaskIndex(indexAndDateTime[0]);
-            LocalDateTime dateTime = parseDateTime(indexAndDateTime[1]);
-            return new SnoozeCommand(index, dateTime);
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Insufficient command parameters.");
+            throw new DukeInsufficientCommandParamsException();
         }
     }
 
@@ -142,15 +151,13 @@ public class Parser {
      *
      * @param str The input String from the user specifying the date and time.
      * @return A LocalDateTime object representing the user specified date and time.
-     * @throws DukeException
+     * @throws DukeException When encountering error in parsing datetime formats.
      */
     public static LocalDateTime parseDateTime(String str) throws DukeException {
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(str, DT_PARSE_FORMAT);
-            return dateTime;
+            return LocalDateTime.parse(str, DT_PARSE_FORMAT);
         } catch (DateTimeParseException e) {
-            System.out.println(e);
-            throw new DukeException("Exception: Cannot parse datetime.");
+            throw new DukeDateTimeParseException();
         }
     }
 

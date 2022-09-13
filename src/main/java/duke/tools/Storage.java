@@ -13,7 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import duke.exceptions.DukeCannotCreateFileException;
+import duke.exceptions.DukeCannotOpenFileException;
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeUnknownDataFormatException;
+import duke.exceptions.DukeUnknownTaskTypeException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Task;
@@ -35,29 +39,21 @@ public class Storage {
     /** Text separator for datetime of an event. */
     private static final String EVENT_SEPARATOR = "/at ";
     /** The path to the directory for storing Duke data. */
-    private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
+    private static final Path DIRECTORY_PATH = Paths.get(System.getProperty("user.dir"), "data");
     /** The path to the file storing Duke data. */
-    private Path filePath;
-
-    public Storage() {
-        this.filePath = directoryPath.resolve("data.txt");
-    }
-
-    public Storage(String fileName) {
-        this.filePath = directoryPath.resolve(fileName);
-    }
+    private static final Path FILE_PATH = DIRECTORY_PATH.resolve("data.txt");
 
     /**
      * Loads the previously stored TaskList from the file.
      *
      * @return The TaskList stored on the file.
-     * @throws DukeException
+     * @throws DukeException When the data file cannot be accessed.
      */
     public TaskList loadFromFile() throws DukeException {
         ensureDirectoryExist();
         ensureFileExist();
         try {
-            File data = new File(filePath.toString());
+            File data = new File(FILE_PATH.toString());
             Scanner sc = new Scanner(data);
             List<Task> storedTasks = new ArrayList<>();
             while (sc.hasNext()) {
@@ -66,7 +62,7 @@ public class Storage {
             sc.close();
             return new TaskList(storedTasks);
         } catch (FileNotFoundException e) {
-            throw new DukeException("Exception: Cannot open file");
+            throw new DukeCannotOpenFileException();
         }
     }
 
@@ -74,20 +70,20 @@ public class Storage {
      * Stores the TaskList on the file.
      *
      * @param taskList The TaskList to be stored on the file.
-     * @throws DukeException
+     * @throws DukeException When the data file cannot be accessed.
      */
     public void writeToFile(TaskList taskList) throws DukeException {
-        List<Task> storedTasks = taskList.getStoredTasks();
         ensureDirectoryExist();
         ensureFileExist();
+        List<Task> storedTasks = taskList.getStoredTasks();
         try {
-            FileWriter data = new FileWriter(filePath.toString());
-            for (int i = 0; i < storedTasks.size(); i++) {
-                data.write(convertTaskToDataString(storedTasks.get(i)));
+            FileWriter data = new FileWriter(FILE_PATH.toString());
+            for (Task storedTask : storedTasks) {
+                data.write(convertTaskToDataString(storedTask));
             }
             data.close();
         } catch (IOException e) {
-            throw new DukeException("Exception: Cannot open file");
+            throw new DukeCannotOpenFileException();
         }
     }
 
@@ -95,17 +91,17 @@ public class Storage {
      * Appends a task at the end of the storage file.
      *
      * @param task The task to append in the file.
-     * @throws DukeException
+     * @throws DukeException When the data file cannot be accessed.
      */
     public void appendToFile(Task task) throws DukeException {
         ensureDirectoryExist();
         ensureFileExist();
         try {
-            FileWriter data = new FileWriter(filePath.toString(), true);
+            FileWriter data = new FileWriter(FILE_PATH.toString(), true);
             data.write(convertTaskToDataString(task));
             data.close();
         } catch (IOException e) {
-            throw new DukeException("Exception: Cannot open file");
+            throw new DukeCannotOpenFileException();
         }
     }
 
@@ -114,7 +110,7 @@ public class Storage {
      * If it does not exist, creates the directory at the path.
      */
     private static void ensureDirectoryExist() {
-        File folder = new File(directoryPath.toString());
+        File folder = new File(DIRECTORY_PATH.toString());
         if (!folder.exists()) {
             folder.mkdir();
         }
@@ -123,15 +119,17 @@ public class Storage {
     /**
      * Ensures that the file storing Duke data exists.
      * If it does not exist, creates the file at the path.
+     *
+     * @throws DukeException When the data file cannot be created.
      */
     private void ensureFileExist() throws DukeException {
         try {
-            File data = new File(directoryPath.resolve("data.txt").toString());
+            File data = new File(DIRECTORY_PATH.resolve("data.txt").toString());
             if (!data.exists()) {
                 data.createNewFile();
             }
         } catch (IOException e) {
-            throw new DukeException("Exception: Unable to create new file. Tasks might not be stored.");
+            throw new DukeCannotCreateFileException();
         }
     }
 
@@ -140,7 +138,7 @@ public class Storage {
      *
      * @param task The task to be stored on file.
      * @return The String representing how the data is stored on the file.
-     * @throws DukeException
+     * @throws DukeException When encountering an unknown task type.
      */
     private static String convertTaskToDataString(Task task) throws DukeException {
         switch (task.getTaskType()) {
@@ -156,7 +154,7 @@ public class Storage {
             return TaskType.EVENT.value + " " + (event.isDone() ? IS_DONE_YES : IS_DONE_NO) + " "
                     + event.getDescription() + EVENT_SEPARATOR + event.getDateTime() + System.lineSeparator();
         default:
-            throw new DukeException("Exception: Unknown task type.");
+            throw new DukeUnknownTaskTypeException();
         }
     }
 
@@ -165,7 +163,7 @@ public class Storage {
      *
      * @param str The String representing how the data is stored on the file.
      * @return The Task object represented by the String.
-     * @throws DukeException
+     * @throws DukeException When encountering an unknown data string format
      */
     private static Task convertDataStringToTask(String str) throws DukeException {
         String[] taskInfo = str.split(" ", 3);
@@ -193,10 +191,10 @@ public class Storage {
                 }
                 return event;
             default:
-                throw new DukeException("Exception: Incorrect task format");
+                throw new DukeUnknownDataFormatException();
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Incorrect task format.");
+            throw new DukeUnknownDataFormatException();
         }
     }
 }

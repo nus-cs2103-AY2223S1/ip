@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
 import duke.tasks.TaskWithDateTime;
-import duke.tools.SessionManager;
 import duke.tools.TaskList;
 
 /**

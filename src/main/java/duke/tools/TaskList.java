@@ -3,6 +3,7 @@ package duke.tools;
 import java.util.List;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeInvalidIndexException;
 import duke.tasks.Task;
 
 /**
@@ -46,7 +47,7 @@ public class TaskList {
         try {
             return storedTasks.get(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Invalid task number.");
+            throw new DukeInvalidIndexException();
         }
     }
 
@@ -61,7 +62,7 @@ public class TaskList {
         try {
             storedTasks.get(index).setIsDone(isDone);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Invalid task number.");
+            throw new DukeInvalidIndexException();
         }
     }
 
@@ -84,7 +85,7 @@ public class TaskList {
         try {
             storedTasks.remove(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Invalid task number.");
+            throw new DukeInvalidIndexException();
         }
     }
 }
