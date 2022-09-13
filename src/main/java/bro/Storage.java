@@ -50,8 +50,10 @@ public class Storage {
             while (sc.hasNext()) {
                 String s = sc.nextLine();
                 if (s.startsWith("[T]")) {
+                    assert s.substring(6) != "" : "Description is empty";
                     Task t = new Todo(s.substring(6).trim());
                     list.add(t);
+                    assert s.substring(4, 5) != "" : "Status is empty";
                     if (s.substring(4, 5).equals("X")) {
                         t.markAsDone();
                     }
@@ -59,8 +61,11 @@ public class Storage {
                 else if (s.startsWith("[D]")) {
                     String desc = s.substring(6, s.indexOf(" (by")).trim();
                     String by = s.split("by:")[1].replace(')', ' ').trim();
+                    assert desc != "" : "Description is empty";
+                    assert by != "" : "Time is empty";
                     Task t = new Deadline(desc, by);
                     list.add(t);
+                    assert s.substring(4, 5) != "" : "Status is empty";
                     if (s.substring(4, 5).equals("X")) {
                         t.markAsDone();
                     }
@@ -68,8 +73,11 @@ public class Storage {
                 else if (s.startsWith("[E]")) {
                     String desc = s.substring(6, s.indexOf(" (at")).trim();
                     String at = s.split("at:")[1].replace(')', ' ').trim();
+                    assert desc != "" : "Description is empty";
+                    assert at != "" : "Time is empty";
                     Task t = new Event(desc, at);
                     list.add(t);
+                    assert s.substring(4, 5) != "" : "Status is empty";
                     if (s.substring(4, 5).equals("X")) {
                         t.markAsDone();
                     }
