@@ -14,6 +14,7 @@ public class DukeUi {
     static final String INVALID_COMMAND = " is not a valid command !! " +
             "valid commands are list, mark (number), unmark (number), todo (task), deadline (task) /by yyyy/mm/dd," +
             "event (task) /at (time), delete (number), find (keyword)";
+    public static final String INVALID_DESCRIPTION = "You need to provide a description for the command !";
 
     /**
      * Splits user input into a String array of length 2.
