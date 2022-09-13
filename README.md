@@ -1,7 +1,5 @@
 # Duke - Your virtual assistant
-<div align = "center"> 
-<img src ="./Ui.png" width = "720" height = "1000">
-</div>
+![alt text](https://github.com/GarethOng/ip/blob/1334b2beda4d5f59c2cfb14353069f51d0b3160e/docs/Ui.png)
 > "For every minute spent organizing, an hour is earned." -Benjamin Franklin
 
 ## Introduction
