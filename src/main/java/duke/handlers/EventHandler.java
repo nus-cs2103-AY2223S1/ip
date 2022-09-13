@@ -14,20 +14,13 @@ public class EventHandler {
     private static final Pattern RECURRING_EVENT = Pattern.compile("^(.+?(?=\\ \\/at))\\ \\/at (.+?(?=\\ \\/r))\\ \\/r (.+)");
 
     /**
-     * Handles the event Duke command.
-     * Adds a Event into the provided list containing description and at date provided in input.
+     * Handles the EVENT Duke command.
+     * Adds an Event into the provided list containing description and at date provided in input.
+     *
+     * @return Response of the executed EVENT Command.
      * @param list: TaskList to add the Event in.
+     * @param input: Event description and date.
      **/
-    public static void handle(TaskList list, String input) throws DukeException {
-        String[] eventInputs = input.split(" /at ", 2);
-        if (eventInputs.length < 2 || eventInputs[1].trim().equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
-        }
-        Task newTask = new Event(eventInputs[0], eventInputs[1]);
-        list.add(newTask);
-        dukePrint("Event Added!");
-    }
-
     public static String getResponse(TaskList list, String input) throws DukeException {
         if (input.contains("/r")) {
             return createRecurringEvent(list, input);
@@ -41,6 +34,7 @@ public class EventHandler {
         if (eventInputs.length < 2 || eventInputs[1].trim().equals("")) {
             throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
         }
+        assert eventInputs.length == 2;
         Task newTask = new Event(eventInputs[0], eventInputs[1]);
         list.add(newTask);
         return ("Event Added!");

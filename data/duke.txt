@@ -1,3 +1,0 @@
-[T][ ][ ] test
-[E][ ][ ] normalEvent (at: Sep 21 2022)
-[E][D][ ] recurringEvent (at: Sep 21 2022)
