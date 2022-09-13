@@ -3,8 +3,6 @@ package duke;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -14,8 +12,6 @@ import duke.data.exception.DukeException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.ToDo;
-import duke.ui.Ui;
-
 
 public class TaskListTest {
 
@@ -62,21 +58,34 @@ public class TaskListTest {
         TaskList t = new TaskList(new ArrayList<>());
         Event event = new Event("yoga", "12/12/2022");
         t.addToList(event);
-        Ui ui = new Ui();
-        String expected = "Here is the task in your list :D\n\n" + "1. " + event;
-        assertEquals(expected, ui.printList(t.list()));
+        assertEquals(1, t.getSize());
     }
 
     @Test
-    public void list_twoTasksWithDifferentDates_success() {
+    public void list_tasksWithDifferentDates_success() {
         TaskList t = new TaskList(new ArrayList<>());
         Event event = new Event("yoga", "12/12/2022");
         Deadline deadline = new Deadline("submit report", "13/12/2022");
-        LocalDate date = LocalDate.parse("13/12/2022", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        Ui ui = new Ui();
         t.addToList(event);
         t.addToList(deadline);
-        String expected = "Your task for 13 Dec 2022 include:" + String.format("\n\n1. %s", deadline);
-        assertEquals(expected, ui.printList(t.list("13/12/2022"), date));
+        assertEquals(2, t.getSize());
+    }
+
+    @Test
+    public void find_tasksContainingBook_success() {
+        TaskList t = new TaskList(new ArrayList<>());
+        ToDo toDo = new ToDo("read book");
+        Deadline deadline = new Deadline("return book", "20/12/2022");
+        t.addToList(toDo);
+        t.addToList(deadline);
+        assertEquals(2, t.find("book").size());
+    }
+
+    @Test
+    public void find_tasksContainingMultipleKeywords_success() {
+        TaskList t = new TaskList(new ArrayList<>());
+        Event event = new Event("watch movie with mary", "12/10/2022");
+        t.addToList(event);
+        assertEquals(1, t.find("movie", "mary").size());
     }
 }
