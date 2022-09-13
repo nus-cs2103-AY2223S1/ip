@@ -2,7 +2,7 @@ package duke.util.command;
 
 import duke.DukeException;
 import duke.task.TaskList;
-import duke.util.SaveTasks;
+import duke.util.StoredTasks;
 
 public abstract class Command {
     public String command;
@@ -11,5 +11,5 @@ public abstract class Command {
         this.command = command;
     }
 
-    public abstract String handleCommand(TaskList taskList, SaveTasks saveTasks) throws DukeException;
+    public abstract String handleCommand(TaskList taskList, StoredTasks storedTasks) throws DukeException;
 }

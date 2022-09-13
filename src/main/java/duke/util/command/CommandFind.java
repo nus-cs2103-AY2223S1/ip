@@ -2,7 +2,7 @@ package duke.util.command;
 
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.util.SaveTasks;
+import duke.util.StoredTasks;
 
 public class CommandFind extends Command {
 
@@ -11,7 +11,7 @@ public class CommandFind extends Command {
     }
 
     @Override
-    public String handleCommand(TaskList taskList, SaveTasks saveTasks) {
+    public String handleCommand(TaskList taskList, StoredTasks storedTasks) {
         StringBuilder description = new StringBuilder();
         if (taskList.size() == 0) {
             return "You have no task in your list.\n";

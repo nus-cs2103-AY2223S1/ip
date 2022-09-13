@@ -33,7 +33,7 @@ public class Parser {
             case "event":
                 return new CommandEvent(command);
             default:
-                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+                throw new DukeException("Eh what talking you??");
         }
 
     }

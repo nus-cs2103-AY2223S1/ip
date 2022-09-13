@@ -2,22 +2,15 @@ package duke;
 
 import duke.task.TaskList;
 import duke.util.Parser;
-import duke.util.SaveTasks;
+import duke.util.StoredTasks;
 import duke.util.Ui;
 import duke.util.command.Command;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.layout.Region;
-import javafx.scene.control.Label;
-
-import java.nio.file.Paths;
 
 public class Duke {
 
@@ -29,7 +22,7 @@ public class Duke {
 
     private static final String LINE = "\n----------------------------------------------------------------\n";
     private Ui ui;
-    private SaveTasks savedTasks;
+    private StoredTasks storedTasks;
     private TaskList taskList;
 
     /**
@@ -39,10 +32,10 @@ public class Duke {
      * @param filePath the path to an existing text database
      */
     public Duke(String fileDir, String filePath) {
-        this.savedTasks = new SaveTasks(fileDir, filePath);
+        this.storedTasks = new StoredTasks(fileDir, filePath);
         this.ui = new Ui();
         try {
-            this.taskList = new TaskList(this.savedTasks.load());
+            this.taskList = new TaskList(this.storedTasks.load());
         } catch (DukeException e) {
             this.taskList = new TaskList();
         }
@@ -56,15 +49,15 @@ public class Duke {
             String temp = this.ui.readInput();
             try {
                 if (temp.equals("bye")) {
-                    System.out.println(LINE + "Bye. Hope to see you again!" + LINE);
+                    System.out.println(LINE + "Bye bro! Have a nice day!" + LINE);
                     this.ui.closeInput();
-                    this.savedTasks.save(taskList);
+                    this.storedTasks.save(taskList);
                     break;
                 }
                 Parser.parseCommand(temp, taskList);
             } catch (DukeException err) {
                 this.ui.closeInput();
-                this.savedTasks.save(taskList);
+                this.storedTasks.save(taskList);
                 System.out.println(err);
                 break;
             }
@@ -75,9 +68,9 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command command = Parser.parseCommand(input, taskList);
-            return command.handleCommand(taskList, savedTasks);
+            return command.handleCommand(taskList, storedTasks);
         } catch (DukeException de) {
-            this.savedTasks.save(this.taskList);
+            this.storedTasks.save(this.taskList);
             System.out.println(de);
             return de.toString();
         }

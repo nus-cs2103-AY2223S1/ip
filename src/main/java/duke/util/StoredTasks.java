@@ -1,18 +1,24 @@
 package duke.util;
 
 import duke.DukeException;
-import duke.task.*;
+import duke.task.Deadlines;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todos;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SaveTasks {
+public class StoredTasks {
     private static final int TASKTYPE = 0;
     private static final int ISTASKDONE = 1;
     private static final int TASKDESCRIPTION = 2;
     private static final int TASKDATETIME = 3;
-    private ArrayList<Task> savedTasks = new ArrayList<>(100);
+    private ArrayList<Task> storedTasks = new ArrayList<>(100);
 
     private String fileDir;
     private String filePath;
@@ -22,7 +28,7 @@ public class SaveTasks {
      * @param fileDir the directory of the txt database file
      * @param filePath the path to the txt database file
      */
-    public SaveTasks(String fileDir, String filePath) {
+    public StoredTasks(String fileDir, String filePath) {
         this.fileDir = fileDir;
         this.filePath = filePath;
     }
@@ -53,7 +59,7 @@ public class SaveTasks {
         catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return savedTasks;
+        return storedTasks;
     }
 
     public void readEntry(String entry) {
@@ -65,14 +71,14 @@ public class SaveTasks {
                 if (Boolean.parseBoolean(fields[ISTASKDONE])) {
                     taskToAdd.markAsDone();
                 }
-                savedTasks.add(taskToAdd);
+                storedTasks.add(taskToAdd);
                 break;
             case "E":
                 taskToAdd = new Event(fields[TASKDESCRIPTION], fields[TASKDATETIME]);
                 if (Boolean.parseBoolean(fields[ISTASKDONE])) {
                     taskToAdd.markAsDone();
                 }
-                savedTasks.add(taskToAdd);
+                storedTasks.add(taskToAdd);
                 break;
             case "D":
                 taskToAdd = new Deadlines(fields[TASKDESCRIPTION], fields[TASKDATETIME],
@@ -80,7 +86,7 @@ public class SaveTasks {
                 if (Boolean.parseBoolean(fields[ISTASKDONE])) {
                     taskToAdd.markAsDone();
                 }
-                savedTasks.add(taskToAdd);
+                storedTasks.add(taskToAdd);
                 break;
         }
     }

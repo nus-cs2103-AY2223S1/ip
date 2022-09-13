@@ -1,7 +1,7 @@
 package duke.util.command;
 
 import duke.task.TaskList;
-import duke.util.SaveTasks;
+import duke.util.StoredTasks;
 
 public class CommandList extends Command {
 
@@ -10,7 +10,7 @@ public class CommandList extends Command {
     }
 
     @Override
-    public String handleCommand(TaskList taskList, SaveTasks saveTasks) {
+    public String handleCommand(TaskList taskList, StoredTasks storedTasks) {
         StringBuilder listString = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {
             listString.append(" ").append(String.valueOf(i + 1)).append(". ").append(taskList.get(i)).append("\n");
