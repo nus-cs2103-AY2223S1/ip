@@ -25,7 +25,7 @@ public class MainWindow extends AnchorPane {
 
     private Sky sky;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Weed.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Plant.png"));
     private Image skyImage = new Image(this.getClass().getResourceAsStream("/images/Schooling.png"));
 
     /**
