@@ -81,6 +81,7 @@ public class FileOperations {
                     Event e = (Event) t;
                     textToAdd += " (on " + e.getDate() + ")\n";
                 } else {
+                    assert t instanceof Deadline;
                     Deadline d = (Deadline) t;
                     textToAdd += " (by " + d.getDeadline() + ")\n";
                 }
@@ -100,7 +101,7 @@ public class FileOperations {
      * @return List of tasks.
      * @throws AlphaException If file is not found or cannot be read.
      */
-    public List<Task> readFile() throws AlphaException {
+    protected List<Task> readFile() throws AlphaException {
         List<Task> tasksInFile = new ArrayList<>();
         Scanner s;
         try {
@@ -140,6 +141,7 @@ public class FileOperations {
                 break;
             }
             default:
+                assert false : taskType;
             }
         }
         return tasksInFile;
