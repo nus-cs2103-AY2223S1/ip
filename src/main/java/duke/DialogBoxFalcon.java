@@ -49,8 +49,8 @@ public class DialogBoxFalcon extends HBox {
     }
 
     public static DialogBoxFalcon getFalconDialog(String text, Image img) {
-        var DialogBoxFalcon = new DialogBoxFalcon(text, img);
-        DialogBoxFalcon.flip();
-        return DialogBoxFalcon;
+        var dialogBoxFalcon = new DialogBoxFalcon(text, img);
+        dialogBoxFalcon.flip();
+        return dialogBoxFalcon;
     }
 }
