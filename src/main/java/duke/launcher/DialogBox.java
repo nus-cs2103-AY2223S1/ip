@@ -39,7 +39,6 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        dialog.setBackground(Background.fill(Color.BLACK));
         displayPicture.setFill(new ImagePattern(img));
     }
 
