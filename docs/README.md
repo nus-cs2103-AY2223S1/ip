@@ -121,6 +121,7 @@ Format: `delete {index}`
 Example of usage: `delete 1`
 
 Expected outputs:
+
 1) Nice reply by Deku, followed by the task deleted.
     ```
     Deku Responds:
@@ -144,12 +145,14 @@ Format: `mark {index}`
 Example of usage: `mark 1`
 
 Expected outputs:
+
 1) Nice reply by Deku, followed by the task deleted.
     ```
     Deku Responds:
     Good Job! This task is now completed:
     [E][X] - How is your day? (at 2-4pm)
     ```
+   
 2) If the index is out of range, Deku will reply with annoyance
    ```
    Deku Responds:
@@ -166,12 +169,14 @@ Format: `unmark {index}`
 Example of usage: `unmark 1`
 
 Expected outputs:
+
 1) Nice reply by Deku, followed by the task deleted.
     ```
     Deku Responds:
     This task is not yet to be done
     [E][] - How is your day? (at 2-4pm)
     ```
+   
 2) If the index is out of range, Deku will reply with annoyance
    ```
    Deku Responds:
@@ -188,13 +193,15 @@ Format: `undo`
 Example of usage: `undo`
 
 Expected outputs:
+
 1) Nice reply by Deku, confirming the undo.
-    ```
-    Deku Responds:
-    I have undo-ed your last command
-    ```
+   ```
+   Deku Responds:
+   I have undo-ed your last command
+   ```
+   
 2) Deku cannot undo the command. This occurs for commands such as `find_word`, `undo` etc.
-    ```
+   ```
    Deku Responds:
    I cannot undo that!
    ```
