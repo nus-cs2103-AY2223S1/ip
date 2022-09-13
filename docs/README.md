@@ -1,10 +1,16 @@
 # User Guide
 
+## Quick Start
+
 ## Features 
 
-### C-FriendlierSyntax
+## FAQ
 
-Command aliases available:
+## Command summary
+
+### Friendlier Syntax
+
+#### Command aliases available:
 
 todo command can be replaced with "task" or "t" 
 
