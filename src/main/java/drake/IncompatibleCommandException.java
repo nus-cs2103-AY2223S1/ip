@@ -6,11 +6,11 @@ package drake;
 public class IncompatibleCommandException extends DrakeException {
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param error Customised error message for the incompatible commands.
      */
     public IncompatibleCommandException(String error) {
-        super("These two go together like oil mixes with water. " + error);
+        super("These words you just typed go together like oil mixes with water. " + error);
     }
 }
