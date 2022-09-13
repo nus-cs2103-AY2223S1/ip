@@ -15,7 +15,6 @@ import java.io.IOException;
 public class Main extends Application {
 
     private Duke duke = new Duke("data/Duke.txt");
-
     /**
      * This is the method to start TaskDive chatbot GUI.
      *

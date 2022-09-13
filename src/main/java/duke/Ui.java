@@ -156,9 +156,8 @@ public class Ui {
      */
     public List<String> printEndingUi() {
         List<String> texts = new ArrayList<>();
-        texts.add("TaskDive Chatbot will stop, all previous tasks will be auto-saved :D \n"
-                + "Bye, Hope to see you again soon!");
-        texts.add("Please type 'yes' to confirm exit or close the window.");
+        texts.add("TaskDive Chatbot will stop, all previous tasks will be auto-saved :D");
+        texts.add("Bye, Hope to see you again soon!\nPlease type 'yes' to confirm exit or close the window.");
         return texts;
     }
 

@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * An example of a custom control using FXML.
- * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
+ * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a TextArea
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
@@ -27,6 +27,13 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * This method is DialogBox constructor. A DialogBox object consists of dialog attribute (TextArea)
+     * and displayPicture attribute (ImageView).
+     * @param text text that dialog contains.
+     * @param img image for ImageView.
+     * @param color color of the dialog box.
+     */
     private DialogBox(String text, javafx.scene.image.Image img, String color) {
         try {
             javafx.fxml.FXMLLoader fxmlLoader = new javafx.fxml.FXMLLoader(duke.gui.MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -36,17 +43,20 @@ public class DialogBox extends HBox {
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
         dialog.setWrapText(true);
-        newDialogFitText();
+        dialogFitText();
         dialog.setStyle(String.format("-fx-line-spacing: 8px; -fx-control-inner-background: %s; -fx-hbar-policy:never; "
                 + "-fx-vbar-policy:never; -fx-padding: 2;", color));
         displayPicture.setImage(img);
         displayPicture.setClip(new javafx.scene.shape.Circle(25, 25, 25));
+        this.setSpacing(6);
     }
 
-    private void newDialogFitText() {
+    /**
+     * Formats TextArea GUI to fit text.
+     */
+    private void dialogFitText() {
         SimpleIntegerProperty count = new SimpleIntegerProperty(20);
         int rowHeight = 10;
         dialog.prefHeightProperty().bindBidirectional(count);
@@ -72,14 +82,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Creates the DialogBox that contains user input command.
+     * @return DialogBox.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img, "SNOW");
+        return new DialogBox(text, img, "LAVENDER");
     }
 
+    /**
+     * Creates a list of dialog boxes that contain chatbot response messages.
+     * @return DialogBox.
+     */
     public static List<DialogBox> getDukeDialogs(List<String> uiTexts, Image img) {
         List<DialogBox> dialogs = new java.util.ArrayList<>();
         for (String uiText : uiTexts) {
-            var db = new DialogBox(uiText, img, "ALICEBLUE");
+            var db = new DialogBox(uiText, img, "LIGHTGOLDENRODYELLOW");
             db.flip();
             dialogs.add(db);
         }

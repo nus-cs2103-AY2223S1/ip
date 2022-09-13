@@ -7,8 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private VBox dialogContainer;
 
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DDuke.png"));
 
     @FXML
     private TextField userInput;
@@ -32,21 +31,29 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DUser.png"));
 
     public MainWindow() {}
 
-
+    /**
+     * Initializes MainWindow controller.
+     */
     @javafx.fxml.FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         this.addDialogToContainer(getDukeDialogs(new Ui().printStartUpUi(), dukeImage));
     }
 
+    /**
+     * Sets duke attribute to duke object.
+     */
     public void setDuke(Duke d) {
         duke = d;
     }
 
+    /**
+     * Adds dialog boxes to dialogContainer attribute.
+     */
     public void addDialogToContainer(List<DialogBox> dialogs) {
         for (DialogBox dialog : dialogs) {
             dialogContainer.getChildren().add(dialog);
@@ -54,7 +61,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates dialog boxes, one echoing user input and others containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML

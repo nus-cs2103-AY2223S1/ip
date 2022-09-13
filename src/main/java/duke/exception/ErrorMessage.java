@@ -1,5 +1,9 @@
 package duke.exception;
 
+/**
+ * Error message that informs user invalid/ not properly formatted commands.
+ * It is passed to DukeException as Exception message.
+ */
 public enum ErrorMessage {
     INVALID_DATE_FORMAT ("☹ OOPS!!! This is not a proper date format, please refer to command format information."),
     INVALID_DATE ("☹ OOPS!!! This is not a proper date format, year, month or day value is invalid."),
@@ -9,7 +13,6 @@ public enum ErrorMessage {
             + "Please follow the format: Deadline {description} /by {date}."),
     INVALID_EVENT_COMMAND ("☹ OOPS!!! The command is not properly formatted.\n"
             + "Please follow the format: Event {description} /at {date} to {date}."),
-
     INVALID_TAG_COMMAND ("☹ OOPS!!! The command is not properly formatted.\n"
             + "Please follow the format: tag {task index} /with {tag}."),
     INVALID_COMMAND_TYPE ("☹ OOPS!!! I'm sorry, but I don't know what that means :-("),
@@ -27,6 +30,9 @@ public enum ErrorMessage {
         this.name = name;
     }
 
+    /**
+     * Gets name String of ErrorMessage.
+     */
     public String getName(String taskType) {
         return String.format(this.name, taskType);
     }

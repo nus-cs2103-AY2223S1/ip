@@ -1,13 +1,14 @@
 package duke.exception;
 
 /**
- * Represents an exception thrown when an error occurs during duke chatbot execution.
+ * Represents an exception thrown when user enters invalid/ not properly formatted commands,
+ * or when other errors occurs during TaskDive chatbot execution.
  */
 public class DukeException extends Exception {
 
-    public DukeException(String msg) {
-        super(msg);
-    }
+    /**
+     * Creates DukeException with ErrorMessage and tasktype (if it is required to fill ErrorMessage).
+     */
     public DukeException(ErrorMessage error, String taskType) {
         super(error.getName(taskType));
     }
