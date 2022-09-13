@@ -31,8 +31,8 @@ public class Duke {
     }
 
     public String execCommand(Command c, TaskList customTaskList) {
-        assert (tasks != null);
-        assert (storage != null);
+        assert tasks != null : "task list is not null";
+        assert storage != null : "storage is not null";
         String returnStr = c.exec(this.tasks, customTaskList);
         this.storage.save(this.tasks);
         return returnStr;
