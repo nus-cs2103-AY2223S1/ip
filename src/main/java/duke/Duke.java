@@ -200,7 +200,7 @@ public class Duke extends Application{
     private void configureSceneAndStage(Stage stage, AnchorPane mainLayout) {
         scene = new Scene(mainLayout);
         stage.setScene(scene);
-        stage.setTitle("Duke ChatBot");
+        stage.setTitle("DUKE Task ChatBot");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
