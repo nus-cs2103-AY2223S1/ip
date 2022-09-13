@@ -59,10 +59,10 @@ public class Event extends Task {
     @Override
     public String toString() {
         if (isOver) {
-            return "[E]" + super.toString() + " (by: "
+            return "[E]" + super.toString() + " (at: "
                     + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " OVERDUE!)";
         } else {
-            return "[E]" + super.toString() + " (by: "
+            return "[E]" + super.toString() + " (at: "
                     + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
         }
     }
