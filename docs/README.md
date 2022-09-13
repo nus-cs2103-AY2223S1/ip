@@ -24,7 +24,7 @@ Example of usage:
 Expected outcome:
 
 ```
-<img src="todo.png" width="420" />
+![todo](https://github.com/ReaganTan00/ip/blob/master/docs/todo.png)
 ```
 ### `event DESCRIPTION /at DATE` - Adds an event task with the specified description and date.
 - Ensure date is in format <YYYY-MM-DD>
