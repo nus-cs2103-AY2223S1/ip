@@ -77,14 +77,9 @@ public class ParserTest {
      */
     @Test
     public void parse_listBeforeCommandWord_returnsListBeforeCommand() {
-        final String[] inputs = {
-                "list before 21-02-2019 19:00",
-                " list before 21-02-2019 19:00",
-                "list  before 21-02-2019 19:00",
-                "list before  21-02-2019 19:00",
-                "list before 21-02-2019  19:00",
-                "list before 21-02-2019 19:00 ",
-                "list before 21-02-2019  19:00 "
+        final String[] inputs = { "list before 21-02-2019 19:00", " list before 21-02-2019 19:00",
+            "list  before 21-02-2019 19:00", "list before  21-02-2019 19:00",
+            "list before 21-02-2019  19:00", "list before 21-02-2019 19:00 ", "list before 21-02-2019  19:00 "
         };
         parseAndAssertCommandTypes(ListTasksBeforeCommand.class, inputs);
     }
@@ -101,14 +96,9 @@ public class ParserTest {
      */
     @Test
     public void parse_listAfterCommandWord_returnsListBeforeCommand() {
-        final String[] inputs = {
-                "list after 21-02-2019 19:00",
-                " list after 21-02-2019 19:00",
-                "list  after 21-02-2019 19:00",
-                "list after  21-02-2019 19:00",
-                "list after 21-02-2019  19:00",
-                "list after 21-02-2019 19:00 ",
-                "list after 21-02-2019  19:00 "
+        final String[] inputs = { "list after 21-02-2019 19:00", " list after 21-02-2019 19:00",
+            "list  after 21-02-2019 19:00", "list after  21-02-2019 19:00", "list after 21-02-2019  19:00",
+            "list after 21-02-2019 19:00 ", "list after 21-02-2019  19:00 "
         };
         parseAndAssertCommandTypes(ListTasksAfterCommand.class, inputs);
     }
@@ -121,15 +111,8 @@ public class ParserTest {
      */
     @Test
     public void parse_todoCommandWord_returnsTodoCommand() {
-        final String[] inputs = {
-                "todo sleep",
-                " todo sleep",
-                "todo  sleep",
-                "todo sleep ",
-                "todo buy milk",
-                " todo buy milk",
-                "todo  buy  milk",
-                "todo buy milk ",
+        final String[] inputs = { "todo sleep", " todo sleep", "todo  sleep", "todo sleep ", "todo buy milk",
+            " todo buy milk", "todo  buy  milk", "todo buy milk ",
         };
         parseAndAssertCommandTypes(AddTodoCommand.class, inputs);
     }
@@ -146,15 +129,11 @@ public class ParserTest {
      */
     @Test
     public void parse_eventCommandWord_returnsEventCommand() {
-        final String[] inputs = {
-                "event project meeting at 05-12-2019 12:00",
-                " event project meeting at 05-12-2019 12:00",
-                "event  project meeting at 05-12-2019 12:00",
-                "event project  meeting at 05-12-2019 12:00",
-                "event project meeting  at 05-12-2019 12:00",
-                "event project meeting at  05-12-2019 12:00",
-                "event project meeting at 05-12-2019  12:00",
-                "event project meeting at 05-12-2019 12:00 ",
+        final String[] inputs = { "event project meeting at 05-12-2019 12:00",
+            " event project meeting at 05-12-2019 12:00", "event  project meeting at 05-12-2019 12:00",
+            "event project  meeting at 05-12-2019 12:00", "event project meeting  at 05-12-2019 12:00",
+            "event project meeting at  05-12-2019 12:00", "event project meeting at 05-12-2019  12:00",
+            "event project meeting at 05-12-2019 12:00 ",
         };
         parseAndAssertCommandTypes(AddEventCommand.class, inputs);
     }
@@ -174,15 +153,11 @@ public class ParserTest {
      */
     @Test
     public void parse_deadlineCommandWord_returnsDeadlineCommand() {
-        final String[] inputs = {
-                "deadline return book by 02-12-2019 18:00",
-                " deadline return book by 02-12-2019 18:00",
-                "deadline  return book by 02-12-2019 18:00",
-                "deadline return  book by 02-12-2019 18:00",
-                "deadline return book  by 02-12-2019 18:00",
-                "deadline return book by  02-12-2019 18:00",
-                "deadline return book by 02-12-2019  18:00",
-                "deadline return book by 02-12-2019 18:00 ",
+        final String[] inputs = { "deadline return book by 02-12-2019 18:00",
+            " deadline return book by 02-12-2019 18:00", "deadline  return book by 02-12-2019 18:00",
+            "deadline return  book by 02-12-2019 18:00", "deadline return book  by 02-12-2019 18:00",
+            "deadline return book by  02-12-2019 18:00", "deadline return book by 02-12-2019  18:00",
+            "deadline return book by 02-12-2019 18:00 ",
         };
         parseAndAssertCommandTypes(AddDeadlineCommand.class, inputs);
     }
@@ -243,9 +218,9 @@ public class ParserTest {
      * expectedCommandClass.
      *
      * @param expectedCommandClass
-     *            Check whether the result of
-     * @param String...
-     *            Pass in a variable number of arguments to the method
+     *            Expected command class of the result of the parsing
+     * @param inputs
+     *            Input strings to be tested
      */
     private <T extends BaseCommand> void parseAndAssertCommandTypes(
             Class<T> expectedCommandClass, String... inputs) {
