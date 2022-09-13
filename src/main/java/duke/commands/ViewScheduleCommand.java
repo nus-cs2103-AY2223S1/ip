@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 /**
- * Represents an executable command      .
+ * Represents an executable command.
  *
  * @author sikai00
  */

@@ -84,37 +84,49 @@ public class Parser {
         String taskType = tokens[1].toLowerCase();
         switch (taskType) {
         case Todo.TASK_WORD:
-            String todoDescription = tokens[2].trim();
-            Todo newTodo = new Todo(todoDescription, false);
-            return new AddCommand(newTodo);
+            return prepareTodo(tokens);
         case Deadline.TASK_WORD:
-            try {
-                String[] deadlineTokens = tokens[2].split("/by");
-                if (deadlineTokens.length < 2) {
-                    return new InvalidCommand("Oh no! Try doing 'add deadline <description> /by " + "<date>'!");
-                }
-                String deadlineDescription = deadlineTokens[0].trim();
-                LocalDateTime by = parseDateTime(deadlineTokens[1].trim());
-                Deadline newDeadline = new Deadline(deadlineDescription, false, by);
-                return new AddCommand(newDeadline);
-            } catch (ParseDateTimeException e) {
-                return new InvalidCommand(e.getMessage());
-            }
+            return prepareDeadline(tokens);
         case Event.TASK_WORD:
-            try {
-                String[] eventTokens = tokens[2].split("/at");
-                if (eventTokens.length < 2) {
-                    return new InvalidCommand("Oh no! Try doing 'add event <description> /at" + " <date>'!");
-                }
-                String eventDescription = eventTokens[0].trim();
-                LocalDateTime at = parseDateTime(eventTokens[1].trim());
-                Event newEvent = new Event(eventDescription, false, at);
-                return new AddCommand(newEvent);
-            } catch (ParseDateTimeException e) {
-                return new InvalidCommand(e.getMessage());
-            }
+            return prepareEvent(tokens);
         default:
             return new InvalidCommand("There's no such event type as " + taskType + "!");
+        }
+    }
+
+    private Command prepareTodo(String[] tokens) {
+        String todoDescription = tokens[2].trim();
+        Todo newTodo = new Todo(todoDescription, false);
+        return new AddCommand(newTodo);
+    }
+
+    private Command prepareDeadline(String[] tokens) {
+        try {
+            String[] deadlineTokens = tokens[2].split("/by");
+            if (deadlineTokens.length < 2) {
+                return new InvalidCommand("Oh no! Try doing 'add deadline <description> /by " + "<date>'!");
+            }
+            String deadlineDescription = deadlineTokens[0].trim();
+            LocalDateTime by = parseDateTime(deadlineTokens[1].trim());
+            Deadline newDeadline = new Deadline(deadlineDescription, false, by);
+            return new AddCommand(newDeadline);
+        } catch (ParseDateTimeException e) {
+            return new InvalidCommand(e.getMessage());
+        }
+    }
+
+    private Command prepareEvent(String[] tokens) {
+        try {
+            String[] eventTokens = tokens[2].split("/at");
+            if (eventTokens.length < 2) {
+                return new InvalidCommand("Oh no! Try doing 'add event <description> /at" + " <date>'!");
+            }
+            String eventDescription = eventTokens[0].trim();
+            LocalDateTime at = parseDateTime(eventTokens[1].trim());
+            Event newEvent = new Event(eventDescription, false, at);
+            return new AddCommand(newEvent);
+        } catch (ParseDateTimeException e) {
+            return new InvalidCommand(e.getMessage());
         }
     }
 
