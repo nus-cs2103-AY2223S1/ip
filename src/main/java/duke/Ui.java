@@ -24,7 +24,7 @@ public class Ui {
     }
 
     /**
-     * Shows an error message with an indentation.
+     * Shows an error message.
      *
      * @param errMessage The error message to be printed.
      */

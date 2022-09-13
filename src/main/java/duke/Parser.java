@@ -22,6 +22,7 @@ public class Parser {
     private static final String EMPTY_DESC_ERROR = "OOPS!!! The description of this task cannot be empty.";
     private static final String UNKNOWN_COMMAND = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String INVALID_COMMAND = "OOPS!!! This command is invalid";
+    private static final String EMPTY_COMMAND = "OOPS!!! Please enter a command";
     /**
      * Parses the inputted user command.
      *
@@ -60,6 +61,8 @@ public class Parser {
             default:
                 if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
                     throw new DukeException(EMPTY_DESC_ERROR);
+                } else if (command.isBlank()) {
+                    throw new DukeException(EMPTY_COMMAND);
                 }
                 throw new DukeException(UNKNOWN_COMMAND);
             }
