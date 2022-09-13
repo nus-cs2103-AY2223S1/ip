@@ -4,11 +4,15 @@
 
 ### Task Management
 
-You can use 
+You can use LishBot's Task Management feature to: 
+1. add and delete task
+2. mark task as done or not done
+3. list all your task
+4. find task by related keyword
 
-### Feature-XYZ
+### NEW FEATURE!!! Trivia
 
-Description of the feature.
+You can use LishBot's Trivia feature to make LishBot memorize new commands and responses
 
 ## Usage
 
