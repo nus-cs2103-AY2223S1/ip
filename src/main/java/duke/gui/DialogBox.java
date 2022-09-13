@@ -55,6 +55,7 @@ public class DialogBox extends HBox {
 
     /**
      * Formats TextArea GUI to fit text.
+     * Modified from https://stackoverflow.com/a/25646466
      */
     private void dialogFitText() {
         SimpleIntegerProperty count = new SimpleIntegerProperty(20);
