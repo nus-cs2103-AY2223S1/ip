@@ -8,16 +8,16 @@ This Duke chatbot allows you to keep track of your tasks! It is
 Download the chatbot [here](https://github.com/KJunWei/ip) and try it now!
 
 ## Features 
-#### `Bye` - Quits the application [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#bye---quits-the-application-1)
-#### `Deadline` - Adds a deadline task [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#deadline---adds-a-deadline-task-1)
-#### `Delete` - Deletes task from the task list [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#delete---deletes-task-from-the-task-list-1)
-#### `Event` - Adds an event task [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#event---adds-an-event-task-1)
-#### `Find` - Finds task in task list [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#find---finds-task-in-task-list-1)
-#### `List` - Lists out all the tasks [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#list---lists-out-all-the-tasks-1)
-#### `Mark` - Marks task as complete [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#mark---marks-task-as-complete-1)
-#### `Reminders` - Checks for upcoming deadlines [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#reminders---checks-for-upcoming-deadlines-1)
-#### `Todo` - Adds a todo task [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#todo---adds-a-todo-task-1)
-#### `Unmark` - Marks task as incomplete [how to use](https://github.com/KJunWei/ip/blob/master/docs/README.md#unmark---marks-task-as-incomplete-1)
+#### `Bye` - Quits the application [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#bye---quits-the-application-1)
+#### `Deadline` - Adds a deadline task [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#deadline---adds-a-deadline-task-1)
+#### `Delete` - Deletes task from the task list [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#delete---deletes-task-from-the-task-list-1)
+#### `Event` - Adds an event task [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#event---adds-an-event-task-1)
+#### `Find` - Finds task in task list [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#find---finds-task-in-task-list-1)
+#### `List` - Lists out all the tasks [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#list---lists-out-all-the-tasks-1)
+#### `Mark` - Marks task as complete [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#mark---marks-task-as-complete-1)
+#### `Reminders` - Checks for upcoming deadlines [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#reminders---checks-for-upcoming-deadlines-1)
+#### `Todo` - Adds a todo task [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#todo---adds-a-todo-task-1)
+#### `Unmark` - Marks task as incomplete [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#unmark---marks-task-as-incomplete-1)
 
 ### Feature-ABC
 
