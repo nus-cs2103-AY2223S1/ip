@@ -48,35 +48,43 @@ public class Storage {
                 e.printStackTrace();
             }
             while (sc.hasNext()) {
-                String s = sc.nextLine();
-                if (s.startsWith("[T]")) {
-                    Task t = new Todo(s.substring(6).trim());
-                    list.add(t);
-                    if (s.substring(4, 5).equals("X")) {
-                        t.markAsDone();
-                    }
-                }
-                else if (s.startsWith("[D]")) {
-                    String desc = s.substring(6, s.indexOf(" (by")).trim();
-                    String by = s.split("by:")[1].replace(')', ' ').trim();
-                    Task t = new Deadline(desc, by);
-                    list.add(t);
-                    if (s.substring(4, 5).equals("X")) {
-                        t.markAsDone();
-                    }
-                }
-                else if (s.startsWith("[E]")) {
-                    String desc = s.substring(6, s.indexOf(" (at")).trim();
-                    String at = s.split("at:")[1].replace(')', ' ').trim();
-                    Task t = new Event(desc, at);
-                    list.add(t);
-                    if (s.substring(4, 5).equals("X")) {
-                        t.markAsDone();
-                    }
-                }
+                String input = sc.nextLine();
+                this.addTaskToList(input);
             }
         }
         return list;
+    }
+    /**
+     * Adds task to the list.
+     * @param input task in String form.
+     * @throws BroException If the input for the event and deadline task is invalid.
+     */
+    public void addTaskToList(String input) throws BroException {
+        if (input.startsWith("[T]")) {
+            Task t = new Todo(input.substring(6).trim());
+            list.add(t);
+            if (input.substring(4, 5).equals("X")) {
+                t.markAsDone();
+            }
+        }
+        else if (input.startsWith("[D]")) {
+            String desc = input.substring(6, input.indexOf(" (by")).trim();
+            String by = input.split("by:")[1].replace(')', ' ').trim();
+            Task t = new Deadline(desc, by);
+            list.add(t);
+            if (input.substring(4, 5).equals("X")) {
+                t.markAsDone();
+            }
+        }
+        else if (input.startsWith("[E]")) {
+            String desc = input.substring(6, input.indexOf(" (at")).trim();
+            String at = input.split("at:")[1].replace(')', ' ').trim();
+            Task t = new Event(desc, at);
+            list.add(t);
+            if (input.substring(4, 5).equals("X")) {
+                t.markAsDone();
+            }
+        }
     }
 
     /**

@@ -23,12 +23,4 @@ public class ExitCommand extends Command {
     public String execute(TaskList tasklist, Ui ui, Storage storage) {
         return ui.bye();
     }
-
-    /**
-     * Tells whether to exit the loop or not.
-     * @return The value true for isExit variable.
-     */
-    public boolean isExit() {
-        return true;
-    }
 }

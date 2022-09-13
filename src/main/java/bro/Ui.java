@@ -18,21 +18,16 @@ public class Ui {
     public static String welcome() {
         return "Hello! I'm THE BRO\n" + "What can I do for you?";
     }
-
-    /**
-     * Gets the inout from the user.
-     * @return The next line given by the user.
-     */
-    public String readCommand() {
-        return Input.nextLine();
-    }
-
     /**
      * Prints out the size of the ArrayList.
      * @param list1 The ArrayList
      */
     public static String listSize(ArrayList<Task> list1) {
-        return "You have " + list1.size() + " tasks left!" + "\n";
+        if (list1.size() == 1) {
+            return "You have " + list1.size() + " task left!" + "\n";
+        } else {
+            return "You have " + list1.size() + " tasks left!" + "\n";
+        }
     }
 
     /**

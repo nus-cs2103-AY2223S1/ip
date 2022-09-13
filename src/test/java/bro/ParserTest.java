@@ -16,7 +16,7 @@ public class ParserTest {
     public void deadlineParser_invalidDateFormat_returnsBroException() {
         Parser parser = new Parser();
         try {
-            parser.deadlineParser("11-11-2022");
+            parser.timeParser("11-11-2022");
             fail();
         } catch (BroException e) {
             assertEquals("Please enter the date in the format dd/MM/yyyy kkmm", e.getMessage());

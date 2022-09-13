@@ -13,7 +13,6 @@ public class Event extends Task {
     protected LocalDateTime atStore;
     protected String at;
     protected boolean isMonthFormat;
-    protected Parser parser;
 
     /**
      * Constructor of Event class.
@@ -28,7 +27,7 @@ public class Event extends Task {
         if (at.trim().split(" ").length == 4) {
             isMonthFormat = true;
         } else {
-            atStore = Parser.eventParser(at);
+            atStore = Parser.timeParser(at);
         }
     }
 
