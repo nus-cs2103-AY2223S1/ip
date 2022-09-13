@@ -52,6 +52,7 @@ public class Deadline extends Task {
                 sbFormattedTime.append(this.time);
             }
         }
+        assert sbFormattedTime.length() != 0 : "Timestring formatting error occured";
         return String.format("[%s]%s (by: %s)", typeIcon, super.toString(), sbFormattedTime);
     }
 }
