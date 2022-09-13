@@ -58,8 +58,8 @@ This description contains the following formatting guidelines:
 
 ### **Third-party libraries**
 
-1) https://mvnrepository.com/artifact/org.goldrenard/ab (ALICE chatbot implementation)
-2) https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku (Dependency for ALICE)
-3) https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku-feature-ex (Dependency for ALICE)
-4) https://mvnrepository.com/artifact/org.slf4j/slf4j-api (Dependency for ALICE)
-5) https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j (Dependency for ALICE)
+1) https://mvnrepository.com/artifact/org.goldrenard/ab (Project AB, an ALICE chatbot implementation)
+2) https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku (Dependency for Project AB)
+3) https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku-feature-ex (Dependency for Project AB)
+4) https://mvnrepository.com/artifact/org.slf4j/slf4j-api (Dependency for Project AB)
+5) https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j (Dependency for Project AB)
