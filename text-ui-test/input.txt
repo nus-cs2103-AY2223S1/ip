@@ -1,0 +1,55 @@
+list
+find task
+mark 0
+unmark 0
+mark 100
+unmark 100
+mark a
+unmark b
+todo todo task-1
+todo
+deadline dl task-1 /by 2022-08-23
+deadline /by 2022-08-23
+deadline dl task-2 /by
+deadline dl task-1 /by 22-08
+deadline dl task-1 /by abc
+deadline dl task-2 /by 2022-08-24 123abc
+event event task-1 /at 2022-08-23 19:00
+event /at 2022-08-23 19:00
+event event task-2 /at
+event event task-1 /at 08-23
+event event task-1 /at abc
+event event task-2 /at 2022-08-24 abc123
+list
+mark 0
+mark 1
+mark 2
+mark 3
+list
+unmark 4
+unmark 3
+unmark 2
+unmark 1
+list
+delete 1
+delete 2
+delete 3
+delete 2
+delete 1
+delete 1
+delete a
+todo todo task-2
+deadline dl task-3 /by 2022-08-23 20:00
+event event task-3 /at 2022-08-23
+list
+todo todo-task-2
+todo todo-task-3
+mark 1
+mark 3
+find
+find task
+find 3
+find 2
+find todo
+bye abc
+bye
