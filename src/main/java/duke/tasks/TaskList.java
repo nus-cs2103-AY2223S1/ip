@@ -11,6 +11,7 @@ import duke.exceptions.DukeException;
 public class TaskList {
     private final ArrayList<Task> taskList;
     private final Storage db;
+    private boolean isClosed;
 
     /**
      * Constructor of taskList linked to a Storage.
@@ -19,6 +20,22 @@ public class TaskList {
     public TaskList(Storage db) {
         this.taskList = new ArrayList<>();
         this.db = db;
+        this.isClosed = false;
+    }
+
+    /**
+     * Closes taskList and terminated Duke.
+     */
+    public void close() {
+        isClosed = true;
+    }
+
+    /**
+     * Checks if taskList is closed and Duke can be terminated.
+     * @return whether taskList is closed.
+     */
+    public boolean isClosed() {
+        return isClosed;
     }
 
     public String getRemainingTasks() {

@@ -12,4 +12,5 @@ public enum Command {
     DEADLINE, // create a deadline
     DELETE, // delete a task
     FIND, // find a task
+    BYE, // exits Duke
 }

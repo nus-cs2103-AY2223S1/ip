@@ -16,7 +16,6 @@ import duke.tasks.TaskList;
  */
 public class Duke {
 
-    private boolean isClosed;
     private final TaskList taskList;
     private final CommandHandlerFactory commandHandlerFactory;
 
@@ -34,7 +33,6 @@ public class Duke {
         Storage db = new Storage("./data/duke.txt");
         taskList = db.load();
         commandHandlerFactory = new CommandHandlerFactory();
-        isClosed = false;
     }
 
     /**
@@ -42,7 +40,7 @@ public class Duke {
      * @return whether duke has terminated.
      */
     public boolean isClosed() {
-        return isClosed;
+        return taskList.isClosed();
     }
 
     /**
@@ -51,9 +49,6 @@ public class Duke {
      * @return Duke's response to the user.
      */
     public String getResponse(String input) {
-        if (input.equals("bye")) {
-            this.isClosed = true;
-        }
         try {
             CommandHandler commandHandler = commandHandlerFactory.getHandler(input);
             return commandHandler.handle(taskList);
