@@ -13,5 +13,11 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# vim files
+*.swp
+
+# java bytefiles
+*.class
+
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
