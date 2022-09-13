@@ -60,8 +60,11 @@ public class TaskList {
      */
     public String getAllTasks() {
         StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks in your list:\n");
         IntStream.range(0, tasks.size())
                 .forEach(index -> sb.append(index + 1).append(". ").append(tasks.get(index)).append("\n"));
+        sb.append("Here are the notes in your list:\n");
+
         return sb.toString();
     }
 

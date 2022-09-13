@@ -11,16 +11,32 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.ui.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="600.0" prefWidth="400.0"
+            xmlns="http://javafx.com/javafx/18"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="duke.ui.MainWindow">
     <children>
-        <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" />
-        <Button fx:id="sendButton" layoutX="324.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" />
-        <ScrollPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" layoutY="79.0" prefHeight="478.0" prefWidth="400.0" vvalue="1.0">
-            <content >
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0"
+                    layoutY="77.0" prefHeight="482.0" prefWidth="400.0"
+                    AnchorPane.leftAnchor="0"
+                    AnchorPane.rightAnchor="0"
+                    stylesheets="@../scrollbar.css" vvalue="1.0">
+            <content>
                 <VBox fx:id="dialogContainer" />
             </content>
         </ScrollPane>
-        <ToolBar AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" layoutX="1.0" prefHeight="73.0" prefWidth="400.0" style="-fx-background-color: #393E46;">
+      <HBox alignment="BOTTOM_CENTER" layoutY="559.0" prefHeight="41.0" prefWidth="400.0"
+            AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+         <children>
+              <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0"
+                         promptText="Enter your command here or type 'help' to get a list of all commands! " />
+              <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0"
+                      prefWidth="76.0" style="-fx-background-color: yellow;" text="Send" />
+         </children>
+      </HBox>
+        <ToolBar layoutX="1.0" prefHeight="73.0" prefWidth="400.0" style="-fx-background-color: #393E46;"
+                 AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
             <effect>
                 <Blend />
             </effect>

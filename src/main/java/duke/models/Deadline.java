@@ -46,7 +46,7 @@ public class Deadline extends Task {
      */
     @Override
     public String stringToWrite() {
-        return this.getSymbol() + " | " + (super.isDone ? "1" : "0") + " | " + this.getDescription() + " | " + this.by;
+        return this.getSymbol() + "|" + (super.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.by;
     }
 
     @Override

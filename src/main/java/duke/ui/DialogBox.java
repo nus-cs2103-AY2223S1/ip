@@ -13,11 +13,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 /**
@@ -29,10 +27,10 @@ public class DialogBox extends HBox {
     @FXML
     private Label dialog;
     @FXML
-    private ImageView displayPicture;
+    private Circle displayPicture;
 
 
-    private DialogBox(String text, Image img, Color backgroundColor) {
+    private DialogBox(String text, Image img, boolean duck) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -41,10 +39,15 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.setBackground(new Background(
-                new BackgroundFill(backgroundColor, new CornerRadii(10), new Insets(5.0))));
+        if (duck) {
+            dialog.setStyle(
+                    "-fx-background-color: ebe375; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;");
+        } else {
+            dialog.setStyle(
+                    "-fx-background-color: B0C4DE; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;");
+        }
         dialog.setText(text);
-        displayPicture.setImage(img);
+        displayPicture.setFill(new ImagePattern(img));
     }
 
     /**
@@ -58,11 +61,11 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img, Color.rgb(220, 220, 220));
+        return new DialogBox(text, img, false);
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img, Color.rgb(224, 210, 104));
+        var db = new DialogBox(text, img, true);
         db.flip();
         return db;
     }
