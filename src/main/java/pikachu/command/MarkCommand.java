@@ -25,9 +25,10 @@ public class MarkCommand extends Command {
      * @param tasks Task List of all tasks currently.
      * @param ui Ui for user to see.
      * @param storage Storage in charge of the current tasks.
+     * @return Pikachu's reply.
      * @throws PikachuException If invalid format or out of range of the task index.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         if (!Pikachu.isNumeric(input.substring(5))) {
             throw new PikachuException("Pi-must be numbers behind-pi!");
         } else if (Integer.parseInt(input.substring(5)) > tasks.getTaskList().size()
@@ -37,9 +38,9 @@ public class MarkCommand extends Command {
             int temp = Integer.parseInt(input.substring(5));
             Task task = tasks.getTaskList().get(temp - 1);
             task.setDone(true);
-            System.out.println("Pi-ka(Done): " + task);
+            storage.save(tasks.getTaskList());
+            return "Pi-ka(Done): " + task;
         }
-        storage.save(tasks.getTaskList());
     }
 
     /**

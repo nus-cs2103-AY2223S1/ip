@@ -33,6 +33,7 @@ public class MainWindow extends AnchorPane {
 
     public void setPikachu(Pikachu d) {
         pikachu = d;
+        dialogContainer.getChildren().add(DialogBox.getPikachuDialog(pikachu.sayHi(), pikachuImage));
     }
 
     /**

@@ -6,8 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -29,9 +27,6 @@ public class Pikachu extends Application {
     private TaskList tasks;
     private final Ui ui;
 
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/squirtle/happy.jpeg"));
-    private Image pikachu = new Image(this.getClass().getResourceAsStream("/images/pikachu/a_bit_happy.jpg"));
-
     /**
      * Initialises Pikachu bot.
      */
@@ -46,9 +41,12 @@ public class Pikachu extends Application {
         }
     }
 
+    /**
+     * Initialise Pikachu
+     */
     public Pikachu() {
         ui = new Ui();
-        storage = new Storage("dummy");
+        storage = new Storage("/Users/xuyi/Documents/CS2103T/ip/data/pikachu.txt");
         try {
             tasks = new TaskList(storage.load());
         } catch (Exception e) {
@@ -58,27 +56,16 @@ public class Pikachu extends Application {
     }
 
     /**
-     * Iteration 2:
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
-     */
-    private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
-        Label pikachuText = new Label(getResponse(userInput.getText()));
-        dialogContainer.getChildren().addAll(
-                //DialogBox.getUserDialog(userText, new ImageView(user)),
-                //DialogBox.getPikachuDialog(pikachuText, new ImageView(pikachu))
-        );
-        userInput.clear();
-    }
-
-    /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
     String getResponse(String input) {
-        //TODO
-        return "Duke heardddd: " + input;
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (PikachuException e) {
+            return e.getMessage();
+        }
     }
 
     /**
@@ -94,34 +81,6 @@ public class Pikachu extends Application {
         } catch (NumberFormatException e) {
             return false;
         }
-    }
-
-    /**
-     * Runs the Pikachu task manager bot.
-     */
-    public void run() {
-        ui.sayHi();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (PikachuException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
-        }
-    }
-
-    /**
-     * Runs the Pikachu task manager bot with a location to put the stored task data.
-     */
-    public static void main(String[] args) {
-        new Pikachu("/Users/xuyi/Documents/CS2103T/ip/data/pikachu.txt").run();
     }
 
     @Override
@@ -174,15 +133,6 @@ public class Pikachu extends Application {
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        //Step 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
-
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
-
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
     }
@@ -199,5 +149,13 @@ public class Pikachu extends Application {
         textToAdd.setWrapText(true);
 
         return textToAdd;
+    }
+
+    /**
+     * Greets from pikachu.
+     * @return Pikachu's greeting
+     */
+    public String sayHi() {
+        return ui.sayHi();
     }
 }

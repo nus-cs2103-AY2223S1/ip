@@ -28,9 +28,10 @@ public class AddCommand extends Command {
      * @param tasks Task List of all tasks currently.
      * @param ui Ui for user to see.
      * @param storage Storage in charge of the current tasks.
+     * @return Pikachu's reply.
      * @throws PikachuException If invalid date format for deadline, empty name of the task.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         String tempStr = "";
         if (input.startsWith("deadline ") && input.contains(" /by ")) {
             String temp1 = input.split(" ", 2)[1];
@@ -65,7 +66,7 @@ public class AddCommand extends Command {
                     + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
         }
         storage.save(tasks.getTaskList());
-        System.out.println(tempStr);
+        return tempStr;
     }
 
     /**

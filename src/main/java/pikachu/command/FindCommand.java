@@ -25,8 +25,9 @@ public class FindCommand extends Command {
      * @param tasks Task list containing all the tasks.
      * @param ui User interface of Pikachu task manager.
      * @param storage Storage space with functions that update and take out tasks.
+     * @return Pikachu's reply.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         //Initialise variables
         String keyword = input.substring(5);
         StringBuilder output = new StringBuilder();
@@ -41,13 +42,13 @@ public class FindCommand extends Command {
 
         //Produce output
         if (result.isEmpty()) {
-            System.out.println("Pi...cannot find...");
+            return "Pi...cannot find...";
         } else {
             for (Task task: result) {
                 output.append(result.indexOf(task) + 1).append('.').append(task).append('\n');
             }
             output.deleteCharAt(output.length() - 1);
-            System.out.println(String.valueOf(output));
+            return String.valueOf(output);
         }
 
     }

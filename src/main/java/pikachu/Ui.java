@@ -7,8 +7,6 @@ import java.util.Scanner;
  * Uis needed for Pikachu chatbot to communicate with the user.
  */
 public class Ui {
-
-    static final String HORIZON = "____________________________________________________________\n";
     private final Scanner sc = new Scanner(System.in);
 
     /**
@@ -21,24 +19,19 @@ public class Ui {
     }
 
     /**
-     * Shows the format line.
-     */
-    public void showLine() {
-        System.out.println(HORIZON);
-    }
-
-    /**
      * Says bye for pikachu.
+     * @return Pikachu's goodbye
      */
-    public void sayBye() {
-        System.out.println("Pi-ka...");
+    public String sayBye() {
+        return "Pi-ka...";
     }
 
     /**
      * Greets from pikachu.
+     * @return Pikachu's greeting
      */
-    public void sayHi() {
-        System.out.println(HORIZON + "Pika Pikachu! (I am Pikachu!)\nPi-ka-chu?(Do you need any help?)\n" + HORIZON);
+    public String sayHi() {
+        return "Pika Pikachu! (I am Pikachu!)\nPi-ka-chu?(Do you need any help?)\n";
     }
 
     /**
@@ -50,8 +43,9 @@ public class Ui {
 
     /**
      * Shows other any error.
+     * @return Pikachu's confusion
      */
-    public void showError(String error) {
-        System.out.println(error);
+    public String showError(String error) {
+        return error;
     }
 }

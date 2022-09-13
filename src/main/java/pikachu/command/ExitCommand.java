@@ -16,9 +16,10 @@ public class ExitCommand extends Command {
      * @param tasks Task List of all tasks currently.
      * @param ui Ui for user to see.
      * @param storage Storage in charge of the current tasks.
+     * @return Pikachu's reply.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.sayBye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.sayBye();
     }
 
     /**

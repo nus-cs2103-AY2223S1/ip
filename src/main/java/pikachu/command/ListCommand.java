@@ -18,15 +18,20 @@ public class ListCommand extends Command {
      * @param tasks Task List of all tasks currently.
      * @param ui Ui for user to see.
      * @param storage Storage in charge of the current tasks.
+     * @return Pikachu's reply.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         StringBuilder output = new StringBuilder();
-        output.append("PikaPika (Nothing in the list)\n");
+        output.append("PikaPika: \n");
+        if (tasks.getTaskList().isEmpty()) {
+            output.append("You have completed all the tasks!");
+            return String.valueOf(output);
+        }
         for (Task task: tasks.getTaskList()) {
             output.append(tasks.getTaskList().indexOf(task) + 1).append('.').append(task).append('\n');
         }
         output.deleteCharAt(output.length() - 1);
-        System.out.println(String.valueOf(output));
+        return String.valueOf(output);
     }
 
     /**
