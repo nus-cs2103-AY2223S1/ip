@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -63,12 +64,14 @@ public class Storage {
                     task = new Event(dataArr[2], date);
                 }
                 if (dataArr[1].equals("1")) {
-                    task.setAsDone();
+                    task.setAsMarked();
                 }
                 list.add(task);
             }
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Format of the date stored is incorrect! User yyyy-mm-dd.");
         }
         return list;
     }
@@ -78,7 +81,7 @@ public class Storage {
      *
      * @param list TaskList to be saved
      */
-    public void saveData(TaskList list) {
+    public void saveData(TaskList list) throws DukeException {
         try {
             FileWriter fw = new FileWriter(this.filePath);
             for (int i = 1; i < list.getSize() + 1; i++) {
@@ -103,7 +106,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
     }
 

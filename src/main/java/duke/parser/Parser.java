@@ -4,6 +4,7 @@ import duke.exception.DukeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Encapsulates the logic of parsing the user input.
@@ -81,7 +82,12 @@ public class Parser {
         String by = input.substring(byIndex + OFFSET_OF_BY);
         String[] byArr = by.split(" ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate byDate = LocalDate.parse(byArr[0], formatter);
+        LocalDate byDate;
+        try {
+            byDate = LocalDate.parse(byArr[0], formatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Your date format is incorrect dummy! Use dd/mm/yyyy.");
+        }
         return byDate;
     }
 
@@ -112,7 +118,13 @@ public class Parser {
         String at = input.substring(atIndex + OFFSET_OF_AT);
         String[] atArr = at.split(" ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate atDate = LocalDate.parse(atArr[0], formatter);
+        LocalDate atDate;
+        try {
+            atDate = LocalDate.parse(atArr[0], formatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Your date format is incorrect dummy! Use dd/mm/yyyy.");
+        }
+
         return atDate;
     }
 
@@ -151,11 +163,23 @@ public class Parser {
         return newDesc;
     }
 
+    /**
+     * Checks if the input string has a date.
+     *
+     * @return A boolean signalling if date clause is present
+     */
     public boolean hasUpdateDateClause() {
         return input.contains(" /at ") || input.contains(" /by ");
     }
 
+    /**
+     * Checks if the input string has a description.
+     *
+     * @return A boolean signalling if description clause is present
+     */
     public boolean hasUpdateDescClause() {
+        //if there is a description, inputArr[2] should not be the flag for a date clause
+        //which is /at or /by
         if (inputArr[2].equals("/at") || inputArr[2].equals("/by")) {
             return false;
         } else {
