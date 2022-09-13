@@ -1,12 +1,11 @@
----
-layout: page
-title: User Guide
----
+# User Guide
 
 ChadBot is a **desktop app that helps users keep track of their tasks, optimised for use via a Control Line Interface** (CLI).
 
-* Table of Contents
-{:toc}
+## Table of Content
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Command summary](#command-summary)
 
 ## Quick Start
 
