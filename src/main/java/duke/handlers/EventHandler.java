@@ -28,6 +28,7 @@ public class EventHandler {
         if (eventInputs.length < 2 || eventInputs[1].trim().equals("")) {
             throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
         }
+        assert eventInputs.length == 2;
         Task newTask = new Event(eventInputs[0], eventInputs[1]);
         list.add(newTask);
         return ("Event Added!");

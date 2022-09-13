@@ -45,6 +45,7 @@ public class FindHandler {
             }
         }
         if (isTaskFound) {
+            assert foundTasksList.size() > 0;
             StringBuilder response = new StringBuilder(("Here are the tasks found"));
             for (int i = 0; i < foundTasksList.size(); i++) {
                 response.append(i).append(1).append(". ").append(foundTasksList.get(i)).append("\n");
