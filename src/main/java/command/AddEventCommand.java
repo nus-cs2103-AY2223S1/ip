@@ -5,7 +5,6 @@ import storage.Storage;
 import task.Event;
 import tasklist.TaskList;
 import ui.UI;
-import utility.Parser;
 
 /**
  * Command that handles adding Event to TaskList and Storage.
