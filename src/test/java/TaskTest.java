@@ -11,14 +11,14 @@ import duke.task.Todo;
 
 public class TaskTest {
     @Test
-    public void loadTodoTest() {
+    public void load_unmarkedTodo_success() {
         Task task = Task.loadTask("T | 0 | 0 | Tutorial 1");
         Todo todo = new Todo("Tutorial 1");
         assertEquals(todo.toString(), task.toString());
     }
 
     @Test
-    public void loadTodoTest2() {
+    public void load_markedTodo_success() {
         Task task = Task.loadTask("T | 1 | 0 | Tutorial 1");
         Todo todo = new Todo("Tutorial 1");
         todo.mark();
@@ -26,14 +26,14 @@ public class TaskTest {
     }
 
     @Test
-    public void loadDeadlineTest() {
+    public void load_unmarkedDeadline_success() {
         Task task = Task.loadTask("D | 0 | 0 | Tutorial 1 | 2022-08-25");
         Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
         assertEquals(deadline.toString(), task.toString());
     }
 
     @Test
-    public void loadDeadlineTest2() {
+    public void load_markedDeadline_success() {
         Task task = Task.loadTask("D | 1 | 0 | Tutorial 1 | 2022-08-25");
         Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
         deadline.mark();
@@ -41,14 +41,14 @@ public class TaskTest {
     }
 
     @Test
-    public void loadEventTest() {
+    public void load_unmarkedEvent_success() {
         Task task = Task.loadTask("E | 0 | 0 | Tutorial 1 | 2022-08-25");
         Event event = new Event("Tutorial 1", LocalDate.parse("2022-08-25"));
         assertEquals(event.toString(), task.toString());
     }
 
     @Test
-    public void loadEventTest2() {
+    public void load_markedEvent_success() {
         Task task = Task.loadTask("E | 1 | 0 | Tutorial 1 | 2022-08-25");
         Event event = new Event("Tutorial 1", LocalDate.parse("2022-08-25"));
         event.mark();

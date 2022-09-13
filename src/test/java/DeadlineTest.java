@@ -8,20 +8,20 @@ import duke.task.Deadline;
 
 public class DeadlineTest {
     @Test
-    public void addDeadlineTest() {
+    public void add_deadline_success() {
         Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
         assertEquals("[D][ ] Tutorial 1 (by: Aug 25 2022)", deadline.toString());
     }
 
     @Test
-    public void markDeadlineTest() {
+    public void mark_deadline_success() {
         Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
         deadline.mark();
         assertEquals("[D][X] Tutorial 1 (by: Aug 25 2022)", deadline.toString());
     }
 
     @Test
-    public void unmarkDeadlineTest() {
+    public void unmark_deadline_success() {
         Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
         deadline.mark();
         deadline.unmark();
@@ -29,15 +29,22 @@ public class DeadlineTest {
     }
 
     @Test
-    public void saveDeadlineTest() {
+    public void save_unmarkedDeadline_success() {
         Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
         assertEquals("D | 0 | 0 | Tutorial 1 | 2022-08-25", deadline.saveTask());
     }
 
     @Test
-    public void saveDeadlineTest2() {
+    public void save_markedDeadline_success() {
         Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
         deadline.mark();
         assertEquals("D | 1 | 0 | Tutorial 1 | 2022-08-25", deadline.saveTask());
+    }
+
+    @Test
+    public void setHighPriority_deadline_success() {
+        Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
+        deadline.setHighPriority();
+        assertEquals("[D][ ][!] Tutorial 1 (by: Aug 25 2022)", deadline.toString());
     }
 }

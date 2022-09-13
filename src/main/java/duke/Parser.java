@@ -63,7 +63,7 @@ public class Parser {
                 case DELETE:
                     throw new EmptyIndexException("delete");
                 case FIND:
-                    throw new DukeException("Please provide a keyword to find.");
+                    throw new DukeException("Please provide at least one keyword to find.");
                 default:
                     return new ByeCommand();
                 }
@@ -100,7 +100,7 @@ public class Parser {
                 }
             }
         } catch (NumberFormatException e) {
-            throw new DukeException("The index provided is not a positive integer.");
+            throw new InvalidIndexException();
         } catch (DateTimeParseException e) {
             throw new DukeException("Please provide a date in the format yyyy-mm-dd.");
         }

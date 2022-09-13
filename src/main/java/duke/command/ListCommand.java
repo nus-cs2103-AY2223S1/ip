@@ -23,4 +23,15 @@ public class ListCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         return tasks.toString();
     }
+
+    /**
+     * Returns whether some other object is equal to this one.
+     *
+     * @param obj Some other object.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ListCommand;
+    }
 }

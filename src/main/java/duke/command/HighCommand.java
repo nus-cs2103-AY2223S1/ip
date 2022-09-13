@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.DukeException;
+import duke.InvalidIndexException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -34,12 +34,27 @@ public class HighCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (idx < 0 || idx >= tasks.getSize()) {
-            throw new DukeException("The index provided is not within the list.");
+            throw new InvalidIndexException();
         }
 
         String task = tasks.setHighPriorityTask(idx);
         storage.save(tasks.saveTasks());
 
         return ui.showHighPriority(task);
+    }
+
+    /**
+     * Returns whether some other object is equal to this one.
+     *
+     * @param obj Some other object.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof HighCommand) {
+            HighCommand other = (HighCommand) obj;
+            return this.idx == other.idx;
+        }
+        return false;
     }
 }

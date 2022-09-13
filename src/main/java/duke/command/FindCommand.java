@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.Arrays;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -33,5 +35,20 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         return tasks.findTasks(keywords);
+    }
+
+    /**
+     * Returns whether some other object is equal to this one.
+     *
+     * @param obj Some other object.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof FindCommand) {
+            FindCommand other = (FindCommand) obj;
+            return Arrays.equals(this.keywords, other.keywords);
+        }
+        return false;
     }
 }

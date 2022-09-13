@@ -37,4 +37,19 @@ public class TodoCommand extends Command {
 
         return ui.showAdd(task, tasks.getSize());
     }
+
+    /**
+     * Returns whether some other object is equal to this one.
+     *
+     * @param obj Some other object.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof TodoCommand) {
+            TodoCommand other = (TodoCommand) obj;
+            return this.description.equals(other.description);
+        }
+        return false;
+    }
 }
