@@ -270,10 +270,10 @@ public class Executor {
         String result = "";
         result += "Hi there! Here are the available commands that Tob Tob understands (Don't forget to replace "
                 + "the CAPITALIZED_WORDS)\n";
-        result += "- To list all the tasks, type \n  \"list\"\n";
         result += "- To add a todo task, type \n  \"todo TODO_NAME\"\n";
         result += "- To add a deadline task, type \n  \"deadline DEADLINE_NAME \\by YYYY-MM-DD\"\n";
         result += "- To add an event task, type \n  \"event EVENT_NAME \\at YYYY-MM-DD\"\n";
+        result += "- To list all the tasks, type \n  \"list\"\n";
         result += "- To mark a task, type \n  \"mark TASK_NUMBER\"\n";
         result += "- To unmark a task, type \n  \"unmark TASK_NUMBER\"\n";
         result += "- To delete a task, type \n  \"delete TASK_NUMBER\"\n";
