@@ -26,9 +26,12 @@ public class AddTaskCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String storableLine = task + "\n";
-        if (storage.isLineAppended(storableLine)) {
+        if (isLineAppended(storableLine, storage)) {
             taskList.addTask(task);
             ui.showMessage("Added task");
         }
+    }
+    private boolean isLineAppended(String storableLine, Storage storage) {
+        return storage.isLineAppended(storableLine);
     }
 }

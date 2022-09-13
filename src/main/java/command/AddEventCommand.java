@@ -27,9 +27,13 @@ public class AddEventCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String storableLine = event + "\n";
-        if (storage.isLineAppended(storableLine)) {
+        if (isLineAppended(storableLine, storage)) {
             taskList.addTask(event);
             ui.showMessage("Added event");
         }
+    }
+
+    private boolean isLineAppended(String storableLine, Storage storage) {
+        return storage.isLineAppended(storableLine);
     }
 }

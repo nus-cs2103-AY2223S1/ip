@@ -27,9 +27,13 @@ public class AddDeadlineCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String storableLine = deadline + "\n";
-        if (storage.isLineAppended(storableLine)) {
+        if (isLineAppended(storableLine, storage)) {
             taskList.addTask(deadline);
             ui.showMessage("added deadline");
         }
+    }
+
+    private boolean isLineAppended(String storableLine, Storage storage) {
+        return storage.isLineAppended(storableLine);
     }
 }
