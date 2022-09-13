@@ -18,6 +18,7 @@ You can use LishBot's Trivia feature to make LishBot memorize new commands and r
 ## Commands
 
 Here, U denotes user and B denotes bot
+List of commands: todo, event, deadline, delete, mark, unmark, list, find, teach, bye
 
 ### `todo` - create a ToDo task (a task with no associated time)
 
