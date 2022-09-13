@@ -55,21 +55,21 @@ public class DialogBox extends HBox {
     }
 
     private void setBackground(Color color) {
-        setBackground(new Background(new BackgroundFill(color,
+        dialog.setBackground(new Background(new BackgroundFill(color,
                 CornerRadii.EMPTY,
                 Insets.EMPTY)));
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
         var db =  new DialogBox(text, img);
-        db.setBackground(Color.web("#b0ffa8"));
+        db.setBackground(Color.web("#99FBFF"));
         return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
-        db.setBackground(Color.web("#fcfb92"));
+        db.setBackground(Color.web("#DEFBA5"));
         return db;
     }
 }
