@@ -39,22 +39,29 @@ public class Parser {
         case "list":
             return new ListCommand();
         case "mark":
+            assert in.length == 2 : "in doesn't have length of 2";
             return new ModifyCommand(ModifyCommand.ModifyType.MARK, Integer.parseInt(in[1].trim()));
         case "unmark":
+            assert in.length == 2 : "in doesn't have length of 2";
             return new ModifyCommand(ModifyCommand.ModifyType.UNMARK, Integer.parseInt(in[1].trim()));
         case "todo":
+            assert in.length == 2 : "in doesn't have length of 2";
             return new AddCommand(new Todo(str.split(" ", 2)[1]));
         case "deadline":
+            assert in[1].split("/by")[1].trim() != "" : "Time is empty";
             return new AddCommand(new Deadline(in[1].split("/by")[0].trim(),
               in[1].split("/by")[1].trim()));
         case "event":
+            assert in[1].split("/at")[1].trim() != "" : "Time is empty";
             return new AddCommand(new Event(in[1].split("/at")[0].trim(),
               in[1].split("/at")[1].trim()));
         case "delete":
+            assert in.length == 2 : "in doesn't have length of 2";
             return new DeleteCommand(Integer.parseInt(in[1].trim()));
         case "bye":
             return new ExitCommand();
         case "find":
+            assert in.length == 2 : "in doesn't have length of 2";
             return new FindCommand(in[1]);
         default:
             throw new BroException("Idk what it means!");

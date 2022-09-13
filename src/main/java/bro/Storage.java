@@ -48,6 +48,7 @@ public class Storage {
                 e.printStackTrace();
             }
             while (sc.hasNext()) {
+
                 String input = sc.nextLine();
                 this.addTaskToList(input);
             }
