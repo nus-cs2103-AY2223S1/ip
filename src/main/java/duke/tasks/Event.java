@@ -41,6 +41,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (at: " + TIME_PARSER.formatDeadline(this.deadline) + ")";
+        return "[E]" + super.toString() + " (at: " + TIME_PARSER.formatDeadline(this.deadline) + ")";
     }
 }

@@ -7,6 +7,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.Background;
+
+import javafx.scene.paint.Color;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.geometry.Insets;
+import javafx.scene.paint.Paint;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -19,6 +27,10 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
+    @FXML
+    private Button helpButton;
+    @FXML
+    private Button clearButton;
 
     private Duke duke;
 
@@ -28,6 +40,21 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        sendButton.setTextFill(Paint.valueOf("#FFFFFF"));
+
+        sendButton.setBackground(new Background(new BackgroundFill(Color.web("#0b71f4"),
+                new CornerRadii(5.0), new Insets(-5.0))));
+
+        helpButton.setTextFill(Paint.valueOf("#FFFFFF"));
+
+        helpButton.setBackground(new Background(new BackgroundFill(Color.web("#0b71f4"),
+                new CornerRadii(5.0), new Insets(-5.0))));
+
+        clearButton.setTextFill(Paint.valueOf("#FFFFFF"));
+
+        clearButton.setBackground(new Background(new BackgroundFill(Color.web("#0b71f4"),
+                new CornerRadii(5.0), new Insets(-5.0))));
     }
 
     public void setDuke(Duke d) {
@@ -47,5 +74,27 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+    }
+
+    @FXML
+    private void help() {
+        String commands = "Here are the list of commands:" +
+                "\n • list" +
+                "\n • done [index] " +
+                "\n • undone [index]"  +
+                "\n • before [d/mm/yyyy] " +
+                "\n • find [string]" +
+                "\n • delete [index] "+
+                "\n • todo [description]" +
+                "\n • deadline [description] \\by [d/mm/yyyy]" +
+                "\n • event [description] \\at [d/mm/yyyy]";
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(commands, dukeImage)
+        );
+    }
+
+    @FXML
+    private void clear() {
+        dialogContainer.getChildren().clear();
     }
 }

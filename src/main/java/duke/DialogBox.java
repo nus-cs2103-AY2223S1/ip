@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+
 /**
  * An example of a custom control using FXML.
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
@@ -43,7 +43,7 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         dialog.setTextFill(Color.web("#FFFFFF"));
-        dialog.setBackground(new Background(new BackgroundFill(Color.web("#0076a3"),
+        dialog.setBackground(new Background(new BackgroundFill(Color.web("#0b71f4"),
                 new CornerRadii(5.0), new Insets(-5.0))));
         displayPicture.setImage(img);
     }

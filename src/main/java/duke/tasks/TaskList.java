@@ -33,7 +33,7 @@ public class TaskList {
     }
 
     private String printAddedTask(Task task) {
-        return String.format("Sure, just keep working till you die: \n%s \n%d outstanding tasks",
+        return String.format("Wow, so productive... \n%s \n\n%d outstanding tasks",
                 task.toString(), tasks.size());
     }
 
@@ -47,10 +47,9 @@ public class TaskList {
         int index = Integer.parseInt(value) - 1;
         if (index < 0 || index > tasks.size() - 1) {
             throw new OutOfRangeException();
-        } else {
-            tasks.get(index).markAsDone();
-            return String.format("Finally getting something done, huh? \n%s", printTask(index));
         }
+        tasks.get(index).markAsDone();
+        return String.format("Finally getting something done, huh? \n%s", printTask(index));
     }
 
     public String markUndone(String value) throws DukeException {
@@ -76,7 +75,7 @@ public class TaskList {
         } else {
             Task currentTask = tasks.get(index);
             tasks.remove(index);
-            return String.format("Giving up, huh? \n%s \n%d outstanding tasks",
+            return String.format("Giving up, huh? \n%s \n\n%d outstanding tasks",
                     currentTask, tasks.size());
         }
     }
@@ -199,7 +198,7 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             int j = i + 1;
             Task item = tasks.get(i);
-            sb.append(j).append(". ").append(item.toString()).append("\n");
+            sb.append(j).append(".").append(item.toString()).append("\n");
         }
         return sb.toString();
     }
