@@ -14,6 +14,7 @@ public class ListCommand extends Command {
         StringBuffer contents = new StringBuffer();
         openList(contents);
         addTasksToList(contents, taskList);
+        closeList(contents, taskList);
         ui.showMessage(contents.toString());
     }
 

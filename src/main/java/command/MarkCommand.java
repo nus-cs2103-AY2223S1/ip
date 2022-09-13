@@ -19,8 +19,11 @@ public class MarkCommand extends Command {
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         taskList.markTask(index);
         String storeLine = taskList.getTask(index).toString() + "\n";
-        if (storage.isLineChanged(index, storeLine)) {
+        if (isLineChanged(index, storeLine, storage)) {
             ui.showMessage("marked task");
         }
+    }
+    private boolean isLineChanged(int index, String storeLine, Storage storage) {
+        return storage.isLineChanged(index, storeLine);
     }
 }

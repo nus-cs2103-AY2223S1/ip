@@ -19,8 +19,12 @@ public class UnmarkCommand extends Command {
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         taskList.unmarkTask(index);
         String storeLine = taskList.getTask(index).toString() + "\n";
-        if (storage.isLineChanged(index, storeLine)) {
+        if (isLineChanged(index, storeLine, storage)) {
             ui.showMessage("unmarked task");
         }
+    }
+
+    private boolean isLineChanged(int index, String storeLine, Storage storage) {
+        return storage.isLineChanged(index, storeLine);
     }
 }
