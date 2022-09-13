@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
+
     private ArrayList<Task> list;
+
     private final String HORIZONTAL_LINE_BREAK = "-------------------------";
 
     public TaskList() {
