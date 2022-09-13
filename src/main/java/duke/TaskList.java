@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -120,7 +121,43 @@ public class TaskList {
         int counter = 1;
         StringBuilder str = new StringBuilder();
         for (Task t : this.taskArrayList) {
-            boolean hasWord = t.toString().contains(s);
+            String description = t.toString();
+            String[] descriptionArr = description.split(" ");
+            for (int i = 0; i < descriptionArr.length; i++) {
+                boolean hasWord = descriptionArr[i].equals(s);
+                if (hasWord) {
+                    String index = counter + ". ";
+                    String taskDescription = t + "\n";
+                    String fullDescription = index + taskDescription;
+                    str.append(fullDescription);
+                    counter++;
+                }
+            }
+        }
+        return str.toString();
+    }
+
+    /**
+     * Returns a list of tasks that contains the input string.
+     *
+     * @param s Input string to match.
+     * @return List of tasks with partially/fully matching strings.
+     */
+    public String search(String s) {
+        int counter = 1;
+        StringBuilder str = new StringBuilder();
+        for (Task t : this.taskArrayList) {
+            Scanner temp = new Scanner(t.toString());
+            String filter = "\\[|\\]\\s*|by:\\s*|at:\\s*|\\s*\\(|\\s*\\)";
+            temp.useDelimiter(filter);
+
+            temp.next();
+            temp.next();
+            temp.next();
+            String description = temp.next();
+            temp.close();
+
+            boolean hasWord = t.toString().contains(s) || s.contains(description);
 
             if (hasWord) {
                 String index = counter + ". ";

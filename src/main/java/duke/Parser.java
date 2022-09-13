@@ -8,6 +8,7 @@ import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.MarkCommand;
+import duke.command.SearchCommand;
 import duke.command.ShowListCommand;
 import duke.command.UnmarkCommand;
 
@@ -41,87 +42,135 @@ public class Parser {
         Scanner sc = new Scanner(command);
 
         if (sc.hasNext("mark")) {
-            String mark = sc.next();
-            assert (mark.equals("mark"));
-
-            if (!sc.hasNextInt()) {
-                throw new DukeException(NO_INDEX);
-            } else {
-                int i = sc.nextInt();
-                sc.close();
-                return new MarkCommand(i);
-            }
-
+            return handleMark(sc);
         } else if (sc.hasNext("unmark")) {
-            String unmark = sc.next();
-            assert (unmark.equals("unmark"));
-            if (!sc.hasNextInt()) {
-                throw new DukeException(NO_INDEX);
-            } else {
-                int i = sc.nextInt();
-                sc.close();
-                return new UnmarkCommand(i);
-            }
+            return handleUnmark(sc);
         } else if (sc.hasNext("deadline")) {
-            sc.useDelimiter("deadline\\s*|\\s*/by\\s*");
-            if (!sc.hasNext()) {
-                throw new DukeException(NO_DESC_DEADLINE);
-            }
-            String description = sc.next();
-            if (!sc.hasNext()) {
-                throw new DukeException(NO_DATE_DEADLINE);
-            }
-            String by = sc.next();
-            sc.close();
-            return new AddCommand("deadline", description, by);
+            return handleDeadline(sc);
         } else if (sc.hasNext("event")) {
-            sc.useDelimiter("event\\s*|\\s*/at\\s*");
-            if (!sc.hasNext()) {
-                throw new DukeException(NO_DESC_EVENT);
-            }
-            String description = sc.next();
-            if (!sc.hasNext()) {
-                throw new DukeException(NO_DATE_EVENT);
-            }
-            String at = sc.next();
-            sc.close();
-            return new AddCommand("event", description, at);
+            return handleEvent(sc);
         } else if (sc.hasNext("todo")) {
-            sc.useDelimiter("todo\\s*");
-            if (!sc.hasNext()) {
-                throw new DukeException(NO_DESC_TODO);
-            }
-            String description = sc.next();
-            sc.close();
-            return new AddCommand("todo", description, null);
+            return handleTodo(sc);
         } else if (sc.hasNext("delete")) {
-            sc.useDelimiter("delete\\s*");
-            if (!sc.hasNextInt()) {
-                throw new DukeException(NO_INDEX);
-            } else {
-                int i = sc.nextInt();
-                sc.close();
-                return new DeleteCommand(i);
-            }
+            return handleDelete(sc);
         } else if (sc.hasNext("find")) {
-            sc.useDelimiter("find\\s*");
-            if (!sc.hasNext()) {
-                throw new DukeException(NO_TARGET);
-            } else {
-                String s = sc.next();
-                sc.close();
-                return new FindCommand(s);
-            }
+            return handleFind(sc);
+        } else if (sc.hasNext("search")) {
+            return handleSearch(sc);
         } else if (command.equals("bye")) {
-            assert (command.equals("bye"));
-            sc.close();
-            return new ExitCommand();
+            return handleBye(sc, command);
         } else if (command.equals("list")) {
-            assert (command.equals("list"));
-            sc.close();
-            return new ShowListCommand();
+            return handleList(sc, command);
         } else {
             throw new DukeException(UNKNOWN_COMMAND);
         }
+    }
+
+    private static Command handleMark(Scanner sc) throws DukeException {
+        String mark = sc.next();
+        assert (mark.equals("mark"));
+
+        if (!sc.hasNextInt()) {
+            throw new DukeException(NO_INDEX);
+        } else {
+            int i = sc.nextInt();
+            sc.close();
+            return new MarkCommand(i);
+        }
+    }
+
+    private static Command handleUnmark(Scanner sc) throws DukeException {
+        String unmark = sc.next();
+        assert (unmark.equals("unmark"));
+        if (!sc.hasNextInt()) {
+            throw new DukeException(NO_INDEX);
+        } else {
+            int i = sc.nextInt();
+            sc.close();
+            return new UnmarkCommand(i);
+        }
+    }
+
+    private static Command handleDeadline(Scanner sc) throws DukeException {
+        sc.useDelimiter("deadline\\s*|\\s*/by\\s*");
+        if (!sc.hasNext()) {
+            throw new DukeException(NO_DESC_DEADLINE);
+        }
+        String description = sc.next();
+        if (!sc.hasNext()) {
+            throw new DukeException(NO_DATE_DEADLINE);
+        }
+        String by = sc.next();
+        sc.close();
+        return new AddCommand("deadline", description, by);
+    }
+
+    private static Command handleEvent(Scanner sc) throws DukeException {
+        sc.useDelimiter("event\\s*|\\s*/at\\s*");
+        if (!sc.hasNext()) {
+            throw new DukeException(NO_DESC_EVENT);
+        }
+        String description = sc.next();
+        if (!sc.hasNext()) {
+            throw new DukeException(NO_DATE_EVENT);
+        }
+        String at = sc.next();
+        sc.close();
+        return new AddCommand("event", description, at);
+    }
+
+    private static Command handleTodo(Scanner sc) throws DukeException {
+        sc.useDelimiter("todo\\s*");
+        if (!sc.hasNext()) {
+            throw new DukeException(NO_DESC_TODO);
+        }
+        String description = sc.next();
+        sc.close();
+        return new AddCommand("todo", description, null);
+    }
+
+    private static Command handleDelete(Scanner sc) throws DukeException {
+        sc.useDelimiter("delete\\s*");
+        if (!sc.hasNextInt()) {
+            throw new DukeException(NO_INDEX);
+        } else {
+            int i = sc.nextInt();
+            sc.close();
+            return new DeleteCommand(i);
+        }
+    }
+
+    private static Command handleFind(Scanner sc) throws DukeException {
+        sc.useDelimiter("find\\s*");
+        if (!sc.hasNext()) {
+            throw new DukeException(NO_TARGET);
+        } else {
+            String s = sc.next();
+            sc.close();
+            return new FindCommand(s);
+        }
+    }
+
+    private static Command handleSearch(Scanner sc) throws DukeException {
+        sc.useDelimiter("search\\s*");
+        if (!sc.hasNext()) {
+            throw new DukeException(NO_TARGET);
+        } else {
+            String s = sc.next();
+            sc.close();
+            return new SearchCommand(s);
+        }
+    }
+
+    private static Command handleBye(Scanner sc, String command) {
+        assert (command.equals("bye"));
+        sc.close();
+        return new ExitCommand();
+    }
+
+    private static Command handleList(Scanner sc, String command) {
+        assert (command.equals("list"));
+        sc.close();
+        return new ShowListCommand();
     }
 }
