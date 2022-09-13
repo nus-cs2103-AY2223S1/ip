@@ -24,7 +24,7 @@ Example of usage:
 Expected outcome:
 
 ```
-![todo](https://github.com/ReaganTan00/ip/blob/master/docs/todo.png)
+![image](https://user-images.githubusercontent.com/97376457/189971908-5fe12440-c4c9-4027-a5ec-bc6216d13a30.png)
 ```
 ### `event DESCRIPTION /at DATE` - Adds an event task with the specified description and date.
 - Ensure date is in format <YYYY-MM-DD>
@@ -36,7 +36,7 @@ Example of usage:
 Expected outcome:
 
 ```
-<img src="event.png" width="420" />
+![image](https://user-images.githubusercontent.com/97376457/189972627-567efaf2-2378-4f46-aef8-50f1a874867e.png)
 ```
 
 ### `deadline DESCRIPTION /by DATE` - Adds a deadline task with the specified description and date.
@@ -49,7 +49,7 @@ Example of usage:
 Expected outcome:
 
 ```
-<img src="deadline.png" width="420" />
+![image](https://user-images.githubusercontent.com/97376457/189972673-22841325-9d06-4e6b-ba64-48d730bb101c.png)
 ```
 
 ### `list` - Lists all tasks currently saved in the list.
@@ -61,7 +61,7 @@ Example of usage:
 Expected outcome:
 
 ```
-<img src="list.png" width="420" />
+![image](https://user-images.githubusercontent.com/97376457/189972738-018e190b-c060-4e48-8a23-17df2dd878c4.png)
 ```
 
 ### `find KEYWORD` - Returns a list of tasks containing the keyword specified.
@@ -73,7 +73,7 @@ Example of usage:
 Expected outcome:
 
 ```
-<img src="find.png" width="420" />
+![image](https://user-images.githubusercontent.com/97376457/189972765-78fb576e-732b-4d9f-a3fe-7911d0caf477.png)
 ```
 
 ### `delete INDEX` - Deletes the task in the list at that given index.
@@ -85,7 +85,7 @@ Example of usage:
 Expected outcome:
 
 ```
-<img src="delete.png" width="420" />
+![image](https://user-images.githubusercontent.com/97376457/189972818-00eee5f5-3f1f-4419-93aa-7381242142fd.png)
 ```
 
 ### `mark INDEX` - Marks the task as done in the list at that given index.
@@ -97,7 +97,7 @@ Example of usage:
 Expected outcome:
 
 ```
-<img src="mark.png" width="420" />
+![image](https://user-images.githubusercontent.com/97376457/189972845-c3b7b24a-cef3-4309-b8f3-a8fd2dbeb7b3.png)
 ```
 
 ### `unmark INDEX` - Marks the task as not done in the list at that given index.
@@ -109,7 +109,7 @@ Example of usage:
 Expected outcome:
 
 ```
-<img src="unmark.png" width="420" />
+![image](https://user-images.githubusercontent.com/97376457/189972880-2b1e5d72-a48b-4946-a80e-90d94a1f849a.png)
 ```
 
 ### `tag INDEX #HASHTAG` - Tags a task with a #hashtag at that given index.
@@ -121,7 +121,7 @@ Example of usage:
 Expected outcome:
 
 ```
-<img src="tag.png" width="420" />
+![image](https://user-images.githubusercontent.com/97376457/189972898-ca871fc5-9eb4-4e33-bfe8-8f496c6d783b.png)
 ```
 
 ### `bye` - Saves your current list and then closes the program.
