@@ -37,8 +37,13 @@ public class TaskList {
      * @param index index of task to mark, in 1 indexing.
      */
     public String mark(int index) {
-        tasks.get(index - 1).mark();
-        return "Nice! I've marked this task as done:\n" + getString(index);
+        try {
+            tasks.get(index - 1).mark();
+            return "Nice! I've marked this task as done:\n" + getString(index);
+        } catch (IndexOutOfBoundsException e) {
+            return "There is no task of that index!";
+        }
+
     }
 
     /**
@@ -47,8 +52,13 @@ public class TaskList {
      * @param index index of task to unmark, in 1 indexing.
      */
     public String unmark(int index) {
-        tasks.get(index - 1).unmark();
-        return "Okay, I've marked this task as undone:\n" + getString(index);
+        try {
+            tasks.get(index - 1).unmark();
+            return "Okay, I've marked this task as undone:\n" + getString(index);
+        } catch (IndexOutOfBoundsException e) {
+            return "There is no task of that index!";
+        }
+
     }
 
     /**
