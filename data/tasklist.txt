@@ -1,3 +1,4 @@
 T,true,CS2103T
-E,true,stage , botanic
-T,true,nothing
+T,false,nothing
+T,false,sleep
+D,true,cs2103t ,2022-10-10
