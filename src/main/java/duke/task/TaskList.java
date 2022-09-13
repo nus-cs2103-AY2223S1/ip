@@ -45,8 +45,10 @@ public class TaskList {
      * @param index The index of the tasks to delete.
      */
     public void deleteTaskByIndex(int index) {
+        int taskSizeBeforeDeletion = tasks.length;
         Task taskToRemove = tasks.get(index);
         tasks.remove(index);
+        assert tasks.length == taskSizeBeforeDeletion - 1: "Length of tasks should have dropped by 1";
         Ui.print(
                 "I've successfully removed this task:\n"
                 + taskToRemove
