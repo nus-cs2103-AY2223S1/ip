@@ -11,7 +11,7 @@ public class PriorityCommand extends Command {
 
     public static final String COMMAND_WORD = "priority";
     public static final String CHANGE_TASK_PRIORITY_MSG = "Noted. I've set the priority of this task to ";
-    public static final String NO_TASK_MSG = "There is no task at this index";
+    public static final String NO_TASK_MSG = "Hmm, I can't find this hole number, enter a valid integer number";
     private int toChangePriority;
     private String priorityLevel;
 

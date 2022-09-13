@@ -42,7 +42,7 @@ public class DeadlineCommand extends Command {
     public String execute(TaskList task, Storage storage) {
         Deadline currDeadline = new Deadline(this.description, this.localDate, this.localTime);
         task.addTask(currDeadline);
-        return "Got it. I've added this task:\n " + currDeadline.taskInfo()
+        return "Got it. I've added this task to my hole:\n " + currDeadline.taskInfo()
                 + "\nNow you have " + task.getTaskSize() + " tasks in the list.";
     }
 

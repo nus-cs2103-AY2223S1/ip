@@ -12,7 +12,7 @@ public class ToDoTest {
     @Test
     public void toDoTest() {
         Task testTask = new ToDo("Read book");
-        assertEquals(testTask.taskInfo(), "[T] [ ] Read book");
+        assertEquals(testTask.taskInfo(), "[T] [ ] [LOW] Read book");
     }
 
 }

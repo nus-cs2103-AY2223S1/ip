@@ -29,11 +29,14 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Penguin.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Molediver.png"));
+    private Image molediverImage = new Image(this.getClass().getResourceAsStream("/images/Molediver.png"));
+
+    private static final String GREETING_MESSAGE = "Hi, I'm molediver. What can I do for you?";
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(GREETING_MESSAGE,molediverImage));
     }
 
     public void setDuke(Duke d) {
@@ -51,13 +54,13 @@ public class MainWindow extends AnchorPane {
         checkByeMessage(response);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, molediverImage)
         );
         userInput.clear();
     }
 
     private void checkByeMessage(String response) {
-        String byeMessage = "Bye. Hope to see you again soon!";
+        String byeMessage = "Bye. See you again soon!";
         if (response == byeMessage) {
             TimerTask exitTask = new TimerTask() {
                 @Override

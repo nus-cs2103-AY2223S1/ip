@@ -10,8 +10,8 @@ import duke.task.TaskList;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
-    public static final String REMOVE_TASK_MSG = "Noted. I've removed this task:\n ";
-    public static final String NO_TASK_MSG = "There is no task at this index";
+    public static final String REMOVE_TASK_MSG = "Noted. I've dug out this task:\n ";
+    public static final String NO_TASK_MSG = "Hmm, I can't find this hole number, enter a valid integer number";
     private int toDelete;
 
     /**

@@ -11,7 +11,7 @@ public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
     public static final String MARK_TASK_MSG = "Nice! I've marked this task as done:\n ";
-    public static final String NO_TASK_MSG = "There is no task at this index";
+    public static final String NO_TASK_MSG = "Hmm, I can't find this hole number, enter a valid integer number";
     private int toMark;
 
     /**
