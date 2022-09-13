@@ -1,4 +1,4 @@
-package duke.EventTest;
+package duke.eventTest;
 
 import duke.models.Event;
 import duke.models.Task;
