@@ -2,21 +2,28 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="380.0" type="HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" type="HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="dialog" text="Label" wrapText="true">
+      <Label fx:id="dialog" minWidth="60.0" style="-fx-background-color: #075e54; -fx-background-radius: 20px;" text="list" textFill="WHITE" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </Label>
       <ImageView fx:id="displayPicture" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
             <Insets left="10.0" right="10.0" />
-         </HBox.margin></ImageView>
+         </HBox.margin>
+         <image>
+            <Image url="@../../../../../../../../../Downloads/cat.jpg" />
+         </image></ImageView>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
