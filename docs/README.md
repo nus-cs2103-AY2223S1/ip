@@ -58,7 +58,7 @@ Tasks are automatically saved and loaded up the next time Snoopy is run.
 Keyword | Usage
 ---------|-----------
 **Todo** | `todo DESCRIPTION` <br> e.g. `todo have lunch`
-**Deadline** | `deadline DESCRIPTION /by yyyy-mm-dd HH:mm` <br> e.g. `deadline submit homework /by 2022-09-10 18:00`
+**Deadline** | `deadline DESCRIPTION /by yyyy-mm-dd` <br> e.g. `deadline submit homework /by 2022-09-10`
 **Event** | `event DESCRIPTION /at DATE` <br> e.g. `event graduation /at 6 March 9-11am`
 **List** | `list`
 **Mark** | `mark TASKNUMBER` <br> e.g. `mark 2`

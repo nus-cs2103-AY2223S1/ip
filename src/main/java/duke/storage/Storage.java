@@ -50,7 +50,7 @@ public class Storage {
                 } else if (words[0].equals("E")) {
                     newTask = new Event(words[3], words[4]);
                 } else {
-                    newTask = new Deadline(words[3], LocalDate.parse(words[4]));
+                    newTask = new Deadline(words[4], LocalDate.parse(words[3]));
                 }
                 if (words[1].equals("1")) {
                     newTask.setDone();
