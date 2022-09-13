@@ -55,7 +55,7 @@ public class StorageReader {
 
     private void loadAllLinesToHistory(TaskList history) throws IOException {
         getAllLines().filter(lineInFile -> {
-           return isNotEmpty(lineInFile);
+            return isNotEmpty(lineInFile);
         }).forEach(currTask -> {
             addTaskToHistory(currTask, history);
         });

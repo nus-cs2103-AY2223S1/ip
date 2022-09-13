@@ -1,6 +1,5 @@
 package storage;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -42,7 +41,7 @@ public class Storage {
         buildPath(currPath, pathElements);
     }
 
-    private void buildPath(String currPath, String[] pathElements) throws  IOException{
+    private void buildPath(String currPath, String[] pathElements) throws IOException {
         Path tempPath = Path.of(currPath);
         for (String s: pathElements) {
             tempPath = makePathFromName(tempPath.toString(), s);
@@ -65,7 +64,7 @@ public class Storage {
         }
     }
 
-    private  Path makePathFromName(String currPath, String name) {
+    private Path makePathFromName(String currPath, String name) {
         currPath += "\\" + name;
         return Path.of(currPath);
     }
