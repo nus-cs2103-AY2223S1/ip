@@ -5,8 +5,11 @@ import duke.ClientList;
 import duke.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a command that deletes a client from the client list.
+ */
 public class DeleteClientCommand extends Command {
-     private final int phoneNumber;
+    private final int phoneNumber;
 
     /**
      * Constructs Delete Client Command object.

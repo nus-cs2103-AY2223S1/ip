@@ -8,7 +8,6 @@ import duke.task.TaskList;
  * Represents a command to unmark a task in task list.
  */
 public class UnMarkCommand extends Command {
-
     private final int index;
 
     /**
@@ -39,7 +38,8 @@ public class UnMarkCommand extends Command {
             SaveTaskListCommand.of().execute(taskList, clientList);
             return CommandOutputs.showUnmark(taskList, index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(String.format("Index %d does not exist on the list.", index + 1)); //plus 1 for indexing
+            throw new DukeException(
+                    String.format("Index %d does not exist on the list.", index + 1)); //plus 1 for indexing
         }
     }
 

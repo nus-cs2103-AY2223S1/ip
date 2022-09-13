@@ -1,11 +1,13 @@
 package duke.command;
 
-
 import duke.Client;
 import duke.ClientList;
 import duke.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a command to add a client to the task list.
+ */
 public class AddClientCommand extends Command {
 
     private final Client client;

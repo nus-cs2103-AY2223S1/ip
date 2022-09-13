@@ -3,8 +3,8 @@ package duke.command;
 import duke.Client;
 import duke.ClientList;
 import duke.DukeException;
-import duke.task.TaskList;
 import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Represents UI of application
@@ -15,8 +15,8 @@ public class CommandOutputs {
      * Returns String of a welcome message for the user.
      */
     public static String showWelcome() {
-        return "Hello! I'm Duke\n" +
-                "Peter's personal chatbot";
+        return "Hello! I'm Duke\n"
+                + "Peter's personal chatbot";
     }
 
     /**
@@ -38,8 +38,8 @@ public class CommandOutputs {
             throw new DukeException("You do not have any tasks in the list");
         }
         assert taskList.size() > 0;
-        return "Here are the tasks in your list:\n" +
-                taskList;
+        return "Here are the tasks in your list:\n"
+                + taskList;
     }
 
     /**
@@ -49,8 +49,8 @@ public class CommandOutputs {
      * @param deletedTask deleted task
      */
     public static String showDelete(TaskList taskList, Task deletedTask) {
-        String output = "I've removed this task:\n" +
-                deletedTask.toString() + "\n";
+        String output = "I've removed this task:\n"
+                + deletedTask.toString() + "\n";
         return taskList.size() == 1 ? output + "Now you have 1 task in the list"
                 : output + String.format("Now you have %d tasks in the list", taskList.size());
     }
@@ -62,8 +62,8 @@ public class CommandOutputs {
      * @param newTask new task added.
      */
     public static String showAdd(TaskList taskList, Task newTask) {
-        String output = "I've added this task:\n" +
-                newTask.toString() + "\n";
+        String output = "I've added this task:\n"
+                + newTask.toString() + "\n";
         return taskList.size() == 1 ? output + "Now you have 1 task in the list"
                 : output + String.format("Now you have %d tasks in the list", taskList.size());
     }
@@ -75,8 +75,8 @@ public class CommandOutputs {
      * @param index index of marked task in list of tasks.
      */
     public static String showMark(TaskList taskList, int index) {
-        return "Weeeee! I've marked this task as done:\n" +
-                taskList.get(index).toString();
+        return "Weeeee! I've marked this task as done:\n"
+                + taskList.get(index).toString();
     }
 
     /**
@@ -86,8 +86,8 @@ public class CommandOutputs {
      * @param index index of unmarked task in list of tasks.
      */
     public static String showUnmark(TaskList taskList, int index) {
-        return "Aw Mans... I've unmarked this task:\n" +
-                taskList.get(index).toString();
+        return "Aw Mans... I've unmarked this task:\n"
+                + taskList.get(index).toString();
     }
 
     /**
@@ -101,8 +101,8 @@ public class CommandOutputs {
             throw new DukeException("You do not have any tasks in the list that contains the keyword");
         }
         assert taskList.size() > 0;
-        return "Here are matching tasks in your list:\n" +
-                taskList;
+        return "Here are matching tasks in your list:\n"
+                + taskList;
     }
 
     /**
@@ -113,8 +113,8 @@ public class CommandOutputs {
      * @return String of added client and updated number of clients.
      */
     public static String showNewClient(Client client, ClientList clientList) {
-        String output = "Nice! Added this client:\n" +
-                client.toString() + "\n";
+        String output = "Nice! Added this client:\n"
+                + client.toString() + "\n";
         return clientList.size() == 1 ? output + "Now you have 1 client"
                 : output + String.format("Now you have %d clients", clientList.size());
     }
@@ -130,8 +130,8 @@ public class CommandOutputs {
         if (clientList.size() == 0) {
             throw new DukeException("You have no clients right now rip");
         }
-        return "Clients:\n" +
-                clientList;
+        return "Clients:\n"
+                + clientList;
     }
 
 
@@ -142,7 +142,7 @@ public class CommandOutputs {
      * @return String representation of deleted client.
      */
     public static String showDeletedClient(Client client) {
-        return "Deleted Client:\n" +
-                client;
+        return "Deleted Client:\n"
+                + client;
     }
 }

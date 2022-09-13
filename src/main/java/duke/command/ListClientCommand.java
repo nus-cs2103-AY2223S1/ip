@@ -4,8 +4,10 @@ import duke.ClientList;
 import duke.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a command that lists out the client list.
+ */
 public class ListClientCommand extends Command {
-
     private static final ListClientCommand LIST_CLIENT_COMMAND = new ListClientCommand();
 
     /**

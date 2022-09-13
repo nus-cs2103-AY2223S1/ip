@@ -52,7 +52,7 @@ public class TaskList {
      */
     public String toSaveString() {
         StringBuilder output = new StringBuilder();
-        for(Task task : taskList) {
+        for (Task task : taskList) {
             output.append(task.toSaveString()).append("\n");
         }
         return output.toString();
@@ -66,7 +66,7 @@ public class TaskList {
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
-        for(int i = 0; i < taskList.size(); i++) {
+        for (int i = 0; i < taskList.size(); i++) {
             output.append(i + 1).append(".");
             output.append(taskList.get(i).toString());
             output.append("\n");

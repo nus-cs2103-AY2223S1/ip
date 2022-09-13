@@ -3,7 +3,11 @@ package duke.command;
 import duke.ClientList;
 import duke.DukeException;
 import duke.Instructions;
-import duke.task.*;
+import duke.task.Deadlines;
+import duke.task.Events;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDos;
 
 /**
  * Represents a command adding a new task into task list.

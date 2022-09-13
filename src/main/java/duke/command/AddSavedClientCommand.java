@@ -1,8 +1,12 @@
 package duke.command;
 
-import duke.*;
+import duke.Client;
+import duke.ClientList;
 import duke.task.TaskList;
 
+/**
+ * Represents a command to add a client from saved file.
+ */
 public class AddSavedClientCommand extends Command {
 
     private final Client client;

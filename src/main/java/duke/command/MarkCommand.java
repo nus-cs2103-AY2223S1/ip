@@ -38,7 +38,8 @@ public class MarkCommand extends Command {
             SaveTaskListCommand.of().execute(taskList, clientList);
             return CommandOutputs.showMark(taskList, index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(String.format("Index %d does not exist on the list.", index + 1)); //plus 1 for indexing
+            throw new DukeException(
+                    String.format("Index %d does not exist on the list.", index + 1)); //plus 1 for indexing
         }
     }
 }

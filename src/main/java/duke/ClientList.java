@@ -24,8 +24,8 @@ public class ClientList {
      * @throws DukeException if no client has the phone number.
      */
     public Client delete(int phoneNumber) throws DukeException {
-        for(Client client: clientList) {
-            if(client.samePhoneNumber(phoneNumber)) {
+        for (Client client: clientList) {
+            if (client.samePhoneNumber(phoneNumber)) {
                 clientList.remove(client);
                 return client;
             }
@@ -41,7 +41,7 @@ public class ClientList {
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
-        for(Client client: clientList) {
+        for (Client client: clientList) {
             output.append(client.toString()).append("\n");
         }
         return output.toString();
@@ -54,7 +54,7 @@ public class ClientList {
      */
     public String toSaveString() {
         StringBuilder output = new StringBuilder();
-        for(Client client: clientList) {
+        for (Client client: clientList) {
             output.append(client.toSaveString()).append("\n");
         }
         return output.toString();

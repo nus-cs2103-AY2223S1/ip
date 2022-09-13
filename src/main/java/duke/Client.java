@@ -32,9 +32,9 @@ public class Client {
      */
     @Override
     public String toString() {
-        return "Name: " + name + "\n" +
-                "Phone Number: " + phoneNumber + "\n" +
-                "Address: " + address;
+        return "Name: " + name + "\n"
+                + "Phone Number: " + phoneNumber + "\n"
+                + "Address: " + address;
     }
 
     /**

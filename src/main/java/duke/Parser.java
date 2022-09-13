@@ -1,6 +1,18 @@
 package duke;
 
-import duke.command.*;
+import duke.command.AddClientCommand;
+import duke.command.AddSavedClientCommand;
+import duke.command.AddSavedTaskCommand;
+import duke.command.AddTaskCommand;
+import duke.command.Command;
+import duke.command.DeleteClientCommand;
+import duke.command.DeleteTaskCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListClientCommand;
+import duke.command.ListTaskCommand;
+import duke.command.MarkCommand;
+import duke.command.UnMarkCommand;
 
 /**
  * Represents the parser that processes user input from UI.
@@ -57,7 +69,7 @@ public class Parser {
         case delete:
             return parseDelete(info);
         case mark:
-            return parseMark(info,true);
+            return parseMark(info, true);
         case unmark:
             return parseMark(info, false);
         case todo:

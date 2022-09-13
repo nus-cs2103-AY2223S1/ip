@@ -4,6 +4,9 @@ import duke.ClientList;
 import duke.Storage;
 import duke.task.TaskList;
 
+/**
+ * Represents save clients list to client save file.
+ */
 public class SaveClientListCommand extends Command {
     private static final SaveClientListCommand SAVE_CLIENT_LIST_COMMAND = new SaveClientListCommand();
 
