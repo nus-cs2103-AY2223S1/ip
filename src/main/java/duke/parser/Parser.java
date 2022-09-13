@@ -275,7 +275,7 @@ public class Parser {
      * Parses the arguments for converting a task from storage to a Task
      * instance that can be stored in the TaskList object
      *
-     * @param args the string retrieved from the lcoal file
+     * @param args the string retrieved from the local file
      * @return the task after the arguments are parsed
      */
     public static Task parseTask(String args) throws DukeException {
