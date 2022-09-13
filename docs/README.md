@@ -21,13 +21,15 @@ You can use LishBot's Trivia feature to make LishBot memorize new commands and r
 
 example usage:
 
-`todo do homework`
+```
+todo do homework
+```
 
 LishBot's response:
 
 ```
 Got it! I will add that task now
-\[T\]\[ \] do homework
+[T][ ] do homework
 Now, the number of tasks you have is 4
 ```
 
