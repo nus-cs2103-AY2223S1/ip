@@ -31,40 +31,51 @@ public class TaskListTest {
     @Test
     public void findTaskTest() {
         TaskList taskList = new TaskList();
-
         Task vanillaTask = new TaskStub("nothing much");
-        String vanillaKeyword = "nothing much";
+        String keyword = "nothing much";
         taskList.addTask(vanillaTask);
-        TaskList vanillaResult = taskList.findMatchingTasks(vanillaKeyword);
+        TaskList vanillaResult = taskList.findMatchingTasks(keyword);
         assertEquals(
                 vanillaTask.getDescription(),
                 vanillaResult.getTask(0).getDescription()
         );
+    }
 
+    @Test
+    public void findInBetweenTaskTest() {
+        TaskList taskList = new TaskList();
         Task inBetweenTask = new TaskStub("searchinbetweenwords");
-        String inBetweenKeyword = "inbetween";
+        String keyword = "inbetween";
         taskList.addTask(inBetweenTask);
-        TaskList inBetweenResult = taskList.findMatchingTasks(inBetweenKeyword);
+        TaskList inBetweenResult = taskList.findMatchingTasks(keyword);
         assertEquals(
                 inBetweenTask.getDescription(),
                 inBetweenResult.getTask(0).getDescription()
         );
+    }
 
+    @Test
+    public void findSingleWordTaskTest() {
+        TaskList taskList = new TaskList();
         Task singleWordSearchTask = new TaskStub("single word");
-        String singleWordSearchKeyword = "single";
+        String keyword = "single";
         taskList.addTask(singleWordSearchTask);
-        TaskList singleWordResult = taskList.findMatchingTasks(singleWordSearchKeyword);
+        TaskList singleWordResult = taskList.findMatchingTasks(keyword);
         assertEquals(
                 singleWordSearchTask.getDescription(),
                 singleWordResult.getTask(0).getDescription()
         );
+    }
 
+    @Test
+    public void findMultipleTaskTest() {
+        TaskList taskList = new TaskList();
         Task pairedOneTask = new TaskStub("pair one");
         Task pairedTwoTask = new TaskStub("pair two");
-        String pairedKeyword = "pair";
+        String keyword = "pair";
         taskList.addTask(pairedOneTask);
         taskList.addTask(pairedTwoTask);
-        TaskList pairedResult = taskList.findMatchingTasks(pairedKeyword);
+        TaskList pairedResult = taskList.findMatchingTasks(keyword);
         assertEquals(
                 pairedOneTask.getDescription(),
                 pairedResult.getTask(0).getDescription()
@@ -72,6 +83,25 @@ public class TaskListTest {
         assertEquals(
                 pairedTwoTask.getDescription(),
                 pairedResult.getTask(1).getDescription()
+        );
+    }
+
+    @Test
+    public void findTaskLargeTaskListTest() {
+        TaskList taskList = new TaskList();
+        String keyword = "single";
+        Task singleTask = new TaskStub("single");
+        for (int i = 0; i < 20; i++) {
+            if (i == 13) {
+                taskList.addTask(singleTask);
+            } else {
+                taskList.addTask(new TaskStub("taskstub" + i));
+            }
+        }
+        TaskList result = taskList.findMatchingTasks(keyword);
+        assertEquals(
+                singleTask.getDescription(),
+                result.getTask(0).getDescription()
         );
     }
 
