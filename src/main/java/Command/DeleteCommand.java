@@ -18,36 +18,21 @@ public class DeleteCommand extends Command {
         this.userAction = userAction;
     }
 
-    public boolean isNumeric(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
     @Override
     public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
-            if (!isNumeric(userAction)) {
-                throw new DukeException("I'm sorry, the input you provided is not a number!");
-            } else {
-                int index = Integer.parseInt(userAction) - 1;
-                if (index >= tasks.getTaskListSize() || index < 0) {
-                    throw new DukeException("I'm sorry, but the index you provided is out of range :-(");
-                } else {
-                    Task task = tasks.getTasks().get(index);
-                    tasks.getTasks().remove(index);
-                    storage.save();
-                    return ui.sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
-                            + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
-                }
-            }
-        } catch (IOException e) {
-            throw new DukeException(e.getMessage());
-        } catch (DukeException e2) {
-            return e2.toString();
+            int index = Integer.parseInt(this.userAction);
+            String deleteTaskMessage = tasks.deleteTask(index);
+            storage.save();
+            return deleteTaskMessage;
+        } catch (IOException e1) {
+            throw new DukeException(e1.getMessage());
+        } catch (NumberFormatException e2) {
+            throw new DukeException(DukeUi.INVALID_INDEX);
+        } catch (IndexOutOfBoundsException e3) {
+            throw new DukeException(DukeUi.INDEX_OUT_OF_RANGE);
+        } catch (DukeException e4) {
+            return e4.toString();
         }
     }
 

@@ -28,8 +28,9 @@ public class Parser {
      */
     public static Command parse(String[] command) throws DukeException {
         String userAction = "";
-        boolean isDescriptionNeeded = command[0].equals("mark") || command[0].equals("unmark") || command[0].equals("todo")
-                || command[0].equals("deadline") || command[0].equals("event") || command[0].equals("find");
+        boolean isDescriptionNeeded = command[0].equals("mark") || command[0].equals("unmark") ||
+                command[0].equals("todo")  || command[0].equals("deadline") || command[0].equals("delete") ||
+                command[0].equals("event") || command[0].equals("find");
         if (isDescriptionNeeded && (command.length == 1)) {
             throw new DukeException("You need to provide a description for the command !");
         } else if (isDescriptionNeeded) {
