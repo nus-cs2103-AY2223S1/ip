@@ -73,8 +73,8 @@ public class TaskList {
             return task;
         } catch (NumberFormatException e) {
             throw new DukeException("Please input a number.");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(String.format("Please input a valid number! There are %d duke.tasks remaining.",
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(String.format("Please input a valid number! There are %d tasks remaining.",
                     taskList.size()));
         }
     }
@@ -94,7 +94,7 @@ public class TaskList {
             return "Noted. I've removed this task:\n\t" + task + "\n" + getRemainingTasks();
         } catch (NumberFormatException e) {
             throw new DukeException("Please input a number.");
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException(String.format("Please input a valid number! There are %d duke.tasks remaining.",
                     taskList.size()));
         }
