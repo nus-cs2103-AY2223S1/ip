@@ -1,9 +1,9 @@
 package duke;
 
 public class UI {
-    public static String GREETING = "Hello, I'm LishBot v6.9!\n" + "How may I help you today?\n";
+    public static String GREETING = "Hello, I'm LishBot!\n" + "How may I help you today?\n";
     public static String TASK_LIST_OPENING = "Finding your task list...\n" + "Found it! Here are what you have to do:\n";
-    public static String NO_LIST_FOUND = "Congrats! You have finished all your task!\n";
+    public static String NO_LIST_FOUND = "\nCongrats! You have finished all your task!\n";
     public static String FINDING_RELATED_TASK = "Let me find tasks that match your description...\n";
     public static String NO_RELATED_TASK_FOUND = "I cannot find any tasks that match that description :(\n";
     public static String GOODBYE = "Glad to be of help! I have saved all your task progress and the new commands you taught me :) See you later~\n";
