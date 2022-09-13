@@ -50,6 +50,7 @@ Format: `todo {task to be added}`
 Example of usage: `todo borrow book`
 
 Expected output: 
+
 Nice reply by Deku, followed by the task added.
 
 ```
@@ -71,11 +72,13 @@ Format: `deadline {task to be added} /by {date}`
 Example of usage: `deadline return book /by 02/09/2022`
 
 > **Note**
-> Supported date format:
-> dd/mm/yyyy
+> 
+> Supported date format:\
+> dd/mm/yyyy\
 > Other formats might not be processed properly and affect search results.
 
 Expected output:
+
 Nice reply by Deku, followed by the task added.
 ```
 Deku Responds:
@@ -99,6 +102,7 @@ Example of usage: `event book club /at 03/09/2022`
 > Other formats might not be processed properly and affect search results.
 
 Expected output:
+
 Nice reply by Deku, followed by the task added.
 ```
 Deku Responds:
@@ -108,94 +112,119 @@ Now you have 1 task(s) in total.
 ```
 
 ---
-### `delete` - Add a task marked as an event
+### `delete` - Deletes a task on the list
 
-The `delete` command allows the user to add a task as todo.
+The `delete` command allows the user to delete a task.
 
-Format: `delete {number}`
+Format: `delete {index}`
 
 Example of usage: `delete 1`
 
-Expected output:
-Nice reply by Deku, followed by the task deleted.
-```
-Deku Responds:
-Noted.
-[E][] - How is your day? (at 2-4pm)
-has been deleted
-```
+Expected outputs:
+1) Nice reply by Deku, followed by the task deleted.
+    ```
+    Deku Responds:
+    Noted.
+    [E][] - How is your day? (at 2-4pm)
+    has been deleted
+    ```
+2) If the index is out of range, Deku will reply with annoyance
+   ```
+   Deku Responds:
+   AUUUUUGH! There is not task: -1
+   ```
 
 ---
 ### `mark` - Add a task marked as an event
 
 The `mark` command allows the user to mark a task as completed.
 
-Format: `mark {number}`
+Format: `mark {index}`
 
 Example of usage: `mark 1`
 
-Expected output:
-Nice reply by Deku, followed by the task marked as completed.
-```
-Deku Responds:
-Noted.
-[E][] - How is your day? (at 2-4pm)
-has been deleted
-```
-
+Expected outputs:
+1) Nice reply by Deku, followed by the task deleted.
+    ```
+    Deku Responds:
+    Good Job! This task is now completed:
+    [E][X] - How is your day? (at 2-4pm)
+    ```
+2) If the index is out of range, Deku will reply with annoyance
+   ```
+   Deku Responds:
+   AUUUUUGH! There is not task: -1
+   ```
+   
 ---
 ### `unmark` - Add a task marked as an event
 
 The `unmark` command allows the user to mark a task as incomplete.
 
-Format: `unmark {number}`
+Format: `unmark {index}`
 
 Example of usage: `unmark 1`
 
-Expected output:
-Nice reply by Deku, followed by the task marked as incomplete.
-```
-Deku Responds:
-Noted.
-[E][] - How is your day? (at 2-4pm)
-has been deleted
-```
+Expected outputs:
+1) Nice reply by Deku, followed by the task deleted.
+    ```
+    Deku Responds:
+    This task is not yet to be done
+    [E][] - How is your day? (at 2-4pm)
+    ```
+2) If the index is out of range, Deku will reply with annoyance
+   ```
+   Deku Responds:
+   AUUUUUGH! There is not task: -1
+   ```
 
 ---
-### `undo` - Add a task marked as an event
+### `undo` - undo the previous command
 
-The `undo` command allows the user to mark a task as incomplete.
+The `undo` command returns the list to the state before the previous command.
 
-Format: `unmark {number}`
+Format: `undo`
 
-Example of usage: `unmark 1`
+Example of usage: `undo`
 
-Expected output:
-Nice reply by Deku, followed by the task marked as incomplete.
-```
-Deku Responds:
-Noted.
-[E][] - How is your day? (at 2-4pm)
-has been deleted
-```
-
+Expected outputs:
+1) Nice reply by Deku, confirming the undo.
+    ```
+    Deku Responds:
+    I have undo-ed your last command
+    ```
+2) Deku cannot undo the command. This occurs for commands such as `find_word`, `undo` etc.
+    ```
+   Deku Responds:
+   I cannot undo that!
+   ```
+   
 ---
-### `find` - Add a task marked as an event
+### `find_word` & `find_date` - Find a task by a word or date
 
-The `find` command allows the user to find tasks within the list.
+The `find_word` & `find_date` command allows the user to find tasks within the list based
+on a word or a date.
 
-Format: `find {word}`
-Format: `find {date}`
+Format: `find_word {word}`\
+Example of usage: `find_word is`
 
-Example of usage: `find is`
+Format: `find_date {date}`\
+Example of usage: `find_date 02/02/2022`
+
+> **Note**
+> 
+> Supported date format:\
+> dd/mm/yyyy\
+> Other formats might not return the correct results.
 
 Expected output:
-Nice reply by Deku, followed by the task marked as incomplete.
+
+Nice reply by Deku, followed by a list of tasks that matches the search criteria.
 ```
 Deku Responds:
-Noted.
-[E][] - How is your day? (at 2-4pm)
-has been deleted
+Here are the tasks containing the word: day
+
+1) [E][] - How is your day? (at 2-4pm)
 ```
 
 ---

@@ -34,14 +34,18 @@ class BotList {
     * @param taskIndex task number within the list, starting from 1
     * @return String of the task marked as done
     */
-    String mark(int taskIndex) {
-        assert(taskIndex > 0);
-        userInstructions
-                .get(taskIndex - 1)
-                .setCompletionStatus(true);
-        storage.save(userInstructions);
-        return "Good Job! This task is now completed:\n"
-               + userInstructions.get(taskIndex - 1);
+    String mark(int taskIndex) throws DekuExceptions {
+        try {
+            userInstructions
+                    .get(taskIndex - 1)
+                    .setCompletionStatus(true);
+            storage.save(userInstructions);
+            return "Good Job! This task is now completed:\n"
+                    + userInstructions.get(taskIndex - 1);
+        } catch (IndexOutOfBoundsException e) {
+            hasUndo = false;
+            throw new DekuExceptions("There is no task: " + taskIndex);
+        }
     }
 
     /**
@@ -50,13 +54,17 @@ class BotList {
      * @param taskIndex task number within the list, starting from 1
      * @return String of the task marked as undone
      */
-    String unmark(int taskIndex) {
-        assert(taskIndex > 0);
-        userInstructions.get(taskIndex - 1)
-                .setCompletionStatus(false);
-        storage.save(userInstructions);
-        return "This task is now yet to be done:\n"
-               + userInstructions.get(taskIndex - 1);
+    String unmark(int taskIndex) throws DekuExceptions {
+        try {
+            userInstructions.get(taskIndex - 1)
+                    .setCompletionStatus(false);
+            storage.save(userInstructions);
+            return "This task is now yet to be done:\n"
+                    + userInstructions.get(taskIndex - 1);
+        } catch (IndexOutOfBoundsException e) {
+            hasUndo = false;
+            throw new DekuExceptions("There is no task: " + taskIndex);
+        }
     }
 
     /**
@@ -73,6 +81,7 @@ class BotList {
                     + task.toString()
                     + "\nhas been deleted.\n";
         } catch (IndexOutOfBoundsException e) {
+            hasUndo = false;
             throw new DekuExceptions("There is no task: " + taskIndex);
         }
 
