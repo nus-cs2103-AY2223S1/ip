@@ -3,6 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -47,6 +48,23 @@ public class DukeTest {
             LocalDate curDate = LocalDate.parse("2022-05-12");
             myTaskList.addTask(new Event("read newspaper", curDate));
             actual = myTaskList.testListTasks();
+        } catch (Exception e) {
+            actual = e.getMessage();
+        }
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void deleteTodoSuccess(){
+        String expected = "";
+        expected += "Noted. I've removed this task:\n";
+        expected += "[T][ ] new book";
+        expected += "\nNow you have 0 in the list.";
+        String actual = "";
+        try {
+            TaskList myTaskList = new TaskList(new ArrayList<>());
+            myTaskList.addTask(new Todo("new book"));
+            actual = myTaskList.removeTask(0);
         } catch (Exception e) {
             actual = e.getMessage();
         }
