@@ -20,7 +20,7 @@ public class Storage {
 
     //@@author DanielLimWeiEn -reused
     /**
-     * Construct a new Storage object with a given file path.
+     * Constructs a new Storage object with a given file path.
      * Ensures the file is accessible.
      *
      * @param filePath The path to the file to store data in.

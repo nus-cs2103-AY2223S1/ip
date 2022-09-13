@@ -45,7 +45,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Method to set the Duke instance we want associated with current GUI.
+     * Sets the Duke instance we want associated with current GUI.
      *
      * @param d The Duke object d.
      */

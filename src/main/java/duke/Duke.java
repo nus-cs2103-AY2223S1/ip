@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
- * The main class of the Duke chat-bot.
+ * Runs the Duke chat-bot.
  */
 public class Duke {
     private Storage storage;
