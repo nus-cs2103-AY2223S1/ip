@@ -38,18 +38,31 @@ public class StorageReader {
     public TaskList syncArrayList() throws DukeException {
         try {
             TaskList userInputHistory = new TaskList();
-            getAllLines().filter(lineInFile -> {
-                return !lineInFile.isBlank();
-            }).forEach(currTask -> {
-                try {
-                    userInputHistory.addTask(StorageParser.fileLineToTask(currTask));
-                } catch (DukeException de) {
-                    System.out.println(de);
-                }
-            });
+            loadAllLinesToHistory(userInputHistory);
             return userInputHistory;
         } catch (IOException e) {
             throw new DukeException("Error reading file");
         }
     }
+
+    private void addTaskToHistory(String currTask, TaskList history) {
+        try {
+            history.addTask(StorageParser.fileLineToTask(currTask));
+        } catch (DukeException de) {
+            System.out.println(de);
+        }
+    }
+
+    private void loadAllLinesToHistory(TaskList history) throws IOException {
+        getAllLines().filter(lineInFile -> {
+           return isNotEmpty(lineInFile);
+        }).forEach(currTask -> {
+            addTaskToHistory(currTask, history);
+        });
+    }
+
+    private static boolean isNotEmpty(String line) {
+        return !line.isBlank();
+    }
+
 }
