@@ -34,6 +34,10 @@ public class Storage {
     }
 
     /**
+     * @@24Donovan24-reused
+     * Reused from https://github.com/24Donovan24/ip/blob/master/src/main/java/duke/Storage.java
+     * with minor modifications
+     *
      * Loads existing data from saved file in HardDrive
      * @return ArrayList of tasks that has been read from Hard Disk
      */

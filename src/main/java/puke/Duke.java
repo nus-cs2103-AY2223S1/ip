@@ -1,6 +1,7 @@
 package puke;
 
 import java.time.format.DateTimeFormatter;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 
@@ -9,16 +10,18 @@ import java.time.LocalDateTime;
  */
 public class Duke {
 
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
+
     protected String getResponse(String input) {
         try {
             return "Puke says: " + puke(d, input);
         } catch (DukeException e) {
             return e.toString();
+        } catch (NoSuchElementException e) {
+            return "Puke says: Please concentrate and ask again";
+        } catch (IndexOutOfBoundsException e) {
+            return "Puke says: How many tasks do you think you have? \nPlease think carefully and ask again";
         }
+
     }
 
     /**
@@ -72,6 +75,10 @@ public class Duke {
         }
         String s = sc.nextLine();
 
+        if (s.isEmpty()) {
+            return "I dont know what happened!";
+        }
+
         if (a.equals("mark")) {
             int pos = Character.getNumericValue(s.charAt(1));
             return d.ui.taskManager("do", pos, d);
@@ -112,9 +119,7 @@ public class Duke {
             return d.tasklist.find(temp);
 
         } else {
-            throw new DukeException(
-                    "OOPS!!! I'm sorry, but I dont't know what that means\n"
-                    );
+            return "OOPS!!! I'm sorry, but I dont't know what that means\n";
         }
     }
 }

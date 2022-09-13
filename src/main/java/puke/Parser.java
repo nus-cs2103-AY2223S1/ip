@@ -52,7 +52,7 @@ public class Parser {
     }
 
     /**
-     * Used when parsing find command to get keyword to find for
+     * Parses find command to get keyword to find for
      * @param s keyword to find
      * @return String containing keyword to use
      */

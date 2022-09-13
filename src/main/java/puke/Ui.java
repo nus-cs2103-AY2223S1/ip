@@ -20,7 +20,7 @@ public class Ui {
             return "\n"
                     + "     Got it. I've added this task:\n"
                     + "      " + t + "\n"
-                    + "     Now you have " + (Duke.d.tasklist.numTasks - Duke.d.tasklist.removed) + " tasks in the list.\n";
+                    + "     Now you have " + (d.tasklist.numTasks - d.tasklist.removed) + " tasks in the list.\n";
         }  else if (i == 3) {
 
             return "\n"
