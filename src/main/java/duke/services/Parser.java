@@ -7,8 +7,10 @@ import static duke.utils.Commands.UNKNOWN;
 public class Parser {
 
     /**
-     * Parses and returns an array of Duke command components from an input.
-     * @return TaskList: TaskList generated from the Tasks.
+     * Parses and returns an array of Duke Command components from user input.
+     *
+     * @return Components of the Duke Command from given user input.
+     * @param input: User input to parse.
      **/
     public String[] parseFullCommand(String input) {
         return input.split(" ", 2);
@@ -16,7 +18,9 @@ public class Parser {
 
     /**
      * Parses and returns the type of Duke Command from an input.
-     * @return TaskList: TaskList generated from the Tasks.
+     *
+     * @return Respective Commands ENUM.
+     * @param input: User input to parse for Duke Command.
      **/
     public Commands parseCommand(String input) {
         String[] fullCommand = input.split(" ", 2);

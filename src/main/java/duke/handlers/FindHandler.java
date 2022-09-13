@@ -10,28 +10,14 @@ import java.util.ArrayList;
 import static duke.services.Ui.dukePrint;
 
 public class FindHandler {
-    public static void handle(TaskList list, String input) throws DukeException {
-        boolean isTaskFound = false;
-        ArrayList<Task> foundTasksList = new ArrayList<>();
-        if (list.size()== 0) {
-            throw new DukeException("☹ OOPS!!! Tasklist is empty!");
-        }
-        for (Task task: list) {
-            if (task.toString().contains(input)) {
-                foundTasksList.add(task);
-                isTaskFound = true;
-            }
-        }
-        if (isTaskFound) {
-            dukePrint("Here are the tasks found");
-            for (int i = 0; i < foundTasksList.size(); i++) {
-                System.out.println(i + 1 + ". " + foundTasksList.get(i));
-            }
-        } else {
-            dukePrint("Tasks not found with given keyword");
-        }
-    }
-
+    /**
+     * Handles the FIND Duke command.
+     * Finds Tasks containing the specified String in given input.
+     *
+     * @return Response of the executed FIND Command.
+     * @param list: TaskList containing the Tasks to unmark.
+     * @param input: Task number to unmark as done, in String format.
+     **/
     public static String getResponse(TaskList list, String input) throws DukeException {
         boolean isTaskFound = false;
         ArrayList<Task> foundTasksList = new ArrayList<>();
