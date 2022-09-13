@@ -1,1 +1,3 @@
-[D][] return book (by: 2/12/2019 1800)
+[T][X] return book
+[D][] return book (by: 2019-12-02 2/12/2019 1800)
+[T][] buy computing books
