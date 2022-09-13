@@ -10,15 +10,6 @@ public class Ui {
     private final Scanner sc = new Scanner(System.in);
 
     /**
-     * Returns the scanner to read next line.
-     *
-     * @return the scanner to read next line.
-     */
-    public String readCommand() {
-        return sc.nextLine();
-    }
-
-    /**
      * Says bye for pikachu.
      * @return Pikachu's goodbye
      */
@@ -39,13 +30,5 @@ public class Ui {
      */
     public void showLoadingError() {
         System.out.println("Pi? Pikapi!");
-    }
-
-    /**
-     * Shows other any error.
-     * @return Pikachu's confusion
-     */
-    public String showError(String error) {
-        return error;
     }
 }
