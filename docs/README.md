@@ -17,13 +17,17 @@
 
 ## Features
 
-### Add todos, deadlines, and events
+### Keep track of your tasks
 
-Description of the feature.
+Cheese features **storage** to store and retrieve your tasks, even after closing the application.
 
-### Snooze tasks
+### Add a variety of tasks
 
-Description of the feature.
+Cheese supports a variety of tasks, including: **Todo**, **deadline**, and **event**.
+
+### Find tasks easily
+
+Cheese can help you find tasks with a search query.
 
 ## Commands
 
