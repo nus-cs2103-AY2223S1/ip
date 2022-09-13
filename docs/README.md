@@ -168,6 +168,7 @@ Sets priority level of task.
 Format of usage:
 
 `priority <index number> <level>`
+
 level:
 * low
 * medium
