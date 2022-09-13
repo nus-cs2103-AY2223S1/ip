@@ -55,6 +55,7 @@ public class Gui extends Application {
         scrollPane.setFitToHeight(true);
         // Let Duke create a dialogue box to greet the user
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(GuiText.formatGreetString(), dukeImage));
+
         Background background = new Background(new BackgroundImage(backgroundImage,
                 BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT,

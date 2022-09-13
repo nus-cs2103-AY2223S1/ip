@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDateTime;
 
+import duke.exceptions.DukeDateTimeParseException;
+import duke.exceptions.DukeIncorrectCommandParamsException;
+import duke.exceptions.DukeInsufficientCommandParamsException;
+import duke.exceptions.DukeUnknownCommandException;
 import org.junit.jupiter.api.Test;
 
 import duke.commands.ByeCommand;
@@ -55,53 +59,68 @@ class ParserTest {
             Parser.parseCommand("bb");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Unknown command.", e.getMessage());
+            assertEquals(new DukeUnknownCommandException().getMessage(), e.getMessage());
         }
 
         try {
             Parser.parseCommand("mark sp");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Incorrect command parameters.", e.getMessage());
+            assertEquals(new DukeIncorrectCommandParamsException().getMessage(), e.getMessage());
         }
 
         try {
             Parser.parseCommand("unmark ");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Incorrect command parameters.", e.getMessage());
+            assertEquals(new DukeIncorrectCommandParamsException().getMessage(), e.getMessage());
         }
 
         try {
             Parser.parseCommand("deadline exception thrown /at 22-08-25 2525");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Insufficient command parameters.", e.getMessage());
+            assertEquals(new DukeInsufficientCommandParamsException().getMessage(), e.getMessage());
         }
 
         try {
             Parser.parseCommand("deadline exception thrown /by 090909");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Cannot parse datetime.", e.getMessage());
+            assertEquals(new DukeDateTimeParseException().getMessage(), e.getMessage());
         }
 
         try {
             Parser.parseCommand("deadline exception thrown /by 22-08-25 2525");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Cannot parse datetime.", e.getMessage());
+            assertEquals(new DukeDateTimeParseException().getMessage(), e.getMessage());
         }
 
         try {
             Parser.parseCommand("deadline exception thrown /by 22-08-25");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Cannot parse datetime.", e.getMessage());
+            assertEquals(new DukeDateTimeParseException().getMessage(), e.getMessage());
         }
     }
 
     @Test
     void parseDateTime() {
+        LocalDateTime dateTime = null;
+        try {
+            dateTime = Parser.parseDateTime("2022-11-03 2359");
+        } catch (DukeException e) {
+            fail();
+        }
+        assertEquals(LocalDateTime.of(2022, 11, 3, 23, 59) , dateTime);
+
+        LocalDateTime dateTime2 = null;
+        try {
+            dateTime2 = Parser.parseDateTime("22-11-03 0159");
+        } catch (DukeException e) {
+            fail();
+        }
+        assertEquals(LocalDateTime.of(2022, 11, 3, 1, 59) , dateTime2);
     }
 }

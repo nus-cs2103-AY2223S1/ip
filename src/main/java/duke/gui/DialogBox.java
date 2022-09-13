@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -39,6 +40,8 @@ public class DialogBox extends HBox {
         }
         dialog.setText(text);
         dialog.setFont(Font.font("Helvetica", 15));
+        dialog.setPadding(new Insets(5, 10, 5, 10));
+        dialog.setMinWidth(50);
         displayPicture.setImage(img);
         displayPicture.setPreserveRatio(true);
         displayPicture.setFitWidth(150);
@@ -58,13 +61,15 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         DialogBox dialogBox = new DialogBox(text, img);
-        dialogBox.setStyle("-fx-background-color: rgba(135, 221, 165, 0.9);" + "-fx-background-radius: 15;");
+        dialogBox.dialog.setStyle("-fx-background-color: rgba(135, 221, 165, 0.9);"
+                + "-fx-background-radius: 15;");
         return dialogBox;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var dialogBox = new DialogBox(text, img);
-        dialogBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.9);" + "-fx-background-radius: 15;");
+        dialogBox.dialog.setStyle("-fx-background-color: rgba(250, 202, 210, 0.9);"
+                + "-fx-background-radius: 15;");
         dialogBox.flip();
         return dialogBox;
     }

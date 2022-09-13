@@ -27,3 +27,5 @@ Description of the outcome.
 ```
 expected output
 ```
+
+theme: minima
