@@ -77,7 +77,8 @@ public class Storage {
         return isFileExtension(extension);
     }
 
-    private void handleExtension(String extension, Path pathToExtension) throws IOException {
+    private void handleExtension(String extension, Path pathToExtension)
+            throws IOException {
         if (isFileExtension(extension)) {
             createFile(pathToExtension);
             this.path = pathToExtension;

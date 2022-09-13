@@ -108,6 +108,11 @@ public class TaskList {
      */
     public TaskList findTasks(String keyword) {
         TaskList matchingTasks = new TaskList();
+        findAllMatchingTasks(keyword, userInputHistoryList, );
+        return matchingTasks;
+    }
+
+    private TaskList findAllMatchingTasks(String keyword, ArrayList<Task> history, TaskList matchingTasks) {
         userInputHistoryList.stream().filter(currTask -> {
             String description = currTask.getDescription().toLowerCase();
             boolean isMatched = description.contains(keyword.toLowerCase());
