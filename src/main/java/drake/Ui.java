@@ -48,8 +48,7 @@ public class Ui {
      */
     public List<String> replyWelcome() {
         ArrayList<String> reply = new ArrayList<>();
-        reply.add("You used to call me on my cellphone");
-        reply.add("!@#$%^&*()-+!@#$%^&*()`~`!@#$");
+        reply.add("You used to call me on my cellphone \uD83D\uDE14");
         reply.add("Drake's the kind of guy to help you out uwu");
         reply.add("Go ahead, make that hotline bling ☎");
         return reply;
