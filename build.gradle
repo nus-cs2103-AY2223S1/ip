@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.gui.Launcher"
+    mainClassName = "nyanduke.gui.Launcher"
 }
 
 checkstyle {
@@ -52,7 +52,7 @@ checkstyle {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "NyanDuke"
     archiveClassifier = null
 }
 
