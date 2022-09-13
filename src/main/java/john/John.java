@@ -46,8 +46,10 @@ public class John extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(John.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            scene.getStylesheets().addAll("/view/MainWindow.css", "/view/Scrollbar.css");
             stage.setScene(scene);
             stage.setTitle("John");
+            stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setJohn(john);
             fxmlLoader.<MainWindow>getController().addGreetingDialog(ui.showGreeting());
             stage.show();
