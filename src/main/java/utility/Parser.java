@@ -174,8 +174,9 @@ public class Parser {
     private static int getStartOfDate(String[] userInput) throws DukeException {
         String regex = "\\d\\d\\d\\d-\\d\\d-\\d\\d";
         Pattern datePattern = Pattern.compile(regex);
+        Matcher dateMatcher;
         for (int i = 1;i < userInput.length; i ++) {
-            Matcher dateMatcher = datePattern.matcher(userInput[i]);
+            dateMatcher = datePattern.matcher(userInput[i]);
             if (dateMatcher.matches()) {
                 return i;
             }
@@ -188,18 +189,37 @@ public class Parser {
         return LocalDate.parse(userInput[indexOfDate]);
     }
 
-    private static Deadline createDeadline(String[] userInput) {
+    private static Deadline createDeadline(String[] userInput) throws DukeException {
         String description = getDeadlineDescription(userInput);
         LocalDate date = getDeadlineDate(userInput);
         Deadline deadline = new Deadline(description, date);
         return deadline;
     }
 
-    private static int getIndex(String[] userInput) {
-        int index = 0;
-        return index;
+    private static String getDeadlineDescription(String[] userInput) throws DukeException {
+        return getEventDescription(userInput);
     }
 
+    private static LocalDate getDeadlineDate(String[] userInput) throws DukeException{
+        return getEventDate(userInput);
+    }
+
+    private static int getIndex(String[] userInput) throws DukeException {
+        return findIntInStringArray(userInput);
+    }
+
+    private static int findIntInStringArray(String[] array) throws DukeException{
+        String intRegex = "\\*d";
+        Pattern intPattern = Pattern.compile(intRegex);
+        Matcher matchInt;
+        for (String s: array) {
+            matchInt = intPattern.matcher(s);
+            if (matchInt.matches()) {
+                return Integer.parseInt(s);
+            }
+        }
+        throw new DukeException("No index given");
+    }
     private static String getKeyword(String[] userInput) {
         String keyword = "";
         return keyword;
