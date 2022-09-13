@@ -2,7 +2,9 @@
 This Duke chatbot allows you to keep track of your tasks! It is
 
 **- Easy to use**
+
 **- Efficient**
+
 **- Super friendly too!**
 
 Download the chatbot [here](https://github.com/KJunWei/ip) and try it now!
@@ -18,14 +20,6 @@ Download the chatbot [here](https://github.com/KJunWei/ip) and try it now!
 #### `Reminders` - Checks for upcoming deadlines [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#reminders---checks-for-upcoming-deadlines-1)
 #### `Todo` - Adds a todo task [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#todo---adds-a-todo-task-1)
 #### `Unmark` - Marks task as incomplete [[usage]](https://github.com/KJunWei/ip/blob/master/docs/README.md#unmark---marks-task-as-incomplete-1)
-
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
 
 ## Usage
 
