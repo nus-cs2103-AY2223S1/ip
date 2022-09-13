@@ -31,7 +31,7 @@ public class TaskListTest {
             tasks.deleteTask(5);
             fail(); // the test should not reach this line
         } catch (Exception e) {
-            assertEquals("\tOOPS!!! Valid index required.", e.getMessage());
+            assertEquals("OOPS!!! Valid index required.", e.getMessage());
         }
     }
     @Test

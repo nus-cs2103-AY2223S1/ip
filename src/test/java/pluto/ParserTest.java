@@ -18,7 +18,7 @@ public class ParserTest {
             Parser.parseTask("join meeting /by 04/05/2022", Parser.Type.DEADLINE);
             fail(); // the test should not reach this line
         } catch (Exception e) {
-            assertEquals("\tOOPS!!! dd-MM-yyyy HHmm date format required.", e.getMessage());
+            assertEquals("OOPS!!! dd-MM-yyyy HHmm date format required.", e.getMessage());
         }
     }
 
@@ -35,7 +35,7 @@ public class ParserTest {
             Parser.isOnlyCommand("todo");
             fail(); // the test should not reach this line
         } catch (Exception e) {
-            assertEquals("\tOOPS!!! The description of todo cannot be empty.", e.getMessage());
+            assertEquals("OOPS!!! The description of todo cannot be empty.", e.getMessage());
         }
     }
 }
