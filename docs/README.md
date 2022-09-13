@@ -169,9 +169,9 @@ Format of usage:
 
 `priority <index number> <level>`
 level:
-*low
-*medium
-*high
+* low
+* medium
+* high
 
 Expected outcome:
 
