@@ -39,7 +39,16 @@ public class EventsTest {
     @Test
     public void saveEvent() {
         Task event = new Events("Study 5", "2022-08-23");
-        String expected = "E |0| Study 5 | 2022-08-23\n";
+        String expected = "E |0| Study 5 | 2022-08-23 | \n";
         assertEquals(expected, event.saveString());
+    }
+
+    @Test
+    public void addTagTest() {
+        Task event = new Events("Study 6", "2022-08-23");
+        event.addTag("Fun");
+        event.addTag("Party");
+        String expected = "[E][ ] Study 6 (at: AUGUST 23 2022 TUESDAY) #Fun #Party";
+        assertEquals(expected, event.toString());
     }
 }

@@ -58,7 +58,7 @@ public class TaskList {
      */
     public int length() {
         int len = this.tasks.size();
-        assert len >= 0;
+        assert len >= 0; //length cannot be lesser than 0
         return len;
     }
 
@@ -102,7 +102,7 @@ public class TaskList {
      */
     public void mark(int num) {
         int minIndex = 1;
-        if (num <= minIndex || num > this.length()) {
+        if (num < minIndex || num > this.length()) {
             throw new BlinkException("Invalid number input");
         }
         this.tasks.get(num - 1).mark();
@@ -115,7 +115,7 @@ public class TaskList {
      */
     public void unMark(int num) {
         int minIndex = 1;
-        if (num <= minIndex || num > this.length()) {
+        if (num < minIndex || num > this.length()) {
             throw new BlinkException("Invalid number input");
         }
         this.tasks.get(num - 1).unMark();

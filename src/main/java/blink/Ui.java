@@ -11,21 +11,6 @@ import blink.task.Task;
 public class Ui {
 
     /**
-     * Constructor for Ui.
-     */
-    public Ui() {
-    }
-
-    /**
-     * Display goodbye message when Blink program ends.
-     *
-     * @return Goodbye message
-     */
-    public String showBye() {
-        return "Bye bye~ Glad to be of service :D";
-    }
-
-    /**
      * Display all the Tasks in TaskList.
      *
      * @param tasks TaskList which tasks are to be displayed.
@@ -54,7 +39,7 @@ public class Ui {
      */
     public String unMark(TaskList tasks, int num) {
         Task task = tasks.getTask(num - 1);
-        return "This task has been marked as done\n" + task;
+        return "This task has been unmarked\n" + task;
     }
 
     /**

@@ -32,22 +32,19 @@ public class Storage {
      * Loads the save file and its information into Blink program.
      *
      * @return ArrayList of Task found on save file
+     * @throws FileNotFoundException Throws when no save file to load
      */
-    public ArrayList<Task> load() {
+    public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> tasks = new ArrayList<>();
-        try {
-            File saveFile = new File(this.filePath);
-            Scanner sc = new Scanner(saveFile);
-            while (sc.hasNext()) {
-                String line = sc.nextLine();
-                if (line.isEmpty()) {
-                    continue;
-                }
-                Task temp = Task.readSaveTask(line);
-                tasks.add(temp);
+        File saveFile = new File(this.filePath);
+        Scanner sc = new Scanner(saveFile);
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            if (line.isEmpty()) {
+                continue;
             }
-        } catch (FileNotFoundException e) {
-            throw new BlinkException("Save file not found");
+            Task temp = Task.readSaveTask(line);
+            tasks.add(temp);
         }
         return tasks;
     }

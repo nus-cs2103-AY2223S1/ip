@@ -1,6 +1,17 @@
 package blink;
 
-import blink.command.*;
+import blink.command.ByeCommand;
+import blink.command.Command;
+import blink.command.DeadlineCommand;
+import blink.command.DeleteCommand;
+import blink.command.EventCommand;
+import blink.command.FilterCommand;
+import blink.command.FindCommand;
+import blink.command.ListCommand;
+import blink.command.MarkCommand;
+import blink.command.TagCommand;
+import blink.command.TodoCommand;
+import blink.command.UnmarkCommand;
 
 /**
  * Reads the user input to figure out the command written.

@@ -8,10 +8,9 @@ import blink.Ui;
 /**
  * Command to add tag to a task.
  */
-public class TagCommand extends Command{
+public class TagCommand extends Command {
 
     private int index;
-
     private String tag;
 
     /**

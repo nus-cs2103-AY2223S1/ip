@@ -39,7 +39,16 @@ public class DeadlinesTest {
     @Test
     public void saveDeadline() {
         Task deadline = new Deadlines("Study 5", "2022-08-23");
-        String expected = "D |0| Study 5 | 2022-08-23\n";
+        String expected = "D |0| Study 5 | 2022-08-23 | \n";
         assertEquals(expected, deadline.saveString());
+    }
+
+    @Test
+    public void addTagTest() {
+        Task deadline = new Deadlines("Study 6", "2022-08-23");
+        deadline.addTag("sleep");
+        deadline.addTag("!!!!");
+        String expected = "[D][ ] Study 6 (by: AUGUST 23 2022 TUESDAY) #sleep #!!!!";
+        assertEquals(expected, deadline.toString());
     }
 }

@@ -39,7 +39,15 @@ public class ToDosTest {
     @Test
     public void saveToDo() {
         Task todo = new ToDos("Study 5");
-        String expected = "T |0| Study 5\n";
+        String expected = "T |0| Study 5 | \n";
         assertEquals(expected, todo.saveString());
+    }
+
+    @Test
+    public void addTagTest() {
+        Task todo = new ToDos("Study 6");
+        todo.addTag("Gaming");
+        String expected = "[T][ ] Study 6 #Gaming";
+        assertEquals(expected, todo.toString());
     }
 }

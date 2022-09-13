@@ -37,39 +37,26 @@ public abstract class Task {
      */
     public static Task readSaveTask(String input) throws BlinkException {
         String[] info = input.split("\\|", 3);
+        boolean isMarked = info[1].strip().equals("1");
+        String[] addInfo = info[2].split("\\|");
         switch(info[0].strip()) {
         case "T":
-            String[] todoInfo = info[2].split("\\|");
-            Task todo = new ToDos(todoInfo[0].strip());
-            if (info[1].strip().equals("1")) {
-                todo.isDone = true;
-            }
-            if (todoInfo.length == 2) {
-                todo.addSavedTags(todoInfo[1].strip());
-            }
+            Task todo = new ToDos(addInfo[0].strip());
+            todo.isDone = isMarked;
+            todo.addSavedTags(addInfo[1].strip());
             return todo;
         case "D":
-            String[] desc = info[2].split("\\|");
-            Task deadline = new Deadlines(desc[0].strip(), desc[1].strip());
-            if (info[1].strip().equals("1")) {
-                deadline.isDone = true;
-            }
-            if (desc.length == 3) {
-                deadline.addSavedTags(desc[2].strip());
-            }
+            Task deadline = new Deadlines(addInfo[0].strip(), addInfo[1].strip());
+            deadline.isDone = isMarked;
+            deadline.addSavedTags(addInfo[2].strip());
             return deadline;
         case "E":
-            String[] temp = info[2].split("\\|");
-            Task event = new Events(temp[0].strip(), temp[1].strip());
-            if (info[1].strip().equals("1")) {
-                event.isDone = true;
-            }
-            if (temp.length == 3) {
-                event.addSavedTags(temp[2].strip());
-            }
+            Task event = new Events(addInfo[0].strip(), addInfo[1].strip());
+            event.isDone = isMarked;
+            event.addSavedTags(addInfo[2].strip());
             return event;
         default:
-            throw new BlinkException("wtf happened");
+            throw new BlinkException("Error in reading save file...");
         }
     }
 
@@ -90,7 +77,7 @@ public abstract class Task {
      */
     public String mark() throws BlinkException {
         if (this.isDone) {
-            throw new BlinkException("This task has already been done :|");
+            throw new BlinkException("You do already still wanna do again? :|");
         } else {
             this.isDone = true;
             return "Mission complete! Nice ah\n" + this;
@@ -105,10 +92,10 @@ public abstract class Task {
      */
     public String unMark() throws BlinkException {
         if (!this.isDone) {
-            throw new BlinkException("An unfinished task cannot be unmark...");
+            throw new BlinkException("How to unmark? You haven't even do yet...");
         } else {
             this.isDone = false;
-            return "Looks like there is more work to do\n" + this;
+            return "Looks like got more work to do\n" + this;
         }
     }
 
@@ -138,6 +125,10 @@ public abstract class Task {
      */
     public abstract boolean checkDate(LocalDate anoDate);
 
+    private String getDescription() {
+        return this.description;
+    }
+
     /**
      * Finds Tasks with specified keyword in description or date if necessary.
      *
@@ -145,14 +136,19 @@ public abstract class Task {
      * @return True if keyword inside Tasks and false if not
      */
     public boolean hasKeyword(String keyword) {
-        String[] allWords = this.toString().split(" ");
+        String[] allDesc = this.getDescription().split(" ");
         boolean isFound = false;
-        for (int x = 0; x < allWords.length; x++) {
-            String word = allWords[x].toLowerCase();
-            if (x != 0) {
-                word = word.replaceAll("[-+.<>?/:;',()#]", "");
-            }
+        for (int x = 0; x < allDesc.length; x++) {
+            String word = allDesc[x].toLowerCase();
+            word = word.replaceAll("][-+.<>?/:;',()#]", "");
             if (word.equals(keyword)) {
+                isFound = true;
+                break;
+            }
+        }
+        for (int y = 0; y < this.tags.size(); y++) {
+            String tag = tags.get(y);
+            if (tag.equals(keyword)) {
                 isFound = true;
                 break;
             }
@@ -160,6 +156,11 @@ public abstract class Task {
         return isFound;
     }
 
+    /**
+     * Add tag to Task.
+     *
+     * @param tag Tag String to add to a task
+     */
     public void addTag(String tag) {
         this.tags.add(tag);
     }

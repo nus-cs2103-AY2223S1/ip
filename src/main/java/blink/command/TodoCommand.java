@@ -7,7 +7,7 @@ import blink.Ui;
 import blink.task.ToDos;
 
 /**
- * ToDo command to create a new ToDo task.
+ * Todo command to create a new ToDo task.
  */
 public class TodoCommand extends Command {
 
@@ -15,10 +15,10 @@ public class TodoCommand extends Command {
 
     /**
      * Constructor that takes in description information
-     * of ToDo object.
+     * of Todo object.
      *
-     * @param input Description of the ToDO object
-     * @throws BlinkException Thrown if information of ToDo
+     * @param input Description of the TodO object
+     * @throws BlinkException Thrown if information of Todo
      *     object is missing
      */
     public TodoCommand(String input) {

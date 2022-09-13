@@ -1,5 +1,6 @@
 package blink;
 
+import java.io.FileNotFoundException;
 import java.time.DateTimeException;
 
 import blink.command.Command;
@@ -28,7 +29,7 @@ public class Blink {
                 + "/blink/blink.txt");
         try {
             tasks = new TaskList(storage.load());
-        } catch (BlinkException e) {
+        } catch (FileNotFoundException e) {
             tasks = new TaskList();
         }
     }
@@ -47,7 +48,7 @@ public class Blink {
         } catch (NumberFormatException e) {
             return err + "Number input expected";
         } catch (DateTimeException e) {
-            return err + "Invalid date input, proper format is YYYY-MM-DD (2022-09-22)";
+            return err + "Invalid date input, proper format is YYYY-MM-DD E.g. (2022-09-22)";
         }
     }
 

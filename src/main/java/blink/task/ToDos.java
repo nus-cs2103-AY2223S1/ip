@@ -40,7 +40,7 @@ public class ToDos extends Task {
     }
 
     /**
-     * Compares with ToDos to see if date matches
+     * Compares with ToDos to see if date matches.
      *
      * @param anoDate Date to check equality of current ToDos object with
      * @return False as ToDos object have no date to compare with
