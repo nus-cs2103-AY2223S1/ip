@@ -39,4 +39,5 @@ public class Parser {
                 throw new DukeException("Unknown commands has been thrown.");
         }
     }
+    
 }
