@@ -96,8 +96,9 @@ public class StorageParser {
                 endOfDescriptionIndex);
         int startDate = line.indexOf(START_OF_DATE_STRING)
                 + START_OF_DATE_STRING_OFFSET;
+        int endDate = startDate + DATE_LENGTH;
         String date = line.substring(startDate,
-                startDate + DATE_LENGTH);
+                endDate);
         dateAndDescription[DATE] = date;
         dateAndDescription[DESCRIPTION] = description;
         return dateAndDescription;
