@@ -62,7 +62,7 @@ public class StorageWriter {
         }
     }
 
-    private void emptyFile(Path path) throws IOException{
+    private void emptyFile(Path path) throws IOException {
         Files.write(path, "".getBytes(StandardCharsets.UTF_8));
     }
 
