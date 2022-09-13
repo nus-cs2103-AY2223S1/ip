@@ -128,6 +128,21 @@ public class Parser {
         }
     }
 
+    private static Task createTask(String[] userInput) {
+        Task task = null;
+        return task;
+    }
+
+    private static Event createEvent(String[] userInput) {
+        Event event = null;
+        return event;
+    }
+
+    private static Deadline createDeadline(String[] userInput) {
+        Deadline deadline = null;
+        return deadline;
+    }
+
 
     /**
      * Matches command to its formal format, and
