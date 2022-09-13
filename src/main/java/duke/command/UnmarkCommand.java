@@ -11,7 +11,8 @@ import duke.util.TaskList;
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
-    private static final String TASK_UNMARK = "HOW CAN YOU BE SO INEFFICIENT! I'm disappointed! Marking this task as undone: ";
+    private static final String TASK_UNMARK =
+            "HOW CAN YOU BE SO INEFFICIENT! I'm disappointed! Marking this task as undone: ";
     private int index;
 
     /**

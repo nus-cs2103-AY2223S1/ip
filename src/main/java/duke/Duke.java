@@ -1,13 +1,13 @@
 package duke;
 
 import java.io.IOException;
-import javafx.util.Pair;
 
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
+import javafx.util.Pair;
 
 /**
  * Represents a chatbot named Duke.
@@ -17,7 +17,8 @@ import duke.util.TaskList;
  */
 public class Duke {
     private static final String DUKE_INTRODUCTION = "Hello Sheldon, I'm your clone, Sheldon!";
-    private static final String DUKE_HELP = "I am pleasured to be at your service, although we both know you are smart and don't need any help.";
+    private static final String DUKE_HELP =
+            "I am pleasured to be at your service, although we both know you are smart and don't need any help.";
 
     private static final String FILE_NAME = "duke.txt";
     private Storage storage;

@@ -7,7 +7,10 @@ import duke.exception.TaskDuplicatedException;
 import duke.exception.TaskMarkException;
 import duke.exception.TaskNotFoundException;
 import duke.exception.TaskUnmarkException;
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Represents a list of Tasks and provides methods to modify the list.
@@ -18,7 +21,7 @@ public class TaskList {
 
     private static final int START_SQUARE_BRACKET_INDEX = 3;
     private static final int END_SQUARE_BRACKET_INDEX = 6;
-    private static final int START_DESCRIPTION_INDEX= 10;
+    private static final int START_DESCRIPTION_INDEX = 10;
     private static final int IS_DONE_INDEX = 7;
 
     private ArrayList<Task> tasks;

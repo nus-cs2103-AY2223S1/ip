@@ -95,7 +95,7 @@ public abstract class Task {
         if (obj == null) {
             return false;
         }
-        if (! (obj instanceof Task)) {
+        if (!(obj instanceof Task)) {
             return false;
         }
         Task task = (Task) obj;

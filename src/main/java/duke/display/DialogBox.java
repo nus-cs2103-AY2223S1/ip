@@ -26,7 +26,7 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
-    private Circle clipCircle = new Circle(50,50,50);
+    private Circle clipCircle = new Circle(50, 50, 50);
 
     private DialogBox(String text, Image img) {
         try {
