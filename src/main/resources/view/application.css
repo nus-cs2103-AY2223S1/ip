@@ -1,6 +1,9 @@
 .bodybg {
     -fx-background-color: #E8DCCA;
-    -fx-border-color: black;
+}
+
+.scrollpanebg {
+    -fx-background: #E8DCCA;
 }
 
 .buttonbg {
