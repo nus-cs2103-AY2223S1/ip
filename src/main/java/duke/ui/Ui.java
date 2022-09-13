@@ -88,7 +88,7 @@ public class Ui {
      * @param size Task deleted message.
      */
     public String displayTaskDeletedMessage(Task task, int size) {
-        String output = String.format("You have deleted \"%s\" into your Task List!\n"
+        String output = String.format("You have deleted \"%s\" from your Task List!\n"
                 + "You have %d tasks in your Task List!", task, size);
         return output;
     }
