@@ -45,7 +45,7 @@ public class DialogBox extends HBox {
         text.setWrapText(true);
         //So text doesn't overflow into User/ Duke icon area
         text.setMaxWidth(TEXT_MAX_WIDTH);
-        // Padding within label
+        // Padding within label/ text
         text.setPadding(new Insets(TEXT_PADDING_TOP_BOTTOM,TEXT_PADDING_LEFT_RIGHT,
                 TEXT_PADDING_TOP_BOTTOM,TEXT_PADDING_LEFT_RIGHT));
         //Modify font
@@ -102,6 +102,12 @@ public class DialogBox extends HBox {
         );
         var db = new DialogBox(l, iv);
         db.flip();
+        db.setBackground(new Background(
+                        new BackgroundFill(Color.BEIGE,
+                                new CornerRadii(DIALOG_BOX_CORNER_RADII,DIALOG_BOX_CORNER_RADII,DIALOG_BOX_CORNER_RADII,DIALOG_BOX_CORNER_RADII,false),
+                                new Insets(0))
+                )
+        );
         return db;
     }
 }

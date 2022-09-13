@@ -14,6 +14,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
@@ -125,75 +128,115 @@ public class Duke extends Application{
         }
     }
 
-    @Override
-    public void start(Stage stage) {
+    private Text configureText() {
+        Text text = new Text();
+        text.setText("AMONG US EDITION");
+        text.setWrappingWidth(380);
+        text.setTextAlignment(TextAlignment.CENTER);
+        text.setFont(new Font(20).font("Courier New", 20));
+        text.setFill(Color.WHITE);
+        return text;
+    }
 
-        createOrLoadDataStorage();
-        //Step 1. Setting up required components
-
-        //The container for the content of the chat to scroll.
+    private ScrollPane configureScrollPane() {
         scrollPane = new ScrollPane();
-        dialogContainer = new VBox();
-        scrollPane.setContent(dialogContainer);
+        scrollPane.setPrefSize(385, 500);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setVvalue(1.0);
+        scrollPane.setFitToWidth(true);
+        return scrollPane;
+    }
 
-        userInput = new TextField();
+    private Button configureSendButton() {
         sendButton = new Button("Send");
+        sendButton.setPrefWidth(55.0);
+        sendButton.setBackground(new Background(
+                        new BackgroundFill(Color.PINK,
+                                new CornerRadii(5),
+                                new Insets(0))
+                )
+        );
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+        return sendButton;
+    }
 
+    private TextField configureUserInput() {
+        userInput = new TextField();
+        userInput.setPrefWidth(325.0);
+        userInput.setBackground(new Background(
+                        new BackgroundFill(Color.PALEGOLDENROD,
+                                new CornerRadii(5),
+                                new Insets(0))
+                )
+        );
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
+        return userInput;
+    }
+
+    private VBox configureDialogContainer() {
+        dialogContainer = new VBox();
+        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        dialogContainer.setSpacing(10);
+        return dialogContainer;
+    }
+
+    private AnchorPane configureAnchorPane(ScrollPane scrollPane, TextField userInput, Button sendButton, Text text) {
         AnchorPane mainLayout = new AnchorPane();
-        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
+        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton, text);
+        mainLayout.setBackground(new Background(
+                                new BackgroundFill(Color.DIMGREY,
+                                CornerRadii.EMPTY,
+                                new Insets(0))
+                )
+        );
+        return mainLayout;
+    }
 
+    private void configureSceneAndStage(Stage stage, AnchorPane mainLayout) {
         scene = new Scene(mainLayout);
-
         stage.setScene(scene);
-        stage.show();
-
-        //Step 2. Formatting the window to look as expected
         stage.setTitle("Duke ChatBot");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
+        stage.show();
+    }
 
-        mainLayout.setPrefSize(400.0, 600.0);
-
-        scrollPane.setPrefSize(385, 535);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
-        scrollPane.setVvalue(1.0);
-        scrollPane.setFitToWidth(true);
-
-        // You will need to import `javafx.scene.layout.Region` for this.
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-
-        //Set spacing for dialogContainer
-        dialogContainer.setSpacing(10);
-        dialogContainer.setPadding(new Insets(10,5,10,5));
-
-        //Set background colour
-        dialogContainer.setBackground(new Background(
-                        new BackgroundFill(Color.color(0.3254, 0.847, 0.996),
-                        CornerRadii.EMPTY,
-                        new Insets(0))
-                )
-        );
-
-        userInput.setPrefWidth(325.0);
-        sendButton.setPrefWidth(55.0);
-
-        AnchorPane.setTopAnchor(scrollPane, 1.0);
+    private void configureAnchorPaneLayout(ScrollPane scrollPane, Button sendButton, TextField userInput, Text text) {
+        AnchorPane.setTopAnchor(text, 7.0);
+        AnchorPane.setTopAnchor(scrollPane, 35.0);
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+    }
 
-        //Part 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
+    @Override
+    public void start(Stage stage) {
 
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
+        createOrLoadDataStorage();
+
+        scrollPane = configureScrollPane();
+        dialogContainer = configureDialogContainer();
+        userInput = configureUserInput();
+        sendButton = configureSendButton();
+        Text text = configureText();
+
+        scrollPane.setContent(dialogContainer);
+
+        AnchorPane mainLayout = configureAnchorPane(scrollPane, userInput, sendButton, text);
+
+        configureSceneAndStage(stage, mainLayout);
+
+        mainLayout.setPrefSize(400.0, 600.0); // Doing this before scene requires change to sizing,
+                                                                // abit time consuming
+
+        configureAnchorPaneLayout(scrollPane, sendButton, userInput, text);
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
