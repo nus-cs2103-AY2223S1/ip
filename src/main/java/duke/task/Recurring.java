@@ -49,8 +49,8 @@ public class Recurring extends Task {
         LocalTime time = LocalTime.NOON;
         LocalDate date;
         if (input.contains("/at")) {
-            String[] arr = input.split("/at");
-            time = LocalTime.parse(arr[1]);
+            String[] arr = input.split(" /at ");
+            time = LocalTime.parse(arr[1], DateTimeFormatter.ofPattern("HHmm"));
             input = arr[0];
         }
 
@@ -64,6 +64,9 @@ public class Recurring extends Task {
             try {
                 // recurring monthly
                 int n = Integer.parseInt(input);
+                if (n > 31) {
+                    throw new NumberFormatException();
+                }
                 date = LocalDate.of(this.now.getYear(), this.now.getMonth(), n);
                 dateTime = LocalDateTime.of(date, time);
                 this.period = FREQUENCY_PERIOD.monthly;
