@@ -5,40 +5,40 @@ import java.util.List;
 
 public class TaskList {
 
-    private ArrayList<Task> list;
+    private ArrayList<Task> tasks;
 
     private final String HORIZONTAL_LINE_BREAK = "-------------------------";
 
     public TaskList() {
-        this.list = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public TaskList(ArrayList<Task> list) {
-        this.list = list;
+        this.tasks = list;
     }
 
     public ArrayList<Task> getAllTasks() {
-        return list;
+        return tasks;
     }
 
     public Task getTask(int index) {
-        return list.get(index);
+        return tasks.get(index);
     }
 
     public int getSize() {
-        return list.size();
+        return tasks.size();
     }
 
     public void addTask(Task task) {
-        list.add(task);
+        tasks.add(task);
     }
 
     public void markTask(int index) throws DukeException {
-        int size = list.size();
+        int size = tasks.size();
         if (index >= size || index < 0) {
             throw new DukeException("The index of the task does not exists.");
         } else {
-            Task completedTask = list.get(index);
+            Task completedTask = tasks.get(index);
             completedTask.markAsDone();
             System.out.println(HORIZONTAL_LINE_BREAK);
             System.out.println("Nice! I've marked this task as done:" + "\n" + completedTask);
@@ -47,11 +47,11 @@ public class TaskList {
     }
 
     public void unMarkTask(int index) throws DukeException{
-        int size = list.size();
+        int size = tasks.size();
         if (index >= size || index < 0) {
             throw new DukeException("The index of the task does not exists.");
         } else {
-            Task unfinishedTask = list.get(index);
+            Task unfinishedTask = tasks.get(index);
             unfinishedTask.markAsNotDone();
             System.out.println(HORIZONTAL_LINE_BREAK);
             System.out.println("OK, I've marked this task as not done yet:" + "\n" + unfinishedTask);
@@ -60,14 +60,14 @@ public class TaskList {
     }
 
     public void deleteTask(int index) throws DukeException {
-        int size = list.size();
+        int size = tasks.size();
         if (index >= size || index < 0) {
             throw new DukeException("The index of the task does not exists.");
         } else {
-            Task toBeDeleted = list.get(index);
-            list.remove(index);
+            Task toBeDeleted = tasks.get(index);
+            tasks.remove(index);
             System.out.println(HORIZONTAL_LINE_BREAK);
-            System.out.println("Noted. I've removed this task:" + "\n" + toBeDeleted + "\n" + "Now you have " + list.size()
+            System.out.println("Noted. I've removed this task:" + "\n" + toBeDeleted + "\n" + "Now you have " + tasks.size()
                     + " tasks in your list.");
             System.out.println(HORIZONTAL_LINE_BREAK);
         }
