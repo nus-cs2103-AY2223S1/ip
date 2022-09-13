@@ -13,6 +13,7 @@ public class DeadlineHandler {
      */
     public static String getResponse(TaskList taskList, String input) throws DukeException {
         String[] deadline = input.split("/", 2);
+        assert deadline.length == 2: "Invalid input";
         if (deadline.length < 2 || deadline[1].trim().equals("")) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }

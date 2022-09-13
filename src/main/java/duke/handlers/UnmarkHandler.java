@@ -12,6 +12,7 @@ public class UnmarkHandler {
      */
     public static String getResponse (TaskList taskList, String input) {
         int taskNo = Integer.parseInt(input);
+        assert taskNo >= 1: "TaskList empty";
         try {
             Task task = taskList.get(taskNo - 1);
             task.setUndone();

@@ -13,6 +13,7 @@ public class EventHandler {
      */
     public static String getResponse(TaskList taskList, String input) throws DukeException {
         String[] event = input.split("/", 2);
+        assert event.length == 2: "Invalid input";
         if (event.length < 2 || event[1].trim().equals("")) {
             throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
         }
