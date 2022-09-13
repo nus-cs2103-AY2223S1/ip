@@ -41,19 +41,13 @@ public class StorageParser {
             break;
         case 'D':
             dateAndDescription = getDateAndDescription(line);
-            t = Parser.stringToDeadline(dateAndDescription[DESCRIPTION],
-                    dateAndDescription[DATE]);
-            if (isMarked) {
-                t.markAsDone();
-            }
+            t = createDeadline(dateAndDescription[DESCRIPTION],
+                    dateAndDescription[DATE], isMarked);
             break;
         case 'E':
             dateAndDescription = getDateAndDescription(line);
-            t = Parser.stringToEvent(dateAndDescription[DESCRIPTION],
-                    dateAndDescription[DATE]);
-            if (isMarked) {
-                t.markAsDone();
-            }
+            t = createEvent(dateAndDescription[DESCRIPTION],
+                    dateAndDescription[DATE], isMarked);
             break;
         default:
             // do nothing
@@ -79,6 +73,21 @@ public class StorageParser {
         }
         return task;
     }
+    private static Deadline createDeadline(String description, String date, boolean isMarked) throws DukeException {
+        Deadline deadline = Parser.stringToDeadline(description, date);
+        if (isMarked) {
+            deadline.markAsDone();
+        }
+        return deadline;
+    }
+    private static Event createEvent(String description, String date, boolean isMarked) throws DukeException{
+        Event event = Parser.stringToEvent(description, date);
+        if (isMarked) {
+            event.markAsDone();
+        }
+        return event;
+    }
+
 
     private static String[] getDateAndDescription(String line) {
         String[] dateAndDescription = new String[2];
