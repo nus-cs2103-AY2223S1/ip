@@ -21,32 +21,34 @@ What are you waiting for? Start using Ado today! :panda_face:
 
 <a name="quick-start">
    
-   ## :zap: Quick Start
-   1. Ensure you have Java `11` or above installed in your Computer.
-   2. Download the latest `Ado.jar` file from [here](https://github.com/jovitaanderson/ip/releases/tag/A-Release).
-   3. Copy the file to the folder you want to use as the home folder for your task list.
-   4. Double-click the file to start the app. If done correctly, the GUI should be similar as below. <br>
-   <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_startup.png?raw=true" alt="AdoStartUp"/> <br>
-   5. Type the command in the command box and press Enter to execute it. You can try the follow example commands:
-       - `list` : Lists all the tasks.
-       - `deadline submit assignment /by 25 Sep 2022` : Adds a deadline task `submit assignment (by:25 Sep 2022)` to the list.
-       - `event family outing /at 30 Sep 2022 18:30` : Adds an event task `family outing (at: 30 Sep 2022 18:30)`
-       - `mark 2` : Marks the task at index `1` on the list as done.
-       - `delete 1` : Deletes the first at index `2` on the list.
-       - `find cat` : Finds a;; task with the matching keyword `cat`
-       - `bye` : Exits the app.
-   6. Refer to the [Features](#Features) below for details of each command.
-   
+   ## ⚡ Quick Start 
 </a>
+
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `Ado.jar` file from [here](https://github.com/jovitaanderson/ip/releases/tag/A-Release).
+3. Copy the file to the folder you want to use as the home folder for your task list.
+4. Double-click the file to start the app. If done correctly, the GUI should be similar as below. <br>
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_startup.png?raw=true" alt="AdoStartUp"/> <br>
+5. Type the command in the command box and press Enter to execute it. You can try the follow example commands:
+    - `list` : Lists all the tasks.
+    - `deadline submit assignment /by 25 Sep 2022` : Adds a deadline task `submit assignment (by:25 Sep 2022)` to the list.
+    - `event family outing /at 30 Sep 2022 18:30` : Adds an event task `family outing (at: 30 Sep 2022 18:30)`
+    - `mark 2` : Marks the task at index `1` on the list as done.
+    - `delete 1` : Deletes the first at index `2` on the list.
+    - `find cat` : Finds a;; task with the matching keyword `cat`
+    - `bye` : Exits the app.
+ 6. Refer to the [Features](#Features) below for details of each command.
+
 
 <a name="features">
    
-   ## :star: Features 
-   :bangbang: Notes about the command format: <br>
-   Words in `{curly brackets}` are the parameters to be supplied by the user. <br>
-   e.g. in `todo {description}` , `{description}` is a parameter which can be used as `todo homework`
-   
+   ## ⭐ Features 
 </a>
+
+‼️ Notes about the command format: <br>
+Words in `{curly brackets}` are the parameters to be supplied by the user. <br>
+e.g. in `todo {description}` , `{description}` is a parameter which can be used as `todo homework`
+  
 
 ### Viewing help: `help`
 Displays a list of avaible commands with examples. <br>
@@ -119,18 +121,21 @@ Ado saves data automatically in the hard disk after any valid command that chang
 
 <a name="faq">
    
-   ## :grey_question: FAQ
-   **Q**: How do I transfer my data to another Computer? <br>
-   **A**: Install the app in the other computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Ado chatbot located at `[JAR file location]/data/tasks.txt`. <br>
-   **Q**: What does the red text message mean? <br>
-   **A**: It means that you have entered a invalid command that Ado doesnt understand! To learn the proper usage of each command you can read [here](#features)
-   <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_errorMessage.png?raw=true" alt="AdoErrorMessage"/> <br>
-
+   ## ❔ FAQ
 </a>
+
+**Q**: How do I transfer my data to another Computer? <br>
+**A**: Install the app in the other computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Ado chatbot located at `[JAR file location]/data/tasks.txt`. <br>
+**Q**: What does the red text message mean? <br>
+**A**: It means that you have entered a invalid command that Ado doesnt understand! To learn the proper usage of each command you can read [here](#features)
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_errorMessage.png?raw=true" alt="AdoErrorMessage"/> <br>
+
 
 <a name="command-summary">
    
-   ## :page_with_curl: Command summary
+   ## 📃 Command summary
+</a>
+   
    Action | Format, Examples
    --------|------------------
    **Help** | `help`
@@ -143,5 +148,3 @@ Ado saves data automatically in the hard disk after any valid command that chang
    **Find** | `find {keyword}`<br> e.g., `find cat`
    **List** | `list`
    **Exit** | `bye`
-   
-</a>
