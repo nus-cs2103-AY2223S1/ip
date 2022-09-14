@@ -1,1 +1,2 @@
-E| |eat banana|at|now|
+E|X|eat banana|at|now|
+T| |throw banana peel|||
