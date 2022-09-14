@@ -34,7 +34,7 @@ public class Duke {
     }
 
     /**
-     * Greeting for Duke.
+     * The message shown when Duke starts up.
      *
      * @return The greeting for Duke.
      */
@@ -43,7 +43,7 @@ public class Duke {
     }
 
     /**
-     * Reply the user based on what the input is.
+     * Executes the command specified.
      *
      * @return the String representation of the reply.
      */

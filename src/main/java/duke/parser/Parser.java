@@ -28,8 +28,222 @@ public abstract class Parser {
     public static final String ERROR_EMPTY_DESCRIPTION = "OOPS!!! The description cannot be empty.";
     public static final String ERROR_EMPTY_DATE = "OOPS!!! The date is missing.";
     public static final String ERROR_DATE_FORMAT = "Invalid date format (yyyy-mm-dd).";
-    public static final String ERROR_UNKOWN_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    public static final String ERROR_UNKNOWN_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String ERROR_DELETE_NUMBER = "OOPS!!! You need to delete a number.";
+
+    /**
+     * Executes the command ExitCommand.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command exitCommand(String[] inputArray) throws DukeException {
+        if (inputArray.length == 1) {
+            Command command = new ExitCommand();
+            return command;
+        } else {
+            throw new DukeException(Parser.ERROR_UNKNOWN_MESSAGE);
+        }
+    }
+
+    /**
+     * Executes the command ListCommand.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command listCommand(String[] inputArray) throws DukeException {
+        if (inputArray.length == 1) {
+            Command command = new ListCommand();
+            return command;
+        } else {
+            throw new DukeException(Parser.ERROR_UNKNOWN_MESSAGE);
+        }
+    }
+
+    /**
+     * Executes the command MarkCommand.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command markCommand(String[] inputArray) throws DukeException {
+        String secondWord = "";
+        if (inputArray.length == 2) {
+            secondWord = inputArray[1];
+        }
+        if (secondWord.length() == 0) {
+            throw new DukeException(Parser.ERROR_INVALID_MARK_NUMBER);
+        }
+        try {
+            Command command = new MarkCommand(Integer.parseInt((inputArray[1])));
+            return command;
+        } catch (NumberFormatException e) {
+            throw new DukeException(Parser.ERROR_INVALID_MARK_NUMBER);
+        }
+    }
+
+    /**
+     * Executes the command UnMarkCommand.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command unmarkCommand(String[] inputArray) throws DukeException {
+        String secondWord = "";
+        if (inputArray.length == 2) {
+            secondWord = inputArray[1];
+        }
+        if (secondWord.length() == 0) {
+            throw new DukeException(Parser.ERROR_INVALID_UNMARK_NUMBER);
+        }
+        try {
+            Command command = new UnMarkCommand(Integer.parseInt((inputArray[1])));
+            return command;
+        } catch (NumberFormatException e) {
+            throw new DukeException(Parser.ERROR_INVALID_UNMARK_NUMBER);
+        }
+    }
+
+    /**
+     * Executes the command AddCommand for todos.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command todoCommand(String[] inputArray) throws DukeException {
+        String secondWord = "";
+        if (inputArray.length == 2) {
+            secondWord = inputArray[1];
+        }
+        if (secondWord.length() == 0) {
+            throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
+        }
+        Command command = new AddCommand(new ToDo(secondWord));
+        return command;
+    }
+
+    /**
+     * Executes the command AddCommand for deadlines.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command deadlineCommand(String[] inputArray) throws DukeException {
+        String secondWord = "";
+        if (inputArray.length == 2) {
+            secondWord = inputArray[1];
+        }
+        try {
+            if (secondWord.length() == 0) {
+                throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
+            }
+            String[] dArray = secondWord.split(" /by ", 2);
+            if (dArray.length == 1) {
+                throw new DukeException(Parser.ERROR_EMPTY_DATE);
+            }
+            String description = dArray[0];
+            String by = dArray[1];
+            Command command = new AddCommand(new Deadline(description, LocalDate.parse(by)));
+            return command;
+        } catch (DateTimeParseException e) {
+            throw new DukeException(Parser.ERROR_DATE_FORMAT);
+        }
+    }
+
+    /**
+     * Executes the command AddCommand for events.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command eventCommand(String[] inputArray) throws DukeException {
+        String secondWord = "";
+        if (inputArray.length == 2) {
+            secondWord = inputArray[1];
+        }
+        try {
+            if (secondWord.length() == 0) {
+                throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
+            }
+            String[] eArray = secondWord.split(" /at ", 2);
+            if (eArray.length == 1) {
+                throw new DukeException(Parser.ERROR_EMPTY_DATE);
+            }
+            String description = eArray[0];
+            String at = eArray[1];
+            Command command = new AddCommand(new Event(description, LocalDate.parse(at)));
+            return command;
+        } catch (DateTimeParseException e) {
+            throw new DukeException(Parser.ERROR_DATE_FORMAT);
+        }
+    }
+
+    /**
+     * Executes the command DeleteCommand.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command deleteCommand(String[] inputArray) throws DukeException {
+        String secondWord = "";
+        if (inputArray.length == 2) {
+            secondWord = inputArray[1];
+        }
+        if (secondWord.length() == 0) {
+            throw new DukeException(Parser.ERROR_DELETE_NUMBER);
+        }
+        try {
+            Command command = new DeleteCommand(Integer.parseInt(secondWord));
+            return command;
+        } catch (NumberFormatException e) {
+            throw new DukeException(Parser.ERROR_DELETE_NUMBER);
+        }
+    }
+
+    /**
+     * Executes the command OnDateCommand.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command onCommand(String[] inputArray) throws DukeException {
+        String secondWord = "";
+        if (inputArray.length == 2) {
+            secondWord = inputArray[1];
+        }
+        try {
+            Command command = new OnDateCommand(LocalDate.parse(secondWord));
+            return command;
+        } catch (DateTimeParseException exception) {
+            throw new DukeException(Parser.ERROR_DATE_FORMAT);
+        }
+    }
+
+    /**
+     * Executes the command FindCommand.
+     *
+     * @param inputArray The input from the user in an array.
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
+    public static Command findCommand(String[] inputArray) throws DukeException {
+        String secondWord = "";
+        if (inputArray.length == 2) {
+            secondWord = inputArray[1];
+        }
+        Command command = new FindCommand(secondWord);
+        return command;
+    }
 
     /**
      * Parses the users input to check which command should be run.
@@ -47,99 +261,27 @@ public abstract class Parser {
         }
         switch (firstWord) {
         case "bye":
-            if (inputArray.length == 1) {
-                command = new ExitCommand();
-                return command;
-            } else {
-                throw new DukeException(Parser.ERROR_UNKOWN_MESSAGE);
-            }
+            return exitCommand(inputArray);
         case "list":
-            if (inputArray.length == 1) {
-                command = new ListCommand();
-                return command;
-            } else {
-                throw new DukeException(Parser.ERROR_UNKOWN_MESSAGE);
-            }
+            return listCommand(inputArray);
         case "mark":
-            if (secondWord.length() == 0) {
-                throw new DukeException(Parser.ERROR_INVALID_MARK_NUMBER);
-            }
-            try {
-                command = new MarkCommand(Integer.parseInt((inputArray[1])));
-                return command;
-            } catch (NumberFormatException e) {
-                throw new DukeException(Parser.ERROR_INVALID_MARK_NUMBER);
-            }
+            return markCommand(inputArray);
         case "unmark":
-            if (secondWord.length() == 0) {
-                throw new DukeException(Parser.ERROR_INVALID_UNMARK_NUMBER);
-            }
-            try {
-                command = new UnMarkCommand(Integer.parseInt((inputArray[1])));
-                return command;
-            } catch (NumberFormatException e) {
-                throw new DukeException(Parser.ERROR_INVALID_UNMARK_NUMBER);
-            }
+            return unmarkCommand(inputArray);
         case "todo":
-            if (secondWord.length() == 0) {
-                throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
-            }
-            command = new AddCommand(new ToDo(secondWord));
-            return command;
+            return todoCommand(inputArray);
         case "deadline":
-            try {
-                if (secondWord.length() == 0) {
-                    throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
-                }
-                String[] dArray = secondWord.split(" /by ", 2);
-                if (dArray.length == 1) {
-                    throw new DukeException(Parser.ERROR_EMPTY_DATE);
-                }
-                String description = dArray[0];
-                String by = dArray[1];
-                command = new AddCommand(new Deadline(description, LocalDate.parse(by)));
-                return command;
-            } catch (DateTimeParseException e) {
-                throw new DukeException(Parser.ERROR_DATE_FORMAT);
-            }
+            return deadlineCommand(inputArray);
         case "event":
-            try {
-                if (secondWord.length() == 0) {
-                    throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
-                }
-                String[] eArray = secondWord.split(" /at ", 2);
-                if (eArray.length == 1) {
-                    throw new DukeException(Parser.ERROR_EMPTY_DATE);
-                }
-                String description = eArray[0];
-                String at = eArray[1];
-                command = new AddCommand(new Event(description, LocalDate.parse(at)));
-                return command;
-            } catch (DateTimeParseException e) {
-                throw new DukeException(Parser.ERROR_DATE_FORMAT);
-            }
+            return eventCommand(inputArray);
         case "delete":
-            if (secondWord.length() == 0) {
-                throw new DukeException(Parser.ERROR_DELETE_NUMBER);
-            }
-            try {
-                command = new DeleteCommand(Integer.parseInt(secondWord));
-                return command;
-            } catch (NumberFormatException e) {
-                throw new DukeException(Parser.ERROR_DELETE_NUMBER);
-            }
+            return deleteCommand(inputArray);
         case "on":
-            try {
-                command = new OnDateCommand(LocalDate.parse(secondWord));
-                return command;
-            } catch (DateTimeParseException exception) {
-                throw new DukeException(Parser.ERROR_DATE_FORMAT);
-            }
+            return onCommand(inputArray);
         case "find":
-            command = new FindCommand(secondWord);
-            return command;
+            return findCommand(inputArray);
         default:
-            throw new DukeException(Parser.ERROR_UNKOWN_MESSAGE);
+            throw new DukeException(Parser.ERROR_UNKNOWN_MESSAGE);
         }
     }
 }
