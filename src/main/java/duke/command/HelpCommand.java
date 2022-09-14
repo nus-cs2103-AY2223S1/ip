@@ -71,6 +71,10 @@ public class HelpCommand implements Command {
             message = FindCommand.MESSAGE_USAGE;
             break;
         }
+        case SortCommand.COMMAND_WORD: {
+            message = SortCommand.MESSAGE_USAGE;
+            break;
+        }
         case ByeCommand.COMMAND_WORD: {
             message = ByeCommand.MESSAGE_USAGE;
             break;

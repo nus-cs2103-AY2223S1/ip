@@ -32,7 +32,7 @@ public class UnmarkCommand implements Command {
         try {
             Task task = taskList.get(this.index);
             task.markNotDone();
-            return String.format("OK, I've marked this task as not done yet:\n\t\t %s", task.toString());
+            return String.format("OK, I've marked this task as not done yet:\n%s", task.toString());
         } catch (IndexOutOfBoundsException e) {
             return "Invalid task index";
         }

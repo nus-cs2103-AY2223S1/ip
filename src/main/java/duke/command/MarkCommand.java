@@ -32,7 +32,7 @@ public class MarkCommand implements Command {
         try {
             Task task = taskList.get(this.index);
             task.markAsDone();
-            return String.format("Nice! I've marked this task as done:\n\t\t %s", task.toString());
+            return String.format("Nice! I've marked this task as done:\n%s", task.toString());
         } catch (IndexOutOfBoundsException e) {
             return "Invalid task index";
         }
