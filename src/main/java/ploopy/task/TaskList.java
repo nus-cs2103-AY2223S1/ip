@@ -53,6 +53,7 @@ public class TaskList {
         Task current = taskList.get(taskIndex - 1);
         current.markDone();
         storage.rewriteFile(taskList);
+        System.out.println(TextUI.markTaskMessage(current));
         return TextUI.markTaskMessage(current);
     }
 
