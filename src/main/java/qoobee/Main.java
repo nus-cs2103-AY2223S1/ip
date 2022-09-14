@@ -14,8 +14,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Qoobee qoobee = new Qoobee();
     private static Stage stage;
+    private Qoobee qoobee = new Qoobee();
 
     /**
      * Starts the stage when application launches.
