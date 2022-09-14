@@ -21,7 +21,7 @@ public class Ui {
 
     public void run() {
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Hello! I'm Duke\n" +
+        System.out.println("Hello! I'm iTask\n" +
                 "What can I do for you?");
         while (true) {
             String input = myObj.nextLine().trim();// Read user input
