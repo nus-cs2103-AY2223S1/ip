@@ -12,7 +12,7 @@ public class AccessCommandProcessor {
     protected static String processAccessCommand(String keyword, String content, TaskList tasks) {
         if (keyword.equals("list")) {
             String currentTasks = tasks.enumerateList();
-            return (currentTasks.isEmpty()) ? "No Outstanding Tasks :)" : currentTasks;
+            return (currentTasks.isEmpty()) ? "No existing tasks :)" : currentTasks;
         } else {
             String queriedTasks = tasks.findTasks(content);
             return (queriedTasks.isEmpty())

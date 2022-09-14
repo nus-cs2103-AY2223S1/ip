@@ -11,7 +11,7 @@ public class Duke {
 
     public Duke() {
         ui = new Ui();
-        storage = new Storage("data/tasks_outstanding.txt");
+        storage = new Storage("data/task_log.txt");
         try {
             tasks = storage.loadExistingTasks();
         } catch (FileNotFoundException err) {

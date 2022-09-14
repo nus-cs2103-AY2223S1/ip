@@ -1,3 +1,0 @@
-1 [D][ ] return book/20220202 (due date YYYYMMDD)
-2 [D][X] return bread/20230303 (due date YYYYMMDD)
-3 [T][ ] cs2101 script
