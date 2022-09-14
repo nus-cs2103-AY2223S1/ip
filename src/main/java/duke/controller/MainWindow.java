@@ -2,14 +2,16 @@ package duke.controller;
 
 import duke.Command;
 import duke.Duke;
+import duke.controller.DialogBox;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -52,10 +54,11 @@ public class MainWindow extends AnchorPane {
         }
         assert !response.isBlank() : "Please key in a non-empty command";
         response = duke.getResponse(input);
+        dialogContainer.maxHeightProperty().bind(dialogContainer.heightProperty());
 
         dialogContainer.getChildren().addAll(
-                Command.DialogBox.getUserDialog(input, userImage),
-                Command.DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
 
@@ -68,7 +71,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void greet() {
         dialogContainer.getChildren().addAll(
-                Command.DialogBox.getDukeDialog("Hello I'm DUKE!\nWhat can I do for you?", dukeImage)
+                DialogBox.getDukeDialog("Hello I'm DUKE!\nWhat can I do for you?", dukeImage)
         );
         userInput.clear();
     }
