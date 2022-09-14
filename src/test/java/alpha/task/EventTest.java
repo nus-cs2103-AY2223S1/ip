@@ -27,6 +27,7 @@ public class EventTest {
      */
     @Test
     public void toString_noInput_string() {
-        assertEquals(String.format("[ %s ] [ %s ] %s (on: %s)", "E", " ", "birthday", "Sep 04 2022"), event.toString());
+        assertEquals(String.format("[%s] [%s] [%s] %s (on: %s)", "E", "~no tag~", "~unmarked~", "birthday",
+                "Sep 04 2022"), event.toString());
     }
 }
