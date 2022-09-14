@@ -32,7 +32,7 @@ public class Parser {
     /** The user's input date and time format. */
     private static final DateTimeFormatter DT_PARSE_FORMAT = DateTimeFormatter.ofPattern("[yyyy][yy]-M-d HHmm");
     /** The date and time format printed out by Duke. */
-    private static final DateTimeFormatter DT_PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy, KK:mm a");
+    private static final DateTimeFormatter DT_PRINT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy, KK:mm a");
     /** Text separator for datetime of a deadline task. */
     private static final String DEADLINE_SEPARATOR = "/by ";
     /** Text separator for datetime of an event. */
