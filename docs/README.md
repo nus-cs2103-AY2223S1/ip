@@ -10,7 +10,8 @@ Echo is a CLI-based Chatbot that is able to store and keep track of tasks inputt
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `duke.jar` from [here](https://github.com/t1mzzz/ip/releases).
 3. Copy the file to the folder you want to use as the home folder.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.\
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the 
+app contains some sample data.\
 ![Example Echo UI](./Ui.png)
 5. Start using Echo by typing commands in the command box.
 6. Refer to the [Features](#features) below for details of each command.
@@ -205,7 +206,13 @@ Bye. Hope to see you again soon!
 
 ### Saving the data
 
-Echo data are saved in the hard disk automatically after exiting the program (executing `bye`). There is no need to save manually.
+Echo data are saved in the hard disk automatically after exiting the program (executing `bye`). 
+There is no need to save manually.
+
+### Editing the data file
+
+Echo data are saved as a txt file [JAR file location]/data/tasks.txt. 
+Advanced users are welcome to update data directly by editing that data file.
 
 ## Command Summary
 
@@ -214,7 +221,7 @@ Echo data are saved in the hard disk automatically after exiting the program (ex
 | List     | `list`                                | `list`                                 |
 | Todo     | `todo DESCRIPTION`                    | `todo read book`                       |
 | Deadline | `deadline DESCRIPTION /by YYYY-MM-DD` | `deadline return book /by 2022-09-09`  |
-| Event    | `event DESCRIPTION /at YYYY-MM-DD`    | `event CS2100 Midterms /at 2022-10-08` |                     |
+| Event    | `event DESCRIPTION /at YYYY-MM-DD`    | `event CS2100 Midterms /at 2022-10-08` |
 | Mark     | `mark INDEX`                          | `mark 1`                               |
 | Unmark   | `unmark INDEX`                        | `unmark 1`                             |
 | Sort     | `sort [Chrono/rChrono]`               | `sort Chrono`                          |
