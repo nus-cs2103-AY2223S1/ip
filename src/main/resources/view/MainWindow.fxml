@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="600.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.chatbot.ui.MainWindow">
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="600.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rattus.chatbot.ui.MainWindow">
     <children>
         <TextField fx:id="userInput" alignment="TOP_LEFT" layoutX="20.0" layoutY="540.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleUserInput" prefHeight="40.0" prefWidth="360.0">
          <font>
