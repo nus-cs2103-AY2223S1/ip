@@ -1,5 +1,5 @@
 # Duke - Your virtual assistant
-![alt text](https://github.com/GarethOng/ip/blob/1334b2beda4d5f59c2cfb14353069f51d0b3160e/docs/Ui.png)
+![alt text](https://github.com/GarethOng/ip/blob/2eda2a88bb442974c426a880c2222cc9f2a74d03/docs/Ui.png)
 > "For every minute spent organizing, an hour is earned." -Benjamin Franklin
 
 ## Introduction
