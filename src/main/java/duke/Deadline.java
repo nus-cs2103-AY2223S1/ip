@@ -1,17 +1,19 @@
-package Duke;
+package duke;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
  * The Deadline class is an extension to the Task with the functionality to add date
+ *
  * @author LimWeiJun
  */
 public class Deadline extends Task {
     private LocalDateTime by;
 
     /**
-     * The method takes in three parameters
+     * A constructor that takes in three parameters
+     *
      * @param description of type String
      * @param done of type boolean
      * @param by of type String
@@ -21,24 +23,19 @@ public class Deadline extends Task {
         this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
-    /**
-     * The method returns a string
-     * @return This returns a string
-     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + getFormattedDetail() + ")";
     }
 
-    /**
-     * @return this returns a char
-     */
     @Override
     public char getType() {
         return 'D';
     }
 
     /**
+     * Gets the string of original datetime
+     *
      * @return this returns a string
      */
     @Override
@@ -47,7 +44,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * @return this returns a string
+     * Gets the string of formatted datetime
+     *
+     * @return returns a string
      */
     @Override
     public String getFormattedDetail() {
@@ -55,7 +54,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * The method takes in a parameter
+     * Updates current datetime with a new datetime
+     *
      * @param newDateStr of type String
      */
     @Override

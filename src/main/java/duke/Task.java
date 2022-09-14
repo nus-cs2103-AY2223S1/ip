@@ -1,7 +1,8 @@
-package Duke;
+package duke;
 
 /**
  * The class is an abstract class with parameters task and done
+ *
  * @author LimWeiJun
  */
 abstract public class Task {
@@ -9,7 +10,8 @@ abstract public class Task {
     private boolean isDone;
 
     /**
-     * The method takes in two parameters
+     * A constructor that takes in two parameters
+     *
      * @param task of type String
      * @param done of type boolean
      */
@@ -18,15 +20,14 @@ abstract public class Task {
         this.isDone = done;
     }
 
-    /**
-     * @return a string of the text
-     */
     @Override
     public String toString() {
         return getStatusIcon() + " " + task;
     }
 
     /**
+     * Gets the status icon of a task being marked or unmarked
+     *
      * @return a string of the icon
      */
     public String getStatusIcon() {
@@ -34,6 +35,8 @@ abstract public class Task {
     }
 
     /**
+     * Gets the name of the task
+     *
      * @return a string of the task
      */
     public String getTask() {
@@ -41,21 +44,23 @@ abstract public class Task {
     }
 
     /**
-     * This sets the parameter done to true
+     * Marks the task
      */
     public void setTaskAsDone() {
         isDone = true;
     }
 
     /**
-     * This sets the parameter done to false
+     * Unmarks the task
      */
     public void setTaskAsUnDone() {
         isDone = false;
     }
 
     /**
-     * This returns an int
+     * Returns 1 if the task is marked and 0 if it is not
+     *
+     * @return of type int
      */
     public int getDone() {
         return isDone ? 1 : 0;

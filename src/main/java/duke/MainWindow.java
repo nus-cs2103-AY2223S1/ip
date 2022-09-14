@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,6 +54,9 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
+    /**
+     * Prints the list of tasks in the chat
+     */
     public void printList(TaskList tasks) {
         String tasksStr = "Here you tasks:\n";
         for (int j = 0; j < tasks.getSize(); j++) {
@@ -67,7 +70,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and prints a statement
+     * Prints a hello message
      */
     public void printHelloMsg() {
         Label dukeText = new Label("Duke what u want");
@@ -78,7 +81,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and takes in two parameter
+     * Prints a message after a task has been successfully added
+     *
      * @param task of type Task
      * @param size of type int
      */
@@ -93,7 +97,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and takes in a parameter
+     * Prints a message after user enters a find command
+     *
      * @param tasks The input to be received
      */
     public void printFindTasks(ArrayList<Task> tasks) {
@@ -109,7 +114,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and takes in two parameter
+     * Prints a message after a task has been successfully deleted
+     *
      * @param task of type Task
      * @param size of type int
      */
@@ -122,7 +128,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and takes in two parameter
+     * Prints a message after a task has been successfully updated
+     *
      * @param task of type Task
      */
     public void printUpdateSuccessfulMsg(Task task) {
@@ -134,7 +141,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and takes in a parameter
+     * Prints a message after a task has been successfully marked
+     *
      * @param task The input to be received
      */
     public void printMarkTaskSuccessfulMsg(Task task) {
@@ -145,7 +153,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and takes in a parameter
+     * Prints a message after a task has been successfully unmarked
+     *
      * @param task The input to be received
      */
     public void printUnMarkTaskSuccessfulMsg(Task task) {
@@ -156,7 +165,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and prints a statement
+     * Prints a message if the user input unknown command
      */
     public void printDontUnderstandMsg() {
         Label dukeText = new Label("What you talking, type also dont want type properly");
@@ -166,7 +175,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and takes in a parameter
+     * Prints a message if the user inputs a command such as deadline without a second parameter
+     *
      * @param typeStr The input to be received
      */
     public void printDescriptionCantBeEmptyMsg(String typeStr) {
@@ -177,7 +187,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * The method is a static and takes in a parameter
+     * Prints an error message
+     *
      * @param e The input to be received
      */
     public void printErrorMessage(String e) {

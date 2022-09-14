@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -10,6 +10,7 @@ import java.util.Objects;
 
 /**
  * The class deals with loading tasks from the file and saving tasks in the file
+ *
  * @author LimWeiJun
  */
 public class Storage {
@@ -19,9 +20,11 @@ public class Storage {
     MainWindow mainWindow;
 
     /**
-     * The method takes in two parameters
+     * A constructor that takes in three parameters
+     *
      * @param pathName of type String
      * @param fileName of type String
+     * @param mainWindow of type MainWindow
      */
     public Storage(String pathName, String fileName, MainWindow mainWindow) {
         this.mainWindow = mainWindow;
@@ -40,7 +43,8 @@ public class Storage {
     }
 
     /**
-     * The method will load
+     * Reads lines from duke file
+     *
      * @return returns an object of type ArrayList
      */
     public ArrayList<Task> load() {
@@ -56,11 +60,12 @@ public class Storage {
     }
 
     /**
-     * The method is a static and takes in a parameter and returns a boolean
+     * Adds a task to the existing duke file
+     *
      * @param task The input to be received
      * @return returns a boolean
      */
-    public boolean updateFile(Task task) {
+    public boolean addFile(Task task) {
         try {
             String taskStr = task.getType() == 'T' ?
                     getTodoString(task)
@@ -74,7 +79,8 @@ public class Storage {
     }
 
     /**
-     * The method is a static and takes in a parameter
+     * Rewrites the entire duke file with the existing tasks from array list
+     *
      * @param tasks The input to be received
      * @return returns a boolean
      */
@@ -83,7 +89,7 @@ public class Storage {
             BufferedWriter bW = Files.newBufferedWriter(Paths.get(filePath));
             bW.write("");
             for (Task task : tasks) {
-                updateFile(task);
+                addFile(task);
             }
             return true;
         } catch (IOException e) {
@@ -92,6 +98,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Handles the different types of task to be added to the array list
+     *
+     * @param tasksToDo of type ArrayList
+     * @return of type ArrayList
+     */
     public ArrayList<Task> handleFileList(ArrayList<Task> tasksToDo, String currLine) throws IOException {
         while (currLine != null) {
             String[] details = currLine.split("\\|");

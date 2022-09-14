@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.io.IOException;
 
@@ -25,7 +25,7 @@ public class Ui extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            stage.setTitle("Duke");
+            stage.setTitle("duke");
             dukey = new Duke("data/duke.txt", fxmlLoader);
             fxmlLoader.<MainWindow>getController().setDuke(dukey);
             stage.show();
@@ -37,10 +37,4 @@ public class Ui extends Application {
     public void closeApplication() {
         Platform.exit();
     }
-
-    /**
-     * The method is a static and takes in a parameter
-     * @param tasks The input to be received
-     */
-
 }

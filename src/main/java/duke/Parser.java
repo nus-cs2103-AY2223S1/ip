@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.util.ArrayList;
 
@@ -9,9 +9,12 @@ import java.util.ArrayList;
  */
 public class Parser {
     /**
-     * The method takes in a parameter of type TaskList
+     * Reads the given command and execute as follows
      *
+     * @param ui of type UI
+     * @param command of type String
      * @param tasks of type TaskList
+     * @param mainWindow of type MainWindow
      */
     public static void readLine(Ui ui, String command, TaskList tasks, MainWindow mainWindow) {
         String[] strArr = command.split(" ");
@@ -32,6 +35,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Marks or unmarks a task
+     *
+     * @param strArr of type String[]
+     * @param tasks of type TaskList
+     */
     private static void markUnmarkTask(String[] strArr, TaskList tasks) {
         assert java.util.regex.Pattern.matches("\\d+", strArr[1]) : "The 2nd parameter should be a "
                                                                           + "positive integer";
@@ -46,6 +55,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Deletes a task
+     *
+     * @param strArr of type String[]
+     * @param tasks of type TaskList
+     */
     private static void deleteTask(String[] strArr, TaskList tasks) {
         assert java.util.regex.Pattern.matches("\\d+", strArr[1]) : "The 2nd parameter should be a "
                                                                           + "positive integer";
@@ -55,6 +70,13 @@ public class Parser {
         tasks.deleteTask(index);
     }
 
+    /**
+     * Finds tasks that match with given keyword
+     *
+     * @param strArr of type String[]
+     * @param tasks of type TaskList
+     * @param mW of type MainWindow
+     */
     private static void findTask(String[] strArr, TaskList tasks, MainWindow mW) {
         ArrayList<Task> tempTasks = new ArrayList<>();
         for (int i = 0; i < tasks.getSize(); i++) {
@@ -65,12 +87,26 @@ public class Parser {
         mW.printFindTasks(tempTasks);
     }
 
+    /**
+     * Updates a task with a new datetime
+     *
+     * @param strArr of type String[]
+     * @param tasks of type TaskList
+     */
     private static void updateDateTime(String[] strArr, TaskList tasks) {
         int index = Integer.parseInt(strArr[2]) - 1;
         String newDateStr = strArr[3] + " " + strArr[4];
         tasks.updateTask(index, newDateStr);
     }
 
+    /**
+     * Handles the rest of the commands
+     *
+     * @param strArr of type String[]
+     * @param command of type String
+     * @param tasks of type TaskList
+     * @param mW of type MainWindow
+     */
     private static void handleTodoDeadlineEvent(String[] strArr, String command, TaskList tasks, MainWindow mW) {
         try {
             String[] details;

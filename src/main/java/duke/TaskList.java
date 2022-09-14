@@ -1,9 +1,10 @@
-package Duke;
+package duke;
 
 import java.util.ArrayList;
 
 /**
  * The class contains the task list e.g., it has operations to add/delete tasks in the list
+ *
  * @author LimWeiJun
  */
 public class TaskList {
@@ -12,8 +13,10 @@ public class TaskList {
     Storage storage;
 
     /**
-     * The method takes in two parameter
+     * Constructor that takes in object of type Storage and MainWindow
+     *
      * @param storage of type Storage
+     * @param mainWindow of type MainWindow
      */
     public TaskList(Storage storage, MainWindow mainWindow) {
         this.mainWindow = mainWindow;
@@ -23,18 +26,20 @@ public class TaskList {
     }
 
     /**
-     * The method takes in a parameter
+     * Adds task with given object of type Task
+     *
      * @param task of type Task
      */
     public void addTask(Task task) {
-        if (storage.updateFile(task)) {
+        if (storage.addFile(task)) {
             tasks.add(task);
             mainWindow.printAddSuccessfulMsg(task, tasks.size());
         }
     }
 
     /**
-     * The method takes in a parameter of type int
+     *Updates task with new datetime
+     *
      * @param i of type int
      */
     public void updateTask(int i, String newDateStr) {
@@ -46,7 +51,8 @@ public class TaskList {
     }
 
     /**
-     * The method takes in a parameter of type int
+     * Deletes task with given index i
+     *
      * @param i of type int
      */
     public void deleteTask(int i) {
@@ -58,7 +64,8 @@ public class TaskList {
     }
 
     /**
-     * The method returns a variable of type int
+     * Returns the size of the array list
+     *
      * @return of type int
      */
     public int getSize() {
@@ -66,7 +73,8 @@ public class TaskList {
     }
 
     /**
-     * The method takes in a parameter and returns a variable of type int
+     * Returns the task with given index i
+     *
      * @param i of type int
      * @return of type int
      */
@@ -75,7 +83,8 @@ public class TaskList {
     }
 
     /**
-     * The method takes in a parameter of type int
+     * Marks task as done with given index i
+     *
      * @param i of type int
      */
     public void markTaskAsDone(int i) {
@@ -87,7 +96,8 @@ public class TaskList {
     }
 
     /**
-     * The method takes in a parameter of type int
+     * Unmarks task as done with given index i
+     *
      * @param i of type int
      */
     public void unMarkTaskAsDone(int i) {
