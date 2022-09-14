@@ -51,9 +51,9 @@ public class Ui {
      * @return The string to be used in the GUI.
      */
     public String say(String message) {
-        return (HORIZONTAL_LINE + "\n"
+        return HORIZONTAL_LINE + "\n"
                 + newLine(message)
-                + newLine(LAST_REPLY) + HORIZONTAL_LINE);
+                + newLine(LAST_REPLY) + HORIZONTAL_LINE;
     }
 
     /**
