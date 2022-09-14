@@ -1,8 +1,12 @@
 package scottie;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import scottie.instructions.Instruction;
 import scottie.instructions.InvalidCommandException;
 import scottie.parser.Parser;
+import scottie.storage.Storage;
 import scottie.tasks.TaskList;
 import scottie.ui.Cli;
 import scottie.ui.Ui;
@@ -12,9 +16,11 @@ import scottie.ui.Ui;
  * retrieving different types of tasks.
  */
 public class Scottie {
+    private static final Path TASKS_DATA_FILE_PATH = Paths.get("data", "tasks.txt");
+
     private static final String INVALID_COMMAND_MESSAGE = "Um... sorry I don't know what \"%s\" means...";
 
-    private final TaskList taskList = new TaskList();
+    private final TaskList taskList = new TaskList(new Storage(TASKS_DATA_FILE_PATH));
 
     /**
      * Sends an input to Scottie to process and respond using the given Ui.

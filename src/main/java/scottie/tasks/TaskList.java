@@ -1,7 +1,5 @@
 package scottie.tasks;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -17,16 +15,14 @@ import scottie.storage.Storage;
  * to the list are always immediately saved to the Storage.
  */
 public class TaskList implements Iterable<Task> {
-    private static final Path TASKS_DATA_FILE_PATH = Paths.get("data", "tasks.txt");
-
     private final Storage storage;
     private final List<Task> tasks;
 
     /**
      * Constructs a TaskList.
      */
-    public TaskList() {
-        this.storage = new Storage(TASKS_DATA_FILE_PATH);
+    public TaskList(Storage storage) {
+        this.storage = storage;
         this.tasks = new ArrayList<>();
         for (String taskData : this.storage.loadData()) {
             try {
