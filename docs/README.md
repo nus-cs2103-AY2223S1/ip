@@ -14,9 +14,9 @@ Duke is a **simple** and **easy-to-use** Java app to track your tasks on the go.
 - Delete
 
 ### Supported Task Types
--[X] Todo
--[X] Deadline
--[X] Event
+-[x] Todo
+-[x] Deadline
+-[x] Event
 
 ## Usage
 
@@ -153,7 +153,7 @@ Example of usage:
 `bye`
 
 ## Notes
-- Ensure spacing between keyword and body of command
+- Ensure spacing between keyword and body for your input
 - All keywords are case-insensitive
 
 Icons used in Duke obtained from [Freepik](https://www.flaticon.com/authors/freepik)
