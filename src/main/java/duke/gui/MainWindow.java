@@ -78,10 +78,14 @@ public class MainWindow extends AnchorPane {
 
     private <T> void exitProgramAfterTask(Task<T> task) {
         task.setOnSucceeded(e -> {
-            Platform.exit();
-            System.exit(0);
+            exitProgram();
         });
 
         new Thread(task).start();
+    }
+
+    private void exitProgram() {
+        Platform.exit();
+        System.exit(0);
     }
 }
