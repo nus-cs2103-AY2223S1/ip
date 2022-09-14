@@ -3,6 +3,7 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.UI;
+import duke.components.Emoji;
 
 /**
  * Representation of the help command.
@@ -46,16 +47,16 @@ public class HelpCommand extends Command {
      */
     @Override
     public String getResponse(TaskList taskList, UI ui, Storage storage) {
-        String responseMessage = "You may try\n"
-                + "\ttodo <description>\n"
-                + "\tdeadline <description> /by <date>\n"
-                + "\tevent <description> /at time\n"
-                + "\tlist\n"
-                + "\tmark <index>\n"
-                + "\tunmark <index>\n"
-                + "\tfind <keyword>\n"
-                + "\thelp\n"
-                + "\tbye";
+        String responseMessage = Emoji.CHERRY_BLOSSOM + " You may try\n"
+                + "\t" + Emoji.SNOW_FLAKE + " todo <description>\n"
+                + "\t" + Emoji.SNOW_FLAKE + " deadline <description> /by <date>\n"
+                + "\t" + Emoji.SNOW_FLAKE + " event <description> /at time\n"
+                + "\t" + Emoji.SNOW_FLAKE + " list\n"
+                + "\t" + Emoji.SNOW_FLAKE + " mark <index>\n"
+                + "\t" + Emoji.SNOW_FLAKE + " unmark <index>\n"
+                + "\t" + Emoji.SNOW_FLAKE + " find <keyword>\n"
+                + "\t" + Emoji.SNOW_FLAKE + " help\n"
+                + "\t" + Emoji.SNOW_FLAKE + " bye";
         return responseMessage;
     }
 }
