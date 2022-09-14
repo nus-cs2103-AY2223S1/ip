@@ -28,7 +28,9 @@ public class Duke {
      */
     public String getResponse(String input) {
         CommandHandler commandHandler = new CommandHandler(ui, tasks);
-        return commandHandler.execute(input);
+        String dukeResponse = commandHandler.execute(input);
+        assert !dukeResponse.isEmpty() : "Duke response should not be empty";
+        return dukeResponse;
     }
 
     public String getWelcomeMessage() {
