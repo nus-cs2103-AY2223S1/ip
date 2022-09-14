@@ -22,8 +22,12 @@ import duke.task.Todo;
  * and changes to the tasklist respectively
  */
 public class Storage {
-    private static String filePath;
     private static ArrayList<Task> taskList;
+    private String filePath;
+
+    public String getFilePath() {
+        return filePath;
+    }
 
     /**
      * Constructor for Storage
@@ -136,7 +140,8 @@ public class Storage {
      */
     public void saveTasks(TaskList taskList) {
         try {
-            File myFile = new File(filePath);
+            System.out.println(this.filePath);
+            File myFile = new File(this.filePath);
             OutputStream os = new FileOutputStream(myFile);
             PrintWriter pw = new PrintWriter(os);
 

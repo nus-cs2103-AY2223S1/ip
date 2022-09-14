@@ -32,6 +32,8 @@ public class Duke {
         archiveStorage = new Storage(archiveFilePath);
         archiveTaskList = new TaskList(archiveStorage.loadTasks());
         ui.list(taskList);
+        System.out.println("main" + mainStorage.getFilePath());
+        System.out.println("archive" + archiveStorage.getFilePath());
     }
 
     public String getResponse(String input) {
@@ -41,6 +43,8 @@ public class Duke {
             if (command instanceof ByeCommand) {
                 isBye = true;
             }
+//            System.out.println("mainstorage file path:" + mainStorage.getFilePath());
+//            System.out.println("archive file path:" + archiveStorage.getFilePath());
             String commandString = command.execute(taskList, archiveTaskList,
                     mainStorage, archiveStorage, ui);
             String numItemsString = "\n\n You have "
