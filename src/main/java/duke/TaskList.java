@@ -69,7 +69,7 @@ public class TaskList {
 
 
     /**
-     * Check if the given task's description contains all given keywords.
+     * Checks if the given task's description contains all given keywords.
      *
      * @param task Task to check.
      * @param keywords Words to check.

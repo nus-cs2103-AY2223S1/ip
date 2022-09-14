@@ -215,7 +215,7 @@ public class Duke {
     }
 
     /**
-    * Display tasks containing the keywords in the user input.
+    * Displays tasks containing the keywords in the user input.
     *
     * @param fullCommand The input from the user containing keywords to search for.
     */
