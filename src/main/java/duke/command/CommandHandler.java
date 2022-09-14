@@ -30,7 +30,6 @@ public class CommandHandler {
      * @param input The input string.
      * @return The string message to display in the GUI.
      */
-
     public String execute(String input) {
         try {
             Parser parser = new Parser(input);
@@ -82,7 +81,9 @@ public class CommandHandler {
                 return ui.getAddTaskMessage(newEventTask);
             case FIND:
                 TaskList newList = tasks.find(args[0]);
-                return ui.getFoundTasksListString(newList);
+                String responseMessage = ui.getFoundTasksListMessage(newList);
+                assert responseMessage != null : "Response message should not be null";
+                return responseMessage;
             default:
                 throw new DukeException("Unrecognized command");
             }
