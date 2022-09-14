@@ -14,6 +14,7 @@ import scottie.Scottie;
 
 /**
  * Controller for MainWindow. Provides the Layout for the other controls.
+ * Code adapted from this guide: https://se-education.org/guides/tutorials/javaFxPart4.html
  */
 public class MainWindow extends AnchorPane implements Ui {
     private static final String WELCOME_MESSAGE = "Hello there! I'm Scottie!\n"

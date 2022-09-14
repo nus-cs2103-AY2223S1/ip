@@ -1,3 +1,5 @@
+# This file was taken from https://github.com/se-edu/duke/blob/full-template/.github/workflows/gradle.yml
+
 name: Java CI
 
 on: [push, pull_request]
