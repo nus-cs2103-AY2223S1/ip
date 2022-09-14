@@ -110,15 +110,15 @@ public class Parser {
             return new AddCommand(new Todo(input));
         case DEADLINE:
             String[] arrDeadline = input.split("/by", 2);
-            if (arrDeadline.length == 1) {
-                throw new PlutoException("OOPS!!! The deadline date is required.");
+            if (arrDeadline.length == 1 || arrDeadline[0].strip().equals("")) {
+                throw new PlutoException("OOPS!!! 'deadline <task name> /by <date>' required.");
             }
             assert arrDeadline.length == 2 : "textArr should have length 2";
             return new AddCommand(new Deadline(arrDeadline[0].strip(), parseDate(arrDeadline[1].strip())));
         case EVENT:
             String[] arrEvent = input.split("/at", 2);
-            if (arrEvent.length == 1) {
-                throw new PlutoException("OOPS!!! The event date is required.");
+            if (arrEvent.length == 1 || arrEvent[0].strip().equals("")) {
+                throw new PlutoException("OOPS!!! 'event <task name> /at <date>' required.");
             }
             assert arrEvent.length == 2 : "textArr should have length 2";
             return new AddCommand(new Event(arrEvent[0].strip(), parseDate(arrEvent[1].strip())));

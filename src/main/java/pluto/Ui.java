@@ -93,6 +93,7 @@ public class Ui {
      */
     public String helpUi() {
         StringBuilder helpMessage = new StringBuilder();
+        helpMessage.append("List of Commands:\n");
         helpMessage.append("Add a todo task     \n\t todo <task name>\n");
         helpMessage.append("Add a event task    \n\t event <task name> /at <date>\n");
         helpMessage.append("Add a deadline task \n\t deadline <task name> /by <date>\n");
