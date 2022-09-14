@@ -111,7 +111,7 @@ public class TaskList {
     public List<String> exportTaskList() {
         // List<String> result = new ArrayList<>();
         // for (int i = 0; i < this.taskList.size(); i++) {
-        //     result.add(this.taskList.get(i).exportString());
+        // result.add(this.taskList.get(i).exportString());
         // }
         // return result;
         return this.taskList
@@ -206,21 +206,27 @@ public class TaskList {
     public void sortTaskList(SortTaskEnum direction) {
         List<Task> sortedTaskList = new ArrayList<>(this.taskList);
         Collections.sort(sortedTaskList);
-        if(direction == SortTaskEnum.DESC) {
+        if (direction == SortTaskEnum.DESC) {
             Collections.reverse(sortedTaskList);
         }
         setTaskList(sortedTaskList);
     }
 
     /**
-     * @param taskList the taskList to set
+     * The setTaskList function sets the taskList field of this class to the given
+     * list.
+     *
+     * @param taskList
+     *            Set the tasklist field
      */
     public void setTaskList(List<Task> taskList) {
         this.taskList = taskList;
     }
 
     /**
-     * @return the taskList
+     * The getTaskList function returns the list of tasks.
+     *
+     * @return A list of tasks
      */
     public List<Task> getTaskList() {
         return taskList;
