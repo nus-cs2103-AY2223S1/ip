@@ -4,7 +4,7 @@ import duke.controller.MainWindow;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDos;
+import duke.task.ToDo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,9 +29,7 @@ import java.util.Collections;
  * @author Shaune Ang
  */
 public class Command {
-    static final String EXITWORD = "bye";
     private TaskList taskList;
-    private FileLoaderSaver storage;
     private String fullCommand;
 
     private CommandTypes commandType;
@@ -68,7 +66,6 @@ public class Command {
      */
     public String execute(TaskList taskList, FileLoaderSaver storage) throws IOException, Exception {
         this.taskList = taskList;
-        this.storage = storage;
         String response = "";
 
         switch (commandType) {
@@ -90,7 +87,7 @@ public class Command {
                 response += taskList.displayListSize();
                 storage.writeToFile(taskList.createTxtFile());
                 break;
-            case MARK:
+            case MARK: // fallthrough
             case UNMARK:
                 response += changeMark();
                 storage.writeToFile(taskList.createTxtFile());
@@ -154,7 +151,7 @@ public class Command {
         }
         String name = fullCommand.substring(fullCommand.indexOf(" ") + 1);
 
-        return taskList.addTask(new ToDos(name));
+        return taskList.addTask(new ToDo(name));
     }
 
     /**
@@ -210,7 +207,7 @@ public class Command {
     }
 
     /**
-     * Find Task Priority using taskList
+     * Finds Task Priority using taskList
      * @param priorityString
      * @return response from duke after trying to find task with specified priority
      * @throws Exception

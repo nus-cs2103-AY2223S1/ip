@@ -4,26 +4,26 @@ package duke.task;
  * duke.task.ToDos class creates todos
  * @author Shaune Ang
  */
-public class ToDos extends Task{
+public class ToDo extends Task{
     /**
      * Creates duke.task.ToDos from user input
      * @param name name of task
      */
-    public ToDos(String name) {
+    public ToDo(String name) {
         super(name);
     }
 
     /**
-     * duke.task.ToDos constructor for task loaded from saved file
+     * Constructs ToDo for task loaded from saved file
      * @param name name of task
      * @param status completed status of task
      */
-    public ToDos(String name, boolean status, PriorityLevel priority) {
+    public ToDo(String name, boolean status, PriorityLevel priority) {
         super(name, status, priority);
     }
 
     /**
-     * String format for displaying todos tasks
+     * Returns string format for displaying todos tasks
      * @return string format for displaying event task
      */
     @Override

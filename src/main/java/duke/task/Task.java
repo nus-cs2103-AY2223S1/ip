@@ -42,7 +42,7 @@ abstract public class Task {
      */
     public String mark() {
         String message;
-        if (isCompleted == true) {
+        if (isCompleted) {
             message = "This task is already marked:";
         } else {
             isCompleted = true;
@@ -56,7 +56,7 @@ abstract public class Task {
      */
     public String unmark() {
         String message;
-        if (isCompleted == false) {
+        if (!isCompleted) {
             message = "This task is already unmarked:";
         } else {
             isCompleted = false;
@@ -96,7 +96,7 @@ abstract public class Task {
     }
 
     /**
-     * Return priority in string form for storage
+     * Returns priority in string form for storage
      * @return priority of task in symbol form
      */
     public String getPriority() {

@@ -26,10 +26,9 @@ public class  FileLoaderSaver {
      * @return list of saved tasks in String
      * @throws IOException
      */
-    public List<String> loadFile() throws IOException{
+    public List<String> loadFile() throws IOException {
         //Find existing toDoList
-        if (!Files.exists(filePath))
-        {
+        if (!Files.exists(filePath)) {
             Files.createFile(filePath);
         }
         List<String> txtFile = Files.readAllLines(filePath);

@@ -3,7 +3,7 @@ package duke;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDos;
+import duke.task.ToDo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class TaskList {
         if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        return taskList.get(index).mark();
+        return getTask(index).mark();
     }
 
     /** Sets isComplete status of task at index to be incomplete
@@ -52,7 +52,7 @@ public class TaskList {
         if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        return taskList.get(index).unmark();
+        return getTask(index).unmark();
     }
 
     /**
@@ -74,7 +74,7 @@ public class TaskList {
 
         String response = "Here are the tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i++) {
-            Task currentTask = taskList.get(i);
+            Task currentTask = getTask(i);
             if (currentTask != null){
                 response += String.format("%d. %s\n", i + 1, currentTask);
             }
@@ -92,9 +92,8 @@ public class TaskList {
         assert (index < taskList.size() && index >=0): "index needs to be within bounds of list";
         if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
-        }
-        else {
-            Task tempTask = taskList.get(index);
+        } else {
+            Task tempTask = getTask(index);
             taskList.remove(index);
             return "Noted. I've removed this task:\n" + tempTask;
         }
@@ -134,7 +133,7 @@ public class TaskList {
 
         switch (taskType) {
             case "T":
-                return new ToDos(taskName, isComplete, priority);
+                return new ToDo(taskName, isComplete, priority);
             case "D":
                 return new Deadline(taskName, eventInfo, isComplete, priority);
             case "E":
@@ -151,15 +150,13 @@ public class TaskList {
     public String createTxtFile() {
         String result = "";
         for (Task t : taskList) {
-            if (t instanceof ToDos) {
-                ToDos td = (ToDos) t;
+            if (t instanceof ToDo) {
+                ToDo td = (ToDo) t;
                 result += String.format("T # %b # %s # %s\n", td.getStatus(), td.getName(), td.getPriority());
-            } 
-            else if (t instanceof Deadline){
+            } else if (t instanceof Deadline){
                 Deadline d = (Deadline) t;
                 result += String.format("D # %b # %s # %s # %s\n", d.getStatus(), d.getName(), d.getPriority(), d.getDeadline());
-            }
-            else if (t instanceof Event) {
+            } else if (t instanceof Event) {
                 Event e = (Event) t;
                 result += String.format("E # %b # %s # %s # %s\n", e.getStatus(), e.getName(), e.getPriority(), e.getTime());
             }
@@ -182,7 +179,7 @@ public class TaskList {
         int findCount = 0;
         String response = "Here are the matching tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i++) {
-            Task currentTask = taskList.get(i);
+            Task currentTask = getTask(i);
             if (currentTask.nameContains(searchString)){
                 findCount++;
                 response += String.format("%d. %s\n", findCount, currentTask);
@@ -205,7 +202,7 @@ public class TaskList {
         Task.PriorityLevel priority = Task.commandToPriorityLevel(priorityString);
         String response = String.format("Here are the tasks of priority %s in your list:\n", priorityString);
         for (int i = 0; i < taskList.size(); i++) {
-            Task currentTask = taskList.get(i);
+            Task currentTask = getTask(i);
             if (currentTask.hasPriority(priority)){
                 findCount++;
                 response += String.format("%d. %s\n", findCount, currentTask);
@@ -226,13 +223,20 @@ public class TaskList {
      * @throws IndexOutOfBoundsException
      */
     public String setTaskPriority(int index, Task.PriorityLevel priorityLevel) throws IndexOutOfBoundsException {
+        Task task = getTask(index);
+        return task.setPriority(priorityLevel);
+    }
+
+    /**
+     * Get Task from taskList by index
+     * @param index
+     * @return
+     */
+    public Task getTask(int index) {
         assert (index < taskList.size() && index >=0): "index needs to be within bounds of list";
         if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        else {
-            Task task = taskList.get(index);
-            return task.setPriority(priorityLevel);
-        }
+        return taskList.get(index);
     }
 }
