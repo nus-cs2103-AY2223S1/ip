@@ -10,7 +10,8 @@ public class Ui {
      * Prints out the welcome message.
      */
     public static String welcome() {
-        return "Hello! I'm THE BRO\n" + "What can I do for you?";
+        return "Hello! I'm THE BRO\n" + "What can I do for you?\n"
+                + "For any help, type help";
     }
     /**
      * Prints out the size of the ArrayList.
@@ -96,5 +97,22 @@ public class Ui {
             }
         }
         return result;
+    }
+
+    /**
+     * Returns the help page for user.
+     * @return The command needed to use chatbot.
+     */
+    public static String helpUi() {
+        return " COMMAND" + "\t\t" + "PURPOSE" + "\n"
+                + "1. list :\n\t\tTo view the task left \n"
+                + "2. todo description :\n\t\tTo add todo task \n"
+                + "3. deadline desc /by dd/mm/yyyy kkmm :\n\t\tTo add deadline task \n"
+                + "4. event desc /at dd/mm/yyyy kkmm :\n\t\tTo add event task \n"
+                + "5. mark index :\n\t\tTo mark the task as done \n"
+                + "6. unmark index :\n\t\tTo mark the task as not done \n"
+                + "7. delete index :\n\t\tTo delete the task in that index \n"
+                + "8. find keyword :\n\t\tTo find task with the keyword \n"
+                + "9. bye :\n\t\tTo exit the chatbot";
     }
 }
