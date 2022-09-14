@@ -10,20 +10,24 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private static void makeLine() {
-        for (int i = 0; i < 50; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
+    private static String makeLine() {
+        return "-".repeat(50) + "\n";
     }
 
     /**
      * Wraps the message within two lines.
      * @param message the message to be shown to the user.
      */
-    public static void wrapWithLines(String message) {
-        makeLine();
-        System.out.println(message);
-        makeLine();
+    public static String wrapWithLines(String message) {
+        return makeLine() + message + makeLine();
+    }
+
+    /**
+     * Prints the custom error message.
+     * @param message the error message to be printed.
+     * @return the custom error message.
+     */
+    public static String printErrorMessage(String message) {
+        return makeLine() + "OOPS!" + message + makeLine();
     }
 }
