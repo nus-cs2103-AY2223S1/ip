@@ -20,14 +20,11 @@ public class Duke {
 
     private TaskList tasks;
     private Storage storage;
-
-    private Duke(String filePath) {
-        this.storage = new Storage(filePath);
-        this.tasks = storage.load();
-    }
+    private String FILE_PATH = "./data/";
 
     public Duke() {
-        new Duke("./data/");
+        this.storage = new Storage(FILE_PATH);
+        this.tasks = storage.load();
     }
 
     public String getResponse(String input) {
@@ -70,6 +67,8 @@ public class Duke {
 
     private String getTaskResponse(String input) {
         try {
+            assert tasks != null: "task list is not null";
+            assert storage != null: "storage is not null";
             String response = tasks.addTask(input);
             storage.saveTasks(tasks);
             return response;

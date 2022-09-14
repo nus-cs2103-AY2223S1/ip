@@ -47,8 +47,8 @@ public class CommandParser extends Parser {
     }
 
     /**
-     * Returns a constant COMMAND.
-     * @return A command constant.
+     * Returns a Command.
+     * @return A Command constant.
      * @throws TaskNotFoundException When user input command does not correspond to recognised command.
      */
     public Commands getCommand() throws TaskNotFoundException {
