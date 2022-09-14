@@ -4,7 +4,7 @@ package duke.tasks;
  * Event implements methods for Event objects.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class Event extends Task {
 

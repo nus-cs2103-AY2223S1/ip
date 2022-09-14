@@ -11,7 +11,7 @@ import duke.ui.UI;
  * Duke implements the Duke bot, functions as a simple todo-list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 
 public class Duke {
@@ -31,38 +31,35 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showLoadingError();
+            System.out.println(e.getMessage());
             tasks = new TaskList();
         }
     }
 
     /**
-     * Runs the main logic of Duke.
-     * Handles Welcome and Goodbye messages, as well as all commands.
+     * Returns the greeting message when Duke is opened
+     *
+     * @return Greeting message.
      */
-    public void run() {
-        ui.welcomeMessage();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLineBreak();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLineBreak();
-            }
+    public String greeting() {
+        return ui.welcomeMessage();
+    }
+
+    /**
+     * Returns the response from Duke
+     *
+     * @param input input from the user
+     *
+     * @return the response from Duke
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui, storage);
+            return c.response;
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 
-    public String getResponse(String input) {
-        return "Duke heard: " + input;
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
-    }
 }

@@ -8,7 +8,7 @@ import duke.ui.UI;
  * DeleteAllCommand implements method for clearing the task list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class DeleteAllCommand extends Command {
 
@@ -22,7 +22,7 @@ public class DeleteAllCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         taskList.deleteAll();
-        ui.deleteAllMessage();
+        this.response = ui.deleteAllMessage();
         storage.store(taskList);
     }
 

@@ -8,7 +8,7 @@ import duke.ui.UI;
  * FindTaskCommand implements method for finding a task in the task list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class FindTaskCommand extends Command {
 
@@ -32,8 +32,7 @@ public class FindTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
-        ui.findMessage();
-        tasks.findTask(this.keywords);
+        this.response = ui.findMessage() + "\n" + tasks.findTask(this.keywords);
     }
 
     @Override

@@ -10,12 +10,14 @@ import duke.ui.UI;
  * Abstract Command class implements methods for various commands recognised by Duke.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public abstract class Command {
 
     // Formatter to standardize the display of dates
     protected static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("MMM d yyyy");
+
+    public String response = "";
 
     /**
      * Executes the given command.

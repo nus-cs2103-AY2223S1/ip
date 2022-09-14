@@ -8,7 +8,7 @@ import duke.ui.UI;
  * IncorrectCommand implements method for unrecognised commands by Duke.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class IncorrectCommand extends Command {
 
@@ -21,7 +21,7 @@ public class IncorrectCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
-        ui.incorrectCommandMessage();
+        this.response = ui.incorrectCommandMessage();
     }
 
     /**

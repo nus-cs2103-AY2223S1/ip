@@ -7,7 +7,7 @@ import duke.exceptions.DukeException;
  * AddDeadlineCommand implements method for parsing inputs by the user.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class Parser {
 

@@ -9,7 +9,7 @@ import duke.ui.UI;
  * MarkTaskCommand implements method for marking a task in the task list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class MarkTaskCommand extends Command {
 
@@ -38,7 +38,7 @@ public class MarkTaskCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         taskList.markTask(this.taskId);
-        ui.markTaskMessage(taskList.getTask(this.taskId));
+        this.response = ui.markTaskMessage(taskList.getTask(this.taskId));
         storage.store(taskList);
     }
 

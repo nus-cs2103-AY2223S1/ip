@@ -8,7 +8,7 @@ import duke.ui.UI;
  * PrintListCommand implements method for printing out the task list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class PrintListCommand extends Command {
 
@@ -21,7 +21,7 @@ public class PrintListCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        taskList.printList();
+        this.response = taskList.printList() + "\n" +
         ui.printListMessage(taskList);
     }
 

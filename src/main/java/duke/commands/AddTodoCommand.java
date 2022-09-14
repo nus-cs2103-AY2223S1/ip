@@ -10,7 +10,7 @@ import duke.ui.UI;
  * AddTodoCommand implements method for adding Todo to task list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class AddTodoCommand extends Command {
 
@@ -42,7 +42,7 @@ public class AddTodoCommand extends Command {
         String taskDesc = input.substring(5);
         Todo todo = new Todo(taskDesc);
         taskList.addTask(todo);
-        ui.addTaskMessage(todo, taskList.getSize());
+        this.response = ui.addTaskMessage(todo, taskList.getSize());
         storage.store(taskList);
     }
 

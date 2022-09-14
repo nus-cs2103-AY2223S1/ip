@@ -12,7 +12,7 @@ import duke.ui.UI;
  * AddEventCommand implements method for adding Event to task list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class AddEventCommand extends Command {
 
@@ -56,7 +56,7 @@ public class AddEventCommand extends Command {
         }
         Event event = new Event(taskDesc, deadline.toString());
         taskList.addTask(event);
-        ui.addTaskMessage(event, taskList.getSize());
+        this.response = ui.addTaskMessage(event, taskList.getSize());
         storage.store(taskList);
     }
 

@@ -1,6 +1,5 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.UI;
@@ -9,7 +8,7 @@ import duke.ui.UI;
  * UndoCommand implements method for undoing the previous command.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class UndoCommand extends Command {
 
@@ -22,13 +21,10 @@ public class UndoCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        try {
-            taskList = new TaskList(storage.load());
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
-        }
-        ui.undoMessage();
-        taskList.printList();
+        taskList.undo();
+        this.response = ui.undoMessage() + "\n" +
+                taskList.printList() + "\n" +
+                ui.printListMessage(taskList);
         storage.store(taskList);
     }
 

@@ -4,7 +4,7 @@ package duke.exceptions;
  * DukeException implements method for exceptions in Duke.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class DukeException extends Exception {
 

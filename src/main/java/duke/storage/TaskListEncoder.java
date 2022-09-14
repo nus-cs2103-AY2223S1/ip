@@ -10,7 +10,7 @@ import duke.tasks.TaskList;
  * Encode the {@code TaskList} object into a data file for storage.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class TaskListEncoder {
 
@@ -30,6 +30,21 @@ public class TaskListEncoder {
     }
 
     /**
+     * Encodes a ArrayList into a List<String> containing the decoded tasks.
+     *
+     * @param toEncode the task list to be encoded
+     *
+     * @return the encoded task list
+     */
+    public static List<String> encodeTaskList(ArrayList<Task> toEncode) {
+        final List<String> encodedTaskList = new ArrayList<>();
+        for (Task task : toEncode) {
+            encodedTaskList.add(encodeTaskToString(task));
+        }
+        return encodedTaskList;
+    }
+
+    /**
      * Encodes the given task into a template format to be stored.
      *
      * @param task the task to be encoded
@@ -38,7 +53,7 @@ public class TaskListEncoder {
      */
     public static String encodeTaskToString(Task task) {
         return task.getTaskType() + "|"
-                + (task.isCompleted() ? 1 : 0) + "|"
+                + (task.isisCompleted() ? 1 : 0) + "|"
                 + task.getDesc();
     }
 }

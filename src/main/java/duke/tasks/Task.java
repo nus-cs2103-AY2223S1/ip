@@ -4,12 +4,12 @@ package duke.tasks;
  * Event implements methods for Task objects.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public abstract class Task {
 
     private final String taskDesc;
-    private boolean completed;
+    private boolean isCompleted;
 
     /**
      * Creates a new Task object.
@@ -18,7 +18,7 @@ public abstract class Task {
      */
     public Task(String taskDesc) {
         this.taskDesc = taskDesc;
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     /**
@@ -35,8 +35,8 @@ public abstract class Task {
      *
      * @return True if the task is completed
      */
-    public boolean isCompleted() {
-        return this.completed;
+    public boolean isisCompleted() {
+        return this.isCompleted;
     }
 
     /**
@@ -50,18 +50,18 @@ public abstract class Task {
      * Marks the task as done.
      */
     public void mark() {
-        this.completed = true;
+        this.isCompleted = true;
     }
 
     /**
      * Marks the task as not done.
      */
     public void unmark() {
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     public String toString() {
-        if (completed) {
+        if (isCompleted) {
             return "[X] " + taskDesc;
         } else {
             return "[ ] " + taskDesc;

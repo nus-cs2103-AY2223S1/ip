@@ -12,7 +12,7 @@ import duke.ui.UI;
  * AddDeadlineCommand implements method for adding Deadline to task list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class AddDeadlineCommand extends Command {
 
@@ -56,7 +56,7 @@ public class AddDeadlineCommand extends Command {
         }
         Deadline deadline = new Deadline(taskDesc, date.toString());
         taskList.addTask(deadline);
-        ui.addTaskMessage(deadline, taskList.getSize());
+        this.response = ui.addTaskMessage(deadline, taskList.getSize());
         storage.store(taskList);
     }
 

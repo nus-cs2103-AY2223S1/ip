@@ -8,7 +8,7 @@ import duke.ui.UI;
  * UnmarkTaskCommand implements method for unmarking a task in the task list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class UnmarkTaskCommand extends Command {
 
@@ -37,7 +37,7 @@ public class UnmarkTaskCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         taskList.unmarkTask(this.taskId);
-        ui.unmarkTaskMessage(taskList.getTask(this.taskId));
+        this.response = ui.unmarkTaskMessage(taskList.getTask(this.taskId));
         storage.store(taskList);
     }
 

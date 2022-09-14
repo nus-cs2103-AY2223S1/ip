@@ -14,7 +14,7 @@ import duke.tasks.Todo;
  * Decodes the storage data file into a {@code TaskList} object.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class TaskListDecoder {
 

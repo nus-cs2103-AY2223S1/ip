@@ -4,7 +4,7 @@ package duke.tasks;
  * Todo implements methods for Todo objects.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class Todo extends Task {
 

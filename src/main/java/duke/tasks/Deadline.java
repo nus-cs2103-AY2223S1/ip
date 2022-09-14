@@ -4,7 +4,7 @@ package duke.tasks;
  * Deadline implements methods for Deadline objects.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class Deadline extends Task {
 

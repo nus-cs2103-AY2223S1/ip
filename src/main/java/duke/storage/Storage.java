@@ -17,13 +17,13 @@ import duke.tasks.TaskList;
  * Storage implements method for storing and fetching the task list from hard drive.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class Storage {
 
     /** Default file path used if the user does not provide the file name. */
-    private static final String path = Paths.get(".").toAbsolutePath().toString();
-    private static final String RELATIVE_FILEPATH = path.substring(0, path.length() - 1) + "src/main/";
+    private static final String PATH = Paths.get(".").toAbsolutePath().toString();
+    private static final String RELATIVE_FILEPATH = PATH.substring(0, PATH.length() - 1) + "src/main/";
 
     private String filePath = "";
 
@@ -68,6 +68,23 @@ public class Storage {
         }
     }
 
+    /**
+     * Stores the given task list (as ArrayList) to the given path.
+     *
+     * @param toStore the task list to be stored
+     */
+    public void store(ArrayList<Task> toStore) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(this.filePath));
+            List<String> encodedTaskList = TaskListEncoder.encodeTaskList(toStore);
+            for (String task : encodedTaskList) {
+                writer.write("\n" + task);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Loads the stored task list from the specified file path.

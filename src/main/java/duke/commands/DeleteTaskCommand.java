@@ -9,7 +9,7 @@ import duke.ui.UI;
  * DeleteTaskCommand implements method for deleting a task from the task list.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class DeleteTaskCommand extends Command {
 
@@ -37,7 +37,7 @@ public class DeleteTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        ui.deleteTaskMessage(taskList.getTask(taskId), taskList.getSize());
+        this.response = ui.deleteTaskMessage(taskList.getTask(taskId), taskList.getSize());
         taskList.deleteTask(taskId);
         storage.store(taskList);
     }

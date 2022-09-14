@@ -8,7 +8,7 @@ import duke.ui.UI;
  * ExitCommand implements method for exiting Duke.
  *
  * @author Isaac Li Haoyang
- * @version v0.1
+ * @version v0.2
  */
 public class ExitCommand extends Command {
 
@@ -21,7 +21,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        ui.goodbyeMessage();
+        this.response = ui.goodbyeMessage();
     }
 
     /**
