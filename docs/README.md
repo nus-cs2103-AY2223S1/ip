@@ -1,7 +1,7 @@
 # User Guide
 
 Ado is a **desktop chatbot app for managing and storing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
-What are you waiting for? Start using Ado today! :panda_face:
+What are you waiting for? Start using Ado today! 🐼
 
 - [Quick Start](#quick-start)
 - [Features](#features)
@@ -19,11 +19,7 @@ What are you waiting for? Start using Ado today! :panda_face:
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
-<a name="quick-start">
-   
-   ## ⚡ Quick Start 
-</a>
-
+## Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `Ado.jar` file from [here](https://github.com/jovitaanderson/ip/releases/tag/A-Release).
 3. Copy the file to the folder you want to use as the home folder for your task list.
@@ -39,13 +35,8 @@ What are you waiting for? Start using Ado today! :panda_face:
     - `bye` : Exits the app.
  6. Refer to the [Features](#Features) below for details of each command.
 
-
-<a name="features">
-   
-   ## ⭐ Features 
-</a>
-
-‼️ Notes about the command format: <br>
+##  Features 
+💡 Notes about the command format: <br>
 Words in `{curly brackets}` are the parameters to be supplied by the user. <br>
 e.g. in `todo {description}` , `{description}` is a parameter which can be used as `todo homework`
   
@@ -102,8 +93,8 @@ Example: `delete 1` deletes the task at index 1 of the list
 ### Finding a task by description: `find`
 Finds all tasks matching keyword.<br>
 Format: `find {keyword}`
-- :exclamation: All task description with the matching sequence of characters will be returned. e.g. `me` will match `assignment` and `homework`.
-- :exclamation: The search is case-insensitive. e.g. `ASsignment` will match `assignment`.
+- ❗ All task description with the matching sequence of characters will be returned. e.g. `me` will match `assignment` and `homework`.
+- ❗ The search is case-insensitive. e.g. `ASsignment` will match `assignment`.
 
 Example: `find assignment` <br>
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_find.png?raw=true" alt="AdoFind"/> <br>
@@ -119,11 +110,7 @@ Format: `bye`
 ### Saving the data
 Ado saves data automatically in the hard disk after any valid command that changes the data. There is no need to save manually.
 
-<a name="faq">
-   
-   ## ❔ FAQ
-</a>
-
+## FAQ
 **Q**: How do I transfer my data to another Computer? <br>
 **A**: Install the app in the other computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Ado chatbot located at `[JAR file location]/data/tasks.txt`. <br>
 **Q**: What does the red text message mean? <br>
@@ -131,11 +118,7 @@ Ado saves data automatically in the hard disk after any valid command that chang
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_errorMessage.png?raw=true" alt="AdoErrorMessage"/> <br>
 
 
-<a name="command-summary">
-   
-   ## 📃 Command summary
-</a>
-   
+## Command summary
    Action | Format, Examples
    --------|------------------
    **Help** | `help`
