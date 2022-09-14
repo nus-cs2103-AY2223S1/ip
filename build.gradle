@@ -3,7 +3,6 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
-    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 repositories {
@@ -44,7 +43,7 @@ test {
 }
 
 application {
-    mainClassName = "jarvis.Main"
+    mainClassName = "jarvis.Launcher"
 }
 
 shadowJar {
