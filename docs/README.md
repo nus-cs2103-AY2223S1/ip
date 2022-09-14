@@ -50,6 +50,12 @@ Data is saved upon exiting the program.
 
 Adds a todo task to the list.
 
+Note: | symbol should not be used.
+
+Format:
+
+`todo [description]`
+
 Example of todo:
 
 `todo homework`
@@ -65,6 +71,14 @@ Now you have 2 tasks in the list.
 
 Adds a deadline task to the list.
 
+Ensure that Date is set in YYYY-MM-DD format. Time in HHMM 24h format.
+
+Note: | symbol should not be used.
+
+Format:
+
+`deadline [description] /by [YYYY-MM-DD HHMM]`
+
 Example of deadline:
 
 `deadline homework /by 2022-12-20 1200`
@@ -79,6 +93,14 @@ Now you have 3 tasks in the list.
 ### Adds an Event Task - `event`
 
 Adds an event task to the list.
+
+Ensure that Date is set in YYYY-MM-DD format. Time in HHMM 24h format.
+
+Note: | symbol should not be used.
+
+Format:
+
+`event [description] /at [YYYY-MM-DD HHMM]`
 
 Example of event:
 
