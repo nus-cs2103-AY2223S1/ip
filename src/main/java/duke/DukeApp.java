@@ -16,6 +16,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Class for running Duke application.
+ */
 public class DukeApp extends Application {
     private TaskList tl;
     private Ui ui;

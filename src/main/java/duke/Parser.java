@@ -102,11 +102,21 @@ public class Parser {
         return new Deadline(taskName, deadline);
     }
 
+    /**
+     * Parses a todo inputs and returns a todo.
+     * @param todoCommand String of command.
+     * @return a new Todo.
+     */
     public static Todo parseTodoInput(String todoCommand) {
         String item = todoCommand.substring(4);
         return new Todo(item);
     }
 
+    /**
+     * Parses all inputs.
+     * @param input Input from scanner.
+     * @return String to be printed.
+     */
     public String parseInput(String input) {
         String[] msgWords = input.split("\\b");
         String command = msgWords[0];
