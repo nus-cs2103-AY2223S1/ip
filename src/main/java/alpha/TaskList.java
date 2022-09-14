@@ -83,4 +83,34 @@ public class TaskList {
         }
         return filteredTaskList;
     }
+
+    /**
+     * Filters the list of tasks and returns all tasks that is tagged with the input tag.
+     *
+     * @param tag Tag used to filter the list of tasks.
+     * @return List of all tasks containing the keyword.
+     */
+    public List<Task> filterTaskTag(String tag) {
+        List<Task> filteredTaskList = new ArrayList<>();
+        for (Task task: this.tasks) {
+            if (task.getTag().contains(tag)) {
+                filteredTaskList.add(task);
+            }
+        }
+        return filteredTaskList;
+    }
+
+    /**
+     * Adds a tag to a task with the input task number in the task list.
+     * @param taskNumber Task number of the task to be tagged.
+     * @param tag Tag to be added to the task.
+     * @throws AlphaException
+     */
+    public void addTagToTask(int taskNumber, String tag) throws AlphaException {
+        try {
+            tasks.get(taskNumber - 1).addTag(tag);
+        } catch (IndexOutOfBoundsException e) {
+            throw new AlphaException("Invalid input: This task number doesn't exist!");
+        }
+    }
 }

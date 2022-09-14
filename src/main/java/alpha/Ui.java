@@ -8,6 +8,7 @@ import alpha.command.Delete;
 import alpha.command.Exit;
 import alpha.command.Help;
 import alpha.command.Mark;
+import alpha.command.Tag;
 import alpha.command.Unmark;
 import alpha.task.Task;
 
@@ -32,17 +33,21 @@ public class Ui {
         } else if (command instanceof Exit) {
             return (">> Come back later to continue from where you left!\n See you, Bye!");
         } else if (command instanceof Help) {
-            return "COMMAND\t" + "FORMAT\n"
-                    + "1. todo    \t\t" + "todo description\n"
-                    + "2. event   \t\t" + "event description /on yyyy-mm-dd\n"
-                    + "3. deadline\t" + "deadline description /by yyyy-mm-dd\n"
-                    + "4. mark    \t\t" + "mark task number\n"
-                    + "5. unmark  \t" + "unmark task number\n"
-                    + "6. delete  \t\t" + "delete task number\n"
-                    + "7. list    \t\t" + "list\n"
-                    + "8. find    \t\t" + "find keyword";
+            return "COMMAND\t " + "FORMAT\n"
+                    + "1. todo     \t" + "todo description\n"
+                    + "2. event    \t" + "event description /on yyyy-mm-dd\n"
+                    + "3. deadline \t" + "deadline description /by yyyy-mm-dd\n"
+                    + "4. mark     \t" + "mark task number\n"
+                    + "5. unmark   \t" + "unmark task number\n"
+                    + "6. delete   \t" + "delete task number\n"
+                    + "7. list     \t\t" + "list\n"
+                    + "8. find     \t\t" + "find keyword\n"
+                    + "9. tag      \t\t" + "tag task number /as tag\n"
+                    + "10. findTag \t" + "findTag tag";
         } else if (command instanceof Mark) {
             return (">> " + "marked task: " + taskNumber);
+        } else if (command instanceof Tag) {
+            return (">> " + "tagged task: " + taskNumber);
         } else {
             assert command instanceof Unmark;
             return (">> " + "unmarked task: " + taskNumber);
