@@ -72,48 +72,15 @@ public class Ui {
      * @return The new save file path.
      */
     protected String getSaveFile(String saveFilePath) {
-        boolean isValidFilePath = false;
-
         System.out.println("Your current save file is " + saveFilePath
                 + "\nWould you like to change your save file? Y/N");
 
         if (scanner.hasNextLine() && scanner.nextLine().equalsIgnoreCase("Y")) {
-            do {
-                System.out.println("What is the path of your save file?");
-                saveFilePath = scanner.nextLine();
-                isValidFilePath = validateFilePath(saveFilePath);
-            } while (!isValidFilePath);
+            System.out.println("What is the path of your save file?");
+            saveFilePath = scanner.nextLine();
         }
 
-        System.out.println("Your save file is now " + saveFilePath);
         return saveFilePath;
-    }
-
-    /**
-     * Checks whether the given file path points to a {@code .txt} file.
-     *
-     * @param filePath The file path.
-     * @return {@code true} if the file path is valid, else {@code false}.
-     */
-    private boolean validateFilePath(String filePath) {
-        try {
-            Paths.get(filePath);
-            if (!filePath.endsWith(".txt")) {
-                return false;
-            }
-            File saveFile = new File(filePath);
-            if (saveFile.getParentFile() != null) {
-                saveFile.getParentFile().mkdirs();
-            }
-            saveFile.createNewFile();
-            if (saveFile.exists()) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (InvalidPathException | IOException e) {
-            return false;
-        }
     }
 
     /**

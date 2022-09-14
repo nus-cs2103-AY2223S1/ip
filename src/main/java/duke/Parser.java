@@ -10,11 +10,6 @@ import duke.exception.DukeInvalidCommandException;
  */
 public class Parser {
     /**
-     * Creates a new parser.
-     */
-    protected Parser() {}
-
-    /**
      * Parses the input into a command and parameters.
      *
      * @param input The input {@code String} to be parsed.

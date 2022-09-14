@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -24,13 +26,41 @@ public class Storage {
     /** Path to {@code .txt} save file */
     private String saveFilePath = "data.txt";
 
+    protected Storage() {}
+
+    protected Storage(String saveFilePath) {
+        if (validateFilePath(saveFilePath)) {
+            this.saveFilePath = saveFilePath;
+        }
+    }
+
     public String getSaveFilePath() {
         return saveFilePath;
     }
 
-    protected void setSaveFilePath(String saveFilePath) {
-        this.saveFilePath = saveFilePath;
+    /**
+     * Checks whether the given file path points to a {@code .txt} file.
+     *
+     * @param filePath The file path.
+     * @return {@code true} if the file path is valid, else {@code false}.
+     */
+    private static boolean validateFilePath(String filePath) {
+        try {
+            Paths.get(filePath);
+            if (!filePath.endsWith(".txt")) {
+                return false;
+            }
+            File saveFile = new File(filePath);
+            if (saveFile.getParentFile() != null) {
+                saveFile.getParentFile().mkdirs();
+            }
+            saveFile.createNewFile();
+            return saveFile.exists();
+        } catch (InvalidPathException | IOException e) {
+            return false;
+        }
     }
+
 
     /**
      * Loads the tasks from the save file into a task list in the specified timezone.

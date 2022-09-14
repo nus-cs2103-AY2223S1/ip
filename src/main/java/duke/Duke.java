@@ -71,19 +71,16 @@ public class Duke {
         tasks = new TaskList(storage.loadTasks(timeZone));
     }
 
-    public static void main(String[] args) {
-        new Duke().startBot();
-    }
-
     /**
-     * Starts MakiBot.
+     * Creates a new {@code Duke} object with specified save file.
+     *
+     * @param saveFile The save file.
      */
-    protected void startBot() {
-        System.out.println("Hello! I'm MakiBot");
-        timeZone = ui.getTimeZone(timeZone);
-        storage.setSaveFilePath(ui.getSaveFile(storage.getSaveFilePath()));
+    public Duke(String saveFile) {
+        ui = new Ui();
+        storage = new Storage(saveFile);
+        parser = new Parser();
         tasks = new TaskList(storage.loadTasks(timeZone));
-        System.out.println("Welcome! What can I do for you?");
     }
 
     /**
