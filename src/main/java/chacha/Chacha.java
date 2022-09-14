@@ -14,6 +14,7 @@ public class Chacha {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
+    boolean isExit;
 
     /**
      * Constructor for Chacha.
@@ -21,7 +22,7 @@ public class Chacha {
      * @param filePath File path to save data to and load data from.
      */
     public Chacha(String filePath) {
-        
+        isExit = false;
         ui = new Ui();
         storage = new Storage("data/tasks.txt");
         try {
@@ -45,8 +46,6 @@ public class Chacha {
      * Runs an instantiated Chacha.
      */
     public void run() {
-        System.out.println(ui.printWelcome());
-        boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readInput();
@@ -62,7 +61,6 @@ public class Chacha {
         } catch (IOException e) {
             System.out.println("Unable to save file");
         }
-        System.out.println("Bye. Hope to see you again soon!");
     }
 
     /**
