@@ -72,7 +72,7 @@ public class TaskList {
     }
 
     /**
-     * Mark a test to indicate it as still need
+     * Unmarked a test to indicate it as still needs
      * to be done
      * @param task Task to be unmarked
      */

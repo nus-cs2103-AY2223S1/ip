@@ -124,8 +124,7 @@ public class Duke {
             return helpResponse();
         } else if(first.equalsIgnoreCase("siu")) {
             return siuResponse();
-        }
-        else if(first.equals("hi")) {
+        } else if(first.equals("hi")) {
             return hiResponse();
         } else if (first.equals("bye")) {
             return byeResponse();

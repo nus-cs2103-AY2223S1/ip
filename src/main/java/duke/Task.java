@@ -20,18 +20,15 @@ public class Task {
     }
 
     public String getStatusIcon() {
-
         return (isDone ? "[X] " : "[ ] "); // mark done task with X
     }
 
     public void mark() {
-
         isDone = true;
         assert isDone;
     }
 
     public void unmark() {
-
         isDone = false;
         assert !isDone;
     }
