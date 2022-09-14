@@ -112,12 +112,12 @@ public class Command {
             Task task = TaskCreator.createTask(in);
             if (task == null) {
                 throw new InvalidCommandException();
-            } else if (task.getClass() == ErrorTask.class) {
+            } else if (task.getClass() == ErrorTask.class && task.getDescription() == "invalidTime") {
+                throw new InvalidTimeException();
+            } else if (task.getClass() == ErrorTask.class && task.getDescription() == "invalidDate") {
                 throw new InvalidDateException();
             } else if (task.getDescription().length() < 1) {
                 throw new NoDescriptionException();
-            } else if (task.getDescription() == "invalidTime") {
-                throw new InvalidTimeException();
             } else {
                 list.add(task);
                 message = Ui.add(task);

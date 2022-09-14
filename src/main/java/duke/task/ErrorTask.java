@@ -5,9 +5,9 @@ package duke.task;
  */
 public class ErrorTask extends Task {
     /**
-     * Constructor for the errortask
+     * Constructor for the errortask with description
      */
-    public ErrorTask() {
-        super("", "[]");
+    public ErrorTask(String description) {
+        super(description, "[]");
     }
 }

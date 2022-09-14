@@ -108,7 +108,7 @@ public class TaskCreator {
     private static Task createDeadline(String info) {
         int indexOfSplit = info.indexOf("/by");
         if (indexOfSplit == -1) {
-            return new ErrorTask();
+            return new ErrorTask("invalidDate");
         }
         try {
             String description = info.substring(0, indexOfSplit - 1);
@@ -117,7 +117,7 @@ public class TaskCreator {
                     .split(" ");
 
             if (dateTimeDeadline.length > 1 && Integer.valueOf(dateTimeDeadline[1]) < 0) {
-                return new Deadline("invalidTime", "", null);
+                return new ErrorTask("invalidTime");
             }
 
             DateTimeFormatter formatter = DateTimeFormatter
@@ -145,7 +145,7 @@ public class TaskCreator {
         try {
             int indexOfSplit = info.indexOf("/at");
             if (indexOfSplit == -1) {
-                return new ErrorTask();
+                return new ErrorTask("invalidDate");
             }
 
             String description = info.substring(0, indexOfSplit - 1);
