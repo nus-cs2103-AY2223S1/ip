@@ -15,6 +15,11 @@ public class Ui {
 
     private String description;
 
+    /**
+     * Display description for GUI.
+     *
+     * @return String that represents GUI description.
+     */
     public String displayDescription() {
         assert description != null : "Ui::displayDescription has null description";
         return description;
@@ -33,13 +38,6 @@ public class Ui {
     }
 
     /**
-     * Show line to the user.
-     */
-    public void showLine() {
-        description = "_______";
-    }
-
-    /**
      * Show loading error to the user.
      */
     public void showLoadingError() {
@@ -49,6 +47,7 @@ public class Ui {
 
     /**
      * Show a message that a specified task has been deleted from the list.
+     *
      * @param t The specified task deleted.
      * @param taskList The task list the specified task is deleted from.
      */
@@ -67,6 +66,7 @@ public class Ui {
 
     /**
      * Show a message that a specified task has been added to the list.
+     *
      * @param t The specified task to be added.
      * @param taskList The task list the specified task is added to.
      */
@@ -84,6 +84,7 @@ public class Ui {
 
     /**
      * Show a message that a specified task has been marked done.
+     *
      * @param t The specified task to be marked done.
      */
     public void showMark(Task t) {
@@ -94,6 +95,7 @@ public class Ui {
 
     /**
      * Show a message that a specified task has been marked undone.
+     *
      * @param t The specified task to be marked undone.
      */
     public void showUnmark(Task t) {
@@ -104,6 +106,7 @@ public class Ui {
 
     /**
      * Show all the tasks in the task list.
+     *
      * @param taskList The specified task list.
      */
     public void showTasks(ArrayList<Task> taskList) {
@@ -118,6 +121,7 @@ public class Ui {
 
     /**
      * Show all tasks on a specified date.
+     *
      * @param onDateTasks ArrayList that represents all tasks on date.
      */
     public void showGetDate(ArrayList<Task> onDateTasks) {
@@ -138,6 +142,7 @@ public class Ui {
 
     /**
      * Show all tasks found with specified keyword.
+     *
      * @param foundTasks ArrayList that represents tasks containing specified keyword.
      */
     public void showFoundTasks(ArrayList<Task> foundTasks) {
@@ -157,6 +162,7 @@ public class Ui {
 
     /**
      * Show error message.
+     *
      * @param error The description for the error.
      */
     public void showError(String error) {

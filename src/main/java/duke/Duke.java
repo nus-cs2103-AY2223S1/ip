@@ -44,7 +44,7 @@ public class Duke {
 
 
     /**
-     * Return a String that represents welcome message.
+     * Returns a String that represents welcome message.
      *
      * @return String that represents welcome message.
      */
@@ -54,8 +54,10 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns a String that represents Duke's response.
+     *
+     * @param input String that represents user input.
+     * @return String that represents response.
      */
     public String getResponse(String input) {
         try {

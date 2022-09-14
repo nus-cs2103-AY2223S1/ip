@@ -17,15 +17,26 @@ public class FindCommand extends Command {
 
     private String keyword;
 
+    /**
+     * Constructor of FindCommand that takes in
+     * a string to represent keyword.
+     * @param keyword Specified keyword.
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> foundTasks = tasks.findTasks(keyword);

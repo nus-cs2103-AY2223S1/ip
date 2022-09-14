@@ -16,6 +16,7 @@ public class Event extends Task {
 
     /**
      * Constructs a Event object
+     *
      * @param description description for the event.
      * @param eventDate string that represents time of event.
      */
@@ -42,6 +43,7 @@ public class Event extends Task {
 
     /**
      * Constructor for Event when loaded from Storage.
+     *
      * @param i Mark status.
      * @param description Specified Event description.
      * @param eventAt Specified Event date.
@@ -66,11 +68,6 @@ public class Event extends Task {
         return "E" + " | " + super.toStore() + " | " + this.eventAt;
     }
 
-
-    /**
-     * Overriding method of toString() for duke.task.Event.
-     * @return the string representing duke.task.Event task.
-     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + eventAt + ")";

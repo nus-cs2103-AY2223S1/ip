@@ -1,9 +1,9 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 import duke.DukeException;
 
-import java.time.LocalDate;
-import java.util.NoSuchElementException;
 
 
 /**
@@ -24,6 +24,7 @@ public abstract class Task {
 
     /**
      * Construct a Task object.
+     * 
      * @param description description for Task.
      */
     public Task(String description) {
@@ -46,6 +47,12 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Set the Task to specified Priority.
+     *
+     * @param priority Specified Priority.
+     * @throws DukeException when user enters invalid Priority.
+     */
     public void attachPriority(String priority) throws DukeException {
         try {
             this.priority = Priority.valueOf(priority);
@@ -56,6 +63,7 @@ public abstract class Task {
 
     /**
      * Return an icon that represents whether the task is done.
+     *
      * @return String representation of status.
      */
     public String getStatusIcon() {
@@ -64,6 +72,7 @@ public abstract class Task {
 
     /**
      * Return the Task in the form it is stored in local.
+     *
      * @return Task in store form.
      */
     public String toStore() {
@@ -72,16 +81,12 @@ public abstract class Task {
 
     /**
      * Compare date between tasks.
+     *
      * @param date Specified date of task.
      * @return true only if both task on the same date.
      */
     public abstract boolean isSameDate(LocalDate date);
 
-
-    /**
-     * Overriding method of toString() for duke.task.Task.
-     * @return the string representing duke.task.Task.
-     */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;

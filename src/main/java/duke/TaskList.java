@@ -3,7 +3,6 @@ package duke;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import duke.task.Task;
 
@@ -33,6 +32,7 @@ public class TaskList {
 
     /**
      * Adds the Task into the storage.
+     *
      * @param t Specified Task.
      */
     public void addTask(Task t) {
@@ -41,6 +41,7 @@ public class TaskList {
 
     /**
      * Deletes the specified task in the storage.
+     *
      * @param i Specified task.
      */
     public Task deleteTask(int i) throws DukeException {
@@ -55,6 +56,7 @@ public class TaskList {
 
     /**
      * Gets the tasks on a specified date.
+     *
      * @param date LocalDate object that represents specified date.
      * @return ArrayList that represents all tasks on specified date.
      */
@@ -106,6 +108,14 @@ public class TaskList {
         }
     }
 
+    /**
+     * Attach the specified Task with the Priority specified.
+     *
+     * @param i Specified Task.
+     * @param priority Specified Priority.
+     * @return Task with attached Priority.
+     * @throws DukeException when Task is not found.
+     */
     public Task attachPriority(int i, String priority) throws DukeException {
         try {
             Task target = taskList.get(i - 1);

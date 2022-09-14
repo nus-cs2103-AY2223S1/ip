@@ -26,11 +26,17 @@ public class PriorityCommand extends Command {
         this.priority = priority;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task t = tasks.attachPriority(index, priority);

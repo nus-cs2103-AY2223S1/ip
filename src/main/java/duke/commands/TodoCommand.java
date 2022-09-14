@@ -23,11 +23,17 @@ public class TodoCommand extends Command {
         this.userDescription = userDescription;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task t = new ToDo(userDescription);

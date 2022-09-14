@@ -23,11 +23,17 @@ public class DeleteCommand extends Command {
         this.i = i;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task t = tasks.deleteTask(i);

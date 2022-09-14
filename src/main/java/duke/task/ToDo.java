@@ -20,6 +20,7 @@ public class ToDo extends Task {
 
     /**
      * Constructor for Todo when loaded from Storage.
+     *
      * @param i Mark status.
      * @param description Specified Todo description.
      */
@@ -40,10 +41,6 @@ public class ToDo extends Task {
         return false;
     }
 
-    /**
-     * Overriding method of toString() for duke.task.ToDo.
-     * @return the string representing duke.task.ToDo task.
-     */
     @Override
     public String toString() {
         return "[T]" + super.toString();

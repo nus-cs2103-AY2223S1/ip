@@ -16,6 +16,7 @@ public class Deadline extends Task {
 
     /**
      * Constructs a Deadline object.
+     *
      * @param description description for the deadline.
      * @param deadline string that represents deadline of task.
      */
@@ -42,6 +43,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline when loaded from Storage.
+     *
      * @param i Mark status.
      * @param description Specified Deadline description.
      * @param deadline Specified Deadline date.
@@ -67,10 +69,6 @@ public class Deadline extends Task {
         return "D" + " | " + super.toStore() + " | " + this.ddl;
     }
 
-    /**
-     * Overriding method of toString() for duke.task.Deadline.
-     * @return the string representing duke.task.Deadline task.
-     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.ddl + ")";

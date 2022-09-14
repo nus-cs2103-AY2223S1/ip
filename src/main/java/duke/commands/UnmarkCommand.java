@@ -22,11 +22,17 @@ public class UnmarkCommand extends Command {
         this.index = i;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task t = tasks.unmarkDone(index);

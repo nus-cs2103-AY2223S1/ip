@@ -20,7 +20,8 @@ import duke.commands.UnmarkCommand;
 public class Parser {
 
     /**
-     * Make sense of the user's input by parsing.
+     * Makes sense of the user's input by parsing.
+     *
      * @param userInput The command user input in Duke command line.
      * @return A Command object representing user command.
      * @throws DukeException when user command is invalid.
