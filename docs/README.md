@@ -47,9 +47,11 @@ Every change is automatically saved and will be automatically loaded on next sta
 
 ---
 
+### `help` - Display available commands
+
 ### `bye` - Exit the program
 
-### `list` - List all the current tasks
+### `list` - List current tasks
 
 ### `todo <task description>` - Add a todo task
 
