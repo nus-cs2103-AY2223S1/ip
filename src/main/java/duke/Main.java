@@ -6,6 +6,7 @@ import duke.gui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -15,6 +16,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private Duke duke = new Duke("data/duke.txt");
+
+    private final Image iconImage = new Image(this.getClass().getResourceAsStream("/images/Icon.png"));
 
     /**
      * Creates the ui of duke.
@@ -30,6 +33,8 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
+            stage.getIcons().add(iconImage);
+            stage.setTitle("Super Duke");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -48,7 +48,6 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         circle.setFill(new ImagePattern(img));
-        // circle.setEffect(new DropShadow(+25, 0, +2, Color.RED));
     }
 
     /**
@@ -95,7 +94,7 @@ public class DialogBox extends HBox {
      * @param color Color at the  edge of the circular image.
      */
     public static void setImageColor(DialogBox dialogBox, Color color) {
-        dialogBox.circle.setEffect(new DropShadow(+25, 0, +2, color));
+        dialogBox.circle.setEffect(new DropShadow(+12, 0, 0, color));
     }
 
 }
