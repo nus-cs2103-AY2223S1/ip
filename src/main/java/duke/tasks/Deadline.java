@@ -10,8 +10,8 @@ import duke.parser.TimeParser;
  */
 public class Deadline extends Task {
 
-    protected LocalDateTime deadline;
     private static final TimeParser TIME_PARSER = new TimeParser();
+    protected LocalDateTime deadline;
 
     /**
      * Constructor specifying description and deadline of a deadline task.
@@ -44,6 +44,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + TIME_PARSER.formatDeadline(this.deadline) + ")";
+        return String.format("[D]%s (by: %s)", super.toString(), TIME_PARSER.formatDeadline(this.deadline));
     }
 }
