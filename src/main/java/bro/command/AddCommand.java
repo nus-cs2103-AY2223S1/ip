@@ -29,12 +29,28 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
-        tasklist.addTask(this.task);
-        try {
-            storage.writeToFile(this.task);
-        } catch (IOException e) {
-            throw new BroException("Couldn't delete task!");
+        if (!this.checkDuplicate(tasklist)) {
+            tasklist.addTask(this.task);
+            try {
+                storage.writeToFile(this.task);
+            } catch (IOException e) {
+                throw new BroException("Couldn't delete task!");
+            }
+            return ui.printAdd(this.task) + ui.listSize(tasklist);
         }
-        return ui.printAdd(this.task) + ui.listSize(tasklist);
+        return "The task already exist.";
+    }
+    /**
+     * Checks whether the same task is already present.
+     * @param tasklist The list of tasks.
+     * @return Returns true if no duplicates and false otherwise.
+     */
+    public boolean checkDuplicate(TaskList tasklist) {
+        for (int i = 0; i < tasklist.size(); i++) {
+            if (tasklist.get(i).toString().equals(this.task.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
