@@ -23,10 +23,12 @@ Your personal assistant who will make sure you never forget your tasks ever agai
 
 ---
 
-1. Click [here](https://github.com/ngshijun/ip/releases/download/v0.2/LaMDA.jar) to download.
-2. Double-click on the `LaMDA.jar`
-3. Done. It's that simple. 😉
-4. Enjoy!!! 🤩🤩🤩
+1. Click [here](https://github.com/ngshijun/ip/releases/download/v0.3/LaMDA.jar) to download.
+2. Open a terminal at the folder that contains the `LaMDA.jar` file
+3. In terminal, type in `java -jar LaMDA.jar`
+4. Press `Enter`
+5. Done. It's that simple. 😉 
+6. Enjoy!!! 🤩🤩🤩
 
 ## Features
 
@@ -47,22 +49,22 @@ Every change is automatically saved and will be automatically loaded on next sta
 
 ---
 
-### `help` - Display available commands
+`help` - Display available commands
 
-### `bye` - Exit the program
+`bye` - Exit the program
 
-### `list` - List current tasks
+`list` - List current tasks
 
-### `todo <task description>` - Add a todo task
+`todo <task description>` - Add a todo task
 
-### `deadline <task description> /by <date>` - Add a deadline task
+`deadline <task description> /by <date>` - Add a deadline task
 
-### `event <task description> /at <location>` - Add an event task 
+`event <task description> /at <location>` - Add an event task 
 
-### `delete <task number>` - Delete unwanted or completed task
+`delete <task number>` - Delete unwanted or completed task
 
-### `find <keywords>` - Find tasks with matching keywords
+`find <keywords>` - Find tasks with matching keywords
 
-### `mark <task number>` - Mark a task as completed
+`mark <task number>` - Mark a task as completed
 
-### `unmark <task number>` - Unmark a task if it was wrongly marked
+`unmark <task number>` - Unmark a task if it was wrongly marked
