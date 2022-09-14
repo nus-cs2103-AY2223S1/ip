@@ -13,7 +13,7 @@ public class UiTest {
     @Test
     public void printTaskSearch_noMatchingTask_noSearchResultsMessageReturned(){
         String match = "";
-        assertEquals(Ui.printTaskSearch(match), "Duke: Sorry! Cannot find any matching tasks in your list.");
+        assertEquals(Ui.printTaskSearch(match), "Sorry! Cannot find any matching tasks!");
     }
 
     @Test
