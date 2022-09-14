@@ -1,5 +1,5 @@
 # User Guide
-___
+
 
 Duke is a desktop app that allows users to easily manage tasks 
 via a Command Line Interface (CLI). Users can keep track of different 
@@ -9,7 +9,6 @@ tasks such as *ToDos*, *Events* and *Deadlines*. Users can *create*, *list*,
 ___
 
 ## Getting started
-___
 
 1. Ensure that you have Java `11` or above installed in your computer. 
 2. Download the latest release from [here](https://github.com/desmondyst/ip/releases).
@@ -21,8 +20,9 @@ and pressing Enter will list all the tasks stored in the application.
    * `find CS2100`: Finds all tasks with the keyword `CS2100` in their task description. 
 6. Refer to the Features below fo details of each command. 
 
-## Features
 ___
+
+## Features
 
 ### `todo` - Create a Todo task
 Creates a Todo task with the given description.
@@ -200,6 +200,7 @@ Bye. Hope to see you soon!
 <br />
 
 ## Command summary
+
 | Action   | Format                              |
 |----------|-------------------------------------|
 | todo     | todo [TASK]                         |
@@ -212,3 +213,5 @@ Bye. Hope to see you soon!
 | find     | find [KEYWORDS]                     |
 | delete   | delete [TASK NUMBER]                |
 | bye      | bye                                 |
+
+___
