@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import duke.chatbot.personality.Personality;
+import duke.chatbot.personality.exceptions.LoadPersonalityException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import duke.chatbot.ChatBot;
@@ -18,14 +21,20 @@ import duke.chatbot.taskmanager.task.ToDoTask;
 
 public class CommandManagerTest {
     private final CommandManager commandManager = new CommandManager();
+    private final Personality personality = new Personality("Christina");
 
     @Test
     public void byeCommandHandler() {
         String command = "bye";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             assertEquals(commandManager.getCommand(command).execute(""),
@@ -43,8 +52,13 @@ public class CommandManagerTest {
         String command = "list";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             assertEquals(commandManager.getCommand(command).execute(""),
@@ -64,8 +78,13 @@ public class CommandManagerTest {
         String command = "todo";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             assertEquals(commandManager.getCommand(command).execute("task1"),
@@ -84,8 +103,13 @@ public class CommandManagerTest {
         String command = "deadline";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             assertEquals(commandManager.getCommand(command).execute("task1/by01/01/2020,0000"),
@@ -143,8 +167,13 @@ public class CommandManagerTest {
         String command = "event";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             assertEquals(commandManager.getCommand(command).execute("task1/at01/01/2020,0000"),
@@ -202,8 +231,13 @@ public class CommandManagerTest {
         String command = "mark";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             commandManager.getCommand(command).execute("test");
@@ -253,8 +287,13 @@ public class CommandManagerTest {
         String command = "unmark";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             commandManager.getCommand(command).execute("test");
@@ -305,8 +344,13 @@ public class CommandManagerTest {
         String command = "delete";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             commandManager.getCommand(command).execute("test");
@@ -355,8 +399,13 @@ public class CommandManagerTest {
         String command = "find";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             taskManager.addTask(new ToDoTask("task1"));
@@ -385,8 +434,13 @@ public class CommandManagerTest {
         String command = "update";
         ChatBot chatBot = new ChatBot("chatbot");
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             LocalDateTime dateTime = LocalDateTime.parse("01/01/2022,0000",

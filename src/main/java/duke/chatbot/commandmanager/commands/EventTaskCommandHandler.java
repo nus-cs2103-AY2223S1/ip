@@ -8,6 +8,7 @@ import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidEventException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.EventTask;
 
@@ -17,13 +18,17 @@ import duke.chatbot.taskmanager.task.EventTask;
  * Responds with the confirmation message stating that a new task is added.
  */
 public class EventTaskCommandHandler implements Command {
+    private final Personality personality;
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the event task command with a reference to the task manager
+     * and the chatbot's personality.
      *
+     * @param personality a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public EventTaskCommandHandler(TaskManager taskManager) {
+    public EventTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -59,10 +64,8 @@ public class EventTaskCommandHandler implements Command {
         } catch (DateTimeParseException exception) {
             throw new InvalidEventException(taskManager.getDateFormat());
         }
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("> Added: ");
-        stringBuilder.append(taskManager.addTask(new EventTask(eventTaskName, eventTime)));
-        stringBuilder.append("\n");
-        return stringBuilder.toString();
+
+        String taskAdded = taskManager.addTask(new EventTask(eventTaskName, eventTime));
+        return personality.formulateResponse("add_task", taskAdded);
     }
 }

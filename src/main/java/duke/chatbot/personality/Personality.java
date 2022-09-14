@@ -1,6 +1,7 @@
 package duke.chatbot.personality;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,16 +13,27 @@ import duke.chatbot.personality.exceptions.LoadPersonalityException;
  * Personality class provides a personality with unique responses.
  */
 public class Personality {
-    private final Map<String, Map<String, List<String>>> responseTable;
+    private final String name;
+    private Map<String, Map<String, List<String>>> responseTable;
 
     /**
-     * Creates a personality and loads the response table based on the yaml file provided.s
+     * Creates a personality with the name provided.
      *
      * @param name name of the personality to load
      */
-    public Personality(String name) throws LoadPersonalityException {
+    public Personality(String name) {
+        this.name = name;
+        this.responseTable = new HashMap<>();
+    }
+
+    /**
+     * Loads the personality from a yaml file.
+     *
+     * @throws LoadPersonalityException thrown when the yaml does not exist
+     */
+    public void loadPersonality() throws LoadPersonalityException {
         try {
-            InputStream inputStream = this.getClass().getResourceAsStream("/personalities/" + name + ".yml");
+            InputStream inputStream = this.getClass().getResourceAsStream("/personalities/" + this.name + ".yml");
             Yaml yaml = new Yaml();
             this.responseTable = yaml.load(inputStream);
         } catch (Exception exception) {

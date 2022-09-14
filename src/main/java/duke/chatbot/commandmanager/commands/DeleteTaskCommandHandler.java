@@ -3,6 +3,7 @@ package duke.chatbot.commandmanager.commands;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidIndexException;
 import duke.chatbot.commandmanager.commands.exceptions.NoSuchIndexException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 
 /**
@@ -10,13 +11,17 @@ import duke.chatbot.taskmanager.TaskManager;
  * Responds with the confirmation message stating that the task has been deleted.
  */
 public class DeleteTaskCommandHandler implements Command {
+    private final Personality personality;
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the delete command with a reference to the task manager
+     * and the chatbot's personality.
      *
+     * @param personality a reference to the task manager
      * @param taskManager a reference to the task manager
      */
-    public DeleteTaskCommandHandler(TaskManager taskManager) {
+    public DeleteTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -44,12 +49,8 @@ public class DeleteTaskCommandHandler implements Command {
         }
 
         String deletedTask = this.taskManager.deleteTask(itemNumber);
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("The following item has been removed.\n");
-        stringBuilder.append(deletedTask).append("\n");
-        stringBuilder.append("You have ").append(this.taskManager.getListSize()).append(" item(s) remaining.\n");
-        return stringBuilder.toString();
+        String tasksRemaining = String.valueOf(this.taskManager.getListSize());
+        return personality.formulateResponse("delete_task", deletedTask, tasksRemaining);
     }
 }
 

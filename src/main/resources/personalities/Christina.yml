@@ -19,7 +19,7 @@ add_task:
   HEAD:
     - "> Added: "
   TAIL:
-    - ""
+    - "\n"
 
 mark_task_success:
   HEAD:

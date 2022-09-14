@@ -1,6 +1,7 @@
 package duke.chatbot.commandmanager.commands;
 
 import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.ToDoTask;
 
@@ -10,13 +11,17 @@ import duke.chatbot.taskmanager.task.ToDoTask;
  * Responds with the confirmation message stating that a new task is added.
  */
 public class TodoTaskCommandHandler implements Command {
+    private final Personality personality;
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the to do task command with a reference to the task manager
+     * and the chatbot's personality
      *
+     * @param personality a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public TodoTaskCommandHandler(TaskManager taskManager) {
+    public TodoTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -34,10 +39,7 @@ public class TodoTaskCommandHandler implements Command {
             throw new EmptyTaskException();
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("> Added: ");
-        stringBuilder.append(taskManager.addTask(new ToDoTask(todoTaskName)));
-        stringBuilder.append("\n");
-        return stringBuilder.toString();
+        String taskAdded = taskManager.addTask(new ToDoTask(todoTaskName));
+        return personality.formulateResponse("add_task", taskAdded);
     }
 }

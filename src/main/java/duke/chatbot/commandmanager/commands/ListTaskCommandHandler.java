@@ -1,6 +1,7 @@
 package duke.chatbot.commandmanager.commands;
 
 import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 
 /**
@@ -8,13 +9,18 @@ import duke.chatbot.taskmanager.TaskManager;
  * Responds with the list of tasks returned by the task manager.
  */
 public class ListTaskCommandHandler implements Command {
+    private final Personality personality;
+    private final TaskManager taskManager;
+
     /**
      * Creates a new handler for the list task command with a reference to the task manager
+     * and the chatbot's personality
      *
+     * @param personality a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    private final TaskManager taskManager;
-    public ListTaskCommandHandler(TaskManager taskManager) {
+    public ListTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -31,14 +37,11 @@ public class ListTaskCommandHandler implements Command {
             throw new InvalidCommandException();
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
         String taskListString = this.taskManager.listTask();
         if (taskListString.length() == 0) {
-            stringBuilder.append("You have no tasks in your list.\n");
+            return personality.formulateResponse("list_task_empty");
         } else {
-            stringBuilder.append("I have your list of tasks displayed below:\n");
-            stringBuilder.append(taskListString);
+            return personality.formulateResponse("list_task", taskListString);
         }
-        return stringBuilder.toString();
     }
 }

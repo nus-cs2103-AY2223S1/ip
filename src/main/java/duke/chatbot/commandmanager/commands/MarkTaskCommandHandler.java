@@ -3,6 +3,7 @@ package duke.chatbot.commandmanager.commands;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidIndexException;
 import duke.chatbot.commandmanager.commands.exceptions.NoSuchIndexException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 
 /**
@@ -10,13 +11,17 @@ import duke.chatbot.taskmanager.TaskManager;
  * Responds with the confirmation message stating that the task has been successfully marked.
  */
 public class MarkTaskCommandHandler implements Command {
+    private final Personality personality;
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the mark task command with a reference to the task manager
+     * and the chatbot's personality.
      *
+     * @param personality a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public MarkTaskCommandHandler(TaskManager taskManager) {
+    public MarkTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -45,9 +50,9 @@ public class MarkTaskCommandHandler implements Command {
 
         boolean isMarkedSuccessfully = this.taskManager.markTask(itemNumber);
         if (isMarkedSuccessfully) {
-            return "I've marked this task as done. Good Job!\n";
+            return personality.formulateResponse("mark_task_success");
         } else {
-            return "The task is already marked you dummy.\n";
+            return personality.formulateResponse("mark_task_fail");
         }
     }
 }

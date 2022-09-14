@@ -6,6 +6,7 @@ import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException
 import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidIndexException;
 import duke.chatbot.commandmanager.commands.exceptions.NoSuchIndexException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.DeadlineTask;
 import duke.chatbot.taskmanager.task.EventTask;
@@ -16,13 +17,17 @@ import duke.chatbot.taskmanager.task.ToDoTask;
  * list of task managed by the task manager.
  */
 public class UpdateTaskCommandHandler implements Command {
-    private TaskManager taskManager;
+    private final Personality personality;
+    private final TaskManager taskManager;
     /**
      * Creates a new handler for the update task command with a reference to the task manager.
+     * and the chatbot's personality.
      *
+     * @param personality a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public UpdateTaskCommandHandler(TaskManager taskManager) {
+    public UpdateTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -57,30 +62,25 @@ public class UpdateTaskCommandHandler implements Command {
             throw new InvalidArgumentsException();
         }
 
-        String updatedTaskString = "";
+        String updatedTask = "";
         String updatedArguments = argumentScanner.nextLine().strip();
         switch (this.taskManager.getTaskType(itemNumber)) {
         case ToDoTask.TASK_TYPE:
-            updatedTaskString = new UpdateTodoTaskCommandHandler(this.taskManager)
+            updatedTask = new UpdateTodoTaskCommandHandler(this.taskManager)
                     .execute(itemNumber, updatedArguments);
             break;
-
         case DeadlineTask.TASK_TYPE:
-            updatedTaskString = new UpdateDeadlineTaskCommandHandler(this.taskManager)
+            updatedTask = new UpdateDeadlineTaskCommandHandler(this.taskManager)
                     .execute(itemNumber, updatedArguments);
             break;
         case EventTask.TASK_TYPE:
-            updatedTaskString = new UpdateEventTaskCommandHandler(this.taskManager)
+            updatedTask = new UpdateEventTaskCommandHandler(this.taskManager)
                     .execute(itemNumber, updatedArguments);
             break;
         default:
             break;
         }
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("The following item has been updated.\n");
-        stringBuilder.append(itemNumber).append(") ").append(updatedTaskString);
-        stringBuilder.append("\n");
-        return stringBuilder.toString();
+        String updatedTaskString = itemNumber + ") " + updatedTask;
+        return personality.formulateResponse("update_task", updatedTaskString);
     }
 }

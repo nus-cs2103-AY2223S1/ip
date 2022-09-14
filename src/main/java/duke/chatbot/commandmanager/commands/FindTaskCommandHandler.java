@@ -1,6 +1,7 @@
 package duke.chatbot.commandmanager.commands;
 
 import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 
 /**
@@ -8,13 +9,17 @@ import duke.chatbot.taskmanager.TaskManager;
  * Responds with the list of tasks that contains the given keyword.
  */
 public class FindTaskCommandHandler implements Command {
+    private final Personality personality;
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the find task command with a reference to the task manager
+     * and the chatbot's personality
      *
+     * @param personality a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public FindTaskCommandHandler(TaskManager taskManager) {
+    public FindTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -33,13 +38,9 @@ public class FindTaskCommandHandler implements Command {
 
         String matchedTaskList = this.taskManager.findTask(arguments);
         if (matchedTaskList.length() == 0) {
-            return "You have no tasks in your list with the keyword \"" + arguments + "\".\n";
+            return personality.formulateResponse("find_task_empty", arguments);
         }
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("I have the matching tasks displayed below:\n");
-        stringBuilder.append(matchedTaskList);
-        return stringBuilder.toString();
+        return personality.formulateResponse("find_task", matchedTaskList);
     }
 }
 
