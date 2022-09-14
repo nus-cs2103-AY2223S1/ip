@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import bobthebot.exceptions.BobException;
 import bobthebot.tasks.Deadline;
 import bobthebot.tasks.Event;
 import bobthebot.tasks.Task;

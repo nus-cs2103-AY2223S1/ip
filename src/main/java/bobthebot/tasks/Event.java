@@ -38,6 +38,12 @@ public class Event extends Task {
         return date + ", " + time;
     }
 
+    /**
+     * Checks if the event is within a week away. Returns True if the event is within
+     *      a week away and False otherwise.
+     *
+     * @return Boolean representing if a event is within a week away.
+     */
     public Boolean isWithinWeekOfEvent() {
         String[] splitEvent = at.split(" ");
         String eventDate = splitEvent[0].trim();

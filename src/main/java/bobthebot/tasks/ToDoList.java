@@ -23,35 +23,35 @@ public class ToDoList {
         this.storage = storage;
     }
 
-
+    /**
+     * Adds a given event from to list, and updates the storage.
+     *
+     * @param task Specifies 0 index of task to be deleted.
+     */
     public void addTask(Task task) {
         list.add(task);
         storage.store(list);
     }
 
     /**
-     * Deletes a specific event from the list, and updating the storage.
+     * Deletes a specific event from the list, and updates the storage.
      *
      * @param index Specifies 0 index of task to be deleted.
-     * @return Task deleted message.
      */
-    public String deleteTask(int index) {
-        Task task = this.list.get(index);
+    public void deleteTask(int index) {
         this.list.remove(index);
         storage.store(list);
-        return Ui.taskDeletedMessage(task, this);
     }
 
     /**
-     * Marks a specific event from the list as done, and updating the storage.
+     * Marks a specific event from the list as done, and updates the storage.
      *
      * @param index Specifies 1 index of task to be marked as done.
      * @return Task mark item done message.
      */
-    public String markItemDone(int index) {
+    public void markItemDone(int index) {
         this.list.get(index - 1).markDone();
         storage.store(list);
-        return Ui.markItemDoneMessage(this, index - 1); // takes in 0 index
     }
 
     /**
@@ -60,10 +60,9 @@ public class ToDoList {
      * @param index Specifies 1 index of task to be marked as undone.
      * @return Task mark item undone message.
      */
-    public String markItemUndone(int index) {
+    public void markItemUndone(int index) {
         this.list.get(index - 1).markUndone();
         storage.store(list);
-        return Ui.markItemUndoneMessage(this, index - 1); // takes in 0 index
     }
 
     /**
@@ -96,6 +95,11 @@ public class ToDoList {
         return listWithMatchingTasks;
     }
 
+    /**
+     * Returns a ToDoList of deadlines due or events happening within the next week.
+     *
+     * @return ToDoList of deadlines due or events happening within the next week.
+     */
     public ToDoList tasksDueSoon() {
         ArrayList<Task> taskList = new ArrayList<>();
         for (Task t : list) {

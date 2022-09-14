@@ -6,7 +6,6 @@ import java.util.TimerTask;
 import bobthebot.command.ReminderCommand;
 import bobthebot.exceptions.BobException;
 import bobthebot.tasks.ToDoList;
-import bobthebot.utils.LanguageBank;
 import bobthebot.utils.Parser;
 import bobthebot.utils.Storage;
 import bobthebot.utils.Ui;
@@ -130,7 +129,13 @@ public class Main extends Application {
      */
     private String getResponse(String input) {
         if (input.equals("bye")) {
-            return quit();
+            quit();
+
+            ReminderCommand reminderCommand = new ReminderCommand(todolist);
+            String response = reminderCommand.execute() + "\n";
+            response += Ui.sayGoodbye(todolist);
+
+            return response;
         }
 
         String response = null;
@@ -147,7 +152,7 @@ public class Main extends Application {
     /**
      * Quits the program.
      */
-    private String quit() {
+    private void quit() {
         TimerTask exitApp = new TimerTask() {
             @Override
             public void run() {
@@ -155,11 +160,5 @@ public class Main extends Application {
             }
         };
         new Timer().schedule(exitApp, 2000);
-
-        ReminderCommand reminderCommand = new ReminderCommand(todolist);
-        String result = reminderCommand.execute() + "\n";
-        result += Ui.sayGoodbye(todolist);
-
-        return result;
     }
 }

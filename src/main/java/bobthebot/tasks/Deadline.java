@@ -39,6 +39,12 @@ public class Deadline extends Task {
         return date + ", " + time;
     }
 
+    /**
+     * Checks if the deadline is within a week of its deadline. Returns True if the deadline is within
+     *      a week of its deadline and False otherwise.
+     *
+     * @return Boolean representing if a task is within a week of its deadline.
+     */
     public Boolean isWithinWeekOfDeadline() {
         String[] splitEvent = by.split(" ");
         String dueDate = splitEvent[0].trim();

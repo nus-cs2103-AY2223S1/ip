@@ -3,14 +3,19 @@ package bobthebot.command;
 import bobthebot.tasks.Deadline;
 import bobthebot.tasks.Task;
 import bobthebot.tasks.ToDoList;
-import bobthebot.utils.Storage;
 import bobthebot.utils.Ui;
 
+/**
+ * Deadline Command class representing deadline command executed by the user.
+ */
 public class DeadlineCommand extends Command {
     private String taskName;
     private String dueDate;
     private ToDoList list;
 
+    /**
+     * Constructs deadline command.
+     */
     public DeadlineCommand(String taskName, String dueDate, ToDoList list) {
         super("deadline");
         this.taskName = taskName;
@@ -18,6 +23,12 @@ public class DeadlineCommand extends Command {
         this.list = list;
     }
 
+    /**
+     * Executes the deadline command by creating a new deadline instance and adding it to the list.
+     *      Gives the user information about the deadline added.
+     *
+     * @return String representing the information about the added deadline.
+     */
     @Override
     public String execute() {
         Task deadline = new Deadline(taskName, dueDate);

@@ -31,7 +31,7 @@ public class BobTheBot {
     }
 
     /**
-     * Runs BobTheBot.
+     * Runs BobTheBot on CLI.
      */
     public void run() {
         Ui.sayWelcome();

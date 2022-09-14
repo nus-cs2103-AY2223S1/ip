@@ -13,9 +13,8 @@ public class Ui {
      * @return Welcome message.
      */
     public static String sayWelcome() {
-        String toPrint = LanguageBank.WELCOME_MESSAGE;
-        formatMessage(toPrint);
-        return toPrint;
+        String response = LanguageBank.WELCOME_MESSAGE;
+        return response;
     }
 
     /**
@@ -25,27 +24,14 @@ public class Ui {
      * @return Goodbye message.
      */
     public static String sayGoodbye(ToDoList list) {
-        String result = LanguageBank.GOODBYE_MESSAGE;
+        String response = LanguageBank.GOODBYE_MESSAGE;
         String haveMoreTasks = "You still have " + list.getLength()
                 + (list.getLength() == 1 ? " task" : " tasks")
                 + " to do! \uD83D\uDE0A";
         String completedAllTasks = LanguageBank.COMPLETED_ALL_TASKS_GOODBYE_MESSAGE;
 
-        result = list.getLength() == 0 ? result + completedAllTasks : result + haveMoreTasks;
-        formatMessage(result);
-        return result;
-    }
-
-    /**
-     * Formats and prints the message to the user.
-     *
-     * @param s The String to be formatted.
-     */
-    public static void formatMessage(String s) {
-        String result = LanguageBank.LINE_BREAK
-                + s + "\n"
-                + LanguageBank.LINE_BREAK;
-        System.out.println(result);
+        response = list.getLength() == 0 ? response + completedAllTasks : response + haveMoreTasks;
+        return response;
     }
 
     /**
@@ -54,10 +40,10 @@ public class Ui {
      * @param s The error message to be formatted.
      */
     public static void printErrorMessage(String s) {
-        String result = LanguageBank.LINE_BREAK
+        String response = LanguageBank.LINE_BREAK
                 + s + "\n"
                 + LanguageBank.LINE_BREAK;
-        System.err.println(result);
+        System.err.println(response);
     }
 
     /**
@@ -68,12 +54,11 @@ public class Ui {
      * @return Task added message.
      */
     public static String taskAddedMessage(Task t, ToDoList list) {
-        String toPrint = LanguageBank.TASK_ADDED_MESSAGE;
-        toPrint += "\t" + t.toString() + "\n";
-        toPrint += "\tYou now have " + list.getLength() + (list.getLength() == 1 ? " task" : " tasks")
+        String response = LanguageBank.TASK_ADDED_MESSAGE;
+        response += "\t" + t.toString() + "\n";
+        response += "\tYou now have " + list.getLength() + (list.getLength() == 1 ? " task" : " tasks")
                 + " in the list.";
-        formatMessage(toPrint);
-        return toPrint;
+        return response;
     }
 
     /**
@@ -84,13 +69,12 @@ public class Ui {
      * @return Task deleted message.
      */
     public static String taskDeletedMessage(Task t, ToDoList list) {
-        String toPrint = LanguageBank.TASK_DELETED_MESSAGE;
-        toPrint += "\t\t" + t.toString() + "\n";
-        toPrint += "\tYou now have "
+        String response = LanguageBank.TASK_DELETED_MESSAGE;
+        response += "\t\t" + t.toString() + "\n";
+        response += "\tYou now have "
                 + (list.getLength())
                 + (list.getLength() == 1 ? " task" : " tasks");
-        formatMessage(toPrint);
-        return toPrint;
+        return response;
     }
 
     /**
@@ -102,11 +86,10 @@ public class Ui {
      * @return Mark task done message.
      */
     public static String markItemDoneMessage(ToDoList list, int index) {
-        String toPrint = LanguageBank.TASK_MARKED_DONE_MESSAGE;
-        toPrint += "\t"
+        String response = LanguageBank.TASK_MARKED_DONE_MESSAGE;
+        response += "\t"
                 + list.getTask(index).toString();
-        formatMessage(toPrint);
-        return toPrint;
+        return response;
     }
 
     /**
@@ -118,10 +101,9 @@ public class Ui {
      * @return Mark task undone message.
      */
     public static String markItemUndoneMessage(ToDoList list, int index) {
-        String toPrint = LanguageBank.TASK_MARKED_UNDONE_MESSAGE;
-        toPrint += "\t" + list.getTask(index).toString();
-        formatMessage(toPrint);
-        return toPrint;
+        String response = LanguageBank.TASK_MARKED_UNDONE_MESSAGE;
+        response += "\t" + list.getTask(index).toString();
+        return response;
     }
 
     /**
@@ -132,14 +114,12 @@ public class Ui {
      */
     public static String listMessage(ToDoList list) {
         if (list.getLength() == 0) {
-            String toPrint = LanguageBank.NO_TASKS_LEFT_MESSAGE;
-            formatMessage(toPrint);
-            return toPrint;
+            String response = LanguageBank.NO_TASKS_LEFT_MESSAGE;
+            return response;
         } else {
-            String toPrint = LanguageBank.TASKS_LEFT_MESSAGE;
-            toPrint += list.toString();
-            formatMessage(toPrint);
-            return toPrint;
+            String response = LanguageBank.TASKS_LEFT_MESSAGE;
+            response += list.toString();
+            return response;
         }
     }
 }
