@@ -10,7 +10,7 @@ import poolsheen.command.Command;
 /**
  * Represents the Poolsheen CLI program.
  * @author Ong Wee, Marcus (Tut Grp 03)
- * @version 0.1
+ * @version 0.2
  * @since 2022-08-15
  */
 public class Poolsheen {
