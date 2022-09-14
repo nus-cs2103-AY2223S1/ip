@@ -48,6 +48,22 @@ Allows the user to have a "conversation" with Henry. Supports teaching Henry the
 
 ## Usage
 
+### `bye` - The command that will exit the program
+
+The task list will be saved to a text file on the user's desktop, named "henry.txt". The program will exit.
+
+Example of usage: 
+
+`bye`
+
+Expected outcome:
+
+The program will exit.
+
+```
+Goodbye! Your task list has been saved!
+```
+
 ### `echo` - The command that activates Henry's "Echo" feature
 
 Echo will copy the user's input and display it back to the user through the GUI.
