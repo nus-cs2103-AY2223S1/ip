@@ -13,6 +13,7 @@ import duke.task.command.Command;
 import duke.task.command.DeleteCommand;
 import duke.task.command.ExitCommand;
 import duke.task.command.FindCommand;
+import duke.task.command.HelpCommand;
 import duke.task.command.ListCommand;
 import duke.task.command.MarkCommand;
 import duke.task.command.UnmarkCommand;
@@ -178,6 +179,8 @@ public class Parser {
             return new FindCommand(arguments);
         case "list":
             return new ListCommand();
+        case "help":
+            return new HelpCommand();
         case "bye":
             return new ExitCommand();
         default:

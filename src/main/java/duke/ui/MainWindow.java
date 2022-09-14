@@ -42,7 +42,8 @@ public class MainWindow extends VBox {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog("Hello! I'm Duke\n" + "What can I do for you?", this.dukeImage)
+                DialogBox.getDukeDialog("Hello! I'm Duke\n" + "What can I do for you?\n"
+                        + "Enter 'help' for a quick guide", this.dukeImage)
         );
     }
 
