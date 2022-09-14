@@ -33,111 +33,194 @@ Some example commands you can try:
 - [x] Find a task by name.
 - [x] Set the priority of a task.
 
-## Adding a ToDo task: `todo` 
-Adds a ToDo task with the provided name
+## `todo` - Adds a ToDo task
+Adds a ToDo task with the provided name.
 
 Format: `todo <task name>`
 
-Example:
+Example of usage: 
 `todo clean room`
 
-## Adding a Deadline task: `deadline`
+Expected Outcome: 
+Adds a ToDo task called "clean room" to the list of tasks.
+
+```
+I've added this task to your list. Here you go: [T][]
+clean room You have X tasks in you
+```
+
+## `deadline` - Adds a Deadline task
 Adds a Deadline task with the provided name and deadline
 
 Format: `deadline <task name> /by <task deadline>`
 
-Example:
-`deadline assignment 1 /by 15/09/2022 1800`
-`deadline project /by 12/08/2022 0600`
+Notes:
 
 - name and deadline must be seperated by `/`
 - deadline **must** be in the `dd/mm/yyyy hhmm` format
 - time is **required** for deadline and must be in 24-hour format
 - if time is single digits then 0 must be inserted. e.g. `630` must be `0630`.
 
-## Adding an Event task: `event`
+Example of usage:
+`deadline assignment 1 /by 15/09/2022 1800`
+
+Expected Outcome: 
+Adds a Deadline tasks called "assignment 1" which has the date: 15/09/2022 and time: 1800.
+
+```
+I've added this task to your list. Here you go: [D][]
+assignment 1 (by: Sep 15 2022 1800) You have x tasks
+in your list
+```
+
+##  `event` - Adds an Event task
 Adds an Event task with the provided name and date
 
 Format: `event <task name> /at <task date>`
 
-Example:
-`event graduation /at 15/04/2025 1200`
-`event breakfast /at 12/10/2022 0800`
-
+Notes:
 - name and date must be seperated by `/`
 - date **must** be in the `dd/mm/yyyy hhmm` format
 - time is **required** for date and must be in 24-hour format
 - if time is single digits then 0 must be inserted. e.g. `630` must be `0630`.
 
-## Listing all tasks: `list`
+Example of usage:
+`event graduation /by 15/04/2025 1200`
+
+Expected Outcome:
+Adds an event task called "graduation" with the date: 15/04/2025 and time: 1200
+
+```
+I've added this task to your list. Here you go: [E][]
+graduation (at: Apr 15 2025 1200) You have x tasks
+in your list
+```
+
+## `list` - Lists all tasks 
 Displays all tasks
 
 Format: `list`
 
-### Example:
+Example of usage:
+`list`
 
-![image](https://user-images.githubusercontent.com/97420952/189849325-b19b61d4-4c9d-459e-9b12-2e6479616a04.png)
+Expected Outcome:
 
-## Mark a task: `mark`
+```
+1.[T][ ] homework Priority: high
+2.[D][ ] assignment 1 (by: Aug 12 2022 1800)
+3.[T][ ] clean room
+4.[E][ ] karoake (at: Sep 16 2022 2100)
+```
+
+## `mark` - Mark a task
 Marks the specified task as done.
 
 Format: `mark <task number>`
 
+
+Notes:
 - number is according to `list`
- 
-### Example: 
+
+Example of usage:
 `mark 2`
 
-![image](https://user-images.githubusercontent.com/97420952/189850777-4972008f-3653-4eab-bff4-375644e72302.png)
+Expected Outcome:
 
-## Unmark a task: `unmark`
+Marks task number 2 as done.
+
+```
+Nice! You've completed this task. I'll mark it as done.
+[D][X] assignment 1 (by: Aug 12 2022 1800)
+```
+
+##  `unmark` - Unmark a task
 Marks the specified task as done.
 
 Format: `unmark <task number>`
+
+Notes:
 - number is according to `list`
-### Example: 
+
+Example of usage:
 `unmark 2`
 
-![image](https://user-images.githubusercontent.com/97420952/189850850-a728e63c-975a-454f-84e8-b5a0c4d42a5d.png)
+Exapected Outcome:
+Marks task number 2 as undone.
 
-## Delete a task: `delete`
+```
+Alright this task has been marked as undone.
+[D][ ] assignment 1 (by: Aug 12 2022 1800)
+```
+
+## delete` - Deletes a task
 Deletes the specified task.
 
 Format: `delete <task number>`
+
+Notes:
 - number is according to `list`
-### Example: 
+
+Example of usage:
 `delete 4`
 
-![image](https://user-images.githubusercontent.com/97420952/189851203-08c0c032-3d52-41d2-8a03-dbe57c9f0fd0.png)
+Expected Outcome:
+Deletes task number 4
 
-## Find tasks `find`
+```
+Deleted [E][ ] karoake (at: Sep 16 2022 2100)
+You have 3 task(s) remaining.
+```
+
+##  `find` - Finds matching tasks
+
 Finds tasks matching the given description.
+
 Format: `find <description>`
-### Example:
+
+Example of usage:
 `find assignment`
 
-![image](https://user-images.githubusercontent.com/97420952/189851614-1d4f2622-4320-42f2-85a0-01afc5359771.png)
+Expected Outcome:
 
-## Set task priority: `priority`
+Displays all tasks whose name has "assignment" in it.
+
+```
+1.[D][ ] assignment 1 (by: Aug 12 2022 1800)
+2.[D][ ] assignment 2 (by: Oct 13 2022 1800)
+```
+
+##  `priority` - Set task priority
 Sets the specified task's priority to high or none.
 
 Format: `priority <task number> <priority to set to>
-### Example:
-`priority 2 high`
-`priority 2 none`
 
-![image](https://user-images.githubusercontent.com/97420952/189853616-8c6eae6c-dc2f-4f8b-ae7f-47811b92f315.png)
-
+Notes:
 - use "high" for high priority and "none" to remove priority
 - only high and no priority is supported
+
+
+Example of usage and outcome
+
+`priority 2 high`
+
+```
+Changed this task's priority: [T][ ] homework Priority: high
+```
+
+`priority 2 none`
+
+```
+Changed this task's priority: [T][ ] homework
+```
 
 ## Exit program: `bye`
 Exits the program
 
 Format: `bye`
 
+Expected Outcome:
 
-
-
-
-
+```
+Okay then, see ya later :)
+```
