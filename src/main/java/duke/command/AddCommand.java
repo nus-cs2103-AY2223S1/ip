@@ -55,7 +55,6 @@ public class AddCommand extends Command {
         case TODO:
             myTask = executeTd(ui);
             break;
-
         case EVENT:
             myTask = executeEvnt(ui);
             break;
