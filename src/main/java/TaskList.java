@@ -5,6 +5,15 @@ public class TaskList {
     Task[] taskList = new Task[100];
     // The first index that is empty
     private int firstEmptyIndex = 0;
+    private Storage storage;
+
+    public TaskList(Storage storage) {
+        this.storage = storage;
+    }
+
+    public TaskList() {
+        super();
+    }
 
     public void addTask(String input, Task.TaskType taskType, boolean isDone) throws IOException {
         Task task;
@@ -19,7 +28,7 @@ public class TaskList {
         }
 
         taskList[firstEmptyIndex] = task;
-        DataReadWriter.saveAddedTask(task);
+        storage.saveAddedTask(task);
 
         String msg = "Got it. I've added this task:\n" + "  "
                 + taskList[firstEmptyIndex].toString()
