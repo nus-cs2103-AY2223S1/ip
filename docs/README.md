@@ -7,6 +7,14 @@ Turtle frees your mind of having to remember things you need to do. It's,
 - easy to learn
 - ~~FAST~~ *SUPER* FAST to use
 
+All you need to do is,
+1. download it from [here](https://github.com/tanxuanyun/ip/releases).
+2. double-click it.
+3. add your tasks.
+4. let it manage your tasks for you 😆😆
+
+And it is **FREE**!
+
 ## Features
 
 ### Listing all tasks: `list`
