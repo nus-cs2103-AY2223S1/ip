@@ -3,6 +3,7 @@ package duke;
 import duke.task.Task;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Keeps track of the current tasks of the user.
@@ -67,8 +68,10 @@ public class TaskList {
 
     public ArrayList<Task> find(String match) {
         ArrayList<Task> matches = new ArrayList<>();
+        String matching = match.toUpperCase(Locale.ROOT);
         for (Task task : MY_TASKS) {
-            if (task.getDescription().contains(match)) {
+            String description = task.getDescription().toUpperCase(Locale.ROOT);
+            if (description.contains(matching)) {
                 matches.add(task);
             }
         }
