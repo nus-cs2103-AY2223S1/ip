@@ -11,7 +11,7 @@ public class Ui {
     private static final String LIST_MESSAGE = "Here are the missions in your list: \n";
     private static final String MARK_TEXT_MESSAGE = "Great Execution! I've marked this mission as done: \n";
     private static final String UNMARK_TEXT_MESSAGE = "OK, I've marked this mission as incomplete: \n";
-    private static final String MATCH_TEXT_MESSAGE = "Here're the matching tasks in your list: \n";
+    private static final String MATCH_TEXT_MESSAGE = "Here're the matching missions in your list: \n";
     private static final String REMINDER_MESSAGE = "Here're your missions for the upcoming week: \n";
 
     private String getTaskListSizeMessage(TaskList tasklist) {
