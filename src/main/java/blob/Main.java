@@ -1,13 +1,13 @@
 package blob;
 
+import java.io.IOException;
+
 import blob.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * The Main class wraps around the Blob application and provides user with a GUI to interact

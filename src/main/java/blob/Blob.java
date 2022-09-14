@@ -1,7 +1,5 @@
 package blob;
 
-import java.util.Scanner;
-
 import blob.commands.Command;
 import blob.commands.CommandResult;
 import blob.commands.TaskCommand;

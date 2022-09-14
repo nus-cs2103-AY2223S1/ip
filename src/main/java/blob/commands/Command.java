@@ -6,10 +6,10 @@ package blob.commands;
 public abstract class Command {
 
     /** The word used to invoke the command */
-    public final String COMMAND_WORD;
+    public final String commandWord;
 
     protected Command(String commandWord) {
-        this.COMMAND_WORD = commandWord;
+        this.commandWord = commandWord;
     }
 
     /**
