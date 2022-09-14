@@ -1,7 +1,6 @@
 package duke.gui;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Collections;
 
 import javafx.collections.FXCollections;
@@ -37,7 +36,7 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Text dialogText = new Text(text.replace("☹", sweatEmoji()));
+        Text dialogText = new Text(EmojiUtil.displayEmoji(text));
         dialogText.getStyleClass().add("dialog-text");
         System.out.println("dialogText.getStyleClass() = " + dialogText.getStyleClass());
         dialog.getChildren().add(dialogText);
@@ -63,14 +62,5 @@ public class DialogBox extends HBox {
         var db = new DialogBox(text, img);
         db.flip();
         return db;
-    }
-
-    /**
-     * Returns sweat emoji in UTF-8 encoding.
-     * @return String sweat emoji
-     */
-    public static String sweatEmoji() {
-        byte[] emojiBytes = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0x93};
-        return new String(emojiBytes, Charset.forName("UTF-8"));
     }
 }

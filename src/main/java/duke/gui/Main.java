@@ -23,7 +23,9 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             scene.getStylesheets().add("/stylesheets/duke.css");
             stage.setScene(scene);
+            stage.setTitle("Caramel");
             fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().greet();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

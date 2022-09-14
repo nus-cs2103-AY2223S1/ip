@@ -18,6 +18,7 @@ public class Duke {
     private TaskList tasks;
     private NoteList notes;
     private Ui ui;
+    private boolean hasLoadedData;
 
     /**
      * Creates a new Duke application.
@@ -26,6 +27,7 @@ public class Duke {
      * @param notesFilePath path to the notes save file
      */
     public Duke(String tasksFilePath, String notesFilePath) {
+        ui = new Ui();
         storage = new Storage(tasksFilePath, notesFilePath);
         tasks = new TaskList();
         notes = new NoteList();
@@ -33,8 +35,10 @@ public class Duke {
             storage.load(tasks, notes);
         } catch (DukeException e) {
             System.out.println("Error: " + e.getMessage());
+            hasLoadedData = false;
+        } finally {
+            hasLoadedData = true;
         }
-        ui = new Ui();
     }
 
     /**
@@ -48,7 +52,7 @@ public class Duke {
      * Runs the Duke application in CLI mode.
      */
     public void runCli() {
-        ui.greet();
+        ui.wrapPrint(ui.greet(hasLoadedData, tasks.size(), notes.size()));
         boolean isExit = false;
         while (!isExit) {
             try {
@@ -60,6 +64,14 @@ public class Duke {
                 ui.wrapPrint(ui.showError(e));
             }
         }
+    }
+
+    /**
+     * Returns the greeting message.
+     * @return the greeting message
+     */
+    public String greet() {
+        return ui.greet(hasLoadedData, tasks.size(), notes.size());
     }
 
     /**

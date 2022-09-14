@@ -54,7 +54,7 @@ public class Parser {
         case "find":
             return parseFind(input, inputSplit);
         default:
-            throw new DukeException("I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("I'm sorry, but I don't recognise your last message.");
         }
     }
 

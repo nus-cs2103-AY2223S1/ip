@@ -20,9 +20,9 @@ public class ByeCommand extends Command {
     @Override
     public String execute(TaskList tasks, NoteList notes, Ui ui, Storage storage) {
         assert isExit : "ByeCommand is malfunctioning.";
-        ui.wrapPrint("Bye. Hope to see you again soon!");
+        ui.wrapPrint("Bye. Hope to see you again soon! ☺");
         storage.save(tasks, notes);
-        return "Bye. Hope to see you again soon!";
+        return "Bye. Hope to see you again soon! ☺";
     }
 
     @Override

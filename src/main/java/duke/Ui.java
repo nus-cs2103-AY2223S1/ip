@@ -30,7 +30,7 @@ public class Ui {
      * @param e the error to print
      */
     public String showError(DukeException e) {
-        return "☹ OOPS!!! " + e.getLocalizedMessage();
+        return "☹ Oops. " + e.getLocalizedMessage();
     }
 
     /**
@@ -66,8 +66,18 @@ public class Ui {
     /**
      * Prints a greeting to the user.
      */
-    public void greet() {
-        this.wrapPrint("Hello! I'm Duke\nWhat can I do for you?");
+    public String greet(boolean hasLoadedData, int numTasks, int numNotes) {
+        String taskString = numTasks == 1 ? "task" : "tasks";
+        String noteString = numNotes == 1 ? "note" : "notes";
+        if (hasLoadedData) {
+            return "Hello! I'm Caramel ☺\n"
+                    + String.format("I have sucessfully loaded %d %s and %d %s into your list.",
+                    numTasks, taskString, numNotes, noteString);
+        } else {
+            return "Hello! I'm Caramel ☺\n"
+                    + "Looks like I am unable to find a save file."
+                    + "I will create a new one for you.";
+        }
     }
 
     public void showLine() {

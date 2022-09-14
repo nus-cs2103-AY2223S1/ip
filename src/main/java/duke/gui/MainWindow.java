@@ -37,6 +37,14 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
+     * Shows the greeting message to the user.
+     */
+    public void greet() {
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(duke.greet(), dukeImage));
+    }
+
+    /**
      * Creates two dialog boxes, one echoing user input and the other containing
      * Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
