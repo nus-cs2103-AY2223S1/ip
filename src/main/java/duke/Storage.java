@@ -13,9 +13,16 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Storage class for writing and reading form data file
+ */
 public class Storage {
     private String path;
 
+    /**
+     * Constructor to create storage object
+     * @param filename the filename of the data file
+     */
     public Storage(String filename) {
         this.path = filename;
 
