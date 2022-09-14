@@ -28,7 +28,7 @@ public class Parser {
      * @param ui <code>Ui</code> object that deals with the interactions with the user.
      */
     public Parser(TaskList tasks, Storage storage, Ui ui) {
-        this.taskList = tasks;
+        taskList = tasks;
         this.storage = storage;
         this.ui = ui;
     }

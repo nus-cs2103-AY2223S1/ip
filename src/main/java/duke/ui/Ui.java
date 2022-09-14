@@ -13,7 +13,7 @@ import duke.tasklist.TaskList;
 public class Ui {
     /**
      * Returns a message informing the user that there are no tasks in their list.
-     * @return A empty list message.
+     * @return An empty list message.
      */
     public String getEmptyTaskMessage() {
         return "You currently have no tasks. Add some!";
@@ -107,7 +107,7 @@ public class Ui {
      * @return A goodbye message.
      */
     public String getGoodbyeMessage() {
-        return "Seaward out!";
+        return "Seaward out! See you next time buddy!";
     }
 
     /**

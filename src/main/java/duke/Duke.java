@@ -17,7 +17,7 @@ public class Duke {
 
     private static String welcome = "Hello! I'm Seaward,\n"
             + "your friendly neighbourhood chatbot.\n"
-            + "Type something and I will reply!";
+            + "Refer to the user guide for all the available commands!";
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
