@@ -25,6 +25,10 @@ Include a time for tasks which are deadlines or events.
 
 When you are done with your tasks, mark them as done. Or if you've accidentally marked something as done, you can mark it as undone.
 
+### Automatic saving
+
+Saves your tasks automatically to storage.
+
 ## Getting started
 
 ### Requirements
