@@ -1,10 +1,11 @@
 package rattus.chatbot.command.addcommands;
 
+import static rattus.chatbot.common.Message.MESSAGE_ADDED_TASK;
+
 import rattus.chatbot.command.Command;
 import rattus.chatbot.command.CommandResult;
 import rattus.chatbot.data.exception.InvalidInputException;
 import rattus.chatbot.data.task.Task;
-import rattus.chatbot.common.Message;
 
 /**
  * Encapsulates a {@link Command} that adds a task to the application's task list.
@@ -30,7 +31,7 @@ public abstract class AddTaskCommand extends Command {
 
     @Override
     protected String buildMessage() {
-        messageBuilder.buildLines(Message.MESSAGE_ADDED_TASK, task.toString());
+        messageBuilder.buildLines(MESSAGE_ADDED_TASK, task.toString());
         return messageBuilder.toString();
     }
 

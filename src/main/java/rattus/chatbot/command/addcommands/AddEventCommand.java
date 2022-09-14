@@ -1,5 +1,7 @@
 package rattus.chatbot.command.addcommands;
 
+import static rattus.chatbot.common.Message.MESSAGE_INVALID_ARGUMENT;
+
 import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,7 +10,6 @@ import rattus.chatbot.data.exception.InvalidInputException;
 import rattus.chatbot.data.task.Event;
 import rattus.chatbot.data.task.Task;
 import rattus.chatbot.util.Parser;
-import rattus.chatbot.common.Message;
 
 /**
  * A command that adds an instance of {@link Event} to the list of tasks stored in the Duke application instance.
@@ -36,7 +37,7 @@ public class AddEventCommand extends AddTaskCommand {
     protected Task supplyTask() throws InvalidInputException {
         Matcher matcher = ADD_EVENT_ARGUMENT_FORMAT.matcher(arguments);
         if (!matcher.matches()) {
-            throw new InvalidInputException(Message.MESSAGE_INVALID_ARGUMENT);
+            throw new InvalidInputException(MESSAGE_INVALID_ARGUMENT);
         }
         String description = matcher.group("description").strip();
         LocalDateTime dateTime = Parser.parseDateTime(matcher.group("dateTime").strip());

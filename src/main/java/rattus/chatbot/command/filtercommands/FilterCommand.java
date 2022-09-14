@@ -1,5 +1,8 @@
 package rattus.chatbot.command.filtercommands;
 
+import static rattus.chatbot.common.Message.MESSAGE_EMPTY_LIST;
+import static rattus.chatbot.common.Message.MESSAGE_FILTERED_TASKS;
+
 import java.util.function.Predicate;
 
 import rattus.chatbot.command.Command;
@@ -7,7 +10,6 @@ import rattus.chatbot.command.CommandResult;
 import rattus.chatbot.data.exception.InvalidInputException;
 import rattus.chatbot.data.task.Task;
 import rattus.chatbot.data.task.TaskList;
-import rattus.chatbot.common.Message;
 
 /**
  * Encapsulates a command that filters the application's task list.
@@ -28,9 +30,9 @@ public abstract class FilterCommand extends Command {
     @Override
     protected String buildMessage() {
         if (filteredTasks.isEmpty()) {
-            messageBuilder.buildLine(Message.MESSAGE_EMPTY_LIST);
+            messageBuilder.buildLine(MESSAGE_EMPTY_LIST);
         } else {
-            messageBuilder.buildLine(Message.MESSAGE_FILTERED_TASKS);
+            messageBuilder.buildLine(MESSAGE_FILTERED_TASKS);
             messageBuilder.buildLine(filteredTasks.toString());
         }
         return messageBuilder.toString();

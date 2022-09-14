@@ -2,12 +2,12 @@ package rattus.chatbot.ui;
 
 import java.io.IOException;
 
-import rattus.chatbot.Rattus;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import rattus.chatbot.Rattus;
 
 /**
  * A GUI made with FXML for Duke.

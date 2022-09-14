@@ -1,12 +1,13 @@
 package rattus.chatbot.storage;
 
+import static rattus.chatbot.common.Message.MESSAGE_INVALID_FILE_NAME;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import rattus.chatbot.data.exception.InvalidInputException;
 import rattus.chatbot.data.task.TaskList;
-import rattus.chatbot.common.Message;
 
 /**
  * A storage for any task data that requires storing between sessions.
@@ -69,7 +70,7 @@ public class Storage {
     public static Storage of(File file) throws InvalidInputException {
         assert (new File(DATA_STORAGE_PATH_PREFIX).exists());
         if (!file.exists()) {
-            throw new InvalidInputException(Message.MESSAGE_INVALID_FILE_NAME);
+            throw new InvalidInputException(MESSAGE_INVALID_FILE_NAME);
         }
         return new Storage(file);
     }

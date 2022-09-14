@@ -1,7 +1,9 @@
 package rattus.chatbot.command;
 
+import static rattus.chatbot.common.Message.MESSAGE_EMPTY_LIST;
+import static rattus.chatbot.common.Message.MESSAGE_LIST;
+
 import rattus.chatbot.data.task.TaskList;
-import rattus.chatbot.common.Message;
 
 /**
  * A command that displays the list of tasks in the application. Displays an empty list message if the list is empty.
@@ -18,9 +20,9 @@ public class ListCommand extends Command {
     protected String buildMessage() {
         TaskList tasks = duke.getTasks();
         if (tasks.isEmpty()) {
-            messageBuilder.buildLines(Message.MESSAGE_EMPTY_LIST);
+            messageBuilder.buildLines(MESSAGE_EMPTY_LIST);
         } else {
-            messageBuilder.buildLines(Message.MESSAGE_LIST);
+            messageBuilder.buildLines(MESSAGE_LIST);
         }
         messageBuilder.buildLine(tasks.toString());
         return messageBuilder.toString();
