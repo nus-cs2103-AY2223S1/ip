@@ -10,7 +10,7 @@ import nyanduke.task.TaskList;
  */
 public class ListCommand extends Command {
     /**
-     * Displays the list of tasks in NyanDuke.
+     * Lists the tasks in NyanDuke.
      *
      * @param tasks The specified TaskList involved with the command.
      * @param ui The specified Ui involved with the command.
