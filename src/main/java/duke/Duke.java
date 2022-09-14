@@ -1,6 +1,5 @@
 package duke;
 
-import java.util.Scanner;
 
 /**
  * Encapsulates the main Duke program.

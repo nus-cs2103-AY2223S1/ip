@@ -30,7 +30,7 @@ public abstract class Task {
      */
     public String mark() {
         this.isDone = true;
-       return String.format("Nice! I've marked this task as done:\n    %s\n", this);
+        return String.format("Nice! I've marked this task as done:\n    %s\n", this);
     }
 
     /**
