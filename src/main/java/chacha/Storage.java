@@ -93,10 +93,7 @@ public class Storage {
         String description = textArray[2];
         String date = textArray[3];
         LocalDateTime dateTime = null;
-        System.out.println(date + "date");
         if (!date.contains("no date")) {
-            System.out.println("entered this if block");
-            
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             dateTime = LocalDateTime.parse(date, formatter);
         }  
@@ -115,9 +112,7 @@ public class Storage {
                 break;
         }
         if (isDone.contains("X")) {
-            System.out.println("marking as done");
             task.markAsDone();
-            
         }
         return task;
     }
