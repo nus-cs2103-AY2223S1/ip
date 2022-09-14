@@ -1,22 +1,21 @@
 package duke.helper;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-
 import duke.task.TaskList;
 import duke.task.Todo;
+import org.junit.jupiter.api.Test;
 
-public class ParserTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class CommandTest {
     @Test
-    public void parseTest() {
+    public void commandTest() {
         TaskList list = new TaskList();
         TaskList listComparison = new TaskList();
 
         //Test add task
-        Parser.parse("todo borrow book", list, "./data/duke.txt");
-        Parser.parse("todo read book", list, "./data/duke.txt");
-        Parser.parse("todo return book", list, "./data/duke.txt");
+        Command.createTask("todo borrow book", list);
+        Command.createTask("todo read book", list);
+        Command.createTask("todo return book", list);
 
         listComparison.add(new Todo("borrow book"));
         listComparison.add(new Todo("read book"));
@@ -26,32 +25,32 @@ public class ParserTest {
                 listComparison.getTasks());
 
         //Test mark task
-        Parser.parse("mark 1", list, "./data/duke.txt");
+        Command.mark("mark 1", list);
         listComparison.mark(0);
 
         assertEquals(list.getTasks(),
                 listComparison.getTasks());
 
         //Test unmark task
-        Parser.parse("unmark 1", list, "./data/duke.txt");
+        Command.unmark("unmark 1", list);
         listComparison.unmark(0);
 
         assertEquals(list.getTasks(),
                 listComparison.getTasks());
 
         //Test delete task
-        Parser.parse("delete 1", list, "./data/duke.txt");
+        Command.delete("delete 1", list);
         listComparison.delete(0);
 
         assertEquals(list.getTasks(),
                 listComparison.getTasks());
 
         //Test find task
-        assertEquals(Parser.parse("find read book", list, "./data/duke.txt"),
-                listComparison.find("read book") + "\n");
+        assertEquals(Command.find("find read book", list),
+                listComparison.find("read book"));
 
         //Test clear task
-        Parser.parse("clear", list, "./data/duke.txt");
+        Command.clear(list);
         listComparison.clear();
 
         assertEquals(list.getTasks(),
