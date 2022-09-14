@@ -196,14 +196,14 @@ Type can be T, E, D which stands for Todo, Event, Deadline respectively.
 Done can be 1 or 0 which stands for marked or not marked respectively.
 
 ## Summary
-| Action             | Format                                                                                 |
-|--------------------|----------------------------------------------------------------------------------------|
-| **Add Todo**       | `todo [description]`                                                                   |
-| **Add Deadline**   | `deadline [description] by [date]`                                                     |
-| **Add Event**      | `event [description] at [date]`                                                        |
-| **Print List**     | `list`                                                                                 |
-| **Find Task**      | `find [keyword]`                                                                       |
-| **Delete Task**    | `delete [index]`                                                                       |
-| **Mark Task**      | `mark [index]`                                                                         |
-| **Unmark Task**    | `unmark [index]`                                                                       |
-| **Exit**           | `bye`                                                                                  |
+| Action           | Format                             |
+|------------------|------------------------------------|
+| **Add Todo**     | `todo [description]`               |
+| **Add Deadline** | `deadline [description] by [date]` |
+| **Add Event**    | `event [description] at [date]`    |
+| **Print List**   | `list`                             |
+| **Find Task**    | `find [keyword]`                   |
+| **Delete Task**  | `delete [index]`                   |
+| **Mark Task**    | `mark [index]`                     |
+| **Unmark Task**  | `unmark [index]`                   |
+| **Exit**         | `bye`                              |
