@@ -34,6 +34,15 @@ public interface DukeIo {
      */
     void printTask(String txt, int features);
 
+
+    /**
+     * Prints Text with selected features
+     * 
+     * @param txt
+     * @param features
+     */
+    void printTask(String txt, DukeCliSettings featuresEnum);
+
     /**
      * Prints txt with some default formatting.
      * 

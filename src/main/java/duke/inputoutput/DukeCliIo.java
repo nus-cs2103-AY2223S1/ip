@@ -37,10 +37,10 @@ public class DukeCliIo extends DukeAbstractIo {
         // 00 - no wrapper/indent
         // 10 - indent
         // 01 - wrapper
-        if ((features & 2) == 2) {
+        if ((features & DukeCliSettings.INDENT.value) == DukeCliSettings.INDENT.value) {
             txt = StringParser.addIndent(txt);
         }
-        if ((features & 1) == 1) {
+        if ((features & DukeCliSettings.INDENT.value) == DukeCliSettings.WRAPPER.value) {
             txt = StringParser.addWrapper(txt);
         }
 
