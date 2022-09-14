@@ -21,7 +21,7 @@ Ado is a **desktop chatbot app for managing and storing tasks, optimized for use
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `Ado.jar` file from [here](https://github.com/jovitaanderson/ip/releases/tag/v0.1).
+2. Download the latest `Ado.jar` file from [here](https://github.com/jovitaanderson/ip/releases/tag/A-Release).
 3. Copy the file to the folder you want to use as the home folder for your task list.
 4. Double-click the file to start the app. If done correctly, the GUI should be similar as below. <br>
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_startup.png?raw=true" alt="AdoStartUp"/> <br>
