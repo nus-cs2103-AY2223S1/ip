@@ -23,7 +23,7 @@ public class Launcher extends Application {
 
     /**
      * Start the Roger backend, and the JavaFX UI elements.
-     * @param stage
+     * @param stage The JavaFX stage used.
      */
     @Override
     public void start(Stage stage) {
