@@ -15,8 +15,8 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        //default priority
-        this.priorityLevel = "NA";
+        //default priority is low
+        this.priorityLevel = "LOW";
     }
 
     /**
@@ -78,9 +78,6 @@ public class Task {
         case "high":
             this.priorityLevel = "HIGH";
             break;
-        case "na":
-            this.priorityLevel = "NA";
-            break;
         default:
             throw new QoobeeException("Please enter a valid priority (low,medium,high)");
         }
@@ -92,6 +89,14 @@ public class Task {
      */
     public String getPriorityLevel() {
         return this.priorityLevel;
+    }
+
+    /**
+     * Displays the priority level to user when viewing tasks.
+     * @return The String representation of priority level.
+     */
+    public String displayPriorityLevel() {
+        return "[" + getPriorityLevel() + "]";
     }
 
 }

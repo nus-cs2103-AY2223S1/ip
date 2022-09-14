@@ -1,38 +1,33 @@
 package qoobee;
 
+import java.time.LocalDateTime;
+
 /**
  * Represents an event with a description and date.
  */
 public class Event extends Task {
 
-    protected String at;
+    protected LocalDateTime dateTime;
     protected final String TASK_TYPE = "E";
 
     /**
      * Creates an Event given a description and date.
      * @param description The details of the Event.
-     * @param at The date of the Event.
+     * @param dateTime The date of the Event (in string).
      */
-    public Event(String description, String at) {
+    public Event(String description, String dateTime) {
         super(description);
-        this.at = at;
+        this.dateTime = DateTimeParser.getDateTime(dateTime);
     }
 
     /**
-     * Returns the date of this Event task.
-     * @return The String of the date of Event.
-     */
-    public String getAt() {
-        return this.at;
-    }
-
-    /**
-     * Returns the String representation of this Event task.
-     * @return The String representation of this Event task.
+     * Returns the String representation of this event task.
+     * @return The String representation of this event task.
      */
     @Override
     public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString() + " (at:" + at + ")";
+        return "[" + TASK_TYPE + "]" + super.toString()
+                + " (by: " + DateTimeParser.getDateTimeString(dateTime) + ")";
     }
 
     /**
@@ -42,13 +37,14 @@ public class Event extends Task {
     @Override
     public String storageToString() {
         String status;
-        if (getStatusIcon() == "X") {
+        if (getStatusIcon().equals("X")) {
             status = "1 | ";
         } else {
             status = "0 | ";
         }
-        return TASK_TYPE + " | " + status + " | " + getDescription() + " | " + getAt()
-                + " | " + getPriorityLevel() + "\n";
+        return TASK_TYPE + " | " + status + getDescription()
+                + " | " + DateTimeParser.getDateTimeStorage(dateTime) + " | " + getPriorityLevel()
+                + "\n";
     }
 
 }

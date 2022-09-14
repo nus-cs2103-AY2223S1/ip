@@ -51,7 +51,7 @@ public class TaskList {
             StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
             for (int i = 0; i < taskListSize(); i++) {
                 Task currentTask = taskList.get(i);
-                sb.append((i + 1) + ". " + currentTask + " " + currentTask.getPriorityLevel() + "\n");
+                sb.append((i + 1) + ". " + currentTask + " " + currentTask.displayPriorityLevel() + "\n");
             }
             return sb.toString();
         }
@@ -112,7 +112,7 @@ public class TaskList {
         if (commands.length == 1 || commands[1].isBlank()) {
             throw new QoobeeException("The description of a event cannot be empty :^(");
         } else if (!commands[1].contains("/at")) {
-            throw new QoobeeException("Please use /at to specify a deadline :]");
+            throw new QoobeeException("Please use /at to specify a date :]");
         }
         String[] eventArray = commands[1].split("/at", 2);
         Task event = new Event(eventArray[0].trim(), eventArray[1].trim());
@@ -166,10 +166,12 @@ public class TaskList {
      */
     public String findTask(String description) {
         assert description.length() > 0 : "Task description to find cannot be empty";
+        String descriptionToFind = description.toLowerCase();
         List<Task> foundTasks = new ArrayList<>();
         for (int i = 0; i < taskListSize(); i++) {
             Task curr = taskList.get(i);
-            if (taskList.get(i).getDescription().contains(description)) {
+            String taskDescription = curr.getDescription().toLowerCase();
+            if (taskDescription.contains(descriptionToFind)) {
                 foundTasks.add(curr);
             }
         }
@@ -179,12 +181,19 @@ public class TaskList {
             StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
             for (int i = 0; i < foundTasks.size(); i++) {
                 Task currentTask = foundTasks.get(i);
-                sb.append(i + 1 + "." + currentTask + "\n");
+                sb.append(i + 1 + ". " + currentTask + " " + currentTask.displayPriorityLevel() + "\n");
             }
             return sb.toString();
         }
     }
 
+    /**
+     * Sets the priority level of a task to be low, medium or high. Default priority is NA.
+     * @param task The task to change the priority to.
+     * @param priorityLevel The priority level of low, medium or high.
+     * @return The String to be returned by chatbot.
+     * @throws QoobeeException if the specified priority level is invalid.
+     */
     public String setPriority(Task task, String priorityLevel) throws QoobeeException {
         try {
             task.setPriorityLevel(priorityLevel);

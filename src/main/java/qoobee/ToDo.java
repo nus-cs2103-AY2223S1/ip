@@ -30,7 +30,7 @@ public class ToDo extends Task {
     @Override
     public String storageToString() {
         String status;
-        if (getStatusIcon() == "X") {
+        if (getStatusIcon().equals("X")) {
             status = "1 | ";
         } else {
             status = "0 | ";

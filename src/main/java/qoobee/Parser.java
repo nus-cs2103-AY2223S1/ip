@@ -36,10 +36,10 @@ public class Parser {
             case "list":
                 return tasks.printTasks();
             case "mark":
-                Task taskToMark = tasks.getTask(Integer.parseInt(commands[1]) - 1);
+                Task taskToMark = tasks.getTask(Integer.parseInt(commands[1].trim()) - 1);
                 return tasks.mark(taskToMark);
             case "unmark":
-                Task taskToUnmark = tasks.getTask(Integer.parseInt(commands[1]) - 1);
+                Task taskToUnmark = tasks.getTask(Integer.parseInt(commands[1].trim()) - 1);
                 return tasks.unmark(taskToUnmark);
             case "todo":
                 return tasks.addToDo(commands);

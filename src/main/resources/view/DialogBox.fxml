@@ -5,10 +5,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>
-        <Label fx:id="dialog" alignment="CENTER" prefHeight="90.0" prefWidth="187.0" text="Label&#10;Label&#10;" wrapText="true" />
-        <ImageView fx:id="displayPicture" fitHeight="98.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" />
+<!--    @@author CedricChia123-reused  Referenced from @laxus2308/ip to make textbox display entire text without shrinking-->
+        <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: lightyellow; -fx-background-radius: 10; -fx-padding: 10;" text="Label" translateY="10.0" wrapText="true">
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin></Label>
+<!--    @@author     -->
+        <ImageView fx:id="displayPicture" fitHeight="103.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets bottom="-20.0" />
+         </HBox.margin></ImageView>
     </children>
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />

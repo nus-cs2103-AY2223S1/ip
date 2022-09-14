@@ -1,0 +1,4 @@
+T | 0 | Complete CS2100 Tutorial | LOW
+T | 1 | Prepare for CS2103T tutorial | HIGH
+D | 0 | watch python tutorial | 2022-12-01 20:00 | LOW
+T | 0 | buy groceries | LOW

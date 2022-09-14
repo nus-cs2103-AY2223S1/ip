@@ -13,11 +13,11 @@ public class Deadline extends Task {
     /**
      * Creates a deadline given a description and date.
      * @param description The details of the deadline.
-     * @param by The date (in string) to be completed by.
+     * @param dateTime The date (in string) to be completed by.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String dateTime) {
         super(description);
-        this.dateTime = DateTimeParser.getDateTime(by);
+        this.dateTime = DateTimeParser.getDateTime(dateTime);
     }
 
     /**
@@ -47,7 +47,7 @@ public class Deadline extends Task {
     @Override
     public String storageToString() {
         String status;
-        if (getStatusIcon() == "X") {
+        if (getStatusIcon().equals("X")) {
             status = "1 | ";
         } else {
             status = "0 | ";

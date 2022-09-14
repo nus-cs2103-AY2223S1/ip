@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -29,6 +30,7 @@ public class Main extends Application {
             Main.stage = stage;
             Main.stage.setScene(scene);
             Main.stage.setTitle("Qoobee Bot");
+            Main.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/fish.png")));
             fxmlLoader.<MainWindow>getController().setQoobee(qoobee);
             Main.stage.show();
         } catch (IOException e) {
