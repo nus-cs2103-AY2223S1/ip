@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.util.Objects;
+
 
 /**
  * MainWindow class to control the main window of GUI.
@@ -25,8 +27,8 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Sally sally;
-    private final Image user = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
-    private final Image sallyImg = new Image(this.getClass().getResourceAsStream("/images/sally.jpg"));
+    private final Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
+    private final Image sallyImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/sally.png")));
 
     @FXML
     public void initialize() {
@@ -36,21 +38,21 @@ public class MainWindow extends AnchorPane {
     /**
      * Sets the main window to current sally.
      *
-     * @param sally sally that is initialized
+     * @param s sally that is initialized
      */
-    public void setSally(Sally sally) {
-        this.sally = sally;
-        this.sally.getUi().setMainWindow(this);
+    public void setSally(Sally s) {
+        sally = s;
+        sally.getUi().setMainWindow(this);
     }
 
     /**
      * Handles command by creating the dialog boxes for both user and input, as well as clearing the input after it is processed.
      */
     @FXML
-    private void handlesCommands() {
-        String command = userInput.getText();
-        dialogContainer.getChildren().add(DialogBox.getUserDialog(command, user));
-        sally.run(command);
+    private void handleUserInput() {
+        String input = userInput.getText();
+        dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
+        sally.run(input);
         userInput.clear();
     }
 
@@ -60,6 +62,6 @@ public class MainWindow extends AnchorPane {
      * @param reply message that will be shown.
      */
     public void addSallyDialog(String reply) {
-        dialogContainer.getChildren().add(DialogBox.getSallyDialog(reply, sallyImg));
+        dialogContainer.getChildren().add(DialogBox.getSallyDialog(reply, sallyImage));
     }
 }

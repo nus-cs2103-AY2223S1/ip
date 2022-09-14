@@ -8,11 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 
 /**
  * DialogBox class to represent the dialog box to be shown to the user.
@@ -24,7 +24,7 @@ public class DialogBox extends HBox {
     private Label dialog;
 
     @FXML
-    private ImageView displayedImage;
+    private ImageView displayPicture;
 
     /**
      * Constructor for DialogBox parsing in message and image to be displayed
@@ -43,7 +43,7 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(message);
-        displayedImage.setImage(image);
+        displayPicture.setImage(image);
     }
 
     /**
