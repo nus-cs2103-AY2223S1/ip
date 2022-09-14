@@ -13,7 +13,8 @@ public class Ui {
      * Returns welcome message.
      */
     public static String showWelcome() {
-        String introduction = String.format("Hello I am %s.\nWhat can I do for you?", CHATBOT);
+        String introduction = String.format("Hello I am %s.\nWhat can I do for you?\n", CHATBOT);
+        introduction += "Enter 'help' to know about my powers.";
         return introduction;
     }
 

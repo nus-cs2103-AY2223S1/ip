@@ -68,7 +68,10 @@ public class DialogBox extends HBox {
      * @return DialogBox generated.
      */
     public static DialogBox getUserDialog(String text) {
-        return new DialogBox(text);
+        var db = new DialogBox(text);
+        db.dialog.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: rgba(128, 128, 128, 0.50);"
+                + " -fx-background-radius: 7.5;");
+        return db;
     }
 
     /**
@@ -89,7 +92,7 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getPlutoErrorDialog(String text) {
         var db = new DialogBox(text);
-        db.dialog.setStyle("-fx-text-fill: #cc3300; -fx-background-color: rgba(192, 192, 192, 1);"
+        db.dialog.setStyle("-fx-text-fill: #cc3300; -fx-background-color: rgba(230, 230, 223, 1);"
                 + " -fx-background-radius: 7.5; -fx-font-weight: bold;");
         db.flip();
         return db;
