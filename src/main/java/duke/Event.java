@@ -34,8 +34,8 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the task's type, completion status, description and date
-     * @return String This returns the string of the event in the specified format
+     * Returns the string of the task's type, completion status, description and date
+     * @return String The string of the event in the specified format
      */
     public String toString() {
         return "[E][" + getStatusIcon() + "] " + description + " (at: " + at + ")";

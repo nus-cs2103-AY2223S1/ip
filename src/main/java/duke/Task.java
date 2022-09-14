@@ -48,7 +48,7 @@ public class Task {
 
     /**
      * Returns the task's completion status as a string
-     * @return String This returns "X" when completed and " " when not completed
+     * @return "X" when task is completed and " " when task is not completed
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
@@ -56,7 +56,7 @@ public class Task {
 
     /**
      * Returns the task's completion status and description
-     * @return String This returns the string of the task in the specified format
+     * @return string of the task in the specified format
      */
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;

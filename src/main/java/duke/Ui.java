@@ -20,59 +20,51 @@ public class Ui {
      * Prints out the quitting message
      * when the user exits the Duke program
      */
-    public String quit() {
+    public String printQuitMessage() {
         return QUIT_MESSAGE;
     }
 
     /**
-     * Lists out the tasks
+     * Prints out the tasks
      * in the user's task list
-     * @param tasks List of tasks to be printed out
+     * @param tasks user's current tasklist
      */
-    public String listOutTasks(TaskList tasks) {
+    public String printOutAllTasks(TaskList tasks) {
         return tasks.printList();
     }
 
     /**
-     * Marks the task as completed and
-     * prints out a message
-     * @param taskToMark The task from the list to be marked
+     * Prints out the marked task message
+     * @param taskToMark task from user's current tasklist to be marked
      */
-    public String markTask(Task taskToMark) {
-        taskToMark.mark();
+    public String printMarkTaskMessage(Task taskToMark) {
         return MARK_TASK_MESSAGE + taskToMark;
     }
 
     /**
-     * Marks the task as uncompleted
-     * and prints out a message
-     * @param taskToMark The task from the list to be unmarked
+     * Prints out the unmarked task message
+     * @param taskToUnmark task from user's current tasklist to be unmarked
      */
-    public String unmarkTask(Task taskToMark) {
-        taskToMark.unmark();
-        return UNMARK_TASK_MESSAGE + taskToMark;
+    public String printUnmarkTaskMessage(Task taskToUnmark) {
+        return UNMARK_TASK_MESSAGE + taskToUnmark;
     }
 
     /**
-     * Adds the new task to the user's task list
-     * and prints out a message
-     * @param taskList TaskList of the user
-     * @param taskToAdd The new task to be added to user's task list
+     * Prints out the add task message
+     * @param taskList user's current tasklist
+     * @param taskToAdd new task to be added to user's task list
      */
-    public String addTask(TaskList taskList, Task taskToAdd) {
-        taskList.addTask(taskToAdd);
+    public String printAddTaskMessage(TaskList taskList, Task taskToAdd) {
         return "Got it. I've added this task:\n  " + taskToAdd + "\nNow you have "
                 + taskList.getSize() + " tasks in the list.";
     }
 
     /**
-     * Deletes the task from the user's task list
-     * and prints out a message
-     * @param taskList TaskList of the user
-     * @param taskToDelete The task from the user's task list to be deleted
+     * Prints out the delete task message
+     * @param taskList user's current tasklist
+     * @param taskToDelete task from the user's task list that was just deleted
      */
-    public String deleteTask(TaskList taskList, Task taskToDelete) {
-        taskList.deleteTask(taskToDelete);
+    public String printDeleteTaskMessage(TaskList taskList, Task taskToDelete) {
         return "Noted. I've removed this task:\n  " + taskToDelete + "\nNow you have "
                 + taskList.getSize() + " tasks in the list";
     }

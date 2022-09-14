@@ -28,6 +28,13 @@ public class Duke {
         assert ui != null;
     }
 
+    /**
+     * Parses the raw input from the user, executes
+     * the command, saves the updated tasklist and
+     * returns Ui string response.
+     * @param input Raw input from user
+     * @return string that is printed to user by Ui
+     */
     protected String getResponse(String input) {
         String str = Parser.parseCommand(input, this.taskList, this.ui);
         this.storage.save(this.taskList.getList());

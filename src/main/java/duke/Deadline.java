@@ -34,8 +34,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the task's type, completion status, description and due date
-     * @return String This returns the string of the deadline in the specified format
+     * Returns string for the task's type, completion status, description and due date
+     * @return string of the deadline in the specified format
      */
     public String toString() {
         return "[D][" + this.getStatusIcon() + "] " + this.description + " (by: " + by + ")";

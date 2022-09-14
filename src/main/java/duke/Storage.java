@@ -30,10 +30,9 @@ public class Storage {
     }
 
     /**
-     * Gets the existing txt file in the
-     * file path and creates the txt file if it
-     * does not exist
-     * @return File This is the txtfile that stores all the user's task information
+     * Returns the existing txt file in the file path and
+     * creates the txt file if it does not exist
+     * @return .txt file that stores all the user's tasklist information
      */
     public File getFile() {
         File file = new File(filePath);
@@ -51,9 +50,9 @@ public class Storage {
     }
 
     /**
-     * Gets the existing text file and
-     * converts the text into a list of the user's tasks
-     * @return List This is the current list of the user's tasks
+     * Converts the text file into a list of the user's tasks
+     * and then return the list of user's tasks.
+     * @return current list of the user's tasks
      */
     public List<Task> load() {
         File file = this.getFile();
@@ -93,7 +92,7 @@ public class Storage {
     /**
      * Saves the latest version of the user's task
      * list to the txt file
-     * @param taskList This is the latest version of user's task list
+     * @param taskList latest version of user's task list
      */
     public void save(List<Task> taskList) {
         try {
