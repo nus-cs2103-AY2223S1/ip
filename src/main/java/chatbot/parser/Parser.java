@@ -13,9 +13,9 @@ import chatbot.commands.Command;
 import chatbot.commands.Delete;
 import chatbot.commands.Exit;
 import chatbot.commands.Find;
+import chatbot.commands.FindWith;
 import chatbot.commands.List;
 import chatbot.commands.ListOn;
-import chatbot.commands.FindWith;
 import chatbot.commands.Mark;
 import chatbot.commands.Unmark;
 import chatbot.exceptions.DukeException;
@@ -97,7 +97,7 @@ public class Parser {
                 throw DukeException.INVALID_DATE_FORMAT;
             }
 
-            String[] dTags = Arrays.copyOfRange(deadlineSpecs, 2, deadlineSpecs.length);;
+            String[] dTags = Arrays.copyOfRange(deadlineSpecs, 2, deadlineSpecs.length);
             return new AddDeadline(deadlineSpecs[0], deadline, dTags);
         case "bye":
             return Exit.EXIT;
