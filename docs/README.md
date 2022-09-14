@@ -46,7 +46,7 @@ Displays a list of avaible commands with examples. <br>
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_1.png?raw=true" alt="AdoHelp1"/>
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_2.png?raw=true" alt="AdoHelp2p"/> <br>
 Format: `help` **or** click on the `?` icon beside the send button
--  :exclamation: Upon clicking the `?` icon, you are required to close the Help window before continuing your chat with Ado
+-  ❗ Upon clicking the `?` icon, you are required to close the Help window before continuing your chat with Ado
 
 ### Adding a todo task: `todo`
 Adds a todo task to the task list. <br>
@@ -119,15 +119,16 @@ Ado saves data automatically in the hard disk after any valid command that chang
 
 
 ## Command summary
-   Action | Format, Examples
-   --------|------------------
-   **Help** | `help`
-   **Todo** | `todo {description}` <br> e.g., `todo do homework`
-   **Deadline** | `deadline {description} /by {dd MMM yyyy}` <br> e.g., `deadline submit assignment /by 25 Sep`
-   **Event** | `event {description} /at {dd MMM yyyy HH:mm}` <br> e.g., `event family outing /at 30 Sep 18:00`
-   **Mark** | `mark {index}`<br> e.g., `mark 1`
-   **Unmark** | `unmark {index}`<br> e.g., `unmark 1`
-   **Delete** | `delete {index}`<br> e.g., `delete 1`
-   **Find** | `find {keyword}`<br> e.g., `find cat`
-   **List** | `list`
-   **Exit** | `bye`
+
+Action | Format, Examples
+--------|------------------
+**Help** | `help`
+**Todo** | `todo {description}` <br> e.g., `todo do homework`
+**Deadline** | `deadline {description} /by {dd MMM yyyy}` <br> e.g., `deadline submit assignment /by 25 Sep`
+**Event** | `event {description} /at {dd MMM yyyy HH:mm}` <br> e.g., `event family outing /at 30 Sep 18:00`
+**Mark** | `mark {index}`<br> e.g., `mark 1`
+**Unmark** | `unmark {index}`<br> e.g., `unmark 1`
+**Delete** | `delete {index}`<br> e.g., `delete 1`
+**Find** | `find {keyword}`<br> e.g., `find cat`
+**List** | `list`
+**Exit** | `bye`
