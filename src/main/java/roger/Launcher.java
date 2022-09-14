@@ -28,7 +28,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) {
         parser = new Parser();
-        storage = new Storage(Paths.get("data/database.txt"));
+        storage = new Storage(Paths.get("./data/tasks.txt"));
         roger = new Roger(parser, storage);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
