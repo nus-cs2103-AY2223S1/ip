@@ -10,6 +10,12 @@ public abstract class Task {
     private String taskName;
     private String[] tags;
 
+    /**
+     * The constructor for a Task object that demands a task name and the tags associated with the task, could be empty.
+     *
+     * @param taskName Name of task.
+     * @param tags Tags associated with the task.
+     */
     public Task(String taskName, String[] tags) {
         this.taskName = taskName;
         this.tags = tags;

@@ -37,9 +37,31 @@ public class ParserTest {
         }
 
         try {
+            String[] parsed = Parser.parseTimedTask(Deadline.TYPE,
+                    "Exchange application /by 2022-09-10 #important # discussion");
+            assertEquals(4, parsed.length);
+            assertEquals("Exchange application", parsed[0]);
+            assertEquals("2022-09-10", parsed[1]);
+            assertEquals("important", parsed[2]);
+            assertEquals("discussion", parsed[3]);
+        } catch (DukeException e) {
+            fail();
+        }
+
+        try {
             String[] parsed = Parser.parseTimedTask(Event.TYPE, "Welcome Tea /at 2022-08-10");
             assertEquals("Welcome Tea", parsed[0]);
             assertEquals("2022-08-10", parsed[1]);
+        } catch (DukeException e) {
+            fail();
+        }
+
+        try {
+            String[] parsed = Parser.parseTimedTask(Event.TYPE, "Welcome Tea /at 2022-08-10 #interest");
+            assertEquals(3, parsed.length);
+            assertEquals("Welcome Tea", parsed[0]);
+            assertEquals("2022-08-10", parsed[1]);
+            assertEquals("interest", parsed[2]);
         } catch (DukeException e) {
             fail();
         }
