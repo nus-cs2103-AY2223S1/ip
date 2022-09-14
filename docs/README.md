@@ -16,8 +16,8 @@ allowing the tracking of various types of tasks including events and deadlines.
   - [Marking a task: `mark`](https://kshan29.github.io/ip/#marking-a-task-mark)
   - [Unmarking a task: `unmark`](https://kshan29.github.io/ip/#unmarking-a-task-unmark)
   - [Exiting the program: `bye`](https://kshan29.github.io/ip/#exiting-the-program-bye)
-- [FAQ](https://kshan29.github.io/ip/#FAQ)
-- [Commmand summary](https://kshan29.github.io/ip/#Command-summary)
+- [FAQ](https://kshan29.github.io/ip/#faq)
+- [Commmand summary](https://kshan29.github.io/ip/#command-summary)
 
 ## Quick Start
 
