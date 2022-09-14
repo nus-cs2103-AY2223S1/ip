@@ -41,10 +41,10 @@ public class Event extends Task {
     @Override
     public String printTask(){
         try {
-            return "[E]" + super.printTask() + " (at:"
+            return "[E]" + super.printTask() + " (on:"
                     + super.showTime() + ")";
         }catch (DukeException d){
-            return "[E]" + super.printTask() + " (at:"
+            return "[E]" + super.printTask() + " (on:"
                     + this.at + ")";
         }
     }

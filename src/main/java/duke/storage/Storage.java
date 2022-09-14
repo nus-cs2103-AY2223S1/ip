@@ -1,9 +1,6 @@
 package duke.storage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 import java.util.List;
 
@@ -79,6 +76,9 @@ public class Storage {
         } catch (Exception e) {
             throw new DukeException("Sorry, something went wrong when loading task.");
         }
+    }
+    public void clear(){
+        this.file.delete();
     }
     public Task disposeTaskString(String storedTaskString) throws DukeException{
         String[] temp = storedTaskString.split(" ",3);

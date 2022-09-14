@@ -28,7 +28,6 @@ public class Duke {
             this.taskList = this.storage.loadTasks();
         } catch (Exception e) {
             this.taskList = null;
-            this.storage = null;
         }
 
     }

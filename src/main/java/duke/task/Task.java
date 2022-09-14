@@ -34,12 +34,12 @@ public class Task {
         this.isDone=true;
     }
     public void correctDescrition(String rightDescription){
-        this.description=rightDescription;
+        this.description = rightDescription;
     }
     /**
      * Undone this task and print reply
      */
-    public void taskUndone() {
+    public void taskUndone(){
         this.isDone = false;
     }
 
@@ -48,7 +48,7 @@ public class Task {
      * @return A string of right format describe the task.
      */
     public String printTask(){
-        return ("["+this.getStatusIcon()+"]"+" "+this.description);
+        return ("[" + this.getStatusIcon() + "]" + " " + this.description);
     }
 
     //create a certain kind of task
@@ -79,9 +79,8 @@ public class Task {
     public void getFullDescription(String s){
         this.fullDescription = s;
     }
-    public String showTime() throws DukeException{
+    public String showTime() throws DukeException {
         try {
-
             String[] s = fullDescription.split(" ");
             String[] s2 = s[s.length - 2].split("/");
             String time = s2[2];
