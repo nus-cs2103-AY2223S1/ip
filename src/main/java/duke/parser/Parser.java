@@ -51,13 +51,20 @@ public class Parser {
         int numArgs = listOfInputs.size();
         String firstArg = listOfInputs.get(0);
 
+        boolean isTodoCommandShortcut = false;
+        boolean isDeadlineCommandShortcut = false;
+        boolean isEventCommandShortcut = false;
+
         switch (firstArg) {
+        case "b":
         case "bye":
             command = Command.BYE;
             break;
+        case "l":
         case "list":
             command = Command.LIST;
             break;
+        case "m":
         case "mark":
             if (numArgs != 2) {
                 throw new DukeException("Input format: mark (task number)");
@@ -65,6 +72,7 @@ public class Parser {
             command = Command.MARK;
             taskIndex = integerParser(listOfInputs.get(1), "mark") - 1;
             break;
+        case "um":
         case "unmark":
             if (numArgs != 2) {
                 throw new DukeException("Input format: unmark (task number)");
@@ -72,6 +80,7 @@ public class Parser {
             command = Command.UNMARK;
             taskIndex = integerParser(listOfInputs.get(1), "unmark") - 1;
             break;
+        case "d":
         case "delete":
             if (numArgs != 2) {
                 throw new DukeException("Input format: delete (task number)");
@@ -79,6 +88,7 @@ public class Parser {
             command = Command.DELETE;
             taskIndex = integerParser(listOfInputs.get(1), "delete") - 1;
             break;
+        case "f":
         case "find":
             if (numArgs != 2) {
                 throw new DukeException("Input format: find (keyword)");
@@ -86,32 +96,38 @@ public class Parser {
             command = Command.FIND;
             args = new String[]{listOfInputs.get(1)};
             break;
+        case "td":
+            isTodoCommandShortcut = true;
         case "todo":
             if (numArgs == 1) {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
             command = Command.TODO;
-            String todoName = input.split("todo ")[1];
+            String todoName = isTodoCommandShortcut ? input.split("td ")[1] : input.split("todo ")[1];
             args = new String[]{todoName};
             break;
+        case "ev":
+            isEventCommandShortcut = true;
         case "event": {
             if (numArgs < 4 || !listOfInputs.contains("\\at")) {
                 throw new DukeException("Input format: event (event name) \\at (event date/time)");
             }
             command = Command.EVENT;
             int index = input.indexOf("\\at ");
-            String eventName = input.substring(6, index);
+            String eventName = isEventCommandShortcut ? input.substring(3, index) : input.substring(6, index);
             String eventTime = input.substring(index + 4);
             args = new String[]{eventName, eventTime};
             break;
         }
+        case "dl":
+            isDeadlineCommandShortcut = true;
         case "deadline": {
             if (numArgs < 4 || !listOfInputs.contains("\\by")) {
                 throw new DukeException("Input format: deadline (deadline name) \\by (YYYY-MM-DD)");
             }
             command = Command.DEADLINE;
             int index = input.indexOf("\\by ");
-            String deadlineName = input.substring(9, index);
+            String deadlineName = isDeadlineCommandShortcut ? input.substring(3, index) : input.substring(9, index);
             String deadlineTime = input.substring(index + 4);
             args = new String[]{deadlineName, deadlineTime};
             break;
