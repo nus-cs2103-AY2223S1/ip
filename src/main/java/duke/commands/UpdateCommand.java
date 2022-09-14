@@ -15,9 +15,9 @@ import duke.tasks.ToDo;
  */
 public class UpdateCommand implements Command {
     public static final String COMMAND_WORD = "update";
-    private static final String MESSAGE_INVALID_DATE_SPECIFIER = "Task cannot be updated "
+    private static final String INVALID_DATE_SPECIFIER_MESSAGE = "Task cannot be updated "
             + "with Date specifier: ";
-    private static final String MESSAGE_INVALID_DATETIME_SPECIFIER = "Task cannot be updated "
+    private static final String INVALID_DATETIME_SPECIFIER_MESSAGE = "Task cannot be updated "
             + "with DateTime specifier: ";
     private int index;
     /** Input details from user to be further broken down */
@@ -59,9 +59,9 @@ public class UpdateCommand implements Command {
      */
     private void updateToDo(ToDo toDo) throws DukeException {
         if (input.contains(Parser.DATE_SPECIFIER)) {
-            throw new DukeException(MESSAGE_INVALID_DATE_SPECIFIER + Parser.DATE_SPECIFIER);
+            throw new DukeException(INVALID_DATE_SPECIFIER_MESSAGE + Parser.DATE_SPECIFIER);
         } else if (input.contains(Parser.DATETIME_SPECIFIER)) {
-            throw new DukeException(MESSAGE_INVALID_DATETIME_SPECIFIER + Parser.DATETIME_SPECIFIER);
+            throw new DukeException(INVALID_DATETIME_SPECIFIER_MESSAGE + Parser.DATETIME_SPECIFIER);
         }
         toDo.updateDescription(input);
     }
@@ -75,7 +75,7 @@ public class UpdateCommand implements Command {
      */
     private void updateDeadline(Deadline deadline) throws DukeException {
         if (input.contains(Parser.DATETIME_SPECIFIER)) {
-            throw new DukeException(MESSAGE_INVALID_DATETIME_SPECIFIER + Parser.DATETIME_SPECIFIER
+            throw new DukeException(INVALID_DATETIME_SPECIFIER_MESSAGE + Parser.DATETIME_SPECIFIER
                     + "\nUse: " + Parser.DATE_SPECIFIER);
         } else if (!input.contains(Parser.DATE_SPECIFIER)) {
             deadline.updateDescription(input.strip());
@@ -95,7 +95,7 @@ public class UpdateCommand implements Command {
      */
     private void updateEvent(Event event) throws DukeException {
         if (input.contains(Parser.DATE_SPECIFIER)) {
-            throw new DukeException(MESSAGE_INVALID_DATE_SPECIFIER + Parser.DATE_SPECIFIER
+            throw new DukeException(INVALID_DATE_SPECIFIER_MESSAGE + Parser.DATE_SPECIFIER
                     + "\nUse: " + Parser.DATETIME_SPECIFIER);
         } else if (!input.contains(Parser.DATETIME_SPECIFIER)) {
             event.updateDescription(input.strip());

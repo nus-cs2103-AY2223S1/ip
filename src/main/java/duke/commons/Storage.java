@@ -21,11 +21,11 @@ import duke.tasks.ToDo;
  * The TaskList is stored as a text file and is modified in real time with user command.
  */
 public class Storage {
-    private static final String MESSAGE_FILE_CANNOT_BE_OPEN = "OOPS!!! File cannot be opened";
-    private static final String MESSAGE_FILE_ACCESS_FAILURE = "OOPS!!! Unable to create a new file. "
+    private static final String FILE_CANNOT_BE_OPEN_MESSAGE = "OOPS!!! File cannot be opened";
+    private static final String FILE_ACCESS_FAILURE_MESSAGE = "OOPS!!! Unable to create a new file. "
             + "Tasks might not be stored.";
-    private static final String MESSAGE_INVALID_DATA_FORMAT = "OOPS!!! Invalid data format";
-    private static final String MESSAGE_NO_SAVE_DATA = "OOPS!!! No save data found";
+    private static final String INVALID_DATA_FORMAT_MESSAGE = "OOPS!!! Invalid data format";
+    private static final String NO_SAVE_DATA_MESSAGE = "OOPS!!! No save data found";
     private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
     private Path filePath;
 
@@ -61,7 +61,7 @@ public class Storage {
             }
             dataScanner.close();
         } catch (FileNotFoundException e) {
-            throw new DukeException(MESSAGE_FILE_CANNOT_BE_OPEN);
+            throw new DukeException(FILE_CANNOT_BE_OPEN_MESSAGE);
         }
         return new TaskList(taskList);
     }
@@ -94,11 +94,11 @@ public class Storage {
                 task = new Event(description, isDone, Parser.parseLocalDateTime(storedInfo[3]));
                 break;
             default:
-                throw new DukeException(MESSAGE_NO_SAVE_DATA);
+                throw new DukeException(NO_SAVE_DATA_MESSAGE);
             }
             taskList.add(task);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(MESSAGE_INVALID_DATA_FORMAT);
+            throw new DukeException(INVALID_DATA_FORMAT_MESSAGE);
         }
     }
 
@@ -122,7 +122,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            throw new DukeException(MESSAGE_FILE_CANNOT_BE_OPEN);
+            throw new DukeException(FILE_CANNOT_BE_OPEN_MESSAGE);
         }
     }
 
@@ -140,7 +140,7 @@ public class Storage {
             data.write(task.taskToDataString());
             data.close();
         } catch (IOException e) {
-            throw new DukeException(MESSAGE_FILE_CANNOT_BE_OPEN);
+            throw new DukeException(FILE_CANNOT_BE_OPEN_MESSAGE);
         }
     }
 
@@ -168,7 +168,7 @@ public class Storage {
                 data.createNewFile();
             }
         } catch (IOException e) {
-            throw new DukeException(MESSAGE_FILE_ACCESS_FAILURE);
+            throw new DukeException(FILE_ACCESS_FAILURE_MESSAGE);
         }
     }
     //@@author

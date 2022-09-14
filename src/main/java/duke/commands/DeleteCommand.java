@@ -11,6 +11,7 @@ import duke.tasks.Task;
  */
 public class DeleteCommand implements Command {
     public static final String COMMAND_WORD = "delete";
+    private static final String NO_TASK_TO_DELETE_MESSAGE = "Im sorry, there are currently no task to delete";
     private int index;
 
     /**
@@ -28,7 +29,7 @@ public class DeleteCommand implements Command {
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         if (taskList.isEmpty()) {
-            return Ui.formatNoTaskToDeleteMessage();
+            return NO_TASK_TO_DELETE_MESSAGE;
         } else {
             Task task = taskList.getTask(index);
             taskList.removeTask(index);

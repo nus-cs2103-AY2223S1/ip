@@ -41,12 +41,12 @@ public class Parser {
     private static final DateTimeFormatter DATETIME_MESSAGE_FORMAT = DateTimeFormatter
             .ofPattern("MMM dd yyyy");
 
-    private static final String MESSAGE_UNDECIPHERABLE = "OOPS!!! I'm sorry, but I don't know what that means :(";
-    private static final String MESSAGE_WRONG_COMMAND_PARAMETER = "OOPS!!! Wrong command parameters!";
-    private static final String MESSAGE_INVALID_INDEX = "OOPS!!! Invalid task index";
-    private static final String MESSAGE_PROMPT_DATE_FORMAT = "Please enter a valid date format:\n"
+    private static final String UNDECIPHERABLE_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :(";
+    private static final String WRONG_COMMAND_PARAMETER_MESSAGE = "OOPS!!! Wrong command parameters!";
+    private static final String INVALID_INDEX_MESSAGE = "OOPS!!! Invalid task index";
+    private static final String DATE_FORMAT_PROMPT_MESSAGE = "Please enter a valid date format:\n"
             + "day/month/year -> dd/mm/yyyy";
-    private static final String MESSAGE_PROMPT_DATETIME_FORMAT = "Please enter a valid datetime format:\n"
+    private static final String DATETIME_FORMAT_PROMPT_MESSAGE = "Please enter a valid datetime format:\n"
             + "day/month/year (24hour time) -> dd/mm/yyyy HHmm";
 
     /**
@@ -81,10 +81,10 @@ public class Parser {
             case UpdateCommand.COMMAND_WORD:
                 return parseForUpdate(parsedSpecifications[1].strip());
             default:
-                throw new DukeException(MESSAGE_UNDECIPHERABLE);
+                throw new DukeException(UNDECIPHERABLE_MESSAGE);
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(MESSAGE_WRONG_COMMAND_PARAMETER);
+            throw new DukeException(WRONG_COMMAND_PARAMETER_MESSAGE);
         }
     }
 
@@ -101,7 +101,7 @@ public class Parser {
             index = Integer.parseInt(input) - 1;
             return index;
         } catch (NumberFormatException e) {
-            throw new DukeException(MESSAGE_INVALID_INDEX);
+            throw new DukeException(INVALID_INDEX_MESSAGE);
         }
     }
 
@@ -155,7 +155,7 @@ public class Parser {
         try {
             return LocalDate.parse(input, DATETIME_DATA_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new DukeException(MESSAGE_PROMPT_DATE_FORMAT);
+            throw new DukeException(DATE_FORMAT_PROMPT_MESSAGE);
         }
     }
 
@@ -190,7 +190,7 @@ public class Parser {
         try {
             return LocalDateTime.parse(input, DATE_DATA_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new DukeException(MESSAGE_PROMPT_DATETIME_FORMAT);
+            throw new DukeException(DATETIME_FORMAT_PROMPT_MESSAGE);
         }
     }
 

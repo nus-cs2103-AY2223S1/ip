@@ -31,6 +31,15 @@ public abstract class Task {
     }
 
     /**
+     * Returns if task is already completed.
+     *
+     * @return Task completion status.
+     */
+    public boolean isDone() {
+        return isDone;
+    }
+
+    /**
      * Marks task as done.
      */
     public void markAsDone() {

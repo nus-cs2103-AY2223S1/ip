@@ -10,7 +10,7 @@ import duke.tasks.Task;
  * This class contains the task list.
  */
 public class TaskList {
-    private static final String MESSAGE_INVALID_INDEX = "OOPS!!! Invalid task number.";
+    private static final String INVALID_INDEX_MESSAGE = "OOPS!!! Invalid task number.";
     private List<Task> taskList;
 
     /**
@@ -33,7 +33,7 @@ public class TaskList {
         try {
             return taskList.get(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(MESSAGE_INVALID_INDEX);
+            throw new DukeException(INVALID_INDEX_MESSAGE);
         }
     }
 
@@ -56,7 +56,7 @@ public class TaskList {
         try {
             taskList.remove(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(MESSAGE_INVALID_INDEX);
+            throw new DukeException(INVALID_INDEX_MESSAGE);
         }
     }
 

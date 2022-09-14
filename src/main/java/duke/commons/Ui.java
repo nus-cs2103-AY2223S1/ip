@@ -21,22 +21,11 @@ public class Ui {
     }
 
     /**
-     * Generates a farewell message.
-     *
-     * @return Farewell message.
-     */
-    public static String formatFarewellMessage() {
-        String farewell = "Bye! Hope to see you again soon!";
-        return farewell;
-    }
-
-    /**
      * Generates a message of status of TaskList.
      * If TaskList is not empty, include all contents of TaskList.
      *
      * @param taskList List of task to be printed.
      * @return List status message.
-     * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
     public static String formatListStatusMessage(TaskList taskList) {
         String listStatus;
@@ -60,7 +49,6 @@ public class Ui {
      * @param taskList TaskList to search through with keyword.
      * @param keyword Keyword to find.
      * @return Find string message.
-     * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
     public static String formatFindTaskMessage(TaskList taskList, String keyword) {
         String taskFindOutput;
@@ -94,8 +82,8 @@ public class Ui {
      * @return Mark task done message.
      */
     public static String formatMarkAsDoneMessage(int index, Task task) {
-        String markAsDoneString = "Nice! I've marked this task as done:";
-        return String.format(markAsDoneString + "\n" + TASK_STRING_FORMAT, index + 1, task);
+        String markAsDoneMessage = "Nice! I've marked this task as done:";
+        return String.format(markAsDoneMessage + "\n" + TASK_STRING_FORMAT, index + 1, task);
     }
 
     /**
@@ -106,8 +94,8 @@ public class Ui {
      * @return Mark task undone message.
      */
     public static String formatMarkAsUndoneMessage(int index, Task task) {
-        String markAsUndoneString = "Ok! I've marked this task as not done yet:";
-        return String.format(markAsUndoneString + "\n" + TASK_STRING_FORMAT, index + 1, task);
+        String markAsUndoneMessage = "Ok! I've marked this task as not done yet:";
+        return String.format(markAsUndoneMessage + "\n" + TASK_STRING_FORMAT, index + 1, task);
     }
 
     /**
@@ -118,18 +106,8 @@ public class Ui {
      * @return Delete task message.
      */
     public static String formatDeleteTaskMessage(int index, Task task) {
-        String taskDeleteString = "Noted. I've removed this task:";
-        return String.format(taskDeleteString + "\n" + TASK_STRING_FORMAT, index + 1, task);
-    }
-
-    /**
-     * Generates a message that TaskList is empty and no task can be deleted.
-     *
-     * @return No task to delete message.
-     */
-    public static String formatNoTaskToDeleteMessage() {
-        String noTaskToDeleteString = "Im sorry, there are currently no task to delete";
-        return noTaskToDeleteString;
+        String taskDeleteMessage = "Noted. I've removed this task:";
+        return String.format(taskDeleteMessage + "\n" + TASK_STRING_FORMAT, index + 1, task);
     }
 
     /**
@@ -139,8 +117,8 @@ public class Ui {
      * @return Add task message.
      */
     public static String formatAddTaskMessage(Task task) {
-        String taskAddString = "Got it! I've added this task:\n> ";
-        return taskAddString + task;
+        String taskAddMessage = "Got it! I've added this task:\n> ";
+        return taskAddMessage + task;
     }
 
     /**
@@ -151,8 +129,8 @@ public class Ui {
      * @return Update task message.
      */
     public static String formatUpdateMessage(int index, Task task) {
-        String taskUpdateString = "Done! I've updated this task:\n";
-        return String.format(taskUpdateString + TASK_STRING_FORMAT, index + 1, task);
+        String taskUpdateMessage = "Done! I've updated this task:\n";
+        return String.format(taskUpdateMessage + TASK_STRING_FORMAT, index + 1, task);
     }
 
     /**

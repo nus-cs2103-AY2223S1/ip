@@ -10,6 +10,7 @@ import duke.exceptions.DukeException;
  */
 public class MarkCommand implements Command {
     public static final String COMMAND_WORD = "mark";
+    private static final String ALREADY_MARKED_MESSAGE = "Task has already been marked";
     private int index;
 
     /**
@@ -26,6 +27,9 @@ public class MarkCommand implements Command {
      */
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
+        if (taskList.getTask(index).isDone()) {
+            return ALREADY_MARKED_MESSAGE;
+        }
         taskList.getTask(index).markAsDone();
         storage.saveToFile(taskList);
         return Ui.formatMarkAsDoneMessage(index, taskList.getTask(index));
