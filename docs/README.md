@@ -23,14 +23,14 @@ All tasks you add during your usage in case you want to check back on all your t
 
 Add a task to the list of tasks for Duke to keep track of.
 
-####Todo
+#### Todo
 Format: `todo description`
 
 Examples:
 - `todo eat lunch with friends`
 - `todo attend CS2103T Lecture`
 
-####Deadline
+#### Deadline
 Format: `deadline description /by dd/MM/yyyy HHmm`
 
 Examples:
@@ -38,7 +38,7 @@ Examples:
 - `deadline Submit proposal /by 19/04/2023 0800`
 >Note: The date and time input for creating a Deadline task **MUST** follow the format: dd/MM/yyyy HHmm
 
-####Event
+#### Event
 Format: `event description /at time description`
 
 Examples:
@@ -68,7 +68,7 @@ Here are the tasks in your list:
 3. [E][] third task at: not sure
 ```
 
-###`mark` and `unmark` - Mark a task as completed or uncompleted.
+### `mark` and `unmark` - Mark a task as completed or uncompleted.
 When a task is completed, you can indicate this in your task list by using the `mark n` command where `n`
 is the index/position of the task in your task list. The task is then marked with an 'X' to indicate it is completed.
 
