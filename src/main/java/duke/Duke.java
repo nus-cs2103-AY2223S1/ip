@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Duke {
 
-    private static String GREETING = "Hello! I'm Alfredo!\nWhat can I do for you?";
+    private static String GREETING = "Hello! I'm Afredo!\nWhat can I do for you?";
 
     private Ui ui;
     private Parser parser;
@@ -32,7 +32,8 @@ public class Duke {
     }
 
     public static String getGreeting() {
-        return GREETING;
+        String lineBreak = "___________________________________________";
+        return String.format("%s\n%s\n%s", lineBreak, GREETING, lineBreak);
     }
 
     public String getResponse(String input) {
