@@ -29,7 +29,6 @@ public class Ui {
      * @throws DukeException exception thrown in TaskList method
      */
     public void printList(TaskList tasks) throws DukeException {
-        System.out.println("Here are the tasks in your list:");
         sc.append("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             sc.append(i + 1 + "." + tasks.get(i + 1) + "\n");
