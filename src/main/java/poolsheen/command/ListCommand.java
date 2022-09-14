@@ -20,9 +20,9 @@ public class ListCommand extends Command {
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty()) {
             return ui.displayList(tl);
+        } else {
+            throw new PoolsheenException(String.join(" ", rest),
+                    "list", "Try to enter only 'list'");
         }
-
-        throw new PoolsheenException(String.join(" ", rest),
-                "list", "Try to enter 'list'");
     }
 }

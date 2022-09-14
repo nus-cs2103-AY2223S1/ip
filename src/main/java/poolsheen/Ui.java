@@ -11,18 +11,16 @@ public class Ui {
     /** The indentation for all printed Poolsheen lines. */
     public static final String BEGIN_SPACE = "      ";
 
-    /** The Poolsheen logo. */
-    private static final String LOGO = "\n" + "POOLSHEEN";
-
-    /** The message first printed when the Poolsheen program runs. */
-    private static final String WELCOME_MESSAGE = "Hello from" + LOGO + "\n"
-            + "Type something in for Poolsheen to respond to you:";
-
     /** The message printed last whenever Poolsheen replys. */
     private static final String LAST_REPLY = "meow *_*";
 
     /** A horiontal line to distinguish each interaction the user has with Poolsheen. */
     private static final String HORIZONTAL_LINE = "--------------------------------------------------";
+
+    /** The message first printed when the Poolsheen program runs. */
+    private static final String WELCOME_MESSAGE = HORIZONTAL_LINE + "\n"
+            + "hello! welcome back!\n Type something in for me to do :D\n"
+            + HORIZONTAL_LINE;
 
     /** The message last printed when the Poolsheen program ends. */
     private static final String GOODBYE_MESSAGE = "MeoAww... :(\n"

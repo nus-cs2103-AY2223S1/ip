@@ -4,6 +4,9 @@ package poolsheen;
  * Represents a general Runtime Exception which is thrown when an error occurs in the Poolsheen program.
  */
 public class PoolsheenException extends RuntimeException {
+    /** A horiontal line of ! to distinguish an error the user has with Poolsheen. */
+    private static final String ERROR_LINE = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+
     /** The type of exception that was passed in. */
     private String errorType;
 
@@ -25,7 +28,9 @@ public class PoolsheenException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "The Poolsheen program has encountered a " + this.errorType + " error.\n"
-                + "Poolsheen thinks that you should: " + this.poolsheenResponse + "\n";
+        return ERROR_LINE + "\n"
+                + "Meowww... that looks like a " + this.errorType + " error to me :(\n"
+                + "Poolsheen thinks that you should: " + this.poolsheenResponse + "\n"
+                + ERROR_LINE;
     }
 }
