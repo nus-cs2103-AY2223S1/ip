@@ -37,12 +37,12 @@ public class Ui {
                     + "1. todo     \t" + "todo description\n"
                     + "2. event    \t" + "event description /on yyyy-mm-dd\n"
                     + "3. deadline \t" + "deadline description /by yyyy-mm-dd\n"
-                    + "4. mark     \t" + "mark task_number\n"
-                    + "5. unmark   \t" + "unmark task_number\n"
-                    + "6. delete   \t" + "delete task_number\n"
+                    + "4. mark     \t" + "mark task number\n"
+                    + "5. unmark   \t" + "unmark task number\n"
+                    + "6. delete   \t" + "delete task number\n"
                     + "7. list     \t\t" + "list\n"
                     + "8. find     \t\t" + "find keyword\n"
-                    + "9. tag      \t\t" + "tag task_number /as tag\n"
+                    + "9. tag      \t\t" + "tag task number /as tag\n"
                     + "10. findTag \t" + "findTag tag";
         } else if (command instanceof Mark) {
             return (">> " + "marked task: " + taskNumber);
