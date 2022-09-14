@@ -28,8 +28,10 @@ public class DialogBox extends HBox {
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
+
             fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,6 +58,7 @@ public class DialogBox extends HBox {
      * @return A User DialogBox node to be rendered into the root node.
      */
     public static DialogBox getUserDialog(String text, Image img) {
+
         return new DialogBox(text, img);
     }
 

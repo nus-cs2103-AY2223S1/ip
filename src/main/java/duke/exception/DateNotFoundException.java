@@ -10,6 +10,7 @@ public class DateNotFoundException extends Exception {
      * @param message User input with missing date.
      */
     public DateNotFoundException(String message) {
+
         super("Date cannot be found in: " + message);
     }
 }
