@@ -1,4 +1,7 @@
 # User Guide
+<p align="center">
+  <img src="Ui.png" height="500px"></img>
+</p>
 
 ## Features 
 
