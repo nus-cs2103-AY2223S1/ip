@@ -45,7 +45,7 @@ public class Storage {
             fw.write(textToAppend + "\n");
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("☹ Error occurs when writing to local file");
+            throw new DukeException("☹ Error occurs when writing to local file!");
         }
     }
 
@@ -65,7 +65,7 @@ public class Storage {
             fw.write(textToAdd.toString());
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("☹ Error occurs when writing to local file");
+            throw new DukeException("☹ Error occurs when writing to local file!");
         }
     }
 

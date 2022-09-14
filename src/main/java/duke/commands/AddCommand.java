@@ -54,7 +54,7 @@ public class AddCommand extends Command {
      */
     public void checkDuplicates(TaskList taskList, Task task) throws DukeException {
         if (taskList.hasDuplicates(task)) {
-            String errorMessage = "☹ The input task has already been stored in the task list!";
+            String errorMessage = "☹ Don't you realise the input task has already been stored in the task list?";
             throw new DukeException(errorMessage);
         }
     }
