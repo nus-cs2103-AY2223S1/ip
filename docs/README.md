@@ -229,6 +229,6 @@ the data of your previous Duke home folder.
 | list       | `list`                                                                                            |
 | delete     | `delete INDEX` <br/> e.g. `delete 1`                                                              |
 | find       | `find KEYWORD` <br/> e.g. `find test`                                                             |
-| mark       | `mark INDEX` <br/> e.g. `mark 3`                                                                      |
-| unmark     | `unmark INDEX` <br/> e.g. `unmark 2`                                                                  |
-| bye        | `bye`                                                                                               |
+| mark       | `mark INDEX` <br/> e.g. `mark 3`                                                                  |
+| unmark     | `unmark INDEX` <br/> e.g. `unmark 2`                                                              |
+| bye        | `bye`                                                                                             |
