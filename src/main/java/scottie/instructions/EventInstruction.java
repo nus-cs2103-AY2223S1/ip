@@ -1,5 +1,6 @@
 package scottie.instructions;
 
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import scottie.ui.Ui;
 class EventInstruction extends Instruction {
     private static final String MISSING_DESCRIPTION_MESSAGE = "Um... I'll need a description for the event, buddy.";
     private static final String MISSING_DATE_MESSAGE = "Um... I'll need a date for the event, buddy.";
+    private static final String INVALID_DATE_MESSAGE = "Um... I've never seen a date formatted like that before...";
     private static final String EVENT_ADDED_MESSAGE = "Ok got it, I've added this event:";
 
     /**
@@ -48,8 +50,15 @@ class EventInstruction extends Instruction {
             return;
         }
 
-        TemporalAccessor endDateTime = DateTimeUtil.parseCompactDateTime(endDateTimeString);
-        Event event = new Event(this.getMainArgument(), endDateTime);
+        TemporalAccessor dateTime;
+        try {
+            dateTime = DateTimeUtil.parseCompactDateTime(endDateTimeString);
+        } catch (DateTimeParseException e) {
+            ui.showError(INVALID_DATE_MESSAGE);
+            return;
+        }
+
+        Event event = new Event(this.getMainArgument(), dateTime);
         taskList.addTask(event);
         ui.showMessages(EVENT_ADDED_MESSAGE, event.toString());
     }

@@ -3,6 +3,7 @@ package scottie.common;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 
 /**
@@ -24,7 +25,7 @@ public final class DateTimeUtil {
      * @param dateTimeString The string to be parsed.
      * @return The TemporalAccessor resulting from parsing the input string.
      */
-    public static TemporalAccessor parseCompactDateTime(String dateTimeString) {
+    public static TemporalAccessor parseCompactDateTime(String dateTimeString) throws DateTimeParseException {
         return COMPACT_DATE_TIME_FORMATTER.parseBest(dateTimeString, LocalDateTime::from, LocalDate::from);
     }
 

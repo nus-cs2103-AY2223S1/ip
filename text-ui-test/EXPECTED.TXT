@@ -83,6 +83,8 @@ Wow! you have no more tasks left!
 [0;31mUm... sorry I don't know what "randomness" means...[0m
 [0;31mUm... I'll need a date for the deadline, buddy.[0m
 [0;31mUm... I'll need a date for the event, buddy.[0m
+[0;31mUm... I've never seen a date formatted like that before...[0m
+[0;31mUm... I've never seen a date formatted like that before...[0m
 [0;31mUm... which task did you wanna delete?[0m
 [0;31mUm... what exactly did you want to find?[0m
 [0;31mHahaha very funny buddy. 0.1 is not a legit task number.[0m

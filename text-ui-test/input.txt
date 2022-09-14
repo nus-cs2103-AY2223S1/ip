@@ -34,6 +34,8 @@ event
 randomness
 deadline No end time
 event No time
+deadline Invalid date /by tomorrow
+event Invalid date /at 22/2/22 12345
 delete
 find
 mark 0.1
