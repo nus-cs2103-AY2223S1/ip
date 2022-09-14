@@ -13,7 +13,7 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
-    private Duke() {
+    public Duke() {
         this.storage = new Storage(SAVED_PATH);
         try {
             this.tasks = this.storage.load();
@@ -38,6 +38,14 @@ public class Duke {
                 ui.showError(e.getMessage());
             }
         }
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 
     public static void main(String[] args) {
