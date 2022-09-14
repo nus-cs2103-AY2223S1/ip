@@ -1,22 +1,23 @@
 package duke.tools;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import duke.exceptions.DukeException;
-import duke.tasks.Todo;
 import org.junit.jupiter.api.Test;
 
+import duke.exceptions.DukeException;
 import duke.tasks.Task;
+import duke.tasks.Todo;
 
 class TaskListTest {
 
     private static class DummyTask extends Task {
         public DummyTask() {
-            super("dummy", TaskType.TODO);
+            super("dummy", Task.TaskType.TODO);
         }
     }
 

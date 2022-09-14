@@ -38,6 +38,18 @@ public class Parser {
     /** Text separator for datetime of an event. */
     private static final String EVENT_SEPARATOR = "/at ";
 
+    private static final String BYE_USER_COMMAND = "bye";
+    private static final String LIST_USER_COMMAND = "list";
+    private static final String MARK_USER_COMMAND = "mark";
+    private static final String UNMARK_USER_COMMAND = "unmark";
+    private static final String DELETE_USER_COMMAND = "delete";
+    private static final String FIND_USER_COMMAND = "find";
+    private static final String TODO_USER_COMMAND = "todo";
+    private static final String DEADLINE_USER_COMMAND = "deadline";
+    private static final String EVENT_USER_COMMAND = "event";
+    private static final String BETWEEN_USER_COMMAND = "between";
+    private static final String SNOOZE_USER_COMMAND = "snooze";
+
     /**
      * Private constructor to prevent object creation.
      */
@@ -54,27 +66,27 @@ public class Parser {
         try {
             String[] inputLine = str.split(" ", 2);
             switch (inputLine[0]) {
-            case "bye":
+            case BYE_USER_COMMAND:
                 return new ByeCommand();
-            case "list":
+            case LIST_USER_COMMAND:
                 return new ListCommand();
-            case "mark":
+            case MARK_USER_COMMAND:
                 return new MarkCommand(parseTaskIndex(inputLine[1].strip()));
-            case "unmark":
+            case UNMARK_USER_COMMAND:
                 return new UnmarkCommand(parseTaskIndex(inputLine[1].strip()));
-            case "delete":
+            case DELETE_USER_COMMAND:
                 return new DeleteCommand(parseTaskIndex(inputLine[1].strip()));
-            case "find":
+            case FIND_USER_COMMAND:
                 return new FindCommand(inputLine[1].strip());
-            case "todo":
+            case TODO_USER_COMMAND:
                 return new TodoCommand(inputLine[1].strip());
-            case "deadline":
+            case DEADLINE_USER_COMMAND:
                 return parseDeadlineCommand(inputLine[1].strip());
-            case "event":
+            case EVENT_USER_COMMAND:
                 return parseEventCommand(inputLine[1].strip());
-            case "between":
+            case BETWEEN_USER_COMMAND:
                 return parseBetweenCommand(inputLine[1].strip());
-            case "snooze":
+            case SNOOZE_USER_COMMAND:
                 return new SnoozeCommand(parseTaskIndex(inputLine[1].strip()));
             default:
                 throw new DukeUnknownCommandException();

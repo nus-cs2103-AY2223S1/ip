@@ -5,10 +5,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDateTime;
 
-import duke.exceptions.DukeDateTimeParseException;
-import duke.exceptions.DukeIncorrectCommandParamsException;
-import duke.exceptions.DukeInsufficientCommandParamsException;
-import duke.exceptions.DukeUnknownCommandException;
 import org.junit.jupiter.api.Test;
 
 import duke.commands.ByeCommand;
@@ -19,7 +15,11 @@ import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
+import duke.exceptions.DukeDateTimeParseException;
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeIncorrectCommandParamsException;
+import duke.exceptions.DukeInsufficientCommandParamsException;
+import duke.exceptions.DukeUnknownCommandException;
 
 class ParserTest {
 
