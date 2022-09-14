@@ -8,10 +8,16 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" alignment="CENTER" prefHeight="102.0" prefWidth="250.0" style="-fx-background-color: #FFE4E4#FFE4E4; -fx-background-radius: 10; -fx-wrap-text: true;" text="Label" wrapText="true">
+        <Label fx:id="dialog" alignment="CENTER" prefHeight="114.0" prefWidth="253.0" style="-fx-background-color: #FFE4E4#FFE4E4; -fx-background-radius: 15; -fx-wrap-text: true;" text="Label" wrapText="true">
          <font>
-            <Font name="Toppan Bunkyu Mincho Regular" size="16.0" />
-         </font></Label>
+            <Font name="Toppan Bunkyu Mincho Regular" size="13.0" />
+         </font>
+         <HBox.margin>
+            <Insets bottom="-5.0" right="5.0" top="-5.0" />
+         </HBox.margin>
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding></Label>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>

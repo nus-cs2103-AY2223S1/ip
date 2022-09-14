@@ -116,8 +116,13 @@ public class Ui {
      * @return String of number of tasks left in the list.
      */
     public String printTasksLeft(int num) {
-        String str = "You have " + num + " tasks left in your list.";
-        return str;
+        if (num > 1) {
+            String str = "You have " + num + " tasks in your list.";
+            return str;
+        } else {
+            String str = "You have " + num + " task in your list.";
+            return str;
+        }
     }
 
     /**

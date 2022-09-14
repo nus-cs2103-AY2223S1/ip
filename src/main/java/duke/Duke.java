@@ -33,7 +33,8 @@ public class Duke {
         try {
             return parser.parse(input);
         } catch (DukeException de) {
-            return ui.printErrorMsg(de.toString());
+            int dukeExceptionWords = 19;
+            return ui.printErrorMsg(de.toString().substring(dukeExceptionWords));
         }
     }
 

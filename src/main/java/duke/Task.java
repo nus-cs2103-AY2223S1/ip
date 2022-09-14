@@ -8,6 +8,7 @@ public class Task {
     protected boolean isDone;
 
     public Task(String description) {
+        assert description.length() > 0 : "description should not be empty";
         this.description = description;
         this.isDone = false;
     }
