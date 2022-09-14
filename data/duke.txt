@@ -1,5 +1,5 @@
 1.[T][X] read book
-2.[D][ ] return book (by: JUN 06 2022)
+2.[D][X] return book (by: JUN 06 2022)
 3.[D][ ] book review (by: JUN 22 2022)
 4.[E][ ] book session (at: Monday 3pm )
 5.[T][X] eat lunch
