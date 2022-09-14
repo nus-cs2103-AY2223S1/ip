@@ -57,7 +57,7 @@ public class MarkCommand extends Command {
     public String undoExecute(Ui ui, Storage storage, TaskList taskList, CommandHistory commandHistory) {
         Task unmarkedTask = taskList.getTask(position - 1);
         taskList.unmark(position - 1, storage);
-        String unmarkedMessage = "This task has been just unmarked!";
+        String unmarkedMessage = "This task has just been unmarked!";
         return ui.displayCommandMessage(unmarkedMessage, unmarkedTask, null);
     }
 }

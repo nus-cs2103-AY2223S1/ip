@@ -42,7 +42,7 @@ public class FindCommand extends Command{
             }
         }
         if (tempTaskArray.size() == 0) {
-            String message = "\t" + "No search results are available for this keyword!";
+            String message = "No search results are available for this keyword!";
             return ui.displayCommandMessage(message, null, null);
         } else {
             MultiLineFormatter mFormatter = new MultiLineFormatter();

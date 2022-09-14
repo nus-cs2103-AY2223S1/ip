@@ -123,7 +123,7 @@ public class Parser {
     }
 
     private static LocalDate parseDate(String date) throws DateTimeParseException{
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return LocalDate.parse(date,dtf);
     }
 
