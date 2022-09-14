@@ -7,19 +7,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.Task.Deadline;
-import duke.Task.Event;
-import duke.Task.Task;
-import duke.Task.Todo;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 public class Storage {
-    boolean directoryExist;
-    java.nio.file.Path path;
-    File file;
+    private java.nio.file.Path path;
+
     public Storage(String filename) {
         String home = System.getProperty("user.dir");
         this.path = java.nio.file.Paths.get(home, "src", "data", filename);
-        this.directoryExist = java.nio.file.Files.exists(this.path);
+
     }
 
     /**
@@ -28,19 +27,24 @@ public class Storage {
      */
     public ArrayList<Task> readFile() {
         ArrayList<Task> data = new ArrayList<>();
+        System.out.println();
+        File file = new File(String.valueOf(this.path));
+        checkFileExist();
         try {
-            this.file = new File(String.valueOf(this.path));
-            Scanner reader = new Scanner(this.file);
+            if (!checkFileExist()) {
+                file.createNewFile();
+            }
+            Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String[] taskInfo = reader.nextLine().split("\\|");
-                if (taskInfo[0] == "T") {
+                if (taskInfo[0].equals("T")) {
                     data.add(new Todo(taskInfo[1], Boolean.parseBoolean(taskInfo[2])));
-                } else if (taskInfo[0] == "E") {
+                } else if (taskInfo[0].equals("E")) {
                     data.add(new Event(taskInfo[1],
                             Boolean.parseBoolean(taskInfo[2]),
                             LocalDateTime.parse(taskInfo[3])));
 
-                } else if (taskInfo[0] == "D") {
+                } else if (taskInfo[0].equals("D")) {
                     data.add(new Deadline(taskInfo[1],
                             Boolean.parseBoolean(taskInfo[2]),
                             LocalDateTime.parse(taskInfo[3])));
@@ -49,12 +53,15 @@ public class Storage {
             }
         } catch (FileNotFoundException e) {
             System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
-
         return data;
     }
 
-
+    private boolean checkFileExist() {
+        return java.nio.file.Files.exists(this.path);
+    }
     /**
      * Updates the content of the file
      * @param updatedData the updated list of task

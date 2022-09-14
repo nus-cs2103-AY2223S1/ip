@@ -3,10 +3,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import duke.Exceptions.DukeException;
-import duke.Task.Event;
-import duke.Task.Task;
-import duke.Task.Todo;
+import duke.exceptions.DukeException;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 
 /**
@@ -20,7 +20,7 @@ public class Parser {
     /**
      * Checks if the command inputted is a valid command
      *
-     * @param input: input string to check
+     * @param input comannd input
      * @return enum Duke.Commands value
      * @throws DukeException
      */
@@ -70,7 +70,6 @@ public class Parser {
      */
     public String executeInput(Ui ui, String input, Storage storage, TaskList taskList) {
         String[] inputArr = input.split(" ", 2);
-        String commandString = inputArr[0];
         try {
             switch (this.analyzeCommand(input)) {
             case BYE:

@@ -1,11 +1,11 @@
 package duke;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import duke.Task.Task;
-import duke.Task.Deadline;
-import duke.Task.Event;
+
+import duke.task.Task;
+
+
 public class TaskList {
-    public ArrayList<Task> list;
+    protected ArrayList<Task> list;
 
     /**
      * A constructor to construct the taskList
@@ -64,8 +64,14 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Filters the current tasklist based on a query
+     * @param input search criteria
+     * @return A TaskList of tasklist that contains the input
+     */
+
     public TaskList filterTask(String input) {
-        String comparator = "(.*)"+ input.replace(" ", "(.*)") + "(.*)";
+        String comparator = "(.*)" + input.replace(" ", "(.*)") + "(.*)";
         ArrayList<Task> copyOfTasks = new ArrayList<>(this.list);
         copyOfTasks.removeIf(task -> !task.toString().matches(comparator));
         return new TaskList(copyOfTasks);

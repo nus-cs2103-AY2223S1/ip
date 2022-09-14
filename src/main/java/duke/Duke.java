@@ -1,9 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
-import duke.Exceptions.NoSuchCommandException;
-
 /**
  * Main class for duke application
  */
