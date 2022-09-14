@@ -23,8 +23,7 @@ import javafx.scene.shape.Rectangle;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
-//    @FXML
-//    private Label dialog;
+
     @FXML
     private ImageView displayPicture;
     @FXML
