@@ -14,7 +14,7 @@ import scottie.ui.Ui;
  */
 class DeadlineInstruction extends Instruction {
     private static final String MISSING_DESCRIPTION_MESSAGE = "Um... I'll need a description for the deadline, buddy.";
-    private static final String MISSING_DATE_MESSAGE = "Um... I'll need a date for the deadline, buddy";
+    private static final String MISSING_DATE_MESSAGE = "Um... I'll need a date for the deadline, buddy.";
     private static final String DEADLINE_ADDED_MESSAGE = "Ok got it, I've added this deadline:";
 
     /**

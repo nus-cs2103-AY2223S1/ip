@@ -75,11 +75,11 @@ Ok got it, I've deleted this task:
 Wow! you have no more tasks left!
 [0;31mUm... which task did you wanna mark?[0m
 [0;31mUm... which task did you wanna unmark?[0m
-[0;31mUm... I'll need a description for the to-do, buddy[0m
+[0;31mUm... I'll need a description for the to-do, buddy.[0m
 [0;31mUm... I'll need a description for the deadline, buddy.[0m
 [0;31mUm... I'll need a description for the event, buddy.[0m
 [0;31mUm... sorry I don't know what "randomness" means...[0m
-[0;31mUm... I'll need a date for the deadline, buddy[0m
+[0;31mUm... I'll need a date for the deadline, buddy.[0m
 [0;31mUm... I'll need a date for the event, buddy.[0m
 [0;31mUm... which task did you wanna delete?[0m
 [0;31mUm... what exactly did you want to find?[0m
