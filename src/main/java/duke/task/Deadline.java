@@ -14,7 +14,6 @@ import duke.exceptions.DukeException;
 public class Deadline extends Task {
     private final LocalDate date;
 
-
     /**
      * Constructs a <code>Deadline</code>.
      *
