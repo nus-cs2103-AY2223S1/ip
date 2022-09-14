@@ -1,1 +1,3 @@
-D| |do hw|2012-12-12-1300
+T| |do laundry
+D| |write essay|2012-12-12-1200
+E| |watch concert|2012-12-12-1200
