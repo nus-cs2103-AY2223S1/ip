@@ -48,11 +48,11 @@ test {
 }
 
 application {
-    mainClassName = "arc.Duke"
+    mainClassName = "arc.Launcher"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "aRC"
     archiveClassifier = null
 }
 
