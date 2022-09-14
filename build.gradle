@@ -53,7 +53,7 @@ application {
 
 shadowJar {
     archiveBaseName = "isara"
-    archiveVersion = "v1.0"
+    archiveVersion = "v0.2"
     archiveClassifier = null
 }
 
