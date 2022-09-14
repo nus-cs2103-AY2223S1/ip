@@ -30,6 +30,9 @@ jobs:
           java-version: "11"
           java-package: jdk+fx
 
+      - name: Make Gradlew executable
+        run: chmod 755 ./gradlew
+
       - name: Build and check with Gradle
         run: ./gradlew checkstyleMain
 
