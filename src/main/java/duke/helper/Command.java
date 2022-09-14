@@ -98,6 +98,13 @@ public class Command {
         }
     }
 
+    /**
+     * Method to create Task
+     *
+     * @param in the input string given
+     * @param list the tasklist to add the task to
+     * @return a string describing if the task creation was successful
+     */
     public static String createTask(String in, TaskList list) {
         String message;
         try {

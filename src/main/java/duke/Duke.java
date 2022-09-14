@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.helper.Parser;
 import duke.helper.Storage;
 import duke.helper.Ui;
@@ -34,7 +36,24 @@ public class Duke {
         return Parser.parse(input, list, filePath);
     }
 
+    /**
+     * Main method to run Duke
+     *
+     * @param args the args for the main method
+     */
     public static void main(String[] args) {
-        new Duke("./data/duke.txt").run();
+        Duke duke = new Duke("./data/duke.txt");
+        System.out.println(Ui.welcome());
+        String in = "";
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            in = sc.nextLine();
+            if (in.equals("bye")) {
+                break;
+            } else {
+                System.out.println(duke.getResponse(in));
+            }
+        }
+        System.out.println(duke.getResponse(in));
     }
 }

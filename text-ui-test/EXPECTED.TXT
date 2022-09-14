@@ -1,73 +1,82 @@
--------------------------------------------
+
 Hello from Phil
 How may I assist you on this fine day?
--------------------------------------------
+type 'help' to get a lists of all the commands!
+
 The list has been successfully cleared!
--------------------------------------------
+
 added: [T][ ] borrow book
--------------------------------------------
+
 added: [D][ ] return book (by: Sunday)
--------------------------------------------
+
 added: [E][ ] project meeting (at: Mon 2-4pm)
--------------------------------------------
+
 1.[T][ ] borrow book
 2.[D][ ] return book (by: Sunday)
 3.[E][ ] project meeting (at: Mon 2-4pm)
--------------------------------------------
+
+
 Roger sir the task has been marked!
--------------------------------------------
+
 Roger sir the task has been marked!
--------------------------------------------
+
 1.[T][X] borrow book
 2.[D][ ] return book (by: Sunday)
 3.[E][X] project meeting (at: Mon 2-4pm)
--------------------------------------------
+
+
 Aww okay the task has been unmarked.
--------------------------------------------
+
 1.[T][ ] borrow book
 2.[D][ ] return book (by: Sunday)
 3.[E][X] project meeting (at: Mon 2-4pm)
--------------------------------------------
+
+
 Your task has to have description :<
--------------------------------------------
+
 Your task has to have description :<
--------------------------------------------
+
 Your task has to have description :<
--------------------------------------------
+
 Your task has to have description :<
--------------------------------------------
+
 Your task has to have description :<
--------------------------------------------
+
 Please precede your date/time with a '/by' for a deadline and an '/at' for an event
--------------------------------------------
+
 Please precede your date/time with a '/by' for a deadline and an '/at' for an event
--------------------------------------------
+
 1.[T][ ] borrow book
 2.[D][ ] return book (by: Sunday)
 3.[E][X] project meeting (at: Mon 2-4pm)
--------------------------------------------
+
+
 Alrighty! I have deleted the following task:
 [T][ ] borrow book
 We now have 2 tasks left.
--------------------------------------------
+
 1.[D][ ] return book (by: Sunday)
 2.[E][X] project meeting (at: Mon 2-4pm)
--------------------------------------------
+
+
 Alrighty! I have deleted the following task:
 [E][X] project meeting (at: Mon 2-4pm)
 We now have 1 tasks left.
--------------------------------------------
+
 1.[D][ ] return book (by: Sunday)
--------------------------------------------
+
+
 Invalid command. Please try again.
--------------------------------------------
+
 added: [D][ ] watch lecture (by: Aug 30 2022)
--------------------------------------------
+
 added: [D][ ] submit quiz (by: Aug 23 2022 11:59 PM)
--------------------------------------------
-1.[D][ ] return book (by: Sunday)
+
+Roger sir the task has been marked!
+
+1.[D][X] return book (by: Sunday)
 2.[D][ ] watch lecture (by: Aug 30 2022)
 3.[D][ ] submit quiz (by: Aug 23 2022 11:59 PM)
--------------------------------------------
-See you later alligator!
--------------------------------------------
+
+
+I shall take my leave in 3 seconds! See you later alligator!
