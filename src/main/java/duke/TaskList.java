@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import duke.task.Task;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 

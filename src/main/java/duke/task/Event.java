@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 import java.time.LocalDateTime;
 
@@ -32,7 +32,7 @@ public class Event extends Task {
         return String.format("E | %s | %s", super.getWriteString(), this.at);
     }
 
-
+    @Override
     public String toString() {
         return String.format("[E] %s (at: %s)", super.toString(), this.at);
     }
