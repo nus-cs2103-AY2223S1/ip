@@ -1,5 +1,6 @@
 package duke.util.command;
 
+import duke.exception.DukeException;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -12,7 +13,7 @@ public class CommandEvent extends Command {
     }
 
     @Override
-    public String handleCommand(TaskList taskList, StoredTasks saveTasks) {
+    public String handleCommand(TaskList taskList, StoredTasks saveTasks) throws DukeException {
         String[] words = command.split(" /at", 2);
         Task event = new Event(words[0], words[1]);
         taskList.add(event);

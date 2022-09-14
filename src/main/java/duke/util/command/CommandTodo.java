@@ -1,6 +1,6 @@
 package duke.util.command;
 
-import duke.DukeException;
+import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todos;
@@ -17,7 +17,7 @@ public class CommandTodo extends Command{
         StringBuilder description = new StringBuilder();
         String[] words = command.split("\\s");
         if (words.length <= 1) {
-            throw new DukeException("Eh this can't be empty bro");
+            throw new DukeException();
         }
         for (int i = 1; i < words.length; i++) {
             description.append(words[i]);

@@ -24,6 +24,20 @@ public abstract class Task {
         return this.description;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj instanceof Task) {
+            Task task = (Task) obj;
+            return this.description.equals(task.description);
+        }
+
+        return false;
+    }
+
     public abstract String savedTaskString();
     @Override
     public String toString() {

@@ -1,7 +1,6 @@
 package duke.util;
 
-import duke.DukeException;
-import duke.task.*;
+import duke.exception.DukeException;
 import duke.util.command.*;
 
 /**
@@ -33,7 +32,7 @@ public class Parser {
             case "event":
                 return new CommandEvent(command);
             default:
-                throw new DukeException("Eh what talking you??");
+                throw new DukeException();
         }
 
     }

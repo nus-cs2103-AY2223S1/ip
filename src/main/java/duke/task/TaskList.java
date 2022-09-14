@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.exception.DukeDuplicateTaskException;
+
 import java.util.ArrayList;
 
 import java.util.List;
@@ -39,10 +41,15 @@ public class TaskList {
     }
 
     /**
-     * This method adds a task into the taskList
+     * This method adds a task into the taskList only if the task has not been added before
      * @param task the task to be added.
      */
-    public void add(Task task) {
+    public void add(Task task) throws DukeDuplicateTaskException {
+        for (Task t : this.tasks) {
+            if (task.equals(t)) {
+                throw new DukeDuplicateTaskException();
+            }
+        }
         this.tasks.add(task);
     }
 
