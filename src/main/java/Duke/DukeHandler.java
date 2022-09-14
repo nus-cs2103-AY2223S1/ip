@@ -3,6 +3,7 @@ package Duke;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javafx.application.Platform;
 
 import Duke.task.Deadline;
 import Duke.task.Event;
@@ -11,9 +12,6 @@ import Duke.task.TaskList;
 import Duke.task.TaskStorage;
 import Duke.task.Todo;
 import Duke.util.Ui;
-
-import javafx.application.Application;
-import javafx.application.Platform;
 
 /**
  * Represents the response handler for Duke chat-bot. Stores a list of tasks,
@@ -54,13 +52,13 @@ public class DukeHandler {
                 if (inputParts.get(0).equals("mark")) {
                     Task task = tasks.mark(Integer.parseInt(inputParts.get(1)));
                     storage.saveTask(tasks);
-                    response = ui.printResponse("Nice! I've marked this task as done: \n" + task.toString());
+                    response = ui.printMarked(task);
 
                 }
                 if (inputParts.get(0).equals("unmark")) {
                     Task task = tasks.unmark(Integer.parseInt(inputParts.get(1)));
                     storage.saveTask(tasks);
-                    response = ui.printResponse("OK, I've marked this task as not done yet: \n" + task.toString());
+                    response = ui.printUnmarked(task);
 
                 }
             } else if (input.matches("delete +\\d+")) {
