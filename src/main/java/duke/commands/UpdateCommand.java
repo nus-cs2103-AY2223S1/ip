@@ -1,20 +1,24 @@
 package duke.commands;
 
+import duke.commons.Parser;
+import duke.commons.Storage;
+import duke.commons.TaskList;
+import duke.commons.Ui;
 import duke.exceptions.DukeException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
-import duke.tools.Parser;
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
- * This class performs mark a specified task in TaskList as undone Command.
+ * This class performs update a task in TaskList with specifications Command.
  */
 public class UpdateCommand implements Command {
-    /** Index of task to be updated */
+    public static final String COMMAND_WORD = "update";
+    private static final String MESSAGE_INVALID_DATE_SPECIFIER = "Task cannot be updated "
+            + "with Date specifier: ";
+    private static final String MESSAGE_INVALID_DATETIME_SPECIFIER = "Task cannot be updated "
+            + "with DateTime specifier: ";
     private int index;
     /** Input details from user to be further broken down */
     private String input;
@@ -44,28 +48,26 @@ public class UpdateCommand implements Command {
         } else if (task instanceof Event) {
             updateEvent((Event) task);
         }
-        return Ui.formatUpdateString(index, task);
+        return Ui.formatUpdateMessage(index, task);
     }
 
     /**
-     * Update the ToDo task.
+     * Updates the ToDo task.
      *
      * @param toDo Todo task to update.
      * @throws DukeException If invalid specifier is used in updating ToDo task description.
      */
     private void updateToDo(ToDo toDo) throws DukeException {
         if (input.contains(Parser.DATE_SPECIFIER)) {
-            throw new DukeException("ToDo task cannot be updated with Date specifier: "
-                    + Parser.DATE_SPECIFIER);
+            throw new DukeException(MESSAGE_INVALID_DATE_SPECIFIER + Parser.DATE_SPECIFIER);
         } else if (input.contains(Parser.DATETIME_SPECIFIER)) {
-            throw new DukeException("ToDo task cannot be updated with DateTime specifier: "
-                    + Parser.DATETIME_SPECIFIER);
+            throw new DukeException(MESSAGE_INVALID_DATETIME_SPECIFIER + Parser.DATETIME_SPECIFIER);
         }
         toDo.updateDescription(input);
     }
 
     /**
-     * Update the Deadline task.
+     * Updates the Deadline task.
      * If the input does not contain a date specifier, only update description.
      *
      * @param deadline Deadline task to update.
@@ -73,19 +75,19 @@ public class UpdateCommand implements Command {
      */
     private void updateDeadline(Deadline deadline) throws DukeException {
         if (input.contains(Parser.DATETIME_SPECIFIER)) {
-            throw new DukeException("Deadline task cannot be updated with DateTime specifier: "
-                    + Parser.DATETIME_SPECIFIER + ". Use " + Parser.DATE_SPECIFIER);
+            throw new DukeException(MESSAGE_INVALID_DATETIME_SPECIFIER + Parser.DATETIME_SPECIFIER
+                    + "\nUse: " + Parser.DATE_SPECIFIER);
         } else if (!input.contains(Parser.DATE_SPECIFIER)) {
             deadline.updateDescription(input.strip());
         } else {
             String[] descAndDate = input.split(Parser.DATE_SPECIFIER, 2);
-            deadline.updateDate(Parser.parseDate(descAndDate[1].strip()));
+            deadline.updateDate(Parser.parseLocalDate(descAndDate[1].strip()));
             deadline.updateDescription(descAndDate[0].strip());
         }
     }
 
     /**
-     * Update the Event task.
+     * Updates the Event task.
      * If the input does not contain datetime specifier, only update description.
      *
      * @param event Event task to update.
@@ -93,13 +95,13 @@ public class UpdateCommand implements Command {
      */
     private void updateEvent(Event event) throws DukeException {
         if (input.contains(Parser.DATE_SPECIFIER)) {
-            throw new DukeException("Event task cannot be updated with Date specifier: "
-                    + Parser.DATE_SPECIFIER + ". Use " + Parser.DATETIME_SPECIFIER);
+            throw new DukeException(MESSAGE_INVALID_DATE_SPECIFIER + Parser.DATE_SPECIFIER
+                    + "\nUse: " + Parser.DATETIME_SPECIFIER);
         } else if (!input.contains(Parser.DATETIME_SPECIFIER)) {
             event.updateDescription(input.strip());
         } else {
             String[] descAndDateTime = input.split(Parser.DATETIME_SPECIFIER, 2);
-            event.updateDateTime(Parser.parseDateTime(descAndDateTime[1].strip()));
+            event.updateDateTime(Parser.parseLocalDateTime(descAndDateTime[1].strip()));
             event.updateDescription(descAndDateTime[0].strip());
         }
     }

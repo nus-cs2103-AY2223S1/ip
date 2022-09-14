@@ -1,4 +1,4 @@
-package duke.tools;
+package duke.commons;
 
 import java.util.stream.Collectors;
 
@@ -9,35 +9,36 @@ import duke.tasks.Task;
  * This class deals with interactions with the user.
  */
 public class Ui {
+    private static final String TASK_STRING_FORMAT = "%d. %s";
     /**
-     * Creates a greetings message.
+     * Generates a greetings message.
      *
      * @return Greeting message.
      */
-    public static String formatGreetingString() {
-        String greeting = "Hello!\nHow may i help you today?";
+    public static String formatGreetingMessage() {
+        String greeting = "Hello! I'm Alpha\nHow may i help you today?";
         return greeting;
     }
 
     /**
-     * Creates a farewell message.
+     * Generates a farewell message.
      *
      * @return Farewell message.
      */
-    public static String formatFarewellString() {
+    public static String formatFarewellMessage() {
         String farewell = "Bye! Hope to see you again soon!";
         return farewell;
     }
 
     /**
-     * Creates a message of status of TaskList.
+     * Generates a message of status of TaskList.
      * If TaskList is not empty, include all contents of TaskList.
      *
      * @param taskList List of task to be printed.
      * @return List status message.
      * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
-    public static String formatListStatusString(TaskList taskList) throws DukeException {
+    public static String formatListStatusMessage(TaskList taskList) {
         String listStatus;
         if (taskList.getSize() == 0) {
             listStatus = "There are currently no tasks in your list";
@@ -45,9 +46,8 @@ public class Ui {
         }
         listStatus = "Here are the tasks in your list:\n";
 
-        String taskStringFormat = "%d. %s\n";
         String taskToString = taskList.toStream()
-                .map(task -> String.format(taskStringFormat, taskList.getIndexOf(task) + 1, task))
+                .map(task -> String.format(TASK_STRING_FORMAT + "\n", taskList.getIndexOf(task) + 1, task))
                 .collect(Collectors.joining());
 
         listStatus = listStatus.concat(taskToString);
@@ -55,23 +55,22 @@ public class Ui {
     }
 
     /**
-     * Create a message of all task found containing keyword.
+     * Generates a message of all task found containing keyword.
      *
      * @param taskList TaskList to search through with keyword.
      * @param keyword Keyword to find.
      * @return Find string message.
      * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
-    public static String formatFindTaskString(TaskList taskList, String keyword) throws DukeException {
+    public static String formatFindTaskMessage(TaskList taskList, String keyword) {
         String taskFindOutput;
         if (taskList.isEmpty()) {
             taskFindOutput = "There are currently no tasks in your list";
             return taskFindOutput;
         }
-        String taskStringFormat = "%d. %s\n";
         String taskFoundList = taskList.toStream()
                 .filter(task -> task.isFoundInDescription(keyword))
-                .map(task -> String.format(taskStringFormat, taskList.getIndexOf(task) + 1, task))
+                .map(task -> String.format(TASK_STRING_FORMAT + "\n", taskList.getIndexOf(task) + 1, task))
                 .collect(Collectors.joining());
         long taskFoundCount = taskList.toStream()
                 .filter(task -> task.isFoundInDescription(keyword))
@@ -88,70 +87,72 @@ public class Ui {
     }
 
     /**
-     * Creates a message marking task as done in TaskList.
+     * Generates a message marking task as done in TaskList.
      *
-     * @param index Index of task that is marked.
+     * @param index Index of task that was marked.
      * @param task Task marked as done.
-     * @return Message.
+     * @return Mark task done message.
      */
-    public static String formatMarkAsDoneString(int index, Task task) {
+    public static String formatMarkAsDoneMessage(int index, Task task) {
         String markAsDoneString = "Nice! I've marked this task as done:";
-        return String.format(markAsDoneString + "\n%d. %s", index + 1, task);
+        return String.format(markAsDoneString + "\n" + TASK_STRING_FORMAT, index + 1, task);
     }
 
     /**
-     * Prints message marking task as undone in TaskList.
+     * Generates a message marking task as undone in TaskList.
      *
-     * @param index Index of task that is marked.
+     * @param index Index of task that was marked.
      * @param task Task marked as undone.
-     * @return Message.
+     * @return Mark task undone message.
      */
-    public static String formatMarkAsUndoneString(int index, Task task) {
+    public static String formatMarkAsUndoneMessage(int index, Task task) {
         String markAsUndoneString = "Ok! I've marked this task as not done yet:";
-        return String.format(markAsUndoneString + "\n%d. %s", index + 1, task);
+        return String.format(markAsUndoneString + "\n" + TASK_STRING_FORMAT, index + 1, task);
     }
 
     /**
-     * Creates a message of deleting task from TaskList.
+     * Generates a message of deleting task from TaskList.
      *
-     * @param index Index of task that is deleted.
+     * @param index Index of task that was deleted.
      * @param task Task that was deleted.
-     * @return Message.
+     * @return Delete task message.
      */
-    public static String formatDeleteTaskString(int index, Task task) {
+    public static String formatDeleteTaskMessage(int index, Task task) {
         String taskDeleteString = "Noted. I've removed this task:";
-        return String.format(taskDeleteString + "\n%d. %s", index + 1, task);
+        return String.format(taskDeleteString + "\n" + TASK_STRING_FORMAT, index + 1, task);
     }
 
     /**
-     * Creates a message that TaskList is empty and no task can be deleted.
+     * Generates a message that TaskList is empty and no task can be deleted.
+     *
+     * @return No task to delete message.
      */
-    public static String formatNoTaskToDeleteString() {
+    public static String formatNoTaskToDeleteMessage() {
         String noTaskToDeleteString = "Im sorry, there are currently no task to delete";
         return noTaskToDeleteString;
     }
 
     /**
-     * Creates a message of adding task to TaskList.
+     * Generates a message of adding task to TaskList.
      *
      * @param task Task that was added.
-     * @return Message.
+     * @return Add task message.
      */
-    public static String formatAddTaskString(Task task) {
+    public static String formatAddTaskMessage(Task task) {
         String taskAddString = "Got it! I've added this task:\n> ";
         return taskAddString + task;
     }
 
     /**
-     * Creates a message of updating task in TaskList.
+     * Generates a message of updating task in TaskList.
      *
      * @param index Index of task that was updated.
      * @param task Task that was updated.
-     * @return
+     * @return Update task message.
      */
-    public static String formatUpdateString(int index, Task task) {
-        String taskUpdateString = "Done! I've updated this task:\n%d. %s";
-        return String.format(taskUpdateString, index + 1, task);
+    public static String formatUpdateMessage(int index, Task task) {
+        String taskUpdateString = "Done! I've updated this task:\n";
+        return String.format(taskUpdateString + TASK_STRING_FORMAT, index + 1, task);
     }
 
     /**
@@ -160,7 +161,7 @@ public class Ui {
      * @param e DukeException containing error message.
      * @return Error message.
      */
-    public static String formatExceptionString(DukeException e) {
+    public static String formatExceptionMessage(DukeException e) {
         return e.getMessage();
     }
 }

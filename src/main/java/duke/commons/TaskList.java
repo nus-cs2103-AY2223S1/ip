@@ -1,4 +1,4 @@
-package duke.tools;
+package duke.commons;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -10,7 +10,7 @@ import duke.tasks.Task;
  * This class contains the task list.
  */
 public class TaskList {
-    /** List of task stored in Duke */
+    private static final String MESSAGE_INVALID_INDEX = "OOPS!!! Invalid task number.";
     private List<Task> taskList;
 
     /**
@@ -23,49 +23,40 @@ public class TaskList {
     }
 
     /**
-     * Returns current list of tasks.
-     *
-     * @return List of tasks.
-     */
-    public List<Task> getTaskList() {
-        return taskList;
-    }
-
-    /**
      * Returns task in TaskList specified by index.
      *
-     * @param index Index of task to return.
+     * @param index Index of task to get.
      * @return Task of specified index.
-     * @throws DukeException If index was invalid, > Size or < 0.
+     * @throws DukeException If index was invalid, that is, > Size or < 0.
      */
     public Task getTask(int index) throws DukeException {
         try {
             return taskList.get(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("OOPS!!! Invalid task number.");
+            throw new DukeException(MESSAGE_INVALID_INDEX);
         }
     }
 
     /**
      * Adds task to TaskList.
      *
-     * @param task Task to add.
+     * @param task Task to be added.
      */
     public void addTask(Task task) {
         taskList.add(task);
     }
 
     /**
-     * Deletes task from TaskList.
+     * Removes task from TaskList.
      *
      * @param index Index of task to delete.
-     * @throws DukeException If index was invalid, > Size or < 0.
+     * @throws DukeException If index was invalid, that is, > Size or < 0.
      */
-    public void deleteTask(int index) throws DukeException {
+    public void removeTask(int index) throws DukeException {
         try {
             taskList.remove(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("OOPS!!! Invalid task number.");
+            throw new DukeException(MESSAGE_INVALID_INDEX);
         }
     }
 

@@ -4,6 +4,7 @@ package duke.tasks;
  * Represents a todo task.
  */
 public class ToDo extends Task {
+    public static final String TASK_ICON = "T";
     /**
      * Constructs a todo task with specified description.
      *
@@ -21,14 +22,8 @@ public class ToDo extends Task {
      */
     @Override
     public String taskToDataString() {
-        String isDone;
-        if (super.isDone) {
-            isDone = "O";
-        } else {
-            isDone = "X";
-        }
-        String toDoDataFormat = "T | %s | %s\n";
-        return String.format(toDoDataFormat, isDone, super.description);
+        String toDoDataFormat = TASK_ICON + " | %s | %s\n";
+        return String.format(toDoDataFormat, this.isDoneToDataString(), super.description);
     }
 
     /**
@@ -38,7 +33,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        String toDoIcon = "[T]";
+        String toDoIcon = "[" + TASK_ICON + "]";
         return toDoIcon + super.toString();
     }
 }

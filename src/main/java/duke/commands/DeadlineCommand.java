@@ -2,18 +2,18 @@ package duke.commands;
 
 import java.time.LocalDate;
 
+import duke.commons.Storage;
+import duke.commons.TaskList;
+import duke.commons.Ui;
 import duke.exceptions.DukeException;
 import duke.tasks.Deadline;
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
- * This class performs create a deadline task with specified description
- * and date command.
+ * This class performs create a deadline task with specified description and date to add to
+ * TaskList command.
  */
 public class DeadlineCommand implements Command {
-    /** Deadline task to be added into TaskList */
+    public static final String COMMAND_WORD = "deadline";
     private Deadline deadline;
 
     /**
@@ -33,6 +33,6 @@ public class DeadlineCommand implements Command {
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         taskList.addTask(deadline);
         storage.appendToFile(deadline);
-        return Ui.formatAddTaskString(deadline);
+        return Ui.formatAddTaskMessage(deadline);
     }
 }

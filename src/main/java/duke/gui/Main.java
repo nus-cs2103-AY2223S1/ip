@@ -6,6 +6,7 @@ import duke.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private Duke duke = new Duke();
+    private Image appIcon = new Image(this.getClass().getResourceAsStream("/images/ApplicationIcon.png"));
 
     @Override
     public void start(Stage stage) {
@@ -23,7 +25,8 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            stage.setTitle("MyBot");
+            stage.setTitle("AlphaBot");
+            stage.getIcons().add(appIcon);
             fxmlLoader.<MainWindow>getController().setGui(duke);
             fxmlLoader.<MainWindow>getController().sayGreetings();
             stage.show();

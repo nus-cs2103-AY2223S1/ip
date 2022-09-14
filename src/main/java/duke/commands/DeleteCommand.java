@@ -1,16 +1,16 @@
 package duke.commands;
 
+import duke.commons.Storage;
+import duke.commons.TaskList;
+import duke.commons.Ui;
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
  * This class performs delete a specified task from TaskList command.
  */
 public class DeleteCommand implements Command {
-    /** Index of task to be deleted */
+    public static final String COMMAND_WORD = "delete";
     private int index;
 
     /**
@@ -28,12 +28,12 @@ public class DeleteCommand implements Command {
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         if (taskList.isEmpty()) {
-            return Ui.formatNoTaskToDeleteString();
+            return Ui.formatNoTaskToDeleteMessage();
         } else {
             Task task = taskList.getTask(index);
-            taskList.deleteTask(index);
+            taskList.removeTask(index);
             storage.saveToFile(taskList);
-            return Ui.formatDeleteTaskString(index, task);
+            return Ui.formatDeleteTaskMessage(index, task);
         }
     }
 }

@@ -1,7 +1,7 @@
 package duke.gui;
 
 import duke.Duke;
-import duke.tools.Ui;
+import duke.commons.Ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -28,9 +28,13 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image botImage = new Image(this.getClass().getResourceAsStream("/images/Bot.png"));
 
+    /**
+     * Initialises the FXML controller.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        scrollPane.setFitToWidth(true);
     }
 
     public void setGui(Duke duke) {
@@ -41,7 +45,7 @@ public class MainWindow extends AnchorPane {
      * Initiates a greeting when the application is launched.
      */
     public void sayGreetings() {
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(Ui.formatGreetingString(), botImage));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(Ui.formatGreetingMessage(), botImage));
     }
 
     /**

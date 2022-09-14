@@ -57,11 +57,26 @@ public abstract class Task {
     }
 
     /**
-     * Returns data string representation of task to be stored in storage.
+     * Generates data string representation of task to be stored in storage.
      *
-     * @return Data string representation.
+     * @return Data string representation of task.
      */
     public abstract String taskToDataString();
+
+    /**
+     * Generates data string representation of isDone boolean as an icon.
+     *
+     * @return Data string representation of isDone.
+     */
+    public String isDoneToDataString() {
+        String isDoneIcon;
+        if (this.isDone) {
+            isDoneIcon = "O";
+        } else {
+            isDoneIcon = "X";
+        }
+        return isDoneIcon;
+    }
 
     /**
      * Returns true if keyword was found in current task, else false.

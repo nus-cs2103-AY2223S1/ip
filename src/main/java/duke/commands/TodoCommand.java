@@ -1,16 +1,17 @@
 package duke.commands;
 
+import duke.commons.Storage;
+import duke.commons.TaskList;
+import duke.commons.Ui;
 import duke.exceptions.DukeException;
 import duke.tasks.ToDo;
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
- * This class performs create a todo task with specified description command.
+ * This class performs create a todo task with specified description
+ * to add to TaskList command.
  */
 public class TodoCommand implements Command {
-    /** Todo task to be added into TaskList */
+    public static final String COMMAND_WORD = "todo";
     private ToDo todo;
 
     /**
@@ -29,6 +30,6 @@ public class TodoCommand implements Command {
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         taskList.addTask(todo);
         storage.appendToFile(todo);
-        return Ui.formatAddTaskString(todo);
+        return Ui.formatAddTaskMessage(todo);
     }
 }

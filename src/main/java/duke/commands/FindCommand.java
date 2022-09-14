@@ -1,15 +1,15 @@
 package duke.commands;
 
+import duke.commons.Storage;
+import duke.commons.TaskList;
+import duke.commons.Ui;
 import duke.exceptions.DukeException;
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
  * This class performs find all task with keyword in TaskList command.
  */
 public class FindCommand implements Command {
-    /** Keyword to search for in tasks */
+    public static final String COMMAND_WORD = "find";
     private String keyword;
 
     /**
@@ -26,6 +26,6 @@ public class FindCommand implements Command {
      */
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
-        return Ui.formatFindTaskString(taskList, keyword);
+        return Ui.formatFindTaskMessage(taskList, keyword);
     }
 }

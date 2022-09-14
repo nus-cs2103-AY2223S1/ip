@@ -29,10 +29,4 @@ Here are the tasks in your list:
 1. [T][ ] individual project
 2. [D][ ] individual project (by: Tomorrow)
 3. [E][ ] CS2103T lecture (at: Friday 4-6pm)
-Nice! I've marked this task as done:
-[T][X] individual project
-Here are the tasks in your list:
-1. [T][X] individual project
-2. [D][ ] individual project (by: Tomorrow)
-3. [E][ ] CS2103T lecture (at: Friday 4-6pm)
 Bye. Hope to see you again soon!

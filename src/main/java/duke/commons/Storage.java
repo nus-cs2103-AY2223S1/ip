@@ -1,4 +1,4 @@
-package duke.tools;
+package duke.commons;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,11 +21,12 @@ import duke.tasks.ToDo;
  * The TaskList is stored as a text file and is modified in real time with user command.
  */
 public class Storage {
-    private static final String OOPS_STRING = "OOPS!!!";
-    private static final String FILE_CANNOT_BE_OPEN_STRING = "OOPS!!! File cannot be opened";
-
+    private static final String MESSAGE_FILE_CANNOT_BE_OPEN = "OOPS!!! File cannot be opened";
+    private static final String MESSAGE_FILE_ACCESS_FAILURE = "OOPS!!! Unable to create a new file. "
+            + "Tasks might not be stored.";
+    private static final String MESSAGE_INVALID_DATA_FORMAT = "OOPS!!! Invalid data format";
+    private static final String MESSAGE_NO_SAVE_DATA = "OOPS!!! No save data found";
     private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
-
     private Path filePath;
 
     /**
@@ -60,7 +61,7 @@ public class Storage {
             }
             dataScanner.close();
         } catch (FileNotFoundException e) {
-            throw new DukeException(FILE_CANNOT_BE_OPEN_STRING);
+            throw new DukeException(MESSAGE_FILE_CANNOT_BE_OPEN);
         }
         return new TaskList(taskList);
     }
@@ -74,31 +75,36 @@ public class Storage {
      * @throws DukeException If no data string is found or data is in invalid format.
      */
     private void readDataToTask(Scanner dataScanner, List<Task> taskList) throws DukeException {
+        String separator = "\\|";
+        String dataTaskIsDone = "O";
         try {
-            String[] storedInfo = dataScanner.nextLine().split(" \\| ");
-            String type = storedInfo[0];
-            boolean isDone = storedInfo[1].equals("O");
-            String description = storedInfo[2];
+            String[] storedInfo = dataScanner.nextLine().split(separator);
+            String taskIcon = storedInfo[0].strip();
+            boolean isDone = (storedInfo[1].strip()).equals(dataTaskIsDone);
+            String description = storedInfo[2].strip();
             Task task;
-            switch (type) {
-            case "T":
+            switch (taskIcon) {
+            case ToDo.TASK_ICON:
                 task = new ToDo(description, isDone);
                 break;
-            case "D":
-                task = new Deadline(description, isDone, Parser.parseDate(storedInfo[3]));
+            case Deadline.TASK_ICON:
+                task = new Deadline(description, isDone, Parser.parseLocalDate(storedInfo[3]));
                 break;
-            case "E":
-                task = new Event(description, isDone, Parser.parseDateTime(storedInfo[3]));
+            case Event.TASK_ICON:
+                task = new Event(description, isDone, Parser.parseLocalDateTime(storedInfo[3]));
                 break;
             default:
-                throw new DukeException(OOPS_STRING + " No save data found");
+                throw new DukeException(MESSAGE_NO_SAVE_DATA);
             }
             taskList.add(task);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(OOPS_STRING + " Incorrect task format");
+            throw new DukeException(MESSAGE_INVALID_DATA_FORMAT);
         }
     }
 
+    //@@author Bubbl3T-reused
+    //Reused from https://github.com/Bubbl3T/ip/blob/master/src/main/java/duke/tools/Storage.java
+    // with minor modifications to the code.
     /**
      * Saves TaskList to file.
      *
@@ -106,18 +112,17 @@ public class Storage {
      * @throws DukeException If file access has failed.
      */
     public void saveToFile(TaskList taskList) throws DukeException {
-        List<Task> dataToStore = taskList.getTaskList();
         checkDirectoryExist();
         checkFileExist();
         try {
             FileWriter fw = new FileWriter(filePath.toString());
             for (int i = 0; i < taskList.getSize(); i++) {
-                String dataToSave = dataToStore.get(i).taskToDataString();
+                String dataToSave = taskList.getTask(i).taskToDataString();
                 fw.write(dataToSave);
             }
             fw.close();
         } catch (IOException e) {
-            throw new DukeException(FILE_CANNOT_BE_OPEN_STRING);
+            throw new DukeException(MESSAGE_FILE_CANNOT_BE_OPEN);
         }
     }
 
@@ -135,7 +140,7 @@ public class Storage {
             data.write(task.taskToDataString());
             data.close();
         } catch (IOException e) {
-            throw new DukeException(OOPS_STRING + " File cannot be opened");
+            throw new DukeException(MESSAGE_FILE_CANNOT_BE_OPEN);
         }
     }
 
@@ -163,8 +168,8 @@ public class Storage {
                 data.createNewFile();
             }
         } catch (IOException e) {
-            throw new DukeException(OOPS_STRING + " Unable to create a new file. "
-                    + "Tasks might not be stored.");
+            throw new DukeException(MESSAGE_FILE_ACCESS_FAILURE);
         }
     }
+    //@@author
 }

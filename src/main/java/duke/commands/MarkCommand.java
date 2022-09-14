@@ -1,15 +1,15 @@
 package duke.commands;
 
+import duke.commons.Storage;
+import duke.commons.TaskList;
+import duke.commons.Ui;
 import duke.exceptions.DukeException;
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
  * This class performs mark a specified task in TaskList as done command.
  */
 public class MarkCommand implements Command {
-    /** Index of task to be marked as done */
+    public static final String COMMAND_WORD = "mark";
     private int index;
 
     /**
@@ -28,6 +28,6 @@ public class MarkCommand implements Command {
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         taskList.getTask(index).markAsDone();
         storage.saveToFile(taskList);
-        return Ui.formatMarkAsDoneString(index, taskList.getTask(index));
+        return Ui.formatMarkAsDoneMessage(index, taskList.getTask(index));
     }
 }

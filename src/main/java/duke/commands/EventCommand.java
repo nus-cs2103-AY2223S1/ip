@@ -2,18 +2,18 @@ package duke.commands;
 
 import java.time.LocalDateTime;
 
+import duke.commons.Storage;
+import duke.commons.TaskList;
+import duke.commons.Ui;
 import duke.exceptions.DukeException;
 import duke.tasks.Event;
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
- * This class performs create an event task with specified description
- * and date time command.
+ * This class performs create an event task with specified description and datetime to
+ * add to TaskList command.
  */
 public class EventCommand implements Command {
-    /** Event task to be added into TaskList */
+    public static final String COMMAND_WORD = "event";
     private Event event;
 
     /**
@@ -33,6 +33,6 @@ public class EventCommand implements Command {
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         taskList.addTask(event);
         storage.appendToFile(event);
-        return Ui.formatAddTaskString(event);
+        return Ui.formatAddTaskMessage(event);
     }
 }

@@ -2,12 +2,13 @@ package duke.tasks;
 
 import java.time.LocalDate;
 
-import duke.tools.Parser;
+import duke.commons.Parser;
 
 /**
  * Represents a deadline task.
  */
 public class Deadline extends Task {
+    public static final String TASK_ICON = "D";
     /** Due date of deadline */
     private LocalDate date;
 
@@ -30,14 +31,8 @@ public class Deadline extends Task {
      */
     @Override
     public String taskToDataString() {
-        String isDone;
-        if (super.isDone) {
-            isDone = "O";
-        } else {
-            isDone = "X";
-        }
-        String deadlineDataFormat = "D | %s | %s | %s\n";
-        return String.format(deadlineDataFormat, isDone, super.description,
+        String deadlineDataFormat = TASK_ICON + " | %s | %s | %s\n";
+        return String.format(deadlineDataFormat, this.isDoneToDataString(), super.description,
                 Parser.formatDateToData(date));
     }
 
@@ -57,8 +52,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String deadlineStringFormat = "[D]%s (by: %s)";
+        String deadlineStringFormat = "[" + TASK_ICON + "]%s (by: %s)";
         return String.format(deadlineStringFormat, super.toString(),
-                Parser.formatDateToPrint(date));
+                Parser.formatDateToMessage(date));
     }
 }

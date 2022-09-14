@@ -1,8 +1,8 @@
 package duke.commands;
 
+import duke.commons.Storage;
+import duke.commons.TaskList;
 import duke.exceptions.DukeException;
-import duke.tools.Storage;
-import duke.tools.TaskList;
 
 /**
  * This interface encapsulates the information to be performed based on each command.

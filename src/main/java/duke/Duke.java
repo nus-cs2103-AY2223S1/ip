@@ -3,12 +3,12 @@ package duke;
 import java.util.ArrayList;
 
 import duke.commands.Command;
+import duke.commons.Parser;
+import duke.commons.Storage;
+import duke.commons.TaskList;
+import duke.commons.Ui;
 import duke.exceptions.DukeException;
 import duke.gui.Main;
-import duke.tools.Parser;
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
 import javafx.application.Application;
 
 
@@ -60,7 +60,7 @@ public class Duke {
     }
 
     /**
-     * This is the main method where the application is launched.
+     * Main method where the application is launched.
      *
      * @param args Unused parameter
      */
@@ -78,8 +78,8 @@ public class Duke {
         try {
             Command command = Parser.parseCommand(input);
             return command.execute(taskList, storage);
-        } catch (DukeException de) {
-            return Ui.formatExceptionString(de);
+        } catch (DukeException e) {
+            return Ui.formatExceptionMessage(e);
         }
     }
 }

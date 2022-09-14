@@ -2,12 +2,13 @@ package duke.tasks;
 
 import java.time.LocalDateTime;
 
-import duke.tools.Parser;
+import duke.commons.Parser;
 
 /**
  * Represents an event task.
  */
 public class Event extends Task {
+    public static final String TASK_ICON = "E";
     /** Date and time of event */
     private LocalDateTime dateAndTime;
 
@@ -39,14 +40,8 @@ public class Event extends Task {
      */
     @Override
     public String taskToDataString() {
-        String isDone;
-        if (super.isDone) {
-            isDone = "O";
-        } else {
-            isDone = "X";
-        }
-        String eventDataFormat = "E | %s | %s | %s\n";
-        return String.format(eventDataFormat, isDone, super.description,
+        String eventDataFormat = TASK_ICON + " | %s | %s | %s\n";
+        return String.format(eventDataFormat, this.isDoneToDataString(), super.description,
                 Parser.formatDateTimeToData(dateAndTime));
     }
 
@@ -57,8 +52,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String eventStringFormat = "[E]%s (at: %s)";
+        String eventStringFormat = "[" + TASK_ICON + "]%s (at: %s)";
         return String.format(eventStringFormat, super.toString(),
-                Parser.formatDateTimeToPrint(dateAndTime));
+                Parser.formatDateTimeToMessage(dateAndTime));
     }
 }

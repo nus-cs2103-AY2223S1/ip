@@ -9,6 +9,4 @@ unmark 3
 unmark 1
 unmark 2
 list
-mark 1
-list
 bye
