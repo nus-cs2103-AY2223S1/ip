@@ -1,12 +1,6 @@
----
-layout: page
-title: User Guide
----
+# User Guide
 
 Primer is a app that helps you to manage tasks, deadlines and events.
-
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
