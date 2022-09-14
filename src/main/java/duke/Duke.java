@@ -36,7 +36,7 @@ public class Duke {
     }
 
     /**
-     * Perform an execution based on the command and return the corresponding response.
+     * Performs an execution based on the command and return the corresponding response.
      *
      * @param userInput The input by the user.
      * @return The corresponding response to the command.
