@@ -62,10 +62,10 @@ public class TaskList {
 
     public String getAllTasks() {
         if (list.isEmpty()) {
-            return "No tasks in the task list at the moment.\n";
+            return "Oooooweee No tasks in the task list at the moment.\n";
         }
         String out = "";
-        out += "Here are the tasks in your list:\n";
+        out += "Ooooweee Here are the tasks in your list:\n";
         int num = 1;
         for (Task x : list) {
             out += num + ". " + x.toString() + "\n";

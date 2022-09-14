@@ -62,7 +62,7 @@ public class Parser {
                         throw new DukeException("Input date-time in the format yyyy-MM-dd HHmm");
                     }
                     this.storage.taskEdit(toUpdate, index);
-                    toReply += "I've updated the following task:\n";
+                    toReply += "Ooooweee! I've updated the following task:\n";
                     toReply += taskList.getList().get(index).toString();
                     toReply += CATCH_PHRASE;
                     System.out.println(toReply);
@@ -92,7 +92,7 @@ public class Parser {
                         taskList.getList().get(index).Done();
                         Task newTask = taskList.getList().get(index);
                         storage.fileUpdater(newTask, false, index);
-                        toReply += "Nice! I've marked this task as done:\n";
+                        toReply += "Ooooweee! I've marked this task as done:\n";
                         toReply += taskList.getList().get(index).toString();
                         toReply += CATCH_PHRASE;
                         System.out.println(toReply);
@@ -116,7 +116,7 @@ public class Parser {
                         taskList.getList().get(index).unDone();
                         Task newTask = taskList.getList().get(index);
                         storage.fileUpdater(newTask, false, index);
-                        toReply += "Ok, I've marked this task as not done yet:\n";
+                        toReply += "Ooooweee, I've marked this task as not done yet:\n";
                         toReply += taskList.getList().get(index).toString();
                         toReply += CATCH_PHRASE;
                         System.out.println(toReply);
@@ -136,7 +136,7 @@ public class Parser {
                     } else {
                         Task removed = taskList.getList().remove(index);
                         storage.fileUpdater(removed, true, index);
-                        toReply += "Noted. I've removed this task:\n";
+                        toReply += "Ooooweeee. I've removed this task:\n";
                         toReply += removed.toString();
                         toReply += "Now you have " + taskList.getList().size() + " task(s) in the list";
                         toReply += CATCH_PHRASE;
@@ -208,7 +208,7 @@ public class Parser {
                 taskList.getList().add(task);
                 assert taskList.getList().size() > 0 : "Task list not updated properly";
                 storage.writeToFile(task);
-                toReply += "Got it. I've added this task: \n";
+                toReply += "Ooooooweeee a new task! Here it is: \n";
                 toReply += "  " + task.toString() + "\n";
                 toReply += "Now you have " + taskList.getList().size() + " task(s) in the list.";
                 toReply += CATCH_PHRASE;
