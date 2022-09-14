@@ -15,6 +15,7 @@ import duke.note.NoteList;
  * Handles saving and loading of list objects to and from the hard disk.
  */
 public class Storage {
+    private boolean isFirstLoad;
     private String tasksFilePath;
     private String notesFilePath;
 
@@ -25,6 +26,7 @@ public class Storage {
      * @param notesFilePath path to the save file for notes
      */
     public Storage(String tasksFilePath, String notesFilePath) {
+        isFirstLoad = false;
         this.tasksFilePath = tasksFilePath;
         this.notesFilePath = notesFilePath;
     }
@@ -36,7 +38,7 @@ public class Storage {
      * @param notes The NoteList to load the notes into.
      * @throws DukeInvalidSaveDataException if there is an error reading the file
      */
-    public void load(TaskList tasks, NoteList notes) throws DukeInvalidSaveDataException {
+    public boolean load(TaskList tasks, NoteList notes) throws DukeInvalidSaveDataException {
         Path tasksSaveLocation = Paths.get(tasksFilePath);
         try {
             Files.lines(tasksSaveLocation).forEach((taskString) -> {
@@ -57,6 +59,7 @@ public class Storage {
             });
         } catch (IOException ignored) {
             // Save file does not exist, don't try to continue loading.
+            isFirstLoad = true;
         }
 
         Path notesSaveLocation = Paths.get(notesFilePath);
@@ -73,7 +76,10 @@ public class Storage {
             });
         } catch (IOException ignored) {
             // Save file does not exist, don't try to continue loading.
+            isFirstLoad = true;
         }
+
+        return isFirstLoad;
     }
 
     /**

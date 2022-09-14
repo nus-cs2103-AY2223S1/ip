@@ -66,17 +66,17 @@ public class Ui {
     /**
      * Prints a greeting to the user.
      */
-    public String greet(boolean hasLoadedData, int numTasks, int numNotes) {
+    public String greet(boolean isFirstLoad, int numTasks, int numNotes) {
         String taskString = numTasks == 1 ? "task" : "tasks";
         String noteString = numNotes == 1 ? "note" : "notes";
-        if (hasLoadedData) {
+        if (isFirstLoad) {
+            return "Hello! I'm Caramel ☺\n"
+                    + "Looks like I am unable to find a save file. "
+                    + "I will create a new one for you.";
+        } else {
             return "Hello! I'm Caramel ☺\n"
                     + String.format("I have sucessfully loaded %d %s and %d %s into your list.",
                     numTasks, taskString, numNotes, noteString);
-        } else {
-            return "Hello! I'm Caramel ☺\n"
-                    + "Looks like I am unable to find a save file."
-                    + "I will create a new one for you.";
         }
     }
 
