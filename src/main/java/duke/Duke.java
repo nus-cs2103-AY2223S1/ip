@@ -45,12 +45,14 @@ public class Duke {
     public String getResponse(String input) {
         DukeResponse response = this.ui.readInput(input, this.list);
 
-        if (response.isExit()) {
-            this.saveData();
-        }
-
         try {
-            return response.run();
+            String result = response.run();
+
+            if (response.hasModifiedList() || response.isExit()) {
+                this.saveData();
+            }
+
+            return result;
         } catch (DukeException e) {
             return new ExceptionResponse(e).run();
         }

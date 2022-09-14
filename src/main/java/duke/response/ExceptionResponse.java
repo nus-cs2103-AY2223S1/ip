@@ -22,9 +22,4 @@ public class ExceptionResponse extends DukeResponse {
         String oops = "☹ OOPS!!! ";
         return oops + exception.getMessage();
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

@@ -29,9 +29,4 @@ public class FindResponse extends DukeResponse {
 
         return list.search(data);
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

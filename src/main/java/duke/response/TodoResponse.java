@@ -33,7 +33,7 @@ public class TodoResponse extends DukeResponse {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
+    public boolean hasModifiedList() {
+        return true;
     }
 }

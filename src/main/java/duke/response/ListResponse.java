@@ -21,9 +21,4 @@ public class ListResponse extends DukeResponse {
     public String run() {
         return this.list.toString();
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
