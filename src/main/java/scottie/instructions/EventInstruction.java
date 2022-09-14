@@ -39,12 +39,12 @@ class EventInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            ui.showMessages(MISSING_DESCRIPTION_MESSAGE);
+            ui.showFormattedError(MISSING_DESCRIPTION_MESSAGE);
             return;
         }
         String endDateTimeString = this.getFlagArgument("at");
         if (endDateTimeString == null) {
-            ui.showMessages(MISSING_DATE_MESSAGE);
+            ui.showError(MISSING_DATE_MESSAGE);
             return;
         }
 

@@ -41,7 +41,7 @@ public class FindInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            ui.showMessages(MISSING_SEARCH_TERM_MESSAGE);
+            ui.showError(MISSING_SEARCH_TERM_MESSAGE);
             return;
         }
         List<Task> matchingTasks = taskList.filterTasks(this.getMainArgument());

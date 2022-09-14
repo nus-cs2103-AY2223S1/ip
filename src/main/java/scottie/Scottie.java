@@ -12,6 +12,8 @@ import scottie.ui.Ui;
  * retrieving different types of tasks.
  */
 public class Scottie {
+    private static final String INVALID_COMMAND_MESSAGE = "Sorry, I don't understand what %s means. :/";
+
     private final TaskList taskList = new TaskList();
 
     /**
@@ -25,7 +27,7 @@ public class Scottie {
             Instruction instruction = Parser.parse(input);
             instruction.execute(this.taskList, ui);
         } catch (InvalidCommandException e) {
-            ui.showFormattedMessage("Sorry, I don't understand what %s means. :/", e.getCommandName());
+            ui.showFormattedError(INVALID_COMMAND_MESSAGE, e.getCommandName());
         }
     }
 
@@ -44,7 +46,7 @@ public class Scottie {
                     break;
                 }
             } catch (InvalidCommandException e) {
-                cli.showFormattedMessage("Sorry, I don't understand what %s means. :/", e.getCommandName());
+                cli.showFormattedError(INVALID_COMMAND_MESSAGE, e.getCommandName());
             }
         }
     }

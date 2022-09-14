@@ -57,7 +57,7 @@ public class SortInstruction extends Instruction {
             ui.showFormattedMessage(SORT_BY_DATE_MESSAGE, isReversed ? " reverse" : "");
             break;
         default:
-            ui.showMessages(INVALID_SORT_KEY_MESSAGE + sortKey);
+            ui.showError(INVALID_SORT_KEY_MESSAGE + sortKey);
             break;
         }
     }

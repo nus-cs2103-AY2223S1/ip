@@ -37,18 +37,18 @@ class MarkInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            ui.showMessages(MISSING_TASK_NUMBER_MESSAGE);
+            ui.showError(MISSING_TASK_NUMBER_MESSAGE);
             return;
         }
         int taskNum;
         try {
             taskNum = Integer.parseInt(this.getMainArgument());
         } catch (NumberFormatException e) {
-            ui.showFormattedMessage(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
+            ui.showFormattedError(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
             return;
         }
         if (taskNum <= 0 || taskNum > taskList.size()) {
-            ui.showFormattedMessage(TASK_NUMBER_OUT_OF_RANGE_MESSAGE, taskNum);
+            ui.showFormattedError(TASK_NUMBER_OUT_OF_RANGE_MESSAGE, taskNum);
             return;
         }
 

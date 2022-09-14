@@ -35,7 +35,7 @@ class TodoInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            ui.showMessages(MISSING_DESCRIPTION_MESSAGE);
+            ui.showError(MISSING_DESCRIPTION_MESSAGE);
             return;
         }
         Todo todo = new Todo(this.getMainArgument());

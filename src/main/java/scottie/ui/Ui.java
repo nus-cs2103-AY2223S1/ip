@@ -34,6 +34,25 @@ public interface Ui {
     void showOrderedList(Iterable<?> iterable);
 
     /**
+     * Displays the given error message to the user.
+     *
+     * @param errorMessage The error message to show to the user.
+     */
+    default void showError(String errorMessage) {
+        this.showMessages(errorMessage);
+    }
+
+    /**
+     * Formats and displays the given error message to the user.
+     *
+     * @param message The error message to format and display.
+     * @param args The arguments to be interpolated into the error message.
+     */
+    default void showFormattedError(String message, Object... args) {
+        this.showFormattedMessage(message, args);
+    }
+
+    /**
      * Signal to this Ui that the application should be ended.
      */
     void endProgram();
