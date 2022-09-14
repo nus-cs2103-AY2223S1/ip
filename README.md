@@ -26,7 +26,7 @@ In addition to recording tasks, Qoobee has features to mark and unmark
 tasks as completed/not completed, along with marking the priority
 level of each task.
 
-![](Ui.png)
+![](docs/Ui.png)
 
 ## Add Tasks
 
@@ -60,7 +60,7 @@ Example usage: `event CS2101 Presentation /at 2022-09-15 10:00`
 Expected Outcome: adds an event task with description "CS2101 Presentation" and date/time
 of 15 September 2022, 10:00 AM
 
-![img.png](Tasks.png)
+![](docs/Tasks.png)
 
 ## List Tasks
 Lists the tasks that are currently in the task list. 
@@ -68,7 +68,7 @@ Lists the tasks that are currently in the task list.
 ### Usage
 `list` - Displays the list of tasks.
 
-![img.png](ListExample.png)
+![](docs/ListExample.png)
 
 ## Mark Tasks
 Marks the task given a specified index in the task list.
@@ -79,7 +79,7 @@ Marks the task given a specified index in the task list.
 Example usage: `mark 3`  
 Expected Outcome: marks the 3rd task in the task list as completed.
 
-![img.png](MarkExample.png)
+![](docs/MarkExample.png)
 
 ## Unmark Tasks
 Unmarks the task given a specified index in the task list.
@@ -90,7 +90,7 @@ Unmarks the task given a specified index in the task list.
 Example usage: `unmark 3`  
 Expected Outcome: unmarks the 3rd task in the task list as not done.
 
-![img.png](UnmarkExample.png)
+![](docs/UnmarkExample.png)
 
 ## Prioritise Tasks
 Sets the priority of the task at a specified index in the task list to be
@@ -111,7 +111,7 @@ Expected Outcome: changes the priority of the 1st task to medium.
 Example usage: `priority 5 high`  
 Expected Outcome: changes the priority of the 5th task to high.
 
-![img.png](PriorityExample.png)
+![](docs/PriorityExample.png)
 
 ## Delete Tasks
 Deletes the task given a specified index of the task list.
@@ -122,7 +122,7 @@ Deletes the task given a specified index of the task list.
 Example usage: `delete 2`  
 Expected Outcome: deletes the 2nd task in the task list.
 
-![img.png](DeleteExample.png)
+![](docs/DeleteExample.png)
 
 ## Find Tasks
 Finds the task in the task list given a keyword.
@@ -133,7 +133,7 @@ Finds the task in the task list given a keyword.
 Example usage: `find buy`  
 Expected Outcome: the list of tasks with keyword "buy" will be displayed.
 
-![img.png](FindExample.png)
+![](docs/FindExample.png)
 
 ## Exit
 Exits the chatbot. Thanks for hanging out with Qoobee!
