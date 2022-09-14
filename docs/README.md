@@ -6,8 +6,6 @@ while still having the benefits of a Graphical User Interface (GUI). If you
 can type fast, Duke can help you get your goals achieved faster than
 traditional GUI applications.
 
-> **WARNING**: Use bye command to exit program in order to save data
-
 ## Features
 - [Showing all tasks: list](#list)
 - [Creating a ToDo: todo](#todo)

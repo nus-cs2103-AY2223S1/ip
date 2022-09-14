@@ -113,13 +113,6 @@ public class Storage {
                     throw new DukeException("File contains lines that cannot be validated as a Task.");
                 }
             }
-
-            // Prevents duplicate loads.
-            try {
-                this.writeToFile(Storage.tasksFilePath, "", true);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
         }
 
         return tempList;
@@ -149,13 +142,6 @@ public class Storage {
             }
         }
 
-        // Prevents duplicate loads.
-        try {
-            this.writeToFile(Storage.loansFilePath, "", true);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
         return tempList;
     }
 
@@ -179,6 +165,13 @@ public class Storage {
      * @param tasks All the tasks to save.
      */
     public void save(TaskList tasks) {
+        // Overwrite the file
+        try {
+            this.writeToFile(Storage.tasksFilePath, "", true);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
         for (Task t : tasks.getTasks()) {
             // 1 denotes task is done, 0 denotes task is not done.
             String taskDone = t.isDone() ? "1" : "0";
@@ -206,6 +199,13 @@ public class Storage {
      * @param loanbook The loanbook that contains all entries of the loan.
      */
     public void saveLoans(Loanbook loanbook) {
+        // Overwrite the file
+        try {
+            this.writeToFile(Storage.loansFilePath, "", true);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
         for (Contact contact : loanbook.getAllContacts()) {
             String line = contact.getName() + " | " + contact.getPhoneNumber() + " | "
                     + contact.getAmount() + " | " + contact.isOwe() + "\n";

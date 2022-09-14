@@ -65,17 +65,15 @@ public class Duke {
         try {
             if (Parser.isTaskCommand(userInput)) {
                 Command c = Parser.parse(userInput);
-
-                if (c instanceof ExitCommand) {
-                    Duke.storage.save(Duke.tasks);
-                    Duke.storage.saveLoans(Duke.loanbook);
-                }
-
                 dukeMessage = c.execute(Duke.tasks, Duke.ui, Duke.storage);
             } else {
                 LoanbookCommand c = Parser.parseLoanbookCommand(userInput);
                 dukeMessage = c.execute(Duke.loanbook, Duke.ui, Duke.storage);
             }
+
+            // Save the updated states
+            Duke.storage.save(Duke.tasks);
+            Duke.storage.saveLoans(Duke.loanbook);
         } catch (DukeException e) {
             dukeMessage = Duke.ui.formatDukeErrorMsg(e.getMessage());
         } catch (NumberFormatException e) {
