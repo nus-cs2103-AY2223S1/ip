@@ -3,14 +3,13 @@ Margi Bot is a desktop app for managing your tasks, optimized for use via a
 Command Line Interface while still having the benefits of a Graphical User 
 Interface. 
 
-![Mario](src/main/resources/images/mario.png)
 
 ##Quick Start
 1. Ensure you have Java 11 or above installed in your Computer
 2. Download the latest`duke.jar` from [here](https://github.com/Dilysss/ip/releases/tag/v2.0).
 3. Copy file to the folder you want to use as the home folder for your Margi Bot.
 4. Double-click the file to start the app. 
-5. Begin you Margi adventure!
+5. Begin your Margi adventure!
 
 ## Features 
 
