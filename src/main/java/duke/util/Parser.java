@@ -10,10 +10,17 @@ import duke.command.Action;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
+import duke.command.DoNothingCommand;
 import duke.command.EventCommand;
+import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.GreetCommand;
+import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.ReadCommand;
+import duke.command.SaveCommand;
 import duke.command.TodoCommand;
+import duke.command.UndoCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.CompileException;
 import duke.exception.DukeException;
@@ -101,15 +108,15 @@ public class Parser {
         Action action = Action.getAction(s.trim().split(" ", 2)[0]);
         switch (action) {
         case GREET:
-            return Command.greet();
+            return new GreetCommand();
         case EXIT:
-            return Command.exit();
+            return new ExitCommand();
         case MARK:
             return parseMarkCommand(s);
         case UNMARK:
             return parseUnmarkCommand(s);
         case LIST:
-            return Command.list();
+            return new ListCommand();
         case TODO:
             return parseTodoCommand(s);
         case EVENT:
@@ -119,15 +126,15 @@ public class Parser {
         case DELETE:
             return parseDeleteCommand(s);
         case SAVE:
-            return Command.save();
+            return new SaveCommand();
         case READ:
-            return Command.read();
+            return new ReadCommand();
         case FIND:
             return parseFindCommand(s);
         case UNDO:
-            return Command.undo();
+            return new UndoCommand();
         default:
-            return Command.doNothing();
+            return new DoNothingCommand();
         }
     }
 
@@ -140,7 +147,7 @@ public class Parser {
         } else if (!isInt(arg1)) {
             throw new InvalidArgumentException(action, "The argument should be an integer.");
         }
-        return Command.mark(Integer.parseInt(arg1));
+        return new MarkCommand(Integer.parseInt(arg1));
     }
 
     protected static UnmarkCommand parseUnmarkCommand(String s) throws CompileException {
@@ -152,7 +159,7 @@ public class Parser {
         } else if (!isInt(arg1)) {
             throw new InvalidArgumentException(action, "The argument should be an integer.");
         }
-        return Command.unmark(Integer.parseInt(arg1));
+        return new UnmarkCommand(Integer.parseInt(arg1));
     }
 
     protected static TodoCommand parseTodoCommand(String s) throws CompileException {
@@ -164,7 +171,7 @@ public class Parser {
         } else if (!isValidString(arg1)) {
             throw new InvalidArgumentException(action, "Todo details should not contain '}'.");
         }
-        return Command.todo(arg1);
+        return new TodoCommand(arg1);
     }
 
     protected static EventCommand parseEventCommand(String s) throws CompileException {
@@ -191,7 +198,7 @@ public class Parser {
             throw new InvalidArgumentException(action,
                     "Event [Time] is not found.");
         }
-        return Command.event(arg1, parseStringToDateTime(arg2));
+        return new EventCommand(arg1, parseStringToDateTime(arg2));
     }
 
     protected static DeadlineCommand parseDeadlineCommand(String s) throws CompileException {
@@ -220,7 +227,7 @@ public class Parser {
                     "Deadline [Time] is not found.");
         }
 
-        return Command.deadline(arg1, parseStringToDateTime(arg2));
+        return new DeadlineCommand(arg1, parseStringToDateTime(arg2));
     }
 
     protected static FindCommand parseFindCommand(String s) throws CompileException {
@@ -232,7 +239,7 @@ public class Parser {
         } else if (!isValidString(arg1)) {
             throw new InvalidArgumentException(action, "The argument should be a String.");
         }
-        return Command.find(arg1);
+        return new FindCommand(arg1);
     }
 
     /**
@@ -266,7 +273,7 @@ public class Parser {
         } else if (!isInt(arg1)) {
             throw new InvalidArgumentException(action, "The argument should be an integer.");
         }
-        return Command.delete(Integer.parseInt(arg1));
+        return new DeleteCommand(Integer.parseInt(arg1));
     }
 
     /**

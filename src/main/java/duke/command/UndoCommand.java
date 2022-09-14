@@ -14,7 +14,7 @@ public class UndoCommand extends Command {
     /**
      * The constructor of the Class.
      */
-    protected UndoCommand() {
+    public UndoCommand() {
         super(Action.UNDO);
     }
 

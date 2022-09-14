@@ -13,7 +13,7 @@ public class ReadCommand extends Command {
     /**
      * The constructor of the Class.
      */
-    protected ReadCommand() {
+    public ReadCommand() {
         super(Action.READ);
     }
 

@@ -12,7 +12,7 @@ public class ListCommand extends Command {
     /**
      * The constructor of the Class.
      */
-    protected ListCommand() {
+    public ListCommand() {
         super(Action.LIST);
     }
 

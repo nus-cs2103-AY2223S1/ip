@@ -22,7 +22,7 @@ public class EventCommand extends AddCommand {
      * @param msg The information of the Task.
      * @param time The date and time of the Task.
      */
-    protected EventCommand(String msg, LocalDateTime time) {
+    public EventCommand(String msg, LocalDateTime time) {
         super(Action.EVENT, msg);
         this.time = time;
     }

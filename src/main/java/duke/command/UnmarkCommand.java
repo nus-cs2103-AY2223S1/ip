@@ -3,7 +3,6 @@ package duke.command;
 import duke.Duke;
 import duke.task.Task;
 import duke.util.MessagePrinter;
-import duke.util.Storage;
 import duke.util.TaskList;
 
 /**
@@ -19,7 +18,7 @@ public class UnmarkCommand extends Command {
      * The constructor of the Class.
      * @param idTask The index of the Task to be marked as not done in TaskList.
      */
-    protected UnmarkCommand(int idTask) {
+    public UnmarkCommand(int idTask) {
         super(Action.UNMARK);
         this.idTask = idTask;
     }

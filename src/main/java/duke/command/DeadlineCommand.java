@@ -22,7 +22,7 @@ public class DeadlineCommand extends AddCommand {
      * @param msg The information of the Task.
      * @param time The date and time of the Task.
      */
-    protected DeadlineCommand(String msg, LocalDateTime time) {
+    public DeadlineCommand(String msg, LocalDateTime time) {
         super(Action.DEADLINE, msg);
         this.time = time;
     }

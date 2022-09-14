@@ -12,7 +12,7 @@ public class SaveCommand extends Command {
     /**
      * The constructor of the Class.
      */
-    protected SaveCommand() {
+    public SaveCommand() {
         super(Action.SAVE);
     }
 

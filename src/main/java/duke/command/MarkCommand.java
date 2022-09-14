@@ -3,7 +3,6 @@ package duke.command;
 import duke.Duke;
 import duke.task.Task;
 import duke.util.MessagePrinter;
-import duke.util.Storage;
 import duke.util.TaskList;
 
 /**
@@ -16,7 +15,7 @@ public class MarkCommand extends Command {
      * The constructor of the Class.
      * @param idTask The index of the Task to be marked as done in TaskList.
      */
-    protected MarkCommand(int idTask) {
+    public MarkCommand(int idTask) {
         super(Action.MARK);
         this.idTask = idTask;
     }

@@ -3,7 +3,6 @@ package duke.command;
 import duke.Duke;
 import duke.task.Task;
 import duke.util.MessagePrinter;
-import duke.util.Storage;
 import duke.util.TaskList;
 
 /**
@@ -14,7 +13,7 @@ public class TodoCommand extends AddCommand {
      * The constructor of the Class.
      * @param msg The information of the Task.
      */
-    protected TodoCommand(String msg) {
+    public TodoCommand(String msg) {
         super(Action.TODO, msg);
     }
 

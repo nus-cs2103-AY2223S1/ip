@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
      * The constructor of the class.
      * @param idTask The index of Task to be deleted in the TaskList.
      */
-    protected DeleteCommand(int idTask) {
+    public DeleteCommand(int idTask) {
         super(Action.DELETE);
         this.idTask = idTask;
     }

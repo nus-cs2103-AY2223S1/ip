@@ -12,7 +12,7 @@ public class GreetCommand extends Command {
     /**
      * The constructor of the Class.
      */
-    protected GreetCommand() {
+    public GreetCommand() {
         super(Action.GREET);
     }
 

@@ -12,7 +12,7 @@ public class ExitCommand extends Command {
     /**
      * The constructor of the Class.
      */
-    protected ExitCommand() {
+    public ExitCommand() {
         super(Action.EXIT);
     }
 
