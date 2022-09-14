@@ -51,20 +51,20 @@ public class TaskList {
         }
         StringBuilder deadlineName = new StringBuilder();
         StringBuilder endDateTime = new StringBuilder();
-        boolean readDateTime = false;
+        boolean isReadingDateTime = false;
         for (int i = 1; i < inputs.length - 1; i++) {
             if (inputs[i].equals("/by")) {
-                readDateTime = true;
+                isReadingDateTime = true;
                 continue;
             }
-            if (!readDateTime) {
+            if (!isReadingDateTime) {
                 deadlineName.append(inputs[i]).append(" ");
             } else {
                 endDateTime.append(inputs[i]).append(" ");
             }
         }
         // Edge case: When name or date is only one string, they are not captured by the loop above.
-        if (!readDateTime) {
+        if (!isReadingDateTime) {
             deadlineName.append(inputs[inputs.length - 1]);
         } else {
             endDateTime.append(inputs[inputs.length - 1]);
@@ -89,20 +89,20 @@ public class TaskList {
         }
         StringBuilder eventName = new StringBuilder();
         StringBuilder periodDateTime = new StringBuilder();
-        boolean readDateTime = false;
+        boolean isReadingDateTime = false;
         for (int i = 1; i < inputs.length - 1; i++) {
             if (inputs[i].equals("/at")) {
-                readDateTime = true;
+                isReadingDateTime = true;
                 continue;
             }
-            if (!readDateTime) {
+            if (!isReadingDateTime) {
                 eventName.append(inputs[i]).append(" ");
             } else {
                 periodDateTime.append(inputs[i]).append(" ");
             }
         }
         // Edge case: When name or date is only one string, they are not captured by the loop above.
-        if (!readDateTime) {
+        if (!isReadingDateTime) {
             eventName.append(inputs[inputs.length - 1]);
         } else {
             periodDateTime.append(inputs[inputs.length - 1]);

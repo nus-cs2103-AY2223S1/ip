@@ -66,8 +66,7 @@ public class Parser {
                 return taskList.findTasks(inputs[1]);
             } else if (command.equals(Command.SORT.name().toLowerCase())) {
                 return taskList.sortByName();
-            }
-            else {
+            } else {
                 // when none of the commands match
                 throw new UnknownCommandException();
             }
