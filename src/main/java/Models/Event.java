@@ -22,7 +22,7 @@ public class Event extends Todo{
 
     @Override
     public void writeToFile(FileWriter writer) throws IOException {
-        writer.write(String.format("E;%s;%s;%d\n", this.title, Duck.dateToStringConverter(this.date), this.completed ? 1 : 0));
+        writer.write(String.format("E;%s;%s;%d\n", this.title, Duck.dateToStringConverter(this.date), this.isCompleted ? 1 : 0));
     }
 
     public String toString() {
