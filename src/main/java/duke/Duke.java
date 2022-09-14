@@ -1,7 +1,6 @@
 package duke;
 
 import static duke.utils.Ui.LOGO;
-import static duke.utils.Ui.wrapWithLines;
 
 import java.io.File;
 
@@ -10,6 +9,7 @@ import duke.commands.CommandHandlerFactory;
 import duke.data.Storage;
 import duke.exceptions.DukeException;
 import duke.tasks.TaskList;
+import duke.utils.Ui;
 
 /**
  * Duke is a program that helps its user to store tasks.
@@ -18,6 +18,8 @@ public class Duke {
 
     private final TaskList taskList;
     private final CommandHandlerFactory commandHandlerFactory;
+    private boolean hasInitializingError = false;
+    private String initializingErrorMessage = "";
 
     /**
      * Describes the constructor of Duke.
@@ -25,7 +27,8 @@ public class Duke {
     public Duke() {
         File storageDirectory = new File("./data");
         if (!storageDirectory.exists() && !storageDirectory.mkdir()) {
-            wrapWithLines("Could not create /duke.data directory");
+            hasInitializingError = true;
+            initializingErrorMessage = "Could not create /duke.data directory";
         }
 
         Storage db = new Storage("./data/duke.txt");
@@ -49,9 +52,21 @@ public class Duke {
     public String getResponse(String input) {
         try {
             CommandHandler commandHandler = commandHandlerFactory.getHandler(input);
-            return commandHandler.handle(taskList);
+            return Ui.wrapWithLines(commandHandler.handle(taskList));
         } catch (DukeException e) {
-            return "OOPS!!! " + e.getMessage();
+            return Ui.printErrorMessage(e.getMessage());
+        }
+    }
+
+    /**
+     * Returns the initialization message of Duke.
+     * @return the initialization message.
+     */
+    public String getInitializationMessage() {
+        if (hasInitializingError) {
+            return initializingErrorMessage;
+        } else {
+            return getWelcomeMessage();
         }
     }
 
@@ -59,7 +74,7 @@ public class Duke {
      * Returns the welcome message when duke initialises.
      * @return the welcome message.
      */
-    public String getWelcomeMessage() {
+    private String getWelcomeMessage() {
         return "Hello from\n" + LOGO;
     }
 
