@@ -1,28 +1,28 @@
 ![](Ui.png)
 
-Duke is a personal chat-bot to help you keep track of your tasks, events, or deadlines. 
-It is optimized for keyboard users, but has a GUI for the looks as well. 
+Duke is a personal chat-bot to help you keep track of your tasks, events, or deadlines.
+It is optimized for keyboard users, but has a GUI for the looks as well.
 
 # Getting Started
 - Ensure you have Java 11 or above installed in your Computer.
-- Download the latest jar from the [release page](https://github.com/RezwanArefin01/ip/releases/). 
+- Download the latest jar from the [release page](https://github.com/RezwanArefin01/ip/releases/).
 - Copy the file to the folder you want to use as the home folder for your Duke.
 - Make sure the directory has read and write permissions.
 - Double-click the file to start the app. If it does not work then try running `java -jar duke.jar` in a terminal.
-- Enter `help` to get started! 
+- Enter `help` to get started!
 
-# Features 
-- [x] Add a todo task. 
-- [x] Add a task with a deadline. 
+# Features
+- [x] Add a todo task.
+- [x] Add a task with a deadline.
 - [x] Add an event.
 - [x] Check/uncheck a task.
-- [x] Find tasks by keyword. 
+- [x] Find tasks by keyword.
 - [x] Delete a task.
 - [x] List all tasks.
 
-# Commands 
+# Commands
 
-## `todo <description>` — Add a todo task 
+## `todo <description>` — Add a todo task
 Adds a task with the given `<description>`.
 
 **Example of usage:**
@@ -35,16 +35,16 @@ todo Return CLRS book to the library.
 ## `deadline <description> / <date> <time>` — Add a deadline task
 Adds a task with the given `<description>` and a deadline specified by `<date>` and `<time>`.
 
-**Date format** 
-- Recommended: `dd-mm-yyyy`. 
-- `-` may be replaced by `/`. 
+**Date format**
+- Recommended: `dd-mm-yyyy`.
+- `-` may be replaced by `/`.
 - Number of digits in the day and month may be 1 or 2.
 - Year may be 2 or 4 digits.
 
 **Time format:**
 - Recommended: `hhmm`.
-- Alternative: `hh:mm`. 
-- Number of digits in the hour and minute must be 2. 
+- Alternative: `hh:mm`.
+- Number of digits in the hour and minute must be 2.
 - Hour must be in 24-hour format.
 
 **Example of usage:**
@@ -86,17 +86,17 @@ You may want to use the `list` command to find the index of the task you want to
 **Example of usage:**
 ```
 check 1
-> I've updated the following task: 
+> I've updated the following task:
 >   [📝][✔] Return CLRS book to the library.
 ```
 
-## `uncheck <index>` — Mark a task as not done 
+## `uncheck <index>` — Mark a task as not done
 Marks the task at the given `<index>` as not done.
 
 **Example of usage:**
 ```
 uncheck 1
-> I've updated the following task: 
+> I've updated the following task:
 >   [📝][ ] Return CLRS book to the library.
 ```
 
@@ -130,5 +130,5 @@ find cS
 Shows a help message with a list of commands and their usage.
 
 ## `exit` — Exit the program
-Exists the program with a goodbye message.
+Exits the program with a goodbye message.
 
