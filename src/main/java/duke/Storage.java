@@ -24,8 +24,9 @@ public class Storage {
 
     /**
      * Creates a TaskList containing all outstanding tasks in local directory when Duke is launched.
-     * @return TaskList of outstanding tasks
-     * @throws FileNotFoundException invalid filepath of outstanding tasks
+     *
+     * @return TaskList of outstanding tasks.
+     * @throws FileNotFoundException invalid filepath of outstanding tasks.
      */
     protected TaskList loadExistingTasks() throws FileNotFoundException {
         List<Task> tasks = new ArrayList<>();
@@ -46,7 +47,8 @@ public class Storage {
 
     /**
      * Reads all valid commands for Duke stored in help.txt.
-     * @return String message containing all valid commands for Duke
+     *
+     * @return String message containing all valid commands for Duke.
      */
     protected static String loadHelpTextFile() {
         try {
@@ -58,7 +60,8 @@ public class Storage {
 
     /**
      * Saves a given instance of a Task List to the user's local directory.
-     * @param tasks TaskList of tasks
+     *
+     * @param tasks TaskList of tasks.
      */
     protected void saveExistingTasks(TaskList tasks) {
         try {

@@ -32,6 +32,7 @@ public class Task {
 
     /**
      * Creates a Task instance that is identical to a given Task object, and then marked as complete.
+     *
      * @return An identical Task object that is marked as complete.
      */
     protected Task completeTask() {
@@ -40,6 +41,7 @@ public class Task {
 
     /**
      * Creates a Task instance that is identical to a given Task object, and then marked as incomplete.
+     *
      * @return An identical Task object that is marked as incomplete.
      */
     protected Task resetTask() {

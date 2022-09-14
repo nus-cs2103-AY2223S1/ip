@@ -11,18 +11,10 @@ public class Ui {
     private static final String MESSAGE_FAREWELL = "Have a nice day ~ Duke out ~";
     private static final String MESSAGE_HELP = Storage.loadHelpTextFile();
 
-    /**
-     * Welcome message to users.
-     * @return Greeting to users in String format
-     */
     protected String getGreetingMessage() {
         return MESSAGE_GREETING;
     }
 
-    /**
-     * Displays farewell message to users.
-     * @return Farewell to users in String format
-     */
     protected String getFarewellMessage() {
         return MESSAGE_FAREWELL;
     }
@@ -33,14 +25,6 @@ public class Ui {
 
     protected String updateTask(Task updatedTask, String status) {
         return String.format("Marked task as %s.\n%s\n", status, updatedTask);
-    }
-
-    /**
-     * Displays a given String to users.
-     * @param output Message to be shown
-     */
-    protected void display(String output){
-        System.out.println(output);
     }
 
     protected String addTaskConfirmation(Task task, int size) {

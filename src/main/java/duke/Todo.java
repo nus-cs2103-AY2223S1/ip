@@ -17,7 +17,8 @@ public class Todo extends Task{
 
     /**
      * Creates a Todo object based on a given String which describes a Todo object.
-     * @param desc String description of a Todo
+     *
+     * @param desc String description of a Todo.
      */
     public Todo(String desc) {
         super(desc);
@@ -25,7 +26,8 @@ public class Todo extends Task{
 
     /**
      * Creates a Todo instance that is identical to a given Todo object, and then marked as complete.
-     * @return An identical Todo object that is marked as complete
+     *
+     * @return An identical Todo object that is marked as complete.
      */
     protected Todo completeTask() {
         return new Todo(this.getDesc(), STATUS_COMPLETE, this.getTaskType());
@@ -33,7 +35,8 @@ public class Todo extends Task{
 
     /**
      * Creates a Todo instance that is identical to a given Todo object, and then marked as incomplete.
-     * @return An identical Todo object that is marked as incomplete
+     *
+     * @return An identical Todo object that is marked as incomplete.
      */
     protected Todo resetTask() {
         return new Todo(this.getDesc(), this.getTaskType());

@@ -30,9 +30,10 @@ public class Parser {
 
     /**
      * Reads a String that describes a command to create a Command object accordingly after checking for validity.
-     * @param commandText String description of a Command
-     * @return A Command object based on the description
-     * @throws DukeException if String description is not a valid command
+     *
+     * @param commandText String description of a Command.
+     * @return A Command object based on the description.
+     * @throws DukeException if String description is not a valid command.
      */
     public static Command parse(String commandText) throws DukeException {
         String keyword = getCommandKey(commandText);
@@ -53,9 +54,10 @@ public class Parser {
 
     /**
      * Extracts out the date embedded within a given String description of a Task where applicable.
-     * @param desc String description of a Task object
-     * @return LocalDate object corresponding to a Task where available, else LocalDate object
-     * corresponding to Date of initialisation
+     *
+     * @param desc String description of a Task object.
+     * @return LocalDate object corresponding to a Task if available, else LocalDate object.
+     * corresponding to Date of initialisation.
      */
     protected static LocalDate formatDate(String desc) {
         int index = desc.indexOf('/');
@@ -76,8 +78,9 @@ public class Parser {
 
     /**
      * Perform a Boolean check on whether a given String is a Task command keyword.
-     * @param keyword Keyword of a command
-     * @return true if given keyword is a Task keyword, else false
+     *
+     * @param keyword Keyword of a command.
+     * @return true if given keyword is a Task keyword, else false.
      */
     protected static boolean isTaskKeyword(String keyword) {
         return Arrays.stream(TaskKeyword.values())
@@ -86,8 +89,9 @@ public class Parser {
 
     /**
      * Perform a Boolean check on whether a given String is a Modify command keyword.
-     * @param keyword Keyword of a command
-     * @return true if given keyword is a Modify keyword, else false
+     *
+     * @param keyword Keyword of a command.
+     * @return true if given keyword is a Modify keyword, else false.
      */
     protected static boolean isModifyKeyword(String keyword) {
         return Arrays.stream(ModifyKeyword.values())
@@ -96,8 +100,9 @@ public class Parser {
 
     /**
      * Perform a Boolean check on whether a given String is a Modify command keyword.
-     * @param keyword Keyword of a command
-     * @return true if given keyword is a Access keyword, else false
+     *
+     * @param keyword Keyword of a command.
+     * @return true if given keyword is a Access keyword, else false.
      */
     protected static boolean isAccessKeyword(String keyword) {
         return Arrays.stream(AccessKeyword.values())
@@ -106,7 +111,8 @@ public class Parser {
 
     /**
      * Perform a Boolean check on whether a given String is a Bye command keyword.
-     * @return true if given keyword is a Bye keyword, else false
+     *
+     * @return true if given keyword is a Bye keyword, else false.
      */
     protected static boolean isByeKeyword(String keyword){
         return keyword.equals(EXIT);
@@ -114,9 +120,10 @@ public class Parser {
 
     /**
      * Checks whether a given Task command is valid.
-     * @param keyword String Description of Task keyword
-     * @param content String Description of Task content
-     * @throws DukeException if content of Task command is empty
+     *
+     * @param keyword String Description of Task keyword.
+     * @param content String Description of Task content.
+     * @throws DukeException if content of Task command is empty.
      */
     protected static void validateTaskCommand(String keyword, String content) throws DukeException {
         if (content.isBlank()) {

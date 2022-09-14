@@ -10,12 +10,13 @@ public class ModifyCommandProcessor {
 
     /**
      * Processes a given Modify Command based on its keyword and performs the corresponding action to the keyword.
-     * @param keyword keyword of Modify Command
-     * @param content body of Modify Command
-     * @param tasks current TaskList of tasks
-     * @param ui Ui of Duke
-     * @return String result which describes how a task was modified
-     * @throws DukeException Task not found within current TaskList of tasks
+     *
+     * @param keyword keyword of Modify Command.
+     * @param content body of Modify Command.
+     * @param tasks current TaskList of tasks.
+     * @param ui Ui of Duke.
+     * @return String result which describes how a task was modified.
+     * @throws DukeException Task not found within current TaskList of tasks.
      */
     protected static String processModifyCommand(
             String keyword, String content, TaskList tasks, Ui ui) throws DukeException {

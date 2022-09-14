@@ -21,7 +21,8 @@ public class Event extends Task {
 
     /**
      * Creates a Event object based on a given String which describes a Event object.
-     * @param desc String description of a Event
+     *
+     * @param desc String description of an Event.
      */
     public Event(String desc) {
         super(desc);
@@ -34,7 +35,8 @@ public class Event extends Task {
     }
 
     /**
-     * Creates a Event instance that is identical to a given Deadline object, and then marked as complete.
+     * Creates an Event instance that is identical to a given Deadline object, and then marked as complete.
+     *
      * @return An identical Event object that is marked as complete
      */
     protected Event completeTask() {
@@ -42,7 +44,8 @@ public class Event extends Task {
     }
 
     /**
-     * Creates a Event instance that is identical to a given Deadline object, and then marked as incomplete.
+     * Creates an Event instance that is identical to a given Deadline object, and then marked as incomplete.
+     *
      * @return An identical Event object that is marked as incomplete
      */
     protected Event resetTask() {

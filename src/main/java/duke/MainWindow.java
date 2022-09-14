@@ -41,8 +41,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Displays welcome message to user when Duke is launched
-     * @param greeting Duke's greeting in String format
+     * Displays welcome message to user when Duke is launched.
+     *
+     * @param greeting Duke's greeting in String format.
      */
     @FXML
     public void addressUser(String greeting) {

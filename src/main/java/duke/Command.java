@@ -15,11 +15,12 @@ public class Command {
 
     /**
      * Executes a given Duke Command based on its type.
-     * @param tasks Current TaskList of tasks
-     * @param ui Ui of Duke
-     * @param storage Handles interaction with the local directory where Duke is located
-     * @return String result of executed Duke Command
-     * @throws DukeException if invalid Duke Command executed
+     *
+     * @param tasks Current TaskList of tasks.
+     * @param ui Ui of Duke.
+     * @param storage Handles interaction with the local directory where Duke is located.
+     * @return String result of executed Duke Command.
+     * @throws DukeException if invalid Duke Command executed.
      */
     protected String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (Parser.isTaskKeyword(keyword)) {
