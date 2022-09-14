@@ -84,6 +84,14 @@ public class MainWindow extends AnchorPane {
             tasklistItemDialogs.push(DialogBox.getDukeDialog(replyMessage, studiousDukeImage));
             tasklistItemDialogs.push(DialogBox.getUserDialog(input, userImage));
             dialogContainer.getChildren().addAll(tasklistItemDialogs);
+        } else if (responseType.equals(ResponseType.PIE_CHART)) {
+            String replyMessage = response.getResponseMessage();
+            PieChart pieChart = (PieChart) response.getResponseObject();
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getUserDialog(input, userImage),
+                    DialogBox.getDukeDialog(replyMessage, dukeImage),
+                    pieChart
+            );
         } else if (responseType.equals(ResponseType.ERROR)) {
             String replyMessage = response.getResponseMessage();
             dialogContainer.getChildren().addAll(
