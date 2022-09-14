@@ -2,6 +2,8 @@ package nyanduke.task;
 
 import java.time.LocalDate;
 
+import nyanduke.NyanDukeException;
+
 /**
  * The Todo class represents a task
  * without any date/time attached to it.
@@ -11,9 +13,13 @@ public class Todo extends Task {
      * Constructs a new Todo with a specified description.
      *
      * @param description A string specifying the description of the Todo task.
+     * @throws NyanDukeException when the description is an empty String.
      */
-    public Todo(String description) {
+    public Todo(String description) throws NyanDukeException {
         super(description);
+        if (description.equals("")) {
+            throw new NyanDukeException("The description of a todo cannot be empty.");
+        }
     }
 
     /**

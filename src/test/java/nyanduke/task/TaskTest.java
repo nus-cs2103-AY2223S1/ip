@@ -43,6 +43,16 @@ public class TaskTest {
     }
 
     @Test
+    public void parseData_deadlineNoDescription_exceptionThrown() {
+        try {
+            Task test = Task.parseData("D | X |  | tomorrow");
+            fail();
+        } catch (NyanDukeException e) {
+            assertEquals("Invalid task data loaded.", e.getMessage());
+        }
+    }
+
+    @Test
     public void parseData_event_success() throws NyanDukeException {
         Task test = Task.parseData("E |   | test | 2022-10-12");
         assertEquals("[E][ ] test (at: Oct 12 2022)", test.toString());
@@ -52,6 +62,16 @@ public class TaskTest {
     public void parseData_eventNoAt_exceptionThrown() {
         try {
             Task test = Task.parseData("E |   | test | ");
+            fail();
+        } catch (NyanDukeException e) {
+            assertEquals("Invalid task data loaded.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void parseData_eventNoCompletionMarker_exceptionThrown() {
+        try {
+            Task test = Task.parseData("E |  | test | ");
             fail();
         } catch (NyanDukeException e) {
             assertEquals("Invalid task data loaded.", e.getMessage());
@@ -79,13 +99,13 @@ public class TaskTest {
     }
 
     @Test
-    public void testContains_true() {
+    public void testContains_true() throws NyanDukeException {
         Task test = new Todo("success");
         assertTrue(test.contains("success"));
     }
 
     @Test
-    public void testContains_false() {
+    public void testContains_false() throws NyanDukeException {
         Task test = new Todo("failure");
         assertFalse(test.contains("success"));
     }

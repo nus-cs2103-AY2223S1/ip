@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import nyanduke.NyanDukeException;
+
 /**
  * The Event class represents a task that
  * happens at a specified time.
@@ -21,9 +23,18 @@ public class Event extends Task {
      *
      * @param description A string specifying the description of the event.
      * @param at A string specifying the time at which the event occurs.
+     * @throws NyanDukeException when the description or at parameter is an empty String.
      */
-    public Event(String description, String at) {
+    public Event(String description, String at) throws NyanDukeException {
         super(description);
+        String emptyString = "";
+        if (description.equals(emptyString)) {
+            throw new NyanDukeException("The description of an event cannot be empty.");
+        }
+        if (at.equals(emptyString)) {
+            throw new NyanDukeException("Use /at to provide when an event occurs.");
+        }
+
         try {
             LocalDateTime dateTime;
             dateTime = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("yyyy-M-d HHmm"));
@@ -35,7 +46,7 @@ public class Event extends Task {
                 date = LocalDate.parse(strings[0]);
                 this.at = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 if (strings.length > 1) {
-                    this.at += " " + at.substring(at.indexOf(" ") + 1);
+                    this.at += ", " + at.substring(at.indexOf(" ") + 1);
                 }
             } catch (DateTimeParseException e2) {
                 this.at = at;
@@ -70,6 +81,7 @@ public class Event extends Task {
     @Override
     public boolean isOnDate(LocalDate date) {
         assert date != null : "Event::onDate invoked with null argument.";
-        return date.equals(this.date);
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return at.startsWith(formattedDate);
     }
 }

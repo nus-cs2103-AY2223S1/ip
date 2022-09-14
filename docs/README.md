@@ -27,7 +27,8 @@ NyanDuke can find tasks using keywords or by dates so you won't have to scour th
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `todo sleep`.
 
-* When a date/time is specified as a parameter, it should be input as follows:<br>
+* When the requested parameter is `DATE` or `TIME`, it should be input as given below.<br>
+NyanDuke will be unable to recognise your input as a date otherwise, even if it is meant to be a date/time :(
   * `DATE` - Date in year-month-day notation, e.g. `2022-10-22`
   * `TIME` - Time in 24hr clock notation, e.g. `1800`
 
@@ -61,11 +62,13 @@ The deadline can be (i) a date and time; (ii) a date; or (iii) a written descrip
 
 **Formats:**
 1. `deadline DESCRIPTION /by DATE TIME`
+1. `deadline DESCRIPTION /by DATE TIME_DESCRIPTION`
 1. `deadline DESCRIPTION /by DATE`
 1. `deadline DESCRIPTION /by TIME_DESCRIPTION`
 
 **Examples of usage:**
 1. `deadline submit HW1 /by 2022-10-12 2359`
+1. `deadline submit HW1 /by 2022-10-12 midnight`
 1. `deadline submit HW1 /by 2022-10-13`
 1. `deadline submit HW1 /by next week`
 
@@ -85,11 +88,19 @@ Example for usage 2:
 
 ```
 Okie! Me has added this task:
-  [D][ ] submit HW1 (by: Oct 13 2022)
+  [D][ ] submit HW1 (by: Oct 12 2022, midnight)
 Now you have 2 tasks in your list.
 ```
 
 Example for usage 3:
+
+```
+Okie! Me has added this task:
+  [D][ ] submit HW1 (by: Oct 13 2022)
+Now you have 2 tasks in your list.
+```
+
+Example for usage 4:
 
 ```
 Okie! Me has added this task:
@@ -104,12 +115,14 @@ The time can be (i) a date and time; (ii) a date; or (iii) a written description
 
 **Formats:**
 1. `event DESCRIPTION /by DATE TIME`
+1. `event DESCRIPTION /by DATE TIME_DESCRIPTION`
 1. `event DESCRIPTION /by DATE`
 1. `event DESCRIPTION /by TIME_DESCRIPTION`
 
 **Examples of usage:**
 1. `event party /at 2022-10-12 2000`
-1. `event party /at 2022-10-13`
+1. `event party /at 2022-10-12 night`
+1. `event party /at 2022-10-12`
 1. `event party /at tonight!!`
 
 **Expected outcome:**
@@ -128,11 +141,19 @@ Example for usage 2:
 
 ```
 Okie! Me has added this task:
-  [E][ ] party (at: Oct 13 2022)
+  [E][ ] party (at: Oct 12 2022, night)
 Now you have 3 tasks in your list.
 ```
 
 Example for usage 3:
+
+```
+Okie! Me has added this task:
+  [E][ ] party (at: Oct 12 2022)
+Now you have 3 tasks in your list.
+```
+
+Example for usage 4:
 
 ```
 Okie! Me has added this task:

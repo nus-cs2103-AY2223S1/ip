@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import nyanduke.NyanDukeException;
+
 /**
  * The Deadline class represents a task
  * that needs to be done by a specified date/time.
@@ -21,9 +23,18 @@ public class Deadline extends Task {
      *
      * @param description A string specifying the description of the task.
      * @param by The specified deadline by which the task must be completed.
+     * @throws NyanDukeException when the description or by parameter is an empty String.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws NyanDukeException {
         super(description);
+        String emptyString = "";
+        if (description.equals(emptyString)) {
+            throw new NyanDukeException("The description of a deadline cannot be empty.");
+        }
+        if (by.equals(emptyString)) {
+            throw new NyanDukeException("Use /by to provide when a deadline must be completed.");
+        }
+
         try {
             LocalDateTime dateTime;
             dateTime = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("yyyy-M-d HHmm"));
@@ -35,7 +46,7 @@ public class Deadline extends Task {
                 date = LocalDate.parse(strings[0]);
                 this.by = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 if (strings.length > 1) {
-                    this.by += " " + by.substring(by.indexOf(" ") + 1);
+                    this.by += ", " + by.substring(by.indexOf(" ") + 1);
                 }
             } catch (DateTimeParseException e2) {
                 this.by = by;
@@ -72,6 +83,7 @@ public class Deadline extends Task {
     @Override
     public boolean isOnDate(LocalDate date) {
         assert date != null : "Deadline::onDate invoked with null argument.";
-        return date.equals(this.date);
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return by.startsWith(formattedDate);
     }
 }

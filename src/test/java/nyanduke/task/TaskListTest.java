@@ -18,7 +18,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testGetCountStatement_one() {
+    public void testGetCountStatement_one() throws NyanDukeException {
         Task testTask = new Todo("test");
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(testTask);
@@ -27,7 +27,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testAdd() {
+    public void testAdd() throws NyanDukeException {
         TaskList testList = new TaskList();
         Task testTask = new Todo("test");
         testList.add(testTask);
@@ -124,7 +124,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testAllOnDate() {
+    public void testAllOnDate() throws NyanDukeException {
         TaskList testList = new TaskList();
         Task todo = new Todo("not on date");
         Task deadlineOnDate = new Deadline("on date", "2022-09-01");
@@ -147,7 +147,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testAllToData() {
+    public void testAllToData() throws NyanDukeException {
         TaskList testList = new TaskList();
         testList.add(new Todo("test"));
         testList.add(new Deadline("test", "2022-09-01"));
@@ -162,7 +162,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testAllToString() {
+    public void testAllToString() throws NyanDukeException {
         TaskList testList = new TaskList();
         testList.add(new Todo("test"));
         testList.add(new Deadline("test", "2022-09-01"));
@@ -177,7 +177,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testAllContaining() {
+    public void testAllContaining() throws NyanDukeException {
         TaskList testList = new TaskList();
         TaskList expectedOutput = new TaskList();
         Task testTask1 = new Todo("test");

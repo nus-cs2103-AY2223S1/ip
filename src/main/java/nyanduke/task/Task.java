@@ -40,14 +40,17 @@ public abstract class Task {
             case "T":
                 task = new Todo(strings[2]);
                 break;
+
             case "D":
                 argStrings = strings[2].split(" \\| ", 2);
                 task = new Deadline(argStrings[0], argStrings[1]);
                 break;
+
             case "E":
                 argStrings = strings[2].split(" \\| ", 2);
                 task = new Event(argStrings[0], argStrings[1]);
                 break;
+
             default:
                 throw new NyanDukeException("Invalid task data loaded.");
             }
@@ -59,7 +62,7 @@ public abstract class Task {
             }
 
             return task;
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException | NyanDukeException e) {
             throw new NyanDukeException("Invalid task data loaded.");
         }
     }
