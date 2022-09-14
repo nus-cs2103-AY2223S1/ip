@@ -112,6 +112,17 @@ public enum Command {
             if (args.isEmpty()) {
                 return "Please specify a task number.\n\n" + usage;
             }
+            try {
+                int index = Integer.parseInt(args);
+                int count = taskList.getCount();
+                if (index <= 0 || index > taskList.getCount()) {
+                    return "Please specify a valid task number. There are "
+                            + count + " tasks in the list\n\n" + usage;
+                }
+            } catch (NumberFormatException e) {
+                return "Please specify a task number.\n\n" + usage;
+            }
+
             return "";
 
         case "find":
@@ -225,8 +236,8 @@ public enum Command {
             return ret + "find [keyword(s)]";
 
         case "deadline":
-            return ret + "deadline [task-description] /by [DD-MM-YYYY] /every [how-many-days]\n\n"
-                    + "NOTE: /every is optional and used only for\n recurring tasks.";
+            return "Usage #1: deadline [task-description] /by [DD-MM-YYYY]\n\n"
+                    + "Usage #2: deadline [task-description] /by [DD-MM-YYYY] /every [how-many-days]";
 
         case "event":
             return ret + "event [task-description] /at [DD-MM-YYYY] /every [how-many-days]\n\n"
