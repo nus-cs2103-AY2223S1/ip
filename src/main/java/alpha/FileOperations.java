@@ -117,10 +117,16 @@ public class FileOperations {
             int endingIndexOfTag = task.indexOf("]", 5);
             String tag = task.substring(5, endingIndexOfTag);
             boolean taskStatus = String.valueOf(task.charAt(indexOfStatus)) == "X";
+            int indexOfDescription;
+            if (taskStatus) {
+                indexOfDescription = indexOfStatus + 3;
+            } else {
+                indexOfDescription = indexOfStatus + 11;
+            }
             switch (taskType) {
             case "T": {
                 //substring lengths based on format of text being saved in the .txt file
-                String taskDescription = task.substring(indexOfStatus + 3);
+                String taskDescription = task.substring(indexOfDescription);
                 Task todo = new Todo(taskDescription, taskType);
                 todo.changeStatus(taskStatus);
                 if (!tag.equals("")) {
@@ -131,7 +137,7 @@ public class FileOperations {
             }
             case "E": {
                 //substring lengths based on format of text being saved in the .txt file
-                String taskDescription = task.substring(indexOfStatus + 3, task.length() - 16);
+                String taskDescription = task.substring(indexOfDescription, task.length() - 16);
                 String date = task.substring(task.length() - 12, task.length() - 1);
                 Task event = new Event(taskDescription, date, taskType);
                 event.changeStatus(taskStatus);
@@ -143,7 +149,7 @@ public class FileOperations {
             }
             case "D": {
                 //substring lengths based on format of text being saved in the .txt file
-                String taskDescription = task.substring(indexOfStatus + 3, task.length() - 16);
+                String taskDescription = task.substring(indexOfDescription, task.length() - 16);
                 String deadlineDate = task.substring(task.length() - 12, task.length() - 1);
                 Task deadline = new Deadline(taskDescription, deadlineDate, taskType);
                 deadline.changeStatus(taskStatus);

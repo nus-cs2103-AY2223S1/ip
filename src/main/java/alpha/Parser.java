@@ -9,6 +9,7 @@ import alpha.command.Command;
 import alpha.command.Delete;
 import alpha.command.Exit;
 import alpha.command.Find;
+import alpha.command.FindTag;
 import alpha.command.Help;
 import alpha.command.List;
 import alpha.command.Mark;
@@ -97,6 +98,11 @@ public class Parser {
             }
             assert taskInfo.length == 2;
             return new Tag(Integer.parseInt(taskInfo[0]), taskInfo[1]);
+        }
+        case "findtag": {
+            checkInvalidInput(inputTokens);
+            assert inputTokens.length == 2;
+            return new FindTag(inputTokens[1]);
         }
         case "bye": {
             return new Exit();
