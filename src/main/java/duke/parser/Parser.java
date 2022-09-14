@@ -1,10 +1,10 @@
 package duke.parser;
 
-import duke.command.Command;
-import duke.exceptions.DukeException;
-
 import java.util.Arrays;
 import java.util.List;
+
+import duke.command.Command;
+import duke.exceptions.DukeException;
 
 /**
  * Deals with making sense of the user's commands.
@@ -90,7 +90,7 @@ public class Parser {
                     throw new DukeException("Input format: find (keyword)");
                 }
                 command = Command.FIND;
-                args = new String[] {listOfInputs.get(1)};
+                args = new String[]{listOfInputs.get(1)};
             } else if (firstArg.equals("todo")) {
                 if (numArgs == 1) {
                     throw new DukeException("OOPS!!! The description of a todo cannot be empty.");

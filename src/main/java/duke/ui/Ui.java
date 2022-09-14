@@ -10,7 +10,7 @@ import duke.task.TaskList;
  */
 public class Ui {
     public String getWelcomeMessage() {
-        return "Hello! I'm Duke" + "\nHow can I help you?";
+        return "Hello! I'm Duke :)\nHow can I help you?";
     }
 
     public String getGoodbyeMessage() {

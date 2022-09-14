@@ -1,10 +1,19 @@
 package duke.command;
 
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.exceptions.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 import duke.ui.Ui;
+import javafx.application.Platform;
 
 public class CommandHandler {
     private final Ui ui;
@@ -34,6 +43,18 @@ public class CommandHandler {
             case BYE:
                 // Write tasks data to storage before terminating program
                 Storage.writeData(tasks.toStorageString());
+                // @@author ish1506-reused
+                // Reused from
+                // https://stackoverflow.com/questions/15747277/how-to-make-java-program-exit-after-a-couple-of-seconds
+                // with minor modifications
+                Timer timer = new Timer();
+                TimerTask exitApp = new TimerTask() {
+                    @Override
+                    public void run() {
+                        Platform.exit();
+                    }
+                };
+                timer.schedule(exitApp, new Date(System.currentTimeMillis() + 1000));
                 return ui.getGoodbyeMessage();
             case LIST:
                 return tasks.toString();
