@@ -175,6 +175,7 @@ Ends the program.
 Format: `bye`
 
 ## Command summary
+
 | Action       | Format, Examples                                                                                   |
 |--------------|----------------------------------------------------------------------------------------------------|
 | add todo     | `todo [TASK]`<br/>e.g., `todo read book`                                                           |
