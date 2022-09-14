@@ -133,7 +133,7 @@ public class Parser {
                 throw new ParseInputException(errorMessage);
             }
         default:
-            String errorMessage = "☹ Wrong type of command detected.";
+            String errorMessage = "☹ Wrong type of command detected!";
             throw new ParseInputException(errorMessage);
         }
     }
@@ -184,7 +184,7 @@ public class Parser {
                 return new UnmarkCommand(index);
             }
         } catch (NumberFormatException nfe) {
-            String errorMessage = "☹ Please enter an index of a task!";
+            String errorMessage = "☹ Enter an index of a task!";
             throw new ParseInputException(errorMessage);
         }
     }

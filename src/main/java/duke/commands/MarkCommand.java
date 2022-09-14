@@ -48,4 +48,22 @@ public class MarkCommand extends Command {
         }
     }
 
+    /**
+     * Checks if a given object is equal to a MarkCommand instance.
+     *
+     * @param object Given object.
+     * @return True or false.
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        } else if (object instanceof MarkCommand) {
+            MarkCommand markCommand = (MarkCommand) object;
+            return this.index == markCommand.index;
+        } else {
+            return false;
+        }
+    }
+
 }
