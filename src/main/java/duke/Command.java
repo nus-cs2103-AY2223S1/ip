@@ -56,7 +56,7 @@ public enum Command {
             String[] temp = args.split(" /by ", 2);
             String[] recurring = temp[1].split(" /every ", 2);
             int period = getPeriod(temp[1]);
-            Task t = new Deadline(temp[0], LocalDate.parse(recurring[0],
+            Task t = new Deadline(temp[0], LocalDate.parse(recurring[0].trim(),
                     DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)), period);;
             return duke.addTask(t);
 
@@ -86,8 +86,9 @@ public enum Command {
     }
 
     private boolean isValidDate(String date) {
+        String dateTrimmed = date.trim();
         try {
-            LocalDate d = LocalDate.parse(date, DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT));
+            LocalDate d = LocalDate.parse(dateTrimmed, DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT));
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -219,7 +220,7 @@ public enum Command {
             return period; // No period supplied
         } else {
             try {
-                period = Integer.parseInt(temp[1]);
+                period = Integer.parseInt(temp[1].trim());
                 return period > 0 ? period : -1;
             } catch (NumberFormatException e) {
                 return -1; // Invalid period supplied
