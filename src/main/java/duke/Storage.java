@@ -4,6 +4,7 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
+import duke.expenses.Expense;
 
 import java.io.FileReader;
 import java.io.File;
@@ -28,12 +29,15 @@ public class Storage {
      */
     String filepath;
 
+    ArrayList<Expense> expenses;
+
     /**
      * Constructor of Storage class.
      * @param filepath Takes in the filepath to load and store data.
      */
     public Storage(String filepath) {
         this.tasks = new ArrayList<Task>();
+        this.expenses = new ArrayList<Expense>();
         this.filepath = filepath;
     }
 
@@ -43,7 +47,7 @@ public class Storage {
      * @return Returns an ArrayList of Tasks objects.
      * @throws Exception
      */
-    public ArrayList<Task> load() throws Exception {
+    public void load() throws Exception {
         new File("./data").mkdirs();
         File dataStore = new File(filepath);
         if (dataStore.exists()) {
@@ -70,21 +74,33 @@ public class Storage {
                     Event newTask = new Event(strSplit[2], eventDateAndTime[0], eventDateAndTime[1]);
                     tasks.add(newTask);
                 }
+                else if (strSplit[0].equals("expense")) {
+                    float cost = Float.parseFloat(strSplit[2].replace("$", ""));
+                    Expense expense = new Expense(strSplit[1], cost);
+                    expenses.add(expense);
+                }
                 if (strSplit[1].equals("1")) {
                     tasks.get(tasks.size() - 1).setStatus(1);
                 }
             }
             fileRead.close();
         }
-        return tasks;
     } 
+
+    public ArrayList<Task> loadTasks() {
+        return tasks;
+    }
+
+    public ArrayList<Expense> loadExpenses() throws Exception {
+        return expenses;
+    }
 
     /**
      * Stores tasks into the data.txt file at the specified filepath.
      * @param tasks Takes in the current Tasks returned from TaskList in the form of an ArrayList of Tasks.
      * @throws Exception
      */
-    public void store(ArrayList<Task> tasks) throws Exception {
+    public void store(ArrayList<Task> tasks, ArrayList<Expense> expenses) throws Exception {
         FileWriter myWriter = new FileWriter(filepath);
         int numTasks = tasks.size();
         for (int i = 0; i < numTasks; i++) {
@@ -96,6 +112,11 @@ public class Storage {
                 myWriter.write(t.getTaskType() + " | " + t.getBinaryStatus() + " | "
                         + t.getTask() + "\n");
             }
+        }
+        int numExpenses = expenses.size();
+        for (int i = 0; i < numExpenses; i++) {
+            Expense expense = expenses.get(i);
+            myWriter.write("expense | " + expense.getActivity() + " | $" + expense.getCostString() + "\n");
         }
         myWriter.close();
     }

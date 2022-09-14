@@ -1,6 +1,5 @@
-package duke;
+package duke.task;
 
-import duke.task.Task;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +21,7 @@ public class TaskList {
     /**
      * Constructor to create a TaskLIst when no previous data is available.
      */
-    TaskList() {
+    public TaskList() {
         this.taskList = new ArrayList<Task>();
         this.numTasks = 0;
     }
@@ -31,7 +30,7 @@ public class TaskList {
      * Overloaded constructor to create a TaskList when previous data is found.
      * @param taskList Takes in an ArrayList of Tasks loaded from previous use.
      */
-    TaskList(ArrayList<Task> taskList) {
+    public TaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
         this.numTasks = taskList.size();
     }
@@ -113,7 +112,7 @@ public class TaskList {
      */
     public String deleteTask(int position) {
         if (numTasks == 0) { // No tasks in list
-            return "List empty. Add tasks into your list!\n";
+            return "Task list empty. Add tasks into your list!\n";
         }
         else if (position > numTasks) {
             return "No such task!\n";
@@ -136,7 +135,7 @@ public class TaskList {
         int matchesFound = 0;
         for (int i = 0; i < numTasks; i++) {
             Task task = taskList.get(i);
-            String taskDescription = taskList.get(i).getTask();
+            String taskDescription = task.getTask();
             if (taskDescription.contains(keyword)) {
                 output += "\n" + Integer.toString(i + 1) + "." + task.toString();
                 matchesFound += 1;
@@ -156,7 +155,7 @@ public class TaskList {
     public String printList() {
         String output = "Here are the tasks in your list:\n";
         for (int i = 0; i < numTasks; i++) {
-            output += Integer.toString(i + 1) + "." + taskList.get(i).toString() + "\n";
+            output += Integer.toString(i + 1) + ". " + taskList.get(i).toString() + "\n";
         }
         return output;
     }

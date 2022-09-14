@@ -1,6 +1,9 @@
 package duke;
 
 import duke.task.Event;
+import duke.task.TaskList;
+import duke.expenses.Expense;
+import duke.expenses.ExpenseList;
 import duke.task.Deadline;
 import duke.task.Todo;
 
@@ -15,12 +18,15 @@ public class Parser {
      */
     private final TaskList taskList;
 
+    private final ExpenseList expenseList;
+
     /**
      * Constructor of class Parser.
      * @param taskList Takes in a TaskList for the Parser to call methods for.
      */
-    public Parser(TaskList taskList) {
+    public Parser(TaskList taskList, ExpenseList expenseList) {
         this.taskList = taskList;
+        this.expenseList = expenseList;
     }
 
     /**
@@ -32,6 +38,7 @@ public class Parser {
      */
     public String parse(String request) {
         if (request.equals("bye")) { // 1. Terminates Greg
+            System.exit(1);
             return "Goodbye, your tasks have been saved! See you soon!";
         }
 
@@ -49,13 +56,13 @@ public class Parser {
             return taskList.unmarkTask(taskNumber);
         }
 
-        else if (request.startsWith("todo")) { // 5a. Adding in tasks (Todo)
+        else if (request.startsWith("todo ")) { // 5a. Adding in tasks (Todo)
             String todoTask = request.replace("todo ", "");
             Todo todo = new Todo(todoTask);
             return taskList.addTask(todo);
         }
 
-        else if (request.startsWith("deadline")) { // 5b. Adding in tasks (Deadline)
+        else if (request.startsWith("deadline ")) { // 5b. Adding in tasks (Deadline)
             String[] deadlineTask = (request.replace("deadline ", "")).split(" /by ");
             Deadline deadline;
             if (deadlineTask[1].length() > 10) { // Deadline has a due time
@@ -68,7 +75,7 @@ public class Parser {
             return taskList.addTask(deadline);
         }
 
-        else if (request.startsWith("event")) { // 5c. Adding in tasks (Event)
+        else if (request.startsWith("event ")) { // 5c. Adding in tasks (Event)
             String[] eventTask = request.replace("event ", "").split(" /at ");
             String[] eventDateAndTime = eventTask[1].split(" ");
             String eventTime = eventDateAndTime[1].substring(0, 2) + ":" + eventDateAndTime[1].substring(2, 4);
@@ -76,7 +83,7 @@ public class Parser {
             return taskList.addTask(event);
         }
 
-        else if (request.startsWith("delete")) { // 6. Deleting tasks
+        else if (request.startsWith("delete ")) { // 6. Deleting tasks
             String[] deleteTask = request.split(" ");
             int taskIndex = Integer.parseInt(deleteTask[1]);
             return taskList.deleteTask(taskIndex);
@@ -85,6 +92,27 @@ public class Parser {
         else if (request.startsWith("find ")) { // 7. Find tasks
             String matchWith = request.replace("find ", "");
             return taskList.find(matchWith);
+        } 
+        else if (request.startsWith("expense ")) {
+            String expenseRequest = request.replace("expense ", "");
+            if (expenseRequest.startsWith("/p")) { // Print expense list
+                return expenseList.printList();
+            }
+            else if (expenseRequest.startsWith("/a ")) { // Add expense
+                String[] expeStrings = expenseRequest.replace("/a ", "").split("/c ");
+                Expense newExpense = new Expense(expeStrings[0], expeStrings[1]);
+                return expenseList.addExpense(newExpense);
+            }
+            else if (expenseRequest.startsWith("/d ")) { // Delete expense
+                String position = expenseRequest.replace("/d ", "");
+                return expenseList.deleteExpense(Integer.parseInt(position));
+            }
+            else if (expenseRequest.startsWith("/f ")) { // Find expense
+                String keyword = expenseRequest.replace("/f ", "");
+                return expenseList.find(keyword);
+            } else {
+                return "OOPS!!! I'm sorry, but I don't know what that means :-(";
+            }
         } else { // Inappropriate input
             return "OOPS!!! I'm sorry, but I don't know what that means :-(\n";
         }

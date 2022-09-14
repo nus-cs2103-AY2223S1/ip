@@ -1,5 +1,8 @@
 package duke;
 
+import duke.task.TaskList;
+import duke.expenses.ExpenseList;
+
 /**
  * Duke is a task list manager for tasks, deadlines and events!
  * 
@@ -10,6 +13,7 @@ package duke;
 
 public class Duke {
     private TaskList tasks;
+    private ExpenseList expenses;
     private Storage storage;
     private Parser parser;
 
@@ -21,17 +25,19 @@ public class Duke {
     public Duke(String filepath) {
         this.storage = new Storage(filepath);
         try {
-            tasks = new TaskList(storage.load());
+            storage.load();
+            tasks = new TaskList(storage.loadTasks());
+            expenses = new ExpenseList(storage.loadExpenses());
         } catch (Exception e) {
             this.tasks = new TaskList();
         }
-        this.parser = new Parser(tasks);
+        this.parser = new Parser(tasks, expenses);
     }
 
     public String getResponse(String input) {
         String reply = parser.parse(input);
         try {
-            storage.store(tasks.getList());
+            storage.store(tasks.getList(), expenses.getList());
         } catch (Exception e) {
             System.out.println();
         }
