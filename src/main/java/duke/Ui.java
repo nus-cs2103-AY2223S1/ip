@@ -307,15 +307,15 @@ public class Ui {
                 " deadline <description of the deadline> /by <time of the deadline> \n" +
                 "Event : adds an event task to the task list :-> event" +
                 " <description of the event> /at <time of the event> \n\n" +
+                "Task: adds a duration task to the task list :-> task <description> /takes <time " +
+                "to complete task>\n" +
                 "Other commands: \n\n" +
                 "Mark : marks a task as done :-> mark <task number> \n" +
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +
                 "Delete : deletes a task :-> delete <task number>\n" +
                 "Help : brings up this display :-> help\n" +
                 "Bye : closes duke.Duke :-> bye\n" +
-                "Find: finds task based on description :-> find <search string>\n" +
-                "Task: adds a duration task to the task list :-> task <description> /takes <time " +
-                "to complete task>\n\n" +
+                "Find: finds task based on description :-> find <search string>\n\n" +
                 "Please enter one of the above to continue.");
 
     }
@@ -330,19 +330,19 @@ public class Ui {
         return (error.getMessage() + "\n" + "Please provide a proper command. Formats are as follows: \n\n" +
                 "Main commands : \n\n" +
                 "Todo : adds a todo task to the task list :-> todo <description of the task> \n" +
-                "Deadline : adds a deadline task to the task list :-> deadline" +
-                " <description of the deadline> /by <time of the deadline> \n" +
-                "Event : adds an event task to the task list :-> event " +
-                "<description of the event> /at <time of the event> \n\n" +
+                "Deadline : adds a deadline task to the task list :->" +
+                " deadline <description of the deadline> /by <time of the deadline> \n" +
+                "Event : adds an event task to the task list :-> event" +
+                " <description of the event> /at <time of the event> \n\n" +
+                "Task: adds a duration task to the task list :-> task <description> /takes <time " +
+                "to complete task>\n" +
                 "Other commands: \n\n" +
                 "Mark : marks a task as done :-> mark <task number> \n" +
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +
                 "Delete : deletes a task :-> delete <task number>\n" +
                 "Help : brings up this display :-> help\n" +
                 "Bye : closes duke.Duke :-> bye\n" +
-                "Find: finds task based on description :-> find <search string>\n" +
-                "Task: adds a duration task to the task list :-> task <description> /takes <time " +
-                "to complete task>\n\n" +
+                "Find: finds task based on description :-> find <search string>\n\n" +
                 "Please enter one of the above to continue.");
 
     }

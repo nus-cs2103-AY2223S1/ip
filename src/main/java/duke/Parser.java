@@ -35,6 +35,12 @@ public class Parser {
         this.ui = ui;
     }
 
+    /**
+     * Handles delete command.
+     *
+     * @param text The command instructions.
+     * @return Ui response to deletion.
+     */
     private static String handleDelete(String text) {
 
         int deletable = Integer.parseInt(text.replace("delete ", "")) - 1;
@@ -48,6 +54,12 @@ public class Parser {
 
     }
 
+    /**
+     * Handles deadline command.
+     *
+     * @param description The command instructions.
+     * @return Ui response to deadline task.
+     */
     private static String handleDeadline(String[] description) {
         if (description[1].length() > 10) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -63,12 +75,24 @@ public class Parser {
         }
     }
 
+    /**
+     * Handles todo command.
+     *
+     * @param text The command instructions.
+     * @return Ui response to todo task.
+     */
     private static String handleTodo(String text) {
         ToDo item = new ToDo(text.replace("todo ", ""));
         storage.taskList.addTodo(item);
         return ui.todo(item);
     }
 
+    /**
+     * Handles event command.
+     *
+     * @param text The command instructions.
+     * @return Ui response to event task.
+     */
     private static String handleEvent(String text) {
         String[] description = text.replace("event ", "").split("/at ");
         Event item = new Event(description[0], description[1]);
@@ -76,6 +100,12 @@ public class Parser {
         return ui.event(item);
     }
 
+    /**
+     * Handles mark command.
+     *
+     * @param text The command instructions.
+     * @return Ui response to marking a task.
+     */
     private static String handleMark(String text) {
         if (Integer.parseInt(text.replace("mark ", "")) - 1 < storage.taskList.arrayList.size()
                 && Integer.parseInt(text.replace("mark ", "")) > 0) {
@@ -91,6 +121,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Handles unmark command.
+     *
+     * @param text The command instructions.
+     * @return Ui response to unmarking a task.
+     */
     private static String handleUnmark(String text) {
         if (Integer.parseInt(text.replace("unmark ", "")) - 1 < storage.taskList.arrayList.size()
                 && Integer.parseInt(text.replace("unmark ", "")) > 0) {
@@ -106,6 +142,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Handles find command.
+     *
+     * @param text The command instructions.
+     * @return Ui response to finding a task.
+     */
     private static String handleFind(String text) {
         if (text.startsWith("find ")) {
             String search = text.replace("find ", "");
@@ -117,6 +159,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Handles task command.
+     *
+     * @param text The command instructions.
+     * @return Ui response to creating a duration task.
+     */
     private static String handleDuration(String text) {
         String[] description = text.replace("task ", "").split("/takes ");
         Duration item = new Duration(description[0], description[1]);
@@ -124,6 +172,12 @@ public class Parser {
         return ui.duration(item);
     }
 
+    /**
+     * Handles deletion error.
+     *
+     * @param text The command instructions.
+     * @return Ui response to deletion error.
+     */
     private static String handleDelerror(String text) {
         if (text.equalsIgnoreCase("delete") || text.equalsIgnoreCase("delete ")) {
             return ui.deleteNoNumber();
@@ -132,6 +186,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Handles mark error.
+     *
+     * @param text The command instructions.
+     * @return Ui response to marking error.
+     */
     private static String handleMarkerror(String text) {
         if (text.equalsIgnoreCase("mark") || text.equalsIgnoreCase("mark ")) {
             return ui.noNumberToMark();
@@ -140,6 +200,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Handles unmark error.
+     *
+     * @param text The command instructions.
+     * @return Ui response to unmarking error.
+     */
     private static String handleUnmarkerror(String text) {
         if (text.equalsIgnoreCase("unmark") || text.equalsIgnoreCase("unmark ")) {
             return ui.noNumberToUnmark();
@@ -148,6 +214,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Wraps todo handlers.
+     *
+     * @param text Initial instruction from user.
+     * @return Output from todo handlers
+     */
     private static String handleTodowrapper(String text) {
         if (text.equalsIgnoreCase("todo") || text.equalsIgnoreCase("todo ") || text.replace("todo ", "").trim().length() < 1) {
             try {
@@ -160,6 +232,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Wraps delete handlers.
+     *
+     * @param text Initial instruction from user.
+     * @return Output from delete handlers
+     */
     private static String handleDelwrapper(String text) {
         try {
             return handleDelerror(text);
@@ -169,6 +247,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Wraps deadline handlers.
+     *
+     * @param text Initial instruction from user.
+     * @return Output from deadline handlers
+     */
     private static String handleDeadlinewrapper(String text) {
         try {
             String[] description = text.replace("deadline ", "").split("/by ");
@@ -182,6 +266,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Wraps event handlers.
+     *
+     * @param text Initial instruction from user.
+     * @return Output from event handlers
+     */
     private static String handleEventwrapper(String text) {
         try {
             return handleEvent(text);
@@ -190,6 +280,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Wraps mark handlers.
+     *
+     * @param text Initial instruction from user.
+     * @return Output from mark handlers
+     */
     private static String handleMarkwrapper(String text) {
         try {
             return handleMarkerror(text);
@@ -198,6 +294,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Wraps unmark handlers.
+     *
+     * @param text Initial instruction from user.
+     * @return Output from unmark handlers
+     */
     private static String handleUnmarkwrapper(String text) {
         try {
             return handleUnmarkerror(text);
@@ -206,6 +308,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Wraps duration task handlers.
+     *
+     * @param text Initial instruction from user.
+     * @return Output from duration task handlers
+     */
     private static String handleDurationwrapper(String text) {
         try {
             return handleDuration(text);

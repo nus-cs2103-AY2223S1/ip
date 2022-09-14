@@ -1,5 +1,7 @@
 package duke;
 
+import javafx.application.Application;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -41,23 +43,13 @@ public class Duke {
 
 
     /**
-     * Main method.
+     * Main method and default entry into the duke chatbot.
      *
      * @param args
      * @throws DukeException
      */
     public static void main(String[] args) {
-        String divider = "---------------------------------------------------" +
-                "-------------------------------------------------------------";
-
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(divider);
-        System.out.println("Hello I am \n" + logo + "\nType help to see user guide.\n\nWhat can I do for you?");
-        System.out.println(divider);
+        Application.launch(Main.class, args);
     }
 }
 
