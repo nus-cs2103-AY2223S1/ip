@@ -1,6 +1,6 @@
 package Command;
-import Duke.DukeException;
-import Duke.DukeUi;
+import Duke.WagwanException;
+import Duke.WagwanUi;
 import Duke.Storage;
 import Duke.TaskList;
 
@@ -18,7 +18,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, WagwanUi ui, Storage storage) throws WagwanException {
         return tasks.find(userAction);
     }
 

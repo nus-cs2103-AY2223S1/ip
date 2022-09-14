@@ -1,8 +1,7 @@
 package Command;
-import Duke.DukeException;
-import Duke.DukeUi;
+import Duke.WagwanException;
+import Duke.WagwanUi;
 import Duke.Storage;
-import Duke.Task;
 import Duke.TaskList;
 import java.io.IOException;
 
@@ -20,19 +19,19 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, WagwanUi ui, Storage storage) throws WagwanException {
         try {
             int index = Integer.parseInt(this.userAction);
             String markTaskAsDoneMessage = tasks.markTaskAsDone(index);
             storage.save();
             return markTaskAsDoneMessage;
         } catch (IOException e1) {
-            throw new DukeException(e1.getMessage());
+            throw new WagwanException(e1.getMessage());
         } catch (NumberFormatException e2) {
-            throw new DukeException(DukeUi.INVALID_INDEX);
+            throw new WagwanException(WagwanUi.INVALID_INDEX);
         } catch (IndexOutOfBoundsException e3) {
-            throw new DukeException(DukeUi.INDEX_OUT_OF_RANGE);
-        } catch (DukeException e4) {
+            throw new WagwanException(WagwanUi.INDEX_OUT_OF_RANGE);
+        } catch (WagwanException e4) {
             return e4.toString();
         }
     }

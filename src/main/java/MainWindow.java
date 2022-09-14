@@ -1,11 +1,11 @@
-import Duke.DukeException;
+import Duke.WagwanException;
+import Duke.WagwanUi;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 
@@ -22,18 +22,22 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Duke duke;
+    private Wagwan wagwan;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/mike.jpeg"));
+    private Image wagwanImage = new Image(this.getClass().getResourceAsStream("/images/KSI.jpeg"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        String welcomeMessage = WagwanUi.welcomeMessage();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(welcomeMessage, wagwanImage)
+        );
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    public void setDuke(Wagwan d) {
+        wagwan = d;
     }
 
     /**
@@ -41,12 +45,12 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws DukeException, IOException {
+    private void handleUserInput() throws WagwanException, IOException {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        String response = wagwan.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, wagwanImage)
         );
         userInput.clear();
     }

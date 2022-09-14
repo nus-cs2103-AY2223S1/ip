@@ -1,14 +1,13 @@
 package Duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
 
     protected String deadline;
     private LocalDate dateTime;
 
-    public Deadline(String description, String deadline) throws DukeException {
+    public Deadline(String description, String deadline) throws WagwanException {
         super(description);
         this.deadline = deadline;
         this.dateTime = LocalDate.parse(deadline);

@@ -1,7 +1,7 @@
 package Command;
 import Duke.Deadline;
-import Duke.DukeUi;
-import Duke.DukeException;
+import Duke.WagwanUi;
+import Duke.WagwanException;
 import Duke.Storage;
 import Duke.Task;
 import Duke.TaskList;
@@ -20,25 +20,25 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, WagwanUi ui, Storage storage) throws WagwanException {
         try {
             int initialSize = tasks.getTaskListSize();
             String[] deadlineString = userAction.split("/by ", 2);
             Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);
             tasks.addTask(newDeadline);
-            assert tasks.getTaskListSize() == initialSize + 1 : DukeUi.ADD_TASK_ERROR;
+            assert tasks.getTaskListSize() == initialSize + 1 : WagwanUi.ADD_TASK_ERROR;
             storage.save();
             return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
                     + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
         } catch (DateTimeParseException e1) {
-            throw new DukeException(DukeUi.INVALID_DATE);
+            throw new WagwanException(WagwanUi.INVALID_DATE);
         } catch (ArrayIndexOutOfBoundsException e2) {
-            throw new DukeException(DukeUi.INVALID_DEADLINE);
+            throw new WagwanException(WagwanUi.INVALID_DEADLINE);
         } catch (ClassCastException e3) {
-            throw new DukeException(DukeUi.CLASS_CAST_ERROR);
+            throw new WagwanException(WagwanUi.CLASS_CAST_ERROR);
         } catch (IOException e4) {
-            throw new DukeException(e4.getMessage());
-        } catch (DukeException e5) {
+            throw new WagwanException(e4.getMessage());
+        } catch (WagwanException e5) {
             return e5.toString();
         }
     }

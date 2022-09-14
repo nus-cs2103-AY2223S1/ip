@@ -39,9 +39,9 @@ public class TaskList {
      * Adds a task to the ArrayList of Task objects.
      *
      * @param task the task to be added into the ArrayList of Task objects.
-     * @throws DukeException if the task is not an instance of a To-do, Deadline or Event object.
+     * @throws WagwanException if the task is not an instance of a To-do, Deadline or Event object.
      */
-    public void addTask(Task task) throws DukeException {
+    public void addTask(Task task) throws WagwanException {
         int initialSize = this.tasks.size();
         if (task instanceof Todo) {
             Todo todo = (Todo) task;
@@ -53,7 +53,7 @@ public class TaskList {
             Event event = (Event) task;
             this.tasks.add(event);
         } else {
-            throw new DukeException("Invalid task encountered !!");
+            throw new WagwanException("Invalid task encountered !!");
         }
         assert this.tasks.size() > initialSize : "Error adding todo / event / deadline";
     }
@@ -64,7 +64,7 @@ public class TaskList {
      * @param index the index of the task in TaskList to update its description.
      * @param newDescription the new description of the task to be updated.
      */
-    public String updateTask(int index, String newDescription) throws DukeException {
+    public String updateTask(int index, String newDescription) throws WagwanException {
         Task task = tasks.get(index - 1);
         String initialDescription = task.description;
         task.updateDescription(newDescription);
@@ -84,8 +84,8 @@ public class TaskList {
         int initialSize = this.tasks.size();
         Task task = this.tasks.get(index - 1);
         tasks.remove(index);
-        assert tasks.size() == initialSize - 1 : DukeUi.DELETE_TASK_ERROR;
-        return DukeUi.sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
+        assert tasks.size() == initialSize - 1 : WagwanUi.DELETE_TASK_ERROR;
+        return WagwanUi.sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
                 + "\n Now you have " + tasks.size() + " tasks in the list.");
     }
 
@@ -98,7 +98,7 @@ public class TaskList {
     public String markTaskAsDone(int index) {
         Task task = this.tasks.get(index - 1);
         task.markAsDone();
-        return DukeUi.sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
+        return WagwanUi.sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
     }
 
     /**
@@ -110,7 +110,7 @@ public class TaskList {
     public String markTaskAsUndone(int index) {
         Task task = this.tasks.get(index - 1);
         task.markAsUndone();
-        return DukeUi.sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
+        return WagwanUi.sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
     }
 
     /**

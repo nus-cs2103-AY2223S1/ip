@@ -26,10 +26,10 @@ public class Storage {
      * data to be stored in a TaskList object or creates a new .txt file if the file is not found.
      *
      * @return an ArrayList of Task objects that has been formatted by Duke after reading the .txt file.
-     * @throws DukeException if the target file cannot be found and creates a new .txt file.
+     * @throws WagwanException if the target file cannot be found and creates a new .txt file.
      * @throws IOException if error occurs when Duke is reading data from the target file.
      */
-    public ArrayList<Task> load() throws DukeException {
+    public ArrayList<Task> load() throws WagwanException {
         try {
             FileReader fileReader = new FileReader(this.filePath);
             BufferedReader br = new BufferedReader(fileReader);
@@ -54,7 +54,7 @@ public class Storage {
                 e2.printStackTrace();
             }
         } catch (IOException e3) {
-            throw new DukeException(e3.getMessage());
+            throw new WagwanException(e3.getMessage());
         }
         return this.tasks;
     }
@@ -63,9 +63,9 @@ public class Storage {
      * Helper function that helps write tasks from .txt file to TaskList
      *
      * @param nextTask a String array containing details of next task to be added.
-     * @throws DukeException if error occurs while adding task.
+     * @throws WagwanException if error occurs while adding task.
      */
-    public void addTaskFromStorage(String[] nextTask) throws DukeException {
+    public void addTaskFromStorage(String[] nextTask) throws WagwanException {
         switch (nextTask[0]) {
             case "T":
                 Task newTodo = new Todo(nextTask[2]);
@@ -94,10 +94,10 @@ public class Storage {
     /**
      * Saves the tasks to a .txt file when changes are made to the TaskList object.
      *
-     * @throws DukeException if Duke is unable to find the target file to write data to.
+     * @throws WagwanException if Duke is unable to find the target file to write data to.
      * @throws IOException if error occurs when Duke is writing data to the target file.
      */
-    public void save() throws DukeException, IOException {
+    public void save() throws WagwanException, IOException {
         try {
             FileWriter fw = new FileWriter("./data/tasks.txt");
             // loop through ArrayList<Task>
@@ -106,9 +106,9 @@ public class Storage {
             }
             fw.close();
         } catch (FileNotFoundException e1) {
-            throw new DukeException(DukeUi.FILE_NOT_FOUND_ERROR);
+            throw new WagwanException(WagwanUi.FILE_NOT_FOUND_ERROR);
         } catch (IOException e2) {
-            throw new DukeException(e2.getMessage());
+            throw new WagwanException(e2.getMessage());
         }
     }
 

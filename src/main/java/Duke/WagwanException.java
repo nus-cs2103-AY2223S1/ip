@@ -7,9 +7,9 @@ package Duke;
 *
 * @author Linus Chui
 */
-public class DukeException extends Exception {
+public class WagwanException extends Exception {
 
-    public DukeException(String errorMessage) {
+    public WagwanException(String errorMessage) {
         super(" OOPS!!! " + errorMessage);
     }
 

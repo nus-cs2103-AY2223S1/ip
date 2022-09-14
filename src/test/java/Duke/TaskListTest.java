@@ -7,7 +7,7 @@ public class TaskListTest {
 
     // test 1 : getTaskListSize()
     @Test
-    public void taskListTest1() throws DukeException {
+    public void taskListTest1() throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("return book"));
         tasks.add(new Deadline("read book ", "2022-08-08"));
@@ -19,7 +19,7 @@ public class TaskListTest {
 
     // test 2 : addTask(Task task)
     @Test
-    public void taskListTest2() throws DukeException {
+    public void taskListTest2() throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("return book"));
         tasks.add(new Deadline("read book ", "2022-08-08"));
@@ -32,7 +32,7 @@ public class TaskListTest {
 
     // test 3 : deleteTask(int index)
     @Test
-    public void taskListTest3() throws DukeException {
+    public void taskListTest3() throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("return book"));
         tasks.add(new Deadline("read book ", "2022-08-08"));
@@ -45,7 +45,7 @@ public class TaskListTest {
 
     // test 4 : updateTask(int index, String newDescription)
     @Test
-    public void taskListTest4() throws DukeException {
+    public void taskListTest4() throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("return book"));
         tasks.add(new Deadline("read book ", "2022-08-08"));
@@ -58,7 +58,7 @@ public class TaskListTest {
 
     // test 5 : markTaskAsDone(int index)
     @Test
-    public void taskListTest5() throws DukeException {
+    public void taskListTest5() throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("return book"));
         tasks.add(new Deadline("read book ", "2022-08-08"));
@@ -71,7 +71,7 @@ public class TaskListTest {
 
     // test 6 : markTaskAsDone(int index)
     @Test
-    public void taskListTest6() throws DukeException {
+    public void taskListTest6() throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("return book"));
         tasks.add(new Deadline("read book ", "2022-08-08"));

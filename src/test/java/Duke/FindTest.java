@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FindTest {
 
     @Test
-    public void findTest1 () throws DukeException {
+    public void findTest1 () throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("return book"));
         tasks.add(new Deadline("read book ", "2022-08-08"));
@@ -20,7 +20,7 @@ public class FindTest {
     }
 
     @Test
-    public void findTest2 () throws DukeException {
+    public void findTest2 () throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("buy bread"));
         tasks.add(new Event("buy bread ", "2022-11-11"));
@@ -32,7 +32,7 @@ public class FindTest {
     }
 
     @Test
-    public void findTest3 () throws DukeException {
+    public void findTest3 () throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("buy bread"));
         tasks.add(new Event("read book ", "2022-11-11"));

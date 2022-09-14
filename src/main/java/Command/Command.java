@@ -1,6 +1,6 @@
 package Command;
-import Duke.DukeUi;
-import Duke.DukeException;
+import Duke.WagwanUi;
+import Duke.WagwanException;
 import Duke.Storage;
 import Duke.TaskList;
 
@@ -26,9 +26,9 @@ public abstract class Command {
      * @param tasks the TaskList that encapsulates an ArrayList of Task objects.
      * @param ui the user interface that prints out Duke's response.
      * @param storage the storage that saves changes made to the TaskList.
-     * @throws DukeException if user input is invalid or insufficient.
+     * @throws WagwanException if user input is invalid or insufficient.
      */
-    public abstract String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, WagwanUi ui, Storage storage) throws WagwanException;
 
     /**
      * Checks if the command exits the program

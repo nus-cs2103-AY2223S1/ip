@@ -1,29 +1,28 @@
 package Duke;
-import java.util.Arrays;
-import java.util.Scanner;
 
 /**
 * DukeUi is the user interface of Duke to return responses according to user inputs
 *
 * @author Linus Chui
 */
-public class DukeUi {
+public class WagwanUi {
     private static final String LINE = "____________________________________________________________";
-    private static final String START_MESSAGE = " Hello! I'm Duke\n" + " What can I do for you?";
-    private static final String END_MESSAGE = " Bye. Hope to see you again soon!";
-    static final String INVALID_COMMAND = " is not a valid command !! " +
+    private static final String START_MESSAGE = " wagwan my g";
+    private static final String END_MESSAGE = " in a bit, peace brotha";
+    static final String INVALID_COMMAND = " is not a valid command my g. " +
             "valid commands are list, mark (number), unmark (number), todo (task), deadline (task) /by yyyy/mm/dd," +
             "event (task) /at (time), delete (number), find (keyword), update (index) (new description)";
-    public static final String INVALID_DESCRIPTION = "You need to provide a description for the command !";
-    public static final String INVALID_INDEX = "The index provided needs to be a number!";
-    public static final String INDEX_OUT_OF_RANGE = "I'm sorry, but the index you provided is out of range :-(";
+    public static final String INVALID_DESCRIPTION = "The command needs a description init";
+    public static final String INVALID_INDEX = "This index aint no number.";
+    public static final String INDEX_OUT_OF_RANGE = "This index is outta range brother";
     public static final String INVALID_EVENT = "The description/time of an event cannot be empty!";
     public static final String INVALID_DEADLINE = "The description/time of a deadline cannot be empty!";
-    public static final String INVALID_DATE = "Deadline date must be of format yyyy-mm-dd";
+    public static final String INVALID_DATE = "Listen man your deadline date must be of format yyyy-mm-dd";
     public static final String ADD_TASK_ERROR = "Error adding task, please try again";
     public static final String DELETE_TASK_ERROR = "Error deleting task, please try again";
     public static final String CLASS_CAST_ERROR = "Error occured when adding categorising task, please try again";
     public static final String FILE_NOT_FOUND_ERROR = "Error finding file, the file might have been deleted from your computer.";
+
     /**
      * Splits user input into a String array of length 2.
      *
@@ -51,6 +50,30 @@ public class DukeUi {
      */
     public static String welcomeMessage() {
         return START_MESSAGE;
+    }
+
+    public static String wagwanLogo() {
+        return "##      ##    ###     ######   \n" +
+                "##  ##  ##   ## ##   ##    ##  \n" +
+                "##  ##  ##  ##   ##  ##        \n" +
+                "##  ##  ## ##     ## ##   #### \n" +
+                "##  ##  ## ######### ##    ##  \n" +
+                "##  ##  ## ##     ## ##    ##  \n" +
+                " ###  ###  ##     ##  ######   \n" +
+                "##      ##    ###    ##    ## \n" +
+                "##  ##  ##   ## ##   ###   ## \n" +
+                "##  ##  ##  ##   ##  ####  ## \n" +
+                "##  ##  ## ##     ## ## ## ## \n" +
+                "##  ##  ## ######### ##  #### \n" +
+                "##  ##  ## ##     ## ##   ### \n" +
+                " ###  ###  ##     ## ##    ## \n" +
+                "##     ## ##    ##  ######   \n" +
+                "###   ###  ##  ##  ##    ##  \n" +
+                "#### ####   ####   ##        \n" +
+                "## ### ##    ##    ##   #### \n" +
+                "##     ##    ##    ##    ##  \n" +
+                "##     ##    ##    ##    ##  \n" +
+                "##     ##    ##     ###### ";
     }
 
     /**

@@ -7,7 +7,7 @@ public class TaskTest {
 
     // test 1 : Task.getStatusIcon (!isDone)
     @Test
-    public void taskTest1() throws DukeException {
+    public void taskTest1() throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("return book"));
         tasks.add(new Deadline("read book ", "2022-08-08"));
@@ -19,7 +19,7 @@ public class TaskTest {
 
     // test 2 : Task.getStatusIcon (isDone)
     @Test
-    public void taskTest2() throws DukeException {
+    public void taskTest2() throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo("return book"));
         tasks.add(new Deadline("read book ", "2022-08-08"));
@@ -32,7 +32,7 @@ public class TaskTest {
 
     // test 3 : updateDescription(String description)
     @Test
-    public void taskTest3() throws DukeException {
+    public void taskTest3() throws WagwanException {
         Todo todo = new Todo("placeholder");
         todo.updateDescription("new description");
         String expected = "[T][ ] new description";

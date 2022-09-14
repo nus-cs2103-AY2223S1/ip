@@ -32,13 +32,13 @@ public class Parser {
      *
      * @param command the full user input as a String.
      * @return a Command object to execute the user input if it is valid.
-     * @throws DukeException if the user input is invalid or insufficient.
+     * @throws WagwanException if the user input is invalid or insufficient.
      */
-    public static Command parse(String[] command) throws DukeException {
+    public static Command parse(String[] command) throws WagwanException {
         String userAction = "";
         boolean isDescriptionNeeded = Parser.hasDescription(command);
         if (isDescriptionNeeded && (command.length == 1)) {
-            throw new DukeException(DukeUi.INVALID_DESCRIPTION);
+            throw new WagwanException(WagwanUi.INVALID_DESCRIPTION);
         } else if (isDescriptionNeeded) {
             userAction = command[1].trim();
         }
@@ -65,7 +65,7 @@ public class Parser {
             case "bye" :
                 return new ExitCommand();
             default:
-                throw new DukeException(userCommand + DukeUi.INVALID_COMMAND);
+                throw new WagwanException(userCommand + WagwanUi.INVALID_COMMAND);
         }
     }
 }

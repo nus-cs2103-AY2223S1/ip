@@ -1,6 +1,6 @@
 package Command;
-import Duke.DukeException;
-import Duke.DukeUi;
+import Duke.WagwanException;
+import Duke.WagwanUi;
 import Duke.Event;
 import Duke.Storage;
 import Duke.Task;
@@ -20,23 +20,23 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, WagwanUi ui, Storage storage) throws WagwanException {
         try {
             int initialSize = tasks.getTaskListSize();
             String[] eventString = userAction.split("/at ");
             Task newEvent = new Event(eventString[0], eventString[1]);
             tasks.addTask(newEvent);
-            assert tasks.getTaskListSize() == initialSize + 1 : DukeUi.ADD_TASK_ERROR;
+            assert tasks.getTaskListSize() == initialSize + 1 : WagwanUi.ADD_TASK_ERROR;
             storage.save();
             return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
                     + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
         } catch (ArrayIndexOutOfBoundsException e1) {
-            throw new DukeException(DukeUi.INVALID_EVENT);
+            throw new WagwanException(WagwanUi.INVALID_EVENT);
         } catch (ClassCastException e2) {
-            throw new DukeException(DukeUi.CLASS_CAST_ERROR);
+            throw new WagwanException(WagwanUi.CLASS_CAST_ERROR);
         } catch (IOException e3) {
-            throw new DukeException(e3.getMessage());
-        } catch (DukeException e4) {
+            throw new WagwanException(e3.getMessage());
+        } catch (WagwanException e4) {
             return e4.toString();
         }
     }

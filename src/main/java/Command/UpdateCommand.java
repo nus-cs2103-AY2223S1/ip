@@ -1,7 +1,7 @@
 package Command;
 
-import Duke.DukeException;
-import Duke.DukeUi;
+import Duke.WagwanException;
+import Duke.WagwanUi;
 import Duke.Storage;
 import Duke.TaskList;
 
@@ -21,7 +21,7 @@ public class UpdateCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, WagwanUi ui, Storage storage) throws WagwanException {
         try {
             String[] updateString = userAction.split(" ", 2);
             int index = Integer.parseInt(updateString[0]);
@@ -30,12 +30,12 @@ public class UpdateCommand extends Command {
             storage.save();
             return updateMessage;
         } catch (NumberFormatException e1) {
-            throw new DukeException(DukeUi.INVALID_INDEX);
+            throw new WagwanException(WagwanUi.INVALID_INDEX);
         } catch (IndexOutOfBoundsException e2) {
-            throw new DukeException(DukeUi.INVALID_DESCRIPTION);
+            throw new WagwanException(WagwanUi.INVALID_DESCRIPTION);
         } catch (IOException e3) {
-            throw new DukeException(e3.getMessage());
-        } catch (DukeException e4) {
+            throw new WagwanException(e3.getMessage());
+        } catch (WagwanException e4) {
             return e4.toString();
         }
     }

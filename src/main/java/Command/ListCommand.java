@@ -1,5 +1,5 @@
 package Command;
-import Duke.DukeUi;
+import Duke.WagwanUi;
 import Duke.Storage;
 import Duke.TaskList;
 /**
@@ -14,7 +14,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, DukeUi ui, Storage storage) {
+    public String execute(TaskList tasks, WagwanUi ui, Storage storage) {
         return tasks.toString();
     }
 

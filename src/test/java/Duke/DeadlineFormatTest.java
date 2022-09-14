@@ -9,7 +9,7 @@ public class DeadlineFormatTest {
 
     // test 1 : check if deadline is formatted correctly
     @Test
-    public void deadlineFormatTest1() throws DukeException {
+    public void deadlineFormatTest1() throws WagwanException {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Deadline("read book ", "2022-08-08"));
         TaskList tasks1 = new TaskList(tasks);
@@ -19,7 +19,7 @@ public class DeadlineFormatTest {
 
     // test 2 : check if deadline is formatted correctly
     @Test
-    public void deadlineFormatTest2() throws DukeException {
+    public void deadlineFormatTest2() throws WagwanException {
         String actual = "";
         String expected = "deadline is not formatted properly";
         ArrayList<Task> tasks = new ArrayList<>();

@@ -1,6 +1,6 @@
 package Command;
-import Duke.DukeException;
-import Duke.DukeUi;
+import Duke.WagwanException;
+import Duke.WagwanUi;
 import Duke.Storage;
 import Duke.Task;
 import Duke.TaskList;
@@ -19,20 +19,20 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, WagwanUi ui, Storage storage) throws WagwanException {
         try {
             int initialSize = tasks.getTaskListSize();
             Task newTodo = new Todo(userAction);
             tasks.addTask(newTodo);
-            assert tasks.getTaskListSize() == initialSize + 1 : DukeUi.ADD_TASK_ERROR;
+            assert tasks.getTaskListSize() == initialSize + 1 : WagwanUi.ADD_TASK_ERROR;
             storage.save();
             return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
                     + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
         } catch (IOException e1) {
-            throw new DukeException(e1.getMessage());
+            throw new WagwanException(e1.getMessage());
         } catch (ClassCastException e2) {
-            throw new DukeException(DukeUi.CLASS_CAST_ERROR);
-        } catch (DukeException e3) {
+            throw new WagwanException(WagwanUi.CLASS_CAST_ERROR);
+        } catch (WagwanException e3) {
             return e3.toString();
         }
     }
