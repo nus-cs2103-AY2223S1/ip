@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import duke.constant.PriorityLevel;
 import duke.exception.DukeException;
-import duke.task.Event;
 
 public class EventTest {
     @Test

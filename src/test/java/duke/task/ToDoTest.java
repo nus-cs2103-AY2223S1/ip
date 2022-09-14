@@ -1,11 +1,10 @@
-package duke;
+package duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 import duke.constant.PriorityLevel;
-import duke.task.ToDo;
 
 public class ToDoTest {
     @Test
