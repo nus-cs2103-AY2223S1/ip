@@ -67,7 +67,7 @@ Note: All commands are case insensitive
 
 &nbsp;&nbsp;Suggested: use list command to check the index required.
 
-&nbsp;&nbsp;Had aliases: "d", "remove", "r"
+&nbsp;&nbsp;Has aliases: "d", "remove", "r"
 
 &nbsp;&nbsp;Format: `delete|d|remove|r index`
 
