@@ -93,7 +93,8 @@ public class Storage {
         // Check and create data directory if necessary
         File directory = new File("./data");
         if (!directory.exists()) {
-            directory.mkdir();
+            boolean madeDirectory = directory.mkdir();
+            assert madeDirectory : "Directory creation should be successful";
         }
 
         BufferedReader br = null;
@@ -154,7 +155,7 @@ public class Storage {
     private void saveTasks() throws TaskDataException {
         BufferedWriter bw = null;
         try {
-            bw = new BufferedWriter(new FileWriter(new File(this.filePath)));
+            bw = new BufferedWriter(new FileWriter(this.filePath));
             StringBuilder toWrite = new StringBuilder();
             for (int i = 0; i < this.taskSaveStrings.size(); i++) {
                 toWrite.append(this.taskSaveStrings.get(i));

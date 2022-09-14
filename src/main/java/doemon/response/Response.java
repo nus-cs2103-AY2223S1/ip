@@ -1,25 +1,28 @@
 package doemon.response;
 
+import java.util.ArrayList;
+
 import doemon.exception.DoemonException;
 import doemon.task.Task;
 import doemon.task.TaskList;
 
-import java.util.ArrayList;
-
+/**
+ * Handles Doemon chat bot response strings.
+ */
 public class Response {
     /**
      * Text art of Doemon.
      */
     private static final String logo =
-            "                       _______________\n" +
-                    "                      /  --. --.      \\ \n" +
-                    "                     /  | '| ' |   \\   \\ \n" +
-                    "                    / /  `-O--'     \\   \\ \n" +
-                    "                   |.  --  |  --     |   |\n" +
-                    "                   |  --   |  --     |   |\n" +
-                    "                    \\  (___|_______) /  /\n" +
-                    "                     \\              /  /\n" +
-                    "                       |== (t) ===|____";
+            "                       _______________\n"
+            + "                      /  --. --.      \\ \n"
+            + "                     /  | '| ' |   \\   \\ \n"
+            + "                    / /  `-O--'     \\   \\ \n"
+            + "                   |.  --  |  --     |   |\n"
+            + "                   |  --   |  --     |   |\n"
+            + "                    \\  (___|_______) /  /\n"
+            + "                     \\              /  /\n"
+            + "                       |== (t) ===|____";
     /**
      * Introduction string that is printed when Doemon is started.
      */
@@ -46,10 +49,11 @@ public class Response {
      */
     public String taskListString(TaskList tasks) {
         if (tasks.getSize() == 0) {
-            return  "You have no tasks!";
+            return "You have no tasks!";
         }
         StringBuilder listStringBuilder = new StringBuilder("Here is what's on my bread:\n\t");
         for (int i = 1; i <= tasks.getSize(); i++) {
+            assert tasks.getTask(i - 1) != null : "Task in task list should not be null";
             listStringBuilder.append(i)
                     .append(".")
                     .append(tasks.getTask(i - 1))
@@ -66,9 +70,10 @@ public class Response {
      * @return Add task response string.
      */
     public String addTaskString(Task task, int numTasks) {
+        assert task != null : "Task should not be null";
         return String.format(
-                "Alright! I have recorded this task on my bread:\n\t" +
-                        "  %s\n\tYou now have %d task(s) recorded on my bread.",
+                "Alright! I have recorded this task on my bread:\n\t"
+                + "  %s\n\tYou now have %d task(s) recorded on my bread.",
                 task.toString(),
                 numTasks);
     }
@@ -80,6 +85,7 @@ public class Response {
      * @return Mark task response string.
      */
     public String markTaskString(Task task) {
+        assert task != null : "Task should not be null";
         return String.format("Yay! This task is now marked as done:\n\t  %s", task);
     }
 
@@ -90,6 +96,7 @@ public class Response {
      * @return Unmark task response string.
      */
     public String unmarkTaskString(Task task) {
+        assert task != null : "Task should not be null";
         return String.format("I guess you weren't done with that one:\n\t  %s", task);
     }
 
@@ -101,6 +108,8 @@ public class Response {
      * @return Delete task response string.
      */
     public String deleteTaskString(Task task, int numTasks) {
+        assert task != null : "Task should not be null";
+        assert numTasks >= 0 : "Number of tasks should be non-negative";
         return String.format("I used a knife to slice off this task from my bread:\n\t  %s"
                 + "\n\tThere are %d items left on my bread.", task, numTasks);
     }
@@ -118,6 +127,7 @@ public class Response {
         }
         StringBuilder sb = new StringBuilder("Here are the matches I found on my bread: ");
         for (Task task : tasks) {
+            assert task != null : "Task in task list should not be null";
             sb.append("\n\t").append(taskNum++).append(".").append(task.toString());
         }
         return sb.toString();

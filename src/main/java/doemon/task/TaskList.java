@@ -67,6 +67,7 @@ public class TaskList {
         if (isInvalidTaskIndex(taskIndex)) {
             throw new InvalidTaskNumberException("mark");
         }
+        assert this.tasks.get(taskIndex) != null : "Task to be marked should exist";
         this.tasks.get(taskIndex).mark();
         return this.tasks.get(taskIndex);
     }
@@ -82,6 +83,7 @@ public class TaskList {
         if (isInvalidTaskIndex(taskIndex)) {
             throw new InvalidTaskNumberException("unmark");
         }
+        assert this.tasks.get(taskIndex) != null : "Task to be unmarked should exist";
         this.tasks.get(taskIndex).unmark();
         return this.tasks.get(taskIndex);
     }
@@ -97,6 +99,7 @@ public class TaskList {
         if (isInvalidTaskIndex(taskIndex)) {
             throw new InvalidTaskNumberException("delete");
         }
+        assert this.tasks.get(taskIndex) != null : "Task to be deleted should exist";
         return this.tasks.remove(taskIndex);
     }
 
