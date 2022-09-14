@@ -13,7 +13,8 @@ import poolsheen.command.Command;
  * @version CS2103 AY22/23 Sem 1
  */
 public class Poolsheen {
-    private static final String SAVE_FILE_PATH = "SAVE.TXT";
+    /** The default file path for the save file. */
+    private static final String SAVE_FILE_PATH = "./SAVE.TXT";
 
     /** The number of milliseconds Poolsheen takes to close the application. */
     private static final Integer LEAVE_TIME = 2000;
@@ -48,6 +49,9 @@ public class Poolsheen {
             this.listOfTasks = new TaskList();
             forceExit();
             throw new IOException("Error loading\n" + e);
+        } catch (Exception e) {
+            throw new IOException("An unexpected error has occurred whilst creating the Poolsheen object. "
+                    + "Please check or delete your save file again.");
         }
     }
 
@@ -83,12 +87,12 @@ public class Poolsheen {
         } catch (PoolsheenException e) {
             reply = e.toString();
         } catch (IndexOutOfBoundsException e) {
-            reply = "This position does not exist in the list!";
+            reply = "An unexpected IndexOutOfBoundsException error has occurred." + e.getMessage();
         } catch (IOException e) {
-            reply = "An error has occurred when updating the save file!\n" + e.getMessage();
+            reply = "An unexpected IOException error has occurred when updating the save file!\n" + e.getMessage();
             Poolsheen.forceExit();
         } catch (NumberFormatException e) {
-            reply = "An error has occurred. Please use a number instead.";
+            reply = "An unexpected NumberFormat error has occurred!\n" + e.getMessage();
         } catch (Exception e) {
             reply = "The following unexpected error has occurred:\n" + e.getMessage();
             Poolsheen.forceExit();

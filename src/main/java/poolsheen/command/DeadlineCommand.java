@@ -27,7 +27,7 @@ public class DeadlineCommand extends Command {
 
         if (!rest.contains("/by")) {
             throw new PoolsheenException(String.join(" ", rest),
-                    "deadline", "Deadline commands need a '/by'");
+                    "deadline", "deadline commands follow the format: 'deadline _desc_ /by _time_'");
         }
 
         List<String> descArray = rest.subList(0, rest.indexOf("/by"));

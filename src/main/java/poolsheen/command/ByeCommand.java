@@ -21,7 +21,7 @@ public class ByeCommand extends Command {
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (!rest.isEmpty()) {
             throw new PoolsheenException(String.join(" ", rest),
-                    "bye", "Try to enter 'bye'");
+                    "bye", "Try to enter only 'bye'");
         }
         Poolsheen.forceExit();
         return ui.say("Goodbye :(");

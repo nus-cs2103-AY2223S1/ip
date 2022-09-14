@@ -24,6 +24,6 @@ public class FindCommand extends Command {
         }
 
         TaskList matchedTasksArray = tl.find(rest.get(0));
-        return ui.displayList(matchedTasksArray);
+        return "Here is what Poolsheen found:\n" + ui.displayList(matchedTasksArray);
     }
 }
