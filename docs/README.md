@@ -13,7 +13,7 @@ It has been designed to improve syntax friendliness.
    - `task t1` then `list` to see the task t1 added to your list.
    - `mark 1` then `list` to see the previously created task as marked done.
    - `bye` to exit the program.
-6. Refers to the Features list below for more command details.
+6. Refer to the Features list below for more command details.
 
 ## Features 
 
