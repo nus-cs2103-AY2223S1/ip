@@ -35,7 +35,8 @@ public class DialogBox extends HBox {
     private DialogBox(String s, Image img, TextAlignment t) {
         Circle clip = new Circle(50, 50, 40);
         dialog = new Text(s);
-        dialog.setFont(new Font("SF Mono Medium", 11));
+        Font font = Font.loadFont(getClass().getResourceAsStream("/font/LigaSFMonoNerdFont-Medium.otf"), 11);
+        dialog.setFont(font);
         dialog.setFill(Paint.valueOf("FFFFFF"));
         ImageView iv = new ImageView(img);
         iv.setClip(clip);
