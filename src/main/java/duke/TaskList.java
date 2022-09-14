@@ -24,7 +24,8 @@ public class TaskList {
         StringBuilder builder = new StringBuilder();
         builder.append("RAWR! Here is your list:\n");
         for (int i = 0; i < MY_TASKS.size(); i++) {
-            builder.append(i + 1).append(". ").append(MY_TASKS.get(i).toString()).append("\n");
+            builder.append(i + 1).append(". ")
+                    .append(MY_TASKS.get(i).toString()).append("\n");
         }
         return builder.toString();
     }
@@ -45,6 +46,7 @@ public class TaskList {
      * @return The task at index i.
      */
     public Task get(int i) {
+        assert i > 0 && i < MY_TASKS.size();
         return MY_TASKS.get(i);
     }
 
@@ -54,6 +56,7 @@ public class TaskList {
      * @param i The index of the task to be removed.
      */
     public void remove(int i) {
+        assert i > 0 && i < MY_TASKS.size();
         MY_TASKS.remove(i);
     }
 
