@@ -66,7 +66,7 @@ Here are the matching tasks in your list:
 2. [D][X] return book (by: Aug 10 2022)
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! The keyword cannot be empty.
+OOPS!!! The keyword cannot be empty.
 ==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________
@@ -80,11 +80,11 @@ Here are the tasks in your list:
 3. [E][X] project meeting (at: Mon 2-4pm)
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! The description of a todo cannot be empty.
+OOPS!!! The description of a todo cannot be empty.
 ==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+OOPS!!! I'm sorry, but I don't know what that means :-(
 ==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________

@@ -10,6 +10,7 @@
         <Label fx:id="message" textFill="whitesmoke" wrapText="true" minHeight="-Infinity">
             <style>
                 -fx-padding: 10;
+                -fx-font-size: 14;
                 -fx-background-color: #e4346b;
                 -fx-background-radius: 15px;
             </style>
@@ -17,7 +18,7 @@
             <Insets left="7.0" />
          </HBox.margin>
         </Label>
-        <Circle fx:id="avatar" layoutX="35.0" layoutY="35.0" radius="25.0">
+        <Circle fx:id="avatar" layoutX="35.0" layoutY="35.0" radius="30.0">
          <HBox.margin>
             <Insets left="7.0" />
          </HBox.margin></Circle>
