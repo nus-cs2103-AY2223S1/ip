@@ -201,6 +201,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\__|\n";
         System.out.println("Hello from\n" + logo);
         cache = new Cache(System.getProperty("user.dir") + "\\data\\duke.txt");
+        historyPath = System.getProperty("user.dir") + "\\data\\hist.txt";
         listHistory = new Stack<String>();
         taskList = cache.printPath();
         Ui.greet();

@@ -141,6 +141,7 @@ public class Cache {
             }
 
             // Create file if not exist
+            System.out.println(path);
             file = new File(path);
             file.createNewFile();
             assert (file.exists()) : "The input file has not been created. Please check!";
