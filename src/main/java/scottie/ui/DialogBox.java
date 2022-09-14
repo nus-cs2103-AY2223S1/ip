@@ -59,4 +59,11 @@ public class DialogBox extends HBox {
         db.flip();
         return db;
     }
+
+    public static DialogBox getScottieErrorDialog(String text, Image img) {
+        var db = new DialogBox(text, img);
+        db.flip();
+        db.dialog.setStyle("-fx-background-radius: 5; -fx-background-color: #eb4a46;");
+        return db;
+    }
 }

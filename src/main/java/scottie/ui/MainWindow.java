@@ -17,6 +17,10 @@ import scottie.Scottie;
  * Code adapted from this guide: https://se-education.org/guides/tutorials/javaFxPart4.html
  */
 public class MainWindow extends AnchorPane implements Ui {
+    private static final String USER_IMAGE_PATH = "/images/user.png";
+    private static final String SCOTTIE_IMAGE_PATH = "/images/scottie.png";
+    private static final String SCOTTIE_ERROR_IMAGE_PATH = "/images/scottie_error.png";
+
     private static final String WELCOME_MESSAGE = "Hello there! I'm Scottie!\n"
             + "How can I help you?";
     private static final int END_PROGRAM_DELAY = 2000;
@@ -34,9 +38,11 @@ public class MainWindow extends AnchorPane implements Ui {
     private boolean isProgramEnded = false;
 
     private final Image userImage = new Image(
-            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
+            Objects.requireNonNull(this.getClass().getResourceAsStream(USER_IMAGE_PATH)));
     private final Image scottieImage = new Image(
-            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/scottie.png")));
+            Objects.requireNonNull(this.getClass().getResourceAsStream(SCOTTIE_IMAGE_PATH)));
+    private final Image scottieErrorImage = new Image(
+            Objects.requireNonNull(this.getClass().getResourceAsStream(SCOTTIE_ERROR_IMAGE_PATH)));
 
     @FXML
     public void initialize() {
@@ -114,6 +120,22 @@ public class MainWindow extends AnchorPane implements Ui {
             i++;
         }
         this.showMessage(sb.toString());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showError(String errorMessage) {
+        this.dialogContainer.getChildren().add(DialogBox.getScottieErrorDialog(errorMessage, this.scottieErrorImage));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showFormattedError(String message, Object... args) {
+        this.showError(String.format(message, args));
     }
 
     /**

@@ -38,9 +38,7 @@ public interface Ui {
      *
      * @param errorMessage The error message to show to the user.
      */
-    default void showError(String errorMessage) {
-        this.showMessages(errorMessage);
-    }
+    void showError(String errorMessage);
 
     /**
      * Formats and displays the given error message to the user.
@@ -48,9 +46,7 @@ public interface Ui {
      * @param message The error message to format and display.
      * @param args The arguments to be interpolated into the error message.
      */
-    default void showFormattedError(String message, Object... args) {
-        this.showFormattedMessage(message, args);
-    }
+    void showFormattedError(String message, Object... args);
 
     /**
      * Signal to this Ui that the application should be ended.
