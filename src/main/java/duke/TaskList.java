@@ -3,6 +3,7 @@ package duke;
 import tasks.Task;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * This class contains the task list and the operations to add / delete tasks in the list
@@ -80,7 +81,7 @@ public class TaskList {
     public ArrayList<Task> findTask(String taskName) {
         ArrayList<Task> foundTasks = new ArrayList<Task>();
         for (Task t : tasks) {
-            if (t.getTaskName().contains(taskName)) {
+            if (t.getTaskName().toLowerCase(Locale.ROOT).contains(taskName.toLowerCase(Locale.ROOT))) {
                 foundTasks.add(t);
             }
         }

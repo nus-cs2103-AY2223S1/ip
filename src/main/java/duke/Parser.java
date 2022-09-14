@@ -2,6 +2,7 @@ package duke;
 
 import command.Command;
 import command.ExitCommand;
+import command.HelpCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.UnmarkCommand;
@@ -80,6 +81,9 @@ public class Parser {
             assert input.length == 2: Constants.INVALID_FIND_INPUT;
             checkInputError(input);
             return new FindCommand(input[1]);
+        case "help":
+            assert input.length == 1: Constants.INVALID_HELP_INPUT;
+            return new HelpCommand();
         default:
             throw new DukeException(Constants.INVALID_COMMAND);
         }

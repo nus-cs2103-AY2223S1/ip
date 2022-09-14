@@ -7,7 +7,7 @@ public class Constants {
 
     public static final String FILE_PATH = "data/tasks.txt";
 
-    public static final String NAME = "Shanice:)";
+    public static final String NAME = "Dukey:)";
 
     public static final String LINE =
             "____________________________________________________________________________";
@@ -54,5 +54,17 @@ public class Constants {
 
     public static final String INVALID_EVENT_INPUT = "Not a valid input for creating an event task";
 
+    public static final String INVALID_HELP_INPUT = "Not a valid input for help";
+
     public static final String ERROR_IF_DUPLICATED = "This task has been added before";
+
+    public static final String HELP = "List of commands:"
+            + "\ncreate todo task: todo {description}\n"
+            + "\ncreate deadline task: deadline {description} /by {dd-MMM-yyyy HH:mm}\n"
+            + "\ncreate event task: event {description} /at {dd-MMM-yyyy HH:mm}\n"
+            + "\nmark task: mark {index}\n"
+            + "\nunmark task: unmark {index}\n"
+            + "\nfind task: find {keyword}\n"
+            + "\nshows all saved task: list\n"
+            + "\nexit program: bye";
 }

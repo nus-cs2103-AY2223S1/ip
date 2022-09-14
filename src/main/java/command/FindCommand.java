@@ -2,6 +2,8 @@ package command;
 
 import java.util.ArrayList;
 
+import duke.Constants;
+import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -34,8 +36,11 @@ public class FindCommand extends Command {
      * @return string that will be printed in the UI
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> tasks = taskList.findTask(taskName);
+        if (tasks.size() <= 0) {
+            throw new DukeException(Constants.INVALID_INDEX);
+        }
         return taskList.printList(tasks);
     }
 }

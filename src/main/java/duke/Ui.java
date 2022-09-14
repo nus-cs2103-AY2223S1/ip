@@ -116,4 +116,13 @@ public class Ui {
     public String showError(String s) {
         return s;
     }
+
+    /**
+     * Prints the help message
+     *
+     * @return string that contains the help message
+     */
+    public String printHelp() {
+        return Constants.HELP;
+    }
 }
