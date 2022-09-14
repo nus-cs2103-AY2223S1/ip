@@ -1,5 +1,8 @@
 package objects;
 
+/**
+ * Task object that is the parent class for Deadline, Event and Todo.
+ */
 public class Task {
     private String name;
     private Boolean isDone = false;

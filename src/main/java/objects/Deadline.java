@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline is a Task object with end date and end time, which literally
+ * serves as the 'deadline'.
+ */
 public class Deadline extends Task {
 
     private enum Calendar {
