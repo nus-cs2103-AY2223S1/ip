@@ -90,4 +90,15 @@ public class TaskList {
         }
         return out.toString();
     }
+
+    public Task[] findTasks(String keyword) {
+        List<Task> foundTasks = new ArrayList<>();
+        for (Task task : taskList) {
+            boolean hasKeyword = task.hasKeyword(keyword);
+            if (hasKeyword) {
+                foundTasks.add(task);
+            }
+        }
+        return foundTasks.toArray(new Task[0]);
+    }
 }

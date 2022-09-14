@@ -1,10 +1,12 @@
 package Duke.Task;
 
+import java.util.Arrays;
+
 /**
  * Represents the information of the Tasks that the user wants to store.
  * Acts as the abstract class that ToDos, Deadlines, and Events extend from.
  */
-public abstract class Task {
+    public abstract class Task {
 
     protected static String PRINT_TIME_FORMAT = "EE, dd MMM yyyy, HH:mm";
     protected static String DEFAULT_TIME_FORMAT = "yyyy-MM-dd HHmm";
@@ -51,6 +53,11 @@ public abstract class Task {
      *
      * @return The String that represents the Task to be printed.
      */
+    public boolean hasKeyword(String keyword) {
+        String[] words = getUniqueKeywords();
+        return Arrays.asList(words).contains(keyword);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s][%s] %s",
@@ -69,5 +76,9 @@ public abstract class Task {
 
     private String getShorthand() {
         return this.shorthand;
+    }
+
+    private String[] getUniqueKeywords() {
+        return Arrays.stream(description.split(" ")).distinct().toArray(String[]::new);
     }
 }
