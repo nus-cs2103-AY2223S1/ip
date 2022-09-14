@@ -82,7 +82,7 @@ public class TaskList {
     }
 
     /**
-     * Delete a task from the list.
+     * Deletes a task from the list.
      *
      * @param task Task to be removed.
      */

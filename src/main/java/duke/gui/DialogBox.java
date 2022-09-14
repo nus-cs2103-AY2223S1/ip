@@ -20,13 +20,15 @@ import javafx.scene.layout.HBox;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+
     @FXML
     private Label dialog;
+
     @FXML
     private ImageView displayPicture;
 
     /**
-     * Construct a DialogBox instance.
+     * Constructs a DialogBox instance.
      *
      * @param text Text in the dialogue box.
      * @param img Image of the owner of the text.
@@ -78,4 +80,5 @@ public class DialogBox extends HBox {
         db.flip();
         return db;
     }
+
 }
