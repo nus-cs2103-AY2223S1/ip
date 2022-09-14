@@ -44,7 +44,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 **Notes about the command format:**<br>
 
 * Words in `[]` are the parameters to be supplied by the user. <br>
-  e.g. in `event [description] /at [date]`, `[description]` and `[date]` can be used as `deadline CS2103T Quiz /by 2022-09-15`. <br><br/>
+  e.g. in `deadline [description] /by [date]`, `[description]` and `[date]` can be used as `deadline CS2103T Quiz /by 2022-09-15`. <br><br/>
 
 * All dates are formatted in this order `YYYY-MM-DD`. <br>
   e.g `2022-10-31` would stand for **31st of October 2022**. <br><br/>
