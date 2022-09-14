@@ -18,7 +18,7 @@ There are 3 types of tasks supported by TaskDive, as shown in the table below.
 | 2. Deadline | &#10003;         | &#10003;    | &#10003; |     &#10007;      |    &#10003;   |
 |  3. Event   | &#10003;         | &#10003;    | &#10003; |     &#10003;      |    &#10003;   |
 
-The attributes of a task includes:
+The attributes of a task include:
 - __Task description__: a simple one-line description of the task.
 - __Task status__: done or undone.
 - __Tags__: a list of tags attached to the task. A tag is a single word that only contains alphabets,
