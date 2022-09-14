@@ -1,7 +1,7 @@
 package chad.gui;
 
 import chad.Chad;
-import chad.Ui;
+import chad.ui.Ui;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

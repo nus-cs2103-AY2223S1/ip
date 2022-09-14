@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import chad.exception.ChadException;
+import chad.parser.Parser;
+import chad.storage.Storage;
 import chad.task.Task;
+import chad.ui.Ui;
+import chad.utils.Utility;
 
 /**
  * Main way for users to interact with Chadbot.
@@ -45,6 +49,7 @@ public class Chad {
      *
      */
     public static void run() {
+        Chad c = new Chad();
         Scanner sc = new Scanner(System.in);
         Utility.printToConsole(Ui.greet());
         while (true) {

@@ -1,9 +1,11 @@
-package chad;
+package chad.parser;
 
 import java.util.ArrayList;
 
 import chad.exception.ChadException;
 import chad.task.Task;
+import chad.task.TaskList;
+import chad.ui.Ui;
 
 /**
  * Contains commands for user to interact with Chadbot
@@ -57,6 +59,9 @@ public class Parser {
         }
         case "help": {
             return Ui.helpCommands();
+        }
+        case "archive": {
+            return TaskList.archiveTasks(taskList);
         }
         default:
             throw new ChadException("I'm sorry, but I don't know what that means :-(");

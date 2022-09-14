@@ -1,15 +1,11 @@
-package chad;
+package chad.task;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import chad.exception.ChadException;
-import chad.task.Deadline;
-import chad.task.Event;
-import chad.task.Task;
-import chad.task.Todo;
+import chad.storage.Storage;
 
 /**
  * Manipulates list of tasks
@@ -44,7 +40,6 @@ public class TaskList {
      * @throws ChadException if description is invalid
      */
     public static String addTodoTask(ArrayList<Task> tasks, String userInput) throws ChadException {
-        String outputText = "Got it. I've added this task:\n";
         String taskDescription = userInput.replaceFirst("todo", "").strip();
 
         if (taskDescription.isEmpty()) {
@@ -56,6 +51,7 @@ public class TaskList {
         String strIsDone = newTask.getDone() ? "1" : "0";
         Storage.writeToFile("T | " + strIsDone + " | " + newTask.getDescription());
 
+        String outputText = "Got it. I've added this task:\n";
         outputText += " " + newTask + "\n";
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
         return outputText;
@@ -121,5 +117,12 @@ public class TaskList {
         outputText += " " + newTask + "\n";
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
         return outputText;
+    }
+
+    public static String archiveTasks(ArrayList<Task> tasks) throws ChadException {
+        String str = "Cleared list";
+        Storage.archiveToFile();
+        tasks.clear();
+        return str;
     }
 }

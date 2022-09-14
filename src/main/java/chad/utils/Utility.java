@@ -1,4 +1,4 @@
-package chad;
+package chad.utils;
 
 /**
  * Contains general functions for use across all files

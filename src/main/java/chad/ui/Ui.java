@@ -1,15 +1,15 @@
-package chad;
+package chad.ui;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import chad.exception.ChadException;
+import chad.storage.Storage;
 import chad.task.Deadline;
 import chad.task.Event;
 import chad.task.Task;
-
+import chad.utils.Utility;
 /**
  * Contains input methods for user to interact with Chadbot
  *
@@ -70,7 +70,7 @@ public class Ui {
      *
      * @param tasks arraylist of tasks
      * @param taskID index of task
-     * @throws ChadException if file can't be open in chad.Storage
+     * @throws ChadException if file can't be open in chad.storage.Storage
      */
     public static String markTask(ArrayList<Task> tasks, int taskID) throws ChadException {
         try {
@@ -92,7 +92,7 @@ public class Ui {
      *
      * @param tasks arraylist of tasks
      * @param taskID index of task
-     * @throws ChadException if file can't be open in chad.Storage
+     * @throws ChadException if file can't be open in chad.storage.Storage
      */
     public static String unmarkTask(ArrayList<Task> tasks, int taskID) throws ChadException {
         String outputText = "";

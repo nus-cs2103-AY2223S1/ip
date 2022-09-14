@@ -1,10 +1,14 @@
-package chad;
+package chad.storage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -60,6 +64,16 @@ public class Storage {
             writer.write(str);
             writer.newLine();
             writer.close();
+        } catch (Exception e) {
+            throw new ChadException(e.getMessage());
+        }
+    }
+
+    public static void archiveToFile() throws ChadException{
+        Path source = Paths.get("./data/chad_data.txt");
+        Path dest = Paths.get("./data/chad_archived.txt");
+        try {
+            Files.move(source, dest, StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             throw new ChadException(e.getMessage());
         }
