@@ -25,6 +25,12 @@ public class DeleteCommand extends Command {
         }
 
         int pos = java.lang.Integer.parseInt(rest.get(0));
+        boolean isOutOfBounds = (pos - 1) > (tl.getSize() - 1);
+
+        if (isOutOfBounds) {
+            throw new PoolsheenException("Index out of bounds", "delete", "Enter an appropriate integer");
+        }
+
         Task t = tl.get(pos - 1);
         tl.deleteTask(pos);
         return ui.say("Poolsheen has forgot: " + t.getDescription()

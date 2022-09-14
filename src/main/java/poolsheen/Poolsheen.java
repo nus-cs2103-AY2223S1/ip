@@ -2,7 +2,9 @@ package poolsheen;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
+import javafx.application.Platform;
 import poolsheen.command.Command;
 
 /**
@@ -12,6 +14,9 @@ import poolsheen.command.Command;
  */
 public class Poolsheen {
     private static final String SAVE_FILE_PATH = "SAVE.TXT";
+
+    /** The number of milliseconds Poolsheen takes to close the application. */
+    private static final Integer LEAVE_TIME = 2000;
 
     /** Whether if this poolsheen object has stopped running */
     private static boolean hasExited;
@@ -47,10 +52,18 @@ public class Poolsheen {
     }
 
     /**
-     * Forces the program to exit immediately.
+     * Forces the program to close and exit after a period of time.
      */
     public static void forceExit() {
         Poolsheen.hasExited = true;
+        CompletableFuture.runAsync(() -> {
+            try {
+                Thread.sleep(LEAVE_TIME);
+            } catch (InterruptedException e) {
+                System.out.println("An error has occurred whilst leaving the program.");
+            }
+            Platform.exit();
+        });
     }
 
     /**
@@ -64,15 +77,20 @@ public class Poolsheen {
             Command c = Parser.parse(fullCommand);
             reply = c.execute(listOfTasks, ui, storage);
             storage.update(listOfTasks);
+            if (hasExited) {
+                Poolsheen.forceExit();
+            }
         } catch (PoolsheenException e) {
             reply = e.toString();
+        } catch (IndexOutOfBoundsException e) {
+            reply = "This position does not exist in the list!";
         } catch (IOException e) {
             reply = "An error has occurred when updating the save file!\n" + e.getMessage();
             Poolsheen.forceExit();
         } catch (NumberFormatException e) {
             reply = "An error has occurred. Please use a number instead.";
         } catch (Exception e) {
-            reply = "The following error has occurred:\n" + e.getMessage();
+            reply = "The following unexpected error has occurred:\n" + e.getMessage();
             Poolsheen.forceExit();
         }
         return reply;

@@ -22,7 +22,7 @@ public class Ui {
     private static final String LAST_REPLY = "meow *_*";
 
     /** A horiontal line to distinguish each interaction the user has with Poolsheen. */
-    private static final String HORIZONTAL_LINE = "---------------";
+    private static final String HORIZONTAL_LINE = "--------------------------------------------------";
 
     /** The message last printed when the Poolsheen program ends. */
     private static final String GOODBYE_MESSAGE = "MeoAww... :(\n"
