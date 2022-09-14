@@ -50,7 +50,7 @@ public class Scottie {
     }
 
     /**
-     * The entry point of the Scottie CLI program.
+     * Starts the Scottie CLI program.
      */
     public static void main(String[] args) {
         new Scottie().run();

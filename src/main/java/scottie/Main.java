@@ -9,7 +9,7 @@ import javafx.application.Application;
  */
 public class Main {
     /**
-     * The entry point for the Scottie application.
+     * Starts the Scottie application.
      * By default, it launches the GUI application.
      * If the "-cli" flag is specified, it launches the CLI
      * version of the application instead.
