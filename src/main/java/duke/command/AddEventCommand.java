@@ -18,6 +18,7 @@ public class AddEventCommand extends Command {
 
     /**
      * Constructor for an AddEventCommand.
+     *
      * @param desc Description of the event.
      * @param at Date of the event.
      */
@@ -26,6 +27,13 @@ public class AddEventCommand extends Command {
         this.at = at;
     }
 
+    /**
+     * Adds an Event task to the list of tasks.
+     *
+     * @param tasks List of tasks.
+     * @param storage Storage for the task list.
+     * @return Result of the execution.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         Task newTask = new Event(desc, at);

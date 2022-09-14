@@ -13,10 +13,22 @@ public class AddTodoCommand extends Command {
 
     private final String desc;
 
+    /**
+     * Constructor for an AddTodoCommand.
+     *
+     * @param desc Description of the Todo task.
+     */
     public AddTodoCommand(String desc) {
         this.desc = desc;
     }
 
+    /**
+     * Adds a Todo task to the list of tasks.
+     *
+     * @param tasks List of tasks.
+     * @param storage Storage for the list of tasks.
+     * @return Result of the execution.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         Task newTask = new Todo(desc);

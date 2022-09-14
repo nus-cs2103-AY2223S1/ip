@@ -36,6 +36,7 @@ public class Parser {
 
     /**
      * Parses a command entered by the user.
+     *
      * @param commandString Command entered by user.
      * @return Command object that can be executed.
      */
@@ -74,6 +75,7 @@ public class Parser {
 
     /**
      * Parses a string representing a task stored in the hard disk.
+     *
      * @param taskString String representation of the task.
      * @return Task object.
      */

@@ -20,6 +20,7 @@ public class TaskList {
 
     /**
      * Loads a list of tasks from storage.
+     *
      * @param storage Hard disk storage that contains tasks.
      * @return Number of loaded tasks.
      */
@@ -41,6 +42,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the list of tasks.
+     *
      * @param taskIndex Index of the task to be deleted.
      * @return The deleted task.
      */
@@ -62,6 +64,7 @@ public class TaskList {
 
     /**
      * Searches the list of tasks for a specified keyword.
+     *
      * @param keyword Keyword to search for.
      * @return A list of task indices representing the matches.
      */
@@ -75,6 +78,12 @@ public class TaskList {
         return matches;
     }
 
+    /**
+     * Gets the task at a specified index.
+     *
+     * @param i Index of the task.
+     * @return Task at the index.
+     */
     public Task getTask(int i) {
         Task t;
         try {

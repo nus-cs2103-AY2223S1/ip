@@ -15,6 +15,7 @@ public abstract class Task {
 
     /**
      * Constructor for a task.
+     *
      * @param description Description of the task.
      */
     public Task(String description) {
@@ -22,6 +23,11 @@ public abstract class Task {
         isDone = false;
     }
 
+    /**
+     * Generates an icon representing whether the task is done.
+     *
+     * @return An icon representing the completion status of the task.
+     */
     public String getStatusIcon() {
         return "[" + (isDone ? "X" : " ") + "]"; // mark done task with X
     }
@@ -34,6 +40,11 @@ public abstract class Task {
         isDone = false;
     }
 
+    /**
+     * Generates the string representation of the task for storage.
+     *
+     * @return A string representing the task.
+     */
     public String toStorage() {
         return (isDone ? "1" : "0") + STORAGE_SEPARATOR + description;
     }

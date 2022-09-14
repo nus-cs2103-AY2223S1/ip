@@ -16,10 +16,22 @@ public class DeleteTaskCommand extends Command {
 
     private List<Integer> taskIndices;
 
+    /**
+     * Constructor for a DeleteTaskCommand.
+     *
+     * @param taskIndices Task indices to delete.
+     */
     public DeleteTaskCommand(List<Integer> taskIndices) {
         this.taskIndices = taskIndices;
     }
 
+    /**
+     * Deletes the tasks from the task list.
+     *
+     * @param tasks List of tasks.
+     * @param storage Storage for the task list.
+     * @return Result of the deletion.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         taskIndices = new ArrayList<>(new HashSet<>(taskIndices)); // Remove duplicates

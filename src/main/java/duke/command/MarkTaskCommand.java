@@ -15,10 +15,22 @@ public class MarkTaskCommand extends Command {
 
     private List<Integer> taskIndices;
 
+    /**
+     * Constructor for a MarkTaskCommand.
+     *
+     * @param taskIndices Indices of the tasks to mark as done.
+     */
     public MarkTaskCommand(List<Integer> taskIndices) {
         this.taskIndices = taskIndices;
     }
 
+    /**
+     * Marks the tasks as done.
+     *
+     * @param tasks List of tasks.
+     * @param storage Storage for the task list.
+     * @return A String listing the tasks that were marked as done.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         taskIndices = new ArrayList<>(new HashSet<>(taskIndices)); // Remove duplicates

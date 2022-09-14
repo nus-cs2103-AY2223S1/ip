@@ -13,10 +13,22 @@ public class FindCommand extends Command {
 
     private final String keyword;
 
+    /**
+     * Constructor for a FindCommand.
+     *
+     * @param keyword Word to use when searching.
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword.trim();
     }
 
+    /**
+     * Searches the list of tasks for tasks that contain the keyword.
+     *
+     * @param tasks List of tasks.
+     * @param storage Storage for the task list.
+     * @return A String that lists the matching tasks.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         List<Integer> matches = tasks.search(keyword);

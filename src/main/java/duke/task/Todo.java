@@ -5,6 +5,12 @@ package duke.task;
  */
 public class Todo extends Task {
     public static final String STORAGE_CHAR = "T";
+
+    /**
+     * Constructor for an Todo.
+     *
+     * @param description Description for the todo.
+     */
     public Todo(String description) {
         super(description);
     }

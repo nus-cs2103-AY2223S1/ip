@@ -15,10 +15,22 @@ public class UnmarkTaskCommand extends Command {
 
     private List<Integer> taskIndices;
 
+    /**
+     * Constructor for a UnmarkTaskCommand.
+     *
+     * @param taskIndices Indices of the tasks to mark as not done.
+     */
     public UnmarkTaskCommand(List<Integer> taskIndices) {
         this.taskIndices = taskIndices;
     }
 
+    /**
+     * Marks the tasks as not done.
+     *
+     * @param tasks List of tasks.
+     * @param storage Storage for the task list.
+     * @return A String listing the tasks that were marked as not done.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         taskIndices = new ArrayList<>(new HashSet<>(taskIndices)); // Remove duplicates

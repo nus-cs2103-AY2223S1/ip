@@ -9,6 +9,11 @@ import duke.task.TaskList;
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
 
+    /**
+     * Checks whether the command should exit the app.
+     *
+     * @return True.
+     */
     @Override
     public boolean isExit() {
         return true;

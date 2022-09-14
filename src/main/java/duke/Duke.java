@@ -23,6 +23,7 @@ public class Duke {
 
     /**
      * Constructor for Duke.
+     *
      * @param filePath Path to storage file.
      */
     public Duke(Path filePath) {
@@ -36,7 +37,8 @@ public class Duke {
     }
 
     /**
-     * Attempts to load tasks from storage into the list of tasks.
+     * Loads tasks from storage into the list of tasks.
+     *
      * @return A string representing the outcome of the attempt.
      */
     public String loadTasks() {
@@ -54,6 +56,12 @@ public class Duke {
         return ret;
     }
 
+    /**
+     * Processes the input and produces a response.
+     *
+     * @param input String representing input to Duke.
+     * @return A string representing the Duke's response.
+     */
     public String getResponse(String input) {
         String out;
         try {

@@ -18,6 +18,7 @@ public class AddDeadlineCommand extends Command {
 
     /**
      * Constructor for an AddDeadlineCommand.
+     *
      * @param desc Description of the task.
      * @param by Deadline of the task.
      */
@@ -26,6 +27,13 @@ public class AddDeadlineCommand extends Command {
         this.by = by;
     }
 
+    /**
+     * Adds a Deadline task to the list of tasks.
+     *
+     * @param tasks List of tasks.
+     * @param storage Storage for the task list.
+     * @return Result of the execution.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         Task newTask = new Deadline(desc, by);

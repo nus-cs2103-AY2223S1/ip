@@ -9,6 +9,13 @@ import duke.task.TaskList;
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
+    /**
+     * Lists all tasks in the tasks list.
+     *
+     * @param tasks List of tasks.
+     * @param storage Storage for the task list.
+     * @return A String that lists all the tasks in the task list.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         StringBuilder sb = new StringBuilder("Here are the tasks in your list:");

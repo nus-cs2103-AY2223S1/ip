@@ -17,6 +17,7 @@ public class Storage {
 
     /**
      * Constructor for the Storage class.
+     *
      * @param filePath Path to the file in the hard disk.
      */
     public Storage(Path filePath) {
@@ -34,6 +35,7 @@ public class Storage {
 
     /**
      * Reads tasks from storage.
+     *
      * @return A List of Strings, each representing a task.
      */
     public List<String> read() {
@@ -48,6 +50,7 @@ public class Storage {
 
     /**
      * Writes the list of tasks to the hard disk.
+     *
      * @param tasks Tasks to write.
      */
     public void write(TaskList tasks) {
