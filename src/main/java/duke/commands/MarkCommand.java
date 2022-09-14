@@ -35,13 +35,13 @@ public class MarkCommand extends Command {
             assert index < tasks.getSize() : "Task index cannot be larger than the number of tasks.";
             tasks.markTaskAsDone(index);
             Task task = tasks.get(index);
+            String response = "Nice! I've marked this task as done:\n" + task;
             if (task.isRecurring()) {
                 RecurringTask recurringTask = (RecurringTask) task;
                 tasks.delete(index);
                 tasks.add(new RecurringTask(recurringTask));
+                response += "\nAnd I've re-added this task for next week!";
             }
-            String response = "Nice! I've marked this task as done:\n" + task
-                    + "\nAnd I've re-added this task for next week!";
             return response;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeIndexOutOfBoundsException("OOPS!!! You cannot mark a non-existent task as done.");

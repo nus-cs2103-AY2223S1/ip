@@ -7,5 +7,5 @@ D | 1 | 2100 tutorial | 28/08/2022 2359
 E | 0 | abcd | 30/09/2022 1000
 T | 1 | watch 2100 lecture
 D | 1 | 2101 reflection | 04/09/2022 0000
-T | 0 | eat dinner
+T | 1 | eat dinner
 R | 0 |  2103t lecture | FRIDAY | 1600
