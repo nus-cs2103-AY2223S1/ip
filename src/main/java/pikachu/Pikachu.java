@@ -3,7 +3,6 @@ package pikachu;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -44,24 +43,25 @@ public class Pikachu extends Application {
     }
 
     /**
-     * Get the exit status of the chatbot.
-     * @return exit status of pikachu chatbot.
-     */
-    boolean getIsExit() {
-        return isExit;
-    }
-    /**
      * Initialise Pikachu
      */
     public Pikachu() {
         ui = new Ui();
-        storage = new Storage("/Users/xuyi/Documents/CS2103T/ip/data/pikachu.txt");
+        storage = new Storage("../ip/data/pikachu.txt");
         try {
             tasks = new TaskList(storage.load());
         } catch (Exception e) {
             ui.showLoadingError();
             tasks = new TaskList();
         }
+    }
+
+    /**
+     * Get the exit status of the chatbot.
+     * @return exit status of pikachu chatbot.
+     */
+    boolean getIsExit() {
+        return isExit;
     }
 
     /**
