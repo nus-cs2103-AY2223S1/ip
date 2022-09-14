@@ -318,25 +318,24 @@ public class ParsedDateTime {
      * time exists, it falls back on the earliest time before now. If no such time still
      * exists, it just gives the input as a ParsedDateTime which stores a String.
      *
-     * @param input Human-readable description of the time, which only contains
-     *              valid descriptors. Valid descriptors include:
-     *              * case insensitive Mon-Sun/Monday-Sunday
-     *              * an ordinal which specifies a date of the month, e.g. 3rd or 31st
+     * @param input Human-readable description of the time, which only contains valid
+     *              descriptors. Valid descriptors include:
+     *              * case-insensitive Mon-Sun/Monday-Sunday,
+     *              * an ordinal which specifies a date of the month, e.g. 3rd or 31st,
      *              * two or three numbers separated by a slashes or dashes which denote
      *                a date, e.g. 3/7 for the next 3rd of July, 3/7/2012 for the 3rd
-     *                of July on 2012, and 1-2 for the next first of February.
-     *              * a single number, for a year, e.g. 2024 for year 2024
-     *              * a month name, or the abbreviation of a month name, e.g. Jan, July
-     *              * two numbers separated by colons or periods (with optional
-     *                AM/am/PM/pm after it) for a time
-     * @param latestTime If true, gives the latest time in the first block of time
-     *                   which matches the input description. Example: If today is not
-     *                   Monday, "Mon" gives the time as 23:59 on Monday if latestTime
-     *                   else 00:00.
+     *                of July on 2012, and 1-2 for the next first of February,
+     *              * a single number, for a year, e.g. 2024 for year 2024,
+     *              * case-insensitive month name, or the abbreviation of a month name, e.g. Jan, July
+     *              * two numbers separated by colons or periods (with optional AM/am/PM/pm
+     *                after it) for a time, e.g. 23:45, 03.16pm.
+     * @param isLatestTime If true, gives the latest time in the first block of time which matches
+     *                     the input description. Example: If today is not Monday, "Mon" gives the
+     *                     time as 23:59 on Monday if isLatestTime, else 00:00.
      * @return ParsedDateTime of the input. If input is not readable as a time, it
      *         a ParsedDateTime instance that acts like a String.
      */
-    public static ParsedDateTime of(String input, boolean latestTime) {
+    public static ParsedDateTime of(String input, boolean isLatestTime) {
         String[] tokens = input.split(" ");
         try {
             ArrayList<TemporalAdjuster> adjusters = getDateTimeAdjusters(naturalDateParsers, tokens);
@@ -347,7 +346,7 @@ public class ParsedDateTime {
             result = result.or(() -> findAfterTimeMatching(now, adjusters));
             result = result.or(() -> findBeforeTimeMatching(now, adjusters));
             return result.map(t -> {
-                if (!latestTime) {
+                if (!isLatestTime) {
                     return t;
                 }
                 return applyLatestTimeAdjusters(latestTimeAdjusters, t);

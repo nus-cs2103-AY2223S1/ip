@@ -1,5 +1,6 @@
 package duke.gui;
 
+import duke.Duke;
 import javafx.application.Application;
 
 //@@author clarence-chew-reused
@@ -17,6 +18,10 @@ public class Launcher {
      * @param args Ignored arguments.
      */
     public static void main(String[] args) {
+        if (args.length > 0 && args[0].equals("console")) {
+            Duke.main(new String[]{});
+            return;
+        }
         Application.launch(Main.class, args);
     }
 }
