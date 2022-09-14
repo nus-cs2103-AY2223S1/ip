@@ -23,7 +23,8 @@ public class TaskList {
         StringBuilder builder = new StringBuilder();
         builder.append("RAWR! Here is your list:\n");
         for (int i = 0; i < MY_TASKS.size(); i++) {
-            builder.append(i + 1).append(". ").append(MY_TASKS.get(i).toString()).append("\n");
+            builder.append(i + 1).append(". ")
+                    .append(MY_TASKS.get(i).toString()).append("\n");
         }
         return builder.toString();
     }
