@@ -42,7 +42,7 @@ Got it. I've added this task:
 Now you have 2 task(s) in the list.
 ```
 
-### `event <description> /by <date>` - Create a deadline
+### `deadline <description> /by <date>` - Create a deadline
 
 Add a new deadline into your task list.
 
