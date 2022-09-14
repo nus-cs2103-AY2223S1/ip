@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
  * @author sikai00
  */
 public class ListBox extends VBox {
+    private static final CornerRadii CORNER_RADII = new CornerRadii(10.0);
     private ListBox() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/ListBox.fxml"));
@@ -35,7 +36,9 @@ public class ListBox extends VBox {
             TaskItem ti = TaskItem.getTaskItem(taskList.getTask(i));
             ti.setIndex(i);
             if (i % 2 == 0) {
-                ti.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ti.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CORNER_RADII, Insets.EMPTY)));
+            } else {
+                ti.setBackground(new Background(new BackgroundFill(Color.WHITE, CORNER_RADII, Insets.EMPTY)));
             }
             lb.getChildren().add(ti);
         }
@@ -45,7 +48,7 @@ public class ListBox extends VBox {
     public static ListBox getListBox(Task task) {
         ListBox lb = new ListBox();
         TaskItem ti = TaskItem.getTaskItem(task);
-        ti.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        ti.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CORNER_RADII, Insets.EMPTY)));
         lb.getChildren().add(ti);
         return lb;
     }

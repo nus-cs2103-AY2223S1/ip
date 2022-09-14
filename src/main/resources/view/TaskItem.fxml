@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="375.0" type="GridPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" type="GridPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="501.0" minWidth="25.0" prefWidth="25.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="501.0" minWidth="10.0" prefWidth="229.15794944763184" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="115.0" />
+      <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="501.0" minWidth="25.0" prefWidth="25.0" />
+    <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="501.0" minWidth="10.0" prefWidth="200.0" />
+      <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="115.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="216.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="315.0" minHeight="3.0" prefHeight="27.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="description" prefHeight="23.0" prefWidth="260.0" text="Description" wrapText="true" GridPane.columnIndex="1">
+      <Label fx:id="description" prefHeight="23.0" prefWidth="235.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" text="Description" wrapText="true" GridPane.columnIndex="1">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
          <padding>
-            <Insets bottom="2.0" right="2.0" top="2.0" />
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
       </Label>
-      <Label fx:id="isDone" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="105.0" text="Done" textAlignment="RIGHT" GridPane.columnIndex="2">
+      <Label fx:id="isDone" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="112.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" text="Done" textAlignment="RIGHT" GridPane.columnIndex="2">
          <font>
             <Font name="Arial Bold" size="11.0" />
          </font>
@@ -34,7 +34,7 @@
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
       </Label>
-      <Label fx:id="time" alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="105.0" text="Due Date" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Label fx:id="time" alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="113.0" text="Due Date" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <font>
             <Font size="11.0" />
          </font>
@@ -47,7 +47,7 @@
             <Font name="Arial Italic" size="11.0" />
          </font>
          <padding>
-            <Insets bottom="2.0" right="2.0" />
+            <Insets bottom="2.0" left="2.0" right="2.0" />
          </padding>
       </Label>
       <Label fx:id="index" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="25.0" text="100)" textAlignment="RIGHT">
