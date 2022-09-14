@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 /**
  * An example of a custom control using FXML.
@@ -20,9 +22,11 @@ import javafx.scene.layout.*;
  */
 public class DialogBox extends HBox {
     @FXML
-    private Label dialog;
+    private HBox dialog;
     @FXML
-    private ImageView displayPicture;
+    private Label labelWithText;
+    @FXML
+    private Circle displayPicture;
 
 
 
@@ -37,28 +41,68 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        dialog.setText(text);
-        displayPicture.setImage(img);
+        labelWithText.setText(text);
 
+        displayPicture.setFill(new ImagePattern(img));
+        dialog.getChildren().addAll(labelWithText,displayPicture);
     }
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+        ObservableList<Node> tmp = FXCollections.observableArrayList(this.dialog.getChildren());
         Collections.reverse(tmp);
-        getChildren().setAll(tmp);
+        this.dialog.getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.userAdjust();
+        return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.dukeAdjust();
         return db;
+    }
+    public void userAdjust(){
+        this.labelWithText.setStyle("-fx-background-color: #c0c0c0;"
+                + "-fx-text-fill: black;"
+                + "-fx-min-width: 200px;"
+                + "-fx-font-size: 14;"
+                + "-fx-alignment: baseline-right;"
+                + "-fx-border-width: 0;"
+                + "-fx-background-radius: 15.0;"
+                + "-fx-padding: 15.0");
+    }
+    public void dukeAdjust(){
+        this.labelWithText.setStyle("-fx-background-color: #708090;"
+                + "-fx-text-fill: white;"
+                + "-fx-min-width: 200px;"
+                + "-fx-font-size: 14;"
+                + "-fx-alignment: baseline-left;"
+                + "-fx-border-width: 0;"
+                + "-fx-background-radius: 15.0;"
+                + "-fx-padding: 15.0");
+    }
+    public static DialogBox getExceptionDialog(String response, Image img){
+        var db = new DialogBox(response, img);
+        db.flip();
+        db.exceptionAdjust();
+        return db;
+    }
+    public void exceptionAdjust(){
+        this.labelWithText.setStyle("-fx-background-color: #CD5C5C;"
+                + "-fx-text-fill: white;"
+                + "-fx-min-width: 200px;"
+                + "-fx-font-size: 14;"
+                + "-fx-alignment: baseline-left;"
+                + "-fx-border-width: 0;"
+                + "-fx-background-radius: 15.0;"
+                + "-fx-padding: 15.0");
     }
 }

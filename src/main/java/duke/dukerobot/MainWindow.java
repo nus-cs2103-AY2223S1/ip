@@ -1,5 +1,6 @@
 package duke.dukerobot;
 
+import duke.dukeexception.DukeException;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -19,8 +20,7 @@ public class MainWindow extends AnchorPane {
     private ScrollPane scrollPane;
     @FXML
     private VBox dialogContainer;
-    @FXML
-    private BackgroundImage b;
+   
 
     @FXML
     private TextField userInput;
@@ -48,11 +48,20 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
-        );
-        userInput.clear();
+        try {
+            String response = duke.getResponse(input);
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getUserDialog(input, userImage),
+                    DialogBox.getDukeDialog(response, dukeImage)
+            );
+            userInput.clear();
+        } catch (DukeException e) {
+            String response = e.getMessage();
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getUserDialog(input, userImage),
+                    DialogBox.getExceptionDialog(response, dukeImage)
+            );
+            userInput.clear();
+        }
     }
 }

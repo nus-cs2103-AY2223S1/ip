@@ -37,13 +37,10 @@ public class Duke {
      * Instruct the robot to show user interface and read in command and execute.
      * Catch and dispose exceptions.
      */
-    public String getResponse(String input) {
+    public String getResponse(String input) throws DukeException{
         //this.ui.showWelcomeMessage()
-        try {
-             return Parser.parse(input, this.taskList, this.storage);
-        } catch (DukeException e) {
-            return ui.showDukeException(e.getMessage());
-        }
+        return Parser.parse(input, this.taskList, this.storage);
+
     }
         //ui.showGoodbyeMessage();
 
