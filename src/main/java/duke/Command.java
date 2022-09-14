@@ -64,7 +64,7 @@ public enum Command {
             temp = args.split(" /at ", 2);
             recurring = temp[1].split(" /every ", 2);
             period = getPeriod(temp[1]);
-            t = new Event(temp[0], LocalDate.parse(recurring[0],
+            t = new Event(temp[0], LocalDate.parse(recurring[0].trim(),
                     DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)), period);
             return duke.addTask(t);
 
@@ -153,6 +153,7 @@ public enum Command {
             if (temp.length < 2) {
                 return error + "Please specify a task and deadline.\n\n" + usage;
             } else {
+                String[] recurring = temp[1].split(" /every ", 2);
                 int period = getPeriod(temp[1]);
                 if (period < 0) {
                     return error + "Please specify a valid period for recurring tasks.\n\n" + usage;
@@ -160,6 +161,9 @@ public enum Command {
                     if (!isValidDate(temp[1])) {
                         return error + "Please specify the due date in the right format.\n\n" + usage;
                     }
+                }
+                if (!isValidDate(recurring[0])) {
+                    return error + "Please specify the due date in the right format.\n\n" + usage;
                 }
             }
             return "";
@@ -169,6 +173,7 @@ public enum Command {
             if (temp.length < 2) {
                 return error + "Please specify an event and date.\n\n" + usage;
             } else {
+                String[] recurring = temp[1].split(" /every ", 2);
                 int period = getPeriod(temp[1]);
                 if (period < 0) {
                     return error + "Please specify a valid period for recurring tasks.\n\n" + usage;
@@ -176,6 +181,9 @@ public enum Command {
                     if (!isValidDate(temp[1])) {
                         return error + "Please specify the event date in the right format.\n\n" + usage;
                     }
+                }
+                if (!isValidDate(recurring[0])) {
+                    return error + "Please specify the due date in the right format.\n\n" + usage;
                 }
             }
 
@@ -242,8 +250,8 @@ public enum Command {
                     + "Usage #2: deadline [task-description] /by [DD-MM-YYYY] /every [how-many-days]";
 
         case "event":
-            return ret + "event [task-description] /at [DD-MM-YYYY] /every [how-many-days]\n\n"
-                    + "NOTE: /every is optional and used only for\n recurring tasks.";
+            return "Usage #1: event [task-description] /at [DD-MM-YYYY]\n\n"
+                    + "Usage #2: event [task-description] /at [DD-MM-YYYY] /every [how-many-days]";
 
         case "todo":
             return ret + "todo [task-description]";
