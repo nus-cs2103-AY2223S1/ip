@@ -20,7 +20,7 @@ public class HelpCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String documentationLink = "https://elginl/github.io/ip/";
+        String documentationLink = "https://elginl.github.io/ip/";
 
         return "Visit this page for a detailed documentation: \n" + documentationLink;
     }
