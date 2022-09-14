@@ -30,7 +30,6 @@ public class CommandHandler {
      * @param input The input string.
      * @return The string message to display in the GUI.
      */
-
     public String execute(String input) {
         try {
             Parser parser = new Parser(input);
