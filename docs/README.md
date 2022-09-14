@@ -31,7 +31,7 @@ What are you waiting for? Start using Ado today! 🐼
     - `event family outing /at 30 Sep 2022 18:30` : Adds an event task `family outing (at: 30 Sep 2022 18:30)`
     - `mark 2` : Marks the task at index `1` on the list as done.
     - `delete 1` : Deletes the first at index `2` on the list.
-    - `find cat` : Finds a;; task with the matching keyword `cat`
+    - `find cat` : Finds a task with the matching keyword `cat`
     - `bye` : Exits the app.
  6. Refer to the [Features](#Features) below for details of each command.
 
@@ -42,21 +42,21 @@ e.g. in `todo {description}` , `{description}` is a parameter which can be used 
   
 
 ### Viewing help: `help`
-Displays a list of avaible commands with examples. <br>
+Displays a list of available commands. <br>
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_1.png?raw=true" alt="AdoHelp1"/>
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_2.png?raw=true" alt="AdoHelp2p"/> <br>
 Format: `help` **or** click on the `?` icon beside the send button
--  :exclamation: Upon clicking the `?` icon, you are required to close the Help window before continuing your chat with Ado
+-  ❗ Upon clicking the `?` icon, you are required to **close** the help window before continuing your chat with Ado
 
 ### Adding a todo task: `todo`
 Adds a todo task to the task list. <br>
 Format: `todo {description}` <br>
-Exmaple: `todo buy groceries`
+Example: `todo buy groceries`
 
 ### Adding a deadline task: `deadline`
 Adds a deadline task to the task list. <br>
 Format: `deadline {description} /by {dd MMM yyyy}` <br>
-Exmaple: `deadline presentation /by 15 Sep 2022`
+Example: `deadline presentation /by 15 Sep 2022`
 
 ### Adding an event task: `event`
 Adds a deadline task to the task list. <br>
@@ -72,18 +72,18 @@ Expected outcome:
 [X] Yay! You've completed a task!
 [E][X] Team meeting (at: 22 Sep 2022 19:30)
 ```
-`[X]` indicates a completed task
+💡 `[X]` indicates a completed task
 
 ### Unmarking a task: `unmark`
-Unmarks a task in the list as incompleted.<br>
+Unmark a task in the list as incompleted.<br>
 Format: `unmark {index}`
-Example: `unmark 1` unmarks the task at index 1 of the list <br>
+Example: `unmark 1` unmark the task at index 1 of the list <br>
 Expected outcome:
 ```
 [ ] I've marked this task as not done yet
 [T][ ] Feed cat
 ```
-`[ ]` indicates a incompleted task
+💡 `[ ]` indicates an incompleted task
 
 ### Deleting a task: `delete`
 Deletes a task from the task list.<br>
@@ -91,9 +91,9 @@ Format: `delete {index}`
 Example: `delete 1` deletes the task at index 1 of the list
 
 ### Finding a task by description: `find`
-Finds all tasks matching keyword.<br>
+Finds all tasks matching the keyword.<br>
 Format: `find {keyword}`
-- ❗ All task description with the matching sequence of characters will be returned. e.g. `me` will match `assignment` and `homework`.
+- ❗ All task descriptions with the matching sequence of characters will be returned. e.g. `me` will match `assignment` and `homework`.
 - ❗ The search is case-insensitive. e.g. `ASsignment` will match `assignment`.
 
 Example: `find assignment` <br>
@@ -112,22 +112,23 @@ Ado saves data automatically in the hard disk after any valid command that chang
 
 ## FAQ
 **Q**: How do I transfer my data to another Computer? <br>
-**A**: Install the app in the other computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Ado chatbot located at `[JAR file location]/data/tasks.txt`. <br>
+**A**: Install the app on another computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Ado chatbot located at `[JAR file location]/data/tasks.txt`. <br>
 **Q**: What does the red text message mean? <br>
-**A**: It means that you have entered a invalid command that Ado doesnt understand! To learn the proper usage of each command you can read [here](#features)
+**A**: It means that you have entered an invalid command that Ado doesn't understand! To learn the proper usage of each command you can read [here](#features)
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_errorMessage.png?raw=true" alt="AdoErrorMessage"/> <br>
 
 
 ## Command summary
-   Action | Format, Examples
-   --------|------------------
-   **Help** | `help`
-   **Todo** | `todo {description}` <br> e.g., `todo do homework`
-   **Deadline** | `deadline {description} /by {dd MMM yyyy}` <br> e.g., `deadline submit assignment /by 25 Sep`
-   **Event** | `event {description} /at {dd MMM yyyy HH:mm}` <br> e.g., `event family outing /at 30 Sep 18:00`
-   **Mark** | `mark {index}`<br> e.g., `mark 1`
-   **Unmark** | `unmark {index}`<br> e.g., `unmark 1`
-   **Delete** | `delete {index}`<br> e.g., `delete 1`
-   **Find** | `find {keyword}`<br> e.g., `find cat`
-   **List** | `list`
-   **Exit** | `bye`
+
+Action | Format, Examples
+--------|------------------
+**Help** | `help`
+**Todo** | `todo {description}` <br> e.g., `todo do homework`
+**Deadline** | `deadline {description} /by {dd MMM yyyy}` <br> e.g., `deadline submit assignment /by 25 Sep`
+**Event** | `event {description} /at {dd MMM yyyy HH:mm}` <br> e.g., `event family outing /at 30 Sep 18:00`
+**Mark** | `mark {index}`<br> e.g., `mark 1`
+**Unmark** | `unmark {index}`<br> e.g., `unmark 1`
+**Delete** | `delete {index}`<br> e.g., `delete 1`
+**Find** | `find {keyword}`<br> e.g., `find cat`
+**List** | `list`
+**Exit** | `bye`
