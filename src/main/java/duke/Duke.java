@@ -5,6 +5,7 @@ import java.util.Stack;
 
 import duke.command.Action;
 import duke.command.Command;
+import duke.command.GreetCommand;
 import duke.exception.CompileException;
 import duke.exception.DukeException;
 import duke.exception.DukeRuntimeException;
@@ -59,7 +60,7 @@ public class Duke {
         this.messagePrinter = new MessagePrinter(39, '*', 0);
         this.storage = new Storage(storagePath);
         this.taskListHistory = new Stack<>();
-        this.execute(Command.greet());
+        this.execute(new GreetCommand());
     }
 
     /**
@@ -111,9 +112,10 @@ public class Duke {
      * @return The response of Duke
      */
     public String getResponse(String input) {
+        String responseIfTerminated = "...";
         try {
             if (isTerminated) {
-                return "...";
+                return responseIfTerminated;
             }
             Scanner scanner = new Scanner(input);
             if (scanner.hasNext()) {
