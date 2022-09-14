@@ -1,6 +1,7 @@
 package duke.tasks;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import duke.data.Storage;
 import duke.exceptions.DukeException;
@@ -53,6 +54,7 @@ public class TaskList {
      */
     public String addTask(Task task) {
         taskList.add(task);
+        Collections.sort(taskList);
         updateDb();
         return "Got it. I've added this task:\n\t" + task + "\n" + getRemainingTasks();
     }

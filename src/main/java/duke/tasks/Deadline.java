@@ -10,7 +10,6 @@ import duke.utils.DateTime;
  */
 public class Deadline extends Task {
     private static final DateTimeFormatter formatter = DateTime.FORMATTER;
-    private final LocalDateTime time;
 
     /**
      * Describes the constructor when taking user input.

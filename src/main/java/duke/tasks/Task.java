@@ -1,12 +1,15 @@
 package duke.tasks;
 
+import java.time.LocalDateTime;
+
 /**
  * Describes the abstract class task.
  * Abstracts out the commonalities of the tasks.
  */
-public abstract class Task {
+public abstract class Task implements Comparable<Task> {
     protected final String description;
     protected boolean isMarked;
+    protected LocalDateTime time = LocalDateTime.MAX;
 
     /**
      * Describes the constructor when taking user input.
@@ -40,5 +43,10 @@ public abstract class Task {
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
+    }
+
+    @Override
+    public int compareTo(Task task) {
+        return this.time.compareTo(task.time);
     }
 }
