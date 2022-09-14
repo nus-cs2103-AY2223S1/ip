@@ -207,9 +207,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-Goodbye! See you soon!
-```
+The app will close.
 
 ### `help` - Display instructions for commands
 
