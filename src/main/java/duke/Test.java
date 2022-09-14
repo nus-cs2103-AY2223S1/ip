@@ -1,11 +1,11 @@
-import duke.Duke;
+package duke;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Test extends Application {
 
     @Override
     public void start(Stage stage) {
@@ -16,9 +16,4 @@ public class Main extends Application {
         stage.show(); // Render the stage.
     }
 
-    /*
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
-    }
-    */
 }

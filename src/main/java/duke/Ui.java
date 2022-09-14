@@ -7,15 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private Scanner s;
-
-    /**
-     * Starts accepting input form the user.
-     */
-    public void start() {
-        // Creating the scanner to get input
-        this.s = new Scanner(System.in);
-    }
+    private String input;
 
     /**
      * Passes the user input to Duke.
@@ -23,28 +15,39 @@ public class Ui {
      * @return String representing user input.
      */
     public String getInput() {
-        return s.nextLine();
+        //return s.nextLine();
+        return input;
+    }
+
+    /**
+     * Changes the stored user input.
+     *
+     * @param input User input.
+     */
+    public void setInput(String input) {
+        this.input = input;
     }
 
     /**
      * Stops receiving user inputs.
      */
     public void end() {
-        s.close();
+        //s.close();
     }
 
     /**
      * Prints out Duke's greeting to the user.
      */
-    public void greet() {
+    public String greet() {
+        String text;
         String logo = " ____                 \n"
                 + "|  _ \\ _ _ _ __ _____ \n"
                 + "| | | |  _  | |/ / _ \\\n"
                 + "| |_| | |_| |   /  __/\n"
                 + "|____/ \\__,_|\\_/ \\___|\n";
-        System.out.println("Hello! I'm\n" + logo);
-        System.out.println("What can I do for you?");
-        Duke.printLine();
+        text = "Hello! I'm\n" + logo;
+        text = text + "What can I do for you?\n";
+        return text;
     }
 
 }

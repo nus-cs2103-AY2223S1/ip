@@ -81,22 +81,24 @@ public class TaskList {
     /**
      * Prints out the contents of the task list.
      */
-    public void list() {
+    public String list() {
         wasFinding = false;
-        printList();
+        return printList();
     }
 
-    private void printList() {
+    private String printList() {
         if (findCurrentList().isEmpty()) {
-            System.out.println("There were no matching results :(");
             wasFinding = false;
+            return ("There were no matching results :(");
         } else {
+            String text;
             int count = 1;
-            System.out.println("Here are the tasks in your list:");
+            text = ("Here are the tasks in your list: \n");
             for (Task item : findCurrentList()) {
-                System.out.println(count + ". " + item.toString());
+                text = text + (count + ". " + item.toString() + "\n");
                 count++;
             }
+            return text;
         }
     }
 
@@ -144,7 +146,20 @@ public class TaskList {
         return temp;
     }
 
-    public void findList(String s) {
+    /**
+     * Deletes all tasks.
+     */
+    public void deleteAll() {
+        log.clear();
+        findLog.clear();
+    }
+
+    /**
+     * Lists tasks that matches the key word(s).
+     *
+     * @param s Key word(s) to search for.
+     */
+    public String findList(String s) {
         wasFinding = true;
         findLog.clear();
         for (Task task : log) {
@@ -152,7 +167,7 @@ public class TaskList {
                 findLog.add(task);
             }
         }
-        printList();
+        return printList();
     }
 
     private String dateFinder(String restWord, String flag) {

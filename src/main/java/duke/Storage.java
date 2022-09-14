@@ -20,7 +20,15 @@ public class Storage {
     private final String filePath;
 
     Storage(String filePath) {
-        this.filePath = filePath;
+        if (filePath != null) {
+            this.filePath = filePath;
+        } else {
+            this.filePath = "data/tasks.txt";
+        }
+    }
+
+    Storage() {
+        this.filePath = "data/tasks.txt";
     }
 
     /**
