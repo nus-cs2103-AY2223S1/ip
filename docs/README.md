@@ -30,7 +30,7 @@ Searches for task which contains the keyword specified
 
 ### `Undo commands`
 
-Undoes any previous command made by the user  
+Undoes any previous command made by the user 
 
 ---
 
@@ -197,4 +197,18 @@ the task located at position 1.
 ```
 This task has just been unmarked!
         [T][] running
+```
+
+### `Bye`
+
+**To exit the application.**
+
+**Sample input** :
+
+`bye`
+
+**Expected reply from Duke** :
+
+```
+So Long, Farewell!
 ```
