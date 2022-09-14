@@ -38,7 +38,7 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Matks a task in the <code>TaskList</code>.
+     * Marks a task in the <code>TaskList</code>.
      *
      * @param index the index of the task.
      */
@@ -88,7 +88,8 @@ public class TaskList implements Iterable<Task> {
     public String toStorageString() {
         StringBuilder data = new StringBuilder();
         for (Task task : this.list) {
-            data.append(task.toString() + "\n");
+            data.append(task.toString());
+            data.append("\n");
         }
         return data.toString();
     }
@@ -97,7 +98,10 @@ public class TaskList implements Iterable<Task> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
-            stringBuilder.append(i + 1 + ". " + list.get(i) + "\n");
+            stringBuilder.append(i + 1);
+            stringBuilder.append(". ");
+            stringBuilder.append(list.get(i));
+            stringBuilder.append("\n");
         }
         return stringBuilder.toString();
     }

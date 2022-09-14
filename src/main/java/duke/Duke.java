@@ -23,8 +23,8 @@ public class Duke {
     /**
      * Gets a response to the user input.
      *
-     * @param input
-     * @return The response message.
+     * @param input the user input.
+     * @return the response message.
      */
     public String getResponse(String input) {
         CommandHandler commandHandler = new CommandHandler(ui, tasks);

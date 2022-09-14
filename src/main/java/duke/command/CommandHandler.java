@@ -26,6 +26,7 @@ public class CommandHandler {
 
     /**
      * Executes user commands.
+     * For invalid inputs, an error message is returned.
      *
      * @param input The input string.
      * @return The string message to display in the GUI.
