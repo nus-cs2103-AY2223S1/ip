@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 import utils.Parser;
 import utils.Ui;
 
+import java.util.concurrent.CompletableFuture;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -59,6 +61,7 @@ public class MainWindow extends AnchorPane {
 
         if (input.equals("bye")) {
             response = Ui.sayGoodbye();
+            CompletableFuture.runAsync(this::terminate);
         } else if (input.equals("list")) {
             response = duke.getTaskList().listTasks();
         } else {
@@ -73,5 +76,14 @@ public class MainWindow extends AnchorPane {
             DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+    }
+
+    private void terminate() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println("Unable to set delay.");
+        }
+        System.exit(0);
     }
 }
