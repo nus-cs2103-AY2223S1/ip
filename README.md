@@ -1,5 +1,13 @@
 # User Guide
 
+Duke is an interactive chatbot that keeps tracks of tasks.
+
+## Instructions
+
+1. Install Java 11 to your computer if you do not have it.
+2. Download v0.2 of Duke to a folder of your choice.
+3. On your terminal, access the folder and run `java -jar duke.jar`
+
 ## Features
 
 ### Add task
@@ -185,9 +193,9 @@ Noted. I've removed this task:
 Now you have 2 tasks in the list
 ```
 
-### `bye` - Exit the program
+### `bye` - Save and exit the program
 
-Exit the program automatically after 3 seconds.
+Save the current list to a local file and exit the program automatically after 3 seconds.
 
 Example of usage:
 

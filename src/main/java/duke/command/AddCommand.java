@@ -1,5 +1,6 @@
 package duke.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import duke.DukeException;
@@ -54,9 +55,11 @@ public class AddCommand extends Command {
      * @param ui UI that prints corresponding responses.
      * @param storage Storage for saving purposes if applicable.
      * @throws DukeException If the input task is invalid.
+     * @throws IOException If there is an issue saving the list to Storage.
+     * @throws DukeException If an invalid task is created.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         ArrayList<Task> list = taskList.getTaskArrayList();
         Task task;
 
@@ -77,6 +80,7 @@ public class AddCommand extends Command {
         }
 
         taskList.add(task);
+        storage.save(list);
         return ui.showAdd(task, list.size());
     }
 }

@@ -1,5 +1,6 @@
 package duke.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import duke.DukeException;
@@ -47,9 +48,11 @@ public class UnmarkCommand extends Command {
      * @param taskList List of tasks being operated on.
      * @param ui UI that prints corresponding responses.
      * @param storage Storage for saving purposes if applicable.
+     * @throws IOException If there is an issue saving the list to Storage.
+     * @throws DukeException If an invalid index is provided.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         ArrayList<Task> list = taskList.getTaskArrayList();
         boolean isValidIndex = (index >= 1) && (index <= list.size());
 
@@ -67,6 +70,7 @@ public class UnmarkCommand extends Command {
         boolean isEvent = task instanceof Event;
         assert (isTodo || isDeadline || isEvent) : "Task is either an instance of Todo, Deadline or Event.";
         taskList.unmark(this.index);
+        storage.save(list);
         return ui.showUnmark(task);
     }
 
