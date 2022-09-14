@@ -11,9 +11,9 @@ import scottie.ui.Ui;
  */
 class MarkInstruction extends Instruction {
     private static final String MISSING_TASK_NUMBER_MESSAGE = "Sorry, you need to tell me which task to mark.";
-    private static final String INVALID_TASK_NUMBER_MESSAGE = "Sorry, %s is not a valid task number.%n";
-    private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Sorry, there is no task number %d.%n";
-    private static final String TASK_MARKED_MESSAGE = "Well done! I've marked task %d as done:%n";
+    private static final String INVALID_TASK_NUMBER_MESSAGE = "Sorry, %s is not a valid task number.";
+    private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Sorry, there is no task number %d.";
+    private static final String TASK_MARKED_MESSAGE = "Well done! I've marked task %d as done:";
 
     /**
      * Constructs a MarkInstruction with the given arguments.

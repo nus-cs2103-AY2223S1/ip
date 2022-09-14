@@ -25,7 +25,7 @@ public class Scottie {
             Instruction instruction = Parser.parse(input);
             instruction.execute(this.taskList, ui);
         } catch (InvalidCommandException e) {
-            ui.showFormattedMessage("Sorry, I don't understand what %s means. :/%n", e.getCommandName());
+            ui.showFormattedMessage("Sorry, I don't understand what %s means. :/", e.getCommandName());
         }
     }
 
@@ -44,7 +44,7 @@ public class Scottie {
                     break;
                 }
             } catch (InvalidCommandException e) {
-                cli.showFormattedMessage("Sorry, I don't understand what %s means. :/%n", e.getCommandName());
+                cli.showFormattedMessage("Sorry, I don't understand what %s means. :/", e.getCommandName());
             }
         }
     }

@@ -107,7 +107,10 @@ public class MainWindow extends AnchorPane implements Ui {
         int i = 1;
         StringBuilder sb = new StringBuilder();
         for (Object obj : iterable) {
-            sb.append(String.format("%d. %s%n", i, obj));
+            if (i != 1) {
+                sb.append("\n");
+            }
+            sb.append(String.format("%d. %s", i, obj));
             i++;
         }
         this.showMessage(sb.toString());

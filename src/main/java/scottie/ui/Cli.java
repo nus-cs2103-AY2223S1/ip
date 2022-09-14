@@ -59,7 +59,7 @@ public class Cli implements Ui {
      */
     @Override
     public void showFormattedMessage(String message, Object... args) {
-        this.out.printf(message, args);
+        this.showMessages(String.format(message, args));
     }
 
     /**
@@ -77,7 +77,7 @@ public class Cli implements Ui {
     public void showOrderedList(Iterable<?> iterable) {
         int i = 1;
         for (Object obj : iterable) {
-            this.showFormattedMessage("%d. %s%n", i, obj);
+            this.showFormattedMessage("%d. %s", i, obj);
             i++;
         }
     }

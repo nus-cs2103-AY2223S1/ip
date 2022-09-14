@@ -11,9 +11,9 @@ import scottie.ui.Ui;
  */
 public class SortInstruction extends Instruction {
     private static final String SORT_BY_DESCRIPTION_MESSAGE =
-            "Ok, I've sorted your tasks in%s alphabetical order.%n";
+            "Ok, I've sorted your tasks in%s alphabetical order.";
     private static final String SORT_BY_DATE_MESSAGE =
-            "Ok, I've sorted your tasks in%s chronological order.%n";
+            "Ok, I've sorted your tasks in%s chronological order.";
     private static final String INVALID_SORT_KEY_MESSAGE = "Sorry, I don't know how to sort by ";
 
     /**
