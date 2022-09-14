@@ -27,6 +27,7 @@ public class Task {
         this.type = type;
         this.status = 0;
         NUMBER_TASKS++;
+        assert(NUMBER_TASKS <= 100);
     }
 
     /**

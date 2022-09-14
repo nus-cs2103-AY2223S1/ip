@@ -1,6 +1,7 @@
 package duke.instruction;
 
 import duke.functions.TaskList;
+import duke.tasks.Task;
 
 /**
  * MarkInstruction class to initiate a Mark command inputted by the user.
@@ -24,6 +25,7 @@ public class MarkInstruction implements Instruction{
         this.userInput = userInput;
         char b = userInput.charAt(5);
         this.taskPos = Character.getNumericValue(b);
+        assert this.taskPos <= Task.getNumberTasks() : "There is no task with the index number you have specified";
     }
 
     @Override

@@ -1,6 +1,7 @@
 package duke.instruction;
 
 import duke.functions.TaskList;
+import duke.tasks.Task;
 
 /**
  * UnMarkInstruction class to initiate an UnMark command inputted by the user.
@@ -24,6 +25,7 @@ public class UnMarkInstruction implements Instruction{
         this.taskDescription = taskDescription;
         char b = taskDescription.charAt(5);
         this.taskPos = Character.getNumericValue(b);
+        assert this.taskPos <= Task.getNumberTasks() : "There is no task with the index number you have specified";
     }
 
     @Override
