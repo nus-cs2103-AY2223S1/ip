@@ -15,6 +15,12 @@ tasks appear in this format:
 - `the content` the content of the task
 - `the time` this is only applicable for tasks of types deadline and event
 
+Examples of tasks:
+`[T][X]do laundry`
+This is a task of type todo, and is done.
+`[D][]write essay by 2012-12-12 12:00`
+This is a task of type deadline. It is not done, and the deadline is 2012 12 December 12:00.
+
 ### Talk to Rabbit
 
 What is better than provoking Rabbit when she's already upset about the tons of work? Plus, you can even change her look from the six looks at random.
@@ -126,3 +132,10 @@ Example of usage:
 `edit time 2 2012-12-13-1300`
 
 Note that edit time is only applicable for tasks of types deadline and event.
+
+### `change` - Change Rabbit's look
+
+Format:
+`change`
+
+Rabbit will pick a look at random from the six existing looks.
