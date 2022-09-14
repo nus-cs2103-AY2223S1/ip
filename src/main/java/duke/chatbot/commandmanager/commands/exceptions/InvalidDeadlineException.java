@@ -1,10 +1,12 @@
 package duke.chatbot.commandmanager.commands.exceptions;
 
+import duke.chatbot.personality.Personality;
+
 /**
  * Exception that is thrown when there is an invalid deadline.
  */
 public class InvalidDeadlineException extends InvalidArgumentsException {
-    public InvalidDeadlineException(String dateFormat) {
-        super("You have an invalid deadline!\nDeadlines should be in the format: " + dateFormat + "\n");
+    public InvalidDeadlineException(Personality personality, String dateFormat) {
+        super(personality.formulateResponse("INVALID_DEADLINE_EXCEPTION", dateFormat));
     }
 }

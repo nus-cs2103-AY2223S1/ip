@@ -3,6 +3,7 @@ package duke.chatbot.commandmanager.commands;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidIndexException;
 import duke.chatbot.commandmanager.commands.exceptions.NoSuchIndexException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 
 /**
@@ -10,13 +11,17 @@ import duke.chatbot.taskmanager.TaskManager;
  * Responds with the confirmation message stating that the task has been deleted.
  */
 public class DeleteTaskCommandHandler implements Command {
+    private final Personality personality;
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the delete command with a reference to the task manager
+     * and the chatbot's personality.
      *
+     * @param personality a reference to the task manager
      * @param taskManager a reference to the task manager
      */
-    public DeleteTaskCommandHandler(TaskManager taskManager) {
+    public DeleteTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -30,26 +35,22 @@ public class DeleteTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidIndexException();
+            throw new InvalidIndexException(this.personality);
         }
 
         int itemNumber = 0;
         try {
             itemNumber = Integer.parseInt(arguments);
         } catch (NumberFormatException exception) {
-            throw new InvalidIndexException();
+            throw new InvalidIndexException(this.personality);
         }
         if (itemNumber <= 0 || itemNumber > this.taskManager.getListSize()) {
-            throw new NoSuchIndexException();
+            throw new NoSuchIndexException(this.personality);
         }
 
         String deletedTask = this.taskManager.deleteTask(itemNumber);
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("The following item has been removed.\n");
-        stringBuilder.append(deletedTask).append("\n");
-        stringBuilder.append("You have ").append(this.taskManager.getListSize()).append(" item(s) remaining.\n");
-        return stringBuilder.toString();
+        String tasksRemaining = String.valueOf(this.taskManager.getListSize());
+        return personality.formulateResponse("delete_task", deletedTask, tasksRemaining);
     }
 }
 

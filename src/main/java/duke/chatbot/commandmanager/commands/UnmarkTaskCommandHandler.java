@@ -3,6 +3,7 @@ package duke.chatbot.commandmanager.commands;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidIndexException;
 import duke.chatbot.commandmanager.commands.exceptions.NoSuchIndexException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 
 /**
@@ -10,13 +11,17 @@ import duke.chatbot.taskmanager.TaskManager;
  * Responds with the confirmation message stating that the task has been successfully unmarked.
  */
 public class UnmarkTaskCommandHandler implements Command {
+    private final Personality personality;
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the unmark task command with a reference to the task manager
+     * and the chatbot's personality.
      *
+     * @param personality a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public UnmarkTaskCommandHandler(TaskManager taskManager) {
+    public UnmarkTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -30,24 +35,24 @@ public class UnmarkTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidIndexException();
+            throw new InvalidIndexException(this.personality);
         }
 
         int itemNumber = 0;
         try {
             itemNumber = Integer.parseInt(arguments);
         } catch (NumberFormatException exception) {
-            throw new InvalidIndexException();
+            throw new InvalidIndexException(this.personality);
         }
         if (itemNumber <= 0 || itemNumber > this.taskManager.getListSize()) {
-            throw new NoSuchIndexException();
+            throw new NoSuchIndexException(this.personality);
         }
 
         boolean isUnmarkedSuccessfully = this.taskManager.unmarkTask(itemNumber);
         if (isUnmarkedSuccessfully) {
-            return "The task has been unmarked.\n";
+            return personality.formulateResponse("unmark_task_success");
         } else {
-            return "The task is still not done you idiot.\n";
+            return personality.formulateResponse("unmark_task_fail");
         }
     }
 }

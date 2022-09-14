@@ -8,31 +8,41 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import duke.chatbot.ChatBot;
+import duke.chatbot.personality.Personality;
+import duke.chatbot.personality.exceptions.LoadPersonalityException;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.DeadlineTask;
 import duke.chatbot.taskmanager.task.EventTask;
 import duke.chatbot.taskmanager.task.ToDoTask;
 
 public class CommandManagerTest {
+    private final String chatBotName = "Christina";
     private final CommandManager commandManager = new CommandManager();
+    private final Personality personality = new Personality(chatBotName);
 
     @Test
     public void byeCommandHandler() {
         String command = "bye";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
-            assertEquals(commandManager.getCommand(command).execute(""),
+            assertEquals(commandManager.getCommand(this.personality, command).execute(""),
                     "Goodbye! It was nice seeing you.\nPress enter to exit!\n");
             assertFalse(chatBot.isRunning());
 
-            commandManager.getCommand(command).execute("test");
+            commandManager.getCommand(this.personality, command).execute("test");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "Sorry, I don't understand what you mean :(\n");
         }
@@ -41,19 +51,24 @@ public class CommandManagerTest {
     @Test
     public void listCommandHandler() {
         String command = "list";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
-            assertEquals(commandManager.getCommand(command).execute(""),
+            assertEquals(commandManager.getCommand(this.personality, command).execute(""),
                     "You have no tasks in your list.\n");
             taskManager.addTask(new ToDoTask("task1"));
-            assertTrue(commandManager.getCommand(command).execute("")
+            assertTrue(commandManager.getCommand(this.personality, command).execute("")
                     .startsWith("I have your list of tasks displayed below:\n"));
 
-            commandManager.getCommand(command).execute("test");
+            commandManager.getCommand(this.personality, command).execute("test");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "Sorry, I don't understand what you mean :(\n");
         }
@@ -62,18 +77,23 @@ public class CommandManagerTest {
     @Test
     public void todoTaskCommandHandler() {
         String command = "todo";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
-            assertEquals(commandManager.getCommand(command).execute("task1"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("task1"),
                     "> Added: task1\n");
-            assertEquals(commandManager.getCommand(command).execute(" task 2 "),
+            assertEquals(commandManager.getCommand(this.personality, command).execute(" task 2 "),
                     "> Added: task 2\n");
 
-            commandManager.getCommand(command).execute(" ");
+            commandManager.getCommand(this.personality, command).execute(" ");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You cannot have an empty Task!\n");
         }
@@ -82,56 +102,61 @@ public class CommandManagerTest {
     @Test
     public void deadlineTaskCommandHandler() {
         String command = "deadline";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
-            assertEquals(commandManager.getCommand(command).execute("task1/by01/01/2020,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("task1/by01/01/2020,0000"),
                     "> Added: task1\n");
-            assertEquals(commandManager.getCommand(command).execute(" task2/by01/01/2020,0000 "),
+            assertEquals(commandManager.getCommand(this.personality, command).execute(" task2/by01/01/2020,0000 "),
                     "> Added: task2\n");
-            assertEquals(commandManager.getCommand(command).execute("task3 /by01/01/2020,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("task3 /by01/01/2020,0000"),
                     "> Added: task3\n");
-            assertEquals(commandManager.getCommand(command).execute("task4/by 01/01/2020,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("task4/by 01/01/2020,0000"),
                     "> Added: task4\n");
-            assertEquals(commandManager.getCommand(command).execute("/at/by01/01/2020,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("/at/by01/01/2020,0000"),
                     "> Added: /at\n");
 
-            commandManager.getCommand(command).execute(" /by01/01/2020-0000");
+            commandManager.getCommand(this.personality, command).execute(" /by01/01/2020-0000");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You cannot have an empty Task!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("test/by ");
+            commandManager.getCommand(this.personality, command).execute("test/by ");
         } catch (Exception exception) {
             assertTrue(exception.getMessage()
                     .startsWith("You have an invalid deadline!\nDeadlines should be in the format:"));
         }
 
         try {
-            commandManager.getCommand(command).execute(" /by ");
+            commandManager.getCommand(this.personality, command).execute(" /by ");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You cannot have an empty Task!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("test/bytest/bytest");
+            commandManager.getCommand(this.personality, command).execute("test/bytest/bytest");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You placed invalid arguments!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("test/bytest");
+            commandManager.getCommand(this.personality, command).execute("test/bytest");
         } catch (Exception exception) {
             assertTrue(exception.getMessage()
                     .startsWith("You have an invalid deadline!\nDeadlines should be in the format:"));
         }
 
         try {
-            commandManager.getCommand(command).execute("test/by01/01/2020-0000");
+            commandManager.getCommand(this.personality, command).execute("test/by01/01/2020-0000");
         } catch (Exception exception) {
             assertTrue(exception.getMessage()
                     .startsWith("You have an invalid deadline!\nDeadlines should be in the format:"));
@@ -141,56 +166,61 @@ public class CommandManagerTest {
     @Test
     public void eventTaskCommandHandler() {
         String command = "event";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
-            assertEquals(commandManager.getCommand(command).execute("task1/at01/01/2020,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("task1/at01/01/2020,0000"),
                     "> Added: task1\n");
-            assertEquals(commandManager.getCommand(command).execute(" task2/at01/01/2020,0000 "),
+            assertEquals(commandManager.getCommand(this.personality, command).execute(" task2/at01/01/2020,0000 "),
                     "> Added: task2\n");
-            assertEquals(commandManager.getCommand(command).execute("task3 /at01/01/2020,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("task3 /at01/01/2020,0000"),
                     "> Added: task3\n");
-            assertEquals(commandManager.getCommand(command).execute("task4/at 01/01/2020,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("task4/at 01/01/2020,0000"),
                     "> Added: task4\n");
-            assertEquals(commandManager.getCommand(command).execute("/by/at01/01/2020,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("/by/at01/01/2020,0000"),
                     "> Added: /by\n");
 
-            commandManager.getCommand(command).execute(" /at01/01/2020-0000");
+            commandManager.getCommand(this.personality, command).execute(" /at01/01/2020-0000");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You cannot have an empty Task!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("test/at ");
+            commandManager.getCommand(this.personality, command).execute("test/at ");
         } catch (Exception exception) {
             assertTrue(exception.getMessage()
                     .startsWith("You have an invalid event time!\nEvent times should be in the format:"));
         }
 
         try {
-            commandManager.getCommand(command).execute(" /at ");
+            commandManager.getCommand(this.personality, command).execute(" /at ");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You cannot have an empty Task!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("test/attest/attest");
+            commandManager.getCommand(this.personality, command).execute("test/attest/attest");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You placed invalid arguments!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("test/attest");
+            commandManager.getCommand(this.personality, command).execute("test/attest");
         } catch (Exception exception) {
             assertTrue(exception.getMessage()
                     .startsWith("You have an invalid event time!\nEvent times should be in the format:"));
         }
 
         try {
-            commandManager.getCommand(command).execute("test/at01/01/2020-0000");
+            commandManager.getCommand(this.personality, command).execute("test/at01/01/2020-0000");
         } catch (Exception exception) {
             assertTrue(exception.getMessage()
                     .startsWith("You have an invalid event time!\nEvent times should be in the format:"));
@@ -200,48 +230,53 @@ public class CommandManagerTest {
     @Test
     public void markTaskCommandHandler() {
         String command = "mark";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
-            commandManager.getCommand(command).execute("test");
+            commandManager.getCommand(this.personality, command).execute("test");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
         try {
-            commandManager.getCommand(command).execute("1 2 3");
+            commandManager.getCommand(this.personality, command).execute("1 2 3");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
         try {
-            commandManager.getCommand(command).execute("");
+            commandManager.getCommand(this.personality, command).execute("");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("1");
+            commandManager.getCommand(this.personality, command).execute("1");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
         try {
-            commandManager.getCommand(command).execute("0");
+            commandManager.getCommand(this.personality, command).execute("0");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
         try {
-            commandManager.getCommand(command).execute("-1");
+            commandManager.getCommand(this.personality, command).execute("-1");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
 
         try {
             taskManager.addTask(new ToDoTask("task1"));
-            assertEquals(commandManager.getCommand(command).execute("1"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("1"),
                     "I've marked this task as done. Good Job!\n");
-            assertEquals(commandManager.getCommand(command).execute("1"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("1"),
                     "The task is already marked you dummy.\n");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
@@ -251,49 +286,54 @@ public class CommandManagerTest {
     @Test
     public void unmarkTaskCommandHandler() {
         String command = "unmark";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
-            commandManager.getCommand(command).execute("test");
+            commandManager.getCommand(this.personality, command).execute("test");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
         try {
-            commandManager.getCommand(command).execute("1 2 3");
+            commandManager.getCommand(this.personality, command).execute("1 2 3");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
         try {
-            commandManager.getCommand(command).execute("");
+            commandManager.getCommand(this.personality, command).execute("");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("1");
+            commandManager.getCommand(this.personality, command).execute("1");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
         try {
-            commandManager.getCommand(command).execute("0");
+            commandManager.getCommand(this.personality, command).execute("0");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
         try {
-            commandManager.getCommand(command).execute("-1");
+            commandManager.getCommand(this.personality, command).execute("-1");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
 
         try {
             taskManager.addTask(new ToDoTask("task1"));
-            assertEquals(commandManager.getCommand(command).execute("1"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("1"),
                     "The task is still not done you idiot.\n");
             taskManager.markTask(1);
-            assertEquals(commandManager.getCommand(command).execute("1"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("1"),
                     "The task has been unmarked.\n");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
@@ -303,48 +343,53 @@ public class CommandManagerTest {
     @Test
     public void deleteTaskCommandHandler() {
         String command = "delete";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
-            commandManager.getCommand(command).execute("test");
+            commandManager.getCommand(this.personality, command).execute("test");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
         try {
-            commandManager.getCommand(command).execute("1 2 3");
+            commandManager.getCommand(this.personality, command).execute("1 2 3");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
         try {
-            commandManager.getCommand(command).execute("");
+            commandManager.getCommand(this.personality, command).execute("");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("1");
+            commandManager.getCommand(this.personality, command).execute("1");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
         try {
-            commandManager.getCommand(command).execute("0");
+            commandManager.getCommand(this.personality, command).execute("0");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
         try {
-            commandManager.getCommand(command).execute("-1");
+            commandManager.getCommand(this.personality, command).execute("-1");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
 
         try {
             taskManager.addTask(new ToDoTask("task1"));
-            assertTrue(commandManager.getCommand(command).execute("1")
+            assertTrue(commandManager.getCommand(this.personality, command).execute("1")
                     .startsWith("The following item has been removed.\n"));
-            commandManager.getCommand(command).execute("1");
+            commandManager.getCommand(this.personality, command).execute("1");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
@@ -353,10 +398,15 @@ public class CommandManagerTest {
     @Test
     public void findTaskCommandHandler() {
         String command = "find";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             taskManager.addTask(new ToDoTask("task1"));
@@ -364,17 +414,17 @@ public class CommandManagerTest {
             taskManager.addTask(new ToDoTask("test1"));
             taskManager.addTask(new ToDoTask("test2"));
 
-            assertTrue(commandManager.getCommand(command).execute("task")
+            assertTrue(commandManager.getCommand(this.personality, command).execute("task")
                     .startsWith("I have the matching tasks displayed below:\n"));
-            assertTrue(commandManager.getCommand(command).execute("test")
+            assertTrue(commandManager.getCommand(this.personality, command).execute("test")
                     .startsWith("I have the matching tasks displayed below:\n"));
-            assertTrue(commandManager.getCommand(command).execute("1")
+            assertTrue(commandManager.getCommand(this.personality, command).execute("1")
                     .startsWith("I have the matching tasks displayed below:\n"));
-            assertTrue(commandManager.getCommand(command).execute("2")
+            assertTrue(commandManager.getCommand(this.personality, command).execute("2")
                     .startsWith("I have the matching tasks displayed below:\n"));
-            assertEquals(commandManager.getCommand(command).execute("dummy"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("dummy"),
                     "You have no tasks in your list with the keyword \"dummy\".\n");
-            commandManager.getCommand(command).execute("");
+            commandManager.getCommand(this.personality, command).execute("");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "Sorry, I don't understand what you mean :(\n");
         }
@@ -383,10 +433,15 @@ public class CommandManagerTest {
     @Test
     public void updateTaskCommandHandler() {
         String command = "update";
-        ChatBot chatBot = new ChatBot("chatbot");
+        ChatBot chatBot = new ChatBot(chatBotName);
         TaskManager taskManager = new TaskManager();
+        try {
+            personality.loadPersonality();
+        } catch (LoadPersonalityException exception) {
+            Assertions.fail();
+        }
 
-        commandManager.initialize(chatBot, taskManager);
+        commandManager.initialize(chatBot, personality, taskManager);
 
         try {
             LocalDateTime dateTime = LocalDateTime.parse("01/01/2022,0000",
@@ -403,11 +458,11 @@ public class CommandManagerTest {
             taskManager.addTask(task2);
             taskManager.addTask(task3);
 
-            assertEquals(commandManager.getCommand(command).execute("1 test1"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("1 test1"),
                     "The following item has been updated.\n1) " + task1.toString() + "\n");
-            assertEquals(commandManager.getCommand(command).execute("2 test2"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("2 test2"),
                     "The following item has been updated.\n2) " + task2.toString() + "\n");
-            assertEquals(commandManager.getCommand(command).execute("3 test3"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("3 test3"),
                     "The following item has been updated.\n3) " + task3.toString() + "\n");
             assertNotEquals(task1String, task1.toString());
             assertNotEquals(task2String, task2.toString());
@@ -416,85 +471,85 @@ public class CommandManagerTest {
             String test2String = task2.toString();
             String test3String = task3.toString();
 
-            assertEquals(commandManager.getCommand(command).execute("2 task2 /by "),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("2 task2 /by "),
                     "The following item has been updated.\n2) " + task2.toString() + "\n");
-            assertEquals(commandManager.getCommand(command).execute("3 task3 /at "),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("3 task3 /at "),
                     "The following item has been updated.\n3) " + task3.toString() + "\n");
             assertEquals(task2String, task2.toString());
             assertEquals(task3String, task3.toString());
 
-            assertEquals(commandManager.getCommand(command).execute("2 /by 01/01/2022,1111"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("2 /by 01/01/2022,1111"),
                     "The following item has been updated.\n2) " + task2.toString() + "\n");
-            assertEquals(commandManager.getCommand(command).execute("3 /at 01/01/2022,1111"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("3 /at 01/01/2022,1111"),
                     "The following item has been updated.\n3) " + task3.toString() + "\n");
             assertNotEquals(task2String, task2.toString());
             assertNotEquals(task3String, task3.toString());
 
-            assertEquals(commandManager.getCommand(command).execute("2 test2 /by 01/01/2022,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("2 test2 /by 01/01/2022,0000"),
                     "The following item has been updated.\n2) " + task2.toString() + "\n");
-            assertEquals(commandManager.getCommand(command).execute("3 test3 /at 01/01/2022,0000"),
+            assertEquals(commandManager.getCommand(this.personality, command).execute("3 test3 /at 01/01/2022,0000"),
                     "The following item has been updated.\n3) " + task3.toString() + "\n");
             assertEquals(test2String, task2.toString());
             assertEquals(test3String, task3.toString());
 
-            commandManager.getCommand(command).execute("4 test");
+            commandManager.getCommand(this.personality, command).execute("4 test");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("1");
+            commandManager.getCommand(this.personality, command).execute("1");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You placed invalid arguments!\n");
         }
         try {
-            commandManager.getCommand(command).execute("1  ");
+            commandManager.getCommand(this.personality, command).execute("1  ");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You placed invalid arguments!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("2 /by 01/01/2020-0000");
+            commandManager.getCommand(this.personality, command).execute("2 /by 01/01/2020-0000");
         } catch (Exception exception) {
             assertTrue(exception.getMessage()
                     .startsWith("You have an invalid deadline!\nDeadlines should be in the format:"));
         }
         try {
-            commandManager.getCommand(command).execute("3 /at 01/01/2020-0000");
+            commandManager.getCommand(this.personality, command).execute("3 /at 01/01/2020-0000");
         } catch (Exception exception) {
             assertTrue(exception.getMessage()
                     .startsWith("You have an invalid event time!\nEvent times should be in the format:"));
         }
 
         try {
-            commandManager.getCommand(command).execute("0");
+            commandManager.getCommand(this.personality, command).execute("0");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
         try {
-            commandManager.getCommand(command).execute("0 test");
+            commandManager.getCommand(this.personality, command).execute("0 test");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
         try {
-            commandManager.getCommand(command).execute("-1");
+            commandManager.getCommand(this.personality, command).execute("-1");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
         try {
-            commandManager.getCommand(command).execute("-1 test");
+            commandManager.getCommand(this.personality, command).execute("-1 test");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "There is no such task!!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("test");
+            commandManager.getCommand(this.personality, command).execute("test");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "You need to put a number after your command!\n");
         }
 
         try {
-            commandManager.getCommand(command).execute("");
+            commandManager.getCommand(this.personality, command).execute("");
         } catch (Exception exception) {
             assertEquals(exception.getMessage(), "Sorry, I don't understand what you mean :(\n");
         }

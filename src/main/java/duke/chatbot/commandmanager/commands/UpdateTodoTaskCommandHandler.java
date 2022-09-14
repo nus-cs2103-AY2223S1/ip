@@ -2,6 +2,7 @@ package duke.chatbot.commandmanager.commands;
 
 import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 
 /**
@@ -9,13 +10,17 @@ import duke.chatbot.taskmanager.TaskManager;
  * list of task managed by the task manager.
  */
 public class UpdateTodoTaskCommandHandler implements UpdateCommand {
-    private TaskManager taskManager;
+    private final Personality personality;
+    private final TaskManager taskManager;
     /**
-     * Creates a new handler for the update task command with a reference to the task manager.
+     * Creates a new handler for the update task command with a reference to the task manager
+     * and the chatbot's personality
      *
+     * @param taskManager a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public UpdateTodoTaskCommandHandler(TaskManager taskManager) {
+    public UpdateTodoTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -30,7 +35,7 @@ public class UpdateTodoTaskCommandHandler implements UpdateCommand {
     @Override
     public String execute(int itemNumber, String updatedTodoTaskName) throws InvalidArgumentsException {
         if (updatedTodoTaskName.length() == 0) {
-            throw new EmptyTaskException();
+            throw new EmptyTaskException(this.personality);
         }
         return this.taskManager.updateTask(itemNumber, updatedTodoTaskName);
     }

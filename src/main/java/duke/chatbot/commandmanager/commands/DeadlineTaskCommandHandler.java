@@ -8,6 +8,7 @@ import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidDeadlineException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.DeadlineTask;
 
@@ -17,13 +18,17 @@ import duke.chatbot.taskmanager.task.DeadlineTask;
  * Responds with the confirmation message stating that a new task is added.
  */
 public class DeadlineTaskCommandHandler implements Command {
+    private final Personality personality;
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the deadline task command with a reference to the task manager
+     * and the chatbot's personality.
      *
+     * @param taskManager a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public DeadlineTaskCommandHandler(TaskManager taskManager) {
+    public DeadlineTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -38,12 +43,12 @@ public class DeadlineTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException, InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidCommandException();
+            throw new InvalidCommandException(this.personality);
         }
 
         String[] argumentList = arguments.split(DeadlineTask.TASK_DELIMITER);
         if (argumentList.length != 2) {
-            throw new InvalidArgumentsException();
+            throw new InvalidArgumentsException(this.personality);
         }
 
         String deadlineTaskName = argumentList[0].strip();
@@ -51,18 +56,16 @@ public class DeadlineTaskCommandHandler implements Command {
         LocalDateTime deadline;
 
         if (deadlineTaskName.length() == 0) {
-            throw new EmptyTaskException();
+            throw new EmptyTaskException(this.personality);
         }
 
         try {
             deadline = LocalDateTime.parse(deadlineString, DateTimeFormatter.ofPattern(taskManager.getDateFormat()));
         } catch (DateTimeParseException exception) {
-            throw new InvalidDeadlineException(taskManager.getDateFormat());
+            throw new InvalidDeadlineException(this.personality, taskManager.getDateFormat());
         }
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("> Added: ");
-        stringBuilder.append(taskManager.addTask(new DeadlineTask(deadlineTaskName, deadline)));
-        stringBuilder.append("\n");
-        return stringBuilder.toString();
+
+        String taskAdded = taskManager.addTask(new DeadlineTask(deadlineTaskName, deadline));
+        return personality.formulateResponse("add_task", taskAdded);
     }
 }

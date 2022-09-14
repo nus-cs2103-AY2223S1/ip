@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import duke.chatbot.commandmanager.CommandManager;
 import duke.chatbot.commandmanager.commands.exceptions.EmptyCommandException;
+import duke.chatbot.personality.Personality;
+import duke.chatbot.personality.exceptions.LoadPersonalityException;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.exceptions.LoadDataException;
 
@@ -17,6 +19,7 @@ public class ChatBot {
     private final Logger logger;
     private final TaskManager taskManager;
     private final CommandManager commandManager;
+    private final Personality personality;
     private boolean isRunning;
     private String latestResponse;
     /**
@@ -30,6 +33,7 @@ public class ChatBot {
         this.logger = new Logger();
         this.taskManager = new TaskManager();
         this.commandManager = new CommandManager();
+        this.personality = new Personality(name);
         this.isRunning = false;
         this.latestResponse = "";
     }
@@ -69,25 +73,6 @@ public class ChatBot {
     public String getLatestResponse() {
         return this.latestResponse;
     }
-    /**
-     * Returns the greeting message of the chatbot
-     *
-     * @return the greeting message
-     */
-    public String getGreetingResponse() {
-        return "Greetings, " + this.name + " at your service.\n"
-                + "How may I help you today?\n";
-    }
-
-    /**
-     * Returns the goodbye message of the chatbot
-     *
-     * @return the goodbye message
-     */
-    public String getGoodbyeResponse() {
-        return "Goodbye! It was nice seeing you.\n"
-                + "Press enter to exit!\n";
-    }
 
     /**
      * Initializes the chatbot by setting its running state to true and responds
@@ -96,10 +81,18 @@ public class ChatBot {
      */
     public void initialize() {
         this.isRunning = true;
-        this.latestResponse = getGreetingResponse();
-        this.commandManager.initialize(this, this.taskManager);
+        this.commandManager.initialize(this, this.personality, this.taskManager);
+
         try {
-            taskManager.loadData();
+            this.personality.loadPersonality();
+            this.latestResponse = personality.formulateResponse("greet", this.name);
+        } catch (LoadPersonalityException exception) {
+            this.latestResponse = exception.getMessage();
+            terminate();
+        }
+
+        try {
+            this.taskManager.loadData(this.personality);
         } catch (LoadDataException exception) {
             this.latestResponse = exception.getMessage();
         }
@@ -129,7 +122,7 @@ public class ChatBot {
         try {
             // Guard Clause for empty commands
             if (input.length() == 0) {
-                throw new EmptyCommandException();
+                throw new EmptyCommandException(this.personality);
             }
 
             // Get command and arguments
@@ -141,8 +134,8 @@ public class ChatBot {
             }
             inputScanner.close();
 
-            response = this.commandManager.getCommand(command).execute(arguments);
-            this.taskManager.saveData();
+            response = this.commandManager.getCommand(this.personality, command).execute(arguments);
+            this.taskManager.saveData(personality);
             System.out.println(wrapMessage(response));
         } catch (Exception exception) {
             response = exception.getMessage();

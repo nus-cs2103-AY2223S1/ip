@@ -8,6 +8,7 @@ import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidEventException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.EventTask;
 
@@ -17,13 +18,17 @@ import duke.chatbot.taskmanager.task.EventTask;
  * Responds with the confirmation message stating that a new task is added.
  */
 public class EventTaskCommandHandler implements Command {
+    private final Personality personality;
     private final TaskManager taskManager;
     /**
      * Creates a new handler for the event task command with a reference to the task manager
+     * and the chatbot's personality.
      *
+     * @param personality a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public EventTaskCommandHandler(TaskManager taskManager) {
+    public EventTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -38,12 +43,12 @@ public class EventTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException, InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidCommandException();
+            throw new InvalidCommandException(this.personality);
         }
 
         String[] argumentList = arguments.split(EventTask.TASK_DELIMITER);
         if (argumentList.length != 2) {
-            throw new InvalidArgumentsException();
+            throw new InvalidArgumentsException(this.personality);
         }
 
         String eventTaskName = argumentList[0].strip();
@@ -51,18 +56,16 @@ public class EventTaskCommandHandler implements Command {
         LocalDateTime eventTime;
 
         if (eventTaskName.length() == 0) {
-            throw new EmptyTaskException();
+            throw new EmptyTaskException(this.personality);
         }
 
         try {
             eventTime = LocalDateTime.parse(eventTimeString, DateTimeFormatter.ofPattern(taskManager.getDateFormat()));
         } catch (DateTimeParseException exception) {
-            throw new InvalidEventException(taskManager.getDateFormat());
+            throw new InvalidEventException(this.personality, taskManager.getDateFormat());
         }
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("> Added: ");
-        stringBuilder.append(taskManager.addTask(new EventTask(eventTaskName, eventTime)));
-        stringBuilder.append("\n");
-        return stringBuilder.toString();
+
+        String taskAdded = taskManager.addTask(new EventTask(eventTaskName, eventTime));
+        return personality.formulateResponse("add_task", taskAdded);
     }
 }
