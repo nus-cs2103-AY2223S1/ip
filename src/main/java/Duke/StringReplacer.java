@@ -1,6 +1,9 @@
 
 package duke;
 
+/**
+ * Class to help with manipulation of Strings to obtain input commands
+ */
 public class StringReplacer {
 
     public String[] editCommandHelper(String input) {
