@@ -39,15 +39,17 @@ public class Storage {
             File f = new File(this.filePath); // create a File for the given file path
             Scanner s = new Scanner(f); // create a Scanner using the File as the source
             while (s.hasNext()) {
-                String[] splitInput = s.nextLine().strip().split("/", 4);
+                String[] splitInput = s.nextLine().strip().split(" / ", 4);
                 String type = splitInput[0].strip();
+                String completionStr = splitInput[1].strip();
+                Boolean isDone = completionStr.equals("1");
+                String description = splitInput[2].strip();
                 if (type.equals("T")) {
-                    taskList.addTask(new Todos(splitInput[2].strip(),
-                            Integer.parseInt(splitInput[1].strip()) == (1)));
+                    taskList.addTask(new Todos(description, isDone));
                 } else if (type.equals("D")) {
-                    taskList.addTask(new Deadlines(splitInput[2].strip(), splitInput[3].strip()));
+                    taskList.addTask(new Deadlines(description, splitInput[3].strip(), isDone));
                 } else if (type.equals("E")) {
-                    taskList.addTask(new Events(splitInput[2].strip(), splitInput[3].strip()));
+                    taskList.addTask(new Events(description, splitInput[3].strip(), isDone));
                 }
             }
             return taskList;

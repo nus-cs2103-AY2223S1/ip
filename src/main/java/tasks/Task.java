@@ -10,15 +10,24 @@ public class Task {
         this.isDone = false;
     }
 
-    public Task(String description) {
+    public Task(String description, Boolean isDone) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
         this.total += 1;
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        if (this.isDone) {
+            return "X";
+        } else {
+            return " ";
+        }
     }
+
+    public boolean isDone() {
+        return this.isDone;
+    }
+
 
     public String getDescription() {
         return this.description;
@@ -29,21 +38,21 @@ public class Task {
     }
 
     public void mark() {
-        this.isDone = true;
+        isDone = true;
     }
 
     public void unmark() {
-        this.isDone = false;
+        isDone = false;
     }
 
     @Override
     public String toString() {
-        String result = "[" + getStatusIcon() + "] " + this.description;
+        String result = "[" + getStatusIcon() + "] ";
         return result;
     }
 
     public String fileString() {
-        String write = "NA";
+        String write = (isDone ? "1 / " : "0 / ");
         return write;
     }
 }

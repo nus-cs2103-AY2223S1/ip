@@ -29,7 +29,7 @@ public class StatisticsCommand extends Command {
         int completeTasks = 0;
         int incompleteTasks = 0;
         for (int i = 0; i < taskList.getSize(); i++) {
-            boolean isDone = taskList.retrieveTask(i).getStatusIcon().equals("X");
+            boolean isDone = taskList.retrieveTask(i).isDone();
             if (isDone) {
                 completeTasks += 1;
             } else {
