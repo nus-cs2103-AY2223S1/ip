@@ -159,10 +159,12 @@ public class TaskList {
     public String toString() {
         StringBuilder result = new StringBuilder();
         int counter = 1;
+        int lastIndex = this.taskList.size() - 1;
         for (Task task : this.taskList) {
-            String numberedTask = counter + "." + task + "\n";
+            String numberedTask = counter + "." + task + (lastIndex == 0 ? "" : "\n");
             result.append(numberedTask);
             counter++;
+            lastIndex--;
         }
         return result.toString();
     }

@@ -19,7 +19,7 @@ public class Ui {
      * @param message the message to be shown to the user.
      */
     public static String wrapWithLines(String message) {
-        return makeLine() + message + makeLine();
+        return makeLine() + message + "\n" + makeLine();
     }
 
     /**
@@ -28,6 +28,6 @@ public class Ui {
      * @return the custom error message.
      */
     public static String printErrorMessage(String message) {
-        return makeLine() + "OOPS!" + message + makeLine();
+        return makeLine() + "OOPS! " + message + "\n" + makeLine();
     }
 }
