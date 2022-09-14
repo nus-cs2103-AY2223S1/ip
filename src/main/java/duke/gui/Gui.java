@@ -39,10 +39,10 @@ public class Gui extends Application {
     private Button sendButton;
     private Scene scene;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/userPic.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/dukePic.png"));
-    private Image applicationIcon = new Image(this.getClass().getResourceAsStream("/images/ngnl.png"));
-    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.jpg"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/userImg.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/dukeImg.png"));
+    private Image applicationIcon = new Image(this.getClass().getResourceAsStream("/images/ngnlProgramIcon.png"));
+    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/bgImg.jpg"));
 
     /**
      * Initialize the FXML controller.
