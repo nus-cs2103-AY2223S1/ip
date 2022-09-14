@@ -19,6 +19,8 @@ public class Ui {
     private static final String UNMARK_MESSAGE = "OK, I've marked this task as not done yet:";
     private static final String LIST_MESSAGE = "Here are the tasks in your list:";
     private static final String DELETE_MESSAGE = "Noted. I've removed this task:";
+    private static final String FOUND_MESSAGE = "Here are the matching tasks in your list:";
+    private static final String NOT_FOUND_MESSAGE = "There are no tasks in your list with this keyword";
 
     // Error Messages
     private static final String ERROR_PREFIX = "DukeError";
@@ -71,6 +73,27 @@ public class Ui {
         prettyPrint(printables);
     }
 
+    /**
+     * Prints a message to indicate successful finding, followed by an indexed list of found tasks.
+     * If no tasks are found, prints a message to indicate failure to find any tasks.
+     *
+     * @param foundTasks an array of found tasks from TaskList that match keyword
+     */
+    public void printFoundTasks(Task[] foundTasks) {
+        if (foundTasks.length <= 0) {
+            prettyPrint(NOT_FOUND_MESSAGE);
+            return;
+        }
+        List<String> printables = new ArrayList<>();
+        printables.add(FOUND_MESSAGE);
+        for (int i = 0; i < foundTasks.length; i++) {
+            Task task = foundTasks[i];
+            int index = i + 1;
+            printables.add(String.format("%d.%s", index, task.toString()));
+        }
+        prettyPrint(printables);
+    }
+
     private void prettyPrint() {
         prettyPrint("");
     }
@@ -86,8 +109,7 @@ public class Ui {
             String s = printables.get(i);
             if (i == 0) {
                 sb.append(s);
-            }
-            else {
+            } else {
                 sb.append(String.format("\n%s %s", TAB, s));
             }
         }

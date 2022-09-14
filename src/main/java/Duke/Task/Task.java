@@ -1,5 +1,7 @@
 package Duke.Task;
 
+import java.util.Arrays;
+
 public abstract class Task {
 
     protected static String PRINT_TIME_FORMAT = "EE, dd MMM yyyy, HH:mm";
@@ -29,6 +31,11 @@ public abstract class Task {
                 getDescription());
     }
 
+    public boolean hasKeyword(String keyword) {
+        String[] words = getUniqueKeywords();
+        return Arrays.asList(words).contains(keyword);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s][%s] %s",
@@ -47,5 +54,9 @@ public abstract class Task {
 
     private String getShorthand() {
         return this.shorthand;
+    }
+
+    private String[] getUniqueKeywords() {
+        return Arrays.stream(description.split(" ")).distinct().toArray(String[]::new);
     }
 }

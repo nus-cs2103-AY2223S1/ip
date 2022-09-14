@@ -21,6 +21,7 @@ public class Parser {
     private static final String DEADLINE_COMMAND = "deadline";
     private static final String EVENT_COMMAND = "event";
     private static final String DELETE_COMMAND = "delete";
+    private static final String FIND_COMMAND = "find";
 
     private static final String TODO_SEPARATOR = "/";
     private static final String DEADLINE_SEPARATOR = "/by";
@@ -68,6 +69,9 @@ public class Parser {
                 break;
             case (DELETE_COMMAND):
                 deleteTask(inputRem);
+                break;
+            case (FIND_COMMAND):
+                findTasks(inputRem);
                 break;
             default:
                 throw new DukeException("Unexpected task type!");
@@ -196,6 +200,7 @@ public class Parser {
         taskList.addTask(task);
         ui.printTaskCreated(task);
     }
+
     private void deleteTask(String indexStr) throws DukeException {
         try {
             int index = Integer.parseInt(indexStr);
@@ -206,5 +211,27 @@ public class Parser {
         } catch (DukeException de) {
             throw DukeException.deleteTaskException(de.toString());
         }
+    }
+
+    private void findTasks(String keyword) throws DukeException {
+        try {
+            String validKeyword = getValidKeyword(keyword);
+            Task[] foundTasks = taskList.findTasks(validKeyword);
+            ui.printFoundTasks(foundTasks);
+        } catch (DukeException de) {
+            throw DukeException.findTaskException(de.toString());
+        }
+    }
+
+    private String getValidKeyword(String keyword) throws DukeException {
+        keyword = keyword.strip();
+        if (keyword.equals("")) {
+            throw DukeException.keywordException("No keyword provided");
+        }
+        String[] keywords = keyword.split(" ");
+        if (keywords.length > 1) {
+            throw DukeException.keywordException("Only one keyword expected");
+        }
+        return keyword;
     }
 }

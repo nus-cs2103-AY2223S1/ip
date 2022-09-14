@@ -53,6 +53,26 @@ public class DukeException extends Exception {
                 String.format("There is no task with index %d", index));
     }
 
+    /**
+     * Returns a DukeException that specifies location of exception to be in finding tasks.
+     *
+     * @param errorMsg Error message detailing error in finding task.
+     * @return new DukeException with modified message.
+     */
+    public static DukeException findTaskException(String errorMsg) {
+        return formatError("finding task", errorMsg);
+    }
+
+    /**
+     * Returns a DukeException that specifies location of exception to be in the keyword.
+     *
+     * @param errorMsg Error message detailing error in keyword.
+     * @return new DukeException with modified message.
+     */
+    public static DukeException keywordException(String errorMsg) {
+        return formatError("keyword", errorMsg);
+    }
+
     private static DukeException formatError(String prefix, String errorMsg) {
         return new DukeException(
                 String.format("Error in %s - %s", prefix, errorMsg));
