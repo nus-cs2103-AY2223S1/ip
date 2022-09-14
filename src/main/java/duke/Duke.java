@@ -34,6 +34,13 @@ public class Duke {
         }
     }
 
+    //@author Sen Wei-reused
+    // Reused from https://stackoverflow.com/questions/27334455
+    // with minor modification
+
+    /**
+     * Delays the closing of the GUI for 2 seconds.
+     */
     private void executeDelay() {
         PauseTransition delay = new PauseTransition(Duration.seconds(2));
         delay.setOnFinished(event -> Platform.exit());
