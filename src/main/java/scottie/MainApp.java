@@ -14,6 +14,8 @@ import scottie.ui.MainWindow;
  */
 public class MainApp extends Application {
 
+    private static final String APPLICATION_NAME = "Scottie";
+
     private final Scottie scottie = new Scottie();
 
     @Override
@@ -25,6 +27,7 @@ public class MainApp extends Application {
             stage.setScene(scene);
             MainWindow mainWindow = fxmlLoader.getController();
             mainWindow.setScottie(this.scottie);
+            stage.setTitle(APPLICATION_NAME);
             stage.show();
             mainWindow.showStartupMessage();
         } catch (IOException e) {
