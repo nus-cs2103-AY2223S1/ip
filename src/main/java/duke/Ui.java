@@ -1,8 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-import java.lang.StringBuilder;
-
 /**
  * Class which handles the interaction with the user.
  *
@@ -26,7 +23,7 @@ public class Ui {
      * @return message
      */
     public String markTask(Task task) {
-        return String.format("Nice! I've marked this task as done:\n%s", task.toString());
+        return String.format("Good one Jim! I've marked this task as done:\n%s", task.toString());
     }
 
     /**
@@ -36,7 +33,7 @@ public class Ui {
      * @return message
      */
     public String unmarkTask(Task task) {
-        return String.format("OK, I've marked this task as not done yet:\n%s", task.toString());
+        return String.format("OK Jim, I've marked this task as not done yet:\n%s", task.toString());
     }
 
     /**
@@ -45,7 +42,7 @@ public class Ui {
      * @return message
      */
     public String bye() {
-        return "Bye!";
+        return "Bye Jim!";
     }
 
     /**
@@ -67,7 +64,8 @@ public class Ui {
      * @return message
      */
     public String taskDeleted(Task task, TaskList taskList) {
-        return String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list", task.toString(), taskList.size());
+        return String.format("Noted Jim. I've removed this task:\n%s\nNow you have %d tasks in the list",
+                task.toString(), taskList.size());
     }
 
     /**

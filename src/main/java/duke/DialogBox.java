@@ -63,7 +63,7 @@ public class DialogBox extends HBox {
      *
      * @param text
      * @param img
-     * * @return duke's DialogBox
+     * @return duke's DialogBox
      */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);

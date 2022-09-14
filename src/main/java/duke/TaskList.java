@@ -25,7 +25,7 @@ public class TaskList {
     public void addTask(Task task) {
         int oldSize = this.size();
         this.tasks.add(task);
-        assert oldSize == this.size()-1;
+        assert oldSize == this.size() - 1;
     }
 
     /**
@@ -55,7 +55,7 @@ public class TaskList {
     public void remove(int index) {
         int oldSize = this.size();
         this.tasks.remove(index);
-        assert oldSize == this.size()+1;
+        assert oldSize == this.size() + 1;
     }
 
     /**

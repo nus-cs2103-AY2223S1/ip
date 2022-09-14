@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Class which encapsulates a task which has a deadline.
@@ -16,10 +17,9 @@ public class Deadline extends Task {
      * @param name
      * @param deadline
      */
-    public Deadline(String name, String deadline) {
+    public Deadline(String name, String deadline) throws DateTimeParseException {
         super(name);
         this.deadline = LocalDate.parse(deadline);
-        ;
     }
 
     /**
@@ -29,7 +29,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D]" + super.toString() + " (by: "
+                + this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     /**

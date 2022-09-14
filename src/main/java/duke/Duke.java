@@ -12,16 +12,6 @@ public class Duke {
     private Parser parser;
 
     /**
-     * Gets a response from the Duke bot
-     *
-     * @param input
-     * @return response String
-     */
-    public String getResponse(String input) {
-        return this.parser.parse(input, this.ui, this.taskList, this.storage);
-    }
-
-    /**
      * The constructor of the Duke class.
      *
      */
@@ -31,6 +21,16 @@ public class Duke {
         this.storage.load(this.taskList);
         this.ui = new Ui();
         this.parser = new Parser();
+    }
+
+    /**
+     * Gets a response from the Duke bot
+     *
+     * @param input
+     * @return response String
+     */
+    public String getResponse(String input) {
+        return this.parser.parse(input, this.ui, this.taskList, this.storage);
     }
 
     /**

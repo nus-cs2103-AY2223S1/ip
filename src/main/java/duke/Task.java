@@ -38,7 +38,7 @@ public abstract class Task implements Comparable<Task> {
      * @return String representation of the Task
      */
     public String toString() {
-        return "[" + this.getStatusIcon() +"] " + this.name;
+        return "[" + this.getStatusIcon() + "] " + this.name;
     }
 
     /**

@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Encapsulates a Task which has a duration.
@@ -16,7 +17,7 @@ public class Event extends Task {
      * @param name
      * @param duration
      */
-    public Event(String name, String duration) {
+    public Event(String name, String duration) throws DateTimeParseException {
         super(name);
         this.duration = LocalDate.parse(duration);
     }
@@ -28,7 +29,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.duration.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[E]" + super.toString() + " (at: "
+                + this.duration.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     /**

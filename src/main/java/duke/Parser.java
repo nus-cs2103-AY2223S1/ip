@@ -1,7 +1,6 @@
 package duke;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Class which parses commands and executes code based off the commands.
@@ -95,8 +94,16 @@ public class Parser {
      */
     public String executeDeadline(String fullCommand, TaskList taskList, Ui ui) {
         String[] deadlineSplit = fullCommand.split(" /by ");
+        if (deadlineSplit.length != 2) {
+            return new InvalidDeadlineException().toString();
+        }
         String date = deadlineSplit[1];
-        Deadline deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), date);
+        Deadline deadline;
+        try {
+            deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), date);
+        } catch (DateTimeParseException e) {
+            return new DateNotRecognisedException().toString();
+        }
         taskList.addTask(deadline);
         return ui.taskAdded(deadline, taskList);
     }
@@ -111,8 +118,16 @@ public class Parser {
      */
     public String executeEvent(String fullCommand, TaskList taskList, Ui ui) {
         String[] eventSplit = fullCommand.split(" /at ");
+        if (eventSplit.length != 2) {
+            return new InvalidEventException().toString();
+        }
         String date = eventSplit[1];
-        Event event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), date);
+        Event event;
+        try {
+            event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), date);
+        } catch (DateTimeParseException e) {
+            return new DateNotRecognisedException().toString();
+        }
         taskList.addTask(event);
         return ui.taskAdded(event, taskList);
     }
