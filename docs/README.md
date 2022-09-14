@@ -5,9 +5,13 @@ DukeTasks is a desktop app for managing tasks, optimized for use via a Command L
 # Quick Start
 
 1) Ensure you have Java 11 or above installed in your Computer
+
 2) Download the latest `duke.jar` from [here](https://github.com/jsincorporated/ip/releases).
+
 3) Copy file to the folder you want to use as the home folder for your DukeTasks.
+
 4) Double-click the file to start the app.
+
 5) Begin you DukeTasks adventure!
 
 ## Features 
