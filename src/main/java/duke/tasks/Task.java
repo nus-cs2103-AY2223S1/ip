@@ -4,69 +4,75 @@ import duke.functions.Ui;
 
 /**
  * Task class for tasks that users input into the Duke bot.
+ *
  * @author lauralee
  */
 public class Task {
+
     private String name;
     private String type;
+
+    // Status of a task. The status of the task will be 0 when the task is unamrked and 1 when it is marked.
     private int status;
-    public static int numberTasks = 0;
-    private String description;
+    private static int NUMBER_TASKS = 0;
 
     /**
      * Constructor for the Task class.
-     * @param name Name of the Task being added.
+     *
+     * @param name Description of the Task being added.
      * @param type Type of the Task being added, i.e. T, E or D.
      */
     public Task(String name, String type) {
         this.name = name;
         this.type = type;
         this.status = 0;
-        numberTasks++;
+        NUMBER_TASKS++;
     }
 
     /**
      * Overloaded constructor for Task class.
-     * @param description Description of the Task being added.
+     *
+     * @param name Description of the Task being added.
      */
-    public Task(String description) {
-        this.description = description;
+    public Task(String name) {
+        this.name = name;
     }
 
     /**
      * Marks a Task.
      */
-    public void mark() {
+    public String mark() {
         this.status = 1;
-        Ui.printMark(this.type, this.name);
+        return Ui.printMark(this.type, this.name);
     }
 
     /**
      * Unmarks a Task.
      */
-    public void unMark() {
+    public String unMark() {
         this.status = 0;
-        Ui.printUnmark(this.type, this.name);
+        return Ui.printUnmark(this.type, this.name);
     }
 
     /**
      * Indicates the numbers of Tasks that has been added by the user.
+     *
      * @return The number of Tasks that has been added by the user.
      */
     public static int getNumberTasks() {
-        return numberTasks;
+        return NUMBER_TASKS;
     }
 
     /**
-     * The status of the task, whether it has been marked or not.
-     * @return A 0 if the Task is unmarked, and 1 if the Task has been marked.
+     * Decrements the number of tasks by 1 when a task is deleted from the list.
      */
-    public int getStatus() {
-        return status;
+    public static void deleteTask(){
+        NUMBER_TASKS--;
     }
 
     /**
      * The description of the Task added including its type, name and when it needs to be completed by.
+     *
      * @return The description of a Task.
      */
     public String output() {

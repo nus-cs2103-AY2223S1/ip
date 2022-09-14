@@ -1,4 +1,4 @@
-package duke.GUI;
+package duke.gui;
 
 import duke.Duke;
 
@@ -19,6 +19,7 @@ public class Main extends Application {
 
     /**
      * Returns the instance of the duke class created when Main is run.
+     *
      * @return The instance of the duke class created when Main is run.
      */
     public static Duke getDuke() {

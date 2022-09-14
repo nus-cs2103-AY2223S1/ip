@@ -7,11 +7,16 @@ import java.io.IOException;
 import java.util.Scanner;
 import duke.tasks.Task;
 
-
+/**
+ * Class which handles storage of task lists created by users.
+ *
+ * @author lauralee
+ */
 public class Storage {
 
     /**
      * Constructor for storage class which initiates file saving process to store user input.
+     *
      * @param taskList
      * @param filePath
      */
@@ -49,7 +54,7 @@ public class Storage {
     }
 
     /**
-     * Prints all tasks in the file with the specified file path as a string
+     * Prints all tasks in the file with the specified file path as a string.
      *
      * @param filePath The file path containing the file which in turn contains the list
      *                 of tasks the user wants to retrieve.
@@ -65,6 +70,7 @@ public class Storage {
 
     /**
      * Loads a Tasklist stored in a specific file path by a previous user into the Duke bot.
+     *
      * @param filePath The filepath in which the previous user stored their task list.
      * @throws FileNotFoundException
      */
