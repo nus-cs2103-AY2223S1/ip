@@ -18,5 +18,5 @@ text-ui-test/EXPECTED-UNIX.TXT
 src/main/dobbyList.txt
 src/main/test.txt
 
-data
+dobbyData
 testGFMD.md

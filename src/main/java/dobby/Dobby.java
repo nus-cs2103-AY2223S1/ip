@@ -14,7 +14,7 @@ import dobby.commands.Command;
 public class Dobby {
     private static String filePath;
     private static DobbyList dobbyList;
-    private static String defaultFilePath = "./data/dobbyList.txt";
+    private static String defaultFilePath = "./dobbyData/dobbyList.txt";
     private UserInput ui;
     private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
