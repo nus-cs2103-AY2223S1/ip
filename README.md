@@ -150,7 +150,7 @@ Alright this task has been marked as undone.
 [D][ ] assignment 1 (by: Aug 12 2022 1800)
 ```
 
-## delete` - Deletes a task
+## `delete` - Deletes a task
 Deletes the specified task.
 
 Format: `delete <task number>`
@@ -211,7 +211,7 @@ Changed this task's priority: [T][ ] homework Priority: high
 Changed this task's priority: [T][ ] homework
 ```
 
-## Exit program: `bye`
+## `bye` - Exits the program
 Exits the program
 
 Format: `bye`
