@@ -152,7 +152,7 @@ This task has been marked as done
 
 But if a mark task is marked the following output is displayed.
 
-```aidl
+```
 Error found: You do already still wanna do 
 again? :|
 ```
@@ -182,7 +182,7 @@ This task has been marked as done
 
 But if a unmark task is unmarked the following output is displayed.
 
-```aidl
+```
 Error found: How to unmark? You haven't even 
 do yet...
 ```
@@ -204,7 +204,7 @@ Expected output:
 Shows the info of the task deleted and the
 number of remaining tasks.
 
-```aidl
+```
 Task has been successfully deleted.
 [T][ ] Team meeting
 2 tasks remaining
@@ -226,7 +226,7 @@ tag 1 important work
 Expected out:
 Tags the back of a task with the INFO behind a #. It 
 will wrap to the next line if the task info is too long.
-```aidl
+```
 Tag added successfully
 [D][ ] 2103T ip (by: SEPTEMBER 16 2022 FRIDAY)
 #important work
@@ -240,7 +240,7 @@ Parameters:
 - `KEYWORD: find tasks that has this keyword in their desciption or tags`
 
 Sample input:
-```aidl
+```
 find 2103T
 ```
 
@@ -248,7 +248,7 @@ Expected output:
 
 Finds and list all tasks with the keyword provided.
 
-```aidl
+```
 1 task found 
 [D][ ] 2103T ip (by: SEPTEMBER 16 2022 FRIDAY
 #important work
@@ -256,7 +256,7 @@ Finds and list all tasks with the keyword provided.
 
 If no tasks found with the keyword Blink will output:
 
-```aidl
+```
 No tasks found with the keyword: 2103t
 ```
 
@@ -269,7 +269,7 @@ Parameters:
    date format YYYY-MM-DD`
 
 Sample input:
-```aidl
+```
 filter 2022-09-16
 ```
 
@@ -285,7 +285,7 @@ work with  `Deadline` and `Event` tasks.
 
 If there is no task on that specified date the output will be:
 
-```aidl
+```
 No task found on 2022-09-16
 ```
 
