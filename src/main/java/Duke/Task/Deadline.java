@@ -3,6 +3,10 @@ package Duke.Task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Deadline object that allows users to set a date and time as a deadline for the
+ * Task to be completed.
+ */
 public class Deadline extends Task {
 
     private static final String SHORTHAND = "D";
@@ -19,12 +23,18 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String getStorageString() {
         String parentStorageString = super.getStorageString();
         return String.format("%s|%s", parentStorageString, getByStorage());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String toString() {
         String parStr = super.toString();

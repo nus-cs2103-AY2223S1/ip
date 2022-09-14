@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents the interface that the user interacts with.
+ */
 public class Ui {
     private static final String TAB = "    ";
     private static final String LINE = String
@@ -26,39 +29,75 @@ public class Ui {
     // scanner
     private final Scanner sc = new Scanner(System.in);
 
+    /**
+     * Prints the welcome message when the user first starts the application.
+     */
     public void printWelcome() {
         prettyPrint(WELCOME_MESSAGE);
     }
 
+    /**
+     *  Prints the goodbye message when the user closes the program.
+     */
     public void printGoodbye() {
         sc.close();
         prettyPrint(GOODBYE_MESSAGE);
     }
 
+    /**
+     * Prints error messages when an exception is thrown and passed back to the parser.
+     *
+     * @param e The exception passed to the parser.
+     */
     public void printException(Exception e) {
         prettyPrint(String.format("%s: %s", ERROR_PREFIX, e.toString()));
     }
 
+    /**
+     * Prints a task after it has been successfully created.
+     *
+     * @param task A successfully created task.
+     */
     public void printTaskCreated(Task task) {
         String taskStr = task.toString();
         prettyPrint(String.format("%s\n%s %s", CREATE_MESSAGE, TAB,  taskStr));
     }
 
+    /**
+     * Prints a task after it has been successfully marked as complete.
+     *
+     * @param task A successfully marked task.
+     */
     public void printTaskMarked(Task task) {
         String taskStr = task.toString();
         prettyPrint(String.format("%s\n%s %s", MARK_MESSAGE, TAB, taskStr));
     }
 
+    /**
+     * Prints a task after it has been successfully marked as incomplete.
+     *
+     * @param task A successfully unmarked task.
+     */
     public void printTaskUnmarked(Task task) {
         String taskStr = task.toString();
         prettyPrint(String.format("%s\n%s %s", UNMARK_MESSAGE, TAB, taskStr));
     }
 
+    /**
+     * Prints a task after it has been successfully deleted.
+     *
+     * @param task A successfully deleted task.
+     */
     public void printTaskDeleted(Task task) {
         String taskStr = task.toString();
         prettyPrint(String.format("%s\n%s %s", DELETE_MESSAGE, TAB,  taskStr));
     }
 
+    /**
+     * Prints out the entire list of tasks stored in the taskList.
+     *
+     * @param taskList The object that stores all the user's tasks.
+     */
     public void printAll(TaskList taskList) {
         List<Task> taskArrayList = taskList.getTaskList();
         List<String> printables = new ArrayList<>();
@@ -95,10 +134,20 @@ public class Ui {
         prettyPrint(printable);
     }
 
+    /**
+     * Retrieves the next word that the user keys into the application.
+     *
+     * @return The next user inputted word.
+     */
     public String getNext() {
         return sc.next();
     }
 
+    /**
+     * Retrieves the next line of text that the user keys into the application.
+     *
+     * @return The next user inputted line.
+     */
     public String getNextLine() {
         return sc.nextLine();
     }

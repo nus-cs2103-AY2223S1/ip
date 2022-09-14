@@ -3,6 +3,9 @@ package Duke.Task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an Event object that allows users to specify the date and time of the Task.
+ */
 public class Event extends Task {
 
     private static final String SHORTHAND = "E";
@@ -19,12 +22,18 @@ public class Event extends Task {
         this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT));
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String getStorageString() {
         String parentStorageString = super.getStorageString();
         return String.format("%s|%s", parentStorageString, getAtStorage());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String toString() {
         String parStr = super.toString();
