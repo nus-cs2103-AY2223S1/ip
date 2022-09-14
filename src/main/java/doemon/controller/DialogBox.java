@@ -16,8 +16,8 @@ import javafx.scene.layout.HBox;
 
 /**
  * An example of a custom control using FXML.
- * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
- * containing text from the speaker.
+ * This control represents a dialog box consisting of an ImageView to represent
+ * the speaker's face and a label containing text from the speaker.
  */
 public class DialogBox extends HBox {
     @FXML
@@ -25,6 +25,12 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructor for DialogBox
+     *
+     * @param text Text to be displayed.
+     * @param img Image to be displayed.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -49,10 +55,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns the user dialog box.
+     *
+     * @param text Text to be displayed
+     * @param img Image to be displayed
+     * @return Instance of DialogBox with specified text and image.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns the doemon chat bot dialog box.
+     *
+     * @param text Text to be displayed
+     * @param img Image to be displayed
+     * @return Instance of DialogBox with specified text and image.
+     */
     public static DialogBox getDoemonDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

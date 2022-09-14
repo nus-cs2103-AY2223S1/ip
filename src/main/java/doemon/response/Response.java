@@ -1,25 +1,28 @@
 package doemon.response;
 
+import java.util.ArrayList;
+
 import doemon.exception.DoemonException;
 import doemon.task.Task;
 import doemon.task.TaskList;
 
-import java.util.ArrayList;
-
+/**
+ * Handles Doemon chat bot message displays.
+ */
 public class Response {
     /**
      * Text art of Doemon.
      */
     private static final String logo =
-            "                       _______________\n" +
-                    "                      /  --. --.      \\ \n" +
-                    "                     /  | '| ' |   \\   \\ \n" +
-                    "                    / /  `-O--'     \\   \\ \n" +
-                    "                   |.  --  |  --     |   |\n" +
-                    "                   |  --   |  --     |   |\n" +
-                    "                    \\  (___|_______) /  /\n" +
-                    "                     \\              /  /\n" +
-                    "                       |== (t) ===|____";
+            "                       _______________\n"
+            + "                      /  --. --.      \\ \n"
+            + "                     /  | '| ' |   \\   \\ \n"
+            + "                    / /  `-O--'     \\   \\ \n"
+            + "                   |.  --  |  --     |   |\n"
+            + "                   |  --   |  --     |   |\n"
+            + "                    \\  (___|_______) /  /\n"
+            + "                     \\              /  /\n"
+            + "                       |== (t) ===|____";
     /**
      * Introduction string that is printed when Doemon is started.
      */
@@ -46,7 +49,7 @@ public class Response {
      */
     public String taskListString(TaskList tasks) {
         if (tasks.getSize() == 0) {
-            return  "You have no tasks!";
+            return "You have no tasks!";
         }
         StringBuilder listStringBuilder = new StringBuilder("Here is what's on my bread:\n\t");
         for (int i = 1; i <= tasks.getSize(); i++) {
@@ -67,8 +70,8 @@ public class Response {
      */
     public String addTaskString(Task task, int numTasks) {
         return String.format(
-                "Alright! I have recorded this task on my bread:\n\t" +
-                        "  %s\n\tYou now have %d task(s) recorded on my bread.",
+                "Alright! I have recorded this task on my bread:\n\t"
+                + "  %s\n\tYou now have %d task(s) recorded on my bread.",
                 task.toString(),
                 numTasks);
     }

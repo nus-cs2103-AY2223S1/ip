@@ -12,9 +12,6 @@ import doemon.task.TaskList;
  * Doemon chat bot and task manager.
  */
 public class Doemon {
-    /** The file path of the file where tasks will be saved to. */
-    private static final String TASK_FILE_PATH = "./data/duke.txt";
-
     /** The storage instance used to load and save tasks to data file. */
     private Storage storage;
     /** List of tasks. */
