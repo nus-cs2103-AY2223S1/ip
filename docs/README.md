@@ -130,13 +130,13 @@ OK, I've marked this task as not done yet:
 ### Sorting the list of tasks: `sort`
 
 Sorts the task chronologically or reverse chronologically, based on task's dates. 
-> Todos are set as earliest in terms of dates.
+> `todo`s are set as earliest in terms of dates.
 
 Format: `sort Chrono` or `sort rChrono`
 
 Example of usage:
 ```
-sort Chrono
+sort Chrono // sorts the tasks in chronological order (earlier dates to latest)
 list
 ```
 
@@ -151,10 +151,6 @@ Here are the tasks in your list:
 2.[E][ ] Play Badminton (at: Sep 1 2022)
 3.[D][ ] Submit Project (by: Sep 16 2022)
 ```
-
-Examples:
-- `sort Chrono` sorts the tasks in chronological order (earlier dates to latest).
-- `sort rChrono` sorts the tasks in reverse chronological order (later dates to earliest).
 
 ### Searching for tasks: `find`
 
