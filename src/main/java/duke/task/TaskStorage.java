@@ -1,4 +1,4 @@
-package Duke.task;
+package duke.task;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Duke.DukeException;
+import duke.DukeException;
 
 /**
  * Represents the class responsible for saving and

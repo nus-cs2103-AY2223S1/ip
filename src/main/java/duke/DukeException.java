@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 /**
  * Exceptions that are specific to Duke chat-bot

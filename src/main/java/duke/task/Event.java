@@ -1,10 +1,10 @@
-package Duke.task;
+package duke.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import Duke.DukeException;
-import Duke.util.DukeDate;
+import duke.DukeException;
+import duke.util.DukeDate;
 
 /**
  * Duke.Duke.task.task.Event class inherits from Task
