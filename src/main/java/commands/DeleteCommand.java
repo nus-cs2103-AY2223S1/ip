@@ -19,14 +19,14 @@ public class DeleteCommand implements Command {
         String line = parser.getLine();
 
         if (line.length() <= 7) {
-            throw new DukeException("OOPS!!! Please enter a number after delete");
+            throw new DukeException("Oops! Please enter a number after delete");
         }
         int index = Integer.parseInt(line.replaceAll("[^0-9]", ""));
         if (index > taskList.size() || index < 0) {
-            throw new DukeException("OOPS!!! Invalid number to delete");
+            throw new DukeException("Oops! Invalid number to delete");
         }
         Ui.showLine();
-        Ui.show("\tNoted. I've removed this task:");
+        Ui.show("\tNoted boss! I've removed this task:");
         Ui.show("\t\t" + taskList.get(index - 1));
         taskList.remove(index - 1);
         Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");

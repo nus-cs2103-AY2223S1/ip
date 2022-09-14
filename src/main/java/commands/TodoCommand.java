@@ -14,12 +14,12 @@ public class TodoCommand implements Command {
         TaskList taskList = parser.getTaskList();
         String line = parser.getLine();
         if (line.length() <= 5) {
-            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("Oops! The description of a todo cannot be empty.");
         }
         Todo todo = new Todo(line.replace("todo ", ""));
         taskList.add(todo);
         Ui.showLine();
-        Ui.show("\tGot it. I've added this task:");
+        Ui.show("\tGot it bossman. I've added this task:");
         Ui.show("\t\t" + todo);
         Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
         Ui.showLine();

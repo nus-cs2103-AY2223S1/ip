@@ -17,11 +17,11 @@ public class DeadlineCommand implements Command {
         String line = parser.getLine();
 
         if (line.length() <= 9) {
-            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
+            throw new DukeException("Oops! The description of a deadline cannot be empty.");
         }
         int idxOfBy = line.indexOf("/by");
         if (idxOfBy == -1) {
-            throw new DukeException("OOPS!!! The description of a deadline must include /by");
+            throw new DukeException("Oops! The description of a deadline must include /by");
         }
         try {
             new Deadline(line.substring(9, idxOfBy), line.substring(idxOfBy + 4));
@@ -31,7 +31,7 @@ public class DeadlineCommand implements Command {
         Deadline deadline = new Deadline(line.substring(9, idxOfBy), line.substring(idxOfBy + 4));
         taskList.add(deadline);
         Ui.showLine();
-        Ui.show("\tGot it. I've added this task:");
+        Ui.show("\tGot it boss. I've added this task:");
         Ui.show("\t\t" + deadline);
         Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
         Ui.showLine();

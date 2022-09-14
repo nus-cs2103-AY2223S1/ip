@@ -13,7 +13,7 @@ public class ListCommand implements Command {
     @Override
     public void execute(Parser parser) {
         Ui.showLine();
-        System.out.println("\tHere are the tasks in your list:");
+        System.out.println("\tHere are the tasks in your list, boss:");
         parser.getTaskList().showList();
         Ui.showLine();
     }

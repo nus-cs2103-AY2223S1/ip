@@ -16,16 +16,16 @@ public class EventCommand implements Command {
         String line = parser.getLine();
 
         if (line.length() <= 6) {
-            throw new DukeException("OOPS!!! The description of a event cannot be empty.");
+            throw new DukeException("Oops! The description of a event cannot be empty.");
         }
         int idxOfAt = line.indexOf("/at");
         if (idxOfAt == -1) {
-            throw new DukeException("OOPS!!! The description of a event must include /at");
+            throw new DukeException("Oops! The description of a event must include /at");
         }
         Event event = new Event(line.substring(6, idxOfAt), line.substring(idxOfAt + 4));
         taskList.add(event);
         Ui.showLine();
-        Ui.show("\tGot it. I've added this task:");
+        Ui.show("\tGot it boss... I've added this task:");
         Ui.show("\t\t" + event);
         Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
         Ui.showLine();

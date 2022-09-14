@@ -71,7 +71,7 @@ public class Parser {
         } else if (line.startsWith("find")) {
             new FindCommand().execute(this);
         } else {
-            Ui.show("OOPS!!! I'm sorry, but I don't know that that means :(");
+            Ui.show("Oops! I'm sorry, but I don't know that that means. Please enter another command!");
         }
         return consoleRecorder.stopAndReturn();
     }

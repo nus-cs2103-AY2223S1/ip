@@ -18,10 +18,10 @@ public class UnmarkCommand implements Command {
         TaskList taskList = parser.getTaskList();
         String line = parser.getLine();
         if (taskList.isEmpty()) {
-            throw new DukeException("OOPS!!! Cannot unmark when list is empty");
+            throw new DukeException("Oops! Cannot unmark when list is empty");
         }
         if (line.length() <= 7) {
-            throw new DukeException("OOPS!!! Please enter a number after unmark");
+            throw new DukeException("Oops! Please enter a number after unmark");
         }
         int index = Integer.parseInt(line.replaceAll("[^0-9]", ""));
         taskList.get(index - 1).markAsUndone();

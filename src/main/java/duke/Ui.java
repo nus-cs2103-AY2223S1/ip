@@ -4,14 +4,14 @@ package duke;
  * Ui is a class that deals with handling console outputs.
  */
 public class Ui {
-    final static String DIVIDER_LINE = "\t-----------------------------------------------";
+    final static String DIVIDER_LINE = "\t-------------------------------------------";
 
     /**
      * Prints a welcome message to the console.
      */
     public static void showWelcome() {
         showLine();
-        System.out.println("\tHello! I'm duke.Duke Dukem\n\tWhat can I do for you?");
+        System.out.println("\tHello! I'm Du-Kopi.\n\tWhat can I do for you?");
         showLine();
     }
 
@@ -20,7 +20,7 @@ public class Ui {
      */
     public static void showGoodbye() {
         showLine();
-        System.out.println("\tBye. Hope to see you again soon!");
+        System.out.println("\tBye. Hope to teh-See you again soon!");
         showLine();
     }
 

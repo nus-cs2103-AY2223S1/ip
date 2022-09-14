@@ -1,6 +1,2 @@
-[T][X] read book
-[D][ ] return book (by: Jun 06 2022)
-[E][ ] project meeting (at: zzz)
 [T][X] join sports club
-[T][ ] borrow book
-[T][ ] hello
+[D][ ] return book (by: Oct 16 2022)

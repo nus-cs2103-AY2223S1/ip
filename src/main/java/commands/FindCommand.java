@@ -18,7 +18,7 @@ public class FindCommand implements Command {
         String line = parser.getLine();
 
         if (line.length() < 5) {
-            throw new DukeException("Please enter a term to find!");
+            throw new DukeException("Please enter a term to find boss!");
         }
         String term = line.substring(5);
         TaskList res = taskList.find(term);
