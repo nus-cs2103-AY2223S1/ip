@@ -42,21 +42,21 @@ e.g. in `todo {description}` , `{description}` is a parameter which can be used 
   
 
 ### Viewing help: `help`
-Displays a list of avaible commands with examples. <br>
+Displays a list of avaible commands. <br>
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_1.png?raw=true" alt="AdoHelp1"/>
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_help_2.png?raw=true" alt="AdoHelp2p"/> <br>
 Format: `help` **or** click on the `?` icon beside the send button
--  ❗ Upon clicking the `?` icon, you are required to close the Help window before continuing your chat with Ado
+-  ❗ Upon clicking the `?` icon, you are required to **close** the help window before continuing your chat with Ado
 
 ### Adding a todo task: `todo`
 Adds a todo task to the task list. <br>
 Format: `todo {description}` <br>
-Exmaple: `todo buy groceries`
+Example: `todo buy groceries`
 
 ### Adding a deadline task: `deadline`
 Adds a deadline task to the task list. <br>
 Format: `deadline {description} /by {dd MMM yyyy}` <br>
-Exmaple: `deadline presentation /by 15 Sep 2022`
+Example: `deadline presentation /by 15 Sep 2022`
 
 ### Adding an event task: `event`
 Adds a deadline task to the task list. <br>
@@ -72,7 +72,7 @@ Expected outcome:
 [X] Yay! You've completed a task!
 [E][X] Team meeting (at: 22 Sep 2022 19:30)
 ```
-`[X]` indicates a completed task
+💡 `[X]` indicates a completed task
 
 ### Unmarking a task: `unmark`
 Unmarks a task in the list as incompleted.<br>
@@ -83,7 +83,7 @@ Expected outcome:
 [ ] I've marked this task as not done yet
 [T][ ] Feed cat
 ```
-`[ ]` indicates a incompleted task
+💡 `[ ]` indicates a incompleted task
 
 ### Deleting a task: `delete`
 Deletes a task from the task list.<br>
