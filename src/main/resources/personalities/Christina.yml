@@ -1,0 +1,69 @@
+bye:
+  HEAD:
+    - "Goodbye! It was nice seeing you.\n"
+  TAIL:
+    - "Press enter to exit!\n"
+
+list_task:
+  HEAD:
+    - "I have your list of tasks displayed below:\n"
+  TAIL:
+    - ""
+list_task_empty:
+  HEAD:
+    - "You have no tasks in your list.\n"
+  TAIL:
+    - ""
+
+add_task:
+  HEAD:
+    - "> Added: "
+  TAIL:
+    - ""
+
+mark_task_success:
+  HEAD:
+    - "I've marked this task as done. Good Job!\n"
+  TAIL:
+    - ""
+mark_task_fail:
+  HEAD:
+    - "The task is already marked you dummy.\n"
+  TAIL:
+    - ""
+unmark_task_success:
+  HEAD:
+    - "The task has been unmarked.\n"
+  TAIL:
+    - ""
+unmark_task_fail:
+  HEAD:
+    - "The task is still not done you idiot.\n"
+  TAIL:
+    - ""
+
+delete_task:
+  HEAD:
+    - "The following item has been removed.\n"
+  BODY:
+    - "You have "
+  TAIL:
+    - " item(s) remaining.\n"
+
+find_task:
+  HEAD:
+    - "I have the matching tasks displayed below:\n"
+  TAIL:
+    - ""
+find_task_empty:
+  HEAD:
+    - "You have no tasks in your list with the keyword \""
+  TAIL:
+    - "\".\n"
+
+
+update_task:
+  HEAD:
+    - "The following item has been updated.\n"
+  TAIL:
+    - "\n"
