@@ -16,6 +16,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
@@ -43,6 +46,7 @@ public class DialogBox extends HBox {
         assert (dialog != null) : "dialog is not null";
         this.setBackground(new Background(new BackgroundFill(Color.BEIGE, null , null)));
         dialog.setText(text);
+        dialog.setFont(Font.font("Garamond", 15));
         displayPicture.setImage(img);
         displayPicture.setClip(circle);
     }
