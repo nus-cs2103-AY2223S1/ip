@@ -11,8 +11,8 @@ import duke.task.TaskList;
  */
 public class Ui {
     private enum Divider {
-        THICK_DIVIDER("=============================================="),
-        THIN_DIVIDER("-----------------------------------------------");
+        THICK_DIVIDER("====================================="),
+        THIN_DIVIDER("--------------------------------------");
 
         private String divider;
 
@@ -41,11 +41,11 @@ public class Ui {
      * Returns the greeting message when the application is launched.
      */
     public String greetingMessage() {
-        String logo = "    __                    \n"
-                + ".--|  |.-----.-----.-----.\n"
-                + "|  _  ||  _  |  _  |  -___|__\n"
-                + "|_____||_____|__   |________|\n"
-                + "            |______|      \n";
+        String logo = "         __                    \n"
+                + ".------|  |.--------.--------.----------.\n"
+                + "|    _    ||    _    |    _    |    -___|_____\n"
+                + "|_____||_____|__      |___________|\n"
+                + "               |_________|      \n";
         String greeting = "Henlo! I'm \n" + addBetweenDividers(Divider.THICK_DIVIDER, logo) + "How may I assist you?";
         return greeting;
     }
