@@ -16,8 +16,9 @@ import task.TaskList;
 import task.Todo;
 
 
-
-
+/**
+ * Storage class that stores the TaskList of tasks.
+ */
 public class Storage {
 
     private int size = 0;
@@ -60,6 +61,10 @@ public class Storage {
         return arr;
     }
 
+    /**
+     * Returns the string format of text from text file.
+     * @return The string format of text from text file.
+     */
     public String printOutContent() {
         String out = "";
         try {
@@ -74,6 +79,12 @@ public class Storage {
         return out;
     }
 
+    /**
+     * Checks what type of tasks the Task is and also if the Task is Marked.
+     * @param str The String representation of the Task.
+     * @param arr The TaskList to add the task to.
+     * @throws StringIndexOutOfBoundsException
+     */
     private static void checkTask(String str, TaskList arr) throws StringIndexOutOfBoundsException {
         System.out.println("checking task");
         //check what task
@@ -109,22 +120,47 @@ public class Storage {
         }
     }
 
+    /**
+     * Check if is a Todo Task.
+     * @param task The String representation of the task.
+     * @return True if is a Todo Task.
+     */
     private static Boolean isTodo(String task) {
         return task.equals("T");
     }
 
+    /**
+     * Check if is a Event Task.
+     * @param task The String representation of the task.
+     * @return True if is a Event Task.
+     */
     private static Boolean isEvent(String task) {
         return task.equals("E");
     }
 
+    /**
+     * Check if is a Deadline Task.
+     * @param task The String representation of the task.
+     * @return True if is a DeadLine Task.
+     */
     private static Boolean isDeadline(String task) {
         return task.equals("D");
     }
 
+    /**
+     * Adds a task to the TaskList without marking the Task.
+     * @param task Task to be added to TaskList.
+     * @param arr The TaskList to add the Task.
+     */
     private static void addTaskWithoutMark(Task task, TaskList arr) {
         arr.addStart(task);
     }
 
+    /**
+     * Adds a task to the TaskList after marking the Task.
+     * @param task Task to be added to TaskList.
+     * @param arr The TaskList to add the Task.
+     */
     private static void addTaskWithMark(Task task, TaskList arr) {
         task.mark();
         arr.addStart(task);

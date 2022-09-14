@@ -16,6 +16,11 @@ public class Task {
         this.splitDesscription = description.split(" ");
     }
 
+    /**
+     * Checks if the Task has a specific word.
+     * @param word The word to check.
+     * @return True if the Task contains the word.
+     */
     public Boolean hasWord(String word) {
         for (String str : splitDesscription) {
             if (str.equals(word)) {

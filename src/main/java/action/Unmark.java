@@ -2,10 +2,21 @@ package action;
 
 
 import duke.DukeException;
+
 import task.TaskList;
 
+
+/**
+ * A class that marks a Task done.
+ */
 public class Unmark {
 
+    /**
+     * UnMarks a Task done specified by user input.
+     * @param str UserInput that contains which index of Task to unMark.
+     * @param taskList The TaskList to unMark the Task from.
+     * @return The system reply for which Task has been unmarked.
+     */
     public static String unMark(String[] str, TaskList taskList) throws DukeException {
         try {
             taskList.getTaskList().get(Integer.parseInt(str[1]) - 1).unMark();

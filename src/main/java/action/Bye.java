@@ -1,14 +1,19 @@
 package action;
 
-import reminder.Reminder;
-import task.Task;
-import task.TaskList;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import reminder.Reminder;
+
+import task.Task;
+import task.TaskList;
+
+
+/**
+ * Bye is a class that writes all the tasks from the tasklist to duke.txt.
+ */
 public class Bye {
 
     public static String bye(String[] str, TaskList taskList, File file) {
@@ -24,9 +29,7 @@ public class Bye {
         try {
             FileWriter writer = new FileWriter(file.getPath());
             for (Task t : listOfActions) {
-                System.out.println(t);
                 writer.write(t.toString() + System.lineSeparator());
-                System.out.println("here?");
                 reminder.addIfReminder(t);
             }
             writer.close();

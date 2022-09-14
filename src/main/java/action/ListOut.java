@@ -2,8 +2,17 @@ package action;
 
 import task.TaskList;
 
+/**
+ * ListOut is a class that lists out all the tasks in a TaskList.
+ */
 public class ListOut {
 
+    /**
+     * List lists out all the Tasks in a TaskList.
+     * @param str The user input that contains the command to List.
+     * @param taskList The TaskList to List the task from.
+     * @return The string of list of all the Tasks.
+     */
     public static String list(String[] str, TaskList taskList) {
         if (str.length == 1) {
             StringBuilder out = new StringBuilder();

@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Enum class that contains all the possible type of user input.
+ */
 public enum Command {
 
     TODO("todo"),
@@ -19,6 +22,12 @@ public enum Command {
         this.command = command;
     }
 
+
+    /**
+     * Reads the user input and matches with the command.
+     * @param input The User input.
+     * @return The Command that matches the user input.
+     */
     public static Command read(String input) {
         for (Command c : Command.values()) {
             if (c.command.equals(input)) {

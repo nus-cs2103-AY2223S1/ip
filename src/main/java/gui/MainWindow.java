@@ -38,11 +38,11 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image reminderImage = new Image(this.getClass().getResourceAsStream("/images/DaReminder.jpg"));
 
     @FXML
-    public void initialize() throws FileNotFoundException {
+    public void initialize() {
         String welcomeMessage = ui.welcomeMessage();
-
         //data from duke.txt
         Storage dukeStorage = new Storage("data/duke.txt");
         String dukeList = dukeStorage.printOutContent();
@@ -53,7 +53,7 @@ public class MainWindow extends AnchorPane {
         if (!reminderList.equals("")) {
             //get all reminders
             String reminders = "IMPORTANT YOU HAVE THESE TASKS THIS WEEK\n" + reminderList;
-            dialogContainer.getChildren().add(DialogBox.getDukeDialog(reminders, dukeImage));
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(reminders, reminderImage));
         }
         if (!dukeList.equals("")) {
             String tasks = ui.showGotTask() + dukeList;

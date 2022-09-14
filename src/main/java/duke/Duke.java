@@ -1,14 +1,18 @@
 package duke;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+import javafx.application.Platform;
 
 import parser.Parser;
 
 import storage.Storage;
 
-import ui.UI;
-
 import task.TaskList;
 
+import ui.UI;
 
 
 /**
@@ -29,14 +33,15 @@ public class Duke {
      *
      * @param filePath the file path of stored tasks in the text file.
      */
-    public Duke(String filePath) {
+    public Duke(String filePath) throws FileNotFoundException {
+        File f = new File("data/duke.txt");
+        Scanner scanner = new Scanner(f);
+        System.out.println("duke" + scanner.hasNextLine());
         ui = new UI();
         storage = new Storage(filePath);
         try {
             this.tasks = new TaskList(storage.load());
             assert !this.tasks.getTaskList().isEmpty() : "Task should not be empty";
-            //this.tasks.printContent();
-            //ui.showGotTask();
         } catch (DukeException e) {
             ui.showNoTask();
             //does nothing but instantiate a object
@@ -45,21 +50,29 @@ public class Duke {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         new Duke("data/duke.txt");
     }
 
 
+    /**
+     * Takes in the user input and parses it to get the appropriate response from system.
+     * @param input The user input.
+     * @return The appropriate system response to the user input.
+     */
     public String getResponse(String input) {
         try {
             Parser parser = new Parser();
-            String returnOut = parser.parse(tasks, input);
+            String out = parser.parse(tasks, input);
             if (parser.isBye()) {
-                //Do nothing
+                Thread.sleep(500);
+                Platform.exit();
             }
-            return returnOut;
+            return out;
         } catch (DukeException e) {
             return ui.showInaccurateInput();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

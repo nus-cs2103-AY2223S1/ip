@@ -3,6 +3,9 @@ package task;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 
+/**
+ * Deadline task is a type of Task with a deadline.
+ */
 public class Deadline extends Task {
     protected String by;
 
@@ -13,6 +16,8 @@ public class Deadline extends Task {
     protected LocalDate date;
 
     protected String string_Time;
+
+    protected LocalDate dateUse;
 
 
     /**
@@ -27,7 +32,7 @@ public class Deadline extends Task {
         this.string_Date = dateAndTime[0];
         this.string_Time = dateAndTime[1];
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        date = LocalDate.parse(string_Date, formatter);
+        this.date = LocalDate.parse(string_Date, formatter);
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMM dd yyyy");
         output = date.format(formatter1);
     }
@@ -38,9 +43,14 @@ public class Deadline extends Task {
                 output + " " + string_Time + ")";
     }
 
+
+    /**
+     * Checks if the due date is within 7 days of current user time.
+     * @return True if due date is within 7 days of current user time.
+     */
     public boolean isDueSoon() {
         LocalDate currentDate = LocalDate.now();
         LocalDate deadLine = currentDate.plusDays(6);
-        return !date.isAfter(deadLine);
+        return (!date.isAfter(deadLine) && !date.isBefore(currentDate));
     }
 }

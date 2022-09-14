@@ -1,32 +1,37 @@
 package reminder;
 
-import task.Deadline;
-import task.Task;
-import task.TaskList;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import task.Deadline;
+import task.Task;
+import task.TaskList;
+
+
+/**
+ * Reminder class that stores all reminders.
+ */
 public class Reminder {
 
     private File file = new File("data/reminder.txt");
 
     private TaskList taskList = new TaskList();
 
+    /**
+     * Constructor to create Reminder object.
+     */
     public Reminder() {
-    }
-
-    public Reminder(TaskList taskLists) {
-        for (Task t : taskLists.getTaskList()) {
-            addIfReminder(t);
-        }
     }
 
 
     //At the end to add the Reminder tasks
 
+    /**
+     * Adds a Task to the reminder TaskList.
+     * @param task The reminder task to add to the reminder TaskList.
+     */
     public void addIfReminder(Task task) {
         if (task.getClass() == Deadline.class) {
             Deadline deadline = (Deadline) task;
@@ -36,6 +41,10 @@ public class Reminder {
         }
     }
 
+
+    /**
+     * Writes all the reminder task to reminder.txt file.
+     */
     public void writeAllReminder() {
         ArrayList<Task> listOfActions = this.taskList.getTaskList();
         try {
