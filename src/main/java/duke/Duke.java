@@ -33,7 +33,7 @@ public class Duke {
     }
 
     String helpResponse() {
-        return "Welcome to DukeHam\n\n"
+        return "Welcome to DukeSIU\n\n"
                 + "Below are all the commands that you can use\n\n"
                 + "bye: to exit the program\n\n"
                 + "list: to view all tasks currently\n\n"

@@ -40,10 +40,8 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
         displayPicture.setImage(img);
-
     }
 
     /**
@@ -58,17 +56,27 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         DialogBox db = new DialogBox(text, img);
-        // speech bubble idea adapted from Javiier-pzk
+        // @@author Bahamas20-reused
+        // Reused from Javiier-pzk
+        // Used the speech bubble format by using a dialog background
+        // and changed the colors to suit my UI
         db.dialog.setBackground(new Background(new BackgroundFill(Color.DARKGRAY,
                 new CornerRadii(10.0), new Insets(0))));
+        //@@author
         return db;
+
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        // @@author Bahamas20-reused
+        // Reused from Javiier-pzk
+        // Used the speech bubble format by using a dialog background
+        // and changed the colors to suit my UI
         db.dialog.setBackground(new Background(new BackgroundFill(Color.LIGHTCORAL,
                 new CornerRadii(10.0), new Insets(0))));
+        //@@author
         return db;
     }
 }
