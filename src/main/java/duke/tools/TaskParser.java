@@ -39,9 +39,11 @@ public class TaskParser extends Parser {
     @Override
     public Tasks getCommand() throws TaskNotFoundException {
         String command = this.keywords[0];
+
         if (!taskMap.containsKey(command)) {
             throw new TaskNotFoundException(input);
         }
+
         return taskMap.get(command);
     }
 
@@ -51,12 +53,12 @@ public class TaskParser extends Parser {
      * @throws ContentNotFoundException When user input a task command without any content.
      */
     public String getTaskInfo() throws ContentNotFoundException {
-        if (keywords.length > 1) {
-            return this.keywords[1];
-        } else {
+        if (keywords.length <= 1) {
             throw new ContentNotFoundException(
                     "Input error: no content found after task type.");
         }
+
+        return this.keywords[1];
     }
 
 }

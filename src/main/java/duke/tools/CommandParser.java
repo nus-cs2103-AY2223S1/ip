@@ -75,6 +75,7 @@ public class CommandParser extends Parser {
      * @return Word that is searched for.
      */
     public String getWord() {
+
         return this.keywords[1];
     }
 }
