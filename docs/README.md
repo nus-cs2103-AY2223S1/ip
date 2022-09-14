@@ -40,7 +40,7 @@ Ted will indicate successful addition to task list, as well as a count of all ta
 e.g.
 ```
 added to tasklist:
-[D][ ] submit homework (by: 12 Dec 2022 11:59PM)
+[D][ ] submit homework (by: 12 Dec 2022 11:59 PM)
 task count: 2
 ```
 
