@@ -48,7 +48,7 @@ public class Ui {
     }
 
     /**
-     * List the tasks.
+     * Lists the tasks.
      *
      * @param arr The array list of tasks.
      */
@@ -67,7 +67,7 @@ public class Ui {
     }
 
     /**
-     * Alert the user that task is marked.
+     * Alerts the user that task is marked.
      *
      * @param num the position of the task to be marked.
      * @param arr the array list of tasks.
@@ -78,7 +78,7 @@ public class Ui {
     }
 
     /**
-     * Alert the user that task is marked.
+     * Alerts the user that task is marked.
      *
      * @param num the position of the task to be marked.
      * @param t the task to be unmarked.
@@ -89,7 +89,7 @@ public class Ui {
     }
 
     /**
-     * Alert the user that the task is added.
+     * Alerts the user that the task is added.
      *
      * @param arr the array list of tasks.
      */
@@ -111,7 +111,7 @@ public class Ui {
     }
 
     /**
-     * List the tasks that matches the date that user specifies.
+     * Lists the tasks that matches the date that user specifies.
      *
      * @param arr the array list of tasks.
      */
@@ -129,6 +129,9 @@ public class Ui {
         reply = s;
     }
 
+    /**
+     * Allows user to know he successfully undo.
+     */
     public void sayUndo() {
         reply = "Undo successful!";
     }

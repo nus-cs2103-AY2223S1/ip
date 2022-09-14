@@ -15,7 +15,7 @@ public class Storage {
     private Formatting f = new Formatting();
 
     /**
-     * The constructor for storage.
+     * Constructs the storage.
      *
      * @param filePath the directory of the file.
      */

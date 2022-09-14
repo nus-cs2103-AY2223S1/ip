@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends DatedTask {
 
     /**
-     * A constructor for the deadline tasks.
+     * Constructs the deadline tasks.
      *
      * @param description the description of the deadline tasks.
      * @param by the date that the task has to be done by.

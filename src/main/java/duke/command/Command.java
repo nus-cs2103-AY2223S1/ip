@@ -11,7 +11,7 @@ import duke.main.Ui;
 public abstract class Command {
 
     /**
-     * Execute some command.
+     * Executes some command.
      *
      * @param tasks the list of tasks
      * @param ui the user interface

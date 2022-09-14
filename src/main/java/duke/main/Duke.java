@@ -12,7 +12,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor of Duke.
+     * Constructs Duke.
      */
     public Duke() {
         ui = new Ui();

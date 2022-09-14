@@ -8,7 +8,7 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * A constructor for the task.
+     * Constructs the task.
      *
      * @param description the description of the task.
      */

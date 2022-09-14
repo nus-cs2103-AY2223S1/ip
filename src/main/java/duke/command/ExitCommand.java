@@ -10,7 +10,7 @@ import duke.main.Ui;
 public class ExitCommand extends Command {
 
     /**
-     * Exits.
+     * Exits the program.
      *
      * @param tasks the list of tasks
      * @param ui the user interface

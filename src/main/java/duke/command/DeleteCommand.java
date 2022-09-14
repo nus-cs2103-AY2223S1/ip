@@ -13,7 +13,7 @@ public class DeleteCommand extends Command {
     private int num;
 
     /**
-     * A constructor for delete command.
+     * Constructs the delete command.
      *
      * @param i the position to delete.
      */
@@ -22,11 +22,12 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete existing task.
+     * Deletes existing task.
      *
      * @param tasks the list of tasks
      * @param ui the user interface
      * @param storage the storage
+     * @throws DukeException if command cannot be executed.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

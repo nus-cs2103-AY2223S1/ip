@@ -10,7 +10,7 @@ public class ToDoCommand extends AddCommand {
     private String description;
 
     /**
-     * A constructor for the todo command.
+     * Constructs the todo command.
      *
      * @param description the description of the task.
      */
@@ -19,7 +19,7 @@ public class ToDoCommand extends AddCommand {
     }
 
     /**
-     * Add new tasks.
+     * Adds new tasks.
      *
      * @param taskList
      */

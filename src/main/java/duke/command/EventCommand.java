@@ -16,7 +16,7 @@ public class EventCommand extends AddCommand {
     private String date;
 
     /**
-     * Constructor for the event command.
+     * Constructs the event command.
      *
      * @param description a string that describes the task.
      * @param date the date on which the event is held.
@@ -27,10 +27,11 @@ public class EventCommand extends AddCommand {
     }
 
     /**
-     * Add new tasks.
+     * Adds new tasks.
      *
      * @param taskList the list of tasks.
      * @throws DukeException If cannot be added.
+     * @throws DukeException if command cannot be executed.
      */
     @Override
     public void add(TaskList taskList) throws DukeException {

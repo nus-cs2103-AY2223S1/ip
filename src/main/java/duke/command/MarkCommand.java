@@ -12,7 +12,7 @@ public class MarkCommand extends Command {
     private int num;
 
     /**
-     * A constructor for mark command.
+     * Constructs the mark command.
      *
      * @param num the position of the task to be marked.
      */
@@ -21,11 +21,12 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Mark a particular task.
+     * Marks a particular task.
      *
      * @param tasks the list of tasks
      * @param ui the user interface
      * @param storage the storage
+     * @throws DukeException if command cannot be executed.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

@@ -1,15 +1,16 @@
 package duke.command;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.function.Predicate;
+
 import duke.main.DukeException;
 import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 import duke.task.DatedTask;
 import duke.task.Task;
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.function.Predicate;
 
 /**
  * A class for commands with date.
@@ -18,10 +19,11 @@ public class DateCommand extends Command {
     private LocalDate date;
 
     /**
-     * A constructor for Date Command.
+     * Constructs the Date Command.
      *
      * @param date the date of the task.
      * @throws DateTimeException throws exception when date is not in the right format.
+     * @throws DukeException if command cannot be executed.
      */
     public DateCommand(String date) throws DateTimeException {
         this.date = LocalDate.parse(date);

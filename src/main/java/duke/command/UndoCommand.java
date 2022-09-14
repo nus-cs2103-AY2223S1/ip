@@ -19,7 +19,7 @@ public class UndoCommand extends Command {
 
 
     /**
-     * Execute some command.
+     * Executes some command.
      *
      * @param tasks the list of tasks
      * @param ui the user interface
@@ -45,6 +45,9 @@ public class UndoCommand extends Command {
         return false;
     }
 
+    /**
+     * Deletes the last element of the history.
+     */
     public static void deleteLast() {
         history.remove(history.size() - 1);
     }

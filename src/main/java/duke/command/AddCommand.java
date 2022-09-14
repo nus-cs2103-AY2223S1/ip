@@ -11,11 +11,12 @@ import duke.main.Ui;
 public abstract class AddCommand extends Command {
 
     /**
-     * Add new task.
+     * Adds new task.
      *
      * @param tasks the list of tasks.
      * @param ui the user interface.
      * @param storage the storage.
+     * @throws DukeException if command cannot be executed.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

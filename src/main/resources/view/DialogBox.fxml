@@ -5,23 +5,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="279.0" prefWidth="533.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: 329da8329da8;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <TextFlow>
-         <children>
-              <Label fx:id="dialog" alignment="CENTER_RIGHT" prefHeight="319.0" prefWidth="188.0" style="-fx-background-color: #023d0c#023d0c;" text="Label" textAlignment="RIGHT" textFill="#d7d7d7" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Label>
-         </children>
-      </TextFlow>
-        <ImageView fx:id="displayPicture" fitHeight="53.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="dialog" maxWidth="400.0" minHeight="-Infinity" style="-fx-background-color: #255c01#255c01; -fx-background-radius: 7;" text="Label" textFill="#c7fcbe" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />

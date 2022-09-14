@@ -16,6 +16,8 @@ public class Main extends Application {
     private Duke duke = new Duke();
 
     /**
+     * Starts the program.
+     *
      * @param stage the primary stage for this application, onto which
      * the application scene can be set.
      * Applications may create other stages, if needed, but they will not be
@@ -28,6 +30,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Dude coming to your rescue");
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {

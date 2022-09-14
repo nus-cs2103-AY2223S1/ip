@@ -11,7 +11,7 @@ public class TaskList {
     private ArrayList<Task> arr;
 
     /**
-     * The constructor for Task List.
+     * Constructs the Task List.
      *
      * @param storage The storage that stores the array of task list.
      */
@@ -21,7 +21,7 @@ public class TaskList {
     }
 
     /**
-     * The constructor for Task List.
+     * Constructs the Task List.
      *
      * @param arr The ArrayList that contains the task list.
      */
@@ -58,7 +58,7 @@ public class TaskList {
     }
 
     /**
-     * Return a particular task from the array list.
+     * Returns a particular task from the array list.
      *
      * @param i the position of the task to be returned
      * @return a task
@@ -76,6 +76,11 @@ public class TaskList {
         return arr;
     }
 
+    /**
+     * Overwrites the current array.
+     *
+     * @param newArr the new array that will overwrite.
+     */
     public void overwrite(ArrayList<Task> newArr) {
         arr = newArr;
     }

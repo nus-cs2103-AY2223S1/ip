@@ -1,10 +1,12 @@
 package duke.command;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+
 import duke.main.DukeException;
 import duke.main.TaskList;
 import duke.task.Deadline;
-import java.time.DateTimeException;
-import java.time.LocalDate;
+
 
 /**
  * A class for deadline command.
@@ -14,7 +16,7 @@ public class DeadlineCommand extends AddCommand {
     private String date;
 
     /**
-     * Constructor for deadline command.
+     * Constructs the deadline command.
      *
      * @param description a string that describes the task.
      * @param date a date to indicate the dateline.
@@ -25,9 +27,10 @@ public class DeadlineCommand extends AddCommand {
     }
 
     /**
-     * Add new tasks.
+     * Adds new tasks.
      *
      * @param taskList the list of tasks.
+     * @throws DukeException if command cannot be executed.
      */
     @Override
     public void add(TaskList taskList) throws DukeException {

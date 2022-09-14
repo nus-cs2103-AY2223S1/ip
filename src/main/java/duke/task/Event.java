@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class Event extends DatedTask {
 
     /**
-     * A constructor for the event.
+     * Constructs the event.
      *
      * @param description the description of the event.
      * @param at the date at which the event is held at.

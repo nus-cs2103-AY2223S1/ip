@@ -7,7 +7,7 @@ public class DukeException extends Exception {
     private String description;
 
     /**
-     * A constructor for Duke Exception.
+     * Constructs Duke Exception.
      *
      * @param description the description of the exception.
      */
