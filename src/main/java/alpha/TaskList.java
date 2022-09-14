@@ -83,4 +83,12 @@ public class TaskList {
         }
         return filteredTaskList;
     }
+
+    public void addTagToTask(int taskNumber, String tag) throws AlphaException {
+        try {
+            tasks.get(taskNumber - 1).addTag(tag);
+        } catch (IndexOutOfBoundsException e) {
+            throw new AlphaException("Invalid input: This task number doesn't exist!");
+        }
+    }
 }

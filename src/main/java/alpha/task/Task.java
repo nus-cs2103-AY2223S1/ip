@@ -19,6 +19,9 @@ public abstract class Task {
     /** Type of the task */
     protected String taskType;
 
+    /** Tag for the task */
+    protected String tag;
+
     /**
      * Constructor to initialise all the global variables.
      *
@@ -29,6 +32,7 @@ public abstract class Task {
         this.description = description;
         this.status = false;
         this.taskType = taskType;
+        this.tag = "~no tag~";
     }
 
     /**
@@ -48,7 +52,7 @@ public abstract class Task {
      * @return Task status.
      */
     public String getStatus() {
-        return (status ? "X" : " ");
+        return (status ? "X" : "~unmarked~");
     }
 
     /**
@@ -61,6 +65,10 @@ public abstract class Task {
         return this.taskType;
     }
 
+    public String getTag() {
+        return this.tag;
+    }
+
     /**
      * Changes the status of the task from unmarked to marked or vice-versa.
      *
@@ -70,6 +78,10 @@ public abstract class Task {
         this.status = status;
     }
 
+    public void addTag(String tag) {
+        this.tag = tag;
+    }
+
     /**
      * Returns the details of the task as a String.
      *
@@ -77,7 +89,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[ %s ] [ %s ] %s", this.getTaskType(),
+        return String.format("[ %s ] [ %s ] [ %s ] %s", this.getTaskType(), this.getTag(),
                 this.getStatus(), this.getDescription());
     }
 }

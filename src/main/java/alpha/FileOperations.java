@@ -74,7 +74,8 @@ public class FileOperations {
         try {
             FileWriter fw = new FileWriter(filePath);
             for (Task t: taskList.tasks) {
-                String textToAdd = "[" + t.getTaskType() + "] [" + t.getStatus() + "] " + t.getDescription();
+                String textToAdd = "[" + t.getTaskType() + "] [" + t.getTag() + "] ["
+                        + t.getStatus() + "] " + t.getDescription();
                 if (t instanceof Todo) {
                     textToAdd += "\n";
                 } else if (t instanceof Event) {
@@ -112,31 +113,43 @@ public class FileOperations {
         while (s.hasNext()) {
             String task = s.nextLine();
             String taskType = String.valueOf(task.charAt(1));
-            boolean taskStatus = String.valueOf(task.charAt(5)) == "X";
+            int indexOfStatus = task.indexOf("[", 5) + 1;
+            int endingIndexOfTag = task.indexOf("]", 5);
+            String tag = task.substring(5, endingIndexOfTag);
+            boolean taskStatus = String.valueOf(task.charAt(indexOfStatus)) == "X";
             switch (taskType) {
             case "T": {
                 //substring lengths based on format of text being saved in the .txt file
-                String taskDescription = task.substring(8);
+                String taskDescription = task.substring(indexOfStatus + 3);
                 Task todo = new Todo(taskDescription, taskType);
                 todo.changeStatus(taskStatus);
+                if (!tag.equals("")) {
+                    todo.addTag(tag);
+                }
                 tasksInFile.add(todo);
                 break;
             }
             case "E": {
                 //substring lengths based on format of text being saved in the .txt file
-                String taskDescription = task.substring(8, task.length() - 16);
+                String taskDescription = task.substring(indexOfStatus + 3, task.length() - 16);
                 String date = task.substring(task.length() - 12, task.length() - 1);
                 Task event = new Event(taskDescription, date, taskType);
                 event.changeStatus(taskStatus);
+                if (!tag.equals("")) {
+                    event.addTag(tag);
+                }
                 tasksInFile.add(event);
                 break;
             }
             case "D": {
                 //substring lengths based on format of text being saved in the .txt file
-                String taskDescription = task.substring(8, task.length() - 16);
+                String taskDescription = task.substring(indexOfStatus + 3, task.length() - 16);
                 String deadlineDate = task.substring(task.length() - 12, task.length() - 1);
                 Task deadline = new Deadline(taskDescription, deadlineDate, taskType);
                 deadline.changeStatus(taskStatus);
+                if (!tag.equals("")) {
+                    deadline.addTag(tag);
+                }
                 tasksInFile.add(deadline);
                 break;
             }

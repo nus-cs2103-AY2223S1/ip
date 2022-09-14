@@ -12,6 +12,7 @@ import alpha.command.Find;
 import alpha.command.Help;
 import alpha.command.List;
 import alpha.command.Mark;
+import alpha.command.Tag;
 import alpha.command.Unmark;
 import alpha.task.Deadline;
 import alpha.task.Event;
@@ -85,6 +86,17 @@ public class Parser {
             checkInvalidInput(inputTokens);
             assert inputTokens.length == 2;
             return new Find(inputTokens[1]);
+        }
+        case "tag": {
+            checkInvalidInput(inputTokens);
+            assert inputTokens.length == 2;
+            String[] taskInfo = inputTokens[1].split(" /as ", 2);
+            if (taskInfo.length <= 1) {
+                throw new AlphaException("Invalid input: Incorrect format! "
+                        + "(enter help to know more)");
+            }
+            assert taskInfo.length == 2;
+            return new Tag(Integer.parseInt(taskInfo[0]), taskInfo[1]);
         }
         case "bye": {
             return new Exit();

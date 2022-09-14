@@ -8,6 +8,7 @@ import alpha.command.Delete;
 import alpha.command.Exit;
 import alpha.command.Help;
 import alpha.command.Mark;
+import alpha.command.Tag;
 import alpha.command.Unmark;
 import alpha.task.Task;
 
@@ -36,13 +37,16 @@ public class Ui {
                     + "1. todo    \t\t" + "todo description\n"
                     + "2. event   \t\t" + "event description /on yyyy-mm-dd\n"
                     + "3. deadline\t" + "deadline description /by yyyy-mm-dd\n"
-                    + "4. mark    \t\t" + "mark task number\n"
-                    + "5. unmark  \t" + "unmark task number\n"
-                    + "6. delete  \t\t" + "delete task number\n"
+                    + "4. mark    \t\t" + "mark task_number\n"
+                    + "5. unmark  \t" + "unmark task_number\n"
+                    + "6. delete  \t\t" + "delete task_number\n"
                     + "7. list    \t\t" + "list\n"
-                    + "8. find    \t\t" + "find keyword";
+                    + "8. find    \t\t" + "find keyword/tag\n"
+                    + "9. tag     \t\t" + "tag task_number /as tag";
         } else if (command instanceof Mark) {
             return (">> " + "marked task: " + taskNumber);
+        } else if (command instanceof Tag) {
+            return (">> " + "tagged task: " + taskNumber);
         } else {
             assert command instanceof Unmark;
             return (">> " + "unmarked task: " + taskNumber);

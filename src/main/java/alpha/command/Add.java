@@ -38,14 +38,15 @@ public class Add extends Command {
         String textToAppend;
         if (this.task instanceof Event) {
             Event event = (Event) task;
-            textToAppend = "[" + event.getTaskType() + "] [" + event.getStatus() + "] "
+            textToAppend = "[" + event.getTaskType() + "] [" + event.getTag() + "] [" + event.getStatus() + "] "
                     + event.getDescription() + " (on " + event.getDate() + ")\n";
         } else if (this.task instanceof Deadline) {
             Deadline deadline = (Deadline) task;
-            textToAppend = "[" + deadline.getTaskType() + "] [" + deadline.getStatus() + "] "
-                    + deadline.getDescription() + " (by " + deadline.getDeadline() + ")\n";
+            textToAppend = "[" + deadline.getTaskType() + "] [" + deadline.getTag() + "] [" + deadline.getStatus()
+                    + "] " + deadline.getDescription() + " (by " + deadline.getDeadline() + ")\n";
         } else {
-            textToAppend = "[" + task.getTaskType() + "] [" + task.getStatus() + "] " + task.getDescription() + "\n";
+            textToAppend = "[" + task.getTaskType() + "] [" + task.getTag() + "] ["
+                    + task.getStatus() + "] " + task.getDescription() + "\n";
         }
         fileOperations.writeToFile(textToAppend);
         return uI.generateCommandExecutionMessage(this, task, 0);
