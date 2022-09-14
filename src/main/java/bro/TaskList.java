@@ -96,8 +96,8 @@ public class TaskList {
      * @return TaskList which has task with the keyword.
      */
     public TaskList findTask(String keyword) {
-        TaskList found = new TaskList();
-        tasks.stream().filter(t -> t.toString().contains(keyword)).forEach(found::addTask);
-        return found;
+        TaskList keywordTask = new TaskList();
+        tasks.stream().filter(task -> task.toString().contains(keyword)).forEach(keywordTask::addTask);
+        return keywordTask;
     }
 }
