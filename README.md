@@ -110,7 +110,7 @@ Expected Outcome:
 4.[E][ ] karoake (at: Sep 16 2022 2100)
 ```
 
-## `mark` - Mark a task
+## `mark` - Marks a task
 Marks the specified task as done.
 
 Format: `mark <task number>`
@@ -131,7 +131,7 @@ Nice! You've completed this task. I'll mark it as done.
 [D][X] assignment 1 (by: Aug 12 2022 1800)
 ```
 
-##  `unmark` - Unmark a task
+##  `unmark` - Unmarks a task
 Marks the specified task as done.
 
 Format: `unmark <task number>`
