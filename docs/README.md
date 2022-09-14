@@ -147,13 +147,13 @@ inputting this in terminal
 |  help | help  | -  |
 | bye  | bye  | -  |
 | list  |  list | -  |
-|  mark | mark <task number that needs to be marked>  | mark 3   |
-| unmark  | unmark <task number that still needs to be unmarked>  | unmark 4  |
-|  delete | delete <task number that you want to remove>   | delete 2  |
-| todo  | todo <task name>  | todo read book  |
-|deadline   |  deadline <task name> /by <YYYY-MM-DD> | deadline write book /by 2022-09-14  |
-|  event | event <task name> /at <Time>  | event project meeting /at August 3 2022 3.30pm  |
-|  find | find <keyword>  |  find book |
+|  mark | mark /task number that needs to be marked | mark 3   |
+| unmark  | unmark /task number that still needs to be unmarked | unmark 4  |
+|  delete | delete /task number that you want to remove  | delete 2  |
+| todo  | todo /task name  | todo read book  |
+|deadline   |  deadline /task name by YYYY-MM-DD | deadline write book /by 2022-09-14  |
+|  event | event /task name at Time | event project meeting /at August 3 2022 3.30pm  |
+|  find | find /keyword |  find book |
 
 
 
