@@ -1,4 +1,4 @@
-Hi there! Baymax at your service.
+Hi there! Duke at your service.
 Got it. I've added this task:
   [T][ ] read book
 Now you have 1 tasks in the list.

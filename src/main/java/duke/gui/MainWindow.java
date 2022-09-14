@@ -17,7 +17,7 @@ import javafx.util.Duration;
  */
 public class MainWindow extends AnchorPane {
 
-    private static final String MESSAGE_WELCOME = "Hi there! Baymax at your service. "
+    private static final String MESSAGE_WELCOME = "Hi there! Duke at your service. "
             + "Let me retrieve your stored task list!";
 
     @FXML
@@ -32,7 +32,7 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Baymax.jpg"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.jpg"));
 
     /**
      * Initializes the Main Window
