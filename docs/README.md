@@ -4,18 +4,23 @@
 > 
 > Wagwan is a desktop app that helps you keep track of your tasks, so you'll never have to!
 
-## Quick start
+## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest wagwan.jar from [here]().
+2. Download the latest Wagwan.jar from [here]().
 
-3. opy the file to the folder you want to use as the home folder for Wagwan.
+3. Copy the file to the folder you want to use as the home folder for Wagwan.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+4. Open a command window in that folder.
+ 
+5. Run the command java -jar Wagwan.jar (i.e., run the command in the same folder as the jar file)
+
+6. The GUI similar to the below should appear in a few seconds.
 
 ![Ui](Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. Refer to the Features below for details of each command.
+
 ## Features
 
 ### 1. Keep track of your tasks
