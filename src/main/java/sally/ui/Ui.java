@@ -1,8 +1,10 @@
 package sally.ui;
 
+import sally.main.MainWindow;
 import sally.task.Task;
 import sally.task.TaskList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -14,6 +16,7 @@ import java.util.Scanner;
 public class Ui {
     protected String BORDER ="-------------------------------------------------------------------------------------";
     private Scanner sc;
+    private MainWindow mainWindow;
 
     /**
      * Constructor for Ui Class
@@ -157,5 +160,23 @@ public class Ui {
             output = output + (i + 1) + ". " + foundTasks.get(i).toString() + "\n";
         }
         printWithBorder("Here are the matching tasks in your list: \n" + output);
+    }
+
+    /**
+     * Sets the main window
+     *
+     * @param mw main window to be set
+     */
+    public void setMainWindow(MainWindow mw) {
+        this.mainWindow = mw;
+    }
+
+    /**
+     * Displays the message to main window
+     *
+     * @param s message to be displayed
+     */
+    public void displayedMessage(String s) {
+        mainWindow.addSallyDialog(s);
     }
 }
