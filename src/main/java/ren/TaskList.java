@@ -1,0 +1,195 @@
+package ren;
+
+import java.util.ArrayList;
+
+import ren.task.Deadline;
+import ren.task.Event;
+import ren.task.Task;
+import ren.task.Todo;
+
+/**
+ * TaskList contains a list of Tasks as well methods to add, delete, update tasks.
+ */
+public class TaskList {
+    /** ArrayList to store all Tasks. */
+    private final ArrayList<Task> tasks;
+
+    /** Storage to synchronize all changes with. */
+    private final Storage storage;
+
+    /**
+     * Constructor for a TaskList.
+     *
+     * @param storage Storage to read and write all Tasks to.
+     */
+    public TaskList(Storage storage) {
+        this.tasks = storage.load();
+        this.storage = storage;
+    }
+
+    /**
+     * Adds a Task to the TaskList.
+     *
+     * @param type The type of the new Task.
+     * @param task The information of the new Task.
+     * @param dateTime The date and time information of the new Task.
+     * @return String containing a message for the user.
+     * @throws RenException If task or dateTime is invalid.
+     */
+    public String addTask(Ren.TaskType type, String task, String dateTime) throws RenException {
+        Task newTask = null;
+        switch (type) {
+        case TODO:
+            newTask = new Todo(task);
+            break;
+        case DEADLINE:
+            newTask = new Deadline(task, dateTime);
+            break;
+        case EVENT:
+            newTask = new Event(task, dateTime);
+            break;
+        default:
+        }
+        assert newTask != null : "newTask in addTask in TaskList should not be null";
+
+        tasks.add(newTask);
+        storage.addTask(newTask);
+        return " Understood. I have added the following task:\n"
+            + "   " + newTask
+            + " You now have a total of " + tasks.size() + " task(s).\n";
+    }
+
+    /**
+     * Removes a Task from the TaskList.
+     *
+     * @param taskNum The index of the Task to remove.
+     * @return String containing a message for the user.
+     * @throws RenException If taskNum is invalid.
+     */
+    public String deleteTask(int taskNum) throws RenException {
+        if (taskNum <= tasks.size() && taskNum > 0) {
+            Task removedTask = tasks.remove(taskNum - 1);
+            storage.deleteTask(taskNum - 1);
+            return " Understood. I have removed the following task:\n"
+                + "   " + removedTask
+                + " You have a total of " + tasks.size() + " task(s) left.\n";
+        } else if (tasks.size() == 0) {
+            throw new RenException("You have no tasks to delete.");
+        } else {
+            throw new RenException("Please indicate a task no. between 1 to " + tasks.size() + ".");
+        }
+    }
+
+    /**
+     * Updates a Task in the TaskList.
+     *
+     * @param status The new status of the Task.
+     * @param taskNum The index of the Task to update.
+     * @return String containing a message for the user.
+     * @throws RenException If taskNum is invalid.
+     */
+    public String updateTask(boolean status, int taskNum) throws RenException {
+        if (taskNum <= tasks.size() && taskNum > 0) {
+            Task selectedTask = tasks.get(taskNum - 1);
+            String message = selectedTask.setDone(status);
+            storage.updateTask(selectedTask, taskNum - 1);
+            return message;
+        } else if (tasks.size() == 0) {
+            throw new RenException("You have no tasks to mark or unmark.");
+        } else {
+            throw new RenException("Please indicate a task no. between 1 to " + tasks.size() + ".");
+        }
+    }
+
+    /**
+     * Lists all Tasks in the TaskList.
+     *
+     * @return String containing the list.
+     */
+    public String listTasks() {
+        if (tasks.size() == 0) {
+            return " You have not added any tasks!\n";
+        }
+
+        StringBuilder result = new StringBuilder(" Here are your current tasks:\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            result.append(" ").append(i + 1).append(". ").append(tasks.get(i).toString());
+        }
+        return result.toString();
+    }
+
+    /**
+     * Sorts the tasks according to sortType.
+     * For type, the order is Todo, Deadline, Event.
+     * For status, unmarked tasks are before marked tasks.
+     * For description, tasks are sorted lexicographically, ignoring case differences.
+     * For date, Todo are sorted last while Deadline and Event are sorted chronologically.
+     *
+     * @param sortType The order to sort the tasks by.
+     * @return String containing the sorted list of tasks.
+     */
+    public String sortTasks(SortType sortType) {
+        switch (sortType) {
+        case TYPE:
+            tasks.sort(Task::compareType);
+            break;
+        case STATUS:
+            tasks.sort(Task::compareStatus);
+            break;
+        case DESCRIPTION:
+            tasks.sort(Task::compareDescription);
+            break;
+        case DATE:
+            tasks.sort(Task::compareDate);
+            break;
+        default:
+            break;
+        }
+        storage.emptyList();
+        tasks.forEach(storage::addTask);
+        return " I have finished sorting your list of tasks!\n\n" + listTasks();
+    }
+
+    /**
+     * Searches TaskList for Tasks matching a search term.
+     *
+     * @param term The Search Term to match Tasks with.
+     * @return String containing the list of matching Tasks.
+     */
+    public String findTasks(String term) {
+        if (tasks.size() == 0) {
+            return " Apologies! I have not found any matching tasks.\n";
+        }
+
+        int index = 1;
+        StringBuilder result = new StringBuilder(" I have found these matching tasks:\n");
+        for (Task taskToCheck : tasks) {
+            if (taskToCheck.isMatch(term)) {
+                result.append(" ").append(index).append(". ").append(taskToCheck);
+                index++;
+            }
+        }
+        return index != 1 ? result.toString() : " Apologies! I have not found any matching tasks.\n";
+    }
+
+    /**
+     * Removes all Tasks from the TaskList.
+     *
+     * @return String containing a message for the user.
+     */
+    public String emptyList() {
+        tasks.clear();
+        storage.emptyList();
+        return " Understood. I have emptied your list of tasks.";
+    }
+
+    /**
+     * The types of sorting supported by Ren.
+     */
+    enum SortType {
+        TYPE,
+        STATUS,
+        DESCRIPTION,
+        DATE
+    }
+}
