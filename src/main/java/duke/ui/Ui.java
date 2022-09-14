@@ -75,7 +75,7 @@ public class Ui {
                 "i. mark <index of task> OR \n" +
                 "ii. unmark <index of task> \n" +
                 "3) To delete a task, type: delete <index of task> \n" +
-                "4) To view the tasklist, type: list" +
+                "4) To view the tasklist, type: list \n" +
                 "5) To search for a keyword, type: find <keyword>";
     }
 }
