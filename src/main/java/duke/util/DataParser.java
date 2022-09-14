@@ -8,10 +8,13 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import duke.command.AliasCommand;
 import duke.command.ByCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
+import duke.command.CommandSelector;
 import duke.command.DeadlineCommand;
+import duke.command.DeleteAliasCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.FindCommand;
@@ -63,9 +66,9 @@ public final class DataParser {
      * @param data Parsed information of the user input
      * @return Command To be executed and do actions.
      */
-    public static Command dataToCommand(ParsedData data) {
+    public static Command dataToCommand(ParsedData data, CommandSelector cs) {
 
-        switch (CommandsEnum.getCommandFromString(data.command)) {
+        switch (cs.getCommand(data.command)) {
         case BYE:
             return new ByeCommand();
         case LIST:
@@ -86,6 +89,10 @@ public final class DataParser {
             return new ByCommand(data);
         case FIND:
             return new FindCommand(data);
+        case ADDCOMMAND:
+            return new AliasCommand(data);
+        case DELETECOMMAND:
+            return new DeleteAliasCommand(data);
         default:
             return new InvalidCommand();
         }
@@ -131,8 +138,8 @@ public final class DataParser {
      * @param txt Raw user input
      * @return Command
      */
-    public static Command parseCommand(String txt) {
-        return dataToCommand(parse(txt));
+    public static Command parseCommand(String txt, CommandSelector cs) {
+        return dataToCommand(parse(txt), cs);
     }
 
     /**

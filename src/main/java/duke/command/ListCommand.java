@@ -21,7 +21,7 @@ public class ListCommand implements Command {
      * Prints out all the current tasks added.
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage) {
+    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs) {
         io.printList(tasks.getTasks());
     }
 

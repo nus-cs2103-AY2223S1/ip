@@ -4,27 +4,23 @@ import java.io.IOException;
 
 import duke.exceptions.DukeException;
 import duke.inputoutput.DukeIo;
-import duke.task.Deadline;
-import duke.task.Task;
 import duke.util.ParsedData;
 import duke.util.Storage;
 import duke.util.TaskList;
 
 /**
- * A DataCommand type command to indicate deadline
+ * Command that deletes an added alias
  */
-public class DeadlineCommand extends DataCommand {
+public class DeleteAliasCommand extends DataCommand {
 
-    private static final String ADD_TASK = "Got it. I've added this task:%n"
-            + "  %s%n"
-            + "Now you have %d tasks in the list.";
+    private static final String DELETE_TASK = "I have deleted the alias, %s!";
 
     /**
      * Create a instance of the deadline command.
      * 
      * @param d ParsedData from the command input
      */
-    public DeadlineCommand(ParsedData d) {
+    public DeleteAliasCommand(ParsedData d) {
         super(d);
     }
 
@@ -36,11 +32,12 @@ public class DeadlineCommand extends DataCommand {
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
-            throws DukeException, IOException {
-        Task task = Deadline.createDeadline(data);
-        tasks.addEntry(task);
-        io.printTask(String.format(ADD_TASK, task, tasks.getSize()));
-        storage.saveTask(task);
+            throws DukeException {
+
+        String alias = data.description.trim();
+
+        cs.deleteAlias(alias);
+        io.printTask(String.format(DELETE_TASK, alias));
     }
 
 }

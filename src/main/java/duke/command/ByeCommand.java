@@ -28,7 +28,7 @@ public class ByeCommand implements Command {
      * @throws IOException raised if an error occured when saving
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage) throws IOException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs) throws IOException {
         io.printTask(OUTRO, 3);
         storage.saveTasks(tasks);
     }
