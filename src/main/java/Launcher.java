@@ -1,5 +1,4 @@
-package henry;
-
+import henry.Henry;
 import javafx.application.Application;
 
 /**
