@@ -1,4 +1,4 @@
-#Duck Project
+# Duck Project
 ```
 Ducks! *taken from textart.io
      __   
