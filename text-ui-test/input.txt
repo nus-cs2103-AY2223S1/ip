@@ -1,0 +1,45 @@
+todo CS2100
+todo
+deadline CS1231 /by Monday
+deadline
+deadline CS1231
+deadline CS1231 /by
+deadline CS1231 /by 2020-02-17
+event meeting with Tom /at Tuesday 2-3pm
+event
+event meeting with Tom
+event meeting with Tom /at 2020-02-17
+find meeting
+event CS2100 meeting /at 2020-02-17
+find meeting
+find basketball
+mark 1
+list
+mark 2
+list
+mark 3
+list
+unmark 1
+list
+unmark 2
+list
+unmark 3
+list
+mark
+mark a
+mark 5
+unmark
+unmark a
+unmark 5
+delete
+delete a
+delete 5
+delete 1
+list
+invalidcommand
+bye
+
+
+
+
+
