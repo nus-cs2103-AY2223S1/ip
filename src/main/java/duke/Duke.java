@@ -91,10 +91,15 @@ public class Duke {
      */
     public String addEvent(String str) throws DukeException {
         String eDescription;
-        String eAt;
-        eDescription = str.substring(0, str.indexOf('/') - 1);
-        eAt = str.substring(str.indexOf('/') + 4);
-        Task event = new Event(eDescription, eAt);
+        LocalDate date;
+        try {
+            eDescription = str.substring(0, str.indexOf('/') - 1);
+            String dBy = str.substring(str.indexOf('/') + 4);
+            date = LocalDate.parse(dBy);
+        } catch (DateTimeException e) {
+            throw new DukeException("OOPS! Date must be in proper format!");
+        }
+        Task event = new Event(eDescription, date);
         tasks.addTask(event);
         int size = tasks.getSize();
         storage.save(tasks);

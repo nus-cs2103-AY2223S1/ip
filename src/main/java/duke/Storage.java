@@ -62,15 +62,17 @@ public class Storage {
                 break;
             case "D":
                 assert taskInArray.length == 4 : "Deadline task was not saved and loaded properly";
-                LocalDate date = LocalDate.parse(taskInArray[3]);
-                task = new Deadline(taskInArray[2], date);
+                LocalDate deadlineDate = LocalDate.parse(taskInArray[3]);
+                task = new Deadline(taskInArray[2], deadlineDate);
                 lst.add(task);
                 if (taskInArray[1].equals("1")) {
                     task.markAsDone();
                 }
                 break;
             case "E":
-                task = new Event(taskInArray[2], taskInArray[3]);
+                assert taskInArray.length == 4 : "Event task was not saved and loaded properly";
+                LocalDate eventDate = LocalDate.parse(taskInArray[3]);
+                task = new Deadline(taskInArray[2], eventDate);
                 lst.add(task);
                 if (taskInArray[1].equals("1")) {
                     task.markAsDone();
