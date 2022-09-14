@@ -53,4 +53,12 @@ public class Todo extends Task {
         }
         return newTodo;
     }
+
+    @Override
+    public int compareTo(Task o) {
+        if (o instanceof Deadline || o instanceof Event) {
+            return -1;
+        }
+        return super.compareTo(o);
+    }
 }

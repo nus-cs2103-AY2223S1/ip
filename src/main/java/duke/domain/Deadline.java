@@ -111,10 +111,27 @@ public class Deadline extends Task {
      *            The Deadline to compare to
      * @return 1 if the current event is before the other event and -1 otherwise
      */
-    public int compareTo(Deadline o) {
-        if (this.deadline == o.deadline) {
-            return super.compareTo(o);
+    public int compareTo(Task o) {
+        if (o instanceof Deadline) {
+            Deadline d = (Deadline) o;
+            if (this.deadline == d.deadline) {
+                return super.compareTo(d);
+            }
+            return this.deadline.isBefore(d.deadline) ? -1 : 1;
+        } else if (o instanceof Event) {
+            Event e = (Event) o;
+            if (this.deadline == e.getDateTime()) {
+                return super.compareTo(e);
+            }
+            return this.deadline.isBefore(e.getDateTime()) ? -1 : 1;
         }
-        return this.deadline.isBefore(o.deadline) ? 1 : -1;
+        return 1;
+    }
+
+    /**
+     * @return the deadline
+     */
+    public LocalDateTime getDeadline() {
+        return deadline;
     }
 }

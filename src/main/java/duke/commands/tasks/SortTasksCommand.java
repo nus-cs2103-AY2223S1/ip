@@ -10,7 +10,8 @@ import duke.enums.SortTaskEnum;
  */
 public class SortTasksCommand extends BaseTaskCommand {
     public static final String COMMAND_WORD = "sort";
-    private String successMessage = "This task has been successfully added!\n";
+    public static final String SUBCOMMAND_WORD = "reverse";
+    private String successMessage = "Tasks have been successfully sorted!\n";
     private final SortTaskEnum direction;
 
     /**

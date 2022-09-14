@@ -11,6 +11,7 @@ import duke.commands.ErrorCommand;
 import duke.commands.tasks.AddDeadlineCommand;
 import duke.commands.tasks.AddEventCommand;
 import duke.commands.tasks.AddTodoCommand;
+import duke.commands.tasks.DeleteTaskCommand;
 import duke.commands.tasks.ListTasksAfterCommand;
 import duke.commands.tasks.ListTasksBeforeCommand;
 import duke.commands.tasks.ListTasksCommand;
@@ -163,6 +164,18 @@ public class ParserTest {
     }
 
     /**
+     * The parse_deleteCommandWord_returnsDeleteCommand function tests the parse
+     * function of the DeleteTaskCommand class.
+     * It takes in a string input and checks if it is parsed correctly as a
+     * DeleteTaskCommand object.
+     */
+    @Test
+    public void parse_deleteCommandWord_returnsDeleteCommand() {
+        final String input = "delete 1";
+        parseAndAssertCommandType(DeleteTaskCommand.class, input);
+    }
+
+    /**
      * The parseAndAssertIncorrectWithMessage function is a helper function that
      * parses the given input and asserts that it is an ErrorCommand with the
      * expected feedback message. The inputs are passed as varargs, so this function
@@ -173,7 +186,6 @@ public class ParserTest {
      *            Provide feedback to the user
      * @param inputs
      *            Pass an array of strings to the function
-     * @return An errorcommand
      */
     private void parseAndAssertIncorrectWithMessage(
             String feedbackMessage, String... inputs) {

@@ -1,6 +1,7 @@
 package duke.tasklist;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +19,7 @@ import duke.exceptions.TaskNotFoundException;
 public class TaskList {
 
     private final Set<Task> taskSet;
-    private final List<Task> taskList;
+    private List<Task> taskList;
 
     /**
      * Instantiates a new Task list.
@@ -108,6 +109,11 @@ public class TaskList {
      * @return the list
      */
     public List<String> exportTaskList() {
+        // List<String> result = new ArrayList<>();
+        // for (int i = 0; i < this.taskList.size(); i++) {
+        //     result.add(this.taskList.get(i).exportString());
+        // }
+        // return result;
         return this.taskList
                 .stream()
                 .map(Task::exportString)
@@ -139,7 +145,7 @@ public class TaskList {
      * @return A string representation of the task list
      */
     public String outputTasksString() {
-        return convertTaskListToString(this.taskList);
+        return convertTaskListToString(getTaskList());
     }
 
     /**
@@ -198,10 +204,25 @@ public class TaskList {
      *            Determine whether the sort is ascending or descending
      */
     public void sortTaskList(SortTaskEnum direction) {
-        if (direction == SortTaskEnum.ASC) {
-            Collections.sort(this.taskList);
+        List<Task> sortedTaskList = new ArrayList<>(this.taskList);
+        Collections.sort(sortedTaskList);
+        if(direction == SortTaskEnum.DESC) {
+            Collections.reverse(sortedTaskList);
         }
-        Collections.reverse(this.taskList);
-        System.out.println(this.taskList);
+        setTaskList(sortedTaskList);
+    }
+
+    /**
+     * @param taskList the taskList to set
+     */
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    /**
+     * @return the taskList
+     */
+    public List<Task> getTaskList() {
+        return taskList;
     }
 }

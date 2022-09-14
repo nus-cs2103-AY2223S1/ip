@@ -11,11 +11,12 @@ public class MarkTaskParser implements IParser<MarkTaskCommand> {
 
     @Override
     public MarkTaskCommand parse(String arguments) throws ParseException {
-        if (!ParserUtil.isNumeric(arguments)) {
+        String taskIndexString = arguments.trim();
+        if (!ParserUtil.isNumeric(taskIndexString)) {
             throw new ParseException(
                     "Sorry the second argument is not a number");
         }
-        TaskIndex taskIndex = TaskIndex.fromOneBased(Integer.parseInt(arguments));
+        TaskIndex taskIndex = TaskIndex.fromOneBased(Integer.parseInt(taskIndexString));
         return new MarkTaskCommand(taskIndex);
     }
 

@@ -10,8 +10,8 @@ public class SortTasksParser implements IParser<SortTasksCommand> {
 
     @Override
     public SortTasksCommand parse(String arguments) {
-        if (SortTaskEnum.contains(arguments)) {
-            return new SortTasksCommand(SortTaskEnum.valueOf(arguments));
+        if (arguments.contains(SortTasksCommand.SUBCOMMAND_WORD)) {
+            return new SortTasksCommand(SortTaskEnum.DESC);
         }
         return new SortTasksCommand(SortTaskEnum.ASC);
     }
