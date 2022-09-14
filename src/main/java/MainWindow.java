@@ -9,8 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
 /**
@@ -37,8 +37,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.setId("anchor");
         String openingMessage = "Hello, I am EksWhyZee!\nHow may I help you?\n";
         Label text = new Label(openingMessage);
+        text.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
         text.setStyle("-fx-font-weight:bold; -fx-font-size:20px;");
         text.setPadding(new Insets(10, 0, 10, 200));
         text.setTextAlignment(TextAlignment.CENTER);

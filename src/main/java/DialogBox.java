@@ -12,7 +12,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 /**
  * An example of a custom control using FXML.
@@ -20,10 +23,12 @@ import javafx.scene.shape.Circle;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
-    @FXML
-    private Label dialog;
+//    @FXML
+//    private Label dialog;
     @FXML
     private ImageView displayPicture;
+    @FXML
+    private StackPane stack;
 
     private DialogBox(String text, Image img) {
         try {
@@ -35,12 +40,20 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        Label dialog = new Label();
         dialog.setText(text);
-        dialog.setStyle("-fx-background-color: yellow");
         displayPicture.setImage(img);
         Circle clip = new Circle(50, 50, 50);
         displayPicture.setClip(clip);
         dialog.setMinWidth(Region.USE_PREF_SIZE);
+        Rectangle messageBubble = new Rectangle();
+        messageBubble.heightProperty().bind(dialog.heightProperty());
+        messageBubble.widthProperty().bind(dialog.widthProperty());
+        messageBubble.setArcWidth(25);
+        messageBubble.setArcHeight(25);
+        messageBubble.setFill(Color.AQUAMARINE);
+        stack.getChildren().addAll(messageBubble, dialog);
+        stack.setMinHeight(Region.USE_PREF_SIZE);
     }
 
     /**
