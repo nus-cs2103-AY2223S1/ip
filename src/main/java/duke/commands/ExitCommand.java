@@ -1,10 +1,10 @@
 package duke.commands;
 
+import java.util.concurrent.CompletableFuture;
+
 import duke.data.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
-
-import java.util.concurrent.CompletableFuture;
 
 /**
  * This class represents a command to exit from the application
