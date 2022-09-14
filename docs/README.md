@@ -5,7 +5,7 @@
 for used via a command line interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI).
 
-##Quick Start
+## Quick Start
 1. Ensure you have Java `11` installed.
 2. Download the latest version of Qoobee [here](https://github.com/CedricChia123/ip).
 3. Copy the `jar` file to the folder you would like to use Qoobee in.
