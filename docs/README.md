@@ -4,7 +4,7 @@ Milk is a desktop application which is primarily used for Graphical user interfa
 ## Features 
 There are 3 types of tasks available - ```todo```, ```deadline```, ```event```.
 
-1. Load existing tasks, if applicable
+1. Load existing tasks
 2. Add tasks:
     - Todo: ```todo```
     - Deadline: ```deadline```
@@ -98,7 +98,7 @@ list
 
 Expected outcome:
 
-![list](list.png)
+![list](Ui.png)
 
 ### Feature 6 Find tasks
 
