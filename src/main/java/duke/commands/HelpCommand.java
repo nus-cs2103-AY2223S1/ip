@@ -11,6 +11,7 @@ public class HelpCommand extends Command {
 
     /**
      * Executes the command.
+     *
      * @param taskList
      * @param ui User Interface of the to-do-list.
      * @param storage Storage option.

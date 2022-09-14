@@ -12,6 +12,7 @@ public class EventCommand extends Command {
 
     /**
      * Executes the command.
+     *
      * @param taskList
      * @param ui User Interface of the to-do-list.
      * @param storage Storage option.
@@ -23,25 +24,21 @@ public class EventCommand extends Command {
 
         String[] splitInput = ui.userString().split(" ");
         sb.append("Got it. I've added this task\n");
-//        System.out.println("Got it. I've added this task");
         StringBuilder event = new StringBuilder();
 
         for (int i = 1; i < splitInput.length; ++i) {
             if (splitInput[i].equals("/at")) {
                 break;
             }
-//            event.append(" " + splitInput[i]);
             sb.append(" " + splitInput[i]);
             event.append(" " + splitInput[i]);
         }
 
-        Event eventTask = new Event(event.toString(), ui.userString().split("/at")[1].trim());
+        String dateAndTimeString = ui.userString().split("/at")[1].trim();
+        Event eventTask = new Event(event.toString(), dateAndTimeString);
         taskList.add(eventTask);
-
         sb.append(String.format("\t %s\n", eventTask));
         sb.append(String.format("Now you have %d tasks in the list.\n", taskList.size()));
-//        System.out.printf("\t %s\n", eventTask);
-//        System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
         storage.save(taskList);
         return sb.toString();
     }

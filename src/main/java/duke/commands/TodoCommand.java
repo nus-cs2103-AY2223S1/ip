@@ -33,7 +33,6 @@ public class TodoCommand extends Command {
         sb.append(String.format("Now you have %d tasks in the list.\n", taskList.size()));
         storage.save(taskList);
         return sb.toString();
-
     }
 
     @Override

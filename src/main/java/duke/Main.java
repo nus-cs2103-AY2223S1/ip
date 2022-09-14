@@ -32,7 +32,8 @@ public class Main extends Application {
 
     /**
      * Start the GUI.
-     * @param stage
+     *
+     * @param stage Stage to set the GUI on.
      */
     @Override
     public void start(Stage stage) {

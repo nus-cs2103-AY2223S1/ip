@@ -13,6 +13,7 @@ public class Event extends Task {
 
     /**
      * Constructor for an event.
+     *
      * @param name
      * @param dateAndTime
      */
@@ -34,6 +35,7 @@ public class Event extends Task {
 
     /**
      * Constructor for an event with a known completion status.
+     *
      * @param name
      * @param dateAndTime
      * @param isDone
@@ -54,6 +56,7 @@ public class Event extends Task {
 
     /**
      * Getter for event date and time.
+     *
      * @return YYYY-MM-dd HHMM representation of date and time.
      */
     public String getDateString() {
@@ -62,6 +65,7 @@ public class Event extends Task {
 
     /**
      * toString method for an Event.
+     *
      * @return To-do list friendly representation of an Event.
      */
     @Override
@@ -71,6 +75,7 @@ public class Event extends Task {
 
     /**
      * Returns an Event in a save-friendly format.
+     *
      * @return save-friendly representation of an Event.
      */
     @Override

@@ -9,19 +9,21 @@ import duke.ui.Ui;
  */
 public class MarkCommand extends Command {
 
-    private boolean mark;
+    private boolean isMarked;
 
     /**
      * Constructor for a Mark Command.
+     *
      * @param mark a flag that determines whether the commmand marks
      *             or unmarks a task.
      */
     public MarkCommand(boolean mark) {
-        this.mark = mark;
+        this.isMarked = mark;
     }
 
     /**
      * Executes the command.
+     *
      * @param taskList
      * @param ui User Interface of the to-do-list.
      * @param storage Storage option.
@@ -29,11 +31,10 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         String inputString = ui.userString();
-
         StringBuilder sb = new StringBuilder();
 
         int index = Integer.parseInt(inputString.split(" ")[1]) - 1;
-        if (this.mark) {
+        if (this.isMarked) {
             taskList.get(index).completed();
             sb.append("Nice! I've marked this task as done:\n");
 
@@ -44,7 +45,6 @@ public class MarkCommand extends Command {
         }
 
         sb.append(String.format("\t%s\n", taskList.get(index)));
-
         storage.save(taskList);
         return sb.toString();
     }

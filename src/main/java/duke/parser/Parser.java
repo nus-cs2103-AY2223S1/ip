@@ -19,6 +19,7 @@ public class Parser {
 
     /**
      * Parses user input into commands.
+     *
      * @param input User input.
      * @return Command based on input.
      * @throws DukeException
