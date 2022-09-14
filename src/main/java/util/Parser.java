@@ -1,6 +1,6 @@
 package util;
 
-import alanExceptions.*;
+import monkeExceptions.*;
 
 // Enum for input types
 enum InputType {
@@ -26,9 +26,9 @@ public class Parser {
      * @param type Type of input.
      * @param input The input.
      * @return ParsedData.
-     * @throws AlanException The exception in case of failure.
+     * @throws MonkeException The exception in case of failure.
      */
-    public ParsedData parse(InputType type, String input) throws AlanException {
+    public ParsedData parse(InputType type, String input) throws MonkeException {
         ParsedData result;
         switch (type) {
 
@@ -57,7 +57,7 @@ public class Parser {
         return result;
     }
 
-    private ParsedData singleInput(String input) throws AlanException {
+    private ParsedData singleInput(String input) throws MonkeException {
         String[] firstSplit = input.split(" ", 2);
         String command = firstSplit[0];
         String keyword;
@@ -70,7 +70,7 @@ public class Parser {
         return new ParsedData(keyword);
     }
 
-    private ParsedData parseListMod(String input) throws AlanException {
+    private ParsedData parseListMod(String input) throws MonkeException {
         int listIndex;
         String[] firstSplit = input.split(" ", 2);
         String command = firstSplit[0];
@@ -85,7 +85,7 @@ public class Parser {
         return new ParsedData(listIndex - 1);
     }
 
-    private ParsedData parseTimedTask(String input) throws AlanException {
+    private ParsedData parseTimedTask(String input) throws MonkeException {
         String command, task, during, time;
         String[] firstSplit, secondSplit, thirdSplit;
 
@@ -112,7 +112,7 @@ public class Parser {
         return new ParsedData(task, during, time);
     }
 
-    private ParsedData parseUntimedTask(String input) throws AlanException {
+    private ParsedData parseUntimedTask(String input) throws MonkeException {
         String command, task;
         String[] firstSplit = input.split(" ", 2);
         command = firstSplit[0];
@@ -127,7 +127,7 @@ public class Parser {
         return new ParsedData(task);
     }
 
-    private ParsedData parseAkw(String input) throws AlanException {
+    private ParsedData parseAkw(String input) throws MonkeException {
         String command, kw, commandkw;
         String[] firstSplit = input.split(" ", 2);
         command = firstSplit[0];
@@ -142,7 +142,7 @@ public class Parser {
         return new ParsedData(kw, commandkw);
     }
 
-    private ParsedData parseRkw(String input) throws AlanException {
+    private ParsedData parseRkw(String input) throws MonkeException {
         String command, kw;
         String[] firstSplit = input.split(" ", 2);
         command = firstSplit[0];

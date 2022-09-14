@@ -1,6 +1,6 @@
 package gui;
 
-import alan.Alan;
+import monke.Monke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -29,7 +29,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Alan alan;
+    private Monke alan;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/monke.png"));
     private Image botImage = new Image(this.getClass().getResourceAsStream("/images/monke2.png"));
@@ -43,7 +43,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
     }
 
-    public void setBot(Alan alan) {
+    public void setBot(Monke alan) {
         this.alan = alan;
     }
 
@@ -109,6 +109,7 @@ public class MainWindow extends AnchorPane {
                 userDialog = DialogBox.getUserDialog(input, bananasImage);
             }
             DialogBox botResponse = DialogBox.getBotDialog(response, botImage);
+            System.out.println(response);
 
             dialogContainer.getChildren().addAll(
                     userDialog,

@@ -1,7 +1,7 @@
 package util;
 
-import alanExceptions.AlanException;
-import alanExceptions.FileCorruptException;
+import monkeExceptions.MonkeException;
+import monkeExceptions.FileCorruptException;
 import keyword.KeywordPair;
 import tasks.Deadline;
 import tasks.Event;
@@ -20,9 +20,9 @@ public class FileParser {
      *
      * @param data The data from the save file.
      * @return The list of tasks.
-     * @throws AlanException The exception in case of failure.
+     * @throws MonkeException The exception in case of failure.
      */
-    public List<Task> parseFile(String data) throws AlanException {
+    public List<Task> parseFile(String data) throws MonkeException {
         List<Task> result = new ArrayList<>();
         String[] lines = data.split("\n");
         for (String line : lines) {
@@ -49,7 +49,7 @@ public class FileParser {
         return result;
     }
 
-    public List<KeywordPair> parseKeywords(String data) throws AlanException {
+    public List<KeywordPair> parseKeywords(String data) throws MonkeException {
         List<KeywordPair> keywordPairs = new ArrayList<>();
         String[] lines = data.split("\n");
         for (String line : lines) {

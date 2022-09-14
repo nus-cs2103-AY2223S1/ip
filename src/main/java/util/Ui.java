@@ -71,7 +71,7 @@ public class Ui {
      * @return Formatted text.
      */
     public String markDone(Task task) {
-        return addSeparator( "HOOHOOHAHA! GOOD MONKE!!\n monke has marked this task as done!\n  " + task);
+        return addSeparator( "HOOHOOHAHA! GOOD MONKE!!\nmonke has marked this task as done!\n" + task);
     }
 
     /**
@@ -81,7 +81,7 @@ public class Ui {
      * @return Formatted text.
      */
     public String markUndone(Task task) {
-        return addSeparator("hoohoohaha, monke has marked this task as undone.\n  " + task);
+        return addSeparator("hoohoohaha, monke has marked this task as undone.\n" + task);
     }
 
     /**
@@ -93,7 +93,7 @@ public class Ui {
      */
     public String delete(Task task, int listLength) {
         String tasksGrammar = listLength > 1 ? " tasks" : " task";
-        return addSeparator("hoohoohaha, monke has removed the following task from the list!\n  "
+        return addSeparator("hoohoohaha, monke has removed the following task from the list!\n"
                 + task + "\nu currently have " + listLength + tasksGrammar + ".");
     }
 

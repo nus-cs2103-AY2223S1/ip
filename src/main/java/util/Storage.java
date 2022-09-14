@@ -1,9 +1,9 @@
 package util;
 
-import alanExceptions.AlanException;
-import alanExceptions.FileReadException;
-import alanExceptions.FileWriteException;
-import alanExceptions.SaveFileException;
+import monkeExceptions.MonkeException;
+import monkeExceptions.FileReadException;
+import monkeExceptions.FileWriteException;
+import monkeExceptions.SaveFileException;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 public class Storage {
     public static Storage instance;
     private Path dirPath = Paths.get("data");
-    private Path fileNamePath = Paths.get("alan.txt");
+    private Path fileNamePath = Paths.get("monke.txt");
     private Path filePath = dirPath.resolve(fileNamePath);
     private Path keywordFileNamePath = Paths.get("keywords.txt");
     private Path keywordFilePath = dirPath.resolve(keywordFileNamePath);
@@ -28,7 +28,7 @@ public class Storage {
     private final File SAVE_KEYWORDS_FILE;
     private BufferedWriter writer;
 
-    public static Storage getInstance() throws AlanException {
+    public static Storage getInstance() throws MonkeException {
         if (Storage.instance == null) {
             return new Storage();
         }
@@ -38,9 +38,9 @@ public class Storage {
     /**
      * Constructor
      *
-     * @throws AlanException Exception in case of failure.
+     * @throws MonkeException Exception in case of failure.
      */
-    private Storage() throws AlanException {
+    private Storage() throws MonkeException {
         this.SAVE_DIR = new File(dirPath.toString());
         this.SAVE_FILE = new File(filePath.toString());
         this.SAVE_KEYWORDS_FILE = new File(keywordFilePath.toString());
@@ -57,9 +57,9 @@ public class Storage {
      * Rewrites an existing file.
      *
      * @param data Data to be written.
-     * @throws AlanException Exception in case of failure.
+     * @throws MonkeException Exception in case of failure.
      */
-    public void write(String data) throws AlanException {
+    public void write(String data) throws MonkeException {
         try {
             writer = new BufferedWriter(new FileWriter(filePath.toString()));
             writer.write(data);
@@ -69,7 +69,7 @@ public class Storage {
         }
     }
 
-    public void writeKeyword(String data) throws AlanException {
+    public void writeKeyword(String data) throws MonkeException {
         try {
             writer = new BufferedWriter(new FileWriter(keywordFilePath.toString()));
             writer.write(data);
@@ -83,9 +83,9 @@ public class Storage {
      * Appends to an existing file.
      *
      * @param data Data to be appended.
-     * @throws AlanException Exception in case of failure.
+     * @throws MonkeException Exception in case of failure.
      */
-    public void append(String data) throws AlanException {
+    public void append(String data) throws MonkeException {
         try {
             writer = new BufferedWriter(new FileWriter(filePath.toString(), true));
             writer.write(data);
@@ -94,7 +94,7 @@ public class Storage {
             throw new FileWriteException();
         }
     }
-    public void appendKeyword(String data) throws AlanException {
+    public void appendKeyword(String data) throws MonkeException {
         try {
             writer = new BufferedWriter(new FileWriter(keywordFilePath.toString(), true));
             writer.write(data);
@@ -108,9 +108,9 @@ public class Storage {
      * Reads a file
      *
      * @return The data read from the file.
-     * @throws AlanException Exception in case of failure.
+     * @throws MonkeException Exception in case of failure.
      */
-    public String read() throws AlanException {
+    public String read() throws MonkeException {
         String result;
         try {
             result = Files.readString(filePath);
@@ -120,7 +120,7 @@ public class Storage {
         return result;
     }
 
-    public String readKeywords() throws AlanException {
+    public String readKeywords() throws MonkeException {
         String result;
         try {
             result = Files.readString(keywordFilePath);

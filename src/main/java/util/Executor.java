@@ -1,8 +1,7 @@
 package util;
 
-import alan.Alan;
-import alanExceptions.AlanException;
-import alanExceptions.InvalidValueException;
+import monkeExceptions.MonkeException;
+import monkeExceptions.InvalidValueException;
 import keyword.Keywords;
 import tasks.*;
 
@@ -28,7 +27,7 @@ public class Executor {
         this.parser = new Parser();
         try {
             this.storage = Storage.getInstance();
-        } catch (AlanException e) {
+        } catch (MonkeException e) {
             excException(e.getMessage());
         }
     }
@@ -47,9 +46,9 @@ public class Executor {
      *
      * @param taskList The task list.
      * @param userInput The user input.
-     * @throws AlanException The exception in case of failure.
+     * @throws MonkeException The exception in case of failure.
      */
-    public String excEvent(TaskList taskList, String userInput) throws AlanException {
+    public String excEvent(TaskList taskList, String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.event, userInput);
         Task currentTask = new Event(parsedData);
         taskList.add(currentTask);
@@ -66,9 +65,9 @@ public class Executor {
      *
      * @param taskList The task list.
      * @param userInput The user input.
-     * @throws AlanException The exception in case of failure.
+     * @throws MonkeException The exception in case of failure.
      */
-    public String excDeadline(TaskList taskList, String userInput) throws AlanException {
+    public String excDeadline(TaskList taskList, String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.deadline, userInput);
         Task currentTask = new Deadline(parsedData);
         taskList.add(currentTask);
@@ -85,9 +84,9 @@ public class Executor {
      *
      * @param taskList The task list.
      * @param userInput The user input.
-     * @throws AlanException The exception in case of failure.
+     * @throws MonkeException The exception in case of failure.
      */
-    public String excTodo(TaskList taskList, String userInput) throws AlanException {
+    public String excTodo(TaskList taskList, String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.todo, userInput);
         Task currentTask = new Todo(parsedData);
         taskList.add(currentTask);
@@ -104,9 +103,9 @@ public class Executor {
      *
      * @param taskList Task list to be searched.
      * @param userInput User input.
-     * @throws AlanException Exception in case of failure.
+     * @throws MonkeException Exception in case of failure.
      */
-    public String excFind(TaskList taskList, String userInput) throws AlanException {
+    public String excFind(TaskList taskList, String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.find, userInput);
         List<Task> result = taskList.find(parsedData.getDescription());
 
@@ -118,9 +117,9 @@ public class Executor {
      *
      * @param taskList The task list.
      * @param userInput The user input.
-     * @throws AlanException The exception in case of failure.
+     * @throws MonkeException The exception in case of failure.
      */
-    public String excMark(TaskList taskList, String userInput) throws AlanException {
+    public String excMark(TaskList taskList, String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.mark, userInput);
         try {
             Task currentTask = taskList.get(parsedData.getListIndex());
@@ -139,9 +138,9 @@ public class Executor {
      *
      * @param taskList The task list.
      * @param userInput The user input.
-     * @throws AlanException The exception in case of failure.
+     * @throws MonkeException The exception in case of failure.
      */
-    public String excUnmark(TaskList taskList, String userInput) throws AlanException {
+    public String excUnmark(TaskList taskList, String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.unmark, userInput);
         try {
             Task currentTask = taskList.get(parsedData.getListIndex());
@@ -160,9 +159,9 @@ public class Executor {
      *
      * @param taskList The task list.
      * @param userInput The user input.
-     * @throws AlanException The exception in case of failure.
+     * @throws MonkeException The exception in case of failure.
      */
-    public String excDelete(TaskList taskList, String userInput) throws AlanException {
+    public String excDelete(TaskList taskList, String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.delete, userInput);
         try {
             Task currentTask = taskList.get(parsedData.getListIndex());
@@ -176,25 +175,25 @@ public class Executor {
         }
     }
 
-    public String excAkw(String userInput) throws AlanException {
+    public String excAkw(String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.akw, userInput);
         keyword.Keywords.getInstance().assign(parsedData.getKw(), parsedData.getCommandkw());
 
         return ui.akw(parsedData.getKw(), parsedData.getCommandkw());
     }
 
-    public String excRkw(String userInput) throws AlanException {
+    public String excRkw(String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.rkw, userInput);
         keyword.Keywords.getInstance().remove(parsedData.getDescription());
 
         return ui.rkw(parsedData.getDescription());
     }
 
-    public String excHelp(String userInput) throws AlanException{
+    public String excHelp(String userInput) throws MonkeException {
         ParsedData parsedData;
         try {
             parsedData = parser.parse(help, userInput);
-        } catch (AlanException e) {
+        } catch (MonkeException e) {
             return "For more specific instructions, type \"help\" followed by a command.\n" +
                     "Here are the available commands:\n" + Keywords.getInstance().getDefaultKeywords();
         }
@@ -204,6 +203,7 @@ public class Executor {
     }
 
     public String excBye() {
+        System.exit(0);
         return "Goodbye! See you soon!";
     }
 

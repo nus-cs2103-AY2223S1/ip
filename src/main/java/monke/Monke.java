@@ -1,14 +1,14 @@
-package alan;
+package monke;
 
-import alanExceptions.AlanException;
+import monkeExceptions.MonkeException;
 import tasks.TaskList;
 import util.*;
 
 /**
  * This class encapsulates the Chat Bot.
  */
-public class Alan {
-    public static Alan instance;
+public class Monke {
+    public static Monke instance;
     private Storage storage;
     private final Ui ui;
     private final FileParser fileParser;
@@ -18,7 +18,7 @@ public class Alan {
     /**
      * Private Constructor.
      */
-    private Alan() {
+    private Monke() {
         this.ui = new Ui();
         this.executor = new Executor();
         this.taskList = new TaskList();
@@ -26,17 +26,17 @@ public class Alan {
 
         try {
             this.storage = Storage.getInstance();
-        } catch(AlanException e) {
+        } catch(MonkeException e) {
             executor.excException(e.getMessage());
         }
     }
 
-    public static Alan getInstance() {
-        if (Alan.instance == null) {
-            Alan.instance = new Alan();
+    public static Monke getInstance() {
+        if (Monke.instance == null) {
+            Monke.instance = new Monke();
         }
-        Alan.instance.begin();
-        return Alan.instance;
+        Monke.instance.begin();
+        return Monke.instance;
     }
 
 
@@ -46,16 +46,16 @@ public class Alan {
      * @param args args.
      */
     public static void main(String[] args) {
-        if (Alan.instance == null) {
-            Alan.instance = new Alan();
+        if (Monke.instance == null) {
+            Monke.instance = new Monke();
         }
-        Alan.instance.begin();
+        Monke.instance.begin();
     }
 
     private void begin() {
         try {
             this.taskList = new TaskList(fileParser.parseFile(storage.read()));
-        } catch (AlanException e) {
+        } catch (MonkeException e) {
             executor.excException(e.getMessage());
         }
     }
@@ -109,7 +109,7 @@ public class Alan {
                     response = ui.invalid();
                     break;
             }
-        } catch (AlanException exception) {
+        } catch (MonkeException exception) {
             response = executor.excException(exception.getMessage());
         }
         // At this point response must not be null

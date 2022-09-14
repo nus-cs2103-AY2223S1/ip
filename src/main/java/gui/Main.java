@@ -2,7 +2,7 @@ package gui;
 
 import java.io.IOException;
 
-import alan.Alan;
+import monke.Monke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,18 +14,18 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Alan alan = Alan.getInstance();
+    private Monke monke = Monke.getInstance();
 
     @Override
     public void start(Stage stage) {
         try {
-            stage.setTitle("Monkey See Monkey Do");
+            stage.setTitle("MONKE");
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             scene.getStylesheets().add(getClass().getResource("/style/main.css").toExternalForm());
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setBot(alan);
+            fxmlLoader.<MainWindow>getController().setBot(monke);
             fxmlLoader.<MainWindow>getController().sendIntro();
             stage.show();
         } catch (IOException e) {

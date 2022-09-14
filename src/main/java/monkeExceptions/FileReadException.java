@@ -1,6 +1,6 @@
-package alanExceptions;
+package monkeExceptions;
 
-public class FileReadException extends AlanException {
+public class FileReadException extends MonkeException {
     public FileReadException() {
         super("Unable to read from save file.");
     }

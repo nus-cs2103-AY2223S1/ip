@@ -1,8 +1,8 @@
 package keyword;
 
-import alanExceptions.AlanException;
-import alanExceptions.NoSuchKeywordException;
-import alanExceptions.RemovingDefaultKeywordException;
+import monkeExceptions.MonkeException;
+import monkeExceptions.NoSuchKeywordException;
+import monkeExceptions.RemovingDefaultKeywordException;
 import util.FileFormatter;
 import util.FileParser;
 import util.Storage;
@@ -22,29 +22,29 @@ public class Keywords {
     private final ArrayList<String> DEFAULT_HELP_MSG = new ArrayList<>(Arrays.asList(
             "Say bye to the monkey helper!",
             "List out all your current tasks.",
-            "Add an event task.\n Format: event <task description> /at <time>",
-            "Add a deadline task.\n Format: deadline <task description> /by <time>",
-            "Add a todo task.\n Format: todo <task description>",
-            "Search tasks with a keyword.\n Format: find <keyword>",
-            "Mark task as done.\n Format: mark <task index>",
-            "Mark task as undone.\n Format: unmark <task index>",
-            "Delete a task.\n Format: delete <task index>",
-            "Assign a custom keyword to a command.\n Format: addkw <custom keyword> <command>",
-            "Delete a custom keyword.\n Format: delkw <custom keyword>",
-            "Display instructions for commands.\n Format: help <command>"
+            "Add an event task.\nFormat: event <task description> /on <time>",
+            "Add a deadline task.\nFormat: deadline <task description> /by <time>",
+            "Add a todo task.\nFormat: todo <task description>",
+            "Search tasks with a keyword.\nFormat: find <keyword>",
+            "Mark task as done.\nFormat: mark <task index>",
+            "Mark task as undone.\nFormat: unmark <task index>",
+            "Delete a task.\nFormat: delete <task index>",
+            "Assign a custom keyword to a command.\nFormat: addkw <custom keyword> <command>",
+            "Delete a custom keyword.\nFormat: delkw <custom keyword>",
+            "Display instructions for commands.\nFormat: help <command>"
     ));
     private final HashMap<String, String> DEFAULT_HELP_MSG_DICT = new HashMap<>();
     private final ArrayList<String> CUSTOM_KEYWORDS = new ArrayList<>();
     private final HashMap<String, String> keywords = new HashMap<>();
 
-    public static Keywords getInstance() throws AlanException {
+    public static Keywords getInstance() throws MonkeException {
         if (Keywords.instance == null) {
             Keywords.instance = new Keywords();
         }
         return Keywords.instance;
     }
 
-    public Keywords() throws AlanException {
+    public Keywords() throws MonkeException {
         for (int i = 0; i < DEFAULT_KEYWORDS.size(); i++) {
             this.keywords.put(DEFAULT_KEYWORDS.get(i), DEFAULT_KEYWORDS.get(i));
             this.DEFAULT_HELP_MSG_DICT.put(DEFAULT_KEYWORDS.get(i), DEFAULT_HELP_MSG.get(i));
@@ -61,7 +61,7 @@ public class Keywords {
         }
     }
 
-    public void assign(String newKW, String commandKW) throws AlanException {
+    public void assign(String newKW, String commandKW) throws MonkeException {
         if (!DEFAULT_KEYWORDS.contains(commandKW)) {
             throw new NoSuchKeywordException();
         }
@@ -70,7 +70,7 @@ public class Keywords {
         this.keywords.put(newKW, commandKW);
     }
 
-    public void remove(String kw) throws AlanException {
+    public void remove(String kw) throws MonkeException {
         if (DEFAULT_KEYWORDS.contains(kw)) {
             throw new RemovingDefaultKeywordException();
         }
