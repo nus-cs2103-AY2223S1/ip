@@ -119,6 +119,13 @@ public class TaskList {
         return outputText;
     }
 
+    /**
+     * Clears current task list and archive the task into another file
+     *
+     * @param tasks Arraylist list of task
+     * @return String to let users know that tasks have been archived
+     * @throws ChadException If file cannot be opened
+     */
     public static String archiveTasks(ArrayList<Task> tasks) throws ChadException {
         String str = "Cleared list";
         Storage.archiveToFile();

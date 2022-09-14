@@ -69,6 +69,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Archive current task list into another file
+     * 
+     * @throws ChadException If file cannot be opened
+     */
     public static void archiveToFile() throws ChadException{
         Path source = Paths.get("./data/chad_data.txt");
         Path dest = Paths.get("./data/chad_archived.txt");
