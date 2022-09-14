@@ -29,20 +29,20 @@ public class DeadlineInstruction implements Instruction {
     public DeadlineInstruction(TaskList taskList, String userInput) {
         this.taskList = taskList;
         this.userInput = userInput;
-        String description = userInput.substring(9, userInput.lastIndexOf("/") - 1);
-        String day = userInput.substring(userInput.lastIndexOf("/by") + 4);
-        try {
-            LocalDate.parse(day);
-            this.newTask = new Deadline(description, day);
-        } catch (DateTimeParseException exception) {
-            DukeException.dateTimeException();
-        } catch (DateTimeException exceptionTwo) {
-            DukeException.dateTimeException();
-        }
     }
 
     @Override
     public String execute() {
+        String description = this.userInput.substring(9, userInput.lastIndexOf("/") - 1);
+        String day = this.userInput.substring(userInput.lastIndexOf("/by") + 4);
+        try {
+            LocalDate.parse(day);
+            this.newTask = new Deadline(description, day);
+        } catch (DateTimeParseException exception) {
+            return DukeException.dateTimeException();
+        } catch (DateTimeException exceptionTwo) {
+            return DukeException.dateTimeException();
+        }
         this.taskList.addTask(this.newTask);
         return Ui.printDeadline(this.newTask);
     }

@@ -25,17 +25,17 @@ public class ToDoInstruction implements Instruction {
     public ToDoInstruction(TaskList taskList, String userInput) {
         this.taskList = taskList;
         this.userInput = userInput;
-        try {
-            this.userInput.substring(5);
-        } catch (Exception StringIndexOutOfBoundsException) {
-            DukeException.todoException();
-        }
-        String description = userInput.substring(5);
-        this.newTask = new Todo(description);
     }
 
     @Override
     public String execute() {
+        try {
+            this.userInput.substring(5);
+        } catch (Exception StringIndexOutOfBoundsException) {
+            return DukeException.todoException();
+        }
+        String description = userInput.substring(5);
+        this.newTask = new Todo(description);
         this.taskList.addTask(this.newTask);
         return Ui.printToDo(this.newTask);
     }
