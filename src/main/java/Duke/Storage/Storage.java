@@ -63,21 +63,21 @@ public class Storage {
 
             Task newTask;
             switch (taskTypeStr) {
-                case "T":
-                    newTask = new ToDo(description);
-                    break;
-                case "D":
-                    String byStr = taskArray[3];
-                    LocalDateTime by = getDateTime(byStr);
-                    newTask = new Deadline(description, by);
-                    break;
-                case "E":
-                    String atStr = taskArray[3];
-                    LocalDateTime at = getDateTime(atStr);
-                    newTask = new Event(description, at);
-                    break;
-                default:
-                    throw DukeException.readRowFromFileException(taskStr);
+            case "T":
+                newTask = new ToDo(description);
+                break;
+            case "D":
+                String byStr = taskArray[3];
+                LocalDateTime by = getDateTime(byStr);
+                newTask = new Deadline(description, by);
+                break;
+            case "E":
+                String atStr = taskArray[3];
+                LocalDateTime at = getDateTime(atStr);
+                newTask = new Event(description, at);
+                break;
+            default:
+                throw DukeException.readRowFromFileException(taskStr);
             }
 
             boolean isDone = isDoneStr.equals("X");

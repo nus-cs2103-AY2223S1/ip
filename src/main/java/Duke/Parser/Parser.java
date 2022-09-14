@@ -42,8 +42,8 @@ public class Parser {
 
     public void handleNext() {
         try {
-            String inputCmd = ui.getNext().strip();
-            String inputRem = ui.getNextLine().strip();
+            String inputCmd = getNext();
+            String inputRem = getNextLine().strip();
             switch (inputCmd) {
             case (END_COMMAND):
                 closeParser();
@@ -206,5 +206,13 @@ public class Parser {
         } catch (DukeException de) {
             throw DukeException.deleteTaskException(de.toString());
         }
+    }
+
+    private String getNext() {
+        return ui.getNext().strip();
+    }
+
+    private String getNextLine() {
+        return ui.getNextLine().strip();
     }
 }
