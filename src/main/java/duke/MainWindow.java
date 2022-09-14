@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.text.ParseException;
 
 /**
@@ -30,11 +31,12 @@ public class MainWindow extends AnchorPane {
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException, ParseException {
         Ui ui = new Ui();
+        SavedTaskHandler savedTaskHandler = new SavedTaskHandler();
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(ui.greetingMessage(), dukeImage)
+                DialogBox.getDukeDialog(ui.greetingMessage() + savedTaskHandler.getFileMessage() + savedTaskHandler.getPreviousList(), dukeImage)
         );
     }
 

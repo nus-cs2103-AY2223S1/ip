@@ -9,7 +9,7 @@ package duke;
  */
 public class Task {
     private final String taskName;
-    private boolean markedAsDone = false;
+    private boolean isDone = false;
     private String priority = "[ ]";
 
     public Task(String taskName) {
@@ -21,7 +21,7 @@ public class Task {
      *
      */
     public void mark() {
-        this.markedAsDone = true;
+        this.isDone = true;
     }
 
     /**
@@ -29,7 +29,7 @@ public class Task {
      *
      */
     public void unmark() {
-        this.markedAsDone = false;
+        this.isDone = false;
     }
 
     public void setPriority(String priority) {
@@ -45,7 +45,7 @@ public class Task {
     public String toString() {
         String ticker = "[ ]";
 
-        if (markedAsDone == true) {
+        if (isDone == true) {
             ticker = "[X]";
         }
 

@@ -1,3 +1,11 @@
 [T][ ][ ] homework
-[T][ ][ ] lab
+[T][ ][ ] lesson
+[T][ ][ ] homework 2
+[T][ ][ ] homework 2
 [T][ ][ ] tutorial
+[T][ ][ ] f
+[T][ ][ ] hi
+[T][ ][ ] bye
+[T][ ][ ] this
+[T][ ][ ] that'
+[T][ ][ ] hehe
