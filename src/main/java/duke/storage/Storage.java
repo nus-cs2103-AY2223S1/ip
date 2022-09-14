@@ -47,6 +47,7 @@ public class Storage {
 
     /**
      * Saves the task list onto the hard disk.
+     *
      * @param taskList
      */
     public void save(TaskList taskList) {
@@ -64,6 +65,7 @@ public class Storage {
 
     /**
      * Loads the task list from the hard disk.
+     *
      * @return TaskList
      */
     public TaskList load() {

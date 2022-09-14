@@ -8,6 +8,7 @@ public class ToDo extends Task {
 
     /**
      * Constructor for a To-Do with a known completion status.
+     *
      * @param name
      */
     public ToDo(String name) {
@@ -16,6 +17,7 @@ public class ToDo extends Task {
 
     /**
      * Constructor for a To-Do with a known completion status.
+     *
      * @param name
      * @param isDone
      */
@@ -25,6 +27,7 @@ public class ToDo extends Task {
 
     /**
      * toString method for a To-Do.
+     *
      * @return To-do list friendly representation of a To-Do.
      */
     @Override
@@ -34,6 +37,7 @@ public class ToDo extends Task {
 
     /**
      * Returns an To-Do in a save-friendly format.
+     *
      * @return save-friendly representation of an To-Do.
      */
     @Override

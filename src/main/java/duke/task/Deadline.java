@@ -13,6 +13,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for a Deadline.
+     *
      * @param name Name of the task
      * @param dateAndTime Deadline of the task
      */
@@ -33,6 +34,7 @@ public class Deadline extends Task {
 
     /**
      * Creates a Deadline with a known completion status.
+     *
      * @param name Name of the task
      * @param dateAndTime Deadline of the task
      * @param isDone Completion status
@@ -53,6 +55,7 @@ public class Deadline extends Task {
 
     /**
      * Getter for deadline date and time.
+     *
      * @return YYYY-MM-dd HHMM representation of date and time.
      */
     public String getDateString() {
@@ -61,6 +64,7 @@ public class Deadline extends Task {
 
     /**
      * toString method for a Deadline.
+     *
      * @return To-do list friendly representation of a Deadline.
      */
     @Override
@@ -70,6 +74,7 @@ public class Deadline extends Task {
 
     /**
      * Returns a Deadline in a save-friendly format.
+     *
      * @return save-friendly representation of a Deadline.
      */
     @Override

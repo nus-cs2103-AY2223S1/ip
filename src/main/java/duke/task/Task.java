@@ -9,6 +9,7 @@ public class Task {
 
     /**
      * Constructor for a task.
+     *
      * @param name
      */
     public Task(String name) {
@@ -18,6 +19,7 @@ public class Task {
 
     /**
      * Constructor for a task with known completion status.
+     *
      * @param name
      */
     public Task(String name, boolean done) {
@@ -41,6 +43,7 @@ public class Task {
 
     /**
      * Gives the String representation of the status icon.
+     *
      * @return String representing status icon.
      */
     public String getStatusIcon() {
@@ -49,6 +52,7 @@ public class Task {
 
     /**
      * Returns the task name.
+     *
      * @return String representing the task name.
      */
     public String getTaskName() {
@@ -57,6 +61,7 @@ public class Task {
 
     /**
      * Represents the task as a String.
+     *
      * @return String representation of the task.
      */
     @Override
@@ -66,6 +71,7 @@ public class Task {
 
     /**
      * Represents the task as a save-friendly String.
+     *
      * @return Save-friendly String representation of the task.
      */
     public String savedString() {
