@@ -11,7 +11,7 @@ import java.util.Comparator;
  */
 public class TaskList {
 
-    private ArrayList<Task> addedTasks = new ArrayList<>(100);
+    private ArrayList<Task> addedTasks = new ArrayList<>();
     
     /**
      * Returns the size of the task array.
@@ -32,6 +32,14 @@ public class TaskList {
             throw new TaskNotFoundException(String.valueOf(index));
         }
         return this.addedTasks.get(index);
+    }
+
+    /**
+     * Loads a given task list into the actual program task list.
+     * @param tasksToLoad The specified tasks to be loaded
+     */
+    public void loadTasks(ArrayList<Task> tasksToLoad) {
+        this.addedTasks = tasksToLoad;
     }
 
     /**
@@ -67,7 +75,7 @@ public class TaskList {
      * @param chars The sequence of chars to search tasks by
      */
     public ArrayList<String> findTask(String chars) {
-        ArrayList<String> foundTasks = new ArrayList<>(100);
+        ArrayList<String> foundTasks = new ArrayList<>();
         for (int i = 0; i < this.getSize(); ++i) {
             Task searchedTask = this.addedTasks.get(i);
             if (searchedTask.doesNameContain(chars)) {

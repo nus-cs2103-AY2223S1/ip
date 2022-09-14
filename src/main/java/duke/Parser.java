@@ -1,5 +1,6 @@
 package duke;
 
+import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 public class Parser {
     
     /**
-     * Parses a date and time string to follow a predetermined format.
+     * Parses a date and time string from user input to follow a predetermined format.
      * 
      * @param dateTime The user-entered date and time string.
      * @return The parsed date and time, wrapped in a LocalDateTime object 
@@ -40,6 +41,73 @@ public class Parser {
             } catch (DateTimeException e) {
                 throw new IllegalDateTimeException(dateTime);
             }
+        }
+    }
+
+    /**
+     * Parses a date and time string from the save file to follow a predetermined format.
+     *
+     * @param dateTime The user-entered date and time string.
+     * @return The parsed date and time, wrapped in a LocalDateTime object
+     * @throws IllegalDateTimeException If date and time string does not
+     *                                  follow the defined format.
+     */
+    public static LocalDateTime parseSavedDateTime(String dateTime) throws IllegalDateTimeException {
+        String[] date = dateTime.split(" ")[0].split("/");
+        String[] time = dateTime.split(" ")[1].split(":");
+        try {
+            LocalDateTime localDateTime = LocalDateTime.of(
+                    Integer.parseInt(date[2]),
+                    Integer.parseInt(date[1]),
+                    Integer.parseInt(date[0]),
+                    Integer.parseInt(time[0]),
+                    Integer.parseInt(time[1])
+            );
+            return localDateTime;
+        } catch (NumberFormatException e) {
+            throw new IllegalDateTimeException(dateTime);
+        } catch (DateTimeException e) {
+            throw new IllegalDateTimeException(dateTime);
+        }
+    }
+
+    /**
+     * Parse and create a task based on the string loaded from the save file
+     * @param lineFromFile The string representing the line loaded from save file
+     * @return The created task
+     * @throws IOException If errors occur when reading input from file.
+     */
+    public static Task parseLoadedTask(String lineFromFile) throws IOException {
+        final String PREFIX_TODO = "[T]";
+        final String PREFIX_DEADLINE = "[D]";
+        final String PREFIX_EVENT = "[E]";
+        String[] lineDetails = lineFromFile.split("] ", 2);
+        String linePrefix = lineDetails[0].substring(0, 3);
+        System.out.println(linePrefix);
+        boolean lineMarked = lineDetails[0].charAt(4) == 'X';
+        try {
+            if (linePrefix.equals(PREFIX_TODO)) {
+                return new Todo(lineDetails[1], lineMarked);
+            } else if (linePrefix.equals(PREFIX_DEADLINE)) {
+                String[] deadlineDetails = lineDetails[1].split(" ", 3);
+                return new Deadline(
+                        deadlineDetails[0],
+                        Parser.parseSavedDateTime(deadlineDetails[2]),
+                        lineMarked
+                );
+            } else if (linePrefix.equals(PREFIX_EVENT)) {
+                String[] eventDetails = lineDetails[1].split(" ", 3);
+                return new Event(
+                        eventDetails[0],
+                        Parser.parseSavedDateTime(eventDetails[2]),
+                        lineMarked
+                );
+            } else {
+                throw new IOException("Unknown task type");
+            }
+        } catch (IllegalDateTimeException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 

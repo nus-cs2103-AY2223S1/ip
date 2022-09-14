@@ -10,8 +10,8 @@ public class Todo extends Task implements Comparable<Task> {
      * 
      * @param taskName The name of the Todo task
      */
-    public Todo(String taskName) {
-        super(taskName);
+    public Todo(String taskName, boolean marked) {
+        super(taskName, marked);
     }
 
     /**

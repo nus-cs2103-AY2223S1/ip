@@ -19,16 +19,17 @@ public abstract class Task implements Comparable<Task> {
      * the task is undone and true indicates that
      * the task is done.
      */
-    private Boolean isMarked = false;
+    private boolean isMarked = false;
 
     /**
      * The constructor to initialise a new Task object with a given name.
      *
      * @param taskName The name of the task to be created.
      */
-    public Task(String taskName) {
+    public Task(String taskName, boolean marked) {
         assert taskName != null;
         this.taskName = taskName;
+        this.isMarked = marked;
     }
 
     public String getTaskName() {

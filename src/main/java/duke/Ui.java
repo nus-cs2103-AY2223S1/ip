@@ -14,7 +14,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -184,7 +183,7 @@ public class Ui extends Application {
     }
 
     /**
-     * Prints a greeting as well as initialise assets of GUI
+     * Prints a greeting, initialise assets of GUI and loads tasks from disk
      */
     @FXML
     public void initialize() {
@@ -197,6 +196,11 @@ public class Ui extends Application {
                 DialogBox.getDukeDialog(greeting, dukeImage),
                 DialogBox.getDukeDialog(commandGuide, dukeImage)
         );
+        try {
+            this.taskList.loadTasks(Storage.loadFromDirectory());
+        } catch (IOException e) {
+            dukeRespond(e.getMessage());
+        }
     }
 
     /**
@@ -245,19 +249,19 @@ public class Ui extends Application {
                 this.taskDeletedMessage(removedTask);
                 break;
             case TODO:
-                Todo todo = new Todo(command.getCommandArgs()[1]);
+                Todo todo = new Todo(command.getCommandArgs()[1], false);
                 this.taskList.addTask(todo);
                 this.taskAddedMessage(todo);
                 break;
             case DEADLINE:
                 Deadline deadline = new Deadline(command.getCommandArgs()[0],
-                        Parser.parseDateTime(command.getCommandArgs()[1]));
+                        Parser.parseDateTime(command.getCommandArgs()[1]), false);
                 this.taskList.addTask(deadline);
                 this.taskAddedMessage(deadline);
                 break;
             case EVENT:
                 Event event = new Event(command.getCommandArgs()[0],
-                        Parser.parseDateTime(command.getCommandArgs()[1]));
+                        Parser.parseDateTime(command.getCommandArgs()[1]), false);
                 this.taskList.addTask(event);
                 this.taskAddedMessage(event);
                 break;

@@ -10,8 +10,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task implements Comparable<Task> {
 
-    private static final DateTimeFormatter FORMAT_MMDDYY_TIME =
-            DateTimeFormatter.ofPattern("MM/dd/yy, HH:mm");
+    private static final DateTimeFormatter FORMAT_DDMMYY_TIME =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             
     private final LocalDateTime eventTime;
 
@@ -22,8 +22,8 @@ public class Event extends Task implements Comparable<Task> {
      * @param taskName The name of the Event to be created.
      * @param eventTime The time of the Event
      */
-    public Event(String taskName, LocalDateTime eventTime) {
-        super(taskName);
+    public Event(String taskName, LocalDateTime eventTime, boolean marked) {
+        super(taskName, marked);
         this.eventTime = eventTime;
     }
 
@@ -38,8 +38,8 @@ public class Event extends Task implements Comparable<Task> {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + 
-                this.eventTime.format(FORMAT_MMDDYY_TIME) + ")";
+        return "[E]" + super.toString() + " at: " +
+                this.eventTime.format(FORMAT_DDMMYY_TIME);
     }
 
     @Override

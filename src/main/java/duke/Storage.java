@@ -1,8 +1,6 @@
 package duke;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -64,5 +62,29 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Load, if it exists, the saved task file from disk
+     * @return List of tasks that were saved to disk
+     * @throws IOException If errors occur in opening or locating the save file
+     */
+    public static ArrayList<Task> loadFromDirectory() throws IOException {
+        String path = Storage.getPresentWorkingDirectory() +
+                File.separator + "data";
+        File dir = new File(path);
+        if (!dir.exists()) {
+            return new ArrayList<>();
+        }
+        File saveFile = new File(path + File.separator + "duketasks.txt");
+        ArrayList<Task> loadedTasks = new ArrayList<>();
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(saveFile));
+        String lineFromFile;
+        while ((lineFromFile = bufferedReader.readLine()) != null) {
+            Task loadedTask = Parser.parseLoadedTask(lineFromFile);
+            loadedTasks.add(loadedTask);
+        }
+        return loadedTasks;
     }
 }

@@ -10,8 +10,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task implements Comparable<Task> {
 
-    private static final DateTimeFormatter FORMAT_TIME_YYYYMMDD =
-            DateTimeFormatter.ofPattern("HH:mm 'on' yyyy/MM/dd");
+    private static final DateTimeFormatter FORMAT_DDMMYY_TIME =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             
     private final LocalDateTime deadLine;
 
@@ -22,8 +22,8 @@ public class Deadline extends Task implements Comparable<Task> {
      * @param taskName The name of the Deadline to be created.
      * @param deadLine The deadline date and time of the Deadline object
      */
-    public Deadline(String taskName, LocalDateTime deadLine) {
-        super(taskName);
+    public Deadline(String taskName, LocalDateTime deadLine, boolean marked) {
+        super(taskName, marked);
         this.deadLine = deadLine;
     }
 
@@ -38,8 +38,8 @@ public class Deadline extends Task implements Comparable<Task> {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + 
-                this.deadLine.format(FORMAT_TIME_YYYYMMDD) + ")";
+        return "[D]" + super.toString() + " by: " +
+                this.deadLine.format(FORMAT_DDMMYY_TIME);
     }
 
     @Override
