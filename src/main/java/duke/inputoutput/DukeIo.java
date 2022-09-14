@@ -2,6 +2,9 @@ package duke.inputoutput;
 
 import java.util.List;
 
+/**
+ * Interface to denote the basic functionalities of the IO classes
+ */
 public interface DukeIo {
 
     /**
@@ -38,8 +41,8 @@ public interface DukeIo {
     /**
      * Prints Text with selected features
      * 
-     * @param txt
-     * @param features
+     * @param txt Text to be printed
+     * @param featuresEnum features to be applied
      */
     void printTask(String txt, DukeCliSettings featuresEnum);
 

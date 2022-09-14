@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyDescriptionException;
-import duke.task.Task;
 import duke.inputoutput.DukeIo;
+import duke.task.Task;
 import duke.util.ParsedData;
 import duke.util.Storage;
 import duke.util.TaskList;

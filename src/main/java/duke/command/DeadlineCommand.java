@@ -3,9 +3,9 @@ package duke.command;
 import java.io.IOException;
 
 import duke.exceptions.DukeException;
+import duke.inputoutput.DukeIo;
 import duke.task.Deadline;
 import duke.task.Task;
-import duke.inputoutput.DukeIo;
 import duke.util.ParsedData;
 import duke.util.Storage;
 import duke.util.TaskList;

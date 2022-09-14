@@ -1,6 +1,7 @@
 package duke.inputoutput;
 
 import java.util.Scanner;
+
 import duke.util.StringParser;
 
 /**

@@ -4,8 +4,8 @@ import duke.exceptions.CorruptedLineException;
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyDescriptionException;
 import duke.exceptions.EmptyTimeException;
-import duke.util.ParsedData;
 import duke.util.DataParser;
+import duke.util.ParsedData;
 
 /**
  * Task that potentiall have a time deadline Identified by /by

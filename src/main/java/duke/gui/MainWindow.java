@@ -36,11 +36,19 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Create a default Duke object with the default save path
+     */
     public void makeDuke() {
         DukeIo io = new DukeGuiIo(dialogContainer, txt -> DialogBox.getDukeDialog(txt, dukeImage));
         duke = Duke.createApplication(io);
     }
 
+    /**
+     * Create a Duke object using the specified save path
+     * 
+     * @param filepath path to the save file/which file to save
+     */
     public void makeDuke(String filepath) {
         DukeIo io = new DukeGuiIo(dialogContainer, txt -> DialogBox.getDukeDialog(txt, dukeImage));
         duke = Duke.createApplication(io, filepath);

@@ -2,6 +2,9 @@ package duke.inputoutput;
 
 import java.util.List;
 
+/**
+ * Abstract class of DukeIo interface to handle some basic functionalities
+ */
 public abstract class DukeAbstractIo implements DukeIo {
     private static final String EMPTY_LIST = "The current list is empty!";
 
