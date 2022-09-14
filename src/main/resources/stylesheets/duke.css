@@ -7,3 +7,10 @@
     font-family: 'OpenSansEmoji';
     -fx-font-family: 'OpenSansEmoji';
 }
+
+.dialog-panel {
+    -fx-effect: dropshadow(GAUSSIAN, rgba(0,0,0,0.4), 5, 0.03, 0.03, 0.05);
+    -fx-background-color: #ffffff;
+    padding: 5px;
+    -fx-padding: 5px;
+}

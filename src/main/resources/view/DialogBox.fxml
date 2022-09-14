@@ -4,17 +4,22 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.TextFlow?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" spacing="8.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-      <TextFlow fx:id="dialog" prefHeight="99.0" prefWidth="286.0" styleClass="dialog" stylesheets="@../stylesheets/duke.css">
-         <HBox.margin>
-            <Insets left="8.0" right="8.0" />
-         </HBox.margin>
-      </TextFlow>
+      <BorderPane prefHeight="9.0" prefWidth="284.0" styleClass="dialog-panel">
+         <center>
+            <TextFlow fx:id="dialog" prefHeight="166.0" prefWidth="284.0" styleClass="dialog" stylesheets="@../stylesheets/duke.css" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="8.0" right="8.0" />
+               </BorderPane.margin>
+            </TextFlow>
+         </center>
+      </BorderPane>
     <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
          <effect>
             <DropShadow blurType="GAUSSIAN" height="20.0" offsetX="3.0" offsetY="4.0" radius="10.75" spread="0.1" width="25.0">
@@ -28,6 +33,6 @@
          </image></ImageView>
   </children>
   <padding>
-    <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+    <Insets bottom="15.0" left="8.0" right="8.0" top="15.0" />
   </padding>
 </fx:root>
