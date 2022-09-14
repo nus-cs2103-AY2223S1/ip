@@ -12,8 +12,8 @@ public class Constants {
             + "\ne.g. deadline Do homework /by 12 Mar 2022"
             + "\nevent:adds a event task, event {description dd MMM yyyy HH:mm}"
             + "\ne.g. event LOTR meet and greet /at 28 Nov 2022  20:30"
-            + "\nmark: marks a task at specified index, mark {index}\ne.g. mark 2"
-            + "\nunmark: unmarks a task at specified index, unmark {index}\ne.g. unmark 1"
+            + "\nmark: marks a task at specified index as complete, mark {index}\ne.g. mark 2"
+            + "\nunmark: unmark a task at specified index as incomplete, unmark {index}\ne.g. unmark 1"
             + "\nfind: finds a task with keyword, find {keyword}\ne.g. find homework"
             + "\nlist: lists all saved task"
             + "\nbye:exits program\n\nNeed more help?\nRefer to user guide: https://jovitaanderson.github.io/ip/";
