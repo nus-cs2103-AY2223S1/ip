@@ -23,8 +23,13 @@ public class DeleteCommand extends Command {
             throw new PoolsheenException(String.join(" ", rest),
                     "delete", "Please enter 1 appropriate integer");
         }
+        int pos;
+        try {
+            pos = java.lang.Integer.parseInt(rest.get(0));
+        } catch (NumberFormatException e) {
+            throw new PoolsheenException(e.getMessage(), "delete", "Enter a number");
+        }
 
-        int pos = java.lang.Integer.parseInt(rest.get(0));
         boolean isOutOfBounds = (pos - 1) > (tl.getSize() - 1);
 
         if (isOutOfBounds) {

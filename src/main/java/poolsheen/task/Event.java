@@ -2,6 +2,7 @@ package poolsheen.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import poolsheen.PoolsheenException;
 
@@ -30,7 +31,11 @@ public class Event extends Task {
         for (String s : arr) {
             Integer.parseInt(s);
         }
-        this.time = LocalDate.parse(newTime);
+        try {
+            this.time = LocalDate.parse(newTime);
+        } catch (DateTimeParseException e) {
+            throw new PoolsheenException(newTime, "event", "Enter a valid date and time.");
+        }
     }
 
     @Override

@@ -25,7 +25,8 @@ public class EventCommand extends Command {
         }
 
         if (!rest.contains("/at")) {
-            throw new PoolsheenException(String.join(" ", rest), "event", "event commands need an '/at'");
+            throw new PoolsheenException(String.join(" ", rest), "event",
+                    "event commands follow the format: 'deadline _desc_ /by _time_'");
         }
 
         String descE = String.join(" ", rest.subList(0, rest.indexOf("/at")));
