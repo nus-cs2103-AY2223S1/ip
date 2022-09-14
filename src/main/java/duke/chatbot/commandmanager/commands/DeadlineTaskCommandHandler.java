@@ -43,12 +43,12 @@ public class DeadlineTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException, InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidCommandException();
+            throw new InvalidCommandException(this.personality);
         }
 
         String[] argumentList = arguments.split(DeadlineTask.TASK_DELIMITER);
         if (argumentList.length != 2) {
-            throw new InvalidArgumentsException();
+            throw new InvalidArgumentsException(this.personality);
         }
 
         String deadlineTaskName = argumentList[0].strip();
@@ -56,13 +56,13 @@ public class DeadlineTaskCommandHandler implements Command {
         LocalDateTime deadline;
 
         if (deadlineTaskName.length() == 0) {
-            throw new EmptyTaskException();
+            throw new EmptyTaskException(this.personality);
         }
 
         try {
             deadline = LocalDateTime.parse(deadlineString, DateTimeFormatter.ofPattern(taskManager.getDateFormat()));
         } catch (DateTimeParseException exception) {
-            throw new InvalidDeadlineException(taskManager.getDateFormat());
+            throw new InvalidDeadlineException(this.personality, taskManager.getDateFormat());
         }
 
         String taskAdded = taskManager.addTask(new DeadlineTask(deadlineTaskName, deadline));

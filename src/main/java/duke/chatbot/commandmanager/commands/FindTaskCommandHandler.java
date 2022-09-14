@@ -33,7 +33,7 @@ public class FindTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException {
         if (arguments.length() == 0) {
-            throw new InvalidCommandException();
+            throw new InvalidCommandException(this.personality);
         }
 
         String matchedTaskList = this.taskManager.findTask(arguments);

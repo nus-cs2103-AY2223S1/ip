@@ -7,6 +7,7 @@ import java.time.format.DateTimeParseException;
 import duke.chatbot.commandmanager.commands.exceptions.EmptyDateFormatException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidEventException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.EventTask;
 
@@ -15,13 +16,17 @@ import duke.chatbot.taskmanager.task.EventTask;
  * list of task managed by the task manager.
  */
 public class UpdateEventTaskCommandHandler implements UpdateCommand {
-    private TaskManager taskManager;
+    private final Personality personality;
+    private final TaskManager taskManager;
     /**
-     * Creates a new handler for the update task command with a reference to the task manager.
+     * Creates a new handler for the update task command with a reference to the task manager
+     * and the chatbot's personality.
      *
+     * @param taskManager a reference to the chatbot's personality
      * @param taskManager a reference to the task manager
      */
-    public UpdateEventTaskCommandHandler(TaskManager taskManager) {
+    public UpdateEventTaskCommandHandler(Personality personality, TaskManager taskManager) {
+        this.personality = personality;
         this.taskManager = taskManager;
     }
 
@@ -36,15 +41,15 @@ public class UpdateEventTaskCommandHandler implements UpdateCommand {
     @Override
     public String execute(int itemNumber, String updatedArguments) throws InvalidArgumentsException {
         if (updatedArguments.length() == 0 || updatedArguments.equals(EventTask.TASK_DELIMITER)) {
-            throw new InvalidArgumentsException();
+            throw new InvalidArgumentsException(this.personality);
         }
 
         String[] argumentList = updatedArguments.split(EventTask.TASK_DELIMITER);
         if (argumentList.length > 2) {
-            throw new InvalidArgumentsException();
+            throw new InvalidArgumentsException(this.personality);
         }
         if (this.taskManager.getDateFormat().length() == 0) {
-            throw new EmptyDateFormatException();
+            throw new EmptyDateFormatException(this.personality);
         }
 
         String eventTaskName = "";
@@ -58,7 +63,7 @@ public class UpdateEventTaskCommandHandler implements UpdateCommand {
             try {
                 LocalDateTime.parse(eventTimeString, DateTimeFormatter.ofPattern(this.taskManager.getDateFormat()));
             } catch (DateTimeParseException exception) {
-                throw new InvalidEventException(this.taskManager.getDateFormat());
+                throw new InvalidEventException(this.personality, this.taskManager.getDateFormat());
             }
         }
 

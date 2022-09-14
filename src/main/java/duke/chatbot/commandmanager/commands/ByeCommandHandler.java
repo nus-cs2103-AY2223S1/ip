@@ -32,7 +32,7 @@ public class ByeCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException {
         if (arguments.length() > 0) {
-            throw new InvalidCommandException();
+            throw new InvalidCommandException(this.personality);
         }
         chatBot.terminate();
         return personality.formulateResponse("bye", "");

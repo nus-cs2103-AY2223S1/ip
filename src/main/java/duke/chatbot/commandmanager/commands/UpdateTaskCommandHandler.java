@@ -42,7 +42,7 @@ public class UpdateTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException, InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidCommandException();
+            throw new InvalidCommandException(this.personality);
         }
 
         Scanner argumentScanner = new Scanner(arguments);
@@ -52,29 +52,29 @@ public class UpdateTaskCommandHandler implements Command {
         try {
             itemNumber = Integer.parseInt(argumentScanner.next());
         } catch (NumberFormatException exception) {
-            throw new InvalidIndexException();
+            throw new InvalidIndexException(this.personality);
         }
         if (itemNumber <= 0 || itemNumber > this.taskManager.getListSize()) {
-            throw new NoSuchIndexException();
+            throw new NoSuchIndexException(this.personality);
         }
 
         if (!(argumentScanner.hasNext())) {
-            throw new InvalidArgumentsException();
+            throw new InvalidArgumentsException(this.personality);
         }
 
         String updatedTask = "";
         String updatedArguments = argumentScanner.nextLine().strip();
         switch (this.taskManager.getTaskType(itemNumber)) {
         case ToDoTask.TASK_TYPE:
-            updatedTask = new UpdateTodoTaskCommandHandler(this.taskManager)
+            updatedTask = new UpdateTodoTaskCommandHandler(this.personality, this.taskManager)
                     .execute(itemNumber, updatedArguments);
             break;
         case DeadlineTask.TASK_TYPE:
-            updatedTask = new UpdateDeadlineTaskCommandHandler(this.taskManager)
+            updatedTask = new UpdateDeadlineTaskCommandHandler(this.personality, this.taskManager)
                     .execute(itemNumber, updatedArguments);
             break;
         case EventTask.TASK_TYPE:
-            updatedTask = new UpdateEventTaskCommandHandler(this.taskManager)
+            updatedTask = new UpdateEventTaskCommandHandler(this.personality, this.taskManager)
                     .execute(itemNumber, updatedArguments);
             break;
         default:

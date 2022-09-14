@@ -35,17 +35,17 @@ public class UnmarkTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidIndexException();
+            throw new InvalidIndexException(this.personality);
         }
 
         int itemNumber = 0;
         try {
             itemNumber = Integer.parseInt(arguments);
         } catch (NumberFormatException exception) {
-            throw new InvalidIndexException();
+            throw new InvalidIndexException(this.personality);
         }
         if (itemNumber <= 0 || itemNumber > this.taskManager.getListSize()) {
-            throw new NoSuchIndexException();
+            throw new NoSuchIndexException(this.personality);
         }
 
         boolean isUnmarkedSuccessfully = this.taskManager.unmarkTask(itemNumber);

@@ -43,12 +43,12 @@ public class EventTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException, InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidCommandException();
+            throw new InvalidCommandException(this.personality);
         }
 
         String[] argumentList = arguments.split(EventTask.TASK_DELIMITER);
         if (argumentList.length != 2) {
-            throw new InvalidArgumentsException();
+            throw new InvalidArgumentsException(this.personality);
         }
 
         String eventTaskName = argumentList[0].strip();
@@ -56,13 +56,13 @@ public class EventTaskCommandHandler implements Command {
         LocalDateTime eventTime;
 
         if (eventTaskName.length() == 0) {
-            throw new EmptyTaskException();
+            throw new EmptyTaskException(this.personality);
         }
 
         try {
             eventTime = LocalDateTime.parse(eventTimeString, DateTimeFormatter.ofPattern(taskManager.getDateFormat()));
         } catch (DateTimeParseException exception) {
-            throw new InvalidEventException(taskManager.getDateFormat());
+            throw new InvalidEventException(this.personality, taskManager.getDateFormat());
         }
 
         String taskAdded = taskManager.addTask(new EventTask(eventTaskName, eventTime));

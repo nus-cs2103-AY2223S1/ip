@@ -1,3 +1,8 @@
+greet:
+  HEAD:
+    - "Greetings, "
+  TAIL:
+    - " at your service.\nHow may I help you today?\n"
 bye:
   HEAD:
     - "Goodbye! It was nice seeing you.\n"
@@ -67,3 +72,65 @@ update_task:
     - "The following item has been updated.\n"
   TAIL:
     - "\n"
+
+EMPTY_COMMAND_EXCEPTION:
+  HEAD:
+    - "I don't know what you want if you don't tell me :("
+  TAIL:
+    - ""
+INVALID_COMMAND_EXCEPTION:
+  HEAD:
+    - "Sorry, I don't understand what you mean :("
+  TAIL:
+    - ""
+INVALID_ARGUMENTS_EXCEPTION:
+  HEAD:
+    - "You placed invalid arguments!"
+  TAIL:
+    - ""
+EMPTY_DATE_FORMAT_EXCEPTION:
+  HEAD:
+    - "You have an empty date format!"
+  TAIL:
+    - ""
+EMPTY_TASK_EXCEPTION:
+  HEAD:
+    - "You cannot have an empty Task!"
+  TAIL:
+    - ""
+INVALID_DEADLINE_EXCEPTION:
+  HEAD:
+    - "You have an invalid deadline!\nDeadlines should be in the format: "
+  TAIL:
+    - ""
+INVALID_EVENT_EXCEPTION:
+  HEAD:
+    - "You have an invalid event time!\nEvent times should be in the format: "
+  TAIL:
+    - ""
+INVALID_INDEX_EXCEPTION:
+  HEAD:
+    - "You need to put a number after your command!\n"
+  TAIL:
+    - ""
+NO_SUCH_INDEX_EXCEPTION:
+  HEAD:
+    - "There is no such task!!\n"
+  TAIL:
+    - ""
+
+INVALID_FORMATTED_STRING_EXCEPTION:
+  HEAD:
+    - "There is an invalid formatted string in the save file!\n"
+  TAIL:
+    - ""
+SAVE_DATA_EXCEPTION:
+  HEAD:
+    - "I seem to have some trouble saving the data...\n"
+  TAIL:
+    - ""
+LOAD_DATA_EXCEPTION:
+  HEAD:
+    - "I am having some trouble loading the data!\n"
+  TAIL:
+    - ""

@@ -14,6 +14,7 @@ import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidDeadlineException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidEventException;
+import duke.chatbot.personality.Personality;
 import duke.chatbot.taskmanager.exceptions.InvalidFormattedStringException;
 import duke.chatbot.taskmanager.exceptions.LoadDataException;
 import duke.chatbot.taskmanager.exceptions.SaveDataException;
@@ -70,20 +71,21 @@ public class TaskManager {
      * Processes strings that are formatted to be readable for task manager.
      * Used to process strings loaded from a save file creates a new task from the string.
      *
+     * @param personality a reference to the chatbot's personality
      * @param formattedString string in a readable format detailing a task to be added
      * @return a new task with details processed from the string
      * @throws InvalidFormattedStringException thrown when the formatted string cannot be read
      * @throws InvalidArgumentsException thrown when various invalid arguments are present
      */
-    private Task processFormattedString(String formattedString) throws InvalidFormattedStringException,
-            InvalidArgumentsException {
+    private Task processFormattedString(Personality personality, String formattedString)
+            throws InvalidFormattedStringException, InvalidArgumentsException {
         String[] arguments = formattedString.split(ATTRIBUTE_SEPARATOR);
         String taskType = arguments[0];
         boolean isCompleted = (arguments[1].equals("1"));
         String taskName = arguments[2];
 
         if (taskName.length() == 0) {
-            throw new EmptyTaskException();
+            throw new EmptyTaskException(personality);
         }
 
         switch (taskType) {
@@ -94,17 +96,17 @@ public class TaskManager {
                 LocalDateTime deadline = LocalDateTime.parse(arguments[3]);
                 return new DeadlineTask(taskName, deadline, isCompleted);
             } catch (DateTimeParseException exception) {
-                throw new InvalidDeadlineException(DATE_FORMAT);
+                throw new InvalidDeadlineException(personality, DATE_FORMAT);
             }
         case "E":
             try {
                 LocalDateTime eventTime = LocalDateTime.parse(arguments[3]);
                 return new EventTask(taskName, eventTime, isCompleted);
             } catch (DateTimeParseException exception) {
-                throw new InvalidEventException(DATE_FORMAT);
+                throw new InvalidEventException(personality, DATE_FORMAT);
             }
         default:
-            throw new InvalidFormattedStringException();
+            throw new InvalidFormattedStringException(personality);
         }
 
     }
@@ -210,9 +212,10 @@ public class TaskManager {
      * The text file is saved using a readable format provided by the task.
      * Creates new file if it does not already exist in the filepath.
      *
+     * @param personality a reference to the chatbot's personality
      * @throws SaveDataException when the file cannot be saved
      */
-    public void saveData() throws SaveDataException {
+    public void saveData(Personality personality) throws SaveDataException {
         try {
             File file = new File(FILE_PATH);
             if (!(file.exists())) {
@@ -225,7 +228,7 @@ public class TaskManager {
             }
             fileWriter.close();
         } catch (IOException exception) {
-            throw new SaveDataException();
+            throw new SaveDataException(personality);
         }
     }
 
@@ -234,9 +237,10 @@ public class TaskManager {
      * The text file is read using a readable format provided by the task.
      * Handles exception if file does not exist in the filepath.
      *
+     * @param personality a reference to the chatbot's personality
      * @throws LoadDataException when the file cannot be loaded
      */
-    public void loadData() throws LoadDataException {
+    public void loadData(Personality personality) throws LoadDataException {
         try {
             File file = new File(FILE_PATH);
             if (!(file.exists())) {
@@ -244,11 +248,11 @@ public class TaskManager {
             }
             Scanner fileScanner = new Scanner(file);
             while (fileScanner.hasNextLine()) {
-                Task newTask = processFormattedString(fileScanner.nextLine());
+                Task newTask = processFormattedString(personality, fileScanner.nextLine());
                 taskList.add(newTask);
             }
         } catch (Exception exception) {
-            throw new LoadDataException(exception.getMessage());
+            throw new LoadDataException(personality, exception.getMessage());
         }
     }
 }

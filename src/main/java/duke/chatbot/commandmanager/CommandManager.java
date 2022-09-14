@@ -47,9 +47,9 @@ public class CommandManager {
         this.commandTable.put("update", new UpdateTaskCommandHandler(personality, taskManager));
     }
 
-    public Command getCommand(String command) throws InvalidCommandException {
+    public Command getCommand(Personality personality, String command) throws InvalidCommandException {
         if (!(this.commandTable.containsKey(command))) {
-            throw new InvalidCommandException();
+            throw new InvalidCommandException(personality);
         }
         return this.commandTable.get(command);
     }

@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.yaml.snakeyaml.Yaml;
 
@@ -49,8 +50,11 @@ public class Personality {
      * @return A formutead response based on personality
      */
     public String formulateResponse(String command, String... responseContent) {
-        String responseHead = this.responseTable.get(command).get("HEAD").get(0);
-        String responseTail = this.responseTable.get(command).get("TAIL").get(0);
+        Random random = new Random();
+        List<String> responseHeadList = this.responseTable.get(command).get("HEAD");
+        List<String> responseTailList = this.responseTable.get(command).get("TAIL");
+        String responseHead = responseHeadList.get(random.nextInt(responseHeadList.size()));
+        String responseTail = responseTailList.get(random.nextInt(responseTailList.size()));
 
         if (responseContent.length == 0) {
             return responseHead;
@@ -61,7 +65,8 @@ public class Personality {
         }
 
         if (responseContent.length == 2) {
-            String responseBody = this.responseTable.get(command).get("BODY").get(0);
+            List<String> responseBodyList = this.responseTable.get(command).get("BODY");
+            String responseBody = responseBodyList.get(random.nextInt(responseBodyList.size()));
             return responseHead + responseContent[0] + responseBody + responseContent[1] + responseTail;
         }
         return "";

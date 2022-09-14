@@ -36,7 +36,7 @@ public class TodoTaskCommandHandler implements Command {
     public String execute(String arguments) throws EmptyTaskException {
         String todoTaskName = arguments.strip();
         if (todoTaskName.length() == 0) {
-            throw new EmptyTaskException();
+            throw new EmptyTaskException(this.personality);
         }
 
         String taskAdded = taskManager.addTask(new ToDoTask(todoTaskName));
