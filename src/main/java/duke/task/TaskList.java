@@ -89,11 +89,6 @@ public class TaskList {
         return matches;
     }
 
-
-   public String convertTaskToString(int index) {
-        return tasks.get(index).toString();
-    }
-
     /**
      * Convert a task with given index to a String to store with Storage.
      * @param index

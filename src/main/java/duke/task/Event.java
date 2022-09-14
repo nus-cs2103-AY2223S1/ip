@@ -16,6 +16,11 @@ public class Event extends Task {
         this.at = at;
     }
 
+    public Event(String description, String tag, String at) {
+        super(description, tag);
+        this.at = at;
+    }
+
     /**
      * String format of Deadline.
      * @return
@@ -31,6 +36,6 @@ public class Event extends Task {
      */
     @Override
     public String toMemoryString() {
-        return "E | " + super.toMemoryString() + " | " + at;
+        return "E" + super.toMemoryString() + at;
     }
 }
