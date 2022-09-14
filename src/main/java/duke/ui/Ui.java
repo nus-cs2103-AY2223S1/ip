@@ -12,16 +12,14 @@ public class Ui {
      * Greets the user by printing some lines upon start-up.
      */
     public static String greetUser() {
-        String str = "\tHey there! I'm Duke!\n"
-                + "\tHow may I help you? :)";
-        return str;
+        return "\tCharmposter! What move should I do?";
     }
 
     /**
      * Bids farewell to the user by printing some lines before exit.
      */
     public static String sayBye() {
-         return "\tNice seeing you! Bye!";
+         return "\tNooooo, not the pokeball! AHHHHHH!\n*pop*!";
     }
 
     /**
@@ -30,9 +28,9 @@ public class Ui {
      * @param task a Task that is added to the TaskList
      */
     public static String add(Task task) {
-        String str = "\tGot it! I've added this task!\n"
+        String str = "\tCharmposter! I've added this task for you!\n"
                 + "\t\t" + task + "\n"
-                + "\tYou now have " + Task.getNumOfTasks() + " tasks in the list!";
+                + "\tYou now have " + Task.getNumOfTasks() + " tasks in your pokedex!";
         return str;
     }
 
@@ -51,7 +49,7 @@ public class Ui {
      * @param task a Task that is deleted from a TaskList
      */
     public static String delete(Task task) {
-        String str = "\tAlright! The following task has been deleted!\n"
+        String str = "\tCharmposter! I've incinerated the following task!\n"
                 + "\t\t" + task;
         return str;
     }
@@ -62,7 +60,7 @@ public class Ui {
      * @param task a Task to be marked as done
      */
     public static String mark(Task task) {
-        String str = "\tAlright! Marked this task as done!\n"
+        String str = "\tCharmposter! I've marked this task as done!\n"
                 + "\t\t" + task;
         return str;
     }
@@ -73,7 +71,7 @@ public class Ui {
      * @param task a Task to be marked as not done
      */
     public static String unmark(Task task) {
-        String str = "\tOkay! Unmarked this task!\n"
+        String str = "\tCharmposter! I've unmarked this task for you!\n"
                 + "\t\t" + task;
         return str;
     }
@@ -96,9 +94,9 @@ public class Ui {
             }
         }
         if (str.equals("")) {
-            str = "\tYou do not have any matching tasks";
+            str = "\tCharmposter! I can't find any matching tasks!";
         } else {
-            str = "\tHere are the matching tasks in your list!\n" + str;
+            str = "\tCharmposter! Here are the matching tasks in your pokedex!\n" + str;
         }
         return str;
     }
