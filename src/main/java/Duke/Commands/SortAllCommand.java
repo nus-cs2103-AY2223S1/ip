@@ -10,7 +10,7 @@ public class SortAllCommand extends UserCommand {
 
     @Override
     public String execute() {
-        String output = "";
+        String output = "These are all tasks after sorting:\n";
         output += tasks.sortAll();
         return output;
     }

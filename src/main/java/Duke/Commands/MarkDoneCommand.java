@@ -20,8 +20,9 @@ public class MarkDoneCommand extends UserCommand {
         } catch (IndexOutOfBoundsException e) {
             throw new TaskNotExistException();
         }
+        String output = String.format("Nice! You have successfully marked the task as done: \n%s\n", MarkedTask);
 
-        return "Only Mark it down, and output that task!" ;
+        return output;
 
     }
 

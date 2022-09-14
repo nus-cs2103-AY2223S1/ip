@@ -19,7 +19,6 @@ import java.time.format.DateTimeParseException;
  */
 public class CLIParser {
 
-    // Like a classifier
     public UserCommand parseCommand(String commandString, TaskList userTasks) throws DukeException {
         int firstSpace = commandString.indexOf(" ");
 

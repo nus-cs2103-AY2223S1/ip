@@ -24,6 +24,8 @@ public class DeleteTaskCommand extends UserCommand {
         } catch (IndexOutOfBoundsException e) {
             throw new TaskNotExistException();
         }
-        return "Delete" ;
+
+        String output = String.format("Nice! You have successfully removed this task:\n%s\n", removedTask);
+        return output;
     }
 }

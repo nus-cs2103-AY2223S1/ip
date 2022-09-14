@@ -10,7 +10,7 @@ public class SortDeadlineCommand extends UserCommand {
 
     @Override
     public String execute() {
-        String output = "";
+        String output = "These are all deadlines after sorting based on emergency:\n";
         output += tasks.sortDeadline();
         return output;
     }

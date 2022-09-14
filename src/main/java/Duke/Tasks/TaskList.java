@@ -14,12 +14,17 @@ public class TaskList {
     }
 
     public String showTasks(){
-        Task curTask;
+
         String output = "";
-        for(int i = 0; i < tasks.size(); i++) {
-            curTask = tasks.get(i);
-            output += (i + 1) + "." + curTask.toString() + "\n";
+        if (tasks.size() >= 1) {
+            Task curTask = tasks.get(0);
+            output = output + "1." + curTask.toString();
+            for(int i = 1; i < tasks.size(); i++) {
+                curTask = tasks.get(i);
+                output += "\n" + (i + 1) + "." + curTask.toString();
+            }
         }
+
         return output;
     }
 
@@ -101,7 +106,10 @@ public class TaskList {
         String output = "";
         for(int i = 0; i < deadlines.size(); i++) {
             curDeadline = deadlines.get(i);
-            output += (i + 1) + "." + curDeadline.toString() + "\n";
+            output += (i + 1) + "." + curDeadline.toString();
+            if (i < deadlines.size() - 1) {
+                output += "\n";
+            }
         }
         return output;
 

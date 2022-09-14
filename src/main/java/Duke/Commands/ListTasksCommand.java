@@ -10,7 +10,7 @@ public class ListTasksCommand extends UserCommand {
 
     @Override
     public String execute() {
-        String output = "";
+        String output = "These are all the tasks in your list: \n";
         output += this.tasks.showTasks();
         return output;
     }

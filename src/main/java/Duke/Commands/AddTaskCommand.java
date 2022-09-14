@@ -20,6 +20,8 @@ public class AddTaskCommand extends UserCommand {
     @Override
     public String execute() {
         tasks.addTask(this.newTask);
-        return String.format("Done Added");
+        String output = String.format("Nice! You have successfully added the task in your list:\n %s\n", this.newTask);
+        return output;
+
     }
 }

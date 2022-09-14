@@ -13,7 +13,7 @@ public class FindTaskCommand extends UserCommand{
 
     @Override
     public String execute() throws DukeException {
-        String output = "";
+        String output = "These are all the tasks found by " + keyword + ":\n";
         TaskList foundTasks = this.tasks.findTask(this.keyword);
         output += foundTasks.showTasks();
         return output;

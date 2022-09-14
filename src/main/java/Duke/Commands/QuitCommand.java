@@ -6,6 +6,6 @@ public class QuitCommand extends UserCommand{
 
     @Override
     public String execute() throws DukeException {
-        return "Bye";
+        return "Bye ~ Hope you have enjoy your time ~~";
     }
 }

@@ -9,10 +9,7 @@ import Duke.Tasks.TaskList;
  */
 public abstract class UserCommand {
     protected TaskList tasks;
-
-
     UserCommand(){}
-
     UserCommand(TaskList tasks) { this.tasks = tasks; }
 
     abstract public String execute() throws DukeException;

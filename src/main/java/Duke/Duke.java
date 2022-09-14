@@ -2,14 +2,8 @@ package Duke;
 
 
 import Duke.UserServer.ServerCLI;
-import Duke.UserServer.ServerGUI;
 
 import java.util.Scanner;
-
-
-import java.awt.print.Printable;
-import java.time.LocalDateTime;
-
 
 
 public class Duke {
@@ -22,13 +16,10 @@ public class Duke {
     public static void main(String[] args) { //throws DukeException, FileNotFoundException {
 
 
-        int mode = getMode();
-        if (mode == 0) {
-            ServerCLI serverCLI = new ServerCLI();
-            serverCLI.run();
-        } else {
 
-        }
+        ServerCLI serverCLI = new ServerCLI();
+        serverCLI.run();
+
 
 
     }
@@ -49,6 +40,11 @@ public class Duke {
 
         }
 
+    }
+
+
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 
 
@@ -200,9 +196,7 @@ public class Duke {
 ////     */
 //
 //
-//    public String getResponse(String input) {
-//        return "Duke heard: " + input;
-//    }
+
 //
 ////
 ////
