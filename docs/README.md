@@ -7,15 +7,17 @@ allowing the tracking of various types of tasks including events and deadlines.
 - [Quick start](https://kshan29.github.io/ip/#quick-start)
 - [Features](https://kshan29.github.io/ip/#features)
 - [Usage](https://kshan29.github.io/ip/#usage)
-  - [Adding a todo: `todo`](https://kshan29.github.io/ip/#adding-a-todo)
-  - [Adding a deadline: `deadline`](https://kshan29.github.io/ip/#adding-a-deadline)
-  - [Adding a event: `event`](https://kshan29.github.io/ip/#adding-a-event)
-  - [Listing all tasks: `list`](https://kshan29.github.io/ip/#listing-all-tasks)
-  - [Deleting a task: `delete`](https://kshan29.github.io/ip/#deleting-a-task)
-  - [Finding specific tasks: `find`](https://kshan29.github.io/ip/#finding-specific-tasks)
-  - [Marking a task: `mark`](https://kshan29.github.io/ip/#marking-a-task)
-  - [Unmarking a task: `unmark`](https://kshan29.github.io/ip/#unmarking-a-task)
-  - [Exiting the program: `bye`](https://kshan29.github.io/ip/#exiting-the-program)
+  - [Adding a todo: `todo`](https://kshan29.github.io/ip/#adding-a-todo-todo)
+  - [Adding a deadline: `deadline`](https://kshan29.github.io/ip/#adding-a-deadline-deadline)
+  - [Adding a event: `event`](https://kshan29.github.io/ip/#adding-a-event-event)
+  - [Listing all tasks: `list`](https://kshan29.github.io/ip/#listing-all-tasks-list)
+  - [Deleting a task: `delete`](https://kshan29.github.io/ip/#deleting-a-task-delete)
+  - [Finding specific tasks: `find`](https://kshan29.github.io/ip/#finding-specific-tasks-find)
+  - [Marking a task: `mark`](https://kshan29.github.io/ip/#marking-a-task-mark)
+  - [Unmarking a task: `unmark`](https://kshan29.github.io/ip/#unmarking-a-task-unmark)
+  - [Exiting the program: `bye`](https://kshan29.github.io/ip/#exiting-the-program-bye)
+- [FAQ]()
+- [Commmand summary]()
 
 ## Quick Start
 
@@ -211,3 +213,22 @@ Prints goodbye message and exits the program.
 ```
 Bye. Hope to see you again soon!
 ```
+
+## FAQ
+**Q**: How do I transfer my data to another Computer?
+
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous Duke home folder.
+
+## Command summary 
+| **Action** | **Format, Examples**                                                                              |
+|------------|---------------------------------------------------------------------------------------------------|
+| todo       | `todo TASK_DESCRIPTION` <br/> e.g. `todo watch movie`                                             |
+| deadline   | `deadline TASK_DESCRIPTION /by YYYY-MM-DD` <br/> e.g. `deadline CS2101 Assignment /by 2022-09-15` |
+| event      | `event TASK_DESCRIPTION /at YYYY-MM-DD` <br/> e.g. `event NUS Supernova /at 2022-09-01`           |
+| list       | `list`                                                                                            |
+| delete     | `delete INDEX` <br/> e.g. `delete 1`                                                              |
+| find       | `find KEYWORD` <br/> e.g. `find test`                                                             |
+| mark       | `mark INDEX` <br/> e.g. `mark 3`                                                                      |
+| unmark     | `unmark INDEX` <br/> e.g. `unmark 2`                                                                  |
+| bye        | `bye`                                                                                               |
