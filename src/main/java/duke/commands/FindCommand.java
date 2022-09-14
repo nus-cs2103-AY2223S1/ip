@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.data.TaskList;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.ui.Ui;
 
 /**
@@ -14,15 +13,13 @@ public class FindCommand extends Command {
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         StringBuilder sb = new StringBuilder();
         String wordToFind = ui.userString().split(" ")[1];
-        sb.append("     Here are the matching tasks in your list:");
-        int counter = 1;
+        sb.append("     Here are the matching tasks in your list:\n");
+        String toFind = taskList.getAllTasks().stream()
+                                            .filter(t -> t.getTaskName()
+                                            .contains(wordToFind))
+                                            .map(t -> t.toString()).reduce("", (a, b) -> "\t" + a + "\n\t" + b);
+        sb.append(toFind);
 
-        for (Task task : taskList.getAllTasks()) {
-            if (task.getTaskName().contains(wordToFind)) {
-                sb.append(String.format("%d. %s\n", counter, task));
-                ++counter;
-            }
-        }
         return sb.toString();
     }
 

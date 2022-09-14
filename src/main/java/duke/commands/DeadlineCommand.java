@@ -19,6 +19,10 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
+
+        assert ui.userString().split(" ").length >= 2
+                : "     ☹ OOPS!!! The description of a deadline cannot be empty.";
+
         String totalString = "";
         String[] splitInput = ui.userString().split(" ");
         totalString += "Got it. I've added this task\n";
