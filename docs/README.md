@@ -15,7 +15,7 @@ Duke is an interactive task management chatbot that allows you to add, edit and 
 There are three types of tasks you can create:
 - ToDos (command: `todo <todo name>`)
 - Events (command: `event <event name> /at <location>`)
-- Deadlines (command: `deadline <deadline name> /by <date in YYYY-MM-DD>)
+- Deadlines (command: `deadline <deadline name> /by <date in YYYY-MM-DD>`)
 
 ### Delete tasks 
 Delete an existing task in the list. (command: `delete <task index>`)
