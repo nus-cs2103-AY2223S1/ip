@@ -58,6 +58,9 @@ public class Storage {
     public List<Task> readFile() throws FileNotFoundException {
         List<Task> ret = new ArrayList<>();
         List<Integer> corruptedLines = new ArrayList<>();
+
+        assert file.exists();
+
         Scanner sc = new Scanner(file);
         String line;
         int lineNum = 0;
@@ -84,6 +87,8 @@ public class Storage {
         if (!file.exists()) {
             file.createNewFile();
         }
+
+        assert file.exists();
         StringBuilder sb = new StringBuilder();
         for (ParsedData pd : dataList) {
             sb.append(pd.getSavedString());
@@ -114,6 +119,8 @@ public class Storage {
         if (!file.exists()) {
             file.createNewFile();
         }
+        assert file.exists();
+
         FileWriter fw = new FileWriter(file, true);
         fw.write(String.format("%s%n", task.convertToParseData().getSavedString()));
         fw.close();
