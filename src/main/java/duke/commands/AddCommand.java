@@ -11,7 +11,7 @@ import duke.task.Task;
  */
 public class AddCommand extends Command {
 
-    public static final String MESSAGE_SUCCESS = "Got it. I've added this duke.task:\n ";
+    public static final String MESSAGE_SUCCESS = "Got it. I've added this task:\n ";
     private Task taskToAdd;
 
     /**

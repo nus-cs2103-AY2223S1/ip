@@ -11,7 +11,7 @@ import duke.task.Task;
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
-    public static final String MESSAGE_SUCCESS = "Noted. I've removed this duke.task:\n ";
+    public static final String MESSAGE_SUCCESS = "Noted. I've removed this task:\n ";
     private int index;
 
     /**

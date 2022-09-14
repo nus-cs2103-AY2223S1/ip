@@ -8,7 +8,7 @@ import duke.storage.TaskList;
  */
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
-    public static final String MESSAGE_SUCCESS = "See you soon!";
+    public static final String MESSAGE_SUCCESS = "Never wanna see you again!";
 
     /**
      * Execute the command by ending the programme.
