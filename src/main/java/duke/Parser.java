@@ -3,17 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import duke.command.Command;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.InvalidCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.TodoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 
 /**
  * {@code Parser} parse the user input and perform input sanitization to ensure no invalid input
@@ -32,6 +22,8 @@ public class Parser {
         switch (str[0]) {
         case "bye":
             return new ExitCommand();
+        case "help":
+            return new HelpCommand();
         case "list":
             return new ListCommand();
         case "todo":

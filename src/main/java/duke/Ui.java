@@ -71,6 +71,23 @@ public class Ui {
     }
 
     /**
+     * Display a list of commands that LaMDA can understand
+     * @return list of available commands
+     */
+    public String helpTask() {
+        return ("I can only understand the commands below:\n"
+                + "  1. todo <task name>\n"
+                + "  2. deadline <task name> /by <date>\n"
+                + "  3. event <task name> /at <place>\n"
+                + "  4. list\n"
+                + "  5. mark <task number>\n"
+                + "  6. unmark <task number>\n"
+                + "  7. delete <task number>\n"
+                + "  8. find <keyword>\n"
+                + "  9. bye\n");
+    }
+
+    /**
      * To display the list of current tasks
      * @param tasks the current {@code TaskList}
      * @return the list of tasks
