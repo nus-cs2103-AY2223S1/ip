@@ -1,9 +1,13 @@
 package duke.storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import duke.exceptions.ParseInputException;
+import duke.parser.Parser;
 import duke.task.Task;
 
 /**
@@ -106,6 +110,21 @@ public class TaskList {
             }
         }
         return newTaskList;
+    }
+
+    /**
+     * Finds all tasks in the list with a date that matches the given date, and
+     * puts the resulting tasks in a new task list.
+     *
+     * @param targetDate Given date in string.
+     * @return A new task list containing tasks with matching date.
+     * @throws ParseInputException If the given string cannot be parsed as a date.
+     */
+    public TaskList findByDate(String targetDate) throws ParseInputException {
+        LocalDate date = Parser.parseDateFormats(targetDate);
+        List<Task> result = tasks.stream().filter(task -> task.matchDate(date))
+                .collect(Collectors.toList());
+        return new TaskList(result);
     }
 
     /**

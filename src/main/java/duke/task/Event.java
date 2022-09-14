@@ -21,6 +21,17 @@ public class Event extends Task {
     }
 
     /**
+     * Checks if an event has a matching date.
+     *
+     * @param localDate Given date.
+     * @return True if the event has the given date; false otherwise.
+     */
+    @Override
+    public boolean matchDate(LocalDate localDate) {
+        return eventDate.equals(localDate);
+    }
+
+    /**
      * Returns a string representation of the task.
      *
      * @return A string.

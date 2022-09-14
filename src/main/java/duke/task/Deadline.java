@@ -21,6 +21,17 @@ public class Deadline extends Task {
     }
 
     /**
+     * Checks if a deadline has a matching date.
+     *
+     * @param localDate Given date.
+     * @return True if the deadline has the given date; false otherwise.
+     */
+    @Override
+    public boolean matchDate(LocalDate localDate) {
+        return deadlineDate.equals(localDate);
+    }
+
+    /**
      * Returns a string representation of the task.
      *
      * @return A string.

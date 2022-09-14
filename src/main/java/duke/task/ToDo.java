@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 /**
  * Represents a task to be conducted which is one type of task.
  */
@@ -12,6 +14,17 @@ public class ToDo extends Task {
      */
     public ToDo(String description) {
         super(description);
+    }
+
+    /**
+     * Checks if a todo has a matching date.
+     *
+     * @param localDate Given date.
+     * @return False.
+     */
+    @Override
+    public boolean matchDate(LocalDate localDate) {
+        return false;
     }
 
     /**
