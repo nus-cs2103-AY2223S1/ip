@@ -204,13 +204,14 @@ public class Parser {
         } else if (taskRecord.startsWith("D")) {
             // the task is a deadline
             String description = taskRecord.split("\\|", 4)[2].trim();
-            int status = Integer.parseInt(taskRecord.split("\\|", 4)[2].trim());
+            int status = Integer.parseInt(taskRecord.split("\\|", 4)[1].trim());
             String by = taskRecord.split("\\|", 4)[3].trim();
+            System.out.println(by);
             return new Deadline(description, checkStatus(status), parseDate(by));
         } else {
             // the task is an event
             String description = taskRecord.split("\\|", 4)[2].trim();
-            int status = Integer.parseInt(taskRecord.split("\\|", 4)[2].trim());
+            int status = Integer.parseInt(taskRecord.split("\\|", 4)[1].trim());
             String at = taskRecord.split("\\|", 4)[3].trim();
             return new Event(description, checkStatus(status), at);
         }

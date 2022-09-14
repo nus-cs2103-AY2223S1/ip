@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
@@ -89,6 +90,10 @@ public class Storage {
                     Deadline deadline = (Deadline) task;
                     writer.write(task.getType() + " | " + task.getStatusInt() + " | " + task.getDescription()
                             + " | " + deadline.getBy().format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\n");
+                } else if (task instanceof Event) {
+                    Event event = (Event) task;
+                    writer.write(task.getType() + " | " + task.getStatusInt() + " | " + task.getDescription()
+                            + " | " + event.getAt() + "\n");
                 }
             }
             writer.close();
