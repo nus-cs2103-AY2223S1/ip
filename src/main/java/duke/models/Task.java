@@ -30,7 +30,7 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public void markAsDone() {
+    public void markAsDone(TaskList taskList) {
         this.isDone = true;
     }
 

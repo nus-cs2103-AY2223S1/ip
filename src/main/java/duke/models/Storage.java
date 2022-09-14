@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class Storage {
     private static final String TASK_DIRECTORY_NAME = "src/main/data/";
     private static final String TASK_FILE_NAME = "tasklist.txt";
+    private static final String RECURRING_RULE_FILE_NAME = "recurring_task_list.txt";
     private static final String TASK_FILE_PATH = TASK_DIRECTORY_NAME + TASK_FILE_NAME;
 
     /**
@@ -25,23 +26,34 @@ public class Storage {
      * @return The task object represented by the saved string.
      * @throws DukeException If the saved string does not match with the required patterns.
      */
-    private static Task parseTextToTask(String text) throws DukeException{
+    private static Task parseTextToTask(String text) throws DukeException {
         String[] taskDetails = text.split("\\s\\|\\s", 0);
-        for (String t : taskDetails) {
-            System.out.println(t);
-        }
-        switch (taskDetails[0]) {
+        String label = taskDetails[0];
+        String status = taskDetails[1];
+        String taskDescription = taskDetails[2];
+
+        switch (label) {
         case("T"):
-            // TODO: Replace with Enums
-            return new Todo(taskDetails[2], taskDetails[1].equals("1"));
+            return new Todo(taskDescription, status.equals("1"));
         case("D"):
-            // TODO: Replace with Enums
-            return new Deadline(taskDetails[2], LocalDate.parse(taskDetails[3]), taskDetails[1].equals("1"));
+            return new Deadline(taskDescription,
+                    LocalDate.parse(taskDetails[3]),
+                    status.equals("1"));
         case("E"):
-            // TODO: Replace with Enums
-            return new Event(taskDetails[2],LocalDate.parse(taskDetails[3]), taskDetails[1].equals("1"));
+            return new Event(taskDescription,
+                    LocalDate.parse(taskDetails[3]),
+                    status.equals("1"));
+        case("RE"):
+            System.out.println("heree");
+            LocalDate at = LocalDate.parse(taskDetails[3]);
+            LocalDate startDate = LocalDate.parse(taskDetails[4]);
+            LocalDate endDate = LocalDate.parse(taskDetails[5]);
+            int interval = Integer.parseInt(taskDetails[6]);
+            boolean isDone = status.equals("1");
+            return new RecurringEvent(taskDescription, at, startDate, endDate, interval, isDone);
+        default:
+            throw new DukeException("Cannot parse saved tasks!");
         }
-        throw new DukeException("Cannot parse saved tasks!");
     }
 
     /**
