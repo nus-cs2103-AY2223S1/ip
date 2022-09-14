@@ -70,7 +70,7 @@ Example of usage:
 
 `event concert /at 2022-10-12`
 
-Expected outcome:
+Expected outcome:![](images/Event.png)
 
 Event task added to your list with the specified date! 
 
@@ -83,7 +83,7 @@ Example of usage:
 
 `deadline assignment /by 2022-09-20`
 
-Expected outcome:
+Expected outcome:![](images/Deadline.png)
 
 Deadline task added to your list with the specified date! 
 > **Note**
@@ -98,7 +98,7 @@ Example of usage:
 
 `mark 1`
 
-Expected outcome:
+Expected outcome:![](images/mark.png)
 
 The first task is marked as completed.
 
@@ -110,7 +110,7 @@ Example of usage:
 
 `unmark 1`
 
-Expected outcome:
+Expected outcome:![](images/unmark.png)
 
 The first task is marked as incompleted.
 
@@ -120,7 +120,7 @@ Example of usage:
 
 `list`
 
-Expected outcome:
+Expected outcome:![](images/list.png)
 
 All the tasks that you have so far is listed.
 
@@ -130,11 +130,11 @@ Format is as such: `delete %i` where `%i` is your positive integer corresponding
 
 Example of usage:
 
-`delete 1`
+`delete 2`
 
-Expected outcome:
+Expected outcome:![](images/delete.png)
 
-The first task is deleted from the list.
+The second task is deleted from the list.
 
 ### `Find` - Finds similar tasks based on description
 
@@ -144,7 +144,7 @@ Example of usage:
 
 `find book`
 
-Expected outcome:
+Expected outcome:![](images/find.png)
 
 All tasks which has the substring book will be shown.
 
@@ -154,6 +154,6 @@ Example of usage:
 
 `bye`
 
-Expected outcome:
+Expected outcome:![](images/Bye.png)
 
-You exit out of the application.
+You exit out of the application. Click the red cross at the top right to close the window.
