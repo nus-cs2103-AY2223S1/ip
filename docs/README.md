@@ -1,4 +1,6 @@
-# User Guide
+![UI Example](Ui.png)
+
+## About
 
 TedBot is a simple **desktop chatbot app**, meant to help you keep track
 of your day-to-day tasks. Designed with fast typers in mind, simply type
@@ -26,7 +28,8 @@ There are three types of tasks that are handled by TedBot:
 ### Local Storage
 
 TedBot stores user data locally on the disk, so information such as
-the task list persist between sessions.
+the task list persist between sessions. In addition, there's no need
+to manually save, TedBot will automagically handle it for you!
 
 ### User Data Archival
 
@@ -34,7 +37,26 @@ TedBot allows users to archive their user data, such that tasks that are
 no longer important to the user can be easily cleared away but still be
 accessible if need-be.
 
+## Quick-start Guide
+
+1. Ensure you have Java `11` or above installed in your machine.
+2. Download the latest Jar executable from [here](https://github.com/Berted/ip/releases).
+3. Copy the executable to your preferred folder for TedBot to store its data.
+4. Run the provided bash / batch script to start the application. Otherwise,
+   characters may not be displayed correctly.
+5. Refer to [Command Summary](#command-summary) for a list of commands you can try using, have fun!
+
 ## Usage
+
+### Notes
+
+Some important notes regarding command format:
+- Keywords written in capitalized snake case, such as `DESC` and `TASK_NUMBER`, represents arguments
+  provided by the user.
+- Keywords with a square bracket around them, such as `[/force]`, represents optional arguments that
+  users can choose to omit.
+- If users provide unknown arguments, TedBot will not throw an error. 
+  However, such arguments are ignored.
 
 ### `todo` - Adds Todo Task
 
@@ -135,9 +157,23 @@ Example:
   Contents of `data/archive.txt` file will be overwritten if it exists.
 - `archive save/backup1.bak` will store the current task list at `save/backup1.bak` and clear the task list.
 
-
 ### `bye` - Stops Chatbot Session
 
 > Format: `bye`
 
 Terminates the Chatbot session. Note that the chatbot window is **not** automatically closed.
+
+## Command Summary
+
+| Command                                     | Function                       |
+|---------------------------------------------|--------------------------------|
+| `todo DESC`                                 | Add a Todo task                |
+| `deadline DESC /by YYYY-MM-DD`              | Add Deadline task              |
+ | `event DESC /at YYYY-MM-DD [YYYY2-MM2-DD2]` | Add Event task                 |
+ | `list`                                      | List tasks                     |
+ | `mark TASK_NUMBER`                          | Mark task as completed         |
+ | `unmark TASK_NUMBER`                        | Mark task as not completed     |
+ | `delete TASK_NUMBER`                        | Delete task                    |
+ | `find KEYWORD`                              | Find task by provided keyword  |
+ | `archive [PATH] [/force]`                   | Archive task list              |
+
