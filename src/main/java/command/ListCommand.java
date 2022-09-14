@@ -1,5 +1,7 @@
 package command;
 
+import duke.Constants;
+import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -25,7 +27,7 @@ public class ListCommand extends Command {
      * @return string that will be printed in the UI
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         return taskList.printList();
     }
 }

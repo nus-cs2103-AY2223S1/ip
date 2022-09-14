@@ -102,9 +102,8 @@ public class TaskList {
      *
      * @return string that prints the tasks
      */
-    public String printList() {
+    public String printList() throws DukeException {
         String str = "";
-        try {
             if (tasks.size() == 0) {
                 throw new DukeException(Constants.EMPTY_LIST);
             }
@@ -114,10 +113,6 @@ public class TaskList {
                     str += (String.format("%d.%s \n", i + 1, tasks.get(i).toString()));
                 }
             }
-        }
-        catch (DukeException e) {
-            System.out.println(e.getMessage());
-        }
         return str;
     }
 
