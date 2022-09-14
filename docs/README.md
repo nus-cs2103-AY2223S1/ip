@@ -22,17 +22,20 @@
     help
     
 Shows a message with a link to the user guide.
+
 ### Exit program:
 
 
     bye
     
 Shows a bye message and ends the program.
+
 ### View all tasks:
 
 
     list
 Shows a list of all tasks currently
+
 ### Finishing a task:
 
 
@@ -43,6 +46,7 @@ Example:
 
 
     mark 3
+
 ### Task yet to be done:
 
 
@@ -62,6 +66,7 @@ Example:
 
 
     delete 2
+
 ### Add ToDo task:
 
 
@@ -83,6 +88,7 @@ Example: adding a write book deadline task
 
 
     deadline write book /by 2022-09-14
+
 ### Add Event task:
 
 
@@ -93,6 +99,7 @@ Example: adding a project meeting event task
 
 
     event project meeting /at August 3 2022 3.30pm
+
 ### Search for Task:
 
 
