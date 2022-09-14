@@ -7,7 +7,7 @@ import javafx.application.Application;
  */
 public class Launcher {
     /**
-     * The main function which in charge of of launching the application
+     * The main function which in charge of launching the application
      */
     public static void main(String[] args) {
         Application.launch(Main.class, args);

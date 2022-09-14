@@ -49,7 +49,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         Background background = new Background(new BackgroundFill(Color.valueOf("203649"),
                 new CornerRadii(0), new Insets(0)));
-        Font font = new Font("SF Mono Medium", 12);
+        Font font = Font.loadFont("file:src/main/resources/font/LigaSFMonoNerdFont-Medium.otf", 12);
         pane.setBackground(background);
         dialogContainer.setBackground(background);
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
