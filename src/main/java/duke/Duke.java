@@ -21,15 +21,18 @@ public class Duke {
      * @throws DukeException Exception thrown if file empty
      */
     public Duke(String filePath) {
-        try {
+          try {
             ui = new Ui();
             ui.hello();
             storage = new Storage(filePath);
             tLst = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showLoadingError();
-            tLst = new TaskList();
-        }
+              ui.showLoadingError();
+              tLst = new TaskList();
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+
     }
 
     String helpResponse() {

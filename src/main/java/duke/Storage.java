@@ -18,15 +18,21 @@ public class Storage {
     private static String filePath;
     private static ArrayList<Task> tasks;
     private Scanner reader;
+    private File folder;
     private File file;
 
 
-    Storage(String filePath) {
-        
+
+    Storage(String filePath) throws IOException {
         this.filePath = filePath;
         this.file = new File(filePath);
+        this.folder = new File("data");
+        if(!folder.exists()) {
+            folder.mkdir();
+        } if(!file.exists()) {
+            file.createNewFile();
+        }
         this.tasks = new ArrayList<>();
-
     }
 
     /**
