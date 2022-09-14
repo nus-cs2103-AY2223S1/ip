@@ -221,7 +221,9 @@ public class Parser {
      * @return Output from todo handlers
      */
     private static String handleTodowrapper(String text) {
-        if (text.equalsIgnoreCase("todo") || text.equalsIgnoreCase("todo ") || text.replace("todo ", "").trim().length() < 1) {
+        if (text.equalsIgnoreCase("todo")
+                || text.equalsIgnoreCase("todo ")
+                || text.replace("todo ", "").trim().length() < 1) {
             try {
                 throw new DukeException.DukeToDoException("Please provide a description for your todo task.");
             } catch (DukeException.DukeToDoException error) {

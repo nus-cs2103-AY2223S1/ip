@@ -43,7 +43,7 @@ public class Duke {
 
 
     /**
-     * Main method and default entry into the duke chatbot.
+     * Main method and default entry into the duke chatbot GUI.
      *
      * @param args
      * @throws DukeException

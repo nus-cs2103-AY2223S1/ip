@@ -3,7 +3,7 @@ package duke;
 import java.io.IOException;
 
 /**
- * Handles UI aspects of the duke.Duke chatbot.
+ * Handles UI aspects of the Duke chatbot.
  *
  * @author Yuvaraj Kumaresan
  */
@@ -300,7 +300,7 @@ public class Ui {
     public String help() {
 
         return ("Welcome to the user guide. This guide has all the" +
-                " commands that are necessary to operate duke.Duke\n\n" +
+                " commands that are necessary to operate Duke\n\n" +
                 "Main commands : \n\n" +
                 "Todo : adds a todo task to the task list :-> todo <description of the task> \n" +
                 "Deadline : adds a deadline task to the task list :->" +
@@ -314,7 +314,7 @@ public class Ui {
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +
                 "Delete : deletes a task :-> delete <task number>\n" +
                 "Help : brings up this display :-> help\n" +
-                "Bye : closes duke.Duke :-> bye\n" +
+                "Bye : closes Duke :-> bye\n" +
                 "Find: finds task based on description :-> find <search string>\n\n" +
                 "Please enter one of the above to continue.");
 
@@ -341,7 +341,7 @@ public class Ui {
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +
                 "Delete : deletes a task :-> delete <task number>\n" +
                 "Help : brings up this display :-> help\n" +
-                "Bye : closes duke.Duke :-> bye\n" +
+                "Bye : closes Duke :-> bye\n" +
                 "Find: finds task based on description :-> find <search string>\n\n" +
                 "Please enter one of the above to continue.");
 
@@ -353,9 +353,11 @@ public class Ui {
      * @param search The string to search for.
      */
     public String find(String search) {
+
         int counter = 0;
 
         String temp = "";
+
         for (int i = 0; i < storage.taskList.arrayList.size(); i++) {
             if (storage.taskList.arrayList.get(i).getDescription().contains(search)) {
                 temp = temp + "\n" + ((i + 1) + ". " + storage.taskList.arrayList.get(i).toString());
@@ -363,9 +365,9 @@ public class Ui {
             }
         }
 
-
         if (counter == 0) {
-            return ("Here are the matching tasks in your list : \n" + "No tasks on the list match the search criteria.");
+            return ("Here are the matching tasks in your list : \n" + "No tasks " +
+                    "on the list match the search criteria.");
 
         } else {
 
