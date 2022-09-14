@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="599.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainWindow">
+<AnchorPane prefHeight="599.0" prefWidth="342.0" style="-fx-background-color: #FFFF99#FFFF99;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainWindow">
     <children>
         <TextField fx:id="userInput" layoutY="557.0" onAction="#handleUserInput" prefHeight="32.0" prefWidth="380.0" promptText="Type in a message..." AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="557.0">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Monospaced Regular" size="13.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -21,7 +21,7 @@
         <Button fx:id="sendButton" layoutX="324.0" layoutY="557.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="32.0" prefWidth="66.0" text="Send" />
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="546.0" prefWidth="400.0" vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="551.0" prefWidth="369.0" />
+                <VBox fx:id="dialogContainer" prefHeight="541.0" prefWidth="370.0" />
             </content>
         </ScrollPane>
     </children>
