@@ -59,7 +59,9 @@ public class GUi extends AnchorPane {
     private String getResponse(String input) {
         try{
             Pair<String, String> inputData = Parser.splitInputIntoCommand(input);
-            Command command = Parser.dispatch(inputData.getHead(), inputData.getTail(), Dave2.getTasks());
+            Command command = Parser.dispatch(
+                    inputData.getHead(), inputData.getTail(), Dave2.getTasks()
+            );
             String result  = command.execute();
             if (!command.getIsRunning()) {
                 new Timer().schedule(new TimerTask() {

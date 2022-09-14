@@ -53,6 +53,12 @@ public class TaskList implements Serializable {
         }
     }
 
+    /**
+     * Gives a list of tasks that contains the keyword.
+     *
+     * @param keyword keyword to look for in the task list
+     * @return list of tasks that contains the keyword
+     */
     public String findTasks(String keyword) {
         StringBuilder result = new StringBuilder("Here are the matching tasks in your list: \n");
         for (int i = 0; i < tasks.size(); i++) {
@@ -73,6 +79,15 @@ public class TaskList implements Serializable {
         return tasks.size();
     }
 
+    /**
+     * Appends a tasklist to the end of the current tasklist.
+     *
+     * @param tasks tasklist to be appended to the current tasklist
+     */
+    public void append(TaskList tasks) {
+        this.tasks.addAll(tasks.tasks);
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder("Here are the tasks in your list:\n");
@@ -81,5 +96,4 @@ public class TaskList implements Serializable {
         }
         return result.toString();
     }
-
 }

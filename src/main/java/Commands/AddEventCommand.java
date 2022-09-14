@@ -12,7 +12,7 @@ public class AddEventCommand extends Command {
     private Events task;
 
     /**
-     * Initialises a add Event command with a provided tasklist and
+     * Initialises an add Event command with a provided tasklist and
      * task to be added.
      *
      * @param tasks Tasklist for the task to added into
@@ -24,7 +24,7 @@ public class AddEventCommand extends Command {
     }
 
     /**
-     * Initialises a add Event command with a provided tasklist and
+     * Initialises an add Event command with a provided tasklist and
      * a String representation of the task to be added.
      *
      * @param tasks Tasklist for the task to added into

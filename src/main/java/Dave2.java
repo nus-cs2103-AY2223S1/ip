@@ -5,7 +5,6 @@ import Parser.Parser;
 import Storage.SaveHandler;
 import Ui.TextUi;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Dave2 {
@@ -25,6 +24,7 @@ public class Dave2 {
     public static TaskList getTasks() {
         return tasks;
     }
+
 
     @Deprecated
     /**
