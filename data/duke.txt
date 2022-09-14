@@ -1,4 +1,6 @@
 T | 0 | g
-D | 1 | djdfjf | 2020-10-10
 T | 0 | borrow books
-E | 1 | book fair | 2020-10-10 1400
+E | 0 | book fair | 2020-10-10 1400
+T | 0 | dhsf
+T | 0 | dfsasdfa
+T | 0 | jsdsf
