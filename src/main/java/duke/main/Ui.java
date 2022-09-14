@@ -94,7 +94,8 @@ public class Ui {
      * @return The message for showing total number of Task objects.
      */
     private String getListSizeMsg(int num) {
-        String[] listCount = {"I'm keeping track of " + num + " task(s) currently!"};
+        String[] listCount = {"I'm keeping track of " + num + " task(s) currently!",
+            "you have " + num + " tasks(s) currently..."};
         return listCount[this.messageStatus];
     }
 
