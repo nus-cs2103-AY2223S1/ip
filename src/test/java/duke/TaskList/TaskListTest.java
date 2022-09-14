@@ -1,13 +1,14 @@
-package duke.TaskList;
+package duke.tasklist;
 
 import duke.exceptions.DukeException;
-import duke.tasks.TaskList;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
+import duke.tasks.TaskList;
 import duke.tasks.ToDo;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class TaskListTest {
     @Test

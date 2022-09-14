@@ -10,8 +10,8 @@ import duke.parser.TimeParser;
  */
 public class Event extends Task {
 
-    protected LocalDateTime deadline;
     private static final TimeParser TIME_PARSER = new TimeParser();
+    protected LocalDateTime deadline;
 
     /**
      * Constructor specifying description and deadline of an event task.
@@ -44,6 +44,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + TIME_PARSER.formatDeadline(this.deadline) + ")";
+        return String.format("[E]%s (at: %s)", super.toString(), TIME_PARSER.formatDeadline(this.deadline));
     }
 }

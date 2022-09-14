@@ -2,18 +2,17 @@ package duke.ui;
 
 import duke.Duke;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.Background;
-
-import javafx.scene.paint.Color;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.geometry.Insets;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 /**
@@ -38,6 +37,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/joke4.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/joke.png"));
 
+    /**
+     * Sets the properties of main window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -79,17 +81,17 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     private void help() {
-        String commands = "Here are the list of commands:" +
-                "\n • list" +
-                "\n • done [index] " +
-                "\n • undone [index]"  +
-                "\n • before [d/mm/yyyy] " +
-                "\n • find [string]" +
-                "\n • delete [index] "+
-                "\n • todo [description]" +
-                "\n • deadline [description] [d/mm/yyyy]" +
-                "\n • event [description] [d/mm/yyyy]" +
-                "\n • joke";
+        String commands = "Here are the list of commands:"
+                + "\n • list"
+                + "\n • done [index]"
+                + "\n • undone [index]"
+                + "\n • before [d/mm/yyyy]"
+                + "\n • find [string]"
+                + "\n • delete [index]"
+                + "\n • todo [description]"
+                + "\n • deadline [description] [d/mm/yyyy]"
+                + "\n • event [description] [d/mm/yyyy]"
+                + "\n • joke";
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(commands, dukeImage)
         );

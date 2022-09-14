@@ -48,7 +48,7 @@ public class TaskList {
         return filterTasks(t -> t.isSame(desc)).getSize() != 0;
     }
 
-    /**b
+    /**
      * Marks numbered task as done in task list.
      *
      * @param value a string representation of the task index to be marked as done
@@ -63,6 +63,12 @@ public class TaskList {
         return String.format("Finally getting something done, huh? \n%s", printTask(index));
     }
 
+    /**
+     * Marks numbered task as undone in task list.
+     *
+     * @param value a string representation of the task index to be marked as undone
+     * @throws DukeException if index is out of range
+     */
     public String markUndone(String value) throws DukeException {
         int index = Integer.parseInt(value) - 1;
         if (index < 0 || index > tasks.size() - 1) {
@@ -141,7 +147,7 @@ public class TaskList {
     }
 
     /**
-     * Adds an event task to task list
+     * Adds an event task to task list.
      *
      * @param desc the description of event task
      * @param time the time of event task
@@ -162,6 +168,13 @@ public class TaskList {
         return printAddedTask(newTask);
     }
 
+    /**
+     * Finds list of tasks that match given string.
+     *
+     * @param desc description to find
+     * @return string representation of lists of tasks that match given string
+     * @throws DukeException if no description is given
+     */
     public String find(String desc) throws DukeException {
         if (desc == null || desc.isBlank()) {
             throw new DukeException("Please enter a valid description!");

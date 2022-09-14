@@ -1,10 +1,10 @@
-package duke.Parser;
+package duke.parser;
 
-import duke.parser.CommandParser;
 import duke.tasks.TaskList;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class CommandParserTest {
     @Test
@@ -12,9 +12,9 @@ public class CommandParserTest {
         TaskList list = new TaskList();
         CommandParser parser = new CommandParser(list);
         assertEquals(parser.handle("todo Return book"),
-                "Wow, so productive... " +
-                        "\n[T][✘] Return book " +
-                        "\n1 outstanding tasks");
+                "Wow, so productive... "
+                        + "\n[T][✘] Return book "
+                        + "\n1 outstanding tasks");
     }
 
     @Test
@@ -22,9 +22,9 @@ public class CommandParserTest {
         TaskList list = new TaskList();
         CommandParser parser = new CommandParser(list);
         assertEquals(parser.handle("deadline Return book 12/12/2000"),
-                "Wow, so productive... " +
-                        "\n[D][✘] Return book (by: 12/12/2000 0000) " +
-                        "\n1 outstanding tasks");
+                "Wow, so productive... "
+                        + "\n[D][✘] Return book (by: 12/12/2000 0000) "
+                        + "\n1 outstanding tasks");
     }
 
     @Test
@@ -32,9 +32,9 @@ public class CommandParserTest {
         TaskList list = new TaskList();
         CommandParser parser = new CommandParser(list);
         assertEquals(parser.handle("event Return book 12/12/2000"),
-                "Wow, so productive... " +
-                        "\n[E][✘] Return book (at: 12/12/2000 0000) " +
-                        "\n1 outstanding tasks");
+                "Wow, so productive... "
+                        + "\n[E][✘] Return book (at: 12/12/2000 0000) "
+                        + "\n1 outstanding tasks");
     }
 
     @Test
@@ -43,9 +43,9 @@ public class CommandParserTest {
         CommandParser parser = new CommandParser(list);
         parser.handle("todo Return book");
         assertEquals(parser.handle("delete 1"),
-                "Giving up, huh? " +
-                        "\n[T][✘] Return book " +
-                        "\n0 outstanding tasks");
+                "Giving up, huh? "
+                        + "\n[T][✘] Return book "
+                        + "\n0 outstanding tasks");
     }
 
     @Test
@@ -74,11 +74,11 @@ public class CommandParserTest {
         CommandParser parser = new CommandParser(list);
         parser.handle("todo Return book");
         assertEquals(parser.handle("done 1"),
-                "Finally getting something done, huh? " +
-                        "\n[T][✓] Return book");
+                "Finally getting something done, huh? "
+                        + "\n[T][✓] Return book");
         assertEquals(parser.handle("undone 1"),
-                "One step forward. Two step backwards. " +
-                        "\n[T][✘] Return book");
+                "One step forward. Two step backwards. "
+                        + "\n[T][✘] Return book");
     }
 
     @Test
@@ -87,7 +87,7 @@ public class CommandParserTest {
         CommandParser parser = new CommandParser(list);
         parser.handle("todo Return book");
         assertEquals(parser.handle("list"),
-                "Think you are free?\n" +
-                        "1.[T][✘] Return book\n");
+                "Think you are free?\n"
+                        + "1.[T][✘] Return book\n");
     }
 }

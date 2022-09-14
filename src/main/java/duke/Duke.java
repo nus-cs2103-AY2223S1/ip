@@ -1,16 +1,8 @@
 package duke;
 
-import java.util.Scanner;
-
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
-
 import duke.parser.CommandParser;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
-
 
 /**
  * Chatbot bringing together storage, tasklist and parser functions.
@@ -23,7 +15,6 @@ public class Duke {
     private boolean hasTerminated;
 
     /**
-     *
      * Retrieves response given command.
      *
      * @param command user input command
@@ -34,9 +25,9 @@ public class Duke {
             System.exit(0);
         }
         if (command.equalsIgnoreCase("bye")) {
-                STORAGE.save();
-                hasTerminated = true;
-                return "Bye! Enter any key to exit :)";
+            STORAGE.save();
+            hasTerminated = true;
+            return "Bye! Enter any key to exit :)";
         }
 
         assert !hasTerminated : "hasTerminated should be false";
