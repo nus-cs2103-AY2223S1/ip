@@ -2,6 +2,11 @@
 Hi there! Welcome to the Duke User Guide.
 This manual will help you understand the features of your personal task tracker!
 
+## Getting Started
+1. Ensure you have Java 11 installed on your device
+2. Download the latest version of Duke [here]()! <!--- add link here after JAR realease -->
+3. Double-click on JAR file to start Duke :> 
+
 ## Features List
 1. [Add tasks such as Todos, Deadlines and Events](#1-add-tasks)
 2. [Mark tasks as done or not done](#2-marking-tasks)
