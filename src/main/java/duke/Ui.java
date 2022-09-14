@@ -3,7 +3,7 @@ package duke;
 import java.util.Scanner;
 
 public class Ui {
-    private final static String UNDERLINE = "_________________________________";
+    private final static String UNDERLINE = "_______________________";
 
     /**
      * Outputs the greeting for Duke

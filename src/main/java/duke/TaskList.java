@@ -70,7 +70,7 @@ public class TaskList {
                 throw new DuplicateItemException(taskdes);
             } else {
                 this.taskList.add(task);
-                return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+                return String.format("Got it. I've added this task: \n %s \n Now you have %d tasks in the list.", task, this.taskList.size());
             }
         }
     }
@@ -87,7 +87,7 @@ public class TaskList {
                 throw new DuplicateItemException(taskdes);
             } else {
                 this.taskList.add(task);
-                return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+                return String.format("Got it. I've added this task: \n %s \n Now you have %d tasks in the list.", task, this.taskList.size());
             }
         }
     }
@@ -104,7 +104,7 @@ public class TaskList {
                 throw new DuplicateItemException(taskdes);
             } else {
                 this.taskList.add(task);
-                return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+                return String.format("Got it. I've added this task: \n %s \n Now you have %d tasks in the list.", task, this.taskList.size());
             }
         }
     }
@@ -120,7 +120,7 @@ public class TaskList {
             } else {
                 Task task = this.taskList.get(taskNumber - 1);
                 this.taskList.remove(taskNumber - 1);
-                return String.format("Got it. I've removed this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+                return String.format("Got it. I've removed this task: \n %s \n Now you have %d tasks in the list.", task, this.taskList.size());
             }
         }
     }
@@ -145,14 +145,4 @@ public class TaskList {
         }
     }
 
-//    public Boolean contains(Object o) {
-//        Boolean isInside = false;
-//        for (int i = 0; i < this.taskList.size(); i++) {
-//            if (this.taskList.get(i).equals(o)) {
-//                isInside = true;
-//                break;
-//            }
-//        }
-//        return isInside;
-//    }
 }
