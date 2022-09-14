@@ -76,9 +76,9 @@ public class Ui {
      */
     public String helpTask() {
         return ("I can only understand the commands below:\n"
-                + "  1. todo <task name>\n"
-                + "  2. deadline <task name> /by <date>\n"
-                + "  3. event <task name> /at <place>\n"
+                + "  1. todo <task description>\n"
+                + "  2. deadline <task description> /by <date>\n"
+                + "  3. event <task description> /at <location>\n"
                 + "  4. list\n"
                 + "  5. mark <task number>\n"
                 + "  6. unmark <task number>\n"
