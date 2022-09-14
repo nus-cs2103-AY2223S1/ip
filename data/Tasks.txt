@@ -1,8 +1,7 @@
-T|0|gym
-T|0|be happy
 D|1|go class|2022-08-26 14:00
 D|0|concert|2022-08-26 22:00
-D|0|go home|2022-08-27 07:00
 T|0|finish assignment
 T|0|eat
-T|0|eat
+D|0|eat|2022-02-26 14:00
+D|0|sleep|2022-02-26 12:00
+D|0|go|2022-06-26 00:00

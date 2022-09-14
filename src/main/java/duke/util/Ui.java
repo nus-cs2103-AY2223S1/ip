@@ -1,9 +1,9 @@
-package Duke.util;
+package duke.util;
 
 import java.util.ArrayList;
 
-import Duke.task.Task;
-import Duke.task.TaskList;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Controls what output to be printed to the console for the user to see
@@ -77,11 +77,11 @@ public class Ui {
      *
      * @param tasks the list to be printed
      */
-    public String listTasks(ArrayList<Task> tasks) {
+    public String listTasks(TaskList tasks) {
         String reply = "Here are the tasks in your list:\n";
-        for (Task task : tasks) {
-            int index = tasks.indexOf(task) + 1;
-            reply += index + ". " + task.toString() + "\n";
+        for (int i = 0; i < tasks.getLength(); i++) {
+            int index = i + 1;
+            reply += index + ". " + tasks.getTask(i).toString() + "\n";
         }
         return reply;
     }
