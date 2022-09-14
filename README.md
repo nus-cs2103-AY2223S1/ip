@@ -33,6 +33,8 @@ Some example commands you can try:
 - [x] Find a task by name.
 - [x] Set the priority of a task.
 
+# Usage
+
 ## `todo` - Adds a ToDo task
 Adds a ToDo task with the provided name.
 
