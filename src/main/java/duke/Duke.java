@@ -33,10 +33,6 @@ public class Duke {
         }
     }
 
-    public Duke() {
-        ui = new Ui();
-    }
-
     /**
      * Runs the Duke task manager. Takes in user input and performs tasks accordingly.
      */

@@ -30,6 +30,20 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.filePath = filePath;
+        // Creates a storage folder and file if not present
+        try {
+            String[] splitFilePath = filePath.split("/");
+            File storageFolder = new File(splitFilePath[0]);
+            File storageFile = new File(filePath);
+            if (!storageFolder.exists()) {
+                storageFolder.mkdir();
+            }
+            if (!storageFile.exists()) {
+                storageFile.createNewFile();
+            }
+        } catch (IOException error) {
+            System.out.println("Error creating new storage file!");
+        }
     }
 
     /**
