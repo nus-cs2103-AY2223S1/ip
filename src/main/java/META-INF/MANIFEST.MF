@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: duke.javafx.Launcher
+Main-Class: duke.javafx.Main
 

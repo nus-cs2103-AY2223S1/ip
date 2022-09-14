@@ -34,11 +34,16 @@ public class Storage {
      *
      * @return An ArrayList of Tasks added previously.
      */
-    public ArrayList<Task> loadTaskList() {
+    public ArrayList<Task> load() {
         // Ensure file exists
-        File tasksFile = new File(filePath);
+        String[] splitFilePaths = filePath.split("/");
+        File taskFile = new File(filePath);
         try {
-            tasksFile.createNewFile();
+            File directory = new File(splitFilePaths[0]);
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+            taskFile.createNewFile();
         } catch (IOException | SecurityException e) {
             System.out.println(e.getMessage());
         }
@@ -47,7 +52,7 @@ public class Storage {
         assert new File(filePath).exists() : "File exists is supposed to return true";
 
         // Add disk info to taskList
-        ArrayList<Task> pastTasks = readTaskMemoFromDisk(tasksFile);
+        ArrayList<Task> pastTasks = readTaskMemoFromDisk(taskFile);
         return pastTasks;
     }
 

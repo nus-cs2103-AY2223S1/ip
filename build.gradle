@@ -49,7 +49,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.javafx.Launcher"
+    mainClassName = "duke.javafx.Main"
 }
 
 shadowJar {
@@ -57,10 +57,13 @@ shadowJar {
     archiveClassifier = null
 }
 
-javafx {
-    version = "18.0.2"
-    modules = [ 'javafx.controls']
-}
+//javafx {
+//    version = "11"
+//    modules = [
+//            'javafx.controls',
+//            'javafx.fxml'
+//    ]
+//}
 
 run{
     standardInput = System.in
