@@ -32,9 +32,7 @@ public class DeleteCommand extends Command {
         boolean isValidNumber = Pikachu.isNumeric(input.substring(7));
         boolean isWithinRange = Integer.parseInt(input.substring(7)) <= tasks.getTaskList().size()
                 && Integer.parseInt(input.substring(7)) > 0;
-        
         assert input.startsWith("delete ");
-        
         if (!isValidNumber) {
             throw new PikachuException("Pi-must be numbers behind-pi!");
         } else if (!isWithinRange) {

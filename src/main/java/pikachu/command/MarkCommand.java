@@ -32,9 +32,7 @@ public class MarkCommand extends Command {
         boolean isValidNumber = Pikachu.isNumeric(input.substring(5));
         boolean isWithinRange = Integer.parseInt(input.substring(5)) <= tasks.getTaskList().size()
                 && Integer.parseInt(input.substring(5)) > 0;
-                
         assert input.startsWith("mark ");
-        
         if (!isValidNumber) {
             throw new PikachuException("Pi-must be numbers behind-pi!");
         } else if (!isWithinRange) {

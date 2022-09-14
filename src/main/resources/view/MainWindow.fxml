@@ -15,5 +15,6 @@
                 <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" />
             </content>
         </ScrollPane>
+        <Button fx:id="closeButton" onAction="#closeButtonAction" />
     </children>
 </AnchorPane>

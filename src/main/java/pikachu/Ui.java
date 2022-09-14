@@ -14,7 +14,7 @@ public class Ui {
      * @return Pikachu's goodbye
      */
     public String sayBye() {
-        return "Pi-ka...";
+        return "Pi-ka...(Say some last word to pikachu to comfort it!)";
     }
 
     /**

@@ -39,13 +39,13 @@ public class AddCommand extends Command {
         boolean isValidDdl = input.startsWith("deadline ") && input.contains(" /by ");
         boolean isValidTodo = input.startsWith("todo ");
         boolean isValidEvent = input.startsWith("event ") && input.contains(" /at ");
-           if (isValidDdl) {
+        if (isValidDdl) {
             String temp1 = input.split(" ", 2)[1];
             String[] temp2 = temp1.split(" /by ", 2);
             try {
                 LocalDate date = LocalDate.parse(temp2[1]);
                 Deadline newDdl = new Deadline(temp2[0], date);
-                if (isDuplicate(newDdl,taskList)) {
+                if (isDuplicate(newDdl, taskList)) {
                     return "Duplicate task pi!";
                 }
                 tasks.getTaskList().add(newDdl);
@@ -60,7 +60,7 @@ public class AddCommand extends Command {
             }
         } else if (isValidTodo) { //add as tasks
             Todo newTodo = new Todo(input.substring(5));
-            if (isDuplicate(newTodo,taskList)) {
+            if (isDuplicate(newTodo, taskList)) {
                 throw new PikachuException("Duplicate task pi!");
             }
             if (newTodo.getDescription().equals("")) {
@@ -78,7 +78,7 @@ public class AddCommand extends Command {
             String temp1 = input.split(" ", 2)[1];
             String[] temp2 = temp1.split(" /at ", 2);
             Event newEvent = new Event(temp2[0], temp2[1]);
-            if (isDuplicate(newEvent,taskList)) {
+            if (isDuplicate(newEvent, taskList)) {
                 throw new PikachuException("Duplicate task pi!");
             }
             tasks.getTaskList().add(newEvent);
@@ -101,6 +101,10 @@ public class AddCommand extends Command {
         return false;
     }
 
+    /**
+     * Returns whether the new task being added in is a duplicate of the current tasks.
+     * @return true if it is, and false if it is not.
+     */
     public boolean isDuplicate(Task newTask, List<Task> currTasks) {
         for (Task task: currTasks) {
             boolean isSameDescription = newTask.getDescription().equals(task.getDescription());

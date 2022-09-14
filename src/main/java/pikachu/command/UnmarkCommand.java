@@ -33,7 +33,6 @@ public class UnmarkCommand extends Command {
         boolean isWithinRange = Integer.parseInt(input.substring(7)) <= tasks.getTaskList().size()
                 && Integer.parseInt(input.substring(7)) > 0;
         assert input.startsWith("unmark ");
-        
         if (!isValidNumber) {
             throw new PikachuException("Pi-must be numbers behind-pi!");
         } else if (!isWithinRange) {
