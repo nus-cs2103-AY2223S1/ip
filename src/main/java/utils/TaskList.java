@@ -22,7 +22,7 @@ public class TaskList {
 
     /**
      * Creates a new Todo object and adds it to the tasks list.
-     * @param inputs array of input strings (e.g. ["todo", "wash dishes"]
+     * @param inputs array of input strings (e.g. ["todo", "wash dishes"])
      */
     public String addTodo(String[] inputs) throws EmptyNameException {
         if (inputs.length == 1) {

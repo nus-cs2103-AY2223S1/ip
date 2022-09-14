@@ -58,7 +58,6 @@ public class MessageContainer extends HBox {
                 "-fx-font-family: 'Droid Sans';"
         );
         this.message.setTextAlignment(TextAlignment.LEFT);
-//                .setAlignment(Pos.CENTER_LEFT);
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         FXCollections.reverse(tmp);
         this.getChildren().setAll(tmp);
