@@ -31,9 +31,9 @@ public class TaskList {
     }
 
     private String getAddTaskString(Task task) {
-        return "Got it. I've added this task:\n" +
+        return "Teddy is on it! I've added this task:\n" +
                 " " + task + "\n" +
-                "Now you have " + data.size() + " tasks in the list.\n";
+                "Now you have " + data.size() + " tasks in the list. Woof!\n";
     }
 
     public String markTask (int pos, boolean isDone) throws DukeException {
@@ -44,7 +44,7 @@ public class TaskList {
     }
 
     private String getMarkTaskString(boolean isDone, Task task) {
-        return (isDone ? "Nice! I've marked this task as done:\n " : "OK, I've marked this task as not done yet:\n ")
+        return (isDone ? "YAY! I've marked this task as done:\n " : "Sure, I've marked this task as not done yet:\n ")
                 + task + "\n";
     }
 
@@ -62,13 +62,13 @@ public class TaskList {
     }
 
     private String getDeleteTaskString(Task task) {
-        return "Noted. I've removed this task:\n "
+        return "Okay! I've removed this task:\n "
                 + task + "\n" +
-                "Now you have " + data.size() + " tasks in the list.\n";
+                "Now you have " + data.size() + " tasks in the list. Woof!\n";
     }
 
     public String findTasks(String keyword) {
-        StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
+        StringBuilder sb = new StringBuilder("Teddy has found the matching tasks:\n");
         int counter = 0;
         for (int i = 0; i < data.size(); i++) {
             if (data.get(i).containsKeyword(keyword)) {
@@ -93,7 +93,7 @@ public class TaskList {
         ArrayList<Task> copy = new ArrayList<>(data);
         copy.sort(null);
         TaskList sortedTaskList = new TaskList(copy);
-        return "Sorted in chronological order of deadlines\n" + sortedTaskList;
+        return "I have sorted them in chronological order of deadlines!\n" + sortedTaskList;
     }
 
     @Override
