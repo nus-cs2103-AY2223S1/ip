@@ -1,0 +1,124 @@
+:root {
+    --text-color: #333333;
+    --background-color: #f5f5f5;
+    --header-color: #e5e5e5;
+    --button-border-color: #333333;
+    --button-hover: rgba(0, 0, 0, 0.1);
+    --border-color: #eaecef;
+    --octicon-fill: #0969da;
+
+    --dark-text-color: #ffffff;
+    --dark-background-color: #212121;
+    --dark-header-color: #333333;
+    --dark-button-border-color: #ffffff;
+    --dark-button-hover: rgba(255, 255, 255, 0.1);
+    --dark-border-color: #c9d1d9;
+    --dark-octicon-fill: #58a6ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans", sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.content-container {
+    max-width: 768px;
+    margin: 0 auto 16px auto;
+}
+
+@media only screen and (max-width: 768px) {
+    .content-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+.header-container {
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li {
+    margin-left: 16px;
+}
+
+h2 {
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 16px;
+    margin-bottom: 4px;
+}
+
+h3 {
+    margin-top: 12px;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    padding: 0.375rem 0.5rem;
+    background-color: var(--header-color);
+}
+
+button {
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--button-border-color);
+    color: var(--text-color);
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+.octicon {
+    fill: var(--octicon-fill);
+    padding: 0;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+h1 .octicon, h2 .octicon, h3 .octicon, h4 .octicon, h5 .octicon, h6 .octicon  {
+    visibility: hidden;
+}
+
+h1:hover .octicon, h2:hover .octicon, h3:hover .octicon, h4:hover .octicon, h5:hover .octicon, h6:hover .octicon {
+    visibility: visible;
+}
+
+/* DARK MODE */
+.dark body {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+}
+
+.dark h2 {
+    border-bottom: 1px solid var(--dark-border-color);
+}
+
+.dark header {
+    background-color: var(--dark-header-color);
+}
+
+.dark button {
+    background-color: var(--dark-background-color);
+    border: 1px solid var(--dark-button-border-color);
+    color: var(--dark-text-color);
+}
+
+.dark button:hover {
+    background-color: var(--dark-button-hover);
+}
+
+.dark .octicon {
+    fill: var(--dark-octicon-fill);
+}
