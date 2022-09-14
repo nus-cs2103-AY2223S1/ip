@@ -62,7 +62,7 @@ public abstract class Ui {
      */
     public static String printTaskSearch(String match) {
         if (match.isBlank()) {
-            return "Duke: Sorry! Cannot find any matching tasks in your list.";
+            return "Sorry! Cannot find any matching tasks!";
         } else {
             return "Here are the matching tasks in your list:\n" + match;
         }
