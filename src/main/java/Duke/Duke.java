@@ -44,12 +44,16 @@ public class Duke {
         // at this point file will exist, init taskList
         storage.listInit(taskList.getList());
 
+        /**
+         * Kept below was the original persona of the chatbot. Feel free
+         * to reuse it.
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        String welcomeMsg = "Hello! I'm\n" + logo + "\nWhat can I do for you?\n";
+         */
+        String welcomeMsg = "Hi! I'm Mr Meseeks, look at me!";
         System.out.println(welcomeMsg);
 
         String input = "";
