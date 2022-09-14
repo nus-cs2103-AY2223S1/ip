@@ -35,8 +35,9 @@ public class Rabbit {
             "2. Type 'list' then I'll show all the existing lines to you.\n"
             + "3. Type 'mark + the index of an existing task' to marks it as done. Like 'mark 1'.\n"
             + "4. Type 'unmark + the index of an existing task' to unmark a task.\n"
-            + "5. Type 'delete + the index of an existing task' to delete it.\n"
-            + "6. Type 'find + a keyword' to find tasks with the keyword.\n",
+            + "5. Type 'delete + the index of an existing task' to delete it.\n",
+            "6. Type 'find + a keyword' to find tasks with the keyword.\n"
+            + "7. Type 'edit content + new content' or 'edit time + new time' to edit a task.\n",
             "In case you have nothing better to do, you can also type 'change' to change my look."};
     private final String BYE = "Thanks a lot. I'm gonna have some carrot tea later. See you...\n"
             + "Ermmm....why are you still here? Just close the window.\n";
@@ -76,7 +77,7 @@ public class Rabbit {
                     return "Here are the tasks:\n" + content;
                 case "find":
                     content = this.taskList.find(input);
-                    return "Here are the matching tasks:\n" + content;
+                    return content;
                 case "mark":
                     content = this.taskList.mark(input);
                     this.storage.exportData(this.taskList);

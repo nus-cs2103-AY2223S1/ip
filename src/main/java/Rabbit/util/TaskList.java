@@ -53,7 +53,10 @@ public class TaskList {
                     }
                 }
             }
-            return output.length() == 0 ? "I can't find a matching task." : output;
+            return output.length() == 0
+                    ? "I can't find a matching task."
+                    : "Here're the matching tasks:\n"
+                    + output;
         } catch (FindFormatException e) {
             throw e;
         }
