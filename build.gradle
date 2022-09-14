@@ -32,7 +32,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "Launcher"
+    archiveBaseName = "PUKE_BOT"
     archiveClassifier = null
 }
 

@@ -50,7 +50,8 @@ public class Ui {
                 + "todo xx\n"
                 + "deadline xx /by yyyy-mm-dd hh:mm\n"
                 + "event xx /at yyyy-mm-dd hh:mm\n"
-                + "delete x : remove the task from the list\n";
+                + "delete x : remove the task from the list\n"
+                + "find x : lists all tasks given a keyword\n";
 
     }
 

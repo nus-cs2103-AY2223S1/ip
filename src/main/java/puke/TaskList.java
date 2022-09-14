@@ -45,18 +45,20 @@ public class TaskList {
      * Adds a tasks to the list
      * @param t task to add
      */
-    public void addIncrement(Task t) {
+    public void addIncrement(Task t, Storage s) {
         this.tasks.add(t);
         this.numTasks++;
+        s.saveTasks(tasks);
     }
 
     /**
      * Deletes a task from the list
      * @param index position of task on the list to delete
      */
-    public void delete(int index) {
+    public void delete(int index, Storage s) {
         this.tasks.remove(index);
         this.removed++;
+        s.saveTasks(tasks);
     }
 
     /**

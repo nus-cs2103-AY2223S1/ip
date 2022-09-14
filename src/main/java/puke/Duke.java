@@ -78,7 +78,7 @@ public class Duke {
         if (s.isEmpty()) {
             return "I dont know what happened!";
         }
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (a.equals("mark")) {
             int pos = Character.getNumericValue(s.charAt(1));
             return d.ui.taskManager("do", pos, d);
@@ -86,33 +86,23 @@ public class Duke {
             int pos = Character.getNumericValue(s.charAt(1));
             return d.ui.taskManager("undo", pos, d);
         } else if (a.equals("todo")) {
-            String desc = Duke.d.p.getMessage(s, "ToDo");
-            Task newTask = new ToDo(desc);
-            d.tasklist.addIncrement(newTask);
-            d.storage.saveTasks(Duke.d.tasklist.tasks);
+            Task newTask = new ToDo(d.p.getMessage(s, "ToDo"));
+            d.tasklist.addIncrement(newTask, d.storage);
             return d.ui.systemMessage(2, d, newTask);
         } else if (a.equals("deadline")) {
-            String desc = Duke.d.p.getMessage(s, "Deadline");
-            String date = Duke.d.p.getDate(s);
-            System.out.println(date);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            Task newTask = new Deadline(desc, LocalDateTime.parse(date, formatter));
-            d.tasklist.addIncrement(newTask);
-            d.storage.saveTasks(Duke.d.tasklist.tasks);
+            Task newTask = new Deadline(d.p.getMessage(s,"Deadline"),
+                    LocalDateTime.parse(d.p.getDate(s), formatter));
+            d.tasklist.addIncrement(newTask, d.storage);
             return d.ui.systemMessage(2, d, newTask);
         } else if (a.equals("event")) {
-            String desc = d.p.getMessage(s, "Event");
-            String date = d.p.getDate(s);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            Task newTask = new Event(desc, LocalDateTime.parse(date, formatter));
-            d.tasklist.addIncrement(newTask);
-            d.storage.saveTasks(Duke.d.tasklist.tasks);
+            Task newTask = new Event(d.p.getMessage(s,"Event"),
+                    LocalDateTime.parse(d.p.getDate(s), formatter));
+            d.tasklist.addIncrement(newTask, d.storage);
             return Duke.d.ui.systemMessage(2, d, newTask);
         } else if (a.equals("delete")) {
             int pos = Character.getNumericValue(s.charAt(1));
             Task temp = Duke.d.tasklist.tasks.get(pos - 1);
-            d.tasklist.delete(pos - 1);
-            d.storage.saveTasks(Duke.d.tasklist.tasks);
+            d.tasklist.delete(pos - 1, d.storage);
             return d.ui.systemMessage(3, d, temp);
         } else if (a.equals("find")) {
             String temp = d.p.getFindKeyword(s);
