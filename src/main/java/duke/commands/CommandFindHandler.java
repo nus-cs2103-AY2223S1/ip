@@ -29,6 +29,7 @@ public class CommandFindHandler extends CommandHandler {
     public void checkValid() throws DukeException {
         boolean isValid = value != null && flag == null && additionalValue == null;
         if (isValid) {
+            assert !value.contains("|");
             return;
         }
         throw new InvalidSyntaxException("Correct usage: find book");
