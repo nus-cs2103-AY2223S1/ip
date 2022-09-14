@@ -19,7 +19,7 @@ public class ExitCommand extends Command {
      * @param storage The storage containing all tasks the user has previously input.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.exit();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.exit();
     }
 }

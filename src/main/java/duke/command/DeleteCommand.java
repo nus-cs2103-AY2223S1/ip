@@ -34,7 +34,7 @@ public class DeleteCommand extends Command {
      *          Thrown when the index is not given.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int index = 0;
         try {
             index = Integer.parseInt(STR[1]) - 1;
@@ -43,12 +43,12 @@ public class DeleteCommand extends Command {
         }
 
         if (index > tasks.size() || index < 0) {
-            ui.invalidTask();
+            Ui.invalidTask();
         }
 
         Task myTask = tasks.get(index);
         tasks.remove(index);
         storage.writeFile(tasks);
-        ui.remove(tasks, myTask);
+        return ui.remove(tasks, myTask);
     }
 }

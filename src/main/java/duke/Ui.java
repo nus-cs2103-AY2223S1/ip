@@ -11,43 +11,18 @@ import java.util.ArrayList;
  */
 public class Ui {
 
-    private static final String LINE = "Dino:\n";
-
     /**
-     * Creates a new Ui object.
-     */
-    public Ui() {
-        System.out.println("               __\n"
-                + "              / _)\n"
-                + "     _.----._/ /\n"
-                + "    /         /\n"
-                + " __/ (  | (  |\n"
-                + "/__.-'|_|--|_|\n");
-
-        System.out.println(LINE
-                + "\tHello! I'm Dino\n"
-                + "\tWhat can I do for you?\n");
-    }
-
-    /**
-     * Prints a message when Duke faces a loading error.
+     * Returns a message when Duke faces a loading error.
      */
     public void showLoadingError() {
         System.out.println("RAWR! Error loading previous tasks.");
     }
 
     /**
-     * Prints a message showing bot and user interaction.
+     * Returns a String when the user wishes to exit.
      */
-    public void showLine() {
-        System.out.print(LINE);
-    }
-
-    /**
-     * Prints a message when the user wishes to exit.
-     */
-    public void exit() {
-        System.out.println("\tBye bye. Hope to see you again soon!");
+    public String exit() {
+        return "Bye bye. Hope to see you again soon!";
     }
 
     /**
@@ -81,28 +56,21 @@ public class Ui {
     }
 
     /**
-     * Prints a message when the user has marked a task.
+     * Returns a message when the user has marked a task.
      *
      * @param myTask The task that the user has marked.
      */
-    public void complete(Task myTask) {
-        System.out.println("\tHooray! You have completed this task:\n\t" + myTask);
+    public String complete(Task myTask) {
+        return "Hooray! You have completed this task:\n" + myTask;
     }
 
     /**
-     * Prints a message when the user has unmarked a task.
+     * Returns a message when the user has unmarked a task.
      *
      * @param myTask The task that the user has unmarked.
      */
-    public void incomplete(Task myTask) {
-        System.out.println("\tOh no! You have more things to complete:\n\t" + myTask);
-    }
-
-    /**
-     * Prints a new line.
-     */
-    public void newLine() {
-        System.out.print("\n");
+    public String incomplete(Task myTask) {
+        return "Oh no! You have more things to complete:\n" + myTask;
     }
 
     /**
@@ -111,26 +79,29 @@ public class Ui {
      * @param taskList The tasklist the user has added to.
      * @param task The task the user has added.
      */
-    public void add(TaskList taskList, Task task) {
-        System.out.println("\tadded: " + task);
-        System.out.println("\tYou have " + taskList.size() + " task" + (taskList.size() > 1 ? "s!" : "!"));
+    public String add(TaskList taskList, Task task) {
+        return "Dino added: " + task
+        + "\nYou have " + taskList.size() + " task" + (taskList.size() > 1 ? "s!" : "!");
     }
 
-    public void match(ArrayList<Task> matching) {
-        System.out.println("\tHere are the matching tasks Dino found:");
+    public String match(ArrayList<Task> matching) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Here are the matching tasks Dino found:\n");
+
         for (int i = 0; i < matching.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + matching.get(i).toString());
+            builder.append(i + 1).append(". ").append(matching.get(i).toString()).append("\n");
         }
+        return builder.toString();
     }
 
     /**
-     * Prints a message when the user has removed a new task from the list.
+     * Returns the message when the user has removed a new task from the list.
      *
      * @param taskList The tasklist the user has removed from.
      * @param task The task the user has removed.
      */
-    public void remove(TaskList taskList, Task task) {
-        System.out.println("\tRemoving " + task + "...");
-        System.out.println("\tYou have " + taskList.size() + " task" + (taskList.size() > 1 ? "s!" : "!"));
+    public String remove(TaskList taskList, Task task) {
+        return "Dino is removing " + task + "..."
+            + "\nYou have " + taskList.size() + " task" + (taskList.size() > 1 ? "s!" : "!");
     }
 }

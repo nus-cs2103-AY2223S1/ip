@@ -45,7 +45,7 @@ public class AddCommand extends Command {
      *          Thrown when the task has no name or no date and time is given when necessary.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task myTask = null;
         switch(COMMAND) {
         case DEADLINE:
@@ -86,11 +86,11 @@ public class AddCommand extends Command {
             }
             break;
         default:
-            ui.invalidTask();
+            Ui.invalidTask();
             break;
         }
         tasks.add(myTask);
         storage.writeFile(tasks);
-        ui.add(tasks, myTask);
+        return ui.add(tasks, myTask);
     }
 }

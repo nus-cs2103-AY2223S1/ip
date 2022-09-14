@@ -36,7 +36,7 @@ public class MarkCommand extends Command {
      *          Thrown when the index is not given.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int index = 0;
         Task myTask;
 
@@ -47,17 +47,18 @@ public class MarkCommand extends Command {
         }
 
         if (index > tasks.size() || index < 0) {
-            ui.invalidTask();
+            Ui.invalidTask();
         }
 
         myTask = tasks.get(index);
         if (MARK) {
             myTask.markAsDone();
-            ui.complete(myTask);
+            storage.writeFile(tasks);
+            return ui.complete(myTask);
         } else {
             myTask.markAsUndone();
-            ui.incomplete(myTask);
+            storage.writeFile(tasks);
+            return ui.incomplete(myTask);
         }
-        storage.writeFile(tasks);
     }
 }

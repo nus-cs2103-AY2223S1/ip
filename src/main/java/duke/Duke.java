@@ -1,10 +1,8 @@
 package duke;
-
-import duke.command.Command;
-
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Scanner;
+
+import duke.command.Command;
 
 /**
  * Main class of Duke.
@@ -34,26 +32,17 @@ public class Duke {
         }
     }
 
-    protected void run() throws DukeException {
-
-        Scanner sc = new Scanner(System.in);
-        String command = "";
-
-        while (!Objects.equals(command, "bye")) {
-            command = sc.nextLine();
-            UI.showLine();
-            Command c = PARSER.parse(command);
-            c.execute(tasks, UI, STORAGE);
-            UI.newLine();
+    protected String run(String input) throws DukeException {
+        if (!Objects.equals(input, "bye")) {
+            Command c = PARSER.parse(input);
+            return c.execute(tasks, UI, STORAGE);
+        } else {
+            return UI.exit();
         }
+
     }
 
-    /**
-     * Main class of Duke
-     */
-    public static void main(String[] args) throws DukeException {
-
-        new Duke("tasks.txt").run();
-
+    public String getResponse(String input) throws DukeException {
+        return run(input);
     }
 }

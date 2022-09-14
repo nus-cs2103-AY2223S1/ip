@@ -19,10 +19,13 @@ public class TaskList {
     /**
      * Prints out all tasks in the list.
      */
-    public void list() {
+    public String list() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("RAWR! Here is your list:\n");
         for (int i = 0; i < MY_TASKS.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + MY_TASKS.get(i).toString());
+            builder.append(i + 1).append(". ").append(MY_TASKS.get(i).toString()).append("\n");
         }
+        return builder.toString();
     }
 
     /**
