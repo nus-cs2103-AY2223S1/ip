@@ -221,14 +221,14 @@ Bye. Hope to see you again soon!
 the data of your previous Duke home folder.
 
 ## Command summary 
-| **Action** | **Format, Examples**                                                                              |
-|------------|:--------------------------------------------------------------------------------------------------|
-| todo       | `todo TASK_DESCRIPTION` <br/> e.g. `todo watch movie`                                             |
-| deadline   | `deadline TASK_DESCRIPTION /by YYYY-MM-DD` <br/> e.g. `deadline CS2101 Assignment /by 2022-09-15` |
-| event      | `event TASK_DESCRIPTION /at YYYY-MM-DD` <br/> e.g. `event NUS Supernova /at 2022-09-01`           |
-| list       | `list`                                                                                            |
-| delete     | `delete INDEX` <br/> e.g. `delete 1`                                                              |
-| find       | `find KEYWORD` <br/> e.g. `find test`                                                             |
-| mark       | `mark INDEX` <br/> e.g. `mark 3`                                                                  |
-| unmark     | `unmark INDEX` <br/> e.g. `unmark 2`                                                              |
-| bye        | `bye`                                                                                             |
+| **Action** | **Format, Examples** |
+|---|---|
+| todo | `todo TASK_DESCRIPTION` <br/> e.g. `todo watch movie` |
+| deadline | `deadline TASK_DESCRIPTION /by YYYY-MM-DD` <br/> e.g. `deadline CS2101 Assignment /by 2022-09-15` |
+| event | `event TASK_DESCRIPTION /at YYYY-MM-DD` <br/> e.g. `event NUS Supernova /at 2022-09-01` |
+| list | `list` |
+| delete | `delete INDEX` <br/> e.g. `delete 1` |
+| find | `find KEYWORD` <br/> e.g. `find test` |
+| mark | `mark INDEX` <br/> e.g. `mark 3` |
+| unmark | `unmark INDEX` <br/> e.g. `unmark 2` |
+| bye | `bye` |
