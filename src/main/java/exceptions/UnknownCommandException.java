@@ -8,6 +8,6 @@ public class UnknownCommandException extends Exception {
      * Constructor for this exception.
      */
     public UnknownCommandException() {
-        super("I don't get what you are saying...");
+        super("I don't get what you are saying, quack!");
     }
 }

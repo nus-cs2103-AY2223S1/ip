@@ -8,6 +8,6 @@ public class NoTasksException extends Exception {
      * Constructor for this exception.
      */
     public NoTasksException() {
-        super("You can't do that! There are no tasks added yet...");
+        super("You can't do that, quack! There are no tasks added yet...");
     }
 }

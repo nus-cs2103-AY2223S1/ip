@@ -8,6 +8,6 @@ public class InvalidTaskIndexException extends Exception {
      * Constructor for this exception.
      */
     public InvalidTaskIndexException() {
-        super("There are no tasks with that index...");
+        super("Quack! There are no tasks with that index...");
     }
 }

@@ -20,9 +20,9 @@ Expected outcome:
 ```
 Duck says:
 
-Got it. I've added this task:
+Quack! I've added this task:
   [T][] finish CS2103T iP assignment
-Now you have 1 task in the list.
+Now you have 1 task in the list, quack!
 ```
 ---
 
@@ -42,9 +42,9 @@ Expected outcome:
 ```
 Duck says:
 
-Got it. I've added this task:
+Quack! I've added this task:
   [E][] attend Meta Software Engineering Conference (at: Monday 1-3pm)
-Now you have 2 tasks in the list.
+Now you have 2 tasks in the list, quack!
 ```
 ---
 
@@ -65,9 +65,9 @@ Expected outcome:
 ```
 Duck says:
 
-Got it. I've added this task:
+Quack! I've added this task:
   [D][] return book (by: 02/08/2019 18:00)
-Now you have 3 tasks in the list.
+Now you have 3 tasks in the list, quack!
 ```
 ---
 4. ### `list`: View all Tasks
@@ -125,7 +125,7 @@ Expected outcome:
 ```
 Duck says:
 
-Here are the matching tasks in your list:
+Here are the matching tasks in your list, quack:
 1. [E][] attend Meta Software Engineering Conference (at: Monday 1-3pm)
 ```
 ---
@@ -144,7 +144,7 @@ Expected outcome:
 ```
 Duck says:
 
-Noted. I've removed this task:
+Quack! I've removed this task:
 [E][] attend Meta Software Engineering Conference (at: Monday 1-3pm)
 ```
 ---
@@ -163,7 +163,7 @@ Expected outcome:
 ```
 Duck says:
 
-Nice! I've marked this task as done:
+Quack! I've marked this task as done:
   [T][X] finish CS2103T iP assignment
 ```
 ---
@@ -182,7 +182,7 @@ Expected outcome:
 ```
 Duck says:
 
-OK, I've marked this task as not done yet:
+Quack, I've marked this task as not done yet:
   [T][] finish CS2103T iP assignment
 ```
 ---

@@ -38,7 +38,7 @@ public class TaskList {
         Todo newTodo = new Todo(todoName.toString().trim());
         assert Objects.equals(newTodo.getName(), todoName.toString().trim());
         tasks.add(newTodo);
-        return "Got it. I've added this task:\n" + "  " + newTodo + "\n" + Ui.printNumberOfTasks(tasks);
+        return "Quack! I've added this task:\n" + "  " + newTodo + "\n" + Ui.printNumberOfTasks(tasks);
     }
 
     /**
@@ -47,7 +47,7 @@ public class TaskList {
      */
     public String addDeadline(String[] inputs) throws EmptyNameException {
         if (inputs.length == 1) {
-            throw new EmptyNameException("Deadline name cannot be empty...");
+            throw new EmptyNameException("Deadline name cannot be empty, quack!");
         }
         StringBuilder deadlineName = new StringBuilder();
         StringBuilder endDateTime = new StringBuilder();
@@ -75,7 +75,7 @@ public class TaskList {
                 endDateTime.toString().trim());
         assert Objects.equals(newDeadline.getName(), deadlineName.toString().trim());
         tasks.add(newDeadline);
-        return "Got it. I've added this task:\n" + "  "
+        return "Quack! I've added this task:\n" + "  "
                 + newDeadline + "\n" + Ui.printNumberOfTasks(tasks);
     }
 
@@ -111,7 +111,7 @@ public class TaskList {
         Event newEvent = new Event(eventName.toString().trim(), periodDateTime.toString().trim());
         assert Objects.equals(newEvent.getName(), eventName.toString().trim());
         tasks.add(newEvent);
-        return "Got it. I've added this task:\n" + "  "
+        return "Quack! I've added this task:\n" + "  "
                 + newEvent + "\n" + Ui.printNumberOfTasks(tasks);
     }
 
@@ -133,12 +133,12 @@ public class TaskList {
         }
         // taskIndex is 1-indexed
         Task t = tasks.remove(taskIndex - 1);
-        return "Noted. I've removed this task:\n" + "  " + t
+        return "Quack! I've removed this task:\n" + "  " + t
                 + "\n" + Ui.printNumberOfTasks(tasks);
     }
 
     public String findTasks(String keyword) {
-        StringBuilder text = new StringBuilder("Here are the matching tasks in your list:\n");
+        StringBuilder text = new StringBuilder("Here are the matching tasks in your list, quack:\n");
         boolean isNotFound = true;
         int index = 1;
         for (Task task : tasks) {
@@ -150,7 +150,7 @@ public class TaskList {
             }
         }
         if (isNotFound) {
-            text.append("There are no matching tasks...");
+            text.append("There are no matching tasks, quack quack quack...");
         }
         return text.toString();
     }

@@ -45,7 +45,7 @@ public class Ui {
         }
         Task currTask = tasks.get(taskIndex - 1); // label starting from 1
         currTask.markAsDone();
-        return "Nice! I've marked this task as done:\n" + "  " + currTask;
+        return "Quack! I've marked this task as done:\n" + "  " + currTask;
     }
 
     /**
@@ -64,7 +64,7 @@ public class Ui {
         currTask.markAsNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  " + currTask);
-        return "OK, I've marked this task as not done yet:\n" + "  " + currTask;
+        return "Quack, I've marked this task as not done yet:\n" + "  " + currTask;
     }
 
     /**
@@ -72,9 +72,9 @@ public class Ui {
      */
     public static String printNumberOfTasks(List<Task> tasks) {
         if (tasks.size() == 1) {
-            return "Now you have " + tasks.size() + " task in the list.";
+            return "Now you have " + tasks.size() + " task in the list, quack!";
         } else {
-            return "Now you have " + tasks.size() + " tasks in the list.";
+            return "Now you have " + tasks.size() + " tasks in the list, quack!";
         }
     }
 }
