@@ -52,30 +52,45 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        String input = readAndDisplayUserInput();
+
+        if (!duke.handleInput(input)) {
+            exitProgramAfterTask(makeDelayTask(3000));
+        }
+    }
+
+    private String readAndDisplayUserInput() {
         String input = userInput.getText();
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage));
         userInput.clear();
+        return input;
+    }
 
-        if (!duke.handleInput(input)) {
-            Task<Void> timeout = new Task<Void>() {
-                @Override
-                protected Void call() throws Exception {
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                    }
-                    return null;
+    private static Task<Void> makeDelayTask(int timeMs) {
+        return new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(timeMs);
+                } catch (InterruptedException e) {
                 }
-            };
-            timeout.setOnSucceeded(e -> {
-                Platform.exit();
-                System.exit(0);
-            });
+                return null;
+            }
+        };
+    }
 
-            new Thread(timeout).start();
+    private <T> void exitProgramAfterTask(Task<T> task) {
+        task.setOnSucceeded(e -> {
+            exitProgram();
+        });
 
-        }
+        new Thread(task).start();
+    }
+
+    private void exitProgram() {
+        Platform.exit();
+        System.exit(0);
     }
 }
