@@ -116,30 +116,23 @@ public class TaskList {
         return buffer.toString();
     }
 
-    /*
-    * 
-    * TODO:
-    * - View command
-    * - HandleViewInput
-    * - Commit with Message Body
-    * */
-    
+
     public String getScheduleView() {
         Map<String, List<String>> sortedSchedule = getSortedSchedule();
         List<String> scheduleView = new ArrayList<>();
-        
+
         for (String date : sortedSchedule.keySet()) {
             List<String> tasksAtDate = sortedSchedule.get(date);
             scheduleView.add(date);
             scheduleView.addAll(tasksAtDate);
         }
-    
+
         return sortedSchedule.toString();
     }
-    
+
     private Map<String, List<String>> getSortedSchedule() {
         Map<String, List<String>> map = new HashMap<>();
-        
+
         for (Task task : taskList) {
             String dateKey = task.getDateString();
             if (!map.containsKey(dateKey)) {
@@ -149,8 +142,8 @@ public class TaskList {
             tasksAtDate.add(task.toString());
             map.put(dateKey, tasksAtDate);
         }
-        
+
         return map;
     }
-    
+
 }

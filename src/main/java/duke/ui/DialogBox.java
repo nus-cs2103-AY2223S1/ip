@@ -14,6 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+/**
+ * Box to capture dialog
+ */
 public class DialogBox extends HBox {
 
     @FXML

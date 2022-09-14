@@ -6,6 +6,7 @@ import duke.data.Storage;
 import duke.task.TaskList;
 import duke.ui.Parser;
 import duke.ui.Ui;
+import javafx.application.Platform;
 
 /**
  * Main class for Duke Application
@@ -55,9 +56,12 @@ public class Duke {
 
     public String getResponse(String input) {
         Command c = Parser.parse(input);
+        if (c.isExit()) {
+            Platform.exit();
+        }
         return c.execute(storage, tasks, ui);
     }
-    
+
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();
     }

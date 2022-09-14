@@ -8,12 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 
+/**
+ * Allow tasks to be grouped by schdule
+ */
 public class ScheduleView extends VBox {
-    
+
     @FXML
-    private ListView<String> myListView; 
-    
-    public static TaskList taskList = new TaskList();
+    private ListView<String> myListView;
 
     private ScheduleView(TaskList tasks) {
         try {
@@ -30,5 +31,4 @@ public class ScheduleView extends VBox {
     public static ScheduleView getScheduleView(TaskList tasks) {
         return new ScheduleView(tasks);
     }
-    
 }

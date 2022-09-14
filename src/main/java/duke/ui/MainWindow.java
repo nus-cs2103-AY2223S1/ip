@@ -9,6 +9,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Main window that contains the entire app
+ */
 public class MainWindow extends AnchorPane {
     @FXML
     private ScrollPane scrollPane;
@@ -27,6 +30,9 @@ public class MainWindow extends AnchorPane {
     public MainWindow() {
     }
 
+    /**
+     * Initializes the MainWindow
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -34,10 +40,20 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(Messages.WELCOME_MESSAGE, dukeImage));
     }
 
+    /**
+     * Provides access to duke
+     *
+     * @param d
+     */
     public void setDuke(Duke d) {
         duke = d;
     }
 
+    /**
+     * Display message in DialogBox
+     *
+     * @param message
+     */
     public void displayMessage(String message) {
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(message, dukeImage)
