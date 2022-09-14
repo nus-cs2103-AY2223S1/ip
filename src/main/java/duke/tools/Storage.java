@@ -29,7 +29,8 @@ public class Storage {
 
         try {
             if (!this.dir.exists()) {
-                dir.mkdir();
+                boolean isCreated = dir.mkdir();
+                assert isCreated : "Folder should be created";
             }
             if (this.data.createNewFile()) {
                 System.err.println("File created " + this.data.getName());
@@ -49,6 +50,7 @@ public class Storage {
     public void saveTasks(TaskList tasks) {
         try {
             this.writer = new FileWriter(this.data);
+            assert tasks.size() > 0 : "Task list is not empty.";
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
                 this.writer.write(task.toString() + "\n");
@@ -81,6 +83,7 @@ public class Storage {
             System.out.println("I... I can't find the file :(");
             System.err.println("Error: " + e.getMessage());
         } finally {
+            assert dataTasks != null : "dataTasks TaskList is not null";
             return dataTasks;
         }
     }

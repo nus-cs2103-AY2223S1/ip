@@ -80,7 +80,7 @@ public class TaskList {
     }
 
     public Task get(int i) {
-
+        assert i >= 0 : "i is a positive index";
         return tasks.get(i);
     }
 
@@ -95,18 +95,21 @@ public class TaskList {
     }
 
     public Task markTask(Integer n) {
+        assert n > 0 : "n starts indexing from 1";
         Task taskMark = tasks.get(n.intValue() - 1);
         taskMark.markAsDone();
         return taskMark;
     }
 
     public Task unmarkTask(Integer n) {
+        assert n > 0 : "n starts indexing from 1";
         Task taskMark = tasks.get(n.intValue() - 1);
         taskMark.markAsNotDone();
         return taskMark;
     }
 
     public Task deleteTask(Integer n) {
+        assert n > 0 : "n starts indexing from 1";
         Task deletedTask = tasks.remove(n.intValue() - 1);
         return deletedTask;
     }

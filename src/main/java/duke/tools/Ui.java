@@ -96,6 +96,7 @@ public class Ui {
      * @return String of task of added and the number of task in list.
      */
     public static String addTaskToast(TaskParser.Tasks TASK, Task task, int size) {
+        assert task != null : "task is not null";
         System.out.println(taskResponses.get(TASK) + task.toString());
         System.out.println("Now you have " + size + " tasks in the list.");
         return taskResponses.get(TASK) + task.toString() + "\n"
@@ -109,6 +110,7 @@ public class Ui {
      * @return A string containing toast when tasks are successfully loaded.
      */
     public static String loadTaskToast(Task task, int size) {
+        assert task != null : "task is not null";
         System.out.println("This piece of past that you've ignored is becoming your reality:\n" + task.toString());
         System.out.println("Now you have " + size + " tasks in the list.");
         return "This piece of past that you've ignored is becoming your reality:\n" + task.toString() + "\n"
@@ -122,6 +124,7 @@ public class Ui {
      * @return A string containing toast for successfully deleting a task.
      */
     public static String deleteTaskToast(Task task, int size) {
+        assert task != null : "task is not null";
         System.out.println("This task has perished from reality:\n" + task.toString());
         System.out.println("Now you have " + size + " tasks in the list.");
         return "This task has perished from reality:\n" + task.toString() + "\n"
@@ -134,6 +137,7 @@ public class Ui {
      * @return A congratulatory message.
      */
     public static String congrats(Task task) {
+        assert task != null : "task is not null";
         System.out.println("Congratulations on smashing reality!");
         System.out.println(task.toString());
         return "Congratulations on smashing reality!" + "\n"
@@ -146,6 +150,7 @@ public class Ui {
      * @return A string containing a toast for undone tasks.
      */
     public static String undoneToast(Task task) {
+        assert task != null : "task is not null";
         System.out.println("Oops reality is catching up... this is still undone:");
         System.out.println(task.toString());
         return "Oops reality is catching up... this is still undone:\n"
@@ -167,6 +172,7 @@ public class Ui {
             int count = i + 1;
             output += (count + ". " + tasks.get(i).toString() + "\n");
         }
+        System.out.println(output);
         return output;
     }
 
@@ -178,6 +184,5 @@ public class Ui {
         System.out.println("Here are the tasks that match your search: ");
         return "Here are the tasks that match your search: ";
     }
-
 
 }
