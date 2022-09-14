@@ -30,17 +30,17 @@ public class Parser {
      * @throws DukeException
      *          Thrown if user inputs an unknown command.
      */
-    public Command parse(String command) throws DukeException {
+    public static Command parse(String command) throws DukeException {
         String[] str = command.split("\\s", 2);
-
         Commands myTask;
-
         try {
             myTask = Commands.valueOf(str[0].toUpperCase(Locale.ROOT));
         } catch (Exception e) {
             throw new DukeException("Oops! I don't know what that means.");
         }
-
+        assert myTask == Commands.BYE || myTask == Commands.LIST || myTask == Commands.MARK
+                || myTask == Commands.UNMARK || myTask == Commands.DEADLINE || myTask == Commands.TODO
+                || myTask == Commands.EVENT || myTask == Commands.DELETE || myTask == Commands.FIND;
         switch (myTask) {
         case BYE:
             return new ExitCommand();

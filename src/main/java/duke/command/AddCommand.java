@@ -47,43 +47,17 @@ public class AddCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task myTask = null;
+        assert COMMAND == Commands.DEADLINE || COMMAND == Commands.EVENT || COMMAND == Commands.TODO;
         switch(COMMAND) {
         case DEADLINE:
-            String[] dl = new String[2];
-            try {
-                dl = STR[1].split(" /by ");
-            } catch (Exception e) {
-                ui.emptyDescription();
-            }
-
-            try {
-                myTask = new Deadline(dl[0], dl[1]);
-            } catch (Exception e) {
-                ui.missingDate();
-            }
+            myTask = executeDl(ui);
             break;
-
         case TODO:
-            try {
-                myTask = new ToDo(STR[1]);
-            } catch (Exception e) {
-                ui.emptyDescription();
-            }
+            myTask = executeTd(ui);
             break;
 
         case EVENT:
-            String[] evnt = new String[0];
-            try {
-                evnt = STR[1].split(" /at ");
-            } catch (Exception e) {
-                ui.emptyDescription();
-            }
-
-            try {
-                myTask = new Event(evnt[0], evnt[1]);
-            } catch (Exception e) {
-                ui.emptyDescription();
-            }
+            myTask = executeEvnt(ui);
             break;
         default:
             Ui.invalidTask();
@@ -92,5 +66,46 @@ public class AddCommand extends Command {
         tasks.add(myTask);
         storage.writeFile(tasks);
         return ui.add(tasks, myTask);
+    }
+
+    private Deadline executeDl(Ui ui) throws DukeException {
+        String[] dl = new String[2];
+        try {
+            dl = STR[1].split(" /by ");
+        } catch (Exception e) {
+            ui.emptyDescription();
+        }
+
+        try {
+            return new Deadline(dl[0], dl[1]);
+        } catch (Exception e) {
+            ui.missingDate();
+        }
+        return null;
+    }
+
+    private ToDo executeTd(Ui ui) throws DukeException {
+        try {
+            return new ToDo(STR[1]);
+        } catch (Exception e) {
+            ui.emptyDescription();
+        }
+        return null;
+    }
+
+    private Event executeEvnt(Ui ui) throws DukeException {
+        String[] evnt = new String[0];
+        try {
+            evnt = STR[1].split(" /at ");
+        } catch (Exception e) {
+            ui.emptyDescription();
+        }
+
+        try {
+            return new Event(evnt[0], evnt[1]);
+        } catch (Exception e) {
+            ui.emptyDescription();
+        }
+        return null;
     }
 }
