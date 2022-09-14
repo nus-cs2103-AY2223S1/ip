@@ -27,7 +27,12 @@ public class DeleteTaskCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        Task task = tasks.delete(taskNum);
+        Task task;
+        try {
+            task = tasks.delete(taskNum);
+        } catch (IndexOutOfBoundsException e) {
+            return "That task doesn't exist";
+        }
         return "Haiya so lazy. Deleted this task:\n"
                 + task.toString() + "\n"
                 + "Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.";
