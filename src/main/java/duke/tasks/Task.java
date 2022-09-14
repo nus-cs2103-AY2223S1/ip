@@ -35,20 +35,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    /**
-     * Get string representation of whether task is marked
-     *
-     * @return "X" if task is marked, " " if task is not marked
-     */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
-    /**
-     * Get description of task
-     *
-     * @return description the description of the task
-     */
     public String getDescription() {
         return this.description;
     }

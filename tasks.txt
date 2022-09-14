@@ -1,2 +1,3 @@
-D~~ ~~do work~~Dec 12 2022~~#work #deadline 
-T~~X~~working~~ ~~#moreWork 
+T~~X~~MA2001 Tutorial~~ ~~
+D~~ ~~MA1521 Assignment~~Nov 10 2022~~
+E~~ ~~CS1101S Exam~~Nov 20 2022~~#important 

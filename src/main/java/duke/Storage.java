@@ -41,7 +41,7 @@ public class Storage {
             String taskType = loadedTask[0];
             String taskStatus = loadedTask[1];
             String taskDescription = loadedTask[2];
-            String[] tagsList = loadedTask[4].split(" ");
+            String[] tagsList;
             switch (taskType) {
             case "T":
                 tasks.add(new Todo(taskDescription));
@@ -60,8 +60,11 @@ public class Storage {
             if (taskStatus.equals("X")) {
                 tasks.get(tasks.size() - 1).mark();
             }
-            for (String tag : tagsList) {
-                tasks.get(tasks.size() - 1).addTag(tag);
+            if (loadedTask.length == 5) {
+                tagsList = loadedTask[4].split(" ");
+                for (String tag : tagsList) {
+                    tasks.get(tasks.size() - 1).addTag(tag);
+                }
             }
         }
         return tasks;

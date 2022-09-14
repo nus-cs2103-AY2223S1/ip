@@ -39,11 +39,6 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(DialogBox.getDukeDialog("Hey, I'm Jett! How can I help you?", dukeImage));
     }
 
-    /**
-     * Assign Duke object for GUI
-     *
-     * @param d Duke object to be used for GUI
-     */
     public void setDuke(Duke d) {
         duke = d;
     }
