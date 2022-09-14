@@ -35,7 +35,7 @@ public class AddEventCommand extends Command {
         Event event = new Event(this.taskName, this.date);
         tasks.add(event);
         return "Nephew so busy, got new event:\n"
-                + event.toString() + "\n"
-                + "Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.";
+                + event + "\n"
+                + "Nephew now have " + tasks.getLength() + " tasks in the list.";
     }
 }

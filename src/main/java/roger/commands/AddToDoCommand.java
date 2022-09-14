@@ -31,7 +31,7 @@ public class AddToDoCommand extends Command {
         ToDo toDo = new ToDo(taskName);
         tasks.add(toDo);
         return "Nephew got new to-do:\n"
-                + toDo.toString() + "\n"
-                + "Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.";
+                + toDo + "\n"
+                + "Nephew now have " + tasks.getLength() + " tasks in the list.";
     }
 }
