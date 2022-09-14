@@ -86,10 +86,10 @@ public class Ui {
      * @param size The current size of the list.
      */
     protected String getNewTaskMessage(Task task, int size) {
-        return String.format("Got it. I've added this task:\n"
-                        + "\t%s\n"
-                        + "Now you have %d tasks in the list.",
-                task, size);
+        String intro = "Got it. I've added this task:";
+        String content = String.format("\t%s", task);
+        String outro = String.format("Now you have %d tasks in the list.", size);
+        return combineMessages(intro, content, outro);
     }
 
     /**
@@ -106,13 +106,23 @@ public class Ui {
      * @param tasks The list of tasks.
      */
     protected String getAllTasks(ArrayList<Task> tasks) {
-        StringBuilder message = new StringBuilder("Here are the tasks in your list:\n");
         if (tasks.isEmpty()) {
             return "You have no tasks at the moment!";
         }
+
+        String intro = "Here are the tasks in your list:";
+        StringBuilder items = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            message.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
+            items.append(String.format("\t%d. %s\n", i + 1, tasks.get(i)));
         }
-        return message.toString();
+        return combineMessages(intro, items.toString());
+    }
+
+    protected String combineMessages(String... messages) {
+        StringBuilder output = new StringBuilder();
+        for (String message : messages) {
+            output.append(message).append("\n");
+        }
+        return output.toString();
     }
 }
