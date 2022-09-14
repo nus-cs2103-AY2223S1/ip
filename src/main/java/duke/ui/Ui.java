@@ -94,6 +94,14 @@ public class Ui {
         return "Here are the matching tasks in your list:";
     }
 
+    public String getNoMatchingTagMessage() {
+        return "Sorry! There are no matching tasks with a tag that contains ";
+    }
+
+    public String getMatchingTagMessage() {
+        return "Here are the tasks with the matching tags in your list:";
+    }
+
     /**
      * Returns a goodbye message for the user.
      * @return A goodbye message.

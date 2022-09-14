@@ -2,6 +2,7 @@ package duke.parser;
 
 import java.io.IOException;
 
+import duke.command.*;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidDescriptionException;
 import duke.storage.Storage;
@@ -48,43 +49,11 @@ public class Parser {
         assert splitCommand[0] != null : "Invalid command";
         String command = splitCommand[0];
         switch (command) {
-        case "bye":
-            storage.clearFile();
-            for (int i = 0; i < taskList.getNumOfTasks(); i++) {
-                char taskType = taskList.readTask(i).charAt(1);
-                String status = taskList.readStatus(i);
-                String tag = taskList.getTag(i);
-                switch (taskType) {
-                case 'T': {
-                    String taskToAppend = taskList.storeIntoFileFormat("T", taskList.convertStatus(status),
-                            taskList.getDescription(i), tag, "");
-                    storage.appendToFile(taskToAppend);
-                    break;
-                }
-                case 'D': {
-                    String taskToAppend = taskList.storeIntoFileFormat("D", taskList.convertStatus(status),
-                            taskList.getDescription(i), tag, taskList.getDate(i));
-                    storage.appendToFile(taskToAppend);
-                    break;
-                }
-                case 'E': {
-                    String taskToAppend = taskList.storeIntoFileFormat("E", taskList.convertStatus(status),
-                            taskList.getDescription(i), tag, taskList.getDate(i));
-                    storage.appendToFile(taskToAppend);
-                    break;
-                }
-                default:
-                    break;
-                }
-            }
-            return ui.getGoodbyeMessage();
+        case "bye": {
+            return new ByeCommand().read(taskList, ui, storage);
+        }
         case "list": {
-            int numOfTasks = taskList.getNumOfTasks();
-            if (numOfTasks == 0) {
-                return ui.getEmptyTaskMessage();
-            } else {
-                return ui.getList(taskList);
-            }
+            return new ListCommand().read(taskList, ui, storage);
         }
         case "mark": {
             if (splitCommand.length == 1) {
@@ -94,8 +63,7 @@ public class Parser {
             if (index + 1 > taskList.getNumOfTasks()) {
                 throw new InvalidCommandException("Task does not exist.");
             }
-            taskList.setCompleted(index);
-            return ui.getMarkedTaskMessage() + taskList.readTask(index);
+            return new MarkCommand(index).read(taskList, ui, storage);
         }
         case "unmark": {
             if (splitCommand.length == 1) {
@@ -105,8 +73,7 @@ public class Parser {
             if (index + 1 > taskList.getNumOfTasks()) {
                 throw new InvalidCommandException("Task does not exist.");
             }
-            taskList.setNotCompleted(index);
-            return ui.getUnmarkedTaskMessage() + taskList.readTask(index);
+            return new UnmarkCommand(index).read(taskList, ui, storage);
         }
         case "delete": {
             if (splitCommand.length == 1) {
@@ -117,49 +84,31 @@ public class Parser {
             if (index + 1 > numOfTasks) {
                 throw new InvalidCommandException("Task does not exist.");
             }
-            String result = ui.getDeleteMessage(taskList.readTask(index), numOfTasks - 1);
-            taskList.deleteTask(index);
-            return result;
+            return new DeleteCommand(index).read(taskList, ui, storage);
         }
         case "todo": {
             if (splitCommand.length == 1) {
                 throw new InvalidDescriptionException("Please add a description.");
             }
-            taskList.addTodo(splitCommand[1]);
-            int numOfTasks = taskList.getNumOfTasks();
-            return ui.getAddTaskMessage(taskList.readTask(numOfTasks - 1), numOfTasks);
+            return new TodoCommand(splitCommand[1]).read(taskList, ui, storage);
         }
         case "deadline": {
             if (splitCommand.length == 1) {
                 throw new InvalidDescriptionException("Please add a description and deadline.");
             }
-            taskList.addDeadline(splitCommand[1]);
-            int numOfTasks = taskList.getNumOfTasks();
-            return ui.getAddTaskMessage(taskList.readTask(numOfTasks - 1), numOfTasks);
+            return new DeadlineCommand(splitCommand[1]).read(taskList, ui, storage);
         }
         case "event": {
             if (splitCommand.length == 1) {
                 throw new InvalidDescriptionException("Please add a description and time/date.");
             }
-            taskList.addEvent(splitCommand[1]);
-            int numOfTasks = taskList.getNumOfTasks();
-            return ui.getAddTaskMessage(taskList.readTask(numOfTasks - 1), numOfTasks);
+            return new EventCommand(splitCommand[1]).read(taskList, ui, storage);
         }
         case "find": {
-            String result = "";
-            String searchKey = splitCommand[1];
-            int index = 1;
-            for (int i = 0; i < taskList.getNumOfTasks(); i++) {
-                if (taskList.getDescription(i).contains(searchKey)) {
-                    result = result + "\n" + index + "." + taskList.readTask(i);
-                    index++;
-                }
-            }
-            if (result.equals("")) {
-                return ui.getNoMatchingTaskMessage() + searchKey;
-            } else {
-                return ui.getMatchingTaskMessage() + result;
-            }
+            return new FindCommand(splitCommand[1]).read(taskList, ui, storage);
+        }
+        case "findtag": {
+            return new FindTagCommand(splitCommand[1]).read(taskList, ui, storage);
         }
         case "cdf": {
             if (splitCommand.length == 1) {
@@ -169,11 +118,7 @@ public class Parser {
             if (index + 1 > taskList.getNumOfTasks()) {
                 throw new InvalidCommandException("Task does not exist.");
             }
-            if (taskList.changeDateFormat(index).equals("")) {
-                return ui.getNoDateMessage();
-            } else {
-                return ui.getDateChangedMessage() + "\n" + taskList.changeDateFormat(index);
-            }
+            return new ChangeDateFormatCommand(index).read(taskList, ui, storage);
         }
         default:
             throw new InvalidCommandException("OOPS!!! I'm sorry, but I don't know what that means :-(");

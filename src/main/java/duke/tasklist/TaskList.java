@@ -38,7 +38,7 @@ public class TaskList {
             switch (taskType) {
             case "T ": {
                 if (description.contains("|")) {
-                    String[] splitBy = description.split("\\|", 2);
+                    String[] splitBy = description.split("\\| ", 2);
                     taskList.add(new Todo(splitBy[0], splitBy[1]));
                     int numOfTasks = taskList.size();
                     if (isMarked) {
@@ -248,12 +248,12 @@ public class TaskList {
         case "D": {
             return tag.equals(" ")
                     ? "D | " + status + " | " + description + "| " + date
-                    : "D | " + status + " | " + description + "| " + tag + " | " + date;
+                    : "D | " + status + " | " + description + "| " + tag + "| " + date;
         }
         case "E": {
             return tag.equals(" ")
                     ? "E | " + status + " | " + description + "| " + date
-                    : "E | " + status + " | " + description + "| " + tag + " | " + date;
+                    : "E | " + status + " | " + description + "| " + tag + "| " + date;
         }
         default:
             return "";

@@ -1,4 +1,4 @@
-D | 0 | watch lecture | urgent   | 2022-09-10
-E | 1 | attend TI | hype   | 2022-10-01
-T | 1 | read book
+D | 0 | watch lecture | urgent | 2022-09-10
+E | 1 | attend TI | hype | 2022-10-01
 T | 0 | return book | urgent
+T | 0 | read book
