@@ -15,7 +15,7 @@ All you need to do is:
 3. Add your tasks
 4. Let it help you to keep organised!
 
-AND IT'S __FREE__
+AND IT'S **_FREE_** :wink:
 
 Features:
 - [x] Adding  tasks
