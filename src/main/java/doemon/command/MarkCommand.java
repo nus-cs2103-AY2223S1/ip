@@ -3,7 +3,7 @@ package doemon.command;
 import doemon.storage.Storage;
 import doemon.task.Task;
 import doemon.task.TaskList;
-import doemon.ui.Ui;
+import doemon.response.Response;
 
 /**
  * Command to mark a task given a specified index.
@@ -25,10 +25,10 @@ public class MarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Response response, Storage storage) {
         Task task = tasks.markTask(this.taskIndex);
-        ui.showMarkTask(task);
         storage.markTaskData(this.taskIndex);
+        return response.markTaskString(task);
     }
 
     /**

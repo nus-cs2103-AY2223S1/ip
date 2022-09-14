@@ -3,7 +3,7 @@ package doemon.command;
 import doemon.storage.Storage;
 import doemon.task.Task;
 import doemon.task.TaskList;
-import doemon.ui.Ui;
+import doemon.response.Response;
 
 /**
  * Command to add a new task.
@@ -25,10 +25,10 @@ public class AddCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Response ui, Storage storage) {
         tasks.addTask(task);
-        ui.showAddTask(task, tasks.getSize());
         storage.addTaskData(task);
+        return ui.addTaskString(task, tasks.getSize());
     }
 
     /**
