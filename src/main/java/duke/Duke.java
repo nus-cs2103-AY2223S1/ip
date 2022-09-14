@@ -263,33 +263,33 @@ public class Duke extends Application {
             matcher.find();
             int index = Integer.parseInt(matcher.group("index"));
             String newTask = matcher.group("newTask");
-
+            System.out.print("update");
             switch (Parser.parse(newTask)) {
             case TODO:
-                    Todo todo = new Todo(newTask.replace("todo", "").trim(), false);
-                    tasks.update(index, todo);
-                    Ui.printAddedMessage(todo, tasks.getSize());
-                    storage.writeToFile(tasks);
+                Task todo = new Todo(newTask.replace("todo", "").trim(), false);
+                tasks.update(index, todo);
+                storage.writeToFile(tasks);
+                return Ui.printAddedMessage(todo, tasks.getSize());
             case DEADLINE: {
-                    String[] splitStr = newTask.trim().split("/by");
-                    String date = splitStr[1].replace("by", "").trim();
-                    Deadline deadline = new Deadline(splitStr[0].replace("deadline", "").trim(),
-                            false, date);
-                    tasks.update(index, deadline);
-                    Ui.printAddedMessage(deadline, tasks.getSize());
-                    storage.writeToFile(tasks);
+                String[] splitStr = newTask.trim().split("/by");
+                String date = splitStr[1].replace("by", "").trim();
+                Deadline deadline = new Deadline(splitStr[0].replace("deadline", "").trim(),
+                        false, date);
+                tasks.update(index, deadline);
+                storage.writeToFile(tasks);
+                return Ui.printAddedMessage(deadline, tasks.getSize());
             }
             case EVENT: {
-                    String[] splitStr = newTask.trim().split("/at");
-                    String date = splitStr[1].replace("at", "").trim();
-                    Event event = new Event(splitStr[0].replace("event", "").trim(), false, date);
-                    tasks.update(index, event);
-                    Ui.printAddedMessage(event, tasks.getSize());
-                    storage.writeToFile(tasks);
+                String[] splitStr = newTask.trim().split("/at");
+                String date = splitStr[1].replace("at", "").trim();
+                Event event = new Event(splitStr[0].replace("event", "").trim(), false, date);
+                tasks.update(index, event);
+                storage.writeToFile(tasks);
+                return Ui.printAddedMessage(event, tasks.getSize());
             }
             }
         }
-        return "Duke heard: " + input;
+        return "";
     }
 
     public static void main(String[] args) {
