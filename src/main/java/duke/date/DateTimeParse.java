@@ -102,17 +102,18 @@ public class DateTimeParse {
 
     private static LinkedHashMap<String, String> supportedFormats(Map<String, String> dateFormats) {
         LinkedHashMap<String, String> appendedDateTime = new LinkedHashMap<>();
-        // first append only the time formats (so enable support for time-no-date formats)
-        TIME_FORMAT_SUPPORTED.forEach((timeFormatRegex, timeFormatSequence) -> {
-            appendedDateTime.put(timeFormatRegex, timeFormatSequence);
-        });
-        // then append the datetime and date formats
+        // first append the datetime and date formats
         dateFormats.forEach((dateFormatRegex, dateFormatSequence) -> {
             // append the supported time formats to each supported date format
             appendTimeFormats(dateFormatRegex, dateFormatSequence, appendedDateTime);
             // add the start and end anchors to the date format regex
             dateFormatRegex = encloseRegex(dateFormatRegex);
             appendedDateTime.put(dateFormatRegex, dateFormatSequence);
+        });
+
+        // then append only the time formats (so enable support for time-no-date formats)
+        TIME_FORMAT_SUPPORTED.forEach((timeFormatRegex, timeFormatSequence) -> {
+            appendedDateTime.put(timeFormatRegex, timeFormatSequence);
         });
         return appendedDateTime;
     }

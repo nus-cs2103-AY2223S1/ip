@@ -1,5 +1,6 @@
 package duke.task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -110,6 +111,30 @@ public class Event extends Task {
         eventStartDatetime = editedEvent.eventStartDatetime;
         eventEndDatetime = editedEvent.eventEndDatetime;
         return this;
+    }
+
+    /**
+     * Checks whether the event task is active during the specified date.
+     * Will return true only if the task is overdue- meaning the event is over
+     * (relative to the specified date), but it has not been marked done,
+     * or if the specified date falls between the event start and end time.
+     *
+     * @param date The date to check whether the task is active.
+     * @return Whether the event task is active (overdue or happens on the specified date).
+     */
+    @Override
+    public boolean isActive(LocalDate date) {
+        assert !eventStartDatetime.isAfter(eventEndDatetime)
+                : "Event start time should not be after event end time!";
+        // since event end date should not be before the start date, to check
+        // if the event has passed, it suffices to just check the end date
+        boolean hasPassed = eventEndDatetime.toLocalDate().isBefore(date);
+        boolean isDue = hasPassed && !isDone;
+        // an event is happening if it is between the start and end dates (inclusive),
+        // this check ignores time
+        boolean isHappening = !eventStartDatetime.toLocalDate().isAfter(date)
+                && !eventEndDatetime.toLocalDate().isBefore(date);
+        return isDue || isHappening;
     }
 
     /**

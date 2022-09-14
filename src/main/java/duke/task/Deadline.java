@@ -1,5 +1,6 @@
 package duke.task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -81,6 +82,22 @@ public class Deadline extends Task {
         description = editedDeadline.description;
         dueDate = editedDeadline.dueDate;
         return this;
+    }
+
+    /**
+     * Checks whether the deadline task is active on the specified date.
+     * Will return true only if the task is overdue- meaning the due date has passed
+     * (relative to the specified date), but it has not been completed,
+     * or if the deadline falls on the specified date.
+     *
+     * @param date The date to check whether the task is active.
+     * @return Whether the deadline task is active (overdue by, or due on the specified date).
+     */
+    @Override
+    public boolean isActive(LocalDate date) {
+        boolean isOverdue = dueDate.toLocalDate().isBefore(date) && !isDone;
+        boolean isDueOnDate = dueDate.toLocalDate().equals(date);
+        return isOverdue || isDueOnDate;
     }
 
     /**

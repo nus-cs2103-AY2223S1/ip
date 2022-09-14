@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 import duke.exception.DukeException;
 
 /**
@@ -74,6 +76,7 @@ public abstract class Task {
 
     public abstract String toSaveFormat();
     public abstract Task edit(String userEditInput) throws DukeException;
+    public abstract boolean isActive(LocalDate date);
 
     /**
      * Returns a string representation for the task, indicating
