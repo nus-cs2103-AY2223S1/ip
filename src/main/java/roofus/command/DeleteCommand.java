@@ -6,6 +6,7 @@ import roofus.RoofusException;
 import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
+import roofus.task.Task;
 
 /**
  * Represents a command action that adds a task in the TaskList
@@ -27,16 +28,15 @@ public class DeleteCommand extends Command {
             if (index > taskList.length() || index < 1) {
                 throw new RoofusException("Hey! It's not even in this list!");
             }
+            try {
+                storage.save(taskList);
+            } catch (IOException err) {
+                return ui.printErrMessage("file not saved");
+            }
+            Task deletedTask = taskList.delete(index);
+            return ui.delete(deletedTask.toString(), taskList.length());
         } catch (RoofusException err) {
-            ui.printErrMessage(err.getMessage());
+            return ui.printErrMessage(err.getMessage());
         }
-        taskList.delete(index);
-        try {
-            storage.save(taskList);
-        } catch (IOException err) {
-            return ui.printErrMessage("file not saved");
-        }
-        return ui.delete(taskList.getTask(index - 1).toString(),
-                taskList.length());
     }
 }

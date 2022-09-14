@@ -97,11 +97,14 @@ public class TaskList {
      * Deletes a task in TaskList.
      *
      * @param index Task number to be deleted.
+     * @return The deleted task.
      */
-    public void delete(int index) {
+    public Task delete(int index) {
         assert index > 0 : "index should be greater than 0";
         assert index <= tasks.size() : "index should be less than or equal to list size";
+        Task deletedTask = tasks.get(index - 1);
         tasks.remove(index - 1);
+        return deletedTask;
     }
 
     /**
