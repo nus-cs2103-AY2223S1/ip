@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 /**
  * Represents a task.
  */
@@ -50,6 +52,16 @@ public class Task {
      */
     public boolean matchDescription(String keyword) {
         return this.description.contains(keyword);
+    }
+
+    /**
+     * Checks if a task has a matching date.
+     *
+     * @param localDate Given date.
+     * @return False.
+     */
+    public boolean matchDate(LocalDate localDate) {
+        return false;
     }
 
     /**

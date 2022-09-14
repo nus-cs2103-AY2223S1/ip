@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import duke.commands.Command;
+import duke.commands.DateCommand;
 import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.EventCommand;
@@ -66,6 +67,8 @@ public class Parser {
             // Fallthrough
         case UnmarkCommand.COMMAND_WORD:
             return parseIndex(commandWord, description);
+        case DateCommand.COMMAND_WORD:
+            return new DateCommand(description);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case FindCommand.COMMAND_WORD:
@@ -164,7 +167,7 @@ public class Parser {
                 // Let the loop continue
             }
         }
-        throw new ParseInputException("☹ Invalid date format!");
+        throw new ParseInputException("☹ Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd");
     }
 
     /**
