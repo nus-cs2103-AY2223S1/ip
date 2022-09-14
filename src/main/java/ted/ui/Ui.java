@@ -77,6 +77,12 @@ public class Ui {
         return "Here are the matching tasks in your list:\n" + tasks;
     }
 
+    /**
+     * Returns response to user command to remind about deadline tasks.
+     *
+     * @param tasks tasks that have upcoming deadlines.
+     * @return remind response string.
+     */
     public String remindResponse(String tasks) {
         return "!Upcoming Deadlines!\n" + tasks;
     }

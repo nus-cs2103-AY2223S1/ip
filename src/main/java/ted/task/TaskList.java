@@ -148,6 +148,11 @@ public class TaskList {
         return temp;
     }
 
+    /**
+     * Returns String representation of the list of deadline tasks with a deadline after current time.
+     *
+     * @return String of upcoming deadline tasks.
+     */
     public String getRemindTasks() {
         String reminders = "";
         int count = 1;

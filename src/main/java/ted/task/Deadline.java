@@ -54,6 +54,11 @@ public class Deadline extends Task {
         return "D | " + super.toFileString() + " | " + this.taskDeadline + "\n";
     }
 
+    /**
+     * Indicates if a Deadline object has a deadline after current time.
+     *
+     * @return boolean that indicates whether user should be reminded of the particular Deadline object.
+     */
     @Override
     public boolean shouldRemind() {
         LocalDateTime currentDateTime = LocalDateTime.now();

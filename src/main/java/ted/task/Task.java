@@ -68,6 +68,11 @@ public class Task {
                 : NOT_DONE_FILEFORMAT + this.taskDescription;
     }
 
+    /**
+     * Indicates if a task has a deadline after current time.
+     *
+     * @return false as a default.
+     */
     public boolean shouldRemind() {
         return false;
     }
