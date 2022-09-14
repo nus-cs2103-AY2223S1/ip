@@ -21,14 +21,8 @@ public class DukeGuiIo extends DukeAbstractIo {
 
     @Override
     public void printTask(String txt, int features) {
-        // 00 - no wrapper/indent
-        // 10 - indent
-        // 01 - wrapper
         if ((features & 2) == 2) {
             txt = StringParser.addIndent(txt);
-        }
-        if ((features & 1) == 1) {
-            txt = StringParser.addWrapper(txt);
         }
         addMsgToContainer(txt);
     }

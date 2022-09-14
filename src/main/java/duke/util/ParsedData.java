@@ -13,6 +13,7 @@ public class ParsedData {
 
     /**
      * Initiate ParseData with the parameters from the input.
+     * 
      * @param info1
      * @param info2
      * @param info3
@@ -40,6 +41,7 @@ public class ParsedData {
 
     /**
      * Returns saved data as a string to be stored.
+     * 
      * @return String
      */
     public String getSavedString() {

@@ -37,7 +37,7 @@ public final class DataParser {
 
     private static final Pattern SAVE_PATTERN = Pattern.compile("^([TDE])([cx]) <<<< (.*) <<<< (.*)");
 
-    static enum DateFormatEnum {
+    private static enum DateFormatEnum {
         T1("MMM d yyyy"), T2("dd/MM/yyyy"), T3("dd-MM-yyyy");
 
         final DateTimeFormatter dtf;
@@ -47,13 +47,40 @@ public final class DataParser {
         }
     }
 
-    static enum DateTimeFormatEnum {
+    private static enum DateTimeFormatEnum {
         T1("MMM d yyyy HH:mm"), T2("dd/MM/yyyy HH:mm"), T3("dd-MM-yyyy HH:mm");
 
         final DateTimeFormatter dtf;
 
         DateTimeFormatEnum(String signature) {
             dtf = DateTimeFormatter.ofPattern(signature);
+        }
+    }
+
+    private static enum CommandsEnum {
+
+        BYE("bye"), LIST("list"), MARK("mark"), UNMARK("unmark"), DELETE("delete"), TODO("todo"), DEADLINE(
+                "deadline"), EVENT("event"), BY("by"), FIND("FIND"), INVALID("");
+
+        final String commandType;
+
+        CommandsEnum(String type) {
+            commandType = type;
+        }
+
+        static CommandsEnum getCommandFromString(String command) {
+            for (CommandsEnum c : CommandsEnum.values()) {
+                if (c.toString().equalsIgnoreCase(command)) {
+                    return c;
+                }
+            }
+
+            return INVALID;
+        }
+
+        @Override
+        public String toString() {
+            return commandType;
         }
     }
 
@@ -64,26 +91,27 @@ public final class DataParser {
      * @return Command To be executed and do actions.
      */
     public static Command dataToCommand(ParsedData data) {
-        switch (data.command) {
-        case "bye":
+
+        switch (CommandsEnum.getCommandFromString(data.command)) {
+        case BYE:
             return new ByeCommand();
-        case "list":
+        case LIST:
             return new ListCommand();
-        case "mark":
+        case MARK:
             return new MarkCommand(data);
-        case "unmark":
+        case UNMARK:
             return new UnmarkCommand(data);
-        case "delete":
+        case DELETE:
             return new DeleteCommand(data);
-        case "todo":
+        case TODO:
             return new TodoCommand(data);
-        case "deadline":
+        case DEADLINE:
             return new DeadlineCommand(data);
-        case "event":
+        case EVENT:
             return new EventCommand(data);
-        case "by":
+        case BY:
             return new ByCommand(data);
-        case "find":
+        case FIND:
             return new FindCommand(data);
         default:
             return new InvalidCommand();

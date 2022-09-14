@@ -34,9 +34,6 @@ public class DukeCliIo extends DukeAbstractIo {
      */
     @Override
     public void printTask(String txt, int features) {
-        // 00 - no wrapper/indent
-        // 10 - indent
-        // 01 - wrapper
         if ((features & DukeCliSettings.INDENT.value) == DukeCliSettings.INDENT.value) {
             txt = StringParser.addIndent(txt);
         }
