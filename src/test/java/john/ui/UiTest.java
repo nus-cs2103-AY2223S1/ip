@@ -69,7 +69,7 @@ public class UiTest {
     @Test
     public void showTasks_inputTasks_tasksReturned() {
         String sep = System.lineSeparator();
-        assertEquals("1. hello" + sep + "2. world" + sep,
+        assertEquals("1. hello" + sep + "2. world",
                 new Ui().showTasks(new TaskList(), "12/12/2022", "hello", "world"));
     }
 

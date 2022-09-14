@@ -48,7 +48,7 @@ checkstyle {
 }
 
 application {
-    mainClassName = "john.John"
+    mainClassName = "john.Main"
 }
 
 shadowJar {

@@ -109,8 +109,10 @@ public class Ui {
     public String showTasks(TaskList taskList, String params, String ... tasks) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.length; ++i) {
-            if (tasks[i] != null) {
-                sb.append(String.format("%d. %s%n", i + 1, tasks[i]));
+            if (tasks[i] != null && sb.length() == 0) {
+                sb.append(String.format("%d. %s", i + 1, tasks[i]));
+            } else if (tasks[i] != null) {
+                sb.append(String.format("%n%d. %s", i + 1, tasks[i]));
             }
         }
         if (sb.length() == 0) {
