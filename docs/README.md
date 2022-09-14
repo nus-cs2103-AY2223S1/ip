@@ -98,7 +98,7 @@ list
 
 Expected outcome:
 
-![list](list.png)
+![list](Ui.png)
 
 ### Feature 6 Find tasks
 
