@@ -40,7 +40,7 @@ public class Ui {
      * Ending message after user terminates the program with "bye"
      */
     public static String endingMessage() {
-        return "See ya! Come again~"; //end of bot
+        return "See ya! Come again~ \nClosing the program.."; //end of bot
     }
 
     /**

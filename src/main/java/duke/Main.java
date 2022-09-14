@@ -16,6 +16,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
 
 import java.time.format.DateTimeParseException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -112,13 +114,23 @@ public class Main extends Application {
      * Handles input from user and passes it to the parser to process the commands.
      */
     @FXML
-    private void handleUserInput() {
+    private void handleUserInput(){
         String input = userInput.getText();
         String dukeText = getResponse(input, p);
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, user),
                 DialogBox.getDukeDialog(dukeText, duke)
         );
+        if (dukeText.equals(Ui.endingMessage())) {
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            },1300*2,1300*2);
+        }
         Storage taskSaver = new Storage(currList);
         taskSaver.writeToFile();
         userInput.clear();

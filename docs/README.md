@@ -12,6 +12,7 @@ Duke is a chatbot that is used on desktop for task management, Duke can help to 
 - List out current tasks
 - Snooze a task for a day
 - Save tasks
+- Exit app
 ### Add task
 Adds a specified deadline, event, or todo task to the task list.<br>
 1. Format for adding a deadline: ```deadline do hw /by 2022-12-12``` <br>
@@ -41,4 +42,7 @@ The task list data are saved automatically in your machine after any command. <b
 There is no need to save the tasks manually. <br>
 You can access the same tasks even after quitting and re-launching Duke.
 
+### Exit
+Exits the app using the bye command. <br>
+Format: ```bye```
 
