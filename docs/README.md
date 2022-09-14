@@ -222,7 +222,7 @@ the data of your previous Duke home folder.
 
 ## Command summary 
 | **Action** | **Format, Examples**                                                                              |
-|------------|---------------------------------------------------------------------------------------------------|
+|------------|:--------------------------------------------------------------------------------------------------|
 | todo       | `todo TASK_DESCRIPTION` <br/> e.g. `todo watch movie`                                             |
 | deadline   | `deadline TASK_DESCRIPTION /by YYYY-MM-DD` <br/> e.g. `deadline CS2101 Assignment /by 2022-09-15` |
 | event      | `event TASK_DESCRIPTION /at YYYY-MM-DD` <br/> e.g. `event NUS Supernova /at 2022-09-01`           |
