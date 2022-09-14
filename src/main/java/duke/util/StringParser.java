@@ -1,7 +1,7 @@
 package duke.util;
 
 /**
- * Static class used solely to format strings
+ * Static class used solely to format and parse strings
  */
 public final class StringParser {
     private static final String LINE = "   ______________________________";
@@ -24,5 +24,16 @@ public final class StringParser {
      */
     public static String addWrapper(String txt) {
         return String.format("%s%n%s%n%s%n", LINE, txt, LINE);
+    }
+
+    /**
+     * Checks if string contains whitespace in between characters
+     * 
+     * @param txt Text to be validated
+     * @return
+     */
+    public static boolean containWhitespace(String txt) {
+        String tested = txt.trim();
+        return !tested.matches("[a-zA-Z][a-zA-Z0-9]*");
     }
 }

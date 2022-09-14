@@ -35,7 +35,8 @@ public class EventCommand extends DataCommand {
      * @throws IOException Thrown when data failed to be saved
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
+            throws DukeException, IOException {
         Task task = Event.createEvent(data);
         tasks.addEntry(task);
         io.printTask(String.format(ADD_TASK, task, tasks.getSize()));

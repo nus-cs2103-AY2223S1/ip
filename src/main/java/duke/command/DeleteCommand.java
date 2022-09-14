@@ -35,7 +35,8 @@ public class DeleteCommand extends DataCommand {
      * @throws IOException Thrown when saving to file failed
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
+            throws DukeException, IOException {
         int index;
         try {
             index = Integer.parseInt(data.description) - 1;

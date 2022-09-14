@@ -27,5 +27,5 @@ public interface Command {
      * @throws DukeException Throws in case of error
      * @throws IOException Throws in case of error when saving
      */
-    void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException;
+    void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs) throws DukeException, IOException;
 }

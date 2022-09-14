@@ -25,7 +25,8 @@ public class FindCommand extends DataCommand {
     }
 
     @Override
-    public void execute(TaskList taskList, DukeIo io, Storage storage) throws DukeException, IOException {
+    public void execute(TaskList taskList, DukeIo io, Storage storage, CommandSelector cs)
+            throws DukeException, IOException {
         String searchString = data.description.trim();
         if (searchString.length() == 0) {
             throw new EmptyDescriptionException("find");

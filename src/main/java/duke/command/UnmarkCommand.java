@@ -33,7 +33,8 @@ public class UnmarkCommand extends DataCommand {
      * @throws IOException Thrown when data failed to save
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
+            throws DukeException, IOException {
         int index;
         try {
             index = Integer.parseInt(data.description) - 1;

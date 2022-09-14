@@ -3,6 +3,7 @@ package duke.main;
 import java.io.IOException;
 
 import duke.command.Command;
+import duke.command.CommandSelector;
 import duke.exceptions.DukeException;
 import duke.inputoutput.DukeCliIo;
 import duke.inputoutput.DukeIo;
@@ -28,15 +29,16 @@ public class Duke {
     private DukeIo userInputOutput;
     private TaskList tasks;
     private Storage dukeData;
+    private CommandSelector commandSelector;
 
     private Duke(TaskList tasks, Storage dukeData, DukeIo dukeIo) {
         this.dukeData = dukeData;
         this.tasks = tasks;
         this.userInputOutput = dukeIo;
+        commandSelector = new CommandSelector();
 
         dukeIo.printTask(LOGO);
         dukeIo.printTask(INTRO, 2);
-
     }
 
     /**
@@ -46,9 +48,9 @@ public class Duke {
      * @return
      */
     public boolean handleInput(String txt) {
-        Command c = DataParser.parseCommand(txt);
+        Command c = DataParser.parseCommand(txt, commandSelector);
         try {
-            c.execute(tasks, userInputOutput, dukeData);
+            c.execute(tasks, userInputOutput, dukeData, commandSelector);
         } catch (DukeException e) {
             userInputOutput.printError(e);
         } catch (IOException e) {
