@@ -11,7 +11,7 @@ Dukey is a desktop chatbot app for managing and storing tasks, optimized for use
   - [Unmarking a task: ```unmark```](https://github.com/shaniceng/ip/tree/master/docs#unmarking-a-task-unmark)
   - [Deleting a task: ```delete```](https://github.com/shaniceng/ip/tree/master/docs#deleting-a-task-delete)
   - [Finding a task by description: ```find```](https://github.com/shaniceng/ip/tree/master/docs#finding-a-task-by-description-find)
-  - [Listing all tasks: ```list```](https://github.com/shaniceng/ip/tree/master/docs#listing-all-task-list)
+  - [Listing all tasks: ```list```](https://github.com/shaniceng/ip/tree/master/docs#listing-all-tasks-list)
   - [Exiting the program: ```bye```](https://github.com/shaniceng/ip/tree/master/docs#exiting-the-program-bye)
   - [Saving the data](https://github.com/shaniceng/ip/tree/master/docs#saving-the-data)
 - [FAQ](https://github.com/shaniceng/ip/tree/master/docs#faq)
