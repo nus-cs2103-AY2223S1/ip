@@ -33,7 +33,7 @@ public class Ui {
         return "Noted. I've removed this task:\n" + task;
     }
 
-    public String getFoundTasksListString(TaskList list) {
+    public String getFoundTasksListMessage(TaskList list) {
         if (list.isEmpty()) {
             return "OOPS!! No matching tasks found :( ";
         }

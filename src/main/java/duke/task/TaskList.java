@@ -3,6 +3,8 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import duke.exceptions.DukeException;
+
 /**
  * Represents the list of Tasks in the Duke program.
  *
@@ -20,7 +22,10 @@ public class TaskList implements Iterable<Task> {
         this.list = list;
     }
 
-    public Task getTask(int index) {
+    public Task getTask(int index) throws DukeException {
+        if (index < 0 || index >= list.size()) {
+            throw new DukeException("Oops! Index is out of range!");
+        }
         return list.get(index);
     }
 
@@ -33,7 +38,10 @@ public class TaskList implements Iterable<Task> {
         list.add(task);
     }
 
-    public void remove(int index) {
+    public void remove(int index) throws DukeException {
+        if (index < 0 || index >= list.size()) {
+            throw new DukeException("Oops! Index is out of range!");
+        }
         list.remove(index);
     }
 
@@ -42,7 +50,10 @@ public class TaskList implements Iterable<Task> {
      *
      * @param index the index of the task.
      */
-    public void mark(int index) {
+    public void mark(int index) throws DukeException {
+        if (index < 0 || index >= list.size()) {
+            throw new DukeException("Oops! Index is out of range!");
+        }
         list.get(index).mark();
     }
 
@@ -51,7 +62,10 @@ public class TaskList implements Iterable<Task> {
      *
      * @param index the index of the task.
      */
-    public void unmark(int index) {
+    public void unmark(int index) throws DukeException {
+        if (index < 0 || index >= list.size()) {
+            throw new DukeException("Oops! Index is out of range!");
+        }
         list.get(index).unmark();
     }
 
