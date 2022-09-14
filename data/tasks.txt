@@ -1,2 +1,2 @@
-T|1|return book
+T|1|buy book
 D|0|homework|2359 Friday
