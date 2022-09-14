@@ -1,6 +1,6 @@
 package duke.tasks;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -33,5 +33,9 @@ public class Task {
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
+    }
+
+    public String save() {
+        return "shouldn't be saved";
     }
 }

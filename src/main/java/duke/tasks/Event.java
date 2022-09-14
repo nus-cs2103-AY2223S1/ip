@@ -22,6 +22,11 @@ public class Event extends Task {
         this.date = LocalDate.parse(date);
     }
 
+    public Event(String description, LocalDate eventDate, boolean isDone) {
+        super(description, isDone);
+        this.date = eventDate;
+    }
+
     // prints date in MMM d yyyy format
     public String getDate() {
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
@@ -30,5 +35,10 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + "(at: " + getDate() + ")";
+    }
+
+    @Override
+    public String save() {
+        return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + date;
     }
 }

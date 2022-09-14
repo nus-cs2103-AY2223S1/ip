@@ -25,6 +25,11 @@ public class Deadline extends Task {
         this.deadline = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(time));
     }
 
+    public Deadline(String description, LocalDateTime dateTime, boolean isDone) {
+        super(description, isDone);
+        this.deadline = dateTime;
+    }
+
     public String getDeadline() {
         return deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
     }
@@ -32,5 +37,10 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString() + "(by: " + getDeadline() + ")";
+    }
+
+    @Override
+    public String save() {
+        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + deadline;
     }
 }

@@ -16,29 +16,33 @@ import duke.tasks.Todo;
 public class Parser {
 
     public static Command parseCommand(String fullCommand) throws DukeException {
-        String inputCommand = fullCommand.split(" ", 2)[0];
-        String inputInstruction = fullCommand.split(" ", 2).length > 1 ? fullCommand.split(" ", 2)[1] : "";
-        Commands command = parseInputCommand(inputCommand)
-                .orElseThrow(() -> new DukeException("Sorry, I don't understand you. Please try again."));
-        switch (command) {
-            case bye:
-                return new ByeCommand(inputInstruction);
-            case list:
-                return new ListCommand(inputInstruction);
-            case delete:
-                return new DeleteCommand(inputInstruction);
-            case todo:
-                return new AddCommand(inputInstruction, new Todo(inputInstruction));
-            case deadline:
-                return new AddCommand(inputInstruction, new Deadline(inputInstruction));
-            case event:
-                return new AddCommand(inputInstruction, new Event(inputInstruction));
-            case mark:
-                return new MarkCommand(inputInstruction);
-            case unmark:
-                return new UnmarkCommand(inputInstruction);
-            default:
-                throw new DukeException("Sorry, I don't understand you. Please try again.");
+        try {
+            String inputCommand = fullCommand.split(" ", 2)[0];
+            String inputInstruction = fullCommand.split(" ", 2).length > 1 ? fullCommand.split(" ", 2)[1] : "";
+            Commands command = parseInputCommand(inputCommand)
+                    .orElseThrow(() -> new DukeException("Sorry, I don't understand you. Please try again."));
+            switch (command) {
+                case bye:
+                    return new ByeCommand(inputInstruction);
+                case list:
+                    return new ListCommand(inputInstruction);
+                case delete:
+                    return new DeleteCommand(inputInstruction);
+                case todo:
+                    return new AddCommand(inputInstruction, new Todo(inputInstruction));
+                case deadline:
+                    return new AddCommand(inputInstruction, new Deadline(inputInstruction));
+                case event:
+                    return new AddCommand(inputInstruction, new Event(inputInstruction));
+                case mark:
+                    return new MarkCommand(inputInstruction);
+                case unmark:
+                    return new UnmarkCommand(inputInstruction);
+                default:
+                    throw new DukeException("Sorry, I don't understand you. Please try again.");
+            }
+        } catch (Exception e) {
+            throw new DukeException(e.getMessage());
         }
     }
 

@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import duke.tasks.Deadline;
@@ -20,10 +21,10 @@ public class Storage {
 
     public Storage(String filePath) throws DukeException, IOException {
         this.filePath = filePath;
-        this.fileWriter = initialiseList(filePath);
+        initialiseList(filePath);
     }
 
-    public FileWriter initialiseList(String filePath) throws DukeException, IOException {
+    public void initialiseList(String filePath) throws DukeException, IOException {
         try {
             // Check if filePath has directories
             Path path = Path.of(filePath);
@@ -32,7 +33,11 @@ public class Storage {
                 Files.createDirectories(path.getParent());
             }
             // Create file if it does not exist, or open it if it does
-            return new FileWriter(filePath, true);
+            if (path.toFile().createNewFile()) {
+                System.out.println("File created: " + path.toFile().getName());
+            } else {
+                System.out.println("File opened: " + path.toFile().getName());
+            }
         } catch (IOException e) {
             throw new DukeException("Unable to create file.");
         }
@@ -41,6 +46,7 @@ public class Storage {
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> list = new ArrayList<Task>();
         try {
+
             // Read file and create TaskList
             FileReader fileReader = new FileReader(filePath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -55,9 +61,8 @@ public class Storage {
                     list.add(new Todo(description, isDone));
                 } else if (type.equals("D")) {
                     String by = lineArray[3];
-                    String date = by.split(" ")[0];
-                    String time = by.split(" ")[1];
-                    list.add(new Deadline(description, date, time, isDone));
+                    LocalDateTime dateTime = LocalDateTime.parse(by);
+                    list.add(new Deadline(description, dateTime, isDone));
                 } else if (type.equals("E")) {
                     String at = lineArray[3];
                     list.add(new Event(description, at, isDone));
@@ -70,14 +75,16 @@ public class Storage {
         return list;
     }
 
-    public void saveList(TaskList list) {
+    public void saveList(TaskList list) throws DukeException {
         try {
+            FileWriter fileWriter = new FileWriter(filePath, false);
             // Save to file
-            for (int i = 0; i < list.size(); i++) {
-                fileWriter.write(list.get(i).toString() + "\n");
+            for (Task task : list.getList()) {
+                fileWriter.write(task.save() + "\n");
             }
+            fileWriter.close();
         } catch (Exception e) {
-            System.out.println("Error while saving list to file.");
+            throw new DukeException("Unable to save list.");
         }
     }
 }

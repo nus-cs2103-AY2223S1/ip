@@ -21,6 +21,8 @@ public class DeleteCommand extends Command {
             storage.saveList(tasks);
         } catch (IndexOutOfBoundsException e) {
             ui.printError(new DukeException(e.getMessage()));
+        } catch (DukeException e) {
+            ui.printError(e);
         }
     }
 
