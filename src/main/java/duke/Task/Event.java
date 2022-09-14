@@ -4,10 +4,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
     private LocalDateTime time;
+
+
     public Event(String description, LocalDateTime time) {
         super(description);
         this.time = time;
     }
+
 
     public Event(String description, Boolean isDone, LocalDateTime time) {
         super(description, isDone);

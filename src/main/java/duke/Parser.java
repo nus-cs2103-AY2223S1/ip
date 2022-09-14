@@ -20,7 +20,7 @@ public class Parser {
     /**
      * Checks if the command inputted is a valid command
      *
-     * @param input: input string to check
+     * @param input comannd input
      * @return enum Duke.Commands value
      * @throws DukeException
      */
