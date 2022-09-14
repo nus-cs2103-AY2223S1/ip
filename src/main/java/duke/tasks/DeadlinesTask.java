@@ -31,7 +31,7 @@ public class DeadlinesTask extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        return "[" + TaskType.D + "]" + "[" + this.getStatusIcon() + "] " + this.getName()
+        return "[" + TaskType.DL + "]" + "[" + this.getStatusIcon() + "] " + this.getName()
                 + " (by: " + this.getDeadline().format(formatter) + ")";
     }
     /**
@@ -47,7 +47,7 @@ public class DeadlinesTask extends Task {
     @Override
     public String toCsv() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        return TaskType.D + "," + this.getStatusIcon() + "," + this.getName() + ","
+        return TaskType.DL + "," + this.getStatusIcon() + "," + this.getName() + ","
                 + this.getDeadline().format(formatter);
     }
 }

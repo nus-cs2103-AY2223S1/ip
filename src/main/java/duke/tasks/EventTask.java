@@ -27,7 +27,7 @@ public class EventTask extends Task {
      */
     @Override
     public String toString() {
-        return "[" + TaskType.E + "]" + "[" + this.getStatusIcon() + "] " + this.getName()
+        return "[" + TaskType.EV + "]" + "[" + this.getStatusIcon() + "] " + this.getName()
                 + " (at: " + this.getTime() + ")";
     }
 
@@ -43,6 +43,6 @@ public class EventTask extends Task {
      */
     @Override
     public String toCsv() {
-        return TaskType.E + "," + this.getStatusIcon() + "," + this.getName() + "," + this.getTime();
+        return TaskType.EV + "," + this.getStatusIcon() + "," + this.getName() + "," + this.getTime();
     }
 }

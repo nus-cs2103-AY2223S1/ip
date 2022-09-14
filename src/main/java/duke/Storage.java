@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import duke.tasks.DeadlinesTask;
 import duke.tasks.EventTask;
+import duke.tasks.ExpenseTask;
 import duke.tasks.Task;
 import duke.tasks.TodoTask;
 
@@ -64,14 +65,17 @@ public class Storage {
         String name = entryArray[2];
         boolean isMarked = entryArray[1].equals("X");
         Task newTask;
-        if (taskType.equals("T")) {
+        if (taskType.equals("TD")) {
             newTask = new TodoTask(name);
-        } else if (taskType.equals("D")) {
+        } else if (taskType.equals("DL")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
             LocalDateTime date = LocalDateTime.parse(entryArray[3], formatter);
             newTask = new DeadlinesTask(name, date);
-        } else if (taskType.equals("E")){
+        } else if (taskType.equals("EV")){
             newTask = new EventTask(name, entryArray[3]);
+        } else if (taskType.equals("EX")) {
+            int amount = Integer.parseInt(entryArray[3]);
+            newTask = new ExpenseTask(name, amount);
         } else {
             throw new DukeException("Cannot parse that task");
         }

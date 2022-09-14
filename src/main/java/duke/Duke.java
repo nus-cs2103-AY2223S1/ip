@@ -4,6 +4,7 @@ import duke.commands.Command;
 
 import javafx.application.Platform;
 
+import java.time.format.DateTimeParseException;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -43,10 +44,10 @@ public class Duke {
             output = e.toString();
         } catch (NumberFormatException e) {
             output = "Input String cannot be parsed to Integer.";
-        } catch (Exception e) {
-            output = "Unable to close properly";
+        } catch (DateTimeParseException e) {
+            output = "Input Date cannot be parsed to Date!\nPlease enter yyyy-MM-dd HHmm";
         }
-        return "Duke heard: " + output;
+        return output;
     }
 
     /**

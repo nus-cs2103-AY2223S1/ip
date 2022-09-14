@@ -67,7 +67,8 @@ public class NumericCommand implements Command {
             break;
         case "delete":
             output += "Noted. I've removed the following task(s):\n";
-            for (int index : indexList) {
+            for (int i=0; i < indexList.length; i++) {
+                int index = indexList[i] - i;
                 output += tasks.get(index) + "\n";
                 tasks.remove(index);
             }

@@ -8,7 +8,9 @@ import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.commands.DeadlineCommand;
 import duke.commands.EventCommand;
+import duke.commands.ExpenseCommand;
 import duke.commands.FindCommand;
+import duke.commands.HelpCommand;
 import duke.commands.ListCommand;
 import duke.commands.NumericCommand;
 import duke.commands.TodoCommand;
@@ -41,11 +43,16 @@ public class Parser {
             return new ByeCommand();
         case "list":
             return new ListCommand();
+        case "help":
+            if (inputStringArray.length == 1) {
+                return new HelpCommand("all");
+            }
+            String helpString = inputStringArray[1];
+            return new HelpCommand(helpString);
         case "mark":
         case "unmark":
         case "delete":
             validateArgument(inputStringArray);
-            //String[] argumentsArray = Arrays.asList(inputStringArray).subList(1,inputStringArray.length - 1).toArray(new String[0]);
             int[] integerArgumentsArray = new int[inputStringArray.length - 1];
             for (int i = 0; i < integerArgumentsArray.length; i++) {
                 integerArgumentsArray[i] = Integer.parseInt(inputStringArray[i+1]) - 1;
@@ -58,7 +65,9 @@ public class Parser {
         case "deadline":
             validateArgument(inputStringArray);
             int bySplitter = Arrays.asList(inputStringArray).indexOf("/by");
-
+            if (bySplitter == -1) {
+                throw new DukeException("Please enter /by for your deadline!");
+            }
             String deadlineName = combineStringArray(inputStringArray, 1, bySplitter);
             String deadlineDateString = combineStringArray(inputStringArray, bySplitter + 1, inputStringArray.length);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -68,9 +77,22 @@ public class Parser {
         case "event":
             validateArgument(inputStringArray);
             int atSplitter = Arrays.asList(inputStringArray).indexOf("/at");
+            if (atSplitter == -1) {
+                throw new DukeException("Please enter /at for your event!");
+            }
             String eventName = combineStringArray(inputStringArray, 1, atSplitter);
             String eventLocationString = combineStringArray(inputStringArray, atSplitter + 1, inputStringArray.length);
             return new EventCommand(eventName, eventLocationString);
+
+        case "expense":
+            validateArgument(inputStringArray);
+            int amtSplitter = Arrays.asList(inputStringArray).indexOf("/amt");
+            if (amtSplitter == -1) {
+                throw new DukeException("Please enter /amt for your expense!");
+            }
+            String expenseName = combineStringArray(inputStringArray, 1, amtSplitter);
+            int expenseAmount = Integer.parseInt(inputStringArray[amtSplitter + 1]);
+            return new ExpenseCommand(expenseName, expenseAmount);
 
         case "find":
             validateArgument(inputStringArray);
@@ -78,7 +100,7 @@ public class Parser {
             return new FindCommand(searchKeyword);
 
         default:
-            throw new DukeException("No suitable name for that task");
+            throw new DukeException("No suitable command with that name!\nPlease type help for a list of available commands");
         }
     }
 

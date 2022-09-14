@@ -20,6 +20,9 @@ public class ListCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
+        if (tasks.getSize() == 0) {
+            return "You dont have any tasks added.\nType help for some tasks to add!";
+        }
         String output = "Here is the list of all your tasks!\n";
         for (int i = 0; i < tasks.getSize(); i++) {
             int index = i + 1;
