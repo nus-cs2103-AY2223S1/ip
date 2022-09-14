@@ -148,7 +148,7 @@ public class Parser {
             if (input.startsWith("/at")) {
                 throw new NyanDukeException("The description of an event cannot be empty.");
             }
-            String[] splitInput = input.split(" /at ");
+            String[] splitInput = input.split(" /at ", 2);
             return new AddCommand(new Event(splitInput[0], splitInput[1]));
         } catch (StringIndexOutOfBoundsException | NyanDukeException e) {
             throw new NyanDukeException("The description of an event cannot be empty.");
@@ -170,7 +170,7 @@ public class Parser {
             if (input.startsWith("/by")) {
                 throw new NyanDukeException("The description of a deadline cannot be empty.");
             }
-            String[] splitInput = input.split(" /by ");
+            String[] splitInput = input.split(" /by ", 2);
             return new AddCommand(new Deadline(splitInput[0], splitInput[1]));
         } catch (StringIndexOutOfBoundsException e) {
             throw new NyanDukeException("The description of a deadline cannot be empty.");

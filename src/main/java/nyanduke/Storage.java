@@ -45,7 +45,7 @@ public class Storage {
                 tasks.add(Task.parseData(sc.nextLine()));
             }
             return tasks;
-        } catch (IOException | ArrayIndexOutOfBoundsException e) {
+        } catch (IOException e) {
             throw new NyanDukeException("Unable to load data from hard disk file.");
         }
     }

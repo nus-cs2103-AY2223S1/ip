@@ -32,27 +32,21 @@ public abstract class Task {
     public static Task parseData(String s) throws NyanDukeException {
         assert s != null : "Task::parseData invoked with null argument.";
         try {
-            String[] strings = s.split(" \\| ");
+            String[] strings = s.split(" \\| ", 3);
+            String[] argStrings;
             Task task;
 
             switch (strings[0]) {
             case "T":
-                if (strings.length > 3) {
-                    throw new NyanDukeException("Invalid task data loaded.");
-                }
                 task = new Todo(strings[2]);
                 break;
             case "D":
-                if (strings.length > 4) {
-                    throw new NyanDukeException("Invalid task data loaded.");
-                }
-                task = new Deadline(strings[2], strings[3]);
+                argStrings = strings[2].split(" \\| ", 2);
+                task = new Deadline(argStrings[0], argStrings[1]);
                 break;
             case "E":
-                if (strings.length > 4) {
-                    throw new NyanDukeException("Invalid task data loaded.");
-                }
-                task = new Event(strings[2], strings[3]);
+                argStrings = strings[2].split(" \\| ", 2);
+                task = new Event(argStrings[0], argStrings[1]);
                 break;
             default:
                 throw new NyanDukeException("Invalid task data loaded.");
