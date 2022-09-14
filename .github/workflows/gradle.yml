@@ -6,7 +6,7 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [macos-latest, windows-latest]
+        platform: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
 
     steps:
@@ -31,4 +31,4 @@ jobs:
           java-package: jdk+fx
 
       - name: Build and check with Gradle
-        run: ./gradlew check
+        run: gradle build
