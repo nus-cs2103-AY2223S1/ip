@@ -134,7 +134,7 @@ Expected outcome:
 
 ```
 HOOHOOHAHA! GOOD MONKE!!
- monke has marked this task as done!
+monke has marked this task as done!
   [E][X] eat banana (on: friday)
 ```
 
