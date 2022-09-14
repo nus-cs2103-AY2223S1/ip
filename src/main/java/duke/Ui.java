@@ -70,4 +70,8 @@ public class Ui {
     protected String showFindTask(TaskList taskList) {
         return String.format("Scanning all files...\n%s\nWow i am the best", taskList);
     }
+
+    protected String showSwitchFile(String filename) {
+        return String.format("File switched successfully to %s", filename);
+    }
 }

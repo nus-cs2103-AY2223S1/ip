@@ -21,7 +21,8 @@ public class Duke {
         EVENT,
         DEADLINE,
         DELETE,
-        FIND
+        FIND,
+        SWITCH
     }
 
     /**

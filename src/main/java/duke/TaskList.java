@@ -64,6 +64,10 @@ public class TaskList {
         return task;
     }
 
+    public void refreshTask(ArrayList<Task> newData) {
+        this.list = newData;
+    }
+
     /**
      * Filters the current tasklist based on a query
      * @param input search criteria

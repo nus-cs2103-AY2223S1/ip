@@ -46,6 +46,8 @@ public class Parser {
             return Duke.Commands.DELETE;
         } else if (input.matches("find(.*)")) {
             return Duke.Commands.FIND;
+        } else if (input.matches("switch(.*)")) {
+            return Duke.Commands.SWITCH;
         }
         throw new DukeException("I dont understand this command booo");
     }
@@ -90,6 +92,8 @@ public class Parser {
                 return handleDeleteCommand(ui, storage, taskList, inputArr[1]);
             case FIND:
                 return handleFindCommand(ui, taskList, inputArr[1]);
+            case SWITCH:
+                return handleSwitchCommand(ui, storage, taskList, inputArr[1]);
             default:
                 return null;
             }
@@ -208,6 +212,13 @@ public class Parser {
         }
         return ui.showFindTask(taskList.filterTask(input));
     }
-
+    private String handleSwitchCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
+        if (!input.matches("(.*).txt")) {
+            throw new DukeException("File name must end with .txt");
+        }
+        storage.changeFile(input);
+        taskList.refreshTask(storage.readFile());
+        return ui.showSwitchFile(input);
+    }
 
 }
