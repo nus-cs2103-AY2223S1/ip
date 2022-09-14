@@ -14,9 +14,9 @@ Duke is a **simple** and **easy-to-use** Java app to track your tasks on the go.
 - Delete
 
 ### Supported Task Types
--[x] Todo
--[x] Deadline
--[x] Event
+- [x] Todo
+- [x] Deadline
+- [x] Event
 
 ## Usage
 
