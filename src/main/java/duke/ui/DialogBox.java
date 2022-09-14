@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
 
 /**
  * An example of a custom control using FXML.
@@ -52,23 +51,26 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        String styleForDialog = "-fx-background-color: #0093F9; -fx-background-radius: 10; -fx-padding: 10; " +
-                "-fx-font: 13px Tahoma;" +
-                "-fx-text-fill: #FFFFFF;";
+        String styleForDialog = "-fx-background-color: #0093F9; -fx-background-radius: 10; -fx-padding: 10;"
+                + "-fx-font: 13px Tahoma;"
+                + "-fx-text-fill: #FFFFFF;";
         DialogBox dialogBox = new DialogBox(text, img, styleForDialog);
-//        dialogBox.setStyle("-fx-background-color:#0093F9");
-        return dialogBox ;
+        return dialogBox;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        String styleForDialog = "-fx-background-color:#EEE8E8; -fx-background-radius: 10; -fx-padding: 10; -fx-font: 13px Tahoma; -fx-text-fill: black;";
+        String styleForDialog = "-fx-background-color:#EEEBEB; -fx-background-radius: 10; -fx-padding: 10;"
+                + "-fx-font: 13px Tahoma;"
+                + "-fx-text-fill: black;";
         DialogBox dialogBox = new DialogBox(text, img, styleForDialog);
         dialogBox.flip();
         return dialogBox;
     }
 
     public static DialogBox getDukeErrorDialog(String text, Image img) {
-        String styleForDialog = "-fx-background-color:#EEEBEB; -fx-background-radius: 10; -fx-padding: 10; -fx-font: 13px Tahoma; -fx-text-fill: red;";
+        String styleForDialog = "-fx-background-color:#EEEBEB; -fx-background-radius: 10; -fx-padding: 10;"
+                + "-fx-font: 13px Tahoma;"
+                + "-fx-text-fill: red;";
         DialogBox dialogBox = new DialogBox(text, img, styleForDialog);
         dialogBox.flip();
         return dialogBox;

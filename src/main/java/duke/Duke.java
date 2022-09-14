@@ -16,13 +16,13 @@ import javafx.util.Duration;
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
+    private static final int DELAY_SECONDS = 3;
+
     /** Ui class that prints terminal output. */
     private Ui ui;
 
     /** The list of tasks. */
     private TaskList tasks;
-
-    private static final int DELAY_SECONDS = 3;
 
     /** Constructor for Class Duke/ */
     public Duke() {
@@ -51,7 +51,6 @@ public class Duke {
             return new String[]{response, "normal"};
         } catch (DukeException e) {
             return new String[]{ui.showError(e), "error"};
-//            return ui.showError(e);
         }
     }
 }

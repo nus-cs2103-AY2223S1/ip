@@ -30,7 +30,7 @@ public class CloneCommand extends Command {
         try {
             Task t = tasks.getTask(taskNo);
             tasks.addTask(t);
-            Storage.save(tasks.getTasks());
+            Storage.save(tasks);
             return Ui.showCloneTaskMessage(t, tasks.getSize());
         } catch (Exception e) {
             return Ui.showError(e);

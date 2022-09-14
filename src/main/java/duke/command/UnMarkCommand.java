@@ -28,7 +28,7 @@ public class UnMarkCommand extends Command {
     public String execute(TaskList tasks) {
         tasks.unMarkTask(taskNo);
         try {
-            Storage.save(tasks.getTasks());
+            Storage.save(tasks);
         } catch (Exception e) {
             return Ui.showError(e);
         }

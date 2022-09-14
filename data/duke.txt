@@ -1,3 +1,4 @@
 [D][X] return book (2022-09-12)
 [T][ ] read book
 [E][X] go buffet (2022-09-11)
+[E][ ] graduation (2022-08-08)

@@ -31,7 +31,7 @@ public class AddCommand extends Command {
     public String execute(TaskList tasks) {
         tasks.addTask(this.task);
         try {
-            Storage.save(tasks.getTasks());
+            Storage.save(tasks);
         } catch (Exception e) {
             return Ui.showError(e);
         }

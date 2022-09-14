@@ -6,7 +6,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.VBox;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -34,7 +40,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        BackgroundImage bi = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+        BackgroundImage bi = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
                 new BackgroundSize(1.0, 1.0, true, true, false, false));
         dialogContainer.setBackground(new Background(bi));
         dialogContainer.getChildren().add(

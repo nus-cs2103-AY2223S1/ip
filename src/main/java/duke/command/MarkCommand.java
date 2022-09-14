@@ -28,7 +28,7 @@ public class MarkCommand extends Command {
     public String execute(TaskList tasks) {
         tasks.markTask(taskNo);;
         try {
-            Storage.save(tasks.getTasks());
+            Storage.save(tasks);
         } catch (Exception e) {
             return Ui.showError(e);
         }

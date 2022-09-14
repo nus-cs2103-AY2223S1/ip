@@ -3,13 +3,25 @@ package duke.parser;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import duke.command.*;
-import duke.exception.*;
+import duke.command.AddCommand;
+import duke.command.ByeCommand;
+import duke.command.CloneCommand;
+import duke.command.Command;
+import duke.command.DateCommand;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnMarkCommand;
+import duke.exception.DukeException;
+import duke.exception.EmptyDateException;
+import duke.exception.EmptyDescriptionException;
+import duke.exception.InvalidDateException;
+import duke.exception.InvalidInputException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.TaskList;
 import duke.task.ToDo;
-import duke.ui.Ui;
 
 
 /**
@@ -56,7 +68,7 @@ public class Parser {
             return deleteTask(arguments);
         } else if ("find".equalsIgnoreCase(commandType)) {
             return findTask(arguments);
-        } else if("clone".equalsIgnoreCase(commandType)) {
+        } else if ("clone".equalsIgnoreCase(commandType)) {
             return cloneTask(arguments);
         } else {
             throw new InvalidInputException();
@@ -92,9 +104,9 @@ public class Parser {
         String dateString = removeLastChar(arguments[1]);
         LocalDate date = LocalDate.parse(dateString);
 
-        if (taskSymbol  == DEADLINE_SYMBOL) {
+        if (taskSymbol == DEADLINE_SYMBOL) {
             tasks.addTask(new Deadline(description, date, taskStatus));
-        } else if (taskSymbol  == EVENT_SYMBOL) {
+        } else if (taskSymbol == EVENT_SYMBOL) {
             tasks.addTask(new Event(description, date, taskStatus));
         }
     }
@@ -121,7 +133,8 @@ public class Parser {
         return new AddCommand(new Deadline(description, date, UNDONE_STATUS));
     }
 
-    private static Command addEvent(String[] arguments) throws EmptyDescriptionException, EmptyDateException, InvalidDateException {
+    private static Command addEvent(String[] arguments) throws EmptyDescriptionException, EmptyDateException,
+            InvalidDateException {
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }

@@ -6,17 +6,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.sun.javafx.css.PseudoClassState;
 import duke.parser.Parser;
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.task.ToDo;
+
 
 
 /**
@@ -67,17 +63,17 @@ public class Storage {
     /**
      * Saves the tasks into file.
      *
-     * @param taskListToAdd The tasklist that contains all tasks.
+     * @param tasks The tasklist that contains all tasks.
      * @throws IOException Signals that an I/O exception of some sort has occurred.
      *     This class is the general class of exceptions produced by failed or interrupted
      *     I/O operations.
      */
-    public static void save(ArrayList<Task> taskListToAdd) throws IOException {
+    public static void save(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(FILE_PATH.toString());
         String fullText = "";
-        int listLength = taskListToAdd.size();
+        int listLength = tasks.getSize();
         for (int i = 0; i < listLength; i++) {
-            fullText = fullText + taskListToAdd.get(i).getDescription() + System.lineSeparator();
+            fullText = fullText + tasks.getTask(i).getDescription() + System.lineSeparator();
         }
         fw.write(fullText);
         fw.close();
