@@ -10,8 +10,8 @@ import henry.Task;
  */
 public class TentativeCommand extends Command {
     public static final String COMMAND_WORD = "tentative";
-    private static final String MESSAGE_ADD_DATE_SUCCESS = "OK. I ADDED A TENTATIVE DATE FOR THIS EVENT:\n %1$s";
-    private static final String MESSAGE_CONFIRM_DATE_SUCCESS = "DATE CONFIRMED! THE EVENT HAS BEEN MODIFIED:\n %1$s";
+    private static final String MESSAGE_ADD_DATE_SUCCESS = "OK, I've added a tentative date for this event:\n %1$s";
+    private static final String MESSAGE_CONFIRM_DATE_SUCCESS = "Date confirmed! This event has been modified:\n %1$s";
     private final int index;
     private final int dateToChooseIndex;
     private final LocalDateTime dateTime;

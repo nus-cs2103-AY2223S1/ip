@@ -12,7 +12,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    private static final String MESSAGE_SUCCESS = "I'VE FOUND THESE MATCHING TASKS:\n %1$s";
+    private static final String MESSAGE_SUCCESS = "I've found these matching tasks:\n %1$s";
     private final HashSet<String> termsToFind;
 
     /**
@@ -41,7 +41,7 @@ public class FindCommand extends Command {
         StringBuilder sb = new StringBuilder("\n");
         final int[] i = {1};
         taskList.stream().filter(this::isMatch).forEach(task -> {
-            sb.append(i[0]++).append(". ").append(task).append("\n");
+            sb.append(" ").append(i[0]++).append(". ").append(task).append("\n");
         });
         return sb.toString().trim();
     }

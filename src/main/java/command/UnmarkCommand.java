@@ -9,7 +9,7 @@ import henry.Task;
 public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
-    private static final String MESSAGE_SUCCESS = "I'VE MARKED THIS TASK AS NOT DONE:\n %1$s";
+    private static final String MESSAGE_SUCCESS = "I've marked this task as not done:\n %1$s";
     private final int indexToUnmark;
 
     public UnmarkCommand(int index) {

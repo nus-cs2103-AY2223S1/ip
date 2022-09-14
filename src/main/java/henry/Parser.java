@@ -136,7 +136,12 @@ public class Parser {
             throw new HenryException(TextUtils.TENTATIVE_COMMAND_ERROR);
         }
 
-        if (newDateMatcher.matches()) {
+        if (confirmDateMatcher.matches()) {
+            int index = Integer.parseInt(confirmDateMatcher.group("index"));
+            int chosenDateIndex = Integer.parseInt(confirmDateMatcher.group("chosenDateIndex"));
+
+            return new TentativeCommand(index, chosenDateIndex);
+        } else {
             int index = Integer.parseInt(newDateMatcher.group("index"));
             String dateTime = newDateMatcher.group("dateTime");
 
@@ -146,11 +151,6 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new HenryException(TextUtils.DATE_FORMAT_ERROR);
             }
-        } else {
-            int index = Integer.parseInt(confirmDateMatcher.group("index"));
-            int chosenDateIndex = Integer.parseInt(confirmDateMatcher.group("chosenDateIndex"));
-
-            return new TentativeCommand(index, chosenDateIndex);
         }
     }
 
@@ -158,7 +158,7 @@ public class Parser {
         if (!isInputNumeric(args)) {
             throw new HenryException(TextUtils.NON_NUMBER_ERROR);
         }
-        if (Integer.parseInt(args) < 1) {
+        if (Integer.parseInt(args) < 0) {
             throw new HenryException(TextUtils.MUST_BE_POSITIVE_ERROR);
         }
 
