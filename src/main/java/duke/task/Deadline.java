@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.annotation.Nullable;
 
 import duke.date.DateTimeParse;
 import duke.exception.DukeException;
@@ -31,9 +32,11 @@ public class Deadline extends Task {
      * @param description Description of the deadline task.
      * @param dueDate The due date of the deadlined task.
      * @param completion Whether the Deadline task has been completed.
+     * @param completionDateTime The datetime when the task was marked completed.
      */
-    public Deadline(String description, LocalDateTime dueDate, boolean completion) {
-        super(description, completion);
+    public Deadline(String description, LocalDateTime dueDate,
+                    boolean completion, @Nullable LocalDateTime completionDateTime) {
+        super(description, completion, completionDateTime);
         this.dueDate = dueDate;
     }
 
@@ -110,7 +113,8 @@ public class Deadline extends Task {
         String savableCompletion = this.isDone ? "Y" : "N";
         // escape instances of deliminator in task description
         String escapedDescription = description.replace("|", "\\|");
-        return String.format("D | %s | %s | %s", savableCompletion, escapedDescription, dueDate);
+        return String.format("D | %s | %s | %s | %s", savableCompletion,
+                escapedDescription, dueDate, completionDateTime);
     }
 
     /**
