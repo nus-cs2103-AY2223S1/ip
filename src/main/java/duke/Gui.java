@@ -25,6 +25,7 @@ public class Gui extends Application {
 
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            stage.setTitle("Bishop Bot");
             stage.setScene(scene);
 
             // By specifying fx:controller in fxml, it creates a new instance of a controller when you load it.
