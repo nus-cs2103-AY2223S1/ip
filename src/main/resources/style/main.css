@@ -1,50 +1,80 @@
-.root {
- -fx-background-color: #121212;
+#scrollPane {
+ -fx-background-color: black;
 }
 
-.scroll-bar{
- -fx-background-color: #121212;
- -fx-background-radius: 2em;
+#dialogContainer {
+ -fx-background-image: url("../images/jungle.jpeg");
+ -fx-padding: 10px;
+ -fx-spacing: 10px;
 }
-.scroll-bar:horizontal .track,
+
+#dialog {
+ -fx-text-fill: "white";
+}
+
+#dialogBox {
+ -fx-background-color: rgba(214, 179, 66, 0.8);
+ -fx-background-radius: 20px;
+ -fx-spacing: 10px;
+}
+
+#userInput {
+ -fx-background-color: rgba(214, 179, 66, 1.0);
+ -fx-background-radius: 5px;
+}
+
+#sendButton {
+ -fx-background-color: #d6bd2f;
+ -fx-background-radius: 5px;
+}
+
+#sendButton:hover {
+    -fx-background-color: #bfaa37;
+    -fx-background-radius: 5px;
+}
+
+#sendButton:pressed {
+    -fx-background-color: #d6bd2f;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar {
+ -fx-background-color: #b7ae4b;
+ -fx-background-radius: 2px;
+}
+
 .scroll-bar:vertical .track {
- -fx-background-color: #121212;
+ -fx-background-color: #b7ae4b;
  -fx-border-color:transparent;
 }
-.scroll-bar:vertical .track-background,
-.scroll-bar:horizontal .track-background {
- -fx-background-color: #121212;
+
+.scroll-bar:vertical .track-background {
+ -fx-background-color: #b7ae4b;
  -fx-background-insets: 0;
 }
-.scroll-bar:horizontal .thumb {
- -fx-background-color: #282828;
- -fx-background-insets: 4 0 4 0;
- -fx-background-radius: 2em;
-}
+
 .scroll-bar:vertical .thumb {
- -fx-background-color: #282828;
+ -fx-background-color: #3f380c;
  -fx-background-insets: 0 4 0 4;
  -fx-background-radius: 2em;
 }
-.scroll-bar:horizontal .thumb:hover,
+
 .scroll-bar:vertical .thumb:hover {
- -fx-background-color: #3D3D3D;
+ -fx-background-color: #594e11;
 }
-.scroll-bar:horizontal .thumb:pressed,
+
 .scroll-bar:vertical .thumb:pressed {
- -fx-background-color: #999999;
+ -fx-background-color: #3f380c;
 }
+
 .scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button {
- -fx-background-color:transparent;
-}
-.scroll-bar:horizontal .increment-button, .scroll-bar:horizontal .decrement-button {
  -fx-background-color:transparent;
 }
 
 .scroll-bar:vertical .increment-arrow {
- -fx-background-color: #282828;
+ -fx-background-color: #3f380c;
 }
 
 .scroll-bar:vertical .decrement-arrow {
- -fx-background-color: #282828;
+ -fx-background-color: #3f380c;
 }

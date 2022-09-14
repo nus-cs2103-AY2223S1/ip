@@ -39,7 +39,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-
+        scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
     }
 
     public void setBot(Alan alan) {
@@ -99,20 +100,22 @@ public class MainWindow extends AnchorPane {
             gaveBanana = false;
         }
 
+        if (!input.equals("")) {
+            DialogBox userDialog = DialogBox.getUserDialog(input, userImage);
+            if (input.equals("banana")) {
+                userDialog = DialogBox.getUserDialog(input, bananaImage);
+            }
+            if (input.equals("bananas")) {
+                userDialog = DialogBox.getUserDialog(input, bananasImage);
+            }
+            DialogBox botResponse = DialogBox.getBotDialog(response, botImage);
 
-        DialogBox userDialog = DialogBox.getUserDialog(input, userImage);
-        if (input.equals("banana")) {
-            userDialog = DialogBox.getUserDialog(input, bananaImage);
+            dialogContainer.getChildren().addAll(
+                    userDialog,
+                    botResponse
+            );
         }
-        if (input.equals("bananas")) {
-            userDialog = DialogBox.getUserDialog(input, bananasImage);
-        }
-        DialogBox botResponse = DialogBox.getBotDialog(response, botImage);
 
-        dialogContainer.getChildren().addAll(
-                userDialog,
-                botResponse
-        );
         userInput.clear();
     }
 
