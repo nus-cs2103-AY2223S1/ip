@@ -126,7 +126,7 @@ public class TaskList {
     }
 
     /**
-     * Finds all tasks that matches the searchParams.
+     * Finds all tasks that match the searchParams.
      * @param searchParams the searchParameters.
      * @return the string representation of the tasks.
      */

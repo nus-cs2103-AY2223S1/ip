@@ -26,6 +26,8 @@ public class CommandDeadlineHandler extends CommandHandler {
         if (value == null || !flag.equals("by") || additionalValue == null) {
             throw new InvalidSyntaxException("Correct usage: deadline return book /by 24/04/2019 1600");
         }
+        assert !value.contains("|");
+        assert !additionalValue.contains("|");
         try {
             DateTime.FORMATTER.parse(this.additionalValue);
         } catch (DateTimeParseException e) {

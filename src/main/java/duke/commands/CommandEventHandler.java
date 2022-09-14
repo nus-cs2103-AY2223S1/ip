@@ -28,6 +28,8 @@ public class CommandEventHandler extends CommandHandler {
         if (value == null || !flag.equals("at") || additionalValue == null) {
             throw new InvalidSyntaxException("Correct usage: event dinner /at 24/04/2019 1600");
         }
+        assert !value.contains("|");
+        assert !additionalValue.contains("|");
         try {
             LocalDateTime.parse(this.additionalValue, DateTime.FORMATTER);
         } catch (DateTimeParseException e) {

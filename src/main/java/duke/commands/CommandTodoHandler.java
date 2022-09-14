@@ -21,6 +21,7 @@ public class CommandTodoHandler extends CommandHandler {
      */
     public void checkValid() throws DukeException {
         if (value != null && flag == null && additionalValue == null) {
+            assert !value.contains("|");
             return;
         }
         throw new InvalidSyntaxException("Correct usage: todo read book");

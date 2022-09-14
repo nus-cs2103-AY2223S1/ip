@@ -25,6 +25,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.filePath = filePath;
+        assert filePath != null;
         // creates a file if file did not exist
         try {
             db = new File(filePath);
