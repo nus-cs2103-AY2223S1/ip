@@ -9,7 +9,7 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="300" prefHeight="102.0" prefWidth="310.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="label" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="300" maxWidth="249.0" prefHeight="40.0" prefWidth="225.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-label-padding: 0px 20px; -fx-max-height: 40px; -fx-padding: 10px 20px;" wrapText="true">
+        <Label fx:id="label" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="81.0" maxWidth="258.0" prefHeight="81.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-label-padding: 0px 20px; -fx-max-height: 40px; -fx-padding: 10px 20px;" wrapText="true">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -17,9 +17,9 @@
             <Font name="Monospaced Regular" size="13.0" />
          </font>
          <graphic>
-            <Text fx:id="message" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: monospaced;" text="Text" textAlignment="RIGHT" wrappingWidth="200.0" />
+            <Text fx:id="message" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: monospaced;" text="Text" textAlignment="RIGHT" wrappingWidth="230.0" />
          </graphic></Label>
-      <Circle fx:id="circleProfile" fill="#1f93ff00" radius="36.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="circleProfile" fill="#1f93ff00" radius="21.0" stroke="BLACK" strokeType="INSIDE">
          <HBox.margin>
             <Insets left="15.0" right="15.0" />
          </HBox.margin>
