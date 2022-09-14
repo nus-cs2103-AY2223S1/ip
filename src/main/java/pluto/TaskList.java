@@ -123,10 +123,10 @@ public class TaskList {
      * @return Tasklist of filtered tasks.
      */
     public TaskList filter(String keyword) {
-        TaskList filtered = new TaskList();
+        TaskList filteredTasks = new TaskList();
         String[] keywords = keyword.split("\\s+");
-        missions.stream().filter(t -> t.contains(keywords)).forEach(filtered::addTask);
-        return filtered;
+        missions.stream().filter(t -> t.contains(keywords)).forEach(filteredTasks::addTask);
+        return filteredTasks;
     }
 
     @Override
