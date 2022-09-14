@@ -113,7 +113,7 @@ public class TaskList {
      */
     public String markAsDone(int index) {
         if (index >= tasks.size() || index < 0) {
-            throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
+            throw new DukeException("No task at this index!");
         }
         Task task = tasks.get(index);
         return task.markAsDone();
@@ -127,7 +127,7 @@ public class TaskList {
      */
     public String markAsNotDone(int index) {
         if (index >= tasks.size() || index < 0) {
-            throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
+            throw new DukeException("No task at this index!");
         }
         Task task = tasks.get(index);
         assert task != null : "Task not found";

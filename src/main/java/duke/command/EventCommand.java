@@ -26,7 +26,7 @@ public class EventCommand extends Command {
             this.taskDescription = taskDescription;
             this.at = LocalDate.parse(at);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Date/Time format is wrong.");
+            throw new DukeException("Date/Time format is wrong!");
         }
     }
 
