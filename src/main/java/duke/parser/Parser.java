@@ -149,6 +149,10 @@ public class Parser {
      * @throws ParseInputException If the given date string is not in one of the preset formats.
      */
     public static LocalDate parseDateFormats(String dateString) throws ParseInputException {
+        // @@author Wu-Lezheng-reused
+        // Reused from
+        // https://stackoverflow.com/questions/4024544/how-to-parse-dates-in-multiple-formats-using-simpledateformat
+        // with minor modifications
         for (String formatString : formatStrings) {
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat(formatString);

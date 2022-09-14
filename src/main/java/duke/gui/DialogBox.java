@@ -94,6 +94,7 @@ public class DialogBox extends HBox {
      * @param color Color at the  edge of the circular image.
      */
     public static void setImageColor(DialogBox dialogBox, Color color) {
+        // Solution below adapted from https://www.youtube.com/watch?v=54fEFYx34vk
         dialogBox.circle.setEffect(new DropShadow(+12, 0, 0, color));
     }
 
