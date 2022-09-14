@@ -59,8 +59,8 @@ public class Ui {
                 + "  1. Acceptable date formats include dd/MM/yyyy, yyyy/MM/dd, yyyy-MM-dd, dd-MM-yyyy, "
                 + "dd MM yyyy, yyyy MM dd.\n"
                 + "  2. A tag / keyword must be a case-sensitive word containing only alphabets.\n"
-                + "  3. A task can contain at most 3 tags, repeated tags are not allowed in a task.\n"
-                + "  4. Task list will be auto-saved after bye command and auto-loaded when chatbot starts up.");
+                + "  3. A task can contain at most 3 tags, adding repeated tags to a task is not allowed.\n"
+                + "  4. Task list will be auto-saved after bye command and auto-loaded when TaskDive chatbot starts up.");
         return texts;
     }
 

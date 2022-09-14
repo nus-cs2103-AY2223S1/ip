@@ -36,7 +36,7 @@ public class ListCommand implements Command {
      * @return a string containing commandType and task index.
      */
     public String execute() throws DukeException {
-        if (parameter.matches("^[a-zA-Z0-9]*$")) {
+        if (parameter.matches("^[a-zA-Z0-9]*$") && parameter.matches(".*\\d.*")) {
             throw new DukeException(INVALID_KEYWORD, ""); //invalid keyword (contains both alphabets and digits)
         } else if (parameter.equals("#")) {
             throw new DukeException(INVALID_TAG, ""); //empty tag
