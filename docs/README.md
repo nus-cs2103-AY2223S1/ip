@@ -57,7 +57,7 @@ Example of usage:
 
 `todo homework`
 
-Expected outcome:
+Expected outcome:<br>![](images/todo.png)
 
 Todo task added to your list!
 
@@ -70,7 +70,7 @@ Example of usage:
 
 `event concert /at 2022-10-12`
 
-Expected outcome:![](images/Event.png)
+Expected outcome:<br>![](images/Event.png)
 
 Event task added to your list with the specified date! 
 
@@ -83,7 +83,7 @@ Example of usage:
 
 `deadline assignment /by 2022-09-20`
 
-Expected outcome:![](images/Deadline.png)
+Expected outcome:<br>![](images/Deadline.png)
 
 Deadline task added to your list with the specified date! 
 > **Note**
@@ -98,7 +98,7 @@ Example of usage:
 
 `mark 1`
 
-Expected outcome:![](images/mark.png)
+Expected outcome:<br>![](images/mark.png)
 
 The first task is marked as completed.
 
@@ -110,7 +110,7 @@ Example of usage:
 
 `unmark 1`
 
-Expected outcome:![](images/unmark.png)
+Expected outcome:<br>![](images/unmark.png)
 
 The first task is marked as incompleted.
 
@@ -120,7 +120,7 @@ Example of usage:
 
 `list`
 
-Expected outcome:![](images/list.png)
+Expected outcome:<br>![](images/list.png)
 
 All the tasks that you have so far is listed.
 
@@ -132,7 +132,7 @@ Example of usage:
 
 `delete 2`
 
-Expected outcome:![](images/delete.png)
+Expected outcome:<br>![](images/delete.png)
 
 The second task is deleted from the list.
 
@@ -144,7 +144,7 @@ Example of usage:
 
 `find book`
 
-Expected outcome:![](images/find.png)
+Expected outcome:<br>![](images/find.png)
 
 All tasks which has the substring book will be shown.
 
@@ -154,6 +154,6 @@ Example of usage:
 
 `bye`
 
-Expected outcome:![](images/Bye.png)
+Expected outcome:<br>![](images/Bye.png)
 
 You exit out of the application. Click the red cross at the top right to close the window.
