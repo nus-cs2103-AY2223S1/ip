@@ -7,27 +7,28 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-         prefWidth="400.0" style="-fx-background-color: linear-gradient(#dcb5ba, #eee);"
-         type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" alignment="CENTER" graphicTextGap="5.0" lineSpacing="1.0" maxHeight="-Infinity" maxWidth="-Infinity" text="Label" wrapText="true">
-         <font>
-            <Font name="SansSerif Regular" size="12.0" />
-         </font>
+        <Label fx:id="dialog" contentDisplay="CENTER" graphicTextGap="5.0" minHeight="-Infinity" pickOnBounds="false" styleClass="textBox" stylesheets="@../style/style.css" text="Label" wrapText="true">
+            <font>
+                <Font name="Comic Sans MS" size="13.0" />
+            </font>
+            <HBox.margin>
+                <Insets bottom="5.0" top="5.0" />
+            </HBox.margin>
          <padding>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding></Label>
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
-         <HBox.margin>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </HBox.margin>
-         <viewport>
-            <Rectangle2D />
-         </viewport></ImageView>
+        <ImageView fx:id="displayPicture" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets left="10.0" right="10.0" />
+            </HBox.margin>
+            <viewport>
+                <Rectangle2D />
+            </viewport></ImageView>
     </children>
     <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
     </padding>
    <opaqueInsets>
       <Insets />
