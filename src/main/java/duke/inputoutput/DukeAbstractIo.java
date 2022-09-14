@@ -29,11 +29,6 @@ public abstract class DukeAbstractIo implements DukeIo {
         printTask(sb.toString());
     }
 
-    @Override
-    public void printTask(String txt, DukeCliSettings featuresEnum) {
-        printTask(txt, featuresEnum.value);
-    }
-
     /**
      * {@inheritDoc}
      * 
@@ -53,6 +48,12 @@ public abstract class DukeAbstractIo implements DukeIo {
         }
         printTask(sb.toString());
     }
+
+    @Override
+    public void printTask(String txt, DukeCliSettings featuresEnum) {
+        printTask(txt, featuresEnum.value);
+    }
+
 
     /**
      * {@inheritDoc}

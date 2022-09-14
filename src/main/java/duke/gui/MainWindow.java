@@ -83,6 +83,7 @@ public class MainWindow extends AnchorPane {
                 try {
                     Thread.sleep(timeMs);
                 } catch (InterruptedException e) {
+                    System.out.println("Sleep is interrupted!");
                 }
                 return null;
             }
