@@ -21,14 +21,16 @@ public class Duke {
     /**
      * Class constructor.
      */
-    public Duke(String filepath) {
+    public Duke(String filepath)  {
         this.ui = new Ui();
         try {
             this.storage = new Storage(filepath);
             this.taskList = this.storage.loadTasks();
-        } catch (IOException e) {
-            this.ui.showFileCreatingError();
+        } catch (Exception e) {
+            this.taskList = null;
+            this.storage = null;
         }
+
     }
 
 
@@ -37,11 +39,12 @@ public class Duke {
      * Instruct the robot to show user interface and read in command and execute.
      * Catch and dispose exceptions.
      */
-    public String getResponse(String input) throws DukeException{
+    public String getResponse(String input) throws DukeException {
         //this.ui.showWelcomeMessage()
         return Parser.parse(input, this.taskList, this.storage);
 
     }
+
         //ui.showGoodbyeMessage();
 
 

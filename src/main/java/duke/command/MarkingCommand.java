@@ -25,18 +25,15 @@ public class MarkingCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Storage storage, CommandType c) throws DukeException {
-        try {
-            int index = Integer.valueOf(this.fullCommand.split(" ")[1]) - 1;
-            switch (c) {
-            case MARK:
-                return taskList.markAsDone(index, storage);
-            case UNMARK:
-                return taskList.markUndone(index, storage);
-            default:
-                throw new DukeException("Sorry, something went wrong when unmarking or marking the task!");
-            }
-        } catch (Exception e) {
-            throw new DukeException("Sorry, something went wrong when unmarking or marking the task");
+        int index = Integer.valueOf(this.fullCommand.split(" ")[1]) - 1;
+        switch (c) {
+        case MARK:
+            return taskList.markAsDone(index, storage);
+        case UNMARK:
+            return taskList.markUndone(index, storage);
+        default:
+            throw new DukeException("Sorry, something went wrong when unmarking or marking the task!");
         }
+
     }
 }

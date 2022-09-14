@@ -53,7 +53,7 @@ public class TaskList {
     public String addTask(Task task) {
         this.taskList.add(task);
         return ("Got it. I've added this task:\n"+task.printTask()+
-                "\nNow you have "+this.countTask()+" task in the list.");
+                "\nNow you have "+this.countTask()+" task in the list.\n");
     }
     /**
      * The method that list all the tasks in a formatted string.
@@ -70,19 +70,31 @@ public class TaskList {
     }
     //mark a certain task as done and print reply
     public String markAsDone(int i, Storage storage) throws DukeException {
-        this.taskList.get(i).taskDone();
-        String res = ("Nice! I've marked this task as done:\n"
-                +this.taskList.get(i).printTask());
-        storage.updateFile(this.taskList);
-        return res;
+        try {
+            this.taskList.get(i).taskDone();
+            String res = ("Nice! I've marked this task as done:\n"
+                    + this.taskList.get(i).printTask());
+            storage.updateFile(this.taskList);
+            return res;
+        }catch (IndexOutOfBoundsException e) {
+            throw new DukeException("The index of target task is wrong.");
+        } catch (Exception e) {
+            throw new DukeException("Sorry, something went wrong when unmarking or marking the task!");
+        }
     }
     //mark a certain task as not done and print reply
     public String markUndone(int i, Storage storage) throws DukeException {
-        this.taskList.get(i).taskUndone();
-        String res = ("OK, I've marked this task as not done yet:\n"
-                +this.taskList.get(i).printTask());
-        storage.updateFile(this.taskList);
-        return res;
+        try {
+            this.taskList.get(i).taskUndone();
+            String res = ("OK, I've marked this task as not done yet:\n"
+                    + this.taskList.get(i).printTask());
+            storage.updateFile(this.taskList);
+            return res;
+        }catch (IndexOutOfBoundsException e) {
+            throw new DukeException("The index of target task is wrong.");
+        } catch (Exception e) {
+            throw new DukeException("Sorry, something went wrong when unmarking or marking the task!");
+        }
     }
 
     public List<Task> getTaskList(){
@@ -98,7 +110,7 @@ public class TaskList {
         return res;
     }
 
-    public String getASpecificDay(String s) {
+    public String getASpecificDay(String s) throws DukeException {
         try {
             String day = s.split(" ")[1];
             LocalDate d = LocalDate.parse(day);
@@ -109,7 +121,7 @@ public class TaskList {
                 return res;
             }
         } catch (Exception e) {
-            return "the input format is not correct " + e.getMessage();
+            throw new DukeException("the input format for find is not correct.");
         }
     }
     public String findMatch(String target) {

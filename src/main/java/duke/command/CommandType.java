@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum CommandType {
-    TODO, DEADLINE, FIND, GET, BYE, EVENT, MARK, UNMARK, DELETE, LIST;
+    TODO, DEADLINE, FIND, GET, BYE, EVENT, MARK, UNMARK, DELETE, LIST,WRONG;
     public static final HashMap< String,CommandType> commandMap = new HashMap<>()
     {{
         put("t", TODO);
@@ -54,5 +54,6 @@ public enum CommandType {
         put("delete", DELETE);
         put("DELETE", DELETE);
         put("Delete", DELETE);
+        put("wrongFileInput",WRONG);
     }};
 }

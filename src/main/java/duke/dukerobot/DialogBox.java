@@ -9,11 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+
 
 /**
  * An example of a custom control using FXML.
@@ -40,9 +42,7 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         labelWithText.setText(text);
-
         displayPicture.setFill(new ImagePattern(img));
         dialog.getChildren().addAll(labelWithText,displayPicture);
     }
@@ -73,7 +73,7 @@ public class DialogBox extends HBox {
         this.labelWithText.setStyle("-fx-background-color: #c0c0c0;"
                 + "-fx-text-fill: black;"
                 + "-fx-min-width: 200px;"
-                + "-fx-font-size: 14;"
+                + "-fx-font-size: 18;"
                 + "-fx-alignment: baseline-right;"
                 + "-fx-border-width: 0;"
                 + "-fx-background-radius: 15.0;"
@@ -99,7 +99,7 @@ public class DialogBox extends HBox {
         this.labelWithText.setStyle("-fx-background-color: #CD5C5C;"
                 + "-fx-text-fill: white;"
                 + "-fx-min-width: 200px;"
-                + "-fx-font-size: 14;"
+                + "-fx-font-size: 18;"
                 + "-fx-alignment: baseline-left;"
                 + "-fx-border-width: 0;"
                 + "-fx-background-radius: 15.0;"

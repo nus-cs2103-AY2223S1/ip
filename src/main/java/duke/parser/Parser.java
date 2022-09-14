@@ -20,6 +20,9 @@ public class Parser {
      * @throws DukeException Throws DukeException with remind message when the input format is wrong.
      */
     public static String parse(String fullCommand, TaskList t, Storage s) throws DukeException {
+        if (s == null && t == null) {
+            throw new DukeException("Sorry, something went wrong when loading tasks.");
+        }
         CommandType c = CommandType.commandMap.get(fullCommand.split(" ")[0]);
         if (c == null) {
             throw new DukeException("Sorry, I don't get what you are saying.");
@@ -40,6 +43,8 @@ public class Parser {
         case LIST:
         case FIND:
             return new OtherCommand(fullCommand).execute(t, s, c);
+        case WRONG:
+            s.loadTasks();
         default:
             throw new DukeException("Sorry, I don't know your meanings.");
         }

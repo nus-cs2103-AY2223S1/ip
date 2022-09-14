@@ -65,7 +65,7 @@ public class Storage {
      * @return A taskList containing previous added tasks, load from the corresponding file.
      */
 
-    public TaskList loadTasks() {
+    public TaskList loadTasks() throws DukeException {
         try {
             Scanner s = new Scanner(this.file); // create a Scanner using the File as the source
             TaskList taskList = new TaskList();
@@ -77,10 +77,8 @@ public class Storage {
             s.close();
             return taskList;
         } catch (Exception e) {
-            System.out.println("Sorry, but something went wrong when loading task: "
-                    +e.getMessage() + "\nPlease check.");
+            throw new DukeException("Sorry, something went wrong when loading task.");
         }
-        return null;
     }
     public Task disposeTaskString(String storedTaskString) throws DukeException{
         String[] temp = storedTaskString.split(" ",3);
