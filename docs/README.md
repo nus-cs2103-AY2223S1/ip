@@ -29,6 +29,11 @@ Assign or remove custom keywords to existing commands. (custom keywords cannot b
 Refer to the full list of commands below.
 
 
+### Easter Eggs
+
+Have some fun with the monkey helper!
+
+
 ### Help
 
 Shows instructions for using the commands.
