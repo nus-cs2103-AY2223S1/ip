@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Command to display help
+ */
 public class HelpCommand extends Command {
     /**
      * To execute the {@code HelpCommand}
