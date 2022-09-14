@@ -86,7 +86,7 @@ public class Storage {
     }
 
     /**
-     * Return list of tasks after loading them from the stored file.
+     * Returns a list of tasks after loading them from the stored file.
      *
      * @return A list of tasks loaded from the stored file.
      * @throws FileNotFoundException If a file is not found.
