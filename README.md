@@ -15,4 +15,19 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    In the same dialog, set the **Project language level** field to the `SDK default` option.
 3. After that, locate the `...plugin/src/main/java/Duke/DukeEntryPoint.java` file, right-click it, and choose `Run current file` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
 
+![Screenshot_1](https://user-images.githubusercontent.com/53963433/190104338-df226794-bfbf-45d8-932f-16b151677463.png)
+
+Try using the following commands:
+* list (show all tasks)
+* todo task description (add a todo to list)
+* event task description /at yyyy-mm-dd hh:mm (add an event)
+* deadline task description /at yyyy-mm-dd hh:mm (add a task)
+* mark index (mark the task at that index)
+* delete index (delete task at that index)
+* find keyword (finds task containing that keyword)
+* reminder (gives the latest reminder)
+
+Sample sample results:
+![Screenshot_2](https://user-images.githubusercontent.com/53963433/190105299-546af798-b096-4d54-86ba-b2f175c9db0d.png)
+
 ![Screenshot_1](https://user-images.githubusercontent.com/53963433/187814401-be9b142c-8053-4f86-8045-6e6dcfb06238.png)
