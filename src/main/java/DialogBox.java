@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 
 /**
@@ -35,9 +36,11 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
+        dialog.setStyle("-fx-background-color: yellow");
         displayPicture.setImage(img);
         Circle clip = new Circle(50, 50, 50);
         displayPicture.setClip(clip);
+        dialog.setMinWidth(Region.USE_PREF_SIZE);
     }
 
     /**
