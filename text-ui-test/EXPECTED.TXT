@@ -72,20 +72,20 @@ You have 1 task(s) left in your list.
 Ok, I've deleted this task:
 (D) [X] Test deadline (by: Feb 1 2034)
 You have no more tasks left in your list!
-Sorry, you need to tell me which task to mark.
-Sorry, you need to tell me which task to unmark.
-Sorry, I will need a description for the to-do.
-Sorry, I will need a description for the deadline.
-Sorry, I will need a description for the event.
-Sorry, I don't understand what randomness means. :/
-Sorry, I will need a date for the deadline.
-Sorry, I will need a date for the event.
-Sorry, you need to tell me which task to delete.
-Sorry, you need to specify some text to search for.
-Sorry, 0.1 is not a valid task number.
-Sorry, there is no task number 1.
-Sorry, .1 is not a valid task number.
-Sorry, there is no task number 0.
-Sorry, one is not a valid task number.
-Sorry, there is no task number -1.
+[0;31mSorry, you need to tell me which task to mark.[0m
+[0;31mSorry, you need to tell me which task to unmark.[0m
+[0;31mSorry, I will need a description for the to-do.[0m
+[0;31mSorry, I will need a description for the deadline.[0m
+[0;31mSorry, I will need a description for the event.[0m
+[0;31mSorry, I don't understand what randomness means. :/[0m
+[0;31mSorry, I will need a date for the deadline.[0m
+[0;31mSorry, I will need a date for the event.[0m
+[0;31mSorry, you need to tell me which task to delete.[0m
+[0;31mSorry, you need to specify some text to search for.[0m
+[0;31mSorry, 0.1 is not a valid task number.[0m
+[0;31mSorry, there is no task number 1.[0m
+[0;31mSorry, .1 is not a valid task number.[0m
+[0;31mSorry, there is no task number 0.[0m
+[0;31mSorry, one is not a valid task number.[0m
+[0;31mSorry, there is no task number -1.[0m
 Ok, see you next time!

@@ -18,6 +18,9 @@ public class Cli implements Ui {
     private static final String WELCOME_MESSAGE = "Hello there! I'm Scottie!\n"
             + "How can I help you?";
 
+    private static final String ERROR_COLOUR = "\033[0;31m"; // ANSI for red colour
+    private static final String NO_COLOUR = "\033[0m"; // ANSI for no colour
+
     private final Scanner in;
     private final PrintStream out;
 
@@ -80,6 +83,22 @@ public class Cli implements Ui {
             this.showFormattedMessage("%d. %s", i, obj);
             i++;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showError(String errorMessage) {
+        this.showMessages(ERROR_COLOUR + errorMessage + NO_COLOUR);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showFormattedError(String message, Object... args) {
+        this.showError(String.format(message, args));
     }
 
     /**
