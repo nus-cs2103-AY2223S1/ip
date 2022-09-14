@@ -27,7 +27,7 @@ public class ToDo extends Task {
 
     /**
      * Returns the <code>String</code> representation of this <code>ToDo</code> in the format to be stored in the local
-     * storage.
+     *     storage.
      *
      * @return <code>String</code> representation of this <code>ToDo</code> in the format to be stored in the local
      *     storage.
