@@ -1,9 +1,9 @@
 # User Guide
 Dukey is a desktop chatbot app for managing and storing tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-- [Quick Start]()
-- [Features]()
-  - [Adding a todo task : ```todo```]()
+- [Quick Start](https://github.com/shaniceng/ip/tree/master/docs#quick-start)
+- [Features](https://github.com/shaniceng/ip/tree/master/docs#features)
+  - [Adding a todo task : ```todo```](https://github.com/shaniceng/ip/tree/master/docs##todo)
   - [Adding a deadline Task: ```deadline```]()
   - [Adding an event Task: ```event```]()
   - [Marking a task: ```mark```]()
