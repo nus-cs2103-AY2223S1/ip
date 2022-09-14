@@ -52,15 +52,20 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        String input = readAndDisplayUserInput();
+
+        if (!duke.handleInput(input)) {
+            exitProgramAfterTask(makeDelayTask(3000));
+        }
+    }
+
+    private String readAndDisplayUserInput() {
         String input = userInput.getText();
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage));
         userInput.clear();
-
-        if (!duke.handleInput(input)) {
-            exitProgramAfterTask(makeDelayTask(3000));
-        }
+        return input;
     }
 
     private static Task<Void> makeDelayTask(int timeMs) {
