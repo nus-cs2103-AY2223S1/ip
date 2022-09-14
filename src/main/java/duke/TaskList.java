@@ -23,7 +23,9 @@ public class TaskList {
     }
 
     public Task getTask(int number) {
-        return this.list.get(number - 1);
+        int taskIndex = number - 1;
+        assert taskIndex >= 0 : "task index should not be negative";
+        return this.list.get(taskIndex);
     }
 
     /**
@@ -32,7 +34,9 @@ public class TaskList {
      * @param index of the task to be deleted.
      */
     public void deleteTask(int index) {
-        Task task = this.list.get(index - 1);
+        int taskIndex = index - 1;
+        assert taskIndex >= 0 : "task index should not be negative";
+        Task task = this.list.get(taskIndex);
         this.list.remove(task);
     }
 
@@ -60,18 +64,7 @@ public class TaskList {
      * @return numbered tasks in strings.
      */
     public String getAllTask() {
-        String text = "";
-
-        for (int i = 0; i < list.size(); i++) {
-
-            if (i == list.size() - 1) {
-                text += i + 1 + ". " + list.get(i);
-            } else {
-                text += i + 1 + ". " + list.get(i) + "\n     ";
-            }
-        }
-
-        return text;
+        return convertListToString(this.list);
     }
 
     /**
@@ -81,14 +74,16 @@ public class TaskList {
      * @return a paragraph of filtered numbered tasks in strings.
      */
     public String getTaskStringFiltered(String keyword) {
-
         List<Task> resultList = new ArrayList<>();
         for (Task task : this.list) {
             if (task.getName().contains(keyword)) {
                 resultList.add(task);
             }
         }
+        return convertListToString(resultList);
+    }
 
+    private String convertListToString(List<Task> resultList) {
         String text = "";
         for (int i = 0; i < resultList.size(); i++) {
             if (i == resultList.size() - 1) {

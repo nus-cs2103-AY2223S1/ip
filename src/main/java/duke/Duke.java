@@ -163,7 +163,9 @@ public class Duke {
      */
     protected String getResponse(String input) {
         Parser parser = new Parser(listOfTasks, ui, storage);
-        if (input.equals("bye")) {
+        if (input.isEmpty()) {
+            return ui.invalidCommandErrorString();
+        } else if (input.equals("bye")) {
             return ui.endingMsg();
         } else {
             return parser.checkAndExecuteCommand(input);
