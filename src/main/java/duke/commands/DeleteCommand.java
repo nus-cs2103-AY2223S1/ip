@@ -42,7 +42,7 @@ public class DeleteCommand extends Command {
             storage.overwriteFile(tasks);
             return successMessage;
         } catch (IndexOutOfBoundsException e) {
-            String errorMessage = "☹ Please enter an index in the range!";
+            String errorMessage = "☹ Are you blind? Enter an index in the range!";
             return errorMessage;
         } catch (DukeException e) {
             return e.getMessage();

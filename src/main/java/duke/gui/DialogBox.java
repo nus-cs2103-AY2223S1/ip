@@ -48,7 +48,7 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         circle.setFill(new ImagePattern(img));
-        circle.setEffect(new DropShadow(+25, 0, +2, Color.BLUE));
+        // circle.setEffect(new DropShadow(+25, 0, +2, Color.RED));
     }
 
     /**
@@ -69,7 +69,9 @@ public class DialogBox extends HBox {
      * @return A DialogBox instance.
      */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var dialogBox = new DialogBox(text, img);
+        setImageColor(dialogBox, Color.BLUE);
+        return dialogBox;
     }
 
     /**
@@ -82,7 +84,18 @@ public class DialogBox extends HBox {
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        setImageColor(db, Color.RED);
         return db;
+    }
+
+    /**
+     * Sets the surrounding color of the circle image.
+     *
+     * @param dialogBox  A dialogBox with a circular image.
+     * @param color Color at the  edge of the circular image.
+     */
+    public static void setImageColor(DialogBox dialogBox, Color color) {
+        dialogBox.circle.setEffect(new DropShadow(+25, 0, +2, color));
     }
 
 }

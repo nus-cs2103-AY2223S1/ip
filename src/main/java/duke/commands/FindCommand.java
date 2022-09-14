@@ -38,7 +38,7 @@ public class FindCommand extends Command {
             String successMessage = MESSAGE_SUCCESS + newTaskList.iterate();
             return successMessage;
         } catch (NullPointerException npe) {
-            String errorMessage = "☹ Please enter a keyword!";
+            String errorMessage = "☹ What the hell? Enter a keyword!";
             return errorMessage;
         }
     }

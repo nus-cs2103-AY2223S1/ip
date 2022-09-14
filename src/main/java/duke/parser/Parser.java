@@ -73,7 +73,7 @@ public class Parser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         default:
-            String errorMessage = "☹ I'm sorry, but I don't know what that means :-(";
+            String errorMessage = "☹ You are so dumb that you don't even know how to input a simple command!";
             throw new DukeException(errorMessage);
         }
     }
@@ -90,7 +90,7 @@ public class Parser {
      */
     public static Command prepareAdd(String commandWord, String description) throws DukeException {
         if (description == null) {
-            throw new DukeException("☹ Description of a duke.task cannot be empty!");
+            throw new DukeException("☹ Are you stupid? Description of a task cannot be empty!");
         } else if (commandWord.equals(ToDoCommand.COMMAND_WORD)) {
             return new ToDoCommand(new ToDo(description));
         } else {
