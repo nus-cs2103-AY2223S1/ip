@@ -14,28 +14,7 @@ All you need to do is,
 
 1. Download it here
 2. Double click it
-3. Add tasks
-4. Done!
-
-FEATURES:
-
-- [x] Add and delete tasks
-- [x] Find tasks by deadline
-- [ ] Undo and redo features
-
-Duke supports the following types of tasks:
-
-```
-deadline
-event
-todo
-```
-
-Duke is written in Java, so you may be familiar with
-
-
-
-Be a master of your time, use Duke today! :+1:
+3. Done!
 
 ## Features 
 
@@ -297,3 +276,5 @@ findtag Urgent!
 > Tag: [Urgent!]
 > (at: 17 Sep 2022 08:00 PM)
 ```
+
+And that is all! Look out at this page for any further exciting updates. Be a master of your time, use Duke today! :+1:
