@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #FFFFFF; -fx-label-padding: 3; -fx-border-radius: 10; -fx-background-radius: 10;" text="Label" wrapText="true">
          <font>
-            <Font name="Orbitron Bold" size="12.0" />
+            <Font name="Comic Sans MS" size="13.0" />
          </font>
         <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
