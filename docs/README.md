@@ -190,37 +190,6 @@ Mark specified tasks in NyanDuke as complete.
 
 **Expected outcome:**
 
-The tasks that you have specified by number to NyanDuke will no longer be marked with an `X`.
-
-Example for usage 1:
-
-```
-OK, I've marked this task as not done ;-; :
-  [T][ ] sleep
-Now you have 3 tasks in your list.
-```
-
-Example for usage 2:
-
-```
-OK, I've marked these tasks as not done ;-; :
-  [T][ ] sleep
-  [E][ ] party (at: Oct 12 2022, 8.00PM)
-Now you have 3 tasks in your list.
-```
-
-### `unmark` - Mark your tasks as not complete
-
-Mark specified tasks in NyanDuke as not complete.
-
-**Format:** `unmark TASK_NUMBER ...`
-
-**Examples of usage:**
-1. `unmark 1`
-1. `unmark 1 3`
-
-**Expected outcome:**
-
 The tasks that you have specified by number to NyanDuke will be marked with an `X`.
 
 Example for usage 1:
@@ -238,6 +207,37 @@ Yay! Me has marked these tasks as done:
   [T][X] sleep
   [E][X] party (at: Oct 12 2022, 8.00PM)
 Now you have 1 task in your list.
+```
+
+### `unmark` - Mark your tasks as not complete
+
+Mark specified tasks in NyanDuke as not complete.
+
+**Format:** `unmark TASK_NUMBER ...`
+
+**Examples of usage:**
+1. `unmark 1`
+1. `unmark 1 3`
+
+**Expected outcome:**
+
+The tasks that you have specified by number to NyanDuke will no longer be marked with an `X`.
+
+Example for usage 1:
+
+```
+OK, I've marked this task as not done ;-; :
+  [T][ ] sleep
+Now you have 3 tasks in your list.
+```
+
+Example for usage 2:
+
+```
+OK, I've marked these tasks as not done ;-; :
+  [T][ ] sleep
+  [E][ ] party (at: Oct 12 2022, 8.00PM)
+Now you have 3 tasks in your list.
 ```
 
 ### `delete` - Delete your tasks
@@ -310,7 +310,7 @@ Here are the tasks in your list on this date:
 
 Exit the NyanDuke app by bidding NyanDuke goodbye!
 
-**Format:** `exit`
+**Format:** `bye`
 
 **Expected outcome:**
 
