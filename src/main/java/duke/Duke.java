@@ -7,6 +7,7 @@ import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskManager;
 import duke.ui.Ui;
+import javafx.util.Pair;
 
 /**
  * Represents a Duke class.
@@ -98,12 +99,12 @@ public class Duke {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    String getResponse(String input) {
+    Pair<String, Boolean> getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            return c.execute(taskManager, ui, storage);
+            return new Pair<>(c.execute(taskManager, ui, storage), c.isExit());
         } catch (DukeException | IOException e) {
-            return e.toString();
+            return new Pair<>(e.toString(), false);
         }
     }
 }
