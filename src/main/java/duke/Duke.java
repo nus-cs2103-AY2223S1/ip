@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Duke {
 
-    private static String GREETING = "Hello! I'm Ee Suan!\nWhat can I do for you?";
+    private static String GREETING = "Hello! I'm Alfredo!\nWhat can I do for you?";
 
     private Ui ui;
     private Parser parser;
