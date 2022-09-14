@@ -87,9 +87,9 @@ public class Storage {
         else if (isDeadline(task)) {
             int pos = str.indexOf("(") - 1;
             if (isDone) {
-                addTaskWithMark(new Event(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
+                addTaskWithMark(new Deadline(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
             } else {
-                addTaskWithoutMark(new Event(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
+                addTaskWithoutMark(new Deadline(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
             }
         }
     }
