@@ -80,7 +80,11 @@ public class Duke {
             return taskList.find(content);
 
         } else if (firstWord.equals("help")) {
-            String response = "link";
+            String response = "";
+
+            response += "Refer to this link:\n" +
+                    "https://mohamedsaf1.github.io/ip/";
+
             return response;
 
         } else {
