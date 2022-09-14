@@ -4,6 +4,7 @@ import hazell.entities.TaskList;
 import hazell.exceptions.HazellException;
 import hazell.ui.Cli;
 import hazell.ui.UiInterface;
+import hazell.ui.UiManager;
 
 import java.io.IOException;
 
@@ -14,7 +15,7 @@ public class Hazell {
     private Storage storage;
     private TaskList taskList;
     private Dispatcher dispatcher;
-    private UiInterface ui;
+    private UiManager ui;
 
     private static final String APP_LOGO = "  _    _               _ _ \n"
             + " | |  | |             | | |\n"
@@ -29,7 +30,8 @@ public class Hazell {
      * @param filePath Path to store chatbot data for persistence
      */
     public Hazell(String filePath) {
-        ui = new Cli();
+        ui = new UiManager();
+        ui.attachBotInstance(this);
         System.out.println(APP_LOGO);
         try {
             storage = new Storage(filePath);
@@ -46,19 +48,19 @@ public class Hazell {
         this("data/hazell.txt");
     }
 
+    public void attachUiInstance(UiInterface ui) {
+        this.ui.attachUiInstance(ui);
+    }
+
     /**
      * Starts the chatbot.
      */
-    public void run() {
+    public void step() {
+        ui.step();
+    }
+
+    public void start() {
         ui.displayBotResponse("Hello, I am Hazell!\nWhat can I do for you?");
-        while (ui.hasNextUserInput()) {
-            String input = ui.getNextUserInput();
-            String response = getResponse(input);
-            ui.displayBotResponse(response);
-            if (input.equals("bye")) {
-                System.exit(0);
-            }
-        }
     }
 
     /**
@@ -79,7 +81,17 @@ public class Hazell {
         return response;
     }
 
+    /**
+     * Entry point to CLI-only experience of the Hazell chatbot.
+     *
+     * @param args Path to file
+     */
     public static void main(String[] args) {
-        new Hazell("data/hazell.txt").run();
+        Hazell hazell = new Hazell("data/hazell.txt");
+        UiInterface cli = new Cli();
+        hazell.attachUiInstance(cli);
+        cli.attachBotInstance(hazell);
+        cli.run();
+        hazell.start();
     }
 }

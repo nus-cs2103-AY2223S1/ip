@@ -1,15 +1,17 @@
 package hazell.ui;
 
 import hazell.Command;
+import hazell.Hazell;
 
 import java.util.Scanner;
 
 /**
- * A class that abstracts the interactions with user.
+ * A class that abstracts the interactions with user via the command line.
  */
 public class Cli implements UiInterface {
-    Scanner scanner;
+    private Scanner scanner;
 
+    private Hazell hazell;
     private static final String APP_LOGO = "  _    _               _ _ \n"
             + " | |  | |             | | |\n"
             + " | |__| | __ _ _______| | |\n"
@@ -23,6 +25,11 @@ public class Cli implements UiInterface {
      */
     public Cli() {
         scanner = new Scanner(System.in);
+    }
+
+    @Override
+    public void attachBotInstance(Hazell hazell) {
+        this.hazell = hazell;
     }
 
     /**
@@ -40,6 +47,7 @@ public class Cli implements UiInterface {
      *
      * @return A parsed Command object
      */
+    @Override
     public String getNextUserInput() {
         return scanner.nextLine().strip();
     }
@@ -50,16 +58,11 @@ public class Cli implements UiInterface {
     }
 
 
-    /**
-     * Replies user in a formatted way.
-     *
-     * @param msg The message to be pretty-printed to user
-     */
     @Override
-    public void displayBotResponse(String msg) {
+    public void displayBotResponse(String response) {
         String DIVIDER = "\t____________________________________________________________";
         System.out.println(DIVIDER);
-        for (String line : msg.split("\n")) {
+        for (String line : response.split("\n")) {
             System.out.println("\t" + line);
         }
         System.out.println(DIVIDER);
@@ -67,5 +70,21 @@ public class Cli implements UiInterface {
 
     public void sendSplash() {
         System.out.println(APP_LOGO);
+    }
+
+    @Deprecated
+    public void step() { }
+
+    @Override
+    public void start() {
+        sendSplash();
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            hazell.step();
+        }
+
     }
 }

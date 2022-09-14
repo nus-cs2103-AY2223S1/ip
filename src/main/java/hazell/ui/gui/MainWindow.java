@@ -1,6 +1,7 @@
 package hazell.ui.gui;
 
 import hazell.Hazell;
+import hazell.ui.Cli;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -23,16 +24,33 @@ public class MainWindow extends AnchorPane {
 
     private Hazell bot;
 
+    private Gui gui;
+
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image botImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        gui = new Gui(this);
     }
 
     public void setBot(Hazell bot) {
         this.bot = bot;
+        bot.attachUiInstance(gui);
+        gui.attachBotInstance(bot);
+        bot.start();
+    }
+
+    public void displayUserInput(String input) {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, userImage)
+        );
+    }
+    public void displayBotResponse(String response) {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getBotDialog(response, botImage)
+        );
     }
 
     /**
@@ -42,11 +60,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = bot.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getBotDialog(response, botImage)
-        );
+        gui.setUserInput(input);
         userInput.clear();
+        bot.step();
     }
 }
