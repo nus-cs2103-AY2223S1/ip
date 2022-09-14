@@ -18,6 +18,7 @@ public class ToDo extends Task {
         return todo;
     }
 
+
     public String serialise() {
         return String.format("%s | %s | %s",
                 typeIcon,

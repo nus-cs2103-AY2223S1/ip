@@ -5,7 +5,7 @@ import hazell.exceptions.TaskDescriptionEmpty;
 /**
  * A task that should be done at a specific time.
  */
-public class Event extends Task {
+public class Event extends TimeSensitiveTask {
     private static final String typeIcon = "E";
     private String time;
 
@@ -18,6 +18,11 @@ public class Event extends Task {
         Event event = new Event(false, description, time);
         event.validate();
         return event;
+    }
+
+    @Override
+    public void postpone(String time) {
+        this.time = time;
     }
 
     public String serialise() {

@@ -2,6 +2,7 @@ package hazell.entities;
 
 import hazell.exceptions.TaskDescriptionEmpty;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -10,7 +11,7 @@ import java.time.format.DateTimeParseException;
 /**
  * A task that needs to be done by a specific time.
  */
-public class Deadline extends Task {
+public class Deadline extends TimeSensitiveTask {
     private static final String typeIcon = "D";
     private String time;
 
@@ -38,6 +39,11 @@ public class Deadline extends Task {
                 words[1].equals("1"),
                 words[2],
                 words[3]);
+    }
+
+    @Override
+    public void postpone(String time) {
+        this.time = time;
     }
 
     @Override

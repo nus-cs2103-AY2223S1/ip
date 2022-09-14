@@ -120,6 +120,22 @@ public class TaskList {
         return String.format("OK, I've marked this task as not done yet:\n\t%s", task);
     }
 
+    public String postponeTimeSensitiveTask(int index, String time) throws NoSuchTask {
+        Task task = getTask(index);
+        if (!(task instanceof TimeSensitiveTask)) {
+            return "This task is not time-sensitive!";
+        }
+
+        TimeSensitiveTask tsTask = (TimeSensitiveTask) task;
+        tsTask.postpone(time);
+        try {
+            this.saveToFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return String.format("OK, I've postponed this task:\n\t%s", task);
+    }
+
     /**
      * Returns a Path object pointing to the file used to store Hazell data locally.
      * Before doing so, it ensures that the folder exists.

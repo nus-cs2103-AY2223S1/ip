@@ -46,6 +46,10 @@ public class Dispatcher {
         case "find":
             String keyword = command.getTrailingArgs().get(0);
             return taskList.findMatchingTasks(keyword);
+        case "postpone":
+            index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
+            time = command.getTrailingArgs().get(1);
+            return taskList.postponeTimeSensitiveTask(index, time);
         default:
             throw new UnknownCommand();
         }
