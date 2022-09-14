@@ -1,8 +1,8 @@
-package Command;
-import Duke.WagwanUi;
-import Duke.WagwanException;
-import Duke.Storage;
-import Duke.TaskList;
+package command;
+import wagwan.Storage;
+import wagwan.TaskList;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
 
 /**
 * Command is an abstract class that serves as a blueprint for all user commands parsed by Parser Class.

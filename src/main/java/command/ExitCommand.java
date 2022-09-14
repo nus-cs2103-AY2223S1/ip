@@ -1,17 +1,22 @@
-package Command;
-import Duke.WagwanException;
-import Duke.WagwanUi;
-import Duke.Storage;
-import Duke.TaskList;
+package command;
+
 import java.io.IOException;
+
+import wagwan.Storage;
+import wagwan.TaskList;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
 
 /**
 * Command that exits the program when executed.
 */
 public class ExitCommand extends Command {
 
-    boolean isExit;
+    private boolean isExit;
 
+    /**
+     * Constructor for an exit command.
+     */
     public ExitCommand() {
         this.isExit = true;
     }

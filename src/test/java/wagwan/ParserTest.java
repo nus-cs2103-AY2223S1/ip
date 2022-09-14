@@ -1,11 +1,12 @@
-package Duke;
-import Command.*;
-import org.junit.jupiter.api.Test;
+package wagwan;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ParserTest {
+import org.junit.jupiter.api.Test;
 
-    private boolean True;
+import command.Command;
+
+public class ParserTest {
 
     // test 1 : ListCommand
     @Test

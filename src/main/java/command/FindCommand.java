@@ -1,17 +1,22 @@
-package Command;
-import Duke.WagwanException;
-import Duke.WagwanUi;
-import Duke.Storage;
-import Duke.TaskList;
+package command;
+
+import wagwan.Storage;
+import wagwan.TaskList;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
 
 /**
 * Command that returns the list of tasks that contains the specified keyword when executed.
 */
 public class FindCommand extends Command {
 
-    boolean isExit;
+    private boolean isExit;
     private String userAction;
 
+    /**
+     * Constructor for a find command.
+     * @param userAction the keyword used to search for matching task descriptions.
+     */
     public FindCommand(String userAction) {
         this.isExit = false;
         this.userAction = userAction;

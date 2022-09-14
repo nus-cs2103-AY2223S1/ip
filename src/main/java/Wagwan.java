@@ -1,23 +1,29 @@
-import Command.Command;
-import Duke.WagwanException;
-import Duke.WagwanUi;
-import Duke.Parser;
-import Duke.TaskList;
-import Duke.Storage;
-
 import java.util.ArrayList;
 
+import command.Command;
+import wagwan.Parser;
+import wagwan.Storage;
+import wagwan.TaskList;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
+
+/**
+* Wagwan helps keep track of user's tasks.
+*/
 public class Wagwan {
 
     private Storage storage;
     private TaskList tasks;
     private WagwanUi ui;
-    private final String FILE_PATH = "./data/tasks.txt";
+    private final String filepath = "./data/tasks.txt";
 
 
+    /**
+     * Constructor for Wagwan
+     */
     public Wagwan() {
         ui = new WagwanUi();
-        storage = new Storage(FILE_PATH);
+        storage = new Storage(filepath);
         try {
             tasks = new TaskList(storage.load());
             WagwanUi.sendMessage("load complete!");

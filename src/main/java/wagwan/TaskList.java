@@ -1,4 +1,4 @@
-package Duke;
+package wagwan;
 import java.util.ArrayList;
 
 /**
@@ -77,8 +77,7 @@ public class TaskList {
      * Deletes the task in the specified index from TaskList.
      *
      * @param index the index of the task in TaskList to be deleted.
-     * @return a message to tell the user that the task has been deleted and how many tasks
-     * are left in the list.
+     * @return a message to tell the user that the task has been deleted and how many tasks are left in the list.
      */
     public String deleteTask(int index) {
         int initialSize = this.tasks.size();
@@ -98,7 +97,8 @@ public class TaskList {
     public String markTaskAsDone(int index) {
         Task task = this.tasks.get(index - 1);
         task.markAsDone();
-        return WagwanUi.sendMessage(" ayo im watching you man ! keep going brotha! I've marked this task as done:\n" + "   " + task.toString());
+        return WagwanUi.sendMessage(" ayo im watching you man ! keep going brotha! "
+                + "I've marked this task as done:\n" + "   " + task.toString());
     }
 
     /**
@@ -110,7 +110,8 @@ public class TaskList {
     public String markTaskAsUndone(int index) {
         Task task = this.tasks.get(index - 1);
         task.markAsUndone();
-        return WagwanUi.sendMessage(" cmon man you gotta do better! I've marked this task as undone:\n" + "   " + task.toString());
+        return WagwanUi.sendMessage(" cmon man you gotta do better! "
+                + "I've marked this task as undone:\n" + "   " + task.toString());
     }
 
     /**
@@ -118,8 +119,8 @@ public class TaskList {
      * to be displayed to the user filtered using the specified keyword by using command "find"
      *
      * @param keyword the keyword to search for tasks containing the keyword.
-     * @return the details of all tasks that matches the specified keyword in
-     * chronological order of which the user added to the TaskList.
+     * @return the details of all tasks that matches the specified keyword
+     *      in chronological order of which the user added to the TaskList.
      */
     public String find(String keyword) {
         int counter = 1;
@@ -140,7 +141,7 @@ public class TaskList {
      * of Task objects to be displayed to the user using command "list".
      *
      * @return the details of all tasks previously added by the user which are indexed
-     * in chronological order of which the user added to the TaskList.
+     *      in chronological order of which the user added to the TaskList.
      */
     @Override
     public String toString() {

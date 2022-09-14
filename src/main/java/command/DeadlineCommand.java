@@ -1,19 +1,26 @@
-package Command;
-import Duke.Deadline;
-import Duke.WagwanUi;
-import Duke.WagwanException;
-import Duke.Storage;
-import Duke.Task;
-import Duke.TaskList;
+package command;
+
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
+
+import wagwan.Deadline;
+import wagwan.Storage;
+import wagwan.Task;
+import wagwan.TaskList;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
 
 /**
 * Command that adds a Deadline to the TaskList when executed.
 */
 public class DeadlineCommand extends Command {
-    boolean isExit;
+    private boolean isExit;
     private String userAction;
+
+    /**
+     * Constructor for a deadline command.
+     * @param userAction the deadline description.
+     */
     public DeadlineCommand(String userAction) {
         this.isExit = false;
         this.userAction = userAction;

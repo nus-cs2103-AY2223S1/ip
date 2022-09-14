@@ -1,9 +1,10 @@
-package Duke;
+package wagwan;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,6 +17,11 @@ public class Storage {
     private String filePath;
     private ArrayList<Task> tasks;
 
+    /**
+     * Constructor for a storage.
+     *
+     * @param filePath the filepath of the .txt file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.tasks = new ArrayList<>();
@@ -49,9 +55,7 @@ public class Storage {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
             } catch (IOException e2) {
-                System.out.println(" Duke has encountered an error while loading tasks" +
-                        "\n Please exit and try again");
-                e2.printStackTrace();
+                throw new WagwanException(WagwanUi.FILE_CREATE_ERROR);
             }
         } catch (IOException e3) {
             throw new WagwanException(e3.getMessage());
@@ -60,34 +64,36 @@ public class Storage {
     }
 
     /**
-     * Helper function that helps write tasks from .txt file to TaskList
+     * Helper function that helps read tasks from .txt file and loads them into TaskList
      *
      * @param nextTask a String array containing details of next task to be added.
      * @throws WagwanException if error occurs while adding task.
      */
     public void addTaskFromStorage(String[] nextTask) throws WagwanException {
         switch (nextTask[0]) {
-            case "T":
-                Task newTodo = new Todo(nextTask[2]);
-                if (nextTask[1].equals("1")) {
-                    newTodo.markAsDone();
-                }
-                this.tasks.add(newTodo);
-                break;
-            case "E":
-                Task newEvent = new Event(nextTask[2], nextTask[3]);
-                if (nextTask[1].equals("1")) {
-                    newEvent.markAsDone();
-                }
-                this.tasks.add(newEvent);
-                break;
-            case "D":
-                Task newDeadline = new Deadline(nextTask[2], nextTask[3]);
-                if (nextTask[1].equals("1")) {
-                    newDeadline.markAsDone();
-                }
-                this.tasks.add(newDeadline);
-                break;
+        case "T":
+            Task newTodo = new Todo(nextTask[2]);
+            if (nextTask[1].equals("1")) {
+                newTodo.markAsDone();
+            }
+            this.tasks.add(newTodo);
+            break;
+        case "E":
+            Task newEvent = new Event(nextTask[2], nextTask[3]);
+            if (nextTask[1].equals("1")) {
+                newEvent.markAsDone();
+            }
+            this.tasks.add(newEvent);
+            break;
+        case "D":
+            Task newDeadline = new Deadline(nextTask[2], nextTask[3]);
+            if (nextTask[1].equals("1")) {
+                newDeadline.markAsDone();
+            }
+            this.tasks.add(newDeadline);
+            break;
+        default:
+            throw new WagwanException(WagwanUi.FILE_READ_ERROR);
         }
     }
 
@@ -112,6 +118,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Helper function that helps write tasks from TaskList into .txt file.
+     *
+     * @param task the task to be saved to tasks.txt.
+     * @param fw the Filewrite to write tasks to tasks.txt.
+     * @throws IOException if error occurs while adding task.
+     */
     public void saveTaskToStorage(Task task, FileWriter fw) throws IOException {
         if (task instanceof Todo) {
             Todo todo = (Todo) task;

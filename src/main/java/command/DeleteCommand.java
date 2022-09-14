@@ -1,17 +1,24 @@
-package Command;
-import Duke.WagwanException;
-import Duke.WagwanUi;
-import Duke.Storage;
-import Duke.TaskList;
+package command;
+
 import java.io.IOException;
 
+import wagwan.Storage;
+import wagwan.TaskList;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
+
 /**
-* Command that marks a specified task as incomplete when executed.
+* Command that deletes a task from the TaskList when executed.
 */
-public class UnmarkCommand extends Command {
-    boolean isExit;
+public class DeleteCommand extends Command {
+    private boolean isExit;
     private String userAction;
-    public UnmarkCommand(String userAction) {
+
+    /**
+     * Constructor for a delete command.
+     * @param userAction the index of the task to be deleted.
+     */
+    public DeleteCommand(String userAction) {
         this.isExit = false;
         this.userAction = userAction;
     }
@@ -20,9 +27,9 @@ public class UnmarkCommand extends Command {
     public String execute(TaskList tasks, WagwanUi ui, Storage storage) throws WagwanException {
         try {
             int index = Integer.parseInt(this.userAction);
-            String markTaskAsUndoneMessage = tasks.markTaskAsUndone(index);
+            String deleteTaskMessage = tasks.deleteTask(index);
             storage.save();
-            return markTaskAsUndoneMessage;
+            return deleteTaskMessage;
         } catch (IOException e1) {
             throw new WagwanException(e1.getMessage());
         } catch (NumberFormatException e2) {
@@ -36,7 +43,6 @@ public class UnmarkCommand extends Command {
 
     @Override
     public String toString() {
-        return "this is an unmark command : unmark " + userAction;
+        return "this is a delete command : delete " + userAction;
     }
 }
-

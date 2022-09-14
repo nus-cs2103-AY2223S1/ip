@@ -1,14 +1,17 @@
-package Command;
-import Duke.WagwanUi;
-import Duke.Storage;
-import Duke.TaskList;
+package command;
+import wagwan.Storage;
+import wagwan.TaskList;
+import wagwan.WagwanUi;
 /**
 * Command that prints out the list of user's tasks when executed.
 */
 public class ListCommand extends Command {
 
-    boolean isExit;
+    private boolean isExit;
 
+    /**
+     * Constructor for a list command.
+     */
     public ListCommand() {
         this.isExit = false;
     }

@@ -23,7 +23,7 @@
 
 ---------------  S U M M A R Y ------------
 
-Command Line: -Dfile.encoding=windows-1252 -Duser.country=SG -Duser.language=en -Duser.variant Launcher
+command Line: -Dfile.encoding=windows-1252 -Duser.country=SG -Duser.language=en -Duser.variant Launcher
 
 Host: Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz, 8 cores, 15G,  Windows 10 , 64 bit Build 19041 (10.0.19041.1889)
 Time: Mon Sep 12 03:18:34 2022 Malay Peninsula Standard Time elapsed time: 0.025428 seconds (0d 0h 0m 0s)

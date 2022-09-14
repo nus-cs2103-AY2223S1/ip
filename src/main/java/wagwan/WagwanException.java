@@ -1,4 +1,4 @@
-package Duke;
+package wagwan;
 
 /**
 * Class that catches all possible exceptions that occur within Duke and

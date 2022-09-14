@@ -1,18 +1,26 @@
-package Command;
-import Duke.WagwanException;
-import Duke.WagwanUi;
-import Duke.Storage;
-import Duke.Task;
-import Duke.TaskList;
-import Duke.Todo;
+package command;
+
 import java.io.IOException;
+
+import wagwan.Storage;
+import wagwan.Task;
+import wagwan.TaskList;
+import wagwan.Todo;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
 
 /**
 * Command that adds a To-Do to the TaskList when executed.
 */
 public class TodoCommand extends Command {
-    boolean isExit;
+
+    private boolean isExit;
     private String userAction;
+
+    /**
+     * Constructor for a to-do command.
+     * @param userAction the to-do description.
+     */
     public TodoCommand(String userAction) {
         this.isExit = false;
         this.userAction = userAction;

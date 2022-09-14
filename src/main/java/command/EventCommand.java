@@ -1,19 +1,25 @@
-package Command;
-import Duke.WagwanException;
-import Duke.WagwanUi;
-import Duke.Event;
-import Duke.Storage;
-import Duke.Task;
-import Duke.TaskList;
+package command;
+
 import java.io.IOException;
+
+import wagwan.Event;
+import wagwan.Storage;
+import wagwan.Task;
+import wagwan.TaskList;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
 
 /**
 * Command that adds an Event to the TaskList when executed.
 */
 public class EventCommand extends Command {
-    boolean isExit;
+    private boolean isExit;
     private String userAction;
 
+    /**
+     * Constructor for an event command.
+     * @param userAction the event description.
+     */
     public EventCommand(String userAction) {
         this.isExit = false;
         this.userAction = userAction;

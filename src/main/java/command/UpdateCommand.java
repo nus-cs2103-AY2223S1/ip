@@ -1,20 +1,24 @@
-package Command;
-
-import Duke.WagwanException;
-import Duke.WagwanUi;
-import Duke.Storage;
-import Duke.TaskList;
+package command;
 
 import java.io.IOException;
+
+import wagwan.Storage;
+import wagwan.TaskList;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
 
 /**
 * Command that updates a description of a specified task when executed.
 */
 public class UpdateCommand extends Command {
 
-    boolean isExit;
+    private boolean isExit;
     private String userAction;
 
+    /**
+     * Constructor for an update command.
+     * @param userAction the new description to be updated.
+     */
     public UpdateCommand(String userAction) {
         this.isExit = false;
         this.userAction = userAction;

@@ -1,19 +1,25 @@
-package Command;
-import Duke.WagwanException;
-import Duke.WagwanUi;
-import Duke.Storage;
-import Duke.TaskList;
+package command;
+
 import java.io.IOException;
 
-/**
-* Command that marks a specified task as complete when executed.
-*/
-public class MarkCommand extends Command {
+import wagwan.Storage;
+import wagwan.TaskList;
+import wagwan.WagwanException;
+import wagwan.WagwanUi;
 
-    boolean isExit;
+/**
+* Command that marks a specified task as incomplete when executed.
+*/
+public class UnmarkCommand extends Command {
+
+    private boolean isExit;
     private String userAction;
 
-    public MarkCommand(String userAction) {
+    /**
+     * Constructor for an unmark command.
+     * @param userAction the index of the task to be marked as incomplete.
+     */
+    public UnmarkCommand(String userAction) {
         this.isExit = false;
         this.userAction = userAction;
     }
@@ -22,9 +28,9 @@ public class MarkCommand extends Command {
     public String execute(TaskList tasks, WagwanUi ui, Storage storage) throws WagwanException {
         try {
             int index = Integer.parseInt(this.userAction);
-            String markTaskAsDoneMessage = tasks.markTaskAsDone(index);
+            String markTaskAsUndoneMessage = tasks.markTaskAsUndone(index);
             storage.save();
-            return markTaskAsDoneMessage;
+            return markTaskAsUndoneMessage;
         } catch (IOException e1) {
             throw new WagwanException(e1.getMessage());
         } catch (NumberFormatException e2) {
@@ -38,7 +44,6 @@ public class MarkCommand extends Command {
 
     @Override
     public String toString() {
-        return "this is a mark command : mark " + userAction;
+        return "this is an unmark command : unmark " + userAction;
     }
 }
-

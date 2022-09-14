@@ -1,4 +1,4 @@
-package Duke;
+package wagwan;
 
 /**
 * Task is a parent class that serves as a blueprint for all tasks a user can add to the to-do list.
@@ -17,6 +17,9 @@ public class Task {
      */
     protected boolean isDone;
 
+    /**
+     * Constructor for a task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -28,7 +31,7 @@ public class Task {
      * @return "X" if task has been completed, " " otherwise
      */
     public String getStatusIcon() {
-         return (isDone ? "X" : " ");
+        return (isDone ? "X" : " ");
     }
 
     /**
@@ -53,11 +56,9 @@ public class Task {
     }
 
     /**
-     * Builds the template of displaying the list of tasks to the user
-     * based on the task's completion status and task description.
+     * Shows the task's completion status and task description.
      *
-     * @return the formatted template of displaying the list of tasks to the user
-     * based on the task's completion status and task description
+     * @return Formats task's completion status and task description.
      */
     @Override
     public String toString() {

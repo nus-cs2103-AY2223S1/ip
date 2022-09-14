@@ -27,7 +27,7 @@
 
 ---------------  S U M M A R Y ------------
 
-Command Line: --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED -XX:MaxMetaspaceSize=256m -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx512m -Dfile.encoding=windows-1252 -Duser.country=SG -Duser.language=en -Duser.variant org.gradle.launcher.daemon.bootstrap.GradleDaemon 6.2
+command Line: --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED -XX:MaxMetaspaceSize=256m -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx512m -Dfile.encoding=windows-1252 -Duser.country=SG -Duser.language=en -Duser.variant org.gradle.launcher.daemon.bootstrap.GradleDaemon 6.2
 
 Host: Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz, 8 cores, 15G,  Windows 10 , 64 bit Build 19041 (10.0.19041.1889)
 Time: Mon Sep 12 03:18:34 2022 Malay Peninsula Standard Time elapsed time: 1101.644673 seconds (0d 0h 18m 21s)
