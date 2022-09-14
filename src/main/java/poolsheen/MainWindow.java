@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
 
     private Poolsheen poolsheen;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Pusheen.png"));
 
 
