@@ -1,5 +1,4 @@
-T,0,read book
-D,0,return book,Aug 25 2022
-E,0,project meeting,Aug 25 2022 02:00 PM
-D,0,watch,Sep 28 2022
-T,0,live
+T,0,read Atomic Habits
+D,0,return Atomic Habits,Sep 14 2022
+E,1,CS2103T Team Meeting,Sep 14 2022 04:00 PM
+D,0,watch CS2100 Lecture,Sep 28 2022
