@@ -1,5 +1,4 @@
 [T][X] sleep
 [E][ ] sleep < 02:01 Saturday 01 February 2020 >
 [E][ ] go to lecture < 22:22 Thursday 01 September 2022 >
-[E][ ] take screens shot < 14:03 Friday 02 September 2022 >
-[E][ ] sleep < 14:22 Saturday 01 October 2022 >
+[D][ ] sleep < 22:00 Wednesday 14 September 2022 >

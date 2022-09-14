@@ -5,15 +5,22 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 
-public class DialogBox extends HBox{
+/**
+ * Dialogbox is used to display input and output from user and Duke
+ */
+public class DialogBox extends HBox {
     private Label text;
     private ImageView displayPicture;
 
+    /**
+     * Creates dialog box with the input displayed
+     * @param l label to display
+     * @param iv view used for box
+     */
     public DialogBox(Label l, ImageView iv) {
         text = l;
         displayPicture = iv;
