@@ -2,3 +2,5 @@ T> >FIND TEST>
 T> >Bob>#TheFirstBob
 T> >Another Bob> 
 T> >END OF LIST> 
+T> >TEST> 
+E> >submit CS2103T iP >2022-09-14> 
