@@ -31,7 +31,7 @@ public class Storage {
             this.path = path;
             file.createNewFile();
         } catch (IOException e) {
-            throw new PlutoException("OOPS!!! " + e.getMessage());
+            throw new PlutoException("OOPS!!! Couldn't find/create data file.");
         }
     }
 
