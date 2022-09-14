@@ -25,8 +25,8 @@ public class CommandEventHandler extends CommandHandler {
      * @throws DukeException error message.
      */
     public void checkValid() throws DukeException {
-        boolean isValid = value == null || !flag.equals("at") || additionalValue == null;
-        if (isValid) {
+        boolean isInvalid = value == null || flag == null || !flag.equals("at") || additionalValue == null;
+        if (isInvalid) {
             throw new InvalidSyntaxException("Correct usage: event dinner /at 24/04/2019 1600");
         }
         assert !value.contains("|");

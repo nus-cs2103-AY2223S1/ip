@@ -23,8 +23,8 @@ public class CommandDeadlineHandler extends CommandHandler {
      * @throws DukeException error message.
      */
     public void checkValid() throws DukeException {
-        boolean isValid = value == null || !flag.equals("by") || additionalValue == null;
-        if (isValid) {
+        boolean isInvalid = value == null || flag == null || !flag.equals("by") || additionalValue == null;
+        if (isInvalid) {
             throw new InvalidSyntaxException("Correct usage: deadline return book /by 24/04/2019 1600");
         }
         assert !value.contains("|");
