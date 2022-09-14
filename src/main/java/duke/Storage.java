@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,11 +15,13 @@ import java.util.Scanner;
  */
 public class Storage {
     private final String filepath;
+    private static final Path FILEPATH_HELP = Path.of("data/help.txt");
+
     Storage(String filepath) {
         this.filepath = filepath;
     }
 
-    protected TaskList load() throws FileNotFoundException {
+    protected TaskList loadExistingTasks() throws FileNotFoundException {
         List<Task> tasks = new ArrayList<>();
         Scanner s = new Scanner(new File(filepath));
         while (s.hasNext()) {
@@ -34,11 +38,19 @@ public class Storage {
         return new TaskList(tasks);
     }
 
+    protected static String loadHelpTextFile() {
+        try {
+            return Files.readString(FILEPATH_HELP);
+        } catch (IOException ex) {
+            return "Help Instruction File Missing";
+        }
+    }
+
     /**
      * Saves a given instance of a Task List to the user's local directory.
      * @param tasks TaskList of tasks
      */
-    protected void save(TaskList tasks) {
+    protected void saveExistingTasks(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(filepath);
             fw.write(tasks.enumerateList());

@@ -6,17 +6,17 @@ import java.util.Scanner;
  * Interacts with the console of Duke users, displaying operations, status, and errors.
  */
 public class Ui {
+    private static final String MESSAGE_GREETING = "Good Day! ~ Duke at your service <3 ~" +
+            "\n\nType 'help' to view the available commands O_O";
+    private static final String MESSAGE_FAREWELL = "Have a nice day ~ Duke out ~";
+    private static final String MESSAGE_HELP = Storage.loadHelpTextFile();
 
     /**
-     * Displays welcome message to users.
+     * Welcome message to users.
+     * @return Greeting to users in String format
      */
-    protected void greet() {
-        System.out.println("Good Day! ~ Merlin at your service ~");
-    }
-
-    protected String readInput() {
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
+    protected String getGreetingMessage() {
+        return MESSAGE_GREETING;
     }
 
     /**
@@ -28,9 +28,14 @@ public class Ui {
 
     /**
      * Displays farewell message to users.
+     * @return Farewell to users in String format
      */
-    protected String outro() {
-        return "Have a nice day ~ Merlin out ~";
+    protected String getFarewellMessage() {
+        return MESSAGE_FAREWELL;
+    }
+
+    protected String getHelpMessage() {
+        return MESSAGE_HELP;
     }
 
     protected String updateTask(Task updatedTask, String status) {

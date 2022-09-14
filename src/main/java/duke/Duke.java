@@ -11,11 +11,10 @@ public class Duke {
 
     public Duke() {
         ui = new Ui();
-        storage = new Storage("data/tasks.txt");
+        storage = new Storage("data/tasks_outstanding.txt");
         try {
-            tasks = storage.load();
+            tasks = storage.loadExistingTasks();
         } catch (FileNotFoundException err) {
-            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
@@ -27,7 +26,15 @@ public class Duke {
         } catch (DukeException err) {
             return err.getMessage();
         } catch (Exception ex) {
-            return "Invalid user input ~ hoot";
+            return "Invalid user input ~ Type 'help' to view available commands";
         }
+    }
+
+    /**
+     * Welcome message to users along with the total number of outstanding tasks
+     * @return Greeting and number of outstanding tasks to users in String format
+     */
+    protected String greet() {
+        return ui.getGreetingMessage() + String.format("\n\nYou have %d outstanding tasks!", tasks.getSize());
     }
 }

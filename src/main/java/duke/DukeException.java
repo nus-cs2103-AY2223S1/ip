@@ -10,6 +10,6 @@ public class DukeException extends Exception {
      * @param err String message of disallowed operation.
      */
     public DukeException(String err) {
-        super("Whoops (o,o) " + err);
+        super("Whoops... " + err);
     }
 }

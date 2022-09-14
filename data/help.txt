@@ -1,0 +1,18 @@
+Commands: 
+
+    -help (You are currently looking at the help page)
+
+    -list (Shows outstanding tasks)
+    -find (Displays all tasks that contain a given search term)
+
+    -mark (Declare an existing task as complete)
+    -unmark (Declare an existing task as incomplete)
+    -delete (Delete an existing task)
+
+    -todo (Create a task todo)
+    -deadline (Create a task to complete by a deadline)
+    -event (Create a task to attend to on a specific timing)
+
+    -bye (Close Duke application)
+
+//Use spacing between command and body of input

@@ -10,7 +10,7 @@ public class Parser {
     private final static String EXIT = "bye";
 
     enum Keyword {
-        bye, list, mark, unmark, todo, deadline, event, delete, find
+        bye, list, mark, unmark, todo, deadline, event, delete, find, help
     }
 
     enum TaskKeyword {
@@ -40,26 +40,12 @@ public class Parser {
 
     private static String getCommandKey(String command) {
         int index = command.indexOf(' ');
-        if (index == -1) {
-            return command;
-        }
-        return command.substring(0, index);
+        return (index != -1) ? command.substring(0, index).toLowerCase() : command;
     }
 
     private static String getCommandContent(String command) {
         int index = command.indexOf(' ');
-        if (index == -1) {
-            return "";
-        }
-        return command.substring(index).trim();
-    }
-
-    /**
-     * Check whether a given Command instance is consists of the keyword bye (non case-sensitive).
-     * @return true if the command instance is a bye command, false otherwise.
-     */
-    protected static boolean isByeCommand(String command){
-        return command.substring(0, 3).equalsIgnoreCase(EXIT);
+        return (index != -1) ? command.substring(index).trim() : "";
     }
 
     /**
@@ -85,7 +71,7 @@ public class Parser {
     }
 
     /**
-     * Perform a Boolean check on whether a given String is a Task command.
+     * Perform a Boolean check on whether a given String is a Task command keyword.
      * @param keyword Keyword of a command.
      * @return true if given keyword is a Task keyword, else false.
      */
@@ -95,7 +81,7 @@ public class Parser {
     }
 
     /**
-     * Perform a Boolean check on whether a given String is a Modify command.
+     * Perform a Boolean check on whether a given String is a Modify command keyword.
      * @param keyword Keyword of a command.
      * @return true if given keyword is a Modify keyword, else false.
      */
@@ -105,13 +91,21 @@ public class Parser {
     }
 
     /**
-     * Perform a Boolean check on whether a given String is a Modify command.
+     * Perform a Boolean check on whether a given String is a Modify command keyword.
      * @param keyword Keyword of a command.
-     * @return true if given keyword is a Modify keyword, else false.
+     * @return true if given keyword is a Access keyword, else false.
      */
     protected static boolean isAccessKeyword(String keyword) {
         return Arrays.stream(AccessKeyword.values())
                 .anyMatch(ak -> ak.name().equals(keyword));
+    }
+
+    /**
+     * Perform a Boolean check on whether a given String is a Bye command keyword.
+     * @return true if given keyword is a Bye keyword, else false.
+     */
+    protected static boolean isByeKeyword(String keyword){
+        return keyword.equals(EXIT);
     }
 
     /**
@@ -120,7 +114,7 @@ public class Parser {
      * @param content String Description of Task content.
      * @throws DukeException if content of Task command is empty.
      */
-    protected static void validateTaskCommand (String keyword, String content) throws DukeException {
+    protected static void validateTaskCommand(String keyword, String content) throws DukeException {
         if (content.isBlank()) {
             throw new DukeException(String.format("The description of a %s cannot be empty", keyword));
         }

@@ -17,16 +17,18 @@ public class Command {
         if (Parser.isTaskKeyword(keyword)) {
             Parser.validateTaskCommand(keyword, content);
             String confirmationMessage = TaskCommandProcessor.processTaskCommand(keyword, content, tasks, ui);
-            storage.save(tasks);
+            storage.saveExistingTasks(tasks);
             return confirmationMessage;
         } else if (Parser.isModifyKeyword(keyword)) {
             String confirmationMessage = ModifyCommandProcessor.processModifyCommand(keyword, content, tasks, ui);
-            storage.save(tasks);
+            storage.saveExistingTasks(tasks);
             return confirmationMessage;
         } else if (Parser.isAccessKeyword(keyword)) {
             return AccessCommandProcessor.processAccessCommand(keyword, content, tasks);
+        } else if (Parser.isByeKeyword(keyword)){
+            return ui.getFarewellMessage();
         } else {
-            return ui.outro();
+            return ui.getHelpMessage();
         }
     }
 }
