@@ -13,13 +13,14 @@ import duke.Task.Task;
 import duke.Task.Todo;
 
 public class Storage {
-    boolean directoryExist;
-    java.nio.file.Path path;
-    File file;
+    private boolean isExist;
+    private java.nio.file.Path path;
+    private File file;
+
     public Storage(String filename) {
         String home = System.getProperty("user.dir");
         this.path = java.nio.file.Paths.get(home, "src", "data", filename);
-        this.directoryExist = java.nio.file.Files.exists(this.path);
+        this.isExist = java.nio.file.Files.exists(this.path);
     }
 
     /**
@@ -28,26 +29,27 @@ public class Storage {
      */
     public ArrayList<Task> readFile() {
         ArrayList<Task> data = new ArrayList<>();
+        this.file = new File(String.valueOf(this.path));
         try {
-            this.file = new File(String.valueOf(this.path));
-            Scanner reader = new Scanner(this.file);
-            while (reader.hasNextLine()) {
-                String[] taskInfo = reader.nextLine().split("\\|");
-                if (taskInfo[0] == "T") {
-                    data.add(new Todo(taskInfo[1], Boolean.parseBoolean(taskInfo[2])));
-                } else if (taskInfo[0] == "E") {
-                    data.add(new Event(taskInfo[1],
-                            Boolean.parseBoolean(taskInfo[2]),
-                            LocalDateTime.parse(taskInfo[3])));
+            if (this.file.createNewFile()) {
+                Scanner reader = new Scanner(this.file);
+                while (reader.hasNextLine()) {
+                    String[] taskInfo = reader.nextLine().split("\\|");
+                    if (taskInfo[0] == "T") {
+                        data.add(new Todo(taskInfo[1], Boolean.parseBoolean(taskInfo[2])));
+                    } else if (taskInfo[0] == "E") {
+                        data.add(new Event(taskInfo[1],
+                                Boolean.parseBoolean(taskInfo[2]),
+                                LocalDateTime.parse(taskInfo[3])));
 
-                } else if (taskInfo[0] == "D") {
-                    data.add(new Deadline(taskInfo[1],
-                            Boolean.parseBoolean(taskInfo[2]),
-                            LocalDateTime.parse(taskInfo[3])));
+                    } else if (taskInfo[0] == "D") {
+                        data.add(new Deadline(taskInfo[1],
+                                Boolean.parseBoolean(taskInfo[2]),
+                                LocalDateTime.parse(taskInfo[3])));
+                    }
                 }
-
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e);
         }
 

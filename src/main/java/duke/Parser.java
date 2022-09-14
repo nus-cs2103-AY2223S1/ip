@@ -70,7 +70,6 @@ public class Parser {
      */
     public String executeInput(Ui ui, String input, Storage storage, TaskList taskList) {
         String[] inputArr = input.split(" ", 2);
-        String commandString = inputArr[0];
         try {
             switch (this.analyzeCommand(input)) {
             case BYE:
