@@ -59,7 +59,7 @@ public class TaskList {
 
         for (int i = 0; i < this.arrayList.size(); i++) {
             Task currTask = this.arrayList.get(i);
-            sb.append(String.format("    %d. %s", i + 1, currTask));
+            sb.append(String.format("\n\t%d. %s", i + 1, currTask));
         }
         return sb.toString();
     }
@@ -71,7 +71,7 @@ public class TaskList {
     public String findKeyword(String keyword) {
         ArrayList<Integer> tempArray = new ArrayList<>();
         for (int i = 0; i < this.arrayList.size(); i++) {
-            if (this.arrayList.get(i).description.toLowerCase().contains(keyword.toLowerCase())) {
+            if (isFound(keyword, i)) {
                 tempArray.add(i);
             }
         }
@@ -82,5 +82,10 @@ public class TaskList {
             sb.append(String.format("\t%d. %s", j + 1, foundTask));
         }
         return sb.toString();
+    }
+
+    public boolean isFound(String keyword, int i) {
+        return this.arrayList.get(i).description.toLowerCase()
+                .contains(keyword.toLowerCase());
     }
 }
