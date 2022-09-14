@@ -13,7 +13,6 @@ public class Ploopy {
 
     /** The task list to store tasks */
     private TaskList taskList;
-    
     /** The storage file to write to and read from */
     private Storage storage;
 
@@ -28,9 +27,9 @@ public class Ploopy {
         String introString = TextUI.greeting() + "\n";
         try {
             storage = new Storage();
-            introString+= TextUI.createFilesMessage() + "\n";
+            introString += TextUI.createFilesMessage() + "\n";
             taskList = new TaskList(storage);
-            introString+= TextUI.addingFilesMessage() + "\n";
+            introString += TextUI.addingFilesMessage() + "\n";
             storage.loadFile(taskList);
             return introString;
         } catch (PloopyException e) {

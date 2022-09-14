@@ -1,10 +1,12 @@
 package ploopy.task;
 
+import java.util.ArrayList;
+
 import ploopy.PloopyException;
 import ploopy.Storage;
 import ploopy.ui.TextUI;
 
-import java.util.ArrayList;
+
 
 /**
  * Stores the list of tasks and operates on them based on
@@ -34,7 +36,7 @@ public class TaskList {
         String list = "";
         int index = 1;
         for (Task item : taskList) {
-            list+= index + "." + item + "\n";
+            list += index + "." + item + "\n";
             index++;
         }
         return list;
@@ -73,7 +75,7 @@ public class TaskList {
      *
      *
      * @param taskNumber Index of task to be marked undone.
-     * @throws PloopyException If a storage file error occurs.
+     * @throws PloopyException If a storage file exception occurs.
      */
 
     public String deleteTask(int taskNumber) throws PloopyException {
@@ -83,6 +85,14 @@ public class TaskList {
         return TextUI.deleteTaskMessage(deletedTask, taskList.size());
     }
 
+    /**
+     * Creates a task using the provided type, name and date.
+     * @param type The type of the task.
+     * @param name The name of the task.
+     * @param date The date of the task.
+     * @return Acknowledgement from the UI confirming creation of the task.
+     * @throws PloopyException If a storage file exception occurs.
+     */
     public String createTask(String type, String name, String date) throws PloopyException {
         Task newTask = Task.of(type, name, date);
         taskList.add(newTask);
@@ -107,10 +117,10 @@ public class TaskList {
         }
 
         if (matchedTasks.size() > 0) {
-            list+= TextUI.foundTasks();
+            list += TextUI.foundTasks();
             int index = 1;
             for (Task matched : matchedTasks) {
-                list+= "\n" + index + "." + matched;
+                list += "\n" + index + "." + matched;
                 index++;
             }
             return list;

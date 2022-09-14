@@ -1,28 +1,18 @@
 package ploopy.task;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 /**
  * Stores name and date of task. Marks as complete or incomplete
  *
  */
 
 public abstract class Task {
-    /** Input string to Date formatter */
-    private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm");
-    /** Date to output String formatter */
-    private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy kkmm");
     /** Type of task */
     protected String type;
     /** Name of task */
     protected final String name;
     /** Boolean for task being done or not */
     private boolean isDone;
-    /** Date of task (If applicable) */
-    private LocalDateTime dateTime;
-    /** String format of date */
-    private String dateStringForm;
+
     /** Priority level of task*/
     private String priority;
 
@@ -30,18 +20,11 @@ public abstract class Task {
      * Constructor that takes a name and date
      *
      * @param name Name of the task.
-     * @param date Date of the task.
      */
-    public Task(String name, String date) {
+    public Task(String name) {
         this.name = name;
         this.isDone = false;
         priority = null;
-        if (date != null) {
-            dateStringForm = date;
-            this.dateTime = LocalDateTime.parse(date, INPUT_FORMATTER);
-        } else {
-            dateStringForm = "";
-        }
     }
 
     /**
@@ -120,18 +103,14 @@ public abstract class Task {
      *
      * @return Formatted date.
      */
-    public String getDate() {
-        return OUTPUT_FORMATTER.format(dateTime);
-    }
+    public abstract String getDate();
 
     /**
      * Returns the date formatted in a specific way for file storage.
      *
      * @return Formatted date.
      */
-    public String getDateForFileWrite() {
-        return dateStringForm;
-    }
+    public abstract String getDateForFileWrite();
 
     public void setPriority(String priority) {
         this.priority = priority;

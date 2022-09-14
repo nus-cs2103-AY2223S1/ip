@@ -1,5 +1,8 @@
 package ploopy.task;
 
+/**
+ * Represents a todo task.
+ */
 public class ToDo extends Task {
 
     /**
@@ -7,7 +10,7 @@ public class ToDo extends Task {
      * @param name Name of the task.
      */
     public ToDo(String name) {
-        super(name, null);
+        super(name);
         this.type = "T";
     }
 

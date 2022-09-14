@@ -42,7 +42,7 @@ public class TextUI {
      * to prevent exceptions.
      */
     public static String correctFormatForUser() {
-       return "Please use the following format" + "\n"
+        return "Please use the following format" + "\n"
                 + "[task type] [task name] / [at or by] [task date]" + "\n"
                 + "e.g: event concert /at 12/12/2020 1800";
     }

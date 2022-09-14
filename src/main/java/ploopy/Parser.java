@@ -76,7 +76,8 @@ public class Parser {
     private static String parseTask(String taskType, String fullInput,
                                     String[] inputSequence, TaskList taskList) throws PloopyException {
 
-        String name, date;
+        String name;
+        String date;
         if (!isIncompleteCommand(fullInput, taskType.length())) {
             assert inputSequence.length > 1 : "isIncompleteCommand is not working";
             date = getDate(fullInput, taskType);

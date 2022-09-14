@@ -1,13 +1,13 @@
 package ploopy;
 
-import ploopy.task.Task;
-import ploopy.task.TaskList;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import ploopy.task.Task;
+import ploopy.task.TaskList;
 
 /**
  * Creates, loads from, writes to file to store
@@ -38,7 +38,7 @@ public class Storage {
         }
 
         try {
-           boolean successful = !file.createNewFile();
+            boolean successful = !file.createNewFile();
         } catch (IOException e) {
             throw new PloopyException("IO");
         }
