@@ -54,7 +54,7 @@ public class Duke {
                     this.storedTasks.save(taskList);
                     break;
                 }
-                Parser.parseCommand(temp, taskList);
+                Parser.parseCommand(temp);
             } catch (DukeException err) {
                 this.ui.closeInput();
                 this.storedTasks.save(taskList);
@@ -67,7 +67,7 @@ public class Duke {
 
     public String getResponse(String input) {
         try {
-            Command command = Parser.parseCommand(input, taskList);
+            Command command = Parser.parseCommand(input);
             return command.handleCommand(taskList, storedTasks);
         } catch (DukeException de) {
             this.storedTasks.save(this.taskList);

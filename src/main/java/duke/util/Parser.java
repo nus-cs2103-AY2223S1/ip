@@ -10,7 +10,7 @@ import duke.util.command.*;
 public class Parser {
     private static final String LINE = "\n----------------------------------------------------------------\n";
 
-    public static Command parseCommand(String command, TaskList taskList) throws DukeException {
+    public static Command parseCommand(String command) throws DukeException {
         String input = command.split(" ")[0];
 
         switch (input) {
