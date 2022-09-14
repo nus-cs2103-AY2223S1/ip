@@ -5,15 +5,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane prefHeight="600.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.gui.MainWindow" stylesheets="@../css/styles.css" styleClass="window">
     <children>
-        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" fitToHeight="true" fitToWidth="true" vvalue="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="scroll-bar">
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" fitToHeight="true" fitToWidth="true" vvalue="1.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="scroll-bar">
             <content>
                 <VBox fx:id="dialogContainer" prefHeight="552.0" styleClass="dialog-container" />
             </content>
         </ScrollPane>
-        <TextField fx:id="userInput" onAction="#readInputAndGetReply" prefHeight="41.0" prefWidth="340.0" maxWidth="Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" styleClass="bottom-input" />
-        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#readInputAndGetReply" prefHeight="41.0" prefWidth="76.0" maxWidth="Infinity" text="Send" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" styleClass="bottom-input" />
+        <HBox AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" styleClass="bottom-bar">
+            <children>
+                <TextField fx:id="userInput" onAction="#readInputAndGetReply" HBox.hgrow="ALWAYS" prefHeight="32.0" styleClass="bottom-input" />
+                <Button fx:id="sendButton" mnemonicParsing="false" onAction="#readInputAndGetReply" text="Send" styleClass="bottom-send" />
+            </children>
+        </HBox>
     </children>
 </AnchorPane>
