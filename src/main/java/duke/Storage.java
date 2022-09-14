@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,14 +14,20 @@ import duke.task.Task;
 import duke.task.Todo;
 
 public class Storage {
-    private java.nio.file.Path path;
+    private String path;
 
     public Storage(String filename) {
-        String home = System.getProperty("user.dir");
-        this.path = java.nio.file.Paths.get(home, "src", "data", filename);
+        this.path = filename;
 
     }
+    public String getFullPath() {
+        String home = System.getProperty("user.dir");
+        return String.valueOf(java.nio.file.Paths.get(home, "src", "data", this.path));
+    }
 
+    public void changeFile(String filename) {
+        this.path = filename;
+    }
     /**
      * Reads the file
      * @return a list of task that is in the file
@@ -28,7 +35,7 @@ public class Storage {
     public ArrayList<Task> readFile() {
         ArrayList<Task> data = new ArrayList<>();
         System.out.println();
-        File file = new File(String.valueOf(this.path));
+        File file = new File(getFullPath());
         checkFileExist();
         try {
             if (!checkFileExist()) {
@@ -60,7 +67,7 @@ public class Storage {
     }
 
     private boolean checkFileExist() {
-        return java.nio.file.Files.exists(this.path);
+        return java.nio.file.Files.exists(Path.of(getFullPath()));
     }
     /**
      * Updates the content of the file
@@ -72,7 +79,7 @@ public class Storage {
             dataString += String.format("%s\n", task.formatTaskString());
         }
         try {
-            FileWriter fileWriter = new FileWriter(String.valueOf(this.path));
+            FileWriter fileWriter = new FileWriter(getFullPath());
             fileWriter.write(dataString);
             fileWriter.close();
         } catch (IOException e) {
