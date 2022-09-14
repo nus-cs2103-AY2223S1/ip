@@ -18,15 +18,6 @@ public class TodoCommand extends AddCommand {
     }
 
     /**
-     * Returns the standard format of the Command.
-     * @return String of standard format.
-     */
-    @Override
-    public String getFormat() {
-        return "todo [Name]";
-    }
-
-    /**
      * Executes the Command with given Duke.
      * @param duke The target duke that the command takes effect.
      * @return The response of Duke.

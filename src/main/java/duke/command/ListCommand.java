@@ -35,15 +35,6 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Returns the standard format of the Command.
-     * @return String of standard format.
-     */
-    @Override
-    public String getFormat() {
-        return "list";
-    }
-
-    /**
      * Returns whether this command terminates Duke.
      * @return Returns whether this command terminates Duke.
      */

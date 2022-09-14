@@ -36,15 +36,6 @@ public class DeadlineCommand extends AddCommand {
     }
 
     /**
-     * Returns the standard format of the Command.
-     * @return String of standard format.
-     */
-    @Override
-    public String getFormat() {
-        return "deadline [Deadline Name] /by [Deadline Time(yyyy-MM-dd HH:mm)]";
-    }
-
-    /**
      * Executes the Command with given Duke.
      * @param duke The target duke that the command takes effect.
      * @return The response of Duke.

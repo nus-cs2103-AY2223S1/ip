@@ -1,7 +1,5 @@
 package duke.command;
 
-import java.time.LocalDateTime;
-
 import duke.Duke;
 
 /**
@@ -33,12 +31,6 @@ public abstract class Command {
      * @return The boolean indicating whether this command terminates Duke.
      */
     public abstract boolean isTerminated();
-
-    /**
-     * Returns the standard format of the Command.
-     * @return String of standard format.
-     */
-    public abstract String getFormat();
 
     /**
      * Returns the Action to be done by the Command.

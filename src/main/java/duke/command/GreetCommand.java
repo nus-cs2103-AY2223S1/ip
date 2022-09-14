@@ -34,15 +34,6 @@ public class GreetCommand extends Command {
     }
 
     /**
-     * Returns the standard format of the Command.
-     * @return String of standard format.
-     */
-    @Override
-    public String getFormat() {
-        return "greet";
-    }
-
-    /**
      * Returns whether this command terminates Duke.
      * @return Returns whether this command terminates Duke.
      */

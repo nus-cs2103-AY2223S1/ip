@@ -36,15 +36,6 @@ public class EventCommand extends AddCommand {
     }
 
     /**
-     * Returns the standard format of the Command.
-     * @return String of standard format.
-     */
-    @Override
-    public String getFormat() {
-        return "event [Event Name] /at [Event Time(yyyy-MM-dd HH:mm)]";
-    }
-
-    /**
      * Executes the Command with given Duke.
      * @param duke The target duke that the command takes effect.
      * @return The response of Duke.

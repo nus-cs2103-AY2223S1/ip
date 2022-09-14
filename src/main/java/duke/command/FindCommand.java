@@ -63,15 +63,6 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Returns the standard format of the Command.
-     * @return String of standard format.
-     */
-    @Override
-    public String getFormat() {
-        return "find [keyword]";
-    }
-
-    /**
      * Returns boolean indicating whether this object
      * is equivalent to another object.
      *
