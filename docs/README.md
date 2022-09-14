@@ -1,36 +1,38 @@
 # User Guide
 Dukey is a desktop chatbot app for managing and storing tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-- [Quick Start]()
-- [Features]()
-  - [Adding a todo task : ```todo```]()
-  - [Adding a deadline Task: ```deadline```]()
-  - [Adding an event Task: ```event```]()
-  - [Marking a task: ```mark```]()
-  - [Unmarking a task: ```unmark```]()
-  - [Deleting a task: ```delete```]()
-  - [Finding a task by description: ```find```]()
-  - [Listing all tasks: ```list```]()
-  - [Exiting the program: ```bye```]()
-  - [Saving the data]()
-- [FAQ]()
-- [Command Summary]()
+- [Quick Start](https://github.com/shaniceng/ip/tree/master/docs#quick-start)
+- [Features](https://github.com/shaniceng/ip/tree/master/docs#features)
+  - [Viewing help : ```help```](https://github.com/shaniceng/ip/tree/master/docs#viewing-help-help)
+  - [Adding a todo task : ```todo```](https://github.com/shaniceng/ip/tree/master/docs#adding-a-todo-task-todo)
+  - [Adding a deadline Task: ```deadline```](https://github.com/shaniceng/ip/tree/master/docs#adding-a-deadline-task-deadline)
+  - [Adding an event Task: ```event```](https://github.com/shaniceng/ip/tree/master/docs#adding-an-event-task-event)
+  - [Marking a task: ```mark```](https://github.com/shaniceng/ip/tree/master/docs#marking-a-task-mark)
+  - [Unmarking a task: ```unmark```](https://github.com/shaniceng/ip/tree/master/docs#unmarking-a-task-unmark)
+  - [Deleting a task: ```delete```](https://github.com/shaniceng/ip/tree/master/docs#deleting-a-task-delete)
+  - [Finding a task by description: ```find```](https://github.com/shaniceng/ip/tree/master/docs#finding-a-task-by-description-find)
+  - [Listing all tasks: ```list```](https://github.com/shaniceng/ip/tree/master/docs#listing-all-tasks-list)
+  - [Exiting the program: ```bye```](https://github.com/shaniceng/ip/tree/master/docs#exiting-the-program-bye)
+  - [Saving the data](https://github.com/shaniceng/ip/tree/master/docs#saving-the-data)
+- [FAQ](https://github.com/shaniceng/ip/tree/master/docs#faq)
+- [Command Summary](https://github.com/shaniceng/ip/tree/master/docs#command-summary)
 
 ## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest dukey.jar from [here]().
 3. Copy the file to the folder you want to use as the home folder for your AddressBook.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.  
 ![start image](./images/start.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
    Some example commands you can try:
     - list : Lists all the tasks.
-    - deadline submit assignment /by 25 Sep 2022 : Adds a deadline task submit assignment (by:25 Sep 2022) to the list.
-    - event family outing /at 30 Sep 2022 18:30 : Adds an event task family outing (at: 30 Sep 2022 18:30)
-    - mark 2 : Marks the task at index 1 on the list as done.
-    - delete 1 : Deletes the first at index 2 on the list.
-    - find cat : Finds a;; task with the matching keyword cat
-    - bye : Exits the app.
+    - todo buy apples : Adds a todo task buy apples to the list
+    - deadline submit assignment 3 /by 20-Jul-2022 15:00 : Adds a deadline task submit assignment 3 (by: 20/07/2022 03.00PM) to the list.
+    - event project meeting /at 13-Aug-2022 16:30 : Adds an event task project meeting (at: 30 Sep 2022 4.30PM)
+    - mark 2 : Marks the task at index 2 on the list as done.
+    - delete 2 : Deletes the task at index 2 on the list.
+    - find ta : Finds all tasks with the matching keyword ta
+    - bye : Exits the application.
 6. Refer to the Features below for details of each command.
 
 ## Features 
@@ -58,7 +60,8 @@ Example: ```event project meeting /at 18 Sep 2022 19:00```
 
 ### Marking a task: ```mark```
 Marks a task in the list as completed.  
-Format: ```mark {index}``` Example: ```mark 2``` marks the task at index 2 of the list    
+Format: ```mark {index}```   
+Example: ```mark 2``` marks the task at index 2 of the list    
 Expected outcome:
 ```
 [T][ ] buy apples
@@ -68,7 +71,8 @@ Expected outcome:
 
 ### Unmarking a task: ```unmark```
 Marks a task in the list as incompleted.
-Format: ```unmark {index}``` Example: ```unmark 2``` unmarks the task at index 2 of the list  
+Format: ```unmark {index}```   
+Example: ```unmark 2``` unmarks the task at index 2 of the list  
 Expected outcome:
 ```
 [T][ ] buy apples
@@ -87,7 +91,7 @@ Format: ```find {keyword}```
 
 ❗ All task description with the matching sequence of characters will be returned. e.g. ```ta``` will match with ```presentation``` and ```task```.  
 ❗ The search is case-insensitive. e.g. ```TASK``` will match ```task```.  
-Example: ```find TASK```
+Example: ```find TASK```  
 ![find image](./images/find.png)
 
 ### Listing all tasks: list
