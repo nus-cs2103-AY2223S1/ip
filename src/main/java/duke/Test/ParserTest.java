@@ -1,8 +1,8 @@
 package duke.Test;
 
 import duke.Duke;
-import duke.Exceptions.DukeException;
-import duke.Exceptions.NoSuchCommandException;
+import duke.exceptions.DukeException;
+import duke.exceptions.NoSuchCommandException;
 import duke.Parser;
 import org.testng.annotations.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

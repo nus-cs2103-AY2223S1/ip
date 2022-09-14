@@ -1,6 +1,6 @@
 package duke.Test;
-import duke.Task.Task;
-import duke.Task.Todo;
+import duke.task.Task;
+import duke.task.Todo;
 import org.testng.annotations.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

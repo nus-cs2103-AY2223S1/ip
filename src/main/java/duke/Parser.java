@@ -3,10 +3,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import duke.Exceptions.DukeException;
-import duke.Task.Event;
-import duke.Task.Task;
-import duke.Task.Todo;
+import duke.exceptions.DukeException;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 
 /**
