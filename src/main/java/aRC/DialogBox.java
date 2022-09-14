@@ -18,8 +18,10 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 /**
  * An example of a custom control using FXML.
@@ -28,7 +30,7 @@ import javafx.scene.shape.Circle;
  */
 public class DialogBox extends HBox {
     @FXML
-    private Label dialog;
+    private StackPane dialog;
     @FXML
     private ImageView displayPicture;
     private Circle clip = new Circle(50, 40, 40);
@@ -43,12 +45,26 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        configureDisplayPicture(img);
+        configureDialogBox(text);
+    }
+
+    private void configureDisplayPicture(Image img) {
         displayPicture.setImage(img);
         displayPicture.setPreserveRatio(true);
         displayPicture.setFitHeight(100);
         displayPicture.setClip(clip);
+    }
 
-        dialog.setText(text);
+    private void configureDialogBox(String txt) {
+        Rectangle box = new Rectangle(300, 100);
+        box.setFill(Color.LIGHTGREY);
+        Label text = new Label(txt);
+        box.heightProperty().bind(text.heightProperty());
+        box.widthProperty().bind(text.widthProperty());
+
+        dialog.getChildren().addAll(box, text);
+//        dialog.setText(text);
         dialog.setMinHeight(Region.USE_PREF_SIZE);
     }
 
@@ -65,14 +81,14 @@ public class DialogBox extends HBox {
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.setPadding(new Insets(10, 0, 10, 0));
-        db.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+//        db.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.setPadding(new Insets(10, 0, 10, 0));
-        db.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY)));
+//        db.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY)));
         db.flip();
         return db;
     }
