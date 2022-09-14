@@ -28,6 +28,7 @@ Try using the following commands:
 * reminder (gives the latest reminder)
 
 Sample sample results:
+
 ![Screenshot_2](https://user-images.githubusercontent.com/53963433/190105299-546af798-b096-4d54-86ba-b2f175c9db0d.png)
 
 ![Screenshot_1](https://user-images.githubusercontent.com/53963433/187814401-be9b142c-8053-4f86-8045-6e6dcfb06238.png)
