@@ -1,5 +1,7 @@
 package duke.tasks;
 
+import duke.support.DatesAndTimes;
+
 /**
  * Class for Event Task.
  *
@@ -17,6 +19,10 @@ public class Event extends Task {
      */
     public Event(String name, String time) {
         super(name, "E");
+        this.time = time;
+    }
+
+    public void snoozeDeadline(String time) {
         this.time = time;
     }
 

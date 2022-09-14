@@ -22,6 +22,10 @@ public class Deadline extends Task {
         this.time = new DatesAndTimes(time);
     }
 
+    public void snoozeDeadline(String time) {
+        this.time = new DatesAndTimes(time);
+    }
+
     @Override
     public String output() {
         return super.output() + " (by: " + this.time.output() + ")";

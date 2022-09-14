@@ -39,6 +39,10 @@ public class Task {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     /**
      * Marks a Task.
      */
@@ -69,6 +73,19 @@ public class Task {
      */
     public static void deleteTask(){
         NUMBER_TASKS--;
+    }
+
+    /**
+     * Snoozes task by allowing the user to postpone the deadline of the task.
+     *
+     * @param time The new deadline of the task.
+     */
+    public void snoozeTask(String time) {
+        if (this instanceof Event) {
+            ((Event) this).snoozeDeadline(time);
+        } else {
+            ((Deadline) this).snoozeDeadline(time);
+        }
     }
 
     /**

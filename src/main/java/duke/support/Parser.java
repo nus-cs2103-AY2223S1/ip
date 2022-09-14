@@ -49,6 +49,8 @@ public class Parser {
             instruction = new FindInstruction(this.taskList, input);
         } else if (a.equals("bye")) {
             instruction = new ByeInstruction();
+        } else if (a.contains("snooze")) {
+            instruction = new SnoozeInstruction(this.taskList, input);
         } else {
             instruction = new ExceptionInstruction();
         }

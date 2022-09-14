@@ -128,6 +128,30 @@ public class Ui {
     }
 
     /**
+     * Prints message displayed when a Deadline task is snoozed.
+     *
+     * @param snoozedTask The Deadline task being snoozed.
+     * @return The new description of the Deadline task that has been snoozed.
+     */
+    public static String printSnoozeDeadline(Task snoozedTask) {
+        return "Got it. I've snoozed this task:\n" +
+                snoozedTask.output() + "\n" +
+                "Now you have " + Task.getNumberTasks() + " tasks in the list.";
+    }
+
+    /**
+     * Prints message displayed when a Event task is snoozed.
+     *
+     * @param snoozedTask The Event task being snoozed.
+     * @return The new description of the Event task that has been snoozed.
+     */
+    public static String printSnoozeEvent(Task snoozedTask) {
+        return "Got it. I've snoozed this task:\n" +
+                snoozedTask.output() + "\n" +
+                "Now you have " + Task.getNumberTasks() + " tasks in the list.";
+    }
+
+    /**
      * Prints message displayed when there is an error saving the users input into a file.
      *
      * @return Description for file saving error.
