@@ -24,3 +24,9 @@ textfieldbg:focused {
     -fx-border-color: black;
 }
 
+.dialogbox {
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-color: #CAD6E8;
+    -fx-background-radius: 10px;
+}

@@ -19,6 +19,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setAnya(anya);
+            stage.setTitle("🥜 Anya 🥜️");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
