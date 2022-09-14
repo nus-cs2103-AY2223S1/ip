@@ -7,7 +7,7 @@ package Duke;
 */
 public class WagwanUi {
     private static final String LINE = "____________________________________________________________";
-    private static final String START_MESSAGE = " wagwan my g";
+    private static final String START_MESSAGE = " wagwan my g mandem's making bare Ps init";
     private static final String END_MESSAGE = " in a bit, peace brotha";
     static final String INVALID_COMMAND = " is not a valid command my g. " +
             "valid commands are list, mark (number), unmark (number), todo (task), deadline (task) /by yyyy/mm/dd," +
@@ -53,27 +53,29 @@ public class WagwanUi {
     }
 
     public static String wagwanLogo() {
-        return "##      ##    ###     ######   \n" +
-                "##  ##  ##   ## ##   ##    ##  \n" +
-                "##  ##  ##  ##   ##  ##        \n" +
-                "##  ##  ## ##     ## ##   #### \n" +
-                "##  ##  ## ######### ##    ##  \n" +
-                "##  ##  ## ##     ## ##    ##  \n" +
-                " ###  ###  ##     ##  ######   \n" +
-                "##      ##    ###    ##    ## \n" +
-                "##  ##  ##   ## ##   ###   ## \n" +
-                "##  ##  ##  ##   ##  ####  ## \n" +
-                "##  ##  ## ##     ## ## ## ## \n" +
-                "##  ##  ## ######### ##  #### \n" +
-                "##  ##  ## ##     ## ##   ### \n" +
-                " ###  ###  ##     ## ##    ## \n" +
-                "##     ## ##    ##  ######   \n" +
-                "###   ###  ##  ##  ##    ##  \n" +
-                "#### ####   ####   ##        \n" +
-                "## ### ##    ##    ##   #### \n" +
-                "##     ##    ##    ##    ##  \n" +
-                "##     ##    ##    ##    ##  \n" +
-                "##     ##    ##     ###### ";
+        return " ##      ##       ###        ######   \n" +
+                "##  ##  ##      ## ##      ##    ##  \n" +
+                "##  ##  ##     ##   ##     ##        \n" +
+                "##  ##  ##    ##     ##    ##   #### \n" +
+                "##  ##  ##    #########    ##    ##  \n" +
+                "##  ##  ##    ##     ##    ##    ##  \n" +
+                " ###  ###     ##     ##    ######   \n" +
+                "\n" +
+                "##      ##      ###        ##    ## \n" +
+                "##  ##  ##     ## ##       ###   ## \n" +
+                "##  ##  ##    ##   ##      ####  ## \n" +
+                "##  ##  ##    ##     ##    ## ## ## \n" +
+                "##  ##  ##    #########....##  #### \n" +
+                "##  ##  ##    ##     ##    ##   ### \n" +
+                " ###  ###     ##     ##    ##    ## \n" +
+                "\n" +
+                "##     ##     ##    ##     ######   \n" +
+                "###   ###     ##  ##      ##    ##  \n" +
+                "#### ####      ####      ##        \n" +
+                "## ### ##       ##       ##   #### \n" +
+                "##     ##       ##       ##     ##  \n" +
+                "##     ##       ##        ##    ##  \n" +
+                "##     ##       ##         ###### ";
     }
 
     /**

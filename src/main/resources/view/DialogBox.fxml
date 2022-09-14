@@ -4,13 +4,44 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<!--@author haochongtang-reused-->
+<fx:root
+        alignment="TOP_RIGHT"
+        maxHeight="1.7976931348623157E308"
+        maxWidth="1.7976931348623157E308"
+        prefWidth="400.0"
+        type="javafx.scene.layout.HBox"
+        spacing="10.0"
+        style="-fx-background-radius: 19; -fx-padding: 4;"
+        xmlns="http://javafx.com/javafx/8.0.171"
+        xmlns:fx="http://javafx.com/fxml/1"
+>
     <children>
-        <Label fx:id="dialog" text="Label" wrapText="true" />
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="dialog"
+               graphicTextGap="10.0"
+               minHeight="-Infinity"
+               style="-fx-background-color: #E5E4E2; -fx-text-fill: black; -fx-label-padding: 8; -fx-border-radius: 16; -fx-background-radius: 16;"
+               text="Label"
+               wrapText="true"
+        >
+            <font>
+                <Font name="Oxygen" size="13.0" />
+            </font>
+            <HBox.margin>
+                <Insets right="6.0" />
+            </HBox.margin>
+        </Label>
+        <ImageView fx:id="displayPicture"
+                   fitHeight="32.0"
+                   fitWidth="32.0"
+                   pickOnBounds="true"
+                   preserveRatio="true"
+                   style="-fx-background-radius: 23;"
+        />
     </children>
     <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+        <Insets bottom="15.0" left="5.0" right="5.0" top="100.0" />
     </padding>
 </fx:root>

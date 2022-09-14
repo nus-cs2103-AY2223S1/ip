@@ -69,7 +69,7 @@ public class TaskList {
         String initialDescription = task.description;
         task.updateDescription(newDescription);
         assert task.description != initialDescription : "Error updating description, please try again!";
-        return "OK !! I have updated task " + index + " with the new description : " + newDescription;
+        return " yessir, I have updated task " + index + " with the new description : " + newDescription;
     }
 
     /**
@@ -83,10 +83,10 @@ public class TaskList {
     public String deleteTask(int index) {
         int initialSize = this.tasks.size();
         Task task = this.tasks.get(index - 1);
-        tasks.remove(index);
+        tasks.remove(index - 1);
         assert tasks.size() == initialSize - 1 : WagwanUi.DELETE_TASK_ERROR;
-        return WagwanUi.sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
-                + "\n Now you have " + tasks.size() + " tasks in the list.");
+        return WagwanUi.sendMessage(" yessir, I have removed \n" + "   " + task.toString()
+                + "\n you have " + tasks.size() + " tasks in the list.");
     }
 
     /**
@@ -98,7 +98,7 @@ public class TaskList {
     public String markTaskAsDone(int index) {
         Task task = this.tasks.get(index - 1);
         task.markAsDone();
-        return WagwanUi.sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
+        return WagwanUi.sendMessage(" ayo im watching you man ! keep going brotha! I've marked this task as done:\n" + "   " + task.toString());
     }
 
     /**
@@ -110,7 +110,7 @@ public class TaskList {
     public String markTaskAsUndone(int index) {
         Task task = this.tasks.get(index - 1);
         task.markAsUndone();
-        return WagwanUi.sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
+        return WagwanUi.sendMessage(" cmon man you gotta do better! I've marked this task as undone:\n" + "   " + task.toString());
     }
 
     /**

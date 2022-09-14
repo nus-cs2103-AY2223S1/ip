@@ -36,8 +36,8 @@ public class MainWindow extends AnchorPane {
         );
     }
 
-    public void setDuke(Wagwan d) {
-        wagwan = d;
+    public void setWagwan(Wagwan w) {
+        wagwan = w;
     }
 
     /**
