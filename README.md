@@ -51,8 +51,8 @@ Example:
 `deadline project /by 12/08/2022 0600`
 
 - name and deadline must be seperated by `/`
-- deadline must be in the `dd/mm/yyyy hhmm` format
-- time is require for deadline and must be in 24-hour format
+- deadline **must** be in the `dd/mm/yyyy hhmm` format
+- time is **required** for deadline and must be in 24-hour format
 - if time is single digits then 0 must be inserted. e.g. `630` must be `0630`.
 
 ## Adding an Event task: `event`
@@ -65,8 +65,8 @@ Example:
 `event breakfast /at 12/10/2022 0800`
 
 - name and date must be seperated by `/`
-- date must be in the `dd/mm/yyyy hhmm` format
-- time is require for date and must be in 24-hour format
+- date **must** be in the `dd/mm/yyyy hhmm` format
+- time is **required** for date and must be in 24-hour format
 - if time is single digits then 0 must be inserted. e.g. `630` must be `0630`.
 
 ## Listing all tasks: `list`
