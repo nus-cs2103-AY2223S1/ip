@@ -1,12 +1,15 @@
 package doemon.command;
 
+import java.util.ArrayList;
+
 import doemon.storage.Storage;
 import doemon.task.Task;
 import doemon.task.TaskList;
 import doemon.ui.Ui;
 
-import java.util.ArrayList;
-
+/**
+ * Command to find tasks that match a user-inputted keyword.
+ */
 public class FindCommand extends Command {
     /** String to be used to find matching tasks. */
     private String keyword;

@@ -1,5 +1,8 @@
 package doemon.exception;
 
+/**
+ * Exception thrown when reading or writing to data file fails.
+ */
 public class TaskDataException extends DoemonException {
     /**
      * {@inheritDoc}

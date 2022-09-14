@@ -1,5 +1,8 @@
 package doemon.exception;
 
+/**
+ * Exception thrown when user inputs an invalid command.
+ */
 public class InvalidCommandException extends DoemonException {
     /**
      * {@inheritDoc}

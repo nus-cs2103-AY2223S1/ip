@@ -1,5 +1,9 @@
 package doemon.exception;
 
+/**
+ * Exception thrown when a deadline/event command is called without an
+ * accompanying date/time argument.
+ */
 public class MissingArgumentException extends DoemonException {
     /** A string indicating the type of task that threw this exception. */
     private String task;

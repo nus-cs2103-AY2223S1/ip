@@ -1,5 +1,8 @@
 package doemon.exception;
 
+/**
+ * Any exceptions thrown by execution of Doemon.
+ */
 public class DoemonException extends RuntimeException {
     /**
      * {@inheritDoc}

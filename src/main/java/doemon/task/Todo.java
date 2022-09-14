@@ -1,5 +1,8 @@
 package doemon.task;
 
+/**
+ * Todo task.
+ */
 public class Todo extends Task {
     /**
      * Constructor for Todo.

@@ -1,9 +1,12 @@
 package doemon.task;
 
-import doemon.exception.InvalidTaskNumberException;
-
 import java.util.ArrayList;
 
+import doemon.exception.InvalidTaskNumberException;
+
+/**
+ * Handles operations performed on list of tasks.
+ */
 public class TaskList {
 
     /** List of tasks. */

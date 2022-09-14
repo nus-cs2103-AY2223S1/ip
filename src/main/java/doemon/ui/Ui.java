@@ -1,24 +1,27 @@
 package doemon.ui;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import doemon.exception.DoemonException;
 import doemon.task.Task;
 import doemon.task.TaskList;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
+/**
+ * Handles Doemon chat bot message displays.
+ */
 public class Ui {
     /** Text art of Doemon. */
     private static final String logo =
-            "                       _______________\n" +
-            "                      /  --. --.      \\ \n" +
-            "                     /  | '| ' |   \\   \\ \n" +
-            "                    / /  `-O--'     \\   \\ \n" +
-            "                   |.  --  |  --     |   |\n" +
-            "                   |  --   |  --     |   |\n" +
-            "                    \\  (___|_______) /  /\n" +
-            "                     \\              /  /\n" +
-            "                       |== (t) ===|____";
+            "                       _______________\n"
+            + "                      /  --. --.      \\ \n"
+            + "                     /  | '| ' |   \\   \\ \n"
+            + "                    / /  `-O--'     \\   \\ \n"
+            + "                   |.  --  |  --     |   |\n"
+            + "                   |  --   |  --     |   |\n"
+            + "                    \\  (___|_______) /  /\n"
+            + "                     \\              /  /\n"
+            + "                       |== (t) ===|____";
     /** Introduction string that is printed when Doemon is started. */
     private static final String introStr = "Hello I'm\n" + logo + "\t\t\tDoemon!";
     /** String that is printed when Doemon is exited. */
@@ -82,8 +85,8 @@ public class Ui {
     public void showAddTask(Task task, int numTasks) {
         System.out.println(
                 output(String.format(
-                        "Alright! I have recorded this task on my bread:\n\t" +
-                                "  %s\n\tYou now have %d task(s) recorded on my bread.",
+                        "Alright! I have recorded this task on my bread:\n\t"
+                        + "  %s\n\tYou now have %d task(s) recorded on my bread.",
                         task.toString(),
                         numTasks)));
     }

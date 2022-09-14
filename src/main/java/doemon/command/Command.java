@@ -4,6 +4,9 @@ import doemon.storage.Storage;
 import doemon.task.TaskList;
 import doemon.ui.Ui;
 
+/**
+ * Commands executed by user-input.
+ */
 public abstract class Command {
     /**
      * Executes the command.

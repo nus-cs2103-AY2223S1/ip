@@ -1,11 +1,5 @@
 package doemon.storage;
 
-import doemon.exception.TaskDataException;
-import doemon.task.Deadline;
-import doemon.task.Event;
-import doemon.task.Task;
-import doemon.task.Todo;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,6 +8,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import doemon.exception.TaskDataException;
+import doemon.task.Deadline;
+import doemon.task.Event;
+import doemon.task.Task;
+import doemon.task.Todo;
+
+/**
+ * Handles storing and loading of tasks into a specified data file.
+ */
 public class Storage {
     /** Path of the data file to write to. */
     private String filePath;
