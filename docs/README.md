@@ -140,6 +140,7 @@ inputting this in terminal
 
 ------------
 ## Command Summary
+
 | Item      | Value |
 | --------- | -----:|
 | Computer  | $1600 |
