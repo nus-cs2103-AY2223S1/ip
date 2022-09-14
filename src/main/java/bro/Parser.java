@@ -7,13 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import bro.command.AddCommand;
-import bro.command.Command;
-import bro.command.DeleteCommand;
-import bro.command.ExitCommand;
-import bro.command.FindCommand;
-import bro.command.ListCommand;
-import bro.command.ModifyCommand;
+import bro.command.*;
 import bro.task.Deadline;
 import bro.task.Event;
 import bro.task.Todo;
@@ -36,6 +30,8 @@ public class Parser {
         this.checkEmptyInput(str);
         this.checkInput(input, str.split(" ").length);
         switch (input) {
+        case "help":
+            return new HelpCommand();
         case "list":
             return new ListCommand();
         case "mark":
