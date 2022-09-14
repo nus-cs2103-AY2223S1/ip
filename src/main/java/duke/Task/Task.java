@@ -6,11 +6,13 @@ public abstract class Task {
     protected boolean isDone;
 
     public Task(String description) {
+        assert(!description.isEmpty());
         this.description = description;
         this.isDone = false;
     }
 
     public Task(String description, Boolean isDone) {
+        assert(!description.isEmpty());
         this.description = description;
         this.isDone = isDone;
     }
