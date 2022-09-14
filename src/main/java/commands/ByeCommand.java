@@ -2,7 +2,7 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
+import ui.Ui;
 
 /**
  * Terminates the chatbot program after execution, and saves the current tasks to some local storage.

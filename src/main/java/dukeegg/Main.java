@@ -7,9 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import ui.MainWindow;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for the chatbot using FXML.
  */
 public class Main extends Application {
     private static final String TITLE = "Dukegg Chatbot";
@@ -25,6 +26,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setTitle(TITLE);
             fxmlLoader.<MainWindow>getController().setDuke(this.dukegg);
+            scene.getStylesheets().add("/styles/styles.css");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

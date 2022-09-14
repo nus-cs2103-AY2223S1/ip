@@ -1,5 +1,6 @@
-package dukeegg;
+package ui;
 
+import dukeegg.TaskList;
 import task.Task;
 
 /**

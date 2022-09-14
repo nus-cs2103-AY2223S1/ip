@@ -5,6 +5,7 @@ import exceptions.DukeException;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.util.Duration;
+import ui.Ui;
 
 /**
  * Main class for chatbot.

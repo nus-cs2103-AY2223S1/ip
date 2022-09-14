@@ -1,7 +1,8 @@
-package dukeegg;
+package ui;
 
 import java.util.Objects;
 
+import dukeegg.Dukegg;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -51,8 +52,8 @@ public class MainWindow extends AnchorPane {
         String input = this.userInput.getText();
         String response = this.dukegg.getResponse(input);
         this.dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, this.userImage),
-                DialogBox.getDukeDialog(response, this.dukeImage)
+                new UserDialogBox(input, this.userImage),
+                new ChatbotDialogBox(response, this.dukeImage)
         );
         this.userInput.clear();
     }

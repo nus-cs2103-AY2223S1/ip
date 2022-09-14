@@ -2,7 +2,7 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
+import ui.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDescriptionException;
 import task.TaskType;

@@ -5,7 +5,7 @@ import java.time.format.DateTimeParseException;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
+import ui.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDateTimeException;
 import exceptions.EmptyDescriptionException;
