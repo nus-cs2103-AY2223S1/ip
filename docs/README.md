@@ -60,7 +60,8 @@ Example: ```event project meeting /at 18 Sep 2022 19:00```
 
 ### Marking a task: ```mark```
 Marks a task in the list as completed.  
-Format: ```mark {index}``` Example: ```mark 2``` marks the task at index 2 of the list    
+Format: ```mark {index}```   
+Example: ```mark 2``` marks the task at index 2 of the list    
 Expected outcome:
 ```
 [T][ ] buy apples
@@ -70,7 +71,8 @@ Expected outcome:
 
 ### Unmarking a task: ```unmark```
 Marks a task in the list as incompleted.
-Format: ```unmark {index}``` Example: ```unmark 2``` unmarks the task at index 2 of the list  
+Format: ```unmark {index}```   
+Example: ```unmark 2``` unmarks the task at index 2 of the list  
 Expected outcome:
 ```
 [T][ ] buy apples
