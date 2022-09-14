@@ -1,0 +1,3 @@
+T|0|borrow book
+D|0|deadline return book| 2019-10-15
+T|0|publicity for odac

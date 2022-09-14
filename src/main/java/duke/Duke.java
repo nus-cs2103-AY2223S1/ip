@@ -7,19 +7,11 @@ import duke.util.StoredTasks;
 import duke.util.Ui;
 import duke.util.command.Command;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
+import javafx.util.Duration;
 
 public class Duke {
-
-    private ScrollPane scrollPane;
-    private VBox dialogContainer;
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
 
     private static final String LINE = "\n----------------------------------------------------------------\n";
     private Ui ui;
@@ -42,33 +34,20 @@ public class Duke {
         }
     }
 
-
-
-//
-    public void run() {
-        while (true) {
-            String temp = this.ui.readInput();
-            try {
-                if (temp.equals("bye")) {
-                    System.out.println(LINE + "Bye bro! Have a nice day!" + LINE);
-                    this.ui.closeInput();
-                    this.storedTasks.save(taskList);
-                    break;
-                }
-                Parser.parseCommand(temp);
-            } catch (DukeException err) {
-                this.ui.closeInput();
-                this.storedTasks.save(taskList);
-                System.out.println(err);
-                break;
-            }
-
-        }
+    private void executeDelay() {
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        delay.setOnFinished(event -> Platform.exit());
+        delay.play();
     }
 
     public String getResponse(String input) {
         try {
             Command command = Parser.parseCommand(input);
+            if (input.equals("bye")) {
+                System.out.println(command.handleCommand(taskList, storedTasks));
+                executeDelay();
+            }
+
             return command.handleCommand(taskList, storedTasks);
         } catch (DukeException de) {
             this.storedTasks.save(this.taskList);
