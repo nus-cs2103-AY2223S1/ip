@@ -18,20 +18,8 @@ public class Ui {
     public Ui() {}
 
     /**
-     * Greets a first time user.
+     * Greets a user.
      */
-    public static String greetNew() {
-        return "Hello from\n" + LOGO + "Nice to meet you, Master.\n"
-                + "I have created a new list for you.";
-    }
-
-    /**
-     * Greets a returning user.
-     */
-    public static String greetReturning() {
-        return "Hello from\n" + LOGO + "Welcome back, Master.\n";
-    }
-
     public static String greet() {
         return "Hello from\n" + LOGO;
     }
