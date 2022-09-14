@@ -97,8 +97,8 @@ Adds an `deadline` task to your task list.
 
 Format: `deadline TASK_NAME /by DATE TIME` to add a deadline named `TASK_NAME` at a specified `DATE` and `TIME` to your list.
 
-####Date format: `dd-MM-yyyy`
-####Time format: `HHmm`
+#### Date format: `dd-MM-yyyy`
+#### Time format: `HHmm`
 
 **Example of usage:**
 
@@ -116,8 +116,8 @@ Adds an `event` task to your task list.
 
 Format: `event TASK_NAME /at DATE TIME` to add an event named `TASK_NAME` at a specified `DATE` and `TIME` to your list.
 
-####Date format: `dd-MM-yyyy`
-####Time format: `HHmm`
+#### Date format: `dd-MM-yyyy`
+#### Time format: `HHmm`
 
 **Example of usage:**
 
@@ -192,7 +192,7 @@ Finds all tasks that are due at a given `DATE`.
 
 Format: `deadlines DATE`
 
-####Date format: `dd-MM-yyyy`
+#### Date format: `dd-MM-yyyy`
 
 **Example of usage:**
 
