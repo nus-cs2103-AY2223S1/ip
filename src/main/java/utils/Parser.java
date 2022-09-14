@@ -24,6 +24,11 @@ public class Parser {
      * inputted command with the list of commands available.
      * Then, the function will execute the relevant actions according to the command.
      *
+     * Reason for long method:
+     * This method is not decomposed into smaller methods to improve readability
+     * by centralizing the parsing processes. By doing so, all the methods called
+     * for each command can be seen at a glance in one place.
+     *
      * @param tasks list of Task objects
      */
     public String parseCommand(List<Task> tasks, String textInput) {
