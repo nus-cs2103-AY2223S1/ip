@@ -15,7 +15,7 @@ for a short summary on the differences between CLI and GUI.
     - [Deadline `deadline`](#deadline-deadline)
   - [Listing your tasks : `list`](#listing-tasks-list)
   - [Deleting your tasks : `delete`](#deleting-your-tasks--delete)
-  - [Finding your tasks : `find`](#finding-your-tasks--find-hr)
+  - [Finding your tasks : `find`](#finding-your-tasks--find)
   - [Marking your tasks as done : `mark`](#marking-your-tasks-as-done-mark)
   - [Unmark your tasks : `unmark`](#unmark-your-tasks-unmark)
   - [Rescheduling your tasks (deadlines) : `reschedule`](#rescheduling-your-tasks-reschedule)
@@ -217,17 +217,17 @@ You have just rescheduled the following task:
 
 ## Command Summary
 
-| Action                                                         |       Format       | Example                         | Output                                                                                                                                         | 
-|----------------------------------------------------------------|:------------------:|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Add ToDo](#todo--todo)                                        | `todo <TASK_NAME>` | `todo Homework`                 | Got it. I've added this task: <br>[T][ ] Homework <br> Now you have 2 tasks in the list.                                                       |
- | [Add Event](#event-event)                                      | `event <EVENT_NAME> /at <PLACE_NAME>` | `event Concert /at Buona Vista` | Got it. I've added this task: <br> [E][ ] Concert (at: YST Conservatory) <br> Now you have 2 tasks in the list.                                |
- | [Add Deadline](#deadline-deadline)                             | `deadline <TASK_NAME> /by <YYYY-MM-DD>`  | `deadline iP /by 2022-09-16`    | Got it. I've added this task: <br>[D][ ] iP (by: 2022-09-16) <br> Now you have 3 tasks in the list.                                            |
- | [Listing tasks](#listing-tasks-list)                           | `list` | `list`                          | Here are the tasks in your list: <br> 1. [T][ ] Run in the morning <br> 2. [D][ ] iP (by: 2022-09-16) <br> 3. [E][ ] Concert (at: Buona Vista) |
-| [Deleting your tasks](#listing-tasks-list)                     | `delete <TASK_INDEX>` | `delete 2`                      | Noted. I've removed this task: <br>[D][ ] iP (by: 2022-09-16) <br>Now you have 2 tasks in the list. |
-| [Finding your tasks](#deleting-your-tasks--delete)             | `find <KEYWORD>` | `find morning`                  | Here are the matching tasks in your list: <br>1. [T][ ] Run in the morning |
+| Action                                                    |       Format       | Example                         | Output                                                                                                                                         | 
+|-----------------------------------------------------------|:------------------:|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Add ToDo](#todo--todo)                                   | `todo <TASK_NAME>` | `todo Homework`                 | Got it. I've added this task: <br>[T][ ] Homework <br> Now you have 2 tasks in the list.                                                       |
+ | [Add Event](#event-event)                                 | `event <EVENT_NAME> /at <PLACE_NAME>` | `event Concert /at Buona Vista` | Got it. I've added this task: <br> [E][ ] Concert (at: YST Conservatory) <br> Now you have 2 tasks in the list.                                |
+ | [Add Deadline](#deadline-deadline)                        | `deadline <TASK_NAME> /by <YYYY-MM-DD>`  | `deadline iP /by 2022-09-16`    | Got it. I've added this task: <br>[D][ ] iP (by: 2022-09-16) <br> Now you have 3 tasks in the list.                                            |
+ | [Listing tasks](#listing-tasks-list)                      | `list` | `list`                          | Here are the tasks in your list: <br> 1. [T][ ] Run in the morning <br> 2. [D][ ] iP (by: 2022-09-16) <br> 3. [E][ ] Concert (at: Buona Vista) |
+| [Deleting your tasks](#deleting-your-tasks--delete)                                   | `delete <TASK_INDEX>` | `delete 2`                      | Noted. I've removed this task: <br>[D][ ] iP (by: 2022-09-16) <br>Now you have 2 tasks in the list. |
+| [Finding your tasks](#finding-your-tasks--find)         | `find <KEYWORD>` | `find morning`                  | Here are the matching tasks in your list: <br>1. [T][ ] Run in the morning |
 | [Marking your tasks as done](#marking-your-tasks-as-done-mark) | `mark <TASK_INDEX>` | `mark 2` | Nice! I've marked this task as done: <br> [D][X] iP (by: 2022-09-16) |
-| [Unmark your tasks](#unmark-your-tasks-unmark)                 | `unmark <TASK_INDEX>` | `unmark 2` | OK, I've marked this task as not done yet: <br> [D][ ] iP (by: 2022-09-16) |
-| [Rescheduling your tasks](#rescheduling-your-tasks-reschedule)                                    | `reschedule <TASK_INDEX> /by <YYYY-MM-DD>` | `reschedule 2 /by 2022-09-18` | You have just rescheduled the following task: <br>[D][ ] iP (by: 2022-09-18) |
+| [Unmark your tasks](#unmark-your-tasks-unmark)            | `unmark <TASK_INDEX>` | `unmark 2` | OK, I've marked this task as not done yet: <br> [D][ ] iP (by: 2022-09-16) |
+| [Rescheduling your tasks](#rescheduling-your-tasks-reschedule) | `reschedule <TASK_INDEX> /by <YYYY-MM-DD>` | `reschedule 2 /by 2022-09-18` | You have just rescheduled the following task: <br>[D][ ] iP (by: 2022-09-18) |
 
 ## Uncovered Issues?
 If you have any other issue that has not been covered in this guide, please 
