@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.InvalidSyntaxException;
 import duke.tasks.TaskList;
 
 /**
@@ -20,7 +21,7 @@ public class CommandByeHandler extends CommandHandler {
         if (value == null && flag == null && additionalValue == null) {
             return;
         }
-        throw new DukeException("Correct usage: bye");
+        throw new InvalidSyntaxException("Correct usage: bye");
     }
 
     /**

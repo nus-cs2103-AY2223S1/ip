@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.InvalidSyntaxException;
 import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
@@ -25,12 +26,13 @@ public class CommandEventHandler extends CommandHandler {
      */
     public void checkValid() throws DukeException {
         if (value == null || !flag.equals("at") || additionalValue == null) {
-            throw new DukeException("Correct usage: event dinner /at 24/04/2019 1600");
+            throw new InvalidSyntaxException("Correct usage: event dinner /at 24/04/2019 1600");
         }
         try {
             LocalDateTime.parse(this.additionalValue, DateTime.FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please input a valid date!");
+            throw new DukeException("Please input a valid date!\n"
+                    + "Correct usage: event dinner /at 24/04/2019 1600");
         }
     }
 

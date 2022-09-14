@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.InvalidSyntaxException;
 import duke.tasks.TaskList;
 
 
@@ -21,7 +22,7 @@ public class CommandDeleteHandler extends CommandHandler {
         if (flag == null && additionalValue == null) {
             return;
         }
-        throw new DukeException("Correct usage: delete 1");
+        throw new InvalidSyntaxException("Correct usage: delete 1");
     }
 
     /**

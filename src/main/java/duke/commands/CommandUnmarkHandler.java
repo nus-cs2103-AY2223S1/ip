@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.InvalidSyntaxException;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
@@ -21,7 +22,7 @@ public class CommandUnmarkHandler extends CommandHandler {
         if (flag == null && additionalValue == null) {
             return;
         }
-        throw new DukeException("Correct usage: unmark 1");
+        throw new InvalidSyntaxException("Correct usage: unmark 1");
     }
 
     /**

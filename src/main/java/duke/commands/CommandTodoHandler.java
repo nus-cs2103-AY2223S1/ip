@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.InvalidSyntaxException;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.tasks.ToDo;
@@ -22,7 +23,7 @@ public class CommandTodoHandler extends CommandHandler {
         if (value != null && flag == null && additionalValue == null) {
             return;
         }
-        throw new DukeException("Correct usage: todo read book");
+        throw new InvalidSyntaxException("Correct usage: todo read book");
     }
 
     /**

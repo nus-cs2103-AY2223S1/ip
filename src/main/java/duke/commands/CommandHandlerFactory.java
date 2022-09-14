@@ -3,6 +3,7 @@ package duke.commands;
 import java.util.List;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.InvalidSyntaxException;
 
 /**
  * Parses the command that is input by user and returns the corresponding handler based on the command given.
@@ -37,7 +38,7 @@ public class CommandHandlerFactory {
         case BYE:
             return new CommandByeHandler(value, flag, additionalValue);
         default:
-            throw new DukeException("No such command!");
+            throw new InvalidSyntaxException("No such command!");
         }
     }
 }
