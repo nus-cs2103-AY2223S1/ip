@@ -22,7 +22,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Execute method that is used to find a task of a given name.
+     * Returns a string after method is used to find a task of a given name.
      *
      * @param taskList
      * @param archiveTaskList

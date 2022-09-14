@@ -22,7 +22,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Execute method that is used to unmark a task in a tasklist, save the task
+     * Returns a string after method unmark a task in a tasklist, save the task
      * and print out the task that was unmarked through tasklist, ui and storage.
      *
      * @param taskList

@@ -15,7 +15,7 @@ public class Todo extends Task {
     }
 
     /**
-     * writeData method that formats the information in todo
+     * Returns a string after method formats the information in todo
      *
      * @return String
      */
@@ -26,7 +26,7 @@ public class Todo extends Task {
     }
 
     /**
-     * toString method that formats the information in todo
+     * Returns a string method that formats the information in Todo
      *
      * @return String
      */

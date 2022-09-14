@@ -6,34 +6,30 @@ package duke.main;
 public class Ui {
 
     /**
-     * greet method that Sends a greeting to the user
+     * Returns a string greeting to the user
      *
+     * @return string greeting
      */
     public static String greet() {
-        return "Hello! I'm BotChat123 \nWhat can I do for you?"
-                + "\n You can use list to see everything in the list."
-                + "\n\ntodo <todo> to add a todo task in the list"
-                + "\n\nevent <event> at <time> to add a event in the list"
-                + "\n\ndeadline <deadline> by <time> to add a deadline in the list"
-                + "\n\nwhere time is in YYYY-MM-DD format."
-                + "\n\nmark <num> to mark a task as done"
-                + "\n\nunmark <num> to mark a task as not done"
-                + "\n\nfind <taskname> to find a task"
-                + "\n\nbye to quit the bot!";
+        return "Hello! I'm BotChat123. \nI am glad that you are using me"
+                + "Please read my user guide if you are wondering to use me."
+                + " \nWhat can I do for you? :)";
     }
 
     /**
-     * bye method that is sent on termination of conversation with the user
+     * Returns a string bye method
      *
+     * @return string bye
      */
     public static String bye() {
         return "Bye. Please chat with me again!";
     }
 
     /**
-     * list method that lists out the tasks in task list
+     * Returns a list of tasks in the tasklist
      *
      * @param taskList
+     * @return string tasks
      */
     public static String list(TaskList taskList) {
         String output = "";

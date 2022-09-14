@@ -23,7 +23,7 @@ public class Events extends Task {
     }
 
     /**
-     * writeData method that formats the information in event
+     * Returns a string after method formats the information in event
      *
      * @return String
      */
@@ -34,7 +34,7 @@ public class Events extends Task {
     }
 
     /**
-     * toString method that formats the information in event
+     * Returns a string method that formats the information in event
      *
      * @return String
      */
@@ -47,7 +47,7 @@ public class Events extends Task {
     }
 
     /**
-     * a method that checks that date field is non null
+     * Returns a True if date field is non null
      *
      * @return boolean
      */

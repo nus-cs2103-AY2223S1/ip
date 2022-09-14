@@ -33,6 +33,11 @@ public abstract class Task {
 
     public abstract String writeData();
 
+    /**
+     * Returns a string method that formats the information
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         String mark = isDone ? "X" : " ";

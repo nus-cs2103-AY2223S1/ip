@@ -31,8 +31,9 @@ public class AddDeadlineCommand extends Command {
     }
 
     /**
-     * Execute method that is used to add a deadline task to a tasklist, save the deadline
-     * and print out the deadline that was added through tasklist, ui and storage.
+     * Returns a string after method is used to add a deadline task
+     * to a tasklist, save the deadline and print out the deadline
+     * that was added through tasklist, ui and storage.
      *
      * @param taskList
      * @param archiveTaskList

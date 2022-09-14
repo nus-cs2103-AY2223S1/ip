@@ -21,7 +21,7 @@ public class TaskList {
     }
 
     /**
-     * AddTasks method which adds a task into the TaskList
+     * Adds tasks into tasklist
      *
      * @param task
      */
@@ -30,7 +30,7 @@ public class TaskList {
     }
 
     /**
-     * deleteTasks method which deletes a task into the TaskList based on its index
+     * Removes tasks from tasklist
      *
      * @param index
      */
@@ -39,7 +39,7 @@ public class TaskList {
     }
 
     /**
-     * Get a task object at a specified index within duke.main.TaskList
+     * Returns tasks found in the tasklist
      *
      * @param index
      * @return Task
@@ -49,7 +49,7 @@ public class TaskList {
     }
 
     /**
-     * Get the length of the taskList
+     * Returns the length of the taskList
      *
      * @return int
      */

@@ -35,7 +35,8 @@ public class Storage {
     }
 
     /**
-     * checks if a file exists
+     * Returns a True if object is an existing file.
+     * Otherwise, False
      *
      * @return boolean
      */
@@ -44,7 +45,8 @@ public class Storage {
     }
 
     /**
-     * checks if a directory exists
+     * Returns a True if object is an existing directory.
+     * Otherwise, False
      *
      * @return boolean
      */
@@ -55,7 +57,7 @@ public class Storage {
     }
 
     /**
-     * taskParser that decides what kind of tasks are initialised
+     * Returns task that has been initialised
      *
      * @param line
      * @return Task
@@ -91,7 +93,7 @@ public class Storage {
     }
 
     /**
-     * loadTasks method that checks and loads all task from a text file
+     * Returns an Arraylist of tasks
      *
      * @return ArrayList of Tasks
      */
@@ -127,7 +129,7 @@ public class Storage {
     }
 
     /**
-     * saveTasks method that saves changes to the tasklist into a duke.main.Duke.txt file
+     * Saves tasks into a file
      *
      * @param taskList
      */

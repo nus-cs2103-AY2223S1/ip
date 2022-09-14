@@ -24,8 +24,9 @@ public class AddTodoCommand extends Command {
     }
 
     /**
-     * Execute method that is used to add a Todo task to a tasklist, save the Todo
-     * and print out the Todo that was added through tasklist, ui and storage.
+     * Returns a string after method is used to add a Todo task to a tasklist,
+     * save the Todo and print out the Todo that was added through
+     * tasklist, ui and storage.
      *
      * @param taskList
      * @param archiveTaskList

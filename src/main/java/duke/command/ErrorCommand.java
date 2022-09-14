@@ -11,7 +11,8 @@ import duke.main.Ui;
 public class ErrorCommand extends Command {
 
     /**
-     * Execute method that is used print out an error message to inform the User that they
+     * Returns a string after method is used to print out an error message
+     * to inform the User that they
      * have inputted wrongly.
      *
      * @param taskList

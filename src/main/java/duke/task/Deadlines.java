@@ -22,7 +22,7 @@ public class Deadlines extends Task {
     }
 
     /**
-     * writeData method that formats the information in deadline
+     * Returns a string after method formats the information in deadline
      *
      * @return String
      */
@@ -33,7 +33,7 @@ public class Deadlines extends Task {
     }
 
     /**
-     * toString method that formats the information in deadline
+     * Returns a string method that formats the information in deadline
      *
      * @return String
      */
@@ -46,7 +46,7 @@ public class Deadlines extends Task {
     }
 
     /**
-     * a method that checks that date field is non null
+     * Returns a True if date field is non null
      *
      * @return boolean
      */

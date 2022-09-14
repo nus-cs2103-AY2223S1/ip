@@ -30,8 +30,9 @@ public class AddEventsCommand extends Command {
         this.localDate = LocalDate.parse(task.substring(dateIndex));
     }
     /**
-     * Execute method that is used to add an Event task to a tasklist, save the event
-     * and print out the event that was added through tasklist, ui and storage.
+     * Returns a string after  method is used to add an Event task to a tasklist,
+     * save the event and print out the event that was added through tasklist,
+     * ui and storage.
      *
     * @param taskList
      * @param archiveTaskList

@@ -22,8 +22,7 @@ import duke.command.UnmarkCommand;
 public class Parser {
 
     /**
-     * parse method that reads the input that was given to it and decides which type of
-     * to instantiate as an object and return it
+     * Returns a command based on the input given
      *
      * @param input
      * @return Command

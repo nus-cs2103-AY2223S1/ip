@@ -22,7 +22,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Execute method that is used to mark a task in a tasklist, save the task
+     * Return a string after method marks a task in a tasklist, save the task
      * and print out the task that was marked through tasklist, ui and storage.
      *
      * @param taskList

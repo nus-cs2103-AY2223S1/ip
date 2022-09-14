@@ -11,8 +11,8 @@ import duke.main.Ui;
 public abstract class Command {
 
     /**
-     * Execute will add a task into the tasklist, save the new tasklist in storage
-     * and print out what was added
+     * Returns a string after method adds a task into the tasklist,
+     * save the new tasklist in storage and print out what was added
      *
      * @param taskList
      * @param archiveTaskList

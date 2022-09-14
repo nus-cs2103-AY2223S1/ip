@@ -34,6 +34,12 @@ public class Duke {
         ui.list(taskList);
     }
 
+    /**
+     * Returns a string response based on the input
+     *
+     * @param input
+     * @return String
+     */
     public String getResponse(String input) {
         try {
             Command command = parser.parse(input);
@@ -55,10 +61,20 @@ public class Duke {
         }
     }
 
+    /**
+     * Reutrns the Ui object
+     *
+     * @return Ui
+     */
     public Ui getUi() {
         return this.ui;
     }
 
+    /**
+     * Returns True if bye command has ran
+     *
+     * @return boolean
+     */
     public boolean isBye() {
         return isBye;
     }

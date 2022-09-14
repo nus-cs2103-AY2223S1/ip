@@ -11,7 +11,7 @@ import duke.main.Ui;
 public class ListCommand extends Command {
 
     /**
-     * Execute method that is used to list all tasks in the tasklist through
+     * Returns a string after method list all tasks in the tasklist through
      * tasklist, ui and storage.
      *
      * @param taskList

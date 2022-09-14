@@ -24,8 +24,9 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Execute method that is used to delete a task from the tasklist, save the new tasks
-     * and print out the tasks that was delete through tasklist, ui and storage.
+     * Returns a string after method is used to delete a task from the
+     * tasklist, save the new tasks and print out the tasks that was
+     * deleted through tasklist, ui and storage.
      *
     * @param taskList
      * @param archiveTaskList

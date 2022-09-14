@@ -11,7 +11,8 @@ import duke.main.Ui;
 public class ByeCommand extends Command {
 
     /**
-     * Execute method that is used to print out a bye message through ui.
+     * Returns a string after method is used to print out a bye message
+     * through ui.
      *
      * @param taskList
      * @param archiveTaskList
