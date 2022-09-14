@@ -11,6 +11,8 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 public class MessageContainer extends HBox {
     @FXML
@@ -18,6 +20,9 @@ public class MessageContainer extends HBox {
 
     @FXML
     private ImageView profile;
+
+    @FXML
+    private Circle circleProfile;
 
     private MessageContainer(String message, Image profile) {
         try {
@@ -28,9 +33,8 @@ public class MessageContainer extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        circleProfile.setFill(new ImagePattern(profile));
         this.message.setText(message);
-        this.profile.setImage(profile);
     }
 
     private void moveLeft() {

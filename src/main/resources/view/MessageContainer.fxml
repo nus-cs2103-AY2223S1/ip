@@ -2,16 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
 
-<fx:root alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" maxHeight="300" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="300" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="message" text="Label" wrapText="true" maxHeight="300"/>
-        <ImageView fx:id="profile" fitHeight="99.0" pickOnBounds="true" preserveRatio="true">
+        <Label fx:id="message" alignment="CENTER" maxHeight="300" prefHeight="99.0" prefWidth="298.0" style="-fx-border-color: gray; -fx-border-radius: 10px; -fx-label-padding: 10px;" text="Label" wrapText="true" />
+      <Circle fx:id="circleProfile" fill="#1f93ff00" radius="36.0" stroke="BLACK" strokeType="INSIDE">
          <HBox.margin>
-            <Insets left="30.0" right="30.0" />
-         </HBox.margin></ImageView>
+            <Insets left="15.0" right="15.0" />
+         </HBox.margin>
+      </Circle>
     </children>
     <padding>
         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
