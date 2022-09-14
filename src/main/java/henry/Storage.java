@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,10 @@ import util.TaskUtils;
  */
 public class Storage {
 
-    private final String filePath;
+    // The text file is created in the same directory as the jar file.
+    private static final String FILE_PATH =
+        Paths.get(System.getProperty("user.dir"), "henryData", "henry.txt").toString();
+    private static final String DIR_PATH = Paths.get(System.getProperty("user.dir"), "henryData").toString();
     private List<Task> tasks;
 
     /**
@@ -26,15 +30,15 @@ public class Storage {
      * read the file at the specified filepath. If the file exists,
      * the tasks will be loaded from the file. If not, a new file will be
      * created at the filepath.
-     *
-     * @param filePath the filepath where the task list is stored.
      */
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage() {
 
         try {
-            File savedList = new File(filePath);
-
+            File savedList = new File(FILE_PATH);
+            File directory = new File(DIR_PATH);
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
             if (savedList.createNewFile()) {
                 tasks = new ArrayList<>();
             } else {
@@ -60,7 +64,11 @@ public class Storage {
         List<Task> tasks = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
-            Task parsed = TaskUtils.parseTask(scanner.nextLine());
+            String line = scanner.nextLine();
+            if (line.isBlank()) {
+                break;
+            }
+            Task parsed = TaskUtils.parseTask(line);
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime dateTime = parsed.getLocalDateTime();
             if (!dateTime.isBefore(now)) {
@@ -77,7 +85,7 @@ public class Storage {
      * @param textToAdd the text to be appended to the file
      */
     public void appendToFile(String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
+        FileWriter fw = new FileWriter(FILE_PATH);
         fw.write(textToAdd + "\n");
         fw.close();
     }

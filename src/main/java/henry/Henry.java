@@ -1,7 +1,6 @@
 package henry;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Objects;
 
 import command.Command;
@@ -16,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import util.TextUtils;
@@ -26,10 +24,6 @@ import util.TextUtils;
  * All functions of Henry pass through this class.
  */
 public class Henry extends Application {
-
-    private static final String home = System.getProperty("user.home");
-    // The text file is created on the user's Desktop
-    private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
     private final Storage storage;
     private final TaskList taskList;
     private final Parser parser;
@@ -41,7 +35,7 @@ public class Henry extends Application {
      * and Parser classes are also created.
      */
     public Henry() {
-        storage = new Storage(FILE_PATH.toString());
+        storage = new Storage();
         taskList = new TaskList(storage.load());
         parser = new Parser();
     }
