@@ -19,6 +19,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 /**
  * An example of a custom control using FXML.
@@ -30,6 +31,7 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+    private Circle clip = new Circle(50, 40, 40);
 
     private DialogBox(String text, Image img) {
         try {
@@ -41,8 +43,12 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        dialog.setText(text);
         displayPicture.setImage(img);
+        displayPicture.setPreserveRatio(true);
+        displayPicture.setFitHeight(100);
+        displayPicture.setClip(clip);
+
+        dialog.setText(text);
         dialog.setMinHeight(Region.USE_PREF_SIZE);
     }
 
