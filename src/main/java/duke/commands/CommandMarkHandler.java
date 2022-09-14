@@ -20,6 +20,12 @@ public class CommandMarkHandler extends CommandHandler {
      */
     public void checkValid() throws DukeException {
         boolean isValid = flag == null && additionalValue == null;
+        try {
+            Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new InvalidSyntaxException("Please input a number!\n"
+                    + "Correct usage: mark 1");
+        }
         if (isValid) {
             return;
         }

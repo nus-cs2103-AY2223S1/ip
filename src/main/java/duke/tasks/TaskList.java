@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import duke.data.Storage;
 import duke.exceptions.DukeException;
+import duke.exceptions.InvalidSyntaxException;
 
 /**
  * Describes the TaskList class which stores the tasks.
@@ -73,10 +74,8 @@ public class TaskList {
             task.mark(isCompleted);
             updateDb();
             return task;
-        } catch (NumberFormatException e) {
-            throw new DukeException("Please input a number.");
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(String.format("Please input a valid number! There are %d tasks remaining.",
+            throw new InvalidSyntaxException(String.format("Please input a valid number! There are %d tasks remaining.",
                     taskList.size()));
         }
     }
