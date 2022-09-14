@@ -50,7 +50,7 @@ public class DialogBox extends HBox {
         messageBubble.widthProperty().bind(dialog.widthProperty());
         messageBubble.setArcWidth(25);
         messageBubble.setArcHeight(25);
-        messageBubble.setFill(Color.AQUAMARINE);
+        messageBubble.setFill(Color.CYAN);
         stack.getChildren().addAll(messageBubble, dialog);
         stack.setMinHeight(Region.USE_PREF_SIZE);
     }

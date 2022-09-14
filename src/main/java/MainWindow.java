@@ -44,9 +44,10 @@ public class MainWindow extends AnchorPane {
         dialogContainer.setId("anchor");
         String openingMessage = "Hello, I am EksWhyZee!\nHow may I help you?\n";
         Label text = new Label(openingMessage);
-        text.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+        text.setBackground(new Background(new BackgroundFill(Color.LIGHTPINK, CornerRadii.EMPTY, Insets.EMPTY)));
         text.setStyle("-fx-font-weight:bold; -fx-font-size:20px;");
-        text.setPadding(new Insets(10, 0, 10, 200));
+        text.setTranslateX(200);
+        text.setPadding(new Insets(10, 0, 10, 0));
         text.setTextAlignment(TextAlignment.CENTER);
         dialogContainer.getChildren().addAll(
                 text
