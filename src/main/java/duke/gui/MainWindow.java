@@ -25,10 +25,9 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/nph.jpg"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/andysamberg.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/jinjjaphil.jpg"));
 
     /**
@@ -37,9 +36,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(Ui.welcome(), dukeImage)
-        );
+        DialogBox messageBox = DialogBox.getDukeDialog(Ui.welcome(), dukeImage);
+        messageBox.setTranslateY(10.0);
+        messageBox.setTranslateX(5.0);
+        dialogContainer.getChildren().addAll(messageBox);
     }
 
     public void setDuke(Duke d) {
@@ -60,10 +60,14 @@ public class MainWindow extends AnchorPane {
         } catch (AssertionError e) {
             response = e.getMessage();
         }
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input + "   ", userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
-        );
+
+        DialogBox userBox = DialogBox.getUserDialog(input + "   ", userImage);
+        DialogBox dukeBox = DialogBox.getDukeDialog(response, dukeImage);
+        userBox.setTranslateY(10.0);
+        userBox.setTranslateX(5.0);
+        dukeBox.setTranslateY(10.0);
+        dukeBox.setTranslateX(5.0);
+        dialogContainer.getChildren().addAll(userBox, dukeBox);
 
         if (input.equals("bye")) {
             PauseTransition delay = new PauseTransition(Duration.seconds(3));

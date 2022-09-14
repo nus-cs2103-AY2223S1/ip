@@ -42,7 +42,11 @@ public class Command {
      * @return the string of the list
      */
     public static String list(TaskList list) {
-        return list.printTasks();
+        String message = list.printTasks();
+        if (message == "") {
+            return "Woohoo! You are all out of tasks!";
+        }
+        return message;
     }
 
     /**
@@ -94,6 +98,13 @@ public class Command {
         }
     }
 
+    /**
+     * Method to create Task
+     *
+     * @param in the input string given
+     * @param list the tasklist to add the task to
+     * @return a string describing if the task creation was successful
+     */
     public static String createTask(String in, TaskList list) {
         String message;
         try {

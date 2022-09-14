@@ -11,11 +11,9 @@ public class Ui {
      * Method to return welcome message
      */
     public static String welcome() {
-        return "-------------------------------------------\n"
-                + "Hello from Phil\n"
-                        + "How may I assist you on this fine day?\n"
-                                + "type 'help' to get a lists of all the commands!\n"
-                                        + "-------------------------------------------\n";
+        return "\nHello from Phil\n"
+                + "How may I assist you on this fine day?\n"
+                        + "type 'help' to get a lists of all the commands!\n";
     }
 
     /**
