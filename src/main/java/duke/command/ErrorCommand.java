@@ -15,8 +15,10 @@ public class ErrorCommand extends Command {
      * have inputted wrongly.
      *
      * @param taskList
-     * @param ui
+     * @param archiveTaskList
      * @param storage
+     * @param archiveStorage
+     * @param ui
      */
     @Override
     public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,

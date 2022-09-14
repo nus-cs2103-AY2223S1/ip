@@ -21,6 +21,15 @@ public class FindCommand extends Command {
         this.input = input.substring(taskIndex);
     }
 
+    /**
+     * Execute method that is used to find a task of a given name.
+     *
+     * @param taskList
+     * @param archiveTaskList
+     * @param storage
+     * @param archiveStorage
+     * @param ui
+     */
     @Override
     public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,
                           Storage archiveStorage, Ui ui) {

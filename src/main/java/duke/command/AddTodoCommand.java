@@ -28,8 +28,10 @@ public class AddTodoCommand extends Command {
      * and print out the Todo that was added through tasklist, ui and storage.
      *
      * @param taskList
-     * @param ui
+     * @param archiveTaskList
      * @param storage
+     * @param archiveStorage
+     * @param ui
      */
     @Override
     public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,

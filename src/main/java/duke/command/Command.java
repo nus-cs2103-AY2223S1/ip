@@ -15,8 +15,10 @@ public abstract class Command {
      * and print out what was added
      *
      * @param taskList
-     * @param ui
+     * @param archiveTaskList
      * @param storage
+     * @param archiveStorage
+     * @param ui
      */
     public abstract String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,
                                    Storage archiveStorage, Ui ui);

@@ -24,11 +24,6 @@ import duke.task.Todo;
 public class Storage {
     private static ArrayList<Task> taskList;
     private String filePath;
-
-    public String getFilePath() {
-        return filePath;
-    }
-
     /**
      * Constructor for Storage
      *
@@ -114,7 +109,6 @@ public class Storage {
             BufferedReader br = new BufferedReader(fr);
 
             String line = br.readLine();
-            System.out.println("These are the tasks that you had previously!");
 
             while (line != null) {
                 Task task = taskParser(line);
@@ -124,7 +118,6 @@ public class Storage {
             }
 
             br.close();
-            System.out.println("Please use me to fill in more tasks");
         } catch (IOException e) {
             System.out.println("error" + e);
         }
@@ -140,7 +133,6 @@ public class Storage {
      */
     public void saveTasks(TaskList taskList) {
         try {
-            System.out.println(this.filePath);
             File myFile = new File(this.filePath);
             OutputStream os = new FileOutputStream(myFile);
             PrintWriter pw = new PrintWriter(os);

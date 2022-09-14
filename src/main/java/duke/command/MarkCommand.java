@@ -26,8 +26,10 @@ public class MarkCommand extends Command {
      * and print out the task that was marked through tasklist, ui and storage.
      *
      * @param taskList
-     * @param ui
+     * @param archiveTaskList
      * @param storage
+     * @param archiveStorage
+     * @param ui
      * @throws NullPointerException
      * @throws IndexOutOfBoundsException
      * @throws NumberFormatException

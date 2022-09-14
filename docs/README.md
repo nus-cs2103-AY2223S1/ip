@@ -13,11 +13,9 @@ BotChat123 is a desktop task management system to use for your day to day tasks.
     - [Delete task](#delete-task)
     - [Mark task](#mark-task)
     - [Unmark task](#unmark-task)
+    - [Exit](#exit)
     - [Accessing Deleted Data](#accessing-deleted-data)
-    - [Saving data](#saving-data)
-    - [Editing saved data](#editing-saved-data)
-3. [FAQ](#faq)
-4. [Summary](#summary)
+3. [Summary](#summary)
 
 ## Set-Up
 1. Ensure you have Java 11 or above installed in your Computer.
@@ -115,7 +113,7 @@ Format: `list`
 
 Tips:
 
-- List does not take in extraneous inputs. Any of such inputs will be ignored.
+- List does not take in extraneous inputs. Any such, inputs will be ignored.
 <br>
 
 Examples:<br>
@@ -126,35 +124,86 @@ Examples:<br>
 
 Finds tasks whose Task Name matches the search.
 
-Format: `Find [Keyword]`
+Format: `find [Keyword]`
 
 Tips:
 
-- Find will searches by sequence. If a `[Task Name]` contains matching sequence of characters as `[Keyword]` it can be found.
+- Find searches by sequence. If a `[Task Name]` contains matching sequence of characters as `[Keyword]` it can be found.
 <br>
 
 Examples:<br>
-- Input: `Find help`
+- Input: `find help`
 - Output: ![Find](./find.png "find")
 
-### Feature-XYZ
+### `Delete` Task
 
-Description of the feature.
+Deletes a specified task indexed in the list.
 
-## Usage
+Format: `delete [Index]`
 
-### `Keyword` - Describe action
+Examples:<br>
+- Input: `delete 2`
+- Output: ![Delete](./delete.png "delete")
 
-Describe the action and its outcome.
+### `Mark` Task
 
-Example of usage: 
+Marks a specified task indexed in the list.
 
-`keyword (optional arguments)`
+Format: `mark [Index]`
 
-Expected outcome:
+Examples:<br>
+- Input: `mark 2`
+- Output: ![mark](./mark.png "mark")
 
-Description of the outcome.
+### `Unmark` Task
 
-```
-expected output
-```
+Unmark a specified task indexed in the list.
+
+Format: `unmark [Index]`
+
+Examples:<br>
+- Input: `unmark 2`
+- Output: ![unmark](./unmark.png "unmark")
+
+### Exit
+
+Exits the program
+
+Format: `bye`
+
+- `bye` does not take in extraneous inputs. Any such, inputs will be ignored.
+
+Examples:<br>
+- Input: `bye`
+- Output: The application exits.
+
+### Accessing Deleted Data
+
+BotChat archives deleted data to ensure that you can always retrieve old tasks even after deletion. So you don't have to worry losing a task that you **accidentally** delete!
+
+Data is stored as a `.txt` file and can be accessible if you clone the code repository/ It can be found in `[Location]/data/duke.main.Archive.txt`.
+<br>
+The data is saved in the following format:
+
+`TYPE#DONE#TASK NAME#DATE`
+
+#### Type
+
+Type can be T, E, D which stands for Todo, Event, Deadline respectively.
+
+#### Done
+
+Done can be 1 or 0 which stands for marked or not marked respectively.
+
+## Summary
+| Action           | Format                                |
+|------------------|---------------------------------------|
+| **Add Todo**     | `todo [description]`                  |
+| **Add Deadline** | `deadline [description] by [date]`    |
+| **Add Event**    | `event [description] at [date]`       |
+| **Print List**   | `list`                                |
+| **Find Task**    | `find [keyword]`                      |
+| **Delete Task**  | `delete [index]`                      |
+| **Mark Task**    | `mark [index]`                        |
+| **Unmark Task**  | `unmark [index]`                      |
+| **Exit**         | `bye`                                 |

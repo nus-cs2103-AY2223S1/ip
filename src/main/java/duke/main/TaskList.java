@@ -26,7 +26,6 @@ public class TaskList {
      * @param task
      */
     public void addTasks(Task task) {
-        System.out.println("added: " + task);
         taskList.add(task);
     }
 

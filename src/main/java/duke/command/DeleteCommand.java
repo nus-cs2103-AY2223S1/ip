@@ -27,16 +27,17 @@ public class DeleteCommand extends Command {
      * Execute method that is used to delete a task from the tasklist, save the new tasks
      * and print out the tasks that was delete through tasklist, ui and storage.
      *
-     * @param taskList
-     * @param ui
+    * @param taskList
+     * @param archiveTaskList
      * @param storage
+     * @param archiveStorage
+     * @param ui
      */
     @Override
     public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,
                           Storage archiveStorage, Ui ui) {
         int normalisedIndex = index - 1;
         Task task = taskList.getTask(normalisedIndex);
-        System.out.println(task);
         archiveTaskList.addTasks(task);
         archiveStorage.saveTasks(archiveTaskList);
         taskList.deleteTasks(normalisedIndex);

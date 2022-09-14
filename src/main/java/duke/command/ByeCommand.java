@@ -14,8 +14,10 @@ public class ByeCommand extends Command {
      * Execute method that is used to print out a bye message through ui.
      *
      * @param taskList
-     * @param ui
+     * @param archiveTaskList
      * @param storage
+     * @param archiveStorage
+     * @param ui
      */
     @Override
     public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,

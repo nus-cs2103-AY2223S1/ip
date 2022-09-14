@@ -33,9 +33,11 @@ public class AddEventsCommand extends Command {
      * Execute method that is used to add an Event task to a tasklist, save the event
      * and print out the event that was added through tasklist, ui and storage.
      *
-     * @param taskList
-     * @param ui
+    * @param taskList
+     * @param archiveTaskList
      * @param storage
+     * @param archiveStorage
+     * @param ui
      */
     @Override
     public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,
