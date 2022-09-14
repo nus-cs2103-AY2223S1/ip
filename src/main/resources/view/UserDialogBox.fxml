@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" >
     <children>
-        <Label fx:id="dialog" maxHeight="1.7976931348623157E308" minHeight="-Infinity" style="-fx-padding: 10px; -fx-font-family: 'monofur for Powerline'; -fx-background-color: #db4848; -fx-background-radius: 14px;" text="Label" textFill="#dedede" wrapText="true" HBox.hgrow="ALWAYS">
+        <Label fx:id="dialog" maxHeight="1.7976931348623157E308" minHeight="-Infinity" style="-fx-padding: 10px; -fx-font-family: 'monofur for Powerline'; -fx-background-color: #db4848; -fx-background-radius: 14px; -fx-font-size: 16px;" text="Label" textFill="#dedede" wrapText="true" HBox.hgrow="ALWAYS">
             <padding>
                 <Insets bottom="8.0" left="8.0" right="8.0" top="5.0" />
             </padding>

@@ -19,9 +19,9 @@
         </ScrollPane>
         <HBox layoutY="558.0" prefHeight="46.0" prefWidth="600.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <TextField fx:id="userInput" layoutY="358.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="500.0" promptText="Message" AnchorPane.bottomAnchor="1.0" HBox.hgrow="ALWAYS" style="-fx-font-family: 'monofur for Powerline';">
+                <TextField fx:id="userInput" layoutY="358.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="500.0" promptText="Message" AnchorPane.bottomAnchor="1.0" HBox.hgrow="ALWAYS" style="-fx-font-family: 'monofur for Powerline'; -fx-font-size: 20px">
                 </TextField>
-                <Button fx:id="sendButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" textFill="#838383" HBox.hgrow="ALWAYS" style="-fx-font-family: 'monofur for Powerline';" >
+                <Button fx:id="sendButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" textFill="#838383" HBox.hgrow="ALWAYS" style="-fx-font-family: 'monofur for Powerline'; -fx-font-size: 20px" >
                 </Button>
             </children>
         </HBox>

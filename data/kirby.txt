@@ -1,3 +1,2 @@
 kirby.tasks.Todo~hi
-kirby.tasks.Todo~hi
 kirby.tasks.Todo~Edit a contact:Edits the information of a specified student.Format: edit INDEX n/NAME [p/PHONE] [e/EMAIL] g/GITHUB_REPO_LINK [t/TAG]Edits the contact at the specific INDEX, which refers to the index number shown in the displayed contact list. The index must be a positive integer, e.g. 1, 2, 3 …At least one of the optional fields must be provided.Examples:​edit 1 n/dodo [p/91234567] [e/dodo@gmail.com] g/https://github.com/dodo [t/uncoolkid]Sorting by tags:
