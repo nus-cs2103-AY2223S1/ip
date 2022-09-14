@@ -12,10 +12,17 @@ import poolsheen.Ui;
  * display all the tasks that Poolsheen remembers.
  */
 public class ListCommand extends Command {
+    /**
+     * Initialises a List Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public ListCommand(ArrayList<String> rest) {
         super(false, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty()) {

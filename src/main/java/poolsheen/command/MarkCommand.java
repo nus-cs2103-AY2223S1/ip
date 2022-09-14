@@ -13,10 +13,17 @@ import poolsheen.task.Task;
  * mark the task of that respective position which Poolsheen remembers.
  */
 public class MarkCommand extends Command {
+    /**
+     * Initialises a Mark Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public MarkCommand(ArrayList<String> rest) {
         super(false, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty() || rest.size() != 1) {

@@ -13,10 +13,17 @@ import poolsheen.Ui;
  * and stop running.
  */
 public class ByeCommand extends Command {
+    /**
+     * Initialises a Bye Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public ByeCommand(ArrayList<String> rest) {
         super(true, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (!rest.isEmpty()) {

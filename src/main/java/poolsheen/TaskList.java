@@ -14,7 +14,7 @@ public class TaskList {
     private ArrayList<Task> arl;
 
     /**
-     * Public constructor to initialise an already filled TaskList.
+     * Initialises an already filled TaskList.
      *
      * @param arl The ArrayList of tasks to fill up the TaskList.
      */
@@ -23,7 +23,7 @@ public class TaskList {
     }
 
     /**
-     * Public constructor to initialise an empty TaskList.
+     * Initialises an empty TaskList.
      */
     public TaskList() {
         this.arl = new ArrayList<>(100);
@@ -58,7 +58,7 @@ public class TaskList {
     /**
      * Marks a task as not done assuming the user input is correct.
      *
-     * @param pos The index position of the task in the list.
+     * @param pos The position of the task in the list.
      */
     public void unmark(int pos) {
         Task selectedTask = this.arl.get(pos - 1);
@@ -68,7 +68,7 @@ public class TaskList {
     /**
      * Removes a task from the list of tasks that Poolsheen remembers.
      *
-     * @param pos The index+1 position of the task that is to be deleted.
+     * @param pos The position of the task that is to be deleted.
      */
     public void deleteTask(int pos) {
         this.arl.remove(pos - 1);
@@ -100,7 +100,7 @@ public class TaskList {
     }
 
     /**
-     * Update the task description at the specified position.
+     * Updates the task description at the specified position.
      * @param pos The position of the task to be updated.
      * @param newDesc The new description of the task.
      */

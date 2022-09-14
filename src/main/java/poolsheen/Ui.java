@@ -30,7 +30,7 @@ public class Ui {
     private Scanner s;
 
     /**
-     * A public constructor to initialise a Ui object.
+     * Initialises a Ui object.
      */
     public Ui() {
         s = new Scanner(System.in);

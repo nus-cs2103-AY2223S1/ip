@@ -13,10 +13,17 @@ import poolsheen.task.Task;
  * unmark the task of that respective position which Poolsheen remembers.
  */
 public class UnmarkCommand extends Command {
+    /**
+     * Initialises an Unmark Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public UnmarkCommand(ArrayList<String> rest) {
         super(false, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty() || rest.size() != 1) {

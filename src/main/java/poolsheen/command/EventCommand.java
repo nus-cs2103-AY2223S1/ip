@@ -13,10 +13,17 @@ import poolsheen.task.Event;
  * add one Event task for Poolsheen to remember.
  */
 public class EventCommand extends Command {
+    /**
+     * Initialises an Event Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public EventCommand(ArrayList<String> rest) {
         super(false, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty()) {

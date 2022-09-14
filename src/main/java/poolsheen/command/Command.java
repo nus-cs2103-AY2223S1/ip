@@ -18,7 +18,7 @@ public abstract class Command {
     private boolean isEnder;
 
     /**
-     * A protected constructor to create a Command object.
+     * Initialises a Command object.
      * @param isEnder Determines if this command can cause the program to stop running.
      * @param rest The array list of strings that make up for the rest of the user input.
      */

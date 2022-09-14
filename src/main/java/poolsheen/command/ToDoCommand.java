@@ -13,10 +13,17 @@ import poolsheen.task.ToDo;
  * add a ToDo task for Poolsheen to remember.
  */
 public class ToDoCommand extends Command {
+    /**
+     * Initialises a ToDo Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public ToDoCommand(ArrayList<String> rest) {
         super(false, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty()) {

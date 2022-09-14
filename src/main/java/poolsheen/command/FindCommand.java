@@ -12,10 +12,17 @@ import poolsheen.Ui;
  * prints out all the available tasks that matches the keyword.
  */
 public class FindCommand extends Command {
+    /**
+     * Initialises a Find Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public FindCommand(ArrayList<String> rest) {
         super(false, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.size() != 1) {

@@ -10,7 +10,8 @@ import poolsheen.command.Command;
 /**
  * Represents the Poolsheen CLI program.
  * @author Ong Wee, Marcus (Tut Grp 03)
- * @version CS2103 AY22/23 Sem 1
+ * @version 0.1
+ * @since 2022-08-15
  */
 public class Poolsheen {
     /** The default file path for the save file. */
@@ -32,7 +33,7 @@ public class Poolsheen {
     private Ui ui;
 
     /**
-     * A public constructor to initialise the Poolsheen object.
+     * Initialises a Poolsheen object.
      */
     public Poolsheen() throws IOException {
         assert SAVE_FILE_PATH != null : "SAVE_FILE_PATH should not be null";
@@ -101,8 +102,8 @@ public class Poolsheen {
     }
 
     /**
-     * A getter method that returns if the poolsheen program has ended.
-     * @return A boolean that is true if exited, else false.
+     * Returns if the poolsheen program has ended.
+     * @return A boolean if the program has ended.
      */
     public static boolean getExited() {
         return Poolsheen.hasExited;

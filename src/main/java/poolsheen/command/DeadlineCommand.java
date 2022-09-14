@@ -14,10 +14,17 @@ import poolsheen.task.Deadline;
  * create a new Deadline task for Poolsheen to remember.
  */
 public class DeadlineCommand extends Command {
+    /**
+     * Initialises a Deadline Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public DeadlineCommand(ArrayList<String> rest) {
         super(false, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty()) {

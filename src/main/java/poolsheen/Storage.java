@@ -24,14 +24,14 @@ public class Storage {
     private File saveFile;
 
     /**
-     * A public constructor to initialise a Storage object.
+     * Initialises a Storage object.
      *
      * @param filePath The path of the file which the Storage object will be interacting with.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.saveFile = new File(this.filePath);
-        //Automatically creates a new save file
+        //Creates a new save file if it does not exist.
         try {
             if (this.saveFile.createNewFile()) {
                 System.out.println("New Save File created");
@@ -60,8 +60,6 @@ public class Storage {
             }
             Predicate<String> pred = x -> x.equals("");
             arl.removeIf(pred);
-            //Uncomment to see how the file contents are parsed as arrays.
-            //System.out.println(arl.toString());
             String taskType = arl.get(1);
             boolean isDone = arl.get(2).equals("X");
             assert taskType != null : "A task type loaded from the save file should not be null";

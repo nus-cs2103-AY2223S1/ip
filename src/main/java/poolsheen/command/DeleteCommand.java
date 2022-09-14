@@ -13,10 +13,17 @@ import poolsheen.task.Task;
  * delete one task of the respective index that Poolsheen remembers.
  */
 public class DeleteCommand extends Command {
+    /**
+     * Initialises a Delete Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public DeleteCommand(ArrayList<String> rest) {
         super(false, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty()) {

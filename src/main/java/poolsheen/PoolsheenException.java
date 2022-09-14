@@ -14,7 +14,7 @@ public class PoolsheenException extends RuntimeException {
     private String poolsheenResponse;
 
     /**
-     * A public constructor to initialise a PoolsheenException object.
+     * Initialises a PoolsheenException object.
      *
      * @param errorMsg The input given which caused the exception to be thrown.
      * @param errorType The error type of the exception.
@@ -26,6 +26,9 @@ public class PoolsheenException extends RuntimeException {
         this.poolsheenResponse = poolsheenResponse;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return ERROR_LINE + "\n"

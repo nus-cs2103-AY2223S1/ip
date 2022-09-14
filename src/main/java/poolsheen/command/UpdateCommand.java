@@ -13,10 +13,17 @@ import poolsheen.Ui;
  * For example: update 1
  */
 public class UpdateCommand extends Command {
+    /**
+     * Initialises an Update Command.
+     * @param rest The rest of the string that has been parsed.
+     */
     public UpdateCommand(ArrayList<String> rest) {
         super(false, rest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty() || rest.size() <= 1) {
@@ -28,7 +35,6 @@ public class UpdateCommand extends Command {
         //Remove position from command
         rest.remove(0);
         boolean isOutOfBounds = (pos - 1) > (tl.getSize() - 1);
-
         if (isOutOfBounds) {
             throw new PoolsheenException("Index out of bounds", "mark", "Enter an appropriate integer");
         }
@@ -38,7 +44,6 @@ public class UpdateCommand extends Command {
         rest.remove(0);
         String updateContent = String.join(" ", rest);
         boolean isEmptyUpdateContent = updateContent.length() == 0;
-
         if (isEmptyUpdateContent) {
             throw new PoolsheenException("No update data provided", "update", "Please enter a non-empty string");
         }
