@@ -17,7 +17,7 @@ public class CommandEvent extends Command {
         String[] words = command.split(" /at", 2);
         Task event = new Event(words[0], words[1]);
         taskList.add(event);
-        return "Got it. I've added this task:\n" + event + "\nNow you have " +
+        return "Swee Chai Butterfly! limpeh added this task:\n" + event + "\nNow you have " +
                 String.valueOf(taskList.size()) + " tasks in the list.";
     }
 }

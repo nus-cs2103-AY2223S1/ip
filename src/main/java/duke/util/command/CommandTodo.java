@@ -27,7 +27,7 @@ public class CommandTodo extends Command{
         }
         Task todo = new Todos(description.toString());
         taskList.add(todo);
-        return "Got it. I've added this task:\n" + todo + "\nNow you have " +
+        return "Swee chai butterfly! limpeh added this task:\n" + todo + "\nNow you have " +
                 String.valueOf(taskList.size()) + " tasks in the list.";
     }
 }

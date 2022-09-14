@@ -15,6 +15,6 @@ public class CommandList extends Command {
         for (int i = 0; i < taskList.size(); i++) {
             listString.append(" ").append(String.valueOf(i + 1)).append(". ").append(taskList.get(i)).append("\n");
         }
-        return listString.toString();
+        return "Stop slacking liao, see got so much stuff to do:\n" + listString.toString();
     }
 }

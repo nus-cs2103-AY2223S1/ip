@@ -19,7 +19,7 @@ public class CommandDeadline extends Command {
         String[] words = command.split(" /by", 2);
         Task deadline = new Deadlines(words[0], words[1], DateAndTimeFormatter.validateAndParse(words[1]));
         taskList.add(deadline);
-        return "Got it. I've added this task:\n" + deadline + "\nNow you have " +
+        return "Swee Chai Butterfly! limpeh added this task:\n" + deadline + "\nNow you have " +
                 String.valueOf(taskList.size()) + " tasks in the list.";
     }
 }
