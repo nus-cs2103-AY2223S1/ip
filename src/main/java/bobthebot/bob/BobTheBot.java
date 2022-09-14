@@ -1,10 +1,13 @@
 package bobthebot.bob;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import bobthebot.command.GoodbyeCommand;
 import bobthebot.command.ReminderCommand;
 import bobthebot.exceptions.BobException;
+import bobthebot.tasks.Deadline;
+import bobthebot.tasks.Task;
 import bobthebot.tasks.ToDoList;
 import bobthebot.utils.Parser;
 import bobthebot.utils.Storage;
@@ -33,7 +36,7 @@ public class BobTheBot {
     /**
      * Runs BobTheBot on CLI.
      */
-    public void run() {
+    public void run() throws BobException {
         Ui.sayWelcome();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
@@ -56,7 +59,7 @@ public class BobTheBot {
         scanner.close();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BobException {
         new BobTheBot("./../../data/data.txt").run();
     }
 }

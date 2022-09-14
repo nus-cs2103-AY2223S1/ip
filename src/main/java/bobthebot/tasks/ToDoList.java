@@ -3,7 +3,6 @@ package bobthebot.tasks;
 import java.util.ArrayList;
 
 import bobthebot.utils.Storage;
-import bobthebot.utils.Ui;
 
 /**
  * Class which represents a ToDoList.
