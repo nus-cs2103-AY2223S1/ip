@@ -6,13 +6,7 @@ package rattus.chatbot.common;
  * @author jq1836
  */
 public class Message {
-    public static final String MESSAGE_WELCOME = "\t"
-            + " ,-----.,--.               ,--.    ,--.                  " + "\n" + "\t"
-            + "'  .--./|  ,---.  ,--,--.,-'  '-.,-'  '-.,--.,--. ,---.  " + "\n" + "\t"
-            + "|  |    |  .-.  |' ,-.  |'-.  .-''-.  .-'|  ||  |(  .-'  " + "\n" + "\t"
-            + "'  '--'\\|  | |  |\\ '-'  |  |  |    |  |  '  ''  '.-'  `) " + "\n" + "\t"
-            + " `-----'`--' `--' `--`--'  `--'    `--'   `----' `----'  " + "\n\n" + "\t"
-            + "Hello there, my name's Chattus! How may I help you?";
+    public static final String MESSAGE_WELCOME = "Hello there, my name's Rattus! How may I help you?";
     public static final String MESSAGE_BYE = "Bye! Till we next meet!";
     public static final String MESSAGE_LIST = "Here are your tasks:";
     public static final String MESSAGE_EMPTY_LIST = "You do not have any tasks that match your query!";

@@ -1,6 +1,5 @@
 package rattus.chatbot.ui;
 
-import rattus.chatbot.Rattus;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import rattus.chatbot.Rattus;
 
 /**
  * The main anchor pane which contains all other JavaFX nodes.
@@ -25,12 +25,13 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
 
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.jpg"));
+    private final Image rattusImage = new Image(this.getClass().getResourceAsStream("/images/DaRat.jpg"));
 
-    private Rattus duke;
+    private Rattus rattus;
 
-    public void setDuke(Rattus duke) {
-        this.duke = duke;
+    public void setDuke(Rattus rattus) {
+        this.rattus = rattus;
+        dialogContainer.getChildren().add(DialogBox.getRattusDialog(rattus.greet(), rattusImage));
     }
 
     @FXML
@@ -44,10 +45,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        String response = rattus.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getRattusDialog(response, rattusImage)
         );
         userInput.clear();
     }

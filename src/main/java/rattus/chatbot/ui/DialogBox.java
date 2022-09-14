@@ -54,8 +54,8 @@ public class DialogBox extends HBox {
         return new DialogBox(dialog, userImage);
     }
 
-    public static DialogBox getDukeDialog(String dialog, Image dukeImage) {
-        DialogBox dialogBox = new DialogBox(dialog, dukeImage);
+    public static DialogBox getRattusDialog(String dialog, Image rattusImage) {
+        DialogBox dialogBox = new DialogBox(dialog, rattusImage);
         dialogBox.flip();
         return dialogBox;
     }

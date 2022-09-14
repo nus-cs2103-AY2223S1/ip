@@ -1,5 +1,7 @@
 package rattus.chatbot;
 
+import static rattus.chatbot.common.Message.MESSAGE_WELCOME;
+
 import java.io.FileNotFoundException;
 
 import rattus.chatbot.command.Command;
@@ -56,6 +58,15 @@ public class Rattus {
         } catch (InvalidInputException | FileNotFoundException e) {
             throw new InvalidInputException("1");
         }
+    }
+
+    /**
+     * Returns the Rattus' greeting message.
+     *
+     * @return A string that respresents Rattus' greeting message.
+     */
+    public String greet() {
+        return MESSAGE_WELCOME;
     }
 
     /**
