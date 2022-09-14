@@ -13,14 +13,12 @@ import duke.Task.Task;
 import duke.Task.Todo;
 
 public class Storage {
-    private boolean isExist;
     private java.nio.file.Path path;
-    private File file;
 
     public Storage(String filename) {
         String home = System.getProperty("user.dir");
         this.path = java.nio.file.Paths.get(home, "src", "data", filename);
-        this.isExist = java.nio.file.Files.exists(this.path);
+
     }
 
     /**
@@ -29,34 +27,41 @@ public class Storage {
      */
     public ArrayList<Task> readFile() {
         ArrayList<Task> data = new ArrayList<>();
-        this.file = new File(String.valueOf(this.path));
+        System.out.println();
+        File file = new File(String.valueOf(this.path));
+        checkFileExist();
         try {
-            if (this.file.createNewFile()) {
-                Scanner reader = new Scanner(this.file);
-                while (reader.hasNextLine()) {
-                    String[] taskInfo = reader.nextLine().split("\\|");
-                    if (taskInfo[0] == "T") {
-                        data.add(new Todo(taskInfo[1], Boolean.parseBoolean(taskInfo[2])));
-                    } else if (taskInfo[0] == "E") {
-                        data.add(new Event(taskInfo[1],
-                                Boolean.parseBoolean(taskInfo[2]),
-                                LocalDateTime.parse(taskInfo[3])));
-
-                    } else if (taskInfo[0] == "D") {
-                        data.add(new Deadline(taskInfo[1],
-                                Boolean.parseBoolean(taskInfo[2]),
-                                LocalDateTime.parse(taskInfo[3])));
-                    }
-                }
+            if (!checkFileExist()) {
+                file.createNewFile();
             }
+            Scanner reader = new Scanner(file);
+            while (reader.hasNextLine()) {
+                String[] taskInfo = reader.nextLine().split("\\|");
+                if (taskInfo[0].equals("T")) {
+                    data.add(new Todo(taskInfo[1], Boolean.parseBoolean(taskInfo[2])));
+                } else if (taskInfo[0].equals("E")) {
+                    data.add(new Event(taskInfo[1],
+                            Boolean.parseBoolean(taskInfo[2]),
+                            LocalDateTime.parse(taskInfo[3])));
+
+                } else if (taskInfo[0].equals("D")) {
+                    data.add(new Deadline(taskInfo[1],
+                            Boolean.parseBoolean(taskInfo[2]),
+                            LocalDateTime.parse(taskInfo[3])));
+                }
+
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
         } catch (IOException e) {
             System.out.println(e);
         }
-
         return data;
     }
 
-
+    private boolean checkFileExist() {
+        return java.nio.file.Files.exists(this.path);
+    }
     /**
      * Updates the content of the file
      * @param updatedData the updated list of task
