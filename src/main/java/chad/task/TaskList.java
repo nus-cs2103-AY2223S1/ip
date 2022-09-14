@@ -1,48 +1,45 @@
-package chad;
+package chad.task;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import chad.exception.ChadException;
-import chad.task.Deadline;
-import chad.task.Event;
-import chad.task.Task;
-import chad.task.Todo;
+import chad.storage.Storage;
 
 /**
  * Manipulates list of tasks
+ *
  */
 public class TaskList {
-    public static final DateTimeFormatter format = DateTimeFormatter.ofPattern(
+    public static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern(
             "d/MM/yyyy HHmm");
     /**
      * Deletes task at specific index
+     *
      * @param tasks arraylist of tasks
      * @param taskID specified index
-     * @throws IOException error thrown from file reading
+     * @throws ChadException  from file reading
      */
     public static String deleteTask(ArrayList<Task> tasks, int taskID) throws ChadException {
-        String outputText = "Noted. I've removed this task:\n";
         Task currentTask = tasks.get(taskID);
-        outputText += " " + currentTask.toString() + "\n";
         tasks.remove(taskID);
+        String outputText = "Noted. I've removed this task:\n";
+        outputText += " " + currentTask.toString() + "\n";
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
         Storage.deleteTaskInFile(taskID);
         return outputText;
+
     }
 
     /**
      * Add todo task into task list
+     *
      * @param tasks arraylist of tasks
      * @param userInput todo task added by user
-     * @throws ChadException Thrown if description is invalid
-     * @throws IOException Thrown when file cannot be opened in IOException
+     * @throws ChadException if description is invalid
      */
     public static String addTodoTask(ArrayList<Task> tasks, String userInput) throws ChadException {
-        String outputText = "Got it. I've added this task:\n";
         String taskDescription = userInput.replaceFirst("todo", "").strip();
 
         if (taskDescription.isEmpty()) {
@@ -54,6 +51,7 @@ public class TaskList {
         String strIsDone = newTask.getDone() ? "1" : "0";
         Storage.writeToFile("T | " + strIsDone + " | " + newTask.getDescription());
 
+        String outputText = "Got it. I've added this task:\n";
         outputText += " " + newTask + "\n";
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
         return outputText;
@@ -61,10 +59,10 @@ public class TaskList {
 
     /**
      * Add deadline task into task list
+     *
      * @param tasks tasks arraylist of tasks
      * @param userInput deadline task added by user
-     * @throws ChadException Thrown if description or date time is invalid
-     * @throws IOException Thrown when file cannot be opened in IOException
+     * @throws ChadException if description or date time is invalid
      */
     public static String addDeadlineTask(ArrayList<Task> tasks, String userInput) throws ChadException {
         String outputText = "Got it. I've added this task:\n";
@@ -73,14 +71,10 @@ public class TaskList {
         String taskDescription = temp[0].strip();
         String dateTimeString = temp[1].strip();
         LocalDateTime dateTime;
-        dateTime = LocalDateTime.parse(dateTimeString, format);
+        dateTime = LocalDateTime.parse(dateTimeString, FORMAT);
         if (taskDescription.isEmpty()) {
             throw new ChadException("The description of a deadline cannot be empty.");
         }
-
-//        if (dateTime.isEmpty()) {
-//            throw new ChadException("The date of a deadline cannot be empty.");
-//        }
 
         Deadline newTask = new Deadline(taskDescription, dateTime);
         tasks.add(newTask);
@@ -96,10 +90,10 @@ public class TaskList {
 
     /**
      * Add event task into task list
+     *
      * @param tasks tasks arraylist of tasks
      * @param userInput event task added by user
-     * @throws ChadException Thrown if description or date time is invalid
-     * @throws IOException Thrown when file cannot be opened in IOException
+     * @throws ChadException thrown if description or date time is invalid
      */
     public static String addEventTask(ArrayList<Task> tasks, String userInput) throws ChadException {
         String outputText = "Got it. I've added this task:\n";
@@ -107,15 +101,11 @@ public class TaskList {
         String taskDescription = temp[0].strip();
         String dateTimeString = temp[1].strip();
         LocalDateTime dateTime;
-        dateTime = LocalDateTime.parse(dateTimeString, format);
+        dateTime = LocalDateTime.parse(dateTimeString, FORMAT);
 
         if (taskDescription.isEmpty()) {
             throw new ChadException("The description of a event cannot be empty.");
         }
-
-//        if (dateTime.isEmpty()) {
-//            throw new ChadException("The datetime of a event cannot be empty.");
-//        }
 
         Event newTask = new Event(taskDescription, dateTime);
         tasks.add(newTask);
@@ -127,5 +117,19 @@ public class TaskList {
         outputText += " " + newTask + "\n";
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
         return outputText;
+    }
+
+    /**
+     * Clears current task list and archive the task into another file
+     *
+     * @param tasks Arraylist list of task
+     * @return String to let users know that tasks have been archived
+     * @throws ChadException If file cannot be opened
+     */
+    public static String archiveTasks(ArrayList<Task> tasks) throws ChadException {
+        String str = "Cleared list";
+        Storage.archiveToFile();
+        tasks.clear();
+        return str;
     }
 }

@@ -1,11 +1,14 @@
-package chad;
+package chad.storage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -16,15 +19,17 @@ import chad.task.Task;
 import chad.task.Todo;
 
 /**
- * Deals with opening, writing and creating new files to manage task list
+ * Handles opening, writing and creating new files to manage task list
+ *
  */
 public class Storage {
     /**
      * Returns an empty array list if no saved array list else read line by line
+     *
      * @return arraylist of tasks
-     * @throws ChadException If there is trouble opening the file
+     * @throws ChadException io error occurs
      */
-    public static ArrayList<Task> initializeArrayList() throws ChadException {
+    public static ArrayList<Task> initializeTaskList() throws ChadException {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
             File currentFile = new File("./data/chad_data.txt");
@@ -36,45 +41,7 @@ public class Storage {
             String line = reader.readLine();
 
             while (line != null) {
-                String[] tempArr = line.split("\\|");
-                String taskType = tempArr[0].trim();
-                String strIsMark = tempArr[1].trim();
-                String desc = tempArr[2].trim();
-
-                switch (taskType) {
-                case "D": {
-                    String byDateString = tempArr[3].trim();
-                    LocalDateTime dateTime = LocalDateTime.parse(byDateString);
-                    Task t = new Deadline(desc, dateTime);
-                    if (strIsMark.equals("1")) {
-                        t.markAsDone();
-                    }
-                    taskList.add(t);
-                    break;
-                }
-                case "E": {
-                    String byDateTime = tempArr[3].trim();
-                    LocalDateTime dateTime = LocalDateTime.parse(byDateTime);
-                    Task t = new Event(desc, dateTime);
-                    if (strIsMark.equals("1")) {
-                        t.markAsDone();
-                    }
-                    taskList.add(t);
-                    break;
-                }
-                case "T": {
-                    Task t = new Todo(desc);
-                    if (strIsMark.equals("1")) {
-                        t.markAsDone();
-                    }
-                    taskList.add(t);
-                    break;
-                }
-                default:
-                    System.out.println("Failed to add task " + line);
-                    break;
-
-                }
+                addTaskToList(taskList, line);
                 line = reader.readLine();
             }
             reader.close();
@@ -86,8 +53,9 @@ public class Storage {
 
     /**
      * Writes task to text file
+     *
      * @param str formatted string
-     * @throws IOException Thrown when file cannot be opened
+     * @throws ChadException file cannot be opened
      */
     public static void writeToFile(String str) throws ChadException {
         try {
@@ -102,9 +70,25 @@ public class Storage {
     }
 
     /**
+     * Archive current task list into another file
+     * 
+     * @throws ChadException If file cannot be opened
+     */
+    public static void archiveToFile() throws ChadException{
+        Path source = Paths.get("./data/chad_data.txt");
+        Path dest = Paths.get("./data/chad_archived.txt");
+        try {
+            Files.move(source, dest, StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception e) {
+            throw new ChadException(e.getMessage());
+        }
+    }
+
+    /**
      * Delete task in text file
+     *
      * @param index index of text to be deleted
-     * @throws IOException Thrown when file cannot be opened
+     * @throws ChadException file cannot be opened
      */
     public static void deleteTaskInFile(int index) throws ChadException {
         try {
@@ -136,8 +120,9 @@ public class Storage {
 
     /**
      * Toggles done attribute in task list based on index
+     *
      * @param index index of task
-     * @throws IOException Thrown when file cannot be opened
+     * @throws ChadException file cannot be opened
      */
     public static void toggleMarkTaskInFile(int index) throws ChadException {
         try {
@@ -156,18 +141,8 @@ public class Storage {
                     writer.write(currentLine);
                     writer.newLine();
                 } else {
-                    String[] tempArr = currentLine.split("\\|");
-                    String markIndex = tempArr[1].trim();
-                    markIndex = markIndex.equals("0") ? "1" : "0";
-                    tempArr[1] = markIndex;
-                    StringBuilder line = new StringBuilder();
-                    for (int i = 0; i < tempArr.length; i++) {
-                        line.append(tempArr[i].trim());
-                        if (i != tempArr.length - 1) {
-                            line.append(" | ");
-                        }
-                    }
-                    writer.write(line.toString().trim());
+                    String line = toggleMarkTask(currentLine);
+                    writer.write(line);
                     writer.newLine();
                 }
                 currentIndex += 1;
@@ -180,5 +155,74 @@ public class Storage {
         } catch (Exception e) {
             throw new ChadException(e.getMessage());
         }
+    }
+
+    /**
+     * Adds task to arraylist
+     *
+     * @param taskList current task list
+     * @param line current line of text file
+     */
+    private static void addTaskToList(ArrayList<Task> taskList, String line) {
+        String[] tempArr = line.split("\\|");
+        String taskType = tempArr[0].trim();
+        String strIsMark = tempArr[1].trim();
+        String desc = tempArr[2].trim();
+
+        switch (taskType) {
+        case "D": {
+            String byDateString = tempArr[3].trim();
+            LocalDateTime dateTime = LocalDateTime.parse(byDateString);
+            Task t = new Deadline(desc, dateTime);
+            if (strIsMark.equals("1")) {
+                t.markAsDone();
+            }
+            taskList.add(t);
+            break;
+        }
+        case "E": {
+            String byDateTime = tempArr[3].trim();
+            LocalDateTime dateTime = LocalDateTime.parse(byDateTime);
+            Task t = new Event(desc, dateTime);
+            if (strIsMark.equals("1")) {
+                t.markAsDone();
+            }
+            taskList.add(t);
+            break;
+        }
+        case "T": {
+            Task t = new Todo(desc);
+            if (strIsMark.equals("1")) {
+                t.markAsDone();
+            }
+            taskList.add(t);
+            break;
+        }
+        default:
+            System.out.println("Failed to add task " + line);
+            break;
+        }
+    }
+
+    /**
+     * Toggles isDone attribute in task
+     *
+     * @param currentLine line from text store
+     * @return returns new task
+     */
+    private static String toggleMarkTask(String currentLine) {
+        String[] tempArr = currentLine.split("\\|");
+        String markIndex = tempArr[1].trim();
+        assert (markIndex.equals("0") || markIndex.equals("1"));
+        markIndex = markIndex.equals("0") ? "1" : "0";
+        tempArr[1] = markIndex;
+        StringBuilder line = new StringBuilder();
+        for (int i = 0; i < tempArr.length; i++) {
+            line.append(tempArr[i].trim());
+            if (i != tempArr.length - 1) {
+                line.append(" | ");
+            }
+        }
+        return line.toString().trim();
     }
 }

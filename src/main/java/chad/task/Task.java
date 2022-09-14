@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * chad.Task is the core functionality of the Chadbot
+ *
  */
 public class Task {
     protected static final DateTimeFormatter OUTPUT_DATEFORMAT =
@@ -13,6 +14,7 @@ public class Task {
 
     /**
      * Constructor for task
+     *
      * @param description description of task
      */
     public Task(String description) {
@@ -34,6 +36,7 @@ public class Task {
 
     /**
      * Set task done attribute to true
+     *
      */
     public void markAsDone() {
         this.isDone = true;
@@ -41,6 +44,7 @@ public class Task {
 
     /**
      * Set task done attribute to false
+     *
      */
     public void markAsUndone() {
         this.isDone = false;
