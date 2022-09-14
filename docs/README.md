@@ -18,8 +18,6 @@ Example of usage:
 Expected outcome:
 
 ```
-Duck says:
-
 Quack! I've added this task:
   [T][] finish CS2103T iP assignment
 Now you have 1 task in the list, quack!
@@ -40,8 +38,6 @@ Example of usage:
 Expected outcome:
 
 ```
-Duck says:
-
 Quack! I've added this task:
   [E][] attend Meta Software Engineering Conference (at: Monday 1-3pm)
 Now you have 2 tasks in the list, quack!
@@ -63,8 +59,6 @@ Example of usage:
 Expected outcome:
 
 ```
-Duck says:
-
 Quack! I've added this task:
   [D][] return book (by: 02/08/2019 18:00)
 Now you have 3 tasks in the list, quack!
@@ -81,8 +75,6 @@ Example of usage:
 Expected outcome:
 
 ```
-Duck says:
-
 1. [T][] finish CS2103T iP assignment
 2. [E][] attend Meta Software Engineering Conference (at: Monday 1-3pm)
 3. [D][] return book (by: 02/08/2019 18:00)
@@ -99,8 +91,6 @@ Example of usage:
 Expected outcome:
 
 ```
-Duck says:
-
 Tasks are sorted successfully, quack!
 ```
 
@@ -123,8 +113,6 @@ Example of usage:
 Expected outcome:
 
 ```
-Duck says:
-
 Here are the matching tasks in your list, quack:
 1. [E][] attend Meta Software Engineering Conference (at: Monday 1-3pm)
 ```
@@ -142,8 +130,6 @@ Example of usage:
 Expected outcome:
 
 ```
-Duck says:
-
 Quack! I've removed this task:
 [E][] attend Meta Software Engineering Conference (at: Monday 1-3pm)
 ```
@@ -161,8 +147,6 @@ Example of usage:
 Expected outcome:
 
 ```
-Duck says:
-
 Quack! I've marked this task as done:
   [T][X] finish CS2103T iP assignment
 ```
@@ -180,8 +164,6 @@ Example of usage:
 Expected outcome:
 
 ```
-Duck says:
-
 Quack, I've marked this task as not done yet:
   [T][] finish CS2103T iP assignment
 ```

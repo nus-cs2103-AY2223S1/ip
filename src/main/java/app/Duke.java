@@ -50,6 +50,6 @@ public class Duke {
      * @return response of the bot to the user's command input
      */
     public String getResponse(String input) {
-        return "Duck says: \n\n" + parser.parseCommand(tasks, input);
+        return parser.parseCommand(tasks, input);
     }
 }
