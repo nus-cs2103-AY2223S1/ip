@@ -3,7 +3,7 @@
 Isara is a **desktop app for managing tasks, optimized for use via a Command-Line Interface (CLI)** 
 while still having a Graphical User Interface (GUI). 
 
-> :question: New to the terms _CLI_ and _GUI_? See [here](https://www.geeksforgeeks.org/difference-between-cli-and-gui/)
+> New to the terms _CLI_ and _GUI_? See [here](https://www.geeksforgeeks.org/difference-between-cli-and-gui/)
 for a short summary on the differences between CLI and GUI.
 
 ## Table of Contents
