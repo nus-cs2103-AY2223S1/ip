@@ -16,7 +16,7 @@ page below.
 5. Type a command in the text box to the bottom of the application. **Either**
 click on the **Send** button or press the **Enter** key on your keyboard.
 6. Refer to the [Features](#features) section for more details of each command or
-alternatively, take a look at the [Command Summary]() section for a table of all
+alternatively, take a look at the [Command Summary](#command-summary) section for a table of all
 commands.
 
 ![UI](Ui.png)
