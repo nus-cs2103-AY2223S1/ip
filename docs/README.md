@@ -34,6 +34,7 @@ Shows a bye message and ends the program.
 
 
     list
+    
 Shows a list of all tasks currently
 
 ### Finishing a task:
@@ -51,6 +52,7 @@ Example:
 
 
     unmark <task number that still needs to be unmarked>
+    
 Follow this command with the task number you want to unmark as it is still not finished.
 Example:
 
@@ -61,6 +63,7 @@ Example:
 
 
     delete <task number that you want to remove>
+    
 Follow this command with the task number you want to remove from the task list.
 Example:
 
@@ -71,6 +74,7 @@ Example:
 
 
     todo <task name>
+    
 Follow this command with the name of the task that you want to add to task list. 
 Todo tasks only have task name assigned to it.
 Example: adding a todo read book task
@@ -82,6 +86,7 @@ Example: adding a todo read book task
 
 
     deadline <task name> /by <YYYY-MM-DD>
+    
 Follow this command with the name of the task followed by the "/by" string and then 
 a timing to finish this task by in the YYYY-MM-DD format.
 Example: adding a write book deadline task
@@ -93,6 +98,7 @@ Example: adding a write book deadline task
 
 
     event <task name> /at <Time>
+    
 Follow this command with the name of the task followed by the "/at" string and then
 a timing in any format.
 Example: adding a project meeting event task
@@ -104,6 +110,7 @@ Example: adding a project meeting event task
 
 
     find <keyword>
+    
 Follow this command with the keyword you are looking for in the list of tasks.
 DukeSIU will return all tasks that contain this keyword.
 Example: finding all tasks that is related to book
@@ -119,9 +126,11 @@ Example: finding all tasks that is related to book
 ## FAQ
 
 **Q**: How do I clear all tasks already in data ?
+
 **A**: Locate the duke.txt file in data/duke.txt and manually clear all previous data
 
 **Q**: DukeSIU GUI does not run or appear 
+
 **A**: Make sure Java 11 or above is installed, you can check your java version by 
 
 
