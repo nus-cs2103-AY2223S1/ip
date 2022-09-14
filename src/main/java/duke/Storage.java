@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class Storage {
     private final String filepath;
     private static final Path FILEPATH_HELP = Path.of("data/help.txt");
+    private static final char INDEX_TASKTYPE = 4;
 
     Storage(String filepath) {
         this.filepath = filepath;
@@ -31,7 +32,7 @@ public class Storage {
         Scanner s = new Scanner(new File(filepath));
         while (s.hasNext()) {
             String taskText = s.nextLine();
-            char taskType = taskText.charAt(3);
+            char taskType = taskText.charAt(INDEX_TASKTYPE);
             if (taskType == 'T') {
                 tasks.add(new Todo(taskText));
             } else if (taskType == 'D') {

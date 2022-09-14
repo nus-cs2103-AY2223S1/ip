@@ -8,6 +8,9 @@ import java.util.Arrays;
  */
 public class Parser {
     private final static String EXIT = "bye";
+    private final static int INDEX_START = 0;
+    private final static int INDEX_END_YEAR = 4;
+    private final static int INDEX_END_MONTH = 6;
 
     enum Keyword {
         bye, list, mark, unmark, todo, deadline, event, delete, find, help
@@ -56,10 +59,11 @@ public class Parser {
      */
     protected static LocalDate formatDate(String desc) {
         int index = desc.indexOf('/');
+        String dueDate = desc.substring(index + 1).trim();
         if (index > 0) {
-            int year = Integer.parseInt(desc.substring(index + 1, index + 5));
-            int month = Integer.parseInt(desc.substring(index + 5, index + 7));
-            int date = Integer.parseInt(desc.substring(index + 7, index + 9));
+            int year = Integer.parseInt(dueDate.substring(INDEX_START, INDEX_END_YEAR));
+            int month = Integer.parseInt(dueDate.substring(INDEX_END_YEAR, INDEX_END_MONTH));
+            int date = Integer.parseInt(dueDate.substring(INDEX_END_MONTH));
             return LocalDate.of(year, month, date);
         }
         return LocalDate.now();

@@ -40,6 +40,6 @@ public class Duke {
      * @return Greeting and number of outstanding tasks to users in String format
      */
     protected String greet() {
-        return ui.getGreetingMessage() + String.format("\n\nYou have %d outstanding tasks!", tasks.getSize());
+        return ui.getGreetingMessage() + String.format("\n\nYou currently have %d tasks!", tasks.getSize());
     }
 }

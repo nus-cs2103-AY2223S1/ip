@@ -66,7 +66,7 @@ public class TaskList {
      */
     protected String enumerateList() {
         return IntStream.range(0, tasks.size())
-                .mapToObj(i -> (i + 1) + " " + tasks.get(i) + "\n")
+                .mapToObj(i -> (i + 1) + ". " + tasks.get(i) + "\n")
                 .reduce("", (task1, task2) -> task1 + task2);
     }
 

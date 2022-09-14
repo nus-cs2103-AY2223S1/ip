@@ -44,10 +44,10 @@ public class Ui {
     }
 
     protected String addTaskConfirmation(Task task, int size) {
-        return String.format("Got it. I've added this task:\t%s\nNow you have %d tasks in your list.", task, size);
+        return String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in your list.", task, size);
     }
 
     protected String deleteTaskConfirmation(Task task, int size) {
-        return String.format("Noted. I've removed this task:\t%s\nNow you have %d tasks in the list.\n", task, size);
+        return String.format("Noted. I've removed this task:\n\t%s\nNow you have %d tasks in the list.\n", task, size);
     }
 }
