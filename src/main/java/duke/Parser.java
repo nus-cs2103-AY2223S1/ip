@@ -37,11 +37,11 @@ public class Parser {
         String command = substrings[0];
         switch (command) {
         case "greet":
-            return parseGreetCommand(substrings);
+            return parseGreetCommand();
         case "bye":
-            return parseExitCommand(substrings);
+            return parseExitCommand();
         case "list":
-            return parseListCommand(substrings);
+            return parseListCommand();
         case "mark":
             return parseMarkCommand(substrings);
         case "unmark":
@@ -57,25 +57,46 @@ public class Parser {
         }
     }
 
-    public static Command parseGreetCommand(String[] substrings) {
+    /**
+     * Parses the user input to a greet command.
+     *
+     * @return the greet command
+     */
+    public static Command parseGreetCommand() {
         return new GreetCommand();
     }
 
-    public static Command parseExitCommand(String[] substrings) {
+    /**
+     * Parses the user input to an exit command.
+     *
+     * @return the exit command
+     */
+    public static Command parseExitCommand() {
         return new ExitCommand();
     }
 
-    public static Command parseListCommand(String[] substrings) {
+    /**
+     * Parses the user input to a list command.
+     *
+     * @return the list command
+     */
+    public static Command parseListCommand() {
         return new ListCommand();
     }
 
+    /**
+     * Parses the user input to an add command.
+     *
+     * @param substrings substrings of the user input
+     * @return the add command
+     */
     public static Command parseAddCommand(String[] substrings) {
         boolean isSingleWordCommand = substrings.length == 1;
-        String task = substrings[0];
-        String description = substrings[1].split("/")[0].trim();
         if (isSingleWordCommand) {
             throw new DukeException("The description of a task cannot be empty.");
         }
+        String task = substrings[0];
+        String description = substrings[1].split("/")[0].trim();
         switch (task) {
         case "todo":
             Todo todo = new Todo(description);
@@ -93,10 +114,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the user input to a clone command.
+     *
+     * @param substrings substrings of the user input
+     * @return the clone command
+     */
     public static Command parseCloneCommand(String[] substrings) {
         boolean isSingleWordCommand = substrings.length == 1;
-        // when user enters clone and a number
-        // clone the corresponding task from the list
         if (isSingleWordCommand) {
             throw new DukeException("Please specify which task to clone.");
         }
@@ -104,11 +129,14 @@ public class Parser {
         return new CloneCommand(index);
     }
 
+    /**
+     * Parses the user input to a find command.
+     *
+     * @param substrings substrings of the user input
+     * @return the find command
+     */
     public static Command parseFindCommand(String[] substrings) {
         boolean isSingleWordCommand = substrings.length == 1;
-        // when user enters find and a keyword
-        // search for that keyword in the list
-        // and print out the result
         if (isSingleWordCommand) {
             throw new DukeException("Please specify what keyword to search for.");
         }
@@ -116,10 +144,14 @@ public class Parser {
         return new FindCommand(keyword);
     }
 
+    /**
+     * Parses the user input to a delete command.
+     *
+     * @param substrings substrings of the user input
+     * @return the delete command
+     */
     public static Command parseDeleteCommand(String[] substrings) {
         boolean isSingleWordCommand = substrings.length == 1;
-        // when user enters delete and a number
-        // delete the corresponding task from the list
         if (isSingleWordCommand) {
             throw new DukeException("Please specify which task to delete.");
         }
@@ -127,11 +159,14 @@ public class Parser {
         return new DeleteCommand(index);
     }
 
+    /**
+     * Parses the user input ot an unmark command.
+     *
+     * @param substrings substrings of the user input
+     * @return the unmark command
+     */
     public static Command parseUnmarkCommand(String[] substrings) {
         boolean isSingleWordCommand = substrings.length == 1;
-
-        // when user enters unmark and a number
-        // mark the corresponding task as not done
         if (isSingleWordCommand) {
             throw new DukeException("Please specify which task to unmark.");
         }
@@ -139,11 +174,14 @@ public class Parser {
         return new UnmarkCommand(index);
     }
 
+    /**
+     * Parses the user input to a mark command.
+     *
+     * @param substrings substrings of the user input
+     * @return the mark command
+     */
     public static Command parseMarkCommand(String[] substrings) {
         boolean isSingleWordCommand = substrings.length == 1;
-
-        // when user enters mark and a number
-        // mark the corresponding task as done
         if (isSingleWordCommand) {
             throw new DukeException("Please specify which task to mark.");
         }
