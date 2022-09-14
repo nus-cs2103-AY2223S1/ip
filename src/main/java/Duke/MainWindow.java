@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/pickleRick.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/jerry.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/meseeks.png"));
 
     @FXML
@@ -42,6 +42,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+        if (input.trim().equals("bye")) {
+            System.exit(0);
+        }
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),

@@ -5,8 +5,8 @@ public class StringReplacer {
 
     public String[] editCommandHelper(String input) {
         String[] result = input.trim().split("/");
-        result[0].trim();
-        result[1].trim();
+        result[0] = result[0].trim();
+        result[1] = result[1].trim();
         return result;
     }
 
