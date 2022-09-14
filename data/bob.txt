@@ -1,0 +1,6 @@
+T | 0 | Prepare for interview
+D | 0 | Internship Application  | Sep 30 2022
+E | 0 | Birthday Party for John | Sep 19 2022
+T | 0 | upload photos
+D | 0 | Essay submission  | Sep 29 2022
+E | 0 | Marathon  | Aug 19 2022

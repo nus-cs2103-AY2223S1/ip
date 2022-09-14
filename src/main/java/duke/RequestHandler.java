@@ -117,8 +117,8 @@ public class RequestHandler {
                         return new UpdateDateCommand(itemNumber, LocalDate.parse(splitUpdateCommand[2]));
                     } else {
                         throw new InvalidInputException("Do you want to update description or date?"
-                                + "Please key in UPDATE index DESCRIPTION 'description' "
-                                + "or UPDATE index DATE 'yyyy-mm-dd'");
+                                + "Please key in update {INDEX} description {DESCRIPTION} "
+                                + "or update {INDEX} date {yyyy-mm-dd}");
                     }
 
                 }
