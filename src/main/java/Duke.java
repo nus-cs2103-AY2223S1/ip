@@ -1,5 +1,3 @@
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -25,8 +23,7 @@ public class Duke {
     public static void main(String[] args) {
         System.out.println(LOGO);
         System.out.println(GREETING);
-
-        loadLocalData();
+        
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             try {
@@ -45,39 +42,33 @@ public class Duke {
                 String[] split = userInput.split(" ");
                 if (split.length == 2 && isNumeric(split[1]) && split[0].equals("mark")) {
                     markTaskAsDone(getTask(Integer.parseInt(split[1]) - 1));
-                    storeLocalData();
                     continue;
                 }
 
                 if (split.length == 2 && isNumeric(split[1]) && split[0].equals("unmark")) {
                     markTaskAsUndone(getTask(Integer.parseInt(split[1]) - 1));
-                    storeLocalData();
                     continue;
                 }
 
                 if (split.length == 2 && isNumeric(split[1]) && split[0].equals("delete")) {
                     deleteTask(getTask(Integer.parseInt(split[1]) - 1));
-                    storeLocalData();
                     continue;
                 }
 
                 if (split[0].equals("todo")) {
                     addToDo(userInput.substring(4).trim());
-                    storeLocalData();
                     continue;
                 }
 
                 if (split[0].equals("deadline") && userInput.contains("/by")) {
                     int index = userInput.indexOf("/by");
                     addDeadline(userInput.substring(8, index).trim(), userInput.substring(index + 3).trim());
-                    storeLocalData();
                     continue;
                 }
 
                 if (split[0].equals("event") && userInput.contains("/at")) {
                     int index = userInput.indexOf("/at");
                     addEvent(userInput.substring(5, index).trim(), userInput.substring(index + 3).trim());
-                    storeLocalData();
                     continue;
                 }
 
@@ -85,50 +76,6 @@ public class Duke {
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private static void loadLocalData() {
-        try {
-            Files.createDirectories(Paths.get("data/"));
-            File file = new File("data/duke.txt");
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNext()) {
-                String[] entry = scanner.nextLine().split(" \\| ");
-                Task task = null;
-                if (entry[0].equals("T")) {
-                    task = new ToDo(entry[2]);
-                } else if (entry[0].equals("D")) {
-                    task = new Deadline(entry[2], entry[3]);
-                } else {
-                    task = new Event(entry[2], entry[3]);
-                }
-
-                if (entry[1].equals("1")) {
-                    task.mark();
-                }
-                TASKS.add(task);
-            }
-            scanner.close();
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
-    }
-
-    private static void storeLocalData() {
-        try {
-            FileWriter fw = new FileWriter("data/duke.txt");
-            List<String> list = new ArrayList<>();
-            for (Task task : TASKS) {
-                list.add(task.stringifyTask());
-            }
-            fw.write(String.join(System.lineSeparator(), list));
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
         }
     }
 
