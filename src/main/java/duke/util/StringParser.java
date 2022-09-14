@@ -1,5 +1,8 @@
 package duke.util;
 
+/**
+ * Static class used solely to format strings
+ */
 public final class StringParser {
     private static final String LINE = "   ______________________________";
 
