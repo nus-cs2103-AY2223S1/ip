@@ -40,13 +40,16 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getBroDialog(Ui.welcome(), broImage)
         );
     }
-
+    /**
+     * Sets the chatbot for the application.
+     * @param d The bro chatbot.
+     */
     public void setBro(bro.Bro d) {
         bro = d;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Bro's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML

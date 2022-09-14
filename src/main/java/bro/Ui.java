@@ -1,17 +1,11 @@
 package bro;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import bro.task.Task;
 
 /**
  * Ui class.
  */
 public class Ui {
-
-    private final Scanner Input = new Scanner(System.in);
-
     /**
      * Prints out the welcome message.
      */
@@ -20,7 +14,7 @@ public class Ui {
     }
     /**
      * Prints out the size of the ArrayList.
-     * @param list1 The ArrayList
+     * @param list1 The TaskList
      */
     public static String listSize(TaskList list1) {
         if (list1.size() == 1) {
@@ -58,11 +52,10 @@ public class Ui {
 
     /**
      * Prints out the delete statement.
-     * @param list1 ArrayList of Task where the task has to be deleted.
-     * @param n Index of the task to be deleted.
+     * @param t TaskList of Task where the task has to be deleted.
      */
-    public static String deleteUi(TaskList list1, int n) {
-        return "I have removed this task.\n" + (list1.get(n - 1)).toString() + "\n";
+    public static String deleteUi(Task t) {
+        return "I have removed this task.\n" + t.toString() + "\n";
     }
 
     /**
@@ -91,15 +84,14 @@ public class Ui {
      * @param tasks The ArrayList containing the tasks.
      * @return The tasks with keyword.
      */
-    public static String findUi(ArrayList<Task> tasks) {
+    public static String findUi(TaskList tasks) {
         String result = "";
         if (tasks.size() == 0) {
             result += "Word could not be found!";
-        }
-        else {
+        } else {
             int count = 1;
-            for (Task t : tasks) {
-                result += count + "." + t + "\n";
+            for (int i = 0; i < tasks.size(); i++) {
+                result += count + "." + tasks.get(i) + "\n";
                 count++;
             }
         }

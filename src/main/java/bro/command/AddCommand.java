@@ -1,5 +1,8 @@
 package bro.command;
 
+import java.io.IOException;
+
+import bro.BroException;
 import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
@@ -25,17 +28,13 @@ public class AddCommand extends Command {
      * Adds the given task to the file.
      */
     @Override
-    public String execute(TaskList tasklist, Ui ui, Storage storage) {
-        String type = this.task.getTaskType();
-        switch (type) {
-        case ("bro.task.Todo"):
-            return tasklist.todoTask(this.task, storage);
-        case ("bro.task.Deadline"):
-            return tasklist.deadlineTask(this.task, storage);
-        case ("bro.task.Event"):
-            return tasklist.eventTask(this.task, storage);
-        default:
-            return "Exception";
+    public String execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
+        tasklist.addTask(this.task);
+        try {
+            storage.writeToFile(this.task);
+        } catch (IOException e) {
+            throw new BroException("Couldn't delete task!");
         }
+        return ui.printAdd(this.task) + ui.listSize(tasklist);
     }
 }

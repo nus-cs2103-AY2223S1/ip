@@ -9,12 +9,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * A GUI for Bro using FXML.z
+ * A GUI for Bro using FXML.
  */
 public class Main extends Application {
 
     private Bro bro = new Bro();
-
     @Override
     public void start(Stage stage) {
         try {

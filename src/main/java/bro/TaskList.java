@@ -1,6 +1,5 @@
 package bro;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import bro.task.Task;
@@ -61,129 +60,44 @@ public class TaskList {
 
     /**
      * Marks the task as done by setting isDone boolean to true.
-     *
-     * @param n   Index of the task to be marked.
-     * @param sto Storage location of the file.
+     * @param n Index of the task to be marked.
      */
-    public String markTask(int n, Storage sto) {
-        String result = "";
+    public void markTask(int n) throws BroException {
         this.tasks.get(n - 1).markAsDone();
-        try {
-            sto.modifyTaskFile(this.tasks);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        result += ui.markUi(this, n);
-        result += ui.listSize(this);
-        return result;
     }
 
     /**
      * Unmarks the task as done by setting isDone boolean to false.
-     *
-     * @param n   Index of the task to be unmarked.
-     * @param sto Storage location of the file.
+     * @param n Index of the task to be unmarked.
      */
-    public String unmarkTask(int n, Storage sto) {
-        String result = "";
+    public void unmarkTask(int n) {
         this.tasks.get(n - 1).markAsNotDone();
-        try {
-            sto.modifyTaskFile(this.tasks);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        result += ui.unmarkUi(this, n);
-        result += ui.listSize(this);
-        return result;
     }
 
     /**
-     * Adds todo task to the list of the tasks.
-     *
-     * @param t   Task to be added
-     * @param sto Storage location of the file.
+     * Adds task to the list of the tasks.
+     * @param t Task to be added
      */
-    public String todoTask(Task t, Storage sto) {
-        String result = "";
+    public void addTask(Task t) {
         t.markAsNotDone();
         tasks.add(t);
-        try {
-            sto.writeToFile(t);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        result += ui.printAdd(t);
-        result += ui.listSize(this);
-        return result;
     }
-
-    /**
-     * Adds deadline task to the list of the tasks.
-     *
-     * @param t   Task to be added
-     * @param sto Storage location of the file.
-     */
-    public String deadlineTask(Task t, Storage sto) {
-        String result = "";
-        t.markAsNotDone();
-        tasks.add(t);
-        try {
-            sto.writeToFile(t);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        result += ui.printAdd(t);
-        result += ui.listSize(this);
-        return result;
-    }
-
-    /**
-     * Adds event task to the list of the tasks.
-     *
-     * @param t   Task to be added
-     * @param sto Storage location of the file.
-     */
-    public String eventTask(Task t, Storage sto) {
-        String result = "";
-        t.markAsNotDone();
-        tasks.add(t);
-        try {
-            sto.writeToFile(t);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        result += ui.printAdd(t);
-        result += ui.listSize(this);
-        return result;
-    }
-
     /**
      * Deletes the task from the task list.
-     *
-     * @param n   Index of the task to be deleted.
-     * @param sto Storage location of the file.
+     * @param n Index of the task to be deleted.
      */
-    public String deleteTask(int n, Storage sto) {
-        String result = "";
-        result += ui.deleteUi(this, n);
+    public void deleteTask(int n) {
         tasks.remove(n - 1);
-        try {
-            sto.modifyTaskFile(tasks);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        result += ui.listSize(this);
-        return result;
     }
 
     /**
      * Returns tasks with the given keyword.
-     *
      * @param keyword The word which has to be found in the file.
+     * @return TaskList which has task with the keyword.
      */
-    public String findTask(String keyword) {
-        ArrayList<Task> found = new ArrayList<>();
-        tasks.stream().filter(t -> t.toString().contains(keyword)).forEach(found::add);
-        return ui.findUi(found);
+    public TaskList findTask(String keyword) {
+        TaskList found = new TaskList();
+        tasks.stream().filter(t -> t.toString().contains(keyword)).forEach(found::addTask);
+        return found;
     }
 }

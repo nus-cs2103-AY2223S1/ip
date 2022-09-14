@@ -24,9 +24,9 @@ public class ModifyCommandTest {
         TaskList tasklist = new TaskList();
         Ui ui = new Ui();
         ModifyCommand modifycmd = new ModifyCommand(ModifyCommand.ModifyType.MARK, 4);
-        tasklist.todoTask(new Todo("party"), storage);
-        tasklist.todoTask(new Todo("study"), storage);
-        tasklist.todoTask(new Todo("eat"), storage);
+        tasklist.addTask(new Todo("party"));
+        tasklist.addTask(new Todo("study"));
+        tasklist.addTask(new Todo("eat"));
         try {
             modifycmd.execute(tasklist, ui, storage);
             fail();
@@ -34,5 +34,4 @@ public class ModifyCommandTest {
             assertEquals("Index is out of bound. Enter a valid index", e.getMessage());
         }
     }
-
 }

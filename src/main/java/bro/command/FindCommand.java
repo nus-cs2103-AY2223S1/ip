@@ -1,6 +1,5 @@
 package bro.command;
 
-import bro.BroException;
 import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
@@ -25,7 +24,8 @@ public class FindCommand extends Command {
      * Finds whether any task has the keyword provided.
      */
     @Override
-    public String execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
-        return tasklist.findTask(keyword);
+    public String execute(TaskList tasklist, Ui ui, Storage storage) {
+        TaskList found = tasklist.findTask(keyword);
+        return ui.findUi(found);
     }
 }

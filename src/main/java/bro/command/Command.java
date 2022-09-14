@@ -18,12 +18,12 @@ public abstract class Command {
     public boolean isExit() {
         return this.isExit;
     }
-
     /**
      * Executes the command according to the input.
      * @param tasklist List of tasks of the user.
      * @param ui To display messages to the user.
      * @param storage Storage of the file.
+     * @return the Ui to be displayed.
      * @throws BroException If the input is invalid.
      */
     public abstract String execute(TaskList tasklist, Ui ui, Storage storage) throws BroException;

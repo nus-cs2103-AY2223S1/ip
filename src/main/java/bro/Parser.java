@@ -90,11 +90,15 @@ public class Parser {
     public void checkInput(String str, int n) throws BroException {
         switch (str) {
         case "todo":
-            if (n < 2) { throw new BroException("Please give the description!"); }
+            if (n < 2) {
+                throw new BroException("Please give the description!");
+            }
             break;
         case "deadline":
         case "event":
-            if (n < 4) { throw new BroException("Please give the description and time!"); }
+            if (n < 4) {
+                throw new BroException("Please give the description and time!");
+            }
             break;
         default:
             break;

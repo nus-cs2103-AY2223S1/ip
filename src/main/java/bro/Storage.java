@@ -48,7 +48,6 @@ public class Storage {
                 e.printStackTrace();
             }
             while (sc.hasNext()) {
-
                 String input = sc.nextLine();
                 this.addTaskToList(input);
             }
@@ -67,8 +66,7 @@ public class Storage {
             if (input.substring(4, 5).equals("X")) {
                 t.markAsDone();
             }
-        }
-        else if (input.startsWith("[D]")) {
+        } else if (input.startsWith("[D]")) {
             String desc = input.substring(6, input.indexOf(" (by")).trim();
             String by = input.split("by:")[1].replace(')', ' ').trim();
             Task t = new Deadline(desc, by);
@@ -76,8 +74,7 @@ public class Storage {
             if (input.substring(4, 5).equals("X")) {
                 t.markAsDone();
             }
-        }
-        else if (input.startsWith("[E]")) {
+        } else if (input.startsWith("[E]")) {
             String desc = input.substring(6, input.indexOf(" (at")).trim();
             String at = input.split("at:")[1].replace(')', ' ').trim();
             Task t = new Event(desc, at);
@@ -104,10 +101,10 @@ public class Storage {
      * @param li List of the ArrayLisyt of task.
      * @throws IOException If the file is not found.
      */
-    public static void modifyTaskFile(ArrayList<Task> li) throws IOException {
+    public static void modifyTaskFile(TaskList li) throws IOException {
         FileWriter w = new FileWriter("./bro.Bro.txt", false);
-        for (Task t : li) {
-            w.write(t.toString() + "\n");
+        for (int i = 0; i < li.size(); i++) {
+            w.write(li.get(i).toString() + "\n");
         }
         w.close();
     }
