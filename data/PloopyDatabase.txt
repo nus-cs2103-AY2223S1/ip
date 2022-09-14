@@ -1,4 +1,4 @@
 T_1_homework_0
 D_0_assignment 1_12/08/2022 1800_0
-T_0_clean room_0
 D_0_assignment 2_13/10/2022 1800_0
+E_0_dinner_15/09/2022 2000_0
