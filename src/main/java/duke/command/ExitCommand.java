@@ -4,6 +4,9 @@ import duke.model.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * A command the exit the program.
  */
@@ -19,6 +22,13 @@ public class ExitCommand extends Command {
     public String execute(TaskList taskList, Storage storage) {
         toggleIsExit();
         String response = Ui.sayBye();
+        TimerTask exitTimer = new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        };
+        new Timer().schedule(exitTimer, 1500);
         assert response != null : "response should not be null";
         return response;
     }
