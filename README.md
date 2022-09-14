@@ -47,8 +47,7 @@ Expected Outcome:
 Adds a ToDo task called "clean room" to the list of tasks.
 
 ```
-I've added this task to your list. Here you go: [T][]
-clean room You have X tasks in you
+I've added this task to your list. Here you go: [T][] clean room You have X tasks in you
 ```
 
 ## `deadline` - Adds a Deadline task
@@ -70,9 +69,7 @@ Expected Outcome:
 Adds a Deadline tasks called "assignment 1" which has the date: 15/09/2022 and time: 1800.
 
 ```
-I've added this task to your list. Here you go: [D][]
-assignment 1 (by: Sep 15 2022 1800) You have x tasks
-in your list
+I've added this task to your list. Here you go: [D][] assignment 1 (by: Sep 15 2022 1800) You have x tasks in your list
 ```
 
 ##  `event` - Adds an Event task
@@ -93,9 +90,7 @@ Expected Outcome:
 Adds an event task called "graduation" with the date: 15/04/2025 and time: 1200
 
 ```
-I've added this task to your list. Here you go: [E][]
-graduation (at: Apr 15 2025 1200) You have x tasks
-in your list
+I've added this task to your list. Here you go: [E][] graduation (at: Apr 15 2025 1200) You have x tasks in your list
 ```
 
 ## `list` - Lists all tasks 
