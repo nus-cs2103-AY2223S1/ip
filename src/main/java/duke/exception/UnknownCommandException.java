@@ -12,7 +12,9 @@ public class UnknownCommandException extends DukeException {
      * Constructor for a UnknownCommandException.
      */
     public UnknownCommandException() {
-        super("I'm sorry, but I don't know what this means :(");
+        super("The available commands are:\n" + "list\n" + "mark\n"
+                + "unmark\n" + "todo\n" + "deadline\n" + "event\n"
+                + "delete\n" + "find\n" + "schedule\n" + "bye");
     }
 
 }

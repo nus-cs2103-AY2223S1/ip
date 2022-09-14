@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" fillHeight="false" maxHeight="Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="221.0" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" alignment="TOP_LEFT" maxHeight="Infinity" prefHeight="200.0" prefWidth="271.0" style="-fx-background-color: #f5f0e2; -fx-background-radius: 25px; -fx-border-radius: 10px; -fx-border-width: 3px; -fx-border-color: #ede2d7#ede2d7#ede2d7#ede2d7; -fx-padding: 10px;" text="Example of tasks: &#10;1. gjeaiogjpegpeogmpagmpag &#10;2. fmispamfpafmpamfpasfsa&#10;3. fjsaipofkoapfas&#10;4. sfaspmop" textAlignment="JUSTIFY" wrapText="true">
+        <Label fx:id="dialog" alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefHeight="195.0" prefWidth="271.0" style="-fx-background-color: #f5f0e2; -fx-background-radius: 25px; -fx-border-radius: 10px; -fx-border-width: 3px; -fx-border-color: #ede2d7#ede2d7#ede2d7#ede2d7; -fx-padding: 10px;" text="Example of tasks: &#10;1. gjeaiogjpegpeog&#10;2. fmispamfpafmpamfpasfsa&#10;3. fjsaipofkoapfas&#10;4. sfaspmop&#10;fasfasfsafs&#10;fasfasfas" wrapText="true">
             <font>
             <Font name="SansSerif Regular" size="12.0" />
          </font></Label>
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
          <HBox.margin>
             <Insets left="10.0" right="10.0" />
          </HBox.margin></ImageView>

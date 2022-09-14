@@ -33,7 +33,7 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList matchingTasks = tasks.findTasks(this.keyword);
-        return ui.showTasks(matchingTasks, "Here are the matching tasks in you list:\n");
+        return ui.showTasks(matchingTasks, "Here are the matching tasks in your list:\n");
     }
 
     /**
