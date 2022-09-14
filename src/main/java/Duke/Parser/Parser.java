@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents the object that converts user input into commands and tasks.
+ */
 public class Parser {
     private static final String END_COMMAND = "bye";
     private static final String PRINT_COMMAND = "list";
@@ -40,6 +43,9 @@ public class Parser {
         return !isEnded;
     }
 
+    /**
+     * Recognises the command given by the user and calls the relevant handler to manage user input.
+     */
     public void handleNext() {
         try {
             String inputCmd = getNext();

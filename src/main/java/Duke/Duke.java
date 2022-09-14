@@ -6,6 +6,9 @@ import Duke.Storage.Storage;
 import Duke.TaskList.TaskList;
 import Duke.UI.Ui;
 
+/**
+ * The launcher for the Duke application.
+ */
 public class Duke {
     private TaskList taskList;
     private final Storage storage;

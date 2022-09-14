@@ -1,5 +1,9 @@
 package Duke.Task;
 
+/**
+ * Represents the information of the Tasks that the user wants to store.
+ * Acts as the abstract class that ToDos, Deadlines, and Events extend from.
+ */
 public abstract class Task {
 
     protected static String PRINT_TIME_FORMAT = "EE, dd MMM yyyy, HH:mm";
@@ -14,14 +18,26 @@ public abstract class Task {
         this.shorthand = shorthand;
     }
 
+    /**
+     * Marks the Task as complete.
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the Task as incomplete.
+     */
     public void markAsUndone() {
         this.isDone = false;
     }
 
+    /**
+     * Returns a String that represents the Task, and can be interpreted by
+     * the Storage class.
+     *
+     * @return The String that represents the Task in Storage text.
+     */
     public String getStorageString() {
         return String.format("%s|%s|%s",
                 getShorthand(),
@@ -29,6 +45,12 @@ public abstract class Task {
                 getDescription());
     }
 
+    /**
+     * Returns a String that represents the Task that should be displayed to
+     * the user while using the application.
+     *
+     * @return The String that represents the Task to be printed.
+     */
     @Override
     public String toString() {
         return String.format("[%s][%s] %s",

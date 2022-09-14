@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents the long term Storage that application stores data in.
+ */
 public class Storage {
     private final String filePath;
 
@@ -24,6 +27,13 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads data from existing data file.
+     * If data file does not exist, create an empty new file.
+     *
+     * @return A List containing all the tasks stored in the data file.
+     * @throws DukeException if file cannot be created or if there are tasks that cannot be loaded.
+     */
     public List<Task> loadFile() throws DukeException {
         try {
             // Creates the output List
@@ -104,6 +114,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the tasks from the taskList into the data file.
+     *
+     * @param taskList The list of tasks created by user.
+     * @throws DukeException If data cannot be saved.
+     */
     public void storeToFile(TaskList taskList) throws DukeException {
         try {
             FileWriter fw = new FileWriter(this.filePath);
