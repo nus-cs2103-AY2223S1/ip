@@ -1,0 +1,7 @@
+kirby.tasks.Todo~sleep
+kirby.tasks.Todo~hi
+kirby.tasks.Todo~Examples of hi in a SentenceRecent Examples on the Web: InterjectionThe co-founder of Vertical Harvest in Jackson, Wyoming, sits in the break room of the greenhouse, where employees come and go, many stopping by to say hi, to give her updates, or simply to smother her in hugs.— Jodi Hausen, The Christian Science Monitor, 22 Aug. 2022One neighbor told the station that the children would always say hi, and that Tom and Lauren took care of elderly grandparents who lived near them.— Lorraine Taylor, Fox News, 1 Aug. 2022
+kirby.tasks.Todo~/**     * Returns the format when the task is written in a text file.     *     * @return String containing the written version of the task description.     */
+kirby.tasks.Todo~I want to split in to multiple strings after every50 charcters but if there any word not completed itshould be divded after word completion
+kirby.tasks.Todo~I want to split in to multiple strings after every50 charcters but if there any word not completed itshould be divded after word completion
+kirby.tasks.Todo~hi

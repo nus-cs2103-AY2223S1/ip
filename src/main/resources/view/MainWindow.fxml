@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kirby.ui.MainWindow">
+<!--Resizing feature inspired by https://github.com/e1010101/ip/tree/74b319d6c9b44b9b9b34788646d5c3468263f127 with minor modifications-->
+<!--Resizing feature inspired by https://github.com/e1010101/ip/tree/74b319d6c9b44b9b9b34788646d5c3468263f127 with minor modifications-->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kirby.ui.MainWindow">
     <children>
-        <TextField fx:id="userInput" layoutY="358.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="600.0" promptText="Message" AnchorPane.bottomAnchor="1.0">
-         <font>
-            <Font name="monofur for Powerline" size="19.0" />
-         </font>
-      </TextField>
-        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" prefHeight="457.0" prefWidth="600.0" vvalue="1.0">
-         <padding>
-            <Insets left="1.0" right="1.0" />
-         </padding>
-         <content>
-                <VBox fx:id="dialogContainer" prefHeight="557.0" prefWidth="602.0" style="-fx-background-color: black;" />
-         </content>
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="600.0" stylesheets="@../css/ScrollPane.css" vvalue="1.0" AnchorPane.bottomAnchor="42.39999999999998" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <VBox fx:id="dialogContainer" prefHeight="500.0" prefWidth="620.0" style="-fx-background-color: black;" />
+            </content>
         </ScrollPane>
-        <Button fx:id="sendButton" layoutX="524.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" textFill="#838383">
-         <font>
-            <Font name="monofur for Powerline" size="19.0" />
-         </font>
-      </Button>
+        <HBox layoutY="558.0" prefHeight="46.0" prefWidth="600.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <TextField fx:id="userInput" layoutY="358.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="500.0" promptText="Message" AnchorPane.bottomAnchor="1.0" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="monofur for Powerline" size="19.0" />
+                    </font>
+                </TextField>
+                <Button fx:id="sendButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" textFill="#838383" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="monofur for Powerline" size="19.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

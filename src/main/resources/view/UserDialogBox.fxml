@@ -5,25 +5,20 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <TextFlow maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+       <Label fx:id="dialog" alignment="CENTER" minWidth="70.0" style="-fx-background-color: #db4848; -fx-background-radius: 24;" text="Label" textFill="#dedede" wrapText="true" HBox.hgrow="ALWAYS">
+           <font>
+            <Font name="monofur   bold for Powerline" size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
          <HBox.margin>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="18.0" />
+            <Insets right="4.0" top="5.0" />
          </HBox.margin>
-         <children>
-             <Label fx:id="dialog" alignment="CENTER" minWidth="70.0" style="-fx-background-color: #db4848; -fx-background-radius: 24;" text="Label" textFill="#dedede" wrapText="true" HBox.hgrow="ALWAYS">
-                 <font>
-                  <Font name="monofur   bold for Powerline" size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="5.0" />
-               </padding>
-            </Label>
-         </children>
-      </TextFlow>
+      </Label>
         <ImageView fx:id="displayPicture" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>
