@@ -29,24 +29,13 @@ public class SessionManager {
         } catch (DukeException e) {
             taskList = new TaskList(new ArrayList<>());
         }
-
-        // Assertions to ensure that objects are created successfully.
-        assert taskList != null;
-        assert taskList.getStoredTasks() != null;
-        assert storage != null;
-        try {
-            assert false;
-            throw new Error("Warning: Assertions not enabled.");
-        } catch (AssertionError e) {
-            // Ensure that assert statements are working.
-        }
     }
 
     /**
      * Ends the duke session.
      */
     public static void stopSession() {
-        final int END_DURATION = 3000;
+        int endDuration = 3000;
         // Code reuse from stackoverflow
         // https://stackoverflow.com/questions/2258066/java-run-a-function-after-a-specific-number-of-seconds
         new java.util.Timer().schedule(
@@ -57,7 +46,7 @@ public class SessionManager {
                         System.exit(0);
                     }
                 },
-                END_DURATION
+                endDuration
         );
     }
 
