@@ -8,6 +8,8 @@ mark 3
 list
 unmark 3
 list
+mark 2
+unmark 1
 find deadline
 find TEST EVENT
 find test

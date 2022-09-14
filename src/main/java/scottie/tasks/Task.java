@@ -73,6 +73,14 @@ public abstract class Task {
     abstract LocalDateTime getDateTime();
 
     /**
+     * Returns whether this task is marked as done.
+     *
+     * @return Whether the task is marked as done.
+     */
+    boolean isMarked() {
+        return this.isDone;
+    }
+    /**
      * Marks this Task as done.
      */
     void markAsDone() {

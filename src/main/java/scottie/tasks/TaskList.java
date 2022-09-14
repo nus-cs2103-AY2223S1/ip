@@ -91,6 +91,17 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns whether the task at the given index is marked as done.
+     * The list is 0-indexed.
+     *
+     * @param index The index of the Task to check.
+     * @return Whether the task with the given index is done.
+     */
+    public boolean isMarked(int index) {
+        return this.tasks.get(index).isMarked();
+    }
+
+    /**
      * Marks the task at the given index as done.
      * The list is 0-indexed.
      *

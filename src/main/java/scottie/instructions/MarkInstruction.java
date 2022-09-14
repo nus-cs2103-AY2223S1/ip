@@ -13,6 +13,7 @@ class MarkInstruction extends Instruction {
     private static final String MISSING_TASK_NUMBER_MESSAGE = "Um... which task did you wanna mark?";
     private static final String INVALID_TASK_NUMBER_MESSAGE = "Hahaha very funny buddy. %s is not a legit task number.";
     private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Um... there's no task number %d... is there?";
+    private static final String TASK_ALREADY_MARKED_MESSAGE = "Um... task %d is already marked as done, buddy.";
     private static final String TASK_MARKED_MESSAGE = "Nice! I'll mark task %d as done:";
 
     /**
@@ -41,8 +42,10 @@ class MarkInstruction extends Instruction {
             return;
         }
         int taskNum;
+        int taskId;
         try {
             taskNum = Integer.parseInt(this.getMainArgument());
+            taskId = taskNum - 1;
         } catch (NumberFormatException e) {
             ui.showFormattedError(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
             return;
@@ -55,9 +58,13 @@ class MarkInstruction extends Instruction {
             ui.showFormattedError(TASK_NUMBER_OUT_OF_RANGE_MESSAGE, taskNum);
             return;
         }
+        if (taskList.isMarked(taskId)) {
+            ui.showFormattedError(TASK_ALREADY_MARKED_MESSAGE, taskNum);
+            return;
+        }
 
-        taskList.markTask(taskNum - 1);
+        taskList.markTask(taskId);
         ui.showFormattedMessage(TASK_MARKED_MESSAGE, taskNum);
-        ui.showMessages(taskList.getTask(taskNum - 1).toString());
+        ui.showMessages(taskList.getTask(taskId).toString());
     }
 }

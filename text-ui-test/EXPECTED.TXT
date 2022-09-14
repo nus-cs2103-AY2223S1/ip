@@ -32,6 +32,8 @@ Ok, here's your list of tasks at the moment!
 1. (T) [ ] Test todo
 2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
+[0;31mUm... task 2 is already marked as done, buddy.[0m
+[0;31mUm... task 1 is already marked as not done, buddy.[0m
 Ok, I've found this task in your list:
 1. (D) [X] Test deadline (by: Feb 1 2034)
 Ok, I've found this task in your list:
