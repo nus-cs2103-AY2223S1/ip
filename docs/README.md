@@ -37,7 +37,7 @@ for a short summary on the differences between CLI and GUI.
 ## Features
 
 ### Adding Tasks
-<hr>
+
 Adds a task to the bot's list. There are three types of tasks: 
 
 ### 1. **ToDo** : `todo` 
@@ -168,7 +168,7 @@ OK, I've marked this task as not done yet:
 [D][ ] iP (by: 2022-09-16)
 ```
 
-### Rescheduling your tasks (deadlines): `reschedule` <hr>
+### Rescheduling your tasks (deadlines): `reschedule`
 Reschedules your deadlines to another date.
 
 **Format:** `reschedule <TASK_INDEX> /by <YYYY-MM-DD>`
