@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.list.TaskList;
-import seedu.duke.Ui.Ui;
+import seedu.duke.ui.Ui;
 import seedu.duke.task.DeadlineTask;
 
 /**

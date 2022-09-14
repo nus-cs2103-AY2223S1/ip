@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.list.TaskList;
-import seedu.duke.Ui.Ui;
+import seedu.duke.ui.Ui;
 
 /**
  * Class to execute exit command

@@ -1,4 +1,4 @@
-package seedu.duke.Ui;
+package seedu.duke.ui;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -13,10 +13,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seedu.duke.Duke;
-import seedu.duke.Ui.DialogBox;
 
 import java.io.IOException;
 
+// @@author ningtan11-reused
+// Reused from https://se-education.org/guides/tutorials/javaFx.html
+// with minor modifications
 public class Main extends Application {
     private ScrollPane scrollPane;
     private VBox dialogContainer;
@@ -121,6 +123,7 @@ public class Main extends Application {
         );
         userInput.clear();
     }
+    //@@author
 
     private String getResponse(String input) {
         return duke.getResponse(input);

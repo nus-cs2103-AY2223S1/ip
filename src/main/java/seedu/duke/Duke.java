@@ -1,7 +1,7 @@
 package seedu.duke;
 
-import seedu.duke.Ui.Launcher;
-import seedu.duke.Ui.Ui;
+import seedu.duke.ui.Launcher;
+import seedu.duke.ui.Ui;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.list.TaskList;
@@ -22,6 +22,7 @@ import java.nio.file.Path;
  * edit [item index] [new description] - changes the description of the given item
  * list - prints the list
  * find [search string] - searchs the list for items matching the string and prints them
+ * coffee - flavour command for fun
  * bye - saves the list and closes the program
  */
 public class Duke {

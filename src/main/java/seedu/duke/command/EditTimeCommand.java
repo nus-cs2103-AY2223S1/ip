@@ -3,7 +3,7 @@ package seedu.duke.command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.TaskDoesNotExistException;
 import seedu.duke.list.TaskList;
-import seedu.duke.Ui.Ui;
+import seedu.duke.ui.Ui;
 import seedu.duke.task.DeadlineTask;
 import seedu.duke.task.EventTask;
 import seedu.duke.task.Task;

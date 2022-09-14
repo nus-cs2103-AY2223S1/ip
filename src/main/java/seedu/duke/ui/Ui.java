@@ -1,4 +1,4 @@
-package seedu.duke.Ui;
+package seedu.duke.ui;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.list.FoundList;
@@ -63,6 +63,14 @@ public class Ui {
             return "Here is your to-do list, Master:\n" +
                     list.toString();
         }
+    }
+
+    /**
+     * Makes a cuppa to make the user's day.
+     * @return
+     */
+    public static String makeCoffee() {
+        return "I have prepared a steaming cup of coffee for you, Master. Enjoy it while it's hot!";
     }
 
     /**

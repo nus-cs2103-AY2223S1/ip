@@ -26,6 +26,8 @@ public class Parser {
             return new ExitCommand();
         } else if (inputText.equals("list")) {
             return new ListCommand();
+        } else if (inputText.equals("coffee")) {
+            return new CoffeeCommand();
         } else {
             String[] splitInput = inputText.split(" ", 2);
             if (splitInput.length == 2 && COMMANDS.contains(splitInput[0])) {
@@ -105,7 +107,7 @@ public class Parser {
                 } else if (commandWord.equals("deadline")) {
                     if (details.contains(" /by ")) {
                         String[] taskDesc = details.split(" /by ");
-                        if (taskDesc[1].length() <= 1 || taskDesc[2].length() <= 1) {
+                        if (taskDesc[0].length() <= 1) {
                             throw new NotEnoughArgumentsException();
                         }
 
@@ -117,7 +119,7 @@ public class Parser {
                 } else if (commandWord.equals("event")) {
                     if (details.contains(" /on ")) {
                         String[] taskDesc = details.split(" /on ");
-                        if (taskDesc[1].length() <= 1 || taskDesc[2].length() <= 1) {
+                        if (taskDesc[0].length() <= 1) {
                             throw new NotEnoughArgumentsException();
                         }
 

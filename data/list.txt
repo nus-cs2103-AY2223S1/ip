@@ -1,5 +1,2 @@
-[T][X] sleep later
-[E][ ] eat later (on: 7pm)
-[D][ ] eat (by: 5pm)
-[D][ ] eat (by: Aug 4 2022)
-[D][X] eat (by: tomorrow)
+[D][ ] eat apple (by: 7pm)
+[E][ ] party (on: Jul 10 2022)

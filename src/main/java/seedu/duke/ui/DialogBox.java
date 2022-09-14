@@ -1,4 +1,4 @@
-package seedu.duke.Ui;
+package seedu.duke.ui;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -6,12 +6,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 
+// @@author ningtan11-reused
+// Reused from https://se-education.org/guides/tutorials/javaFx.html
+//
 public class DialogBox extends HBox {
 
     private Label text;
@@ -49,3 +48,4 @@ public class DialogBox extends HBox {
         return db;
     }
 }
+// @@author
