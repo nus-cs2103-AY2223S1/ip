@@ -37,6 +37,7 @@ public class Parser {
      * @param rawInput This is the user's string input
      * @param taskList This is the user's current list of tasks
      * @param ui This is for the Duke program to interact/print outputs to the user
+     * @return
      */
     public static String parseCommand(String rawInput, TaskList taskList, Ui ui) {
         DukeException invalidCommandException = new DukeException("OOPS!!! I'm sorry, but "
