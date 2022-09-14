@@ -93,7 +93,7 @@ public class Ui {
      * @return A String to indicate successful deletion of task.
      */
     public String printDelete(Task task, int size) {
-        return String.format("Okay!. I've removed this task:\n%s" + "\nNow you have %d task(s) in the list.",
+        return String.format("Okay! I've removed this task:\n%s" + "\nNow you have %d task(s) in the list.",
                 task, size);
     }
 
