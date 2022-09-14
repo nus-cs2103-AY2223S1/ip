@@ -22,8 +22,8 @@ It is optimized for keyboard users, but has a GUI for the looks as well.
 
 # Commands
 
-## `todo <description>` — Add a todo task
-Adds a task with the given `<description>`.
+## Add a todo task: `todo DESCRIPTION`
+Adds a task with the given `DESCRIPTION`.
 
 **Example of usage:**
 ```
@@ -32,8 +32,8 @@ todo Return CLRS book to the library.
 >   [📝][ ] Return CLRS book to the library.
 ```
 
-## `deadline <description> / <date> <time>` — Add a deadline task
-Adds a task with the given `<description>` and a deadline specified by `<date>` and `<time>`.
+## Add a deadline task: `deadline DESCRIPTION / DATE TIME`
+Adds a task with the given `DESCRIPTION` and a deadline specified by `DATE` and `TIME`.
 
 **Date format**
 - Recommended: `dd-mm-yyyy`.
@@ -54,8 +54,8 @@ deadline CS2103T iP / 16-09-2022 2359
 >   [⏰][ ] CS2103T iP (by: 16 Sep 2022 11:59 PM)
 ```
 
-## `event <description> / <date> <time>` — Add an event
-Adds an event with the given `<description>` and a time specified by `<date>` and `<time>`.
+## Add an event: `event DESCRIPTION / DATE TIME`
+Adds an event with the given `DESCRIPTION` and a time specified by `DATE` and `TIME`.
 
 Date and time format is the same as the deadline command.
 
@@ -66,7 +66,7 @@ event CS2103T lecture / 16-09-2022 1600
 >   [📅][ ] CS2103T lecture (at: 16 Sep 2022 4:00 PM)
 ```
 
-## `list` — List all tasks
+## List all tasks: `list`
 Lists all tasks in the task list.
 
 **Example of usage:**
@@ -78,8 +78,8 @@ list
 >   3. [📅][ ] CS2103T lecture (at: 16 Sep 2022 4:00 PM)
 ```
 
-## `check <index>` — Mark a task as done
-Marks the task at the given `<index>` as done.
+## Mark a task as done: `check INDEX` —
+Marks the task at the given `INDEX` as done.
 
 You may want to use the `list` command to find the index of the task you want to mark as done.
 
@@ -90,8 +90,8 @@ check 1
 >   [📝][✔] Return CLRS book to the library.
 ```
 
-## `uncheck <index>` — Mark a task as not done
-Marks the task at the given `<index>` as not done.
+## Mark a task as not done: `uncheck INDEX` —
+Marks the task at the given `INDEX` as not done.
 
 **Example of usage:**
 ```
@@ -100,8 +100,8 @@ uncheck 1
 >   [📝][ ] Return CLRS book to the library.
 ```
 
-## `delete <index>` — Delete a task
-Deletes the task at the given `<index>`.
+## Delete a task - `delete INDEX` —
+Deletes the task at the given `INDEX`.
 
 **Example of usage:**
 ```
@@ -114,8 +114,8 @@ list
 >   2. [📅][ ] CS2103T lecture (at: 16 Sep 2022 4:00 PM)
 ```
 
-## `find <keyword>` — Find tasks by keyword
-Finds all tasks that contain the given `<keyword>`.
+## Find tasks by keyword: `find KEYWORD` —
+Finds all tasks that contain the given `KEYWORD`.
 The search is case-insensitive.
 
 **Example of usage:**
@@ -126,9 +126,33 @@ find cS
 >   2. [📅][ ] CS2103T lecture (at: 16 Sep 2022 4:00 PM)
 ```
 
-## `help` — Show help message
+## Show help message: `help`
 Shows a help message with a list of commands and their usage.
 
-## `exit` — Exit the program
+## Exit the program: `exit`
 Exits the program with a goodbye message.
+
+# Advanced Features
+## Data File
+All the data is saved in the file `./data/data.txt`. You can modify task list by directly editing
+this file. Each line of the file describes one task. The format is the following:
+```
+TASK SYMBOL | IS DONE? | DESCRIPTION [| ARGS...]
+```
+- `TASK SYMBOL` is `T` for todo task, `D` for deadline, and `E` for event tasks.
+- `IS DONE?` is 0 or 1 depending whether the task is due or not.
+- `DESCRIPTION` is the description of the task.
+- Currently the `ARGS...` take in a date time for deadline and events. The date-time must be in the
+format `h-M-yy HHmm`. Specifically, day and month number should not have leading zeros, and year must have
+2 digits.
+
+Example data file:
+```
+T | 0 | Return CLRS book to the library.
+D | 0 | CS2103T iP. | 16-9-22 2359
+E | 0 | CS2103T lecture. | 16-9-22 1800
+```
+
+However, do note that if the data file is corrupted, Duke will not startup. It will show you a warning
+about the corruption and you can choose to keep the file and investigate, or start with a new file.
 
