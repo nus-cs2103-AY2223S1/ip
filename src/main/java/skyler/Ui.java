@@ -4,7 +4,7 @@ package skyler;
  * Represents an interface for user interactions
  */
 public class Ui {
-    protected static final String GREETING = "Hello! I'm Skyler\nHow can I help you?\n";
+    protected static final String GREETING = "Hello! I'm Skyler\nHow may I help you?";
 
     public String showEmptyDescriptionError() {
         return "Oh no! Cannot execute command without description.";

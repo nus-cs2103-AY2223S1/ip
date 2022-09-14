@@ -26,7 +26,9 @@ public class Parser {
      * @throws TaskNotRecognisedException If command is not recognised.
      */
     public String parse(String command) throws EmptyDescriptionException, TaskNotRecognisedException {
-        if (checkIsCommandType(command, "list")) {
+        if (checkIsCommandType(command, "help")) {
+            return taskList.help();
+        } else if (checkIsCommandType(command, "list")) {
             return taskList.list();
         } else if (checkIsCommandType(command, "mark")) {
             int itemID = getItemID(command);
@@ -58,10 +60,14 @@ public class Parser {
     }
 
     private boolean checkIsCommandType(String command, String type) throws EmptyDescriptionException {
-        if (!type.equals("list") && command.trim().equals(type)) {
+        if (isCommandTypeWithDescription(type) && command.trim().equals(type)) {
             throw new EmptyDescriptionException();
         }
         return command.startsWith(type);
+    }
+
+    private boolean isCommandTypeWithDescription(String type) {
+        return !type.equals("list") && !type.equals("help");
     }
 
     private int getItemID(String command) {

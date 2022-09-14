@@ -38,6 +38,28 @@ public class TaskList {
         assert this.tasks != null : "ArrayList of tasks should be initialised";
     }
 
+    // help() method below inspired by https://github.com/hsiaotingluv/ip
+    /**
+     * Prints permissible user commands and their corresponding formats (if any)
+     *
+     * @return User command list.
+     */
+    public String help() {
+        StringBuilder response = new StringBuilder("Try entering one of the following commands...\n");
+        response.append("1. todo <task>\n");
+        response.append("2. deadline <item> /by <YYYY-MM-DD> <hhmm>\n");
+        response.append("3. event <occasion> /at <YYYY-MM-DD> <hhmm>\n");
+        response.append("4. reschedule <INDEX> <YYYY-MM-DD> <hhmm>\n");
+        response.append("5. mark <INDEX>\n");
+        response.append("6. unmark <INDEX>\n");
+        response.append("7. delete <INDEX>\n");
+        response.append("8. find <keyword>\n");
+        response.append("9. list\n");
+        response.append("10. help\n");
+        response.append("11. bye\n");
+        return response.toString();
+    }
+
     /**
      * Prints the current list of tasks
      *
