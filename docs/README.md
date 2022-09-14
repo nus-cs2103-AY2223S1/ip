@@ -1,32 +1,56 @@
 # User Guide
 
+Duke is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). Duke provides flexibility by 
+allowing the tracking of various types of tasks including events and deadlines.
+
+- [Quick start](https://kshan29.github.io/ip/#quick-start)
+- [Features](https://kshan29.github.io/ip/#features)
+- [Usage](https://kshan29.github.io/ip/#usage)
+  - [Adding a todo: `todo`](https://kshan29.github.io/ip/#adding-a-todo)
+  - [Adding a deadline: `deadline`](https://kshan29.github.io/ip/#adding-a-deadline)
+  - [Adding a event: `event`](https://kshan29.github.io/ip/#adding-a-event)
+  - [Listing all tasks: `list`](https://kshan29.github.io/ip/#listing-all-tasks)
+  - [Deleting a task: `delete`](https://kshan29.github.io/ip/#deleting-a-task)
+  - [Finding specific tasks: `find`](https://kshan29.github.io/ip/#finding-specific-tasks)
+  - [Marking a task: `mark`](https://kshan29.github.io/ip/#marking-a-task)
+  - [Unmarking a task: `unmark`](https://kshan29.github.io/ip/#unmarking-a-task)
+  - [Exiting the program: `bye`](https://kshan29.github.io/ip/#exiting-the-program)
+
+## Quick Start
+
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `Duke.jar` file from [here](https://github.com/KSHan29/ip/releases/tag/A-Release).
+3. Copy the file to the folder you want to use as the *home folder* for your Duke program.
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+
+![Duke UI display](Ui.png "Duke UI")
+
+5. Type the command in the command box and press Send to execute it. Some examples you can try:
+
+- `list`: Lists all tasks.
+- `todo return book`: Adds a todo for returning book
+
+6. Refer to the [Features](https://kshan29.github.io/ip/#features) below for details of each command.
+
+
+
 ## Features 
-### Adding tasks
-Add either a todo, event (occurs on a specified date) or deadline (due by a specified date) as tasks.
 
-### Listing tasks
-Displays a list of all tracked tasks.
+### Task management
+Add tasks by indicating type of task to add or delete tasks by indicating index of task to delete.
 
-### Deleting tasks
-Deletes a specific task.
+### Track task status
+Mark or unmark task to track completed and incomplete tasks.
 
-### Finding tasks
-Finds tasks using a keyword.
-
-### Marking tasks
-Marks a specific task as completed.
-
-### Unmarking tasks
-Marks a specific task as incomplete.
-
-### Exiting program
-Exits the program.
+### View tasks
+Display all tasks in a list or filter tasks using a keyword.
 
 ## Usage
 ### Adding a task
 You can add either a todo, event (occurs on a specified date) or deadline (due by a specified date) as tasks.
 
-#### Adding a todo
+#### Adding a todo: `todo`
 Adds a todo.
 
 Format: `todo TASK_DESCRIPTION`
@@ -45,7 +69,7 @@ Got it. I've added this task:
 Now you have X tasks in the list.
 ```
 
-#### Adding a deadline
+#### Adding a deadline: `deadline`
 Adds a deadline.
 
 Format: `deadline TASK_DESCRIPTION /by YYYY-MM-DD`
@@ -64,7 +88,7 @@ Got it. I've added this task:
 [D][ ] TASK_DESCRIPTION (by: MMM DD YYYY)
 Now you have X tasks in the list.
 ```
-#### Adding an event
+#### Adding an event: `event`
 Adds an event.
 
 Format: `event TASK_DESCRIPTION /at YYYY-MM-DD`
@@ -84,7 +108,7 @@ Got it. I've added this task:
 Now you have X tasks in the list.
 ```
 
-### Listing all tasks
+### Listing all tasks: `list`
 Displays a list of tasks added.
 
 Format: `list`
@@ -97,7 +121,7 @@ Here are the tasks in your list:
 2. ...
 ```
 
-### Deleting a task
+### Deleting a task: `delete`
 Deletes the task from task list.
 
 Format: `delete INDEX`
@@ -118,7 +142,7 @@ Noted. I've removed this task:
 Now you have X tasks in the list.
 ```
 
-### Finding specific tasks
+### Finding specific tasks: `find`
 Display tasks where the description matches given keywords.
 
 Format: `find KEYWORD`
@@ -137,7 +161,7 @@ Here are the matching tasks in your list:
 2. ...
 ```
 
-### Marking a task
+### Marking a task: `mark`
 Marks a task as completed.
 
 Format: `mark INDEX`
@@ -156,7 +180,7 @@ Nice! I've marked this task as done:
 [X][X] TASK_DESCRIPTION
 ```
 
-### Unmarking a task
+### Unmarking a task: `unmark`
 Marks a task as incomplete.
 
 Format: `unmark INDEX`
@@ -175,7 +199,7 @@ OK, I've marked this task as not done yet:
 [X][ ] TASK_DESCRIPTION
 ```
 
-### Exiting the program
+### Exiting the program: `bye`
 Exits the program.
 
 Format: `bye`
