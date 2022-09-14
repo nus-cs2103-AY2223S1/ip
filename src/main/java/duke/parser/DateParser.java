@@ -28,6 +28,10 @@ public class DateParser {
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
+    public static String convertDateToMemoryString(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
     /**
      * Check if a given String is valid to parse to Local Date.
      * @param dateString

@@ -20,6 +20,11 @@ public class Deadline extends Task {
         this.date = date;
     }
 
+    public Deadline(String description, String tag, LocalDate date) {
+        super(description, tag);
+        this.date = date;
+    }
+
     /**
      * String format of Deadline.
      * @return
@@ -35,6 +40,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toMemoryString() {
-        return "D | " + super.toMemoryString() + " | " + DateParser.convertDateToString(date);
+        return "D" + super.toMemoryString() + DateParser.convertDateToMemoryString(date);
     }
 }

@@ -5,25 +5,23 @@ package duke.task;
  */
 public class Task {
     private String content;
+    private Tag tag;
     private boolean done;
-    private Tags tags;
 
     /**
      * Constructor for <code>Task</code>.
+     *
      * @param content
      */
     public Task(String content) {
         this.content = content;
-        this.tags = new Tags();
+        this.tag = new Tag();
         this.done = false;
     }
 
-    public Task(String content, String[] tagsList) {
+    public Task(String content, String tag) {
         this.content = content;
-        this.tags = new Tags();
-        for (int i = 0; i < tagsList.length; i++) {
-            tags.addTags(new Tag(tagsList[i].trim()));
-        }
+        this.tag = new Tag(tag);
         this.done = false;
     }
 
@@ -42,15 +40,8 @@ public class Task {
     }
 
     /**
-     * Get the description of a task.
-     * @return
-     */
-    public String getContent() {
-        return this.content;
-    }
-
-    /**
      * Check if a task description contains given keyword.
+     *
      * @param keyword
      * @return boolean value
      */
@@ -58,8 +49,13 @@ public class Task {
         return this.content.contains(keyword);
     }
 
+    public boolean isTagged() {
+        return !tag.isEmpty();
+    }
+
     /**
      * Return 1 if the task is done, 0 otherwise.
+     *
      * @return
      */
     public String isDoneString() {
@@ -67,11 +63,12 @@ public class Task {
     }
 
     public String tagsString() {
-        return tags.toString();
+        return tag.toString();
     }
 
     /**
      * String representative of a Task.
+     *
      * @return
      */
     @Override
@@ -81,13 +78,10 @@ public class Task {
 
     /**
      * Convert a task to a String to store with Storage.
+     *
      * @return
      */
     public String toMemoryString() {
-        return isDoneString() + " | " + content + " | " + toMemoryTagString();
-    }
-
-    public String toMemoryTagString() {
-        return tags.toMemoryString();
+        return " | " + isDoneString() + " | " + content + " | " + tag.toMemoryString() + " | ";
     }
 }

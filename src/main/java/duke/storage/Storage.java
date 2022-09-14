@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -42,23 +44,35 @@ public class Storage {
             ArrayList<Task> tasks = new ArrayList<>();
             while (sc.hasNext()) {
                 String storedTask = sc.nextLine();
-                String[] splitTask = storedTask.split(" | ", 4);
+                String[] splitTask = storedTask.split("\\|", 5);
                 Task task;
-                if (splitTask[0].equals("T")) {
-                    String[] tags = {};
-                    if (splitTask[3].trim().length() != 0) {
-                        tags = splitTask[3].split(",");
-                    }
-                    task = new Todo(splitTask[2], tags);
-                } else if (splitTask[0].equals("D")) {
-                    if (DateParser.isDateValid(splitTask[2])) {
-                        task = new Deadline(splitTask[2], DateParser.convertToLocalDate(splitTask[2]));
+                String symbol = splitTask[0].trim();
+                if (symbol.equals("T")) {
+                    String content = splitTask[2].trim();
+                    if (splitTask[3].trim().length() > 0) {
+                        String tag = splitTask[3].trim();
+                        task = new Todo(content, tag);
                     } else {
-                        System.out.println("OOPS!!! Look like your date format is incorrect");
-                        continue;
+                        task = new Todo(content);
+                    }
+                } else if (symbol.equals("D")) {
+                    String content = splitTask[2].trim();
+                    LocalDate date = DateParser.convertToLocalDate(splitTask[4].trim());
+                    if (splitTask[3].trim().length() > 0) {
+                        String tag = splitTask[3].trim();
+                        task = new Deadline(content, tag, date);
+                    } else {
+                        task = new Deadline(content, date);
                     }
                 } else {
-                    task = new Event(splitTask[2], splitTask[3]);
+                    String content = splitTask[2].trim();
+                    String time = splitTask[4].trim();
+                    if (splitTask[3].trim().length() > 0) {
+                        String tag = splitTask[3].trim();
+                        task = new Event(content, tag, time);
+                    } else {
+                        task = new Event(content, time);
+                    }
                 }
                 if (splitTask[1].equals("1")) {
                     task.markDone();

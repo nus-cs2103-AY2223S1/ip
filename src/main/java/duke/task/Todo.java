@@ -5,13 +5,16 @@ package duke.task;
  */
 public class Todo extends Task {
 
+    public Todo(String description) {
+        super(description);
+    }
     /**
      * Constructor for <code>Todo</code>.
      *
      * @param description
      */
-    public Todo(String description, String[] tagsList) {
-        super(description, tagsList);
+    public Todo(String description, String tag) {
+        super(description, tag);
     }
 
     /**
@@ -31,6 +34,6 @@ public class Todo extends Task {
      */
     @Override
     public String toMemoryString() {
-        return "T | " + super.toMemoryString();
+        return "T" + super.toMemoryString();
     }
 }
