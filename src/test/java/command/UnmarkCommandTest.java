@@ -11,7 +11,7 @@ import stubs.TaskStub;
 
 public class UnmarkCommandTest {
 
-    private static final String MESSAGE_SUCCESS = "I'VE MARKED THIS TASK AS NOT DONE:\n %1$s";
+    private static final String MESSAGE_SUCCESS = "I've marked this task as not done:\n %1$s";
 
     @Test
     public void testMarkCommand() {

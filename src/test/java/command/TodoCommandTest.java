@@ -11,7 +11,7 @@ import stubs.TaskStub;
 
 public class TodoCommandTest {
 
-    private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n %1$s";
+    private static final String MESSAGE_SUCCESS = "OK, I added this task to my list:\n %1$s";
     private static final String DESCRIPTION = "test";
 
     @Test

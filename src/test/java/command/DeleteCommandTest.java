@@ -11,7 +11,7 @@ import stubs.TaskStub;
 
 public class DeleteCommandTest {
 
-    private static final String MESSAGE_SUCCESS = "I'VE DELETED THIS TASK:\n %1$s";
+    private static final String MESSAGE_SUCCESS = "I've deleted this task:\n %1$s";
 
     @Test
     public void testMarkCommand() {

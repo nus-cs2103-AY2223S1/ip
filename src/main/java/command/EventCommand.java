@@ -11,7 +11,7 @@ import henry.Task;
 public class EventCommand extends Command implements TaskCommand {
 
     public static final String COMMAND_WORD = "event";
-    private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n %1$s";
+    private static final String MESSAGE_SUCCESS = "OK, I added this task to my list:\n %1$s";
     private final Task task;
     private final LocalDateTime dateTime;
 

@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 @ExtendWith(ApplicationExtension.class)
 public class TextInputTest extends ApplicationTest {
 
-    private static final String EXPECTED = "OK. I ADDED THIS TASK TO MY LIST:\n [T][ ] hello";
+    private static final String EXPECTED = "OK, I added this task to my list:\n [T][ ] hello";
 
     /**
      * Will be called with {@code @Before} semantics, i.e. before each test method.
