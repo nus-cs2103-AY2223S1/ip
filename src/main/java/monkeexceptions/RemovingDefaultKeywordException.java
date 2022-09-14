@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class RemovingDefaultKeywordException extends MonkeException {
     public RemovingDefaultKeywordException() {

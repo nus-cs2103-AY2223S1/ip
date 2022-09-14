@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Ui {
     /**
-     * Formats a basic reply
+     * Formats a basic reply.
      *
      * @param reply Text.
      * @return Formatted text.
@@ -22,7 +22,7 @@ public class Ui {
     }
 
     /**
-     * Formats a task addition
+     * Formats a task addition.
      *
      * @param task Task.
      * @param listLength Length of List.
@@ -35,7 +35,7 @@ public class Ui {
     }
 
     /**
-     * Formats a task list
+     * Formats a task list.
      *
      * @param taskList Task list.
      * @return Formatted text.
@@ -51,6 +51,13 @@ public class Ui {
         return addSeparator(reply.toString());
     }
 
+    /**
+     * Formats a search.
+     *
+     * @param taskList Task list.
+     * @param result Task matching keywords.
+     * @return Formatted text.
+     */
     public String find(TaskList taskList, List<Task> result) {
         StringBuilder reply = new StringBuilder();
         reply.append("u monke has these monkey doos:\n");
@@ -75,7 +82,7 @@ public class Ui {
     }
 
     /**
-     * Formats unmark
+     * Formats unmark.
      *
      * @param task Task.
      * @return Formatted text.
@@ -85,7 +92,7 @@ public class Ui {
     }
 
     /**
-     * Formats delete
+     * Formats delete.
      *
      * @param task Task.
      * @param listLength Length of list.
@@ -97,10 +104,23 @@ public class Ui {
                 + task + "\nu currently have " + listLength + tasksGrammar + ".");
     }
 
+    /**
+     * Formats keyword adding.
+     *
+     * @param kw Keyword.
+     * @param commandkw Command keyword.
+     * @return Formatted text.
+     */
     public String akw(String kw, String commandkw) {
         return addSeparator("monke has assigned " + kw + " to " + commandkw + ".");
     }
 
+    /**
+     * Formats keyword deletion.
+     *
+     * @param kw Keyword.
+     * @return Formatted text.
+     */
     public String rkw(String kw) {
         return addSeparator("monke has removed " + kw + " as a keyword.");
     }
@@ -115,15 +135,15 @@ public class Ui {
     }
 
     /**
-     * Adds separators
+     * Adds separators.
      *
      * @param reply The text to wrap.
      * @return Formatted text.
      */
     public String addSeparator(String reply) {
         // Deprecated because of change to GUI
-        //String separator = "_________________________________________";
-        //return separator + "\n" + reply + "\n" + separator;
+        // String separator = "_________________________________________";
+        // return separator + "\n" + reply + "\n" + separator;
         return reply;
     }
 }

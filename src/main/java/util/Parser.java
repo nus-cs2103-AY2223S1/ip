@@ -1,6 +1,6 @@
 package util;
 
-import monkeExceptions.*;
+import monkeexceptions.*;
 
 // Enum for input types
 enum InputType {
@@ -57,6 +57,13 @@ public class Parser {
         return result;
     }
 
+    /**
+     * Parsing method.
+     *
+     * @param input User input.
+     * @return ParsedData.
+     * @throws MonkeException The exception in case of failure.
+     */
     private ParsedData singleInput(String input) throws MonkeException {
         String[] firstSplit = input.split(" ", 2);
         String command = firstSplit[0];
@@ -70,6 +77,13 @@ public class Parser {
         return new ParsedData(keyword);
     }
 
+    /**
+     * Parsing method.
+     *
+     * @param input User input.
+     * @return ParsedData.
+     * @throws MonkeException The exception in case of failure.
+     */
     private ParsedData parseListMod(String input) throws MonkeException {
         int listIndex;
         String[] firstSplit = input.split(" ", 2);
@@ -85,6 +99,13 @@ public class Parser {
         return new ParsedData(listIndex - 1);
     }
 
+    /**
+     * Parsing method.
+     *
+     * @param input User input.
+     * @return ParsedData.
+     * @throws MonkeException The exception in case of failure.
+     */
     private ParsedData parseTimedTask(String input) throws MonkeException {
         String command, task, during, time;
         String[] firstSplit, secondSplit, thirdSplit;
@@ -112,6 +133,13 @@ public class Parser {
         return new ParsedData(task, during, time);
     }
 
+    /**
+     * Parsing method.
+     *
+     * @param input User input.
+     * @return ParsedData.
+     * @throws MonkeException The exception in case of failure.
+     */
     private ParsedData parseUntimedTask(String input) throws MonkeException {
         String command, task;
         String[] firstSplit = input.split(" ", 2);
@@ -127,6 +155,13 @@ public class Parser {
         return new ParsedData(task);
     }
 
+    /**
+     * Parsing method.
+     *
+     * @param input User input.
+     * @return ParsedData.
+     * @throws MonkeException The exception in case of failure.
+     */
     private ParsedData parseAkw(String input) throws MonkeException {
         String command, kw, commandkw;
         String[] firstSplit = input.split(" ", 2);
@@ -142,6 +177,13 @@ public class Parser {
         return new ParsedData(kw, commandkw);
     }
 
+    /**
+     * Parsing method.
+     *
+     * @param input User input.
+     * @return ParsedData.
+     * @throws MonkeException The exception in case of failure.
+     */
     private ParsedData parseRkw(String input) throws MonkeException {
         String command, kw;
         String[] firstSplit = input.split(" ", 2);

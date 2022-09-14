@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class NoDescriptionException extends MonkeException {
     public NoDescriptionException(String command) {

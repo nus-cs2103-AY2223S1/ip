@@ -1,31 +1,31 @@
 #scrollPane {
- -fx-background-color: black;
+    -fx-background-color: black;
 }
 
 #dialogContainer {
- -fx-background-image: url("../images/jungle.jpeg");
- -fx-padding: 10px;
- -fx-spacing: 10px;
+    -fx-background-image: url("../images/jungle.jpeg");
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
 }
 
 #dialog {
- -fx-text-fill: "white";
+    -fx-text-fill: "white";
 }
 
 #dialogBox {
- -fx-background-color: rgba(214, 179, 66, 0.8);
- -fx-background-radius: 20px;
- -fx-spacing: 10px;
+    -fx-background-color: rgba(214, 179, 66, 0.8);
+    -fx-background-radius: 20px;
+    -fx-spacing: 10px;
 }
 
 #userInput {
- -fx-background-color: rgba(214, 179, 66, 1.0);
- -fx-background-radius: 5px;
+    -fx-background-color: rgba(214, 179, 66, 1.0);
+    -fx-background-radius: 5px;
 }
 
 #sendButton {
- -fx-background-color: #d6bd2f;
- -fx-background-radius: 5px;
+    -fx-background-color: #d6bd2f;
+    -fx-background-radius: 5px;
 }
 
 #sendButton:hover {
@@ -39,42 +39,42 @@
 }
 
 .scroll-bar {
- -fx-background-color: #b7ae4b;
- -fx-background-radius: 2px;
+    -fx-background-color: #b7ae4b;
+    -fx-background-radius: 2px;
 }
 
 .scroll-bar:vertical .track {
- -fx-background-color: #b7ae4b;
- -fx-border-color:transparent;
+    -fx-background-color: #b7ae4b;
+    -fx-border-color:transparent;
 }
 
 .scroll-bar:vertical .track-background {
- -fx-background-color: #b7ae4b;
- -fx-background-insets: 0;
+    -fx-background-color: #b7ae4b;
+    -fx-background-insets: 0;
 }
 
 .scroll-bar:vertical .thumb {
- -fx-background-color: #3f380c;
- -fx-background-insets: 0 4 0 4;
- -fx-background-radius: 2em;
+    -fx-background-color: #3f380c;
+    -fx-background-insets: 0 4 0 4;
+    -fx-background-radius: 2em;
 }
 
 .scroll-bar:vertical .thumb:hover {
- -fx-background-color: #594e11;
+    -fx-background-color: #594e11;
 }
 
 .scroll-bar:vertical .thumb:pressed {
- -fx-background-color: #3f380c;
+    -fx-background-color: #3f380c;
 }
 
 .scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button {
- -fx-background-color:transparent;
+    -fx-background-color:transparent;
 }
 
 .scroll-bar:vertical .increment-arrow {
- -fx-background-color: #3f380c;
+    -fx-background-color: #3f380c;
 }
 
 .scroll-bar:vertical .decrement-arrow {
- -fx-background-color: #3f380c;
+    -fx-background-color: #3f380c;
 }

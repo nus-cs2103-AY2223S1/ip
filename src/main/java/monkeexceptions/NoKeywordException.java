@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class NoKeywordException extends MonkeException {
     public NoKeywordException(String command) {

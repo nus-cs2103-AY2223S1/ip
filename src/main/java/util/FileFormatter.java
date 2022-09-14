@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class FileFormatter {
     /**
-     * Formats a single task
+     * Formats a single task.
      *
      * @param task The task to be formatted.
      * @return The formatted string.
@@ -25,7 +25,7 @@ public class FileFormatter {
     }
 
     /**
-     * Formats a task list
+     * Formats a task list.
      *
      * @param taskList The task list to be formatted.
      * @return The formatted string.
@@ -39,7 +39,7 @@ public class FileFormatter {
     }
 
     /**
-     * Formats a single keyword
+     * Formats a single keyword.
      *
      * @param pair The keyword pair to be formatted.
      * @return The formatted string.
@@ -51,7 +51,7 @@ public class FileFormatter {
     }
 
     /**
-     * Formats a keyword list
+     * Formats a keyword list.
      *
      * @param keywordPairs The keyword pair list to be formatted.
      * @return The formatted string.

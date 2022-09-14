@@ -16,14 +16,14 @@ public class TaskList {
     private List<Task> taskList;
 
     /**
-     * Constructor for TaskList
+     * Constructor for TaskList.
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
     }
 
     /**
-     * Constructor for
+     * Constructor for Tasklist.
      *
      * @param taskList The task list to be used.
      */
@@ -32,7 +32,7 @@ public class TaskList {
     }
 
     /**
-     * Returns a list of task containing the specified keyword
+     * Returns a list of task containing the specified keyword.
      *
      * @param keyword Keyword to search for.
      * @return List of task.
@@ -48,7 +48,7 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the task list
+     * Adds a task to the task list.
      *
      * @param task The task to be added.
      */
@@ -57,7 +57,7 @@ public class TaskList {
     }
 
     /**
-     * Returns the task at the specified index
+     * Returns the task at the specified index.
      *
      * @param index The index to retrieve from.
      * @return The task.
@@ -67,7 +67,7 @@ public class TaskList {
     }
 
     /**
-     * Returns the size of the task list
+     * Returns the size of the task list.
      *
      * @return The size of the task list.
      */
@@ -76,7 +76,7 @@ public class TaskList {
     }
 
     /**
-     * Removes the task at the specified index
+     * Removes the task at the specified index.
      *
      * @param index The task to be removed.
      */
@@ -85,7 +85,7 @@ public class TaskList {
     }
 
     /**
-     * Returns the task list
+     * Returns the task list.
      *
      * @return The task list.
      */

@@ -1,6 +1,6 @@
 package monke;
 
-import monkeExceptions.MonkeException;
+import monkeexceptions.MonkeException;
 import tasks.TaskList;
 import util.*;
 
@@ -31,6 +31,11 @@ public class Monke {
         }
     }
 
+    /**
+     * Provides the Monke singleton.
+     *
+     * @return The Monke singleton.
+     */
     public static Monke getInstance() {
         if (Monke.instance == null) {
             Monke.instance = new Monke();
@@ -41,7 +46,7 @@ public class Monke {
 
 
     /**
-     * Entry creates an alan.Alan singleton
+     * Entry creates a Monke singleton (not used for GUI).
      *
      * @param args args.
      */
@@ -60,6 +65,12 @@ public class Monke {
         }
     }
 
+    /**
+     * Provides response for GUI.
+     *
+     * @param input User input.
+     * @return Response string.
+     */
     public String getResponse(String input) {
         String response;
         System.out.println("How may I be of service?");
@@ -115,32 +126,6 @@ public class Monke {
         // At this point response must not be null
         assert response != null : "No response was generated for user input";
         return response;
-    }
-
-    // Prints a greeting (Deprecated with GUI)
-//    private void greet() {
-//        final String logo = " $$$$$$\\  $$\\        $$$$$$\\  $$\\   $$\\\n"
-//                + "$$  __$$\\ $$ |      $$  __$$\\ $$$\\  $$ |\n"
-//                + "$$ /  $$ |$$ |      $$ /  $$ |$$$$\\ $$ |\n"
-//                + "$$$$$$$$ |$$ |      $$$$$$$$ |$$ $$\\$$ |\n"
-//                + "$$  __$$ |$$ |      $$  __$$ |$$ \\$$$$ |\n"
-//                + "$$ |  $$ |$$ |      $$ |  $$ |$$ |\\$$$ |\n"
-//                + "$$ |  $$ |$$$$$$$$\\ $$ |  $$ |$$ | \\$$ |\n"
-//                + "\\__|  \\__|\\________|\\__|  \\__|\\__|  \\__|\n";
-//
-//        System.out.println(getTimeGreeting() +
-//                "!\nMy name is\n\n" + logo);
-//    }
-
-    // Checks hour of day and returns appropriate greeting
-    private String getTimeGreeting() {
-        int hour = java.time.LocalTime.now().getHour();
-        String greeting = hour < 12
-                ? "Morning"
-                : hour < 18
-                ? "Afternoon"
-                : "Evening";
-        return "\nGood " + greeting;
     }
 }
 

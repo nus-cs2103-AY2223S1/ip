@@ -8,7 +8,7 @@ import util.ParsedData;
 public class Todo extends Task {
 
     /**
-     * Constructor for Todo
+     * Constructor for Todo.
      *
      * @param parsedData The data used to create the Todo.
      */
@@ -17,7 +17,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns the type icon
+     * Returns the type icon.
      *
      * @return The type icon.
      */
@@ -27,7 +27,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns the type letter
+     * Returns the type letter.
      *
      * @return The type letter.
      */
@@ -37,7 +37,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns the time keyword
+     * Returns the time keyword.
      *
      * @return The time keyword.
      */
@@ -47,7 +47,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns the time text
+     * Returns the time text.
      *
      * @return The time text.
      */

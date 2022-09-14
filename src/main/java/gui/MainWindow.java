@@ -39,6 +39,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        scrollPane.setFitToWidth(true);
         scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
     }
@@ -94,7 +95,7 @@ public class MainWindow extends AnchorPane {
                 response = gaveBanana ? "give me more banana!" : "NO! gimme banana first";
                 wantsBanana = true;
             } else if (!wantsBanana && gaveBanana && originalResponse != null) {
-                response = "HOOHOOHAHA nomnom, here you go!\n\n" + originalResponse;
+                response = "HOOHOOHAHA nomnom\n" + originalResponse;
                 originalResponse = null;
             }
             gaveBanana = false;
@@ -108,8 +109,9 @@ public class MainWindow extends AnchorPane {
             if (input.equals("bananas")) {
                 userDialog = DialogBox.getUserDialog(input, bananasImage);
             }
+            userDialog.setStyle("-fx-background-color: rgba(147, 121, 42, 0.8); " +
+                    "-fx-background-radius: 20px; -fx-spacing: 10px;");
             DialogBox botResponse = DialogBox.getBotDialog(response, botImage);
-            System.out.println(response);
 
             dialogContainer.getChildren().addAll(
                     userDialog,
@@ -123,7 +125,23 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void sendIntro() {
         dialogContainer.getChildren().addAll(
-                DialogBox.getBotDialog("HOOHOOHAHA\n type \"banana\" or \"bananas\" to give me bananas :D", botImage)
+                DialogBox.getBotDialog("HOOHOOHAHA " + getTimeGreeting() +
+                        "\ntype \"banana\" or \"bananas\" to give me bananas :D", botImage)
         );
+    }
+
+    /**
+     * Checks hour of day and returns appropriate greeting.
+     *
+     * @return greeting string.
+     */
+    private String getTimeGreeting() {
+        int hour = java.time.LocalTime.now().getHour();
+        String greeting = hour < 12
+                ? "morning!"
+                : hour < 18
+                ? "afternoon!"
+                : "evening!";
+        return "good " + greeting;
     }
 }

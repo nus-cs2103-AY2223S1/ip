@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class FileReadException extends MonkeException {
     public FileReadException() {

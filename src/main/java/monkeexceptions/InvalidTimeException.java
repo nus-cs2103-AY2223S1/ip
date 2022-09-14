@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class InvalidTimeException extends MonkeException {
     public InvalidTimeException() {

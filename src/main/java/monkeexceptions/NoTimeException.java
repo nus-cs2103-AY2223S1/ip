@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class NoTimeException extends MonkeException {
     public NoTimeException(String command) {

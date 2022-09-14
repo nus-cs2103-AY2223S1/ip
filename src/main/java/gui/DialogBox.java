@@ -51,6 +51,10 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    public void setUserStyle() {
+        dialog.setStyle("-fx-background-color: rgba(214, 179, 66, 0.8); -fx-background-radius: 20px;");
+    }
+
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }

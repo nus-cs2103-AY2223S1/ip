@@ -13,7 +13,7 @@ public class Event extends Task {
     private String timeText;
 
     /**
-     * Constructor for Deadline
+     * Constructor for Deadline.
      *
      * @param parsedData Data used to create the Event.
      */
@@ -27,7 +27,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the type icon
+     * Returns the type icon.
      *
      * @return The type icon.
      */
@@ -37,7 +37,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the type letter
+     * Returns the type letter.
      *
      * @return The type letter.
      */
@@ -47,7 +47,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the time keyword
+     * Returns the time keyword.
      *
      * @return The time keyword.
      */
@@ -57,7 +57,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the time text
+     * Returns the time text.
      *
      * @return The time text.
      */

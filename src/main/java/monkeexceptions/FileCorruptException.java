@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class FileCorruptException extends MonkeException {
     public FileCorruptException() {

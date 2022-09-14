@@ -1,9 +1,9 @@
 package util;
 
-import monkeExceptions.MonkeException;
-import monkeExceptions.FileReadException;
-import monkeExceptions.FileWriteException;
-import monkeExceptions.SaveFileException;
+import monkeexceptions.MonkeException;
+import monkeexceptions.FileReadException;
+import monkeexceptions.FileWriteException;
+import monkeexceptions.SaveFileException;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,7 +36,7 @@ public class Storage {
     }
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @throws MonkeException Exception in case of failure.
      */
@@ -69,6 +69,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Rewrites an existing file.
+     *
+     * @param data Data to be written.
+     * @throws MonkeException Exception in case of failure.
+     */
     public void writeKeyword(String data) throws MonkeException {
         try {
             writer = new BufferedWriter(new FileWriter(keywordFilePath.toString()));
@@ -94,6 +100,13 @@ public class Storage {
             throw new FileWriteException();
         }
     }
+
+    /**
+     * Appends to an existing file.
+     *
+     * @param data Data to be appended.
+     * @throws MonkeException Exception in case of failure.
+     */
     public void appendKeyword(String data) throws MonkeException {
         try {
             writer = new BufferedWriter(new FileWriter(keywordFilePath.toString(), true));
@@ -105,7 +118,7 @@ public class Storage {
     }
 
     /**
-     * Reads a file
+     * Reads a file.
      *
      * @return The data read from the file.
      * @throws MonkeException Exception in case of failure.
@@ -120,6 +133,12 @@ public class Storage {
         return result;
     }
 
+    /**
+     * Reads a file.
+     *
+     * @return The data read from the file.
+     * @throws MonkeException Exception in case of failure.
+     */
     public String readKeywords() throws MonkeException {
         String result;
         try {

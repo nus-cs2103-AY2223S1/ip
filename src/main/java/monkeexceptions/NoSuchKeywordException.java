@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class NoSuchKeywordException extends MonkeException {
     public NoSuchKeywordException() throws MonkeException {

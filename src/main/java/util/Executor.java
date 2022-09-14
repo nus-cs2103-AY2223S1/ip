@@ -1,7 +1,7 @@
 package util;
 
-import monkeExceptions.MonkeException;
-import monkeExceptions.InvalidValueException;
+import monkeexceptions.MonkeException;
+import monkeexceptions.InvalidValueException;
 import keyword.Keywords;
 import tasks.*;
 
@@ -19,7 +19,7 @@ public class Executor {
     private Storage storage;
 
     /**
-     * Constructor for Executor
+     * Constructor for Executor.
      */
     public Executor() {
         this.ui = new Ui();
@@ -33,19 +33,27 @@ public class Executor {
     }
 
     /**
-     * Lists a TaskList
+     * Lists a TaskList.
      *
      * @param taskList The task list to be listed.
+     */
+
+    /**
+     * Lists a TaskList.
+     *
+     * @param taskList The task list to be listed.
+     * @return The reply string.
      */
     public String excList(TaskList taskList) {
         return ui.list(taskList.getTaskList());
     }
 
     /**
-     * Adds an Event to the given task list
+     * Adds an Event to the given task list.
      *
      * @param taskList The task list.
      * @param userInput The user input.
+     * @return The reply string.
      * @throws MonkeException The exception in case of failure.
      */
     public String excEvent(TaskList taskList, String userInput) throws MonkeException {
@@ -61,10 +69,11 @@ public class Executor {
     }
 
     /**
-     * Adds a Deadline to the given task list
+     * Adds a Deadline to the given task list.
      *
      * @param taskList The task list.
      * @param userInput The user input.
+     * @return The reply string.
      * @throws MonkeException The exception in case of failure.
      */
     public String excDeadline(TaskList taskList, String userInput) throws MonkeException {
@@ -80,10 +89,11 @@ public class Executor {
     }
 
     /**
-     * Adds a Todo to the given task list
+     * Adds a Todo to the given task list.
      *
      * @param taskList The task list.
      * @param userInput The user input.
+     * @return The reply string.
      * @throws MonkeException The exception in case of failure.
      */
     public String excTodo(TaskList taskList, String userInput) throws MonkeException {
@@ -99,10 +109,11 @@ public class Executor {
     }
 
     /**
-     * Finds task in task list
+     * Finds task in task list.
      *
      * @param taskList Task list to be searched.
      * @param userInput User input.
+     * @return The reply string.
      * @throws MonkeException Exception in case of failure.
      */
     public String excFind(TaskList taskList, String userInput) throws MonkeException {
@@ -113,10 +124,11 @@ public class Executor {
     }
 
     /**
-     * Marks a task on the given list
+     * Marks a task on the given list.
      *
      * @param taskList The task list.
      * @param userInput The user input.
+     * @return The reply string.
      * @throws MonkeException The exception in case of failure.
      */
     public String excMark(TaskList taskList, String userInput) throws MonkeException {
@@ -134,10 +146,11 @@ public class Executor {
     }
 
     /**
-     * Unmarks a task on the given list
+     * Unmarks a task on the given list.
      *
      * @param taskList The task list.
      * @param userInput The user input.
+     * @return The reply string.
      * @throws MonkeException The exception in case of failure.
      */
     public String excUnmark(TaskList taskList, String userInput) throws MonkeException {
@@ -155,10 +168,11 @@ public class Executor {
     }
 
     /**
-     * Deletes a specified task
+     * Deletes a specified task.
      *
      * @param taskList The task list.
      * @param userInput The user input.
+     * @return The reply string.
      * @throws MonkeException The exception in case of failure.
      */
     public String excDelete(TaskList taskList, String userInput) throws MonkeException {
@@ -175,6 +189,13 @@ public class Executor {
         }
     }
 
+    /**
+     * Assigns a custom keyword.
+     *
+     * @param userInput The user input.
+     * @return The reply string.
+     * @throws MonkeException The exception in case of failure.
+     */
     public String excAkw(String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.akw, userInput);
         keyword.Keywords.getInstance().assign(parsedData.getKw(), parsedData.getCommandkw());
@@ -182,6 +203,13 @@ public class Executor {
         return ui.akw(parsedData.getKw(), parsedData.getCommandkw());
     }
 
+    /**
+     * Removes a custom keyword.
+     *
+     * @param userInput The user input.
+     * @return The reply string.
+     * @throws MonkeException The exception in case of failure.
+     */
     public String excRkw(String userInput) throws MonkeException {
         ParsedData parsedData = parser.parse(InputType.rkw, userInput);
         keyword.Keywords.getInstance().remove(parsedData.getDescription());
@@ -189,6 +217,13 @@ public class Executor {
         return ui.rkw(parsedData.getDescription());
     }
 
+    /**
+     * Produces a help message.
+     *
+     * @param userInput The user input.
+     * @return The reply string.
+     * @throws MonkeException The exception in case of failure.
+     */
     public String excHelp(String userInput) throws MonkeException {
         ParsedData parsedData;
         try {
@@ -202,6 +237,11 @@ public class Executor {
 
     }
 
+    /**
+     * Exits the program.
+     *
+     * @return Bye greeting, but its deprecated.
+     */
     public String excBye() {
         System.exit(0);
         return "Goodbye! See you soon!";
@@ -211,6 +251,7 @@ public class Executor {
      * Prints the error message
      *
      * @param errorMsg The error message to be printed.
+     * @return The exception message.
      */
     public String excException(String errorMsg) {
         return ui.addSeparator(errorMsg);

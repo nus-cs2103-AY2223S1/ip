@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class InvalidValueException extends MonkeException {
     public InvalidValueException() {

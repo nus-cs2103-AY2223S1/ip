@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class NoValueException extends MonkeException {
     public NoValueException(String command) {

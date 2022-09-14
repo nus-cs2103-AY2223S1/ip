@@ -1,7 +1,7 @@
 package util;
 
-import monkeExceptions.MonkeException;
-import monkeExceptions.FileCorruptException;
+import monkeexceptions.MonkeException;
+import monkeexceptions.FileCorruptException;
 import keyword.KeywordPair;
 import tasks.Deadline;
 import tasks.Event;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class FileParser {
     /**
-     * Parses the save file into a list of tasks
+     * Parses the save file into a list of tasks.
      *
      * @param data The data from the save file.
      * @return The list of tasks.
@@ -49,6 +49,13 @@ public class FileParser {
         return result;
     }
 
+    /**
+     * Parses saved keywords from file into a list of KeywordPairs.
+     *
+     * @param data The data read from save file.
+     * @return List of KeywordPairs.
+     * @throws MonkeException The exception in case of failure.
+     */
     public List<KeywordPair> parseKeywords(String data) throws MonkeException {
         List<KeywordPair> keywordPairs = new ArrayList<>();
         String[] lines = data.split("\n");

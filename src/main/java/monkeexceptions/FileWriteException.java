@@ -1,4 +1,4 @@
-package monkeExceptions;
+package monkeexceptions;
 
 public class FileWriteException extends MonkeException {
     public FileWriteException() {

@@ -21,7 +21,7 @@ public class ParsedData {
     private String commandkw;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param description Task.
      * @param during Time keyword.
@@ -44,7 +44,7 @@ public class ParsedData {
     }
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param status Status.
      * @param description Task.
@@ -68,7 +68,7 @@ public class ParsedData {
     }
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param description Task.
      */
@@ -77,7 +77,7 @@ public class ParsedData {
     }
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param kw Keyword.
      * @param commandkw Command Keyword.
@@ -88,7 +88,7 @@ public class ParsedData {
     }
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param listIndex Index.
      */

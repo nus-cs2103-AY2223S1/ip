@@ -1,8 +1,8 @@
 package keyword;
 
-import monkeExceptions.MonkeException;
-import monkeExceptions.NoSuchKeywordException;
-import monkeExceptions.RemovingDefaultKeywordException;
+import monkeexceptions.MonkeException;
+import monkeexceptions.NoSuchKeywordException;
+import monkeexceptions.RemovingDefaultKeywordException;
 import util.FileFormatter;
 import util.FileParser;
 import util.Storage;

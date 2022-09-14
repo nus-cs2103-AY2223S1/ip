@@ -10,7 +10,7 @@ public abstract class Task {
     protected Boolean isDone;
 
     /**
-     * Constructor for Deadline
+     * Constructor for Deadline.
      *
      * @param parsedData Data used to create the Task.
      */
@@ -20,9 +20,9 @@ public abstract class Task {
     }
 
     /**
-     * Returns the status of the task
+     * Returns the status of the task.
      *
-     * @return boolean representing the status
+     * @return Boolean representing the status.
      */
     public boolean isDone() {
         return this.isDone;
@@ -43,16 +43,16 @@ public abstract class Task {
     }
 
     /**
-     * Returns the status icon
+     * Returns the status icon.
      *
-     * @return The status icon
+     * @return The status icon.
      */
     public String getStatusIcon() {
         return (isDone ? "[X] " : "[ ] ");
     }
 
     /**
-     * Returns the status letter
+     * Returns the status letter.
      *
      * @return The status letter.
      */
@@ -69,7 +69,7 @@ public abstract class Task {
     public abstract String getTimeText();
 
     /**
-     * Returns the task description
+     * Returns the task description.
      *
      * @return The task description.
      */
