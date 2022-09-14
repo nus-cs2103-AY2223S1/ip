@@ -23,6 +23,12 @@ public class ToDo extends Task {
         super(description, completion);
     }
 
+    @Override
+    public ToDo edit(String userEditInput) {
+        description = userEditInput;
+        return this;
+    }
+
     /**
      * Parses the to-do into a savable string format, ready to be written to the hard disk.
      *

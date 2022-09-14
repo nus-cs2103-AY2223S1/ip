@@ -2,7 +2,6 @@ package duke.task;
 
 import java.time.LocalDateTime;
 
-import duke.date.DateTimeParse;
 import duke.exception.DukeException;
 
 /**
@@ -52,22 +51,7 @@ public enum TaskType {
                         + "\nMake sure you follow the format: event [description] /at"
                         + " [event start datetime] /to [event end datetime]");
             }
-
-            String[] sp = cmd.substring(6).split("\\s/((at)|(to))\\s", 3);
-            String description = sp[0];
-            String startDate = sp[1];
-            String endDate = sp[2];
-            LocalDateTime startDatetime = DateTimeParse.parseDateTime(startDate);
-            LocalDateTime endDatetime = DateTimeParse.parseDateTime(endDate);
-
-            // ensures that the start and end datetime is valid (start cannot be after end)
-            if (startDatetime.isAfter(endDatetime)) {
-                String errorMessage = String.format(END_BEFORE_START_ERROR_MESSAGE,
-                        startDatetime, endDatetime);
-                throw new DukeException(errorMessage);
-            }
-
-            return new Event(description, startDatetime, endDatetime);
+            return Event.construct(cmd.substring(6));
         }
 
         /**
@@ -99,12 +83,7 @@ public enum TaskType {
                 throw new DukeException("hm... bobo's confused. Are you trying to create a deadline?"
                         + "\nMake sure you follow the format: deadline [description] /by [deadline]");
             }
-
-            String[] sp = cmd.substring(9).split("/(by)\\s", 2);
-            String description = sp[0];
-            String dateTimeString = sp[1];
-            LocalDateTime datetime = DateTimeParse.parseDateTime(dateTimeString);
-            return new Deadline(description, datetime);
+            return Deadline.construct(cmd.substring(9));
         }
 
         /**
@@ -124,8 +103,6 @@ public enum TaskType {
             }
         }
     };
-
-    private static final String END_BEFORE_START_ERROR_MESSAGE = "Start datetime %s cannot be after end datetime %s";
 
     /**
      * Takes in a user's command and validates that it is a valid command (follows the

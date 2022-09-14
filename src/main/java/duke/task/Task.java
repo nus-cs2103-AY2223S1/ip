@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
 /**
  * An abstract class representing a task (which has a description, and completion status).
  */
@@ -71,6 +73,7 @@ public abstract class Task {
     }
 
     public abstract String toSaveFormat();
+    public abstract Task edit(String userEditInput) throws DukeException;
 
     /**
      * Returns a string representation for the task, indicating

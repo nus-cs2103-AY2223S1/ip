@@ -3,10 +3,14 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import duke.date.DateTimeParse;
+import duke.exception.DukeException;
+
 /**
  * An event is a task that starts at a specific time and ends at a specific time.
  */
 public class Event extends Task {
+    private static final String END_BEFORE_START_ERROR_MESSAGE = "Start datetime %s cannot be after end datetime %s";
     protected LocalDateTime eventStartDatetime;
     protected LocalDateTime eventEndDatetime;
 
@@ -39,6 +43,39 @@ public class Event extends Task {
     }
 
     /**
+     * Constructs an event from a given string in the format:
+     * {description} /at {start} /to {end}.
+     *
+     * @param cmd The string to construct the event from.
+     * @return The constructed event based on the specifications of the command.
+     * @throws DukeException If the command is invalid.
+     */
+    public static Event construct(String cmd) throws DukeException {
+        if (!cmd.matches("(?i)^.+\\s/(at)\\s.+\\s/(to)\\s.+")) {
+            String errorMessage = "hmm are you trying to edit an event?"
+                    + " make sure the command is in the format: edit {description} /at"
+                    + " {start} /to {end}";
+            throw new DukeException(errorMessage);
+        }
+
+        String[] sp = cmd.split("\\s/((at)|(to))\\s", 3);
+        String description = sp[0];
+        String startDate = sp[1];
+        String endDate = sp[2];
+        LocalDateTime startDatetime = DateTimeParse.parseDateTime(startDate);
+        LocalDateTime endDatetime = DateTimeParse.parseDateTime(endDate);
+
+        // ensures that the start and end datetime is valid (start cannot be after end)
+        if (startDatetime.isAfter(endDatetime)) {
+            String errorMessage = String.format(END_BEFORE_START_ERROR_MESSAGE,
+                    startDatetime, endDatetime);
+            throw new DukeException(errorMessage);
+        }
+
+        return new Event(description, startDatetime, endDatetime);
+    }
+
+    /**
      * Returns a String representation of the start datetime object associated to the
      * event task in EEEE, dd MMM yyyy HH:mm format.
      *
@@ -58,6 +95,21 @@ public class Event extends Task {
     public String getEndDatetimeString() {
         DateTimeFormatter dayDateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm");
         return eventEndDatetime.format(dayDateTimeFormatter);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Event edit(String userEditInput) throws DukeException {
+        // this kind of stupidly edits the event by constructing a dummy event in
+        // order to reuse the validation method, to look into whether there might
+        // be better ways of going about this
+        Event editedEvent = construct(userEditInput);
+        description = editedEvent.description;
+        eventStartDatetime = editedEvent.eventStartDatetime;
+        eventEndDatetime = editedEvent.eventEndDatetime;
+        return this;
     }
 
     /**
