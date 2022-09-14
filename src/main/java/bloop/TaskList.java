@@ -82,7 +82,7 @@ public class TaskList {
     public String remove(Task task) throws IOException {
         tasks.remove(task);
         storage.rewriteFile(tasks);
-        return "This task has been removed -\n\t" + task
+        return "This task has been removed -\n" + task
                 + "\n\tNow you have " + tasks.size() + " tasks in the list";
     }
 
