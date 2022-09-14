@@ -42,6 +42,8 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = chacha.getResponse(input);
+        assert response != null : "Response cannot be null";
+        assert response.equals("") : "Response cannot be empty";
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, chachaImage)

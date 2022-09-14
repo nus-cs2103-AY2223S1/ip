@@ -28,6 +28,7 @@ public class Parser {
      * @throws ChachaException If user input cannot be parsed.
      */
     public static Command parse(String userInput) throws ChachaException {
+        assert userInput.length() > 0 : "userInput length should be more than 0";
         String[] inputArray = userInput.split(" ");
         String command = inputArray[0];
         switch (command) {

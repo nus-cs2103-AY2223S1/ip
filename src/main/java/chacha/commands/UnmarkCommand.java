@@ -30,6 +30,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
                 Task task = taskList.get(taskIndex);
+                assert task != null : "task should not be null";
                 task.unmarkAsDone();
                 ui.printUnmark(task);
     }
