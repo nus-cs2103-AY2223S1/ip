@@ -105,7 +105,7 @@ public class TaskList {
      * @return the list of unfinished deadline tasks sorted by date
      */
     public TaskList getDeadlineList() {
-        List<Task> filtered = list.stream().filter(task -> task instanceof Deadline && !task.status)
+        List<Task> filtered = list.stream().filter(task -> task instanceof Deadline && !task.isDone)
                 .collect(Collectors.<Task>toList());
         filtered.sort((x, y) -> ((Deadline) x).date.compareTo(((Deadline) y).date));
 
@@ -113,7 +113,7 @@ public class TaskList {
     }
 
     /**
-     * Sort the list of tasks by status then by title
+     * Sorts the list of tasks by status then by title
      * 
      * @return Sorted task list
      */

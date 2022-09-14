@@ -11,21 +11,21 @@ import java.time.format.DateTimeParseException;
  */
 public abstract class Task implements Comparable<Task> {
     protected final String title;
-    protected boolean status;
+    protected boolean isDone;
 
     /**
      * Constructs a new Task instance
      *
      * @param title the name of the task
-     * @param status whether the task is completed or not
+     * @param isDone whether the task is completed or not
      */
-    public Task(String title, boolean status) {
+    public Task(String title, boolean isDone) {
         this.title = title;
-        this.status = status;
+        this.isDone = isDone;
     }
 
     /**
-     * Decode the string from the file
+     * Decodes the string from the file
      *
      * @param line the string to be decoded
      * @return the decoded task
@@ -52,19 +52,19 @@ public abstract class Task implements Comparable<Task> {
     }
 
     /**
-     * Set task status
+     * Sets task status
      *
-     * @param status the status to be set
+     * @param isDone the status to be set
      * @return the task after changing status
      */
-    public Task setStatus(boolean status) {
-        this.status = status;
+    public Task setStatus(boolean isDone) {
+        this.isDone = isDone;
 
         return this;
     }
 
     /**
-     * Encode the task for saving into the file
+     * Encodes the task for saving into the file
      *
      * @return the string to be saved into the file
      */
@@ -72,15 +72,15 @@ public abstract class Task implements Comparable<Task> {
 
     @Override
     public int compareTo(Task rhs) {
-        if (this.status == rhs.status) {
+        if (this.isDone == rhs.isDone) {
             return this.title.compareTo(rhs.title);
         }
 
-        return this.status ? 1 : -1;
+        return this.isDone ? 1 : -1;
     }
 
     @Override
     public String toString() {
-        return "[" + (this.status ? "X" : " ") + "] " + this.title;
+        return "[" + (this.isDone ? "X" : " ") + "] " + this.title;
     }
 }

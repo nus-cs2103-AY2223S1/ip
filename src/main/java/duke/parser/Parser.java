@@ -17,7 +17,7 @@ public class Parser {
     private static final Scanner scanner = new Scanner(System.in);
 
     /**
-     * Read user input
+     * Reads user input
      *
      * @return the user input
      */
@@ -26,7 +26,7 @@ public class Parser {
     }
 
     /**
-     * Parse the user input into a command
+     * Parses the user input into a command
      *
      * @param fullCommand the user input
      * @return the parsed command

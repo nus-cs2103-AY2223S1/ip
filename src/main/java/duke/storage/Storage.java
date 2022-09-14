@@ -27,7 +27,7 @@ public class Storage {
     }
 
     /**
-     * Create a new file if it doesn't exist
+     * Creates a new file if it doesn't exist
      *
      * @throws DukeException if error occurs
      */
@@ -48,7 +48,7 @@ public class Storage {
     }
 
     /**
-     * Load the task list from the file
+     * Loads the task list from the file
      *
      * @return the task list
      * @throws DukeException if error occurs
@@ -75,7 +75,7 @@ public class Storage {
     }
 
     /**
-     * Save the task list to the file
+     * Saves the task list to the file
      *
      * @param list the task list to be saved
      * @throws DukeException if error occurs
@@ -94,7 +94,7 @@ public class Storage {
     }
 
     /**
-     * Load note from the file
+     * Loads note from the file
      * 
      * @param key note name
      * @return note content
@@ -122,7 +122,7 @@ public class Storage {
     }
 
     /**
-     * Save note to the file
+     * Saves note to the file
      * 
      * @param key note name
      * @param note note content
@@ -143,7 +143,7 @@ public class Storage {
     }
 
     /**
-     * Delete note from the file
+     * Deletes note from the file
      * 
      * @param key note name
      * @throws DukeException if error occurs

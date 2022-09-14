@@ -13,20 +13,20 @@ public class Todo extends Task {
      * Constructs a new Todo instance
      *
      * @param title the name of the task
-     * @param status whether the task is completed or not
+     * @param isDone whether the task is completed or not
      */
-    public Todo(String title, boolean status) {
-        super(title, status);
+    public Todo(String title, boolean isDone) {
+        super(title, isDone);
     }
 
     /**
-     * Encode the task for saving into the file
+     * Encodes the task for saving into the file
      *
      * @return the string to be saved into the file
      */
     @Override
     public String encode() {
-        return SYMBOL + " | " + (this.status ? "1" : "0") + " | " + this.title;
+        return SYMBOL + " | " + (this.isDone ? "1" : "0") + " | " + this.title;
     }
 
     @Override
