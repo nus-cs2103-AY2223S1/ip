@@ -19,6 +19,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Provides Duke's response to a given user input
+     * @param input Input from user
+     * @return Response from Duke
+     */
     protected String getResponse(String input) {
         try {
             Command command = Parser.parse(input);

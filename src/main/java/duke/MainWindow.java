@@ -40,6 +40,10 @@ public class MainWindow extends AnchorPane {
         addressUser(d.greet());
     }
 
+    /**
+     * Displays welcome message to user when Duke is launched
+     * @param greeting Duke's greeting in String format
+     */
     @FXML
     public void addressUser(String greeting) {
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(greeting, dukeImage));

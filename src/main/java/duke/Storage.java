@@ -21,6 +21,11 @@ public class Storage {
         this.filepath = filepath;
     }
 
+    /**
+     * Creates a TaskList containing all outstanding tasks in local directory when Duke is launched.
+     * @return TaskList of outstanding tasks
+     * @throws FileNotFoundException invalid filepath of outstanding tasks
+     */
     protected TaskList loadExistingTasks() throws FileNotFoundException {
         List<Task> tasks = new ArrayList<>();
         Scanner s = new Scanner(new File(filepath));
@@ -38,6 +43,10 @@ public class Storage {
         return new TaskList(tasks);
     }
 
+    /**
+     * Reads all valid commands for Duke stored in help.txt.
+     * @return String message containing all valid commands for Duke
+     */
     protected static String loadHelpTextFile() {
         try {
             return Files.readString(FILEPATH_HELP);

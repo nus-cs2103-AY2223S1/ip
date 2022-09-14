@@ -20,13 +20,6 @@ public class Ui {
     }
 
     /**
-     * Displays to the user that there are no outstanding tasks.
-     */
-    protected void showLoadingError() {
-        System.out.println("No previous records detected, creating new file...");
-    }
-
-    /**
      * Displays farewell message to users.
      * @return Farewell to users in String format
      */
@@ -44,7 +37,7 @@ public class Ui {
 
     /**
      * Displays a given String to users.
-     * @param output Message to be shown.
+     * @param output Message to be shown
      */
     protected void display(String output){
         System.out.println(output);

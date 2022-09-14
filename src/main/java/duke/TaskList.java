@@ -21,7 +21,7 @@ public class TaskList {
 
     /**
      * Updates a Task at a given index in the collection as complete.
-     * @return Task updated as complete.
+     * @return Task updated as complete
      */
     protected Task markTask(int index) {
         Task completedTask = tasks.get(index).completeTask();
@@ -31,7 +31,7 @@ public class TaskList {
 
     /**
      * Updates a Task at a given index in the collection as incomplete.
-     * @return Task updated as incomplete.
+     * @return Task updated as incomplete
      */
     protected Task unmarkTask(int index) {
         Task incompleteTask = tasks.get(index).resetTask();
@@ -41,7 +41,7 @@ public class TaskList {
 
     /**
      * Adds a new Task to the collection of Tasks set belonging to the user.
-     * @param newTask new Task created by user.
+     * @param newTask new Task created by user
      */
     protected void add(Task newTask) {
         tasks.add(newTask);
@@ -61,8 +61,8 @@ public class TaskList {
 
     /**
      * Reads the collection of Tasks belonging to the user, and then formats it as a String where
-     * each task is separated by a linebreak and labeled numerically.
-     * @return String consisting of all Taks belonging to the user.
+     * each task is labeled numerically.
+     * @return String consisting of all Tasks belonging to the user
      */
     protected String enumerateList() {
         return IntStream.range(0, tasks.size())
@@ -70,6 +70,12 @@ public class TaskList {
                 .reduce("", (task1, task2) -> task1 + task2);
     }
 
+    /**
+     * Filters through the current TaskList belonging to the user to find tasks containing a given
+     * search term, then collects the matching tasks in String format where each task is labeled numerically.
+     * @param term Search term provided by the user
+     * @return String consisting of all Tasks containing the given search term
+     */
     protected String findTasks(String term) {
         List<Task> filteredTaskList = tasks.stream()
                 .filter(task -> task.getDesc().contains(term))

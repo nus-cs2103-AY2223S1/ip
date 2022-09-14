@@ -21,7 +21,7 @@ public class Event extends Task {
 
     /**
      * Creates a Event object based on a given String which describes a Event object.
-     * @param desc String description of a Event.
+     * @param desc String description of a Event
      */
     public Event(String desc) {
         super(desc);
@@ -30,15 +30,12 @@ public class Event extends Task {
 
     private String getTiming(String desc) {
         int index = desc.indexOf('/');
-        if (index > 0) {
-            return desc.substring(index + 1);
-        }
-        return NO_TIMING;
+        return (index > 0) ? desc.substring(index + 1) : NO_TIMING;
     }
 
     /**
      * Creates a Event instance that is identical to a given Deadline object, and then marked as complete.
-     * @return An identical Event object that is marked as complete.
+     * @return An identical Event object that is marked as complete
      */
     protected Event completeTask() {
         return new Event(getDesc(), STATUS_COMPLETE, getTaskType());
@@ -46,7 +43,7 @@ public class Event extends Task {
 
     /**
      * Creates a Event instance that is identical to a given Deadline object, and then marked as incomplete.
-     * @return An identical Event object that is marked as incomplete.
+     * @return An identical Event object that is marked as incomplete
      */
     protected Event resetTask() {
         return new Event(getDesc(), getTaskType());
