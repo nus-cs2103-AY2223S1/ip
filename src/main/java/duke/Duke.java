@@ -37,7 +37,6 @@ public class Duke {
         }
 
         assert taskList != null : "TaskList must be initialised";
-        assert storage != null : "Storage must be initialised";
     }
 
     /**
@@ -56,7 +55,6 @@ public class Duke {
         }
 
         assert taskList != null : "TaskList must be initialised";
-        assert storage != null : "Storage must be initialised";
     }
 
     /**

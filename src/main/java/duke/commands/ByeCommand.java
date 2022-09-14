@@ -16,8 +16,8 @@ public class ByeCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
-        javafx.application.Platform.exit();
         storage.saveToFile(tasks);
+        javafx.application.Platform.exit();
         return FAREWELL_MESSAGE;
     }
 }

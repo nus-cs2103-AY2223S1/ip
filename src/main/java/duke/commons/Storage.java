@@ -88,10 +88,10 @@ public class Storage {
                 task = new ToDo(description, isDone);
                 break;
             case Deadline.TASK_ICON:
-                task = new Deadline(description, isDone, Parser.parseLocalDate(storedInfo[3]));
+                task = new Deadline(description, isDone, Parser.parseLocalDate(storedInfo[3].strip()));
                 break;
             case Event.TASK_ICON:
-                task = new Event(description, isDone, Parser.parseLocalDateTime(storedInfo[3]));
+                task = new Event(description, isDone, Parser.parseLocalDateTime(storedInfo[3].strip()));
                 break;
             default:
                 throw new DukeException(NO_SAVE_DATA_MESSAGE);
