@@ -35,47 +35,40 @@ public class Parser {
      */
     public static Command parse(String command, TaskList taskList) throws DukeException,
             DateTimeParseException, NumberFormatException{
-        String lowercaseCommand = command.toLowerCase();
-        if (lowercaseCommand.equals("bye")) {
+        String lowercaseCommand = command.toLowerCase().split(" ")[0];
+        switch (lowercaseCommand) {
+        case "bye":
             return new ByeCommand();
-        }
-        if (lowercaseCommand.equals("list")) {
+        case "list":
             return new ListCommand();
-        }
-        if (lowercaseCommand.startsWith("mark")) {
-            int position = parseMarkedTask(command, taskList);
-            return new MarkCommand(position);
-        }
-        if (lowercaseCommand.startsWith("unmark")) {
-            int position = parseUnmarkedTask(command, taskList);
-            return new UnmarkCommand(position);
-        }
-        if (lowercaseCommand.startsWith("todo")) {
+        case "mark":
+            int markedPosition = parseMarkedTask(command, taskList);
+            return new MarkCommand(markedPosition);
+        case "unmark":
+            int unmarkedPosition = parseUnmarkedTask(command, taskList);
+            return new UnmarkCommand(unmarkedPosition);
+        case "todo":
             String description = parseToDo(command);
             return new ToDoCommand(description);
-        }
-        if (lowercaseCommand.startsWith("undo")) {
+        case "undo":
             return new UndoCommand();
-        }
-        if (lowercaseCommand.startsWith("deadline")) {
-           String[] taskWithDeadline = parseDeadline(command);
-           LocalDate date = parseDate(taskWithDeadline[1]);
-           return new DeadlineCommand(taskWithDeadline[0], date);
-        }
-        if (lowercaseCommand.startsWith("event")) {
+        case "deadline":
+            String[] taskWithDeadline = parseDeadline(command);
+            LocalDate deadlineDate = parseDate(taskWithDeadline[1]);
+            return new DeadlineCommand(taskWithDeadline[0], deadlineDate);
+        case "event":
             String[] taskWithPeriod = parseEvent(command);
-            LocalDate date = parseDate(taskWithPeriod[1]);
-            return new EventCommand(taskWithPeriod[0], date);
-        }
-        if (lowercaseCommand.startsWith("delete")) {
-            int position = parseDelete(command, taskList);
-            return new DeleteCommand(position);
-        }
-        if (lowercaseCommand.startsWith("find")) {
+            LocalDate eventDate = parseDate(taskWithPeriod[1]);
+            return new EventCommand(taskWithPeriod[0], eventDate);
+        case "delete":
+            int deletePosition = parseDelete(command, taskList);
+            return new DeleteCommand(deletePosition);
+        case "find":
             String keyword = parseFind(command);
             return new FindCommand(keyword);
+        default:
+            return new WrongCommand();
         }
-        return new WrongCommand();
     }
 
     private static Integer parseMarkedTask(String command, TaskList taskList) throws DukeException {

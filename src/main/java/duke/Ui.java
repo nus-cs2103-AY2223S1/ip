@@ -15,7 +15,7 @@ public class Ui {
      */
     public String Greet() {
         MultiLineFormatter multiLineFormatter = new MultiLineFormatter();
-        multiLineFormatter.add("Hello, this is Siri! It is a pleasure to meet you!\n");
+        multiLineFormatter.add("Hello, this is Duke, the Duke Bot! It is a pleasure to meet you!\n");
         multiLineFormatter.add("How may I assist you?");
         return multiLineFormatter.getFullMessage();
     }
@@ -56,7 +56,7 @@ public class Ui {
     }
 
     /**
-     * Return the message for the exception.
+     * Returns the message for the exception.
      * @param message The message for the exception.
      * @return The message for the exception.
      */

@@ -2,17 +2,41 @@
 
 ## Features 
 
-### Feature-ABC
+### `Add tasks`
+Adds the various kinds of tasks to the Duke Bot. These include
+* ToDo tasks
+* Deadline tasks
+* Event tasks
 
-Description of the feature.
+### `Delete tasks`
 
-### Feature-XYZ
+Removes the task from the duke bot
 
-Description of the feature.
+### `List tasks`
 
-## Usage
+Lists out the tasks in the duke bot
 
-### `Keyword` - Describe action
+### `Mark tasks`
+
+Marks tasks in the duke bot which are completed
+
+### `Unmark tasks`
+
+Unmarks tasks in the duke bot which have been previously marked
+
+### `Find tasks`
+
+Searches for task which contains the keyword specified
+
+### `Undo commands`
+
+Undoes any previous command made by the user
+
+###
+
+## Guide on how to use various commands
+
+### `ToDo` - Adds a Todo task to the Duke bot
 
 Describe the action and its outcome.
 

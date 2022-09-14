@@ -37,29 +37,7 @@ public class Storage {
         Scanner scanningFile = new Scanner(dataFile);
         while (scanningFile.hasNext()) {
             String currLine = scanningFile.nextLine();
-            String[] task = currLine.split(" # ");
-            if (task.length == 3) {
-                ToDo todo = new ToDo(task[2]);
-                boolean isMarked = task[1].equals("T");
-                todo.setCompleted(isMarked);
-                dukeBotArray.add(todo);
-            }
-            if (task.length == 4) {
-                if (task[0].equals("D")) {
-                    LocalDate currDate = LocalDate.parse(task[3]);
-                    Deadline deadline = new Deadline(task[2],currDate);
-                    boolean isMarked = task[1].equals("T");
-                    deadline.setCompleted(isMarked);
-                    dukeBotArray.add(deadline);
-                }
-                if (task[0].equals("E")) {
-                    LocalDate currDate = LocalDate.parse(task[3]);
-                    Event event = new Event(task[2],currDate);
-                    boolean isMarked = task[1].equals("T");
-                    event.setCompleted(isMarked);
-                    dukeBotArray.add(event);
-                }
-            }
+            addTaskToDukeBotArray(dukeBotArray, currLine);
         }
         scanningFile.close();
         return dukeBotArray;
@@ -89,6 +67,32 @@ public class Storage {
             fileWriter.close();
         } catch (IOException e) {
             System.out.println("Please check that parent file is created!");
+        }
+    }
+
+    private void addTaskToDukeBotArray(ArrayList<Task> dukeBotArray, String currLine) {
+        String[] task = currLine.split(" # ");
+        if (task.length == 3) {
+            ToDo todo = new ToDo(task[2]);
+            boolean isMarked = task[1].equals("T");
+            todo.setCompleted(isMarked);
+            dukeBotArray.add(todo);
+        }
+        if (task.length == 4) {
+            if (task[0].equals("D")) {
+                LocalDate currDate = LocalDate.parse(task[3]);
+                Deadline deadline = new Deadline(task[2],currDate);
+                boolean isMarked = task[1].equals("T");
+                deadline.setCompleted(isMarked);
+                dukeBotArray.add(deadline);
+            }
+            if (task[0].equals("E")) {
+                LocalDate currDate = LocalDate.parse(task[3]);
+                Event event = new Event(task[2],currDate);
+                boolean isMarked = task[1].equals("T");
+                event.setCompleted(isMarked);
+                dukeBotArray.add(event);
+            }
         }
     }
 
