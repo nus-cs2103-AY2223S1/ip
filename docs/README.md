@@ -106,3 +106,85 @@ Expected outcome: the first task on your list will be removed.
 Very well. I have deleted [T][ ] eat apple from your list, master.
 ```
 
+### `Edit` - edits task
+The name or date/time of the specified task will be edited.
+
+Example of usage:
+`edit 1 sleep`
+
+Expected outcome: the name of the first task on your list will be changed to `sleep`
+
+```
+I have edited task 1 to [D][ ] sleep (by: 7pm), Master.
+```
+
+Example of usage:
+`edit 1 deadline 12am`
+
+Expected outcome: the deadline of the first task on your list will be changed to `12am`
+
+```
+I have edited task 1 to [D][ ] sleep (by: 12am), Master.
+```
+
+Example of usage:
+`edit 2 time 2022-07-11`
+
+Expected outcome: the deadline of the first task on your list will be changed to July 11 2022
+
+```
+I have edited task 2 to [E][ ] party (on: Jul 11 2022), Master.
+```
+
+### `List` - displays your task list
+
+Example of usage:
+`list`
+
+Expected outcome: your task list
+
+```
+Here is your to-do list, Master:
+1. [D][ ] sleep (by: 12am)
+2. [E][ ] party (on: Jul 11 2022)
+```
+
+### `Find` - finds task
+The subset of your task list that matches the specified keyword(s) will be displayed.
+
+Example of usage:
+`find party`
+
+Expected outcome: all tasks that contain the word 'party'
+
+```
+I have found the following task matching "party":
+2. [E][ ] party (on: Jul 11 2022)
+```
+
+### `Coffee` - makes you a cup of coffee
+
+Example of usage:
+`coffee`
+
+```
+I have prepared a steaming cup of coffee for you, Master. Enjoy it while it's hot!
+```
+
+### `Bye` - saves your task list
+Your task list be saved, and the old save will be overwritten.
+
+Example of usage:
+`bye`
+
+```
+Goodbye! Thank you for visiting
+ ____        _        
+|  _ \ _   _| | _____ 
+| | | | | | | |/ / _ \
+| |_| | |_| |   <  __/
+|____/ \__,_|_|\_\___|
+I have saved your list:
+1. [D][ ] sleep (by: 12am)
+2. [E][ ] party (on: Jul 11 2022)
+```

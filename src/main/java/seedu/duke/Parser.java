@@ -87,7 +87,7 @@ public class Parser {
                             index = Integer.parseInt(taskDesc[0]) - 1;
                             if (taskDesc[1].equals("name")) {
                                 return new EditNameCommand(index, taskDesc[2]);
-                            } else if (taskDesc[1].equals("time") || taskDesc.equals("deadline")) {
+                            } else if (taskDesc[1].equals("time") || taskDesc[1].equals("deadline")) {
                                 return new EditTimeCommand(index, taskDesc[2]);
                             } else { // assume edit name
                                 return new EditNameCommand(index, taskDesc[1] + " " + taskDesc[2]);

@@ -1,2 +1,2 @@
-[D][ ] eat apple (by: 7pm)
-[E][ ] party (on: Jul 10 2022)
+[D][ ] sleep (by: 12am)
+[E][ ] party (on: Jul 11 2022)

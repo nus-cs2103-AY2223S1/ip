@@ -28,7 +28,7 @@ public class FindCommand extends Command {
         for (int i = 0; i < list.size(); i++) {
             Task curr = list.get(i);
             if (curr.getName().contains(searchString)) {
-                foundList.add(i + 1);
+                foundList.add(i);
             }
         }
         if (!foundList.isEmpty()) {

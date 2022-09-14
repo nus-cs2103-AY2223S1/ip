@@ -22,7 +22,7 @@ public class FoundList extends ArrayList<Integer> {
         String str = "";
         for (int i = 0; i < this.size(); i++) {
             int num = this.get(i);
-            str = str + num + ". " + this.list.get(i).toString() + "\n";
+            str = str + Integer.valueOf(num + 1) + ". " + this.list.get(num).toString() + "\n";
         }
         return str;
     }
