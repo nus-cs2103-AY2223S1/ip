@@ -1,4 +1,6 @@
-# User Guide
+# MONKE User Guide
+
+![alt text](https://github.com/CFSY/ip/blob/master/src/main/resources/images/monke2.png?raw=true)
 
 ## Features 
 
