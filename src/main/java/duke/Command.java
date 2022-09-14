@@ -105,58 +105,59 @@ public enum Command {
     private String getUsageError(String args, Duke duke) {
         TaskList taskList = duke.getTaskList();
         String usage = getCorrectUsage();
+        String error = "ERROR: \n\n";
         assert taskList != null : "Task list is null";
 
         switch(name) {
         case "delete":
             if (args.isEmpty()) {
-                return "Please specify a task number.\n\n" + usage;
+                return error + "Please specify a task number.\n\n" + usage;
             }
             try {
                 int index = Integer.parseInt(args);
                 int count = taskList.getCount();
                 if (index <= 0 || index > taskList.getCount()) {
-                    return "Please specify a valid task number. There are "
+                    return error + "Please specify a valid task number. There are "
                             + count + " tasks in the list\n\n" + usage;
                 }
             } catch (NumberFormatException e) {
-                return "Please specify a task number.\n\n" + usage;
+                return error + "Please specify a task number.\n\n" + usage;
             }
 
             return "";
 
         case "find":
             if (args.isBlank()) {
-                return "Please specify at least one keyword.\n\n" + usage;
+                return error + "Please specify at least one keyword.\n\n" + usage;
             } else if (args.charAt(0) != '"' || args.charAt(args.length() - 1) != '"') {
                 if (args.split(" ").length > 1) {
-                    return "'find' only expects 1 argument.\n\n If there are multiple "
+                    return error + "'find' only expects 1 argument.\n\n If there are multiple "
                             + "keywords, please enclose them in quotation marks (\"\").";
                 }
             } else {
                 if (args.length() == 2 || args.substring(1, args.length() - 1).isBlank()) {
-                    return "Please specify at least one keyword.\n\n" + usage;
+                    return error + "Please specify at least one keyword.\n\n" + usage;
                 }
             }
             return "";
 
         case "list":
             if (!args.isEmpty()) {
-                return "'list' expects no arguments.";
+                return error + "'list' expects no arguments.";
             }
             return "";
 
         case "deadline":
             String[] temp = args.split(" /by ", 2);
             if (temp.length < 2) {
-                return "Please specify a task and deadline.\n\n" + usage;
+                return error + "Please specify a task and deadline.\n\n" + usage;
             } else {
                 int period = getPeriod(temp[1]);
                 if (period < 0) {
-                    return "Please specify a valid period for recurring tasks.\n\n" + usage;
+                    return error + "Please specify a valid period for recurring tasks.\n\n" + usage;
                 } else if (period == 0) {
                     if (!isValidDate(temp[1])) {
-                        return "Please specify the due date in the right format.\n\n" + usage;
+                        return error + "Please specify the due date in the right format.\n\n" + usage;
                     }
                 }
             }
@@ -165,14 +166,14 @@ public enum Command {
         case "event":
             temp = args.split(" /at ", 2);
             if (temp.length < 2) {
-                return "Please specify an event and date.\n\n" + usage;
+                return error + "Please specify an event and date.\n\n" + usage;
             } else {
                 int period = getPeriod(temp[1]);
                 if (period < 0) {
-                    return "Please specify a valid period for recurring tasks.\n\n" + usage;
+                    return error + "Please specify a valid period for recurring tasks.\n\n" + usage;
                 } else if (period == 0) {
                     if (!isValidDate(temp[1])) {
-                        return "Please specify the event date in the right format.\n\n" + usage;
+                        return error + "Please specify the event date in the right format.\n\n" + usage;
                     }
                 }
             }
@@ -181,7 +182,7 @@ public enum Command {
 
         case "todo":
             if (args.isEmpty()) {
-                return "Please specify a task.\n\n" + usage;
+                return error + "Please specify a task.\n\n" + usage;
             }
             return "";
 
@@ -190,18 +191,18 @@ public enum Command {
 
         case "unmark":
             if (args.isEmpty()) {
-                return "Please specify a task number\n\n" + usage;
+                return error + "Please specify a task number\n\n" + usage;
             } else {
                 try {
                     int index = Integer.parseInt(args) - 1;
                     if (index < 0 || index >= taskList.getCount()) {
-                        return "Please specify a valid task number.\n"
+                        return error + "Please specify a valid task number.\n"
                                 + "There are " + taskList.getCount()
                                 + " task(s) in the list.\n\n" + usage;
                     }
                 } catch (NumberFormatException e) {
-                    return "Please specify a task number.\n\n"
-                            + "\"" + args + "\"" + " is not an item number\n" + usage;
+                    return error + "Please specify a task number.\n"
+                            + "\"" + args + "\"" + " is not a task number\n\n" + usage;
                 }
             }
             return "";

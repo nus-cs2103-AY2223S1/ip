@@ -97,10 +97,10 @@ public class Duke {
         Task t = taskList.getTasks().get(index);
         taskList.markTask(t, b);
         if (b) {
-            ret = "Nice! I've marked this task as done: \n"
+            ret = "Nice! I've marked this task as done: \n\n"
                     + "  " + t;
         } else {
-            ret = "OK, I've marked this task as not done: \n"
+            ret = "OK, I've marked this task as not done: \n\n"
                     + "  " + t;
         }
         taskList.updateDate(t);
