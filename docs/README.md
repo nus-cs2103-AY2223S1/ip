@@ -26,12 +26,13 @@ Dukey is a desktop chatbot app for managing and storing tasks, optimized for use
 5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
    Some example commands you can try:
     - list : Lists all the tasks.
-    - deadline submit assignment /by 25 Sep 2022 : Adds a deadline task submit assignment (by:25 Sep 2022) to the list.
-    - event family outing /at 30 Sep 2022 18:30 : Adds an event task family outing (at: 30 Sep 2022 18:30)
-    - mark 2 : Marks the task at index 1 on the list as done.
-    - delete 1 : Deletes the first at index 2 on the list.
-    - find cat : Finds a;; task with the matching keyword cat
-    - bye : Exits the app.
+    - todo buy apples : Adds a todo task buy apples to the list
+    - deadline submit assignment 3 /by 20-Jul-2022 15:00 : Adds a deadline task submit assignment 3 (by: 20/07/2022 03.00PM) to the list.
+    - event project meeting /at 13-Aug-2022 16:30 : Adds an event task project meeting (at: 30 Sep 2022 4.30PM)
+    - mark 2 : Marks the task at index 2 on the list as done.
+    - delete 2 : Deletes the task at index 2 on the list.
+    - find ta : Finds all tasks with the matching keyword ta
+    - bye : Exits the application.
 6. Refer to the Features below for details of each command.
 
 ## Features 
