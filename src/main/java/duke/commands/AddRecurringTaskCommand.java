@@ -1,6 +1,5 @@
 package duke.commands;
 
-import duke.Event;
 import duke.RecurringTask;
 import duke.Storage;
 import duke.TaskList;

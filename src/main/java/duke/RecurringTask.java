@@ -17,7 +17,9 @@ public class RecurringTask extends Task {
      * Constructs a <code>RecurringTask</code> task.
      *
      * @param description Description of the recurring task.
-     * @param time Date and Time of the recurring task in "dd/MM/yyyy HHmm" format.
+     * @param day Day of the recurring task.
+     * @param time Time of the recurring task in "HHmm" format.
+     * @param isDone Indicator whether the task has been done or not.
      */
     public RecurringTask(String description, String day, String time, boolean isDone) {
         super(description, isDone);
@@ -26,6 +28,11 @@ public class RecurringTask extends Task {
         this.time = getUpcomingDateTime(dayString, timeString);
     }
 
+    /**
+     * Constructs a <code>RecurringTask</code> task that is 7 days following the given <code>RecurringTask</code>.
+     *
+     * @param task A <code>RecurringTask</code>.
+     */
     public RecurringTask(RecurringTask task) {
         super(task.description, false);
         this.time = task.time.plusDays(7);
@@ -38,7 +45,7 @@ public class RecurringTask extends Task {
      *
      * @param day The day of the <code>LocalDateTime</code> object that will be returned.
      * @param time The time of the <code>LocalDateTime</code> object that will be returned.
-     * @return A upcoming <code>LocalDateTime</code> with the specified day and time from when the function is called.
+     * @return An upcoming <code>LocalDateTime</code> with the specified day and time from when the function is called.
      */
     private LocalDateTime getUpcomingDateTime(String day, String time) {
         LocalDateTime dt = LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.valueOf(day)));
