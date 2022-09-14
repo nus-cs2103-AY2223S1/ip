@@ -1,51 +1,81 @@
 package Duke;
 
 
+import Duke.Commands.UserCommand;
+import Duke.Exceptions.DukeException;
+import Duke.Parser.CLIParser;
+import Duke.Storage.FileReader;
+import Duke.Storage.FileSaver;
+import Duke.Tasks.TaskList;
+import Duke.UI.CLIUi;
+import Duke.UI.GUIUi;
 import Duke.UserServer.ServerCLI;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
 public class Duke {
 
-    private static final int CLIMODEL = 0;
-    private static final int GUIMODEL = 1;
+    private TaskList tasks;
+    private final String Name = "Duke";
+    private GUIUi GUIUi = new GUIUi();
+    private CLIParser parser = new CLIParser();
 
 
-
-    public static void main(String[] args) { //throws DukeException, FileNotFoundException {
-
-
-
-        ServerCLI serverCLI = new ServerCLI();
-        serverCLI.run();
-
-
-
+    private void load() {
+        FileReader fileReader = new FileReader(Name);
+        TaskList storedTaskList = fileReader.load();
+        if (storedTaskList == null) {
+            this.tasks = new TaskList();
+        } else {
+            this.tasks = storedTaskList;
+        }
     }
 
-    private static int getMode(){
-        System.out.println("hello world");
-        Scanner sc = new Scanner(System.in);
-        while(true) {
-            if (sc.hasNextInt()) {
-                int mode = sc.nextInt();
-                if (mode == 1 || mode == 0) {
-                    return mode;
-                }
-            } else {
-                sc.next();
-            }
-            System.out.println("int");
 
+    private String serve(String input) {
+        try {
+            String finalInput = input.trim();
+            UserCommand curCommand = parser.parseCommand(finalInput, this.tasks);
+            return executeCommand(curCommand);
+        } catch (Exception e) {
+            return e.toString();
         }
 
     }
 
+    private String executeCommand(UserCommand curCommand) throws DukeException {
+        return curCommand.execute();
+    }
+
+    private String save() {
+        FileSaver fileSaver = new FileSaver(Name);
+        try {
+            fileSaver.save(tasks);
+        } catch (Exception e) {
+            return e.toString();
+        }
+        return "Data Saved!";
+    }
+
 
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        load();
+        String result = serve(input);
+        String dataResult = save();
+        return result;
     }
+
+    public String getHelp() {
+        return GUIUi.showHelp();
+    }
+
+    public String getWelcome() {
+        return GUIUi.showWelcome();
+    }
+
+
 
 
 }
