@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import duke.exception.InvalidTimeException;
 import duke.helper.DateTimeConverter;
 
 /**
@@ -115,21 +116,25 @@ public class TaskCreator {
                             + SIZE_OF_PREPOSITION)
                     .split(" ");
 
+            if (dateTimeDeadline.length > 1 && Integer.valueOf(dateTimeDeadline[1]) < 0) {
+                return new Deadline("invalidTime", "", null);
+            }
+
             DateTimeFormatter formatter = DateTimeFormatter
                     .ofPattern("uuuu-M-d");
 
             DateTimeConverter converter = new DateTimeConverter(formatter);
             String date;
 
-            if (converter.isValidDate(dateTimeDeadline[0])) {
-                date = converter.convert(dateTimeDeadline);
-                return new Deadline(description, date,
-                        LocalDate.parse(dateTimeDeadline[0], formatter));
-            } else {
+            if (!converter.isValidDate(dateTimeDeadline[0])) {
                 date = info.substring(indexOfSplit
                         + SIZE_OF_PREPOSITION);
 
                 return new Deadline(description, date, null);
+            } else {
+                date = converter.convert(dateTimeDeadline);
+                return new Deadline(description, date,
+                        LocalDate.parse(dateTimeDeadline[0], formatter));
             }
         } catch (StringIndexOutOfBoundsException e) {
             return new Task("", "[]");

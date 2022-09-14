@@ -2,6 +2,7 @@ package duke.helper;
 
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidDateException;
+import duke.exception.InvalidTimeException;
 import duke.exception.NoDescriptionException;
 import duke.task.ErrorTask;
 import duke.task.Task;
@@ -115,6 +116,8 @@ public class Command {
                 throw new InvalidDateException();
             } else if (task.getDescription().length() < 1) {
                 throw new NoDescriptionException();
+            } else if (task.getDescription() == "invalidTime") {
+                throw new InvalidTimeException();
             } else {
                 list.add(task);
                 message = Ui.add(task);
