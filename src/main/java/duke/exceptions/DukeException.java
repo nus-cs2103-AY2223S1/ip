@@ -1,7 +1,7 @@
-package duke.others;
+package duke.exceptions;
 
 /**
- * Represents a type of exception that is associated with duke.
+ * Represents a type of exception that occurs after duke is launched.
  */
 public class DukeException extends Exception {
 
