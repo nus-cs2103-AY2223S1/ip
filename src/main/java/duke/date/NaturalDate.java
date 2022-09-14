@@ -64,6 +64,13 @@ public class NaturalDate {
         return null;
     }
 
+    /**
+     * Parses a natural date expression into a LocalDateTime object.
+     *
+     * @param naturalDateRegExp The natural date regex associated to the natural date.
+     * @return The LocalDateTime object from parsing the natural date expression.
+     * @throws DukeException If the provided natural date regex is invalid or not supported.
+     */
     public static LocalDateTime getNaturalDate(String naturalDateRegExp) throws DukeException {
         try {
             Supplier<LocalDateTime> getDateTime = SUPPORTED_NATURAL_DATES.get(naturalDateRegExp);

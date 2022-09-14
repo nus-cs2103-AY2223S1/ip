@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 /**
  * A to do task is a task that does not have any date/time attached to it.
  */
@@ -27,6 +29,19 @@ public class ToDo extends Task {
     public ToDo edit(String userEditInput) {
         description = userEditInput;
         return this;
+    }
+
+    /**
+     * Checks whether the to do task is active during the specified date.
+     * Will return true if not done since to do tasks have no associated date attached,
+     * and thus, will be assumed to be active if it is not yet completed.
+     *
+     * @param date The date to check whether the task is active.
+     * @return Whether the to do task is active, true if it is not completed, else false.
+     */
+    @Override
+    public boolean isActive(LocalDate date) {
+        return !isDone;
     }
 
     /**
