@@ -12,7 +12,7 @@ public class Ui {
 
     private static final String GREETING_MESSAGE = "Hello! I'm TedBot ヾ(≧▽≦*)o\n"
             + "What do you want to do today?";
-    private static final String GOODBYE_MESSAGE = "Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ";
+    private static final String GOODBYE_MESSAGE = "Bye! Hope to see you soon (≧∇≦)ﾉ";
     private static final String STORAGE_LOADING_MESSAGE = "Loading save file.....";
     private static final String REPLY_HEADER = ">>";
     private static final String EXCEPTION_HEADER = "!>>";

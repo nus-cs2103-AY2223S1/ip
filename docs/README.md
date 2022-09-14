@@ -40,11 +40,9 @@ accessible if need-be.
 ## Quick-start Guide
 
 1. Ensure you have Java `11` or above installed in your machine.
-2. Download the latest Jar executable from [here](https://github.com/Berted/ip/releases).
-3. Copy the executable to your preferred folder for TedBot to store its data.
-4. Run the provided bash / batch script to start the application. Otherwise,
-   characters may not be displayed correctly.
-5. Refer to [Command Summary](#command-summary) for a list of commands you can try using, have fun!
+1. Download the latest Jar executable from [here](https://github.com/Berted/ip/releases).
+1. Copy the executable to your preferred folder. Note that TedBot will store its data on that folder.
+1. Refer to [Command Summary](#command-summary) for a list of commands you can try using, have fun!
 
 ## Usage
 
@@ -176,4 +174,9 @@ Terminates the Chatbot session. Note that the chatbot window is **not** automati
  | `delete TASK_NUMBER`                        | Delete task                    |
  | `find KEYWORD`                              | Find task by provided keyword  |
  | `archive [PATH] [/force]`                   | Archive task list              |
+
+## Troubleshooting
+
+- If you encounter issues regarding characters not being displayed correctly, you may the following command in your 
+  preferred terminal: `java -Dfile.encoding=UTF-8 -jar duke.jar`.
 
