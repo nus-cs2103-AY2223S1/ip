@@ -62,7 +62,6 @@ public class TaskList {
         if (index >= tasks.size() || index < 0) {
             throw new OutOfBoundException();
         }
-        assert index <= tasks.size() && index > 0;
         return tasks.get(index);
     }
 
