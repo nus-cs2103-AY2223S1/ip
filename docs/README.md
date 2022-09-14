@@ -2,6 +2,8 @@
 
 DukeTasks is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
+![alt text](https://jsincorporated.github.io/ip/Ui.png)
+
 # Quick Start
 
 1) Ensure you have Java 11 or above installed in your Computer
