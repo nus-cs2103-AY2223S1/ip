@@ -12,9 +12,9 @@ import scottie.ui.Ui;
  * find a task which matches the searched text.
  */
 public class FindInstruction extends Instruction {
-    private static final String MISSING_SEARCH_TERM_MESSAGE = "Sorry, you need to specify some text to search for.";
-    private static final String NO_MATCHES_MESSAGE = "Oops, I couldn't find any tasks matching that search.";
-    private static final String TASKS_FOUND_MESSAGE = "Ok, I've found these tasks in your list:";
+    private static final String MISSING_SEARCH_TERM_MESSAGE = "Um... what exactly did you want to find?";
+    private static final String NO_MATCHES_MESSAGE = "Hmm... looks like there aren't any matching tasks.";
+    private static final String TASKS_FOUND_MESSAGE = "Ok, I've found %s in your list:";
 
     /**
      * Constructs a FindInstruction with the given arguments.
@@ -48,7 +48,7 @@ public class FindInstruction extends Instruction {
         if (matchingTasks.size() == 0) {
             ui.showMessages(NO_MATCHES_MESSAGE);
         } else {
-            ui.showMessages(TASKS_FOUND_MESSAGE);
+            ui.showFormattedMessage(TASKS_FOUND_MESSAGE, matchingTasks.size() == 1 ? "this task" : "these tasks");
             ui.showOrderedList(matchingTasks);
         }
     }

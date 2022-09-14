@@ -21,8 +21,8 @@ public class MainWindow extends AnchorPane implements Ui {
     private static final String SCOTTIE_IMAGE_PATH = "/images/scottie.png";
     private static final String SCOTTIE_ERROR_IMAGE_PATH = "/images/scottie_error.png";
 
-    private static final String WELCOME_MESSAGE = "Hello there! I'm Scottie!\n"
-            + "How can I help you?";
+    private static final String WELCOME_MESSAGE = "Oh, hey buddy! I'm Scottie!\n"
+            + "What's up?";
     private static final int END_PROGRAM_DELAY = 2000;
 
     @FXML

@@ -10,10 +10,10 @@ import scottie.ui.Ui;
  * mark a task as not done.
  */
 class UnmarkInstruction extends Instruction {
-    private static final String MISSING_TASK_NUMBER_MESSAGE = "Sorry, you need to tell me which task to unmark.";
-    private static final String INVALID_TASK_NUMBER_MESSAGE = "Sorry, %s is not a valid task number.";
-    private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Sorry, there is no task number %d.";
-    private static final String TASK_UNMARKED_MESSAGE = "Sure, I've marked task %d as not done:";
+    private static final String MISSING_TASK_NUMBER_MESSAGE = "Um... which task did you wanna unmark?";
+    private static final String INVALID_TASK_NUMBER_MESSAGE = "Hahaha very funny buddy. %s is not a legit task number.";
+    private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Um... there's no task number %d... is there?";
+    private static final String TASK_UNMARKED_MESSAGE = "Aww man, ok guess I'll mark task %d as not done:";
 
     /**
      * Constructs a UnmarkInstruction with the given arguments.
@@ -47,7 +47,11 @@ class UnmarkInstruction extends Instruction {
             ui.showFormattedError(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
             return;
         }
-        if (taskNum <= 0 || taskNum > taskList.size()) {
+        if (taskNum < 0) {
+            ui.showFormattedError(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
+            return;
+        }
+        if (taskNum == 0 || taskNum > taskList.size()) {
             ui.showFormattedError(TASK_NUMBER_OUT_OF_RANGE_MESSAGE, taskNum);
             return;
         }

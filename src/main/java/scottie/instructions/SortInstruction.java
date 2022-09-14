@@ -14,7 +14,7 @@ public class SortInstruction extends Instruction {
             "Ok, I've sorted your tasks in%s alphabetical order.";
     private static final String SORT_BY_DATE_MESSAGE =
             "Ok, I've sorted your tasks in%s chronological order.";
-    private static final String INVALID_SORT_KEY_MESSAGE = "Sorry, I don't know how to sort by ";
+    private static final String INVALID_SORT_KEY_MESSAGE = "Huh? How do you sort by %s?";
 
     /**
      * Constructs a SortInstruction with the given arguments.
@@ -57,7 +57,7 @@ public class SortInstruction extends Instruction {
             ui.showFormattedMessage(SORT_BY_DATE_MESSAGE, isReversed ? " reverse" : "");
             break;
         default:
-            ui.showError(INVALID_SORT_KEY_MESSAGE + sortKey);
+            ui.showFormattedError(INVALID_SORT_KEY_MESSAGE, sortKey);
             break;
         }
     }

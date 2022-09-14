@@ -10,8 +10,9 @@ import scottie.ui.Ui;
  * display the list of tasks.
  */
 class ListInstruction extends Instruction {
-    private static final String NO_TASKS_MESSAGE = "You have no tasks at the moment!";
-    private static final String LIST_TASKS_MESSAGE = "Ok, here are the tasks you have at the moment!";
+    private static final String NO_TASKS_MESSAGE = "Wow! Looks like you have no tasks at the moment!\n"
+            + "I wish I had no tasks to do too...";
+    private static final String LIST_TASKS_MESSAGE = "Ok, here's your list of tasks at the moment!";
 
     /**
      * Constructs a ListInstruction with the given arguments.

@@ -11,8 +11,8 @@ import scottie.ui.Ui;
  * add a todo to the task list.
  */
 class TodoInstruction extends Instruction {
-    private static final String MISSING_DESCRIPTION_MESSAGE = "Sorry, I will need a description for the to-do.";
-    private static final String TODO_ADDED_MESSAGE = "Got it, I've added this to-do:";
+    private static final String MISSING_DESCRIPTION_MESSAGE = "Um... I'll need a description for the to-do, buddy";
+    private static final String TODO_ADDED_MESSAGE = "Ok got it, I've added this to-do:";
 
     /**
      * Constructs a TodoInstruction with the given arguments.

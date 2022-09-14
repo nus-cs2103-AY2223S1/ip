@@ -13,9 +13,9 @@ import scottie.ui.Ui;
  * add an event to the task list.
  */
 class EventInstruction extends Instruction {
-    private static final String MISSING_DESCRIPTION_MESSAGE = "Sorry, I will need a description for the event.";
-    private static final String MISSING_DATE_MESSAGE = "Sorry, I will need a date for the event.";
-    private static final String EVENT_ADDED_MESSAGE = "Got it, I've added this event:";
+    private static final String MISSING_DESCRIPTION_MESSAGE = "Um... I'll need a description for the event, buddy.";
+    private static final String MISSING_DATE_MESSAGE = "Um... I'll need a date for the event, buddy.";
+    private static final String EVENT_ADDED_MESSAGE = "Ok got it, I've added this event:";
 
     /**
      * Constructs an EventInstruction with the given arguments.

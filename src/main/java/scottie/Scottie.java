@@ -12,7 +12,7 @@ import scottie.ui.Ui;
  * retrieving different types of tasks.
  */
 public class Scottie {
-    private static final String INVALID_COMMAND_MESSAGE = "Sorry, I don't understand what %s means. :/";
+    private static final String INVALID_COMMAND_MESSAGE = "Um... sorry I don't know what \"%s\" means...";
 
     private final TaskList taskList = new TaskList();
 

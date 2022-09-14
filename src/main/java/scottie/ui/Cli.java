@@ -15,8 +15,8 @@ public class Cli implements Ui {
             + " ___) | (_| (_) | |_| |_| |  __/\n"
             + "|____/ \\___\\___/ \\__|\\__|_|\\___|\n";
 
-    private static final String WELCOME_MESSAGE = "Hello there! I'm Scottie!\n"
-            + "How can I help you?";
+    private static final String WELCOME_MESSAGE = "Oh, hey buddy! I'm Scottie!\n"
+            + "What's up?";
 
     private static final String ERROR_COLOUR = "\033[0;31m"; // ANSI for red colour
     private static final String NO_COLOUR = "\033[0m"; // ANSI for no colour

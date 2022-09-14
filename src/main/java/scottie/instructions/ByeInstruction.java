@@ -10,7 +10,7 @@ import scottie.ui.Ui;
  * exit the program.
  */
 class ByeInstruction extends Instruction {
-    private static final String EXIT_MESSAGE = "Ok, see you next time!";
+    private static final String EXIT_MESSAGE = "Ok, see ya buddy!";
 
     /**
      * Constructs a ByeInstruction with the given arguments.

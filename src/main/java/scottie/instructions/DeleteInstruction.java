@@ -11,12 +11,12 @@ import scottie.ui.Ui;
  * delete a task from the task list.
  */
 class DeleteInstruction extends Instruction {
-    private static final String MISSING_TASK_NUMBER_MESSAGE = "Sorry, you need to tell me which task to delete.";
-    private static final String INVALID_TASK_NUMBER_MESSAGE = "Sorry, %s is not a valid task number.";
-    private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Sorry, there is no task number %d.";
-    private static final String TASK_DELETED_MESSAGE = "Ok, I've deleted this task:";
-    private static final String NO_MORE_TASKS_MESSAGE = "You have no more tasks left in your list!";
-    private static final String TASKS_LEFT_MESSAGE = "You have %d task(s) left in your list.";
+    private static final String MISSING_TASK_NUMBER_MESSAGE = "Um... which task did you wanna delete?";
+    private static final String INVALID_TASK_NUMBER_MESSAGE = "Hahaha very funny buddy. %s is not a legit task number.";
+    private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Um... there's no task number %d... is there?";
+    private static final String TASK_DELETED_MESSAGE = "Ok got it, I've deleted this task:";
+    private static final String NO_MORE_TASKS_MESSAGE = "Wow! you have no more tasks left!";
+    private static final String TASKS_LEFT_MESSAGE = "Looks like you have %d task%s left in your list.";
 
     /**
      * Constructs a DeleteInstruction with the given arguments.
@@ -50,7 +50,11 @@ class DeleteInstruction extends Instruction {
             ui.showFormattedError(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
             return;
         }
-        if (taskNum <= 0 || taskNum > taskList.size()) {
+        if (taskNum < 0) {
+            ui.showFormattedError(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
+            return;
+        }
+        if (taskNum == 0 || taskNum > taskList.size()) {
             ui.showFormattedError(TASK_NUMBER_OUT_OF_RANGE_MESSAGE, taskNum);
             return;
         }
@@ -62,7 +66,7 @@ class DeleteInstruction extends Instruction {
         if (taskList.isEmpty()) {
             ui.showMessages(NO_MORE_TASKS_MESSAGE);
         } else {
-            ui.showFormattedMessage(TASKS_LEFT_MESSAGE, taskList.size());
+            ui.showFormattedMessage(TASKS_LEFT_MESSAGE, taskList.size(), taskList.size() == 1 ? "" : "s");
         }
     }
 }

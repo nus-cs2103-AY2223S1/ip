@@ -10,10 +10,10 @@ import scottie.ui.Ui;
  * mark a task as done.
  */
 class MarkInstruction extends Instruction {
-    private static final String MISSING_TASK_NUMBER_MESSAGE = "Sorry, you need to tell me which task to mark.";
-    private static final String INVALID_TASK_NUMBER_MESSAGE = "Sorry, %s is not a valid task number.";
-    private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Sorry, there is no task number %d.";
-    private static final String TASK_MARKED_MESSAGE = "Well done! I've marked task %d as done:";
+    private static final String MISSING_TASK_NUMBER_MESSAGE = "Um... which task did you wanna mark?";
+    private static final String INVALID_TASK_NUMBER_MESSAGE = "Hahaha very funny buddy. %s is not a legit task number.";
+    private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Um... there's no task number %d... is there?";
+    private static final String TASK_MARKED_MESSAGE = "Nice! I'll mark task %d as done:";
 
     /**
      * Constructs a MarkInstruction with the given arguments.
@@ -47,7 +47,11 @@ class MarkInstruction extends Instruction {
             ui.showFormattedError(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
             return;
         }
-        if (taskNum <= 0 || taskNum > taskList.size()) {
+        if (taskNum < 0) {
+            ui.showFormattedError(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
+            return;
+        }
+        if (taskNum == 0 || taskNum > taskList.size()) {
             ui.showFormattedError(TASK_NUMBER_OUT_OF_RANGE_MESSAGE, taskNum);
             return;
         }

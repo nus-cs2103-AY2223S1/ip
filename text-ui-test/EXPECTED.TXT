@@ -4,88 +4,89 @@
  ___) | (_| (_) | |_| |_| |  __/
 |____/ \___\___/ \__|\__|_|\___|
 
-Hello there! I'm Scottie!
-How can I help you?
-You have no tasks at the moment!
-Got it, I've added this to-do:
+Oh, hey buddy! I'm Scottie!
+What's up?
+Wow! Looks like you have no tasks at the moment!
+I wish I had no tasks to do too...
+Ok got it, I've added this to-do:
 (T) [ ] Test todo
-Got it, I've added this deadline:
+Ok got it, I've added this deadline:
 (D) [ ] Test deadline (by: Feb 1 2034)
-Got it, I've added this event:
+Ok got it, I've added this event:
 (E) [ ] Test event (at: Dec 30 2021 12:00AM)
-Ok, here are the tasks you have at the moment!
+Ok, here's your list of tasks at the moment!
 1. (T) [ ] Test todo
 2. (D) [ ] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
-Well done! I've marked task 2 as done:
+Nice! I'll mark task 2 as done:
 (D) [X] Test deadline (by: Feb 1 2034)
-Well done! I've marked task 3 as done:
+Nice! I'll mark task 3 as done:
 (E) [X] Test event (at: Dec 30 2021 12:00AM)
-Ok, here are the tasks you have at the moment!
+Ok, here's your list of tasks at the moment!
 1. (T) [ ] Test todo
 2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (E) [X] Test event (at: Dec 30 2021 12:00AM)
-Sure, I've marked task 3 as not done:
+Aww man, ok guess I'll mark task 3 as not done:
 (E) [ ] Test event (at: Dec 30 2021 12:00AM)
-Ok, here are the tasks you have at the moment!
+Ok, here's your list of tasks at the moment!
 1. (T) [ ] Test todo
 2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
-Ok, I've found these tasks in your list:
+Ok, I've found this task in your list:
 1. (D) [X] Test deadline (by: Feb 1 2034)
-Ok, I've found these tasks in your list:
+Ok, I've found this task in your list:
 1. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Ok, I've found these tasks in your list:
 1. (T) [ ] Test todo
 2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
-Oops, I couldn't find any tasks matching that search.
+Hmm... looks like there aren't any matching tasks.
 Ok, I've sorted your tasks in alphabetical order.
-Ok, here are the tasks you have at the moment!
+Ok, here's your list of tasks at the moment!
 1. (D) [X] Test deadline (by: Feb 1 2034)
 2. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 3. (T) [ ] Test todo
 Ok, I've sorted your tasks in chronological order.
-Ok, here are the tasks you have at the moment!
+Ok, here's your list of tasks at the moment!
 1. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (T) [ ] Test todo
 Ok, I've sorted your tasks in reverse alphabetical order.
-Ok, here are the tasks you have at the moment!
+Ok, here's your list of tasks at the moment!
 1. (T) [ ] Test todo
 2. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 3. (D) [X] Test deadline (by: Feb 1 2034)
 Ok, I've sorted your tasks in reverse chronological order.
-Ok, here are the tasks you have at the moment!
+Ok, here's your list of tasks at the moment!
 1. (D) [X] Test deadline (by: Feb 1 2034)
 2. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 3. (T) [ ] Test todo
-Ok, I've deleted this task:
+Ok got it, I've deleted this task:
 (E) [ ] Test event (at: Dec 30 2021 12:00AM)
-You have 2 task(s) left in your list.
-Ok, here are the tasks you have at the moment!
+Looks like you have 2 tasks left in your list.
+Ok, here's your list of tasks at the moment!
 1. (D) [X] Test deadline (by: Feb 1 2034)
 2. (T) [ ] Test todo
-Ok, I've deleted this task:
+Ok got it, I've deleted this task:
 (T) [ ] Test todo
-You have 1 task(s) left in your list.
-Ok, I've deleted this task:
+Looks like you have 1 task left in your list.
+Ok got it, I've deleted this task:
 (D) [X] Test deadline (by: Feb 1 2034)
-You have no more tasks left in your list!
-[0;31mSorry, you need to tell me which task to mark.[0m
-[0;31mSorry, you need to tell me which task to unmark.[0m
-[0;31mSorry, I will need a description for the to-do.[0m
-[0;31mSorry, I will need a description for the deadline.[0m
-[0;31mSorry, I will need a description for the event.[0m
-[0;31mSorry, I don't understand what randomness means. :/[0m
-[0;31mSorry, I will need a date for the deadline.[0m
-[0;31mSorry, I will need a date for the event.[0m
-[0;31mSorry, you need to tell me which task to delete.[0m
-[0;31mSorry, you need to specify some text to search for.[0m
-[0;31mSorry, 0.1 is not a valid task number.[0m
-[0;31mSorry, there is no task number 1.[0m
-[0;31mSorry, .1 is not a valid task number.[0m
-[0;31mSorry, there is no task number 0.[0m
-[0;31mSorry, one is not a valid task number.[0m
-[0;31mSorry, there is no task number -1.[0m
-Ok, see you next time!
+Wow! you have no more tasks left!
+[0;31mUm... which task did you wanna mark?[0m
+[0;31mUm... which task did you wanna unmark?[0m
+[0;31mUm... I'll need a description for the to-do, buddy[0m
+[0;31mUm... I'll need a description for the deadline, buddy.[0m
+[0;31mUm... I'll need a description for the event, buddy.[0m
+[0;31mUm... sorry I don't know what "randomness" means...[0m
+[0;31mUm... I'll need a date for the deadline, buddy[0m
+[0;31mUm... I'll need a date for the event, buddy.[0m
+[0;31mUm... which task did you wanna delete?[0m
+[0;31mUm... what exactly did you want to find?[0m
+[0;31mHahaha very funny buddy. 0.1 is not a legit task number.[0m
+[0;31mUm... there's no task number 1... is there?[0m
+[0;31mHahaha very funny buddy. .1 is not a legit task number.[0m
+[0;31mUm... there's no task number 0... is there?[0m
+[0;31mHahaha very funny buddy. one is not a legit task number.[0m
+[0;31mHahaha very funny buddy. -1 is not a legit task number.[0m
+Ok, see ya buddy!
