@@ -48,15 +48,14 @@ public class HelpCommand extends Command {
     @Override
     public String getResponse(TaskList taskList, UI ui, Storage storage) {
         String responseMessage = Emoji.CHERRY_BLOSSOM + " You may try\n"
-                + "\t" + Emoji.SNOW_FLAKE + " todo <description>\n"
-                + "\t" + Emoji.SNOW_FLAKE + " deadline <description> /by <date>\n"
-                + "\t" + Emoji.SNOW_FLAKE + " event <description> /at time\n"
-                + "\t" + Emoji.SNOW_FLAKE + " list\n"
-                + "\t" + Emoji.SNOW_FLAKE + " mark <index>\n"
-                + "\t" + Emoji.SNOW_FLAKE + " unmark <index>\n"
-                + "\t" + Emoji.SNOW_FLAKE + " find <keyword>\n"
-                + "\t" + Emoji.SNOW_FLAKE + " help\n"
-                + "\t" + Emoji.SNOW_FLAKE + " bye";
+                + " " + Emoji.SNOW_FLAKE + " todo <task>\t\t"
+                + " " + Emoji.SNOW_FLAKE + " event <task> /at <time>\n"
+                + " " + Emoji.SNOW_FLAKE + " deadline <task> /by <date>\n"
+                + " " + Emoji.SNOW_FLAKE + " mark/unmark <index>\t"
+                + " " + Emoji.SNOW_FLAKE + " find <keyword>\n"
+                + " " + Emoji.SNOW_FLAKE + " help\t\t"
+                + " " + Emoji.SNOW_FLAKE + " list\t\t"
+                + " " + Emoji.SNOW_FLAKE + " bye";
         return responseMessage;
     }
 }
