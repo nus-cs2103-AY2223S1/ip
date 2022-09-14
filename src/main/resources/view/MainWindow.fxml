@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <!--Resizing feature inspired by https://github.com/e1010101/ip/tree/74b319d6c9b44b9b9b34788646d5c3468263f127 with minor modifications-->
-<!--Resizing feature inspired by https://github.com/e1010101/ip/tree/74b319d6c9b44b9b9b34788646d5c3468263f127 with minor modifications-->
+<!--Resizing feature inspired by https://github.com/nus-cs2103-AY2223S1/forum/issues/187#issuecomment-1246118965 with minor modifications-->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kirby.ui.MainWindow">
     <children>
         <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="600.0" stylesheets="@../css/ScrollPane.css" vvalue="1.0" AnchorPane.bottomAnchor="42.39999999999998" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
