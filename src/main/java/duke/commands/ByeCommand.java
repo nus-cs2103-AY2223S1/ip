@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.gui.GuiText;
+import duke.tools.SessionManager;
 
 /**
  * This class performs the preparatory instructions before Duke is stopped.
@@ -14,7 +15,7 @@ public class ByeCommand implements Command {
      */
     @Override
     public String execute() {
-        javafx.application.Platform.exit();
+        SessionManager.stopSession();
         return GuiText.formatByeString();
     }
 

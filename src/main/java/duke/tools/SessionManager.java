@@ -43,6 +43,25 @@ public class SessionManager {
     }
 
     /**
+     * Ends the duke session.
+     */
+    public static void stopSession() {
+        final int END_DURATION = 3000;
+        // Code reuse from stackoverflow
+        // https://stackoverflow.com/questions/2258066/java-run-a-function-after-a-specific-number-of-seconds
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        javafx.application.Platform.exit();
+                        System.exit(0);
+                    }
+                },
+                END_DURATION
+        );
+    }
+
+    /**
      * Retrieves the TaskList object for the session
      *
      * @return The TaskList object for the session
