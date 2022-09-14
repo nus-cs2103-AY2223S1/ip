@@ -29,9 +29,8 @@ for a short summary on the differences between CLI and GUI.
    > installation guide.
 2. Download the latest `isara.jar` from here.
 3. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
-<div style ="text-align: center">
-    <img src = "Ui.png" width = "300px">
-</div>
+
+<img src = "Ui.png" width = "300px">
 
 > **Note:** The list is filled with placeholder data.
 
@@ -89,7 +88,7 @@ Got it. I've added this task:
 [D][ ] iP (by: 2022-09-16)
 Now you have 3 tasks in the list.
 ```
-### Listing tasks : `list` <hr>
+### Listing tasks : `list`
 Lists the tasks that have been added to the bot.
 
 **Format:** `list`
@@ -101,7 +100,7 @@ Here are the tasks in your list:
 2. [D][ ] iP (by: 2022-09-16)
 3. [E][ ] Concert (at: Buona Vista)
 ```
-### Deleting your tasks : `delete` <hr>
+### Deleting your tasks : `delete`
 
 Deletes a task that has been added to the bot.
 
@@ -119,7 +118,7 @@ Noted. I've removed this task:
 [D][ ] iP (by: 2022-09-16)
 Now you have 2 tasks in the list.
 ```
-### Finding your tasks : `find` <hr>
+### Finding your tasks : `find`
 
 Finds a task with the given keyword.
 
@@ -138,7 +137,7 @@ Finds a task with the given keyword.
 Here are the matching tasks in your list:
 1.[D][ ] iP (by: 2022-09-16) 
 ```
-### Marking your tasks as done: `mark` <hr>
+### Marking your tasks as done: `mark`
 
 Marks a task as done. Tasks that have been marked will be denoted with an "X".
 
@@ -153,7 +152,7 @@ Nice! I've marked this task as done:
 [D][X] iP (by: 2022-09-16) 
 ```
 
-### Unmark your tasks: `unmark` <hr>
+### Unmark your tasks: `unmark`
 
 Unmarks a task as done. Tasks that have been unmarked will be denoted with 
 a white space [ ].
@@ -186,13 +185,11 @@ You have just rescheduled the following task:
 ## FAQ / Troubleshooting
 
 ### I cannot seem to start the bot.
-<hr>
 
 > Please make sure you have Java `11` installed; refer to [this](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
 > installation guide.
 
 ### Isara keeps telling me these messages and I don't know what to do.
-<hr>
 
 1. **☹ OOPS!!! Please specify what you want to do!**
 > It is likely that you did not include the **description** of the task when adding a **ToDo**. Please
