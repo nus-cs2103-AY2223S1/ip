@@ -142,6 +142,8 @@ public class Duke {
             throw new DukeFormatCommandException("mark");
         }
 
+        assert tasks != null;
+
         try {
             int taskNum = Integer.parseInt(fullCommand[1]) - 1;
             Task t = tasks.get(taskNum);
@@ -167,6 +169,8 @@ public class Duke {
             throw new DukeFormatCommandException("unmark");
         }
 
+        assert tasks != null;
+
         try {
             int taskNum = Integer.parseInt(fullCommand[1]) - 1;
             Task t = tasks.get(taskNum);
@@ -191,6 +195,8 @@ public class Duke {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("delete");
         }
+
+        assert tasks != null;
 
         try {
             int taskNum = Integer.parseInt(fullCommand[1]) - 1;
@@ -218,6 +224,8 @@ public class Duke {
             throw new DukeFormatCommandException("find");
         }
 
+        assert tasks != null;
+
         ArrayList<Task> results = tasks.find(fullCommand[1].split(" "));
         return ui.getAllTasks(results);
     }
@@ -232,6 +240,8 @@ public class Duke {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("todo");
         }
+
+        assert tasks != null;
 
         Todo td = new Todo(fullCommand[1]);
         tasks.add(td);
@@ -248,6 +258,8 @@ public class Duke {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("deadline");
         }
+
+        assert tasks != null;
 
         try {
             String[] newDeadline = fullCommand[1].split(" /by ", 2);
@@ -272,6 +284,8 @@ public class Duke {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("event");
         }
+
+        assert tasks != null;
 
         try {
             String[] newEvent = fullCommand[1].split(" /at ", 2);
