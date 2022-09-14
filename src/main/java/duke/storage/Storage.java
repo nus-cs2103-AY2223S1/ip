@@ -1,12 +1,12 @@
 package duke.storage;
 
-import duke.task.Task;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Deals with loading tasks from the hard disk and saving tasks in the hard disk.
@@ -22,7 +22,7 @@ public class Storage {
      * Reads <code>Task</code> data from hard disk.
      * If there's no existing directory or file, a new directory and/or file is created.
      *
-     * @return  an ArrayList containing the Tasks.
+     * @return an ArrayList containing the Tasks.
      */
     public static ArrayList<Task> readData() {
         try {
