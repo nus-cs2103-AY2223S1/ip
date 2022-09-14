@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "anya.Anya"
+    mainClassName = "anya.Launcher"
 }
 
 shadowJar {
