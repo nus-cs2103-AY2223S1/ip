@@ -35,11 +35,12 @@ public class EditCommand extends Command {
      */
     @Override
     public String execute(Storage storage, UI ui, TaskList taskList) throws DukeException {
-        if (!taskList.isInRange(num)) {
+        if (!taskList.isInRange(num - 1)) {
             throw new OutOfRangeException();
         }
-        taskList.getTask(num).setDescription(taskDetails);
+        taskList.getTask(num - 1).setDescription(taskDetails);
+        storage.save(taskList.list());
         return "I have edited the description of the task. It is now:\n"
-            + taskList.getTask(num).toString();
+            + taskList.getTask(num - 1).toString();
     }
 }

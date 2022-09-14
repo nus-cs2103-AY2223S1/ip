@@ -70,6 +70,7 @@ public class Parser {
         case "mark":
         case "unmark":
         case "delete":
+        case "edit":
             return numberCommand(arg);
         case "deadline":
         case "event":
@@ -84,16 +85,23 @@ public class Parser {
 
     private Command numberCommand(String[] arg) throws DukeException {
         try {
-            int num = Integer.parseInt(arg[1]);
-            if (arg[0].equals("mark")) {
+            String command = arg[0];
+            arg = arg[1].split(" ", 2);
+            int num = Integer.parseInt(arg[0]);
+            switch(command) {
+            case "mark":
                 return new MarkCommand(num);
-            } else if (arg[0].equals("unmark")) {
+            case "unmark":
                 return new UnmarkCommand(num);
-            } else {
+            case "edit":
+                return new EditCommand(num,arg[1]);
+            case "delete":
                 return new DeleteCommand(num);
+            default:
+                throw new InputException();
             }
         } catch (NumberFormatException e) {
-            throw new MarkException();
+            throw new OutOfRangeException();
         }
     }
 

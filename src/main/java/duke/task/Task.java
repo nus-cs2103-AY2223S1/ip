@@ -5,7 +5,7 @@ package duke.task;
  */
 public class Task {
     private String task;
-    private boolean done;
+    private boolean isDone;
 
     /**
      * Creates a task that has an associated description.
@@ -17,10 +17,10 @@ public class Task {
 
     /**
      * Specifies whether the task is complete.
-     * @param done Boolean value: True if done and false otherwise
+     * @param isDone Boolean value: True if done and false otherwise
      */
-    public void setDone(boolean done) {
-        this.done = done;
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     /**
@@ -42,6 +42,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return done ? "[X] " + task : "[ ] " + task;
+        return isDone ? "[X] " + task : "[ ] " + task;
     }
 }
