@@ -66,8 +66,11 @@ public class MainWindow extends AnchorPane implements Ui {
             return;
         }
         String input = this.userInput.getText();
-        this.dialogContainer.getChildren().add(DialogBox.getUserDialog(input, this.userImage));
         this.userInput.clear();
+        if (input.isBlank()) {
+            return;
+        }
+        this.dialogContainer.getChildren().add(DialogBox.getUserDialog(input, this.userImage));
         this.scottie.sendInput(input, this);
     }
 

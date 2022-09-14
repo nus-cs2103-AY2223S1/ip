@@ -44,7 +44,11 @@ public class Cli implements Ui {
      * @return A line of input from the user.
      */
     public String readLine() {
-        return in.nextLine();
+        String line = in.nextLine();
+        while (line.isBlank()) {
+            line = in.nextLine();
+        }
+        return line;
     }
 
     /**
