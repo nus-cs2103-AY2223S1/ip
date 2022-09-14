@@ -23,6 +23,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             scene.getStylesheets().addAll(Main.class.getResource("/style/style.css").toExternalForm());
             stage.setScene(scene);
+            stage.setTitle("aRC Application");
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {
