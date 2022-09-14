@@ -16,6 +16,7 @@ public class EventCommand extends Command {
 
     public String addEvent(ArrayList<String> parsedInput) throws DukeException {
         Event newEvent = new Event(parsedInput.get(1), parsedInput.get(2), false);
+        assert newEvent.isEvent() : "Task should be an Event!";
         taskList.addTask(newEvent);
         storage.saveTask(taskList);
         return ui.printAddedTask(newEvent, taskList);

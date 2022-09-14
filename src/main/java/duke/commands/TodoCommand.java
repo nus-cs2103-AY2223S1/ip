@@ -16,6 +16,7 @@ public class TodoCommand extends Command{
 
     protected String addTodo(ArrayList<String> parsedInput) throws DukeException {
         Todo newTodo = new Todo(parsedInput.get(1), false);
+        assert newTodo.isTodo() : "Task should be a Todo!";
         taskList.addTask(newTodo);
         storage.saveTask(taskList);
         return ui.printAddedTask(newTodo, taskList);
