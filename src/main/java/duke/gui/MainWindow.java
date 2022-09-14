@@ -59,23 +59,29 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
 
         if (!duke.handleInput(input)) {
-            Task<Void> timeout = new Task<Void>() {
-                @Override
-                protected Void call() throws Exception {
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                    }
-                    return null;
-                }
-            };
-            timeout.setOnSucceeded(e -> {
-                Platform.exit();
-                System.exit(0);
-            });
-
-            new Thread(timeout).start();
-
+            exitProgramAfterTask(makeDelayTask(3000));
         }
+    }
+
+    private static Task<Void> makeDelayTask(int timeMs) {
+        return new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(timeMs);
+                } catch (InterruptedException e) {
+                }
+                return null;
+            }
+        };
+    }
+
+    private <T> void exitProgramAfterTask(Task<T> task) {
+        task.setOnSucceeded(e -> {
+            Platform.exit();
+            System.exit(0);
+        });
+
+        new Thread(task).start();
     }
 }
