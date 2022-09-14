@@ -3,6 +3,7 @@ package duke.GUI;
 import duke.functions.Ui;
 import duke.Duke;
 
+import duke.support.Parser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -24,6 +25,8 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Duke duke;
+
+    private Parser parser;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
@@ -48,11 +51,12 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
-        String response = duke.getResponse(input);
+        this.parser = new Parser(); // new parser and thus tasklist being created everytime
+        String userText = userInput.getText();
+        String dukeText = duke.getResponse(userText, this.parser);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getUserDialog(userText, userImage),
+                DialogBox.getDukeDialog(dukeText, dukeImage)
         );
         userInput.clear();
     }
