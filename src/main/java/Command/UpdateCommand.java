@@ -42,6 +42,6 @@ public class UpdateCommand extends Command {
 
     @Override
     public String toString() {
-        return "this is a find command : find " + userAction;
+        return "this is an update command : " + userAction;
     }
 }

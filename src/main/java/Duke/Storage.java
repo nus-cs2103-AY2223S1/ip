@@ -13,8 +13,8 @@ import java.util.ArrayList;
 * @author Linus Chui
 */
 public class Storage {
-    private final String filePath;
-    private final ArrayList<Task> tasks;
+    private String filePath;
+    private ArrayList<Task> tasks;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -36,12 +36,13 @@ public class Storage {
             String nextLine = br.readLine();
             while (nextLine != null) {
                 String[] nextTask = nextLine.split(",", 4);
-                this.addTaskFromStorage(nextTask);
+                addTaskFromStorage(nextTask);
                 nextLine = br.readLine();
             }
             br.close();
         } catch (FileNotFoundException e1) {
             try {
+                System.out.println("File not found");
                 // Solution below adapted from
                 // https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists
                 File file = new File(filePath);

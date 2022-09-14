@@ -1,4 +1,5 @@
 package Duke;
+import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,8 +7,11 @@ public class FindTest {
 
     @Test
     public void findTest1 () throws DukeException {
-        Storage storage1 = new Storage("taskTest4.txt");
-        TaskList tasks1 = new TaskList(storage1.load());
+        ArrayList<Task> tasks = new ArrayList<>();
+        tasks.add(new Todo("return book"));
+        tasks.add(new Deadline("read book ", "2022-08-08"));
+        tasks.add(new Event("read book ", "2022-10-10"));
+        TaskList tasks1 = new TaskList(tasks);
         String expected = " Here are the matching tasks in your list:\n" +
                 " 1: [T][ ] return book\n" +
                 " 2: [D][ ] read book (by: 08/08/2022)\n" +
@@ -17,34 +21,24 @@ public class FindTest {
 
     @Test
     public void findTest2 () throws DukeException {
-        Storage storage2 = new Storage("taskTest4.txt");
-        TaskList tasks2 = new TaskList(storage2.load());
+        ArrayList<Task> tasks = new ArrayList<>();
+        tasks.add(new Todo("buy bread"));
+        tasks.add(new Event("buy bread ", "2022-11-11"));
+        TaskList tasks2 = new TaskList(tasks);
         String expected = " Here are the matching tasks in your list:\n" +
-                " 1: [T][X] buy bread\n" +
-                " 2: [E][X] bread (at: 2022-11-11)";
+                " 1: [T][ ] buy bread\n" +
+                " 2: [E][ ] buy bread (at: 2022-11-11)";
         assertEquals(expected, tasks2.find("bread"));
     }
 
     @Test
     public void findTest3 () throws DukeException {
-        Storage storage3 = new Storage("taskTest4.txt");
-        TaskList tasks3 = new TaskList(storage3.load());
+        ArrayList<Task> tasks = new ArrayList<>();
+        tasks.add(new Todo("buy bread"));
+        tasks.add(new Event("read book ", "2022-11-11"));
+        TaskList tasks3 = new TaskList(tasks);
         String expected = " Here are the matching tasks in your list:\n" +
-                " 1: [T][ ] return book\n" +
-                " 2: [T][X] buy bread\n" +
-                " 3: [D][ ] read book (by: 08/08/2022)\n" +
-                " 4: [D][X] test (by: 09/09/2022)\n" +
-                " 5: [E][ ] read book (at: 2022-10-10)\n" +
-                " 6: [E][X] bread (at: 2022-11-11)";
-        assertEquals(expected, tasks3.find("e"));
-    }
-
-    @Test
-    public void findTest4 () throws DukeException {
-        Storage storage4 = new Storage("taskTest4.txt");
-        TaskList tasks4 = new TaskList(storage4.load());
-        String expected = " Here are the matching tasks in your list:\n" +
-                " 1: [T][X] buy bread";
-        assertEquals(expected, tasks4.find("buy"));
+                " 1: [T][ ] buy bread";
+        assertEquals(expected, tasks3.find("buy"));
     }
 }

@@ -78,4 +78,13 @@ public class ParserTest {
         Command expected8 = parser8.parse(command);
         assertEquals(expected8.toString(), "this is a deadline command : deadline return book /by 2022-08-08");
     }
+
+    // test 9 : DeadlineCommand
+    @Test
+    public void parserTest9() throws DukeException {
+        Parser parser9 = new Parser();
+        String[] command = new String[]{"update", "1 read book"};
+        Command expected9 = parser9.parse(command);
+        assertEquals(expected9.toString(), "this is an update command : 1 read book");
+    }
 }
