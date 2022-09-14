@@ -14,11 +14,11 @@ public class BadDeadline extends DukeException {
     public String toString() {
         if (deadline.isEmpty()) {
             return "Deadline not specified for event!\n"
-                    + "Format: deadling {description} /by {d/m/yyyy HH:mm}\n"
+                    + "Format: deadling {description} /by {d/m/yyyy HHmm}\n"
                     + "Correct example: `deadline Homework /by 2/11/2022 2359`";
         } else {
             return "Deadline specified: \"" + deadline + "\" is formatted incorrectly.\n"
-                    + "Format: deadling {description} /by {d/m/yyyy HH:mm}\n"
+                    + "Format: deadling {description} /by {d/m/yyyy HHmm}\n"
                     + "Correct example: `deadline Homework /by 2/11/2022 2359`";
         }
     }
