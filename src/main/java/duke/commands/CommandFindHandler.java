@@ -27,7 +27,8 @@ public class CommandFindHandler extends CommandHandler {
      * @throws DukeException error message.
      */
     public void checkValid() throws DukeException {
-        if (value != null && flag == null && additionalValue == null) {
+        boolean isValid = value != null && flag == null && additionalValue == null;
+        if (isValid) {
             return;
         }
         throw new InvalidSyntaxException("Correct usage: find book");

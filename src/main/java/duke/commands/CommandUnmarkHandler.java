@@ -19,7 +19,8 @@ public class CommandUnmarkHandler extends CommandHandler {
      * @throws DukeException error message.
      */
     public void checkValid() throws DukeException {
-        if (flag == null && additionalValue == null) {
+        boolean isValid = flag == null && additionalValue == null;
+        if (isValid) {
             return;
         }
         throw new InvalidSyntaxException("Correct usage: unmark 1");
