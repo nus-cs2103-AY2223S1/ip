@@ -89,14 +89,22 @@ public class Storage {
      */
     public void save(TaskList taskList) throws StorageException {
         int numOfTasks = taskList.getNumberOfTasks();
+        copyFile(Paths.get(FILE_PATH), Paths.get(PREV_FILE_PATH));
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-            Files.copy(Paths.get(FILE_PATH), Paths.get(PREV_FILE_PATH), REPLACE_EXISTING);
             for (int i = 0; i < numOfTasks; i++) {
                 Task task = taskList.getTask(i);
                 writer.write(formatTask(task));
             }
         } catch (IOException e) {
             throw new StorageException("I've encountered an error while saving your data file.");
+        }
+    }
+
+    private void copyFile(Path sourcePath, Path targetPath) throws StorageException {
+        try {
+            Files.copy(sourcePath, targetPath, REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new StorageException("I've encountered an error while backing up your previous data file.");
         }
     }
 
@@ -121,13 +129,9 @@ public class Storage {
 
         Path path = Paths.get(FILE_PATH);
         Path tempPath = Paths.get(TEMP_FILE_PATH);
-        try {
-            Files.copy(path, tempPath, REPLACE_EXISTING);
-            Files.copy(prevPath, path, REPLACE_EXISTING);
-            Files.copy(tempPath, prevPath, REPLACE_EXISTING);
-        } catch (IOException e) {
-            throw new StorageException("I've encountered an error while retrieving your previous data file.");
-        }
+        copyFile(path, tempPath);
+        copyFile(prevPath, path);
+        copyFile(tempPath, prevPath);
         taskList.changeTasks(load());
     }
 }

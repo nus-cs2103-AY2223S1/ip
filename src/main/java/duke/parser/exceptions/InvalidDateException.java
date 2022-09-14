@@ -11,6 +11,6 @@ public class InvalidDateException extends DukeException {
      * @param dateFormat The format the date should be in.
      */
     public InvalidDateException(String dateFormat) {
-        super(String.format("Please specify a date in this format: %s!", dateFormat));
+        super(String.format("Please specify a valid date in this format: %s!", dateFormat));
     }
 }
