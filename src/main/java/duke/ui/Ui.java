@@ -1,8 +1,8 @@
-package duke;
+package duke.ui;
 
 import duke.task.Task;
+import duke.task.TaskList;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
@@ -18,18 +18,13 @@ public class Ui {
     }
 
     public void showWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("Hello! I'm Duke");
+        System.out.println("Hello! I'm Duke.");
         System.out.println("What can I do for you?");
     }
 
     public void goodBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("Bye! I have saved your tasks");
+        System.out.println("Hope to see you again soon! :)");
     }
 
     public String readCommand() {
@@ -53,9 +48,17 @@ public class Ui {
     }
 
     public void listAllTasks(TaskList tasks) {
-        System.out.println("Here are the tasks in your list:");
+        System.out.println("Here are the tasks I found:");
         tasks.forEach((task) -> {
             int itemNumber = tasks.indexOf(task) + 1;
+            System.out.printf("%d: %s\n", itemNumber, task);
+        });
+    }
+
+    public void listFilteredTasks(TaskList originalTasks, TaskList filteredTasks) {
+        System.out.println("Here are the tasks I found:");
+        filteredTasks.forEach((task) -> {
+            int itemNumber = originalTasks.indexOf(task) + 1;
             System.out.printf("%d: %s\n", itemNumber, task);
         });
     }
@@ -66,7 +69,7 @@ public class Ui {
     }
 
     public void showMarkedAsNotDoneMessage(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
+        System.out.println("Alright! I've unmarked this task:");
         System.out.println(task);
     }
 
@@ -92,33 +95,6 @@ public class Ui {
 
     public void countTasks(TaskList tasks) {
         System.out.printf("Now you have %d tasks in the list.%n", tasks.size());
-    }
-
-    public void showTasksWithThisPropertyAndMessage(
-            TaskList tasks,
-            Predicate<? super Task> pred,
-            String messageIfPresent,
-            String messageIfAbsent) {
-
-        boolean[] hasElements = {false};
-        tasks
-                .stream()
-                .filter(pred)
-                .forEach((t) -> {
-                    int itemNumber = tasks.indexOf(t) + 1;
-                    if (!hasElements[0]) {
-                        System.out.println(messageIfPresent);
-                    }
-                    hasElements[0] = true;
-                    System.out.printf("%d: %s\n", itemNumber, t);
-                });
-        if (!hasElements[0]) {
-            System.out.println(messageIfAbsent);
-        }
-    }
-
-    public void showTasksWithThisProperty(TaskList tasks, Predicate<? super Task> pred) {
-        this.showTasksWithThisPropertyAndMessage(tasks, pred, "Here are the tasks", "No tasks were found");
     }
 
 }

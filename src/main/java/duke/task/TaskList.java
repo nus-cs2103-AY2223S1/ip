@@ -1,8 +1,9 @@
-package duke;
+package duke.task;
 
 import java.util.ArrayList;
-import duke.task.Task;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TaskList {
@@ -51,4 +52,12 @@ public class TaskList {
     public ArrayList<Task> getList() {
         return this.tasks;
     }
+
+    public TaskList filterTasksWithThisPredicate(Predicate<? super Task> pred) {
+        return new TaskList(tasks
+                .stream()
+                .filter(pred)
+                .collect(Collectors.toCollection(ArrayList::new)));
+    }
+
 }

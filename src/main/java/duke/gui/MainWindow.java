@@ -1,6 +1,6 @@
-package duke;
+package duke.gui;
 
-import javafx.application.Platform;
+import duke.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -36,6 +36,11 @@ public class MainWindow extends AnchorPane {
     public void setDuke(Duke d) {
         assert d != null : "setDuke is null, try again";
         duke = d;
+    }
+
+    public void showWelcome() {
+        String welcomeMessage = "Hello! I'm Duke.\n" + "What can I do for you?";
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(welcomeMessage, dukeImage));
     }
 
     /**

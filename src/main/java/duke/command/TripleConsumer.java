@@ -1,4 +1,8 @@
-package duke;
+package duke.command;
+
+import duke.task.TaskList;
+import duke.ui.Ui;
+import duke.storage.Storage;
 
 public interface TripleConsumer {
     /**

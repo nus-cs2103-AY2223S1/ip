@@ -1,16 +1,14 @@
-package duke;
+package duke.storage;
 
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import duke.exceptions.DukeException;
 import duke.task.Event;
 import duke.task.Deadline;
 import duke.task.Task;
@@ -34,7 +32,7 @@ public class Storage {
      */
     public ArrayList<Task> load() throws DukeException, FileNotFoundException {
 
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        ArrayList<Task> tasks = new ArrayList<>();
         File f = new File(filePath);
         Scanner fileScanner = new Scanner(f);
 
@@ -42,6 +40,7 @@ public class Storage {
 
             String[] input = fileScanner.nextLine().split(" \\| ");
             Task task;
+            String taskName = input[2];
 
             switch (input[0]) {
             case "D":

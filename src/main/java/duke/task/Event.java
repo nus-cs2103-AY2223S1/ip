@@ -1,9 +1,11 @@
 package duke.task;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
+    public static final String KEYWORD_TO_SPLIT = " /at ";
     protected LocalDateTime at;
 
     /**
@@ -34,6 +36,10 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E] %s (at: %s)", super.toString(), this.at);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
+        String formattedDateTime = this.at.format(formatter);
+
+        return String.format("[E] %s\n(at: %s)", super.toString(), formattedDateTime);
     }
 }
