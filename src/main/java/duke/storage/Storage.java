@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import duke.others.DukeException;
+import duke.exceptions.DukeException;
+import duke.exceptions.StorageException;
 import duke.parser.Parser;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -37,15 +38,15 @@ public class Storage {
      * Appends the given text to the file.
      *
      * @param textToAppend Text to be appended.
-     * @throws DukeException If the specified file cannot be written to.
+     * @throws StorageException If the specified file cannot be written to.
      */
-    public void appendToFile(String textToAppend) throws DukeException {
+    public void appendToFile(String textToAppend) throws StorageException {
         try {
             FileWriter fw = new FileWriter(filePath, true);
             fw.write(textToAppend + "\n");
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("☹ Error occurs when writing to local file!");
+            throw new StorageException("☹ Error occurs when writing to local file!");
         }
     }
 
@@ -53,9 +54,9 @@ public class Storage {
      * Overwrites the file with content stored in the task list.
      *
      * @param tasks Task list whose content is used in overriding.
-     * @throws DukeException If the specified file cannot be written to.
+     * @throws StorageException If the specified file cannot be written to.
      */
-    public void overwriteFile(TaskList tasks) throws DukeException {
+    public void overwriteFile(TaskList tasks) throws StorageException {
         try {
             FileWriter fw = new FileWriter(filePath);
             StringBuilder textToAdd = new StringBuilder();
@@ -65,7 +66,7 @@ public class Storage {
             fw.write(textToAdd.toString());
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("☹ Error occurs when writing to local file!");
+            throw new StorageException("☹ Error occurs when writing to local file!");
         }
     }
 
@@ -88,7 +89,7 @@ public class Storage {
             }
             return tasks;
         } catch (FileNotFoundException e) {
-            throw new DukeException();
+            throw new StorageException();
         }
     }
 

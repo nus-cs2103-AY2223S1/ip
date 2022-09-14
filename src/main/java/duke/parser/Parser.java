@@ -17,7 +17,7 @@ import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.ToDoCommand;
 import duke.commands.UnmarkCommand;
-import duke.others.DukeException;
+import duke.exceptions.ParseInputException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
@@ -38,9 +38,9 @@ public class Parser {
      *
      * @param fullCommand User input.
      * @return Command.
-     * @throws DukeException If the user input is not a valid command.
+     * @throws ParseInputException If the user input is not a valid command.
      */
-    public static Command parse(String fullCommand) throws DukeException {
+    public static Command parse(String fullCommand) throws ParseInputException {
 
         String commandWord;
         String description;
@@ -74,7 +74,7 @@ public class Parser {
             return new ListCommand();
         default:
             String errorMessage = "☹ You are so dumb that you don't even know how to input a simple command!";
-            throw new DukeException(errorMessage);
+            throw new ParseInputException(errorMessage);
         }
     }
 
@@ -86,11 +86,11 @@ public class Parser {
      * @param commandWord Either "deadline" or "event" or "todo".
      * @param description Description of the task.
      * @return AddCommand.
-     * @throws DukeException If the description of a task is empty.
+     * @throws ParseInputException If the description of a task is empty.
      */
-    public static Command prepareAdd(String commandWord, String description) throws DukeException {
+    public static Command prepareAdd(String commandWord, String description) throws ParseInputException {
         if (description == null) {
-            throw new DukeException("☹ Are you stupid? Description of a task cannot be empty!");
+            throw new ParseInputException("☹ Are you stupid? Description of a task cannot be empty!");
         } else if (commandWord.equals(ToDoCommand.COMMAND_WORD)) {
             return new ToDoCommand(new ToDo(description));
         } else {
@@ -106,9 +106,9 @@ public class Parser {
      * @param commandWord Either "deadline" or "event".
      * @param description Description of the task.
      * @return AddCommand.
-     * @throws DukeException If the required keyword (e.g. "/by" or "/at") is missing.
+     * @throws ParseInputException If the required keyword (e.g. "/by" or "/at") is missing.
      */
-    public static Command parseDate(String commandWord, String description) throws DukeException {
+    public static Command parseDate(String commandWord, String description) throws ParseInputException {
         switch (commandWord) {
         case DeadlineCommand.COMMAND_WORD:
             if (description.contains(" /by ")) {
@@ -117,8 +117,9 @@ public class Parser {
                 LocalDate date = parseDateFormats(arr[1]);
                 return new DeadlineCommand(new Deadline(message, date));
             } else {
-                String errorMessage = "☹ Please follow the format <deadline description /by date>";
-                throw new DukeException(errorMessage);
+                String errorMessage = "☹ Go read the user guide and "
+                        + "follow the format <deadline description /by date>";
+                throw new ParseInputException(errorMessage);
             }
         case EventCommand.COMMAND_WORD:
             if (description.contains(" /at ")) {
@@ -127,12 +128,13 @@ public class Parser {
                 LocalDate date = parseDateFormats(arr[1]);
                 return new EventCommand(new Event(message, date));
             } else {
-                String errorMessage = "☹ Please follow the format <event description /at date>";
-                throw new DukeException(errorMessage);
+                String errorMessage = "☹ Go read the user guide and "
+                        + "follow the format <event description /at date>";
+                throw new ParseInputException(errorMessage);
             }
         default:
             String errorMessage = "☹ Wrong type of command detected.";
-            throw new DukeException(errorMessage);
+            throw new ParseInputException(errorMessage);
         }
     }
 
@@ -144,9 +146,9 @@ public class Parser {
      *
      * @param dateString Date as string.
      * @return LocalDate instance.
-     * @throws DukeException If the given date string is not in one of the preset formats.
+     * @throws ParseInputException If the given date string is not in one of the preset formats.
      */
-    public static LocalDate parseDateFormats(String dateString) throws DukeException {
+    public static LocalDate parseDateFormats(String dateString) throws ParseInputException {
         for (String formatString : formatStrings) {
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat(formatString);
@@ -158,7 +160,7 @@ public class Parser {
                 // Let the loop continue
             }
         }
-        throw new DukeException("☹ Invalid date format!");
+        throw new ParseInputException("☹ Invalid date format!");
     }
 
     /**
@@ -168,9 +170,9 @@ public class Parser {
      * @param commandWord Either "delete" or "mark" or "unmark".
      * @param description Description of the command.
      * @return A command.
-     * @throws DukeException If the given index is invalid.
+     * @throws ParseInputException If the given index is invalid.
      */
-    public static Command parseIndex(String commandWord, String description) throws DukeException {
+    public static Command parseIndex(String commandWord, String description) throws ParseInputException {
         try {
             int index = Integer.parseInt(description) - 1;
             switch (commandWord) {
@@ -183,7 +185,7 @@ public class Parser {
             }
         } catch (NumberFormatException nfe) {
             String errorMessage = "☹ Please enter an index of a task!";
-            throw new DukeException(errorMessage);
+            throw new ParseInputException(errorMessage);
         }
     }
 
