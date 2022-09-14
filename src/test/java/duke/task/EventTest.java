@@ -24,7 +24,7 @@ public class EventTest {
         Event t2 = new Event("task2", LocalDateTime.of(2065, 4, 3, 2, 1),
                 LocalDateTime.of(2065, 4, 3, 2, 2));
         t1.markAsDone();
-        assertEquals("E | 1 | task1 | 2012-03-04 0506 to 2012-03-04 0507", t1.convertToSaveFormat());
-        assertEquals("E | 0 | task2 | 2065-04-03 0201 to 2065-04-03 0202", t2.convertToSaveFormat());
+        assertEquals("E | 1 | task1 | 2012-03-04 0506 to 2012-03-04 0507 | ", t1.convertToSaveFormat());
+        assertEquals("E | 0 | task2 | 2065-04-03 0201 to 2065-04-03 0202 | ", t2.convertToSaveFormat());
     }
 }

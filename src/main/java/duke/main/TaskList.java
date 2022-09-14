@@ -186,6 +186,13 @@ public class TaskList {
         return output;
     }
 
+    /**
+     * Assigns a tag with given tag name to task of given index in task list.
+     *
+     * @param indexString Index of task to be tagged.
+     * @param tagName Name of tag.
+     * @throws DukeException If task is not found.
+     */
     public void tagTask(String indexString, String tagName) throws DukeException {
         try {
             Task task = this.getTask(indexString);

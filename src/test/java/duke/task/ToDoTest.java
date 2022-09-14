@@ -18,7 +18,7 @@ public class ToDoTest {
         ToDo t1 = new ToDo("task1");
         ToDo t2 = new ToDo("task2");
         t1.markAsDone();
-        assertEquals("T | 1 | task1", t1.convertToSaveFormat());
-        assertEquals("T | 0 | task2", t2.convertToSaveFormat());
+        assertEquals("T | 1 | task1 | ", t1.convertToSaveFormat());
+        assertEquals("T | 0 | task2 | ", t2.convertToSaveFormat());
     }
 }

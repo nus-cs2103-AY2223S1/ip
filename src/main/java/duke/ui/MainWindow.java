@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
 public class MainWindow extends AnchorPane {
 
     /* String corresponding to exit command issued by user */
-    private final static String EXIT_STRING = "bye";
+    private static final String EXIT_STRING = "bye";
 
     @FXML
     private ScrollPane scrollPane;

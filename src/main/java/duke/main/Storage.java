@@ -19,7 +19,7 @@ import duke.task.ToDo;
  */
 public class Storage {
     private static final String PROJECT_ROOT_PATH = System.getProperty("user.dir");
-    private static final Path SAVE_DIRECTORY_PATH = Path.of(PROJECT_ROOT_PATH,"data");
+    private static final Path SAVE_DIRECTORY_PATH = Path.of(PROJECT_ROOT_PATH, "data");
 
     /**
      * Saves given task list into save file.
@@ -134,7 +134,6 @@ public class Storage {
             if (!taskTag.equals("")) {
                 task.tag(taskTag);
             }
-            
             return task;
         } catch (ArrayIndexOutOfBoundsException | NullPointerException | DukeException e) {
             throw new DukeException("Error reading file");
