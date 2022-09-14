@@ -1,7 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
-import seedu.duke.TaskList;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.TaskDoesNotExistException;
+import seedu.duke.list.TaskList;
 import seedu.duke.Ui.Ui;
 
 /**
@@ -21,9 +22,11 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList list) throws DukeException {
-        if (index > list.size()) {
-            throw new DukeException("There is no task " + index + " just yet, Master.");
+        int len = list.size();
+        if (index >= len) {
+            throw new TaskDoesNotExistException(index);
         }
+
         boolean success = list.get(index).markDone();
         return Ui.marked(list, index, success);
     }

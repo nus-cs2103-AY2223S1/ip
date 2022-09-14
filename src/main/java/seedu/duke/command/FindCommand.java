@@ -1,7 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
-import seedu.duke.TaskList;
+import seedu.duke.exception.DukeException;
+import seedu.duke.list.FoundList;
+import seedu.duke.list.TaskList;
 import seedu.duke.Ui.Ui;
 import seedu.duke.task.Task;
 
@@ -17,18 +18,17 @@ public class FindCommand extends Command {
 
     /**
      * Finds items in the list matching the keywords, and compiles them into a new
-     * TaskList. Should be noted that the indices of the new list do not match
-     * the indices on the initial list.
+     * TaskList, retaining the indices.
      * @param list
      * @throws DukeException
      */
     @Override
     public String execute(TaskList list) throws DukeException {
-        TaskList foundList = new TaskList();
+        FoundList foundList = new FoundList(list);
         for (int i = 0; i < list.size(); i++) {
             Task curr = list.get(i);
             if (curr.getName().contains(searchString)) {
-                foundList.add(curr);
+                foundList.add(i + 1);
             }
         }
         if (!foundList.isEmpty()) {

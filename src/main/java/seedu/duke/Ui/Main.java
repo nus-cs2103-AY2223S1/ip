@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seedu.duke.Duke;
+import seedu.duke.Ui.DialogBox;
 
 import java.io.IOException;
 

@@ -1,5 +1,6 @@
 package seedu.duke;
 import seedu.duke.command.*;
+import seedu.duke.exception.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,7 @@ public class Parser {
                     try {
                         index = Integer.parseInt(details) - 1;
                     } catch (NumberFormatException e) {
-                        throw new DukeException("Please input only 'mark' and a number, Master.");
+                        throw new TooManyArgumentsException("mark");
                     }
                     return new MarkCommand(index);
 
@@ -44,7 +45,7 @@ public class Parser {
                     try {
                         index = Integer.parseInt(details) - 1;
                     } catch (NumberFormatException e) {
-                        throw new DukeException("Please input only 'unmark' and a number, Master.");
+                        throw new TooManyArgumentsException("unmark");
                     }
                     return new UnmarkCommand(index);
 
@@ -53,22 +54,34 @@ public class Parser {
                     try {
                         index = Integer.parseInt(details) - 1;
                     } catch (NumberFormatException e) {
-                        throw new DukeException("Please input only 'delete' and a number, Master.");
+                        throw new TooManyArgumentsException("delete");
                     }
                     return new DeleteCommand(index);
                 } else if (commandWord.equals("edit")) {
                     String[] taskDesc = details.split(" ", 3);
                     int index;
-                    if (taskDesc.length == 2) { // assume description change
+                    if (taskDesc.length < 2) {
+                        throw new NotEnoughArgumentsException();
+                    } else if (taskDesc.length == 2) {
+                        if (taskDesc[1].equals("name")
+                                || taskDesc[1].equals("time")
+                                || taskDesc[1].equals("deadline")) {
+                            throw new NotEnoughArgumentsException();
+                        }
+                        // assume description change
                         try {
                             index = Integer.parseInt(taskDesc[0]) - 1;
                         } catch (NumberFormatException e) {
-                            throw new DukeException("Please input the index of the task, " +
-                                    "followed by the new description, Master.");
+                            throw new NotNumberException();
                         }
+
                         return new EditNameCommand(index, taskDesc[1]);
                     } else {
                         try {
+                            if (taskDesc[2].length() < 2) {
+                                throw new NotEnoughArgumentsException();
+                            }
+
                             index = Integer.parseInt(taskDesc[0]) - 1;
                             if (taskDesc[1].equals("name")) {
                                 return new EditNameCommand(index, taskDesc[2]);
@@ -78,36 +91,46 @@ public class Parser {
                                 return new EditNameCommand(index, taskDesc[1] + " " + taskDesc[2]);
                             }
                         } catch (NumberFormatException e) {
-                            throw new DukeException("Please input the index of the task, " +
-                                    "followed by the new description, Master.");
+                            throw new NotNumberException();
                         }
-
                     }
 
                 } else if (commandWord.equals("todo")) {
+                    if (details.length() <= 1 ) {
+                        throw new NotEnoughArgumentsException();
+                    }
+
                     return new ToDoCommand(details);
 
                 } else if (commandWord.equals("deadline")) {
                     if (details.contains(" /by ")) {
                         String[] taskDesc = details.split(" /by ");
+                        if (taskDesc[1].length() <= 1 || taskDesc[2].length() <= 1) {
+                            throw new NotEnoughArgumentsException();
+                        }
+
                         return new DeadlineCommand(taskDesc[0], taskDesc[1]);
                     } else {
-                        throw new DukeException("I'll need more information than that, Master.");
+                        throw new NotEnoughArgumentsException();
                     }
 
                 } else if (commandWord.equals("event")) {
                     if (details.contains(" /on ")) {
                         String[] taskDesc = details.split(" /on ");
+                        if (taskDesc[1].length() <= 1 || taskDesc[2].length() <= 1) {
+                            throw new NotEnoughArgumentsException();
+                        }
+
                             return new EventCommand(taskDesc[0], taskDesc[1]);
                     } else {
-                        throw new DukeException("I'll need more information than that, Master.");
+                        throw new NotEnoughArgumentsException();
                     }
 
                 } else if (commandWord.equals("find")) {
                     return new FindCommand(details);
                 }
             } else {
-                throw new DukeException("Sorry, Master, I don't understand what that means.");
+                throw new UnrecognisedCommandException();
             }
         }
         return null;

@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.exception;
 
 /**
  * General exception class for Duke

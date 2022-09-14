@@ -1,12 +1,14 @@
 package seedu.duke;
 
+import seedu.duke.Ui.Launcher;
 import seedu.duke.Ui.Ui;
 import seedu.duke.command.Command;
+import seedu.duke.exception.DukeException;
+import seedu.duke.list.TaskList;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Scanner;
 
 /**
  * Creates or loads a todo list.
@@ -47,13 +49,18 @@ public class Duke {
                 output += Ui.saved(list);
             }
         } catch (DukeException e) {
-            return e.getMessage();
+            output = e.getMessage();
         } catch (NullPointerException e) {
-            System.out.println(e);
+            output = e.getMessage();
         } catch (IOException e) {
-            System.out.println(e);
+            output = e.getMessage();
         } finally {
             return output;
         }
     }
+
+    public static void main(String[] args) {
+        Launcher.main(args);
+    }
+
 }

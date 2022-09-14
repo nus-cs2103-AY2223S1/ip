@@ -1,6 +1,6 @@
 package seedu.duke;
 
-import seedu.duke.Ui.Ui;
+import seedu.duke.list.TaskList;
 import seedu.duke.task.DeadlineTask;
 import seedu.duke.task.EventTask;
 import seedu.duke.task.ToDoTask;

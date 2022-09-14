@@ -1,7 +1,8 @@
 package seedu.duke.Ui;
 
-import seedu.duke.DukeException;
-import seedu.duke.TaskList;
+import seedu.duke.exception.DukeException;
+import seedu.duke.list.FoundList;
+import seedu.duke.list.TaskList;
 import seedu.duke.task.Task;
 
 /**
@@ -79,7 +80,7 @@ public class Ui {
                     + curr.toString() +
                     " as done.";
         } else {
-            throw new DukeException("This task has already been marked done, Master.");
+            throw new DukeException("This task was already marked done, Master.");
         }
     }
 
@@ -98,7 +99,7 @@ public class Ui {
                     curr.toString()
                     + " as undone, Master.";
         } else {
-            throw new DukeException("This duke.task was already marked undone, Master.");
+            throw new DukeException("This task was already marked undone, Master.");
         }
     }
 
@@ -118,21 +119,34 @@ public class Ui {
         return "I have added " + task.toString() + " to the list, Master.";
     }
 
+
     /**
-     * Prints the list of items matching the search.
+     * Confirms that the name of a task has been edited.
+     * @param index
+     * @param task
+     * @return
+     */
+    public static String nameEdited(int index, Task task) {
+        return "I have edited task " + index + " to " + task.toString() + ", Master.";
+    }
+
+    /**
+     * Confirms that the time for an Event or Deadline task has been edited.
+     * @param index
+     * @param task
+     * @return
+     */
+    public static String timeEdited(int index, Task task) {
+        return "I have edited task " + index + " to " + task.toString() + ", Master.";
+    }
+
+    /**
+     * Returns the result of a search.
      * @param searchString
      * @param foundList
+     * @return
      */
-
-    public static String nameEdited(int index, Task task) {
-        return "I have edited task number " + index + " to " + task.toString() + ", Master.";
-    }
-
-    public static String timeEdited(int index, Task task) {
-        return "I have edited task number " + index + " to " + task.toString() + ", Master.";
-    }
-
-    public static String found(String searchString, TaskList foundList) {
+    public static String found(String searchString, FoundList foundList) {
         if (foundList.size() == 1) {
             return "I have found the following task matching \"" + searchString + "\":\n"
                     + foundList;

@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.list;
 
 import seedu.duke.task.Task;
 
