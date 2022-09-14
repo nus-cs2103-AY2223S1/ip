@@ -20,7 +20,7 @@ public class InvalidCommand extends DukeException {
             return "No command given!";
         }
         return "\"" + commandGiven + "\"" + " is an invalid command.\n"
-               + "List of valid commands:\n"
-               + "list, todo, deadline, event, mark, unmark, delete, bye";
+               + "Valid commands:\n"
+               + "list, todo, deadline, event, find, mark, unmark, delete, undo, bye";
     }
 }

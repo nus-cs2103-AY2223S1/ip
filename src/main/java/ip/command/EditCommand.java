@@ -49,17 +49,18 @@ public class EditCommand extends DukeCommand {
         switch (editType) {
         case "mark":
             taskList.mark(taskIndex - 1);
-            break;
+            storage.saveToLatest(taskList);
+            return "Task marked! The journey of a thousand miles begins with a single step.";
         case "unmark":
             taskList.unmark(taskIndex - 1);
-            break;
+            storage.saveToLatest(taskList);
+            return "Task unmarked... Sometimes things never seem to end.";
         case "delete":
             taskList.delete(taskIndex - 1);
-            break;
+            storage.saveToLatest(taskList);
+            return "Task deleted... I'm watching you...";
         default:
-            return "Cannot edit task with this edit type.";
+            return "I only know how to mark, unmark, and delete tasks! What did you say?";
         }
-        storage.saveToLatest(taskList);
-        return "Task successfully edited.";
     }
 }

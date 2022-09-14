@@ -58,6 +58,6 @@ public class AddCommand extends DukeCommand {
             return "Cannot add task of that type.";
         }
         storage.saveToLatest(taskList);
-        return "Task successfully added.";
+        return "Added new task! Get started now!!!";
     }
 }

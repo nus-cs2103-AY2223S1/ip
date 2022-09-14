@@ -1,8 +1,11 @@
 package ip.exception;
 
+/**
+ * Exteption thrown when lines in save file are incorrectly formatted.
+ */
 public class BadLineFormat extends DukeException {
 
-    String badLine;
+    private String badLine;
 
     public BadLineFormat(String badLine) {
         this.badLine = badLine;
@@ -10,7 +13,7 @@ public class BadLineFormat extends DukeException {
 
     @Override
     public String toString() {
-        return "Line with wrong format: " + badLine;
+        return "Line with bad format: " + badLine;
     }
 
 }

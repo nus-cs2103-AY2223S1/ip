@@ -3,6 +3,9 @@ package ip.command;
 import ip.utility.Storage;
 import ip.utility.TaskList;
 
+/**
+ * Duke command to revert tasklist to previous state.
+ */
 public class UndoCommand extends DukeCommand {
 
     /**

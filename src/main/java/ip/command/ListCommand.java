@@ -17,8 +17,8 @@ public class ListCommand extends DukeCommand {
     public String execute(TaskList taskList, Storage storage) {
         String tasks = taskList.listAllTasks();
         if (tasks.isEmpty()) {
-            return "You have no tasks. Add some now!";
+            return "You have no tasks. Take a break son!";
         }
-        return "Your outstanding tasks:\n" + tasks;
+        return "ALL TASKS:\n" + tasks;
     }
 }

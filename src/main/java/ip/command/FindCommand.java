@@ -40,7 +40,7 @@ public class FindCommand extends DukeCommand {
             return "No tasks with keyword \"" + keyword + "\" found.";
         }
         StringBuilder stringResults = new StringBuilder();
-        stringResults.append("Results from search keyword \"").append(keyword).append("\": \n");
+        stringResults.append("Tasks matching search keyword \"").append(keyword).append("\": \n");
         for (Task task : results) {
             stringResults.append(task);
             stringResults.append('\n');
