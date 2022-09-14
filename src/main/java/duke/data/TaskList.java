@@ -1,6 +1,7 @@
 package duke.data;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -93,6 +94,21 @@ public class TaskList implements Serializable {
 
         return new TaskList(results);
     }
+
+
+    /**
+     * Sorts the Task objects based on the specified comparator.
+     * 
+     * @param comp Comparator to sort by.
+     * @return A sorted copy of the Task objects.
+     */
+    public TaskList sortTasks(Comparator<Task> comp) {
+        LinkedList<Task> copy = new LinkedList<>(this.tasks);
+
+        copy.sort(comp);
+
+        return new TaskList(copy);
+    }    
 
 
     /**

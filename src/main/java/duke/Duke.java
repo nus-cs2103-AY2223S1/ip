@@ -2,6 +2,7 @@ package duke;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Comparator;
 
 import duke.data.TaskList;
 import duke.parser.Parser;
@@ -31,6 +32,12 @@ public class Duke {
     private static final char TIME_DELIMITER = '/';
     private static final String DATA_FILE_PATH = "./data.ser";
 
+    private static final String FIELD_TASK_TYPE = "type";
+    private static final String FIELD_DONE_STATUS = "status";
+    private static final String FIELD_DESCRIPTION = "description";
+
+
+
 
     /** Ui object to handle user interaction */
     private Ui ui;
@@ -39,7 +46,7 @@ public class Duke {
     private Storage storage;
 
     /** TaskList object to store the user's tasks */
-    private TaskList storedTasks;
+    private TaskList tasks;
 
 
 
@@ -62,18 +69,18 @@ public class Duke {
 
         try {
             // Attempt to load the task list from the hard disk, if it exists
-            this.storedTasks = this.storage.readFromFile();
+            this.tasks = this.storage.readFromFile();
 
         } catch (FileNotFoundException e) {
-            this.storedTasks = new TaskList();
+            this.tasks = new TaskList();
             return ui.getDataFileNotFoundErrorMessage() + ui.getCreateNewTaskListMessage();
 
         } catch (IOException e) {
-            this.storedTasks = new TaskList();
+            this.tasks = new TaskList();
             return ui.getDataFileReadErrorMessage() + ui.getCreateNewTaskListMessage();
 
         } catch (ClassNotFoundException e) {
-            this.storedTasks = new TaskList();
+            this.tasks = new TaskList();
             return ui.getDataFileDeserializeErrorMessage() + ui.getCreateNewTaskListMessage();
         }
 
@@ -81,10 +88,88 @@ public class Duke {
     }
 
 
+    private String listTasks(String[] commands) {
+
+        // Format of list command: list [/sort FIELD]
+        // FIELD is the field to sort in ascending order by
+        final int COMMAND_WITH_SORT_FIELD_LENGTH = 3;
+
+
+        // If the command doesn't specify the sort field
+        if (commands.length < COMMAND_WITH_SORT_FIELD_LENGTH) {
+            // List tasks without sorting
+            return ui.getListTasksMessage(this.tasks, false);
+        }
+        
+
+        // 3rd token is the field name
+        String sortField = commands[2];
+
+        // Select comparator based on the sort field and sort tasks
+        Comparator<Task> comp = selectComparator(sortField);
+        TaskList sortedTasks = this.tasks.sortTasks(comp);
+
+        return ui.getListTasksMessage(sortedTasks, false);
+    }
+
+
+    private Comparator<Task> selectComparator(String sortField) {
+
+        // Select the comparator based on the field to sort by
+        switch (sortField) {
+
+        case FIELD_TASK_TYPE:
+            // Sort tasks by their class names in lexicographical order
+            return (t1, t2) -> t1.getClass().toString().compareTo(
+                t2.getClass().toString()
+                );
+
+
+        case FIELD_DONE_STATUS:
+            // Sort tasks by their done status: done tasks first followed by not done tasks
+            return new Comparator<Task>() {
+                @Override
+                public int compare(Task t1, Task t2) {
+
+                    boolean t1IsDone = t1.getIsDone();
+                    boolean t2IsDone = t2.getIsDone();
+                    
+                    // If t1 is done but not t2
+                    if (t1IsDone && !t2IsDone) {
+                        // t1 comes before t2
+                        return -1;
+
+                    // If t2 is done but not t1
+                    } else if (!t1IsDone && t2IsDone) {
+                        // t2 comes before t1
+                        return 1;
+                    
+                    // Else t1 and t2 are either both done or both not done
+                    } else {
+                        // So both have equal ordering
+                        return 0;
+                    }
+                }
+            };
+
+
+        case FIELD_DESCRIPTION:
+            // Sort tasks by their description in lexicographcial order
+            return (t1, t2) -> t1.getDescription().compareTo(t2.getDescription());
+
+
+        // Field name is invalid, so don't change sort order
+        default:
+            return (t1, t2) -> 0;
+
+        }
+    }
+
+
     private String findTasks(String[] commands) {
 
         // Keyword to search for is the second token
-        TaskList searchResults = this.storedTasks.searchTasks(commands[1]);
+        TaskList searchResults = this.tasks.searchTasks(commands[1]);
 
         return ui.getListTasksMessage(searchResults, true);
     }
@@ -102,7 +187,7 @@ public class Duke {
         int indexNumber = Integer.parseInt(commands[1]) - 1;
 
         // Get the task from the TaskList object
-        Task t = this.storedTasks.getTask(indexNumber);
+        Task t = this.tasks.getTask(indexNumber);
 
 
         // Mark the task as done or undone depending on the command
@@ -116,7 +201,7 @@ public class Duke {
         }
 
         // Store the task back in the TaskList
-        this.storedTasks.setTask(indexNumber, t);
+        this.tasks.setTask(indexNumber, t);
 
         return result;
     }
@@ -136,9 +221,9 @@ public class Duke {
             return ui.getAddTaskInvalidSyntaxErrorMessage(e);
         }
 
-        this.storedTasks.addTask(t);
+        this.tasks.addTask(t);
 
-        return ui.getAddTaskMessage(t, storedTasks.getSize());
+        return ui.getAddTaskMessage(t, tasks.getSize());
     }
 
 
@@ -291,11 +376,11 @@ public class Duke {
         int indexNumber = Integer.parseInt(commands[1]) - 1;
 
         // Remove the task from the TaskList object
-        Task t = storedTasks.removeTask(indexNumber);
+        Task t = tasks.removeTask(indexNumber);
 
         assert (t != null && t instanceof Task) : "t must be a Task object";
 
-        return ui.getDeleteTaskMessage(t, storedTasks.getSize());
+        return ui.getDeleteTaskMessage(t, tasks.getSize());
     }
 
 
@@ -319,7 +404,8 @@ public class Duke {
         switch (commands[0]) {
 
         case COMMAND_LIST:
-            result = ui.getListTasksMessage(this.storedTasks, false);
+            // result = ui.getListTasksMessage(this.tasks, false);
+            result = listTasks(commands);
             break;
 
 
@@ -333,7 +419,7 @@ public class Duke {
             // Fall through
         case COMMAND_MARK_AS_UNDONE:
             result = markTaskAsDoneOrUndone(commands);
-            storage.writeToFile(this.storedTasks);
+            storage.writeToFile(this.tasks);
             break;
 
 
@@ -344,13 +430,13 @@ public class Duke {
             // Fall through
         case COMMAND_ADD_EVENT:
             result = addTask(commands);
-            storage.writeToFile(this.storedTasks);
+            storage.writeToFile(this.tasks);
             break;
 
 
         case COMMAND_DELETE:
             result = deleteTask(commands);
-            storage.writeToFile(this.storedTasks);
+            storage.writeToFile(this.tasks);
             break;
 
 
@@ -383,6 +469,17 @@ public class Duke {
 
 
     public static void main(String[] args) {
+
+        Task t1 = new ToDo("hello");
+        Task t2 = new Deadline("desc", "2022-12-16 18:00");
+        Task t3 = new Event("event", "Mon 2-4pm");
+
+        System.out.format("ToDo: %s\n", t1.getClass());
+        System.out.format("Deadline: %s\n", t2.getClass());
+        System.out.format("Event: %s\n", t3.getClass());
+
+        System.out.println(t1.getClass().toString().compareTo(t2.getClass().toString()));
+        System.out.println(t2.getClass().toString().compareTo(t2.getClass().toString()));
 
     }
 }

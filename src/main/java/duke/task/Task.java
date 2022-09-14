@@ -46,6 +46,10 @@ public abstract class Task implements Serializable {
         return this.description;
     }
 
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
     private String getStatusIcon() {
         return isDone ? "X" : " ";
     }
