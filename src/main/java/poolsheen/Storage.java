@@ -92,7 +92,8 @@ public class Storage {
                 res.add(new Event(taskDesc, isDone, time));
                 break;
             default:
-                throw new UnknownCommandException("An unidentified task type was loaded");
+                throw new PoolsheenException("An unidentified task type was loaded", "unknown command",
+                        "Please enter an appropriate command");
             }
         }
         return res;

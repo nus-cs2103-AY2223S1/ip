@@ -3,7 +3,7 @@ package poolsheen.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import poolsheen.IncompleteCommandException;
+import poolsheen.PoolsheenException;
 
 /**
  * Represents a Deadline task for Poolsheen to remember.
@@ -26,7 +26,7 @@ public class Deadline extends Task {
         //Ensure that the newTime input are made out of numbers.
         String[] arr = newTime.split("-");
         if (arr.length != 3) {
-            throw new IncompleteCommandException(newTime, "Event", "Enter an appropriate date and time format");
+            throw new PoolsheenException(newTime, "deadline", "Enter an appropriate date and time format: YYYY-MM-DD");
         }
         for (String s : arr) {
             Integer.parseInt(s);
