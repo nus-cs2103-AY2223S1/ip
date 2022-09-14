@@ -14,11 +14,13 @@ public class Parser {
     private TaskList tasklist;
     private Ui bot;
     private Storage storage;
+    private String pathName;
 
-    public Parser(TaskList tasklist, Ui bot, Storage storage) {
+    public Parser(TaskList tasklist, Ui bot, Storage storage, String pathName) {
         this.tasklist = tasklist;
         this.bot = bot;
         this.storage = storage;
+        this.pathName = pathName;
     }
 
     /**
@@ -122,7 +124,7 @@ public class Parser {
             } else{
                 bot.displayError();
             }
-        storage.replaceTasks("data/Duke2.txt", tasklist.getOldTasks()); //make sure to replace the task after every action
+        storage.replaceTasks(pathName, tasklist.getOldTasks()); //make sure to replace the task after every action
         return stringReturned;
    }
 

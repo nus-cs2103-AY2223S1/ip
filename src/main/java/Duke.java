@@ -49,19 +49,19 @@ public class Duke{
         bot.welcome();
         storage = new Storage();
         Scanner scanner = new Scanner(System.in);
-        String pathName = "data/Duke2.txt";
+        String pathName = "database/Duke.txt";
         File f = new File(pathName);
-        if (f.createNewFile()) {
-            bot.fileCreate(true);
-        } else {
-            bot.fileCreate(false);
+        if(!f.exists()) {
+            f.getParentFile().mkdir();
+            f.createNewFile();
+            System.out.println("directory was created");
         }
         Scanner filescanner = new Scanner(f);
         List<Task> newTasks = new ArrayList<>();
         List<Task> oldTasks = storage.readTasks(filescanner,f);
         tasklist = new TaskList(oldTasks);
         System.out.println("code comes to Duke");
-        parser = new Parser(tasklist, bot, storage);
+        parser = new Parser(tasklist, bot, storage, pathName);
         String stringReturned =  parser.readInput2(input);
 
         return stringReturned;
@@ -96,6 +96,21 @@ public class Duke{
             response = e.getMessage();
         }
         return response;
+    }
+
+    public File checkFileExists(String pathName) throws IOException {
+        try{
+            File f = new File(pathName);
+            if(!f.exists()) {
+                f.getParentFile().mkdir();
+                f.createNewFile();
+                System.out.println("directory was created");
+            }
+            return f;
+        } catch(IOException e){
+            return null;
+        }
+
     }
 }
 
