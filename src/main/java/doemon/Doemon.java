@@ -6,10 +6,9 @@ import doemon.exception.TaskDataException;
 import doemon.parser.Parser;
 import doemon.storage.Storage;
 import doemon.task.TaskList;
-import doemon.ui.Ui;
+import doemon.response.Response;
 
 public class Doemon {
-
     /** The file path of the file where tasks will be saved to. */
     private static final String TASK_FILE_PATH = "./data/duke.txt";
 
@@ -17,8 +16,8 @@ public class Doemon {
     private Storage storage;
     /** List of tasks. */
     private TaskList tasks;
-    /** Ui helper class that deals with interactions with the user. */
-    private Ui ui;
+    /** Response helper class that returns response strings. */
+    private Response response;
 
     /**
      * Constructor for Doemon.
@@ -26,35 +25,24 @@ public class Doemon {
      * @param filePath Path of the file where tasks will be saved to.
      */
     public Doemon(String filePath) {
-        this.ui = new Ui();
+        this.response = new Response();
         this.storage = new Storage(filePath);
         try {
             this.tasks = new TaskList(storage.loadTasks());
         } catch (TaskDataException tde){
-            ui.showError(tde);
             this.tasks = new TaskList();
         }
     }
 
     /**
-     * Starts the Doemon chatbot.
+     * Generates a response to user input.
+     *
+     * @param input User input.
+     * @return Response string.
+     * @throws DoemonException If any exception is thrown during parsing.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while(!isExit) {
-            try {
-                String inputString = ui.readCommand();
-                Command c = Parser.parse(inputString);
-                c.execute(this.tasks, this.ui, this.storage);
-                isExit = c.isExit();
-            } catch (DoemonException de) {
-                ui.showError(de);
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        new Doemon(TASK_FILE_PATH).run();
+    public String getResponse(String input) throws DoemonException {
+        Command c = Parser.parse(input);
+        return c.execute(this.tasks, this.response, this.storage);
     }
 }

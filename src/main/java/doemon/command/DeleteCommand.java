@@ -3,7 +3,7 @@ package doemon.command;
 import doemon.storage.Storage;
 import doemon.task.Task;
 import doemon.task.TaskList;
-import doemon.ui.Ui;
+import doemon.response.Response;
 
 public class DeleteCommand extends Command {
     /** Index of the task to be deleted. */
@@ -22,10 +22,10 @@ public class DeleteCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Response response, Storage storage) {
         Task task = tasks.deleteTask(this.taskIndex);
-        ui.showDeleteTask(task, tasks.getSize());
         storage.deleteTaskData(this.taskIndex);
+        return response.deleteTaskString(task, tasks.getSize());
     }
 
     /**

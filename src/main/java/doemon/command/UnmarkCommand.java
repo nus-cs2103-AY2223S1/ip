@@ -3,7 +3,7 @@ package doemon.command;
 import doemon.storage.Storage;
 import doemon.task.Task;
 import doemon.task.TaskList;
-import doemon.ui.Ui;
+import doemon.response.Response;
 
 public class UnmarkCommand extends Command {
     /** Index of the task to be unmarked. */
@@ -22,10 +22,10 @@ public class UnmarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Response response, Storage storage) {
         Task task = tasks.unmarkTask(this.taskIndex);
-        ui.showUnmarkTask(task);
         storage.unmarkTaskData(this.taskIndex);
+        return response.unmarkTaskString(task);
     }
 
     /**

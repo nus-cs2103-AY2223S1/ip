@@ -2,15 +2,15 @@ package doemon.command;
 
 import doemon.storage.Storage;
 import doemon.task.TaskList;
-import doemon.ui.Ui;
+import doemon.response.Response;
 
 public class ListCommand extends Command {
     /**
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showTaskList(tasks);
+    public String execute(TaskList tasks, Response response, Storage storage) {
+        return response.taskListString(tasks);
     }
 
     /**

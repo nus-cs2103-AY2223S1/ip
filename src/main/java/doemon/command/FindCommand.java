@@ -3,7 +3,7 @@ package doemon.command;
 import doemon.storage.Storage;
 import doemon.task.Task;
 import doemon.task.TaskList;
-import doemon.ui.Ui;
+import doemon.response.Response;
 
 import java.util.ArrayList;
 
@@ -24,9 +24,9 @@ public class FindCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Response response, Storage storage) {
         ArrayList<Task> foundTasks = tasks.findTasks(this.keyword);
-        ui.showFoundTasks(foundTasks);
+        return response.foundTasksString(foundTasks);
     }
 
     /**

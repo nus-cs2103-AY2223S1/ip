@@ -2,7 +2,7 @@ package doemon.command;
 
 import doemon.storage.Storage;
 import doemon.task.TaskList;
-import doemon.ui.Ui;
+import doemon.response.Response;
 
 public abstract class Command {
     /**
@@ -12,7 +12,7 @@ public abstract class Command {
      * @param ui The ui helper class.
      * @param storage The storage class for updating task data.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Response ui, Storage storage);
 
     /**
      * Returns a boolean indicating if the command is an exit command.
