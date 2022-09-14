@@ -3,23 +3,22 @@
  */
 public class ToDo extends Task {
 
-    /**
-     * Public constructor of a ToDo class.
-     *
-     * @param name the name/description of the class.
-     */
-    public ToDo(String name) {
-        super(name);
+    public ToDo(String description) {
+        super(description);
     }
 
-    /**
-     * Overrides the toString() method in the Task class, represents a ToDo by adding a "[T]" in front of the general
-     * Task representation.
-     *
-     * @return String representation of a ToDo.
-     */
+    @Override
+    public String getTaskType() {
+        return "T";
+    }
+
+    @Override
+    public String stringifyTask() {
+        return String.format("%s | %s", "T", super.stringifyTask());
+    }
+
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return String.format("[T]%s", super.toString());
     }
 }

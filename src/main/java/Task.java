@@ -1,18 +1,24 @@
-import java.util.ArrayList;
-import java.util.List;
-
-public class Task {
-
-    private String name;
+public abstract class Task {
+    private String description;
     private boolean isDone;
 
-    public Task(String name) {
-        this.name = name;
+    public Task(String description) {
+        this.description = description;
         this.isDone = false;
     }
 
-    public boolean getIsDone() {
-        return isDone;
+    public abstract String getTaskType();
+
+    public String stringifyTask() {
+        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
+    }
+
+    public boolean getStatus() {
+        return this.isDone;
+    }
+
+    public String getStatusIcon() {
+        return this.isDone ? "X" : " ";
     }
 
     public void mark() {
@@ -23,18 +29,8 @@ public class Task {
         this.isDone = false;
     }
 
-    /**
-     * Override the toString() method in the Object class. "[X]" is added in front of the task name if it is marked
-     * as done, and "[ ]" is added in front otherwise.
-     *
-     * @return String representation of a task.
-     */
     @Override
     public String toString() {
-        if (this.isDone) {
-            return "[X] " + this.name;
-        } else {
-            return "[ ] " + this.name;
-        }
+        return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
 }
