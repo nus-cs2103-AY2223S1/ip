@@ -18,6 +18,7 @@ public class MainWindow extends AnchorPane {
     Random rng = new Random();
     boolean wantsBanana = false;
     boolean gaveBanana = false;
+    private String originalResponse = null;
 
     @FXML
     private ScrollPane scrollPane;
@@ -33,6 +34,7 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/monke.png"));
     private Image botImage = new Image(this.getClass().getResourceAsStream("/images/monke2.png"));
     private Image bananaImage = new Image(this.getClass().getResourceAsStream("/images/banana.png"));
+    private Image bananasImage = new Image(this.getClass().getResourceAsStream("/images/bananas.png"));
 
     @FXML
     public void initialize() {
@@ -50,11 +52,14 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response;
+        String response = "";
         if (alan == null) {
             response = "Monkey boss ain't home right now ):";
         } else {
             switch (input) {
+                case "hello":
+                    response = "hoohooheehee hello!";
+                    break;
                 case "u monke":
                     response = "NO YOU ARE THE MONKE!";
                     break;
@@ -72,12 +77,23 @@ public class MainWindow extends AnchorPane {
                     gaveBanana = true;
                     wantsBanana = false;
                     break;
+                case "bananas":
+                    response = "MANY BANANAS!!! HOOHOOHAHA NOMNOM ";
+                    gaveBanana = true;
+                    wantsBanana = false;
+                    break;
                 default:
-                    response = alan.getResponse(input);
+                    // while the monke wantsBanana, actual responses will not be created
+                    response = !wantsBanana ? alan.getResponse(input) : response;
             }
             if (wantsBanana || rng.nextInt(10) < 1) {
+                // only save the original response if it is not alr taken
+                originalResponse = originalResponse == null ? response : originalResponse;
                 response = gaveBanana ? "give me more banana!" : "NO! gimme banana first";
                 wantsBanana = true;
+            } else if (!wantsBanana && gaveBanana && originalResponse != null) {
+                response = "HOOHOOHAHA nomnom, here you go!\n\n" + originalResponse;
+                originalResponse = null;
             }
             gaveBanana = false;
         }
@@ -86,6 +102,9 @@ public class MainWindow extends AnchorPane {
         DialogBox userDialog = DialogBox.getUserDialog(input, userImage);
         if (input.equals("banana")) {
             userDialog = DialogBox.getUserDialog(input, bananaImage);
+        }
+        if (input.equals("bananas")) {
+            userDialog = DialogBox.getUserDialog(input, bananasImage);
         }
         DialogBox botResponse = DialogBox.getBotDialog(response, botImage);
 
@@ -99,7 +118,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void sendIntro() {
         dialogContainer.getChildren().addAll(
-                DialogBox.getBotDialog("HOOHOOHAHA\n type \"banana\" to give me banana :D", botImage)
+                DialogBox.getBotDialog("HOOHOOHAHA\n type \"banana\" or \"bananas\" to give me bananas :D", botImage)
         );
     }
 }
