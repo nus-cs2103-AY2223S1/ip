@@ -13,7 +13,7 @@ import duke.tasks.ToDoTask;
 public class ToDoTaskCommand extends TaskCommand {
 
     /**
-     * Constructor for TodoCommand
+     * Creates a ToDoTaskCommand that creates a new ToDoTask
      *
      * @param description Description of TodoTask to be created
      * @throws DukeException in case of missing task description

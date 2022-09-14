@@ -6,24 +6,23 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 
 /**
- * MarkCommand used to mark tasks as done
+ * ListCommand lists all tasks in TaskList
  */
-public class MarkCommand extends Command {
+public class UntagCommand extends Command {
 
     private final int index;
 
     /**
-     * Creates a MarkCommand to mark a task as done
+     * Creates a TagCommand to tag a task
      *
      * @param description String representation of task number to be marked
      * @throws DukeException if user did not type in a correct task number
      */
-    public MarkCommand(String description) throws DukeException {
+    public UntagCommand(String description) throws DukeException {
         try {
-            assert description.split(" ")[0].equals("mark") : "Keyword should be mark for MarkCommand";
+            assert description.split(" ")[0].equals("untag") : "Keyword should be tag for TagCommand";
             String index = description.split(" ")[1];
             this.index = Integer.parseInt(index);
-
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Fill in index of task to delete");
         } catch (NumberFormatException e) {
@@ -32,7 +31,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Marks command and prints out message to users depending on whether the
+     * Tags command and prints out message to users depending on whether the
      * command was successful
      *
      * @return @inheritDoc
@@ -43,14 +42,14 @@ public class MarkCommand extends Command {
             throw new DukeException("No such tasks found");
         } else {
             Task task = tasks.get(index - 1);
-            task.setDone();
+            task.unTag();
             storage.save(tasks);
             return getMessage(task);
         }
     }
 
     public String getMessage(Task task) {
-        String str = "Fuyoh! I've marked this task as done:";
+        String str = "Tag removed successfully";
         str += task;
         return str;
     }

@@ -8,8 +8,10 @@ import duke.commands.EventTaskCommand;
 import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
+import duke.commands.TagCommand;
 import duke.commands.ToDoTaskCommand;
 import duke.commands.UnmarkCommand;
+import duke.commands.UntagCommand;
 import duke.exception.DukeException;
 
 /**
@@ -44,6 +46,10 @@ public class Parser {
             return new DeleteCommand(text);
         case find:
             return new FindCommand(text);
+        case tag:
+            return new TagCommand(text);
+        case untag:
+            return new UntagCommand(text);
         default:
             throw new DukeException("Unknown command received.");
         }

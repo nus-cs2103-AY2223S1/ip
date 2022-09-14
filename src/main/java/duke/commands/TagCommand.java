@@ -2,28 +2,37 @@ package duke.commands;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
+import duke.tag.Tag;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
 /**
- * MarkCommand used to mark tasks as done
+ * ListCommand lists all tasks in TaskList
  */
-public class MarkCommand extends Command {
+public class TagCommand extends Command {
 
     private final int index;
+    private final String tagDescription;
 
     /**
-     * Creates a MarkCommand to mark a task as done
+     * Creates a TagCommand to tag a task
      *
      * @param description String representation of task number to be marked
      * @throws DukeException if user did not type in a correct task number
      */
-    public MarkCommand(String description) throws DukeException {
+    public TagCommand(String description) throws DukeException {
         try {
-            assert description.split(" ")[0].equals("mark") : "Keyword should be mark for MarkCommand";
+            assert description.split(" ")[0].equals("tag") : "Keyword should be tag for TagCommand";
             String index = description.split(" ")[1];
             this.index = Integer.parseInt(index);
 
+            String[] descriptionLst = description.split("/t ", 2);
+
+            if (descriptionLst.length < 2 || descriptionLst[1].equals("")) {
+                throw new DukeException("Please input the tag description");
+            }
+
+            this.tagDescription = description.split("/t ")[1];
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Fill in index of task to delete");
         } catch (NumberFormatException e) {
@@ -32,7 +41,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Marks command and prints out message to users depending on whether the
+     * Tags command and prints out message to users depending on whether the
      * command was successful
      *
      * @return @inheritDoc
@@ -43,14 +52,15 @@ public class MarkCommand extends Command {
             throw new DukeException("No such tasks found");
         } else {
             Task task = tasks.get(index - 1);
-            task.setDone();
+            Tag tag = new Tag(this.tagDescription);
+            task.addTag(tag);
             storage.save(tasks);
             return getMessage(task);
         }
     }
 
     public String getMessage(Task task) {
-        String str = "Fuyoh! I've marked this task as done:";
+        String str = "Tag added successfully";
         str += task;
         return str;
     }

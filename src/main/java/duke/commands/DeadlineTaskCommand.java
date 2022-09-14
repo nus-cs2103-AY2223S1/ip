@@ -16,7 +16,7 @@ public class DeadlineTaskCommand extends TaskCommand {
     private final LocalDate by;
 
     /**
-     * Constructor for DeadlineCommand which includes description of task and when
+     * Creates a DeadlineCommand which includes description of task and when
      * the task needed to be completed by
      *
      * @param description Description of task
@@ -24,7 +24,7 @@ public class DeadlineTaskCommand extends TaskCommand {
      */
     public DeadlineTaskCommand(String description) throws DukeException {
         super(description);
-        assert description.split(" ")[0].equals("delete") : "Keyword should be delete for DeleteCommand";
+        assert description.split(" ")[0].equals("deadline") : "Keyword should be delete for DeleteCommand";
 
         String[] deadlineList = description.split("/by ", 2);
 

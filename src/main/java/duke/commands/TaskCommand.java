@@ -13,7 +13,7 @@ public abstract class TaskCommand extends Command {
     protected String description;
 
     /**
-     * Constructor for Task Command
+     * Creates a TaskCommand
      *
      * @param description Description of task details
      * @throws DukeException If user formats wrongly
@@ -40,7 +40,7 @@ public abstract class TaskCommand extends Command {
     public String getMessage(TaskList tasklist, Task task) {
         String str = "Got it. I've added this task: \n";
         str += task.toString();
-        str += "Now you have " + tasklist.size() + " task(s) in the list";
+        str += "\n Now you have " + tasklist.size() + " task(s) in the list";
         return str;
     }
 }

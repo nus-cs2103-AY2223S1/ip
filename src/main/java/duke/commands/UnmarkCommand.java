@@ -13,7 +13,7 @@ public class UnmarkCommand extends Command {
     private final int index;
 
     /**
-     * Constuctor for UnmarkCommand
+     * Creates an UnmarkCommand to mark a task as undone
      *
      * @param description String representation of task number to be marked
      * @throws DukeException if user did not type in a correct task number
@@ -23,7 +23,9 @@ public class UnmarkCommand extends Command {
             assert description.split(" ")[0].equals("unmark") : "Keyword should be unmark for UnmarkCommand";
             description = description.split(" ")[1];
             this.index = Integer.parseInt(description);
-        } catch (Exception e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Fill in index of task to delete");
+        } catch (NumberFormatException e) {
             throw new DukeException("Invalid tasks");
         }
     }

@@ -1,5 +1,8 @@
 package duke.tasks;
 
+import duke.exception.DukeException;
+import duke.tag.Tag;
+
 /**
  * Task is parent class of all Tasks
  */
@@ -13,6 +16,8 @@ public abstract class Task {
      * isDone keeps track of whether the task is marked
      */
     private boolean isDone;
+
+    private Tag tag;
 
     /**
      * Constructor of task, and initialise it as unmarked
@@ -74,7 +79,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return this.getStatusIcon() + " " + this.description;
+        return this.getStatusIcon() + this.tag.toString() + " " + this.description;
     }
 
     /**
@@ -84,6 +89,26 @@ public abstract class Task {
      */
     public String toSaveString() {
         String mark = isDone ? "1" : "0";
-        return "| " + mark + " | " + this.description;
+        String str = "| " + mark + " | " + this.description + " | " + this.tag.toString();
+        if (this.tag != null) {
+            return str + this.tag;
+        } else {
+            return str;
+        }
+    }
+
+    public void addTag(Tag tag) throws DukeException {
+        if (this.tag != null) {
+            throw new DukeException("There is already a tag! Consider untagging and adding a new one");
+        }
+        this.tag = tag;
+
+    }
+
+    public void unTag() throws DukeException {
+        if (this.tag == null) {
+            throw new DukeException("There is no tag!");
+        }
+        this.tag = null;
     }
 }

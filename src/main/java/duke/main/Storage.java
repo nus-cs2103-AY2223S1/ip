@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.exception.DukeException;
+import duke.tag.Tag;
 import duke.tasks.DeadlineTask;
 import duke.tasks.EventTask;
 import duke.tasks.Task;
@@ -76,7 +77,7 @@ public class Storage {
 
             try (Scanner sc = new Scanner(data)) {
                 while (sc.hasNext()) {
-                    String[] line = sc.nextLine().split(" \\| ", 4);
+                    String[] line = sc.nextLine().split(" \\| ", 5);
                     if (line.length < 3) {
                         throw new DukeException(EVIL_FILE);
                     }
@@ -92,36 +93,10 @@ public class Storage {
                         throw new DukeException(EVIL_FILE + '\n' + line.length);
                     }
 
-                    switch (line[0]) {
-                    case "T":
-                        tasks.add(new ToDoTask(description, isDone));
-                        break;
-                    case "D":
-                        if (line.length < 4) {
-                            throw new DukeException(EVIL_FILE);
-                        }
-                        try {
-                            LocalDate by = LocalDate.parse(line[3]);
+                    Task t = loadTask(line, description, isDone, tasks);
+                    tasks.add(t);
 
-                            tasks.add(new DeadlineTask(description, by, isDone));
-                        } catch (DateTimeParseException e) {
-                            throw new DukeException(EVIL_FILE);
-                        }
-                        break;
-                    case "E":
-                        if (line.length < 4) {
-                            throw new DukeException(EVIL_FILE);
-                        }
-                        try {
-                            LocalDate at = LocalDate.parse(line[3]);
-                            tasks.add(new EventTask(description, at, isDone));
-                        } catch (DateTimeParseException e) {
-                            throw new DukeException(EVIL_FILE);
-                        }
-                        break;
-                    default:
-                        throw new DukeException(EVIL_FILE);
-                    }
+
                 }
                 sc.close();
             }
@@ -129,6 +104,51 @@ public class Storage {
             return tasks;
         } catch (IOException e) {
             throw new DukeException(OH_MAN + e.getMessage());
+        }
+    }
+
+
+    public Task loadTask(String[] line, String description, boolean isDone, ArrayList<Task> tasks)
+            throws DukeException {
+        switch (line[0]) {
+        case "T":
+            Task t0 = new ToDoTask(description, isDone);
+            loadTag(line, t0, 4);
+            return t0;
+
+        case "D":
+            if (line.length < 4) {
+                throw new DukeException(EVIL_FILE);
+            }
+            try {
+                LocalDate by = LocalDate.parse(line[3]);
+                Task t1 = new DeadlineTask(description, by, isDone);
+                loadTag(line, t1, 5);
+                return t1;
+            } catch (DateTimeParseException e) {
+                throw new DukeException(EVIL_FILE);
+            }
+
+        case "E":
+            if (line.length < 4) {
+                throw new DukeException(EVIL_FILE);
+            }
+            try {
+                LocalDate at = LocalDate.parse(line[3]);
+                Task t2 = new EventTask(description, at, isDone);
+                loadTag(line, t2, 5);
+                return t2;
+            } catch (DateTimeParseException e) {
+                throw new DukeException(EVIL_FILE);
+            }
+        default:
+            throw new DukeException(EVIL_FILE);
+        }
+    }
+
+    public void loadTag(String[] line, Task t, int len) throws DukeException {
+        if (line.length == len && line[len - 1] != null) {
+            t.addTag(new Tag(line[len - 1]));
         }
     }
 }

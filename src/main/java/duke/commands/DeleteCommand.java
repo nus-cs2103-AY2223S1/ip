@@ -13,7 +13,7 @@ public class DeleteCommand extends Command {
     private final int index;
 
     /**
-     * Constuctor for DeleteCommand
+     * Creates a DeleteCommand with index of task to be deleted
      *
      * @param description String representation of task number to be marked
      * @throws DukeException if user did not type in a correct task number

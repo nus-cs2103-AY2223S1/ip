@@ -16,7 +16,7 @@ public class EventTaskCommand extends TaskCommand {
     protected LocalDate at;
 
     /**
-     * Constructor for EventCommand with at field
+     * Creates an EventTaskCommand
      *
      * @param description Description of event
      * @throws DukeException either due to missing at field or poor date formatting
