@@ -1,4 +1,4 @@
-package duke.GUI;
+package duke.gui;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -14,8 +14,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.util.Collections;
-
+/**
+ * Class for creating Duke and User's dialog boxes in the GUI.
+ *
+ * @author lauralee
+ */
 public class DialogBox extends HBox {
 
     @FXML
@@ -23,6 +26,12 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructor for DialogBox class.
+     *
+     * @param text The text to be printed in the GUI.
+     * @param img The image to be shown in the GUI.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -47,10 +56,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Prints out the user's input and representative image into the GUI.
+     *
+     * @param text The text inputted by the user.
+     * @param img The image representing the user.
+     * @return The dialog box representing a user in the GUI.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Prints out Duke's response to the user's input and representative image into the GUI.
+     *
+     * @param text The response by Duke.
+     * @param img The image representing Duke.
+     * @return The dialog box representing Duke in the GUI.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

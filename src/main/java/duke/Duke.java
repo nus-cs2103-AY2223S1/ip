@@ -1,8 +1,9 @@
 package duke;
 
     import duke.functions.*;
+    import duke.instruction.Instruction;
     import duke.support.Parser;
-    import duke.GUI.DialogBox;
+    import duke.gui.DialogBox;
 
     import javafx.application.Application;
     import javafx.fxml.FXML;
@@ -16,10 +17,10 @@ package duke;
     import javafx.scene.layout.VBox;
     import javafx.stage.Stage;
     import javafx.scene.image.Image;
-    import javafx.scene.image.ImageView;
 
 /**
  * The class of the Duke bot.
+ *
  * @author lauralee
  */
 
@@ -39,6 +40,7 @@ public class Duke extends Application {
 
     /**
      * Duke class constructor that initialises a Duke bot.
+     *
      * @param filePath The filepath in which this user wants to store their list of tasks in.
      */
     public Duke(String filePath) {
@@ -47,19 +49,12 @@ public class Duke extends Application {
     }
     /**
     * Returns the specific TaskList created for this Duke instance.
+     *
     * @return The specific TaskList created for this Duke instance.
     */
     public TaskList getUserTaskList() {
         return this.userTaskList;
      }
-
-    /**
-     * Main method which runs the Duke bot.
-     -     * @param args
-     */
-    public static void main() {
-        new Duke("duke.txt");
-    }
 
     /**
      * Empty Duke constructor to start GUI.
@@ -143,8 +138,9 @@ public class Duke extends Application {
      /**
      * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
+      *
+     * @param text String containing text to add.
+     * @return A label with the specified text that has word wrap enabled.
      */
      private Label getDialogLabel(String text) {
          // You will need to import `javafx.scene.control.Label`.
@@ -161,7 +157,7 @@ public class Duke extends Application {
      */
      @FXML
      private void handleUserInput() {
-         this.parser = new Parser(); // new parser and thus tasklist being created everytime
+         this.parser = new Parser();
          String userText = userInput.getText();
          String dukeText = this.getResponse(userText, this.parser);
          dialogContainer.getChildren().addAll(
@@ -171,13 +167,16 @@ public class Duke extends Application {
          userInput.clear();
      }
 
-     /**
+    /**
      * Parses the user's response to return Duke's respective response in the GUI.
-     * @param input The User's input.
-     * @return Duke's response to the User's input.
+     *
+     * @param input The user's input.
+     * @param parser The parser that will be used to parse the user's input.
+     * @return Duke's response to the input given by the user.
      */
      public String getResponse(String input, Parser parser) {
-         return parser.userInput(input);
+         Instruction instruction = parser.userInput(input);
+         return instruction.execute();
      }
 
 }

@@ -2,6 +2,7 @@ package duke.tasks;
 
 /**
  * Class for Event Task.
+ *
  * @author lauralee
  */
 public class Event extends Task {
@@ -10,6 +11,7 @@ public class Event extends Task {
 
     /**
      * Constructor for Event class.
+     *
      * @param name Name of the Event being added.
      * @param time Time of the Event being added.
      */
