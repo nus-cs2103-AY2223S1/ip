@@ -4,14 +4,11 @@ import java.util.ArrayList;
 
 import duke.commands.Command;
 import duke.tasks.Task;
-import javafx.scene.image.Image;
 
 /**
  * duke.Duke Program for tracking Tasks.
  */
 public class Duke {
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
