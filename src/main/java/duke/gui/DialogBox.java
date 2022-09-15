@@ -9,10 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
 /**
  * An example of a custom control using FXML.
@@ -21,9 +22,9 @@ import javafx.scene.layout.HBox;
  */
 public class DialogBox extends HBox {
     @FXML
-    private Label dialog;
+    private Text dialog;
     @FXML
-    private ImageView displayPicture;
+    private Circle displayPicture;
 
     private DialogBox(String text, Image img) {
         try {
@@ -36,7 +37,11 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        displayPicture.setImage(img);
+        //@@author chengseong-reused
+        //Reused from
+        //https://github.com/chengseong/ip/blob/master/src/main/java/DialogBox.java
+        //to find out how to make the profile icon circle
+        displayPicture.setFill(new ImagePattern(img));
     }
 
     /**
