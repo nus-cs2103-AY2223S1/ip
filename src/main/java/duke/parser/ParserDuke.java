@@ -25,7 +25,7 @@ public class ParserDuke {
     private final String DEADLINE_CMD = "deadline ";
     private final String FIND_CMD = "find ";
 
-    private static final String BREAK_LINE = "\n***\n";
+    private static final String BREAK_LINE = "\n";
     private final String FILE_PATH = "src/main/java/duke/DukeTasks.txt";
 
     /**

@@ -30,8 +30,8 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/sherlock.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/Aemon_Targaryen.png"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/SherlockH.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/KingOfOld.png"));
 
 
     /**
@@ -58,7 +58,7 @@ public class Duke extends Application {
         scrollPane.setContent(dialogContainer);
 
         userInput = new TextField();
-        sendButton = new Button("Send");
+        sendButton = new Button("ASK");
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
@@ -68,7 +68,7 @@ public class Duke extends Application {
         stage.setScene(scene);
         stage.show();
 
-        stage.setTitle("Duke");
+        stage.setTitle("Ask Aemon");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
@@ -130,15 +130,15 @@ public class Duke extends Application {
             displayPicture = iv;
 
             text.setWrapText(true);
-            displayPicture.setFitWidth(100.0);
-            displayPicture.setFitHeight(100.0);
+            displayPicture.setFitWidth(125.0);
+            displayPicture.setFitHeight(150.0);
 
-            this.setAlignment(Pos.TOP_RIGHT);
+            this.setAlignment(Pos.CENTER);
             this.getChildren().addAll(text, displayPicture);
         }
 
         private void flip() {
-            this.setAlignment(Pos.TOP_LEFT);
+            this.setAlignment(Pos.CENTER);
             ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
             FXCollections.reverse(tmp);
             this.getChildren().setAll(tmp);
@@ -147,6 +147,7 @@ public class Duke extends Application {
         public static DialogBox getDukeDialog(Label l, ImageView iv) {
             var db = new DialogBox(l, iv);
             db.flip();
+            db.setStyle("-fx-border-color: black");
             return db;
         }
 
@@ -178,7 +179,6 @@ public class Duke extends Application {
         // You will need to import `javafx.scene.control.Label`.
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
-
         return textToAdd;
     }
 

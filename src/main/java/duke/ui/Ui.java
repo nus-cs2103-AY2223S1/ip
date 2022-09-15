@@ -14,7 +14,7 @@ public class Ui {
     private final Scanner in;
     private final PrintStream out;
     private static final String END_CMD = "bye";
-    private static final String BREAK_LINE = "\n***\n";
+    private static final String BREAK_LINE = "\n";
 
     /**
      * Constructs a Ui object
@@ -95,8 +95,6 @@ public class Ui {
      */
 
     public String readAndRespond(String userMsg) {
-
-//        Scanner readInput = this.in;
 
         while (true) {
             assert userMsg != null;
