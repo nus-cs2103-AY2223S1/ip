@@ -34,7 +34,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String run(TaskList tasks, Ui ui, Storage storage) throws InvalidInputException {
-        if (indexToUnmark > tasks.getSize() || indexToUnmark < 0) {
+        if (indexToUnmark > tasks.getSize() || indexToUnmark <= 0) {
             throw new InvalidInputException("The index provided is not within the list.");
         }
         storage.save(tasks.getTaskListInString());

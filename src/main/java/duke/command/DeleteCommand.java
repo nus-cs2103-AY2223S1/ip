@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String run(TaskList tasks, Ui ui, Storage storage) throws InvalidInputException {
-        if (deleteIndex > tasks.getSize() || deleteIndex < 0) {
+        if (deleteIndex > tasks.getSize() || deleteIndex <= 0) {
             throw new InvalidInputException("The index provided is not within the list.");
         }
         String task = tasks.deleteTask(this.deleteIndex);

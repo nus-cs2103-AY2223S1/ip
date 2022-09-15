@@ -108,7 +108,13 @@ public class RequestHandler {
                     String[] splitIntoInputArray = furtherSplit.split("\\s+");
                     return new FindCommand(splitIntoInputArray);
                 case UPDATE: {
+                    if (furtherSplit.length() <= 1) {
+                        throw new IncompleteInputException("Please key in the full update command");
+                    }
                     String[] splitUpdateCommand = furtherSplit.split(" ", 3);
+                    if (splitUpdateCommand.length < 3) {
+                        throw new IncompleteInputException("Please key in the full update command");
+                    }
                     int itemNumber = Integer.parseInt(splitUpdateCommand[0].trim());
                     String updateCommandType = splitUpdateCommand[1].replaceAll("\\s", "").toUpperCase();
                     if (updateCommandType.equals("DESCRIPTION")) {
