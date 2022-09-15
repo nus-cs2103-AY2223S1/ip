@@ -1,6 +1,7 @@
 package duke;
 
 import duke.commands.Command;
+import duke.commands.UndoCommand;
 import duke.controllers.MainWindow;
 import duke.tasks.*;
 import duke.ui.Ui;
@@ -15,16 +16,20 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Duke extends Application {
 
+    private static final File SAVE_FILE = new File("savedata.txt");
+    private static final URL MAIN_WINDOW_FXML = Duke.class.getResource("/view/MainWindow.fxml");
     private TaskList taskList;
     private Storage storage;
     private Ui ui;
     private InputParser inputParser;
-    private static final File SAVE_FILE = new File("savedata.txt");
-    private static final URL MAIN_WINDOW_FXML = Duke.class.getResource("/view/MainWindow.fxml");
+    private Deque<Command> commandHistory;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -32,6 +37,7 @@ public class Duke extends Application {
         ui = new Ui();
         storage = new Storage(SAVE_FILE);
         taskList = new TaskList(storage.loadFromFile());
+        commandHistory = new LinkedList<>();
         loadMainWindow(stage);
     }
 
@@ -49,8 +55,12 @@ public class Duke extends Application {
     }
 
     public String getResponse(String input) {
-        Command cmd = inputParser.parse(input, taskList, storage, ui);
+        Command cmd = inputParser.parse(input, taskList, storage, ui, commandHistory);
         String response = cmd.execute();
+        if (!(cmd instanceof UndoCommand)) {
+            commandHistory.push(cmd);
+        }
         return response;
     }
+
 }

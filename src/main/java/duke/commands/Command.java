@@ -8,4 +8,10 @@ public abstract class Command {
      */
     public abstract String execute();
 
+    /**
+     * Undoes the command.
+     * @return Response message.
+     */
+    public abstract String undo();
+
 }

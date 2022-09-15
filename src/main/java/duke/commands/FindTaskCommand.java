@@ -12,7 +12,6 @@ public class FindTaskCommand extends Command {
     private Ui ui;
     private String searchTerm;
 
-
     public FindTaskCommand(TaskList tasks, Ui ui, String searchTerm) {
         this.tasks = tasks;
         this.ui = ui;
@@ -31,6 +30,11 @@ public class FindTaskCommand extends Command {
             ++i;
         }
         return sb.toString();
+    }
+
+    @Override
+    public String undo() {
+        return "There is nothing to undo for your previous find task command.";
     }
 
 }
