@@ -32,8 +32,8 @@ public class Mew {
             tasks = new TaskList(storage.load());
         } catch (Exception exception) {
             exception.printStackTrace();
+            tasks = new TaskList();
         }
-        tasks = new TaskList();
     }
 
     /**
