@@ -20,7 +20,8 @@ Type the command in the textbox below and click the send button to input the com
 Here is a summary of the available commands along with some examples:
 - `add` - add a todo/Deadline/Event task. Note that input in square brackets [...] is only for deadlines/events <br/>
 
-  Format : `add <task>` [dateTime] <br/>
+  Format : `add <task> [dateTime]` 
+  Note that the format of the date and time *MUST* be of the format dd/MM/yyyy HHmm<br/>
 
   E.g. `add return book`, `add event Project meeting/at 17/09/2022`
 - `mark/unmark` - marks/unmarks a task to indicate whether a task is done or not done. <br/>
