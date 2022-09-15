@@ -89,4 +89,12 @@ public class Duke {
     public Ui getUi() {
         return this.ui;
     }
+
+    /**
+     * Exits Duke.
+     */
+    public void exit() {
+        this.ui.showBye();
+        this.ui.closeMainWindow();
+    }
 }
