@@ -5,7 +5,7 @@ package duke.ui;
  */
 public class Constants {
     // Logo
-    public static final String LOGO = "CS2103T - AY 22/23 Sem 1";
+    public static final String LOGO = "CONAN bot";
 
     // Arrow to start the answer
     public static final String ARROW = "--> ";
