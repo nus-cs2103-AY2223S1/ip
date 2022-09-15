@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -24,10 +24,10 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(boolean isDuke, boolean hasError, String text, Image img) {
+    private DialogBox(boolean isAnya, boolean hasError, String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DukeDialogBox.fxml"));
-            if (isDuke == false) {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/AnyaDialogBox.fxml"));
+            if (isAnya == false) {
                 fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/UserDialogBox.fxml"));
             }
             if (hasError == true) {
@@ -57,7 +57,7 @@ public class DialogBox extends HBox {
         return new DialogBox(false, false, text, img);
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
+    public static DialogBox getAnyaDialog(String text, Image img) {
         var db = new DialogBox(true, false, text, img);
         db.flip();
         return db;

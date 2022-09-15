@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 /**
  * Represents a command to add the task in the current tasklist.
@@ -15,7 +15,7 @@ public class AddCommand extends Command {
      * Execute the add command.
      * @param tasks current tasklist.
      * @param ui interaction class.
-     * @return response of Duke.
+     * @return response of Anya.
      */
     String execute(TaskList tasks, Ui ui) {
         int noOfTasks = tasks.add(this.task);

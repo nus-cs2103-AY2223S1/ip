@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public class ListCommand extends Command {
 
     /**
      * Execute the list command.
-     * @param tasks current tasklist
+     * @param tasks current tasklist.
      * @param ui interaction class.
-     * @return the response of the duke
+     * @return the response of the anya.
      */
     String execute(TaskList tasks, Ui ui) {
         List<Task> fullTasks = tasks.getList();

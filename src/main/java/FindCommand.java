@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class FindCommand extends Command {
      * Execute the find command.
      * @param tasks current tasklist.
      * @param ui interaction class.
-     * @return the response of the duke.
+     * @return the response of the anya.
      */
     String execute(TaskList tasks, Ui ui) {
         List<Task> matchingTasks = tasks.findTaskWithThisKeyword(this.keyword);

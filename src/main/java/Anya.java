@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import java.io.IOException;
  * Represents a ChatBot for managing tasks of 3 types: deadline, todo and event.
  */
 
-public class Duke {
+public class Anya {
 
     private Storage storage;
     private TaskList tasks;
@@ -20,7 +20,7 @@ public class Duke {
      * @param filePath
      * @throws Exception
      */
-    public Duke(String filePath) throws Exception {
+    public Anya(String filePath) throws Exception {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         this.tasks = new TaskList(storage.readFile());
@@ -52,12 +52,11 @@ public class Duke {
             this.hasReturnError = false;
 
         } catch (MismatchInputException e) {
-            response = ":( OOPS!!! I'm sorry, but I don't know what that means";
+            response = ui.printMisMatchInputError();
             this.hasReturnError = true;
 
         } catch (TaskWithNoDescriptionException e) {
-            response = ":( OOPS!!! The description of a "
-                    + strArr[0] + " cannot be empty.";
+            response = ui.printNoTaskDescriptionError(strArr[0]);
             this.hasReturnError = true;
         }
 

@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import java.io.IOException;
 
@@ -23,45 +23,45 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Duke duke;
+    private Anya anya;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
 
-    private Image dukeWelcomeImage = new Image(this.getClass().getResourceAsStream("/images/AnyaWelcome.png"));
-    private Image dukeErrorImage = new Image(this.getClass().getResourceAsStream("/images/AnyaError.png"));
-    private Image dukeRespondImage = new Image(this.getClass().getResourceAsStream("/images/Anya.png"));
+    private Image anyaWelcomeImage = new Image(this.getClass().getResourceAsStream("/images/AnyaWelcome.png"));
+    private Image anyaErrorImage = new Image(this.getClass().getResourceAsStream("/images/AnyaError.png"));
+    private Image anyaRespondImage = new Image(this.getClass().getResourceAsStream("/images/Anya.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
-        String greet = d.start();
+    public void setAnya(Anya a) {
+        anya = a;
+        String greet = a.start();
         dialogContainer.getChildren().addAll(
-            DialogBox.getDukeDialog(greet, dukeWelcomeImage)
+            DialogBox.getAnyaDialog(greet, anyaWelcomeImage)
         );
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Anya's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      * Ends chatbot when the user's input is bye.
      */
     @FXML
     private void handleUserInput() throws IOException {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
-        if (duke.getHasReturnError() == false) {
+        String response = anya.getResponse(input);
+        if (anya.getHasReturnError() == false) {
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(response, dukeRespondImage)
+                    DialogBox.getAnyaDialog(response, anyaRespondImage)
             );
         } else {
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getErrorDialog(response, dukeErrorImage)
+                    DialogBox.getErrorDialog(response, anyaErrorImage)
             );
         }
 

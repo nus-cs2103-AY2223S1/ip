@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 /**
  * Represents a class that deals with making sense of the user command.
@@ -54,7 +54,7 @@ public class Parser {
             return new SortDeadlineCommand();
 
         } else {
-            throw new MismatchInputException(":( OOPS!!! I'm sorry, but I don't know what that means");
+            throw new MismatchInputException();
         }
     }
 
@@ -76,8 +76,7 @@ public class Parser {
 
     private String[] splitDescriptionAndDate(String[] strarr) throws TaskWithNoDescriptionException {
         if (strarr.length < 2) {
-            throw new TaskWithNoDescriptionException(":( OOPS!!! The description of a "
-                    + strarr[0] + " cannot be empty.");
+            throw new TaskWithNoDescriptionException();
         }
 
         String description = strarr[1];

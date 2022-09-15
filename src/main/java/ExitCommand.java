@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 /**
  * Represents a command to exit the ChatBot.
@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
      * Execute the exit command.
      * @param tasks current tasklist.
      * @param ui interaction class.
-     * @return the response of the duke.
+     * @return the response of the anya.
      */
     String execute(TaskList tasks, Ui ui) {
         String response = ui.exit();

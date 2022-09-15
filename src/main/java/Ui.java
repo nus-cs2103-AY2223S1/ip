@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import java.util.List;
 
@@ -14,15 +14,14 @@ public class Ui {
 
     /**
      * Greet the users at the start of the program.
-     * @return String : the greeting by Duke.
+     * @return the greeting by Anya.
      */
     String greet() {
-        return "Hello! I'm Duke\n" + "What can I do for you?\n";
+        return "Helloooo! I'm Anya\n" + "What can Anya do for you,master?\n" + "Waku Waku :)\n" ;
     }
 
     /**
      * Reply the users when the users' input is bye.
-     * @return String : the reply by Duke.
      */
     String exit() {
         return "Bye. Hope to see you again soon!\n";
@@ -30,36 +29,36 @@ public class Ui {
 
     /**
      * Reply the users when the users' input is to add todo, deadline, and event.
-     * @return the reply by Duke : the task that is being added and the current number of tasks in the list.
+     * @return the reply by Anya showing the task that is being added and the current number of tasks in the list.
      */
     String added(String taskFullDescription, int totalNoOfTask) {
-        return "Got it, I've added this task:\n" + taskFullDescription + "\n"
-                + "Now you have " + totalNoOfTask + " task in the list.\n";
+        return "Got it, Anya have added this task:\n" + taskFullDescription + "\n"
+                + "Now you have " + totalNoOfTask + " tasks in the list.\n";
     }
 
     /**
      * Reply the users when the users' input is to delete todo, deadline, and event.
-     * @return the reply by Duke : the task that is being deleted and the current number of tasks in the list.
+     * @return the reply by Anya showing the task that is being deleted and the current number of tasks in the list.
      */
     String deleted(String taskFullDescription, int totalNoOfTask) {
-        return "Noted. I've removed this task:\n" + taskFullDescription + "\n"
+        return "Noted. Anya have removed this task:\n" + taskFullDescription + "\n"
                 + "Now you have " + totalNoOfTask + " tasks in the list.\n";
     }
 
     /**
      * Reply the users when the users' input is to mark a task as done.
-     * @return String : the reply by Duke that shows the task that is marked as done currently.
+     * @return the reply by Anya that shows the task that is marked as done currently.
      */
     String marked(String taskFullDescription) {
-        return "Nice! I've marked this task as done:\n" + taskFullDescription + "\n";
+        return "Nice! Anya have marked this task as done:\n" + taskFullDescription + "\n";
     }
 
     /**
      * Reply the users when the users' input is to unmark a task as not done.
-     * @return String : the reply by Duke that shows the task that is unmarked currently.
+     * @return the reply by Anya that shows the task that is unmarked currently.
      */
     String unmarked(String taskFullDescription) {
-        return "OK! I've marked this task as not done yet:\n" + taskFullDescription + "\n";
+        return "OK! Anya have marked this task as not done yet:\n" + taskFullDescription + "\n";
     }
 
     private String getPrintedList(List<Task> taskList) {
@@ -73,13 +72,13 @@ public class Ui {
 
     /**
      * Reply the users when the users' input is list.
-     * @return the reply by Duke that shows the current taskList or no list.
+     * @return the reply by Anya that shows the current taskList or no list.
      */
     String printList(List<Task> taskList) {
         String printedList = "";
 
         if (taskList == null) {
-            printedList = "There are no tasks in the list.";
+            printedList = "There are no tasks in the list yet.";
         } else if (taskList != null) {
             printedList = "Here are the tasks in your list:\n";
         }
@@ -90,7 +89,7 @@ public class Ui {
 
     /**
      * Reply the users when the users' input is to find tasks with a certain keyword.
-     * @return the reply by Duke that shows a list of matching tasks that contain the keyword or no matching task.
+     * @return the reply by Anya that shows a list of matching tasks that contain the keyword or no matching task.
      */
     String printMatchingList(List<Task> taskList) {
         String printedList = "";
@@ -107,7 +106,7 @@ public class Ui {
 
     /**
      * Reply the users when the users' input is to sort deadlines.
-     * @return the reply by Duke that shows a list of sorted-by-date deadlines.
+     * @return the reply by Anya that shows a list of sorted-by-date deadlines.
      */
     String printSortedDeadlineList(List<Deadline> sortedDeadlines) {
         String printedList = "";
@@ -123,6 +122,20 @@ public class Ui {
             }
         }
         return printedList;
+    }
+
+    /**
+     * Reply the users when there is a mismatch in the user's input.
+     */
+    String printMisMatchInputError() {
+        return "Anya do not understand what you means.";
+    }
+
+    /**
+     * Reply the users when there is no task description given.
+     */
+    String printNoTaskDescriptionError(String task) {
+        return "The description of a " + task + " cannot be empty.";
     }
 
 }

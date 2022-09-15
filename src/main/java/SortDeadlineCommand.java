@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class SortDeadlineCommand extends Command {
      * Execute the sortDeadline command.
      * @param tasks current tasklist.
      * @param ui interaction class.
-     * @return the response of the duke.
+     * @return the response of the anya that list the deadlines according to dates.
      */
     String execute(TaskList tasks, Ui ui) {
         List<Deadline> sortedDeadlines = tasks.getSortedDeadlinesList();

@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import java.io.IOException;
 
@@ -15,10 +15,10 @@ public class Main extends Application {
 
     private static final String FILE_LOCATION = "./data/duke.txt";
 
-    private Duke duke;
+    private Anya anya;
 
     public Main() throws Exception {
-        this.duke = new Duke(FILE_LOCATION);
+        this.anya = new Anya(FILE_LOCATION);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().setAnya(anya);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

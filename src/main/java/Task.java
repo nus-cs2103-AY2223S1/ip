@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 /**
  * Represents task given by the users.

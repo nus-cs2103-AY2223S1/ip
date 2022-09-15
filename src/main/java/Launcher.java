@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import javafx.application.Application;
 

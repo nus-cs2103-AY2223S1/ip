@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 /**
  * Represents a command to mark the task with this taskNo as done in the current tasklist.
@@ -15,7 +15,7 @@ public class MarkCommand extends Command {
      * Execute the mark command.
      * @param tasks current tasklist.
      * @param ui interaction class.
-     * @return the response of the duke.
+     * @return the response of the anya.
      */
     String execute(TaskList tasks, Ui ui) {
         String modifiedTask = tasks.mark(this.taskNo);

@@ -1,4 +1,4 @@
-package duke;
+package anya;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -129,7 +129,7 @@ public class TaskList {
     }
 
     List<Deadline> getSortedDeadlinesList() {
-        TimeComparator timeComp = new duke.TimeComparator();
+        TimeComparator timeComp = new anya.TimeComparator();
         Collections.sort(this.sortedDeadlines, timeComp);
         return this.sortedDeadlines;
     }
