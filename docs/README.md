@@ -38,6 +38,7 @@ Creates a new todo task.
 
 #### **Format of command**
     `todo [description]`
+
 #### **Example Usage**
     `todo buy groceries`
 
@@ -46,6 +47,7 @@ Creates a new deadline task.
 
 #### **Format of command**
     `deadline [description] /by [yyyy-MM-dd HHmm]`
+
 #### **Example Usage**
     `deadline math assignment /by 2022-09-25 2359`
 
@@ -54,6 +56,7 @@ Creates a new event task.
 
 #### **Format of command**
     `event [description] /at [yyyy-MM-dd HHmm]`
+
 #### **Example Usage**
     `event project presentation /at 2022-09-30 1900`
 
@@ -62,6 +65,7 @@ Finds tasks within the list that contain a specified keyword
 
 #### **Format of command**
     `find [keyword]`
+
 #### **Example Usage**
     `find assignment`
 
@@ -70,6 +74,7 @@ Unmarks the task specified using list index.
 
 #### **Format of command**
     `unmark [index]`
+
 #### **Example Usage**
     `unmark 1`
 
@@ -78,6 +83,7 @@ Marks the task specified using list index.
 
 #### **Format of command**
     `mark [index]`
+
 #### **Example Usage**
     `mark 1`
 
@@ -86,6 +92,7 @@ Deletes the task specified using list index.
 
 #### **Format of command**
     `delete [index]`
+
 #### **Example Usage**
     `delete 1`
 
@@ -94,6 +101,7 @@ Lists out the stored tasks
 
 #### **Format of command**
     `list`
+
 #### **Example Usage**
     `list`
 
@@ -102,6 +110,7 @@ Shows a help screen showing the various commands of Duke.
 
 #### **Format of command**
     `help`
+
 #### **Example Usage**
     `help`
 
@@ -110,6 +119,7 @@ Shuts down the app. Your tasks stored will be saved.
 
 #### **Format of command**
     `bye`
+
 #### **Example Usage**
     `bye`
 
