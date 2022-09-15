@@ -51,7 +51,7 @@ checkstyle {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "lily"
     archiveClassifier = null
 }
 

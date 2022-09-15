@@ -32,6 +32,7 @@ public class Duke {
                 String userInput = ui.readInput();
                 Command c = Parser.parse(userInput, taskList);
                 c.execute(taskList, ui, storage);
+                storage.writeFile(taskList);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.printWithDivider(e.getMessage());
@@ -40,13 +41,14 @@ public class Duke {
     }
 
     /**
-     * Returns response to handle user queries.
+     * Returns response to handle user queries and saves tasks to storage.
      * @param input text that user types in.
      * @return response string.
      */
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input, taskList);
+            storage.writeFile(taskList);
             return c.getResponse(taskList, ui, storage);
         } catch (DukeException e) {
             return e.getMessage();
