@@ -38,7 +38,7 @@ public class Duke {
             return e.getMessage();
         }
     }
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new Duke("data/Tasks.txt");
-    }
+    }*/
 }

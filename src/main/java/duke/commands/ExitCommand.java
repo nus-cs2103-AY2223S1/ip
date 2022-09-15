@@ -13,7 +13,6 @@ public class ExitCommand extends Command {
     public String sayGoodbye() {
         String result;
         result =  ui.sayGoodbye();
-        Platform.exit();
         return result;
     }
 }

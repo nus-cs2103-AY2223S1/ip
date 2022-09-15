@@ -7,7 +7,7 @@
 
 <fx:root alignment="TOP_RIGHT" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <Label fx:id="dialog" layoutX="103.0" layoutY="25.0" prefWidth="302.0" text="Label" textOverrun="WORD_ELLIPSIS" wrapText="true" />
+      <Label fx:id="dialog" layoutX="103.0" layoutY="25.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="302.0" text="Label" textOverrun="WORD_ELLIPSIS" wrapText="true" HBox.hgrow="NEVER" />
         <ImageView fx:id="displayPicture" fitHeight="67.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>

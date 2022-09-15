@@ -44,7 +44,7 @@ public class TaskStorage {
         if (task.isTodo()) {
             String temp = "T" + "|" + completed
                     + "|" + task.getDescription();
-            writer.write(task + "\n");
+            writer.write(temp + "\n");
         }
 
         if (task.isDeadline()) {
@@ -52,14 +52,14 @@ public class TaskStorage {
             String temp = "D" + "|" + completed
                     + "|" + temp1.getDescription()
                     + "|" + temp1.getDeadline();
-            writer.write(task + "\n");
+            writer.write(temp + "\n");
         }
         if (task.isEvent()) {
             Event temp1 = (Event) task;
             String temp = "D" + "|" + completed
                     + "|" + temp1.getDescription()
                     + "|" + temp1.getTime();
-            writer.write(task + "\n");
+            writer.write(temp + "\n");
         }
     }
 
