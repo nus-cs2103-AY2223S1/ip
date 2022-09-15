@@ -60,7 +60,8 @@ public class DialogBox extends HBox {
      * @return The dialogBox to be displayed.
      */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        return db;
     }
 
     /**
@@ -71,6 +72,8 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getBroDialog(String text, Image img) {
         var db = new DialogBox(text, img);
+        db.dialog.setStyle("-fx-text-fill: #000000d7; -fx-background-color: rgba(232, 232, 232, 0.8);"
+                + " -fx-background-radius: 7;");
         db.flip();
         return db;
     }

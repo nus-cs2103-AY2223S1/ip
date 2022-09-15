@@ -13,13 +13,13 @@ public class ParserTest {
      * Tests whether if deadline date is invalid throws exception.
      */
     @Test
-    public void deadlineParser_invalidDateFormat_returnsBroException() {
+    public void timeParser_invalidDateFormat_returnsBroException() {
         Parser parser = new Parser();
         try {
             parser.timeParser("11-11-2022");
             fail();
         } catch (BroException e) {
-            assertEquals("Please enter the date in the format dd/MM/yyyy kkmm", e.getMessage());
+            assertEquals("Please enter the date in the format dd/MM/yyyy hhmm", e.getMessage());
         }
     }
 

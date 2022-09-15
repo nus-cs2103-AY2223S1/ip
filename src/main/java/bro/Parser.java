@@ -77,7 +77,7 @@ public class Parser {
      * @throws BroException If the description has not been provided.
      */
     public void checkEmptyInput(String input) throws BroException {
-        String[] list = new String[]{"todo", "deadline", "event", "mark", "unmark", "find"};
+        String[] list = new String[]{"todo", "deadline", "event", "mark", "unmark", "find", "delete"};
         List<String> checkList = new ArrayList<>(Arrays.asList(list));
         if (checkList.contains(input)) {
             throw new BroException("The description cannot be empty.");
@@ -116,7 +116,7 @@ public class Parser {
      */
     public static LocalDateTime timeParser(String time) throws BroException {
         try {
-            return LocalDateTime.parse(time.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy hhmm"));
+            return LocalDateTime.parse(time.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
         } catch (DateTimeParseException e) {
             throw new BroException("Please enter the date in the format dd/MM/yyyy hhmm");
         }

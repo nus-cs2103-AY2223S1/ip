@@ -113,10 +113,6 @@ public class Ui {
                 + "6. unmark index :\n\t\tTo mark the task as not done \n"
                 + "7. delete index :\n\t\tTo delete the task in that index \n"
                 + "8. find keyword :\n\t\tTo find task with the keyword \n"
-                + "9. bye :\n\t\tTo exit the chatbot\n\n"
-                + "EXAMPLES :\n"
-                + "~ todo buy grocery\n"
-                + "~ deadline CS2109S HW /by 14/09/2022 1159\n"
-                + "~ event Christmas party /at 24/12/2022 0930";
+                + "9. bye :\n\t\tTo exit the chatbot";
     }
 }
