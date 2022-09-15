@@ -16,6 +16,17 @@ public class Parser {
     private Ui ui;
     private int parseErrorCount;
 
+    public static String[] commandList = new String[] {"deadline {task_name} /by {YYYY-mm-dd}",
+            "event {task_name} /at {YYYY-mm-dd}",
+            "todo {task_name}",
+            "mark {task_index}",
+            "unmark {task_index}",
+            "delete {task_index}",
+            "find {keyword}",
+            "list",
+            "bye",
+            "help"};
+
     /**
      * Class constructor for Parser.
      *
@@ -47,7 +58,7 @@ public class Parser {
             return parseTwo(command);
         } else if (command.startsWith("find")) {
             return parseFind(command);
-        } else if (command.startsWith("list") || command.startsWith("bye")) {
+        } else if (command.startsWith("list") || command.startsWith("bye") || command.startsWith("help")) {
             return parseOne(command);
         } else {
             parseErrorCount++;
@@ -155,12 +166,19 @@ public class Parser {
      */
     public String parseOne(String command) throws ChickException {
         parseErrorCount = 0;
-        if (command.equals("bye")) {
+        if (command.startsWith("bye")) {
             String response = tasks.saveTasks();
             chick.terminate();
             return response;
-        } else if (command.equals("list")) {
+        } else if (command.startsWith("list")) {
             return tasks.generateList();
+        } else if (command.startsWith("help")) {
+            String commandString = "Commands:\n";
+            for (String commandName: commandList) {
+                commandString += commandName;
+                commandString += "\n";
+            }
+            return commandString;
         } else {
             throw new ChickException("Invalid command format.");
         }

@@ -24,7 +24,7 @@ public class MainWindow extends AnchorPane {
     private Chick chick;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/chick_red.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/chick.png"));
+    private Image chickImage = new Image(this.getClass().getResourceAsStream("/images/chick.png"));
 
     @FXML
     public void initialize() {
@@ -42,10 +42,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = chick.getResponse(input);
+        String response = chick.parseCommand(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, chickImage)
         );
         userInput.clear();
     }

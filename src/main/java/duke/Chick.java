@@ -54,14 +54,6 @@ public class Chick {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
-    public String getResponse(String input) {
-        return parseCommand(input);
-    }
-
-    /**
      * Main method to run Duke Bot.
      * @param args Unused input arguments.
      */
