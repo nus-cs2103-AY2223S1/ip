@@ -41,7 +41,8 @@ Examples:
 List all tasks on the task list<br>
 
 Format: `list`
-  <br><br><br>
+
+<br><br><br>
 ### Delete task: `delete`
 Deletes specified task from task list<br>
 
@@ -120,7 +121,9 @@ Examples:
 ### End the program: `bye`
 Ends the program <br>
 
-Format: `bye`<br><br><br>
+Format: `bye`
+
+<br><br><br>
 ### Saving the data
 Task list data are saved in the hard disk after the `bye` command and the program ends
 <br><br><br>
