@@ -237,7 +237,7 @@ Super Duke indicates a task as not done yet by its index in the storage list.
 
 **Expected outcome:**
 
-Shows the task to be unmarked to the user and replaces `[X]` with `[ ]`.
+Shows to the user the task to be unmarked and replaces `[X]` with `[ ]`.
 
 ```
 OK, I've marked this task as not done yet:
