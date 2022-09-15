@@ -39,7 +39,7 @@ public class FindCommand extends Command {
             }
         }
         if (found.getSize() == 0) {
-            str += "No matching tasks were found :(\n";
+            str += "no matching tasks were found :(\n";
         } else {
             for (int i = 1; i <= found.getSize(); i++) {
                 String addOn = i + ". " + found.retrieveTask(i - 1).toString() + "\n";

@@ -36,7 +36,7 @@ public class StatisticsCommand extends Command {
                 incompleteTasks += 1;
             }
         }
-        return "You have completed " + completeTasks + " tasks and have " + incompleteTasks
-                + " tasks left incomplete.";
+        return completeTasks + " tasks have been completed and " + incompleteTasks
+                + " have not!";
     }
 }

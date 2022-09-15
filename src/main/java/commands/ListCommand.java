@@ -28,7 +28,7 @@ public class ListCommand extends Command {
     public String execute(TaskList taskList, Ui ui, Storage s) {
         String str = "";
         if (taskList.getSize() == 0) {
-            str = "You have no tasks at the moment!\n";
+            str = "you have 0 tasks right now!\n";
         }
         for (int i = 1; i <= taskList.getSize(); i++) {
             String addOn = i + ". " + taskList.retrieveTask(i - 1).toString() + "\n";

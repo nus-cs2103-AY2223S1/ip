@@ -4,6 +4,7 @@ import java.time.format.DateTimeParseException;
 
 import duke.Storage;
 import duke.Ui;
+import dukeexceptions.DateTimeException;
 import tasks.Events;
 import tasks.Task;
 import tasks.TaskList;
@@ -41,7 +42,7 @@ public class EventCommand extends Command {
             taskList.addTask(toAdd);
             return Ui.printAddStatement(toAdd.toString(), taskList.getSize());
         } catch (DateTimeParseException e) {
-            return "Please enter the date in the DD/MM/YYYY HH:MM format as so: 12/11/2022 15:30";
+            return new DateTimeException().getMessage();
         }
     }
 }

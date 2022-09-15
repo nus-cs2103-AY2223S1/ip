@@ -23,7 +23,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("Chan bot <3");
-            stage.getScene().getStylesheets().add(getClass().getResource("/css/global.css").toExternalForm());
+            //stage.getScene().getStylesheets().add(getClass().getResource("/css/global.css").toExternalForm());
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             fxmlLoader.<MainWindow>getController().printWelcome();
             stage.show();

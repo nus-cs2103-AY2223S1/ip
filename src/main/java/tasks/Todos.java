@@ -35,7 +35,7 @@ public class Todos extends Task {
      */
     @Override
     public String toString() {
-        String result = "[T]" + super.toString() + this.description;
+        String result = "[T]" + super.toString() + this.description.strip();
         return result;
     }
 
