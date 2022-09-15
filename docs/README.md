@@ -1,5 +1,30 @@
 # Uncle Cheong User Guide
 
+Uncle Cheong is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+- [Quick Start](#quick-start)
+- [Features](#features)
+   * [Adding tasks](#1-adding-tasks)
+       1. [Add a todo](#--add-a-todo)
+       2. [Add an event](#--add-an-event)
+       3. [Add a deadline](#--add-a-deadline)
+   * [List tasks](#2-list-tasks)
+   * [Mark tasks](#3-mark-tasks)
+   * [Unmark tasks](#4-unmark-tasks)
+   * [Delete tasks](#5-delete-tasks)
+   * [Find tasks](#6-find-tasks)
+   * [View Schedule](#7-view-schedule)
+- [Command Summary](#command-summary)
+
+## Quick Start
+Ensure you have Java 11 or above installed in your Computer.
+
+Download the latest uncle-cheong.jar from [here](https://github.com/MuhdMusab/ip/releases/tag/v0.2).
+
+Copy the file to the folder you want to use as the home folder for your Uncle Cheong jar file.
+
+Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+
 ## Features 
 
 ### 1. Adding tasks
@@ -127,3 +152,16 @@ Expected outcome:
 Here are your tasks at 2022-09-15
 [E][] JB trip (at: 15-Sep-2022 08:00 AM)
 ```
+
+## Command Summary
+Action | Format, Examples
+--------|------------------
+**Todo** | `todo {description}` <br> e.g., `todo make the bed`
+**Event** | `event {task details} /at {date and time in MMM d yyyy hh:mm a}` <br> e.g., `event JB trip /at Sep 15 2022 08:00 AM`
+**Deadline** | `deadline {task details} /by {date and time in MMM d yyyy hh:mm a}` <br> e.g., `deadline submit assignment /by 25 Sep`
+**Mark** | `mark {task number}`<br> e.g., `mark 2`
+**Unmark** | `unmark {task number`<br> e.g., `unmark 2`
+**Delete** | `delete {task number}`<br> e.g., `delete 3`
+**Find** | `find {keyword}`<br> e.g., `find cs2102`
+**List** | `list`
+**Exit** | `bye`
