@@ -42,8 +42,6 @@ The coloured task bar to the left indicates the completion status
 of the task (green indicates that a task is complete, and yellow
 indicates  an incomplete task).
 
-<img src="images/List Taskbar.png" width="400"/>
-
 Hover over a checked checkbox to display the completion date of the
 completed task.
 
