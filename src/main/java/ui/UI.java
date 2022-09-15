@@ -9,18 +9,21 @@ public class UI {
 
     }
 
-    public void showGotTask() {
-        System.out.println("----------------------\nOooo looks like you have tasks already planned\n" +
+    public String showGotTask() {
+        String out = ("----------------------\nOooo looks like you have tasks already planned\n" +
                 "----------------------\n");
+        return out;
     }
 
-    public void showNoTask() {
-        System.out.println("----------------------\nA fresh start for you :)\n----------------------\n");
+    public String showNoTask() {
+        String out = ("----------------------\nA fresh start for you :)\n----------------------\n");
+        return out;
     }
 
-    public void welcomeMessage() {
-        System.out.println("----------------------\n" +
-                "Hello! I'm HelperBot\nWhat can I do for you?\n----------------------\n");
+    public String welcomeMessage() {
+        String out = ("----------------------\n" +
+                "Hello! I'm Dookie\nWhat can I do for you?\n----------------------\n");
+        return out;
     }
 
     public String showInaccurateInput() {

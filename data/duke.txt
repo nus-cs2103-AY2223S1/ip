@@ -1,6 +1,3 @@
-[T][ ] plau
-[T][ ] sleep at 10pm
-[T][ ] sleep
-[T][ ] sleep
-[T][ ] eat
-[T][ ] eat
+[T][ ] 1
+[T][ ] 2
+[D][ ] return book  (by: Dec 02 2019 1800)

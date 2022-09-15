@@ -9,6 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import storage.Storage;
+
+import ui.UI;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -24,11 +28,35 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final UI ui = new UI();
+
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image reminderImage = new Image(this.getClass().getResourceAsStream("/images/DaReminder.jpg"));
 
     @FXML
     public void initialize() {
+        String welcomeMessage = ui.welcomeMessage();
+        //data from duke.txt
+        Storage dukeStorage = new Storage("data/duke.txt");
+        String dukeList = dukeStorage.printOutContent();
+        //data from reminder.txt
+        Storage reminderStorage = new Storage("data/reminder.txt");
+        String reminderList = reminderStorage.printOutContent();
+
+        if (!reminderList.equals("")) {
+            //get all reminders
+            String reminders = "IMPORTANT YOU HAVE THESE TASKS THIS WEEK\n" + reminderList;
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(reminders, reminderImage));
+        }
+        if (!dukeList.equals("")) {
+            String tasks = ui.showGotTask() + dukeList;
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(tasks, dukeImage));
+        } else {
+            ui.showNoTask();
+        }
+
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(welcomeMessage, dukeImage));
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
@@ -43,7 +71,6 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        duke.getResponse(input);
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
