@@ -1,8 +1,8 @@
 package duke.util;
 
 /**
- * Class to represent parsed data. <code>ParsedData</code> can be used to store 3 seperate instance of String
- * information to be used by other classes.
+ * Class to represent parsed data. <code>ParsedData</code> can be used to store
+ * 3 seperate instance of String information to be used by other classes.
  */
 public class ParsedData {
     private static final String SEP = " <<<< ";
@@ -13,7 +13,7 @@ public class ParsedData {
 
     /**
      * Initiate ParseData with the parameters from the input.
-     * 
+     *
      * @param info1
      * @param info2
      * @param info3
@@ -41,7 +41,7 @@ public class ParsedData {
 
     /**
      * Returns saved data as a string to be stored.
-     * 
+     *
      * @return String
      */
     public String getSavedString() {
