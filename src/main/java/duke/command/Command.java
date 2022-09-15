@@ -4,6 +4,7 @@ import duke.task.TaskList;
 import duke.Ui;
 
 public abstract class Command {
+    public  Command(){}
     private boolean isExit = false;
 
     public abstract void execute(TaskList taskList, Ui ui);

@@ -1,20 +1,14 @@
 package duke.command;
 
-import duke.Ui;
-import duke.task.TaskList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CommandTest {
+public class ListCommandTest {
     @Test
-    public void isExitTest() {
-        Command cmd = new Command() {
-            @Override
-            public void execute(TaskList taskList, Ui ui) {
-
-            }
-        }
-        assertEquals(cmd.isExit, true);
+    public void setExitTest() {
+        ListCommand listCommand = new ListCommand();
+        listCommand.setExit();
+        assertEquals(listCommand.getExit(), true);
     }
 }
