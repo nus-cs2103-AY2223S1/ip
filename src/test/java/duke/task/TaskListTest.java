@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import duke.constant.PriorityLevel;
 import duke.exception.DukeException;
 
 public class TaskListTest {
@@ -49,7 +48,7 @@ public class TaskListTest {
 
     @Test
     public void addTask_addMultipleTasks_getCorrectNumberOfTasks() {
-        for(int i = 0; i < 66; ++i) {
+        for (int i = 0; i < 66; ++i) {
             testTasks.add(new TaskStub());
         }
 

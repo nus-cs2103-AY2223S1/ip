@@ -1,15 +1,25 @@
 package duke;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import duke.command.*;
 import org.junit.jupiter.api.Test;
 
+import duke.command.ByeCommand;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.PriorityCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 public class ParserTest {
     @Test
@@ -157,10 +167,10 @@ public class ParserTest {
     @Test
     public void parseUserInput_invalidCommands_throwDukeExceptions() {
         String[] invalidCommands = {"wnegfn", "todo", "deadline", "event", "deadline wwoefn",
-                "event iwfi", "find", "priority", "priority 1"};
+                                    "event iwfi", "find", "priority", "priority 1"};
 
-        for(int i = 0; i < invalidCommands.length; ++i) {
-            try{
+        for (int i = 0; i < invalidCommands.length; ++i) {
+            try {
                 Parser.parseUserInput(invalidCommands[i]);
                 fail();
             } catch (DukeException e) {

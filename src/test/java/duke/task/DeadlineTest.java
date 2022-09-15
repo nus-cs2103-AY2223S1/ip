@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import duke.constant.PriorityLevel;
 import duke.exception.DukeException;
 
-public class    DeadlineTest {
+public class DeadlineTest {
     @Test
     public void createDeadline_noMarkSpecified_unmarkedDeadlineReturned() {
         try {

@@ -1,6 +1,9 @@
 package duke.task;
 
-public class TaskStub extends Task{
+/**
+ * A Task Stub to help with TaskList testing
+ */
+public class TaskStub extends Task {
     public TaskStub() {
         super("");
     }
