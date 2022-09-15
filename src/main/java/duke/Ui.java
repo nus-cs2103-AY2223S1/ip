@@ -85,6 +85,22 @@ public class Ui {
     }
 
     /*
+     * Returns the text representation of the tasks that contain the specified
+     * keyword.
+     */
+    public String showMatchingTasks(ArrayList<Task> found) {
+        if (found.size() == 0) {
+            return addLineBreak("No matching tasks found.");
+        } else {
+            String result = "Here are the matching tasks in your list:\n";
+            for (int i = 0; i < found.size(); i++) {
+                result += "\t" + (i + 1) + ". " + found.get(i) + "\n";
+            }
+            return addLineBreak(result);
+        }
+    }
+
+    /*
      * Returns the exit message for when user exits Duke.
      */
     public String showExitMessage() {

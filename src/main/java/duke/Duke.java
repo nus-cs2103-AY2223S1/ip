@@ -37,7 +37,7 @@ public class Duke {
      * to give another input.
      */
     public void run() {
-        ui.showWelcome();
+        ui.print(ui.showWelcome());
         boolean isExit = false;
         while (!isExit) {
             try {

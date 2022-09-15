@@ -29,7 +29,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            int index = Integer.parseInt(instruction.substring(7)) - 1;
+            int index = Integer.parseInt(instruction) - 1;
             Task deleted = tasks.get(index);
             tasks.delete(index);
             ui.print(ui.showDeleteMessage(deleted));
