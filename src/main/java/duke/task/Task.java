@@ -34,7 +34,7 @@ abstract public class Task {
     public Task(String name, boolean isCompleted, PriorityLevel priority) {
         this.name = name;
         this.isCompleted = isCompleted;
-        this.priorityLevel = priority;
+        setPriority(priority);
     }
 
     /**

@@ -1,33 +1,38 @@
 package duke.controller;
 
-import duke.Command;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
 import java.util.Collections;
 
 public class DialogBox extends HBox {
     @FXML
-    private Label dialog;
+    private TextFlow dialog;
     @FXML
-    private ImageView displayPicture;
+    private Text text;
+    @FXML
+    private Circle displayPicture;
+
+    private Background User_BG = new Background(new BackgroundFill(Color.web("0xb7c9e2"), new CornerRadii(10), null));
+
+    private Background Duke_BG = new Background(new BackgroundFill(Color.web("0x8aab91"), new CornerRadii(10), null));
 
     private DialogBox(String text, Image img) {
-        Circle clip = new Circle(img.getWidth()/3, img.getWidth()/3,50);
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -38,10 +43,9 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        dialog.setText(text);
-        dialog.setBackground(new Background(new BackgroundFill(Color.web("0xb7c9e2"), new CornerRadii(10), null)));
-        displayPicture.setImage(img);
-        displayPicture.setClip(clip);
+        this.text.setText(text);
+        dialog.setBackground(User_BG);
+        displayPicture.setFill(new ImagePattern(img));
     }
 
     /**
@@ -52,7 +56,7 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
-        dialog.setBackground(new Background(new BackgroundFill(Color.web("0x8aab91"), new CornerRadii(10), null)));
+        dialog.setBackground(Duke_BG);
     }
 
     public static DialogBox getUserDialog(String text, Image img) {

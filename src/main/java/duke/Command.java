@@ -199,7 +199,7 @@ public class Command {
      */
     private String findTask() throws Exception {
         if (isFindPriority()) {
-            String priority = fullCommand.substring(fullCommand.indexOf("/p") + 2);
+            String priority = fullCommand.substring(fullCommand.indexOf("/p") + 3);
             return findTaskPriority(priority);
         } else {
             String searchString = fullCommand.substring(fullCommand.indexOf(" ") + 1);
