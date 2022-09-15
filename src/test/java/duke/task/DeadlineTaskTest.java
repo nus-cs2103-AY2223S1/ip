@@ -2,6 +2,7 @@ package duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import duke.ChickException;
 import org.junit.jupiter.api.Test;
 
 public class DeadlineTaskTest {
@@ -9,7 +10,7 @@ public class DeadlineTaskTest {
     public void noSeparator_exceptionThrown() {
         try {
             DeadlineTask task = new DeadlineTask("deadline homework 2022-08-29");
-        } catch (duke.DukeException e) {
+        } catch (ChickException e) {
             assertEquals(e.getMessage(), "Deadline time (indicated by /by separator) is missing.");
         }
     }
@@ -18,7 +19,7 @@ public class DeadlineTaskTest {
     public void multipleSeparator_exceptionThrown() {
         try {
             DeadlineTask task = new DeadlineTask("deadline homework /by 2022-08-29 /by 2359");
-        } catch (duke.DukeException e) {
+        } catch (ChickException e) {
             assertEquals(e.getMessage(), "Multiple usage of /by separator is not allowed.");
         }
     }

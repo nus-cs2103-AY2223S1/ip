@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.DukeException;
+import duke.ChickException;
 
 /**
  * Class representing an EventTask.
@@ -17,9 +17,9 @@ public class EventTask extends Task {
      *
      * @param description Command string being used to create EventTask.
      * @throws DateTimeParseException If datetime given cannot be parsed.
-     * @throws DukeException If command is invalid.
+     * @throws ChickException If command is invalid.
      */
-    public EventTask(String description) throws DateTimeParseException, DukeException {
+    public EventTask(String description) throws DateTimeParseException, ChickException {
         super();
         this.commandString = description;
         int descriptionStartIndex = "event ".length();
@@ -27,9 +27,9 @@ public class EventTask extends Task {
         String[] split = description.split(" /at ");
         int correctSplitCount = 2;
         if (split.length < correctSplitCount) {
-            throw new DukeException("Deadline time (indicated by /by separator) is missing.");
+            throw new ChickException("Deadline time (indicated by /by separator) is missing.");
         } else if (split.length > correctSplitCount) {
-            throw new DukeException("Multiple usage of /by separator is not allowed.");
+            throw new ChickException("Multiple usage of /by separator is not allowed.");
         }
         this.description = split[0];
         this.at = LocalDate.parse(split[1]);

@@ -8,9 +8,9 @@ public class ParserTest {
     @Test
     public void deleteCommand_invalidIndex_exceptionThrown() {
         try {
-            Parser parser = new Duke().parser;
+            Parser parser = new Chick().parser;
             parser.parse("delete loooool", false);
-        } catch (DukeException e) {
+        } catch (ChickException e) {
             assertEquals(e.getMessage(), "Please input a valid number.");
         }
     }
