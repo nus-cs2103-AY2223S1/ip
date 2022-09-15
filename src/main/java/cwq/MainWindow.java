@@ -1,3 +1,5 @@
+package cwq;
+
 import cwq.CWQ;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

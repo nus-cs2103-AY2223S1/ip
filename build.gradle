@@ -35,7 +35,7 @@ test {
 }
 
 application {
-    mainClassName = "cwq.CWQ"
+    mainClassName = "cwq.Launcher"
 }
 
 shadowJar {

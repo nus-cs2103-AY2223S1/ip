@@ -1,3 +1,5 @@
+package cwq;
+
 import javafx.application.Application;
 
 /**
