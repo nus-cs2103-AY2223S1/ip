@@ -1,19 +1,23 @@
 package duke.task;
 
+import java.time.LocalDateTime;
+
+import duke.DateConverter;
+
 /**
  * Event, a type of Task
  */
 public class Event extends Task {
-    private final String duration;
+    private final LocalDateTime time;
 
     /**
      * Constructor for Event object.
      * @param description Description of event.
-     * @param duration Duration of event.
+     * @param time date and time of event.
      */
-    public Event(String description, String duration) {
+    public Event(String description, String time) {
         super(description);
-        this.duration = duration;
+        this.time = LocalDateTime.parse(time);
     }
 
     /**
@@ -22,7 +26,7 @@ public class Event extends Task {
      */
     @Override
     public String storedString() {
-        return "E | " + super.storedString() + " | " + duration;
+        return "E | " + super.storedString() + " | " + time;
     }
 
     /**
@@ -31,6 +35,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + duration + ")";
+        return "[E]" + super.toString() + "(at: " + DateConverter.convertTimeToString(time) + ")";
     }
 }

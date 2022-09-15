@@ -31,14 +31,14 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-[E][ ] project meeting (at: Mon 2-4pm)
+[E][ ] project meeting (at: 10 Oct 2022 18:00 PM)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: Aug 10 2022)
-3. [E][ ] project meeting (at: Mon 2-4pm)
+3. [E][ ] project meeting (at: 10 Oct 2022 18:00 PM)
 ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
@@ -48,17 +48,17 @@ ____________________________________________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][X] return book (by: Aug 10 2022)
-3. [E][ ] project meeting (at: Mon 2-4pm)
+3. [E][ ] project meeting (at: 10 Oct 2022 18:00 PM)
 ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
-[E][X] project meeting (at: Mon 2-4pm)
+[E][X] project meeting (at: 10 Oct 2022 18:00 PM)
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][X] return book (by: Aug 10 2022)
-3. [E][X] project meeting (at: Mon 2-4pm)
+3. [E][X] project meeting (at: 10 Oct 2022 18:00 PM)
 ____________________________________________________________
 ____________________________________________________________
 Here are the matching tasks in your list:
@@ -66,7 +66,7 @@ Here are the matching tasks in your list:
 2. [D][X] return book (by: Aug 10 2022)
 ____________________________________________________________
 ____________________________________________________________
-OOPS!!! The keyword cannot be empty.
+Hmm, keyword cannot be empty.
 ==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________
@@ -77,10 +77,10 @@ ____________________________________________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: Aug 10 2022)
-3. [E][X] project meeting (at: Mon 2-4pm)
+3. [E][X] project meeting (at: 10 Oct 2022 18:00 PM)
 ____________________________________________________________
 ____________________________________________________________
-OOPS!!! The description of a todo cannot be empty.
+Hmm, description cannot be empty.
 ==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________
@@ -89,11 +89,37 @@ OOPS!!! I'm sorry, but I don't know what that means :-(
 ____________________________________________________________
 ____________________________________________________________
 Noted. I've removed this task:
-[E][X] project meeting (at: Mon 2-4pm)
+[E][X] project meeting (at: 10 Oct 2022 18:00 PM)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Hmm, You need to use yyyy-mm-dd for date format.
+Hmm, the date format should be yyyy-mm-dd.
+==> Type 'help' to see available commands.
+____________________________________________________________
+____________________________________________________________
+Hmm, the description cannot be empty.
+==> Type 'help' to see available commands.
+____________________________________________________________
+____________________________________________________________
+Hmm, the time format should be yyyy-mm-dd hh:mm
+==> Type 'help' to see available commands.
+____________________________________________________________
+____________________________________________________________
+Hmm, input doesn't match the 'event' format.
+e.g event team meeting /at 2022-10-10 19:00
+==> Type 'help' to see available commands.
+____________________________________________________________
+____________________________________________________________
+Hmm, input doesn't match the 'deadline' format.
+e.g deadline return book /by 2022-10-10
+==> Type 'help' to see available commands.
+____________________________________________________________
+____________________________________________________________
+Hmm, the date format should be yyyy-mm-dd.
+==> Type 'help' to see available commands.
+____________________________________________________________
+____________________________________________________________
+OOPS!!! This item doesn't exist :-(
 ==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________

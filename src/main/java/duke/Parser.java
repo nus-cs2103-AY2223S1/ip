@@ -150,11 +150,13 @@ public class Parser {
     public static String[] deadlineTask(String request) throws DukeException {
         if (request.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
             String[] deadline = request.substring(9).split("\\/(by)\\s", 2);
-            if (DateConverter.isValidDate(deadline[1])) {
-                return deadline;
-            } else {
-                throw new InvalidDeadlineException("Hmm, You need to use yyyy-mm-dd for date format.");
+            if (!DateConverter.isValidDate(deadline[1])) {
+                throw new InvalidDeadlineException("Hmm, the date format should be yyyy-mm-dd.");
             }
+            if (deadline[0].trim().equals("")) {
+                throw new InvalidDeadlineException("Hmm, the description cannot be empty.");
+            }
+            return deadline;
         } else {
             throw new InvalidDeadlineException();
         }
@@ -168,7 +170,15 @@ public class Parser {
      */
     public static String[] eventTask(String request) throws DukeException {
         if (request.matches("(?i)^event\\s.+\\s\\/(at)\\s.+")) {
-            return request.substring(6).split("\\/(at)\\s", 2);
+            String[] event = request.substring(6).split("\\/(at)\\s", 2);
+            if (event[0].trim().equals("")) {
+                throw new InvalidEventException("Hmm, the description cannot be empty");
+            }
+            if (!DateConverter.isValidTime(event[1])) {
+                throw new InvalidEventException("Hmm, the time format should be yyyy-mm-dd hh:mm");
+            }
+            event[1] = event[1].replace(" ", "T");
+            return event;
         } else {
             throw new InvalidEventException();
         }

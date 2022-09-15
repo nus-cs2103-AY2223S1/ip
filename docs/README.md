@@ -42,8 +42,8 @@ Format: `deadline <decription> /by yyyy-mm-dd`
 
 ### Add an event task: `event`
 
-Adds an event task that start at a specific time and ends at a specific time to the list.<br>
-Format: `event <description> /at <duration>`
+Adds an event task that start at a specific date and time list.<br>
+Format: `event <description> /at <time>`
 
 <img align="left" width="30" height="30" style="margin-right: 10px; margin-top: 10px" src="demo/logo.png"> 
 
@@ -102,7 +102,7 @@ Action | Syntax and Examples
 --------|------------------
 **Todo** | `todo <description>` <br> e.g., `todo watch movies`
 **Deadline** | `deadline <description> /by YYYY-MM-DD` <br> e.g., `deadline CS2103T quiz /by 2022-09-23`
-**Event** | `event <description> /at <duration>` <br> e.g., `event team meeting /at 9-11pm`
+**Event** | `event <description> /at <duration>` <br> e.g., `event team meeting /at 2022-10-10 19:00`
 **List** | `list`
 **Mark** | `mark <index>`<br> e.g., `mark 3`
 **Unmark** | `unmark <index>`<br> e.g., `unmark 3`
@@ -111,6 +111,10 @@ Action | Syntax and Examples
 **Help** | `help`
 **Exit** | `bye`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Demo
 
 <img src="Ui.png">
+<img src="demo/deadline.png" style="margin-top: 20px">
+<img src="demo/find.png" style="margin-top: 20px">

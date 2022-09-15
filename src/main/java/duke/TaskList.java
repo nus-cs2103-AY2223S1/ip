@@ -85,7 +85,7 @@ public class TaskList {
     }
 
     /**
-     * Find all the tasks with given keyword in TaskList.
+     * Finds all the tasks with given keyword in TaskList.
      * @param keyword Keyword to find tasks.
      * @return TaskList containing matching tasks.
      */

@@ -54,7 +54,7 @@ public class Duke {
     }
 
     /**
-     * Main method for Duke program.
+     * Runs Duke program.
      * @param args Arguments for main method.
      */
     public static void main(String[] args) {
