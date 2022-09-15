@@ -5,18 +5,18 @@ events and deadlines.
 
 ![](Ui.png)
 
-- [Getting Started](#getting-started-)
-- [List of Commands](#list-of-commands-)
-    - [Add a todo task: `todo`](#add-a-todo--todo-task_description-)
-    - [Add a deadline task: `deadline`](#add-a-deadline--deadline-task_description-by-datetime-)
-    - [Add an event task: `event`](#add-an-event-event-task_description-at-event_time-)
-    - [List all tasks: `list`](#list-all-tasks-list-)
-    - [Mark a task as done: `mark`](#mark-a-task-as-done-mark-task_number-)
-    - [Unmark a task: `unmark`](#unmark-a-task-unmark-task_number-)
-    - [Delete a task: `delete`](#delete-a-task-delete-task_number-)
-    - [Find tasks matching query: `find`](#find-tasks-matching-query-find-query-)
-    - [Exit the program: `bye`](#exit-the-program-bye-)
-- [Acknowledgements](#acknowledgements-)
+- [Getting Started](#getting-started)
+- [List of Commands](#list-of-commands)
+    - [Add a todo task: `todo`](#add-a-todo--todo-task_description)
+    - [Add a deadline task: `deadline`](#add-a-deadline--deadline-task_description-by-datetime)
+    - [Add an event task: `event`](#add-an-event-event-task_description-at-event_time)
+    - [List all tasks: `list`](#list-all-tasks-list)
+    - [Mark a task as done: `mark`](#mark-a-task-as-done-mark-task_number)
+    - [Unmark a task: `unmark`](#unmark-a-task-unmark-task_number)
+    - [Delete a task: `delete`](#delete-a-task-delete-task_number)
+    - [Find tasks matching query: `find`](#find-tasks-matching-query-find-query)
+    - [Exit the program: `bye`](#exit-the-program-bye)
+- [Acknowledgements](#acknowledgements)
 
 # Getting Started
 - Ensure you have Java 11 or above installed.
