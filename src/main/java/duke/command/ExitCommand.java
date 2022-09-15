@@ -11,8 +11,8 @@ public class ExitCommand extends Command {
     /**
      * Constructs an ExitCommand object.
      * 
-     * @param storage  Storage class to be used
-     * @param ui       Ui class to be used
+     * @param storage Storage class to be used
+     * @param ui Ui class to be used
      * @param taskList TaskList to be used
      */
     public ExitCommand(Storage storage, Ui ui, TaskList taskList) {
@@ -23,9 +23,9 @@ public class ExitCommand extends Command {
      * Prints a goodbye message, saves the tasks to storage and exits the program
      */
     @Override
-    public void execute() {
-        ui.bye();
+    public String execute() {
         storage.saveTasks(taskList);
+        return ui.bye();
     }
 
     /**

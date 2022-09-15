@@ -16,6 +16,8 @@ public class Duke {
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
+    private Parser parser;
+    private Command command;
 
     /**
      * Constructs a Duke object.
@@ -24,6 +26,8 @@ public class Duke {
         storage = new Storage("data/duke.txt");
         ui = new Ui();
         taskList = new TaskList();
+        storage.loadTasks(taskList);
+        parser = new Parser(storage, ui, taskList);
     }
 
     /**
@@ -31,11 +35,6 @@ public class Duke {
      */
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        Parser parser = new Parser(storage, ui, taskList);
-
-        ui.greet();
-        storage.loadTasks(taskList);
-        Command command = null;
         do {
             ui.showInputLine();
             String input = scanner.nextLine();
@@ -57,5 +56,22 @@ public class Duke {
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();
+    }
+
+    public String greet() {
+        return ui.greet();
+    }
+
+    public String getResponse(String input) {
+        try {
+            command = parser.parse(input);
+            return command.execute();
+        } catch (NumberFormatException e) {
+            return ui.showError("Please Enter a valid task number!");
+        } catch (IllegalArgumentException e) {
+            return ui.showError("I'm sorry but I don't know what that means.");
+        } catch (DukeException e) {
+            return ui.showError(e);
+        }
     }
 }

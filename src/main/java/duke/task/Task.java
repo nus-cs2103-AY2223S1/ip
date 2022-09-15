@@ -29,7 +29,7 @@ public abstract class Task {
      * Constructor to create new Task with isDone.
      * 
      * @param description Task Description.
-     * @param isDone      Whether the task is done or not.
+     * @param isDone Whether the task is done or not.
      */
     public Task(String description, boolean isDone) {
         this.description = description.trim();
@@ -51,8 +51,7 @@ public abstract class Task {
     /**
      * Factory method to create new Task.
      * 
-     * @param input String containing task type, description and deadline/timing if
-     *              needed.
+     * @param input String containing task type, description and deadline/timing if needed.
      * @return new Task.
      * @throws DukeException if invalid task type or wrong parameters.
      */
@@ -60,17 +59,17 @@ public abstract class Task {
         String[] splitInput = input.split(" ", 2);
 
         switch (CommandName.valueOf(splitInput[0])) {
-        case todo:
-            checkDescription(splitInput);
-            return Todo.createTodo(splitInput[1]);
-        case deadline:
-            checkDescription(splitInput);
-            return Deadline.createDeadline(splitInput[1]);
-        case event:
-            checkDescription(splitInput);
-            return Event.createEvent(splitInput[1]);
-        default:
-            throw new DukeException("I'm sorry but I don't know what that means.");
+            case todo:
+                checkDescription(splitInput);
+                return Todo.createTodo(splitInput[1]);
+            case deadline:
+                checkDescription(splitInput);
+                return Deadline.createDeadline(splitInput[1]);
+            case event:
+                checkDescription(splitInput);
+                return Event.createEvent(splitInput[1]);
+            default:
+                throw new DukeException("I'm sorry but I don't know what that means.");
         }
     }
 
@@ -86,19 +85,21 @@ public abstract class Task {
     /**
      * Marks task as done and prints info to user.
      */
-    public void markAsDone() {
+    public String markAsDone() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("\t" + this);
+        String output = "Nice! I've marked this task as done:\n";
+        output += "\t" + this;
+        return output;
     }
 
     /**
      * Marks task as not done and prints info to user.
      */
-    public void markAsNotDone() {
+    public String markAsNotDone() {
         this.isDone = false;
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("\t" + this);
+        String output = "OK, I've marked this task as not done yet:\n";
+        output += "\t" + this;
+        return output;
     }
 
     /**
