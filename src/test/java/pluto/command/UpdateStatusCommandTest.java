@@ -3,6 +3,8 @@ package pluto.command;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 import pluto.PlutoException;
@@ -14,7 +16,7 @@ import pluto.task.Todo;
 public class UpdateStatusCommandTest {
 
     @Test
-    public void execute_invalidIndex_exceptionThrown() {
+    public void execute_invalidIndex_exceptionThrown() throws IOException {
         try {
             Storage storage = new Storage("PlutoData.txt");
             TaskList tasks = new TaskList();
@@ -28,6 +30,7 @@ public class UpdateStatusCommandTest {
                 fail();
             } catch (PlutoException e) {
                 assertEquals("OOPS!!! Valid index required.", e.getMessage());
+                storage.rewriteFile(new TaskList());
             }
         } catch (PlutoException e) {
             assertEquals("OOPS!!! Couldn't find/create data file.", e.getMessage());

@@ -28,6 +28,7 @@ public class StorageTest {
             for (int i = 0; i < arrTasks.size(); i++) {
                 assertEquals(arrTasks.get(i), tasks.getTask(i));
             }
+            storage.rewriteFile(new TaskList());
         } catch (PlutoException e) {
             assertEquals("OOPS!!! Couldn't find/create data file.", e.getMessage());
         }
