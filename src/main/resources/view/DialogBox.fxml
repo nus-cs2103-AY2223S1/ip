@@ -4,13 +4,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.93" prefHeight="90.0" prefWidth="407.0" spacing="10.0" style="-fx-background-radius: 19; -fx-padding: 4;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" text="Label" wrapText="true" />
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #1e81b0#1e81b0; -fx-text-fill: white; -fx-label-padding: 8; -fx-background-radius: 20;" text="Label" wrapText="true">
+            <font>
+                <Font name="Wawati SC Regular" size="18.0" />
+            </font>
+            <HBox.margin>
+                <Insets right="6.0" />
+            </HBox.margin></Label>
+        <HBox>
+            <ImageView fx:id="displayPicture" fitHeight="82.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 23;" />
+        </HBox>
     </children>
     <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+        <Insets bottom="15.0" left="5.0" right="5.0" top="100.0" />
     </padding>
 </fx:root>

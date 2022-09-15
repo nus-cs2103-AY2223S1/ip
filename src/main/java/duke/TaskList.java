@@ -34,7 +34,7 @@ public class TaskList {
             counter++;
         }
 
-        return list.substring(0, list.length() - 2);
+        return list;
     }
 
     /**
