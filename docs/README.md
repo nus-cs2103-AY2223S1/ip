@@ -241,7 +241,15 @@ the data of your previous Duke home folder.
 | zebra stripes | are neat      |    $1 |
 
 
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
+**Action** | **Format, Examples**
+--- | ---
+todo | `todo TASK_DESCRIPTION` e.g. `todo watch movie`
+deadline | `deadline TASK_DESCRIPTION /by YYYY-MM-DD` e.g. `deadline CS2101 Assignment /by 2022-09-15`
+event | `event TASK_DESCRIPTION /at YYYY-MM-DD` e.g. `event NUS Supernova /at 2022-09-01`
+list | `list`
+delete | `delete INDEX` e.g. `delete 1`
+find | `find KEYWORD` e.g. `find test`
+mark | `mark INDEX` e.g. `mark 3`
+unmark | `unmark INDEX` e.g. `unmark 2`
+bye | `bye`
+
