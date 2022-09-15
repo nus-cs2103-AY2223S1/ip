@@ -95,10 +95,14 @@ public class TaskList {
         String separator = "/";
         String invalidInputMessage = "Invalid Input";
         String outputMessage = "Got it. I've added this task:\n";
+        String emptyTodoDescMessage = "Empty description for Todo task";
 
         switch (taskEnum) {
         case Todo:
             // example: borrow book
+            if (command.equals("")) {
+                throw new DukeException(emptyTodoDescMessage);
+            }
             taskToCreate = new Todo(command);
             break;
 

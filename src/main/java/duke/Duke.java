@@ -4,7 +4,8 @@ package duke;
  * duke.Main file that contains the flow of the program
  */
 public class Duke {
-    private static final String filePath = "data/duke.txt";
+    private static final String filePathWin = "data\\duke.txt";
+    private static final String filePathElse = "data/duke.txt";
     private boolean isTerminated;
     private TaskList taskList;
     private Storage storage;
@@ -15,6 +16,12 @@ public class Duke {
     public Duke() {
         this.isTerminated = false;
         this.taskList = new TaskList();
+        String filePath;
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            filePath = filePathWin;
+        } else {
+            filePath = filePathElse;
+        }
         this.storage = new Storage(filePath);
         storage.readResult(taskList);
     }

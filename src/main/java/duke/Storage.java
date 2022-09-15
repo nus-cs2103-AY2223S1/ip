@@ -11,9 +11,10 @@ import java.util.ArrayList;
  * Storage class to read and write file
  */
 class Storage {
-    private String filePath;
+    private final String filePath;
 
     Storage(String arg) {
+        assert !arg.equals("");
         this.filePath = arg;
     }
 
