@@ -36,6 +36,7 @@ public class MainWindow extends AnchorPane {
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/bobo icon.png"));
     private Image studiousDukeImage = new Image(this.getClass().getResourceAsStream("/images/bobo studious.png"));
     private Image dukeErrorImage = new Image(this.getClass().getResourceAsStream("/images/bobo error.png"));
+    private Image dukeStarImage = new Image(this.getClass().getResourceAsStream("/images/bobo star.png"));
 
     /**
      * Initialises the MainWindow, called once on the implementing controller when the contents of its
@@ -89,7 +90,7 @@ public class MainWindow extends AnchorPane {
             PieChart pieChart = (PieChart) response.getResponseObject();
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(replyMessage, dukeImage),
+                    DialogBox.getDukeDialog(replyMessage, dukeStarImage),
                     pieChart
             );
         } else if (responseType.equals(ResponseType.ERROR)) {

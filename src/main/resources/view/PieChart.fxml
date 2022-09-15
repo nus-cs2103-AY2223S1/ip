@@ -1,17 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<fx:root fx:id="root" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="400.0" minHeight="60.0" prefHeight="232.0" prefWidth="400.0" spacing="8.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="root" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="400.0" prefHeight="232.0" prefWidth="400.0" spacing="23.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="232.0" prefWidth="177.0">
+      <AnchorPane prefHeight="232.0" prefWidth="269.0">
          <children>
-            <Arc fx:id="todo" fill="#8eb0ce" layoutX="200.0" layoutY="115.0" length="120.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
-            <Arc fx:id="deadline" fill="#dda573" layoutX="200.0" layoutY="115.0" length="120.0" radiusX="100.0" radiusY="100.0" startAngle="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
-            <Arc fx:id="event" fill="#bdce8e" layoutX="200.0" layoutY="115.0" length="120.0" radiusX="100.0" radiusY="100.0" startAngle="240.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+            <Arc fx:id="todo" fill="#8eb0ce" layoutX="166.0" layoutY="115.0" length="120.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+            <Arc fx:id="deadline" fill="#dda573" layoutX="166.0" layoutY="115.0" length="120.0" radiusX="100.0" radiusY="100.0" startAngle="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+            <Arc fx:id="event" fill="#bdce8e" layoutX="166.0" layoutY="115.0" length="120.0" radiusX="100.0" radiusY="100.0" startAngle="240.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
          </children>
       </AnchorPane>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="232.0" prefWidth="78.0" spacing="5.0">
+         <children>
+            <HBox spacing="4.0">
+               <children>
+                  <StackPane>
+                     <children>
+                        <Rectangle arcHeight="15.0" arcWidth="9.0" fill="#8eb0ce" height="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="todo">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </StackPane>
+                  <Label fx:id="todoCount" text="0" textFill="#dedede">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox spacing="4.0">
+               <children>
+                  <StackPane>
+                     <children>
+                        <Rectangle arcHeight="15.0" arcWidth="9.0" fill="#dda573" height="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="deadline">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </StackPane>
+                  <Label fx:id="deadlineCount" text="0" textFill="#dedede">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox spacing="4.0">
+               <children>
+                  <StackPane>
+                     <children>
+                        <Rectangle arcHeight="15.0" arcWidth="9.0" fill="#bdce8e" height="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="event">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </StackPane>
+                  <Label fx:id="eventCount" text="0" textFill="#dedede">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </VBox>
    </children>
 </fx:root>

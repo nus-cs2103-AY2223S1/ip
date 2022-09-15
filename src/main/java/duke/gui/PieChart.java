@@ -2,7 +2,7 @@ package duke.gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Arc;
@@ -16,6 +16,12 @@ public class PieChart extends HBox {
     private Arc deadline;
     @FXML
     private Arc event;
+    @FXML
+    private Label todoCount;
+    @FXML
+    private Label deadlineCount;
+    @FXML
+    private Label eventCount;
 
     public PieChart(double totalCompleted, double toDoCompleted, double deadlineCompleted, double eventCompleted) {
         try {
@@ -41,6 +47,10 @@ public class PieChart extends HBox {
         todo.setStartAngle(0);
         deadline.setStartAngle(toDoAngle);
         event.setStartAngle(-eventAngle);
+
+        todoCount.setText((int) toDoCompleted + "");
+        deadlineCount.setText((int) deadlineCompleted + "");
+        eventCount.setText((int) eventCompleted + "");
         this.setMinHeight(Region.USE_PREF_SIZE);
     }
 }
