@@ -10,7 +10,7 @@ public class GoodbyeCommand extends Command {
 
     @Override
     public String execute(TaskList taskList) {
-        this.exit = true;
+        this.isExit = true;
         return ChatResponse.returnChatGoodbye();
     }
 }

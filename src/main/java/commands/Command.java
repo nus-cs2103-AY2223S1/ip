@@ -8,7 +8,7 @@ import tasklist.TaskList;
  * provide behavior expected of a Command class.
  */
 abstract public class Command {
-    protected boolean exit = false;
+    protected boolean isExit = false;
 
     /**
      * When the Command is executed, it performs its intended actions.
@@ -27,6 +27,6 @@ abstract public class Command {
      * @return Boolean value representing an exit signal for the loop in Duke.
      */
     public boolean isExit() {
-        return this.exit;
+        return this.isExit;
     }
 }
