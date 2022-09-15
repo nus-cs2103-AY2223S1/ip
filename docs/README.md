@@ -13,7 +13,6 @@ Duke frees your mind of  of having to remember things u need to, its
 3. Copy the file to the folder you want to use as the home folder for your chat bot.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 
-<p align="center">
 <img src="https://user-images.githubusercontent.com/88762462/190427386-0ceb27f9-33d7-413e-91b2-05bd48e1e46a.png"  width="400">
 
 ## Command Summary
@@ -21,7 +20,9 @@ Type the command in the textbox below and click the send button to input the com
 Here is a summary of the available commands along with some examples:
 - `add` - add a todo/Deadline/Event task. Note that input in square brackets [...] is only for deadlines/events <br/>
 
-  Format : `add <task>` [dateTime] <br/>
+  Format : `add <task> [dateTime]`
+  
+  Note that the format of the date and time **MUST** be of the format dd/MM/yyyy HHmm<br/>
 
   E.g. `add return book`, `add event Project meeting/at 17/09/2022`
 - `mark/unmark` - marks/unmarks a task to indicate whether a task is done or not done. <br/>
