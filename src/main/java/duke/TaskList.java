@@ -28,7 +28,6 @@ public class TaskList {
             throw new DukeDuplicateException();
         }
         TASKSET.add(shortenedDescription);
-        System.out.println(TASKSET.size());
         TASKLIST.add(task);
     }
 
@@ -37,7 +36,6 @@ public class TaskList {
      */
     public static String read() {
         if (TASKLIST.size() == 0) {
-            System.out.println("You have no task");
             return "You have no task";
         }
 
@@ -100,8 +98,8 @@ public class TaskList {
      */
     public static String find(String prefix) {
 
-        StringBuilder ret = new StringBuilder();
-        ret.append("Here are the matching tasks in your list:");
+        StringBuilder retrievedMessage = new StringBuilder();
+        retrievedMessage.append("Here are the matching tasks in your list: \n");
 
         for (int i = 0; i < TASKLIST.size(); i++) {
             Task curr = TASKLIST.get(i);
@@ -110,10 +108,10 @@ public class TaskList {
             }
 
             if (curr.startsWith(prefix)) {
-                ret.append(i + 1).append(". ").append(curr);
+                retrievedMessage.append(i + 1).append(". ").append(curr + "\n");
             }
         }
-        return ret.toString();
+        return retrievedMessage.toString();
     }
 
     /**

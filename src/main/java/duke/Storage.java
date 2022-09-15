@@ -34,7 +34,6 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter(FILEPATH);
             for (Task task : TaskList.getTaskList()) {
-                System.out.println(task.toString());
                 fw.write(task.toStorageFormat());
                 fw.write(System.lineSeparator());
             }

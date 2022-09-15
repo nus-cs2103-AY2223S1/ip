@@ -18,6 +18,8 @@ import duke.exceptions.DukeInvalidDescriptionException;
  */
 public class AddDeadlineCommand extends Command {
 
+    private final String DEADLINE_SEPARATOR = " /by ";
+
     /**
      * Constructs a <code>AddDeadline</code> command.
      *
@@ -39,7 +41,7 @@ public class AddDeadlineCommand extends Command {
                 throw new DukeEmptyCommandException();
             }
 
-            String[] information = description.substring(9).split(" /by ", 3);
+            String[] information = description.substring(9).split(DEADLINE_SEPARATOR, 3);
 
             if (information.length != 2) {
                 throw new DukeInvalidDescriptionException();

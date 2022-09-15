@@ -33,7 +33,6 @@ public class DeleteCommand extends Command {
             }
 
             int index = Integer.parseInt(description.substring(7));
-
             if (index <= 0) {
                 throw new DukeArrayOutOfBoundException();
             }

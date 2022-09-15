@@ -1,5 +1,6 @@
 package duke;
 
+import duke.exceptions.DukeArrayOutOfBoundException;
 import duke.exceptions.DukeMissingIndexException;
 
 import java.util.Scanner;
@@ -48,7 +49,6 @@ public class Ui {
             return "Error";
         }
         Task task = TaskList.getTaskList().get(index);
-        System.out.println("Task is marked as Done \n" + task.toString());
         return "Task is marked as Done \n" + task;
     }
 
@@ -60,7 +60,6 @@ public class Ui {
             return "Error";
         }
         Task task = TaskList.getTaskList().get(index);
-        System.out.println("Task is marked as Undone \n" + task.toString());
         return "Task is marked as Undone \n" + task;
     }
 
@@ -70,8 +69,7 @@ public class Ui {
      * @param task <code>Task</code> to be added.
      */
     public static String printAddTask(Task task) {
-        System.out.println("added: " + task.toString());
-        return "added: " + task;
+        return "Added the task \n" + task;
     }
 
     /**
@@ -81,17 +79,21 @@ public class Ui {
      */
     public static String printDeleteTask(int index) {
 
-        if (index >= TaskList.getTaskList().size()) {
-            return "Error";
-        }
-        Task task = TaskList.getTaskList().get(index);
-        System.out.println("Removed the task \n" + task.toString());
         try {
-            TaskList.delete(index - 1);
+            if (index >= TaskList.getTaskList().size()) {
+                throw new DukeMissingIndexException();
+            }
         } catch (DukeMissingIndexException e) {
             return printError(e.getMessage());
         }
-        return "added: " + task;
+
+        Task task = TaskList.getTaskList().get(index);
+        try {
+            TaskList.delete(index);
+        } catch (DukeMissingIndexException e) {
+            return printError(e.getMessage());
+        }
+        return "Removed the task \n" + task;
     }
 
     /**
@@ -100,7 +102,6 @@ public class Ui {
      * @param error error message to be printed
      */
     public static String printError(String error) {
-        System.out.println(error);
         return error;
     }
 

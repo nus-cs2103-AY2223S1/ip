@@ -18,6 +18,7 @@ import duke.exceptions.DukeInvalidDescriptionException;
  */
 public class AddEventCommand extends Command {
 
+    private final String EVENT_SEPARATOR = " /at ";
     /**
      * Constructs a <code>AddEventCommand</code> command.
      *
@@ -39,7 +40,7 @@ public class AddEventCommand extends Command {
                 throw new DukeEmptyCommandException();
             }
 
-            String[] information = description.substring(6).split(" /at ", 3);
+            String[] information = description.substring(6).split(EVENT_SEPARATOR, 3);
 
             if (information.length != 2) {
                 throw new DukeInvalidDescriptionException();

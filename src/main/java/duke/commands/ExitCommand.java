@@ -25,6 +25,5 @@ public class ExitCommand extends Command {
     public String execute(Storage storage) {
         storage.save();
         return Ui.printExit();
-        //System.exit(0);
     }
 }

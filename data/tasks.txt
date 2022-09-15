@@ -1,3 +1,0 @@
-T | 0 | hello
-T | 0 | world
-T | 0 | the
