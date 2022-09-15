@@ -28,6 +28,7 @@ traditional GUI apps.
 4. Double-click the file to start up the app.
 5. Type the command in the command box and press Enter on your keyboard or click the Send button to execute the command.
 6. Some example command to start with:
+    - `todo add tasks to Duke`: adds a todo.
     - `list`: list down all tasks you have.
 7. Refer to the [Features](#features) section below for details of available command.
 
