@@ -1,2 +1,2 @@
-D | 0 | CS2103T iP submission | 2022/09/16 23:59:00
-E | 0 | NUS internship day | 2022/09/14 16:00:00
+E | 0 | NUS Internship Day | 2022/09/14 16:00:00
+D | 0 | CS2103T iP Submission | 2022/09/16 23:59:59

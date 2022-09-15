@@ -56,8 +56,14 @@ public class Duke {
         startListening();
     }
 
-    private void greet() {
+    /**
+     * Greets the user upon start.
+     *
+     * @return A greeting message.
+     */
+    public String greet() {
         cliUi.printOutput(GREETING_MESSAGE);
+        return GREETING_MESSAGE;
     }
 
     private void startListening() {

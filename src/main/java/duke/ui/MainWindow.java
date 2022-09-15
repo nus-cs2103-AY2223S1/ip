@@ -50,6 +50,9 @@ public class MainWindow extends AnchorPane implements Formatter {
      */
     public void setDuke(Duke duke) {
         this.duke = duke;
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(formatOutput(duke.greet()), dukeImage)
+        );
     }
 
     /**
