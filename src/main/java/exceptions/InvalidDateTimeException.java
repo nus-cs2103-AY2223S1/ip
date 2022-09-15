@@ -13,7 +13,7 @@ public class InvalidDateTimeException extends DukeException {
      * @param dateTimeFormat The specified date time format.
      */
     public InvalidDateTimeException(String dateTimeFormat) {
-        super("😅 OOPS!!! The datetime specified is invalid, it should have the format "
+        super("🥚 OOPS!!! The datetime specified is invalid, it should have the format "
                 + Task.DATE_TIME_INPUT_FORMAT);
     }
 }

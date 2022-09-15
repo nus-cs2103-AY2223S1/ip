@@ -13,6 +13,6 @@ public class EmptyDateTimeException extends DukeException {
      * @param taskType The specified task type.
      */
     public EmptyDateTimeException(TaskType taskType) {
-        super("😅 OOPS!!! The datetime for " + taskType.getValue() + " cannot be empty.");
+        super("🥚 OOPS!!! The datetime for " + taskType.getValue() + " cannot be empty.");
     }
 }
