@@ -14,6 +14,7 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private boolean isExit = false;
     /**
      * Initializes the application.
      * @param filePath the path to the file where the tasks are stored
@@ -32,39 +33,19 @@ public class Duke {
         }
     }
 
-    /**
-     * Runs the application.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
-        }
-    }
-
     public String getResponse(String input) {
-        String errorMsg;
         try {
             Command c = Parser.parse(input);
+            if (c.isExit()) {
+                this.isExit = true;
+            }
             return c.execute(tasks, ui, storage);
         } catch (DukeException e) {
-            errorMsg = ui.showError(e.getMessage(), "Please try again :-)");
+            return ui.showError(e.getMessage(), "Please try again :-)");
         }
-        return errorMsg;
     }
 
-    public static void main(String[] args) {
-        new Duke("./data/duke.txt").run();
+    public boolean isExit() {
+        return isExit;
     }
 }
