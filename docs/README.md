@@ -10,7 +10,7 @@ Please take a look!
 
 | **Feature** | **Description**                                     |
 |:-----------:|-----------------------------------------------------|
-|    date     | lists all current tasks from a given date           |
+|    date     | lists all current tasks on a given date             |
 |  deadline   | adds a task due by a given date                     |
 |   delete    | removes a task from the task list                   |
 |    event    | adds a task that takes place on a given date        |
@@ -19,13 +19,13 @@ Please take a look!
 |    list     | lists all current tasks                             |
 |    mark     | marks the given task as done                        |
 |    todo     | adds a task with no date                            |                                              
-|   unmark    | indicates the task as not done yet                  |
+|   unmark    | indicates the given task as not done yet            |
 
 ## Usage
 
-### `date` - Lists tasks on a given day
+### `date` - Lists tasks on a given date
 
-Super Duke describes to you a list of tasks (either a `deadline` or `event`) that take place on a specified date.
+Super Duke describes to you a list of tasks (either a `deadline` or an `event`) that take place on a specified date.
 
 **Example of usage:**
 
@@ -57,7 +57,7 @@ Super Dukes adds a task with a specified deadline to storage.
 
 **Expected outcome:**
 
-Adds the given deadline successfully to the storage!
+Adds the given deadline indicated by `[D]` successfully to storage!
 
 Shows the total number of current tasks.
 
@@ -67,7 +67,7 @@ Got it. I've added this task:
 Now you have 7 tasks in the list.
 ```
 
-Super Duke checks for duplicates, so if you enter the same task more than once, Super Duke will be annoyed!
+Super Duke **checks for duplicates**, so if you enter the same task more than once, Super Duke will be annoyed!
 
 ```
 ☹ Don't you realise the input task has already been stored in the task list?
@@ -79,7 +79,7 @@ Super Duke checks for duplicates, so if you enter the same task more than once, 
 
 ### `delete` - Deletes a task
 
-Super Duke removes the task specified by its index in the list from storage.
+Super Duke removes from storage the task specified by its index in the task list.
 
 **Example of usage:**
 
@@ -94,14 +94,14 @@ Shows the total number of current tasks.
 ```
 Got it. I've removed this task:
  [D][ ] prepare slides (by: Sep 14 2022)
-Now you have 7 tasks in the list.
+Now you have 6 tasks in the list.
 ```
 
 -------------------
 
 ### `event` - Adds an event
 
-Super Dukes adds a task that takes place on a specific date to storage.
+Super Duke adds a task that takes place on a specific date to storage.
 
 **Example of usage:**
 
@@ -111,7 +111,7 @@ Super Dukes adds a task that takes place on a specific date to storage.
 
 **Expected outcome:**
 
-Adds the given event successfully to the storage!
+Adds the given event indicated by `[E]` successfully to storage!
 
 Shows the total number of current tasks.
 
@@ -123,9 +123,9 @@ Now you have 7 tasks in the list.
 
 -------------------
 
-### `bye` - Says goodbye to you
+### `bye` - Says goodbye
 
-Super Dukes sends you a farewell message. (Emmm is it really a farewell massage?)
+Super Duke sends you a farewell message. (*Emmm is it really a farewell massage?*)
 
 **Example of usage:**
 
@@ -133,8 +133,113 @@ Super Dukes sends you a farewell message. (Emmm is it really a farewell massage?
 
 **Expected outcome:**
 
-Prints a goodbye message to the user.
+Prints a goodbye message to the user as shown below.
+
+After a moment, the program is closed.
 
 ```
 Never wanna see you again!
+```
+
+-------------------
+
+### `find` - Finds tasks
+
+Super Duke finds all tasks that contain the given keyword.
+
+**Example of usage:**
+
+`find book`
+
+**Expected outcome:**
+
+Shows a list of tasks whose description contains "book".
+
+```
+Here are the matching tasks in your list:
+1. [T][] read book
+2. [T][] return book
+```
+
+-------------------
+
+### `list` - Lists all tasks
+
+Super Duke shows you a list of all tasks in storage.
+
+**Example of usage:**
+
+`list`
+
+**Expected outcome:**
+
+Shows a list of all current tasks with numbering.
+
+```
+Here are the tasks in your list:
+1. [T][X] watch tv
+2. [T][ ] read book
+3. [T][ ] return book
+4. [D][X] 2101 essay (by: Sep 04 2022)
+5. [E][ ] presentation (at: Sep 14 2022)
+```
+
+-------------------
+
+### `mark` - Marks a task
+
+Super Duke marks a task in storage as done by its index in the storage list.
+
+**Example of usage:**
+
+`mark 2`
+
+**Expected outcome:**
+
+Shows the task to be marked to the user and marks the task with `[X]`.
+
+```
+Alright, I've marked this task as done:
+ [T][X] read book
+```
+
+-------------------
+
+### `todo` - Adds a task with no date
+
+Super Duke adds a task with no specified date to storage.
+
+**Example of usage:**
+
+`todo watch tv`
+
+**Expected outcome:**
+
+Adds the given to-do indicated by `[T]` successfully to storage!
+
+Shows the total number of current tasks.
+
+```
+Got it. I've added this task:
+ [T][ ] watch tv
+Now you have 1 tasks in the list.
+```
+
+-------------------
+
+### `unmark` - Unmarks a task
+
+Super Duke indicates a task as not done yet by its index in the storage list.
+
+**Example of usage:**
+
+`unmark 2`
+
+**Expected outcome:**
+
+Shows the task to be unmarked to the user and replaces `[X]` with `[ ]`.
+
+```
+OK, I've marked this task as not done yet:
+ [T][ ] read book
 ```

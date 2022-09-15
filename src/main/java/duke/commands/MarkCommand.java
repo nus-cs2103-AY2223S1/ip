@@ -11,7 +11,7 @@ import duke.task.Task;
  */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
-    public static final String MESSAGE_SUCCESS = "Nice! I've marked this duke.task as done:\n ";
+    public static final String MESSAGE_SUCCESS = "Alright, I've marked this task as done:\n ";
     private int index;
 
     /**

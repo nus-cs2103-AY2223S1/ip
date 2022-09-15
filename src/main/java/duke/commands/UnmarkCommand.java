@@ -11,7 +11,7 @@ import duke.task.Task;
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
-    public static final String MESSAGE_SUCCESS = "OK, I've marked this duke.task as not done yet:\n ";
+    public static final String MESSAGE_SUCCESS = "OK, I've marked this task as not done yet:\n ";
     private int index;
 
     /**
