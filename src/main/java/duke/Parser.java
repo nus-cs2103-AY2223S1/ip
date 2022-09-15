@@ -83,23 +83,22 @@ public class Parser {
         final String PREFIX_EVENT = "[E]";
         String[] lineDetails = lineFromFile.split("] ", 2);
         String linePrefix = lineDetails[0].substring(0, 3);
-        System.out.println(linePrefix);
         boolean lineMarked = lineDetails[0].charAt(4) == 'X';
         try {
             if (linePrefix.equals(PREFIX_TODO)) {
                 return new Todo(lineDetails[1], lineMarked);
             } else if (linePrefix.equals(PREFIX_DEADLINE)) {
-                String[] deadlineDetails = lineDetails[1].split(" ", 3);
+                String[] deadlineDetails = lineDetails[1].split(" by: ");
                 return new Deadline(
                         deadlineDetails[0],
-                        Parser.parseSavedDateTime(deadlineDetails[2]),
+                        Parser.parseSavedDateTime(deadlineDetails[1]),
                         lineMarked
                 );
             } else if (linePrefix.equals(PREFIX_EVENT)) {
-                String[] eventDetails = lineDetails[1].split(" ", 3);
+                String[] eventDetails = lineDetails[1].split(" at: ");
                 return new Event(
                         eventDetails[0],
-                        Parser.parseSavedDateTime(eventDetails[2]),
+                        Parser.parseSavedDateTime(eventDetails[1]),
                         lineMarked
                 );
             } else {
