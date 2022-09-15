@@ -14,8 +14,10 @@ public class ToDoCommand extends Command {
     }
 
     public static void validateArguments(String[] args) throws DukeException {
+        assert args.length > 0 : "No arguments entered into validateArguments";
+
         if (args.length == 0) {
-            throw new MissingDescriptionException("todo");
+            throw new MissingDescriptionException("ToDo");
         }
     }
 
