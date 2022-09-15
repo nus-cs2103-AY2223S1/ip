@@ -5,3 +5,59 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+---------------------------------------------------------
+Hello! I'm Duke 
+What can I do for you?
+---------------------------------------------------------
+---------------------------------------------------------
+Got it. I've added this task: 
+[T][ ] buy apple juice
+Now you have 1 tasks in the list.
+---------------------------------------------------------
+---------------------------------------------------------
+Got it. I've added this task: 
+[D][ ] finish up project (by: Sunday)
+Now you have 2 tasks in the list.
+---------------------------------------------------------
+---------------------------------------------------------
+Nice! I've marked this task as done: 
+[T][X] buy apple juice
+---------------------------------------------------------
+---------------------------------------------------------
+Here are the tasks in your list: 
+1. [T][X] buy apple juice
+2. [D][ ] finish up project (by: Sunday)
+---------------------------------------------------------
+---------------------------------------------------------
+Nice! I've marked this task as done: 
+[D][X] finish up project (by: Sunday)
+---------------------------------------------------------
+---------------------------------------------------------
+Here are the tasks in your list: 
+1. [T][X] buy apple juice
+2. [D][X] finish up project (by: Sunday)
+---------------------------------------------------------
+---------------------------------------------------------
+Got it. I've added this task: 
+[E][ ] meet up for dinner (at: Monday 7-8pm)
+Now you have 3 tasks in the list.
+---------------------------------------------------------
+---------------------------------------------------------
+OK, I've marked this task as not done yet: 
+[D][ ] finish up project (by: Sunday)
+---------------------------------------------------------
+---------------------------------------------------------
+Got it. I've added this task: 
+[D][ ] read book (by: Wednesday)
+Now you have 4 tasks in the list.
+---------------------------------------------------------
+---------------------------------------------------------
+Here are the tasks in your list: 
+1. [T][X] buy apple juice
+2. [D][ ] finish up project (by: Sunday)
+3. [E][ ] meet up for dinner (at: Monday 7-8pm)
+4. [D][ ] read book (by: Wednesday)
+---------------------------------------------------------
+---------------------------------------------------------
+Bye. Hope to see you again soon!
+---------------------------------------------------------

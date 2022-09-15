@@ -1,0 +1,11 @@
+todo buy apple juice
+deadline finish up project /by Sunday
+mark 1
+list
+mark 2
+list
+event meet up for dinner /at Monday 7-8pm
+unmark 2
+deadline read book /by Wednesday
+list
+bye
