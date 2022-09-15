@@ -34,10 +34,8 @@ public class MarkCommand extends Command {
         int tempii = Integer.valueOf(tempi);
         assert arrayLL.getTask(tempii-1).getIsDone() == " ": "already marked";
         arrayLL.getTask(tempii-1).setIsDone(true);
-        //System.out.println("Nice! I've marked this task as done");
-        //System.out.println(arrayLL.getTask(tempii-1).toString());
         stor.writeData(arrayLL.getTask(0));
-        for(int i =1; i<arrayLL.arrayL.size(); i++) {
+        for (int i = 1; i < arrayLL.arrayL.size(); i++) {
             stor.storeData(arrayLL.getTask(i));
         }
         return "Nice! I've marked this task as done" + "\n" + arrayLL.getTask(tempii-1).toString();

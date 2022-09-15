@@ -44,56 +44,43 @@ public class Parser {
         }
         String arr[];
         arr = userText.split(" ", 2);
-        assert arr.length >= 2: "array length is less than 2";
-        if (arr.length>1 && arr[0].equals("mark")){
-            this.mark = new MarkCommand(ui, stor, arrayLL);
-            return mark.complete(arr[1]);
+        if (arr.length < 0) {
+            throw new NeoException("Sorry I don't know what that means");
         }
-        if (arr.length>1 && arr[0].equals("unmark")){
-            this.unmark = new UnMarkCommand(ui, stor, arrayLL);
-            return unmark.complete(arr[1]);
-        }
-        if (arr.length>1 && arr[0].equals("delete")){
-            this.delete = new DeleteCommand(ui, stor, arrayLL);
-            return delete.complete(arr[1]);
-        }
-        if (arr.length>1 && arr[0].equals("find")){
-            this.find = new FindCommand(ui, stor, arrayLL);
-            return find.complete(arr[1]);
+        if (arr.length == 1) {
+            throw new NeoException("sorry task cannot be empty");
         }
         else {
-            try {
-                if (!userText.equals("list") && !userText.equals("List") && !arr[0].equals("unmark") && !arr[0].equals("mark") && !arr[0].equals("delete") && !arr[0].equals("find")) {
-                    if (arr.length > 1 && arr[0].equals("deadline")) {
-                        type = 0;
-                        String tempi = arr[1];
-                        this.add = new AddCommand(ui, stor, arrayLL, type);
-                        return add.complete(tempi);
-                    }
-                    if (arr.length > 1 && arr[0].equals("event")) {
-                        type = 1;
-                        String tempi = arr[1];
-                        this.add = new AddCommand(ui, stor, arrayLL, type);
-                        return add.complete(tempi);
-
-                    }
-                    if (arr.length > 1 && arr[0].equals("todo")) {
-                        type = 2;
-                        String tempi = arr[1];
-                        this.add = new AddCommand(ui, stor, arrayLL, type);
-                        return add.complete(tempi);
-                    }
-                    if (arr.length == 1 && arr[0].equals("todo")) {
-                        throw new NeoException("sorry todo cannot be empty");
-                    }
-                    if (!arr[0].equals("todo") && !arr[0].equals("event") && !arr[0].equals("deadline")) {
-                        throw new NeoException("Sorry I don't know what that means");
-                    }
-                }
-            } catch (NeoException | IOException e) {
-                System.out.println(e.getMessage());
+            String command = arr[0];
+            String tempi = arr[1];
+            switch (command) {
+                case "event":
+                    type = 1;
+                    this.add = new AddCommand(ui, stor, arrayLL, type);
+                    return add.complete(tempi);
+                case "todo":
+                    type = 2;
+                    this.add = new AddCommand(ui, stor, arrayLL, type);
+                    return add.complete(tempi);
+                case "find":
+                    this.find = new FindCommand(ui, stor, arrayLL);
+                    return find.complete(arr[1]);
+                case "mark":
+                    this.mark = new MarkCommand(ui, stor, arrayLL);
+                    return mark.complete(arr[1]);
+                case "unmark":
+                    this.unmark = new UnMarkCommand(ui, stor, arrayLL);
+                    return unmark.complete(arr[1]);
+                case "delete":
+                    this.delete = new DeleteCommand(ui, stor, arrayLL);
+                    return delete.complete(arr[1]);
+                case "deadline":
+                    type = 0;
+                    this.add = new AddCommand(ui, stor, arrayLL, type);
+                    return add.complete(tempi);
+                default:
+                    throw new NeoException("Sorry I don't know what that means");
             }
         }
-        return "Sorry your command is not in the right format";
     }
 }
