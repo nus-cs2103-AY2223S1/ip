@@ -75,6 +75,7 @@ public class Parser {
         String[] input = userInput.split(" ", 2);
         String inputKeyword = input[0];
         Keyword keyword = Keyword.getKeyword(inputKeyword);
+        assert keyword != null : "Keyword should not be null";
 
         checkInputValidity(userInput, keyword);
 
@@ -125,6 +126,7 @@ public class Parser {
             default:
                 throw new DukeException("Invalid command!");
         }
+        assert command != null : "Command should not be null";
         return command;
     }
 

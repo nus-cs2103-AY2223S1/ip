@@ -38,7 +38,7 @@ public class MarkCommand extends Command {
             response = e.getMessage();
         }
 
-        assert response != null : "response should not be null";
+        assert response != null : "Response should not be null";
         return response;
     }
 }

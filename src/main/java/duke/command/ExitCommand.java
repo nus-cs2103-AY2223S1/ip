@@ -29,7 +29,7 @@ public class ExitCommand extends Command {
             }
         };
         new Timer().schedule(exitTimer, 1500);
-        assert response != null : "response should not be null";
+        assert response != null : "Response should not be null";
         return response;
     }
 }

@@ -33,7 +33,7 @@ public class UndoCommand extends Command {
             storage.writeToFile(taskList);
         }
         String response = Ui.undoCommandMessage(isReverted, this.lastUserInput);
-        assert response != null : "response should not be null";
+        assert response != null : "Response should not be null";
         return response;
     }
 }
