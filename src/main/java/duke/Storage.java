@@ -16,15 +16,30 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.tasks.Todo;
 
+/*
+ * Storage class for Duke program. This takes care of reading and writing to the file.
+ */
 public class Storage {
     public String filePath;
     public FileWriter fileWriter;
 
+    /*
+     * Constructor for Storage class. This takes in the path of the file to be read
+     * and written to.
+     * 
+     * @param filePath The path of the file to be read and written to.
+     */
     public Storage(String filePath) throws DukeException, IOException {
         this.filePath = filePath;
         initialiseList(filePath);
     }
 
+    /*
+     * Initialises the file to be read and written to. If the file does not exist,
+     * it will be created.
+     * 
+     * @param filePath The path of the file to be read and written to.
+     */
     public void initialiseList(String filePath) throws DukeException, IOException {
         try {
             // Check if filePath has directories
@@ -44,6 +59,11 @@ public class Storage {
         }
     }
 
+    /*
+     * Loads the list of tasks from the file.
+     * 
+     * @return The list of tasks.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> list = new ArrayList<Task>();
         try {
@@ -77,6 +97,11 @@ public class Storage {
         return list;
     }
 
+    /*
+     * Writes the list of tasks to the file.
+     * 
+     * @param list The list of tasks to be written to the file.
+     */
     public void saveList(TaskList list) throws DukeException {
         try {
             FileWriter fileWriter = new FileWriter(filePath, false);

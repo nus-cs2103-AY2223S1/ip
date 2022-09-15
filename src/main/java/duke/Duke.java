@@ -1,20 +1,24 @@
 package duke;
 
-import java.util.ArrayList;
 import duke.commands.Command;
-import duke.tasks.Task;
 import duke.tasks.TaskList;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.io.FileWriter;
 import java.io.IOException;
 
+/*
+ * Main class for Duke program. This takes care of Duke's main logic, including 
+ * startup, teardown and reading and writing to the file.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /*
+     * Constructor for Duke class. This takes in the path of the file to be read
+     * and written to.
+     * 
+     * @param filePath The path of the file to be read and written to.
+     */
     public Duke(String filePath) throws DukeException, IOException {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -26,6 +30,12 @@ public class Duke {
         }
     }
 
+    /*
+     * Run method for Duke program. This takes in the user's input and executes
+     * the appropriate command by parsing and executing the input.
+     * If input is invalid, an error message is printed instead and user is prompted
+     * to give another input.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -44,6 +54,10 @@ public class Duke {
         }
     }
 
+    /*
+     * Main method for Duke program. This initialises Duke with the file path and
+     * runs the program.
+     */
     public static void main(String[] args) {
         try {
             new Duke("./data/tasks.txt").run();
