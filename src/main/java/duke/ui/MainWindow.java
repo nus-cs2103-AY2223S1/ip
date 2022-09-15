@@ -53,6 +53,10 @@ public class MainWindow extends AnchorPane {
      * Handles user's input after clicking the send button or enter
      */
     public void handleUserInput() {
+        if (userInput.getText().equals("")) {
+            return;
+        }
+
         String input = userInput.getText();
         String response = duke.getResponse(input);
         DialogBox user = DialogBox.getUserDialog(userImage, input);

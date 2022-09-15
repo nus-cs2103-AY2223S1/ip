@@ -22,7 +22,13 @@ import duke.tasks.ToDo;
  * This class saves and loads tasks into and from the text file created
  */
 public class Storage {
-    private String filePath;
+    private static final String INVALID_DATE = "Invalid date";
+    private static final String INVALID_DEADLINE = "Invalid deadline";
+    private static final String INVALID_DESCRIPTION = "Invalid description";
+    private static final String INVALID_EVENT = "Invalid event";
+    private static final String INVALID_TASK_TYPE = "Invalid task type";
+    private static final String INVALID_TODO = "Invalid todo";
+    private final String filePath;
 
     /**
      * Constructs a new storage
@@ -46,62 +52,56 @@ public class Storage {
         }
     }
 
+    private Task convertToTask(String task) {
+        String[] components = task.split(",");
+        Task t = null;
+        String completionStatus = "na";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        switch (components[0]) {
+        case "T":
+            assert components.length == 4 : INVALID_TODO;
+            t = new ToDo(components[2]);
+            completionStatus = components[3];
+            break;
+        case "D":
+            assert components.length == 5 : INVALID_DEADLINE;
+            LocalDate deadlineDate = LocalDate.parse(components[3], format);
+            t = new Deadline(components[2], deadlineDate.format(formatter));
+            completionStatus = components[4];
+            break;
+        case "E":
+            assert components.length == 5 : INVALID_EVENT;
+            LocalDate eventDate = LocalDate.parse(components[3], format);
+            t = new Event(components[2], eventDate.format(formatter));
+            completionStatus = components[4];
+            break;
+        default:
+            assert false : INVALID_TASK_TYPE;
+        }
+
+        t.setIsDone(components[1].equals("true"));
+        t.setDateMarked(completionStatus);
+
+        return t;
+    }
+
     /**
      * Loads data from the storage
      * @return A list of tasks
      */
     public ArrayList<Task> load() {
         File file = new File(filePath);
-        BufferedReader reader = null;
         ArrayList<Task> tasks = new ArrayList<>();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd MMM yyyy");
-        try {
-            reader = new BufferedReader(new FileReader(file));
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String currentLine = reader.readLine();
             while (currentLine != null) {
-                String[] components = currentLine.split(",");
-                Task task = null;
-                String completionStatus = "na";
-                switch (components[0]) {
-                case "T":
-                    assert components.length == 4 : "Invalid todo information";
-                    task = new ToDo(components[2]);
-                    completionStatus = components[3];
-                    break;
-                case "D":
-                    assert components.length == 5 : "Invalid deadline information";
-                    LocalDate deadlineDate = LocalDate.parse(components[3], format);
-                    task = new Deadline(components[2], deadlineDate.format(formatter));
-                    completionStatus = components[4];
-                    break;
-                case "E":
-                    assert components.length == 5 : "Invalid event information";
-                    LocalDate eventDate = LocalDate.parse(components[3], format);
-                    task = new Event(components[2], eventDate.format(formatter));
-                    completionStatus = components[4];
-                    break;
-                default:
-                    assert true : "Invalid task type";
-                    break;
-                }
-
-                assert task != null : "Task should not be null";
-                task.setIsDone(components[1].equals("true"));
-                task.setDateMarked(completionStatus);
+                Task task = convertToTask(currentLine);
                 tasks.add(task);
                 currentLine = reader.readLine();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
         }
 
         return tasks;
@@ -117,13 +117,13 @@ public class Storage {
                 : task.getDateMarked().format(formatter);
         String sep = System.getProperty("line.separator");
 
-        assert description != null : "Invalid description";
+        assert description != null : INVALID_DESCRIPTION;
 
         if (taskType.equals("T")) {
             return String.format("T,%s,%s,%s,%s", isDone, description, dateMarked, sep);
         } else {
             LocalDate date = task.getDate();
-            assert date != null : "Invalid date";
+            assert date != null : INVALID_DATE;
             String formattedDate = date.format(formatter);
             return String.format("%s,%s,%s,%s,%s,%s", taskType, isDone, description, formattedDate, dateMarked, sep);
         }
@@ -136,24 +136,14 @@ public class Storage {
      */
     public void save(TaskList tasks) throws DukeException {
         File file = new File(filePath);
-        FileWriter fileWriter = null;
 
-        try {
-            fileWriter = new FileWriter(file);
+        try (FileWriter fileWriter = new FileWriter(file)) {
             int len = tasks.getSize();
             for (int i = 0; i < len; i++) {
                 fileWriter.write(convertToString(tasks.getTask(i)));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (fileWriter != null) {
-                try {
-                    fileWriter.close();
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
         }
     }
 
@@ -161,9 +151,7 @@ public class Storage {
         try {
             Paths.get(filePath);
             return true;
-        } catch (InvalidPathException e) {
-            return false;
-        } catch (NullPointerException e) {
+        } catch (InvalidPathException | NullPointerException e) {
             return false;
         }
     }
