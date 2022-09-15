@@ -1,29 +1,62 @@
 # User Guide
 
 ## Features 
+**Deadline Duck** is a Personal Assistant Chatbot 
+that helps you keep track of your upcoming 
+tasks, deadlines! Sometimes when adding tasks, you may be some 
+additional thoughts in your mind. Therefore, Deadline Duck allows you 
+to pen your thoughts with our Notes feature too!
 
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
+Types of tasks:
+* Todos : simple tasks to be completed
+* Deadlines : tasks that need to be completed by a certain date
+* Events : tasks that are scheduled to happen at a certain date
+* Notes : notes that you can add to keep track of your thoughts
 
 ## Usage
 
-### `Keyword` - Describe action
+### Adding a new Todo Task: `todo`
 
-Describe the action and its outcome.
+Adds a new `todo` task to the task list.
 
-Example of usage: 
+Format: `todo <TASK_DESCRIPTION>`
 
-`keyword (optional arguments)`
+### Adding a new Event Task: `event`
 
-Expected outcome:
+Adds a new `todo` task to the task list.
 
-Description of the outcome.
+Format: `event <TASK_DESCRIPTION> /at <time>`
 
-```
-expected output
-```
+### Adding a new Deadline Task: `deadline`
+
+Adds a new `todo` task to the task list.
+
+Format: `deadline <TASK_DESCRIPTION> /by <time>`
+
+### List out all Tasks and Notes: `list`
+
+Lists out all your tasks
+
+Format: `list`
+
+
+[//]: # (Describe the action and its outcome.)
+
+[//]: # ()
+[//]: # (Example of usage: )
+
+[//]: # ()
+[//]: # (`keyword &#40;optional arguments&#41;`)
+
+[//]: # ()
+[//]: # (Expected outcome:)
+
+[//]: # ()
+[//]: # (Description of the outcome.)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (expected output)
+
+[//]: # (```)

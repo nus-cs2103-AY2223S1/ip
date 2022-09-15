@@ -1,7 +1,5 @@
 package duke.models;
 
-import duke.Postponable;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,8 +11,8 @@ public class Deadline extends Task {
 
     /**
      * Initialises an Deadline object with description and date of the deadline
-     * @param description
-     * @param by
+     * @param description  description of the deadline
+     * @param by date of the deadline0
      */
     public Deadline(String description, LocalDate by) {
         super(description);

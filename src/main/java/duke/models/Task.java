@@ -17,6 +17,16 @@ public abstract class Task {
     }
 
     /**
+     * Initializes a {@code Task} object with a description and isDone state
+     * @param description description of the task
+     * @param isDone indicate if the task is done
+     */
+    public Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
+    /**
      * Sets the isDone value of this task to true
      */
     public void markAsDone() {
@@ -57,6 +67,9 @@ public abstract class Task {
      */
     public abstract String stringToWrite();
 
+    /**
+     * Postpones the task
+     */
     public abstract void postponeTask();
 
     /**

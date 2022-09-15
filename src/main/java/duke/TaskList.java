@@ -15,14 +15,14 @@ public class TaskList {
     private List<Task> tasks;
 
     /**
-     * Initialize an empty <code>TaskList</code>
+     * Initializes an empty {@code TaskList}
      */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
     /**
-     * Initialize a <code>TaskList</code> that contains existing tasks that have been saved
+     * Initializes a {@code TaskList} that contains existing tasks that have been saved
      * @param taskList List of existing tasks to be loaded
      */
     public TaskList(List<Task> taskList) {
@@ -30,7 +30,7 @@ public class TaskList {
     }
 
     /**
-     * Add Task to the current TaskList
+     * Adds Task to the current TaskList
      * @param t the task object to add to the TaskList
      */
     public void addTask(Task t) {
@@ -38,16 +38,16 @@ public class TaskList {
     }
 
     /**
-     * Delete task from the current TaskList
-     * @param index
+     * Deletes task from the current TaskList
+     * @param index index of the task to be removed from the {@code TaskList}
      */
     public void deleteTask(int index) {
         this.tasks.remove(index - 1);
     }
 
     /**
-     * Get task from the TaskList based on index
-     * @param index
+     * Gets task from the TaskList based on index
+     * @param index index of the task to be retrieved from the {@code TaskList}
      * @return the selected task
      */
     public Task getTask(int index) {
@@ -55,7 +55,7 @@ public class TaskList {
     }
 
     /**
-     * Loop through the TaskList and create a string representing all the tasks
+     * Loops through the TaskList and create a string representing all the tasks
      * @return returns a string of all tasks in the TaskList
      */
     public String getAllTasks() {
@@ -69,7 +69,7 @@ public class TaskList {
     }
 
     /**
-     * Search the list for a task with matching description
+     * Searches the list for a task with matching description
      * @param query string to search for in the TaskList
      * @return
      */
@@ -89,12 +89,4 @@ public class TaskList {
         return tasks.size();
     }
 
-    /**
-     * Postpone the {@code Task} at the given index by one day
-     * @param index
-     */
-    public void postponeTask(int index) {
-        Task task = tasks.get(index - 1);
-        task.postponeTask();
-    }
 }
