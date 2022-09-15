@@ -62,6 +62,7 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
 
         if (response.equals(ExitCommand.getFarewellMessage())) {
+            //Solution below adapted from https://stackoverflow.com/a/27334614
             PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
             pauseTransition.setOnFinished(event -> Platform.exit());
             pauseTransition.play();

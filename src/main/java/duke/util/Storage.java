@@ -98,6 +98,7 @@ public class Storage {
 
         if (!file.exists()) {
             try {
+                //Solution below adapted from https://stackoverflow.com/a/4040667
                 if (!file.getParentFile().mkdirs()) {
                     throw new DukeException("OOPS!!! Directory could not be created");
                 }
