@@ -1,2 +1,7 @@
-T|0|finish iP
-D|0|tutorial 3230|Sep 16 2022
+T|1|b
+T|0|a
+E|0|xyz|10
+T|0|abcxyz
+T|0|a
+T|0|b
+T|0|b
