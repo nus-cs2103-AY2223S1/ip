@@ -60,6 +60,8 @@ Examples:
 Finds a task based on the matching keyword
 Examples:
 - `find borr` finds a task with the description containing the description `borr`
+![find borr](https://user-images.githubusercontent.com/50956270/190329792-36a40877-b6e1-4f86-b795-8043c23dc4f2.png)
+
 
 ### Goodbye: `bye`
 Exits the program
