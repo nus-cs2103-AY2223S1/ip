@@ -8,3 +8,4 @@ T | 0 | hello
 T | 0 | hiiiiiiiiiiii
 E | 0 | do this | 2022-12-11
 D | 1 | do homework | 2022-09-15
+D | 0 | submit homework assignment | 2022-09-17
