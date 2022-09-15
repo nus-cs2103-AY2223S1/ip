@@ -72,7 +72,7 @@ Poolsheen now remembers: Sell Book
 ```
 
 ### `event` - Adds an Event task
-Format: `event <DESCRIPTION> /by <DATE>`
+Format: `event <DESCRIPTION> /at <DATE>`
 
 Parameters:
 - DESCRIPTION: Name of the event
@@ -80,7 +80,7 @@ Parameters:
 
 Example of usage:
 
-`event Get Book /by 2022-01-01`
+`event Get Book /at 2022-01-01`
 
 Expected outcome:
 
