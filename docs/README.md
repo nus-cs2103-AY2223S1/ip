@@ -93,7 +93,7 @@ Example: `delete 1` and `d 1` deletes the task at index 1 of the list
 
 ### Finding a task by description: `find`
 Finds all tasks matching the keyword.<br>
-Format: `find {keyword}`, `f keyword`
+Format: `find {keyword}`, `f {keyword}`
 -  All task descriptions with the matching sequence of characters will be returned. e.g. `bo` matches with `book` and `bought`.
 
 ### Listing all tasks: `list`
