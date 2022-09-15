@@ -20,7 +20,7 @@ public class Duke {
     private static final String DUKE_HELP =
             "I am pleasured to be at your service, although we both know you are smart and don't need any help.";
 
-    private static final String FILE_NAME = "duke.txt";
+    public static final String FILE_NAME = "shelbot.txt";
     private Storage storage;
     private TaskList tasks;
 

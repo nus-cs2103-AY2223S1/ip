@@ -1,6 +1,8 @@
 package duke.util;
 
 //import io
+import duke.Duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -12,7 +14,7 @@ import java.util.Scanner;
  * Represents a Storage to store task input by the user.
  */
 public class Storage {
-    public static final String STORAGE_UPDATE_MESSAGE = "Storage: duke.txt updated";
+    public static final String STORAGE_UPDATE_MESSAGE = "Storage: " + Duke.FILE_NAME +" updated";
     private File dukeFile;
     private FileWriter fileWriter;
     private Scanner scanner;
