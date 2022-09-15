@@ -39,7 +39,7 @@ public class TaskList {
         }
         tasks.add(task);
         taskSet.add(task.toStorageString());
-        return ui.printMessage("Added:\n      "
+        return ui.printMessage("Added:\n    "
                 + task
                 + "\n    Total "
                 + tasks.size()
@@ -58,7 +58,7 @@ public class TaskList {
             throw new ChickException("proper index pls");
         }
         Task t = tasks.remove(id);
-        return ui.printMessage("Removed:\n      "
+        return ui.printMessage("Removed:\n    "
                 + t
                 + "\n    Total "
                 + tasks.size()
@@ -171,6 +171,6 @@ public class TaskList {
             store.writeText(t.toStorageString(), true);
         }
         store.closeWriter();
-        return ui.printMessage("orh");
+        return ui.printMessage("orh bye");
     }
 }
