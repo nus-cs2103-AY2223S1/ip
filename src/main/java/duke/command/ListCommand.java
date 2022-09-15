@@ -10,10 +10,6 @@ import duke.ui.Ui;
  * @author Tan Jun Wei
  */
 public class ListCommand extends Command {
-    /**
-     * Constructs a list command.
-     */
-    public ListCommand() {}
 
     /**
      * Outputs the list of tasks.

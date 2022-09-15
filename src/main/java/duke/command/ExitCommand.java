@@ -11,10 +11,6 @@ import duke.ui.Ui;
  * @author Tan Jun Wei
  */
 public class ExitCommand extends Command {
-    /**
-     * Constructs an exit command.
-     */
-    public ExitCommand() {}
 
     /**
      * Executes the exit command.

@@ -36,16 +36,35 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Returns the completion status of the task.
+     *
+     * @return The completion status of the task as an icon.
+     */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
+    /**
+     * Returns the description of the task.
+     *
+     * @return The description of the task.
+     */
     public String getDescription() {
         return description;
     }
 
     public boolean getCompletionStatus() {
         return isDone;
+    }
+
+    /**
+     * Returns the encoding separator used to separate the task's fields.
+     *
+     * @return The encoding separator.
+     */
+    public static String getEncodingSeparator() {
+        return ENCODING_SEPARATOR;
     }
 
     /**
