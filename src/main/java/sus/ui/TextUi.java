@@ -18,7 +18,10 @@ public class TextUi {
     private final Scanner in;
     private Colour currentColour = Colour.GREEN;
 
-    private enum Colour {
+    /**
+     * Represents the available colours the CLI can show.
+     */
+    public enum Colour {
         RESET("\u001B[0m"),
         BLACK("\u001B[30m"),
         RED("\u001B[31m"),
@@ -37,6 +40,21 @@ public class TextUi {
 
         private String getColourCode() {
             return colourCode;
+        }
+
+        /**
+         * Check if input colour is supported
+         * @param colour specified colour
+         * @return true if colour is supported, false otherwise
+         */
+        public static boolean contains(String colour) {
+            for (Colour c : Colour.values()) {
+                if (c.name().equalsIgnoreCase(colour)) {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 

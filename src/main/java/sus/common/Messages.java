@@ -27,4 +27,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_NUMBER = "Please specify a valid task number.";
     public static final String MESSAGE_TASK_ALREADY_MARKED = "The task is already MARKED.";
     public static final String MESSAGE_TASK_ALREADY_UNMARKED = "The task is already UNMARKED.";
+    public static final String MESSAGE_COLOUR_NOT_SUPPPORTED = "The colour is UNSUPPORTED. Please check help.";
 }

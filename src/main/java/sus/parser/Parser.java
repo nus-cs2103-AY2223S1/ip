@@ -21,6 +21,7 @@ import sus.commands.UnmarkCommand;
 import sus.commands.UpdateCommand;
 import sus.common.Messages;
 import sus.common.Utils;
+import sus.ui.TextUi;
 
 /**
  * Parses user input.
@@ -31,8 +32,6 @@ public class Parser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     // any character, one or more times
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("\\d+");
-    private static final Pattern COLOUR_FORMAT = Pattern
-            .compile("\\b(black|red|green|yellow|blue|magenta|cyan|white)\\b");
     // string of any length
     private static final Pattern TODO_FORMAT = Pattern.compile("(?<description>.+)");
     // 1 word
@@ -134,9 +133,12 @@ public class Parser {
     }
 
     private Command prepareColour(String args) {
-        final Matcher matcher = COLOUR_FORMAT.matcher(args.trim());
-        if (!matcher.matches()) {
+        if (args.trim().split("\\s+").length != 1) {
             return new InvalidCommand(Messages.MESSAGE_INVALID_ARGUMENTS);
+        }
+
+        if (!TextUi.Colour.contains(args.trim())) {
+            return new InvalidCommand(Messages.MESSAGE_COLOUR_NOT_SUPPPORTED);
         }
         return new ColourCommand(args.trim());
     }
