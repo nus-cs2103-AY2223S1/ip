@@ -21,7 +21,6 @@ import zeus.exception.ZeusException;
  */
 public class Parser {
 
-
     /**
      * Returns the corresponding Command from parsing the input String.
      *

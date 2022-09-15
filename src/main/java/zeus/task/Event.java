@@ -12,7 +12,7 @@ public class Event extends Task {
     protected LocalDate datetimeFormatted;
 
     /**
-     * Constructor of Event class.
+     * Constructs a Event.
      *
      * @param description A String that describes the Event.
      * @param datetime A String that represents the datetime of the Event.
@@ -23,7 +23,7 @@ public class Event extends Task {
     }
 
     /**
-     * Constructor of Event class with formatted datetime as LocalDate.
+     * Constructs a Event with formatted datetime as LocalDate.
      *
      * @param description A String that describes the Event.
      * @param datetimeFormatted A LocalDate that represents the datetime of the Event.

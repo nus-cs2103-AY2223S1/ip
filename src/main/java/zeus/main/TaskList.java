@@ -15,7 +15,7 @@ public class TaskList {
     private Stack<ArrayList<Task>> historicalTaskLists;
 
     /**
-     * Constructor of Tasklist class.
+     * Constructs a Tasklist.
      */
     public TaskList() {
         this.tasks = new ArrayList<>(100);
@@ -23,7 +23,7 @@ public class TaskList {
     }
 
     /**
-     * Constructor of TaskList class that takes in an ArrayList of Tasks.
+     * Constructs a TaskList with an input ArrayList of Tasks.
      *
      * @param tasks ArrayList of Tasks.
      */

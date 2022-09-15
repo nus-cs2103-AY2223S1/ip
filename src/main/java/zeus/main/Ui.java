@@ -12,7 +12,7 @@ public class Ui {
     private StringBuilder response;
 
     /**
-     * Constructor of Ui class.
+     * Constructs a Ui.
      */
     public Ui() {
         this.response = new StringBuilder();

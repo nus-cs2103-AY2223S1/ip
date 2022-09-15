@@ -8,7 +8,7 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Constructor of Task class.
+     * Constructs a Task.
      *
      * @param description A String that represents the Task description.
      */
@@ -18,7 +18,7 @@ public class Task {
     }
 
     /**
-     * Constructor of Task class for copying.
+     * Constructs a Task for copying.
      *
      * @param description A String that represents the Task description.
      * @param isDone A boolean that indicates if Task is done.
@@ -29,7 +29,7 @@ public class Task {
     }
 
     /**
-     * Copy Constructor of Task class.
+     * Constructs a copy of Task.
      *
      * @param task Task to be copied.
      */

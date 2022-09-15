@@ -15,7 +15,7 @@ public class Zeus {
     private boolean isExit = false;
 
     /**
-     * Constructor of chatbot class.
+     * Constructs a chatbot.
      */
     public Zeus() {
         ui = new Ui();

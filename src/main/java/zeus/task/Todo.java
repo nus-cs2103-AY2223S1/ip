@@ -6,7 +6,7 @@ package zeus.task;
 public class Todo extends Task {
 
     /**
-     * Constructor of Todo class.
+     * Constructs a Todo.
      *
      * @param description A String that represents the description for the Todo task.
      */
@@ -15,7 +15,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Copy constructor of Todo class.
+     * Constructs a copy of Todo.
      *
      * @param todo Todo to copy.
      */

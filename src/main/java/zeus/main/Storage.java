@@ -22,7 +22,7 @@ public class Storage {
     private String filePath;
 
     /**
-     * Constructor of Storage class.
+     * Constructs a Storage.
      *
      * @param filePath Relative file path to file containing tasks.
      */
