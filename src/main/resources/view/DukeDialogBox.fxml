@@ -18,10 +18,13 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font size="24.0" />
+                  <Font name="Arial" size="24.0" />
                </font>
             </Label>
-            <Text fx:id="dialog" strokeType="OUTSIDE" strokeWidth="0.0" text="TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText" wrappingWidth="260.0" />
+            <Text fx:id="dialog" strokeType="OUTSIDE" strokeWidth="0.0" text="TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText" wrappingWidth="260.0">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font></Text>
          </children>
       </VBox>
     </children>
