@@ -1,4 +1,0 @@
-T | 0 | sleep
-T | 0 | read
-T | 0 | read
-T | 0 | read

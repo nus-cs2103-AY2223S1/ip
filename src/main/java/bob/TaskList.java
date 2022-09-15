@@ -36,7 +36,6 @@ public class TaskList {
      */
     public void removeTask(int index) {
         ArrayList<Task> temp = new ArrayList<>(100);
-        Task removedTask = tasks.get(index - 1);
         for (int i = 0; i < this.length; i++) {
             if (i == (index - 1)) {
                 continue;
@@ -98,6 +97,7 @@ public class TaskList {
      * Retrieves a task from list
      *
      * @param index the index of task to be retrieved
+     * @return retrieved task
      */
     public Task getTask(int index) {
         return this.tasks.get(index - 1);

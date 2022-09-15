@@ -23,13 +23,18 @@ public class MainWindow extends AnchorPane {
     private Bob bob;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpeg"));
-    private Image bobImage= new Image(this.getClass().getResourceAsStream("/images/bob.jpeg"));
+    private Image bobImage = new Image(this.getClass().getResourceAsStream("/images/bob.jpeg"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Initialise Bob and display Welcome
+     *
+     * @param b Bob to be initialised
+     */
     public void setBob(Bob b) {
         bob = b;
         dialogContainer.getChildren().addAll(DialogBox.getBobDialog(bob.welcome(), bobImage));
@@ -48,6 +53,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getBobDialog(response, bobImage)
         );
         userInput.clear();
+        if (bob.getToExit() == true) {
+            System.exit(0);
+        }
     }
 }
 

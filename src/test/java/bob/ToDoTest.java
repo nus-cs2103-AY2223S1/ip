@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 
 public class ToDoTest {
     @Test
-    public void testOne() {
+    public void newToDo() {
         Task task = new ToDo("sleep");
         assertEquals("[T][ ] sleep", task.toString());
     }
 
     @Test
-    public void testTwo() {
+    public void markToDo() {
         TaskList tasks = new TaskList();
         Task task = new ToDo("take a walk");
         tasks.addTask(task);
