@@ -2,6 +2,11 @@
 
 **Ditto!** is an extension of Duke which helps you keep track of your daily tasks.
 
+To begin the application, you can either:
+
+1. Double-click on the JAR file, or
+2. Navigate to the directory where the JAR file is stored and run `java -jar Ditto.java`
+
 ## Features 
 
 You can perform the following operations: 
@@ -13,6 +18,7 @@ You can perform the following operations:
 5. [Mark](https://nseah21.github.io/ip/#feature-5) tasks as undone
 6. [Search](https://nseah21.github.io/ip/#feature-6) for tasks
 7. [Postpone](https://nseah21.github.io/ip/#feature-7) deadlines *(new!)*
+7. [Close](https://nseah21.github.io/ip/#feature-8) the GUI 
 
 ### Feature 1
 
@@ -47,6 +53,10 @@ Have a ton of things to do? You can `find` your tasks easily by specifying a key
 ### Feature 7
 
 Drowning in deadlines? Just do yourself a favour and `postpone` them...
+
+### Feature 8
+
+Exit the application from the text box! No need for your mouse... just say `bye`!
 
 
 ## Usage
@@ -158,6 +168,18 @@ Expected output when calling `list`:
 1. [T][] visit the doctor
 2. [E][] concert (at: Esplanade)
 3. [D][] code review (by: Oct 1 2022 11.00pm)
+```
+
+### `bye` - Exits the application
+
+Terminates the application with a goodbye message.
+
+Format: `bye`
+
+Expected output:
+
+```    
+Bye! Hope to see you again soon!
 ```
 
 And there you go! You are ready to use **Ditto!**
