@@ -22,7 +22,7 @@ public class Sally {
     private Parser parser;
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image sally = new Image(this.getClass().getResourceAsStream("images/sally.png"));
+    private Image sally = new Image(this.getClass().getResourceAsStream("/images/sally.png"));
 
     private static final String filePath = "data/Sally.txt";
 

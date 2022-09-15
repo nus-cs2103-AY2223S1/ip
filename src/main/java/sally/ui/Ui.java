@@ -37,10 +37,19 @@ public class Ui {
     }
 
     /**
+     * Displays Sally's responses to the main window
+     *
+     * @param s message to be displayed
+     */
+    public void displaySally(String s) {
+        mainWindow.addSallyDialog(s);
+    }
+
+    /**
      * Shows greetings at the beginning
      */
     public void showGreeting() {
-        printWithBorder("Hello! I'm Sally\nWhat can I do for you?");
+        displaySally("Hello! I'm Sally\nWhat can I do for you?");
     }
 
     /**
@@ -74,9 +83,9 @@ public class Ui {
      */
     public void showList(TaskList tasks) {
         if (tasks.getNumOfTasks() == 0) {
-            printWithBorder("You don't have any list right now");
+            displaySally("You don't have any list right now");
         } else {
-            printWithBorder("Here's your current list:\n" + getList(tasks));
+            displaySally("Here's your current list:\n" + getList(tasks));
         }
     }
 
@@ -86,7 +95,7 @@ public class Ui {
      * @param removed task to show to user
      */
     public void showDeleted(String removed) {
-        printWithBorder("This task has been removed from your to-do list:\n" + removed);
+        displaySally("This task has been removed from your to-do list:\n" + removed);
     }
 
     /**
@@ -95,7 +104,7 @@ public class Ui {
      * @param unmarkedTask task to show to user
      */
     public void showUnmarked(String unmarkedTask) {
-        printWithBorder("Got it, I've unmarked this task for you!\n" + unmarkedTask);
+        displaySally("Got it, I've unmarked this task for you!\n" + unmarkedTask);
     }
 
     /**
@@ -104,7 +113,7 @@ public class Ui {
      * @param notMarked task to show to user
      */
     public void showPreviouslyUnmarked(String notMarked) {
-        printWithBorder("You have not marked: \n  " + notMarked);
+        displaySally("You have not marked: \n  " + notMarked);
     }
 
     /**
@@ -113,7 +122,7 @@ public class Ui {
      * @param markedTask task to show to user
      */
     public void showMarked(String markedTask) {
-        printWithBorder("Got it, I've marked this task for you!\n" + markedTask);
+        displaySally("Got it, I've marked this task for you!\n" + markedTask);
     }
 
     /**
@@ -122,7 +131,7 @@ public class Ui {
      * @param marked task to show to user
      */
     public void showPreviouslyMarked(String marked) {
-        printWithBorder("You have previously done: \n" + marked);
+        displaySally("You have previously done: \n" + marked);
     }
 
     /**
@@ -135,14 +144,14 @@ public class Ui {
         String message = (taskNum == 1)
             ? "Now you have 1 task in your list."
             : "Now you have " + taskNum + " tasks in your list.";
-        printWithBorder("Got it. I've added this task:\n" + tasks.getTask(taskNum - 1).toString() + "\nto your list! " + message);
+        displaySally("Got it. I've added this task:\n" + tasks.getTask(taskNum - 1).toString() + "\nto your list! " + message);
     }
 
     /**
      * Shows goodbye message to user
      */
     public void showGoodbye() {
-        printWithBorder("Ok, until next time!");
+        displaySally("Bye, until next time!");
     }
 
     /**
@@ -151,7 +160,7 @@ public class Ui {
      * @param error message to be shown
      */
     public void showError(String error) {
-        printWithBorder(error);
+        displaySally(error);
     }
 
     public void showFoundTasks(ArrayList<Task> foundTasks) {
@@ -159,7 +168,7 @@ public class Ui {
         for (int i = 0; i < foundTasks.size(); i++) {
             output = output + (i + 1) + ". " + foundTasks.get(i).toString() + "\n";
         }
-        printWithBorder("Here are the matching tasks in your list: \n" + output);
+        displaySally("Here are the matching tasks in your list: \n" + output);
     }
 
     /**
@@ -169,14 +178,5 @@ public class Ui {
      */
     public void setMainWindow(MainWindow mw) {
         this.mainWindow = mw;
-    }
-
-    /**
-     * Displays the message to main window
-     *
-     * @param s message to be displayed
-     */
-    public void displayedMessage(String s) {
-        mainWindow.addSallyDialog(s);
     }
 }
