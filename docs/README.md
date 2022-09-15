@@ -28,27 +28,27 @@ Tutter is **not** your average chat bot! Modelled after our favourite loveable r
 
 ## Features 
 
-### Add :memo:
+### Add 📝
 
 Add new tasks to your task list. Tasks can be of the following types: (1) `Todo` (2) `event` (3) `deadline`
 
-### Delete :wastebasket:
+### Delete 🗑
 
 Deletes task from task list given the task index.
 
-### View :receipt:
+### View 🧾
 
 View current task list.
 
-### Find :mag:
+### Find 🔍
 
 Search for list of tasks in task list that contain a given search term.
 
-### Mark :bookmark_tabs:
+### Mark 📑
 
 Mark a task as complete in the task list.
 
-### Unmark :x: :bookmark_tabs:
+### Unmark ❌ 📑
 
 Mark a task as incomplete in the task list. Tasks are marked as incomplete by default.
 
@@ -58,7 +58,7 @@ Tag a task in task list with a custom tag message.
 
 ## Usage
 
-### :memo: `todo` - adds a todo task to the task list.
+### 📝 `todo` - adds a todo task to the task list.
 
 Adds a todo task with the given task name. 
 Displays a success message when task is added successfully.
@@ -76,7 +76,7 @@ You have added "[T][ ] Buy Lunch" into your Task List!
 You have 1 task in your Task List!
 ```
 
-### :memo: `event` - adds an event task to the task list.
+### 📝 `event` - adds an event task to the task list.
 
 Adds an event task with the given task name and task duration in YYYY-MM-DD HHmm format. 
 Displays a success message when task is added successfully.
@@ -95,7 +95,7 @@ You have 1 task in your Task
 
 ```
 
-### :memo: `deadline` - adds a deadline task to the task list.
+### 📝 `deadline` - adds a deadline task to the task list.
 
 Adds an deadline task with the given task name and deadline date in YYYY-MM-DD HHmm format. 
 Displays a success message when task is added successfully.
@@ -113,7 +113,7 @@ You have added "[D][ ] Homework (by: SEP 13 2022 1400)" into your Task List!
 You have 1 task in your Task 
 
 ```
-### :wastebasket: `delete` - delete task with a given task index
+### 🗑 `delete` - delete task with a given task index
 
 Delete task with a given task index.
 Displays a success message when task is deleted successfully.
@@ -129,7 +129,7 @@ You have deleted "{Task}" from your Task List!
 You have 0 tasks in your Task List!
 ```
 
-### :receipt: `list` - display task list.
+### 🧾 `list` - display task list.
 
 Displays current task list.
 
@@ -144,7 +144,7 @@ Current task list.
 2. [D][ ] Homework (by: SEP 13 2022 1400)
 ```
 
-### :mag: `find` - search for tasks containing a given keyword
+### 🔍 `find` - search for tasks containing a given keyword
 
 Display list of tasks that contain a given keyword.
 
@@ -161,7 +161,7 @@ List of tasks containing search keyword (eg. **lunch**)
 2. [E][ ] [E][ ] Lunch (at: SEP 13 2022 1250 to SEP 13 2022 1400)
 ```
 
-### :bookmark_tabs: `mark` - mark a task as complete
+### 📑 `mark` - mark a task as complete
 
 Mark a task as complete given the task index.
 
@@ -177,7 +177,7 @@ Success message containing task that has been marked.
 Good Job! The following task "{Task}" has been marked as done!"
 ```
 
-### :x: :bookmark_tabs: `unmark` - mark a task as incomplete
+### ❌ 📑 `unmark` - mark a task as incomplete
 
 Mark a task as incomplete given the task index.
 
