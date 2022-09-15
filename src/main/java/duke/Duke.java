@@ -19,6 +19,7 @@ public class Duke {
     private final Ui ui;
 
     public static final String FILE_PATH = "data/duke.txt";
+
     /**
      * The main game.
      *
@@ -37,6 +38,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Craft's Duke's response to the given user input.
+     *
+     * @param fullCommand User input command.
+     * @return Duke's response to the user's input command.
+     */
     public String getResponse(String fullCommand) {
 
         ByteArrayOutputStream outputString = new ByteArrayOutputStream();

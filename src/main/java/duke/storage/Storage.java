@@ -1,5 +1,7 @@
 package duke.storage;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -21,6 +23,15 @@ public class Storage {
 
     public Storage(String filePath) {
         this.filePath = filePath;
+        File file = new File(filePath);
+        try {
+            if (!file.exists()) {
+                Files.createDirectories(Paths.get(filePath).getParent());
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

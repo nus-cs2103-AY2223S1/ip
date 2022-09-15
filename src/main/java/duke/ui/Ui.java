@@ -4,7 +4,6 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 import java.util.Scanner;
-import java.util.function.Predicate;
 
 public class Ui {
 
@@ -25,14 +24,6 @@ public class Ui {
     public void goodBye() {
         System.out.println("Bye! I have saved your tasks");
         System.out.println("Hope to see you again soon! :)");
-    }
-
-    public String readCommand() {
-        return scanner.nextLine();
-    }
-
-    public void showLine() {
-        System.out.println("_".repeat(50));
     }
 
     public void showLoadingError(String errorMessage) {
@@ -94,7 +85,7 @@ public class Ui {
     }
 
     public void countTasks(TaskList tasks) {
-        System.out.printf("Now you have %d tasks in the list.%n", tasks.size());
+        System.out.printf("Now you have %d tasks in the list.", tasks.size());
     }
 
 }
