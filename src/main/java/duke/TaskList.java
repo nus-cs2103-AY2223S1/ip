@@ -31,19 +31,19 @@ public class TaskList {
      *
      * @param task Task to be added.
      * @return Response string from Duke Bot.
-     * @throws DukeException If duplicate task is added.
+     * @throws ChickException If duplicate task is added.
      */
-    public String addTask(Task task) throws DukeException {
+    public String addTask(Task task) throws ChickException {
         if (taskSet.contains(task.toStorageString())) {
-            throw new DukeException("no duplicate tasks pls");
+            throw new ChickException("no duplicate tasks pls");
         }
         tasks.add(task);
         taskSet.add(task.toStorageString());
-        return ui.printMessage("Got it. I've added this task:\n      "
+        return ui.printMessage("Added:\n      "
                 + task
-                + "\n    Now you have "
+                + "\n    Total "
                 + tasks.size()
-                + " tasks in the list.");
+                + " tasks.");
     }
 
     /**
@@ -51,18 +51,18 @@ public class TaskList {
      *
      * @param id Index of task to be deleted. Index is numbering from calling "list" command.
      * @return Response string from Duke Bot.
-     * @throws DukeException If id is out of bounds.
+     * @throws ChickException If id is out of bounds.
      */
-    public String deleteTask(int id) throws DukeException {
+    public String deleteTask(int id) throws ChickException {
         if (id < 0 || id >= tasks.size()) {
-            throw new DukeException("Invalid index for deleting");
+            throw new ChickException("proper index pls");
         }
         Task t = tasks.remove(id);
-        return ui.printMessage("Noted. I've removed this task:\n      "
+        return ui.printMessage("Removed:\n      "
                 + t
-                + "\n    Now you have "
+                + "\n    Total "
                 + tasks.size()
-                + " tasks in the list.");
+                + " tasks.");
     }
 
     /**
@@ -70,15 +70,15 @@ public class TaskList {
      *
      * @param id Index of task to be marked. Index is numbering from calling "list" command.
      * @return Response string from Duke Bot.
-     * @throws DukeException If id is out of bounds.
+     * @throws ChickException If id is out of bounds.
      */
-    public String markTask(int id) throws DukeException {
+    public String markTask(int id) throws ChickException {
         if (id < 0 || id >= tasks.size()) {
-            throw new DukeException("Invalid index for marking");
+            throw new ChickException("proper index pls");
         }
         Task t = tasks.get(id);
         t.setAsDone();
-        return ui.printMessage("Nice! I've marked this task as done:\n    " + t);
+        return ui.printMessage("Marked:\n    " + t);
     }
 
     /**
@@ -86,15 +86,15 @@ public class TaskList {
      *
      * @param id Index of task to be unmarked. Index is numbering from calling "list" command.
      * @return Response string from Duke Bot.
-     * @throws DukeException If id is out of bounds.
+     * @throws ChickException If id is out of bounds.
      */
-    public String unmarkTask(int id) throws DukeException {
+    public String unmarkTask(int id) throws ChickException {
         if (id < 0 || id >= tasks.size()) {
-            throw new DukeException("Invalid index for unmarking");
+            throw new ChickException("proper index pls");
         }
         Task t = tasks.get(id);
         t.setAsUndone();
-        return ui.printMessage("OK, I've marked this task as not done yet:\n    " + t);
+        return ui.printMessage("Unmarked:\n    " + t);
     }
 
     /**
@@ -111,7 +111,7 @@ public class TaskList {
                 messageList += "\n    " + taskCount++ + ". " + t;
             }
         }
-        return ui.printMessage("Here are the matching tasks in your list:\n    " + messageList);
+        return ui.printMessage("Here:" + messageList);
     }
 
     /**
@@ -135,7 +135,7 @@ public class TaskList {
         for (Task t: tasks) {
             messageList += "\n    " + taskCount++ + ". " + t;
         }
-        return ui.printMessage("Here are the tasks in your list:\n    " + messageList);
+        return ui.printMessage("Here:" + messageList);
     }
 
     /**
@@ -154,7 +154,7 @@ public class TaskList {
         for (String s: taskSplit) {
             try {
                 parser.parse(s, false);
-            } catch (DukeException e) {
+            } catch (ChickException e) {
                 System.out.println("Failed to load saved tasks: " + e);
             }
         }
@@ -171,6 +171,6 @@ public class TaskList {
             store.writeText(t.toStorageString(), true);
         }
         store.closeWriter();
-        return ui.printMessage("Bye. Hope to see you again soon!");
+        return ui.printMessage("orh");
     }
 }

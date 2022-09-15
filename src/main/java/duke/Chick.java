@@ -1,25 +1,25 @@
 package duke;
 
 /**
- * Main class representing Duke Bot.
+ * Main class representing Chick Bot which is also a Duke Bot.
  */
-public class Duke {
+public class Chick {
     protected Ui ui;
     protected TaskList tasks;
     protected Parser parser;
 
-    private boolean isDukeRunning;
+    private boolean isChickRunning;
 
     /**
-     * Class constructor for Duke Bot.
+     * Class constructor for Chick Bot.
      */
-    public Duke() {
+    public Chick() {
         ui = new Ui();
         ui.printLogo();
         tasks = new TaskList(ui);
         parser = new Parser(tasks, this, ui);
         tasks.loadTasks(parser);
-        isDukeRunning = true;
+        isChickRunning = true;
     }
 
     /**
@@ -40,7 +40,7 @@ public class Duke {
     public String parseCommand(String command) {
         try {
             return parser.parse(command, true);
-        } catch (DukeException e) {
+        } catch (ChickException e) {
             return ui.printMessage(e.getMessage());
         }
     }
@@ -50,7 +50,7 @@ public class Duke {
      * This method sets the runningDuke flag to false.
      */
     public void terminate() {
-        isDukeRunning = false;
+        isChickRunning = false;
     }
 
     /**
@@ -66,10 +66,10 @@ public class Duke {
      * @param args Unused input arguments.
      */
     public static void main(String[] args) {
-        Duke duke = new Duke();
-        while (duke.isDukeRunning) {
-            String userInput = duke.getNextLine();
-            duke.parseCommand(userInput);
+        Chick chick = new Chick();
+        while (chick.isChickRunning) {
+            String userInput = chick.getNextLine();
+            chick.parseCommand(userInput);
         }
     }
 }

@@ -12,20 +12,22 @@ import duke.task.TodoTask;
  */
 public class Parser {
     private TaskList tasks;
-    private Duke duke;
+    private Chick chick;
     private Ui ui;
+    private int parseErrorCount;
 
     /**
      * Class constructor for Parser.
      *
      * @param taskList TaskList instance tracking tasks in Duke Bot.
-     * @param dukeInstance Duke instance representing Duke Bot.
+     * @param chickInstance Duke instance representing Duke Bot.
      * @param uiInstance Ui instance representing user interface for Duke Bot.
      */
-    public Parser(TaskList taskList, Duke dukeInstance, Ui uiInstance) {
+    public Parser(TaskList taskList, Chick chickInstance, Ui uiInstance) {
         tasks = taskList;
-        duke = dukeInstance;
+        chick = chickInstance;
         ui = uiInstance;
+        parseErrorCount = 0;
     }
 
     /**
@@ -35,11 +37,11 @@ public class Parser {
      * @param command Command string for parsing and execution.
      * @param isVerbose Boolean to indicate verbosity of Ui.
      * @return Response string from Duke Bot.
-     * @throws DukeException If command cannot be parsed or is invalid.
+     * @throws ChickException If command cannot be parsed or is invalid.
      */
-    public String parse(String command, boolean isVerbose) throws DukeException {
+    public String parse(String command, boolean isVerbose) throws ChickException {
         ui.setVerbose(isVerbose);
-        if (command.startsWith("deadline") || command.startsWith("event") || command.startsWith("todo")) {
+        if (command.startsWith("deadline ") || command.startsWith("event ") || command.startsWith("todo ")) {
             return parseTask(command);
         } else if (command.startsWith("mark") || command.startsWith("unmark") || command.startsWith("delete")) {
             return parseTwo(command);
@@ -48,7 +50,20 @@ public class Parser {
         } else if (command.startsWith("list") || command.startsWith("bye")) {
             return parseOne(command);
         } else {
-            throw new DukeException("I'm sorry, but I don't know what that means :-(");
+            parseErrorCount++;
+            String response;
+            if (parseErrorCount > 5) {
+                response = "oi";
+            } else if (parseErrorCount > 3) {
+                response = "stop it";
+            } else if (command.length() > 10) {
+                response = "bruh";
+            } else {
+                String[] chickResponses = new String[] {"??", "lmao"};
+                int responseIndex = (int)Math.round(Math.random() * (chickResponses.length - 0.5));
+                response = chickResponses[responseIndex];
+            }
+            throw new ChickException(response);
         }
     }
 
@@ -58,9 +73,10 @@ public class Parser {
      *
      * @param command Task command string.
      * @return Response string from Duke Bot.
-     * @throws DukeException If command cannot be parsed or is invalid.
+     * @throws ChickException If command cannot be parsed or is invalid.
      */
-    public String parseTask(String command) throws DukeException {
+    public String parseTask(String command) throws ChickException {
+        parseErrorCount = 0;
         Task t = null;
         try {
             if (command.startsWith("deadline")) {
@@ -73,8 +89,8 @@ public class Parser {
             assert t != null;
             return tasks.addTask(t);
         } catch (DateTimeParseException e) {
-            System.out.println("Unable to parse date: " + e);
-            return "Unable to parse date: " + e;
+            System.out.println("wrong date: " + e);
+            return "wrong date: " + e;
         }
     }
 
@@ -85,9 +101,10 @@ public class Parser {
      *
      * @param command Two part long command.
      * @return Response string from Duke Bot.
-     * @throws DukeException If command cannot be parsed or is invalid.
+     * @throws ChickException If command cannot be parsed or is invalid.
      */
-    public String parseTwo(String command) throws DukeException {
+    public String parseTwo(String command) throws ChickException {
+        parseErrorCount = 0;
         String[] commandSplit = command.split(" ", 2);
         String commandName = commandSplit[0];
         int id = tasks.getSize();
@@ -95,10 +112,10 @@ public class Parser {
             try {
                 id = Integer.parseInt(commandSplit[1]);
             } catch (NumberFormatException e) {
-                throw new DukeException("Please input a valid number.");
+                throw new ChickException("Please input a valid number.");
             }
         } else if (id == 0) {
-            throw new DukeException("Task list is empty.");
+            throw new ChickException("Task list is empty.");
         }
 
         if (commandName.equals("delete")) {
@@ -108,7 +125,7 @@ public class Parser {
         } else if (commandName.equals("unmark")) {
             return tasks.unmarkTask(id - 1);
         } else {
-            throw new DukeException("Unknown command");
+            throw new ChickException("Unknown command");
         }
     }
 
@@ -117,12 +134,13 @@ public class Parser {
      *
      * @param command Find command.
      * @return Response string from Duke Bot.
-     * @throws DukeException If command cannot be parsed or is invalid.
+     * @throws ChickException If command cannot be parsed or is invalid.
      */
-    public String parseFind(String command) throws DukeException {
+    public String parseFind(String command) throws ChickException {
+        parseErrorCount = 0;
         String[] commandSplit = command.split(" ", 2);
         if (commandSplit.length < 2) {
-            throw new DukeException("Please input string for find.");
+            throw new ChickException("Please input string for find.");
         }
         return tasks.findTask(commandSplit[1]);
     }
@@ -133,17 +151,18 @@ public class Parser {
      *
      * @param command One part long command.
      * @return Response string from Duke Bot.
-     * @throws DukeException If command cannot be parsed or is invalid.
+     * @throws ChickException If command cannot be parsed or is invalid.
      */
-    public String parseOne(String command) throws DukeException {
+    public String parseOne(String command) throws ChickException {
+        parseErrorCount = 0;
         if (command.equals("bye")) {
             String response = tasks.saveTasks();
-            duke.terminate();
+            chick.terminate();
             return response;
         } else if (command.equals("list")) {
             return tasks.generateList();
         } else {
-            throw new DukeException("Invalid command format.");
+            throw new ChickException("Invalid command format.");
         }
     }
 }

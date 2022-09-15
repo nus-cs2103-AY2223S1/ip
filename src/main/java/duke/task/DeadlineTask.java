@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.DukeException;
+import duke.ChickException;
 
 /**
  * Class representing a DeadlineTask.
@@ -17,9 +17,9 @@ public class DeadlineTask extends Task {
      *
      * @param description Command string being used to create DeadlineTask.
      * @throws DateTimeParseException If datetime given cannot be parsed.
-     * @throws DukeException If command is invalid.
+     * @throws ChickException If command is invalid.
      */
-    public DeadlineTask(String description) throws DateTimeParseException, DukeException {
+    public DeadlineTask(String description) throws DateTimeParseException, ChickException {
         super();
         this.commandString = description;
         int descriptionStartIndex = "deadline ".length();
@@ -27,9 +27,9 @@ public class DeadlineTask extends Task {
         String[] split = description.split(" /by ");
         int correctSplitCount = 2;
         if (split.length < correctSplitCount) {
-            throw new DukeException("Deadline time (indicated by /by separator) is missing.");
+            throw new ChickException("Deadline time (indicated by /by separator) is missing.");
         } else if (split.length > correctSplitCount) {
-            throw new DukeException("Multiple usage of /by separator is not allowed.");
+            throw new ChickException("Multiple usage of /by separator is not allowed.");
         }
         this.description = split[0];
         this.by = LocalDate.parse(split[1]);
