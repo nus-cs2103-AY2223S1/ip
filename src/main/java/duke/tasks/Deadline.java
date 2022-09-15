@@ -109,4 +109,19 @@ public class Deadline extends Task {
     public String save() {
         return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + deadline;
     }
+
+    /*
+     * Returns true if the deadline is equal to the other deadline.
+     * A deadline is equal to another deadline if they have the same description and
+     * deadline.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Deadline) {
+            Deadline deadline = (Deadline) obj;
+            return this.description.equals(deadline.description) && this.deadline.equals(deadline.deadline);
+        } else {
+            return false;
+        }
+    }
 }
