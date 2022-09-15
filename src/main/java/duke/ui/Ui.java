@@ -17,14 +17,14 @@ public class Ui {
 
     private static final String helpMessage = "Here are the commands you can use: \n"
             + "'todo (description)'\n"
-            + "'deadline (description) /by (deadline date*)'\n"
-            + "'event (description) /at (event date*)'\n"
+            + "'deadline (description) /by (date*)'\n"
+            + "'event (description) /at (date*)'\n"
             + "'find (filter)'\n"
             + "'unmark (task number)'\n"
             + "'mark (task number)'\n"
             + "'delete (task number)'\n"
             + "'list'\n"
-            + "(*Please input your dates in yyyy-MM-dd HHmm format.)\n";
+            + "(*Dates should in yyyy-MM-dd HHmm format )\n";
 
     /**
      * Prints out the help message.
