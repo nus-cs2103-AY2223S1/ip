@@ -11,6 +11,8 @@ import ui.Ui;
  * Marks a task as not done.
  */
 public class UnmarkCommand extends Command {
+    public static final String SYNTAX = "unmark TASK_NUMBER";
+
     private final String[] inputStrings;
 
     /**

@@ -11,6 +11,8 @@ import ui.Ui;
  * Removes the tag of a task.
  */
 public class UntagCommand extends Command {
+    public static final String SYNTAX = "untag TASK_NUMBER";
+
     private final String[] inputStrings;
 
     /**

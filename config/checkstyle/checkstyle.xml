@@ -15,7 +15,7 @@
     </module>
 
     <module name="NewlineAtEndOfFile">
-        <!-- Accept LF, CR or CRLF to accomodate devs who prefer different line endings -->
+        <!-- Accept LF, CR or CRLF to accommodate devs who prefer different line endings -->
         <property name="lineSeparator" value="lf_cr_crlf"/>
     </module>
 
@@ -343,6 +343,7 @@
 
         <module name="Indentation">
             <property name="caseIndent" value="0"/>
+            <property name="arrayInitIndent" value="8"/>
             <property name="throwsIndent" value="8"/>
         </module>
 

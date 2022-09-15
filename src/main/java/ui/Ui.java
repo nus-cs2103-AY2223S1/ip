@@ -150,4 +150,14 @@ public class Ui {
     public String showError(String errorMessage) {
         return errorMessage;
     }
+
+    /**
+     * Prints the specified commands delimited by a new line.
+     *
+     * @param commands The specified commands.
+     * @return The formatted message.
+     */
+    public String showAvailableCommands(String[] commands) {
+        return "Here are a list of available commands:\n" + String.join("\n", commands);
+    }
 }

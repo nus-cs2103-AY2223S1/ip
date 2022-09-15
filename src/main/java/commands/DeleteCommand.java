@@ -11,6 +11,8 @@ import ui.Ui;
  * Deletes the specified task.
  */
 public class DeleteCommand extends Command {
+    public static final String SYNTAX = "delete TASK_NUMBER";
+
     private final String[] inputStrings;
 
     /**

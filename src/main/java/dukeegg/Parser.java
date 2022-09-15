@@ -6,6 +6,7 @@ import commands.DeadlineCommand;
 import commands.DeleteCommand;
 import commands.EventCommand;
 import commands.FindCommand;
+import commands.HelpCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
 import commands.TagCommand;
@@ -62,6 +63,9 @@ public class Parser {
         }
         case "untag": {
             return new UntagCommand(inputValues);
+        }
+        case "help": {
+            return new HelpCommand();
         }
         default: {
             throw new InvalidCommandException();
