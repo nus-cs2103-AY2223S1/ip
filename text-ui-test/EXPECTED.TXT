@@ -3,52 +3,47 @@ Hello! I'm Duke
 I'm ready to serve you!
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
-1. [E][X] dummyEvent (at: Jan 01 2011 19:00)
-2. [D][ ] dummyDeadline (at: Jan 20 2012 00:00)
-3. [T][ ] dummyToDo
+Weeeee, your current list is as follow:
+1. [T][ ] sleep early
+2. [E][ ] attend group project meeting (at: Sep 11 2022 21:00)
+3. [D][ ] project submission (by: Sep 16 2022 23:59)
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
 Nice! this task is marked as done. Good Job!
-[E][X] dummyEvent (at: Jan 01 2011 19:00)
-~~~~~-----YOU-----~~~~~~
-~~~~~-----DUKE-----~~~~~
-Opps! we only have 3 tasks in the list :(
-~~~~~-----YOU-----~~~~~~
-~~~~~-----DUKE-----~~~~~
-Opps! we only have 3 tasks in the list :(
+[T][X] sleep early
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
 This task is marked as not done. Keep it up!
-[E][ ] dummyEvent (at: Jan 01 2011 19:00)
+[T][ ] sleep early
+~~~~~-----YOU-----~~~~~~
+~~~~~-----DUKE-----~~~~~
+Ching Ching Poof~~ This task is removed:
+ [T][ ] sleep early
+Now you have 2 tasks on your list.
+~~~~~-----YOU-----~~~~~~
+~~~~~-----DUKE-----~~~~~
+New task is registered as you wish, you can come back to check if you wish!:
+ [T][ ] sleep early
+Now you have 3 tasks on your list.
+~~~~~-----YOU-----~~~~~~
+~~~~~-----DUKE-----~~~~~
+Here you go! your matching tasks in your list
+[T][ ] sleep early
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
 Date and time format should be [YYYY-MM-DD HHmm]!
 (eg. 2022-08-21 1300)
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
-New task is registered as you wish, you can come back to check if you wish!:
- [E][ ] addEvent (at: Jan 05 2011 19:00)
-Now you have 4 tasks on your list.
-~~~~~-----YOU-----~~~~~~
-~~~~~-----DUKE-----~~~~~
-Based on my understanding, your instruction didn't follow the format
-todo : todo [task description]
-deadline: deadline [task description] /by [YYYY-MM-DD HHmm]
-event: event [task description] /at [YYYY-MM-DD HHmm]
-individual command: bye | list |
-mark/unmark/delete: [command] [number of task in list you wish to modify])
-
-~~~~~-----YOU-----~~~~~~
-~~~~~-----DUKE-----~~~~~
-New task is registered as you wish, you can come back to check if you wish!:
- [T][ ] addTodo
-Now you have 5 tasks on your list.
-~~~~~-----YOU-----~~~~~~
-~~~~~-----DUKE-----~~~~~
-Ching Ching Poof~~ This task is removed:
- [T][ ] addTodo
-Now you have 4 tasks on your list.
+Based on my understanding, your command didn't follow the format
+todo              : todo [task description]
+deadline          : deadline [task description] /by [YYYY-MM-DD HHmm]
+event             : event [task description] /at [YYYY-MM-DD HHmm]
+single command    : | bye | list |
+mark/unmark/delete: [command] [number of task in list you wish to modify]
+find              : find [search keyword]
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
 Goodbye, Hope to see you soon!
-----------------------------------------------
+
+
