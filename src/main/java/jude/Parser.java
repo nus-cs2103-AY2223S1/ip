@@ -21,7 +21,20 @@ public class Parser {
     private static final String TERMINATION_COMMAND = "bye";
     private static final long DEFAULT_REMINDER_SECONDS = 86400; // corresponding to 24 hours
     private static final String NO_TASKS_STRING = "No tasks found\n";
-    private static final String INVALID_EVENT_TIME_ERROR = "An event task must have a start time and an end time.";
+
+    private static final String INVALID_EVENT_TIME_ERROR = "An event task must have a start time "
+            + "and an end time.";
+    private static final String INVALID_DATE_FORMAT_ERROR = "Please input a valid date/time, e.g. 21 Aug "
+            + "2022 14:00, Aug 21 2022 2:00PM or 2022-08-21.";
+    private static final String INVALID_INDEX_ERROR = "Invalid index.";
+
+    private static final String NO_DEADLINE_ERROR = "A deadline task must have a deadline.";
+    private static final String NO_DATE_ERROR = "Date cannot be empty.";
+    private static final String NO_DESCRIPTION_TEMPLATE_ERROR = "Description of %s cannot be empty.";
+    private static final String NO_KEYWORD_ERROR = "Please enter a keyword to search.";
+    private static final String NO_DESCRIPTION_DEADLINE_ERROR = "Description of deadline task cannot be empty.";
+    private static final String NO_DESCRIPTION_EVENT_ERROR = "Description of event task cannot be empty.";
+
     private final TaskList tasks;
     private final Storage storage;
 
@@ -48,7 +61,7 @@ public class Parser {
         // Solution adapted from
         // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
         if (date == null) {
-            throw new IllegalCommandException("Date cannot be empty.");
+            throw new IllegalCommandException(NO_DATE_ERROR);
         }
 
         LocalDateTime dateObject = null;
@@ -93,8 +106,7 @@ public class Parser {
                 }
             }
             if (!isValid) {
-                throw new IllegalCommandException("Please input a valid date/time, e.g. 21 Aug "
-                        + "2022 14:00, Aug 21 2022 2:00PM or 2022-08-21.");
+                throw new IllegalCommandException(INVALID_DATE_FORMAT_ERROR);
             }
         }
         assert dateObject != null : "Date object cannot be null";
@@ -129,7 +141,7 @@ public class Parser {
                 Task taskAdded = null;
                 if (tokens.length == 1 || tokens[1].isBlank()) {
                     throw new IllegalCommandException(
-                            String.format("Description of %s cannot be empty.", tokens[0]));
+                            String.format(NO_DESCRIPTION_TEMPLATE_ERROR, tokens[0]));
                 }
 
                 if (tokens[0].equals("todo")) {
@@ -163,7 +175,7 @@ public class Parser {
                         response, task, tasks.size());
             } else if (tokens[0].equals("find")) {
                 if (tokens.length == 1) {
-                    throw new IllegalCommandException("Please enter a keyword to search.");
+                    throw new IllegalCommandException(NO_KEYWORD_ERROR);
                 }
                 response = String.format("%s%s\n", response, find(tokens[1].trim()));
             } else if (command.equals("list")) {
@@ -254,18 +266,16 @@ public class Parser {
     private Task addDeadline(String args) {
         String[] remTextTokens = "  ".concat(args).split(" /by ", 2);
         if (remTextTokens.length != 2) {
-            throw new IllegalCommandException("A deadline task must have a "
-                    + "deadline.");
+            throw new IllegalCommandException(NO_DEADLINE_ERROR);
         }
 
         String description = remTextTokens[0].trim();
         String deadline = remTextTokens[1].trim();
         if (description.isBlank() || description.isEmpty()) {
             throw new IllegalCommandException(
-                    "Description of deadline task cannot be empty.");
+                    NO_DESCRIPTION_DEADLINE_ERROR);
         } else if (deadline.isBlank()) {
-            throw new IllegalCommandException("A deadline task must have a "
-                    + "deadline.");
+            throw new IllegalCommandException(NO_DEADLINE_ERROR);
         }
         deadline = convertToDate(deadline);
         Task taskAdded = new Deadline(description, false, deadline);
@@ -289,7 +299,7 @@ public class Parser {
         String[] startAndEndTime = remTextTokens[1].strip().split(" /to ", 2);
         if (description.isBlank()) {
             throw new IllegalCommandException(
-                    "Description of event task cannot be empty.");
+                    NO_DESCRIPTION_EVENT_ERROR);
         } else if (startAndEndTime.length != 2 || startAndEndTime[0].isBlank()
                 || startAndEndTime[1].isBlank()) {
             throw new IllegalCommandException(INVALID_EVENT_TIME_ERROR);
@@ -315,7 +325,7 @@ public class Parser {
         try {
             return Integer.parseInt(index);
         } catch (NumberFormatException ex) {
-            throw new IllegalCommandException("Invalid index.");
+            throw new IllegalCommandException(INVALID_INDEX_ERROR);
         }
     }
 
