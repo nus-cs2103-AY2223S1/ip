@@ -19,7 +19,8 @@ public class Event extends Task {
      * @param eventTime The time of event happening.
      * @param isDone The status of event class.
      */
-    public Event (String description, LocalDate eventDate, LocalTime eventTime, boolean isDone) {
+    public Event (String description, LocalDate eventDate,
+                  LocalTime eventTime, boolean isDone) {
         super(description, isDone);
         this.eventTime = LocalDateTime.of(eventDate, eventTime);
     }
@@ -37,7 +38,8 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("[E]%s (%s)", super.toString(),
-                this.eventTime.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
+                this.eventTime.format(DateTimeFormatter
+                        .ofPattern("MMM d yyyy HH:mm")));
     }
     @Override
     public String save() {
@@ -49,5 +51,7 @@ public class Event extends Task {
     @Override
     public String getTaskType() { return "Event"; }
     @Override
-    public LocalDateTime getDateTime() { return this.eventTime; }
+    public LocalDateTime getDateTime() {
+        return this.eventTime;
+    }
 }
