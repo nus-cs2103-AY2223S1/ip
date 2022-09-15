@@ -31,8 +31,10 @@ diff ACTUAL.TXT EXPECTED-UNIX.TXT
 if [ $? -eq 0 ]
 then
     echo "Test result: PASSED"
+    read -p "Press any key to resume ..."
     exit 0
 else
     echo "Test result: FAILED"
+    read -p "Press any key to resume ..."
     exit 1
 fi
