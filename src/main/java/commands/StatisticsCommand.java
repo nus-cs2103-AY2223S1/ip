@@ -44,16 +44,22 @@ public class StatisticsCommand extends Command {
      * @throws DukeException Thrown if any arguments are invalid.
      */
     public static void validateArguments(String[] args) throws DukeException {
-        assert args.length > 0 : "Missing arguments in validateArguments";
+        if (args.length == 0) {
+            throw new DukeException("Missing statistic type! Please specify what kind of statistic you want to find.");
+        }
+        if (args.length == 1) {
+            throw new DukeException("Missing statistic target! Please specify the target of your statistic." +
+                    "This can be todos, deadlines, events, or all.");
+        }
 
         String statisticType = args[0];
         String statisticTarget = args[1];
 
         if (!isValidStatisticType(statisticType)) {
-            throw new DukeException("Invalid statistic type provided!");
+            throw new DukeException("Invalid statistic type provided! Available types are: count");
         }
         if (!isValidStatisticTarget(statisticTarget)) {
-            throw new DukeException("Invalid statistic target provided!");
+            throw new DukeException("Invalid statistic target provided! Available targets are: todos, deadlines, events, all");
         }
     }
 
