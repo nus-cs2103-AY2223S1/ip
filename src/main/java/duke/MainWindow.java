@@ -82,7 +82,7 @@ public class MainWindow extends AnchorPane {
         try {
             Thread.sleep(850);
         } catch (InterruptedException e) {
-            System.out.println("Unable to set delay.");
+            System.out.println("Unable to set delay. (._.)");
         }
         System.exit(0);
     }

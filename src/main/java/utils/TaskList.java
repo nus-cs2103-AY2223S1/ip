@@ -36,7 +36,7 @@ public class TaskList {
      */
     public TaskList(List<Task> taskList) throws DukeException {
         if (taskList.isEmpty()) {
-            throw new DukeException("No cached tasks.");
+            throw new DukeException("No cached tasks. (._.)");
         } else {
             this.tasks = taskList;
         }
@@ -63,7 +63,7 @@ public class TaskList {
             Todo t = new Todo(description);
 
             if (this.tasks.contains(t)) {
-                throw new DukeException("Task already exists! Duplicates are not allowed.");
+                throw new DukeException("Task already exists! Duplicates are not allowed. (._.)");
             }
 
             size = this.tasks.size();
@@ -74,7 +74,7 @@ public class TaskList {
             Deadline d = new Deadline(description, remarks);
 
             if (this.tasks.contains(d)) {
-                throw new DukeException("Task already exists! Duplicates are not allowed.");
+                throw new DukeException("Task already exists! Duplicates are not allowed. (._.)");
             }
 
             size = this.tasks.size();
@@ -85,7 +85,7 @@ public class TaskList {
             Event e = new Event(description, remarks);
 
             if (this.tasks.contains(e)) {
-                throw new DukeException("Task already exists! Duplicates are not allowed.");
+                throw new DukeException("Task already exists! Duplicates are not allowed. (._.)");
             }
 
             size = this.tasks.size();
@@ -102,16 +102,11 @@ public class TaskList {
      * @param index The position of the task to be deleted in the ArrayList.
      */
     public void delete(int index) {
-        String s = "Got it. I've removed this task:\n\t";
-        s = s + this.tasks.get(index);
-
         int tempSize = this.tasks.size();
         this.tasks.remove(index);
         int size = this.tasks.size();
 
-         assert(size < tempSize);
-
-        s = s + "\n\tNow you have " + (size) + (size == 1 ? " task" : " tasks") + " in the list.";
+        assert(size < tempSize);
     }
 
     /**
@@ -119,9 +114,9 @@ public class TaskList {
      */
     public String listTasks() {
         if (this.tasks.size() == 0) {
-            return "No items stored";
+            return "No items stored. (._.)";
         } else {
-            String s = "Here are the tasks in your list:\n";
+            String s = "Here are the tasks in your list: (._.)\n";
             for (int i = 0; i < this.tasks.size(); i++) {
                 Task t = this.tasks.get(i);
                 s = s + "\t" + (i + 1) + ". " + t + "\n";
@@ -156,7 +151,7 @@ public class TaskList {
      */
     public boolean checkIfTaskIsDeadline(int index) throws DukeException {
         if (index < 0 || index >= this.tasks.size()) {
-            throw new DukeException("Please enter a valid task ID.");
+            throw new DukeException("Please enter a valid task ID. (._.)");
         }
         return this.tasks.get(index) instanceof Deadline;
     }
@@ -209,7 +204,7 @@ public class TaskList {
      * @return A string of tasks that match the input string.
      */
     public String getAllOccurrencesOf(String s) {
-        String result = "Here are the matching tasks in your list:\n";
+        String result = "Here are the matching tasks in your list: (._.) \n";
         List<String> ls = this.tasks.stream()
                 .map(t -> t.toString().toLowerCase())
                 .collect(Collectors.toList());
@@ -218,7 +213,7 @@ public class TaskList {
                 .filter(str -> str.toLowerCase().contains(s))
                 .map(str -> ls.indexOf(str.toLowerCase()) + 1 + ". " + str)
                 .reduce((x, y) -> x + "\n\t" + y)
-                .orElse("No matching tasks found.");
+                .orElse("No matching tasks found. (._.)");
     }
 
     /**

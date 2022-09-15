@@ -9,7 +9,7 @@ public class Ui {
      * Prints a welcome message to the user.
      */
     public static String welcomeUser() {
-        String s = "Hello! I'm Duke\n"
+        String s = "Hello! I'm Ditto (._.) \n"
                 + "What can I do for you?\n"
                 + "(Please enter any datetime inputs in \n"
                 + "\"yyyy-mm-dd hhmm\" format)";
@@ -20,7 +20,7 @@ public class Ui {
      * Prints a goodbye message to the user.
      */
     public static String sayGoodbye() {
-        return "Bye. Hope to see you again soon!";
+        return "Bye. Hope to see you again soon! (._.)";
     }
 
     /**
