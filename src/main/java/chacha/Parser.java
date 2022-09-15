@@ -105,17 +105,18 @@ public class Parser {
                     throw new ChachaException("Sorry, I don't recognise this command.");
                 }
             case "find":
-                if (inputArray.length == 2) {
-                    String[] split = userInput.split("\\s+");
-                    String keyword = split[1];
-                    return new FindCommand(keyword);
+                if (inputArray.length >= 2) {
+                    int findCommandStr = 5;
+                    String keywordsStr = userInput.substring(5);
+                    String[] keywords = keywordsStr.split(", ");
+                    //String keyword = split[1];
+                    //return new FindCommand(keyword);
+                    return new FindCommand(keywords);
                 } else {
                     throw new ChachaException("Please enter valid keyword.");
                 }
             case "sort":
-
                 if (inputArray.length == 1) {
-
                     return new SortCommand();
                 } else {
                     throw new ChachaException("Sorry, I don't recognise this command.");
