@@ -16,3 +16,10 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 1. Install Gradle plugin in Intellij (if you have not done so yet).
 1. Add a new Gradle configuration by clicking on `Edit configurations` then clicking on the `+` button in the pop-up window and set the command to `run`.
 1. After that, select the Gradle configuration you have just created, then click `Run` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see a graphical user interface pop up.
+
+## Credits
+- src/main/resources/images/User.png taken from https://www.iconfinder.com/search?q=person&price=free 
+(original author Bombasticon Studio) under Free for commercial use licence.
+
+- src/main/resources/images/ManSmilingBehindWall.png taken from
+https://www.pexels.com/photo/man-smiling-behind-wall-220453/ licenced under CC0. Original author Pixabay.

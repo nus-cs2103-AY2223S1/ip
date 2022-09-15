@@ -4,6 +4,13 @@
 
 Jude the chatbot is a task tracker which helps keep track of todos, deadlines and events. It can be used as a reminder tool to remind you of upcoming or overdue deadlines, as well as upcoming events.
 
+## Installation Steps
+1. Go to [https://github.com/cheeheng/ip/releases](https://github.com/cheeheng/ip/releases).
+2. Download the latest release of Jude the chatbot.
+3. In a terminal, go to the directory of Jude the chatbot and execute the command ```java -jar 
+   {filename}.jar```. ```{filename}``` is the file name of the version of Jude the chatbot 
+   which you downloaded.
+
 ## Features
 
 ### Three types of tasks
