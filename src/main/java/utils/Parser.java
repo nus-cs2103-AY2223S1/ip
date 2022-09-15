@@ -151,7 +151,7 @@ public class Parser {
 
         taskList.add(todo, Duke.TaskType.TODO, "");
         storage.save(taskList);
-        return "Todo added successfully to task list."
+        return "Todo added successfully to task list.\n"
                 + "You have " + taskList.getSize() + " task(s) left in your task list. (._.)";
     }
 
@@ -176,7 +176,7 @@ public class Parser {
         }
         taskList.add(deadline, Duke.TaskType.DEADLINE, by);
         storage.save(taskList);
-        return "Deadline added successfully to task list."
+        return "Deadline added successfully to task list.\n"
                 + "You have " + taskList.getSize() + " task(s) left in your task list. (._.)";
     }
 
