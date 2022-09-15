@@ -41,53 +41,52 @@ public class Storage {
     public ArrayList<Task> load() throws DukeException, IOException {
         ArrayList<Task> dukeList = new ArrayList<>();
         File file = new File(filePath);
-
         if (!file.exists()) {
             File parent = new File(DIRECTORY + "/data");
             boolean isDirectoryCreated = parent.mkdir();
             boolean isFileCreated = file.createNewFile();
         }
-
         Scanner sc = new Scanner(file);
-
         while (sc.hasNext()) {
             String input = sc.nextLine();
-            String[] splitInput = input.split(Pattern.quote(" | "));
-            String taskType = splitInput[0];
-            String taskStatus = splitInput[1];
-            String taskDescription = splitInput[2];
-
-            boolean isComplete = taskStatus.equals("1");
-
-            switch (taskType) {
-            case "T":
-                Todo todo = new Todo(taskDescription);
-                dukeList.add(todo);
-                break;
-
-            case "D":
-                String by = splitInput[3];
-                Deadline deadline = new Deadline(taskDescription, by);
-                dukeList.add(deadline);
-                break;
-
-            case "E":
-                String at = splitInput[3];
-                Event event = new Event(taskDescription, at);
-                dukeList.add(event);
-                break;
-
-            default:
-                break;
-            }
-
-            if (isComplete) {
-                int size = dukeList.size();
-                dukeList.get(size - 1).markAsDone();
-            }
+            add(dukeList, input);
         }
-
         return dukeList;
+    }
+
+    /**
+     * Adds the task to the dukeList.
+     * @param dukeList ArrayList of Task.
+     * @param input String representation of input.
+     */
+    public void add(ArrayList<Task> dukeList, String input) {
+        String[] splitInput = input.split(Pattern.quote(" | "));
+        String taskType = splitInput[0];
+        String taskStatus = splitInput[1];
+        String taskDescription = splitInput[2];
+        boolean isComplete = taskStatus.equals("1");
+        switch (taskType) {
+        case "T":
+            Todo todo = new Todo(taskDescription);
+            dukeList.add(todo);
+            break;
+        case "D":
+            String by = splitInput[3];
+            Deadline deadline = new Deadline(taskDescription, by);
+            dukeList.add(deadline);
+            break;
+        case "E":
+            String at = splitInput[3];
+            Event event = new Event(taskDescription, at);
+            dukeList.add(event);
+            break;
+        default:
+            break;
+        }
+        if (isComplete) {
+            int size = dukeList.size();
+            dukeList.get(size - 1).markAsDone();
+        }
     }
 
     /**
