@@ -10,8 +10,7 @@ public class Ui {
      * Prints out the welcome message.
      */
     public static String welcome() {
-        return "Hello! I'm THE BRO\n" + "What can I do for you?\n"
-                + "For any help, type help";
+        return "Hello! I'm THE BRO\n" + "Feel free to add any task!!\nWhen in doubt type 'help'\n";
     }
     /**
      * Prints out the size of the ArrayList.
@@ -19,9 +18,9 @@ public class Ui {
      */
     public static String listSize(TaskList list1) {
         if (list1.size() == 1) {
-            return "You have " + list1.size() + " task left!" + "\n";
+            return "You only have " + list1.size() + " task left!" + "\n";
         } else {
-            return "You have " + list1.size() + " tasks left!" + "\n";
+            return "You only have " + list1.size() + " tasks left!" + "\n";
         }
     }
 
@@ -70,7 +69,7 @@ public class Ui {
      * Shows the error message for the file not being able to load.
      */
     public static String showLoadingError() {
-        return "The file couldn't be loaded." + "\n";
+        return "Sorry! The file couldn't be loaded." + "\n";
     }
 
     /**
@@ -88,7 +87,7 @@ public class Ui {
     public static String findUi(TaskList tasks) {
         String result = "";
         if (tasks.size() == 0) {
-            result += "Word could not be found!";
+            result += "Sry! Word could not be found!";
         } else {
             int count = 1;
             for (int i = 0; i < tasks.size(); i++) {
@@ -96,7 +95,7 @@ public class Ui {
                 count++;
             }
         }
-        return result;
+        return "Here are the tasks: \n" + result;
     }
 
     /**
