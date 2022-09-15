@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.storage.DukeEncoder;
-import duke.ui.Constants;
+import duke.ui.TextUi;
 
 
 /**
@@ -42,7 +42,7 @@ public class Task {
      * Print all item in the word list
      */
     public static String listItems(ArrayList<Task> workList) {
-        String toPrint = Constants.LISTING_MESSAGE + "\n";
+        String toPrint = TextUi.LISTING_MESSAGE + "\n";
         for (int i = 0; i < workList.size(); i++) {
             toPrint += ((i + 1) + ") " + workList.get(i).toString()) + "\n";
         }
@@ -59,7 +59,7 @@ public class Task {
             Task task = workList.get(index - 1);
             task.isDone = true;
             DukeEncoder.rewriteList(workList);
-            return Constants.MARK_AS_DONE_MESSAGE + task;
+            return TextUi.MARK_AS_DONE_MESSAGE + task;
         } catch (StringIndexOutOfBoundsException e) {
             return new DukeException.EmptyMarkingException().throwDukeException();
         } catch (NumberFormatException e) {
@@ -79,7 +79,7 @@ public class Task {
             Task task = workList.get(index - 1);
             task.isDone = false;
             DukeEncoder.rewriteList(workList);
-            return Constants.UNMARK_MESSAGE + task;
+            return TextUi.UNMARK_MESSAGE + task;
         } catch (StringIndexOutOfBoundsException e) {
             return new DukeException.EmptyMarkingException().throwDukeException();
         } catch (NumberFormatException e) {
@@ -96,7 +96,7 @@ public class Task {
      * @param workList
      */
     public static String add(ArrayList<Task> workList, String userInput) {
-        return Constants.ARROW + "Added task: ";
+        return TextUi.ARROW + "Added task: ";
     }
 
     /**
@@ -113,7 +113,7 @@ public class Task {
             workList.remove(task);
             DukeEncoder.rewriteList(workList);
             // Update data
-            return (Constants.ARROW + "Deleted task: " + task.toString()) + "\n"
+            return (TextUi.ARROW + "Deleted task: " + task.toString()) + "\n"
                     + Task.updateNumOfTask(workList);
         } catch (StringIndexOutOfBoundsException e) {
             return new DukeException.EmptyDeleteException().throwDukeException();
@@ -134,7 +134,7 @@ public class Task {
      * @return
      */
     public static String find(ArrayList<Task> workList, String userInput) {
-        String toPrint = Constants.FIND_MESSAGE + "\n";
+        String toPrint = TextUi.FIND_MESSAGE + "\n";
         String fullKeyword = userInput.substring(5);
         // Key word is too short, only find the full keyword
         if (fullKeyword.length() < 3) {

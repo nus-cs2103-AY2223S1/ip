@@ -9,7 +9,7 @@ import duke.logic.task.Deadline;
 import duke.logic.task.Event;
 import duke.logic.task.Task;
 import duke.logic.task.ToDo;
-import duke.ui.Constants;
+import duke.ui.TextUi;
 
 
 /**
@@ -25,23 +25,23 @@ public class ProcessUserInput {
         String typeOfTask = userInput.split(" ")[0];
 
         switch (typeOfTask) {
-        case Constants.EXIT:
-            return Constants.EXIT_MESSAGE;
-        case Constants.LIST:
+        case TextUi.EXIT:
+            return TextUi.EXIT_MESSAGE;
+        case TextUi.LIST:
             return Task.listItems(workList);
-        case Constants.UNMARK:
+        case TextUi.UNMARK:
             return markAsNotDone(workList, userInput);
-        case Constants.MARK:
+        case TextUi.MARK:
             return markAsDone(workList, userInput);
-        case Constants.TODO:
+        case TextUi.TODO:
             return ToDo.add(workList, userInput);
-        case Constants.DEADLINE:
+        case TextUi.DEADLINE:
             return Deadline.add(workList, userInput);
-        case Constants.EVENT:
+        case TextUi.EVENT:
             return Event.add(workList, userInput);
-        case Constants.DELETE:
+        case TextUi.DELETE:
             return Task.delete(workList, userInput);
-        case Constants.FIND:
+        case TextUi.FIND:
             return Task.find(workList, userInput);
             // Fallthrough
         default:

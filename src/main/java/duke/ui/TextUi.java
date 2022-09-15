@@ -3,7 +3,7 @@ package duke.ui;
 /**
  * Represents constants used in the whole program.
  */
-public class Constants {
+public class TextUi {
     // Logo
     public static final String LOGO = "CONAN bot";
 

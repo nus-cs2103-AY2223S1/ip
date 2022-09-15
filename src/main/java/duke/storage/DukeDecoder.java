@@ -17,7 +17,7 @@ public class DukeDecoder {
      * Loads List of task from existing text file.
      * @return an ArrayList of Task
      */
-    public static ArrayList<Task> loadDataFromList() {
+    public ArrayList<Task> loadDataFromList() {
         ArrayList<Task> workList = new ArrayList<>();
         try {
             File directory = new File("./data");

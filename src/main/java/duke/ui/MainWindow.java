@@ -1,9 +1,7 @@
-package duke.component;
+package duke.ui;
 import static duke.logic.ProcessUserInput.process;
 
 import duke.Duke;
-import duke.storage.DukeDecoder;
-import duke.ui.Constants;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -34,7 +32,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(
-                "Hello I am " + Constants.LOGO + "\n" + "May I help you?", dukeImage));
+                "Hello I am " + TextUi.LOGO + "\n" + "May I help you?", dukeImage));
     }
 
     public void setDuke(Duke d) {
@@ -48,7 +46,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = process(DukeDecoder.loadDataFromList(), input);
+        String response = process(duke.initializeList(), input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
