@@ -42,7 +42,7 @@ public class ViewScheduleCommand extends Command {
         assert splitCommand.length == 2 && !splitCommand[0].equals("") && !splitCommand[1].equals("");
         try {
             LocalDate queriedLocalDateTime = DateTimeParser.changeStringToParsingDate(splitCommand[1]);
-            TaskList required = getTasksAtLocalDateTime(queriedLocalDateTime);
+            TaskList required = getTasksAtLocalDate(queriedLocalDateTime);
             ui.printSchedule(required, dialogContainer, userDialog, queriedLocalDateTime);
         } catch (DateTimeParseException e) {
             throw new DukeException(INVALID_DATE_TIME_ERROR_MESSAGE);
@@ -53,7 +53,7 @@ public class ViewScheduleCommand extends Command {
         return splitCommand.length == 1;
     }
 
-    private TaskList getTasksAtLocalDateTime(LocalDate localDate) {
+    private TaskList getTasksAtLocalDate(LocalDate localDate) {
         TaskList requiredTaskList = new TaskList();
         int currentTaskSize = tasks.getSize();
         for (int i = 0; i < currentTaskSize; i++) {
