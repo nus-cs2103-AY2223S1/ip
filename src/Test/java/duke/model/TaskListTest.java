@@ -1,9 +1,9 @@
 package duke.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ public class TaskListTest {
         list.add(new Deadline("fishing", "2021-05-04"));
         TaskList taskList = new TaskList(list);
         taskList.delete(1);
-        assertEquals(taskList.toString(), "\tYou do not have any tasks!");
+        assertEquals(taskList.toString(), "The pokedex is empty! I don't see any tasks!");
     }
 
     @Test
