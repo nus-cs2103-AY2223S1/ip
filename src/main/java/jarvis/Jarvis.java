@@ -2,7 +2,7 @@ package jarvis;
 
 import jarvis.task.TaskList;
 
-public class Duke {
+public class Jarvis {
     static String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
@@ -14,7 +14,7 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
-    public Duke(String filePath) {
+    public Jarvis(String filePath) {
 
         storage = new Storage(filePath);
         try {
@@ -33,8 +33,8 @@ public class Duke {
 
     public static void main(String[] args) {
 
-        Duke duke = new Duke("data/task_list.txt");
-        duke.run();
+        Jarvis jarvis = new Jarvis("data/task_list.txt");
+        jarvis.run();
         // branch Level 8
 
     }
