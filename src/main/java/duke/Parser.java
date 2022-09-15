@@ -13,8 +13,18 @@ import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Todo;
 
+/*
+ * Parser class reads the user input and parses it into valid commands.
+ * It also checks for invalid commands and alerts the user to re-enter
+ * a valid input.
+ */
 public class Parser {
 
+    /*
+     * Parses the user input and returns the corresponding command.
+     * 
+     * @return The command corresponding to the user input to execute.
+     */
     public static Command parseCommand(String fullCommand) throws DukeException {
         try {
             String inputCommand = fullCommand.split(" ", 2)[0];
@@ -46,6 +56,11 @@ public class Parser {
         }
     }
 
+    /*
+     * Parses the user input command and returns the corresponding commands enum.
+     * 
+     * @return Optional<Commands> The corresponding commands enum.
+     */
     public static Optional<Commands> parseInputCommand(String command) {
         for (Commands c : Commands.values()) {
             if (c.text.equals(command)) {

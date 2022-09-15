@@ -1,5 +1,8 @@
 package duke.commands;
 
+/*
+ * Commands is an enum that contains all the valid commands that the user can input.
+ */
 public enum Commands {
     bye("bye"),
     list("list"),
@@ -12,6 +15,9 @@ public enum Commands {
 
     public String text;
 
+    /*
+     * Constructor for the Commands enum.
+     */
     Commands(String command) {
         this.text = command;
     }

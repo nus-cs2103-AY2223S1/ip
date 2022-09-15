@@ -2,37 +2,72 @@ package duke.tasks;
 
 import java.util.ArrayList;
 
+/*
+ * Represents a list of tasks.
+ */
 public class TaskList {
     private ArrayList<Task> list;
 
+    /*
+     * Constructs a TaskList object.
+     */
     public TaskList() {
         this.list = new ArrayList<Task>();
     }
 
+    /*
+     * Constructs a TaskList object.
+     * 
+     * @param list The list of tasks.
+     */
     public TaskList(ArrayList<Task> list) {
         this.list = list;
     }
 
+    /*
+     * Adds a task to the list.
+     */
     public void add(Task task) {
         list.add(task);
     }
 
+    /*
+     * Removes a task from the list.
+     */
     public void delete(int index) {
         list.remove(index);
     }
 
+    /*
+     * Returns the task at the specified index.
+     */
     public Task get(int index) {
         return list.get(index);
     }
 
+    /*
+     * Returns the size of the list.
+     * 
+     * @return The size of the list.
+     */
     public int size() {
         return list.size();
     }
 
+    /*
+     * Returns the list of tasks.
+     * 
+     * @return The list of tasks.
+     */
     public ArrayList<Task> getList() {
         return list;
     }
 
+    /*
+     * Returns a string representation of the list of tasks.
+     * 
+     * @return A string representation of the list of tasks.
+     */
     public String toString() {
         if (list.size() == 0) {
             return "You have no tasks in your list.";
