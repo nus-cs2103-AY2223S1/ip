@@ -40,10 +40,16 @@ public class Storage {
             System.exit(1);
         }
 
+        assert saveFile.exists();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(saveFile));
             taskList.clear();
-            reader.lines().forEach((s) -> taskList.add(stringToTask(s)));
+            reader.lines().forEach((s) -> {
+                Task t = stringToTask(s);
+                if (t != null) {
+                    taskList.add(stringToTask(s));
+                }
+            });
         } catch (IOException e) {
             System.out.println("Error while loading from file: " + e);
         }
@@ -56,6 +62,7 @@ public class Storage {
      */
     public void saveToFile(List<Task> givenTaskList) {
         taskList = givenTaskList;
+        assert saveFile.exists();
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
             for (Task task : taskList) {
