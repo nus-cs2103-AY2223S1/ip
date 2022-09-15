@@ -1,21 +1,23 @@
----
 # User Guide
 
----
 **AlphaBot** is a desktop application that can help you manage a schedule, edit it and stores it for future use. It is super simple and easy to use!
 
 ## Quick start
+
 1. Ensure you have Java 11 or above installed in your Computer.
-2. Download AlphaBot.jar from [here]() in case you have yet to do so!
+
+2. Download AlphaBot.jar from [here](https://github.com/L1uY1jun/ip/releases/tag/A-Release) in case you have yet to do so!
+
 3. When you start up the application, a GUI similar to below should appear in a few seconds.
-  ![Ui](Ui.png)
+  ![Ui](images/initialUi.png)
+
 4. There 3 types of tasks you can create on this application:
    * **ToDo**: A task with a short description on the details.
    * **Deadline**: A task with a short description and a due date specified by user.
    * **Event**: A task with a short description and the time and date of the event.
+
 5. Refer to the [Features](#features) section below for more details on the commands available for you to schedule your tasks!
 
----
 ## Features
 > **Notes on the features before you get started**
 * Words encased in braces `{ }` are `{parameters}` to be input by the user for each command.

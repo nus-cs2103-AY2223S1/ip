@@ -14,6 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+//@@author L1Y1jun-reused
+//Adapted from: https://se-education.org/guides/tutorials/javaFxPart4.html#javafx-tutorial-part-4-using-fxml
 /**
  * An example of a custom control using FXML.
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
@@ -69,6 +71,7 @@ public class DialogBox extends HBox {
         this.dialog.setStyle("-fx-background-color: #0096FF;"
                 + "-fx-text-fill: white;"
                 + "-fx-min-width: 200px;"
+                + "-fx-font-family: 'Comic Sans MS';"
                 + "-fx-font-size: 14;"
                 + "-fx-alignment: baseline-left;"
                 + "-fx-border-width: 0;"
@@ -83,6 +86,7 @@ public class DialogBox extends HBox {
         this.dialog.setStyle("-fx-background-color: #DCDCDC;"
                 + "-fx-text-fill: black;"
                 + "-fx-min-width: 200px;"
+                + "-fx-font-family: 'Comic Sans MS';"
                 + "-fx-font-size: 14;"
                 + "-fx-alignment: baseline-left;"
                 + "-fx-border-width: 0;"
@@ -90,3 +94,4 @@ public class DialogBox extends HBox {
                 + "-fx-padding: 15.0");
     }
 }
+//@@author
