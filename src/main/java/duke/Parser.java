@@ -17,23 +17,29 @@ public class Parser {
         case "list":
         case "sort":
         case "bye":
-            assert splitCommands.length == 1 : String.format("Do you mean \"%s\"?", splitCommands[0]);
+            if (splitCommands.length != 1) {
+                throw new DukeException("Do you mean \"%s\"?", splitCommands[0]);
+            }
             return splitCommands;
 
         case "todo":
         case "format":
         case "find":
         case "schedule":
-            assert splitCommands.length == 2 : "\u2639 OOPS!!! Missing argument.";
+            if (splitCommands.length != 2) {
+                throw new DukeException("Missing argument.");
+            }
             return splitCommands;
 
         case "deadline":
         case "event":
-            assert splitCommands.length == 2 : "\u2639 OOPS!!! Description cannot be empty.";
+            if (splitCommands.length != 2) {
+                throw new DukeException("Description cannot be empty.");
+            }
             String regex = splitCommands[0].equals("deadline") ? " /by " : " /at ";
             String[] details = splitCommands[1].split(regex);
             if (details.length != 2 || details[0].isEmpty() || details[1].isEmpty()) {
-                throw new DukeException("\u2639 OOPS!!! Make sure task description and dates are inputted properly!");
+                throw new DukeException("Make sure task description and dates are inputted properly!");
             }
             return new String[]{ splitCommands[0], details[0], details[1] };
 
@@ -43,14 +49,14 @@ public class Parser {
             try {
                 Integer.parseInt(splitCommands[1]);
             } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("\u2639 OOPS!!! Index must not be blank.");
+                throw new DukeException("Index must not be blank.");
             } catch (NumberFormatException e) {
-                throw new DukeException("\u2639 OOPS!!! Invalid index %s. Index must be an integer.", splitCommands[1]);
+                throw new DukeException("Invalid index %s. Index must be an integer.", splitCommands[1]);
             }
             return splitCommands;
 
         default:
-            throw new DukeException("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
     }
 }

@@ -10,6 +10,6 @@ public class DukeException extends Exception {
      * @param args Addition arguments for the formatted error message.
      */
     public DukeException(String msg, Object... args) {
-        super(String.format(msg, args));
+        super(String.format("\u2639 OOPS!!! " + msg, args));
     }
 }

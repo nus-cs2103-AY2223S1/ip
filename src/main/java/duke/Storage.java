@@ -38,41 +38,49 @@ public class Storage {
         try {
             sc = new Scanner(file);
         } catch (FileNotFoundException e) {
-            throw new DukeException("\u2639 OOPS!!! File not found: Unable to retrieve data.");
+            throw new DukeException("File not found: Unable to retrieve data.");
         }
-        sc.useDelimiter("( \\| )|(\\n)"); // split by | or new line
         while (sc.hasNext()) {
             try {
-                String type = sc.next();
-                String status = sc.next();
-                String description = sc.next();
-                Task task;
-                switch (type) {
-                case "T":
-                    task = new Todo(description);
-                    break;
-                case "D":
-                    task = new Deadline(description, sc.next());
-                    break;
-                case "E":
-                    task = new Event(description, sc.next());
-                    break;
-                default:
-                    throw new DukeException("\u2639 OOPS!!! Invalid task type: %s", type);
-                }
-                if (status.equals("1")) {
-                    task.markAsDone();
-                } else if (!status.equals("0")) {
-                    throw new DukeException("\u2639 OOPS!!! Invalid task status: %s", status);
-                }
+                Task task = getTaskFromLine(sc.nextLine());
                 tasks.add(task);
             } catch (NoSuchElementException e) {
                 sc.close();
-                throw new DukeException("\u2639 OOPS!!! File content is not in the correct format.");
+                throw new DukeException("File content is not in the correct format.");
             }
         }
         sc.close();
         return tasks;
+    }
+
+    private Task getTaskFromLine(String line) throws DukeException {
+        String[] splitStrings = line.split("( \\| )");
+        if (splitStrings.length < 2 && splitStrings.length > 3) {
+            throw new DukeException("File content is not in the correct format.");
+        }
+        String type = splitStrings[0];
+        String status = splitStrings[1];
+        String description = splitStrings[2];
+        Task task;
+        switch (type) {
+        case "T":
+            task = new Todo(description);
+            break;
+        case "D":
+            task = new Deadline(description, splitStrings[3]);
+            break;
+        case "E":
+            task = new Event(description, splitStrings[3]);
+            break;
+        default:
+            throw new DukeException("Invalid task type: %s", type);
+        }
+        if (status.equals("1")) {
+            task.markAsDone();
+        } else if (!status.equals("0")) {
+            throw new DukeException("Invalid task status: %s", status);
+        }
+        return task;
     }
 
     /**
@@ -83,11 +91,13 @@ public class Storage {
     public void saveData(TaskList tasks) throws DukeException {
         try {
             FileWriter fileWriter = new FileWriter(file);
-            String content = tasks.getTasks().stream().map(x -> x.getSaveFormat() + "\n").reduce("", (x, y) -> x + y);
+            String content = tasks.getTasks().stream()
+                    .map(x -> x.getSaveFormat() + "\n")
+                    .reduce("", (x, y) -> x + y);
             fileWriter.write(content);
             fileWriter.close();
         } catch (IOException e) {
-            throw new DukeException("\u2639 OOPS!!! Unable to save data.");
+            throw new DukeException("Unable to save data.");
         }
     }
 }
