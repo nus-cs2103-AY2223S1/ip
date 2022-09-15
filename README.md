@@ -13,7 +13,7 @@ SotongBoi is a CLI todo list application that allows you to create and delete Ta
 
 Please refer to the [User Guide](/docs/README.md) for more information on using SotongBoi!
 
-![SotongBoi Ui]()
+![SotongBoi Ui](./docs/Ui.png)
 
 Try it!
 
