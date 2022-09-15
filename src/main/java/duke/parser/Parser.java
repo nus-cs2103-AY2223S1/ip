@@ -53,6 +53,7 @@ public class Parser {
          *
          * @param inputKeyword The user's input Keyword.
          * @return The corresponding Keyword related to a Command.
+         * @throws DukeException An exception related to the program.
          */
         public static Keyword getKeyword(String inputKeyword) throws DukeException {
             for (Keyword k : Keyword.values()) {
@@ -69,6 +70,7 @@ public class Parser {
      *
      * @param userInput The user's input.
      * @return A Command associated with the user's input.
+     * @throws DukeException An exception related to the program.
      */
     public static Command parse(String userInput) throws DukeException {
         String[] input = userInput.split(" ", 2);
