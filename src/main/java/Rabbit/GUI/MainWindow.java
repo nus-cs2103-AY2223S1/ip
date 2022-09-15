@@ -47,12 +47,14 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = rabbit.getResponse(input);
+
         if (input.equals("change")) {
             Random rd = new Random();
             int randomInt = rd.nextInt(6) + 1;
-            String rabbitNumber = "Rabbit" + randomInt + ".PNG";
+            String rabbitNumber = "Rabbit" + randomInt + ".png";
             rabbitImage = new Image(this.getClass().getResourceAsStream("/images/" + rabbitNumber));
         }
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getRabbitDialog(response, rabbitImage)
