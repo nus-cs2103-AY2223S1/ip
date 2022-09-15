@@ -38,27 +38,28 @@ public class Parser {
             return new ListCommand();
         }
 
-        String[] inputArr = inputString.split(" ", 1);
+        String[] inputArr = inputString.split(" ", 2);
+        String argument = inputArr.length > 1 ? inputArr[1] : "";
 
         // Check for mark/unmark/delete
-        if (isMarkCommand(inputArr[0], inputArr[1].trim())) {
-            int taskIndex = Integer.parseInt(inputArr[1].trim());
+        String toParseInt = argument.trim();
+        if (isMarkCommand(inputArr[0], toParseInt)) {
+            int taskIndex = Integer.parseInt(toParseInt) - 1;
             return new MarkCommand(taskIndex);
-        } else if (isUnmarkCommand(inputArr[0], inputArr[1].trim())) {
-            int taskIndex = Integer.parseInt(inputArr[1].trim());
+        } else if (isUnmarkCommand(inputArr[0], toParseInt)) {
+            int taskIndex = Integer.parseInt(toParseInt) - 1;
             return new UnmarkCommand(taskIndex);
-        } else if (isDeleteCommand(inputArr[0], inputArr[1].trim())) {
-            int taskIndex = Integer.parseInt(inputArr[1].trim());
+        } else if (isDeleteCommand(inputArr[0], toParseInt)) {
+            int taskIndex = Integer.parseInt(toParseInt) - 1;
             return new DeleteCommand(taskIndex);
         }
 
         // Check for find command
         if (isFindCommand(inputArr[0])) {
-            return new FindCommand(inputArr[1]);
+            return new FindCommand(argument);
         }
         // Add task command
-        inputArr[1] = inputArr[1].trim();
-        return addTaskCommand(inputArr[0], inputArr[1]);
+        return addTaskCommand(inputArr[0], argument.trim());
     }
 
     /**
