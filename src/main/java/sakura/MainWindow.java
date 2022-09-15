@@ -41,28 +41,40 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.jpg"));
     private Image sakuraImage = new Image(this.getClass().getResourceAsStream("/images/DaSakura.jpg"));
 
+//    @FXML
+//    public void initialize() {
+//        Background background = new Background(new BackgroundFill(Color.valueOf("a93451"), new CornerRadii(0), new Insets(0)));
+//        Font font = new Font("Lucida Sans Typewriter Regular", 12);
+//        pane.setBackground(background);
+//        dialogContainer.setBackground(background);
+//        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+//        sendButton.setFont(font);
+//        userInput.setFont(font);
+//
+//        String l = Ui.logo();
+//        String greetMessage = Ui.greet();
+////        System.out.println(javafx.scene.text.Font.getFontNames());
+//        logo.setText(l);
+//        logo.setFont(font);
+//        logo.setFill(Paint.valueOf("FFFFFF"));
+//        dialogContainer.getChildren().addAll(
+//                DialogBox.getDukeDialog(greetMessage, sakuraImage)
+//        );
+//    }
     @FXML
     public void initialize() {
-        Background background = new Background(new BackgroundFill(Color.valueOf("a93451"), new CornerRadii(0), new Insets(0)));
         Font font = new Font("Lucida Sans Typewriter Regular", 12);
-        pane.setBackground(background);
-        dialogContainer.setBackground(background);
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        sendButton.setFont(font);
-        userInput.setFont(font);
-
         String l = Ui.logo();
-        String greetMessage = Ui.greet();
-//        System.out.println(javafx.scene.text.Font.getFontNames());
         logo.setText(l);
         logo.setFont(font);
         logo.setFill(Paint.valueOf("FFFFFF"));
+        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(greetMessage, sakuraImage)
+                DialogBox.getSakuraDialog(Ui.greet(), sakuraImage)
         );
     }
 
-    public void setDuke(Sakura s) {
+    public void setSakura(Sakura s) {
         sakura = s;
     }
 
@@ -76,7 +88,7 @@ public class MainWindow extends AnchorPane {
         String response = sakura.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, sakuraImage)
+                DialogBox.getSakuraDialog(response, sakuraImage)
         );
 
         userInput.clear();

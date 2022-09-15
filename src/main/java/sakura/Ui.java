@@ -77,11 +77,11 @@ public class Ui {
         int initialSize = tasks.size();
         tasks.add(newTask);
         assert tasks.size() == initialSize + 1 : "Size of tasks list is incorrect after adding new task.";
-        return "Yes Senpai! I've added this task: \n\t  "
+        return "Yes Senpai! I've added this task: \n\n\t  "
                 + newTask
-                + " \n\tNow you have "
+                + " \n\n\tNow you have "
                 + tasks.size()
-                + " tasks in the list.";
+                + " tasks in the list.\n";
     }
 
     /**
@@ -91,11 +91,11 @@ public class Ui {
      * @return string message to user.
      */
     public static String deleteDescription(List<Task> tasks, Task deletedTask) {
-        return "Right away Senpai! I've SHREDDED this task: \n\t  "
+        return "Right away Senpai! I've SHREDDED this task: \n\n\t  "
                 + deletedTask
-                + " \n\tNow you have "
+                + " \n\n\tNow you have "
                 + tasks.size()
-                + " tasks in the list.";
+                + " tasks in the list.\n";
     }
 
     /**
@@ -105,17 +105,18 @@ public class Ui {
      * @return string message to user.
      */
     public static String showAllTask(List<Task> tasks) {
-        StringBuilder list = new StringBuilder("Senpai, these are the tasks in your list:");
+        StringBuilder list = new StringBuilder("Senpai, these are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             int index = i + 1;
             list.append("\n\t").append(index).append(". ").append(tasks.get(i));
         }
+        list.append("\n");
         return list.toString();
     }
 
     public static String searchTaskDescription(List<Task> searchTask) {
         if (searchTask.size() > 0) {
-            StringBuilder searcher = new StringBuilder("Senpai, these are the tasks in your list: \n");
+            StringBuilder searcher = new StringBuilder("Senpai, these are the tasks in your list: \n\n");
             for (int i = 0; i < searchTask.size(); i++) {
                 int index = i + 1;
                 Task task = searchTask.get(i);
@@ -128,11 +129,12 @@ public class Ui {
     }
 
     public static String showSortedTasks(List<Task> tasks) {
-        StringBuilder list = new StringBuilder("Senpai, here are the tasks sorted by date:");
+        StringBuilder list = new StringBuilder("Senpai, here are the tasks sorted by date:\n");
         for (int i = 0; i < tasks.size(); i++) {
             int index = i + 1;
             list.append("\n\t").append(index).append(". ").append(tasks.get(i));
         }
+        list.append("\n");
         return list.toString();
     }
 }

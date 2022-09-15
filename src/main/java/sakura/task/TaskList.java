@@ -92,7 +92,7 @@ public class TaskList {
                 int taskIndex = Integer.parseInt(input.substring("mark ".length()));
                 Task task = tasks.get(taskIndex - 1);
                 task.markDone();
-                return "\tAlright solid work! You've completed this task: \n\t  " + task;
+                return "\tAlright solid work! You've completed this task: \n\n\t  " + task;
             }
         } catch (IndexOutOfBoundsException e) {
             return SakuraException.noSuchTask();
@@ -112,7 +112,7 @@ public class TaskList {
                 int taskIndex = Integer.parseInt(input.substring("unmark ".length()));
                 Task task = tasks.get(taskIndex - 1);
                 task.markUndone();
-                return "\tHey this is not done yet? Remember to finish it soon: \n\t  " + task;
+                return "\tHey this is not done yet? Remember to finish it soon: \n\n\t  " + task;
             }
         } catch (IndexOutOfBoundsException e) {
             return SakuraException.noSuchTask();
