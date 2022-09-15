@@ -50,32 +50,40 @@ Adds a todo to the task list.\
 
 ### Adding a deadline : `deadline`
 Add a deadline to the task list. A deadline must contain a description and a due date.\
-**Format:** `deadline DEADLINE_DESCRIPTION /by DUE_DATE` \
-_DUE_DATE_ : The due date of the deadline must be in yyyy-mm-dd format. \
+**Format:** `deadline DEADLINE_DESCRIPTION /by DUE_DATE` 
+
+> _DUE_DATE_ : The due date of the deadline must be in yyyy-mm-dd format. 
+
 **Example:** \
 `deadline submit Quiz 1 /by 2022-12-15` \
-`deadline finish Assigment 2 /by 2022-5-8`
+`deadline finish Assigment 2 /by 2022-05-08`
 
 ### Adding an event : `event`
 Add an event to the task list. An event must contain a description and a date. \
-**Format:** `event EVENT_DESCRIPTION /at DATE` \
-_DATE_ : The date of the event must be in yyyy-mm-dd format. \
+**Format:** `event EVENT_DESCRIPTION /at DATE` 
+
+> _DATE_ : The date of the event must be in yyyy-mm-dd format. 
+
 **Example:** \
 `event Christmas celebration /at 2022-12-15` \
-`event Food Festival /at 2022-5-8`
+`event Food Festival /at 2022-05-08`
 
 ### Marking a task as finished : `mark`
 Marks the task selected as finished. \
-**Format:** `mark TASK_INDEX` \
-_TASK_INDEX_ : the index of the task in the task list which can be obtained with the list command. \
+**Format:** `mark TASK_INDEX` 
+
+> _TASK_INDEX_ : the index of the task in the task list which can be obtained with the list command. 
+
 **Example:** \
 `mark 1` \
 `mark 3`
 
 ### Marking a task as unfinished : `unmark`
 Marks the task selected as unfinished. \
-**Format:** `unmark TASK_INDEX` \
-_TASK_INDEX_ : the index of the task in the task list which can be obtained with the list command. \
+**Format:** `unmark TASK_INDEX` 
+
+> _TASK_INDEX_ : the index of the task in the task list which can be obtained with the list command. 
+
 **Example:** \
 `unmark 2` \
 `unmark 5`
@@ -86,8 +94,10 @@ Shows a list of all saved tasks. \
 
 ### Sorting the tasks by date : `sort`
 Sorts the task list by date. \
-**Format:** `sort DIRECTION` \
-DIRECTION: `ascending` / `descending` \
+**Format:** `sort DIRECTION` 
+
+> _DIRECTION_: `ascending` / `descending` 
+
 **Example:** \
 `sort ascending` \
 `sort descending`
@@ -95,8 +105,10 @@ DIRECTION: `ascending` / `descending` \
 
 ### Deleting a task : `delete`
 Deletes the selected task in the list. \
-**Format:** `delete TASK_INDEX` \
-_TASK_INDEX_ : the index of the task in the task list which can be obtained with the list command. \
+**Format:** `delete TASK_INDEX` 
+
+> _TASK_INDEX_ : the index of the task in the task list which can be obtained with the list command. 
+
 **Example:** \
 `delete 1` \
 `delete 5`
@@ -114,4 +126,4 @@ to save manually.
 Duke data are saved as text file `[JAR_file_location]/data/duke.txt`. Advanced users are welcome to update the data
 directly by editing the data file.
 
-> CAUTION: If your changes to the text file makes its format invalid, Duke may crash.
+> CAUTION: If your changes to the text file make its format invalid, Duke may crash.
