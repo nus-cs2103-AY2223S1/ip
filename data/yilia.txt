@@ -1,4 +1,0 @@
-T / 1 / go to sleep
-T / 0 / swim
-E / 1 / read a book / 2019-12-01
-D / 0 / return a book / 2020-01-20

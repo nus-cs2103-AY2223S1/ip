@@ -6,12 +6,21 @@ Hello! I'm Yilia
       | |      | |  | |_______   | |   / /       \ \  
       |_|      |_|  |_________|  |_|  /_/         \_\ 
 What can I do for you?
-Got it. I've added this task:
-  [T][ ] borrow book
+_______
+ヾ（′▽｀*）ゝGot it!
+I've added this task:
+  [T][ ] swim
 Now you have 1 task in the list.
-Got it. I've added this task:
-  [D][ ] return book (by: Sunday)
+_______
+_______
+ヾ（′▽｀*）ゝGot it!
+I've added this task:
+  [E][ ] read a book (at: Dec 1 2019)
 Now you have 2 tasks in the list.
-Got it. I've added this task:
-  [E][ ] project meeting (at: Mon 2-4pm)
+_______
+_______
+ヾ（′▽｀*）ゝGot it!
+I've added this task:
+  [D][ ] return a book (by: Jan 20 2020)
 Now you have 3 tasks in the list.
+_______
