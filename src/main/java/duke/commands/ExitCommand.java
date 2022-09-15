@@ -9,6 +9,8 @@ import duke.exceptions.DukeException;
  */
 public class ExitCommand extends Command {
 
+    private static final String MESSAGE_EXIT = "Goodbye!";
+
     /**
      * Constructs a <code>ExitCommand</code> command.
      *
@@ -28,7 +30,7 @@ public class ExitCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         storage.save(tasks);
-        String response = "Goodbye!";
+        String response = MESSAGE_EXIT;
         return response;
     }
 }

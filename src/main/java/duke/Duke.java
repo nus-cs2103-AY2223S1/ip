@@ -8,6 +8,8 @@ import duke.exceptions.DukeException;
  */
 public class Duke {
 
+    private static final String STORAGE_PATH = "data/TaskList.txt";
+
     private Storage storage;
     private TaskList tasks;
 
@@ -18,7 +20,7 @@ public class Duke {
      */
 
     public Duke() {
-        storage = new Storage("data/TaskList.txt");
+        storage = new Storage(STORAGE_PATH);
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {

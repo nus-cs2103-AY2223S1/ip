@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
+    private static final String DATE_TIME_FORMAT = "dd/MM/yyyy HHmm";
+
     protected LocalDateTime deadline;
     protected String deadlineString;
 
@@ -21,7 +23,7 @@ public class Deadline extends Task {
     public Deadline(String description, String deadline, boolean isDone) {
         super(description, isDone);
         this.deadlineString = deadline;
-        this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
     }
 
     /**

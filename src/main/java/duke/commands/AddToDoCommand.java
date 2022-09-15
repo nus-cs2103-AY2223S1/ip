@@ -10,6 +10,13 @@ import duke.exceptions.DukeMissingArgumentException;
  */
 public class AddToDoCommand extends Command {
 
+    private static final int DESCRIPTION_INDEX = 5;
+
+    private static final String MESSAGE_ARGUMENT_MISSING = "OOPS!!! The description and/or the time of a todo "
+            + "cannot be empty.";
+    private static final String MESSAGE_SUCCESS = "Got it. I've added this task:\n%s\nNow you have %d tasks "
+            + "in the list.";
+
     /**
      * Constructs a <code>AddToDoCommand</code> command.
      *
@@ -29,21 +36,14 @@ public class AddToDoCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeMissingArgumentException {
         try {
-            assert !description.substring(5).isBlank() : "Task description cannot be blank";
-            ToDo todo = new ToDo(description.substring(5), false);
+            assert !description.substring(DESCRIPTION_INDEX).isBlank() : MESSAGE_ARGUMENT_MISSING;
+            ToDo todo = new ToDo(description.substring(DESCRIPTION_INDEX), false);
             tasks.add(todo);
             int numberOfTasks = tasks.getSize();
-            String response;
-            if (numberOfTasks < 2) {
-                response = "Got it. I've added this task:\n " + todo
-                        + "\nNow you have " + numberOfTasks + " task in the list.";
-            } else {
-                response = "Got it. I've added this task:\n " + todo
-                        + "\nNow you have " + numberOfTasks + " tasks in the list.";
-            }
+            String response = String.format(MESSAGE_SUCCESS, todo, numberOfTasks);
             return response;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeMissingArgumentException("OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeMissingArgumentException(MESSAGE_ARGUMENT_MISSING);
         }
     }
 }

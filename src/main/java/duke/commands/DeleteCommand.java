@@ -10,6 +10,11 @@ import duke.exceptions.DukeIndexOutOfBoundsException;
  */
 public class DeleteCommand extends Command {
 
+    private static final int DESCRIPTION_INDEX = 7;
+
+    private static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "OOPS!!! You cannot delete a non-existent task.";
+    private static final String MESSAGE_SUCCESS = "Noted. I've removed this task:\n  %s";
+
     /**
      * Constructs a <code>DeleteCommand</code> command.
      *
@@ -29,15 +34,19 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeIndexOutOfBoundsException {
         try {
-            int index = Integer.parseInt(description.substring(7)) - 1;
-            assert index >= 0 : "Task index cannot be less than 0";
-            assert index < tasks.getSize() : "Task index cannot be larger than the number of tasks.";
+            int index = changeToZeroIndex(Integer.parseInt(description.substring(DESCRIPTION_INDEX)));
+            assert index >= 0 : MESSAGE_INDEX_OUT_OF_BOUNDS;
+            assert index < tasks.getSize() : MESSAGE_INDEX_OUT_OF_BOUNDS;
             Task task = tasks.get(index);
             tasks.delete(index);
-            String response = "Noted. I've removed this task:\n  " + task;
+            String response = String.format(MESSAGE_SUCCESS, task);
             return response;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeIndexOutOfBoundsException("OOPS!!! You cannot delete a non-existent task.");
+            throw new DukeIndexOutOfBoundsException(MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
+    }
+
+    private int changeToZeroIndex(int index) {
+        return index - 1;
     }
 }

@@ -9,6 +9,16 @@ import duke.exceptions.DukeMissingArgumentException;
  * Represents an executable <code>Command</code> to add <code>RecurringTask</code>.
  */
 public class AddRecurringTaskCommand extends Command {
+
+    private static final int DESCRIPTION_INDEX = 9;
+
+    private static final String MESSAGE_ARGUMENT_MISSING = "OOPS!!! The description and/or the time of a recurring "
+            + "task cannot be empty.";
+    private static final String MESSAGE_SUCCESS = "Got it. I've added this task:\n%s\nNow you have %d tasks "
+            + "in the list.";
+    private static final String REGEX_KEYWORD_DAY = " /every ";
+    private static final String REGEX_KEYWORD_TIME = " /at ";
+
     /**
      * Constructs a <code>AddRecurringTaskCommand</code> command.
      *
@@ -28,24 +38,16 @@ public class AddRecurringTaskCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeMissingArgumentException {
         try {
-            assert !description.substring(9).isBlank() : "Task description cannot be blank";
-            String[] str = description.substring(9).split(" /every ");
-            String[] dayAndTime = str[1].split(" ");
+            assert !description.substring(DESCRIPTION_INDEX).isBlank() : MESSAGE_ARGUMENT_MISSING;
+            String[] str = description.substring(DESCRIPTION_INDEX).split(REGEX_KEYWORD_DAY);
+            String[] dayAndTime = str[1].split(REGEX_KEYWORD_TIME);
             RecurringTask recurringTask = new RecurringTask(str[0], dayAndTime[0], dayAndTime[1], false);
             tasks.add(recurringTask);
             int numberOfTasks = tasks.getSize();
-            String response;
-            if (numberOfTasks < 2) {
-                response = "Got it. I've added this task:\n " + recurringTask
-                        + "\nNow you have " + numberOfTasks + " task in the list.";
-            } else {
-                response = "Got it. I've added this task:\n " + recurringTask
-                        + "\nNow you have " + numberOfTasks + " tasks in the list.";
-            }
+            String response = String.format(MESSAGE_SUCCESS, recurringTask, numberOfTasks);
             return response;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeMissingArgumentException("OOPS!!! The description and/or the time of an event "
-                    + "cannot be empty.");
+            throw new DukeMissingArgumentException(MESSAGE_ARGUMENT_MISSING);
         }
     }
 }

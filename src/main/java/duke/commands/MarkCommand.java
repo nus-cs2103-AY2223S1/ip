@@ -11,6 +11,12 @@ import duke.exceptions.DukeIndexOutOfBoundsException;
  */
 public class MarkCommand extends Command {
 
+    private static final int DESCRIPTION_INDEX = 5;
+
+    private static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "OOPS!!! You cannot mark a non-existent task as done.";
+    private static final String MESSAGE_SUCCESS = "Nice! I've marked this task as done:\n %s";
+    private static final String MESSAGE_SUCCESS_RECURRING_TASK = "\nAnd I've re-added this task for next week!";
+
     /**
      * Constructs a <code>MarkCommand</code> command.
      *
@@ -30,21 +36,25 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeIndexOutOfBoundsException {
         try {
-            int index = Integer.parseInt(description.substring(5)) - 1;
-            assert index >= 0 : "Task index cannot be less than 0";
-            assert index < tasks.getSize() : "Task index cannot be larger than the number of tasks.";
+            int index = changeToZeroIndex(Integer.parseInt(description.substring(DESCRIPTION_INDEX)));
+            assert index >= 0 : MESSAGE_INDEX_OUT_OF_BOUNDS;
+            assert index < tasks.getSize() : MESSAGE_INDEX_OUT_OF_BOUNDS;
             tasks.markTaskAsDone(index);
             Task task = tasks.get(index);
-            String response = "Nice! I've marked this task as done:\n" + task;
+            String response = String.format(MESSAGE_SUCCESS, task);
             if (task.isRecurring()) {
                 RecurringTask recurringTask = (RecurringTask) task;
                 tasks.delete(index);
                 tasks.add(new RecurringTask(recurringTask));
-                response += "\nAnd I've re-added this task for next week!";
+                response += MESSAGE_SUCCESS_RECURRING_TASK;
             }
             return response;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeIndexOutOfBoundsException("OOPS!!! You cannot mark a non-existent task as done.");
+            throw new DukeIndexOutOfBoundsException(MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
+    }
+
+    private int changeToZeroIndex(int index) {
+        return index - 1;
     }
 }

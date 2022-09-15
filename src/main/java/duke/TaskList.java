@@ -7,6 +7,9 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
+    private static final String MESSAGE_FIND = "Here are the matching tasks in your list:\n";
+    private static final String MESSAGE_LIST = "Here are the tasks in your list:\n";
+
     private ArrayList<Task> tasks;
 
     /**
@@ -86,7 +89,7 @@ public class TaskList {
     public String list() {
         Task[] x = new Task[tasks.size()];
         Task[] tasksArray = tasks.toArray(x);
-        String response = "Here are the tasks in your list:\n";
+        String response = MESSAGE_LIST;
         for (int i = 1; i <= tasksArray.length; i++) {
             Task task = tasksArray[i - 1];
             response += i + "." + task.toString() + "\n";
@@ -100,7 +103,7 @@ public class TaskList {
      * @param input Keyword of the description of the <code>Task</code>.
      */
     public String find(String input) {
-        String response = "Here are the matching tasks in your list:\n";
+        String response = MESSAGE_FIND;
         int count = 1;
         for (int i = 0; i < tasks.size(); i++) {
             String task = tasks.get(i).toString();

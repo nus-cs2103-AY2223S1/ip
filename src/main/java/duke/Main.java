@@ -14,19 +14,21 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+    private static final String FXML_PATH = "/view/MainWindow.fxml";
+    private static final String TITLE = "Duke";
     private static Stage stage;
     private Duke duke = new Duke();
 
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(FXML_PATH));
             AnchorPane ap = fxmlLoader.load();
             Main.stage = stage;
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
-            stage.setTitle("Duke");
+            stage.setTitle(TITLE);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

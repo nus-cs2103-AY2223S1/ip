@@ -10,6 +10,14 @@ import duke.exceptions.DukeMissingArgumentException;
  */
 public class AddDeadlineCommand extends Command {
 
+    private static final int DESCRIPTION_INDEX = 9;
+
+    private static final String MESSAGE_ARGUMENT_MISSING = "OOPS!!! The description and/or the time of a deadline "
+            + "cannot be empty.";
+    private static final String MESSAGE_SUCCESS = "Got it. I've added this task:\n%s\nNow you have %d tasks "
+            + "in the list.";
+    private static final String REGEX_KEYWORD = " /by ";
+
     /**
      * Constructs a <code>AddDeadlineCommand</code> command.
      *
@@ -29,23 +37,15 @@ public class AddDeadlineCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeMissingArgumentException {
         try {
-            assert !description.substring(9).isBlank() : "Task description cannot be blank";
-            String[] str = description.substring(9).split(" /by ");
+            assert !description.substring(DESCRIPTION_INDEX).isBlank() : MESSAGE_ARGUMENT_MISSING;
+            String[] str = description.substring(DESCRIPTION_INDEX).split(REGEX_KEYWORD);
             Deadline deadline = new Deadline(str[0], str[1], false);
             tasks.add(deadline);
             int numberOfTasks = tasks.getSize();
-            String response;
-            if (numberOfTasks < 2) {
-                response = "Got it. I've added this task:\n " + deadline
-                        + "\nNow you have " + numberOfTasks + " task in the list.";
-            } else {
-                response = "Got it. I've added this task:\n " + deadline
-                        + "\nNow you have " + numberOfTasks + " tasks in the list.";
-            }
+            String response = String.format(MESSAGE_SUCCESS, deadline, numberOfTasks);
             return response;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeMissingArgumentException("OOPS!!! The description and/or the time of a deadline "
-                    + "cannot be empty.");
+            throw new DukeMissingArgumentException(MESSAGE_ARGUMENT_MISSING);
         }
     }
 }

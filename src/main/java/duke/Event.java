@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
 
+    private static final String DATE_TIME_FORMAT = "dd/MM/yyyy HHmm";
+
     protected LocalDateTime time;
     protected String timeString;
 
@@ -21,7 +23,7 @@ public class Event extends Task {
     public Event(String description, String time, boolean isDone) {
         super(description, isDone);
         this.timeString = time;
-        this.time = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        this.time = LocalDateTime.parse(time, DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
     }
 
     /**

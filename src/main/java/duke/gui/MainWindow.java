@@ -17,6 +17,10 @@ import javafx.util.Duration;
  */
 public class MainWindow extends AnchorPane {
 
+    private static final String IMAGE_PATH_DUKE = "/images/Duke.jpg";
+    private static final String IMAGE_PATH_USER = "/images/DaUser.png";
+
+    private static final String MESSAGE_EXIT = "Goodbye!";
     private static final String MESSAGE_WELCOME = "Hi there! Duke at your service. "
             + "Let me retrieve your stored task list!";
 
@@ -31,8 +35,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.jpg"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream(IMAGE_PATH_USER));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream(IMAGE_PATH_DUKE));
 
     /**
      * Initializes the Main Window
@@ -62,7 +66,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
-        if (response == "Goodbye!") {
+        if (response == MESSAGE_EXIT) {
             PauseTransition delay = new PauseTransition(Duration.seconds(1));
             delay.setOnFinished(event -> Main.close());
             delay.play();
