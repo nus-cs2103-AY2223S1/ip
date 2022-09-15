@@ -1,4 +1,4 @@
 T # 1 # pick up groceries 
-D # 0 # submit assignment # Sep 20 2022
+D # 1 # submit assignment # Sep 20 2022
 E # 0 # concert! # Sep 16 2022
 T # 0 # wash dishes

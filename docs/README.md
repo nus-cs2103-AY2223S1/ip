@@ -1,5 +1,15 @@
 # User Guide
 
+## Quick Start
+1. Ensure you have Java 11 or above installed in your Computer.
+2. Download the latest Duke.jar file from [here]().
+3. Copy the file to the folder you want to use as the home folder.
+4. Double-click the file to start the app. Alternatively, navigate to the home folder and use the command:
+```
+java -jar duke.jar
+```
+5. Type any of the commands to start using the task manager
+
 ## Features 
 
 ### Adding a todo
@@ -56,19 +66,16 @@ Saves the current tasks and exits the program.
 
 Adds a todo with a given description to the list.
 
-Example of usage: 
+Format: `todo DESCRIPTION`
 
-`todo description`
+Example: `todo wash dishes`
 
 Expected outcome:
 
 A todo with the given description will be added to the list.
+![](images/todo_command.png)
 
-```
-Got it. I've added this task:
-    [T][] description
-Now you have 1 task in the list
-```
+![](images/todo_command.png)
 
 ### `deadline` - Adds a deadline to the list
 
@@ -76,19 +83,14 @@ Adds a deadline with a given description and due date to the list.
 
 Date should be in the YYYY-MM-DD format.
 
-Example of usage:
+Format: `deadline DESCRIPTION /by DATE`
 
-`deadline description /by 2022-09-14`
+Example: `deadline submit assignment /by 2022-09-15`
 
 Expected outcome:
 
 A deadline with the given description and date will be added to the list.
-
-```
-Got it. I've added this task:
-    [D][] description (by: Sep 14 2022)
-Now you have 2 tasks in the list
-```
+![](images/deadline_command.png)
 
 ### `event` - Adds an event to the list
 
@@ -96,139 +98,104 @@ Adds an event with a given description and event date to the list.
 
 Date should be in the YYYY-MM-DD format.
 
-Example of usage:
+Format: `event DESCRIPTION /at DATE`
 
-`event description /at 2022-09-14`
+Example: `event concert /at 2022-09-20`
 
 Expected outcome:
 
 An event with the given description and date will be added to the list.
-
-```
-Got it. I've added this task:
-    [E][] description (at: Sep 14 2022)
-Now you have 3 tasks in the list
-```
+![](images/event_command.png)
 
 ### `mark` - Marks a task as done
 
 Marks the task at a given index as done.
 
-Example of usage:
+Format: `mark INDEX`
 
-`mark 1`
+Example: `mark 1`
 
 Expected outcome:
 
 The first task in the list will be marked as done.
-
-```
-Nice! I've marked this task as done:
-    [T][X] description
-```
+![](images/mark_command.png)
 
 ### `unmark` - Marks a task as not done
 
 Marks the task at a given index as not done.
 
-Example of usage:
+Format: `unmark INDEX`
 
-`unmark 1`
+Example: `unmark 1`
 
 Expected outcome:
 
-The first task in the list will be marked as done.
-
-```
-OK, I've marked this task as not done yet:
-    [T][] description
-```
+The first task in the list will be marked as not done.
+![](images/unmark_command.png)
 
 ### `delete` - Deletes a task from the list
 
 Deletes the task at a given index from the list
 
-Example of usage:
+Format: `delete INDEX`
 
-`delete 1`
+Example: `delete 2`
 
 Expected outcome:
 
 The first task in the list will be deleted.
-
-```
-Got it. I've removed this task:
-    [T][] description
-Now you have 2 tasks in the list
-```
+![](images/delete_command.png)
 
 ### `list` - Shows the list of all current tasks
 
 Shows the list of all current tasks.
 
-Example of usage:
-
-`list`
+Format: `list`
 
 Expected outcome:
 
-```
-Here are the tasks in your list:
-    1. [T][] description
-    2. [D][X] description (by: Sep 14 2022)
-```
+Displays all tasks currently in the list.
+![](images/list_command.png)
 
 ### `find` - Finds matching tasks by keyword
 
 Finds all tasks that have a description containing the given keyword.
 
-Example of usage:
+Format: `find KEYWORD`
 
-`find gro`
+Example: `find dishes`
 
 Expected outcome:
 
 Finds all matching tasks.
+![](images/find_command.png)
 
-```
-Here are the matching tasks in your list:
-1. [T][] pick up groceries
-2. [D][] grow plants (by: Sep 25 2022)
-```
 
 ### `schedule` - Finds matching tasks by date
 
 Finds all tasks that occur or is due on the given date.
 
-Example of usage:
+Date should be in the YYYY-MM-DD format.
 
-`schedule 2022-09-16`
+Format: `schedule DATE`
+
+Example: `schedule 2022-09-20`
 
 Expected outcome:
 
-The first task in the list will be marked as done.
-
-```
-Here are the scheduled tasks in your list:
-    [E][] concert (at Sep 16 2022)
-    [D][] homework assignment due (by Sep 16 2022)
-```
+All tasks that occur or is due on the given date will be shown.
+![](images/schedule_command.png)
 
 ### `bye` - Saves and exits the program
 
 Saves and exits the program
 
-Example of usage:
-
-`bye`
+Format: `bye`
 
 Expected outcome:
 
 All the current tasks are saved and the program can be exited.
-
-```
-Bye. Hope to see you again soon!
-```
+![](images/bye_command.png);
 
 
 
