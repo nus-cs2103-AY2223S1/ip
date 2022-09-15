@@ -54,6 +54,10 @@ public abstract class Task {
         return description;
     }
 
+    public boolean getCompletionStatus() {
+        return isDone;
+    }
+
     /**
      * Returns the encoding separator used to separate the task's fields.
      *

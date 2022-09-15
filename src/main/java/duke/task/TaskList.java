@@ -106,6 +106,8 @@ public class TaskList {
         for (Task task : tasks) {
             encodedTaskList.append(task.encode()).append("\n");
         }
+        assert encodedTaskList.toString().lines().count() == tasks.size()
+                : "Task list should be fully encoded.";
         return encodedTaskList.toString();
     }
 
@@ -131,6 +133,8 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             taskString.append((i + 1) + ". " + tasks.get(i) + "\n");
         }
+        assert taskString.toString().lines().count() == tasks.size()
+                : "Task list should be fully printed.";
         return taskString.toString();
     }
 }

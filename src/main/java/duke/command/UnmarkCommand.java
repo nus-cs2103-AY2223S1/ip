@@ -35,6 +35,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = tasks.unmarkItem(index);
+        assert !(task.getCompletionStatus()) : "Task should be unmarked.";
         storage.saveAllTasks(tasks);
         ui.showOutput("OK, I've unmarked the following task:\n  " + task);
     }
