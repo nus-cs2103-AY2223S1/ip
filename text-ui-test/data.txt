@@ -1,0 +1,6 @@
+T | 1 | read book
+D | 0 | return book | 6/6/2000
+E | 0 | project meeting | 6/8/2022 1800
+E | 0 | meeting | 12/8/2022 1200
+T | 1 | join sports club
+T | 0 | sleep

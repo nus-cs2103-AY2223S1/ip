@@ -1,7 +1,142 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+|  Welcome to JDuke -- Version 1.0
+|  What can I do for you?
 
+jduke> |  cannot understand command
+
+jduke> |  invalid TODO format
+|    todo <description>
+
+jduke> |  added task:
+|    [T][ ] cry
+
+jduke> 1 ==> [T][X] read book
+2 ==> [D][ ] return book (by: Jun 06 2000)
+3 ==> [E][ ] project meeting (at: Aug 06 2022 06:00 PM)
+4 ==> [E][ ] meeting (at: Aug 12 2022 12:00 PM)
+5 ==> [T][X] join sports club
+6 ==> [T][ ] sleep
+7 ==> [T][ ] cry
+
+jduke> |  marked task:
+|    [T][X] read book
+
+jduke> |  invalid MARK format
+|    mark <integer>
+
+jduke> |  invalid task number
+|  max id is 7
+
+jduke> |  invalid DEADLINE format
+|    deadline <description> /by <dd/mm/yyyy> <hhmm | optional>
+
+jduke> |  invalid UNMARK format
+|    unmark <integer>
+
+jduke> |  added task:
+|    [D][ ] CS2103T Week 2 (by: Aug 18 2022)
+
+jduke> |  invalid DEADLINE format
+|    deadline <description> /by <dd/mm/yyyy> <hhmm | optional>
+
+jduke> 8 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
+
+jduke> |  no tasks found
+
+jduke> |  invalid LIST format
+|    list <dd/mm/yyyy | optional>
+
+jduke> |  invalid EVENT format
+|    event <description> /at <dd/mm/yyyy> <hhmm | optional>
+
+jduke> |  invalid EVENT format
+|    event <description> /at <dd/mm/yyyy> <hhmm | optional>
+
+jduke> |  invalid EVENT format
+|    event <description> /at <dd/mm/yyyy> <hhmm | optional>
+
+jduke> |  invalid DEADLINE format
+|    deadline <description> /by <dd/mm/yyyy> <hhmm | optional>
+
+jduke> |  added task:
+|    [T][ ] cry harder
+
+jduke> |  invalid EVENT format
+|    event <description> /at <dd/mm/yyyy> <hhmm | optional>
+
+jduke> |  added task:
+|    [E][ ] end of sem (at: Dec 10 2022)
+
+jduke> |  added task:
+|    [D][ ] homework (by: Dec 18 2000 12:00 PM)
+
+jduke> |  invalid FIND format
+|    find <keyword>
+
+jduke> 11 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
+
+jduke> 1 ==> [T][X] read book
+2 ==> [D][ ] return book (by: Jun 06 2000)
+3 ==> [E][ ] project meeting (at: Aug 06 2022 06:00 PM)
+4 ==> [E][ ] meeting (at: Aug 12 2022 12:00 PM)
+6 ==> [T][ ] sleep
+8 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
+9 ==> [T][ ] cry harder
+10 ==> [E][ ] end of sem (at: Dec 10 2022)
+11 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
+
+jduke> 1 ==> [T][X] read book
+2 ==> [D][ ] return book (by: Jun 06 2000)
+3 ==> [E][ ] project meeting (at: Aug 06 2022 06:00 PM)
+4 ==> [E][ ] meeting (at: Aug 12 2022 12:00 PM)
+5 ==> [T][X] join sports club
+6 ==> [T][ ] sleep
+7 ==> [T][ ] cry
+8 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
+9 ==> [T][ ] cry harder
+10 ==> [E][ ] end of sem (at: Dec 10 2022)
+11 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
+
+jduke> |  invalid MARK format
+|    mark <integer>
+
+jduke> |  marked task:
+|    [D][X] return book (by: Jun 06 2000)
+
+jduke> |  deleted task:
+|    [D][X] return book (by: Jun 06 2000)
+
+jduke> |  invalid task number
+|  max id is 10
+
+jduke> |  invalid MARK format
+|    mark <integer>
+
+jduke> 1 ==> [T][X] read book
+2 ==> [E][ ] project meeting (at: Aug 06 2022 06:00 PM)
+3 ==> [E][ ] meeting (at: Aug 12 2022 12:00 PM)
+4 ==> [T][X] join sports club
+5 ==> [T][ ] sleep
+6 ==> [T][ ] cry
+7 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
+8 ==> [T][ ] cry harder
+9 ==> [E][ ] end of sem (at: Dec 10 2022)
+10 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
+
+jduke> |  marked task:
+|    [T][X] read book
+
+jduke> |  unmarked task:
+|    [E][ ] project meeting (at: Aug 06 2022 06:00 PM)
+
+jduke> 1 ==> [T][X] read book
+2 ==> [E][ ] project meeting (at: Aug 06 2022 06:00 PM)
+3 ==> [E][ ] meeting (at: Aug 12 2022 12:00 PM)
+4 ==> [T][X] join sports club
+5 ==> [T][ ] sleep
+6 ==> [T][ ] cry
+7 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
+8 ==> [T][ ] cry harder
+9 ==> [E][ ] end of sem (at: Dec 10 2022)
+10 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
+
+jduke> |  Goodbye

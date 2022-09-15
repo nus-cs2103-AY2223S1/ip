@@ -1,0 +1,33 @@
+#anchorPane {
+    -fx-pref-height: 600.0;
+    -fx-pref-width: 400.0;
+}
+
+#scrollPane {
+    -fx-pref-height: 557.0;
+    -fx-pref-width: 400.0;
+}
+
+#userInput {
+    -fx-background-color: #f5f5f5;
+}
+
+#dialog {
+    -fx-font-family: Helvetica;
+    -fx-font-size: 13;
+    -fx-text-fill: #ffffff;
+    -fx-wrap-text: true;
+}
+
+#sendButton {
+    -fx-background-color: #560090;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 76.0;
+    -fx-pref-height: 41.0;
+}
+
+#userInput {
+    -fx-pref-height: 41.0;
+    -fx-pref-width: 324.0;
+}
+
