@@ -51,7 +51,7 @@ public class Deku extends Application {
         storage = new Storage(filePath);
 
         File theDir = new File(filePath);
-        if (!theDir.exists()){
+        if (!theDir.exists()) {
             theDir.mkdirs();
         }
 

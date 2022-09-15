@@ -12,7 +12,7 @@ public class Deadline extends Task {
     protected String dueDateString;
     protected String dueTime;
 
-    /**\
+    /**
      * Creates a Deadline task that has a date but no time included.
      *
      * @param description description of Deadline.
@@ -70,7 +70,8 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        String output = String.format("[D][%s] %s (by: %s)", this.getStatusIcon(), this.description, this.dueDateToString());
+        String output = String.format("[D][%s] %s (by: %s)", this.getStatusIcon(), this.description,
+                this.dueDateToString());
         return output;
     }
 }

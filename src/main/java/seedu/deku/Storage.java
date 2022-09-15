@@ -4,13 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import java.util.Scanner;
 
 /**
@@ -18,8 +15,8 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    public String filePath;
-    public ArrayList<Task> taskList;
+    private String filePath;
+    private ArrayList<Task> taskList;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -33,7 +30,7 @@ public class Storage {
      * @return list of tasks.
      * @throws FileNotFoundException
      */
-    public ArrayList<Task> load() throws FileNotFoundException{
+    public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> taskList = new ArrayList<>();
         this.getTasks(taskList);
         return taskList;
@@ -137,7 +134,7 @@ public class Storage {
             if (taskInList[0].equals("D") || taskInList[0].equals("E")) {
                 addDeadlineOrEvent(taskList, taskInList[0], taskInList[1], taskInList[2], taskInList[3]);
             } else {
-                addToDo(taskList, taskInList[1],taskInList[2]);
+                addToDo(taskList, taskInList[1], taskInList[2]);
             }
         }
     }
@@ -169,9 +166,9 @@ public class Storage {
      * @throws IOException
      */
     public static void rewriteTasks(TaskList tl) throws IOException {
-        ArrayList<Task> currTaskList = tl.taskList;
+        ArrayList<Task> currTaskList = tl.getTaskList();
         File theDir = new File("/data/deku.txt");
-        if (!theDir.exists()){
+        if (!theDir.exists()) {
             theDir.mkdirs();
         }
         String path = "data/deku.txt";
@@ -195,7 +192,7 @@ public class Storage {
         String taskListString = "";
         for (int j = 0; j < currTaskList.size(); j++) {
             taskListString += taskListArray.get(j);
-            if (j != currTaskList.size() -1) {
+            if (j != currTaskList.size() - 1) {
                 taskListString += "\n";
             }
         }

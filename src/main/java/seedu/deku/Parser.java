@@ -1,7 +1,6 @@
 package seedu.deku;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 
 
@@ -40,7 +39,7 @@ public class Parser {
                 return "Task does not exist!";
             }
             String output = String.format("Nice! I've marked this task as done:\n%s",
-                    taskList.taskList.get(taskNum - 1));
+                    taskList.getTaskList().get(taskNum - 1));
             return output;
         case "unmark":
             int taskNum2 = Integer.parseInt(inputArr[1]);
@@ -51,7 +50,7 @@ public class Parser {
                 return "Task does not exist!";
             }
             String output2 = String.format("OK, I've marked this task as not done yet:\n%s",
-                    taskList.taskList.get(taskNum2 - 1));
+                    taskList.getTaskList().get(taskNum2 - 1));
             return output2;
         case "delete":
             try {
@@ -72,9 +71,6 @@ public class Parser {
                 System.out.println(e.getMessage());
                 return String.format("Oops!! The description of a %s cannot be empty", inputArr[0]);
             }
-//            finally {
-//                return "I added a todo task!";
-//            }
         case "deadline":
             try {
                 String addLine = TaskList.addTask("deadline", input);

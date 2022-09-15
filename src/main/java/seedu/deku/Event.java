@@ -21,7 +21,7 @@ public class Event extends Task {
      * Returns String representation of dueTime attribute.
      * @return dueTime attribute.
      */
-    public String getDueTime(){
+    public String getDueTime() {
         return this.dueTime;
     }
 

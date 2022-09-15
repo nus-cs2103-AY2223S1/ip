@@ -55,6 +55,5 @@ public class MainWindow extends AnchorPane {
         if (this.deku.isClosed()) {
             Platform.exit();
         }
-        
     }
 }

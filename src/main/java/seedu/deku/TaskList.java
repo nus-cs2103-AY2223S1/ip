@@ -1,7 +1,6 @@
 package seedu.deku;
 
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 
 /**
@@ -9,7 +8,7 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    public static ArrayList<Task> taskList;
+    private static ArrayList<Task> taskList;
 
     /**
      * Creates a list of tasks for Deku.
@@ -47,22 +46,23 @@ public class TaskList {
     public static String addTask(String taskType, String input) throws DekuException {
         String addLine = "Got it. I've added this task:";
         switch (taskType) {
-            case "todo":
-                ToDo todo = addToDo(input);
-                taskList.add(todo);
-                addLine += ("\n  " + todo);
-                break;
-            case "deadline":
-                Deadline deadline = addDeadline(input);
-                taskList.add(deadline);
-                addLine += ("\n  " + deadline);
-                break;
-            case "event":
-                Event event = addEvent(input);
-                taskList.add(event);
-                addLine += ("\n  " + event);
-                break;
-
+        case "todo":
+            ToDo todo = addToDo(input);
+            taskList.add(todo);
+            addLine += ("\n  " + todo);
+            break;
+        case "deadline":
+            Deadline deadline = addDeadline(input);
+            taskList.add(deadline);
+            addLine += ("\n  " + deadline);
+            break;
+        case "event":
+            Event event = addEvent(input);
+            taskList.add(event);
+            addLine += ("\n  " + event);
+            break;
+        default:
+            // none
         }
         // edge case of 1 task
         addLine += String.format("\nNow you have %s tasks in the list.", taskList.size());
@@ -85,7 +85,7 @@ public class TaskList {
         // deadline return book /by 2-12-2019 1800
         System.out.println(input);
         String[] removeTaskType = input.split("deadline ");
-        for (int i=0; i< removeTaskType.length; i++ ){
+        for (int i = 0; i < removeTaskType.length; i++) {
             System.out.println(removeTaskType[i]);
         }
         String desAndBy = String.join("", removeTaskType);
@@ -94,7 +94,7 @@ public class TaskList {
         String description = sliceByDesAndBy[0];
 
         String dueDateAndTime = sliceByDesAndBy[1];
-        System.out.println("description: "+ description);
+        System.out.println("description: " + description);
         System.out.println("due date and time " + dueDateAndTime);
         String[] dateAndTime = dueDateAndTime.split(" ");
         System.out.println(dateAndTime.length);
@@ -102,7 +102,7 @@ public class TaskList {
             String dueDate = dateAndTime[0];
             String dueTime = dateAndTime[1];
             System.out.println("dueDate: " + dueDate);
-            System.out.println("dueTime: "+ dueTime);
+            System.out.println("dueTime: " + dueTime);
             String dueDateString = dueDate + " " + dueTime;
             LocalDate localDate = Storage.getLocalDate(dueDate);
             System.out.println(new Deadline(description, localDate, dueTime, dueDateString));
@@ -152,7 +152,7 @@ public class TaskList {
             String dueDateTimeString = dueDateString + " " + newTime;
             System.out.println(newTime);
             if (!newTime.equals("")) {
-                this.taskList.set(num - 1, Deadline.reschedule(currTask, newDate, newTime,dueDateTimeString));
+                this.taskList.set(num - 1, Deadline.reschedule(currTask, newDate, newTime, dueDateTimeString));
             } else {
                 this.taskList.set(num - 1, Deadline.reschedule(currTask, newDate, dueDateTimeString));
             }
