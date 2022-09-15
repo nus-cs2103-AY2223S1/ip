@@ -16,7 +16,8 @@ Duke is a Command Line Application to help you manage your tasks.
   * [Add ToDo]
   * [Add Event]
   * [Add Deadline]
-* [Mark/unmark Task as Done]
+* [Mark Task as Done]
+* [Unmark Task as Done]
 * [List All Tasks]
 * [Find Task]
 * [Delete Task]
@@ -73,6 +74,19 @@ Expected outcome:
 
 ![image](https://user-images.githubusercontent.com/77394751/190421418-6052a39c-1957-4ea8-aacc-6295a14edc4f.png)
 
+### Mark Task as Done : `mark`
+Mark task with specified index as done
+<br>
+Format: `done TASK_INDEX`
+* `TASK_INDEX` must be present inside the task list.
+
+Example of usage:
+<br>
+`mark 1`
+
+Expected output:
+
+![image](https://user-images.githubusercontent.com/77394751/190421956-16ce8947-4ec3-4662-b9e4-36a54b6f1a4a.png)
 
 
 
