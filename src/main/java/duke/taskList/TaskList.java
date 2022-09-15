@@ -203,12 +203,8 @@ public class TaskList {
         Task task = this.getTasks().get(index);
         String taskType = task.getType();
         switch (taskType) {
-            case "D":
-                task = new Deadline(task.getVal(), task.getDone(), timing);
-                break;
-            case "E":
-                task = new Event(task.getVal(), task.getDone(), timing);
-                break;
+            case "D" -> task = new Deadline(task.getVal(), task.getDone(), timing);
+            case "E" -> task = new Event(task.getVal(), task.getDone(), timing);
         }
         this.getTasks().set(index, task);
         String output = ui.updatePrint(task);
@@ -224,15 +220,9 @@ public class TaskList {
         Task task = this.getTasks().get(index);
         String taskType = task.getType();
         switch (taskType) {
-            case "D":
-                task = new Deadline(taskInstruction, task.getDone(), task.getDateTimeObject());
-                break;
-            case "E":
-                task = new Event(taskInstruction, task.getDone(), task.getDateTimeObject());
-                break;
-            case "T":
-                task = new ToDo(taskInstruction, task.getDone(), "");
-                break;
+            case "D" -> task = new Deadline(taskInstruction, task.getDone(), task.getDateTimeObject());
+            case "E" -> task = new Event(taskInstruction, task.getDone(), task.getDateTimeObject());
+            case "T" -> task = new ToDo(taskInstruction, task.getDone(), "");
         }
         this.getTasks().set(index, task);
         String output = ui.updatePrint(task);

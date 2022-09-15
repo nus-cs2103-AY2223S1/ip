@@ -54,6 +54,10 @@ public class Deadline extends Task {
         return(String.format(format, day, month, year, hour, min));
     }
 
+    /**
+     *
+     * @return deadline, was DateTimeObject
+     */
     public LocalDateTime getDateTimeObject() {
         return this.deadline;
     }

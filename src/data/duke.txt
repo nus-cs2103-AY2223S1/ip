@@ -1,2 +1,5 @@
 D | 0 | borrow another book | 2 DECEMBER 2019 18:00
 E | 0 | Anime convention | 26 NOVEMBER 2022 08:00
+T | 1 | borrow book
+E | 0 | CS2103 Finals | 25 NOVEMBER 2022 09:00
+E | 0 | new year | 1 JANUARY 2022 00:00

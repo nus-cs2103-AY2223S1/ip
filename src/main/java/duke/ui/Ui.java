@@ -202,6 +202,11 @@ public class Ui {
         return sb.toString();
     }
 
+    /**
+     *
+     * @param task takes in task to be updated
+     * @return String saying task has been updated
+     */
     public String updatePrint(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append("Nice! I've updated this task as:\n");

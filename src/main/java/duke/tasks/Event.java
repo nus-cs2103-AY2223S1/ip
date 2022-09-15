@@ -96,6 +96,11 @@ public class Event extends Task {
                 this.timing.getYear() == date.getYear());
 
     }
+
+    /**
+     *
+     * @return timing variabe, DateTimeObject
+     */
     public LocalDateTime getDateTimeObject() {
         return this.timing;
     }

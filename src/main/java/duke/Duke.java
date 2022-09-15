@@ -107,19 +107,6 @@ public class Duke extends Application {
         //file reading
         taskList = storage.readDuke(taskList.getTasks(), taskList.getCurr());
 
-
-
-        //main body
-        /*String command = ui.readInput();
-        while (!command.split(" ")[0].equals("bye")) {
-            taskList = parser.readInput(command, taskList, ui);
-            Label output = new Label(taskList.getToStage());
-            Scene scene = new Scene(output);
-            stage.setScene(scene);
-            stage.show();
-            command = ui.readInput();
-        }*/
-
         //Step 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();

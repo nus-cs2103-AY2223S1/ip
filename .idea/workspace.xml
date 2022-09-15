@@ -27,15 +27,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b344e79-5df9-422b-9756-bbe582de24bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/duke.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/duke.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/duke/Duke.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/Duke.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/duke/taskList/TaskList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/taskList/TaskList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/Deadline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/Deadline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/Event.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/ToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/ToDo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/duke/ui/Ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/ui/Ui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text-ui-test/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/text-ui-test/input.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

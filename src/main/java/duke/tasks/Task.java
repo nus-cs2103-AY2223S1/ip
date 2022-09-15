@@ -74,7 +74,7 @@ public class Task {
 
     /**
      *
-     * @return dummy value, implemented by Storage and Event
+     * @return dummy value, implemented by Deadline and Event
      */
 
     public String getTiming() {
@@ -82,12 +82,16 @@ public class Task {
     }
 
     /**
-     * @return dummy value, implemented by Storage and Event
+     * @return dummy value, implemented by Deadline and Event
      */
     public String toText() {
         return "";
     }
 
+    /**
+     *
+     * @return dummy, val, inplemented by Deadline and Event
+     */
     public LocalDateTime getDateTimeObject() {
         return null;
     }
