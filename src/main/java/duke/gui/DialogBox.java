@@ -57,4 +57,10 @@ public class DialogBox extends HBox {
         db.flip();
         return db;
     }
+
+    public static DialogBox greeting(Image img) {
+        var db = new DialogBox("Hello! I'm Duke\nWhat can I do for you?", img);
+        db.flip();
+        return db;
+    }
 }

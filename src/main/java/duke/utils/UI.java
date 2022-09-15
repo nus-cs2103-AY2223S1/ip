@@ -18,8 +18,8 @@ public class UI {
     /**
      * Prints the duke.Duke welcome message.
      */
-    public void showWelcome() {
-        System.out.println("Hello! I'm duke.Duke\nWhat can I do for you?");
+    public String showWelcome() {
+        return "Hello! I'm duke.Duke\nWhat can I do for you?";
     }
 
     /**
