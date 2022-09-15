@@ -21,7 +21,8 @@ Mew is a task manager chatbot application that helps you manage your To-Dos, Eve
 - `list`
 - `mark TASK_INDEX`
 - `unmark TASK_INDEX`
-- `delete TASK_NUMBER`
+- `delete TASK_INDEX`
+- `edit TASK_INDEX TASK_DESCRIPTION`
 - `find KEYWORD`
 - `bye`
 
@@ -128,6 +129,23 @@ Note:
 Example of usage:
 - `delete 2`
 - `delete 6`
+
+### Edit task - `edit`
+
+Edits description of a task at selected index.
+
+Format: `edit TASK_INDEX TASK_DESCRIPTION`
+
+Note:
+1. `TASK_INDEX` is the index of the task in the list and starts from `1`.
+1. An error will be shown if `TASK_INDEX` satisfies one of the conditions below:
+- Is not a positive integer
+- Exceeds the task list size
+3. An error will also be shown if no description is given.
+
+Example of usage:
+- `edit 1 2117 project`
+- `edit 5 sleep`
 
 ### Find task - `find`
 
