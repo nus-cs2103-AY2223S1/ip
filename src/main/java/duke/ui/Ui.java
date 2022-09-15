@@ -10,8 +10,9 @@ import duke.task.Task;
  */
 public class Ui {
 
-    private final Scanner input = new Scanner(System.in);
     private static final String exitMessage = "Bye. Hope to see you again soon!";
+    private final Scanner input = new Scanner(System.in);
+
 
     /**
      * Shows welcome message upon initialization.
