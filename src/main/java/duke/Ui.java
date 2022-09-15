@@ -79,12 +79,18 @@ public class Ui {
      * @param taskList taskList consisting all the recorded Tasks.
      */
     public String getList(TaskList taskList) {
-        String listOutput = "Here are the tasks in your list:\n";
-        int index = 1;
-        for (Task t : taskList.getList()) {
-            listOutput += index + "." + this.beautyWrapTask(t) + "\n";
-            index++;
+        String listOutput = "";
+        if (taskList.isEmpty()) {
+            listOutput += "You currently have no task in your list.";
+        } else {
+            listOutput += "Here are the tasks in your list:\n";
+            int index = 1;
+            for (Task t : taskList.getList()) {
+                listOutput += index + "." + this.beautyWrapTask(t) + "\n";
+                index++;
+            }
         }
+
         return listOutput;
     }
 }
