@@ -2,24 +2,24 @@
 
 ## Features 
 
-### Add tasks of various types :page_with_curl:
+### Add tasks of various types 📃
 
 Skyler provides support for tracking three types of tasks:
 1. `todo`: simple task without any date/time attached to it e.g. buy groceries
 2. `deadline`: task that needs to be _done before_ a specific date/time e.g. submit assignment by 30/11/2022 5pm
 3. `event`: task that _occurs at_ a specific time e.g. project meeting at 15/09/2022 3pm
 
-### Reschedule tasks :clock2:
+### Reschedule tasks ⏱
 
 Entered the wrong date/time for a deadline or an event? 
 
 Reschedule tasks by specifying the index of the task and the new date/time
 
-### Mark tasks as done/not done :heavy_check_mark:
+### Mark tasks as done/not done ✔
 
 Easily keep track of task status by marking each task as complete/incomplete
 
-### Find tasks :mag:
+### Find tasks 🔍
 
 Look for a task by specifying a keyword
 
