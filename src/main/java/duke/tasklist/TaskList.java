@@ -31,7 +31,7 @@ public class TaskList implements Serializable {
      */
 
     public void setTasks(ArrayList<ListObject> list) {
-
+        assert list!= null;
         this.tasksList = list;
     }
 
@@ -49,12 +49,17 @@ public class TaskList implements Serializable {
      * @param itemNum int representing the item number to be modified
      */
     public String handleItem(String instruction, int itemNum) {
+
+        assert itemNum >= 0;
+
         if (instruction.equals("UNMARK") || instruction.equals("MARK")) {
             ListObject currItem = tasksList.get(itemNum);
+            assert currItem != null;
             currItem.switchStatus();
             return currItem.toString();
         } else if (instruction.equals("DELETE")) {
             ListObject currItem = tasksList.get(itemNum);
+            assert currItem != null;
             tasksList.remove(itemNum);
             return currItem.toString();
         } else {
@@ -100,6 +105,7 @@ public class TaskList implements Serializable {
 
     public String findByKeyword(String target) {
         Stream<ListObject> filteredOptions = tasksList.stream().filter(x -> x.hasWord(target));
+        assert filteredOptions != null;
         List<ListObject> eligibleTasks = filteredOptions.collect(Collectors.toList());
         ArrayList<ListObject> filteredTasks = new ArrayList<>(eligibleTasks);
         TaskList tasksToDisplay = new TaskList();
