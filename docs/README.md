@@ -29,5 +29,5 @@ So closing the window mid-execution will discard all changes.
 The task data is loaded from the internal storage when starting the app.
 
 ### Acknowledgement
-This project is inspired by the Duke chat from [this repo](https://github.com/nus-cs2103-AY2223S1/ip).
+This project is inspired by the Duke bot from [this repo](https://github.com/nus-cs2103-AY2223S1/ip).
 
