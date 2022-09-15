@@ -1,37 +1,42 @@
-package dukeegg;
+package ui;
 
 import java.io.IOException;
-import java.util.Collections;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
 /**
- * An example of a custom control using FXML.
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
     @FXML
+    private HBox speechBubble;
+    @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    /**
+     * Constructs a new DialogBox with some text, image, and a resource name which indicates the FXML file to
+     * be used.
+     *
+     * @param text The specified text.
+     * @param img The specified image.
+     * @param resourceName The specified resource name.
+     */
+    protected DialogBox(String text, Image img, String resourceName) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource(resourceName));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
@@ -39,30 +44,14 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        // Add styling to dialog box
         this.dialog.setText(text);
         this.dialog.setFont(Font.font(java.awt.Font.MONOSPACED, FontWeight.BOLD,
                 FontPosture.REGULAR, 12));
-        this.displayPicture.setImage(img);
         this.dialog.setMinHeight(Region.USE_PREF_SIZE);
-    }
 
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
-    }
-
-    public static DialogBox getDukeDialog(String text, Image img) {
-        DialogBox db = new DialogBox(text, img);
-        db.flip();
-        return db;
-    }
-
-    /**
-     * Flips the dialog box such that the ImageView is on the left and text on the right.
-     */
-    private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        Collections.reverse(tmp);
-        getChildren().setAll(tmp);
-        setAlignment(Pos.TOP_LEFT);
+        // Add styling to dialog display picture
+        this.displayPicture.setImage(img);
+        this.displayPicture.setClip(new Circle(25, 25, 25));
     }
 }

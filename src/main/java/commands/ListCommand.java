@@ -2,12 +2,14 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
+import ui.Ui;
 
 /**
  * Prints the current tasks in the list.
  */
 public class ListCommand extends Command {
+    public static final String SYNTAX = "list";
+
     /**
      * Lists the current tasks.
      * <p>

@@ -2,12 +2,13 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
+import ui.Ui;
 
 /**
  * Terminates the chatbot program after execution, and saves the current tasks to some local storage.
  */
 public class ByeCommand extends Command {
+    public static final String SYNTAX = "bye";
 
     /**
      * Terminates the chatbot program and saves current task to the local storage.

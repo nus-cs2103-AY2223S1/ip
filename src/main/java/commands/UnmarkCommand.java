@@ -2,15 +2,17 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
 import exceptions.DukeException;
 import exceptions.InvalidTaskIndexException;
 import task.Task;
+import ui.Ui;
 
 /**
  * Marks a task as not done.
  */
 public class UnmarkCommand extends Command {
+    public static final String SYNTAX = "unmark TASK_NUMBER";
+
     private final String[] inputStrings;
 
     /**

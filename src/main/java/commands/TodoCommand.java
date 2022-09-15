@@ -2,16 +2,18 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDescriptionException;
 import task.TaskType;
 import task.Todo;
+import ui.Ui;
 
 /**
  * Creates a new Todo.
  */
 public class TodoCommand extends Command {
+    public static final String SYNTAX = "todo TASK_NAME";
+
     private final String[] inputStrings;
 
     /**

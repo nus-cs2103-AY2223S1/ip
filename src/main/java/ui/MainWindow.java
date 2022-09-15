@@ -1,7 +1,8 @@
-package dukeegg;
+package ui;
 
 import java.util.Objects;
 
+import dukeegg.Dukegg;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -37,9 +38,17 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(this.dialogContainer.heightProperty());
     }
 
-
-    public void setDuke(Dukegg dukegg) {
+    /**
+     * Sets the chatbot instance in this MainWindow instance with the given chatbot instance, and also sends a
+     * greeting message.
+     *
+     * @param dukegg The specified chatbot instance.
+     */
+    public void setDukegg(Dukegg dukegg) {
         this.dukegg = dukegg;
+        this.dialogContainer.getChildren().addAll(
+                new ChatbotDialogBox(this.dukegg.getGreetingMessage(), this.dukeImage)
+        );
     }
 
     /**
@@ -51,8 +60,8 @@ public class MainWindow extends AnchorPane {
         String input = this.userInput.getText();
         String response = this.dukegg.getResponse(input);
         this.dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, this.userImage),
-                DialogBox.getDukeDialog(response, this.dukeImage)
+                new UserDialogBox(input, this.userImage),
+                new ChatbotDialogBox(response, this.dukeImage)
         );
         this.userInput.clear();
     }

@@ -2,15 +2,17 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
 import exceptions.DukeException;
 import exceptions.InvalidTaskIndexException;
 import task.Task;
+import ui.Ui;
 
 /**
  * Deletes the specified task.
  */
 public class DeleteCommand extends Command {
+    public static final String SYNTAX = "delete TASK_NUMBER";
+
     private final String[] inputStrings;
 
     /**

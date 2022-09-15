@@ -2,15 +2,17 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
 import exceptions.DukeException;
 import exceptions.InvalidTaskIndexException;
 import task.Task;
+import ui.Ui;
 
 /**
  * Marks the specified task as done,
  */
 public class MarkCommand extends Command {
+    public static final String SYNTAX = "mark TASK_NUMBER";
+
     private final String[] inputStrings;
 
     /**

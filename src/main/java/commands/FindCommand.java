@@ -2,14 +2,16 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDescriptionException;
+import ui.Ui;
 
 /**
  * Finds all tasks that have a matching description field.
  */
 public class FindCommand extends Command {
+    public static final String SYNTAX = "find TASK_NAME";
+
     private final String[] inputStrings;
 
     /**

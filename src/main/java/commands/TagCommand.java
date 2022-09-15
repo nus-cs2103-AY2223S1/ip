@@ -2,15 +2,17 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
 import exceptions.DukeException;
 import exceptions.InvalidTaskIndexException;
 import task.Task;
+import ui.Ui;
 
 /**
  * Tags a task with a some string.
  */
 public class TagCommand extends Command {
+    public static final String SYNTAX = "tag TAG_NAME TASK_NUMBER";
+
     private final String[] inputStrings;
 
     /**

@@ -5,7 +5,6 @@ import java.time.format.DateTimeParseException;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDateTimeException;
 import exceptions.EmptyDescriptionException;
@@ -13,11 +12,14 @@ import exceptions.InvalidDateTimeException;
 import task.Event;
 import task.Task;
 import task.TaskType;
+import ui.Ui;
 
 /**
  * Creates a new event.
  */
 public class EventCommand extends Command {
+    public static final String SYNTAX = "event TASK_NAME /at DEADLINE";
+
     private final String[] inputStrings;
 
     /**

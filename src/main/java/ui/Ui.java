@@ -1,12 +1,12 @@
-package dukeegg;
+package ui;
 
+import dukeegg.TaskList;
 import task.Task;
 
 /**
  * Deals with the interaction of the user and messages to be displayed.
  */
 public class Ui {
-    private static final String LONG_LINE = "____________________________________________________________\n";
     private static final String INDENTATION = "  ";
 
     /**
@@ -92,10 +92,8 @@ public class Ui {
      * @return The formatted message.
      */
     public String showWelcome() {
-        return LONG_LINE
-                + "Hello! I'm Duke\n"
-                + "What can I do for you?\n"
-                + LONG_LINE;
+        return "🥚 Hello! I'm Dukegg 🥚\n"
+                + "Type help to find out more about the commands available.";
     }
 
     /**
@@ -107,7 +105,7 @@ public class Ui {
     public String showTasks(TaskList tasks) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            sb.append(INDENTATION).append(i + 1).append(".").append(tasks.getTask(i)).append("\n");
+            sb.append(i + 1).append(".").append(tasks.getTask(i)).append("\n");
         }
         return sb.toString();
     }
@@ -151,5 +149,15 @@ public class Ui {
      */
     public String showError(String errorMessage) {
         return errorMessage;
+    }
+
+    /**
+     * Prints the specified commands delimited by a new line.
+     *
+     * @param commands The specified commands.
+     * @return The formatted message.
+     */
+    public String showAvailableCommands(String[] commands) {
+        return "Here are a list of available commands:\n" + String.join("\n", commands);
     }
 }

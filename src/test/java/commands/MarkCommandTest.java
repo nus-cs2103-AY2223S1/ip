@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import dukeegg.Ui;
 import exceptions.DukeException;
+import ui.Ui;
 
 public class MarkCommandTest {
     @Test
