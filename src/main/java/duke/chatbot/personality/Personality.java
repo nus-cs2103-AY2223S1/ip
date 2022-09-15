@@ -50,7 +50,7 @@ public class Personality {
      * @return A formutead response based on personality
      */
     public String formulateResponse(String command, String... responseContent) {
-        Random random = new Random();
+        Random random = new Random(System.currentTimeMillis());
         List<String> responseHeadList = this.responseTable.get(command).get("HEAD");
         List<String> responseTailList = this.responseTable.get(command).get("TAIL");
         String responseHead = responseHeadList.get(random.nextInt(responseHeadList.size()));

@@ -1,4 +1,7 @@
-# User Guide
+---
+layout: page
+title: User Guide
+---
 
 DukePro is a **ChatBot application for managing tasks with Command Line style syntax** with a Graphical User Interface (GUI). You get to talk to the ChatBot **_Christina_**!
 
@@ -23,20 +26,23 @@ DukePro is a **ChatBot application for managing tasks with Command Line style sy
     * **`delete`** `3` : Deletes the 3rd task in the list.
     * **`bye`** : **_Christina_** says goodbye and exits.
 
+<br>
+
 > **_Christina_** will save its contents in the file _dukeSave.txt_ in its current folder and will read from the same file the next time it starts up.
 
+<br>
+
 ## Features 
-<div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+> **Notes about the command format:**
+> * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `todo TASK_NAME`, `TASK_NAME` is a parameter which can be used as `todo Read Book`.
-
-* Commands that accepts no parameters would not be understood if you input parameters.
+> * Commands that accepts no parameters would not be understood if you input parameters.
   eg. `list 123` or `list all` would be treated as invalid commands.
 
-</div>
+<br>
 
 ### Adds a todo task : `todo`
 
@@ -122,6 +128,7 @@ Format: `find KEYWORDS`
 
 Examples:
 * `find Book` returns the `[T][ ] Read Book`, `[D][ ] Return Book (by: 12 DEC 2022 | 09:00` and `[E][ ] Book Sale (at: 16 JUN 2022 | 18:00)`.
+
 ![result for 'find Book'](images/FindBook.png)
 
 ### Updates a task : `update`
