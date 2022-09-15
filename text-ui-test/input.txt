@@ -1,0 +1,17 @@
+blablabla
+list
+todo play basketball
+delete 4
+deadline do homework /2022-12-12-1200
+delete 4 
+event meet with friends /2022-12-12-1299
+event 
+event do homework 
+mark a
+unmark 1
+mark 1
+mark 2
+mark 1
+unmark 1
+list
+bye
