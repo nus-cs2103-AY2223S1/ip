@@ -95,6 +95,7 @@ public class Storage {
     public void save(TaskList tasklist) throws IOException {
         FileWriter writer = new FileWriter(filePath);
         ArrayList<Task> tasks = tasklist.getTasks();
+        assert tasks != null : "Tasklist should not be null";
         for (Task t : tasks) {
             writer.write(t.fileFormat() + "\n");
         }

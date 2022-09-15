@@ -13,7 +13,8 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        assert task != null : "Task should not be null";
         tasks.add(task);
         try {
             storage.save(tasks);
