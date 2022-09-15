@@ -39,7 +39,7 @@ public class TaskList {
         assert task != null;
         String output = "Gotcha! I've added this task:\n";
         output += "\t" + task;
-        output += "Now you have " + tasks.size() + " tasks in your list.";
+        output += "\nNow you have " + tasks.size() + " tasks in your list.";
         return output;
     }
 
