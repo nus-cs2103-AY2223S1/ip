@@ -6,3 +6,5 @@
 
 [T][ ] buy books
 
+[T][ ] finish assignment
+
