@@ -26,12 +26,7 @@
     <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="0" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b344e79-5df9-422b-9756-bbe582de24bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/Deadline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/Deadline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/ToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/ToDo.java" afterDir="false" />
-    </list>
+    <list default="true" id="3b344e79-5df9-422b-9756-bbe582de24bf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
