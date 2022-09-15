@@ -170,7 +170,7 @@ public class Ui {
         int count = 0;
         String msg = "Here are the tasks in your list:\n";
         for (Task t : tasks) {
-            msg += count++ + "." + t.toString() + "\n";
+            msg += ++count + "." + t.toString() + "\n";
         }
         msg += "Now you have " + (count) + " tasks in the list.";
         printLine();

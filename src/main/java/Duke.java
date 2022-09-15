@@ -91,18 +91,4 @@ public class Duke {
             return ui.printIoException(ie);
         }
     }
-
-//    public void setStorage(Storage newStorage) {
-//        storage = newStorage;
-//    }
-
-
-//    /**
-//     * Getter for Storage.
-//     * @return Storage in Duke.
-//     */
-//    public static Storage getStorage() {
-//        return storage;
-//    }
-
 }
