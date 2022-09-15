@@ -233,3 +233,15 @@ the data of your previous Duke home folder.
 | unmark     | `unmark INDEX` e.g. `unmark 2`                                                              |
 | bye        | `bye`                                                                                       |
 
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
