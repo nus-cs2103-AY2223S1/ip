@@ -15,6 +15,10 @@ import pluto.task.Todo;
  * Read and write tasks from a local file.
  */
 public class Storage {
+    /** Path of the folder that stores user data */
+    private static final String FOLDER_PATH = "./data/";
+    /** File object for the folder that has the data file */
+    private File folder;
     /** File object to read and write tasks into */
     private File file;
     /** Path of the file */
@@ -26,9 +30,17 @@ public class Storage {
      * @throws PlutoException If file is not created properlu.
      */
     public Storage(String path) throws PlutoException {
+        this.folder = new File(FOLDER_PATH);
+        if (!folder.exists()) {
+            try {
+                folder.mkdir();
+            } catch (SecurityException e) {
+                throw new PlutoException("OOPS!!! Couldn't create data file and folder.");
+            }
+        }
         try {
-            this.file = new File(path);
-            this.path = path;
+            this.file = new File(FOLDER_PATH + path);
+            this.path = FOLDER_PATH + path;
             file.createNewFile();
         } catch (IOException e) {
             throw new PlutoException("OOPS!!! Couldn't find/create data file.");
