@@ -17,18 +17,9 @@ import javafx.scene.layout.VBox;
  */
 public class Duke {
 
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
-
-    private ScrollPane scrollPane;
-    private VBox dialogContainer;
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
-
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Ui ui;
 
     /**
      * Creates a new Duke.
@@ -64,8 +55,10 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns a string output to the user based on the user input.
+     *
+     * @param input The user input
+     * @return Duke's reply to the user.
      */
     public String getResponse(String input) {
         try {
