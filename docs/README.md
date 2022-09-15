@@ -4,7 +4,7 @@
 
 To begin the application, you can either:
 
-1. Double-click on the JAR file, or
+1. Double-click on the JAR file (might not work for MacOS), or
 2. Navigate to the directory where the JAR file is stored and run `java -jar Ditto.java`
 
 ## Features 
