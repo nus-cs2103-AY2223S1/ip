@@ -5,7 +5,7 @@ your various tasks!
 
 ## Quickstart
 1. Ensure that you have **Java 11** installed on your computer.
-2. Download the latest `betago.jar` file from here.
+2. Download the latest `betago.jar` file from [here](https://github.com/linuschancs/ip/releases/download/A-Release/betago.jar).
 3. Copy the file to the folder you want to use as your home folder.
 4. Double-click the file to start using BetaGo!
 5. Refer to the [Command Summary](#command-summary) table for a quick guide on what commands you may give to BetaGo.
