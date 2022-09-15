@@ -19,6 +19,7 @@ public class Main extends Application {
 
     private Duke duke = new Duke();
     private Image appIcon = new Image(this.getClass().getResourceAsStream("/images/ApplicationIcon.png"));
+    private final double minStageWidth = 400.0;
 
     @Override
     public void start(Stage stage) {
@@ -28,6 +29,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("AlphaBot");
+            stage.setMinWidth(minStageWidth);
             stage.getIcons().add(appIcon);
             fxmlLoader.<MainWindow>getController().setGui(duke);
             fxmlLoader.<MainWindow>getController().sayGreetings();
