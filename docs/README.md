@@ -20,9 +20,10 @@ pressing Enter will show the current list of tasks. Some example commands you ca
    - `bye`: Saves the current task list into the local storage and exits the app.
 6. Make sure to close the app by using the `bye` command instead of by pressing the X button at the top right of the 
 window. Closing the app with the X button will not save the changes you made in that session.
-7. Refer to the [Features]() below for details of each command.
+7. Refer to the [Features](https://jonathanwiguna.github.io/ip/#features) below for details of each command.
 ***
 ## Features 
+
 > **Notes about the command format:**
 > - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 > e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `todo do laundry`.
