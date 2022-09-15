@@ -29,6 +29,7 @@ public class TaskList {
      * @param data An ArrayList of strings containing the saved user data
      */
     public TaskList(ArrayList<? extends String> data) {
+        assert(data != null);
         this.tasks = new ArrayList<>();
         try {
             for (String sentence : data) {
@@ -47,6 +48,7 @@ public class TaskList {
      */
     public String showList() {
         String str = "";
+        assert(tasks != null);
         for (int i = 0; i < tasks.size() - 1; i++) {
             str += ((i + 1) + "." + tasks.get(i) + "\n");
         }
@@ -68,6 +70,7 @@ public class TaskList {
         if (index < 1 || index > this.tasks.size()) {
             throw new DukeOutOfRangeException(this.tasks.size());
         }
+        assert(index > 1 && index <= this.tasks.size());
         Task task = this.tasks.get(index - 1);
         task.markAsDone();
     }
@@ -84,6 +87,7 @@ public class TaskList {
         if (index < 1 || index > this.tasks.size()) {
             throw new DukeOutOfRangeException(this.tasks.size());
         }
+        assert(index > 1 && index <= this.tasks.size());
         Task task = this.tasks.get(index - 1);
         task.markAsNotDone();
     }
@@ -94,6 +98,7 @@ public class TaskList {
      * @param task the task to be added to the list of tasks
      */
     public void add(Task task) {
+        assert(task != null);
         this.tasks.add(task);
     }
 
@@ -108,7 +113,8 @@ public class TaskList {
         if (index < 1 || index > this.tasks.size()) {
             throw new DukeOutOfRangeException(this.tasks.size());
         }
-        Task task = this.tasks.get(index - 1);
+        assert(index > 1 && index <= this.tasks.size());
+        Task task = this.tasks.get(index - 1);;
         this.tasks.remove(index - 1);
     }
 
@@ -133,6 +139,8 @@ public class TaskList {
         if (index < 1 || index > this.tasks.size()) {
             throw new DukeOutOfRangeException(this.tasks.size());
         }
+        assert(index > 1 && index <= this.tasks.size());
+        assert(tasks.get(index - 1) != null);
         return this.tasks.get(index - 1).toString();
     }
 
@@ -142,6 +150,7 @@ public class TaskList {
      * @return the tasks ArrayList
      */
     public ArrayList<Task> toArrayList() {
+        assert(tasks != null);
         return tasks;
     }
 
@@ -151,6 +160,9 @@ public class TaskList {
     public String showFilteredList(String keyword) {
         ArrayList<Task> filteredList = filterList(keyword);
         String result = changeListToString(filteredList);
+        if (result == "") {
+            return String.format("Your %s keyword does not match any entries!", keyword);
+        }
         return result;
     }
 
