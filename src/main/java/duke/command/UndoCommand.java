@@ -8,6 +8,9 @@ import duke.main.TaskList;
 import duke.main.Ui;
 import duke.task.Task;
 
+/**
+ * A class to handle the undo command.
+ */
 public class UndoCommand extends Command {
 
     private static ArrayList<ArrayList<Task>> history = new ArrayList<>();

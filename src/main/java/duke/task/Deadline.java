@@ -28,6 +28,6 @@ public class Deadline extends DatedTask {
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: "
-                + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy") )+ ")";
+                + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

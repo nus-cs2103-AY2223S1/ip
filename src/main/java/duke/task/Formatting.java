@@ -20,7 +20,7 @@ public class Formatting implements Function<ArrayList<Task>, String> {
         for (int i = 0; i < arr.size(); i++) {
             if (arr.get(i) instanceof ToDo) {
                 s += "T | " + checkMark(arr.get(i)) + " | " + arr.get(i).description
-                + "\n";
+                    + "\n";
             } else if (arr.get(i) instanceof Event) {
                 s += "E | " + checkMark(arr.get(i)) + " | " + arr.get(i).description
                         + " | " + ((Event) arr.get(i)).date + "\n";
