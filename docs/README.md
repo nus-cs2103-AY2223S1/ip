@@ -1,8 +1,8 @@
-# User Guide
+# User Guide: Duke
 
 Duke is a **desktop app for managing tasks, optimised for use via a Command Line Interface** (CLI).
 
-Table of Contents:
+## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
 - [Command Summary](#command-summary)
@@ -189,5 +189,4 @@ Tasks are automatically saved in the folder after every command. When launching 
 | **Unmark**       | `unmark TASK_INDEX [TASK_INDICES]` | `unmark 1 3`                           |
 | **Delete**       | `delete TASK_INDEX [TASK_INDICES]` | `delete 1 3`                           |
 | **Find**         | `find KEYWORD`                     | `find book`                            |
-                           |
 | **Exit**         | `bye`                              | `bye`                                  |
