@@ -13,7 +13,7 @@ import duke.task.Task;
  */
 public class MarkCommand extends Command {
     private final String[] STR;
-    private final boolean MARK;
+    private final boolean IS_MARK;
 
     /**
      * Creates a new MarkCommand object.
@@ -23,7 +23,7 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(String[] str, boolean mark) {
         this.STR = str;
-        this.MARK = mark;
+        this.IS_MARK = mark;
     }
 
     /**
@@ -51,7 +51,7 @@ public class MarkCommand extends Command {
         }
 
         myTask = tasks.getTask(index);
-        if (MARK) {
+        if (IS_MARK) {
             myTask.markAsDone();
             storage.writeFile(tasks);
             return ui.complete(myTask);
