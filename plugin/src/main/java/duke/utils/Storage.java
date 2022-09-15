@@ -55,6 +55,11 @@ public class Storage {
      * @throws DukeException when there is an error
      */
     public Storage(ArrayList<Task> tasks, String fname) throws DukeException {
+        File storageDirectory = new File("./data");
+
+        if (!storageDirectory.exists()) {
+            storageDirectory.mkdir();
+        }
         this.tasks = tasks;
         this.fname = createFile(fname);
     }

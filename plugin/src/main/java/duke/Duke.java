@@ -41,7 +41,7 @@ public class Duke extends Application {
      */
     public Duke() {
         try {
-            tasks = new TaskList(".\\data\\duke.txt");
+            tasks = new TaskList("./data/duke.txt");
             cf = new Parser(tasks);
         } catch (DukeException e) {
             System.out.println(e.getMessage());
