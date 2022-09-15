@@ -18,6 +18,7 @@ dependencies {
 }
 
 dependencies {
+    implementation 'junit:junit:4.13.1'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 }
@@ -37,7 +38,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "Duke.Duke"
 }
 
 shadowJar {
