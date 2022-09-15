@@ -34,7 +34,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(DialogBox.getUwuDialog("hellu!\ni am oo woo <:"
-                + "\nhow can i be of service today?", uwuImage));
+                + "\nhow can i be of service today?\ntype 'help' to view the list of commands~", uwuImage));
 
         assert this.scrollPane != null : "[scrollPane] FXML was improperly configured.";
         assert this.dialogContainer != null : "[dialogContainer] FXML was improperly configured.";

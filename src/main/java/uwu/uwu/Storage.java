@@ -11,6 +11,7 @@ import uwu.exception.LoadingFileErrorException;
 import uwu.exception.UwuException;
 import uwu.task.Deadline;
 import uwu.task.Event;
+import uwu.task.Task;
 import uwu.task.TaskList;
 import uwu.task.ToDos;
 
@@ -62,40 +63,53 @@ public class Storage {
             assert Files.exists(Paths.get(this.fileName)) : "The file, " + this.fileName + ", does not exist.";
 
             Scanner scanner = new Scanner(taskFile);
+
             while (scanner.hasNextLine()) {
                 String task = scanner.nextLine();
-                String[] taskData = task.split(",");
-                String taskType = taskData[0];
-                String taskIsDone = taskData[1];
-                String taskDescription = taskData[2];
-
-                boolean isToDo = taskType.equals("T");
-                boolean isDeadline = taskType.equals("D");
-                boolean isEvent = taskType.equals("E");
-
-                if (isToDo) {
-                    ToDos todo = new ToDos(taskDescription);
-                    todo.setIsDone(taskIsDone.equals("1"));
-                    result.add(todo);
-                } else if (isDeadline) {
-                    String taskDeadline = taskData[3];
-                    Deadline deadline = new Deadline(taskDescription, taskDeadline);
-                    deadline.setIsDone(taskIsDone.equals("1"));
-                    result.add(deadline);
-                } else if (isEvent) {
-                    String eventStart = taskData[3];
-                    Event event = new Event(taskDescription, eventStart);
-                    event.setIsDone(taskIsDone.equals("1"));
-                    result.add(event);
-                } else {
-                    throw new LoadingFileErrorException("oops! seems like there is trouble loading the task list "
-                            + "file TT");
-                }
+                Task decodedTask = decodeTask(task);
+                result.add(decodedTask);
             }
         } catch (IOException e) {
             throw new LoadingFileErrorException("oops! seems like there is trouble loading the task list file TT");
         }
 
         return result;
+    }
+
+    /**
+     * Decodes the individual tasks in the storage file from the storage string to a task.
+     *
+     * @param task The storage string form of the task.
+     * @return The task that was encoded.
+     * @throws UwuException If the task was not stored properly.
+     */
+    public Task decodeTask(String task) throws UwuException {
+        String[] taskData = task.split(",");
+        String taskType = taskData[0];
+        String taskIsDone = taskData[1];
+        String taskDescription = taskData[2];
+
+        boolean isToDo = taskType.equals("T");
+        boolean isDeadline = taskType.equals("D");
+        boolean isEvent = taskType.equals("E");
+
+        if (isToDo) {
+            ToDos todo = new ToDos(taskDescription);
+            todo.setIsDone(taskIsDone.equals("1"));
+            return todo;
+        } else if (isDeadline) {
+            String taskDeadline = taskData[3];
+            Deadline deadline = new Deadline(taskDescription, taskDeadline);
+            deadline.setIsDone(taskIsDone.equals("1"));
+            return deadline;
+        } else if (isEvent) {
+            String eventStart = taskData[3];
+            Event event = new Event(taskDescription, eventStart);
+            event.setIsDone(taskIsDone.equals("1"));
+            return event;
+        } else {
+            throw new LoadingFileErrorException("oops! seems like there is trouble loading the task list "
+                    + "file TT");
+        }
     }
 }

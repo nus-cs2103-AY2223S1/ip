@@ -2,3 +2,10 @@ D,1,cat,2022-08-10 00:00
 E,0,party,2022-09-09 00:00
 T,1,return book
 T,0,read book
+T,0,homework
+T,0,lab
+T,0,assignment
+T,0,project
+T,0,feed cat
+T,0,feed dog
+T,0,gen meeting
