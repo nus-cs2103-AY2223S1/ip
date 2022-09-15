@@ -35,8 +35,11 @@ public class Zlimez {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Execute the command as per the user input and returns the corresponding
+     * response that should be displayed on the GUI.
+     *
+     * @param input user input.
+     * @return the response after executing a command.
      */
     public String getResponse(String input) {
         try {

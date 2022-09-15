@@ -22,7 +22,7 @@ public class Response {
     /**
      * The method determines the response after users query for all tasks in the todo list.
      *
-     * @param tasks The list containing all the tasks.
+     * @param tasks the list containing all the tasks.
      */
     public String listAll(List<Task> tasks) {
         return String.format("Really? If you are so forgetful...\n%s", list(tasks));
@@ -31,7 +31,7 @@ public class Response {
     /**
      * The method determines the response after users query for tasks in the todo list on the specified date.
      *
-     * @param tasks The list containing the relevant tasks.
+     * @param tasks the list containing the relevant tasks.
      */
     public String listTaskOn(List<Task> tasks) {
         if (tasks != null) {
@@ -44,24 +44,24 @@ public class Response {
     /**
      * The method determines the response after users query for tasks in the todo list with the specified tag.
      *
-     * @param tasks The list containing the relevant tasks.
+     * @param tasks the list containing the relevant tasks.
      */
     public String listTaskWith(List<Task> tasks) {
         if (tasks != null) {
             return String.format("These are your tasks with the given tag\n%s", list(tasks));
         } else {
-            return "There are no tasks with this tag";
+            return "You have no tasks with this tag";
         }
     }
 
     /**
      * The method determines the response after users query for tasks that contain a given keyword.
      *
-     * @param tasks The list containing the relevant tasks.
+     * @param tasks the list containing the relevant tasks.
      */
     public String listFound(List<Task> tasks) {
         if (!tasks.isEmpty()) {
-            return "These are the tasks that match your description\n" + list(tasks);
+            return "These are the tasks that match your incomplete description\n" + list(tasks);
         } else {
             return "You like to search for nothing and waste time huh?";
         }
@@ -79,7 +79,7 @@ public class Response {
     /**
      * The method determines the response after a user requests for all tags from the todo list.
      *
-     * @param tags The list containing all tags.
+     * @param tags the list containing all tags.
      */
     public String listAllTags(Set<String> tags) {
         if (tags.isEmpty()) {
@@ -99,19 +99,19 @@ public class Response {
     /**
      * The method determines the response after a specific task has been added and the new todo list status.
      *
-     * @param target The task added.
-     * @param numberOfTasks The number of tasks after the addition.
+     * @param target the task added.
+     * @param numberOfTasks the number of tasks after the addition.
      */
     public String add(Task target, int numberOfTasks) {
-        return String.format("Lazily added this task for you %s\n\t%s\nWala now you have %d tasks in the list.",
+        return String.format("I've ADDED this task for you %s\n\t%s\nWala now you have %d tasks in the list.",
                 EMOJI, target, numberOfTasks);
     }
 
     /**
      * The method determines the response after the specific task has been removed and the new todo list status.
      *
-     * @param target The task removed.
-     * @param numberOfTasks The number of tasks after the deletion.
+     * @param target the task removed.
+     * @param numberOfTasks the number of tasks after the deletion.
      */
     public String delete(Task target, int numberOfTasks) {
         return String.format("YES, I've removed this task for YOU:\n\t%s\nWala now you have %d tasks in the list.",
@@ -121,7 +121,7 @@ public class Response {
     /**
      * The method determines the response after the specified task has been marked.
      *
-     * @param target The task marked as complete.
+     * @param target the task marked as complete.
      */
     public String unmark(Task target) {
         return String.format("-_-, I've unmarked this task for YOU AGAIN:\n\t%s", target);
@@ -130,7 +130,7 @@ public class Response {
     /**
      * The method determines the response after the specified task has been unmarked.
      *
-     * @param target The task marked as incomplete.
+     * @param target the task marked as incomplete.
      */
     public String mark(Task target) {
         return String.format("Wellz, I've marked this task for YOU:\n\t%s", target);
@@ -139,7 +139,7 @@ public class Response {
     /**
      * The method determines the response when an exception occurs due to user misuse.
      *
-     * @param e The exceptions raised.
+     * @param e the exceptions raised.
      */
     public String reprimand(DukeException e) {
         return e.getMessage();
