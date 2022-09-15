@@ -7,9 +7,9 @@
 ## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest Wagwan.jar from [here]().
+2. Download the latest Wagwan.jar from [here](https://github.com/linuschui/ip/releases/tag/v0.2).
 
-3. Copy the file to the folder you want to use as the home folder for Wagwan.
+3. Copy Wagwan.jar into an empty folder you want to use as the home folder for Wagwan.
 
 4. Open a command window in that folder.
  
