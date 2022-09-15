@@ -39,7 +39,7 @@ Shows a list of all tasks in the task list.
 
 Format: `list`
 
-### Deleting a task: `task`
+### Deleting a task: `delete`
 Delete the specified task from the task list, provided it exists.
 
 Format: `delete INDEX`
