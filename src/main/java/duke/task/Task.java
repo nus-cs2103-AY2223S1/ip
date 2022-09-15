@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.duke.DukeException;
+
 import java.util.Locale;
 
 public abstract class Task {
@@ -53,7 +55,7 @@ public abstract class Task {
         }
     }
 
-    public void setPriority(String priorityString) {
+    public void setPriority(String priorityString) throws DukeException{
         String name = priorityString.toLowerCase().replaceAll(" ", "");
         if(name.equals("high")) {
             this.priority = Priority.HIGH;
@@ -61,6 +63,8 @@ public abstract class Task {
             this.priority = Priority.MEDIUM;
         } else if (name.equals("low")) {
             this.priority = Priority.LOW;
+        } else {
+            throw new DukeException("OOPS!!! Invalid priority level");
         }
     }
 

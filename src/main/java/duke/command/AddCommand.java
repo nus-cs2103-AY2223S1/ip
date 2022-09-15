@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.Duke;
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
+import duke.duke.Duke;
+import duke.duke.DukeException;
+import duke.util.Storage;
+import duke.task.TaskList;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -45,13 +45,15 @@ public class AddCommand extends Command {
             }
             taskList.addTask(task);
         } else if (command.equals(Duke.Keyword.EVENT.getKeyword())) {
-            task = new Event(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
+            task = new Event(taskDetails.split("/")[0],
+                    taskDetails.split("/")[1].split(" ", 2)[1]);
             if (taskDetails.split("/").length > 2) {
                 task.setPriority(taskDetails.split("/")[2].split(" ", 2)[1]);
             }
             taskList.addTask(task);
         } else if (command.equals(Duke.Keyword.DEADLINE.getKeyword())) {
-            task = new Deadline(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
+            task = new Deadline(taskDetails.split("/")[0],
+                    taskDetails.split("/")[1].split(" ", 2)[1]);
             if (taskDetails.split("/").length > 2) {
                 task.setPriority(taskDetails.split("/")[2].split(" ", 2)[1]);
             }

@@ -1,4 +1,4 @@
-package duke;
+package duke.duke;
 
 /**
  * A dedicated Exception class for Duke program.

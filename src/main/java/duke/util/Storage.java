@@ -1,4 +1,4 @@
-package duke;
+package duke.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,10 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
+import duke.duke.DukeException;
+import duke.task.*;
 
 /** Storage object used for file operations such as read and write of TaskList to text file. */
 public class Storage {
@@ -33,7 +31,7 @@ public class Storage {
      *
      * @return An ArrayList of Task objects.
      */
-    public ArrayList<Task> loadTaskList() throws DukeException{
+    public ArrayList<Task> loadTaskList() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<>();
         File file;
         file = new File(this.filePath);

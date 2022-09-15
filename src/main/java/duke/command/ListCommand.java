@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
+import duke.util.Storage;
+import duke.task.TaskList;
 
 /** Represents the command to list out Tasks in TaskList that inherits from Command. */
 public class ListCommand extends Command {

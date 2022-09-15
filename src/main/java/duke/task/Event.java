@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.DukeException;
+import duke.duke.DukeException;
 
 public class Event extends Task {
     private LocalDateTime dateTime;
@@ -21,6 +21,9 @@ public class Event extends Task {
         super(taskName);
         assert !dateTime.isEmpty() : "date time should not be empty";
         try {
+            if (dateTime.charAt(dateTime.length() - 1) == ' ') {
+                dateTime = dateTime.substring(0, dateTime.length() - 1);
+            }
             this.dateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
         } catch (DateTimeParseException dateTimeParseException){
             throw new DukeException("OOPS!!! Cannot parse date. Enter date according to example, 02-12-2019 1800");

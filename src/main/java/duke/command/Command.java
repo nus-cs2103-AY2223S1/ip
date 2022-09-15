@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
+import duke.duke.DukeException;
+import duke.util.Storage;
+import duke.task.TaskList;
 
 /** Abstract class that represents the commands the user gives to the Duke program */
 public abstract class Command {

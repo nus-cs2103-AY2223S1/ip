@@ -1,12 +1,15 @@
-package duke;
+package duke.duke;
 
+import duke.util.Parser;
+import duke.util.Storage;
+import duke.task.TaskList;
 import duke.command.Command;
 
 public class Duke {
     private TaskList taskList;
     private Storage storage;
 
-    public Duke(String filePath) throws DukeException{
+    public Duke(String filePath) throws DukeException {
         assert !filePath.isEmpty() : "Filepath should not be empty";
         storage = new Storage(filePath);
         taskList = new TaskList(storage.loadTaskList());
