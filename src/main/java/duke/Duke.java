@@ -3,7 +3,6 @@ package duke;
 import duke.commands.Command;
 import duke.tasks.TaskList;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /*
@@ -24,7 +23,6 @@ public class Duke {
      * @param filePath The path of the file to be read and written to.
      */
     public Duke(String filePath) {
-
         try {
             this.ui = new Ui();
             this.storage = new Storage(filePath);
@@ -35,6 +33,9 @@ public class Duke {
         } catch (IOException e) {
             ui.print(e.getMessage());
         }
+        assert (this.tasks != null);
+        assert (this.storage != null);
+        assert (this.ui != null);
     }
 
     /*
@@ -68,6 +69,13 @@ public class Duke {
         }
     }
 
+    /*
+     * Main method for Duke program.
+     * This takes in the user's input and executes the appropriate command by
+     * parsing and executing the input.
+     * If input is invalid, an error message is printed instead and user is prompted
+     * to give another input.
+     */
     public String getResponse(String userInput) {
         String response = "";
         try {
@@ -76,6 +84,7 @@ public class Duke {
         } catch (DukeException e) {
             response = e.getMessage();
         }
+        assert (response != null);
         return response;
     }
 
