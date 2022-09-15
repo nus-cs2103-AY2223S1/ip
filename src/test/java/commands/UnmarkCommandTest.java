@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import ui.Ui;
 import exceptions.DukeException;
+import ui.Ui;
 
 public class UnmarkCommandTest {
     @Test
