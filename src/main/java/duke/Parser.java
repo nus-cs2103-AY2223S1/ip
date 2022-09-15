@@ -300,7 +300,11 @@ public class Parser {
      */
     private void testInputForToDo(String userInput) throws DukeException {
         String[] args = userInput.split(" ");
-        if ((args.length < 2)) {
+        if (userInput.contains("/p") && args.length < 4) {
+            throw new DukeException("Wrong format! To create a "
+                    + "'todo' task, type:\n   todo [DESCRIPTION] "
+                    + "(/p [PRIORITY])\n");
+        } else if (!userInput.contains("/p") && args.length < 2) {
             throw new DukeException("Wrong format! To create a "
                     + "'todo' task, type:\n   todo [DESCRIPTION] "
                     + "(/p [PRIORITY])\n");
