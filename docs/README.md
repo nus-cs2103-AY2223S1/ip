@@ -3,7 +3,7 @@
 For each command format, **bold** words are fixed, which means you cannot change them and their relative position. However, you can replace \<angle brackets\> with real arguments. Command word and arguments should be separated by at least one white space, but no end-of-line characters.
 ## Command List
 | Command | Format | Description |
-|----|-----|-----|
+|----|----|----|
 | Add an event task | **event** \<description\> /at \<yyyy-MM-dd HH:mm:ss\> | Add an event that takes place at year **_yyyy_**, month **_MM_**, day **_dd_**, hour **_HH_**, minute **_mm_**, and second **_ss_**. \<description\> is a paragraph that describes what to do, and can have any length and any number of whitespace characters. However, it cannot be empty or blank. |
 | Add a deadline task | **deadline** \<description\> /by \<yyyy-MM-dd HH:mm:ss\> | Add a deadline at year **_yyyy_**, month **_MM_**, day **_dd_**, hour **_HH_**, minute **_mm_**, and second **_ss_**. \<description\> is a paragraph that describes what to do, and can have any length and any number of whitespace characters. However, it cannot be empty or blank. |
 | Add a to-do task | **todo** \<description\> | Add a to-do task that does not have a specific deadline to meet or a specific date and time. It just has to be done some time. \<description\> is a paragraph that describes what to do, and can have any length and any number of whitespace characters. However, it cannot be empty or blank. |
