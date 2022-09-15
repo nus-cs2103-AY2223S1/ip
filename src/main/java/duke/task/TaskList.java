@@ -51,8 +51,7 @@ public class TaskList {
      * @throws DukeException If index is out of bounds.
      */
     public String delete(int index) throws DukeException {
-        //Index out of bounds
-        if (index > taskList.size() || index < 1) {
+        if (isIndexOutOfBounds(index)) {
             throw new InvalidIndexException();
         }
         //get the selected task
@@ -73,8 +72,7 @@ public class TaskList {
      * @throws DukeException If index is out of bounds.
      */
     public String mark(int index) throws DukeException {
-        //Index out of bounds
-        if (index > taskList.size() || index < 1) {
+        if (isIndexOutOfBounds(index)) {
             throw new InvalidIndexException();
         }
         //get the selected task
@@ -93,8 +91,7 @@ public class TaskList {
      * @throws DukeException If index is out of bounds.
      */
     public String unmark(int index) throws DukeException {
-        //Index out of bounds
-        if (index > taskList.size() || index < 1) {
+        if (isIndexOutOfBounds(index)) {
             throw new InvalidIndexException();
         }
         //get the selected task
@@ -161,13 +158,16 @@ public class TaskList {
     }
 
     public String setPriority(int index, String priority) throws DukeException {
-        //Index out of bounds
-        if (index > taskList.size() || index < 1) {
+        if (isIndexOutOfBounds(index)) {
             throw new InvalidIndexException();
         }
         Task task = taskList.get(index - 1);
         task.modifyPriority(priority);
         Storage.saveTasks(this);
         return Ui.getPriorityMessage(task, priority);
+    }
+
+    private boolean isIndexOutOfBounds(int index) {
+        return index > taskList.size() || index < 1;
     }
 }
