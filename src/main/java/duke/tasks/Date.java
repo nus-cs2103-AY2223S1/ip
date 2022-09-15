@@ -12,7 +12,7 @@ import java.time.LocalDate;
  */
 public class Date {
 
-    protected LocalDate date = LocalDate.now();
+    protected LocalDate date;
     protected int time;
 
     /**
@@ -23,6 +23,7 @@ public class Date {
      *     correct format
      */
     public Date(String str) throws DukeInvalidDateException {
+        assert(str != "");
         String[] splittedValues = str.split("\\s+");
         this.date = parse(splittedValues[0]);
         if (splittedValues.length > 1) {
@@ -39,6 +40,7 @@ public class Date {
      *     date format
      */
     private LocalDate parse(String str) throws DukeInvalidDateException {
+        assert(str != "");
         LocalDate date;
         try {
             date = LocalDate.parse(str);
@@ -63,6 +65,7 @@ public class Date {
      * @return the string representation of the time field in the "a.m/p.m" format
      */
     private String timeToString() {
+        assert(time > 0);
         int hours = (int) Math.floor(time / 100);
         int minutes = time % 100;
         String timeOfDay = "a.m.";

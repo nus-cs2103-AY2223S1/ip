@@ -25,8 +25,6 @@ import duke.tasks.Todo;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import java.util.Arrays;
-
 /**
  * Parses the input from the user to their specific commands
  */

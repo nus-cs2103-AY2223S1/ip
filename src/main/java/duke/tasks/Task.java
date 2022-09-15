@@ -13,6 +13,7 @@ public abstract class Task {
      * @param description The description of the task
      */
     public Task(String description) {
+        assert(description != "");
         this.description = description;
         this.isDone = false;
     }
@@ -71,6 +72,7 @@ public abstract class Task {
      * @return a boolean value, true if the description contains the keyword, false otherwise
      */
     public boolean checkIfContains(String keyword) {
+        assert(keyword != "");
         return description.contains(keyword);
     }
 }

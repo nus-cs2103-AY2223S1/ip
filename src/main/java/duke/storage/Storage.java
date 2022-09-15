@@ -58,6 +58,7 @@ public class Storage {
      * @param tasks an ArrayList of tasks to be stored in the local file
      */
     public void writeToFile(ArrayList<? extends Task> tasks) {
+        assert(tasks != null);
         String str = "";
         for (int i = 0; i < tasks.size(); i++) {
             String s = tasks.get(i).toStringForFile();

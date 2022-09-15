@@ -1,3 +1,2 @@
-N|todo say hello
 M|deadline do something /by 2022-02-02 2000
-N|todo say hello
+M|deadline submit homework /by 2022-09-15 1900
