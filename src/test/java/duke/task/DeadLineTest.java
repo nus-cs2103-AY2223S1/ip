@@ -11,9 +11,9 @@ public class DeadLineTest {
     public void testPrintedDeadline() {
         try {
             assertEquals("[D][ ] return book  (by: 2/2/2022)",
-                    new DeadLine("deadline return book by 2/2/2022").printTask());
+                    new DeadLine("d return book by 2/2/2022").printTask());
             assertEquals("[D][ ] return book  (by: today)",
-                    new DeadLine("deadline return book by today").printTask());
+                    new DeadLine("ddl return book by today").printTask());
         } catch (DukeException e) {
             fail();
         }
