@@ -84,7 +84,7 @@ public class Storage {
     }
 
     /**
-     * Write tasks to text file duke.txt.
+     * Writes tasks to text file duke.txt.
      */
     public static void writeToFile() throws IOException {
         FileWriter dukeWriter = new FileWriter("duke.txt");
