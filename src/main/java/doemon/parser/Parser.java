@@ -5,6 +5,7 @@ import doemon.command.Command;
 import doemon.command.DeleteCommand;
 import doemon.command.ExitCommand;
 import doemon.command.FindCommand;
+import doemon.command.HelpCommand;
 import doemon.command.ListCommand;
 import doemon.command.MarkCommand;
 import doemon.command.UnmarkCommand;
@@ -36,6 +37,8 @@ public class Parser {
             return new ExitCommand();
         } else if (isListCommand(inputString)) {
             return new ListCommand();
+        } else if (isHelpCommand(inputString)) {
+            return new HelpCommand();
         }
 
         String[] inputArr = inputString.split(" ", 2);
@@ -107,6 +110,16 @@ public class Parser {
      */
     private static boolean isListCommand(String command) {
         return command.equals("list");
+    }
+
+    /**
+     * Checks if the input string command is help.
+     *
+     * @param command Command string to be checked.
+     * @return A boolean indicating if the string is a help.
+     */
+    private static boolean isHelpCommand(String command) {
+        return command.equals("help");
     }
 
     /**

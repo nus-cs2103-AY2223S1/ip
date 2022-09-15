@@ -27,6 +27,17 @@ public class Response {
     private static final String introStr = "Hello I'm\n" + logo + "\t\t\tDoemon!";
     /** String that is printed when Doemon is exited. */
     private static final String exitStr = "I'm going to sleep now...See you again soon!";
+    /** Help string. */
+    private static final String helpStr =
+            "These are the commands my bread can understand:\n"
+            + "* list - Lists all your recorded tasks\n"
+            + "* todo [desc] - Adds a todo with a specified description\n"
+            + "* deadline [desc] /by [date/time] - Adds a deadline with specified description and date/time\n"
+            + "* event [desc] /at [date/time] - Adds an event with specified description and date/time\n"
+            + "* mark [num] - Marks the task at the specified number\n"
+            + "* unmark [num] - Unmarks the task at the specified number\n"
+            + "* delete [num] - Deletes the task at the specified number\n"
+            + "* bye - Exits the chat bot";
 
     /**
      * Returns welcome message.
@@ -127,6 +138,15 @@ public class Response {
             sb.append("\n\t").append(taskNum++).append(".").append(task.toString());
         }
         return sb.toString();
+    }
+
+    /**
+     * Returns a help string.
+     *
+     * @return Help string.
+     */
+    public String helpString() {
+        return helpStr;
     }
 
     /**

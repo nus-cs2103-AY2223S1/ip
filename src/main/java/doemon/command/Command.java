@@ -15,7 +15,7 @@ public abstract class Command {
      * @param ui The ui helper class.
      * @param storage The storage class for updating task data.
      */
-    public abstract String execute(TaskList tasks, Response ui, Storage storage);
+    public abstract String execute(TaskList tasks, Response response, Storage storage);
 
     /**
      * Returns a boolean indicating if the command is an exit command.
