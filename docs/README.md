@@ -2,7 +2,7 @@
 
 Duke is a desktop app for managing your tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Duke can help you keep track of your tasks faster than traditional GUI apps.
 
-![Deku!](https://github.com/ketamethane/ip/blob/fbde64674a0320c4bf03e6c205ce6abfd2be04b2/docs/Ui.png.jpg)
+![Deku!](https://github.com/ketamethane/ip/blob/4fbca2c549bc0b4e26297103b59f9963b52dc8bf/docs/Ui.png)
 
 ## Features 
 
