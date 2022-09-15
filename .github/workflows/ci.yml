@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+  push:
+    branches:
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check Compilation
+      run: javac **/*.java
