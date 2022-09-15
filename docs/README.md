@@ -1,28 +1,28 @@
 # User Guide
 
 ## Quickstart
-1. [Installation](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#installation) 
-2. [Features](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#features)
+1. [Installation](#installation) 
+2. [Features](#features)
 
-    * [Create new tasks](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#create-new-tasks)
-    * [Manage your tasks](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#manage-your-tasks)
-    * [View your tasks](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#view-your-tasks)
-    * [Load and save your tasks](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#load-and-save-your-tasks)
-    * [Close Duke](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#close-duke)
-3. [Usage](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#usage) 
+    * [Create new tasks](#create-new-tasks)
+    * [Manage your tasks](#manage-your-tasks)
+    * [View your tasks](#view-your-tasks)
+    * [Load and save your tasks](#load-and-save-your-tasks)
+    * [Close Duke](#close-duke)
+3. [Usage](#usage) 
 
-    * [`todo` - Create a new *todo*](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#todo---create-a-new-todo)
-    * [`deadline` - Create a new *deadline*](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#deadline---create-a-new-deadline)
-    * [`event` - Create a new *event*](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#event---create-a-new-event)
-    * [`mark` - Mark a task as done](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#mark---mark-a-task-as-done)
-    * [`unmark` - Mark a task as not done](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#unmark---mark-a-task-as-not-done)
-    * [`delete` - Delete a task](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#delete---delete-a-task)
-    * [`list` - View your tasks](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#list---view-all-tasks)
-    * [`find` - Find a task](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#find---find-a-task)
-    * [`schedule` - View schedule on a day](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#schedule---view-schedule-on-a-day)
-    * [`sort` - Sort your tasks](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#sort---sort-your-tasks)
-    * [`format` - Change format for date and time](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#format---change-format-for-date-and-time)
-    * [`bye` - Close Duke](https://github.com/nmtuan2001/ip/edit/master/docs/README.md#bye---close-duke)
+    * [`todo` - Create a new *todo*](#todo---create-a-new-todo)
+    * [`deadline` - Create a new *deadline*](#deadline---create-a-new-deadline)
+    * [`event` - Create a new *event*](#event---create-a-new-event)
+    * [`mark` - Mark a task as done](#mark---mark-a-task-as-done)
+    * [`unmark` - Mark a task as not done](#unmark---mark-a-task-as-not-done)
+    * [`delete` - Delete a task](#delete---delete-a-task)
+    * [`list` - View your tasks](#list---view-all-tasks)
+    * [`find` - Find a task](#find---find-a-task)
+    * [`schedule` - View schedule on a day](#schedule---view-schedule-on-a-day)
+    * [`sort` - Sort your tasks](#sort---sort-your-tasks)
+    * [`format` - Change format for date and time](#format---change-format-for-date-and-time)
+    * [`bye` - Close Duke](#bye---close-duke)
 
 ## Installation
 Download the latest release and run `java -jar duke.jar`.
