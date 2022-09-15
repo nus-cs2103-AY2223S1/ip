@@ -10,33 +10,32 @@ public class Parser {
      *
      * @param input    Full command entered by the user.
      * @param taskList Task list to perform operations on.
-     * @param ui       UI for displaying output.
      * @return Response message.
      * @throws DukeException If the input contains errors.
      */
-    public static String parse(String input, TaskList taskList, Ui ui) throws DukeException {
+    public static String parse(String input, TaskList taskList) throws DukeException {
         String[] command = input.split(" ", 2);
         switch (command[0].toLowerCase()) {
         case "bye":
             return byeCommand();
         case "list":
-            return listCommand(taskList, ui);
+            return listCommand(taskList);
         case "mark":
-            return markCommand(taskList, ui, command);
+            return markCommand(taskList, command);
         case "unmark":
-            return unmarkCommand(taskList, ui, command);
+            return unmarkCommand(taskList, command);
         case "todo":
-            return todoCommand(taskList, ui, command);
+            return todoCommand(taskList, command);
         case "deadline":
-            return deadlineCommand(taskList, ui, command);
+            return deadlineCommand(taskList, command);
         case "event":
-            return eventCommand(taskList, ui, command);
+            return eventCommand(taskList, command);
         case "recurring":
-            return recurringCommand(taskList, ui, command);
+            return recurringCommand(taskList, command);
         case "delete":
-            return deleteCommand(taskList, ui, command);
+            return deleteCommand(taskList, command);
         case "find":
-            return findCommand(taskList, ui, command);
+            return findCommand(taskList, command);
         default:
             return unknownCommand();
         }
@@ -48,74 +47,74 @@ public class Parser {
         return null;
     }
 
-    private static String listCommand(TaskList taskList, Ui ui) {
-        return ui.showTasks(taskList);
+    private static String listCommand(TaskList taskList) {
+        return Ui.showTasks(taskList);
     }
 
-    private static String markCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+    private static String markCommand(TaskList taskList, String[] command) throws DukeException {
         assert (command.length > 1);
         int index = Integer.parseInt(command[1]) - 1;
         assert (index >= 0 && index < taskList.getSize());
         taskList.mark(index);
-        return ui.showMarked(taskList.getTask(index));
+        return Ui.showMarked(taskList.getTask(index));
     }
 
-    private static String unmarkCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+    private static String unmarkCommand(TaskList taskList, String[] command) throws DukeException {
         assert (command.length > 1);
         int index = Integer.parseInt(command[1]) - 1;
         assert (index >= 0 && index < taskList.getSize());
         taskList.unmark(index);
-        return ui.showUnmarked(taskList.getTask(index));
+        return Ui.showUnmarked(taskList.getTask(index));
     }
 
-    private static String todoCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+    private static String todoCommand(TaskList taskList, String[] command) throws DukeException {
         if (command.length < 2) {
             throw new DukeException("The description of a todo cannot be empty.");
         }
         Task newTask = new Todo(command[1]);
         taskList.add(newTask);
-        return ui.showAdded(newTask, taskList.getSize());
+        return Ui.showAdded(newTask, taskList.getSize());
     }
 
-    private static String deadlineCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+    private static String deadlineCommand(TaskList taskList, String[] command) throws DukeException {
         assert (command.length > 1);
         String[] arguments = command[1].split(" /by ", 2);
         assert (arguments.length > 1);
         Task newTask = new Deadline(arguments[0], arguments[1]);
         taskList.add(newTask);
-        return ui.showAdded(newTask, taskList.getSize());
+        return Ui.showAdded(newTask, taskList.getSize());
     }
 
-    private static String eventCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+    private static String eventCommand(TaskList taskList, String[] command) throws DukeException {
         assert (command.length > 1);
         String[] arguments = command[1].split(" /at ", 2);
         assert (arguments.length > 1);
         Task newTask = new Event(arguments[0], arguments[1]);
         taskList.add(newTask);
-        return ui.showAdded(newTask, taskList.getSize());
+        return Ui.showAdded(newTask, taskList.getSize());
     }
 
-    private static String recurringCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+    private static String recurringCommand(TaskList taskList, String[] command) throws DukeException {
         assert (command.length > 1);
         String[] arguments = command[1].split(" /repeats ", 2);
         assert (arguments.length > 1);
         Task newTask = new Recurring(arguments[0], arguments[1]);
         taskList.add(newTask);
-        return ui.showAdded(newTask, taskList.getSize());
+        return Ui.showAdded(newTask, taskList.getSize());
     }
 
-    private static String deleteCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+    private static String deleteCommand(TaskList taskList, String[] command) throws DukeException {
         assert (command.length > 1);
         int index = Integer.parseInt(command[1]) - 1;
         assert (index >= 0 && index < taskList.getSize());
         Task task = taskList.getTask(index);
         taskList.remove(index);
-        return ui.showRemoved(task, taskList.getSize());
+        return Ui.showRemoved(task, taskList.getSize());
     }
 
-    private static String findCommand(TaskList taskList, Ui ui, String[] command) {
+    private static String findCommand(TaskList taskList, String[] command) {
         assert (command.length > 1);
-        return ui.showResults(taskList.search(command[1]));
+        return Ui.showResults(taskList.search(command[1]));
     }
 
     private static String unknownCommand() throws DukeException {

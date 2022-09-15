@@ -6,7 +6,6 @@ package duke;
 public class Duke {
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
 
     /**
      * Creates an instance of Duke with the given file path.
@@ -14,9 +13,8 @@ public class Duke {
      * @param filePath Path should point to existing saved tasks or where tasks should be saved.
      */
     public Duke(String filePath) {
-        ui = new Ui();
         storage = new Storage(filePath);
-        tasks = new TaskList(storage, ui);
+        tasks = new TaskList(storage);
     }
 
     /**
@@ -27,9 +25,9 @@ public class Duke {
      */
     String getResponse(String input) {
         try {
-            return Parser.parse(input, tasks, ui);
+            return Parser.parse(input, tasks);
         } catch (DukeException e) {
-            return ui.showError(e.getMessage());
+            return Ui.showError(e.getMessage());
         }
     }
 }

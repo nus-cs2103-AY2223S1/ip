@@ -11,12 +11,12 @@ public class TaskList {
     private List<Task> tasks;
     private Storage storage;
 
-    TaskList(Storage storage, Ui ui) {
+    TaskList(Storage storage) {
         this.storage = storage;
         try {
             tasks = storage.loadTasks();
         } catch (Exception e) {
-            ui.showError(e.getMessage());
+            Ui.showError(e.getMessage());
             tasks = new ArrayList<>();
         }
     }
@@ -81,13 +81,6 @@ public class TaskList {
 
     @Override
     public String toString() {
-        StringBuilder temp = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i++) {
-            temp.append(i + 1);
-            temp.append(".");
-            temp.append(tasks.get(i));
-            temp.append("\n");
-        }
-        return temp.toString();
+        return Ui.listTasks(tasks);
     }
 }

@@ -10,37 +10,48 @@ public class Ui {
     Ui() {
     }
 
-    public String showTasks(TaskList tasks) {
+    public static String showTasks(TaskList tasks) {
         return "Here are the tasks in your list:\n" + tasks.toString();
     }
 
-    public String showMarked(Task task) {
+    public static String showMarked(Task task) {
         return "Nice! I've marked this task as done:\n  " + task;
     }
 
-    public String showUnmarked(Task task) {
+    public static String showUnmarked(Task task) {
         return "OK, I've marked this task as not done yet:\n  " + task;
     }
 
-    public String showAdded(Task task, int num) {
+    public static String showAdded(Task task, int num) {
         return "Got it. I've added this task:\n  " + task + "\nNow you have " + num + " tasks in the list.";
     }
 
-    public String showRemoved(Task task, int num) {
+    public static String showRemoved(Task task, int num) {
         return "Noted. I've removed this task:\n  " + task + "\nNow you have " + num + " tasks in the list.";
     }
 
-    public String showError(String message) {
+    public static String showError(String message) {
         return ":( OOPS!!! " + message;
     }
 
+    public static String showResults(List<Task> tasks) {
+        return "Here are your search results:\n" + listTasks(tasks);
+    }
+
     /**
-     * Formats search results.
+     * Formats list of tasks.
      *
-     * @param result Task list from search result.
-     * @return Formatted search results.
+     * @param tasks Task list.
+     * @return Formatted task list.
      */
-    public String showResults(List<Task> result) {
-        return result.toString();
+    public static String listTasks(List<Task> tasks) {
+        StringBuilder temp = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            temp.append(i + 1);
+            temp.append(".");
+            temp.append(tasks.get(i));
+            temp.append("\n");
+        }
+        return temp.toString();
     }
 }
