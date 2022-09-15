@@ -20,6 +20,19 @@ Add, delete, view, find, sort and mark tasks as required.
 
 The state of tasks will be saved to disk after the application is closed, allowing for task retention between sessions.
 
+## Command summary
+- `todo <task name>`
+- `deadline <task name> /by <date and time>`
+- `event <task name> /at <date and time>`
+- `mark <task number>`
+- `unmark <task number>`
+- `list`
+- `delete <task number>`
+- `find <search term>`
+- `sortname`
+- `sortdate`
+- `bye`
+
 ## Usage
 
 ### `todo <task name>` - Add a Todo task
@@ -33,9 +46,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_todo.png)
 
 ### `deadline <task name> /by <date and time>` - Add a Deadline task
 
@@ -48,9 +59,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_deadline.png)
 
 ### `event <task name> /at <date and time>` - Add an Event task
 
@@ -63,9 +72,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_event.png)
 
 ### `mark <task number>` - Mark a task as done
 
@@ -77,9 +84,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_mark.png)
 
 ### `unmark <task number>` - Unmark a task
 
@@ -91,9 +96,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_unmark.png)
 
 ### `list` - List all tasks
 
@@ -105,9 +108,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_list.png)
 
 ### `delete <task number>` - Delete a task
 
@@ -119,9 +120,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_delete.png)
 
 ### `find <search term>` - Find all tasks containing search term
 
@@ -133,9 +132,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_find.png)
 
 ### `sortname` - Sorts tasks by name
 
@@ -148,9 +145,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_sortname.png)
 
 ### `sortdate` - Sorts tasks by date
 
@@ -163,9 +158,7 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_sortdate.png)
 
 ### `bye` - Exits the application
 
@@ -177,6 +170,4 @@ Example of usage:
 
 Expected outcome:
 
-```
-expected output
-```
+![](./example_bye.png)
