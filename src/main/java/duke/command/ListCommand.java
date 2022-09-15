@@ -8,7 +8,7 @@ import duke.component.TaskList;
 public class ListCommand extends Command {
 
     public static final String MSG_LIST = "Here are the tasks in your list:\n";
-    public static final String MSG_NO_TASKS ="There are no outstanding tasks in your list!\n";
+    public static final String MSG_NO_TASKS = "There are no outstanding tasks in your list!\n";
 
     /**
      * Constructs a new ListCommand.
@@ -26,10 +26,10 @@ public class ListCommand extends Command {
      */
     @Override
     public String run() {
-        if (this.tasks.toString().equals("")) {
+        if (tasks.toString().equals("")) {
             return MSG_NO_TASKS;
         }
-        return MSG_LIST + this.tasks.toString();
+        return MSG_LIST + tasks.toString();
     }
 
 }

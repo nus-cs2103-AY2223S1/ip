@@ -3,7 +3,7 @@ package duke.command;
 import duke.component.TaskList;
 
 /**
- * Represents a command to find tasks matching the given keyword.
+ * Represents a command to find tasks matching the given keywords.
  */
 public class FindCommand extends Command {
 

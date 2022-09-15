@@ -15,7 +15,7 @@ public class ToDoCommand extends Command {
      * @param tasks List of all tasks.
      */
     public ToDoCommand(String content, TaskList tasks) {
-        super(content, tasks);
+        super(content.trim(), tasks);
     }
 
     /**

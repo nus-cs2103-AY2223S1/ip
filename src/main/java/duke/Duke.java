@@ -56,9 +56,9 @@ public class Duke {
                 Command command = parser.parse(userCommand, tasks);
                 response.append(command.run() + "\n\n");
                 if (command instanceof EndCommand) {
-                    this.hasEnded = true;
+                    hasEnded = true;
                 }
-                this.storage.save(this.tasks);
+                storage.save(tasks);
             } catch (DukeException e) {
                 response.append(e.getMessage() + "\n\n");
             }
