@@ -2,12 +2,11 @@ package command;
 
 import duke.TaskList;
 import duke.Ui;
-import task.Events;
 import task.Task;
-import task.ToDos;
 
 import java.text.ParseException;
 import java.util.function.Consumer;
+
 
 /**
  * An abstract class that represents FindCommand which extends Command
@@ -16,7 +15,7 @@ import java.util.function.Consumer;
  * @version 0.2
  * @since   2022-9-15
  */
-public class FindCommand extends Command{
+public class FindCommand extends Command {
 
     private TaskList taskList;
     private String input;

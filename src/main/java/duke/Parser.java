@@ -1,15 +1,23 @@
 package duke;
+
+import command.ByeCommand;
+import command.Command;
+import command.DeadlineCommand;
+import command.DeleteCommand;
+import command.EventCommand;
+import command.FindCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import command.PriorityCommand;
+import command.TodoCommand;
+import command.UnmarkCommand;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.function.Consumer;
-
-import command.*;
 import exception.DukeException;
 import exception.IncorrectInputException;
 import exception.IncorrectInputFormatException;
-import task.*;
 
 /**
  * A class that encapsulates the Parser object
@@ -24,6 +32,10 @@ public class Parser {
     private final Ui ui;
     private SavedTaskHandler storage;
 
+    /**
+     * Constructor for Parser Object
+     * @param storage a SavedTaskHandler object
+     */
     public Parser(SavedTaskHandler storage) {
         this.storage = storage;
         ui = new Ui();
@@ -52,7 +64,8 @@ public class Parser {
         }
     }
 
-    private void checkInput(String input) throws DukeException, IncorrectInputException, IncorrectInputFormatException, DateTimeParseException {
+    private void checkInput(String input) throws DukeException, IncorrectInputException, IncorrectInputFormatException,
+            DateTimeParseException {
         ArrayList<String> commandList = new ArrayList<>();
         commandList.add("bye");
         commandList.add("list");
@@ -97,35 +110,41 @@ public class Parser {
 
         if (commandString.equals("priority")) {
             if (splitStr.length != 3) {
-                throw new IncorrectInputException("Make sure your input is in the format <priority> <task number> <high, medium, low>");
+                throw new IncorrectInputException("Make sure your input is in the format <priority> "
+                        + "<task number> <high, medium, low>");
             }
 
             if (!isNumeric(splitStr[1]) || !priorityList.contains(splitStr[2])) {
-                throw new IncorrectInputFormatException("Make sure your input is in the format <priority> <task number> <high, medium, low>");
+                throw new IncorrectInputFormatException("Make sure your input is in the format <priority> "
+                        + "<task number> <high, medium, low>");
             }
         }
 
         if (commandString.equals("event")) {
             if (splitStr.length < 4) {
-                throw new IncorrectInputException("Make sure your input is in the format <event> <event name> </at> <date>");
+                throw new IncorrectInputException("Make sure your input is in the format <event> <event name> "
+                        + "</at> <date>");
             }
 
             String[] splitEventStr = input.split("/at");
 
             if (splitEventStr.length != 2 || splitStr[1].equals("/at")) {
-                throw new IncorrectInputFormatException("Make sure your input is in the format <event> <event name> </at> <date>");
+                throw new IncorrectInputFormatException("Make sure your input is in the format <event> <event name> "
+                        + "</at> <date>");
             }
         }
 
         if (commandString.equals("deadline")) {
             if (splitStr.length < 4) {
-                throw new IncorrectInputException("Make sure your input is in the format <event> <event name> </by> <date>");
+                throw new IncorrectInputException("Make sure your input is in the format <event> <event name> "
+                        + "</by> <date>");
             }
 
             String[] splitEventStr = input.split("/by ");
 
             if (splitEventStr.length != 2 || splitStr[1].equals("/by")) {
-                throw new IncorrectInputFormatException("Make sure your input is in the format <event> <event name> </at> <date>");
+                throw new IncorrectInputFormatException("Make sure your input is in the format <event> <event name> "
+                        + "</at> <date>");
             }
             LocalDate.parse(splitEventStr[1]);
         }
@@ -136,7 +155,8 @@ public class Parser {
      * @param input The string that will be parsed
      * @return a Command object representing the type of Command to be executed
      */
-    public Command parse(String input) throws ParseException, DukeException, IncorrectInputFormatException, IncorrectInputException {
+    public Command parse(String input) throws ParseException, DukeException, IncorrectInputFormatException,
+            IncorrectInputException {
         String[] splitStr = input.split("\\s+");
         TaskList taskList = storage.getTaskList();
         String commandString = splitStr[0];

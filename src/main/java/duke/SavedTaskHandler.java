@@ -1,5 +1,10 @@
 package duke;
 
+import task.Deadlines;
+import task.Events;
+import task.Task;
+import task.ToDos;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,14 +16,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.function.Consumer;
-import task.*;
+
 /**
  * A class that encapsulates the SavedTaskHandler object
  * which deals with loading tasks from the file and saving tasks in the file
  *
- * @author  Wee Xin Yang, Markus
+ * @author Wee Xin Yang, Markus
  * @version 0.1
- * @since   2022-8-24
+ * @since 2022-8-24
  */
 public class SavedTaskHandler {
 
@@ -82,15 +87,15 @@ public class SavedTaskHandler {
                     taskList.add(events);
                 }
             }
-            this. previousList += nextTaskStr + "\n";
+            this.previousList += nextTaskStr + "\n";
         }
 
     }
 
     /**
      * Returns the string representation of the previously saved TaskList
-     * @return a String representing the previously saved TaskList
      *
+     * @return a String representing the previously saved TaskList
      */
     public String getPreviousList() {
         return this.previousList;
@@ -98,8 +103,8 @@ public class SavedTaskHandler {
 
     /**
      * Returns the TaskList object encapsulated in this SavedTaskHandler object
-     * @return TaskList object
      *
+     * @return TaskList object
      */
     public TaskList getTaskList() {
 
@@ -108,8 +113,8 @@ public class SavedTaskHandler {
 
     /**
      * Returns the String displaying a message on whether a previous list existed
-     * @return String message of whether a previous list existed
      *
+     * @return String message of whether a previous list existed
      */
     public String getFileMessage() {
         if (isFileExists) {
@@ -121,8 +126,8 @@ public class SavedTaskHandler {
 
     /**
      * Writes the Tasks inside the inputted TaskList into a .txt file
-     * @param taskList The tasklist object to be written into a .txt file
      *
+     * @param taskList The tasklist object to be written into a .txt file
      */
     public void write(TaskList taskList) {
         try {

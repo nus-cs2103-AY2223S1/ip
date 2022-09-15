@@ -1,5 +1,6 @@
 package duke;
-import command.*;
+
+import command.Command;
 import exception.DukeException;
 import exception.IncorrectInputException;
 import exception.IncorrectInputFormatException;
@@ -12,15 +13,15 @@ import java.time.format.DateTimeParseException;
 /**
  * A class that encapsulates the Duke object.
  *
- * @author  Wee Xin Yang, Markus
+ * @author Wee Xin Yang, Markus
  * @version 0.1
- * @since   2022-8-24
+ * @since 2022-8-24
  */
 public class Duke {
 
-    private SavedTaskHandler storage;
-    private Ui ui;
-    private Parser parser;
+    private final SavedTaskHandler storage;
+    private final Ui ui;
+    private final Parser parser;
 
     /**
      * Constructor for Duke Object

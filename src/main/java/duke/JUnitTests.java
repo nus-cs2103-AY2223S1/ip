@@ -1,9 +1,9 @@
 package duke;
+
 import org.testng.annotations.Test;
-import java.io.IOException;
-import java.text.ParseException;
-import static org.testng.AssertJUnit.assertEquals;
 import task.ToDos;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 
 public class JUnitTests {
@@ -21,6 +21,7 @@ public class JUnitTests {
         assertEquals(taskList.size(), 4);
 
     }
+
     @Test
     public void removeRemovesTasks() {
         TaskList taskList = new TaskList();

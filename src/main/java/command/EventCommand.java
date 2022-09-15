@@ -13,7 +13,7 @@ import java.text.ParseException;
  * @version 0.2
  * @since   2022-9-15
  */
-public class EventCommand extends Command{
+public class EventCommand extends Command {
 
     private TaskList taskList;
     private String input;

@@ -10,7 +10,7 @@ import duke.Ui;
  * @since   2022-9-15
  */
 public class ByeCommand extends Command {
-    Ui ui;
+    private Ui ui;
 
     /**
      * Constructor for ByeCommand Object

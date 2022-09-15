@@ -1,19 +1,22 @@
 package duke;
 
-import task.*;
+import task.Deadlines;
+import task.Events;
+import task.ToDos;
+
 /**
  * A class that encapsulates the Ui object
  * which deals with interactions with the user
  *
- * @author  Wee Xin Yang, Markus
+ * @author Wee Xin Yang, Markus
  * @version 0.1
- * @since   2022-8-24
+ * @since 2022-8-24
  */
 public class Ui {
     private final String GREETING_MESSAGE = "Hello I am LUNA!\n How can I be of help?";
     private final String GOODBYE_MESSAGE = "LUNA bids farewell\nMay the Moon shine bright "
-             + "and illuminate your night.";
-    private final String UNMARK_MESSAGE =  "LUNA thought you were already done with this?\n";
+            + "and illuminate your night.";
+    private final String UNMARK_MESSAGE = "LUNA thought you were already done with this?\n";
     private final String MARK_MESSAGE = "LUNA waited many moons for you to finish this one\n";
     private final String DELETE_MESSAGE = "LUNA has deleted that task... Erased forever, lost "
             + "in the depth of Space...\n";
@@ -42,21 +45,33 @@ public class Ui {
         return GOODBYE_MESSAGE;
     }
 
+    /**
+     * Prints a high priority message
+     */
     public String highPriorityMessage(String taskName) {
 
         return HIGH_PRIORITY_MESSAGE + taskName;
     }
 
+    /**
+     * Prints a medium priority message
+     */
     public String mediumPriorityMessage(String taskName) {
 
         return MEDIUM_PRIORITY_MESSAGE + taskName;
     }
 
+    /**
+     * Prints a low priority message
+     */
     public String lowPriorityMessage(String taskName) {
 
         return LOW_PRIORITY_MESSAGE + taskName;
     }
 
+    /**
+     * Prints an incorrect priority message
+     */
     public String incorrectPriorityMessage() {
 
         return INCORRECT_PRIORITY_MESSAGE;
@@ -105,14 +120,20 @@ public class Ui {
      * Prints a message indicating a Deadlines Object has been added to the TaskList
      */
     public String deadlineMessage(Deadlines deadline, int len) {
-        return DEADLINE_MESSAGE + deadline +  "\n" + lengthMessage(len);
+        return DEADLINE_MESSAGE + deadline + "\n" + lengthMessage(len);
     }
 
+    /**
+     * Prints a find message message
+     */
     public String findMessage() {
 
         return FIND_MESSAGE + "\n";
     }
 
+    /**
+     * Prints the length of the task list
+     */
     public String lengthMessage(int len) {
         return "You now have " + len + " tasks added\n" + "How many moons before you complete them?";
     }

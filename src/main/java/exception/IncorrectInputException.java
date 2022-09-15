@@ -1,5 +1,12 @@
 package exception;
 
+/**
+ * A class that encapsulates Incorrect Input exceptions
+ *
+ * @author  Wee Xin Yang, Markus
+ * @version 0.2
+ * @since   2022-9-15
+ */
 public class IncorrectInputException extends Exception {
 
     private String errorMessage;

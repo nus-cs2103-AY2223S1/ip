@@ -9,7 +9,7 @@ import duke.TaskList;
  * @version 0.2
  * @since   2022-9-15
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
     private TaskList taskList;
 
     /**

@@ -1,17 +1,20 @@
 package duke;
+
 import task.Task;
+
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
 /**
  * A class that encapsulates the TaskList object
  * which contains the task list e.g., it has operations to add/delete tasks in the list
- * @author  Wee Xin Yang, Markus
+ *
+ * @author Wee Xin Yang, Markus
  * @version 0.1
- * @since   2022-8-24
+ * @since 2022-8-24
  */
 public class TaskList {
-    private ArrayList<Task> arrayList;
+    private final ArrayList<Task> arrayList;
 
     /**
      * Constructor for TaskList Object
@@ -54,8 +57,9 @@ public class TaskList {
 
     /**
      * Replaces the element at the specified position in this list with the specified element.
+     *
      * @param index index of the element to replace
-     * @param task Task to be stored at the specified position
+     * @param task  Task to be stored at the specified position
      * @return the Task previously at the specified position
      */
     public Task set(int index, Task task) {

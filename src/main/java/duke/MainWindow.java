@@ -1,4 +1,5 @@
 package duke;
+
 import exception.DukeException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -29,8 +31,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @FXML
     public void initialize() throws IOException, ParseException {
@@ -38,7 +40,8 @@ public class MainWindow extends AnchorPane {
         SavedTaskHandler savedTaskHandler = new SavedTaskHandler();
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(ui.greetingMessage() + savedTaskHandler.getFileMessage() + savedTaskHandler.getPreviousList(), dukeImage)
+                DialogBox.getDukeDialog(ui.greetingMessage() + savedTaskHandler.getFileMessage()
+                        + savedTaskHandler.getPreviousList(), dukeImage)
         );
     }
 

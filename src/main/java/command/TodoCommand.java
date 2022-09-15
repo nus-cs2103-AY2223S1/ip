@@ -2,8 +2,8 @@ package command;
 
 import duke.TaskList;
 import duke.Ui;
-import task.Events;
 import task.ToDos;
+
 import java.text.ParseException;
 
 /**
@@ -13,7 +13,7 @@ import java.text.ParseException;
  * @version 0.2
  * @since   2022-9-15
  */
-public class TodoCommand extends Command{
+public class TodoCommand extends Command {
 
     private TaskList taskList;
     private String input;

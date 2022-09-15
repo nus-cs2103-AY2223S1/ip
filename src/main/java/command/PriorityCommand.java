@@ -3,7 +3,9 @@ package command;
 import duke.TaskList;
 import duke.Ui;
 import task.Task;
+
 import java.text.ParseException;
+
 
 /**
  * An abstract class that represents PriorityCommand which extends Command
@@ -12,12 +14,12 @@ import java.text.ParseException;
  * @version 0.2
  * @since   2022-9-15
  */
-public class PriorityCommand extends Command{
+public class PriorityCommand extends Command {
 
-    private TaskList taskList;
-    int index;
-    private String priority;
-    private Ui ui;
+    private final TaskList taskList;
+    private final int index;
+    private final String priority;
+    private final Ui ui;
 
     /**
      * Constructor for PriorityCommand Object
