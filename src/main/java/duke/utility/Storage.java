@@ -84,61 +84,23 @@ public class Storage {
             List<Task> tasksList = new ArrayList<Task>(100);
             File myObj = new File(filePath);
             Scanner myReader = new Scanner(myObj);
-
             while (myReader.hasNextLine()) {
-                
                 String input = myReader.nextLine();
-
                 if (input.isEmpty()) {
                     break;
                 }
                 char keyword = input.charAt(1);
-
                 switch (keyword) {
                 case 'E':
-                char icon = input.charAt(4);
-                String at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
-                String desciption = input.substring(7, input.lastIndexOf(": ") - 4);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                LocalDateTime date = LocalDateTime.parse(at, formatter);
-                Task newTask = new Event(desciption, date);
-                if (icon == ' ') {
-                    tasksList.add(newTask);
-                } else {
-                    newTask.mark();
-                    tasksList.add(newTask);
-                }
-                break;
-
+                    loadEvent(input, tasksList);
+                    break;
                 case 'T':
-                icon = input.charAt(4);
-                desciption = input.substring(7);
-                newTask = new Todo(desciption);
-                if (icon == ' ') {
-                    tasksList.add(newTask);
-                } else {
-                    newTask.mark();
-                    tasksList.add(newTask);
-                }
-                break;
-
+                    loadTodo(input, tasksList);
+                    break;
                 case 'D':
-                icon = input.charAt(4);
-                at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
-                desciption = input.substring(7, input.lastIndexOf(": ") - 4);
-                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                date = LocalDateTime.parse(at, formatter);
-                newTask = new Deadline(desciption, date);
-                if (icon == ' ') {
-                    tasksList.add(newTask);
-                } else {
-                    newTask.mark();
-                    tasksList.add(newTask);
-                }
-                break;
+                    loadDeadline(input, tasksList);
                 }
             }
-    
             myReader.close();
             return tasksList;
         } catch (FileNotFoundException e) {
@@ -146,5 +108,47 @@ public class Storage {
             e.printStackTrace();
         } 
         return new ArrayList<Task>(100);
-    } 
+    }
+
+    public void loadEvent(String input, List<Task> tasksList) {
+        char icon = input.charAt(4);
+        String at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
+        String description = input.substring(7, input.lastIndexOf(": ") - 4);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime date = LocalDateTime.parse(at, formatter);
+        Task newTask = new Event(description, date);
+        if (icon == ' ') {
+            tasksList.add(newTask);
+        } else {
+            newTask.mark();
+            tasksList.add(newTask);
+        }
+    }
+
+    public void loadTodo(String input, List<Task> tasksList) {
+        char icon = input.charAt(4);
+        String description = input.substring(7);
+        Task newTask = new Todo(description);
+        if (icon == ' ') {
+            tasksList.add(newTask);
+        } else {
+            newTask.mark();
+            tasksList.add(newTask);
+        }
+    }
+
+    public void loadDeadline(String input, List<Task> tasksList) {
+        char icon = input.charAt(4);
+        String at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
+        String description = input.substring(7, input.lastIndexOf(": ") - 4);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime date = LocalDateTime.parse(at, formatter);
+        Task newTask = new Deadline(description, date);
+        if (icon == ' ') {
+            tasksList.add(newTask);
+        } else {
+            newTask.mark();
+            tasksList.add(newTask);
+        }
+    }
 }

@@ -1,13 +1,4 @@
-[E][ ] sad (at: 2020-11-13 18:00)
-[T][ ] ksalfjdskajfksla
-[T][X] jak
-[T][X] dasf
-[T][ ] shfds
-[T][ ] jsakhf
-[T][ ] jsakfdsa
-[T][ ] fjdkslajfkdlsajfdksjfklas
-[T][ ] hjfdklahfdsahkfhdsajkfhdskjafhksdahfkdsahfsad
-[T][ ] dfhsajfhdjskahfjkdsakjfhkjdsahkfhdsakhfkjdaskh
-[E][ ] jdasklfjdskal (at: 2020-12-12 16:10)
-[T][X] fdhjsak
-[T][ ] fdjsaklf
+[E][X] jdksalf (at: 2020-12-12 12:00)
+[T][ ] 3748hfe
+[T][ ] fjdksajfdsa  
+[E][ ] hdjksa (at: 2020-10-12 10:11)

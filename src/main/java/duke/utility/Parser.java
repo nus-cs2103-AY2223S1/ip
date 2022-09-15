@@ -18,7 +18,6 @@ import duke.exception.DukeException;
  * Represents parser for duke
  */
 public class Parser {
-
     /**
      * Parses the string command and returns the
      * correct command for it
@@ -30,89 +29,138 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeException {
         if (fullCommand == null || fullCommand.equals("")) {
-            throw new DukeException("empty command");
+            throw new DukeException(emptyMessage(""));
         }
-
         String[] split =  fullCommand.split(" ", 2);
-
-        String keyword = split[0];
-        
-
-        if (keyword.equals("")) {
-            throw new DukeException("empty command");
-        }
-
+        String keyword = checkEmptyString(split);
         switch (keyword) {
         case "bye":
+            return parseBye(split);
+        case "list":
+            return parseList(split);
+        case "mark":
+            return parseMark(split, fullCommand);
+        case "unmark":
+            return parseUnmark(split, fullCommand);
+        case "delete":
+            return parseDelete(split, fullCommand);
+        case "todo":
+            return parseTodo(split);
+        case "deadline":
+            return parseDeadline(split);
+        case "event":
+            return parseEvent(split);
+        case "find":
+            return parseFind(split);
+        default:
+            throw new DukeException(invalidAction(""));
+        }
+    }
+
+
+
+    //newwwwwwwwwww
+    public static String emptyMessage(String message) {
+        if (message.equals("")) {
+            return "The description cannot be empty";
+        }
+        return String.format("The description of %s cannot be empty", message);
+    }
+
+    public static String invalidAction(String message) {
+        if (message.equals("")) {
+            return "Invalid command, I don't know what that means :-(";
+        }
+        return String.format("It must be in the format of: %s <position in list>", message);
+    }
+
+    public static String invalidTaskAction(String message, String type) {
+        return String.format("It must be in the format of: %s <desciption> /%s <yyyy-mm-dd HH:MM>", message, type);
+    }
+
+    public static String checkEmptyString(String[] split) throws DukeException {
+        String keyword = split[0];
+        if (keyword.equals("")) {
+            throw new DukeException(emptyMessage(""));
+        }
+        return keyword;
+    }
+
+    public static Command parseBye(String[] split) throws DukeException {
         if (split.length > 1) {
-            throw new DukeException("invalid command");
+            throw new DukeException(invalidAction(""));
         }
         return new ByeCommand();
-        case "list":
+    }
+
+    public static Command parseList(String[] split) throws DukeException {
         if (split.length > 1) {
-            throw new DukeException("invalid command");
+            throw new DukeException(invalidAction(""));
         }
         return new ListCommand();
+    }
 
-        case "mark":
+    public static Command parseMark(String[] split, String fullCommand) throws DukeException {
         if (split.length == 1) {
-            throw new DukeException("empty command mark");
+            throw new DukeException(emptyMessage("mark"));
         }
 
         split = fullCommand.split(" ");
         if (split.length > 2) {
-            throw new DukeException("invalid command mark");
+            throw new DukeException(invalidAction("mark"));
         } else {
             boolean isNumeric = split[1].chars().allMatch(Character::isDigit);
             if (!isNumeric) {
-                throw new DukeException("invalid command mark");
+                throw new DukeException(invalidAction("mark"));
             }
         }
         return new MarkCommand(Integer.parseInt(split[1]));
+    }
 
-        case "unmark":
+    public static Command parseUnmark(String[] split, String fullCommand) throws DukeException {
         if (split.length == 1) {
-            throw new DukeException("empty command unmark");
+            throw new DukeException(emptyMessage("unmark"));
         }
 
         split = fullCommand.split(" ");
         if (split.length > 2) {
-            throw new DukeException("invalid command unmark");
+            throw new DukeException(invalidAction("unmark"));
         } else {
             boolean isNumeric = split[1].chars().allMatch(Character::isDigit);
             if (!isNumeric) {
-                throw new DukeException("invalid command unmark");
+                throw new DukeException(invalidAction("unmark"));
             }
         }
         return new UnmarkCommand(Integer.parseInt(split[1]));
+    }
 
-
-        case "delete":
+    public static Command parseDelete(String[] split, String fullCommand) throws DukeException {
         if (split.length == 1) {
-            throw new DukeException("empty command delete");
+            throw new DukeException(emptyMessage("delete"));
         }
 
         split = fullCommand.split(" ");
         if (split.length > 2) {
-            throw new DukeException("invalid command delete");
+            throw new DukeException(invalidAction("delete"));
         } else {
             boolean isNumeric = split[1].chars().allMatch(Character::isDigit);
             if (!isNumeric) {
-                throw new DukeException("invalid command delete");
+                throw new DukeException(invalidAction("delete"));
             }
         }
         return new DeleteCommand(Integer.parseInt(split[1]));
+    }
 
-
-        case "todo":
+    public static Command parseTodo(String[] split) throws DukeException {
         if (split.length == 1) {
-            throw new DukeException("empty todo");
+            throw new DukeException(emptyMessage("todo"));
         }
         return new TodoCommand(split[1]);
+    }
 
-        case "deadline":
+    public static Command parseDeadline(String[] split) throws DukeException {
         if (split.length == 1) {
-            throw new DukeException("empty deadline");
+            throw new DukeException(emptyMessage("deadline"));
         }
         String input = split[1];
 
@@ -124,22 +172,22 @@ public class Parser {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             boolean validTime = isValid(by, formatter);
             if (!validTime) {
-                throw new DukeException("invalid command deadline");
+                throw new DukeException(invalidTaskAction("deadline", "by"));
             }
             return new TimeTaskCommand(input, "deadline", LocalDateTime.parse(by, formatter));
         } else {
-            throw new DukeException("invalid command deadline");
+            throw new DukeException(invalidTaskAction("deadline", "by"));
         }
+    }
 
-
-        case "event":
+    public static Command parseEvent(String[] split) throws DukeException {
         if (split.length == 1) {
-            throw new DukeException("empty event");
+            throw new DukeException(emptyMessage("event"));
         }
 
-        input = split[1];
+        String input = split[1];
 
-        index = input.lastIndexOf("/at");
+        int index = input.lastIndexOf("/at");
 
         if (index > -1) {
             String at = input.substring(index + 4, input.length());
@@ -147,24 +195,26 @@ public class Parser {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             boolean validTime = isValid(at, formatter);
             if (!validTime) {
-                throw new DukeException("invalid command event");
+                throw new DukeException(invalidTaskAction("event", "at"));
             }
             return new TimeTaskCommand(input, "event", LocalDateTime.parse(at, formatter));
         } else {
-            throw new DukeException("invalid command event");
-        }
-
-        case "find":
-            if (split.length == 1) {
-                throw new DukeException("empty command find");
-            }
-            return new FindCommand(split[1]);
-
-        default:
-            throw new DukeException("invalid command");
+            throw new DukeException(invalidTaskAction("event", "at"));
         }
     }
 
+    public static Command parseFind(String[] split) throws DukeException {
+        if (split.length == 1) {
+            throw new DukeException(emptyMessage("find"));
+        }
+        return new FindCommand(split[1]);
+    }
+
+
+
+
+
+    //end
     /**
      * Checks if the string representation of time is
      * in the correct format

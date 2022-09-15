@@ -139,6 +139,9 @@ public class Ui {
      * @return String representation for the tasks found using the keyword
      */
     public String find(String tasks) {
+        if (tasks.equals("")) {
+            return "There are no matching task with the given keyword\n";
+        }
         String output = "Here are the matching tasks in your list:\n";
         output += tasks;
         return output;
@@ -152,52 +155,6 @@ public class Ui {
      * @return String representation for the error message to be printed to user
      */
     public String showLoadingError(String message) {
-        switch (message) {
-        case "empty command":
-        return "OOPS!!! The description cannot be empty.\n";
-
-        case "invalid command":
-        return "OOPS!!! I'm sorry, but I don't know what that means :-(\n";
-
-        case "empty command mark":
-        return "OOPS!!! The description of mark cannot be empty.\n";
-
-        case "invalid command mark":
-        return "OOPS!!! It must be in the format of: mark <position in list>\n";
-
-        case "empty command unmark":
-        return " OOPS!!! The description of unmark cannot be empty.\n";
-
-        case "invalid command unmark":
-        return "OOPS!!! It must be in the format of: unmark <position in list>\n";
-
-        case "empty command delete":
-        return "OOPS!!! The description of delete cannot be empty.\n";
-
-        case "invalid command delete":
-        return "OOPS!!! It must be in the format of: delete <position in list>\n";
-
-        case "empty todo":
-        return "OOPS!!! The description of todo cannot be empty.\n";
-
-        case "empty deadline":
-        return "OOPS!!! The description of deadline cannot be empty.\n";
-
-        case "invalid command deadline":
-        return "OOPS!!! It must be in the format of: deadline <desciption> /by <yyyy-mm-dd HH:MM>\n";
-
-        case "empty event":
-        return "OOPS!!! The description of event cannot be empty.\n";
-
-        case "invalid command event":
-        return "OOPS!!! It must be in the format of: event <desciption> /at <yyyy-mm-dd HH:MM>\n";
-
-        case "empty taskslist":
-        return "Tasklist is empty\n";
-
-        case "empty command find":
-        return "OOPS!!! The description of find cannot be empty.\n";
-        }
-        return "";
+        return "OOPS!!! " + message + ".\n";
     }
 }

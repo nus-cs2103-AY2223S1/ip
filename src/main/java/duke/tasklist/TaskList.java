@@ -84,10 +84,10 @@ public class TaskList {
      */
     public String deleteTask(int index) throws DukeException {
         if (tasks.size() == 0) {
-            throw new DukeException("empty taskslist");
+            throw new DukeException("Tasklist is empty\n");
         }
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("invalid command delete");
+            throw new DukeException(invalidAction("delete"));
         }
         Task currTask = tasks.remove(index);
         String output = String.format("%s\n", currTask);
@@ -105,7 +105,7 @@ public class TaskList {
      */
     public String mark(int index) throws DukeException {
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("invalid command mark");
+            throw new DukeException(invalidAction("mark"));
         }
         Task currTask = tasks.get(index);
         currTask.mark();
@@ -123,7 +123,7 @@ public class TaskList {
      */
     public String unmark(int index) throws DukeException {
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("invalid command unmark");
+            throw new DukeException(invalidAction("unmark"));
         }
         Task currTask = tasks.get(index);
         currTask.unmark();
@@ -149,5 +149,12 @@ public class TaskList {
             }
         }
         return output;
+    }
+
+    public static String invalidAction(String message) {
+        if (message.equals("")) {
+            return "Invalid command, I don't know what that means :-(";
+        }
+        return String.format("It must be in the format of: %s <position in list>", message);
     }
 }
