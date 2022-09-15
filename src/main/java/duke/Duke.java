@@ -59,6 +59,7 @@ public class Duke {
             @Override
             public void run() {
                 Platform.exit();
+                System.exit(0);
             }
         }, 3000, TimeUnit.MILLISECONDS);
     }

@@ -29,7 +29,7 @@ public class HelpCommand implements Command {
         case("all"):
             output = "Here is a list of all available commands.\n" +
                     "Type help <command_name> to find out more.\n" +
-            "------------------------------------------------------------";
+            "---------------------------------------------------";
             for (String command : COMMAND_LIST) {
                 output += command + " ";
             }
