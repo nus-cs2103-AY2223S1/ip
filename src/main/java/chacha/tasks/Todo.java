@@ -12,7 +12,7 @@ public class Todo extends Task {
      * Constructor for todo.
      * 
      * @param description Description of the todo.
-     * @param date Date of the todo.
+     *
      */
     public Todo(String description) {
         this.description = description;
