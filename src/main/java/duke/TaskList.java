@@ -161,7 +161,6 @@ public class TaskList {
         }
         for (int i = 0; i < arr.size(); i++) {
             if (i == index) {
-                i++;
                 continue;
             }
             newArr.add(arr.get(i));
