@@ -14,7 +14,7 @@ public class Parser {
      * @param arr An array of strings (words) obtained from splitting the above string.
      * @throws DukeException A custom exception for handling errors unique to Duke.
      */
-    public static String decide(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
+    public static String parse(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
          assert(s.length() != 0);
          assert(taskList != null);
          assert(storage != null);

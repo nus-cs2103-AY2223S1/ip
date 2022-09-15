@@ -66,7 +66,7 @@ public class MainWindow extends AnchorPane {
             response = duke.getTaskList().listTasks();
         } else {
             try {
-                response = Parser.decide(input, input.split(" "), duke.getTaskList(), duke.getStorage());
+                response = Parser.parse(input, input.split(" "), duke.getTaskList(), duke.getStorage());
             } catch (DukeException e) {
                 response = e.getMessage();
             }

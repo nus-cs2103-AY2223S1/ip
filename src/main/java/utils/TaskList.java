@@ -57,7 +57,6 @@ public class TaskList {
      * @param remarks The remarks to be added for events or deadlines.
      */
     public void add(String description, Duke.TaskType type, String remarks) throws DukeException {
-        String s = "Got it. I've added this task:\n\t";
         int size;
         switch (type) {
         case TODO:

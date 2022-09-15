@@ -100,7 +100,7 @@ public class Duke extends Application {
                 this.taskList.listTasks();
             } else {
                 try {
-                    Parser.decide(s, arr, this.taskList, this.storage);
+                    Parser.parse(s, arr, this.taskList, this.storage);
                 } catch (DukeException e) {
                     Ui.displayErrorMessage(e);
                 }
