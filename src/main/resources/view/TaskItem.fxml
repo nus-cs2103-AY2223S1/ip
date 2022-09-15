@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" type="GridPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+      <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="NEVER" maxWidth="501.0" minWidth="10.0" />
+    <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="501.0" minWidth="10.0" prefWidth="200.0" />
+      <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="115.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="216.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="315.0" minHeight="3.0" prefHeight="27.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label fx:id="description" style="-fx-background-radius: 15; -fx-border-radius: 15;" text="Description" wrapText="true" GridPane.columnIndex="1">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="isDone" alignment="CENTER_RIGHT" style="-fx-background-radius: 15; -fx-border-radius: 15;" text="Done" textAlignment="RIGHT" GridPane.columnIndex="2">
+         <font>
+            <Font name="Arial Bold" size="11.0" />
+         </font>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets right="6.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="time" alignment="TOP_RIGHT" text="Due Date" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <font>
+            <Font size="11.0" />
+         </font>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets right="6.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="type" alignment="TOP_LEFT" text="Task type" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font name="Arial Italic" size="11.0" />
+         </font>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" />
+         </padding>
+      </Label>
+      <Label fx:id="index" alignment="CENTER_RIGHT" text="100)" textAlignment="RIGHT">
+         <font>
+            <Font name="Arial Bold" size="11.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
+   </children>
+</fx:root>

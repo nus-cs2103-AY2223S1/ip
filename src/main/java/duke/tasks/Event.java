@@ -1,7 +1,6 @@
 package duke.tasks;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 /**
@@ -52,8 +51,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         String checkbox = this.getIsDone() ? "[E][X]" : "[E][ ]";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
-        String dateFormatted = "(at: " + this.at.format(formatter) + ")";
+        String dateFormatted = "(at: " + this.at.format(FORMATTER) + ")";
         return checkbox + " " + super.getDescription() + " " + dateFormatted;
     }
 }

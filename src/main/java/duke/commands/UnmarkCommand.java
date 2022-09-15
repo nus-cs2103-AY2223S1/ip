@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.ui.ListBox;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
@@ -33,10 +34,10 @@ public class UnmarkCommand extends Command {
         }
         taskList.unmarkTask(this.taskIndex);
 
-        String msgBegin = "OK, I've marked this task as not done yet:\n ";
-        String msg = msgBegin + taskList.getTask(taskIndex);
+        String msg = "OK, I've marked this task as not done yet:\n ";
+        ListBox lb = ListBox.getListBox(taskList.getTask(this.taskIndex));
 
         storage.writeAllToStorage(taskList);
-        return new CommandResult(msg);
+        return new CommandResult(msg, lb);
     }
 }

@@ -1,6 +1,7 @@
 package duke.tasks;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 /**
@@ -9,6 +10,7 @@ import java.util.Optional;
  * @author sikai00
  */
 public abstract class Task {
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
     private final String description;
     private boolean isDone;
 
