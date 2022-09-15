@@ -94,17 +94,17 @@ public class Ui {
     public String helpUi() {
         StringBuilder helpMessage = new StringBuilder();
         helpMessage.append("List of Commands:\n\n");
-        helpMessage.append("Add a todo task  \t  todo <task>\n");
-        helpMessage.append("Add an event     \t          event <task> /at <date>\n");
-        helpMessage.append("Add a deadline   \t  deadline <task> /by <date>\n");
-        helpMessage.append("Delete a task    \t          delete <index>\n");
-        helpMessage.append("Find keyword(s)  \t  find <keyword(s)>\n");
-        helpMessage.append("List all tasks   \t          list\n");
-        helpMessage.append("Mark as done     \t  mark <index>\n");
-        helpMessage.append("Unmark task      \t          unmark <index>\n");
-        helpMessage.append("Reschedule a task\t  reschedule <index> <date>\n");
-        helpMessage.append("Show day schedule\t  show <dd-MM-yyyy>\n");
-        helpMessage.append("Exit             \t                  bye\n\n");
+        helpMessage.append("Add a todo task  \n\t\ttodo <task>\n");
+        helpMessage.append("Add an event     \n\t\tevent <task> /at <date>\n");
+        helpMessage.append("Add a deadline   \n\t\tdeadline <task> /by <date>\n");
+        helpMessage.append("Delete a task    \n\t\tdelete <index>\n");
+        helpMessage.append("Find keyword(s)  \n\t\tfind <keyword(s)>\n");
+        helpMessage.append("List all tasks   \n\t\tlist\n");
+        helpMessage.append("Mark as done     \n\t\tmark <index>\n");
+        helpMessage.append("Unmark task      \n\t\tunmark <index>\n");
+        helpMessage.append("Reschedule a task\n\t\treschedule <index> <date>\n");
+        helpMessage.append("Show day schedule\n\t\tshow <dd-MM-yyyy>\n");
+        helpMessage.append("Exit application \n\t\tbye\n\n");
         helpMessage.append("NOTE: All dates should be in 'dd-MM-yyyy HHmm' format.");
         return helpMessage.toString();
     }

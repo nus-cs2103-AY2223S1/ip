@@ -243,21 +243,31 @@ Displays a help message with the list of commands and their usage format.
 help
 > List of Commands:
 >
-> Add a todo task  	  todo <task>
-> Add an event     	  event <task> /at <date>
-> Add a deadline   	  deadline <task> /by <date>
-> Delete a task    	  delete <index>
-> Find keyword(s)  	  find <keyword(s)>
-> List all tasks   	  list
-> Mark as done     	  mark <index>
-> Unmark task      	  unmark <index>
-> Reschedule a task	  reschedule <index> <date>
-> Show day schedule	  show <dd-MM-yyyy>
-> Exit             	  bye
+> Add a todo task  
+> 		todo <task>
+> Add an event     
+>		event <task> /at <date>
+> Add a deadline   
+>		deadline <task> /by <date>
+> Delete a task    
+>		delete <index>
+> Find keyword(s)  
+>		find <keyword(s)>
+> List all tasks   
+>		list
+> Mark as done     
+>		mark <index>
+> Unmark task      
+>		unmark <index>
+> Reschedule a task
+>		reschedule <index> <date>
+> Show day schedule
+>		show <dd-MM-yyyy>
+> Exit application 
+>		bye
 >
 > NOTE: All dates should be in 'dd-MM-yyyy HHmm' format.
 ```
-
 
 
 ## <a name="bye" style = "color: inherit;"></a>Exiting the program : `bye`
