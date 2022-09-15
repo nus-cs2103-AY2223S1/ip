@@ -2,7 +2,6 @@
 BetaGo is a personal assistant Chatbot that can help you keep track of
 your various tasks! 
 
----
 
 ## Quickstart
 1. Ensure that you have **Java 11** installed on your computer.
@@ -11,7 +10,6 @@ your various tasks!
 4. Double-click the file to start using BetaGo!
 5. Refer to the [Command Summary](#command-summary) table for a quick guide on what commands you may give to BetaGo.
 
----
 
 ## Features 
 
@@ -30,7 +28,6 @@ Betago allows you to easily:
 - Search for specific tasks in the list using keywords
 - Load and Save tasks from a `.txt` file
 
----
 
 ## Usage
 Notes about the command format:
