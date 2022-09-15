@@ -29,6 +29,15 @@ public class Storage {
         log = new File(filepath);
         list = new ArrayList<>();
         this.filepath = filepath;
+
+        if (this.log.exists() == false) {
+            this.log.getParentFile().mkdirs();
+            try {
+                this.log.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Data file unable to be created.");
+            }
+        }
     }
 
     /**

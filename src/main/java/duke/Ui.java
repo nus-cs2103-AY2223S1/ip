@@ -74,15 +74,6 @@ public class Ui {
     }
 
     /**
-     * Returns message shown when the number of tasks has to be shown to the user.
-     * @param numOfTasks Number of tasks left in the list.
-     * @return message shown when the number of tasks has to be shown to the user.
-     */
-    public static String numOfTasks(int numOfTasks) {
-        return ("Now you have " + numOfTasks + " tasks in the list.");
-    }
-
-    /**
      * Returns the String representing the Tasks to be printed.
      * @param list
      * @return String representing Tasks to be printed.
