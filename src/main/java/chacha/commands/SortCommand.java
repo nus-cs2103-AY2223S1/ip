@@ -3,6 +3,9 @@ package chacha.commands;
 import chacha.Storage;
 import chacha.TaskList;
 import chacha.Ui;
+import chacha.tasks.Task;
+
+import java.util.List;
 
 /**
  * Command to list tasks from task list.
@@ -18,8 +21,12 @@ public class SortCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.sort();
-        ui.printList(taskList);
+        List<Task> newTasks = taskList.sort();
+        TaskList newTaskList = new TaskList();
+        for (Task task : newTasks) {
+            newTaskList.add(task);
+        }
+        ui.printList(newTaskList);
     }
 
     /** 

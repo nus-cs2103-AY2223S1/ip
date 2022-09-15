@@ -17,7 +17,9 @@ public class ExitCommand extends Command {
      * @param storage Storage.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {}
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
+        ui.printExit();
+    }
 
     /** 
      * {@inheritDoc}

@@ -30,8 +30,11 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setChacha(Chacha c) {
-        chacha = c;
+    public void setChacha(Chacha chachaBot) {
+        chacha = chachaBot;
+        String response = chacha.getInitMessage();
+        dialogContainer.getChildren().add(
+                DialogBox.getChachaDialog(response, chachaImage));
     }
 
     /**
@@ -43,10 +46,9 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = chacha.getResponse(input);
         assert response != null : "Response cannot be null";
-        assert response.equals("") : "Response cannot be empty";
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, chachaImage)
+                DialogBox.getChachaDialog(response, chachaImage)
         );
         userInput.clear();
     }

@@ -40,20 +40,17 @@ public class Chacha {
      */
     public static void main(String[] args) {
         new Chacha("data/tasks.txt").run();
-    }     
+    }
 
     /**
      * Runs an instantiated Chacha.
      */
     public void run() {
-        System.out.println("run");
         while (!isExit) {
             try {
                 System.out.println("parsing");
                 String fullCommand = ui.readInput();
-
                 Command command = Parser.parse(fullCommand);
-
                 command.execute(taskList, ui, storage);
                 isExit = command.isExit();
             } catch (ChachaException e) {
@@ -75,14 +72,25 @@ public class Chacha {
      */
     public String getResponse(String input) {
         try {
+            Command command = Parser.parse(input);
+            if (command.isExit()) {
+                try {
+                    storage.saveToFile(taskList);
+                    command.execute(taskList, ui, storage);
+                } catch (IOException e) {
+                    System.out.println("Unable to save file");
+                }
+            }
+            command.execute(taskList, ui, storage);
 
-            Command c = Parser.parse(input);
-
-            c.execute(taskList, ui, storage);
         } catch (ChachaException e) {
-
             ui.printError(e.getMessage());
         }
+        return ui.buildResponse();
+    }
+
+    public String getInitMessage() {
+        ui.printWelcome();
         return ui.buildResponse();
     }
 }

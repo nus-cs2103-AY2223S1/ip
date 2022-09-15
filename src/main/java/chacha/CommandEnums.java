@@ -12,5 +12,6 @@ public enum CommandEnums {
     LIST,
     SORT,
     FIND,
+    ERROR,
     EXIT;
 }

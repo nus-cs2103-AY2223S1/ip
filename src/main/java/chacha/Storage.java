@@ -71,7 +71,7 @@ public class Storage {
     private String taskToText(Task task) {
         DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
         String date;
-        if (task.getDate() != null) {
+        if (task.getDate() != LocalDateTime.MAX) {
             date = task.getDate().format(formatter);
             date = date.replace("T", " ");
             date = date.substring(0, 16);

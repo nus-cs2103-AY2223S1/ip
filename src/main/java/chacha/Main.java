@@ -12,8 +12,6 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Chacha chacha = new Chacha("data/tasks.txt");
-
     @Override
     public void start(Stage stage) {
         try {
@@ -21,7 +19,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setChacha(chacha);
+            fxmlLoader.<MainWindow>getController().setChacha(new Chacha("data/tasks.txt"));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -25,7 +25,12 @@ public class Parser {
         assert userInput.length() > 0 : "userInput length should be more than 0";
         String[] inputArray = userInput.split(" ");
         String commandStr = inputArray[0];
-        CommandEnums command = CommandEnums.valueOf(commandStr.toUpperCase());
+        CommandEnums command = CommandEnums.ERROR;
+        try {
+            command = CommandEnums.valueOf(commandStr.toUpperCase());
+        } catch (Exception e) {
+            command = CommandEnums.ERROR;
+        }
         switch (command) {
             case TODO:
                 try {
@@ -40,7 +45,7 @@ public class Parser {
                 try {
                     String description = userInput.substring(0, userInput.indexOf("/") - 1);
                     description = description.substring(userInput.indexOf("deadline ") + 9);
-                    description.trim();   
+                    description.trim();
                     String date = userInput.substring(userInput.indexOf("/by ") + 4);
                     date.trim();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -67,7 +72,7 @@ public class Parser {
                 } catch(DateTimeParseException e) {
                     throw new ChachaException("Date should be in this format: yyyy-MM-dd HH:mm");
                 } catch(Exception e) {
-                    throw new ChachaException("The description of an event cannot be empty.\n" + "Please enter again with a description."); 
+                    throw new ChachaException("The description of an event cannot be empty.\n" + "Please enter again with a description.");
                 }
             case LIST:
                 if (inputArray.length == 1) {
@@ -125,7 +130,8 @@ public class Parser {
             default:
                 throw new ChachaException("Invalid input.");
 
-        } 
+
+        }
         
     }
     

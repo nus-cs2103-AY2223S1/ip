@@ -89,8 +89,13 @@ public class TaskList {
             return newTasks;
         }
 
-        public void sort() {
-            Collections.sort(tasks, new DateComparator());
+        public List<Task> sort() {
+            List<Task> newTasks = new ArrayList<>();
+            for (Task task : tasks) {
+                newTasks.add(task);
+            }
+            Collections.sort(newTasks, new DateComparator());
+            return newTasks;
         }
 
 

@@ -28,8 +28,8 @@ public class Ui {
      *  
      * @return Welcome message as a string.
      */
-    public String printWelcome() {
-        return "Welcome! I'm Chacha.\n" + "How may I assist you?";
+    public void printWelcome() {
+        response = "Welcome! I'm Chacha.\n" + "How may I assist you?";
     }
 
     /**
@@ -41,8 +41,8 @@ public class Ui {
         String res = "";    
         for (int i = 0; i < taskList.getSize();i++) {
             Task t = taskList.get(i);	      
-            res = res + i + 1 + 
-                "." + 
+            res = res + (i + 1) +
+                ". " +
                 t.toString() + "\n"; 		
         } 
         response = res;  
@@ -101,8 +101,8 @@ public class Ui {
             String res = "";    
             for (int i = 0; i < taskList.getSize();i++) {
                 Task t = taskList.get(i);	      
-                res = res + i + 1 + 
-                    "." + 
+                res = res + (i + 1) +
+                    ". " +
                     t.toString() + "\n"; 		
             } 
         response = "Here are the matching tasks in your list:\n" + res; 
@@ -115,7 +115,11 @@ public class Ui {
      * @param message Custom error message to be printed.
      */
     public void printError(String message) {
-            response = "Chacha error: " + message;
+            response = "Chacha serror: " + message;
+    }
+
+    public void printExit() {
+        response = "Bye bye!";
     }
 
     public String buildResponse() {
