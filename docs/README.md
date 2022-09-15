@@ -10,7 +10,9 @@ Format: `todo TASK_DESCRIPTION`<br>
 Examples:
 - `todo CS2103T iP`
 - `todo CS2100 Assignment 1`
+
 <br><br><br>
+
 ### Adding event task: `event`
 Adds event task to the task list with specified time<br>
 
@@ -21,7 +23,8 @@ Format: `event TASK_DESCRIPTION /at EVENT_TIME`
 Examples:
 - `event CS2103T Finals /at 2022-11-25`
 - `event CS2100 Finals /at 2022-11-26`
-  <br><br><br>
+
+<br><br><br>
 ### Adding deadline task: `deadline`
 Adds deadline task to the task list with specified time of deadline<br>
 
@@ -32,6 +35,7 @@ Format: `deadline TASK_DESCRIPTION /by DEADLINE`
 Examples:
 - `deadline CS2103T iP Submission /by 2022-09-17`
 - `deadline CS2100 Assignment 1 /by 2022-10-16`
+
 <br><br><br>
 ### List all tasks: `list`
 List all tasks on the task list<br>
@@ -49,7 +53,8 @@ Format: `delete INDEX`
 
 Examples:
 - `delete 1` deletes the 1st task in the task list
-  <br><br><br>
+
+<br><br><br>
 ### Marking a task: `mark`
 Marks a task as done <br>
 
@@ -63,7 +68,8 @@ Format: `mark INDEX`<br>
 
 Examples:
 - `mark 1` marks the first task in the task list as done
-  <br><br><br>
+
+<br><br><br>
 ### Unmarking a task: `unmark`
 Marks a task as done <br>
 
@@ -77,7 +83,8 @@ Format: `unmark INDEX`<br>
 
 Examples:
 - `unmark 1` unmarks the first task in the task list
-  <br><br><br>
+
+<br><br><br>
 ### Tagging a task: `tag`
 Tags a task <br>
 
@@ -92,7 +99,10 @@ Format: `tag INDEX TAG_NAME [MORE_TAG_NAMES]`<br>
 Examples:
 - `tag 1 important` tags the first task in the task list as `#important`
 - `tag 2 fun noHurry` tags the second task in the task list as `#fun` and `#noHurry`
-  <br><br><br>
+  
+<br><br><br>
+
+
 ### Locating tasks by keyword: `find`
 Finds tasks that contain the given keyword <br>
 
@@ -105,6 +115,7 @@ with the task are searched
 Examples:
 - `find Sep` finds all deadlines due or events occurring in September
 - `find #important` finds all tasks tagged as `#important`
+
 <br><br><br>
 ### End the program: `bye`
 Ends the program <br>
@@ -112,3 +123,4 @@ Ends the program <br>
 Format: `bye`<br><br><br>
 ### Saving the data
 Task list data are saved in the hard disk after the `bye` command and the program ends
+<br><br><br>
