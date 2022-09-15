@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Parser;
 import duke.Storage;
 import duke.task.TaskList;
@@ -22,7 +23,11 @@ public class SetDoneCommand extends Command {
     @Override
     public void execute(TaskList tasks) {
         tasks.setDone(index, isDone);
-        Storage.write(tasks);
+        try {
+            Storage.write(tasks);
+        } catch (DukeException e) {
+            Parser.printMsg(e.getMessage());
+        }
         Parser.printMsg(String.format("Nice! I've marked this task as done:\n %s",
                 tasks.get(index)));
     }

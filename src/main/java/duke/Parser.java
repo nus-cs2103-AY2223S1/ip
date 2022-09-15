@@ -1,5 +1,9 @@
 package duke;
 
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -27,6 +31,7 @@ public final class Parser {
     public static final DateTimeFormatter DATETIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a");
 
     private static final String LINE = "──────────────────────────────────────────\n";
+    private static final PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8));
 
     private Parser() {
     }
@@ -42,7 +47,8 @@ public final class Parser {
                         String.format("\t %s%s\n", line.replace(line.stripLeading(), ""),
                                 WordUtils.wrap(line, 40, "\n\t ", false)))
                 .reduce("", String::concat);
-        System.out.printf("\t%s%s\t%s%n", LINE, newStr, LINE);
+        pw.printf("\t%s%s\t%s\n", LINE, newStr, LINE);
+        pw.flush();
     }
 
     /**
@@ -179,52 +185,12 @@ public final class Parser {
     }
 
     /**
-     * Parses a {@code Task} from a string (from the Duke data file).
-     *
-     * @param s The string read from the Duke data file to be parsed.
-     * @return the parsed {@code Task}
-     * @throws DukeException when the string in the data file is invalid.
-     */
-    public static Task parseTask(String s) throws DukeException {
-        String[] strings = s.split(" \\| ", -1);
-        Task task;
-        if (!strings[1].equals(" ") && !strings[1].equals("X")) {
-            throw new DukeException("Error parsing Task");
-        }
-        boolean isDone = strings[1].equals("X");
-        String description = strings[2];
-
-        switch (strings[0]) {
-        case "T":
-            if (strings.length > 3) {
-                throw new DukeException("Error parsing TodoTask");
-            }
-            task = new TodoTask(description, isDone);
-            break;
-        case "D":
-            if (strings.length > 4) {
-                throw new DukeException("Error parsing DeadlineTask");
-            }
-            task = new DeadlineTask(description, parseDateTime(strings[3]), isDone);
-            break;
-        case "E":
-            if (strings.length > 4) {
-                throw new DukeException("Error parsing EventTask");
-            }
-            task = new EventTask(description, parseDateTime(strings[3]), isDone);
-            break;
-        default:
-            throw new DukeException("Error parsing Task");
-        }
-        return task;
-    }
-
-    /**
      * Parses a {@code LocalDateTime} from a string.
      * The string must be in the format "d-M-y HHmm".
      *
      * @param dateTime The string to parse.
      * @return The parsed {@code LocalDateTime}.
+     * @throws DukeException when dateTime is not in correct format
      */
     public static LocalDateTime parseDateTime(String dateTime) throws DukeException {
         try {

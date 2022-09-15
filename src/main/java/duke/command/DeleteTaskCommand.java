@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Parser;
 import duke.Storage;
 import duke.task.Task;
@@ -20,7 +21,11 @@ public class DeleteTaskCommand extends Command {
     @Override
     public void execute(TaskList tasks) {
         Task task = tasks.remove(index);
-        Storage.write(tasks);
+        try {
+            Storage.write(tasks);
+        } catch (DukeException e) {
+            Parser.printMsg(e.getMessage());
+        }
         Parser.printMsg(String.format("Noted. I've removed this task:\n %s",
                 task));
     }

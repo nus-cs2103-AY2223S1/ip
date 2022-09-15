@@ -1,11 +1,12 @@
 package duke.task;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.text.WordUtils;
 
-public class TaskList extends ArrayList<Task> {
+public class TaskList extends ArrayList<Task> implements Serializable {
 
     public TaskList() {
         super();

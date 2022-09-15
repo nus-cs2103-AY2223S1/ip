@@ -1,6 +1,8 @@
 package duke.task;
 
-public abstract class Task {
+import java.io.Serializable;
+
+public abstract class Task implements Serializable {
     private final String description;
     private final char symbol;
     private boolean isDone;

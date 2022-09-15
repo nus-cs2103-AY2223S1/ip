@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Parser;
 import duke.Storage;
 import duke.task.Task;
@@ -20,7 +21,11 @@ public class AddTaskCommand extends Command {
     @Override
     public void execute(TaskList tasks) {
         tasks.add(task);
-        Storage.write(tasks);
+        try {
+            Storage.write(tasks);
+        } catch (DukeException e) {
+            Parser.printMsg(e.getMessage());
+        }
         Parser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                 tasks.get(tasks.size() - 1),
                 tasks.lengthString()));

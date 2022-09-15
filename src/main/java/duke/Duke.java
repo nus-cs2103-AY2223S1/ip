@@ -30,7 +30,11 @@ public class Duke {
      */
     public void run() {
 
-        tasks = Storage.load();
+        try {
+            tasks = Storage.load();
+        } catch (DukeException e) {
+            Parser.printMsg(e.getMessage());
+        }
         Parser.printMsg(String.format("%s%sYou have %s. What can I do for you?", LOGO, GREETING, tasks.lengthString()));
 
         Scanner sc = new Scanner(System.in);
@@ -52,6 +56,8 @@ public class Duke {
     }
     /**
      * Starts the program.
+     *
+     * @param args an array of command-line arguments for the program
      */
     public static void main(String[] args) {
         Duke duke = new Duke();
