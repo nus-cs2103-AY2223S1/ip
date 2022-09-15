@@ -95,9 +95,12 @@ public class Storage {
         }
     }
 
-    //here after reading each input we write back to our file to update our task list
-    // To do this we manually overwrite our current file content
-    // by passing our updated TaskList as our argument
+    /**
+     * Write back to our file to update our task list by manually overwriting
+     * manually overwriting our current file content with the updated task list
+     * @param tasks updated task list
+     * @throws DukeException if file cannot be written to
+     */
     void save(TaskList tasks) throws DukeException {
         try {
             PrintWriter prw = new PrintWriter(new File(pathFile));

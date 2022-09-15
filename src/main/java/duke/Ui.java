@@ -11,16 +11,29 @@ import java.util.stream.Stream;
  */
 public class Ui {
 
+    /**
+     * List of possible commands
+     */
     static final List<String> COMMANDS = Stream.of(
             "todo", "deadline", "event",
             "list", "mark", "unmark",
             "find", "sort", "delete",
             "bye").collect(Collectors.toList());
 
+    /**
+     * Prints welcome message on starting duke
+     *
+     * @return welcome message
+     */
     String showWelcome() {
         return "Hello! I'm Duke! What can I do for you?";
     }
 
+    /**
+     * Prints a list of possible command separately on each line
+     *
+     * @return commands in bullet point
+     */
     String showCommands() {
         String commandList = "List of commands possible:\n";
         for (String command : COMMANDS) {

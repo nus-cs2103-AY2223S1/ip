@@ -113,6 +113,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the keyword deadlines/events so that Duke knows whether to print
+     * deadlines/events in chronological order
+     *
+     * @param command the user input
+     * @return deadlines/events to indicate what to sort
+     * @throws DukeException if keyword is not an accepted word
+     */
     static String parseSortCommand(String command) throws DukeException {
         String sortKeyword = command.substring(5);
         if (sortKeyword.equals("deadlines") || sortKeyword.equals("events")) {

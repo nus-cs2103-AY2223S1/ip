@@ -29,6 +29,11 @@ public class MainWindow extends AnchorPane {
 
     //@@ RusselDash332 - reused
     // Reused a snippet of the code to initialise the welcome message
+
+    /**
+     * Method to be run when initialising the chat bot
+     * Also displays the welcome message to show the list of possible commands
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
