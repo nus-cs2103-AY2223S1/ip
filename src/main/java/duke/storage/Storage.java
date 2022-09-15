@@ -20,7 +20,7 @@ import duke.task.ToDo;
  */
 public class Storage {
     private static final String FILE_FOLDER_NAME = "data";
-    private static final String FILENAME = "duke.txt";
+    private static final String FILENAME = "artemis.txt";
     private static final String FILEPATH = FILE_FOLDER_NAME + File.separator + FILENAME;
 
     public Storage() throws DukeException {
