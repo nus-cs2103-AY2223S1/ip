@@ -1,4 +1,4 @@
-#User Guide
+# User Guide
 
 Elp is a **desktop app for helping you manage any tasks you might have! Optimized for use via 
 a Command Line Interface (CLI)** while having a graphical interface for a more pleasant experience!
