@@ -2,16 +2,16 @@
 
 `Duke` is a task tracker app that can keep you right on schedule. This is a user guide on how to use `Duke`.
 
-##Types of Tasks
+## Types of Tasks
 
-###ToDo
+### ToDo
 
 Input Format: `todo <task name>`
 
 Parameter: 
 - `<task name>`: Name of task
 
-###Deadline
+### Deadline
 
 Input Format: `deadline <task name> /by <yyyy-mm-dd>`
 
@@ -27,9 +27,9 @@ Parameters:
 -`<task name>`: Name of task
 - `<yyyy-mm-dd>`: Timing of task
 
-##Task Functions
+## Task Functions
 
-###`mark`
+### `mark`
 
 Marks a task at an index as complete.
 
@@ -46,7 +46,7 @@ Good Job on completing the task! I've marked this task as done:
 [T][X] Wash Clothes
 ```
 
-###`unmark`
+### `unmark`
 
 Marks a task at an index as incomplete.
 
@@ -108,9 +108,9 @@ Noted, I've removed this task:
 Now you have 4 tasks in the list.
 ```
 
-##List Functions
+## List Functions
 
-###`list`
+### `list`
 
 Input Format: `list`
 
