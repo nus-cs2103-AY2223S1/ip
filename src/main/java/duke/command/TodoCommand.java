@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.storage.Storage;
+import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.task.Task;
-
-import java.io.IOException;
 
 /**
  * TodoCommand is a Command that handles todo.
@@ -31,7 +31,7 @@ public class TodoCommand extends Command {
      * @param tasks A TaskList containing the Tasks.
      * @param ui The Ui which handles interactions with the user.
      * @param storage The Storage which handles loading and saving data from the file.
-     * @throws IOException The exception thrown when accessing files is incorrect.
+     * @throws IOException
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException {

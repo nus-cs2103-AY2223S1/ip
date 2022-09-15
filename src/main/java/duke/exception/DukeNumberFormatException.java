@@ -11,6 +11,6 @@ public class DukeNumberFormatException extends DukeException {
      * Constructor for DukeNumberFormatException.
      */
     public DukeNumberFormatException() {
-        super("You have entered an invalid number format. Please try again.");
+        super("You have entered an invalid number format. Please try again bro.");
     }
 }

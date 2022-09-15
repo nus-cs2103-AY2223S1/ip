@@ -17,6 +17,16 @@ public class Todo extends Task {
     }
 
     /**
+     * Checks if the task needs a reminder.
+     *
+     * @return Boolean representing whether the task needs a reminder.
+     */
+    @Override
+    public boolean isNeedReminder() {
+        return false;
+    }
+
+    /**
      * Returns the String representation of Todo.
      *
      * @return String representation of Todo.

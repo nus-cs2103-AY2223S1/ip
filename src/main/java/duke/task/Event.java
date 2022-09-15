@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
  * @version CS2103T AY22/23 Sem 1
  */
 public class Event extends Task {
+    private static final LocalDate TODAY = LocalDate.now();
     protected LocalDate at;
 
     /**
@@ -30,6 +31,17 @@ public class Event extends Task {
      */
     public LocalDate getAt() {
         return this.at;
+    }
+
+    /**
+     * Checks if the task needs a reminder.
+     *
+     * @return Boolean representing whether the task needs a reminder.
+     */
+    @Override
+    public boolean isNeedReminder() {
+        LocalDate lastReminderDate = TODAY.plusDays(7);
+        return getAt().compareTo(TODAY) >= 0 && getAt().compareTo(lastReminderDate) <= 0;
     }
 
     /**

@@ -13,6 +13,6 @@ public class DukeEmptyDescriptionException extends DukeException {
      * @param command Command that is without description.
      */
     public DukeEmptyDescriptionException(String command) {
-        super("Please add a description for the command " + command + ".");
+        super("Please add a description for the command " + command + "bro.");
     }
 }

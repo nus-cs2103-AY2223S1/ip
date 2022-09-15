@@ -44,15 +44,6 @@ public abstract class Task {
     }
 
     /**
-     * Returns saved task in String representation.
-     *
-     * @return String representation of saved task.
-     */
-    public String saveTask() {
-        return String.format("%d | %s", isDone ? 1 : 0, description);
-    }
-
-    /**
      * Returns the description of the task.
      *
      * @return Description of the task.
@@ -70,4 +61,11 @@ public abstract class Task {
     public String toString() {
         return "[" + this.getStatusIcon() + "]" + " " + this.description;
     }
+
+    /**
+     * Checks if the task needs a reminder.
+     *
+     * @return Boolean representing whether the task needs a reminder.
+     */
+    public abstract boolean isNeedReminder();
 }

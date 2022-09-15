@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.io.IOException;
+
+import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.exception.DukeException;
-
-import java.io.IOException;
 
 /**
  * Command is a Command that is executed depending on circumstance.
@@ -39,8 +39,8 @@ public abstract class Command {
      * @param tasks A TaskList containing the Tasks.
      * @param ui The Ui which handles interactions with the user.
      * @param storage The Storage which handles loading and saving data from the file.
-     * @throws DukeException The exception thrown when an action is unauthorized by Duke.
-     * @throws IOException The exception thrown when accessing files is incorrect.
+     * @throws DukeException
+     * @throws IOException
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException;
 }

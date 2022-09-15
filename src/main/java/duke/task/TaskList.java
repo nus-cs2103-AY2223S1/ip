@@ -151,16 +151,19 @@ public class TaskList {
     }
 
     /**
-     * Saves a task.
+     * Reminds tasks that are within 7 days to expiring.
      *
-     * @return Updated list.
+     * @return The task to be reminded.
      */
-    public ArrayList<Task> saveTasks() {
-        ArrayList<Task> dukeList = new ArrayList<>();
+    public ArrayList<Task> remindTasks() {
+        ArrayList<Task> remindedTasks = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            dukeList.add(tasks.get(i));
+            Task currentTask = tasks.get(i);
+            if (currentTask.isNeedReminder()) {
+                remindedTasks.add(currentTask);
+            }
         }
-        return dukeList;
+        return remindedTasks;
     }
 
     /**

@@ -35,6 +35,9 @@ public class MainWindow extends AnchorPane {
         duke = d;
     }
 
+    /**
+     * Greets the user with a greeting message.
+     */
     public void greetUser() {
         String greetMessage = "Hi, how are you doing?! I'm JRH2000\n How can I help you? \n";
         dialogContainer.getChildren().add(
