@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
             throw new PoolsheenException(e.getMessage(), "delete", "Enter a number");
         }
 
-        boolean isOutOfBounds = (pos - 1) > (tl.getSize() - 1);
+        boolean isOutOfBounds = ((pos - 1) > (tl.getSize() - 1)) || (pos <= 0);
 
         if (isOutOfBounds) {
             throw new PoolsheenException("Index out of bounds", "delete", "Enter an appropriate integer");

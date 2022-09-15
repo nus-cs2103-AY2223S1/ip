@@ -47,9 +47,7 @@ public class Poolsheen {
             throw new IOException("Cannot find save file while loading\n" + e.getMessage());
         } catch (PoolsheenException e) {
             ui.showLoadingError();
-            this.listOfTasks = new TaskList();
-            forceExit();
-            throw new IOException("Error loading\n" + e);
+            throw new IOException("Error loading one of the tasks. Please check or delete your save file again.\n" + e);
         } catch (Exception e) {
             throw new IOException("An unexpected error has occurred whilst creating the Poolsheen object. "
                     + "Please check or delete your save file again.");

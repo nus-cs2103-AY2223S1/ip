@@ -34,9 +34,9 @@ public class UpdateCommand extends Command {
         int pos = java.lang.Integer.parseInt(rest.get(0));
         //Remove position from command
         rest.remove(0);
-        boolean isOutOfBounds = (pos - 1) > (tl.getSize() - 1);
+        boolean isOutOfBounds = ((pos - 1) > (tl.getSize() - 1)) || (pos <= 0);
         if (isOutOfBounds) {
-            throw new PoolsheenException("Index out of bounds", "mark", "Enter an appropriate integer");
+            throw new PoolsheenException("Index out of bounds", "update", "Enter an appropriate integer");
         }
 
         String updateType = rest.get(0).toUpperCase();
