@@ -27,6 +27,7 @@ public class TaskList {
     public Task delete(int index) {
         try {
             Task t = tasks.remove(index - 1);
+            assert t != null : "Task should not be null";
             int length = tasks.size();
             String output = length == 1 ? " task in the list." : " tasks in the list.";
             System.out.println("Got it. I've deleted this task:\n" + t
@@ -45,6 +46,7 @@ public class TaskList {
     public String mark(int index) {
         try {
             Task t = tasks.get(index - 1);
+            assert t != null : "Task should not be null";
             t.markAsDone();
             return "Nice! I've marked this task as done:\n" + t;
         } catch (IndexOutOfBoundsException e) {
@@ -60,6 +62,7 @@ public class TaskList {
     public String unmark(int index) {
         try {
             Task t = tasks.get(index - 1);
+            assert t != null : "Task should not be null";
             t.markAsNotDone();
             return "OK, I've marked this task as not done yet:\n" + t;
         } catch (IndexOutOfBoundsException e) {
