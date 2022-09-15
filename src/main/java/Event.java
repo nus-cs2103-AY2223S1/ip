@@ -1,10 +1,12 @@
+import java.time.LocalDate;
+
 /**
  * The Deadline class extends the Task class as it is a more specific type of task.
  */
 public class Event extends Task {
-    private String at;
+    private LocalDate at;
 
-    public Event(String description, String at) {
+    public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
     }
@@ -12,6 +14,10 @@ public class Event extends Task {
     @Override
     public String getTaskType() {
         return "E";
+    }
+
+    public String Stringify() {
+        return String.format("%s | %s | %s", "E", super.stringify(), this.at);
     }
 
     @Override

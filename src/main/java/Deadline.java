@@ -1,25 +1,21 @@
-import java.lang.reflect.Array;
-
 /**
  * The Deadline class extends the Task class as it is a more specific type of task.
  */
 import java.time.LocalDate;
 
 public class Deadline extends Task {
-    private String by;
-    private LocalDate date;
+    private LocalDate by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
-        this.date = LocalDate.parse(by);
     }
 
     private String printDate() {
         return String.format("%s %d %d",
-                this.date.getMonth().toString().substring(0, 3),
-                this.date.getDayOfMonth(),
-                this.date.getYear());
+                this.by.getMonth().toString().substring(0, 3),
+                this.by.getDayOfMonth(),
+                this.by.getYear());
     }
 
     @Override
