@@ -39,7 +39,7 @@ public class NewTaskCommand extends Command {
             command = command.replace("deadline ", "");
             String[] s = command.split(" /by ", 2);
             if (s.length != 2) {
-                throw new DukeException("Create deadline in this format: deadline <deadline> /at <time>");
+                throw new DukeException("Create deadline in this format: deadline <deadline> /by <time>");
             }
             newTask = new Deadline(s[0], s[1]);
         }
