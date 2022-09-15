@@ -1,9 +1,4 @@
-T } 1 } CS2103T Final Essay
-E } 0 } CS2101 Midterm } 2022-10-01 12:34
-D } 1 } week 3 cs2103t project } 2022-08-25 23:45
-E } 1 } CS2109S Lecture } 2022-08-26 11:22
-E } 0 } CS2109S Tutorial } 2022-08-19 00:01
-E } 1 } CS2109S Laboratory } 2022-11-12 02:59
-E } 0 } CS2100 week 3 recitation } 2022-08-23 16:00
-D } 0 } CS2102 tutorial 1 to finish } 2022-08-26 12:00
-E } 0 } presentation } 2022-10-01 12:35
+E } 0 } read chapter 2 } 2022-10-01 11:22
+D } 0 } chapter 2 refelction } 2022-10-07 18:26
+T } 0 } open the first page of chapter 3
+T } 0 } read chapter 3

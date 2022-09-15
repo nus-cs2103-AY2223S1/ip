@@ -47,9 +47,7 @@ public enum Action {
         //        Level_1
         map.put(Action.GREET, "greet");
         map.put(Action.EXIT, "bye");
-        map.put(Action.ECHO, "echo");
         //        Level_2
-        map.put(Action.ADD, "add [Name]");
         map.put(Action.LIST, "list");
         //        Level_3
         map.put(Action.MARK, "mark [ID of task]");
@@ -79,9 +77,7 @@ public enum Action {
         //        Level_1
         map.put("greet", Action.GREET);
         map.put("bye", Action.EXIT);
-        //        map.put("echo", Action.ECHO);
         //        Level_2
-        //        map.put("add", Action.ADD);
         map.put("list", Action.LIST);
         //        Level_3
         map.put("mark", Action.MARK);

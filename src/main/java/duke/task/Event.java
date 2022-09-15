@@ -64,8 +64,7 @@ public class Event extends Task {
         if (task instanceof Event) {
             Event that = (Event) task;
             return this.getName().equals(task.getName())
-                    && this.getTime().equals(that.getTime())
-                    && this.getIsDone() == task.getIsDone();
+                    && this.getTime().equals(that.getTime());
         }
         return false;
     }
@@ -85,15 +84,6 @@ public class Event extends Task {
         if (obj instanceof Event) {
             Event e = (Event) obj;
             if (e == null) {
-                return false;
-            }
-            if (this.time == e.time) {
-                return true;
-            }
-            if (this.getName() == null || this.time == null) {
-                return false;
-            }
-            if (e.getName() == null || e.getTime() == null) {
                 return false;
             }
             return this.getName().equals(e.getName())

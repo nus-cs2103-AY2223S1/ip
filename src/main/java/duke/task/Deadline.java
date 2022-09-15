@@ -65,8 +65,7 @@ public class Deadline extends Task {
         if (task instanceof Deadline) {
             Deadline that = (Deadline) task;
             return this.getName().equals(task.getName())
-                    && this.getTime().equals(that.getTime())
-                    && this.getIsDone() == task.getIsDone();
+                    && this.getTime().equals(that.getTime());
         }
         return false;
     }
@@ -86,15 +85,6 @@ public class Deadline extends Task {
         if (obj instanceof Deadline) {
             Deadline d = (Deadline) obj;
             if (d == null) {
-                return false;
-            }
-            if (this.time == d.time) {
-                return true;
-            }
-            if (this.getName() == null || this.time == null) {
-                return false;
-            }
-            if (d.getName() == null || d.getTime() == null) {
                 return false;
             }
             return this.getName().equals(d.getName())

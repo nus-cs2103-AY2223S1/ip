@@ -28,7 +28,7 @@ public class UndoCommand extends Command {
         Stack<TaskList> taskListHistory = duke.getTaskListHistory();
         MessagePrinter messagePrinter = duke.getMessagePrinter();
         if (taskListHistory.size() < 1) {
-            throw new DukeRuntimeException("No more command can be undone.");
+            throw new DukeRuntimeException("No more change to the task list can be undone.");
         }
         TaskList lastStage = taskListHistory.pop();
         duke.setTaskList(lastStage);

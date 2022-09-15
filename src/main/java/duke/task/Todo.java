@@ -49,7 +49,7 @@ public class Todo extends Task {
     @Override
     public boolean isSameTask(Task task) {
         if (task instanceof Todo) {
-            return this.getName().equals(task.getName()) && this.getIsDone() == task.getIsDone();
+            return this.getName().equals(task.getName());
         }
         return false;
     }
@@ -69,12 +69,6 @@ public class Todo extends Task {
         if (obj instanceof Todo) {
             Todo t = (Todo) obj;
             if (t == null) {
-                return false;
-            }
-            if (this.getName() == null) {
-                return false;
-            }
-            if (t.getName() == null) {
                 return false;
             }
             return this.getName().equals(t.getName()) && this.getIsDone() == t.getIsDone();
