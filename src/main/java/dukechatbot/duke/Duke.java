@@ -29,15 +29,14 @@ public class Duke {
     /**
      * Constructs an instance of the Duke class.
      *
-     * @param filePath path of file to be read for loading and saving task list contents.
      */
-    public Duke(String filePath) {
+    public Duke() {
         this.gui = new MainWindow();
         this.taskArrayList = new ArrayList<>();
         this.ui = new Ui(taskArrayList);
         try {
             this.tasks = new TaskList(this.taskArrayList, this.ui);
-            this.storage = new Storage(filePath, this.tasks, this.ui);
+            this.storage = new Storage(this.tasks, this.ui);
             this.parse = new Parser(tasks, ui);
         } catch (IOException ioe) {
             System.out.println("--------------------------------------\n");
@@ -59,7 +58,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         try {
-            new Duke("storage.txt").run();
+            new Duke().run();
         } catch (DukeException de) {
             printLine();
             System.out.println(de.getMessage());

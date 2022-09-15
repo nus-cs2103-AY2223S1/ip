@@ -33,21 +33,24 @@ public class Storage {
     /**
      * Constructs the instance of storage to read and write from and to the file passed in.
      *
-     * @param fileName the name of the file to be processed.
      * @param tasks the task list to be manipulated by the instance of Storage.
      * @param ui the ui associated with this current run of the program.
      * @throws IOException when createNewFile fails to create the file.
      */
-    public Storage(String fileName, TaskList tasks, Ui ui) throws IOException {
+    public Storage(TaskList tasks, Ui ui) throws IOException {
+        if (!FILE.exists()) {
+           FILE.createNewFile();
+        }
         assert(FILE.exists());
-        this.br = new BufferedReader(new FileReader(FILE));
         this.tasks = tasks;
         this.ui = ui;
         if (FILE.exists()) {
+            this.br = new BufferedReader(new FileReader(FILE));
             this.load();
         } else {
             if (FILE.createNewFile()) {
                 assert(FILE.exists());
+                this.br = new BufferedReader(new FileReader(FILE));
                 this.load();
             } else {
                 throw new IOException("File failed creation!");

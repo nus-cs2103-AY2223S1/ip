@@ -18,7 +18,7 @@ public class Main extends Application {
     /**
      * The Duke instance to be injected into the program run.
      */
-    private Duke dk = new Duke("storage.txt");
+    private Duke dk = new Duke();
 
     /**
      * {@inheritDoc}
