@@ -1,9 +1,24 @@
-# User Guide
+# User Guide<hr>
+
+<b>Pluto</b> is a <b>personal assistant to manage all your tasks</b> and keep them in one place. No need to worry about
+keeping track of all your upcoming deadlines and events anymore!
+
+<a href="#features">Features</a>
+
 <p align="center">
   <img src="Ui.png" height="500px"></img>
 </p>
 
+## Getting Started<hr>
+
+<a name="features" style = "color: inherit;">
+
 ## Features
+
+</a>
+
+<hr>
+
 - [X] Add a ToDo task
 - [X] Add a Deadline task
 - [X] Add an Event task
@@ -15,19 +30,13 @@
 - [X] Find a task by date
 - [X] Reschedule a task
 
-### Feature-ABC
+## Usage<hr>
 
-Description of the feature.
+### Adding a ToDo Task : `todo`
 
-### Feature-XYZ
+Adds a ToDo task with the provided description.
 
-Description of the feature.
-
-## Usage
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
+Format: 
 
 Example of usage: 
 
