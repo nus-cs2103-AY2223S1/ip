@@ -3,9 +3,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import ip.utility.Parser;
 import ip.command.AddCommand;
 import ip.exception.InvalidCommand;
+import ip.utility.Parser;
 
 public class ParserTest {
     private final Parser parser = new Parser();

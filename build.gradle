@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
     id 'checkstyle'
     id "org.openjfx.javafxplugin" version "0.0.13"
 }
@@ -64,4 +64,16 @@ shadowJar {
 
 run {
     standardInput = System.in
+}
+
+jar {
+    // Will include every single one of your dependencies, project or not
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    manifest {
+        attributes(
+                'Main-Class': 'ip.Main'
+        )
+    }
 }

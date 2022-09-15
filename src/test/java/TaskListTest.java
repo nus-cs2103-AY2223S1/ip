@@ -7,7 +7,7 @@ import ip.utility.TaskList;
 
 public class TaskListTest {
     private final TaskList taskList = new TaskList();
-    
+
     @Test
     public void deleteTest_negativeIndex_throwNoTaskFound() {
         try {
