@@ -1,5 +1,7 @@
 package duke;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Duke {
@@ -12,7 +14,10 @@ public class Duke {
      * Sets up required objects, loads the data from the storage file.
      */
     public Duke() {
-        storage = new Storage("src/filestorage/dummylist.txt");
+        String workingDir = System.getProperty("user.dir");
+        System.out.println(workingDir);
+        String pathToDuke = workingDir + "/src/filestorage" + "/dummylist.txt";
+        storage = new Storage(pathToDuke);
         try {
             storage.readData();
         } catch (DukeException e) {

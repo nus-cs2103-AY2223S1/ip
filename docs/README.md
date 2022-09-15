@@ -3,6 +3,11 @@ DaDuke Bot is a desktop app for managing your tasks, optimized for use via a
 Command Line Interface while still having the benefits of a Graphical User
 Interface.
 
+<br> 
+
+<img src="Ui.png" />
+
+<br>
 
 ## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer
