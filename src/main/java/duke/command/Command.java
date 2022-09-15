@@ -399,7 +399,7 @@ public abstract class Command {
 
         @Override
         public String exec(TaskList mainTaskList, TaskList targetTaskList) {
-            Task task = targetTaskList.get(index - 1);
+            Task task = targetTaskList.get(index);
             mainTaskList.remove(mainTaskList.indexOf(task));
             if (targetTaskList.contains(task)) {
                 targetTaskList.remove(mainTaskList.indexOf(task));

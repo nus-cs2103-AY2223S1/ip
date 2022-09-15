@@ -41,6 +41,7 @@ public class TaskList {
      * @return a Task object.
      */
     public Task get(int i) {
+        System.out.println(i);
         return list.get(i);
     }
 
