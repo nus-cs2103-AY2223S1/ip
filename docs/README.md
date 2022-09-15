@@ -198,14 +198,14 @@ _Exits program._
 
 ## Command Summary
 
-Command | Format, Examples
---------|-----------------
-**todo** | 'todo DESCRIPTION /p PRIORITY' <br> e.g., 'todo task 1 /p low'
-**deadline** | 'deadline DESCRIPTION /by DD-MM-YYYY HHMM /p PRIORITY' <br> e.g., 'deadline task 2 /by 01-01-2023 1200 /p medium' 
-**event** | 'event DESCRIPTION /at DD-MM-YYYY HHMM /p PRIORITY' <br> e.g., 'event task 3 /at 01-01-2023 1200 /p high'
-**list** | 'list'
-**mark** | 'mark INDEX' <br> e.g., 'mark 1'
-**unmark** | 'unmark INDEX' <br> e.g., 'unmark 2'
-**delete** | 'delete INDEX' <br> e.g., 'delete 1'
-**find** | 'find KEYWORD' <br> e.g., 'find task'
-**bye** | 'bye'
+| Command      | Format, Examples                                                                                                  |
+|--------------|-------------------------------------------------------------------------------------------------------------------|
+| **todo**     | 'todo DESCRIPTION /p PRIORITY' <br> e.g., 'todo task 1 /p low'                                                    |
+| **deadline** | 'deadline DESCRIPTION /by DD-MM-YYYY HHMM /p PRIORITY' <br> e.g., 'deadline task 2 /by 01-01-2023 1200 /p medium' |
+| **event**    | 'event DESCRIPTION /at DD-MM-YYYY HHMM /p PRIORITY' <br> e.g., 'event task 3 /at 01-01-2023 1200 /p high'         |
+| **list**     | 'list'                                                                                                            |
+| **mark**     | 'mark INDEX' <br> e.g., 'mark 1'                                                                                  |
+| **unmark**   | 'unmark INDEX' <br> e.g., 'unmark 2'                                                                              |
+| **delete**   | 'delete INDEX' <br> e.g., 'delete 1'                                                                              |
+| **find**     | 'find KEYWORD' <br> e.g., 'find task'                                                                             |
+| **bye**      | 'bye'                                                                                                             |
