@@ -7,7 +7,8 @@
 3. `mark` and `unmark` them as complete.
 4. `delete` them when you wish.
 5. `find` items easily using keywords
-   **Your data is saved everytime you make a change, so don't be afraid of closing Duke after you've added your tasks!**
+
+**Your data is saved everytime you make a change, so don't be afraid of closing Duke after you've added your tasks!**
 
 ## Usage
 
