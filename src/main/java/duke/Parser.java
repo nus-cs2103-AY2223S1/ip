@@ -11,21 +11,21 @@ import duke.task.TodoTask;
  * Class that handles parsing and execution of command strings for Duke Bot commands.
  */
 public class Parser {
+    private static String[] commandList = new String[] {"deadline {task_name} /by {YYYY-mm-dd}",
+                                                        "event {task_name} /at {YYYY-mm-dd}",
+                                                        "todo {task_name}",
+                                                        "mark {task_index}",
+                                                        "unmark {task_index}",
+                                                        "delete {task_index}",
+                                                        "find {keyword}",
+                                                        "list",
+                                                        "bye",
+                                                        "help"};
+
     private TaskList tasks;
     private Chick chick;
     private Ui ui;
     private int parseErrorCount;
-
-    public static String[] commandList = new String[] {"deadline {task_name} /by {YYYY-mm-dd}",
-            "event {task_name} /at {YYYY-mm-dd}",
-            "todo {task_name}",
-            "mark {task_index}",
-            "unmark {task_index}",
-            "delete {task_index}",
-            "find {keyword}",
-            "list",
-            "bye",
-            "help"};
 
     /**
      * Class constructor for Parser.
@@ -71,7 +71,7 @@ public class Parser {
                 response = "bruh";
             } else {
                 String[] chickResponses = new String[] {"??", "lmao"};
-                int responseIndex = (int)Math.round(Math.random() * (chickResponses.length - 0.5));
+                int responseIndex = (int) Math.round(Math.random() * (chickResponses.length - 0.5));
                 response = chickResponses[responseIndex];
             }
             throw new ChickException(response);
