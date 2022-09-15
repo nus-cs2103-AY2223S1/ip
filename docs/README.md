@@ -128,6 +128,7 @@ Examples:
 Exits the program after a certain time.
 <br /><br />
 Format: `bye`
+
 ***
 #Command Summary
 | Action         | Format, Examples                                                                 |
