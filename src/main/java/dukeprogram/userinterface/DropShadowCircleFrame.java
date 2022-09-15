@@ -1,4 +1,4 @@
-package dukeprogram;
+package dukeprogram.userinterface;
 
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;

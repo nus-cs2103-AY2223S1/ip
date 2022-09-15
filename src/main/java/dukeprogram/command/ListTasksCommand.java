@@ -5,9 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import dukeprogram.Duke;
-import dukeprogram.DukeResponse;
-import dukeprogram.InternalAction;
-import dukeprogram.Widget;
 import dukeprogram.facilities.TaskList;
 
 /**

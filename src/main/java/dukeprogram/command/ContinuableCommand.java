@@ -1,8 +1,8 @@
 package dukeprogram.command;
 
-import exceptions.InvalidCommandException;
-
 import java.util.Iterator;
+
+import exceptions.InvalidCommandException;
 
 /**
  * ContinuableCommand is an interface that lets a command continue execution

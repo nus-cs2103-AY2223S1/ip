@@ -1,4 +1,4 @@
-package dukeprogram;
+package dukeprogram.userinterface;
 
 import java.io.IOException;
 

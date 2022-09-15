@@ -10,6 +10,9 @@ import dukeprogram.command.LoadUserCommand;
 import dukeprogram.facilities.TaskList;
 import dukeprogram.parser.Parser;
 import dukeprogram.storage.SaveManager;
+import dukeprogram.userinterface.DukeResponse;
+import dukeprogram.userinterface.MainWindow;
+import dukeprogram.userinterface.Widget;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 

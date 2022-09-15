@@ -1,11 +1,10 @@
 package dukeprogram.command;
 
-import dukeprogram.Deadline;
-import dukeprogram.Duke;
-import dukeprogram.Event;
-import exceptions.InvalidCommandException;
-
 import java.util.Iterator;
+
+import dukeprogram.Duke;
+import dukeprogram.tasks.Deadline;
+import exceptions.InvalidCommandException;
 
 /**
  * AddDeadlineTaskCommand adds a deadline type task to task list of the instance of Duke given

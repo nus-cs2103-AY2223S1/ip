@@ -1,13 +1,10 @@
 package dukeprogram.command;
 
-import dukeprogram.Duke;
-import dukeprogram.Event;
-import dukeprogram.Task;
-import dukeprogram.ToDo;
-import exceptions.InvalidCommandException;
-import utilities.StringUtilities;
-
 import java.util.Iterator;
+
+import dukeprogram.Duke;
+import dukeprogram.tasks.Event;
+import exceptions.InvalidCommandException;
 
 /**
  * AddEventTaskCommand adds an event type task to task list of the instance of Duke given

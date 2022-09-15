@@ -1,4 +1,4 @@
-package dukeprogram;
+package dukeprogram.userinterface;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,8 +24,8 @@ public class LayoutAnimator implements ChangeListener<Number>, ListChangeListene
     private final boolean canHorizontalSlide;
     private final boolean canVerticalSlide;
     private final int duration;
-    private Map<Node, TranslateTransition> nodeXTransitions = new HashMap<>();
-    private Map<Node, TranslateTransition> nodeYTransitions = new HashMap<>();
+    private final Map<Node, TranslateTransition> nodeXTransitions = new HashMap<>();
+    private final Map<Node, TranslateTransition> nodeYTransitions = new HashMap<>();
 
     /**
      * Creates a new LayoutAnimator
@@ -93,27 +93,36 @@ public class LayoutAnimator implements ChangeListener<Number>, ListChangeListene
         final Node node = (Node) doubleProperty.getBean();
 
         TranslateTransition t = null;
-        if ("layoutX".equals(doubleProperty.getName()) && canHorizontalSlide) {
+        boolean isFirstOccurrence = false;
+        if (doubleProperty.getName().equals("layoutX") && canHorizontalSlide) {
             t = nodeXTransitions.get(node);
             if (t == null) {
                 t = new TranslateTransition(Duration.millis(duration), node);
                 t.setToX(0);
                 nodeXTransitions.put(node, t);
+                isFirstOccurrence = true;
             }
             t.setFromX(node.getTranslateX() - delta);
-            node.setTranslateX(node.getTranslateX() - delta);
-        } else if ("layoutY".equals(doubleProperty.getName()) && canVerticalSlide) {
+
+            if (!isFirstOccurrence) {
+                node.setTranslateX(node.getTranslateX() - delta);
+            }
+        } else if (doubleProperty.getName().equals("layoutY") && canVerticalSlide) {
             t = nodeYTransitions.get(node);
             if (t == null) {
                 t = new TranslateTransition(Duration.millis(duration), node);
                 t.setToY(0);
                 nodeYTransitions.put(node, t);
+                isFirstOccurrence = true;
             }
             t.setFromY(node.getTranslateY() - delta);
-            node.setTranslateY(node.getTranslateY() - delta);
+
+            if (!isFirstOccurrence) {
+                node.setTranslateY(node.getTranslateY() - delta);
+            }
         }
 
-        if (t != null) {
+        if (!isFirstOccurrence && t != null) {
             t.playFromStart();
         }
     }

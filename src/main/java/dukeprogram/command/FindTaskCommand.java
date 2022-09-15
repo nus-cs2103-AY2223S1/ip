@@ -7,10 +7,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import dukeprogram.Duke;
-import dukeprogram.InternalAction;
-import dukeprogram.Task;
-import dukeprogram.Widget;
-import dukeprogram.facilities.TaskList;
+import dukeprogram.tasks.Task;
+import dukeprogram.userinterface.Widget;
 
 /**
  * Finds a task in the task list

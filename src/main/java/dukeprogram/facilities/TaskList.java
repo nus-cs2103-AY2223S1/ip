@@ -3,8 +3,8 @@ package dukeprogram.facilities;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import dukeprogram.Task;
 import dukeprogram.storage.SaveManager;
+import dukeprogram.tasks.Task;
 import exceptions.KeyNotFoundException;
 
 /**
@@ -65,6 +65,9 @@ public class TaskList implements Serializable {
         return isValid;
     }
 
+    /**
+     * Clears the entire task list completely
+     */
     public void clear() {
         taskArrayList.clear();
         SaveManager.save("tasklist", this);

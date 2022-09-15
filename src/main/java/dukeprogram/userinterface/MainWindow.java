@@ -1,7 +1,9 @@
-package dukeprogram;
+package dukeprogram.userinterface;
 
 import java.util.LinkedList;
 
+import dukeprogram.Duke;
+import dukeprogram.User;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -86,11 +88,10 @@ public class MainWindow extends AnchorPane {
 
     private VBox getDialogGroup(boolean isCurrentDialogFromUser) {
         if (isCurrentDialogFromUser ^ wasUserDialogPreviously) {
-            groupedDialogBubbles = new VBox();
-            groupedDialogBubbles.setSpacing(5);
+            groupedDialogBubbles = new VBox(5);
+
             HBox pictureAndDialogDivider = new HBox();
             setDisplayPicture(pictureAndDialogDivider, isCurrentDialogFromUser);
-            groupedDialogBubbles.setAlignment(isCurrentDialogFromUser ? Pos.TOP_RIGHT : Pos.TOP_LEFT);
             dialogContainer.getChildren().add(pictureAndDialogDivider);
         }
         wasUserDialogPreviously = isCurrentDialogFromUser;
@@ -110,11 +111,8 @@ public class MainWindow extends AnchorPane {
             groupContainer.getChildren().addAll(displayPicture, groupedDialogBubbles);
         }
 
-        new LayoutAnimator(false, true, 800)
+        new LayoutAnimator(true, true, 400)
                 .observe(groupContainer.getChildren());
-
-        new LayoutAnimator(true, false, 500)
-                .observe(groupContainer);
 
         new DropShadowCircleFrame(25, 25, 1, 1)
                 .frame(displayPicture);

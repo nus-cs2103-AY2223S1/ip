@@ -1,6 +1,4 @@
-package dukeprogram;
-
-import javafx.scene.paint.Color;
+package dukeprogram.userinterface;
 
 import java.util.Optional;
 

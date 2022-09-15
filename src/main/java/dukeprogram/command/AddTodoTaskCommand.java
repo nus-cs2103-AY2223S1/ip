@@ -3,8 +3,8 @@ package dukeprogram.command;
 import java.util.Iterator;
 
 import dukeprogram.Duke;
-import dukeprogram.Task;
-import dukeprogram.ToDo;
+import dukeprogram.tasks.Task;
+import dukeprogram.tasks.ToDo;
 import exceptions.InvalidCommandException;
 import utilities.StringUtilities;
 

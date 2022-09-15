@@ -1,9 +1,10 @@
-package dukeprogram;
+package dukeprogram.userinterface;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import dukeprogram.User;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
