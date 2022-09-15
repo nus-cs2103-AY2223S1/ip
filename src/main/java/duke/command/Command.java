@@ -272,7 +272,7 @@ public abstract class Command {
             this.isOngoing = false;
             String message = tasks.craftTextMessageForFile();
             storage.editStorage(message);
-            return ui.sayBye();
+            return ui.getByeMessage();
         }
     }
 

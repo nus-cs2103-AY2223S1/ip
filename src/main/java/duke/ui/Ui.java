@@ -45,23 +45,19 @@ public class Ui {
     }
 
     /**
-     * Greets the user.
+     * Gets interface's greeting message.
      */
-    public String showWelcome() {
-        showLine();
+    public String getWelcomeMessage() {
         String msg = formatMessage("Hello! I'm Duke\n"
                 + "     What can I do for you?");
-        System.out.println(msg);
-        showLine();
         return msg;
     }
 
     /**
-     * Says bye to the user.
+     * Gets interface's bye message.
      */
-    public String sayBye() {
+    public String getByeMessage() {
         String msg = formatMessage("Bye. Hope to see you again soon!");
-        System.out.println(msg);
         return msg;
     }
 
@@ -110,7 +106,6 @@ public class Ui {
                     + INDENTATION + EXTRA_INDENTATION + task + "\n"
                     + INDENTATION + "Now you have " + numOfTasks
                     + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
-            System.out.println(msg);
             return msg;
         }
         case DELETE: {
@@ -118,7 +113,6 @@ public class Ui {
                     + INDENTATION + EXTRA_INDENTATION + task + "\n"
                     + INDENTATION + "Now you have " + numOfTasks
                     + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
-            System.out.println(msg);
             return msg;
         }
         case LIST: {
@@ -129,19 +123,16 @@ public class Ui {
                 msg = formatMessage("Here are the task(s) in your list:\n"
                         + INDENTATION + message);
             }
-            System.out.println(msg);
             return msg;
         }
         case MARK: {
             String msg = formatMessage("Nice! I've marked this task as done:\n"
                     + INDENTATION + EXTRA_INDENTATION + task);
-            System.out.println(msg);
             return msg;
         }
         case UNMARK: {
             String msg = formatMessage("OK, I've marked this task as not done yet:\n"
                     + INDENTATION + EXTRA_INDENTATION + task);
-            System.out.println(msg);
             return msg;
         }
         case FIND: {
@@ -152,7 +143,6 @@ public class Ui {
                 msg = formatMessage("Here are the matching tasks in your list:\n"
                         + INDENTATION + message);
             }
-            System.out.println(msg);
             return msg;
         }
         case REMIND: {
@@ -163,7 +153,6 @@ public class Ui {
                 msg = formatMessage("Here are the uncompleted tasks in your list:\n"
                         + INDENTATION + message);
             }
-            System.out.println(msg);
             return msg;
         }
         default:

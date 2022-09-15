@@ -63,14 +63,17 @@ public class Duke {
      * Runs the duke program.
      */
     public void run() {
-        ui.showWelcome();
+        ui.showLine(); // show the divider line ("_______")
+        System.out.println(ui.getWelcomeMessage());
+        ui.showLine();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(taskManager, ui, storage);
+                String s = c.execute(taskManager, ui, storage);
+                System.out.println(s);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.toString());
