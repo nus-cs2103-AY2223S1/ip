@@ -164,7 +164,7 @@ public class Storage {
             } else {
                 task = new Event(message, localDate);
             }
-        } else if (isFormatWithoutDate) {
+        } else if (isFormatWithoutDate && str.contains("[T]")) {
             String description = str.split("] ", 2)[1];
             task = new ToDo(description);
         } else {

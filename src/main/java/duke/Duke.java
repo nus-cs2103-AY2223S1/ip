@@ -5,6 +5,7 @@ import duke.exceptions.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.storage.TaskList;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 /**
@@ -27,10 +28,11 @@ public class Duke {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
             Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setHeaderText("local file corrupted!");
-            error.setContentText("Please close the program and delete the data/duke.txt file");
+            error.setHeaderText("Local file corrupted!");
+            error.setContentText("Close the program and delete the data/duke.txt file!");
             error.showAndWait();
             tasks = new TaskList();
+            Platform.exit();
         }
     }
 
