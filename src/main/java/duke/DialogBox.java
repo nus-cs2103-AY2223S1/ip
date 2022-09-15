@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -36,7 +37,9 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
+        Circle imageCircle = new Circle(50, 50, 47);
         displayPicture.setImage(img);
+        displayPicture.setClip(imageCircle);
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
