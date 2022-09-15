@@ -75,7 +75,7 @@ public class MainWindow extends AnchorPane {
         default:
             break;
         }
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(message, duke));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(message, duke, status));
     }
 
     /**
@@ -84,7 +84,10 @@ public class MainWindow extends AnchorPane {
     public void closeWindow() {
         Stage stage = (Stage) scrollPane.getScene().getWindow();
         PauseTransition delay = new PauseTransition(Duration.seconds(TIME_TO_CLOSE));
-        delay.setOnFinished( event -> stage.close() );
+        delay.setOnFinished( event -> {
+            stage.close();
+            System.exit(0);
+        });
         delay.play();
     }
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 /**
  * An example of a custom control using FXML.
@@ -53,8 +54,11 @@ public class DialogBox extends HBox {
         return new DialogBox(text, img);
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
+    public static DialogBox getDukeDialog(String text, Image img, int status) {
         var db = new DialogBox(text, img);
+        if (status == 1) {
+            db.dialog.setFont(new Font("Courier New", 14));
+        }
         db.flip();
         return db;
     }
