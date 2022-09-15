@@ -10,7 +10,7 @@ public abstract class DukeAbstractIo implements DukeIo {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param <U>
      * @param list
      */
@@ -31,7 +31,7 @@ public abstract class DukeAbstractIo implements DukeIo {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param <U>
      * @param list
      */
@@ -54,14 +54,17 @@ public abstract class DukeAbstractIo implements DukeIo {
         printTask(txt, featuresEnum.value);
     }
 
-
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param e
      */
     @Override
     public void printError(Exception e) {
         printTask(String.format("🙄 OOPS!!! %s", e.getMessage()));
+    }
+
+    protected boolean isBitFlag(int bitsValue, DukeCliSettings flagEnum) {
+        return (bitsValue & flagEnum.value) == flagEnum.value;
     }
 }

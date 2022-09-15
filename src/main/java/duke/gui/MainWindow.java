@@ -46,7 +46,7 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Create a Duke object using the specified save path
-     * 
+     *
      * @param filepath path to the save file/which file to save
      */
     public void makeDuke(String filepath) {
@@ -55,7 +55,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing
+     * Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML

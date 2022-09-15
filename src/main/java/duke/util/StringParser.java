@@ -8,7 +8,7 @@ public final class StringParser {
 
     /**
      * Returns txt indented at every linebreak.
-     * 
+     *
      * @param txt Text to indent
      * @return String
      */
@@ -18,7 +18,7 @@ public final class StringParser {
 
     /**
      * Returns text wrapped between 2 lines.
-     * 
+     *
      * @param txt Text to wrapped between 2 lines
      * @return String
      */
@@ -28,7 +28,7 @@ public final class StringParser {
 
     /**
      * Checks if string contains whitespace in between characters
-     * 
+     *
      * @param txt Text to be validated
      * @return
      */

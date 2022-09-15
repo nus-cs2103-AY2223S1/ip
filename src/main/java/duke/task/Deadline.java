@@ -22,7 +22,7 @@ public class Deadline extends Task {
 
     /**
      * Creates Deadline from ParsedData
-     * 
+     *
      * @param data ParsedData containing information for both
      * @return Deadline
      * @throws DukeException Throws when data given is invalid/insufficient
@@ -40,10 +40,11 @@ public class Deadline extends Task {
     }
 
     /**
-     * Creates Deadline given the 2 seperate information. Used when reading from file.
-     * 
+     * Creates Deadline given the 2 seperate information. Used when reading from
+     * file.
+     *
      * @param description Description of Task
-     * @param deadline When/period where its due
+     * @param deadline    When/period where its due
      * @return Deadline
      * @throws CorruptedLineException Throws when there is missing fields
      */
@@ -57,7 +58,7 @@ public class Deadline extends Task {
 
     /**
      * {@inheritDoc} Adds [D] Identifier for deadline
-     * 
+     *
      * @return String
      */
     @Override

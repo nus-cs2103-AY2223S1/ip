@@ -14,7 +14,7 @@ public class Todo extends Task {
 
     /**
      * Factory method to create a Todo task from ParsedData
-     * 
+     *
      * @param data ParsedData contains description of task
      * @return Todo
      * @throws EmptyDescriptionException Throws when the description is empty
@@ -28,7 +28,7 @@ public class Todo extends Task {
 
     /**
      * Factory method to create a Todo task from string.
-     * 
+     *
      * @param description
      * @return Todo
      * @throws CorruptedLineException Throws when the description is empty
@@ -43,7 +43,7 @@ public class Todo extends Task {
 
     /**
      * {@inheritDoc} Adds [T] to identify as Todo task
-     * 
+     *
      * @return String
      */
     @Override

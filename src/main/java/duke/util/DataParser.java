@@ -62,7 +62,7 @@ public final class DataParser {
 
     /**
      * Returns command corresponding to the info in ParsedData.
-     * 
+     *
      * @param data Parsed information of the user input
      * @return Command To be executed and do actions.
      */
@@ -100,7 +100,7 @@ public final class DataParser {
 
     /**
      * Returns ParsedData of a text based on the first space keyword
-     * 
+     *
      * @param txt Raw user input
      * @return ParsedData Parsed user input
      */
@@ -133,8 +133,9 @@ public final class DataParser {
     }
 
     /**
-     * Returns Command from raw user input. Done by combining {@code Parser.parse} and {@code Parser.dataToCommand}
-     * 
+     * Returns Command from raw user input. Done by combining {@code Parser.parse}
+     * and {@code Parser.dataToCommand}
+     *
      * @param txt Raw user input
      * @return Command
      */
@@ -144,7 +145,7 @@ public final class DataParser {
 
     /**
      * Returns task based on one line of saved data.
-     * 
+     *
      * @param savedLine One line in the save file
      * @return Task Corresponding task
      * @throws CorruptedLineException Throws when the line cannot be read
@@ -183,7 +184,7 @@ public final class DataParser {
 
     /**
      * Converts regular String to a datetime format if its possible
-     * 
+     *
      * @param str Target String
      * @return {@code Optional.empty} if invalid else the local date time
      */

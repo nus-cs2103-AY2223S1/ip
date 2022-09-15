@@ -19,7 +19,7 @@ public class MarkCommand extends DataCommand {
 
     /**
      * Passes in the index of which task to mark.
-     * 
+     *
      * @param data ParsedData that contains index of the task.
      */
     public MarkCommand(ParsedData data) {
@@ -28,9 +28,9 @@ public class MarkCommand extends DataCommand {
 
     /**
      * {@inheritDoc} Marks the task with the given index as complete.
-     * 
+     *
      * @throws DukeException Thrown when invalid index is given or out range
-     * @throws IOException Thrown when data failed to save
+     * @throws IOException   Thrown when data failed to save
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
