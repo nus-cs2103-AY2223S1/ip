@@ -4,17 +4,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-import static java.lang.Integer.parseInt;
-
+import duke.model.Deadline;
+import duke.model.Event;
 import duke.model.Task;
 import duke.model.TaskList;
 import duke.model.ToDo;
-import duke.model.Deadline;
-import duke.model.Event;
+
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
@@ -83,7 +82,7 @@ public class Storage {
                     assert t != null : "t should not be null";
 
                     tasks.add(t);
-                    if (parseInt(str[1]) == 1) {
+                    if (Integer.parseInt(str[1]) == 1) {
                         t.mark();
                     }
                     Task.incrementNumOfTasks();

@@ -1,23 +1,22 @@
 package duke.parser;
 
-import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
-import duke.command.Command;
 import duke.command.AddCommand;
+import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
 import duke.command.UndoCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.model.Deadline;
 import duke.model.Event;
 import duke.model.ToDo;
 
-import static java.lang.Integer.parseInt;
 
 /**
  * Deals with making sense of the user command.
@@ -91,11 +90,11 @@ public class Parser {
             command = new ListCommand();
             break;
         case MARK:
-            command = new MarkCommand(parseInt(input[1]));
+            command = new MarkCommand(Integer.parseInt(input[1]));
             Parser.updateLastUserInput(userInput);
             break;
         case UNMARK:
-            command = new UnmarkCommand(parseInt(input[1]));
+            command = new UnmarkCommand(Integer.parseInt(input[1]));
             Parser.updateLastUserInput(userInput);
             break;
         case TODO:
@@ -114,7 +113,7 @@ public class Parser {
             Parser.updateLastUserInput(userInput);
             break;
         case DELETE:
-            command = new DeleteCommand(parseInt(input[1]));
+            command = new DeleteCommand(Integer.parseInt(input[1]));
             Parser.updateLastUserInput(userInput);
             break;
         case FIND:
