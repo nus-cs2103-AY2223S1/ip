@@ -36,7 +36,6 @@ Example of usage:
 `todo Hello World`
 
 Expected outcome:
-<br>
 
 ![image](https://user-images.githubusercontent.com/77394751/190422495-942ac3d9-8e1b-4ac3-abf0-01ef3dfaeabd.png)
 
@@ -54,7 +53,6 @@ Example of usage:
 `event CS Workshop in LT /at 2022-12-12`
 
 Expected outcome:
-<br>
 
 ![image](https://user-images.githubusercontent.com/77394751/190422564-49a79f42-f946-4e69-bcde-ac7f005a87cd.png)
 
@@ -71,7 +69,6 @@ Example of usage:
 `deadline submit lab /by 2022-12-12`
 
 Expected outcome:
-<br>
 
 ![image](https://user-images.githubusercontent.com/77394751/190422703-3d756675-b47d-4702-ad0a-fe714998af23.png)
 
@@ -88,9 +85,10 @@ Example of usage:
 
 Expected output:
 
-![image](https://user-images.githubusercontent.com/77394751/190421956-16ce8947-4ec3-4662-b9e4-36a54b6f1a4a.png)
+![image](https://user-images.githubusercontent.com/77394751/190426879-7bf33da7-67a3-46c4-8e7f-1407441ba894.png)
 
-### Mark Task as Done : `mark`
+
+### Mark Task as Done : `unmark`
 Unmark task with specified index
 <br>
 Format: `done TASK_INDEX`
@@ -103,7 +101,8 @@ Example of usage:
 
 Expected output:
 
-![image](https://user-images.githubusercontent.com/77394751/190422936-dcc84565-90ca-41cb-90ad-fd10224335c8.png)
+![image](https://user-images.githubusercontent.com/77394751/190426760-8b215636-ce9f-4997-9950-edbf8f6188bd.png)
+
 
 ### List All Tasks : `list`
 List all the tasks currently in the tasklist.
@@ -115,9 +114,9 @@ Example of usage:
 `list`
 
 Expected output:
-<br>
 
-![image](https://user-images.githubusercontent.com/77394751/190423221-e39b0c4e-8543-4381-9d9a-a6174cfd0a39.png)
+![image](https://user-images.githubusercontent.com/77394751/190426681-b1092baa-f4d1-4b6c-a9cd-2c4dd94df1d8.png)
+
 
 ### Find a Task : `find`
 Find all tasks in the list with the specified prefix.
@@ -131,7 +130,6 @@ Example of usage:
 `find C`
 
 Expected output:
-<br>
 
 ![image](https://user-images.githubusercontent.com/77394751/190424089-4c2df057-e3af-454f-b9ca-3b099cb8abca.png)
 
@@ -147,7 +145,6 @@ Example of usage:
 `delete 1`
 
 Expected output:
-<br>
 
 ![image](https://user-images.githubusercontent.com/77394751/190423507-a198ba49-3596-49a8-93bb-e54404f46401.png)
 
