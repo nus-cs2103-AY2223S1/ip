@@ -16,7 +16,7 @@ public class ExpenseList {
         this.numExpenses = expenseList.size();
     }
 
-    public Expense getExpense(int position ) {
+    public Expense getExpense(int position) {
         return this.expenseList.get(position - 1);
     }
 
@@ -74,7 +74,7 @@ public class ExpenseList {
         float totalExpenses = 0;
         for (int i = 0; i < numExpenses; i++) {
             Expense expense = expenseList.get(i);
-            output += Integer.toString(i+1) + ". " + expense.toString() + "\n";
+            output += Integer.toString(i + 1) + ". " + expense.toString() + "\n";
             totalExpenses += expense.getCostFloat();
         }
         output += "\nCurrent total expenses: $" + Float.toString(totalExpenses); 
