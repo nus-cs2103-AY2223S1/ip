@@ -103,11 +103,9 @@ Example of usage:
 
 `update`
 
-`3:rename:dry clothes`
-
 Expected outcome:
 
-Removes the first task from the list.
+Enters into update mode where user can specify what changes to make.
 
 ```
 You have entered update mode. Please use the following format to update your task.
@@ -118,6 +116,16 @@ Here are the tasks in your list:
 2. [E][ ] attend open house (at: Sat, Dec 10 2022)
 3. [T][ ] laundry
 
+I've updated task number 3 name to: dry clothes
+```
+
+`3:rename:dry clothes`
+
+Expected outcome:
+
+Updates task based on the input.
+
+```
 I've updated task number 3 name to: dry clothes
 ```
 
