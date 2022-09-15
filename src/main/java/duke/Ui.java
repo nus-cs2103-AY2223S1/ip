@@ -1,5 +1,6 @@
 package duke;
 
+import duke.task.Note;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public class Ui {
      */
     public String add(TaskList taskList, Task task) {
         return "Dino added: " + task
-        + "\nYou have " + taskList.size() + " task" + (taskList.size() > 1 ? "s!" : "!");
+        + "\nYou have " + taskList.getTaskSize() + " task" + (taskList.getTaskSize() > 1 ? "s!" : "!");
     }
 
     public String match(ArrayList<Task> matching) {
@@ -102,6 +103,16 @@ public class Ui {
      */
     public String remove(TaskList taskList, Task task) {
         return "Dino is removing " + task + "..."
-            + "\nYou have " + taskList.size() + " task" + (taskList.size() > 1 ? "s!" : "!");
+            + "\nYou have " + taskList.getTaskSize() + " task" + (taskList.getTaskSize() > 1 ? "s!" : "!");
+    }
+
+    /**
+     * Prints a message when the user has added a new task to the list.
+     *
+     * @param note The note the user has added.
+     */
+
+    public String add(Note note) {
+        return "Dino added: " + note;
     }
 }
