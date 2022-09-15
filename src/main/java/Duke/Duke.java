@@ -88,12 +88,11 @@ public class Duke {
     }
 
     /**
-     * duke.Main class.
-     * Sets a CLI server to handle input.
-     * @param args
-     * @throws IOException Exception may occur during this session.
+     * Main method for program with CLI. Creates a CLI server to handle input and operates.
+     *
+     * @param args Arguments of main method.
+     * @throws IOException If createDirectories fails to be executed.
      */
-
     public static void main(String[] args) throws IOException {
         ServerCLI serverCLI = new ServerCLI();
 
