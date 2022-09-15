@@ -1,5 +1,6 @@
 package duke;
 import exception.DukeException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -10,6 +11,8 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -56,6 +59,25 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+        Ui ui = new Ui();
+
+        //adapted from https://stackoverflow.com/questions/27281781/java-timer-wait-x-seconds
+        if (response.equals(ui.goodbyeMessage())) {
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+
+                @Override
+                public void run() {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            Platform.exit();
+                        }
+                    });
+
+                }
+            }, 3000);
+        }
         userInput.clear();
     }
 }
