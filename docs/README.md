@@ -1,6 +1,7 @@
 # Duke User Guide
 Duke is a task management system built with Java and JavaFX, based on the [Duke Project](https://nus-cs2103-ay2223s1.github.io/website/se-book-adapted/projectDuke/index.html).
 
+![UI Image](yongbeom-kim.github.io/ip/Ui.png)
 
 ## Features 
 
