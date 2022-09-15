@@ -1,29 +1,30 @@
+package jarvis.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task {
-
-    private LocalDateTime at;
-    public Event(String input, boolean isDone) throws DateTimeParseException {
+public class Deadline extends Task {
+    private LocalDateTime by;
+    public Deadline(String input, boolean isDone) throws DateTimeParseException {
         super(isDone);
-        String[] strArr = input.split("/at");
+        String[] strArr = input.split("/by");
         this.description = strArr[0].trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         try {
-            this.at = LocalDateTime.parse(strArr[1].trim(), formatter);
+            this.by = LocalDateTime.parse(strArr[1].trim(), formatter);
         } catch (DateTimeParseException e) {
             System.out.println("Wrong date format");
             throw e;
         }
     }
 
-    public Event(String input, String at, boolean isDone) {
+    public Deadline(String input, String by, boolean isDone) {
         super(isDone);
         this.description = input;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         try {
-            this.at = LocalDateTime.parse(at);
+            this.by = LocalDateTime.parse(by);
         } catch (DateTimeParseException e) {
             System.out.println("Wrong date format");
             throw e;
@@ -31,21 +32,21 @@ public class Event extends Task {
     }
 
     @Override
-    public TaskType getTaskType() {
-        return TaskType.Event;
+    public Task.TaskType getTaskType() {
+        return Task.TaskType.Deadline;
     }
 
     @Override
     public String toDataForm() {
         String done = this.isDone ? "1" : "0";
-        return "D|" + done + "|" + this.description + "|" + this.at + "\n";
+        return "D|" + done + "|" + this.description + "|" + this.by + "\n";
     }
 
     @Override
     public String toString() {
-        String date  = this.at.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
-        String head = "[E][" + this.getStatusIcon() + "] ";
-        String body = this.description + " (at: " + date + ")";
+        String date = this.by.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
+        String head = "[D][" + this.getStatusIcon() + "] ";
+        String body = this.description + " (by: " + date + ")";
         return head + body;
     }
 }

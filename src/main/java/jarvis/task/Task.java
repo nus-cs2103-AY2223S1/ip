@@ -1,3 +1,5 @@
+package jarvis.task;
+
 public abstract class Task {
     public static enum TaskType {
         ToDo,

@@ -1,5 +1,6 @@
-import java.io.IOException;
-import java.util.Scanner;
+package jarvis;
+
+import jarvis.task.TaskList;
 
 public class Duke {
     static String logo = " ____        _        \n"
