@@ -12,14 +12,14 @@ public class Ui {
      * Greets the user by printing some lines upon start-up.
      */
     public static String greetUser() {
-        return "\tCharmposter! What move should I do?";
+        return "Charmposter! What move should I use?";
     }
 
     /**
      * Bids farewell to the user by printing some lines before exit.
      */
     public static String sayBye() {
-         return "\tNooooo, not the pokeball! AHHHHHH!\n*pop*!";
+         return "Nooooo, not the pokeball! AHHHHHH!\n*pop*";
     }
 
     /**
@@ -28,9 +28,9 @@ public class Ui {
      * @param task a Task that is added to the TaskList
      */
     public static String add(Task task) {
-        String str = "\tCharmposter! I've added this task for you!\n"
-                + "\t\t" + task + "\n"
-                + "\tYou now have " + Task.getNumOfTasks() + " tasks in your pokedex!";
+        String str = "Charmposter! I've added this task for you!\n\t"
+                + task + "\n"
+                + "You now have " + Task.getNumOfTasks() + " tasks in your pokedex!";
         return str;
     }
 
@@ -49,8 +49,7 @@ public class Ui {
      * @param task a Task that is deleted from a TaskList
      */
     public static String delete(Task task) {
-        String str = "\tCharmposter! I've incinerated the following task!\n"
-                + "\t\t" + task;
+        String str = "Charmposter! I've incinerated the following task!\n" + task;
         return str;
     }
 
@@ -60,8 +59,7 @@ public class Ui {
      * @param task a Task to be marked as done
      */
     public static String mark(Task task) {
-        String str = "\tCharmposter! I've marked this task as done!\n"
-                + "\t\t" + task;
+        String str = "Charmposter! I've marked this task as done!\n\t" + task;
         return str;
     }
 
@@ -71,8 +69,7 @@ public class Ui {
      * @param task a Task to be marked as not done
      */
     public static String unmark(Task task) {
-        String str = "\tCharmposter! I've unmarked this task for you!\n"
-                + "\t\t" + task;
+        String str = "Charmposter! I've unmarked this task for you!\n\t" + task;
         return str;
     }
 
@@ -89,14 +86,14 @@ public class Ui {
         for (int i = 1; i < Task.getNumOfTasks() + 1; i++) {
             Task task = taskList.getTask(i);
             if (task.contains(description)) {
-                str += "\t\t" + num + ". " + task + "\n";
+                str += num + ". " + task + "\n";
                 num += 1;
             }
         }
         if (str.equals("")) {
-            str = "\tCharmposter! I can't find any matching tasks!";
+            str = "Charmposter! I can't find any matching tasks!";
         } else {
-            str = "\tCharmposter! Here are the matching tasks in your pokedex!\n" + str;
+            str = "Charmposter! Here are the matching tasks in your pokedex!\n" + str;
         }
         return str;
     }

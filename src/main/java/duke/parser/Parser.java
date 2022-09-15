@@ -61,7 +61,7 @@ public class Parser {
                     return k;
                 }
             }
-            throw new DukeException("\tInvalid command: " + inputKeyword);
+            throw new DukeException("Don't understand command: " + inputKeyword);
         }
     }
 
@@ -124,7 +124,7 @@ public class Parser {
                 command = new UndoCommand(lastUserInput);
                 break;
             default:
-                throw new DukeException("Invalid command!");
+                throw new DukeException("Don't understand command: " + inputKeyword);
         }
         assert command != null : "Command should not be null";
         return command;

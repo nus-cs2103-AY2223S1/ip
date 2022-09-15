@@ -143,11 +143,11 @@ public class TaskList {
     public String toString() {
         String str = "";
         if (taskList.size() == 0) {
-            str = "\tDid I fry up the pokedex?! I don't see any tasks!";
+            str = "The pokedex is empty! I don't see any tasks!";
         } else {
-            str = "\tCharmposter! Here are the tasks in your pokedex:";
+            str = "Here are the tasks in your pokedex:";
             for (int i = 0; i < taskList.size(); i++) {
-                str += "\n\t" + (i + 1) + ". " + taskList.get(i);
+                str += "\n" + (i + 1) + ". " + taskList.get(i);
             }
         }
         return str;

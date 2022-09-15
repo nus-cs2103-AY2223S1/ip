@@ -28,7 +28,7 @@ public class ExitCommand extends Command {
                 System.exit(0);
             }
         };
-        new Timer().schedule(exitTimer, 1500);
+        new Timer().schedule(exitTimer, 1750);
         assert response != null : "Response should not be null";
         return response;
     }
