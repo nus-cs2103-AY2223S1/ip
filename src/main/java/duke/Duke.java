@@ -56,13 +56,15 @@ public class Duke {
                 }
             }, 1500);
             response = UI.GOODBYE;
-            try {
-                storage.updateTaskAndMemoryData(taskList, memory);
-            } catch (DukeException e) {
-                response = e.getMessage();
-            }
+
         } else {
             response = processComplexInput(input);
+        }
+
+        try {
+            storage.updateTaskAndMemoryData(taskList, memory);
+        } catch (DukeException e) {
+            response = e.getMessage();
         }
 
         return response;
