@@ -4,16 +4,15 @@ Uncle Cheong is a desktop app for managing tasks, optimized for use via a Comman
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-   * [Adding tasks](#1-adding-tasks)
-       1. [Add a todo](#--add-a-todo)
-       2. [Add an event](#--add-an-event)
-       3. [Add a deadline](#--add-a-deadline)
-   * [List tasks](#2-list-tasks)
-   * [Mark tasks](#3-mark-tasks)
-   * [Unmark tasks](#4-unmark-tasks)
-   * [Delete tasks](#5-delete-tasks)
-   * [Find tasks](#6-find-tasks)
-   * [View Schedule](#7-view-schedule)
+   * [Add a todo](#add-a-todo)
+   * [Add an event](#add-an-event)
+   * [Add a deadline](#add-a-deadline)
+   * [List tasks](#list-tasks)
+   * [Mark tasks](#mark-tasks)
+   * [Unmark tasks](#unmark-tasks)
+   * [Delete tasks](#delete-tasks)
+   * [Find tasks](#find-tasks)
+   * [View Schedule](#view-schedule)
 - [Command Summary](#command-summary)
 
 ## Quick Start
@@ -27,9 +26,7 @@ Double-click the file to start the app. The GUI similar to the below should appe
 
 ## Features 
 
-### 1. Adding tasks
-
-#### - Add a Todo
+### Add a Todo
 
 Command: `todo {task details}`
 
@@ -42,7 +39,7 @@ Swee lah! I added this task liao:
 Boss, you got 1 task now
 ```
 
-#### - Add an Event
+### Add an Event
 
 Command: `event {task details} /at {date and time in MMM d yyyy hh:mm a}`
 
@@ -55,7 +52,7 @@ Swee lah! I added this task liao:
 Boss, you got 2 tasks now
 ```
 
-#### - Add a Deadline
+### Add a Deadline
 
 Command: `deadline {task details} /by {date and time in MMM d yyyy hh:mm a}`
 
@@ -68,7 +65,7 @@ Swee lah! I added this task liao:
 Boss, you got 3 tasks now
 ```
 
-### 2. List tasks
+### List tasks
 
 Description: lists out all the tasks in the list according to the order at which the task was added
 
@@ -82,7 +79,7 @@ Boss ah, this one your tasks:
 3. [D][ ] tutorial submission (by: 16-Sep-2022 11:59 PM)
 ```
 
-### 3. Mark tasks
+### Mark tasks
 
 Description: marks the task at the input task number as completed
 
@@ -96,7 +93,7 @@ Swee lah! I marked this task as done liao:
 [E][X] JB trip (at: 15-Sep-2022 08:00 AM)
 ```
 
-### 4. Unmark tasks
+### Unmark tasks
 
 Description: marks the task at the input task number as completed
 
@@ -110,7 +107,7 @@ Eh? Not done yet? Okay I change liao:
 [E][] JB trip (at: 15-Sep-2022 08:00 AM)
 ```
 
-### 5. Delete tasks
+### Delete tasks
 
 Description: delete the task at the input task number
 
@@ -124,7 +121,7 @@ Okay boss, this task I delete le:
 [D][ ] tutorial submission (by: 16-Sep-2022 11:59 PM)
 ```
 
-### 6. Find tasks
+### Find tasks
 
 Description: View all the tasks in your list that contain the keyword
 
@@ -139,7 +136,7 @@ Boss ah, this one all your tasks matching 'CS2102':
 2. [D][ ] CS2102 Tutorial (by: 12-Sep-2022 05:00 PM)
 ```
 
-### 7. View schedule
+### View schedule
 
 Description: View all the events in your list at the input date
 
