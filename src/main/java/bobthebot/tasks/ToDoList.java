@@ -127,14 +127,14 @@ public class ToDoList {
     @Override
     public String toString() {
         int numOfElements = this.list.size();
-        String res = "";
+        String listString = "";
         for (int i = 1; i <= numOfElements; i++) {
             String curr = "\t" + i + ". " + this.list.get(i - 1).toString();
             if (i != numOfElements) {
                 curr += "\n";
             }
-            res += curr;
+            listString += curr;
         }
-        return res;
+        return listString;
     }
 }

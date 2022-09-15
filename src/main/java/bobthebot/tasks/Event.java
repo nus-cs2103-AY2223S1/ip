@@ -7,17 +7,17 @@ import java.time.format.DateTimeFormatter;
  * A class representing events, a type of task.
  */
 public class Event extends Task {
-    private String at;
+    private String eventDate;
 
     /**
      * Constructs an instance of an event.
      *
      * @param description of the event.
-     * @param at the date and time of the event.
+     * @param eventDate the date and time of the event.
      */
-    public Event(String description, String at) {
+    public Event(String description, String eventDate) {
         super(description);
-        this.at = at.trim();
+        this.eventDate = eventDate.trim();
     }
 
     /**
@@ -26,9 +26,9 @@ public class Event extends Task {
      *
      * @return String in format MMM D YYYY.
      */
-    private String changeAtFormat() {
+    private String changeEventDateFormat() {
         // split the date and the time
-        String[] splitDeadline = at.split(" ");
+        String[] splitDeadline = eventDate.split(" ");
         String givenDate = splitDeadline[0].trim();
         LocalDate outputDate = LocalDate.parse(givenDate);
 
@@ -45,7 +45,7 @@ public class Event extends Task {
      * @return Boolean representing if a event is within a week away.
      */
     public Boolean isWithinWeekOfEvent() {
-        String[] splitEvent = at.split(" ");
+        String[] splitEvent = eventDate.split(" ");
         String eventDate = splitEvent[0].trim();
         LocalDate formattedEventDate = LocalDate.parse(eventDate);
 
@@ -62,7 +62,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.changeAtFormat() + ")";
+        return "[E]" + super.toString() + " (at: " + this.changeEventDateFormat() + ")";
     }
 
     /**
@@ -72,8 +72,8 @@ public class Event extends Task {
      */
     @Override
     public String toStorageFormat() {
-        int done = isDone ? 1 : 0;
-        String res = String.format("E | %d | %s | %s", done, taskName, at);
-        return res;
+        int doneStatus = isDone ? 1 : 0;
+        String eventString = String.format("E | %d | %s | %s", doneStatus, taskName, eventDate);
+        return eventString;
     }
 }

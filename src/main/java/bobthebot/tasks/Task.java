@@ -3,7 +3,7 @@ package bobthebot.tasks;
 /**
  * Class representing tasks.
  */
-public class Task {
+public abstract class Task {
     protected boolean isDone;
     protected String taskName;
 
@@ -45,11 +45,7 @@ public class Task {
      *
      * @return String representing the storage format of the task
      */
-    public String toStorageFormat() {
-        int done = this.isDone ? 1 : 0;
-        String res = String.format("error | %d | %s", done, taskName);
-        return res;
-    }
+    public abstract String toStorageFormat();
 
     /**
      * Returns a string representation of a task.
@@ -58,7 +54,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        String res = "[" + getStatusIcon() + "] " + this.taskName;
-        return res;
+        String taskString = "[" + getStatusIcon() + "] " + this.taskName;
+        return taskString;
     }
 }

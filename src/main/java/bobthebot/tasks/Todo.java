@@ -30,8 +30,8 @@ public class Todo extends Task {
      */
     @Override
     public String toStorageFormat() {
-        int done = isDone ? 1 : 0;
-        String res = String.format("T | %d | %s", done, taskName);
-        return res;
+        int doneStatus = isDone ? 1 : 0;
+        String todoString = String.format("T | %d | %s", doneStatus, taskName);
+        return todoString;
     }
 }

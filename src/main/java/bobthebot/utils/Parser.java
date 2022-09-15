@@ -82,7 +82,6 @@ public class Parser {
         }
 
         int index = Integer.parseInt(splitCommand[1]);
-        System.out.println("index: " + index);
 
         if (index <= 0) {
             throw new BobException(LanguageBank.MARK_DONE_INVALID_INDEX_ERROR_MESSAGE);
@@ -246,11 +245,11 @@ public class Parser {
     private void parseDateTime(String dateTime) throws InvalidDateTimeException {
         LocalDateTime currDate = LocalDateTime.now();
 
-        DateTimeFormatter format = null;
+        DateTimeFormatter dateTimeFormatter = null;
         LocalDateTime deadlineDate = null;
         try {
-            format = DateTimeFormatter.ofPattern("uuuu-MM-dd kkmm");
-            deadlineDate = LocalDateTime.parse(dateTime, format);
+            dateTimeFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd kkmm");
+            deadlineDate = LocalDateTime.parse(dateTime, dateTimeFormatter);
         } catch (DateTimeParseException exception) {
             throw new InvalidDateTimeException(LanguageBank.DATE_INVALID_FORMAT_ERROR_MESSAGE);
         }

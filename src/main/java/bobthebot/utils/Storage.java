@@ -36,13 +36,13 @@ public class Storage {
      */
     public ArrayList<Task> load() {
         ArrayList<Task> list = new ArrayList<>();
-        File dir = new File(this.dirPath);
-        if (!dir.exists()) {
-            dir.mkdir();
+        File directory = new File(this.dirPath);
+        if (!directory.exists()) {
+            directory.mkdir();
         }
 
         File file = new File(this.filePath);
-        if (dir.exists() && !file.exists()) {
+        if (directory.exists() && !file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
@@ -56,7 +56,7 @@ public class Storage {
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 String[] parsedInput = input.split(" \\| ");
-                Task task;
+                Task task = null;
 
                 switch (parsedInput[0]) {
                 case "T":
@@ -69,7 +69,6 @@ public class Storage {
                     task = new Event(parsedInput[2], parsedInput[3]);
                     break;
                 default:
-                    task = null;
                     System.err.println(LanguageBank.FILE_LOADING_ERROR_MESSAGE);
                     break;
                 }
@@ -98,13 +97,13 @@ public class Storage {
      * @param list An ArrayList containing the Tasks in the ToDo list object.
      */
     public void store(ArrayList<Task> list) {
-        File dir = new File(this.dirPath);
-        if (!dir.exists()) {
-            dir.mkdir();
+        File directory = new File(this.dirPath);
+        if (!directory.exists()) {
+            directory.mkdir();
         }
 
         File file = new File(this.filePath);
-        if (dir.exists() && !file.exists()) {
+        if (directory.exists() && !file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {

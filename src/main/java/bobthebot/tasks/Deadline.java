@@ -7,29 +7,28 @@ import java.time.format.DateTimeFormatter;
  * A class representing deadlines, a type of task.
  */
 public class Deadline extends Task {
-    private String by;
+    private String dueDate;
 
     /**
      * Constructs an instance of a deadlines.
      *
      * @param description of the deadline.
-     * @param by the deadline of the task.
+     * @param dueDate the deadline of the task.
      * */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String dueDate) {
         super(description);
-        this.by = by;
+        this.dueDate = dueDate;
     }
 
     /**
      * Changes the format of the date from YYYY-MM-DD to MMM D YYYY
      * Eg. Method will change 2022-12-12 to Dec 12 2022.
      *
-     * @param by Date to be changed.
      * @return String in format MMM D YYYY.
      */
-    public String changeByFormat(String by) {
+    public String changeDueDateFormat() {
         // split the date and the time
-        String[] splitDeadline = by.split(" ");
+        String[] splitDeadline = dueDate.split(" ");
         String givenDate = splitDeadline[0].trim();
         LocalDate outputDate = LocalDate.parse(givenDate);
 
@@ -46,7 +45,7 @@ public class Deadline extends Task {
      * @return Boolean representing if a task is within a week of its deadline.
      */
     public Boolean isWithinWeekOfDeadline() {
-        String[] splitEvent = by.split(" ");
+        String[] splitEvent = dueDate.split(" ");
         String dueDate = splitEvent[0].trim();
         LocalDate formattedDueDate = LocalDate.parse(dueDate);
 
@@ -63,7 +62,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + changeByFormat(this.by) + ")";
+        return "[D]" + super.toString() + " (by: " + this.changeDueDateFormat() + ")";
     }
 
     /**
@@ -73,8 +72,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toStorageFormat() {
-        int done = isDone ? 1 : 0;
-        String res = String.format("D | %d | %s | %s", done, taskName, by);
-        return res;
+        int doneStatus = isDone ? 1 : 0;
+        String deadlineString = String.format("D | %d | %s | %s", doneStatus, taskName, dueDate);
+        return deadlineString;
     }
 }
