@@ -79,6 +79,7 @@ Expected outcome:
 Mark task with specified index as done
 <br>
 Format: `done TASK_INDEX`
+* `TASK_INDEX` must be present. 
 * `TASK_INDEX` must be present inside the task list.
 
 Example of usage:
@@ -89,6 +90,74 @@ Expected output:
 
 ![image](https://user-images.githubusercontent.com/77394751/190421956-16ce8947-4ec3-4662-b9e4-36a54b6f1a4a.png)
 
+### Mark Task as Done : `mark`
+Unmark task with specified index
+<br>
+Format: `done TASK_INDEX`
+* `TASK_INDEX` must be present. 
+* `TASK_INDEX` must be an index in the task list.
 
+Example of usage:
+<br>
+`unmark 1`
+
+Expected output:
+
+![image](https://user-images.githubusercontent.com/77394751/190422936-dcc84565-90ca-41cb-90ad-fd10224335c8.png)
+
+### List All Tasks : `list`
+List all the tasks currently in the tasklist.
+<br>
+Format: `list`
+
+Example of usage:
+<br>
+`list`
+
+Expected output:
+<br>
+
+![image](https://user-images.githubusercontent.com/77394751/190423221-e39b0c4e-8543-4381-9d9a-a6174cfd0a39.png)
+
+### Find a Task : `find`
+Find all tasks in the list with the specified prefix.
+<br>
+Format: `find PREFIX`
+* `PREFIX` must be present.
+* `PREFIX` is case sensitive.
+
+Example of usage:
+<br>
+`find C`
+
+Expected output:
+<br>
+
+![image](https://user-images.githubusercontent.com/77394751/190424089-4c2df057-e3af-454f-b9ca-3b099cb8abca.png)
+
+### Delete a Task : `delete`
+Delete a task in the list.
+<br>
+Format: `delete TASK_INDEX`
+* `TASK_INDEX` must be present. 
+* `TASK_INDEX` must be an index in the task list.
+
+Example of usage:
+<br>
+`delete 1`
+
+Expected output:
+<br>
+
+![image](https://user-images.githubusercontent.com/77394751/190423507-a198ba49-3596-49a8-93bb-e54404f46401.png)
+
+### Exitting the Program : `bye`
+Exit Duke program. Task is only saved to local storage when this is called.
+<br>
+Format: `bye`
+
+Example of usage:
+<br>
+`bye`
 
 
