@@ -71,6 +71,9 @@ public class MainWindow extends AnchorPane {
                 response
         );
         userInput.clear();
+        //@@author pratham31012002-reused
+        //Reused from https://github.com/RezwanArefin01/ip/blob/master/src/main/java/duke/command/ExitCommand.java
+        // with minor modifications
         if (response.isExitDialogBox()) {
             new Timer().schedule(new TimerTask() {
                 @Override
@@ -79,5 +82,6 @@ public class MainWindow extends AnchorPane {
                 }
             }, 1000L);
         }
+        //@@author
     }
 }
