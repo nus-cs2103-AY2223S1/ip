@@ -15,4 +15,10 @@ public class ExitCommand extends Command {
         System.exit(0);
         return "";
     }
+
+    @Override
+    public String undo() {
+        return "";
+    }
+
 }

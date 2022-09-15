@@ -1,9 +1,12 @@
 package duke.utils;
 
 import duke.commands.*;
+import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.tasks.TaskType;
 import duke.ui.Ui;
+
+import java.util.Deque;
 
 public class InputParser {
 
@@ -15,14 +18,15 @@ public class InputParser {
      * @param ui Ui in use by the app.
      * @return Command to be executed.
      */
-    public Command parse(String input, TaskList tasks, Storage storage, Ui ui) {
+    public Command parse(String input, TaskList tasks, Storage storage, Ui ui, Deque<Command> commandHistory) {
         String[] splitStr = splitInput(input);
         String command = splitStr[0];
         String body = splitStr[1];
-        return parseCommand(command, body, tasks, storage, ui);
+        return parseCommand(command, body, tasks, storage, ui, commandHistory);
     }
 
-    private Command parseCommand(String command, String body, TaskList tasks, Storage storage, Ui ui) {
+    private Command parseCommand(String command, String body, TaskList tasks, Storage storage, Ui ui,
+            Deque<Command> commandHistory) {
         switch (command) {
             case "bye":
                 return new ExitCommand(ui);
@@ -36,6 +40,8 @@ public class InputParser {
                 return new DeleteTaskCommand(storage, ui, tasks, body);
             case "find":
                 return new FindTaskCommand(tasks, ui, body);
+            case "undo":
+                return new UndoCommand(commandHistory);
             case "todo":
                 return new AddTaskCommand(storage, ui, tasks, TaskType.TODO, body);
             case "deadline":

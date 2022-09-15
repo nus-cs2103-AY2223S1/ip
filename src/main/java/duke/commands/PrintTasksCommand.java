@@ -19,4 +19,9 @@ public class PrintTasksCommand extends Command {
         sb.append("Here are the tasks in your list:\n").append(tasks.toString());
         return sb.toString();
     }
+
+    @Override
+    public String undo() {
+        return "There is nothing to undo for your previous list tasks command.";
+    }
 }
