@@ -149,11 +149,13 @@ Example of usage:
 Expected outcome:
 - Deletes the second task in the list. 
 - Assuming the second task is a Todo task borrow book.
+
 ```
 Noted. I've removed this task:
  [T][] borrow book
 Now you have 4 task(s) in the list.
 ```
+
 ---
 
 ### `mark` - mark task as done
@@ -172,10 +174,12 @@ Example of usage:
 Expected outcome:
 - Marks the second task in the list as done.
 - Assuming the second task is a Todo task borrow book.
+
 ```
 Nice! I've marked this as done:
  [T][X] borrow book
 ```
+
 ---
 
 ### `unmark` - mark task as undone
@@ -194,10 +198,12 @@ Example of usage:
 Expected outcome:
 - Marks the second task in the list as undone.
 - Assuming the second task is a Todo task borrow book.
+
 ```
 Ok, I've marked this task as not done yet:
  [T][] borrow book
 ```
+
 ---
 
 ### `find` - find tasks by description
@@ -214,10 +220,12 @@ Example of usage:
 
 Expected outcome:
 - Displays a list of tasks with their descriptions containing the word "meeting".
+
 ```
 Here are the matching tasks in your list:
 1.[E][] project meeting (at: 14-Sep-22 12:00)
 ```
+
 ---
 
 ### `bye` - Exit Duke
