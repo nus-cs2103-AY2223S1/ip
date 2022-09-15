@@ -25,7 +25,7 @@ View the project on [GitHub](https://github.com/april-anh/ip).
 - The `find` command will show all task that match at least 3 characters of your keyword, i.e. finding CON will return conan.
 
 ## Saving data
-Task data is saved internally in the app’s directory only upon exit.
+Task data is saved internally in a file `List.txt` in a folder `data` in the app’s directory only upon exit.
 So closing the window mid-execution will discard all changes.
 The task data is loaded from the internal storage when starting the app.
 

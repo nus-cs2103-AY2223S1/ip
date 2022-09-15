@@ -18,7 +18,7 @@ public class Deadline extends Task {
     /**
      * Constructor for deadline.
      *
-     * @param detail String
+     * @param detail String.
      */
     public Deadline(String detail, String by) {
         super(detail);
@@ -38,20 +38,17 @@ public class Deadline extends Task {
     }
 
     /**
-     * Add a deadline task
+     * Add a deadline task.
      *
-     * @param userInput text the user typed
+     * @param userInput text the user typed.
      * @param workList
      */
     public static String add(ArrayList<Task> workList, String userInput) {
         try {
-            // Error when deadline followed by a blank space
             userInput.substring(10);
-            // Error when just deadline
             String[] commandSplit = userInput.substring(9).split(" /by ");
             Deadline deadline = new Deadline(commandSplit[0], commandSplit[1]);
             workList.add(deadline);
-            // Update Storage
             DukeEncoder.rewriteList(workList);
             return Task.add(workList, userInput) + deadline + "\n"
                     + updateNumOfTask(workList);
@@ -66,8 +63,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns String form of the task
-     * @return String
+     * Returns String form of the task.
+     * @return String.
      */
     @Override
     public String toString() {
@@ -76,7 +73,7 @@ public class Deadline extends Task {
 
     /**
      * Returns String to be stored in the hardware list.
-     * @return String
+     * @return String.
      */
     @Override
     public String storedData() {

@@ -12,7 +12,7 @@ public class ToDo extends Task {
     /**
      * Constructor for to-do.
      *
-     * @param detail String
+     * @param detail String.
      */
     public ToDo(String detail) {
         super(detail);
@@ -21,16 +21,16 @@ public class ToDo extends Task {
     /**
      * Constructor for to-do.
      *
-     * @param detail String
+     * @param detail String.
      */
     public ToDo(String detail, boolean isDone) {
         super(detail, isDone);
     }
 
     /**
-     * Add a to-do task
+     * Add a to-do task.
      *
-     * @param userInput text the user typed
+     * @param userInput text the user typed.
      * @param workList
      */
     public static String add(ArrayList<Task> workList, String userInput) {
@@ -48,8 +48,8 @@ public class ToDo extends Task {
         }
     }
     /**
-     * Returns String form of the task
-     * @return String
+     * Returns String form of the task.
+     * @return String.
      */
     @Override
     public String toString() {
@@ -58,7 +58,7 @@ public class ToDo extends Task {
 
     /**
      * Returns String to be stored in the hardware list.
-     * @return String
+     * @return String.
      */
     @Override
     public String storedData() {

@@ -17,7 +17,7 @@ public class Event extends Task {
     /**
      * Constructor for event.
      *
-     * @param detail String
+     * @param detail String.
      */
     public Event(String detail, String at) {
         super(detail);
@@ -36,20 +36,17 @@ public class Event extends Task {
     }
 
     /**
-     * Add a event task
+     * Add a event task.
      *
-     * @param userInput text the user typed
+     * @param userInput text the user typed.
      * @param workList
      */
     public static String add(ArrayList<Task> workList, String userInput) {
         try {
-            // Error when event followed by a blank space
             userInput.substring(7);
-            // Error when just event
             String[] commandSplit = userInput.substring(6).split(" /at ");
             Event event = new Event(commandSplit[0], commandSplit[1]);
             workList.add(event);
-            // Update Storage
             DukeEncoder.rewriteList(workList);
             return Task.add(workList, userInput) + event + "\n"
                     + updateNumOfTask(workList);
@@ -62,8 +59,8 @@ public class Event extends Task {
         }
     }
     /**
-     * Returns String form of the task
-     * @return String
+     * Returns String form of the task.
+     * @return String.
      */
     @Override
     public String toString() {
@@ -72,7 +69,7 @@ public class Event extends Task {
 
     /**
      * Returns String to be stored in the hardware list.
-     * @return String
+     * @return String.
      */
     @Override
     public String storedData() {

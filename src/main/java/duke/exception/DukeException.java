@@ -9,7 +9,7 @@ public class DukeException {
      */
     private String message;
     /**
-     * Constructor for DukeException
+     * Constructor for DukeException.
      * @param message
      */
     public DukeException(String message) {
@@ -17,7 +17,7 @@ public class DukeException {
     }
 
     /**
-     * Print error message to user
+     * Print error message to user.
      */
     public String throwDukeException() {
         return this.message;

@@ -15,7 +15,7 @@ public class Task {
 
     /**
      * Constructor for task.
-     * @param detail String
+     * @param detail String.
      */
     public Task(String detail) {
         this.detail = detail;
@@ -24,22 +24,22 @@ public class Task {
 
     /**
      * Constructor for task.
-     * @param detail String
+     * @param detail String.
      */
     public Task(String detail, boolean isDone) {
         this.detail = detail;
         this.isDone = isDone;
     }
     /**
-     * Get icon for status done or not
-     * @return String
+     * Get icon for status done or not.
+     * @return String.
      */
     public String getStatusIcon() {
         return (isDone ? "[X] " : "[ ] ");
     }
 
     /**
-     * Print all item in the word list
+     * Print all item in the word list.
      */
     public static String listItems(ArrayList<Task> workList) {
         String toPrint = TextUi.LISTING_MESSAGE + "\n";
@@ -90,9 +90,9 @@ public class Task {
     }
 
     /**
-     * Add text that user typed to the word list
+     * Add text that user typed to the word list.
      *
-     * @param userInput text the user typed
+     * @param userInput text the user typed.
      * @param workList
      */
     public static String add(ArrayList<Task> workList, String userInput) {
@@ -100,9 +100,9 @@ public class Task {
     }
 
     /**
-     * Delete a task
+     * Delete a task.
      *
-     * @param userInput text the user typed
+     * @param userInput text the user typed.
      * @param workList
      */
     public static String delete(ArrayList<Task> workList, String userInput) {
@@ -112,7 +112,6 @@ public class Task {
             Task task = workList.get(index - 1);
             workList.remove(task);
             DukeEncoder.rewriteList(workList);
-            // Update data
             return (TextUi.ARROW + "Deleted task: " + task.toString()) + "\n"
                     + Task.updateNumOfTask(workList);
         } catch (StringIndexOutOfBoundsException e) {
@@ -128,7 +127,7 @@ public class Task {
     }
 
     /**
-     * Find a task by keyword
+     * Find a task by keyword.
      * @param workList
      * @param userInput
      * @return
@@ -158,7 +157,7 @@ public class Task {
         return toPrint;
     }
     /**
-     * Updates number of task in the list
+     * Updates number of task in the list.
      * @return String
      */
     public static String updateNumOfTask(ArrayList<Task> workList) {
@@ -166,7 +165,7 @@ public class Task {
     }
 
     /**
-     * Returns String form of the task
+     * Returns String form of the task.
      * @return String
      */
     @Override
@@ -180,7 +179,7 @@ public class Task {
 
     /**
      * Returns String to be stored in the hardware list.
-     * @return String
+     * @return String.
      */
     public String storedData() {
         return statusIcon() + "|" + detail;
