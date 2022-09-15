@@ -8,6 +8,7 @@ import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
+import duke.command.HelpCommand;
 
 /**
  * Parser to make sense of user input.
@@ -32,7 +33,7 @@ public class Parser {
     }
 
     public static enum CommandName {
-        bye, list, mark, unmark, delete, todo, deadline, event, find
+        bye, list, mark, unmark, delete, todo, deadline, event, find, help
     }
 
     /**
@@ -45,7 +46,7 @@ public class Parser {
     public Command parse(String input) throws DukeException {
         String[] tokens = input.split(" ");
         if (tokens.length == 0) {
-            throw new DukeException("I'm sorry but I don't know what that means.");
+            throw new DukeException("I'm sorry but I don't know what that means. Enter `help` to view list of available commands.");
         }
         int taskIndex;
         switch (CommandName.valueOf(tokens[0])) {
@@ -63,6 +64,8 @@ public class Parser {
             return new ExitCommand(storage, ui, taskList);
         case find:
             return new FindCommand(storage, ui, taskList, input);
+        case help:
+            return new HelpCommand(storage, ui, taskList);
         default:
             return new AddCommand(storage, ui, taskList, input);
         }
