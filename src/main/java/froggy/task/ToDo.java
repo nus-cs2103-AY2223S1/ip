@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package froggy.task;
 
 /**
  * A class representing a todo Task.

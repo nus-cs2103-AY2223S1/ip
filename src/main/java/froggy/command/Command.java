@@ -1,8 +1,8 @@
-package seedu.duke.command;
+package froggy.command;
 
-import seedu.duke.storage.Storage;
-import seedu.duke.task.TaskList;
-import seedu.duke.ui.Ui;
+import froggy.storage.Storage;
+import froggy.task.TaskList;
+import froggy.ui.Ui;
 
 /**
  * An abstract class Command which has the execute method and isExit functionality.

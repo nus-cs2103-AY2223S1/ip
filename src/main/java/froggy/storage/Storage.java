@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package froggy.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import seedu.duke.exception.DukeException;
-import seedu.duke.parser.Parser;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import froggy.exception.FroggyException;
+import froggy.parser.Parser;
+import froggy.task.Task;
+import froggy.task.TaskList;
 
 /**
  * The Storage class handles the creation of a file specified by the duke.txt file.
@@ -30,7 +30,7 @@ public class Storage {
     /**
      * Returns an ArrayList Task after reading the contents of the file specified by the filePath variable.
      */
-    public ArrayList<Task> load() throws DukeException {
+    public ArrayList<Task> load() throws FroggyException {
         // Reused from https://www.w3schools.com/java/java_files_create.asp
         // Reused from https://www.w3schools.com/java/java_files_read.asp
 
@@ -79,9 +79,9 @@ public class Storage {
      * @param myObj A file object.
      * @param tasks An array with which the contents of the file read would be written to.
      * @return An ArrayList containing the tasks read from file.
-     * @throws DukeException If there is an error found when reading the file.
+     * @throws FroggyException If there is an error found when reading the file.
      */
-    private ArrayList<Task> readFile(File myObj, ArrayList<Task> tasks) throws DukeException {
+    private ArrayList<Task> readFile(File myObj, ArrayList<Task> tasks) throws FroggyException {
         try {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
@@ -89,7 +89,7 @@ public class Storage {
                 tasks.add(Parser.readLine(data));
             }
         } catch (FileNotFoundException e) {
-            throw new DukeException("An error occurred.");
+            throw new FroggyException("An error occurred.");
         }
         return tasks;
     }

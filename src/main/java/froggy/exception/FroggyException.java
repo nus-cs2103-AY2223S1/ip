@@ -3,13 +3,13 @@ package froggy.exception;
 /**
  * A custom class to handle any exceptions thrown by the Duke program.
  */
-public class DukeException extends Exception {
+public class FroggyException extends Exception {
     /**
      * Creates a DukeException object.
      *
      * @param message The error message.
      */
-    public DukeException(String message) {
+    public FroggyException(String message) {
         super(message);
     }
 

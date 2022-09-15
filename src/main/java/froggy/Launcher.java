@@ -1,4 +1,4 @@
-package seedu.duke;
+package froggy;
 import javafx.application.Application;
 
 /**

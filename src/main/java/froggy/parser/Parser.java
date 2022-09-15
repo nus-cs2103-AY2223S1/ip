@@ -1,21 +1,21 @@
-package seedu.duke.parser;
+package froggy.parser;
 
 import java.util.Objects;
 
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.ExitCommand;
-import seedu.duke.command.FindCommand;
-import seedu.duke.command.InvalidCommand;
-import seedu.duke.command.ListCommand;
-import seedu.duke.command.MarkCommand;
-import seedu.duke.command.UpdateCommand;
-import seedu.duke.exception.DukeException;
-import seedu.duke.task.Deadline;
-import seedu.duke.task.Event;
-import seedu.duke.task.Task;
-import seedu.duke.task.ToDo;
+import froggy.exception.FroggyException;
+import froggy.task.Task;
+import froggy.command.AddCommand;
+import froggy.command.Command;
+import froggy.command.DeleteCommand;
+import froggy.command.ExitCommand;
+import froggy.command.FindCommand;
+import froggy.command.InvalidCommand;
+import froggy.command.ListCommand;
+import froggy.command.MarkCommand;
+import froggy.command.UpdateCommand;
+import froggy.task.Deadline;
+import froggy.task.Event;
+import froggy.task.ToDo;
 
 /**
  * The parser class handles the parsing of a user input into a Command object that the program can handle.
@@ -27,7 +27,7 @@ public class Parser {
      *
      * @param fullCommand The user input.
      */
-    public static Command parse(String fullCommand) throws DukeException {
+    public static Command parse(String fullCommand) throws FroggyException {
         String[] commands = fullCommand.split(" ", 2);
 
         if (Objects.equals(commands[0], "bye")) {
@@ -38,33 +38,33 @@ public class Parser {
             try {
                 return new MarkCommand(commands[0], commands[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("An index must be provided for mark or unmark commands.");
+                throw new FroggyException("An index must be provided for mark or unmark commands.");
             }
         } else if (Objects.equals(commands[0], "deadline")) {
             try {
                 String[] taskDetails = commands[1].split(" /by ");
                 return new AddCommand(commands[0], taskDetails[0], taskDetails[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("The description or date time of a deadline cannot be empty.");
+                throw new FroggyException("The description or date time of a deadline cannot be empty.");
             }
         } else if (Objects.equals(commands[0], "event")) {
             try {
                 String[] taskDetails = commands[1].split(" /at ");
                 return new AddCommand(commands[0], taskDetails[0], taskDetails[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("The description or date time of an event cannot be empty.");
+                throw new FroggyException("The description or date time of an event cannot be empty.");
             }
         } else if (Objects.equals(commands[0], "todo")) {
             try {
                 return new AddCommand(commands[0], commands[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("The description of a todo cannot be empty.");
+                throw new FroggyException("The description of a todo cannot be empty.");
             }
         } else if (Objects.equals(commands[0], "find")) {
             try {
                 return new FindCommand(commands[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("There needs to be a keyword specified");
+                throw new FroggyException("There needs to be a keyword specified");
             }
         } else if (Objects.equals(commands[0], "delete")) {
             return new DeleteCommand(Integer.parseInt(commands[1]));
@@ -82,7 +82,7 @@ public class Parser {
                 }
                 return new InvalidCommand();
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("There should be details provided on what should be updated");
+                throw new FroggyException("There should be details provided on what should be updated");
             }
         }
         return new InvalidCommand();

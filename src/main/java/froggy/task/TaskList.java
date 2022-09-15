@@ -1,10 +1,10 @@
-package seedu.duke.task;
+package froggy.task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import seedu.duke.ui.Style;
+import froggy.ui.Style;
 
 /**
  * A class representing a list of tasks.
@@ -96,7 +96,6 @@ public class TaskList {
     public String listTasks() {
         String output = "";
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(Style.INDENTATION + (i + 1) + "." + getTask(i + 1));
             output += Style.INDENTATION + (i + 1) + "." + getTask(i + 1) + "\n";
         }
         return output;
@@ -123,7 +122,6 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             Task task = getTask(i + 1);
             if (task.toString().contains(keyword)) {
-                System.out.println(Style.INDENTATION + (j + 1) + "." + task);
                 text += Style.INDENTATION + (j + 1) + "." + task + "\n";
                 j++;
             }

@@ -1,4 +1,4 @@
-package seedu.duke.ui;
+package froggy.ui;
 
 /**
  * Style class handles things like indentation and half_indentation.

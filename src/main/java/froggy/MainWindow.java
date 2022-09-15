@@ -1,4 +1,4 @@
-package seedu.duke;
+package froggy;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,18 +20,18 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Duke duke;
+    private Froggy froggy;
 
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/dragon.png"));
-    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/froggy.png"));
+    private final Image froggyImage = new Image(this.getClass().getResourceAsStream("/images/froggy.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    public void setFroggy(Froggy f) {
+        froggy = f;
     }
 
     /**
@@ -41,10 +41,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        String response = froggy.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getFroggyDialog(response, froggyImage)
         );
         userInput.clear();
     }

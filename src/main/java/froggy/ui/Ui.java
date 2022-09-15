@@ -1,9 +1,9 @@
-package seedu.duke.ui;
+package froggy.ui;
 
 import java.util.Scanner;
 
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import froggy.task.Task;
+import froggy.task.TaskList;
 
 
 /**

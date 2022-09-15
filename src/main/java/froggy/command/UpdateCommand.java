@@ -1,9 +1,9 @@
-package seedu.duke.command;
+package froggy.command;
 
-import seedu.duke.storage.Storage;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
-import seedu.duke.ui.Ui;
+import froggy.task.Task;
+import froggy.storage.Storage;
+import froggy.task.TaskList;
+import froggy.ui.Ui;
 
 /**
  * A class which extends from the Command abstract class.

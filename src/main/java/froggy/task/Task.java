@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package froggy.task;
 
 import java.time.LocalDate;
 

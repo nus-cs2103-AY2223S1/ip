@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package froggy.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -2,7 +2,7 @@ package froggy;
 
 
 import froggy.command.Command;
-import froggy.exception.DukeException;
+import froggy.exception.FroggyException;
 import froggy.parser.Parser;
 import froggy.storage.Storage;
 import froggy.task.TaskList;
@@ -25,10 +25,10 @@ public class Froggy {
      */
     public Froggy() {
         ui = new Ui();
-        storage = new Storage("./data/duke.txt");
+        storage = new Storage("./data/froggy.txt");
         try {
             tasks = new TaskList(storage.load());
-        } catch (DukeException e) {
+        } catch (FroggyException e) {
             ui.showLoadingError();
             tasks = new TaskList();
         }
@@ -51,7 +51,7 @@ public class Froggy {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
-            } catch (DukeException e) {
+            } catch (FroggyException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
@@ -68,7 +68,7 @@ public class Froggy {
         try {
             Command c = Parser.parse(input);
             output = c.execute(tasks, ui, storage);
-        } catch (DukeException e) {
+        } catch (FroggyException e) {
             ui.showError(e.getMessage());
         } finally {
             ui.showLine();
