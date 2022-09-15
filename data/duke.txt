@@ -1,0 +1,2 @@
+T | 0 | do homework
+D | 1 | go home | 2022-11-12

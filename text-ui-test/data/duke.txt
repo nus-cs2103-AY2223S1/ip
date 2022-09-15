@@ -1,0 +1,5 @@
+T | 0 | read book
+T | 0 | join sports club
+T | 0 | borrow book
+D | 0 | return book | 2022-08-07
+E | 0 | project meeting | 2022-09-07

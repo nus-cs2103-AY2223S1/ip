@@ -1,0 +1,6 @@
+{
+  "java.format.settings.url": "eclipse-formatter.xml",
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.checkstyle.configuration": "${workspaceFolder}\\config\\checkstyle\\checkstyle.xml",
+  "git.mergeEditor": false
+}

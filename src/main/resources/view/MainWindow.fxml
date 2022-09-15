@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  Reused code from: https://se-education.org/guides/tutorials/javaFxPart4.html with minor modifications.
+-->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.controllers.MainWindow">
+  <children>
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" layoutY="-23.0" prefHeight="550.0" prefWidth="428.0" vvalue="1.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <content>
+        <VBox fx:id="dialogContainer" alignment="TOP_CENTER" fillWidth="true" prefHeight="544.0" prefWidth="388.0" />
+      </content>
+    </ScrollPane>
+    <fx:include fx:id="inputBox" layoutY="552.0" source="InputBox.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+  </children>
+</AnchorPane>
