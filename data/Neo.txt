@@ -1,8 +1,8 @@
-[D][X] read book  (by: Feb 02 2022)
+[D][ ] read book  (by: Feb 02 2022)
 
-[D][ ] return book  (by: Apr 04 2022)
+[D][X] return book  (by: Apr 04 2022)
 
-[T][ ] sort library priority: low
+[T][ ] solder wire
 
-[T][ ] help plan event
+[T][ ] buy books
 

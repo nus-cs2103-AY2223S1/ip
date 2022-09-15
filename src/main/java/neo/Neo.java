@@ -61,8 +61,8 @@ public class Neo {
      * @param arrayLL tasklist to store tasks
      */
     public static void addToTaskList(String filePath, TaskList arrayLL)  {
-        File f = new File(filePath); // create a File for the given file path
-        Scanner sc = null; // create a Scanner using the File as the source
+        File f = new File(filePath);
+        Scanner sc = null;
         try {
             sc = new Scanner(f);
         } catch (FileNotFoundException e) {

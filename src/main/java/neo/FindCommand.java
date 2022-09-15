@@ -40,7 +40,6 @@ public class FindCommand extends Command{
         for(int i =0; i<arrayLL.arrayL.size(); i++) {
             String tempii = String.valueOf(arrayLL.getTask(i));
             if (tempii.contains(tempi)) {
-                //System.out.println(tempii);
                 str += i + tempii + "\n";
             }
         }

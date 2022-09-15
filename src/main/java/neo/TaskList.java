@@ -39,6 +39,6 @@ public class TaskList {
     public void delete(int in) {
         System.out.println("ok, I've deleted this take from array");
         System.out.println(arrayL.get(in-1).toString());
-        arrayL.remove(in - 1);
+        arrayL.remove(in);
     }
 }

@@ -45,7 +45,7 @@ test {
 }
 
 application {
-    mainClassName = "neo.Neo"
+    mainClassName = "neo.Launcher"
 }
 
 shadowJar {

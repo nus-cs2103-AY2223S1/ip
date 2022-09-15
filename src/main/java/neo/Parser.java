@@ -40,18 +40,18 @@ public class Parser {
     public String checkText(String userText) throws NeoException, IOException {
 
         if (userText.equals("list") || userText.equals("List")) {
-            System.out.println(stor.retrieveData());
             return stor.retrieveData();
         }
         String arr[];
         arr = userText.split(" ", 2);
-        if (arr.length < 0) {
-            throw new NeoException("Sorry I don't know what that means");
-        }
-        if (arr.length == 1) {
+        if (arr.length == 1 && (arr[0].equals("high") || arr[0].equals("medium") || arr[0].equals("low") || arr[0].equals("event")
+                || arr[0].equals("todo") || arr[0].equals("find") || arr[0].equals("mark") || arr[0].equals("unmark") || arr[0].equals("delete") || arr[0].equals("deadline"))) {
             throw new NeoException("sorry task cannot be empty");
         }
-        else {
+        if (arr.length == 1 && !arr[0].equals("high") && !arr[0].equals("medium") && !arr[0].equals("low") && !arr[0].equals("event")
+                && !arr[0].equals("todo") && !arr[0].equals("find") && !arr[0].equals("mark") && !arr[0].equals("unmark") && !arr[0].equals("delete") && !arr[0].equals("deadline")) {
+            throw new NeoException("Sorry I don't know what that means");
+        } else {
             String command = arr[0];
             String tempi = arr[1];
             switch (command) {
