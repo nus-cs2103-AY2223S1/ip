@@ -1,8 +1,8 @@
 # User Guide
-
+Duke is a <b>desktop chatbot for task management</b>. Duke was named after the Java Mascot. Given below are instructions on how to download and use it.
 ## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest Duke.jar file from [here]().
+2. Download the latest Duke.jar file from [here](https://github.com/edricyeo/ip/releases/tag/A-Release).
 3. Copy the file to the folder you want to use as the home folder.
 4. Double-click the file to start the app. Alternatively, navigate to the home folder and use the command:
 ```
@@ -73,9 +73,8 @@ Example: `todo wash dishes`
 Expected outcome:
 
 A todo with the given description will be added to the list.
-![](images/todo_command.png)
 
-![](images/todo_command.png)
+<img src="images/todo_command.png" width="400">
 
 ### `deadline` - Adds a deadline to the list
 
@@ -90,7 +89,8 @@ Example: `deadline submit assignment /by 2022-09-15`
 Expected outcome:
 
 A deadline with the given description and date will be added to the list.
-![](images/deadline_command.png)
+
+<img src="images/deadline_command.png" width="400">
 
 ### `event` - Adds an event to the list
 
@@ -105,7 +105,8 @@ Example: `event concert /at 2022-09-20`
 Expected outcome:
 
 An event with the given description and date will be added to the list.
-![](images/event_command.png)
+
+<img src="images/event_command.png" width="400">
 
 ### `mark` - Marks a task as done
 
@@ -118,7 +119,8 @@ Example: `mark 1`
 Expected outcome:
 
 The first task in the list will be marked as done.
-![](images/mark_command.png)
+
+<img src="images/mark_command.png" width="400">
 
 ### `unmark` - Marks a task as not done
 
@@ -131,7 +133,8 @@ Example: `unmark 1`
 Expected outcome:
 
 The first task in the list will be marked as not done.
-![](images/unmark_command.png)
+
+<img src="images/unmark_command.png" width="400">
 
 ### `delete` - Deletes a task from the list
 
@@ -144,7 +147,8 @@ Example: `delete 2`
 Expected outcome:
 
 The first task in the list will be deleted.
-![](images/delete_command.png)
+
+<img src="images/delete_command.png" width="400">
 
 ### `list` - Shows the list of all current tasks
 
@@ -155,7 +159,8 @@ Format: `list`
 Expected outcome:
 
 Displays all tasks currently in the list.
-![](images/list_command.png)
+
+<img src="images/list_command.png" width="400">
 
 ### `find` - Finds matching tasks by keyword
 
@@ -168,7 +173,8 @@ Example: `find dishes`
 Expected outcome:
 
 Finds all matching tasks.
-![](images/find_command.png)
+
+<img src="images/find_command.png" width="400">
 
 
 ### `schedule` - Finds matching tasks by date
@@ -184,7 +190,8 @@ Example: `schedule 2022-09-20`
 Expected outcome:
 
 All tasks that occur or is due on the given date will be shown.
-![](images/schedule_command.png)
+
+<img src="images/schedule_command.png" width="400">
 
 ### `bye` - Saves and exits the program
 
@@ -195,7 +202,8 @@ Format: `bye`
 Expected outcome:
 
 All the current tasks are saved and the program can be exited.
-![](images/bye_command.png);
+
+<img src="images/bye_command.png" width="400">
 
 
 
