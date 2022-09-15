@@ -19,7 +19,6 @@ import duke.model.ToDo;
  * Deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
-    private static String home = System.getProperty("user.home");
 
     private String filePath;
 
@@ -29,7 +28,7 @@ public class Storage {
      * @param filePath the file path for storage
      */
     public Storage(String filePath) {
-        this.filePath = home + "/" + filePath;
+        this.filePath = filePath;
         checkDirectory();
     }
 
@@ -97,12 +96,6 @@ public class Storage {
      * Checks that the directory and file exists and if not, create them.
      */
     public void checkDirectory() {
-        // Create directory if does not exist
-        File dir = new File(filePath.split("/")[0]);
-        if (!dir.exists()) {
-            Boolean directoryCreated = dir.mkdirs();
-        }
-
         // Create file if does not exist
         File f = new File(filePath);
         if (!f.exists()) {
