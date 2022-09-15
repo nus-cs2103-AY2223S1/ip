@@ -24,7 +24,7 @@ public class Ui {
      * @return Goodbye message.
      */
     public static String sayGoodbye(ToDoList list) {
-        String response = LanguageBank.GOODBYE_MESSAGE;
+        String response = "\n" + LanguageBank.GOODBYE_MESSAGE;
         String haveMoreTasks = " You still have " + list.getLength()
                 + (list.getLength() == 1 ? " task" : " tasks")
                 + " to do! \uD83D\uDE0A";

@@ -73,7 +73,7 @@ public class Event extends Task {
     @Override
     public String toStorageFormat() {
         int done = isDone ? 1 : 0;
-        String res = String.format("D | %d | %s | %s", done, taskName, at);
+        String res = String.format("E | %d | %s | %s", done, taskName, at);
         return res;
     }
 }

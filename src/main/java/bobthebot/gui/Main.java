@@ -57,12 +57,12 @@ public class Main extends Application {
 
         stage.setTitle("BobTheBot - Friendly Task Managing Bot");
         stage.setResizable(false);
-        stage.setMinHeight(600);
+        stage.setMinHeight(700);
         stage.setMinWidth(500);
 
-        mainLayout.setPrefSize(500, 600);
+        mainLayout.setPrefSize(500, 700);
 
-        scrollPane.setPrefSize(500, 575);
+        scrollPane.setPrefSize(500, 675);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
@@ -159,6 +159,6 @@ public class Main extends Application {
                 System.exit(0);
             }
         };
-        new Timer().schedule(exitApp, 2000);
+        new Timer().schedule(exitApp, 10000);
     }
 }
