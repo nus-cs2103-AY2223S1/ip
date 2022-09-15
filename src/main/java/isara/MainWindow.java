@@ -41,7 +41,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Set the bot.
+     * Sets the bot.
      *
      * @param isara The bot.
      */

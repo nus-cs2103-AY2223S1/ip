@@ -36,7 +36,7 @@ public abstract class Command {
     public abstract String execute(TaskList tasks, File file, Storage storage) throws IsaraException;
 
     /**
-     * Get the exit status of the bot.
+     * Gets the exit status of the bot.
      *
      * @return The exit status.
      */
