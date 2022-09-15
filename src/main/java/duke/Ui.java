@@ -22,7 +22,7 @@ public class Ui {
         texts.add("TaskDive allows you to freely add, delete, mark task status, search tasks by time, "
                 + "and list all tasks");
         texts.add("To display full text in a dialog box, please use the scroll bar, "
-                + "or click on the dialog and scroll all the way up.");
+                + "or click on the dialog and scroll all the way up/down.");
         texts.add("Please type 'help' command for more information on accepted task types and command format.");
         return texts;
     }
@@ -168,7 +168,7 @@ public class Ui {
      */
     public List<String> showLoadingError() {
         List<String> texts = new ArrayList<>();
-        texts.add("☹ OOPS!!! Loading error occurred, new text file is created for task list storage.");
+        texts.add("OOPS!!! Loading error occurred, new text file is created for task list storage.");
         return texts;
     }
 
@@ -179,7 +179,7 @@ public class Ui {
      */
     public List<String> showSavingError() {
         List<String> texts = new ArrayList<>();
-        texts.add("☹ OOPS!!! Saving error occurred, task list not properly saved in the text file.");
+        texts.add("OOPS!!! Saving error occurred, task list not properly saved in the text file.");
         return texts;
     }
 

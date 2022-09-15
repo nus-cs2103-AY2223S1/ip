@@ -23,13 +23,13 @@ public class ParserTest {
 
         //not proper date format
         Exception exception = assertThrows(DukeException.class, () -> {parser.parseDate("2021 04");});
-        assertEquals("☹ OOPS!!! This is not a proper date format, please refer to command format information.",
+        assertEquals("OOPS!!! This is not a proper date format, please refer to command format information.",
                 exception.getMessage());
         exception = assertThrows(DukeException.class, () -> {parser.parseDate("2021-04-38");});
-        assertEquals("☹ OOPS!!! This is not a proper date format, year, month or day value is invalid.",
+        assertEquals("OOPS!!! This is not a proper date format, year, month or day value is invalid.",
                 exception.getMessage());
         exception = assertThrows(DukeException.class, () -> {parser.parseDate("2021-14-30");});
-        assertEquals("☹ OOPS!!! This is not a proper date format, year, month or day value is invalid.",
+        assertEquals("OOPS!!! This is not a proper date format, year, month or day value is invalid.",
                 exception.getMessage());
     }
 
@@ -38,19 +38,19 @@ public class ParserTest {
         Exception exception = assertThrows(DukeException.class, () -> {
             parser.parseCommandType(new String[] {"todo    ",});
         });
-        assertEquals("☹ OOPS!!! The description of a todo task cannot be empty.", exception.getMessage());
+        assertEquals("OOPS!!! The description of a todo task cannot be empty.", exception.getMessage());
     }
     @Test
     public void parserIncorrectAddDeadlineCommand() {
         Exception exception = assertThrows(DukeException.class, () -> {
             parser.parseCommand("deadline  quiz 2022-03-24", taskList);
         });
-        assertEquals("☹ OOPS!!! The command is not properly formatted.\n" +
-                "Please follow the format: Deadline {description} /by {date}.", exception.getMessage());
+        assertEquals("OOPS!!! The command is not properly formatted."
+                + " Please follow the format: deadline {description} /by {date}.", exception.getMessage());
         exception = assertThrows(DukeException.class, () -> {
             parser.parseCommand("deadline /by 2022-02-24", taskList);
         });
-        assertEquals("☹ OOPS!!! The description of a deadline task cannot be empty.", exception.getMessage());
+        assertEquals("OOPS!!! The description of a deadline task cannot be empty.", exception.getMessage());
     }
 
     @Test
@@ -58,27 +58,27 @@ public class ParserTest {
         Exception exception = assertThrows(DukeException.class, () -> {
             parser.parseCommand("event  drink 2022-03-24", taskList);
         });
-        assertEquals("☹ OOPS!!! The command is not properly formatted.\n" +
-                "Please follow the format: Event {description} /at {date} to {date}.", exception.getMessage());
+        assertEquals("OOPS!!! The command is not properly formatted."
+                + " Please follow the format: event {description} /at {date} to {date}.", exception.getMessage());
         exception = assertThrows(DukeException.class, () -> {
             parser.parseCommand("event /at 2022-02-24 to 2022-03-23", taskList);
         });
-        assertEquals("☹ OOPS!!! The description of a event task cannot be empty.", exception.getMessage());
+        assertEquals("OOPS!!! The description of a event task cannot be empty.", exception.getMessage());
         exception = assertThrows(DukeException.class, () -> {
             parser.parseCommand("event e /at 2022-02-24 to 2022-01-23", taskList);
         });
-        assertEquals("☹ OOPS!!! The start date of a Event task cannot be after end date.", exception.getMessage());
+        assertEquals("OOPS!!! The start date of a Event task cannot be after end date.", exception.getMessage());
     }
 
     @Test
     public void parserIncorrectMarkCommand() {
         //incorrect mark, unmark, delete command
         Exception exception = assertThrows(DukeException.class, () -> {parser.parseCommand("mark 8", taskList);});
-        assertEquals("☹ OOPS!!! The task index exceeds task list size limit.",exception.getMessage());
+        assertEquals("OOPS!!! The task index exceeds task list size limit.",exception.getMessage());
         exception = assertThrows(DukeException.class, () -> {parser.parseCommand("unmark  0", taskList);});
-        assertEquals("☹ OOPS!!! The task index exceeds task list size limit.",exception.getMessage());
+        assertEquals("OOPS!!! The task index exceeds task list size limit.",exception.getMessage());
         exception = assertThrows(DukeException.class, () -> {parser.parseCommand("delete     ", taskList);});
-        assertEquals("☹ OOPS!!! The task index of a delete command can only be an integer and it "
+        assertEquals("OOPS!!! The task index of a delete command can only be a positive integer and it "
                 + "cannot be empty.",exception.getMessage());
     }
 
@@ -111,8 +111,8 @@ public class ParserTest {
     public void parseIncorrectCommandTest() {
         // incorrect commands (not understandable by duke)
         Exception exception = assertThrows(DukeException.class, () -> {parser.parseCommand("hello!", taskList);});
-        assertEquals("☹ OOPS!!! I'm sorry, but I don't know what that means :-(",exception.getMessage());
+        assertEquals("OOPS!!! I'm sorry, but I don't know what that means :-(",exception.getMessage());
         exception = assertThrows(DukeException.class, () -> {parser.parseCommand("random words", taskList);});
-        assertEquals("☹ OOPS!!! I'm sorry, but I don't know what that means :-(",exception.getMessage());
+        assertEquals("OOPS!!! I'm sorry, but I don't know what that means :-(",exception.getMessage());
     }
 }
