@@ -79,6 +79,14 @@ public class TaskList {
     }
 
     public void updateStorage(Storage storage) {
+        System.out.println(lst.size());
+        if (lst.size() == 0) {
+            try {
+                storage.update(lst);
+            } catch (IOException e) {
+                System.out.println("Something went wrong " + e.getMessage());
+            }
+        }
         for (int i = 0; i < lst.size(); i++) {
             try {
                 storage.update(lst);

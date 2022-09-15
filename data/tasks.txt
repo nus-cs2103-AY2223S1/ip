@@ -1,2 +1,1 @@
-D/ /submit tutorial /2022-09-15
-T/ /assignment
+T/ /borrow
