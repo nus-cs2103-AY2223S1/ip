@@ -1,15 +1,19 @@
 package duke.command;
 
-import duke.DukeException;
-
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AddCommandTest {
+import org.junit.jupiter.api.Test;
+
+import duke.DukeException;
+
+/**
+ * Represents a test class for the AddDeadlineCommand class.
+ */
+public class AddDeadlineCommandTest {
     @Test
     public void execute_deadline_newDeadlineTask() throws DukeException {
         TaskListStub list = new TaskListStub();
-        AddCommand command = new AddCommand("deadline", "return book /by 2022-05-03");
+        AddDeadlineCommand command = new AddDeadlineCommand("return book /by 2022-05-03");
         command.execute(list);
         assertTrue(list.checkTask(0, "[D][ ] return book (by: MAY 03 2022)"));
     }

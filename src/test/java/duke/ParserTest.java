@@ -1,16 +1,21 @@
 package duke;
 
-import duke.command.AddCommand;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import duke.command.AddToDoCommand;
 
+/**
+ * Represents a test class for the Parser class.
+ */
 public class ParserTest {
-    
     @Test
-    public void parse_todoBorrowBook_newAddCommand() throws DukeException {
-        assertTrue(Parser.parse("todo borrow book") instanceof AddCommand);
-        assertEquals(new AddCommand("todo", "borrow book"), Parser.parse("todo borrow book"));
+    public void parse_todoBorrowBook_newAddToDoCommand() throws DukeException {
+        assertTrue(Parser.parse("todo borrow book") instanceof AddToDoCommand);
+        assertEquals(new AddToDoCommand("borrow book"), Parser.parse("todo borrow book"));
     }
     
     @Test

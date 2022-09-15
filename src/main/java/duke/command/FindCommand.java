@@ -2,14 +2,19 @@ package duke.command;
 
 import duke.TaskList;
 
+/**
+ * Represents a command to find all tasks that contain a certain keyword.
+ */
 public class FindCommand extends Command {
-    String description;
+    private final String description;
     
     public FindCommand(String description) {
         this.description = description;
     }
-    
-    // must search by description (and not date/time)
+
+    /**
+     * {@inheritDoc}
+     */
     public String execute(TaskList tasks) {
         return tasks.findTasks(description);
     }

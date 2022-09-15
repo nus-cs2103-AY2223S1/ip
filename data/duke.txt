@@ -1,7 +1,3 @@
-1.[T][X] read book
-2.[D][X] return book (by: JUN 06 2022)
-3.[D][ ] book review (by: JUN 22 2022)
-4.[E][ ] book session (at: Monday 3pm )
-5.[T][X] eat lunch
-6.[E][ ] group meeting (at: Sunday 2pm)
-7.[D][ ] submit group report (by: JUN 07 2022)
+1.[E][ ] read book (at: 2pm)
+2.[D][ ] hi (by: FEB 05 2022)
+3.[D][ ] hh (by: JAN 01 2022)

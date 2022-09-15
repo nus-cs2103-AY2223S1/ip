@@ -13,6 +13,9 @@ public class DeadlineTask extends Task {
         this.by = by;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         int day = by.getDayOfMonth();
@@ -22,7 +25,13 @@ public class DeadlineTask extends Task {
         String formattedDate = month + " " + dayOfMonth + " " + year;
         return "[D]" + super.toString() + " (by: " + formattedDate + ")";
     }
-    
+
+    /**
+     * Compares this DeadlineTask to another Task.
+     *
+     * @param task The task to be compared to.
+     * @return An integer representing the result of comparison.
+     */
     public int compareTo(Task task) {
         if (!(task instanceof DeadlineTask)) {
             return -1;

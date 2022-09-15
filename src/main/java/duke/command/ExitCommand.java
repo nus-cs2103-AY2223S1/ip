@@ -2,12 +2,12 @@ package duke.command;
 
 import duke.TaskList;
 
+/**
+ * Represents a command to exit the program.
+ */
 public class ExitCommand extends Command {
-
     /**
-     * Executes the command by exiting the program.
-     *
-     * @param tasks The user's current list of tasks.
+     * {@inheritDoc}
      */
     public String execute(TaskList tasks) {
         return "Bye. Hope to see you again soon!\n";

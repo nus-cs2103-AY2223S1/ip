@@ -8,6 +8,9 @@ public class ToDoTask extends Task {
         super(description);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[T]" + super.toString();

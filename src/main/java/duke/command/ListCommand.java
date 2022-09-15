@@ -2,11 +2,12 @@ package duke.command;
 
 import duke.TaskList;
 
+/**
+ * Represents a command to show the entire task list.
+ */
 public class ListCommand extends Command {
     /**
-     * Executes the command by printing the list.
-     *
-     * @param tasks The user's current list of tasks.
+     * {@inheritDoc}
      */
     public String execute(TaskList tasks) {
         return tasks.toString();

@@ -3,6 +3,9 @@ package duke.command;
 import duke.DukeException;
 import duke.TaskList;
 
+/**
+ * Represents a command to delete a particular task from the list.
+ */
 public class DeleteCommand extends Command {
     private final int pos;
     
@@ -11,11 +14,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Executes the command by deleting the item at pos in list.
-     *
-     * @param tasks The user's current list of tasks.
-     * 
-     * @throws DukeException If the data file cannot be accessed.
+     * {@inheritDoc}
      */
     public String execute(TaskList tasks) throws DukeException {
         return tasks.deleteTask(pos);

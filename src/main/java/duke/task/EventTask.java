@@ -11,6 +11,9 @@ public class EventTask extends Task {
         this.at = at;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
