@@ -5,8 +5,8 @@ import duke.task.TaskList;
 
 public class ListCommand extends Command {
     @Override
-    public void execute(TaskList tasks) {
-        Parser.printMsg(String.format("Here are the tasks in your list:\n%s",
-                tasks));
+    public String execute(TaskList tasks) {
+        return String.format("Here are the tasks in your list:\n%s",
+                tasks);
     }
 }

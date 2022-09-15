@@ -10,6 +10,7 @@ public abstract class Command {
      * Executes the command.
      *
      * @param tasks The {@code TaskList} to execute the command on.
+     * @return The {@code String} output.
      */
-    public abstract void execute(TaskList tasks);
+    public abstract String execute(TaskList tasks);
 }

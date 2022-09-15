@@ -19,15 +19,15 @@ public class AddTaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) {
+    public String execute(TaskList tasks) {
         tasks.add(task);
         try {
             Storage.write(tasks);
         } catch (DukeException e) {
-            Parser.printMsg(e.getMessage());
+            e.printStackTrace();
         }
-        Parser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
+        return String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                 tasks.get(tasks.size() - 1),
-                tasks.lengthString()));
+                tasks.lengthString());
     }
 }

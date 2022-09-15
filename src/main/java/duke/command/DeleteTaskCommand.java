@@ -19,14 +19,14 @@ public class DeleteTaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) {
+    public String execute(TaskList tasks) {
         Task task = tasks.remove(index);
         try {
             Storage.write(tasks);
         } catch (DukeException e) {
-            Parser.printMsg(e.getMessage());
+            e.printStackTrace();
         }
-        Parser.printMsg(String.format("Noted. I've removed this task:\n %s",
-                task));
+        return String.format("Noted. I've removed this task:\n %s",
+                task);
     }
 }

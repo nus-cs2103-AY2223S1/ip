@@ -21,14 +21,14 @@ public class SetDoneCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) {
+    public String execute(TaskList tasks) {
         tasks.setDone(index, isDone);
         try {
             Storage.write(tasks);
         } catch (DukeException e) {
-            Parser.printMsg(e.getMessage());
+            e.printStackTrace();
         }
-        Parser.printMsg(String.format("Nice! I've marked this task as done:\n %s",
-                tasks.get(index)));
+        return String.format("Nice! I've marked this task as done:\n %s",
+                tasks.get(index));
     }
 }

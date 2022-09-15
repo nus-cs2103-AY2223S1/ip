@@ -16,51 +16,28 @@ public class Duke {
     private static final String GREETING = "Hello! I'm Duke!\n";
 
     private TaskList tasks;
-    private boolean hasTasksEnd = false;
+    public boolean hasTasksEnd = false;
 
     /**
      * Initialises Duke class with empty {@code TaskList}.
      */
     public Duke() {
-        tasks = new TaskList();
-    }
-
-    /**
-     * Runs the program.
-     */
-    public void run() {
-
         try {
             tasks = Storage.load();
         } catch (DukeException e) {
-            Parser.printMsg(e.getMessage());
-        }
-        Parser.printMsg(String.format("%s%sYou have %s. What can I do for you?", LOGO, GREETING, tasks.lengthString()));
-
-        Scanner sc = new Scanner(System.in);
-
-        while (!hasTasksEnd) {
-            System.out.print(">> ");
-            String input = sc.nextLine();
-            try {
-                Command command = Parser.parseCommand(input);
-                command.execute(tasks);
-                if (command instanceof ByeCommand) {
-                    hasTasksEnd = true;
-                }
-                Storage.write(tasks);
-            } catch (DukeException e) {
-                Parser.printMsg(e.getMessage());
-            }
+            e.printStackTrace();
         }
     }
-    /**
-     * Starts the program.
-     *
-     * @param args an array of command-line arguments for the program
-     */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
+
+    public String getResponse(String input) throws DukeException {
+        Command command = Parser.parseCommand(input);
+        if (command instanceof ByeCommand) {
+            hasTasksEnd = true;
+        }
+        return command.execute(tasks);
+    }
+
+    public String getWelcomeMessage() {
+        return String.format("%s%sYou have %s. What can I do for you?", LOGO, GREETING, tasks.lengthString());
     }
 }
