@@ -6,16 +6,16 @@ package neo;
 public class ToDo extends Task{
 
     /**
-     * todo constructor
+     * Todo constructor.
      *
-     * @param description user input string
+     * @param description User input string.
      */
     public ToDo(String description) {
         super(description);
     }
 
     /**
-     * toString that returns todo task in a specific format.
+     * Returns todo task in a specific format.
      *
      * @return String
      */

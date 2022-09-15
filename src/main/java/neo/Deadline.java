@@ -11,8 +11,8 @@ public class Deadline extends Task{
     /**
      * Constructor for deadline class.
      *
-     * @param description stores user input
-     * @param by stores date string
+     * @param description Stores user input.
+     * @param by Stores date string.
      */
     public Deadline(String description, String by) {
         super(description);
@@ -22,7 +22,7 @@ public class Deadline extends Task{
     /**
      * Constructor for deadline class.
      *
-     * @param description stores user input
+     * @param description Stores user input.
      */
     public Deadline(String description) {
         super(description);

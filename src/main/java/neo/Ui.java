@@ -12,7 +12,7 @@ public class Ui {
     public Ui() {}
 
     /**
-     * Function to print welcome message
+     * Prints welcome message.
      */
     public String printStart() {
         return "Hello! I'm Neo " + "Enter help for more details";
@@ -20,12 +20,17 @@ public class Ui {
 
     /**
      *
-     * Function to print goodbye message.
+     * Prints goodbye message.
      */
     public String printEnd() {
         return "Exiting chat bot! Hope to see you again";
     }
 
+    /**
+     * Returns format of all commands.
+     *
+     * @return String
+     */
     public String help() {
         String STR_1 = "Command format";
         String STR_2 = "list";
@@ -45,6 +50,12 @@ public class Ui {
                 + STR_7 + "\n" + STR_8 + "\n" + STR_9 + "\n" + STR_10 + "\n" + STR_11 + "\n" + STR_12 + "\n" + STR_13 + "\n";
     }
 
+    /**
+     * Returns the error message.
+     *
+     * @param e Error message.
+     * @return String
+     */
     public String errorMessage(String e) {
         return e;
     }

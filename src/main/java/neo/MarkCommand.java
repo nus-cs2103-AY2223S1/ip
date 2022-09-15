@@ -1,6 +1,9 @@
 package neo;
 import java.io.IOException;
 
+/**
+ * Class to mark task as done.
+ */
 public class MarkCommand extends Command {
 
     private TaskList arrayLL;
@@ -10,7 +13,7 @@ public class MarkCommand extends Command {
     Task task;
 
     /**
-     * mark command constructor
+     * Mark command constructor.
      *
      * @param ui ui
      * @param stor instance of storage class
@@ -23,7 +26,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Mark command as completed
+     * Marks command as completed.
      *
      * @param tempi user input string
      * @throws NeoException

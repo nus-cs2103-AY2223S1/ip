@@ -55,10 +55,10 @@ public class Neo {
     }
 
     /**
-     * Function used to retrieve tasks from neo.txt and add to task list.
+     * Retrieves tasks from neo.txt and add to task list.
      *
      * @param filePath file path
-     * @param arrayLL tasklist to store tasks
+     * @param arrayLL taskList to store tasks
      */
     public static void addToTaskList(String filePath, TaskList arrayLL)  {
         File f = new File(filePath);

@@ -8,20 +8,20 @@ public class AddCommand extends Command {
 
     private TaskList arrayLL;
     private Ui ui;
-    private Storage stor;
+    private Storage store;
     private int type;
 
     /**
      * AddCommand constructor.
      *
-     * @param ui ui
-     * @param stor instance of storage class
-     * @param arrayLL arraylist to stor tasks
-     * @param type integer to identify type of task
+     * @param ui User interface.
+     * @param store Instance of storage class.
+     * @param arrayLL Arraylist to store tasks.
+     * @param type Integer to identify type of task.
      */
-    public AddCommand(Ui ui, Storage stor, TaskList arrayLL, int type) {
+    public AddCommand(Ui ui, Storage store, TaskList arrayLL, int type) {
         this.ui = ui;
-        this.stor = stor;
+        this.store = store;
         this.arrayLL = arrayLL;
         this.type = type;
     }
@@ -29,16 +29,16 @@ public class AddCommand extends Command {
     /**
      * Adds task to array depending on type of task.
      *
-     * @param tempi user input string
+     * @param taskNumber user input string
      * @throws NeoException
      * @throws IOException
      */
     @Override
-    String complete(String tempi) throws NeoException, IOException {
+    String complete(String taskNumber) throws NeoException, IOException {
 
         if (type ==0) {
             String arri[];
-            arri = tempi.split("/by ");
+            arri = taskNumber.split("/by ");
             String temp2 = arri[0];
             String temp3 = arri[1];
 
@@ -46,12 +46,12 @@ public class AddCommand extends Command {
             System.out.println("Added: " + d.toString());
             arrayLL.addTask(d);
             System.out.println("here " + arrayLL.getTask(0));
-            stor.storeData(d);
+            store.storeData(d);
             return d.toString();
         }
         if (type ==1) {
             String arri[];
-            arri = tempi.split("/at ");
+            arri = taskNumber.split("/at ");
             String temp2 = arri[0];
             String temp3 = arri[1];
 
@@ -59,15 +59,15 @@ public class AddCommand extends Command {
             System.out.println("Added: " + e.toString());
             arrayLL.addTask(e);
             System.out.println("here " + arrayLL.getTask(0));
-            stor.storeData(e);
+            store.storeData(e);
             return e.toString();
         }
         if (type ==2) {
-            ToDo td = new ToDo(tempi);
+            ToDo td = new ToDo(taskNumber);
             System.out.println("Added: " + td.toString());
             arrayLL.addTask(td);
             System.out.println("here: " + arrayLL.getTask(0));
-            stor.storeData(td);
+            store.storeData(td);
             return td.toString();
         }
         return "";

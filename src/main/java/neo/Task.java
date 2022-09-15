@@ -20,7 +20,7 @@ public class Task {
     }
 
     /**
-     * Return description of task.
+     * Returns description of task.
      *
      * @return String
      */
@@ -29,7 +29,7 @@ public class Task {
     }
 
     /**
-     * Return X if task has been completed.
+     * Returns X if task has been completed.
      *
      * @return String
      */
@@ -40,7 +40,7 @@ public class Task {
     /**
      * Marks task as done.
      *
-     * @param done true if task is completed
+     * @param done True if task is completed.
      */
     public void setIsDone(Boolean done){
         isDone = done;
@@ -52,7 +52,7 @@ public class Task {
     }
 
     /**
-     * ToString function which return task in a specific format.
+     * Returns task in a specific format.
      *
      * @return String
      */

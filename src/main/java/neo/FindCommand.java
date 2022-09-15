@@ -16,7 +16,7 @@ public class FindCommand extends Command{
     /**
      * Constructor of find command class.
      *
-     * @param ui ui
+     * @param ui user interface
      * @param stor instance of storage class
      * @param arrayLL arrayList to store tasks
      */
@@ -27,20 +27,20 @@ public class FindCommand extends Command{
     }
 
     /**
-     * Function to find matching tasks.
+     * Finds matching tasks.
      *
-     * @param tempi user input string for keyword
-     * @throws NeoException neo excpetion
+     * @param keyword user input string for keyword
+     * @throws NeoException neo exception
      * @throws IOException Input output button
      */
     @Override
-    String complete(String tempi) throws NeoException, IOException {
+    String complete(String keyword) throws NeoException, IOException {
         System.out.println("Here are the matching tasks in your list:");
         String str = "";
         for(int i =0; i<arrayLL.arrayL.size(); i++) {
-            String tempii = String.valueOf(arrayLL.getTask(i));
-            if (tempii.contains(tempi)) {
-                str += i + tempii + "\n";
+            String taskDescription = String.valueOf(arrayLL.getTask(i));
+            if (taskDescription.contains(keyword)) {
+                str += i+1 + ". " + taskDescription + "\n";
             }
         }
         return str;

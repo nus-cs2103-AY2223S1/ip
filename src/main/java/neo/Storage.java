@@ -20,7 +20,7 @@ public class Storage {
     /**
      * Constructor for storage class with parameter inp.
      *
-     * @param inp stores user input string
+     * @param inp Stores user input string.
      */
     public Storage(String inp) {
         this.inp = inp;
@@ -31,7 +31,7 @@ public class Storage {
     /**
      * Prints tasks in file.
      *
-     * @param filePath stores path of file
+     * @param filePath Stores path of file.
      * @throws FileNotFoundException
      */
     public static String printFileContents(String filePath) throws FileNotFoundException {
@@ -52,9 +52,9 @@ public class Storage {
     /**
      * Writes task to file.
      *
-     * @param filePath stores path of file
-     * @param textToAppend string representation of task
-     * @throws IOException input output exception
+     * @param filePath Stores path of file.
+     * @param textToAppend String representation of task.
+     * @throws IOException Input output exception.
      */
     private static void WriteToFile(String filePath, String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, false); // create a FileWriter in append mode
@@ -65,9 +65,9 @@ public class Storage {
     /**
      * Adds task to file.
      *
-     * @param filePath stores path of file
-     * @param textToAppend string representation of task
-     * @throws IOException
+     * @param filePath Stores path of file.
+     * @param textToAppend String representation of task.
+     * @throws IOException Input output exception.
      */
     private static void appendToFile(String filePath, String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
@@ -80,8 +80,8 @@ public class Storage {
     /**
      * Calls appendToFile to add to file.
      *
-     * @param task task
-     * @throws IOException input output exception
+     * @param task Stores task.
+     * @throws IOException Input output exception.
      */
 
     public void storeData(Task task) throws IOException {
@@ -96,8 +96,8 @@ public class Storage {
     /**
      * Calls WriteToFile to write task to file.
      *
-     * @param task task
-     * @throws IOException input output exception
+     * @param task Stores task.
+     * @throws IOException Input output exception.
      */
 
     public void writeData(Task task) throws IOException {
@@ -112,7 +112,7 @@ public class Storage {
     /**
      * Prints data from file.
      *
-     * @throws IOException input output exception
+     * @throws IOException Input output exception.
      */
 
     public String retrieveData() throws IOException {

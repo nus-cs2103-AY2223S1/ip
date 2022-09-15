@@ -1,5 +1,4 @@
 package neo;
-import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -12,35 +11,35 @@ public class Parser {
     private UnMarkCommand unmark;
     private FindCommand find;
     private Ui ui;
-    private Storage stor;
+    private Storage store;
     private TaskList arrayLL;
     private PriorityCommand priority;
     private int type;
 
     /**
-     * Parser constructor.
+     * Constructor for parser class.
      *
-     * @param ui ui
-     * @param stor instance of storage class
-     * @param arrayLL arraylist to stor tasks
+     * @param ui User interface.
+     * @param store Instance of storage class.
+     * @param arrayLL Arraylist to store tasks.
      */
-    public Parser(Ui ui, Storage stor, TaskList arrayLL) {
+    public Parser(Ui ui, Storage store, TaskList arrayLL) {
         this.ui = ui;
-        this.stor = stor;
+        this.store = store;
         this.arrayLL = arrayLL;
     }
 
     /**
-     * Function to make sense of user input.
+     * Makes sense of user input.
      *
-     * @param userText string containing user input
-     * @throws NeoException excpetion neo
-     * @throws IOException input output exception
+     * @param userText The string containing user input.
+     * @throws NeoException Exception neo.
+     * @throws IOException Input output exception.
      */
     public String checkText(String userText) throws NeoException, IOException {
 
         if (userText.equals("list") || userText.equals("List")) {
-            return stor.retrieveData();
+            return store.retrieveData();
         }
         if (userText.equals("help")) {
             return ui.help();
@@ -56,37 +55,37 @@ public class Parser {
             throw new NeoException("Sorry I don't know what that means");
         } else {
             String command = arr[0];
-            String tempi = arr[1];
+            String taskNumber = arr[1];
             switch (command) {
                 case "high":
                 case "medium":
                 case "low":
-                    this.priority = new PriorityCommand(ui, stor, arrayLL, type);
+                    this.priority = new PriorityCommand(ui, store, arrayLL, type);
                     return priority.complete(userText);
                 case "event":
                     type = 1;
-                    this.add = new AddCommand(ui, stor, arrayLL, type);
-                    return add.complete(tempi);
+                    this.add = new AddCommand(ui, store, arrayLL, type);
+                    return add.complete(taskNumber);
                 case "todo":
                     type = 2;
-                    this.add = new AddCommand(ui, stor, arrayLL, type);
-                    return add.complete(tempi);
+                    this.add = new AddCommand(ui, store, arrayLL, type);
+                    return add.complete(taskNumber);
                 case "find":
-                    this.find = new FindCommand(ui, stor, arrayLL);
+                    this.find = new FindCommand(ui, store, arrayLL);
                     return find.complete(arr[1]);
                 case "mark":
-                    this.mark = new MarkCommand(ui, stor, arrayLL);
+                    this.mark = new MarkCommand(ui, store, arrayLL);
                     return mark.complete(arr[1]);
                 case "unmark":
-                    this.unmark = new UnMarkCommand(ui, stor, arrayLL);
+                    this.unmark = new UnMarkCommand(ui, store, arrayLL);
                     return unmark.complete(arr[1]);
                 case "delete":
-                    this.delete = new DeleteCommand(ui, stor, arrayLL);
+                    this.delete = new DeleteCommand(ui, store, arrayLL);
                     return delete.complete(arr[1]);
                 case "deadline":
                     type = 0;
-                    this.add = new AddCommand(ui, stor, arrayLL, type);
-                    return add.complete(tempi);
+                    this.add = new AddCommand(ui, store, arrayLL, type);
+                    return add.complete(taskNumber);
                 default:
                     throw new NeoException("Sorry I don't know what that means");
             }

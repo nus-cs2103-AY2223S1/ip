@@ -24,7 +24,7 @@ public class TaskList {
     /**
      * Gets task from ArrayList.
      *
-     * @param i integer
+     * @param i Task number integer.
      * @return Task
      */
     public Task getTask(int i) {
@@ -34,7 +34,7 @@ public class TaskList {
     /**
      * Removes task from ArrayList.
      *
-     * @param in integer
+     * @param in Task number integer.
      */
     public void delete(int in) {
         System.out.println("ok, I've deleted this take from array");
