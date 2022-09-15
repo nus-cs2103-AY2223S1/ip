@@ -1,8 +1,3 @@
-T|1|b
-T|0|a
-E|0|xyz|10
-T|0|abcxyz
-T|0|a
-T|0|b
-T|0|b
-T|0|a
+D|0|CS2100 Quiz|2022-09-18
+D|1|CS3230 Tutorial|2022-09-17
+E|0|Resident assistant workshop|2022-10-19

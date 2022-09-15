@@ -1,6 +1,7 @@
 package duke.logic.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import duke.exception.DukeException;
@@ -58,6 +59,8 @@ public class Deadline extends Task {
             return new DukeException.EmptyDeadlineException().throwDukeException();
         } catch (ArrayIndexOutOfBoundsException e) {
             return new DukeException.DeadlineWithoutByException().throwDukeException();
+        } catch (DateTimeParseException e) {
+            return new DukeException.WrongDateFormat().throwDukeException();
         }
 
     }
@@ -77,6 +80,6 @@ public class Deadline extends Task {
      */
     @Override
     public String storedData() {
-        return "D" + "|" + super.storedData() + "|" + by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return "D" + "|" + super.storedData() + "|" + by;
     }
 }

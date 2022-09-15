@@ -90,4 +90,13 @@ public class DukeException {
             super("Oh no!!! Delete must follow by a index of selected item.");
         }
     }
+
+    /**
+     * Prints error message for Deadline command without time.
+     */
+    public static class WrongDateFormat extends DukeException {
+        public WrongDateFormat() {
+            super("Oh no!!! Format for date should be yyyy-mm-dd without any spacings.");
+        }
+    }
 }

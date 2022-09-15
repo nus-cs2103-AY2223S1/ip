@@ -1,4 +1,7 @@
 package duke.logic.task;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import duke.exception.DukeException;
@@ -10,7 +13,7 @@ import duke.storage.DukeEncoder;
  */
 public class Event extends Task {
 
-    protected String at;
+    protected LocalDate at;
     /**
      * Constructor for event.
      *
@@ -18,7 +21,7 @@ public class Event extends Task {
      */
     public Event(String detail, String at) {
         super(detail);
-        this.at = at;
+        this.at = LocalDate.parse(at);
     }
 
     /**
@@ -29,7 +32,7 @@ public class Event extends Task {
      */
     public Event(String detail, boolean isDone, String at) {
         super(detail, isDone);
-        this.at = at;
+        this.at = LocalDate.parse(at);
     }
 
     /**
@@ -52,11 +55,11 @@ public class Event extends Task {
                     + updateNumOfTask(workList);
         } catch (StringIndexOutOfBoundsException e) {
             return new DukeException.EmptyEventException().throwDukeException();
-
         } catch (ArrayIndexOutOfBoundsException e) {
             return new DukeException.EventWithoutAtException().throwDukeException();
+        } catch (DateTimeParseException e) {
+            return new DukeException.WrongDateFormat().throwDukeException();
         }
-
     }
     /**
      * Returns String form of the task
@@ -64,7 +67,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     /**
