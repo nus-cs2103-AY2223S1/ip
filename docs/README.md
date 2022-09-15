@@ -69,7 +69,7 @@ Adds a deadline task to the list
 
 Example of usage: 
 
-`deadline homework /by 2022-09-18`
+`deadline homework /by 2022-09-19`
 
 Expected outcome:
 
@@ -77,7 +77,7 @@ A deadline homework task will be added to ur tasklist and the following output w
 
 ```
 Got it. I've added this task:
-[D][] homework (by Sep 18 2022)
+[D][] homework (by Sep 19 2022)
 Now you have 1 tasks in the list.
 ```
 
