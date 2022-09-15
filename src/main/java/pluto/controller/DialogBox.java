@@ -34,7 +34,6 @@ public class DialogBox extends HBox {
      * @param text Text input or output.
      */
     public DialogBox(String text) {
-        System.out.println(text);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);

@@ -20,14 +20,12 @@
 
 
 <p align="center">
-  <img src="Ui.png" height="500px"></img>
+  <img src="Ui.png" height="650px">
 </p>
 
-<a name="start" style = "color: inherit;">
 
-# Quick start
 
-</a>
+# <a name="start" style = "color: inherit;"></a>Quick start
 
 * Ensure that you have Java 11 or above installed in your computer.
 * Download the latest `Pluto.jar` from [here](http://example.com).
@@ -37,11 +35,9 @@
 * If the previous step doesn't work, open the terminal, go to the application directory and try running `java -jar Pluto.jar`.
 * Type in the command and press Enter or click on the Send button to execute it. Enter `help` to know about all commands.
 
-<a name="features" style = "color: inherit;">
 
-# Features
 
-</a>
+# <a name="features" style = "color: inherit;"></a>Features
 
 - [X] Add a ToDo task
 - [X] Add a Deadline task
@@ -56,11 +52,9 @@
 
 # Usage
 
-<a name="todo" style = "color: inherit;">
 
-## Adding a ToDo Task : `todo`
 
-</a>
+## <a name="todo" style = "color: inherit;"></a>Adding a ToDo Task : `todo`
 
 Adds a ToDo task with the provided description.
 
@@ -75,11 +69,9 @@ todo join meeting
 > Now you have 1 task in the list.
 ```
 
-<a name="deadline" style = "color: inherit;">
 
-## Adding a Deadline Task : `deadline`
 
-</a>
+## <a name="deadline" style = "color: inherit;"></a>Adding a Deadline Task : `deadline`
 
 Adds a Deadline task with the provided description and deadline date and time.
 
@@ -94,11 +86,9 @@ deadline submit essay /by 01-10-2023 2359
 > Now you have 2 tasks in the list.
 ```
 
-<a name="event" style = "color: inherit;">
 
-## Adding an Event Task : `event`
 
-</a>
+## <a name="event" style = "color: inherit;"></a>Adding an Event Task : `event`
 
 Adds an Event task with the provided description and event date and time.
 
@@ -113,11 +103,9 @@ event dinner /at 30-09-2022 2000
 > Now you have 3 tasks in the list.
 ```
 
-<a name="list" style = "color: inherit;">
 
-## Listing all tasks : `list`
 
-</a>
+## <a name="list" style = "color: inherit;"></a>Listing all tasks : `list`
 
 Displays all tasks with their completion status.
 
@@ -133,11 +121,9 @@ list
 >	3. [E][ ] dinner (at: Sep 30 2022 20:00)
 ```
 
-<a name="mark" style = "color: inherit;">
 
-## Marking a task as done : `mark`
 
-</a>
+## <a name="mark" style = "color: inherit;"></a>Marking a task as done : `mark`
 
 Marks the specified task as done.
 
@@ -151,11 +137,9 @@ mark 1
 > 	[T][X] join meeting
 ```
 
-<a name="unmark" style = "color: inherit;">
 
-## Marking a task as not done : `unmark`
 
-</a>
+## <a name="unmark" style = "color: inherit;"></a>Marking a task as not done : `unmark`
 
 Marks the specified task as not done.
 
@@ -169,11 +153,9 @@ unmark 1
 > 	[T][ ] join meeting
 ```
 
-<a name="delete" style = "color: inherit;">
 
-## Deleting a task : `delete`
 
-</a>
+## <a name="delete" style = "color: inherit;"></a>Deleting a task : `delete`
 
 Deletes the specified task from the list of tasks.
 
@@ -188,11 +170,9 @@ delete 2
 Now you have 2 tasks in the list.
 ```
 
-<a name="show" style = "color: inherit;">
 
-## Finding day schedule : `show`
 
-</a>
+## <a name="show" style = "color: inherit;"></a>Finding day schedule : `show`
 
 Finds all tasks scheduled for the given date.
 
@@ -206,11 +186,9 @@ show 30-09-2022
 >	1. [E][ ] dinner (at: Sep 30 2022 20:00)
 ```
 
-<a name="find" style = "color: inherit;">
 
-## Finding tasks by keyword(s) : `find`
 
-</a>
+## <a name="find" style = "color: inherit;"></a>Finding tasks by keyword(s) : `find`
 
 Finds all tasks that contain the given keyword(s). 
 * The search is case-insensitive.
@@ -235,11 +213,9 @@ find read novel
 >	1. [T][ ] read Harry Potter novel
 ```
 
-<a name="reschedule" style = "color: inherit;">
 
-## Rescheduling a task : `reschedule`
 
-</a>
+## <a name="reschedule" style = "color: inherit;"></a>Rescheduling a task : `reschedule`
 
 Reschedules an event or deadline task.
 
@@ -253,11 +229,9 @@ reschedule 2 29-09-2022 2030
 >	[E][ ] dinner (at: Sep 29 2022 20:30)
 ```
 
-<a name="help" style = "color: inherit;">
 
-## Displaying help message : `help`
 
-</a>
+## <a name="help" style = "color: inherit;"></a>Displaying help message : `help`
 
 Displays a help message with the list of commands and their usage format.
 
@@ -284,11 +258,9 @@ help
 > NOTE: All dates should be in 'dd-MM-yyyy HHmm' format.
 ```
 
-<a name="bye" style = "color: inherit;">
 
-## Exiting the program : `bye`
 
-</a>
+## <a name="bye" style = "color: inherit;"></a>Exiting the program : `bye`
 
 Exits the program.
 
@@ -301,26 +273,25 @@ bye
 > See You Later!
 ```
 
-<a name="summary" style = "color: inherit;">
 
-# Command summary
 
-</a>
-<center>
+# <a name="summary" style = "color: inherit;"></a>Command summary
 
-| Action     | Format, Examples                                                                                                        |
-|------------|-------------------------------------------------------------------------------------------------------------------------|
-| Todo       | `todo <task name>` <br/> e.g., `todo read book`                                                                         |
-| Deadline   | `deadline <task name> /by <date & time in 'dd-MM-yyyy HHmm' format>`<br/> e.g., `deadline project /by 16-09-2022 2359`  |
-| Event      | `event <task name> /at <date & time in 'dd-MM-yyyy HHmm' format>`<br/> e.g., `event seminar /at 20-09-2022 1600`        |
-| List       | `list`                                                                                                                  |
-| Mark       | `mark <task number>` <br/>e.g., `mark 2`                                                                                |
-| Unmark     | `unmark <task number>` <br/>e.g., `unmark 3`                                                                            |
-| Delete     | `delete <task number>` <br/>e.g., `delete 1`                                                                            |
-| Show       | `show <date in 'dd-MM-yyyy' format>` <br/>e.g., `show 25-09-2022`                                                       |
-| Find       | `find <keyword(s)>` <br/>e.g., `find meeting`                                                                           |
-| Reschedule | `reschedule <task number> <date & time in 'dd-MM-yyyy HHmm' format>` <br/>e.g., `reschedule 3 25-09-2022 1900`          |
-| Help       | `help`                                                                                                                  |
-| Bye        | `bye`                                                                                                                   |
+<div align="center">
 
-</center>
+| Action     | Format, Examples                                                                                                       |
+|------------|------------------------------------------------------------------------------------------------------------------------|
+| Todo       | `todo <task name>` <br/> e.g., `todo read book`                                                                        |
+| Deadline   | `deadline <task name> /by <date & time in 'dd-MM-yyyy HHmm' format>`<br/> e.g., `deadline project /by 16-09-2022 2359` |
+| Event      | `event <task name> /at <date & time in 'dd-MM-yyyy HHmm' format>`<br/> e.g., `event seminar /at 20-09-2022 1600`       |
+| List       | `list`                                                                                                                 |
+| Mark       | `mark <task number>` <br/>e.g., `mark 2`                                                                               |
+| Unmark     | `unmark <task number>` <br/>e.g., `unmark 3`                                                                           |
+| Delete     | `delete <task number>` <br/>e.g., `delete 1`                                                                           |
+| Show       | `show <date in 'dd-MM-yyyy' format>` <br/>e.g., `show 25-09-2022`                                                      |
+| Find       | `find <keyword(s)>` <br/>e.g., `find meeting`                                                                          |
+| Reschedule | `reschedule <task number> <date & time in 'dd-MM-yyyy HHmm' format>` <br/>e.g., `reschedule 3 25-09-2022 1900`         |
+| Help       | `help`                                                                                                                 |
+| Bye        | `bye`                                                                                                                  |
+
+</div>

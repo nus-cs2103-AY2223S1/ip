@@ -18,7 +18,7 @@ public class ParserTest {
             Parser.parseAddTask("join meeting /by 04/05/2022", Parser.Type.DEADLINE);
             fail(); // the test should not reach this line
         } catch (Exception e) {
-            assertEquals("OOPS!!! dd-MM-yyyy HHmm date format required.", e.getMessage());
+            assertEquals("OOPS!!! dd-MM-yyyy HHmm date and time format required.", e.getMessage());
         }
     }
 
