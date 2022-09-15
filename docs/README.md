@@ -5,6 +5,13 @@ Greg is your friendly companion and helps you remember your important tasks and 
 - text-based
 - easy to learn
 - ~~FAST~~ SUPER FAST to use
+
+All you need to do is:
+1. download it from [here](https://github.com/kynapy/ip/releases/download/A-Release/duke-v0.2.jar)
+2. double-click it.
+3. add your tasks and expenses.
+4. let it manage your tasks and expenses for you 😄 
+
 ## Features 
 - [x] Tasks Tracking
 - [X] Expense Tracking
