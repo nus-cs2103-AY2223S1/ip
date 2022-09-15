@@ -1,6 +1,7 @@
-[T]#testToDo#false
-[D]#testDeadline#false#Dec 01 2000, 1600
-[E]#testEvent#false#Dec 01 2000, 1600#Dec 01 2000, 1800
-[E]#testEvent2#false#Dec 01 2000, 1600#Dec 01 2000, 1800
-[E]#testEvent3#false#Dec 01 2000, 1600#Dec 01 2000, 1800
-[T]#testToDo2#false
+[T]#Buy groceries#false
+[T]#Cook spaghetti#false
+[D]#Math Homework#false#Sep 16 2022, 0930
+[D]#Coding Homework#false#Sep 16 2022, 0930
+[E]#Concert#false#Sep 16 2022, 2000#Sep 16 2022, 2359
+[T]#Do CS2103T iP Homework#false
+[T]#Do Chinese Homework#false
