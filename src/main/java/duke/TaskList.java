@@ -1,5 +1,6 @@
 package duke;
 
+import duke.task.Note;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -13,8 +14,10 @@ import java.util.Locale;
 public class TaskList {
 
     private final ArrayList<Task> MY_TASKS;
-    public TaskList(ArrayList<Task> tasks) {
+    private final ArrayList<Note> MY_NOTES;
+    public TaskList(ArrayList<Task> tasks, ArrayList<Note> notes) {
         this.MY_TASKS = tasks;
+        this.MY_NOTES = notes;
     }
 
     /**
@@ -22,11 +25,26 @@ public class TaskList {
      */
     public String list() {
         StringBuilder builder = new StringBuilder();
-        builder.append("RAWR! Here is your list:\n");
-        for (int i = 0; i < MY_TASKS.size(); i++) {
-            builder.append(i + 1).append(". ")
-                    .append(MY_TASKS.get(i).toString()).append("\n");
+        if (MY_TASKS.size() > 0) {
+            builder.append("RAWR! Here is your tasks:\n");
+            for (int i = 0; i < MY_TASKS.size(); i++) {
+                builder.append(i + 1).append(". ")
+                        .append(MY_TASKS.get(i).toString()).append("\n");
+            }
+        } else {
+            builder.append("RAWR! You have no tasks!\n");
         }
+
+        if (MY_NOTES.size() > 0) {
+            builder.append("\nRAWR! Here is your notes:\n");
+            for (Note my_note : MY_NOTES) {
+                builder.append("> ")
+                        .append(my_note.toString()).append("\n");
+            }
+        } else {
+            builder.append("RAWR! You have no notes!\n");
+        }
+
         return builder.toString();
     }
 
@@ -45,7 +63,7 @@ public class TaskList {
      * @param i The index of the task to be returned.
      * @return The task at index i.
      */
-    public Task get(int i) {
+    public Task getTask(int i) {
         assert i > 0 && i < MY_TASKS.size();
         return MY_TASKS.get(i);
     }
@@ -61,12 +79,21 @@ public class TaskList {
     }
 
     /**
-     * Gets the size of the list.
+     * Gets the size of the task list.
      *
-     * @return The number of items in the list.
+     * @return The number of items in the task list.
      */
-    public int size() {
+    public int getTaskSize() {
         return MY_TASKS.size();
+    }
+
+    /**
+     * Gets the size of the note list.
+     *
+     * @return The number of items in the note list.
+     */
+    public int getNoteSize() {
+        return MY_NOTES.size();
     }
 
     public ArrayList<Task> find(String match) {
@@ -79,5 +106,25 @@ public class TaskList {
             }
         }
         return matches;
+    }
+
+    /**
+     * Adds a new note to the list.
+     *
+     * @param note The specified task to be added.
+     */
+    public void add(Note note) {
+        MY_NOTES.add(note);
+    }
+
+    /**
+     * Gets the note at a specified index.
+     *
+     * @param i The index of the note to be returned.
+     * @return The note at index i.
+     */
+    public Note getNote(int i) {
+        assert i > 0 && i < MY_NOTES.size();
+        return MY_NOTES.get(i);
     }
 }

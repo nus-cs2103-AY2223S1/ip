@@ -46,11 +46,11 @@ public class MarkCommand extends Command {
             ui.emptyDescription();
         }
 
-        if (index > tasks.size() || index < 0) {
+        if (index > tasks.getTaskSize() || index < 0) {
             Ui.invalidTask();
         }
 
-        myTask = tasks.get(index);
+        myTask = tasks.getTask(index);
         if (MARK) {
             myTask.markAsDone();
             storage.writeFile(tasks);

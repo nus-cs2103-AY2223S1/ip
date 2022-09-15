@@ -1,9 +1,6 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import duke.task.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,13 +17,14 @@ public class Storage {
     private enum Commands {
         DEADLINE,
         TODO,
-        EVENT
+        EVENT,
+        NOTE
     }
 
     private final File FILE;
     private final String FILE_PATH;
-    private final ArrayList<Task> ls = new ArrayList<>(100);
-
+    private final ArrayList<Task> taskLs = new ArrayList<>(100);
+    private final ArrayList<Note> noteLs = new ArrayList<>(100);
     /**
      * Creates a storage object to load and save all tasks.
      *
@@ -37,19 +35,18 @@ public class Storage {
         this.FILE = new File(filePath);
     }
 
-    protected ArrayList<Task> load() throws IOException {
+    protected TaskList load() throws IOException {
         try {
             if (this.FILE.createNewFile()) {
                 System.out.println("Dino created a new file: " + FILE.getName() + "\n");
             } else {
                 loadFile();
-                System.out.println("Dino found the file in your directory and loaded contents.\n");
             }
         } catch (IOException e) {
             System.out.println("Dino failed at creating file./n");
             e.printStackTrace();
         }
-        return ls;
+        return new TaskList(taskLs, noteLs);
     }
 
     public void loadFile() throws IOException {
@@ -58,9 +55,10 @@ public class Storage {
             String current = br.readLine();
             while (current != null) {
                 String[] str = current.split("\\|", 3);
-                Commands myTask = Commands.valueOf(str[0].toUpperCase(Locale.ROOT));
-                assert myTask == Commands.DEADLINE || myTask == Commands.EVENT || myTask == Commands.TODO;
-                switch (myTask) {
+                Commands command = Commands.valueOf(str[0].toUpperCase(Locale.ROOT));
+                assert command == Commands.DEADLINE || command == Commands.EVENT || command == Commands.TODO
+                        || command == Commands.NOTE;
+                switch (command) {
                     case DEADLINE:
                         loadDl(str);
                         break;
@@ -70,8 +68,12 @@ public class Storage {
                     case EVENT:
                         loadEvent(str);
                         break;
+                    case NOTE:
+                        loadNote(str);
+                        break;
                     default:
                         Ui.invalidTask();
+                        break;
                 }
                 current = br.readLine();
             }
@@ -84,7 +86,7 @@ public class Storage {
     private void loadDl(String[] str) throws DukeException {
         String[] dl = str[2].split("\\|", 2);
         Task deadline = new Deadline(dl[0], dl[1]);
-        ls.add(deadline);
+        taskLs.add(deadline);
         if (Objects.equals(str[1], "1")) {
             deadline.markAsDone();
         }
@@ -92,7 +94,7 @@ public class Storage {
 
     private void loadTodo(String[] str) throws DukeException {
         Task todo = new ToDo(str[2]);
-        ls.add(todo);
+        taskLs.add(todo);
         if (Objects.equals(str[1], "1")) {
             todo.markAsDone();
         }
@@ -101,19 +103,28 @@ public class Storage {
     private void loadEvent(String[] str) throws DukeException {
         String[] evnt = str[2].split("\\|", 2);
         Task event = new Event(evnt[0], evnt[1]);
-        ls.add(event);
+        taskLs.add(event);
         if (Objects.equals(str[1], "1")) {
             event.markAsDone();
         }
+    }
+
+    private void loadNote(String[] str) throws DukeException {
+        Note note = new Note(str[1]);
+        noteLs.add(note);
     }
 
     public void writeFile(TaskList tasks) {
         try {
             FileWriter myWriter = new FileWriter(this.FILE_PATH);
             StringBuilder str = new StringBuilder();
-            for (int i = 0; i < tasks.size(); i++) {
-                Task myTask = tasks.get(i);
+            for (int i = 0; i < tasks.getTaskSize(); i++) {
+                Task myTask = tasks.getTask(i);
                 str.append(format(myTask));
+            }
+            for (int i = 0; i < tasks.getNoteSize(); i++) {
+                Note myNote = tasks.getNote(i);
+                str.append(format(myNote));
             }
             myWriter.write(str.toString());
             myWriter.close();
@@ -133,5 +144,9 @@ public class Storage {
             return "DEADLINE|" + task.getStatus() + "|" + task.getDescription() + "|" + deadline.getBy() + "\n";
         }
         return "";
+    }
+
+    private String format(Note note) {
+       return "NOTE|" + note.getDescription() + "\n";
     }
 }

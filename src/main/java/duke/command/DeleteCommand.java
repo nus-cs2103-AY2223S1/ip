@@ -42,11 +42,11 @@ public class DeleteCommand extends Command {
             ui.emptyDescription();
         }
 
-        if (index > tasks.size() || index < 0) {
+        if (index > tasks.getTaskSize() || index < 0) {
             Ui.invalidTask();
         }
 
-        Task myTask = tasks.get(index);
+        Task myTask = tasks.getTask(index);
         tasks.remove(index);
         storage.writeFile(tasks);
         return ui.remove(tasks, myTask);

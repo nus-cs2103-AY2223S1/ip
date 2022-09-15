@@ -19,7 +19,8 @@ public class Parser {
         TODO,
         EVENT,
         DELETE,
-        FIND
+        FIND,
+        NOTE
     }
 
     /**
@@ -40,7 +41,8 @@ public class Parser {
         }
         assert myTask == Commands.BYE || myTask == Commands.LIST || myTask == Commands.MARK
                 || myTask == Commands.UNMARK || myTask == Commands.DEADLINE || myTask == Commands.TODO
-                || myTask == Commands.EVENT || myTask == Commands.DELETE || myTask == Commands.FIND;
+                || myTask == Commands.EVENT || myTask == Commands.DELETE || myTask == Commands.FIND
+                || myTask == Commands.NOTE;
         switch (myTask) {
         case BYE:
             return new ExitCommand();
@@ -60,6 +62,8 @@ public class Parser {
             return new DeleteCommand(str);
         case FIND:
             return new FindCommand(str);
+        case NOTE:
+            return new NoteCommand(str);
         default:
             Ui.invalidTask();
         }
