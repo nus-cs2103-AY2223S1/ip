@@ -4,7 +4,7 @@
 
 ## Overview
 
-Tutter is **not** your average chat bot! Modelled after our favourite loveable rat :rat:, Tutter can help you organise your tasks in a fun way!
+Tutter is **not** your average chat bot! Modelled after our favourite loveable rat 🐁, Tutter can help you organise your tasks in a fun way!
 
 ## Quick start
 1. Ensure you have `Java 11` or above installed in your Computer.
