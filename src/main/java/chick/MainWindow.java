@@ -1,4 +1,4 @@
-package duke;
+package chick;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,8 +23,8 @@ public class MainWindow extends AnchorPane {
 
     private Chick chick;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/chick_red.png"));
-    private Image chickImage = new Image(this.getClass().getResourceAsStream("/images/chick.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/chick_red_nobg.png"));
+    private Image chickImage = new Image(this.getClass().getResourceAsStream("/images/chick_nobg.png"));
 
     /**
      * Initialize MainWindow.

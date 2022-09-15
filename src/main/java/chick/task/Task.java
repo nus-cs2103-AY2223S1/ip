@@ -1,4 +1,4 @@
-package duke.task;
+package chick.task;
 
 /**
  * Abstract class representing a Task for Duke Bot.

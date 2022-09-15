@@ -1,4 +1,4 @@
-package duke;
+package chick;
 
 import java.io.IOException;
 

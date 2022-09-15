@@ -1,4 +1,4 @@
-package duke;
+package chick;
 
 /**
  * Class representing DukeException, a custom exception for Duke Bot.

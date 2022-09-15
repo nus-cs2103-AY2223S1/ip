@@ -1,8 +1,8 @@
-package duke.task;
+package chick.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import duke.ChickException;
+import chick.ChickException;
 import org.junit.jupiter.api.Test;
 
 public class DeadlineTaskTest {

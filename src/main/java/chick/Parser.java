@@ -1,11 +1,11 @@
-package duke;
+package chick;
 
 import java.time.format.DateTimeParseException;
 
-import duke.task.DeadlineTask;
-import duke.task.EventTask;
-import duke.task.Task;
-import duke.task.TodoTask;
+import chick.task.DeadlineTask;
+import chick.task.EventTask;
+import chick.task.Task;
+import chick.task.TodoTask;
 
 /**
  * Class that handles parsing and execution of command strings for Duke Bot commands.

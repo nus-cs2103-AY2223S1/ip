@@ -1,6 +1,6 @@
-package duke.task;
+package chick.task;
 
-import duke.ChickException;
+import chick.ChickException;
 
 /**
  * Class representing a TodoTask.

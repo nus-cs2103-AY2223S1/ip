@@ -1,4 +1,4 @@
-package duke;
+package chick;
 
 import java.util.Scanner;
 
@@ -53,7 +53,7 @@ public class Ui {
         if (isVerbose) {
             System.out.println(formattedMessage);
         }
-        return formattedMessage;
+        return message;
     }
 
     /**

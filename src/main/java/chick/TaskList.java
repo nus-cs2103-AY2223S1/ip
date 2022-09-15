@@ -1,9 +1,9 @@
-package duke;
+package chick;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import duke.task.Task;
+import chick.task.Task;
 
 /**
  * Class that stores and manipulates tasks for Duke Bot.

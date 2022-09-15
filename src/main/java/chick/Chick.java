@@ -1,4 +1,4 @@
-package duke;
+package chick;
 
 /**
  * Main class representing Chick Bot which is also a Duke Bot.

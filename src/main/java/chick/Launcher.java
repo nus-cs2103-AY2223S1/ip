@@ -1,4 +1,4 @@
-package duke;
+package chick;
 
 import javafx.application.Application;
 

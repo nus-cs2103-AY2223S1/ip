@@ -1,4 +1,4 @@
-package duke;
+package chick;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,16 +27,16 @@ public class Storage {
             // make data directory if it doesnt exist
             dataFolder.mkdir();
             assert dataFolder.exists();
-        } else if (new File("data/duke.txt").exists()) {
+        } else if (new File("data/chick.txt").exists()) {
             // else if save file exists, load it into memory
             try {
-                previousText = Files.readString(Path.of("data/duke.txt"));
+                previousText = Files.readString(Path.of("data/chick.txt"));
             } catch (java.io.IOException e) {
                 System.out.println("Unable to read storage file: " + e);
             }
         }
         try {
-            fileWriter = new FileWriter("data/duke.txt");
+            fileWriter = new FileWriter("data/chick.txt");
         } catch (java.io.IOException e) {
             System.out.println("Unable to write storage file: " + e);
         }
