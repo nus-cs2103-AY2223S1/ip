@@ -49,15 +49,15 @@ public class GuiUi extends AnchorPane {
      */
     public void handleUserInput() {
         String input = userInput.getText();
-        String output = null;
+        String output = "";
 
-        boolean isValidInput = !input.trim().isBlank();
+        boolean isValidInput = !input.isBlank();
         if (isValidInput) {
             displayInput(input);
             output = duke.receiveInput(input);
         }
 
-        boolean isValidOutput = output != null;
+        boolean isValidOutput = !output.isBlank();
         if (isValidOutput) {
             displayOutput(output);
         }

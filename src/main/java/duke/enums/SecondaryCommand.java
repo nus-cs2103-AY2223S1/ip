@@ -5,8 +5,8 @@ package duke.enums;
  */
 public enum SecondaryCommand {
 
-    BY("/by", 3),
-    AT("/at", 3);
+    BY("/by ", 4),
+    AT("/at ", 4);
 
     private final String value; // Value provided by user.
     private final int length;   // Length of the string provided by the user

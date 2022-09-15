@@ -53,7 +53,7 @@ public class Storage {
     }
 
     /**
-     * Stores all tasks in the taskList into a text file.
+     * Stores all tasks in the task list into a text file.
      */
     public void storeTask(TaskList taskList) throws IOException {
         FileWriter fileWriter = new FileWriter(filepath);

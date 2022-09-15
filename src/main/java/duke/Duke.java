@@ -43,7 +43,7 @@ public class Duke {
     private static final String FILEPATH = "data" + File.separator + "dukeData.txt";
 
     /**
-     * Loads the {@link Duke#storage storage} and {@link Duke#tasks tasklist} for Duke.
+     * Loads the {@link Duke#storage storage} and {@link Duke#tasks task list} for Duke.
      */
     public void load() {
         initialiseStorage();
@@ -58,7 +58,7 @@ public class Duke {
         try {
             storage = new Storage(FILEPATH);
         } catch (DukeException | IOException e) {
-            guiUi.displayOutput(nekoResponses.loadFileFailed() + '\n' + e.getMessage());
+            guiUi.displayOutput(String.format("%s\n%s", nekoResponses.loadFileFailed(), e.getMessage()));
         }
     }
 
@@ -70,11 +70,12 @@ public class Duke {
             assert storage != null : "The storage should not be null when loading tasks";
             tasks = new TaskList(storage.load());
             if (tasks.isNotEmpty()) {
-                guiUi.displayOutput(nekoResponses.loadTaskSuccessfully() + '\n' + nekoResponses.listTasks(tasks));
+                guiUi.displayOutput(String.format("%s\n%s", nekoResponses.loadTaskSuccessfully(),
+                        nekoResponses.listTasks(tasks)));
             }
         } catch (DukeException e) {
             tasks = new TaskList();
-            guiUi.displayOutput(nekoResponses.loadTaskFailed() + '\n' + e.getMessage());
+            guiUi.displayOutput(String.format("%s\n%s", nekoResponses.loadTaskFailed(), e.getMessage()));
         }
     }
 
@@ -94,16 +95,14 @@ public class Duke {
     public String receiveInput(String inputString) {
         String response = "";
         try {
-            if (inputString.isEmpty()) {
-                return "Hmm I did not quite catch that";
-            }
+            assert !inputString.isBlank();
             Parser input = Parser.formatInput(inputString.trim());
             switch (input.getCommand()) {
             case BYE:
                 terminate();
-                return null;
+                break;
             case HELP:
-                response = nekoResponses.showHelp();
+                response = showHelp();
                 break;
             case LIST:
                 response = listTasks();
@@ -171,7 +170,18 @@ public class Duke {
     }
 
     /**
-     * Lists all current task in the taskList.
+     * Shows help that serves as instructions of how to use Duke.
+     *
+     * @return a string containing the response of the help message.
+     */
+    private String showHelp() {
+        return nekoResponses.showHelp();
+    }
+
+    /**
+     * Lists all current task in the task list.
+     *
+     * @return a string containing the response the list of tasks.
      */
     private String listTasks() {
         assert tasks != null : "The tasks should not be null when listing them";
@@ -179,17 +189,21 @@ public class Duke {
     }
 
     /**
-     * Finds all current task in the taskList base on a string.
+     * Finds all current task in the task list base on a string.
+     *
+     * @param searchString a string containing the text to be searched for in the task list.
+     * @return a string containing the response with a list of tasks matching the search string.
      */
-    private String findTasks(String string) {
+    private String findTasks(String searchString) {
         assert tasks != null : "The tasks should not be null when finding tasks";
-        return nekoResponses.findTasks(tasks, string);
+        return nekoResponses.findTasks(tasks, searchString);
     }
 
     /**
-     * Marks a task as done given the index of it in the taskList.
+     * Marks a task as done given the index of it in the task list.
      *
      * @param index an integer representing the index of task in the task list.
+     * @return a string containing the response after checking a tasks.
      */
     private String checkTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
@@ -197,13 +211,14 @@ public class Duke {
         }
         assert tasks != null : "The tasks should not be null when checking tasks";
         Task task = tasks.checkTask(Integer.parseInt(index));
-        return nekoResponses.markDone(task.getTaskName()) + "\n" + nekoResponses.listTasks(tasks);
+        return String.format("%s\n%s", nekoResponses.markDone(task.getTaskName()), nekoResponses.listTasks(tasks));
     }
 
     /**
-     * Marks a task as undone given the index of it in the taskList.
+     * Marks a task as undone given the index of it in the task list.
      *
      * @param index an integer representing the index of task in the task list.
+     * @return a string containing the response after unchecking a tasks.
      */
     private String uncheckTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
@@ -211,13 +226,14 @@ public class Duke {
         }
         assert tasks != null : "The tasks should not be null when unchecking tasks";
         Task task = tasks.uncheckTask(Integer.parseInt(index));
-        return nekoResponses.markUndone(task.getTaskName()) + "\n" + nekoResponses.listTasks(tasks);
+        return String.format("%s\n%s", nekoResponses.markUndone(task.getTaskName()), nekoResponses.listTasks(tasks));
     }
 
     /**
-     * Deletes a task given the index of it in the taskList.
+     * Deletes a task given the index of it in the task list.
      *
      * @param index an integer representing the index of task in the task list.
+     * @return a string containing the response after deleting a task.
      */
     private String deleteTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
@@ -225,19 +241,20 @@ public class Duke {
         }
         assert tasks != null : "The tasks should not be null when deleting tasks";
         Task task = tasks.deleteTask(Integer.parseInt(index));
-        return nekoResponses.deleteTask(task) + "\n" + nekoResponses.listTasks(tasks);
+        return String.format("%s\n%s", nekoResponses.deleteTask(task), nekoResponses.listTasks(tasks));
     }
 
     /**
-     * Adds the task given into the taskList.
+     * Adds the task given into the task list.
      *
      * @param <T>  the type of the task we would like to add to the task list.
      * @param task the task we would like to add to the task list.
+     * @return a string containing the response after adding a task to the task list.
      */
     private <T extends Task> String addTask(T task) {
         assert tasks != null : "The tasks should not be null when adding tasks";
         tasks.addTask(task);
-        return nekoResponses.addTask(task) + "\n" + nekoResponses.listTasks(tasks);
+        return String.format("%s\n%s", nekoResponses.addTask(task), nekoResponses.listTasks(tasks));
     }
 
     /**

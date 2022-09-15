@@ -59,7 +59,7 @@ public class TaskList {
     }
 
     /**
-     * Returns a task created by the user given the index of it in the taskList.
+     * Returns a task created by the user given the index of it in the task list.
      *
      * @param index an integer representing the index of task in the task list.
      * @return the task having the index provided.
@@ -92,7 +92,7 @@ public class TaskList {
     }
 
     /**
-     * Deletes a task given the index of it in the taskList.
+     * Deletes a task given the index of it in the task list.
      *
      * @param index an integer representing the index of task in the task list.
      */
@@ -103,7 +103,7 @@ public class TaskList {
     }
 
     /**
-     * Checks a task as done given the index of it in the taskList.
+     * Checks a task as done given the index of it in the task list.
      *
      * @param index an integer representing the index of task in the task list.
      */
@@ -116,7 +116,7 @@ public class TaskList {
     }
 
     /**
-     * Unchecks a task as not done given the index of it in the taskList.
+     * Unchecks a task as not done given the index of it in the task list.
      *
      * @param index an integer representing the index of task in the task list.
      */
