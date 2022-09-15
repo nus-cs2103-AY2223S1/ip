@@ -1,4 +1,4 @@
-package duke;
+package task;
 
 /**
  * The ToDos class which is a subclass of Task,

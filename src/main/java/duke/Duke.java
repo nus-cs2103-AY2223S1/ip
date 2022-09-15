@@ -1,6 +1,12 @@
 package duke;
+import command.*;
+import exception.DukeException;
+import exception.IncorrectInputException;
+import exception.IncorrectInputFormatException;
+
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.format.DateTimeParseException;
 
 
 /**
@@ -24,6 +30,17 @@ public class Duke {
 
 
     public String getResponse(String input) throws ParseException {
-        return parser.parse(input);
+        try {
+            Command c = parser.parse1(input);
+            return c.execute();
+        } catch (DukeException e) {
+            return "exception bro";
+        } catch (IncorrectInputException e) {
+            return e.toString();
+        } catch (IncorrectInputFormatException e) {
+            return e.toString();
+        } catch (DateTimeParseException e) {
+            return "Ensure your date is in the format YYYY-MM-DD (2019-12-25)";
+        }
     }
 }

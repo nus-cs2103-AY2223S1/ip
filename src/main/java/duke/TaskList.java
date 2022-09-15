@@ -1,4 +1,5 @@
 package duke;
+import task.Task;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
@@ -32,7 +33,8 @@ public class TaskList {
             list += counter + ". " + task.toString() + "\n";
             counter++;
         }
-        return list;
+
+        return list.substring(0, list.length() - 2);
     }
 
     /**

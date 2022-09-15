@@ -1,4 +1,4 @@
-package duke;
+package task;
 
 /**
  * The Task class encapsulates Task objects

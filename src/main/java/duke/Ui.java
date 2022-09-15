@@ -1,5 +1,6 @@
 package duke;
 
+import task.*;
 /**
  * A class that encapsulates the Ui object
  * which deals with interactions with the user

@@ -1,7 +1,15 @@
 package duke;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.function.Consumer;
+
+import command.*;
+import exception.DukeException;
+import exception.IncorrectInputException;
+import exception.IncorrectInputFormatException;
+import task.*;
 
 /**
  * A class that encapsulates the Parser object
@@ -40,6 +48,132 @@ public class Parser {
             return true;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    public void checkInput(String input) throws DukeException, IncorrectInputException, IncorrectInputFormatException, DateTimeParseException {
+        ArrayList<String> commandList = new ArrayList<>();
+        commandList.add("bye");
+        commandList.add("list");
+        commandList.add("mark");
+        commandList.add("unmark");
+        commandList.add("delete");
+        commandList.add("deadline");
+        commandList.add("event");
+        commandList.add("todo");
+        commandList.add("find");
+        commandList.add("priority");
+        ArrayList<String> priorityList = new ArrayList<>();
+        priorityList.add("high");
+        priorityList.add("medium");
+        priorityList.add("low");
+        String[] splitStr = input.split(" ");
+        String commandString = splitStr[0];
+
+        if (input.equals("bye") || input.equals("list")) {
+            return;
+        }
+
+        if (!commandList.contains(commandString)) {
+            throw new IncorrectInputException("Your inputted command does not exist...");
+        }
+
+        if (commandString.equals("mark") || commandString.equals("unmark") || commandString.equals("delete")) {
+            if (splitStr.length != 2) {
+                throw new IncorrectInputException("Please input a number after the command");
+            }
+
+            if (!isNumeric(splitStr[1])) {
+                throw new IncorrectInputFormatException("What you typed following the command is not a number...");
+            }
+        }
+
+        if (commandString.equals("todo") || commandString.equals("find")) {
+            if (splitStr.length != 2) {
+                throw new IncorrectInputException("Please input a task name after the command...");
+            }
+        }
+
+        if (commandString.equals("priority")) {
+            if (splitStr.length != 3) {
+                throw new IncorrectInputException("Make sure your input is in the format <priority> <task number> <high, medium, low>");
+            }
+
+            if (!isNumeric(splitStr[1]) || !priorityList.contains(splitStr[2])) {
+                throw new IncorrectInputFormatException("Make sure your input is in the format <priority> <task number> <high, medium, low>");
+            }
+        }
+
+        if (commandString.equals("event")) {
+            if (splitStr.length < 4) {
+                throw new IncorrectInputException("Make sure your input is in the format <event> <event name> </at> <date>");
+            }
+
+            String[] splitEventStr = input.split("/at");
+
+            if (splitEventStr.length != 2 || splitStr[1].equals("/at")) {
+                throw new IncorrectInputFormatException("Make sure your input is in the format <event> <event name> </at> <date>");
+            }
+        }
+
+        if (commandString.equals("deadline")) {
+            if (splitStr.length < 4) {
+                throw new IncorrectInputException("Make sure your input is in the format <event> <event name> </by> <date>");
+            }
+
+            String[] splitEventStr = input.split("/by ");
+
+            if (splitEventStr.length != 2 || splitStr[1].equals("/by")) {
+                throw new IncorrectInputFormatException("Make sure your input is in the format <event> <event name> </at> <date>");
+            }
+            LocalDate.parse(splitEventStr[1]);
+        }
+    }
+    public Command parse1(String input) throws ParseException, DukeException, IncorrectInputFormatException, IncorrectInputException {
+        String[] splitStr = input.split("\\s+");
+        TaskList taskList = storage.getTaskList();
+        String commandString = splitStr[0];
+        checkInput(input);
+        switch (commandString) {
+
+            case "bye":
+                storage.write(taskList);
+                return new ByeCommand();
+
+            case "list":
+                return new ListCommand(taskList);
+
+            case "mark":
+                int index = Integer.valueOf(splitStr[1]) - 1;
+                return new MarkCommand(taskList, index);
+
+            case "unmark":
+                int index1 = Integer.valueOf(splitStr[1]) - 1;
+                return new UnmarkCommand(taskList, index1);
+
+            case "delete":
+                int index2 = Integer.valueOf(splitStr[1]) - 1;
+                return new DeleteCommand(taskList, index2);
+
+            case "deadline":
+                return new DeadlineCommand(taskList, input, splitStr[0]);
+
+            case "event":
+                return new EventCommand(taskList, input, splitStr[0]);
+
+            case "todo":
+                return new TodoCommand(taskList, input);
+
+            case "find":
+                return new FindCommand(taskList, input);
+
+            case "priority":
+                int index3 = Integer.valueOf(splitStr[1]) - 1;
+                String priority = splitStr[2];
+                return new PriorityCommand(taskList, index3, priority);
+            default:
+                assert false; //should not reach here
+                return null;
         }
     }
 

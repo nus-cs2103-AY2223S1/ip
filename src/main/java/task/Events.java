@@ -1,4 +1,4 @@
-package duke;
+package task;
 
 /**
  * The Events class which is a subclass of Task,
