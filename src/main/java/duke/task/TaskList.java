@@ -91,9 +91,9 @@ public class TaskList {
         reply = Ui.START + "added:\n" + "     " + t;
 
         if (tasks.size() == 1) {
-            reply += "\n  you now have 1 task in the list. type list to see it!";
+            reply += "\n    you now have 1 task in the list. type list to see it!";
         } else {
-            reply += "\n  now you have " + tasks.size() + " tasks in the list. type list to view them.";
+            reply += "\n    now you have " + tasks.size() + " tasks in the list. type list to view them.";
         }
 
         return reply;

@@ -102,11 +102,11 @@ public abstract class Task {
      */
     public String addTag(Tag tag) {
         if (tagList.contains(tag)) {
-            return Ui.START + "Hmm, this task already has the tag '" + tag.toString() + "'!";
+            return Ui.START + "hmm, this task already has the tag '" + tag.toString() + "'!";
         }
         tagList.add(tag);
         Tag.addTaskToTag(this, tag);
-        return Ui.START + "Okay! The task has been tagged as '" + tag.toString() + "'.";
+        return Ui.START + "okay! the task has been tagged as '" + tag.toString() + "'.";
     }
 
     /**
@@ -117,12 +117,12 @@ public abstract class Task {
      */
     public String deleteTag(Tag tag) {
         if (!tagList.contains(tag)) {
-            return Ui.START + "Hmm, this task has not been tagged as '" + tag.toString() + "'.";
+            return Ui.START + "hmm, this task has not been tagged as '" + tag.toString() + "'.";
         }
 
         tagList.remove(tag);
         Tag.deleteTaskFromTag(this, tag);
-        return Ui.START + "Okay! The task is no longer tagged as '" + tag.toString() + "'.";
+        return Ui.START + "okay! the task is no longer tagged as '" + tag.toString() + "'.";
     }
 
     /**
