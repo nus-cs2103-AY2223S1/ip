@@ -249,7 +249,7 @@ public class Parser {
         String hour = time.substring(0, 2);
         time = (hour + ":" + min);
 
-        return "date" + " " + "time";
+        return date + " " + time;
     }
 
     /**
