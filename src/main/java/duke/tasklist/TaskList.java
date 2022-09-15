@@ -4,6 +4,8 @@ import duke.listobjects.ListObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -84,6 +86,15 @@ public class TaskList implements Serializable {
         for (int i = 0; i < this.tasksList.size(); i++) {
             System.out.println(i + ". " + tasksList.get(i).toString());
         }
+    }
+
+    public void sortList(){
+        Collections.sort(tasksList, new Comparator<ListObject>() {
+            @Override
+            public int compare(ListObject o1, ListObject o2) {
+                return o1.compareTo(o2);
+            }
+        });
     }
 
 
