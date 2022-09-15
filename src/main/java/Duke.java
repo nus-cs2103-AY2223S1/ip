@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.fxml.FXMLLoader;
 
 public class Duke{
     private Ui bot = new Ui();
@@ -98,19 +99,9 @@ public class Duke{
         return response;
     }
 
-    public File checkFileExists(String pathName) throws IOException {
-        try{
-            File f = new File(pathName);
-            if(!f.exists()) {
-                f.getParentFile().mkdir();
-                f.createNewFile();
-                System.out.println("directory was created");
-            }
-            return f;
-        } catch(IOException e){
-            return null;
-        }
-
+    public void welcome() {
+        new Ui().welcome();
     }
+
 }
 
