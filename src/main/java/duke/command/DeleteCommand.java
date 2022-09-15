@@ -1,14 +1,12 @@
 package duke.command;
 
 import duke.Storage;
-import duke.TaskList;
 import duke.StoreUndo;
+import duke.TaskList;
 import duke.Ui;
-
-import duke.task.Task;
 import duke.task.Deadline;
 import duke.task.Event;
-import duke.task.Todo;
+import duke.task.Task;
 
 /**
  * A command that is used to delete a Task.

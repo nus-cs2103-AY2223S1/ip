@@ -14,69 +14,69 @@ public class Ui {
     }
 
     /**
-     * Message shown when save file is not found.
-     */
-    public static void showLoadingError() {
-        System.out.println("No save file to load from");
-    }
-
-    /**
-     * Message shown when starting Duke.
-     */
-    public static void startMessage() {
-        System.out.println("Hello! I'm Duke" + "\n" + "What can I do for you?");
-    }
-
-    /**
-     * Message shown when user stops using Duke.
+     * Returns message shown when user stops using Duke.
+     * @return message shown when user stops using Duke.
      */
     public static String endMessage() {
         return ("Bye. Hope to see you again soon!");
     }
 
+    /**
+     * Returns message shown when there is no command to undo.
+     * @return message shown when there is no command to undo.
+     */
     public static String noUndoMessage() {
-        return("There is no command to undo.");
-    }
-
-    public static String undoMessage() {
-        return("The previous command has been undone.");
+        return ("There is no command to undo.");
     }
 
     /**
-     * Message shown when a task is deleted.
+     * Returns message shown when a message is undone.
+     * @return message shown when a message is undone.
+     */
+    public static String undoMessage() {
+        return ("The previous command has been undone.");
+    }
+
+    /**
+     * Returns message shown when a task is deleted.
      * @param task task to be deleted.
+     * @return message shown when a task is deleted.
      */
     public static String deleteTask(Task task) {
         return ("Noted. I've removed this task:" + "\n" + "\t" + task.toString());
     }
 
     /**
-     * Message shown when a task is marked.
+     * Returns message shown when a task is marked.
      * @param task Task to be marked.
+     * @return message shown when a task is marked.
      */
     public static String markTask(Task task) {
         return ("Nice! I've marked this task as done:" + "\n" + "\t" + task.toString());
     }
 
     /**
-     * Message shown when a task is unmarked.
+     * Returns message shown when a task is unmarked.
      * @param task Task to be unmarked.
+     * @return message shown when a task is unmarked.
      */
     public static String unmarkTask(Task task) {
         return ("Ok, I've marked this task as not done yet:" + "\n" + "\t" + task.toString());
     }
 
     /**
-     * Message shown when a task is added.
+     * Returns message shown when a task is added.
      * @param task Task to be added.
+     * @return message shown when a task is added.
      */
     public static String addTask(Task task) {
         return ("Got it. I've added this task:" + "\n\t" + task.toString());
     }
 
     /**
-     * Message shown when the number of tasks has to be shown to the user.
+     * Returns message shown when the number of tasks has to be shown to the user.
      * @param numOfTasks Number of tasks left in the list.
+     * @return message shown when the number of tasks has to be shown to the user.
      */
     public static String numOfTasks(int numOfTasks) {
         return ("Now you have " + numOfTasks + " tasks in the list.");

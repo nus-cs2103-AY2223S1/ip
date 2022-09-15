@@ -8,8 +8,8 @@ import java.time.LocalDate;
  */
 public class Deadline extends Task {
 
-    private String by;
     protected LocalDate byDate;
+    private String by;
 
     /**
      * Constructor for Deadline.

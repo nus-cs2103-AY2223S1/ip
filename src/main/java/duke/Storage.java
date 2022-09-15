@@ -90,10 +90,12 @@ public class Storage {
                 logTask = String.format("T | %s | %s", task.getStatusIcon(), task.getDescription());
             } else if (value instanceof Deadline) {
                 Deadline task = (Deadline) value;
-                logTask = String.format("D | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.getBy());
+                logTask = String.format("D | %s | %s | %s", task.getStatusIcon(),
+                        task.getDescription(), task.getBy());
             } else {
                 Event task = (Event) value;
-                logTask = String.format("E | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.getWhen());
+                logTask = String.format("E | %s | %s | %s", task.getStatusIcon(),
+                        task.getDescription(), task.getWhen());
             }
             retString = retString + logTask + System.lineSeparator();
         }

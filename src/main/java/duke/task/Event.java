@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 public class Event extends Task {
 
-    private String when;
     protected LocalDate whenDate;
+    private String when;
 
     /**
      * Constructor for Event.
