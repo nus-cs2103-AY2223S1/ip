@@ -15,14 +15,14 @@ public class ChangeStatusCommand extends Command {
     /**
      * Constructs a ChangeStatusCommand object.
      * 
-     * @param storage   Storage class to be used
-     * @param ui        Ui class to be used
-     * @param taskList  TaskList that specified task is in
+     * @param storage Storage class to be used
+     * @param ui Ui class to be used
+     * @param taskList TaskList that specified task is in
      * @param taskIndex Index of task in taskList
-     * @param isDone    Whether the task is done or not
+     * @param isDone Whether the task is done or not
      */
-    public ChangeStatusCommand(Storage storage, Ui ui, TaskList taskList, String input, boolean isDone)
-            throws DukeException {
+    public ChangeStatusCommand(Storage storage, Ui ui, TaskList taskList, String input,
+            boolean isDone) throws DukeException {
         super(storage, ui, taskList);
         if (input.split(" ").length == 1) {
             throw new DukeException("Please enter a valid task number!");
@@ -37,8 +37,8 @@ public class ChangeStatusCommand extends Command {
      * @throws DukeException if taskindex is invalid
      */
     @Override
-    public void execute() throws DukeException {
-        taskList.changeTaskStatus(taskIndex, isDone);
+    public String execute() throws DukeException {
+        return taskList.changeTaskStatus(taskIndex, isDone);
     }
 
     @Override

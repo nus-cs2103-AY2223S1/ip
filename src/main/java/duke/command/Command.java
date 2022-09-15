@@ -17,8 +17,8 @@ public abstract class Command {
     /**
      * Constructs a Command object.
      * 
-     * @param storage  Storage class to be used
-     * @param ui       Ui class to be used
+     * @param storage Storage class to be used
+     * @param ui Ui class to be used
      * @param taskList TaskList to be used
      */
     public Command(Storage storage, Ui ui, TaskList taskList) {
@@ -36,5 +36,5 @@ public abstract class Command {
         return false;
     }
 
-    public abstract void execute() throws DukeException;
+    public abstract String execute() throws DukeException;
 }

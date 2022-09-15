@@ -12,8 +12,8 @@ public class ListCommand extends Command {
     /**
      * Constructs a ListCommand object.
      * 
-     * @param storage  Storage class to be used
-     * @param ui       Ui class to be used
+     * @param storage Storage class to be used
+     * @param ui Ui class to be used
      * @param taskList TaskList to be used
      */
     public ListCommand(Storage storage, Ui ui, TaskList taskList) {
@@ -24,7 +24,7 @@ public class ListCommand extends Command {
      * Lists all tasks in the task list.
      */
     @Override
-    public void execute() {
-        taskList.displayList();
+    public String execute() {
+        return taskList.displayList();
     }
 }

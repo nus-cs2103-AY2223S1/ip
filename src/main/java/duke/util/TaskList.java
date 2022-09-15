@@ -21,11 +21,12 @@ public class TaskList {
     /**
      * Display all stored tasks.
      */
-    public void displayList() {
-        System.out.println("Here are the tasks in your list.");
+    public String displayList() {
+        String output = "Here are the tasks in your list.\n";
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + tasks.get(i).toString());
+            output += "\t" + (i + 1) + ". " + tasks.get(i).toString() + "\n";
         }
+        return output;
     }
 
     /**
@@ -33,16 +34,16 @@ public class TaskList {
      * 
      * @param task Task to be stored in task list.
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         tasks.add(task);
-        System.out.println("Gotcha! I've added this task:");
-        System.out.println("\t" + task);
-        System.out.println("Now you have " + tasks.size() + " tasks in your list.");
+        String output = "Gotcha! I've added this task:\n";
+        output += "\t" + task;
+        output += "Now you have " + tasks.size() + " tasks in your list.";
+        return output;
     }
 
     /**
-     * Add task to task list without any user messages (Used when loading data from
-     * file).
+     * Add task to task list without any user messages (Used when loading data from file).
      * 
      * @param task Task to be pushed into task list.
      */
@@ -56,36 +57,36 @@ public class TaskList {
      * @param taskIndex Index of task to be removed.
      * @throws DukeException if given index is out of bounds.
      */
-    public void removeTask(int taskIndex) throws DukeException {
+    public String removeTask(int taskIndex) throws DukeException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new DukeException("Please enter a valid task number!");
         }
         Task task = tasks.remove(taskIndex);
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("\t" + task);
+        String output = "Noted. I've removed this task:\n";
+        output += "\t" + task;
+        return output;
     }
 
     /**
      * Changes the completed status of specified task.
      * 
      * @param taskIndex Index of task to be changed.
-     * @param isDone    true if task is completed, false otherwise.
+     * @param isDone true if task is completed, false otherwise.
      * @throws DukeException if given index is out of bounds.
      */
-    public void changeTaskStatus(int taskIndex, boolean isDone) throws DukeException {
+    public String changeTaskStatus(int taskIndex, boolean isDone) throws DukeException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new DukeException("Please enter a valid task number!");
         }
         if (isDone) {
-            tasks.get(taskIndex).markAsDone();
+            return tasks.get(taskIndex).markAsDone();
         } else {
-            tasks.get(taskIndex).markAsNotDone();
+            return tasks.get(taskIndex).markAsNotDone();
         }
     }
 
     /**
-     * Return the string representation of all tasks in list to be stored in local
-     * file.
+     * Return the string representation of all tasks in list to be stored in local file.
      * 
      * @return String representation of all tasks in list.
      */
@@ -102,7 +103,7 @@ public class TaskList {
      * 
      * @param searchText Search text to be searched for
      */
-    public void findTask(String searchText) {
+    public String findTask(String searchText) {
         int i = 0;
         String res = " Here are the matching tasks in your list: \n";
         for (Task task : tasks) {
@@ -111,9 +112,8 @@ public class TaskList {
             }
         }
         if (i == 0) {
-            System.out.println("Sorry, no matching tasks were found!");
-        } else {
-            System.out.println(res);
+            res = "Sorry, no matching tasks were found!";
         }
+        return res;
     }
 }
