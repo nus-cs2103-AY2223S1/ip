@@ -69,7 +69,7 @@ public class Ui {
      * @return Unmark Task message.
      */
     public String getUnmarkTaskMessage(Task t) {
-        return String.format("OK, I've marked this task as undone:\n%s\n", t);
+        return String.format("OK, I've marked this task as not done:\n%s\n", t);
     }
 
 

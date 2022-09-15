@@ -92,15 +92,15 @@ public class Duke {
 
         // Format of list command: list [/sort FIELD]
         // FIELD is the field to sort in ascending order by
-        final int COMMAND_WITH_SORT_FIELD_LENGTH = 3;
+        int commandWithSortFieldLength = 3;
 
 
         // If the command doesn't specify the sort field
-        if (commands.length < COMMAND_WITH_SORT_FIELD_LENGTH) {
+        if (commands.length < commandWithSortFieldLength) {
             // List tasks without sorting
             return ui.getListTasksMessage(this.tasks, false);
         }
-        
+
 
         // 3rd token is the field name
         String sortField = commands[2];
@@ -133,7 +133,7 @@ public class Duke {
 
                     boolean t1IsDone = t1.getIsDone();
                     boolean t2IsDone = t2.getIsDone();
-                    
+
                     // If t1 is done but not t2
                     if (t1IsDone && !t2IsDone) {
                         // t1 comes before t2
@@ -143,7 +143,7 @@ public class Duke {
                     } else if (!t1IsDone && t2IsDone) {
                         // t2 comes before t1
                         return 1;
-                    
+
                     // Else t1 and t2 are either both done or both not done
                     } else {
                         // So both have equal ordering
@@ -469,17 +469,6 @@ public class Duke {
 
 
     public static void main(String[] args) {
-
-        Task t1 = new ToDo("hello");
-        Task t2 = new Deadline("desc", "2022-12-16 18:00");
-        Task t3 = new Event("event", "Mon 2-4pm");
-
-        System.out.format("ToDo: %s\n", t1.getClass());
-        System.out.format("Deadline: %s\n", t2.getClass());
-        System.out.format("Event: %s\n", t3.getClass());
-
-        System.out.println(t1.getClass().toString().compareTo(t2.getClass().toString()));
-        System.out.println(t2.getClass().toString().compareTo(t2.getClass().toString()));
 
     }
 }

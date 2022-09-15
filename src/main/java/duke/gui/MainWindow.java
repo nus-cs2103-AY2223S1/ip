@@ -13,6 +13,9 @@ import javafx.scene.layout.VBox;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
+ *
+ * Reused from https://se-education.org/guides/tutorials/javaFxPart4.html#using-controllers
+ * with minor modifications.
  */
 public class MainWindow extends AnchorPane {
 
@@ -70,7 +73,6 @@ public class MainWindow extends AnchorPane {
         // Process input and print response
         String response = duke.getResponse(input);
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(response, dukeImage));
-
     }
 
 }

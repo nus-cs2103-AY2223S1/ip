@@ -12,21 +12,29 @@ import javafx.stage.Stage;
 
 /**
  * A GUI for Duke using FXML.
+ *
+ * Reused from https://se-education.org/guides/tutorials/javaFxPart4.html#using-fxml-in-our-application
+ * with minor modifications.
  */
 public class Main extends Application {
+
+    private static final String WINDOW_TITLE = "Duke";
 
     private Duke duke = new Duke();
 
 
     @Override
     public void start(Stage stage) {
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle(WINDOW_TITLE);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

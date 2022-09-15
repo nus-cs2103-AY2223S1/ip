@@ -98,7 +98,7 @@ public class TaskList implements Serializable {
 
     /**
      * Sorts the Task objects based on the specified comparator.
-     * 
+     *
      * @param comp Comparator to sort by.
      * @return A sorted copy of the Task objects.
      */
@@ -108,7 +108,7 @@ public class TaskList implements Serializable {
         copy.sort(comp);
 
         return new TaskList(copy);
-    }    
+    }
 
 
     /**
