@@ -52,23 +52,27 @@ public class Parser {
             throw new DukeException("Usage: postpone {id} /to {new date}. (._.)");
         }
         try {
-            int taskId = Integer.parseInt(content[0].trim()) - 1;
-            String to = content[1].trim();
-
-            if (!taskList.checkIfTaskIsDeadline(taskId)) {
-                throw new DukeException("Please enter a task ID which corresponds to a deadline. (._.)");
-            }
-            if (!to.trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2})(\\d{2})")) {
-                throw new DukeException("Invalid datetime entered. (._.)");
-            }
-            if (taskList.checkIfInvalidDate(taskId, to)) {
-                throw new DukeException("Date to postpone task should not be earlier than existing date. (._.)");
-            }
-            taskList.updateDeadlineDueDate(taskId, to);
+            performPostpone(content, taskList);
         } catch (NumberFormatException e) {
             throw new DukeException("Please enter a valid integer for the task ID. (._.)");
         }
         return "Task has been postponed. (._.)";
+    }
+
+    private static String performPostpone(String[] content, TaskList taskList) throws DukeException {
+        int taskId = Integer.parseInt(content[0].trim()) - 1;
+        String to = content[1].trim();
+
+        if (!taskList.checkIfTaskIsDeadline(taskId)) {
+            throw new DukeException("Please enter a task ID which corresponds to a deadline. (._.)");
+        }
+        if (!to.trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2})(\\d{2})")) {
+            throw new DukeException("Invalid datetime entered. (._.)");
+        }
+        if (taskList.checkIfInvalidDate(taskId, to)) {
+            throw new DukeException("Date to postpone task should not be earlier than existing date. (._.)");
+        }
+        taskList.updateDeadlineDueDate(taskId, to);
     }
 
     private static String handleFindCase(String s, String[] arr, TaskList taskList) throws DukeException {
@@ -80,61 +84,70 @@ public class Parser {
     }
 
     private static String handleMarkCase(String[] arr, TaskList taskList, Storage storage) throws DukeException {
-        int i;
         if (arr.length <= 1) {
             throw new DukeException("Error. Please enter an argument after \"mark\". (._.)");
         }
         try {
-            i = Integer.parseInt(arr[1]) - 1;
-            if (i >= 0 && i < taskList.getSize()) {
-                taskList.markTaskAsDone(i);
-                storage.save(taskList);
-                return "Nice! I've marked this task as done: (._.)\n"
-                        + "\t  " + taskList.getTaskAsString(i);
-            } else {
-                return "Please enter an integer within range. (._.)";
-            }
+            performMark(arr, taskList, storage);
         } catch (NumberFormatException e) {
             return "Please enter an integer id after \"mark\". (._.)";
         }
     }
 
+    private static String performMark(String[] arr, TaskList taskList, Storage storage) {
+        int i = Integer.parseInt(arr[1]) - 1;
+        if (i >= 0 && i < taskList.getSize()) {
+            taskList.markTaskAsDone(i);
+            storage.save(taskList);
+            return "Nice! I've marked this task as done: (._.)\n"
+                    + "\t  " + taskList.getTaskAsString(i);
+        } else {
+            return "Please enter an integer within range. (._.)";
+        }
+    }
+
     private static String handleUnmarkCase(String[] arr, TaskList taskList, Storage storage) throws DukeException {
-        int i;
         if (arr.length <= 1) {
             throw new DukeException("Error. Please enter an argument after \"unmark\". (._.)");
         }
         try {
-            i = Integer.parseInt(arr[1]) - 1;
-            if (i >= 0 && i < taskList.getSize()) {
-                taskList.markTaskAsUndone(i);
-                storage.save(taskList);
-                return "OK! I've marked this task as not done yet: (._.)\n"
-                        + "\t  " + taskList.getTaskAsString(i);
-            } else {
-                return "Please enter an integer within range. (._.)";
-            }
+            performUnmark(arr, taskList, storage);
         } catch (NumberFormatException e) {
             return "Please enter an integer id after \"ummark\". (._.)";
         }
     }
 
+    private static String performUnmark(String[] arr, TaskList taskList, Storage storage) {
+        int i = Integer.parseInt(arr[1]) - 1;
+        if (i >= 0 && i < taskList.getSize()) {
+            taskList.markTaskAsUndone(i);
+            storage.save(taskList);
+            return "OK! I've marked this task as not done yet: (._.)\n"
+                    + "\t  " + taskList.getTaskAsString(i);
+        } else {
+            return "Please enter an integer within range. (._.)";
+        }
+    }
+
     private static String handleDeleteCase(String[] arr, TaskList taskList, Storage storage) throws DukeException {
-        int i;
         try {
-            if (arr.length <= 1) {
-                throw new DukeException("Error. Please enter an argument after \"delete\". (._.)");
-            }
-            i = Integer.parseInt(arr[1]) - 1;
-            if (i >= 0 && i < taskList.getSize()) {
-                taskList.delete(i);
-                storage.save(taskList);
-                return "Deleted task from task list. (._.)";
-            } else {
-                return "Please enter an integer within range. (._.)";
-            }
+            performDelete(arr, taskList, storage);
         } catch (NumberFormatException e) {
             return "Please enter an integer id after \"delete\". (._.)";
+        }
+    }
+
+    private static String performDelete(String[] arr, TaskList taskList, Storage storage) throws DukeException {
+        if (arr.length <= 1) {
+            throw new DukeException("Error. Please enter an argument after \"delete\". (._.)");
+        }
+        int i = Integer.parseInt(arr[1]) - 1;
+        if (i >= 0 && i < taskList.getSize()) {
+            taskList.delete(i);
+            storage.save(taskList);
+            return "Deleted task from task list. (._.)";
+        } else {
+            return "Please enter an integer within range. (._.)";
         }
     }
 
