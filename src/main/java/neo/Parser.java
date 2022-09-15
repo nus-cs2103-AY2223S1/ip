@@ -42,6 +42,9 @@ public class Parser {
         if (userText.equals("list") || userText.equals("List")) {
             return stor.retrieveData();
         }
+        if (userText.equals("help")) {
+            return ui.help();
+        }
         String arr[];
         arr = userText.split(" ", 2);
         if (arr.length == 1 && (arr[0].equals("high") || arr[0].equals("medium") || arr[0].equals("low") || arr[0].equals("event")
