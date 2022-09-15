@@ -14,6 +14,7 @@ import duke.command.UnmarkCommand;
 import duke.common.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.ToDo;
 
 /**
@@ -23,6 +24,113 @@ import duke.task.ToDo;
  */
 public abstract class Parser {
     /**
+     * Checks if input string contains restricted characters.
+     * If a character used to encode task is entered by user, an exception is thrown.
+     *
+     * @param input The user input.
+     * @throws DukeException If the user input contains restricted characters.
+     */
+    private static void detectRestrictedCharacters(String input) throws DukeException {
+        String restrictedCharacter = Task.getEncodingSeparator();
+        if (input.contains(restrictedCharacter)) {
+            throw new DukeException("The character \"||\" is not allowed.");
+        }
+    }
+
+    private static String[] convertInputToArr(String input) {
+        return input.trim().split(" ", 2);
+    }
+
+    private static Command parseListCommand() {
+        return new ListCommand();
+    }
+
+    private static Command parseExitCommand() {
+        return new ExitCommand();
+    }
+
+    private static Command parseMarkCommand(String[] commandArgs) throws DukeException {
+        if (commandArgs.length < 2) {
+            throw new DukeException("Please specify a task to mark.");
+        }
+        try {
+            return new MarkCommand(Integer.parseInt(commandArgs[1]));
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please specify a valid number.");
+        }
+    }
+
+    private static Command parseUnmarkCommand(String[] commandArgs) throws DukeException {
+        if (commandArgs.length < 2) {
+            throw new DukeException("Please specify a task to unmark.");
+        }
+        try {
+            return new UnmarkCommand(Integer.parseInt(commandArgs[1]));
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please specify a valid number.");
+        }
+    }
+
+    private static Command parseDeleteCommand(String[] commandArgs) throws DukeException {
+        if (commandArgs.length < 2) {
+            throw new DukeException("Please specify a task to delete.");
+        }
+        try {
+            return new DeleteCommand(Integer.parseInt(commandArgs[1]));
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please specify a valid number.");
+        }
+    }
+
+    private static Command parseFindCommand(String[] commandArgs) throws DukeException {
+        if (commandArgs.length < 2) {
+            throw new DukeException("The search term cannot be empty.");
+        }
+        return new FindCommand(commandArgs[1]);
+    }
+
+    private static Command parseTodoCommand(String[] commandArgs) throws DukeException {
+        if (commandArgs.length < 2) {
+            throw new DukeException("The description of a todo cannot be empty.");
+        }
+        return new AddCommand(new ToDo(commandArgs[1]));
+    }
+
+    private static Command parseDeadlineCommand(String[] commandArgs) throws DukeException {
+        if (commandArgs.length < 2) {
+            throw new DukeException("The description of a deadline cannot be empty.");
+        }
+        String[] deadlineArgs = commandArgs[1].split(" /by ");
+        if (deadlineArgs.length < 2) {
+            throw new DukeException("Please provide a description and deadline, "
+                    + "separated by \"/by\".");
+        }
+        try {
+            LocalDate date = LocalDate.parse(deadlineArgs[1]);
+            return new AddCommand(new Deadline(deadlineArgs[0], date));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please provide a valid date. (YYYY-MM-DD)");
+        }
+    }
+
+    private static Command parseEventCommand(String[] commandArgs) throws DukeException {
+        if (commandArgs.length < 2) {
+            throw new DukeException("The description of a deadline cannot be empty.");
+        }
+        String[] eventArgs = commandArgs[1].split(" /at ");
+        if (eventArgs.length < 2) {
+            throw new DukeException("Please provide a description and date, "
+                    + "separated by \"/at\".");
+        }
+        try {
+            LocalDate date = LocalDate.parse(eventArgs[1]);
+            return new AddCommand(new Event(eventArgs[0], date));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please provide a valid date. (YYYY-MM-DD)");
+        }
+    }
+
+    /**
      * Parses the user input and creates the corresponding command.
      *
      * @param input String representing the user's input.
@@ -30,91 +138,30 @@ public abstract class Parser {
      * @throws DukeException If the command is invalid.
      */
     public static Command parse(String input) throws DukeException {
-        String[] commandArgs = input.trim().split(" ", 2);
+        detectRestrictedCharacters(input);
+        String[] commandArgs = convertInputToArr(input);
         String commandType = commandArgs[0];
-        Command command;
         switch (commandType) {
         case "list":
-            command = new ListCommand();
-            break;
+            return parseListCommand();
         case "bye":
-            command = new ExitCommand();
-            break;
+            return parseExitCommand();
         case "mark":
-            if (commandArgs.length < 2) {
-                throw new DukeException("Please specify a task to mark.");
-            }
-            try {
-                command = new MarkCommand(Integer.parseInt(commandArgs[1]));
-            } catch (NumberFormatException e) {
-                throw new DukeException("Please specify a valid number.");
-            }
-            break;
+            return parseMarkCommand(commandArgs);
         case "unmark":
-            if (commandArgs.length < 2) {
-                throw new DukeException("Please specify a task to unmark.");
-            }
-            try {
-                command = new UnmarkCommand(Integer.parseInt(commandArgs[1]));
-            } catch (NumberFormatException e) {
-                throw new DukeException("Please specify a valid number.");
-            }
-            break;
+            return parseUnmarkCommand(commandArgs);
         case "delete":
-            if (commandArgs.length < 2) {
-                throw new DukeException("Please specify a task to delete.");
-            }
-            try {
-                command = new DeleteCommand(Integer.parseInt(commandArgs[1]));
-            } catch (NumberFormatException e) {
-                throw new DukeException("Please specify a valid number.");
-            }
-            break;
+            return parseDeleteCommand(commandArgs);
         case "find":
-            if (commandArgs.length < 2) {
-                throw new DukeException("The search term cannot be empty.");
-            }
-            command = new FindCommand(commandArgs[1]);
-            break;
+            return parseFindCommand(commandArgs);
         case "todo":
-            if (commandArgs.length < 2) {
-                throw new DukeException("The description of a todo cannot be empty.");
-            }
-            command = new AddCommand(new ToDo(commandArgs[1]));
-            break;
+            return parseTodoCommand(commandArgs);
         case "deadline":
-            if (commandArgs.length < 2) {
-                throw new DukeException("The description of a deadline cannot be empty.");
-            }
-            String[] deadlineArgs = commandArgs[1].split(" /by ");
-            if (deadlineArgs.length < 2) {
-                throw new DukeException("Please provide a description and deadline, separated by \"/by\".");
-            }
-            try {
-                LocalDate date = LocalDate.parse(deadlineArgs[1]);
-                command = new AddCommand(new Deadline(deadlineArgs[0], date));
-            } catch (DateTimeParseException e) {
-                throw new DukeException("Please provide a valid date. (YYYY-MM-DD)");
-            }
-            break;
+            return parseDeadlineCommand(commandArgs);
         case "event":
-            if (commandArgs.length < 2) {
-                throw new DukeException("The description of a deadline cannot be empty.");
-            }
-            String[] eventArgs = commandArgs[1].split(" /at ");
-            if (eventArgs.length < 2) {
-                throw new DukeException("Please provide a description and date, separated by \"/at\".");
-            }
-            try {
-                LocalDate date = LocalDate.parse(eventArgs[1]);
-                command = new AddCommand(new Event(eventArgs[0], date));
-            } catch (DateTimeParseException e) {
-                throw new DukeException("Please provide a valid date. (YYYY-MM-DD)");
-            }
-            break;
+            return parseEventCommand(commandArgs);
         default:
             throw new DukeException("Please specify a valid command.");
         }
-        return command;
     }
 }
