@@ -24,7 +24,7 @@ public class DukeException {
      */
     public static class InvalidInputException extends DukeException {
         public InvalidInputException() {
-            super("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            super("Oh no!!! I'm sorry, but I don't know what that means!");
         }
     }
 
@@ -33,7 +33,7 @@ public class DukeException {
      */
     public static class EmptyTodoException extends DukeException {
         public EmptyTodoException() {
-            super("☹ OOPS!!! The description of a todo cannot be empty.");
+            super("Oh no!!! The description of a todo cannot be empty.");
         }
     }
 
@@ -42,7 +42,7 @@ public class DukeException {
      */
     public static class EmptyDeadlineException extends DukeException {
         public EmptyDeadlineException() {
-            super("☹ OOPS!!! The description of a deadline cannot be empty.");
+            super("Oh no!!! The description of a deadline cannot be empty.");
         }
     }
 
@@ -51,7 +51,7 @@ public class DukeException {
      */
     public static class DeadlineWithoutByException extends DukeException {
         public DeadlineWithoutByException() {
-            super("☹ OOPS!!! A deadline must have a /by ");
+            super("Oh no!!! A deadline must have a /by ");
         }
     }
 
@@ -60,7 +60,7 @@ public class DukeException {
      */
     public static class EmptyEventException extends DukeException {
         public EmptyEventException() {
-            super("☹ OOPS!!! The description of a event cannot be empty.");
+            super("Oh no!!! The description of a event cannot be empty.");
         }
     }
 
@@ -69,7 +69,7 @@ public class DukeException {
      */
     public static class EventWithoutAtException extends DukeException {
         public EventWithoutAtException() {
-            super("☹ OOPS!!! An event must have a /at ");
+            super("Oh no!!! An event must have a /at ");
         }
     }
 
@@ -78,7 +78,7 @@ public class DukeException {
      */
     public static class EmptyMarkingException extends DukeException {
         public EmptyMarkingException() {
-            super("☹ OOPS!!! Mark/Unmark must follow by a index of selected item.");
+            super("Oh no!!! Mark/Unmark must follow by a index of selected item.");
         }
     }
 
@@ -87,7 +87,7 @@ public class DukeException {
      */
     public static class EmptyDeleteException extends DukeException {
         public EmptyDeleteException() {
-            super("☹ OOPS!!! Delete must follow by a index of selected item.");
+            super("Oh no!!! Delete must follow by a index of selected item.");
         }
     }
 }
