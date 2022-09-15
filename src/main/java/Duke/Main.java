@@ -1,6 +1,6 @@
-import java.io.IOException;
+package duke;
 
-import Duke.Duke;
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

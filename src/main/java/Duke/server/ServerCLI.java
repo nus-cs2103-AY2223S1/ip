@@ -1,14 +1,13 @@
-package Duke.UserServer;
+package duke.server;
 
-import Duke.Commands.QuitCommand;
-import Duke.Commands.UserCommand;
-import Duke.Exceptions.DukeException;
-import Duke.Parser.CLIParser;
-import Duke.Storage.FileReader;
-import Duke.Storage.FileSaver;
-import Duke.Tasks.TaskList;
-
-import Duke.UI.CLIUi;
+import duke.commands.QuitCommand;
+import duke.commands.UserCommand;
+import duke.exceptions.DukeException;
+import duke.parser.CLIParser;
+import duke.storage.FileReader;
+import duke.storage.FileSaver;
+import duke.tasks.TaskList;
+import duke.ui.CLIUi;
 
 import java.io.IOException;
 
@@ -21,7 +20,7 @@ public class ServerCLI {
 
     private TaskList tasks;
 
-    private final String Name = "Duke";
+    private final String Name = "duke";
     private final CLIUi CLIUi = new CLIUi();
     private final CLIParser parser = new CLIParser();
     public void run() throws IOException {

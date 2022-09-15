@@ -1,11 +1,11 @@
-package Duke.Parser;
-import Duke.Commands.*;
+package duke.parser;
+import duke.commands.*;
 
-import Duke.Exceptions.*;
-import Duke.Tasks.Event;
-import Duke.Tasks.TaskList;
-import Duke.Tasks.ToDo;
-import Duke.Tasks.Deadline;
+import duke.exceptions.*;
+import duke.tasks.Event;
+import duke.tasks.TaskList;
+import duke.tasks.ToDo;
+import duke.tasks.Deadline;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

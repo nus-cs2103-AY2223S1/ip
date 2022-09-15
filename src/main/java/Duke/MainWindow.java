@@ -1,4 +1,7 @@
-import Duke.Duke;
+package duke;
+
+import duke.DialogBox;
+import duke.Duke;
 
 import javafx.scene.control.Alert;
 import javafx.fxml.FXML;
@@ -9,15 +12,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.TimerTask;
 import java.util.Timer;
 
 /**
- * Controller for MainWindow. Provides the layout for the other controls.
+ * Controller for duke.MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
     @FXML
@@ -43,11 +43,6 @@ public class MainWindow extends AnchorPane {
     public void setDuke() throws IOException {
         duke = new Duke();
     }
-
-    /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing. TextField and Button are onAction #handleUserInput
-     */
     @FXML
     private void handleUserInput() throws IOException {
 

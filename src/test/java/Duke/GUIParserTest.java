@@ -1,8 +1,8 @@
-package Duke;
+package duke;
 
-import Duke.Exceptions.DukeException;
-import Duke.Parser.GUIParser;
-import Duke.Tasks.TaskList;
+import duke.exceptions.DukeException;
+import duke.parser.GUIParser;
+import duke.tasks.TaskList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

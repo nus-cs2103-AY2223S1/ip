@@ -1,6 +1,6 @@
-package Duke.Commands;
+package duke.commands;
 
-import Duke.Exceptions.DukeException;
+import duke.exceptions.DukeException;
 
 /**
  * Class that denotes the command of quitting the program.

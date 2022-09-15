@@ -1,4 +1,4 @@
-package Duke.UI;
+package duke.ui;
 
 /**
  * Class that deals with all the interactions with the user for GUI

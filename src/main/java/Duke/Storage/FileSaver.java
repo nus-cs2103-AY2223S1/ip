@@ -1,4 +1,4 @@
-package Duke.Storage;
+package duke.storage;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import Duke.Tasks.TaskList;
+import duke.tasks.TaskList;
 
 /**
  * Class that provides methods to save all data.
