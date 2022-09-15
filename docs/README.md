@@ -13,7 +13,7 @@ easily add their tasks into the system
 - List all tasks: ```list```
 - Delete task: ```delete```
 - Search keyword in list: ```find```
-- Show statistics: ```stats```
+- Tag task ```tag```
 - Exit the application: ```bye```
 
 ### Feature 1: Load existing tasks
