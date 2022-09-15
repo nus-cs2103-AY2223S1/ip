@@ -116,7 +116,7 @@ public class FileOperations {
             int indexOfStatus = task.indexOf("[", 5) + 1;
             int endingIndexOfTag = task.indexOf("]", 5);
             String tag = task.substring(5, endingIndexOfTag);
-            boolean taskStatus = String.valueOf(task.charAt(indexOfStatus)) == "X";
+            boolean taskStatus = String.valueOf(task.charAt(indexOfStatus)).equals("X");
             int indexOfDescription;
             if (taskStatus) {
                 indexOfDescription = indexOfStatus + 3;

@@ -33,8 +33,10 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String welcomeMessage = "Welcome onboard!\nI am Alpha, your task manager!"
                 + "\n(enter help to learn about the command rules)";
+        DialogBox welcomeDialog = DialogBox.getAlphaDialog(welcomeMessage);
+        welcomeDialog.setImage(alphaImage);
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(welcomeMessage, alphaImage)
+                welcomeDialog
         );
     }
 
@@ -49,10 +51,13 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = alpha.getResponse(input);
+        DialogBox inputDialog = DialogBox.getUserDialog(input);
+        inputDialog.setImage(userImage);
+        DialogBox responseDialog = alpha.getResponse(input);
+        responseDialog.setImage(alphaImage);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, alphaImage)
+                inputDialog,
+                responseDialog
         );
         userInput.clear();
     }
