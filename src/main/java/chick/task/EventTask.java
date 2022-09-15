@@ -27,7 +27,7 @@ public class EventTask extends Task {
         String[] split = description.split(" /at ");
         int correctSplitCount = 2;
         if (split.length < correctSplitCount) {
-            throw new ChickException("Deadline time (indicated by /by separator) is missing.");
+            throw new ChickException("Event description or event time is missing.");
         } else if (split.length > correctSplitCount) {
             throw new ChickException("Multiple usage of /by separator is not allowed.");
         }

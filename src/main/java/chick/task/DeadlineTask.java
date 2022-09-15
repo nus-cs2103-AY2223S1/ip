@@ -27,7 +27,7 @@ public class DeadlineTask extends Task {
         String[] split = description.split(" /by ");
         int correctSplitCount = 2;
         if (split.length < correctSplitCount) {
-            throw new ChickException("Deadline time (indicated by /by separator) is missing.");
+            throw new ChickException("Deadline description or deadline time is missing.");
         } else if (split.length > correctSplitCount) {
             throw new ChickException("Multiple usage of /by separator is not allowed.");
         }
