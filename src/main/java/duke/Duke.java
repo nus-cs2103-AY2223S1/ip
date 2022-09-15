@@ -50,8 +50,7 @@ public class Duke {
             Command c = Parser.parse(input);
             String response = c.execute(taskList, ui, storage);
             return response;
-        }
-        catch (DukeException e) {
+        } catch (DukeException e) {
             return this.ui.getError(e);
         }
     }

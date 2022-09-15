@@ -32,8 +32,8 @@ public class MarkCommand extends Command {
      * @param taskList the TaskList where a Task to be marked or unmarked.
      * @param ui the Ui provides method to convert Task to String in a representable format.
      * @param storage the Storage to write modified Task into file.
-     * @throws DukeException if the markIndex is not provided by the user and
-     * markIndex exceeded the current existing number of Tasks
+     * @throws DukeException if the markIndex is not provided by the user
+     *     and markIndex exceeded the current existing number of Tasks
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
@@ -50,7 +50,7 @@ public class MarkCommand extends Command {
 
                 return "Nice! I've marked this task as done:\n" + ui.beautyWrapTask(markedTask) + "\n";
 
-            } else if (command.equals("unmark")){
+            } else if (command.equals("unmark")) {
                 Task unmarkedTask = taskList.getTask(this.markIndex).unmark();
                 taskList.setTask(this.markIndex, unmarkedTask);
 

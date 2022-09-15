@@ -39,7 +39,7 @@ public class TaskList {
     /**
      * Remove task from the TaskList.
      *
-     * @param task the task to be removed from the TaskList.
+     * @param index the index of the task to be removed from the TaskList.
      */
     public void removeTask(int index) {
         this.taskList.remove(index);

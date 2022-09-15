@@ -52,8 +52,7 @@ public class Parser {
             default:
                 return new EmptyCommand();
             }
-        }
-        catch (ArrayIndexOutOfBoundsException ex) {
+        } catch (ArrayIndexOutOfBoundsException ex) {
             throw new DukeException("You did not specify which task to perform action.\n");
         }
     }

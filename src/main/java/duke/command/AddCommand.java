@@ -36,8 +36,8 @@ public class AddCommand extends Command {
      * @param taskList the TaskList to be added with new Task.
      * @param ui unused for AddCommand.
      * @param storage the Storage to write new Task into file.
-     * @throws DukeException if the task description is an empty String or null or .
-     * the date or time given is in the wrong format.
+     * @throws DukeException if the task description is an empty String or null or
+     *     the date or time given is in the wrong format.
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
@@ -81,6 +81,8 @@ public class AddCommand extends Command {
             case "event":
                 task = new Event(taskName, date, time);
                 break;
+            default:
+                task = new Task(taskName, date, time);
             }
             taskList.addTask(task);
 

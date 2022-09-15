@@ -28,7 +28,7 @@ public class EmptyCommand extends Command {
      * @throws DukeException if the Command can't match Duke's available Commands.
      */
     @Override
-    public String execute (TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         throw new DukeException("I'm sorry, but I don't know what that means.");
     }
 

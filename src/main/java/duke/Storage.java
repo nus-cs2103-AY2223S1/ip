@@ -20,10 +20,9 @@ import duke.task.ToDo;
  * Provides the ability of to perform various actions to a text file stored in the project.
  */
 public class Storage {
-    public final String fileName;
-    //public final String filePath;
-    public final File myFile;
     private static final String home = System.getProperty("user.dir");
+    public final String fileName;
+    public final File myFile;
     private final java.nio.file.Path filePath;
 
     /**

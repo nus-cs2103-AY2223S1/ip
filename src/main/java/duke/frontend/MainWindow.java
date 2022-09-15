@@ -73,8 +73,7 @@ public class MainWindow extends AnchorPane {
                 this.handleExit();
             }
             userInput.clear();
-        }
-        catch (DukeException e) {
+        } catch (DukeException e) {
             System.out.println("ok");
         }
     }

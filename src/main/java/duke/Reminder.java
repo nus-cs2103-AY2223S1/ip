@@ -1,21 +1,31 @@
 package duke;
 
-import duke.exception.DukeException;
-import duke.task.Task;
+import static java.time.temporal.ChronoUnit.DAYS;
+import static java.time.temporal.ChronoUnit.MINUTES;
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Period;
 
-import static java.time.temporal.ChronoUnit.*;
+import duke.exception.DukeException;
+import duke.task.Task;
 
+/**
+ * Prompt the first coming undone task when the app is launched.
+ */
 public class Reminder {
+    private static final int MINUTES_IN_AN_HOUR = 60;
     private final TaskList taskList;
     private final LocalDate nowDate;
     private final LocalTime nowTime;
     private final Ui ui;
-    private static final int MINUTES_IN_AN_HOUR = 60;
 
+    /**
+     * Constructs Reminder instance.
+     *
+     * @throws DukeException if taskList is failed to load.
+     */
     public Reminder() throws DukeException {
         this.taskList = this.loadTaskList();
         this.nowDate = LocalDate.now();
@@ -36,9 +46,9 @@ public class Reminder {
         try {
             Task firstComingTask = this.getFirstComingUndoneTask();
             String countdown = this.getCountDown(firstComingTask);
-            return "REMINDER: The coming task is\n" +
-                    this.ui.beautyWrapTask(firstComingTask) + "\n" +
-                    "COUNTDOWN: " + countdown;
+            return "REMINDER: The coming task is\n"
+                    + this.ui.beautyWrapTask(firstComingTask) + "\n"
+                    + "COUNTDOWN: " + countdown;
         } catch (NullPointerException e) {
             return "No reminder for now :)";
         }
