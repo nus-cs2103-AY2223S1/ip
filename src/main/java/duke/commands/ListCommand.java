@@ -7,7 +7,7 @@ import duke.util.Ui;
 
 import java.util.ArrayList;
 
-public class ListCommand extends Command{
+public class ListCommand extends Command {
 
     public ListCommand(TaskStorage storage, TaskList taskList, Ui ui) {
         super(storage, taskList, ui);

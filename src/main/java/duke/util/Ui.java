@@ -122,4 +122,22 @@ public class Ui {
         }
         return reply;
     }
+
+    /**
+     * Prints out the list of commands available
+     *
+     */
+    public String printHelp() {
+        return "Welcome to Duke! Here are the commands you can type:" + "\n"
+                + "Note the date should be in format" + "\n" + "yyyy-mm-dd HH:mm" + "\n"
+                + "** To add new Tasks to your list, you can type: " + "\n"
+                + "todo [description of your task]" + "\n"
+                + "deadline [description of your task] + [date]" + "\n"
+                + "event [description of your task] + [date]" + "\n"
+                + "** To see all the tasks you added type: list" + "\n"
+                + "** To see mark or unmark a task type: mark [index] or unmark [index]" + "\n"
+                + "** To delete a task type: delete [index]" + "\n"
+                + "** To find tasks containing certain words type: find [keywords]" + "\n"
+                + "** To exit the program type: bye";
+    }
 }

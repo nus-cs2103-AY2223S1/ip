@@ -17,7 +17,7 @@ public class Parser {
         String[] temp = userInput.trim().split(" ", 2);
         ArrayList<String> res = new ArrayList<>();
         boolean descriptionIsEmpty = temp.length < 2;
-        if (temp[0].equals("bye") || temp[0].equals("list")) {
+        if (temp[0].equals("bye") || temp[0].equals("list") || temp[0].equals("help")) {
             res.add(temp[0]);
             return res;
         }
@@ -35,6 +35,9 @@ public class Parser {
             String[] parsedDetails = parseDetails(details);
             res.add("event");
             res.addAll(Arrays.asList(parsedDetails));
+        } else if (temp[0].equals("/help")) {
+            res.add("help");
+            return res;
         } else {
             res.addAll(Arrays.asList(temp));
         }

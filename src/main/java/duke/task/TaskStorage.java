@@ -31,31 +31,35 @@ public class TaskStorage {
             FileWriter taskUpdater = new FileWriter(original);
             for (int i = 0; i < taskList.getLength(); i++) {
                 Task temp = taskList.getTask(i);
-                String completed = temp.getDone();
-                if (temp.isTodo()) {
-                    String task = "T" + "|" + completed
-                            + "|" + temp.getDescription();
-                    taskUpdater.write(task + "\n");
-                }
-
-                if (temp.isDeadline()) {
-                    Deadline temp1 = (Deadline) temp;
-                    String task = "D" + "|" + completed
-                            + "|" + temp1.getDescription()
-                                + "|" + temp1.getDeadline();
-                    taskUpdater.write(task + "\n");
-                }
-                if (temp.isEvent()) {
-                    Event temp1 = (Event) temp;
-                    String task = "D" + "|" + completed
-                            + "|" + temp1.getDescription()
-                                + "|" + temp1.getTime();
-                    taskUpdater.write(task + "\n");
-                }
+                encodeTask(temp, taskUpdater);
             }
             taskUpdater.close();
         } catch (IOException e) {
             System.out.println("Error occurred while updating Task Storage)");
+        }
+    }
+
+    public void encodeTask(Task task, FileWriter writer) throws IOException {
+        String completed = task.getDone();
+        if (task.isTodo()) {
+            String temp = "T" + "|" + completed
+                    + "|" + task.getDescription();
+            writer.write(task + "\n");
+        }
+
+        if (task.isDeadline()) {
+            Deadline temp1 = (Deadline) task;
+            String temp = "D" + "|" + completed
+                    + "|" + temp1.getDescription()
+                    + "|" + temp1.getDeadline();
+            writer.write(task + "\n");
+        }
+        if (task.isEvent()) {
+            Event temp1 = (Event) task;
+            String temp = "D" + "|" + completed
+                    + "|" + temp1.getDescription()
+                    + "|" + temp1.getTime();
+            writer.write(task + "\n");
         }
     }
 
