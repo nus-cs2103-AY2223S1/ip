@@ -26,6 +26,7 @@ Duke is a Command Line Application to help you manage your tasks.
 ### `Add a ToDo Task` - todo
 Add a ToDo task into the list
 Format: `ToDo TASK_DESCRIPTION`
+<br>
 Describe the action and its outcome.
 
 Example of usage: 
@@ -33,6 +34,7 @@ Example of usage:
 `todo Hello World`
 
 Expected outcome:
+![image](https://user-images.githubusercontent.com/77394751/190419190-82958682-ca76-43ab-9d23-7465063be044.png)
 
 
 ```
