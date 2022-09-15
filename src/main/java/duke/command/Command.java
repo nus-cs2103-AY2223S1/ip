@@ -399,9 +399,11 @@ public abstract class Command {
 
         @Override
         public String exec(TaskList mainTaskList, TaskList targetTaskList) {
-            Task task = targetTaskList.get(index);
+            Task task = targetTaskList.get(index - 1);
             mainTaskList.remove(mainTaskList.indexOf(task));
-            targetTaskList.remove(mainTaskList.indexOf(task));
+            if (targetTaskList.contains(task)) {
+                targetTaskList.remove(mainTaskList.indexOf(task));
+            }
             return "Noted. I've removed this task: \n" +
                     task.toString() + "\n" +
                     "Now you have " + mainTaskList.size() + " tasks in the list.";

@@ -38,6 +38,8 @@ public class Window extends AnchorPane {
         this.duke = duke;
         this.duke.init();
 
+        this.taskList = this.duke.getTasks();
+
 //        Setup panes
         this.loadToolBar();
         this.loadTaskCategoryPane();

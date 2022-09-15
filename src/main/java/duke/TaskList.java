@@ -31,6 +31,9 @@ public class TaskList {
         list.add(t);
     }
 
+    public boolean contains(Task t) {
+        return list.contains(t);
+    }
     /**
      * Get a task from the task list via its index.
      *
