@@ -15,7 +15,7 @@ public class TaskListStub extends TaskList {
     private ArrayList<Task> data;
     
     public TaskListStub() throws DukeException {
-        super(new Storage("././././data/duke.txt"), new UI());
+        super(new Storage("data/duke", "data"), new UI());
         this.data = new ArrayList<>();
     }
 

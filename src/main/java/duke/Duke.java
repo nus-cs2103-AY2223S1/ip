@@ -10,10 +10,10 @@ public class Duke {
     private TaskList tasks;
     private UI ui;
     
-    public Duke(String filePath) {
+    public Duke(String filePath, String directory) {
         ui = new UI();
-        storage = new Storage(filePath);
         try {
+            storage = new Storage(filePath, directory);
             tasks = new TaskList(storage, ui);
         } catch (DukeException e) {
             ui.showError(e);
@@ -60,6 +60,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("././././data/duke.txt").run();
+        new Duke("data/duke.txt", "data").run();
     }
 }
