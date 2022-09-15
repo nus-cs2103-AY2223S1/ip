@@ -1,6 +1,5 @@
 package candice.javafx;
 
-import candice.Candice;
 import javafx.application.Application;
 
 /**

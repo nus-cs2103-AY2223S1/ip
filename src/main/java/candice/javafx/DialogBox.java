@@ -20,8 +20,10 @@ import javafx.scene.layout.HBox;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    /** The label containing text from the user or the response from Candice */
     @FXML
     private Label dialog;
+    /** The image of the user or Candice */
     @FXML
     private ImageView displayPicture;
 
@@ -49,10 +51,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Creates a dialog box corresponding to the user's text.
+     *
+     * @param text The text inputted by the user.
+     * @param img The image of the user.
+     * @return A dialog box of the text inputted by the user.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Creates a dialog box corresponding to Candice's response.
+     *
+     * @param text The response from Candice.
+     * @param img The image of Candice.
+     * @return A dialog box of the response from Candice.
+     */
     public static DialogBox getCandiceDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
