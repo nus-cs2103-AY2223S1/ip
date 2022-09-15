@@ -49,7 +49,7 @@ application {
 
 shadowJar {
     archiveBaseName = "doemon"
-    archiveClassifier = "v0.1"
+    archiveClassifier = "v0.2"
 }
 
 checkstyle {

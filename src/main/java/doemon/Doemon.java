@@ -25,6 +25,7 @@ public class Doemon {
      * @param filePath Path of the file where tasks will be saved to.
      */
     public Doemon(String filePath) {
+        assert filePath != null : "File path should not be null";
         this.response = new Response();
         this.storage = new Storage(filePath);
         try {
@@ -32,6 +33,7 @@ public class Doemon {
         } catch (TaskDataException tde) {
             this.tasks = new TaskList();
         }
+        assert this.tasks != null : "The tasks field should not be empty";
     }
 
     /**

@@ -93,7 +93,8 @@ public class Storage {
         // Check and create data directory if necessary.
         File directory = new File("./data");
         if (!directory.exists()) {
-            directory.mkdir();
+            boolean madeDirectory = directory.mkdir();
+            assert madeDirectory : "Directory creation should be successful";
         }
 
         // Create file if it does not exist.
