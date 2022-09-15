@@ -7,21 +7,22 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import duke.Duke;
+import cwq.CWQ;
 /**
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
 
-    private final Duke duke = new Duke();
-    private final String logo = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n"
-            + "Hi, I'm Duke. What can I do for you?";
+    private final CWQ CWQ = new CWQ();
+    private final String logo =
+              " _______ \t                     \t    ________ \n"
+            + "|      \\ \t  \\      /\\      /\t   |        |\n"
+            + "|          \t  \\    /  \\    / \t   |        |\n"
+            + "|           \t  \\  /    \\  /  \t   |        |\n"
+            + "|_______/    \t  \\/      \\/   \t   |_______\\\n"
+            + "Hi, I'm cwq. What can I do for you?";
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
+    private Image cwqImage = new Image(this.getClass().getResourceAsStream("/images/cwq.png"));
     @Override
     public void start(Stage stage) {
         try {
@@ -29,7 +30,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().setDuke(CWQ);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

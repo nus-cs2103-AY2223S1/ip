@@ -1,9 +1,9 @@
 
-package duke;
+package cwq;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import duke.task.*;
+import cwq.task.*;
 import java.util.*;
 public class TasksControllerTest {
 
