@@ -140,5 +140,5 @@ There is no need to save manually.
 
 ### Editing the data:
 
-Charmposter data is saved as a txt file ```[JAR file location]/duke.txt```. 
+Charmposter data is saved as a txt file ```[HOMEDRIVE/HOMEPATH/USERPROFILE]/data/duke.txt```. 
 Advanced users are welcome to update data directly by editing that data file.
