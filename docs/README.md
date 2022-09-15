@@ -1,7 +1,5 @@
 # User Guide
 
----
-
 ## Features
 
 ### Keep track of various tasks
@@ -12,8 +10,6 @@ Duke can help you keep track of several types of tasks:
 - Deadlines
 - Events
 - Recurring tasks
-
----
 
 ## Usage
 
@@ -170,5 +166,3 @@ Here are your search results:
 Usage:
 
 `bye`
-
----

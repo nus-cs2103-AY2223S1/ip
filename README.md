@@ -1,6 +1,6 @@
 # Duke
 
----
+![Ui](https://leecaregene.github.io/ip/Ui.png)
 
 ## Features
 
@@ -12,8 +12,6 @@ Duke can help you keep track of several types of tasks:
 - Deadlines
 - Events
 - Recurring tasks
-
----
 
 ## Acknowledgements
 
