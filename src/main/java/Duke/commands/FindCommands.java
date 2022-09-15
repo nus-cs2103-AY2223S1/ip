@@ -11,12 +11,12 @@ public class FindCommands extends Command {
     private final ArrayList<String> Keywords;
 
 
-    public FindCommands(String fullInput) throws DukeException {
-        int firstSpace = fullInput.indexOf(" ");
+    public FindCommands(String input) throws DukeException {
+        int firstSpace = input.indexOf(" ");
         if (firstSpace == -1) {
             throw new DukeException("No input was detected");
         }
-        String afterFirstSpace = fullInput.substring(firstSpace + 1);
+        String afterFirstSpace = input.substring(firstSpace + 1);
         Keywords = new ArrayList<>();
         Keywords.addAll(Arrays.asList(afterFirstSpace.split(" ")));
     }
