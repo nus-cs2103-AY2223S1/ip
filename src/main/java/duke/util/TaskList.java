@@ -36,6 +36,7 @@ public class TaskList {
      */
     public String addTask(Task task) {
         tasks.add(task);
+        assert task != null;
         String output = "Gotcha! I've added this task:\n";
         output += "\t" + task;
         output += "Now you have " + tasks.size() + " tasks in your list.";
@@ -62,6 +63,7 @@ public class TaskList {
             throw new DukeException("Please enter a valid task number!");
         }
         Task task = tasks.remove(taskIndex);
+        assert task != null;
         String output = "Noted. I've removed this task:\n";
         output += "\t" + task;
         return output;
