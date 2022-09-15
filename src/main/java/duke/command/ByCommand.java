@@ -13,7 +13,8 @@ import duke.util.Storage;
 import duke.util.TaskList;
 
 /**
- * A command that filters current tasks and display tasks that is smaller than the input date
+ * A command that filters current tasks and display tasks that is smaller than
+ * the input date
  */
 public class ByCommand extends DataCommand {
 
@@ -27,7 +28,8 @@ public class ByCommand extends DataCommand {
     }
 
     /**
-     * {@inheritDoc} Prints all task (with datetime assigned) that is before the specified date.
+     * {@inheritDoc} Prints all task (with datetime assigned) that is before the
+     * specified date.
      * 
      * @throws InvalidTimeFormatException raised if no datetime format is detected
      */
@@ -37,17 +39,7 @@ public class ByCommand extends DataCommand {
         LocalDateTime dt = DataParser.strToDateTime(data.description)
                 .orElseThrow(() -> new InvalidTimeFormatException(data.description));
 
-        List<Task> cpy = new ArrayList<>(tasks.getTasks());
-        cpy.sort(null);
-        List<Task> ret = new ArrayList<>();
-        for (Task t : cpy) {
-            if (t.compareTo(dt) > 0) {
-                break;
-            }
-            ret.add(t);
-        }
-
-        io.printList(ret);
+        io.printList(tasks.getTaskBefore(dt));
     }
 
 }

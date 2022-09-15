@@ -1,5 +1,6 @@
 package duke.util;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +83,25 @@ public class TaskList {
     public List<Task> getTasks() {
         return tasks;
     };
+
+    /**
+     * Returns a list of Tasks that is smaller than datetime.
+     * 
+     * @dt time to be compared to
+     * @return List of Tasks
+     */
+    public List<Task> getTaskBefore(LocalDateTime dt) {
+        List<Task> cpy = new ArrayList<>(tasks);
+        cpy.sort(null);
+        List<Task> ret = new ArrayList<>();
+        for (Task t : cpy) {
+            if (t.compareTo(dt) > 0) {
+                break;
+            }
+            ret.add(t);
+        }
+        return ret;
+    }
 
     /**
      * Converts current tasks to ParsedData[] to be saved.
