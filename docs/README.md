@@ -53,7 +53,7 @@ Expected outcome:
 A task with a deadline is added to your Task Manager. The format of the date is in YYYY-MM-DD.
 
 ```
-Duke heard: Got it. I've added this task:
+Bubbles: Got it. I've added this task:
 [D][X] CS2103T IP (by:Sep 16 2022)
 Now you have 5 tasks in your list
 ```
@@ -70,7 +70,7 @@ Expected outcome:
 An event with a specified location is added to your Task Manager.
 
 ```
-Duke heard: Got it. I've added this task:
+Bubbles: Got it. I've added this task:
 [E][X] Concert IP (at: Esplanade)
 Now you have 5 tasks in your list
 ```
@@ -88,7 +88,7 @@ Expected outcome:
 A genetic task is added to your Task Manager.
 
 ```
-Duke heard: Got it. I've added this task:
+Bubbles: Got it. I've added this task:
 [T][X] CS2100 Lab
 Now you have 5 tasks in your list
 ```
@@ -108,7 +108,7 @@ Expected outcome:
 The task with the corresponding ID (Task Number) is deleted.
 
 ```
-Duke heard: The following task has been deleted:
+Bubbles: The following task has been deleted:
 [T][X] CS2100 Lab
 ```
 
@@ -127,7 +127,7 @@ Expected outcome:
 The task with the corresponding ID (Task Number) is marked as "done".
 
 ```
-Duke heard: Nice! I've marked this task as done:
+Bubbles: Nice! I've marked this task as done:
 [T][/] CS2100 Lab
 ```
 
@@ -146,7 +146,7 @@ Expected outcome:
 All tasks are displayed and shown to the user
 
 ```
-Duke heard: Here are the task in your list:
+Bubbles: Here are the task in your list:
 1. [D][X] CS2103T IP (by:Sep 16 2022)
 2. [E][X] Concert IP (at: Esplanade)
 3. [T][X] CS2100 Lab
@@ -167,7 +167,7 @@ Expected outcome:
 All tasks due on the matching date are displayed and shown to the user
 
 ```
-Duke heard: These tasks are due on 2022-09-16:
+Bubbles: These tasks are due on 2022-09-16:
 [D][X] CS2103T IP (by:Sep 16 2022)
 ```
 
@@ -186,7 +186,7 @@ Expected outcome:
 All tasks due on the matching date are displayed and shown to the user
 
 ```
-Duke heard: The following tasks match your search
+Bubbles: The following tasks match your search
 [D][X] CS2103T IP (by:Sep 16 2022)
 ```
 
@@ -205,7 +205,7 @@ Expected outcome:
 An expense is added to your Expense Manager. The format of the date is in YYYY-MM-DD. You should not add any symbol in front of the amount (ie. $).
 
 ```
-Duke heard: Got it. I've added this task:
+Bubbles: Got it. I've added this task:
 [D][X] CS2103T IP (by:Sep 16 2022)
 Now you have 5 tasks in your list
 ```
@@ -223,7 +223,7 @@ Expected outcome:
 A list of all expenses is displayed.
 
 ```
-Duke heard: Here are the expense in your list:
+Bubbles: Here are the expense in your list:
 1. waacow: $14 at Sep 13 2022
 2. waacow chirashi: $15 at Oct 10 2022
 ```
@@ -241,7 +241,7 @@ Expected outcome:
 An expense is deleted from your Expense Manager.
 
 ```
-Duke heard: The following expense has been deleted:
+Bubbles: The following expense has been deleted:
 waacow chirashi: $15 at Oct 10 2022
 ```
 
@@ -258,7 +258,7 @@ Expected outcome:
 The total expenditure of all expenses in the Expense Manager is calculated and shown to the user.
 
 ```
-Duke heard: You spent a total of $20
+Bubbles: You spent a total of $20
 ```
 
 ### `spentOn` - Displays total amount spent on a day
@@ -274,5 +274,5 @@ Expected outcome:
 An expense is added to your Expense Manager. The format of the date is in YYYY-MM-DD. You should not add any symbol in front of the amount (ie. $).
 
 ```
-Duke heard: You spent a total of $40
+Bubbles: You spent a total of $40
 ```

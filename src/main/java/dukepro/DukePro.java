@@ -94,7 +94,7 @@ public class DukePro extends Application {
      * @return A String.
      */
     private String getResponse(String input) {
-        return "Bubbles heard: " + input;
+        return "Bubbles: " + input;
     }
 
     /**
