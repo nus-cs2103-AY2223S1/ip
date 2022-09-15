@@ -48,7 +48,9 @@ public class Parser {
         } else if (first.equals("find")) {
             return tasks.find(rest);
         } else if (first.equals("undo")) {
-            return tasks.undo();
+            String message = tasks.undo();
+            storage.writeToFile(tasks);
+            return message;
         } else {
             return "OOPS!!! I'm sorry, but I don't know what that means :-(";
         }

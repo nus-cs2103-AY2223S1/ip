@@ -46,6 +46,9 @@ public class Duke extends Application {
     }
 
 
+    //@@author damithc-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart1.html
+    // with minor modifications
     @Override
     public void start(Stage stage) {
         //Step 1. Setting up required components
@@ -66,7 +69,48 @@ public class Duke extends Application {
         stage.setScene(scene);
         stage.show();
 
-        //Step 2. Formatting the window to look as expected
+        formatWindow(stage, mainLayout);
+
+        formatUserInput();
+    }
+
+    //@@author damithc-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart1.html
+    // with minor modifications
+    /**
+     * Adds the ability to handle user input.
+     */
+    private void formatUserInput() {
+        sendButton.setOnMouseClicked((event) -> {
+            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
+            userInput.clear();
+        });
+
+        userInput.setOnAction((event) -> {
+            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
+            userInput.clear();
+        });
+
+        //Part 3. Add functionality to handle user input.
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
+    }
+
+    //@@author damithc-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart1.html
+    // with minor modifications
+    /**
+     * Formats the window.
+     *
+     * @param stage The stage used.
+     * @param mainLayout The AnchorPane initialised.
+     */
+    private void formatWindow(Stage stage, AnchorPane mainLayout) {
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -93,35 +137,17 @@ public class Duke extends Application {
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
 
-        AnchorPane.setLeftAnchor(userInput , 1.0);
+        AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-
-        //Step 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        //Part 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
-
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
     }
 
+    //@@author damithc-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart1.html
+    // with minor modifications
     /**
-     * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
@@ -134,6 +160,9 @@ public class Duke extends Application {
         return textToAdd;
     }
 
+    //@@author damithc-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart1.html
+    // with minor modifications
     /**
      * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
@@ -150,10 +179,11 @@ public class Duke extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets the response from the user's input
+     * @param input The user's response
+     * @return A message responding to the user's input.
      */
     private String getResponse(String input) {
-        return Parser.checkExit(input) ? "Have a nice day!" : Parser.parse(input, tasks, storage);
+        return Parser.checkExit(input) ? "Bye! See you again." : Parser.parse(input, tasks, storage);
     }
 }
