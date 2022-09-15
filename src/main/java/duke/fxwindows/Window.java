@@ -62,7 +62,11 @@ public class Window extends AnchorPane {
     }
 
     private void loadTaskDescPane() {
-        this.taskDescriptionPane = new TaskDescriptionPane(this.duke.getTasks().get(0));
+        if (this.duke.getTasks().size() == 0) {
+            this.taskDescriptionPane = new TaskDescriptionPane(null);
+        } else {
+            this.taskDescriptionPane = new TaskDescriptionPane(this.duke.getTasks().get(0));
+        }
         this.contentBox.getChildren().add(this.taskDescriptionPane);
     }
 

@@ -88,7 +88,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Label text="To mark a task as NOTE DONE, do: " />
+                  <Label text="To mark a task as NOT DONE, do: " />
                   <Label text="unmark &lt;index&gt;">
                      <font>
                         <Font name="Monospaced Regular" size="12.0" />
