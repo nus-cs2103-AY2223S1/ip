@@ -42,11 +42,11 @@ public class DeleteCommand extends Command {
      * @throws DukeException if the change cannot be saved in storage successfully or task cannot be deleted
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             Task deletedTask = tasks.deleteTaskAtPos(this.index);
             storage.save(tasks);
-            ui.showDeleted(deletedTask);
+            return ui.showDeleted(deletedTask);
         } catch (IndexOutOfBoundsException e) {
             if (tasks.getCount() == 0){
                 throw new DukeException(Message.INVALID_ACCESS_EMPTY_TASKLIST);

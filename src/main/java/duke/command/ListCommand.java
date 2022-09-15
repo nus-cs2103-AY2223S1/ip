@@ -28,8 +28,8 @@ public class ListCommand extends Command {
      * @param storage the local storage
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        ui.showList();
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        return ui.showList();
     }
 
 }

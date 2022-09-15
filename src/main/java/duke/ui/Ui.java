@@ -4,14 +4,11 @@ import duke.Message;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.util.Scanner;
-
 /**
- * Represents a user interface to display messages to user
+ * Represents a user interface to return messages to user
  */
 public class Ui {
 
-    private static final Scanner SCANNER = new Scanner(System.in);
     private final TaskList tasks;
 
     /**
@@ -24,103 +21,112 @@ public class Ui {
     }
 
     /**
-     * Displays a horizontal divider line
+     * Returns a horizontal divider line
+     *
+     * @return the string representing the line
      */
-    public void showLine() {
-        System.out.println(Message.HORIZONTAL_BORDER);
+    public String showLine() {
+        return Message.HORIZONTAL_BORDER;
     }
 
     /**
-     * Displays the message with horizontal dividers
+     * Returns the message with horizontal dividers
      *
      * @param mainMessage the message to be displayed
+     * @return the message string
      */
-    public void showFullMessage(String mainMessage) {
-        showLine();
-        System.out.println(mainMessage);
-        showLine();
+    public String showFullMessage(String mainMessage) {
+       return showLine() + "\n" + mainMessage + "\n" + showLine();
     }
 
     /**
-     * Displays the full welcome message
-     */
-    public void showWelcome() {
-        showFullMessage(Message.WELCOME_MESSAGE);
-    }
-
-    /**
-     * Displays the full bye message
-     */
-    public void showBye() {
-        showFullMessage(Message.BYE_MESSAGE);
-    }
-
-    /**
-     * Reads the user input
+     * Returns the full welcome message
      *
-     * @return the user input String
+     * @return the welcome message string
      */
-    public String readCommand() {
-        return SCANNER.nextLine().strip();
+    public String showWelcome() {
+        return showFullMessage(Message.WELCOME_MESSAGE);
     }
 
     /**
-     * Displays the formatted full error message
+     * Returns the full bye message
+     *
+     * @return the bye message string
+     */
+    public String showBye() {
+        return showFullMessage(Message.BYE_MESSAGE);
+    }
+
+    /**
+     * Returns the formatted full error message
      *
      * @param errorMessage the error message
+     * @return the formatted error message string
      */
-    public void showError(String errorMessage) {
-        showFullMessage("☹ OOPS!!! " + errorMessage);
+    public String showError(String errorMessage) {
+        return showFullMessage("OOPS :( !!! " + errorMessage);
     }
 
     /**
-     * Displays the list of tasks
+     * Returns the list of tasks
+     *
+     * @return the string of the list of tasks
      */
-    public void showList() {
-        showFullMessage(this.tasks.toString());
+    public String showList() {
+        return showFullMessage(this.tasks.toString());
     }
 
     /**
-     * Displays the addition message indicating a task has been successfully added
+     * Returns the addition message indicating a task has been successfully added
      *
      * @param task the task to be added
      * @param totalTasks the total number of tasks
+     * @return the formatted addition message string
      */
-    public void showAddition(Task task, int totalTasks) {
-        showFullMessage("Got it. I've added this task:\n" + task
+    public String showAddition(Task task, int totalTasks) {
+        return showFullMessage("Got it. I've added this task:\n" + task
                 + "\nNow you have " + totalTasks + " tasks in the list.");
     }
 
     /**
-     * Displays the marked task message indicating a task has been successfully marked
+     * Returns the marked task message indicating a task has been successfully marked
      *
      * @param task the task to be marked
+     * @return the marked task message string
      */
-    public void showMarked(Task task) {
-        showFullMessage("Nice! I've marked this task as done:\n" + task);
+    public String showMarked(Task task) {
+        return showFullMessage("Nice! I've marked this task as done:\n" + task);
     }
 
     /**
-     * Displays the unmarked task message indicating a task has been successfully unmarked
+     * Returns the unmarked task message indicating a task has been successfully unmarked
      *
      * @param task the task to be unmarked
+     * @return the un-marked task message string
      */
-    public void showUnmarked(Task task) {
-        showFullMessage("OK, I've marked this task as not done yet:\n" + task);
+    public String showUnmarked(Task task) {
+        return showFullMessage("OK, I've marked this task as not done yet:\n" + task);
     }
 
     /**
-     * Displays the deleted task message indicating a task has been successfully deleted
+     * Returns the deleted task message indicating a task has been successfully deleted
      *
      * @param task the task to be deleted
+     * @return the deleted task message string
      */
-    public void showDeleted(Task task) {
-        showFullMessage("Noted. I've removed this task:\n" + task
+    public String showDeleted(Task task) {
+        return showFullMessage("Noted. I've removed this task:\n" + task
                 + "\nNow you have " + this.tasks.getCount() + " tasks in the list.");
     }
 
-    public void showFound(String foundTasks) {
-        showFullMessage("Here are the matching tasks in your list:\n" + foundTasks);
+    /**
+     * Returns the tasks that are found and formatting them in a message
+     *
+     * @param foundTasks the string of found tasks
+     * @return the found task message string
+     */
+    public String showFound(String foundTasks) {
+        return showFullMessage("Here are the matching tasks in your list:\n" + foundTasks);
     }
 
 }

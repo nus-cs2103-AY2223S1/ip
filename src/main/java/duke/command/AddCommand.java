@@ -41,9 +41,9 @@ public class AddCommand extends Command {
      * @throws DukeException if the change cannot be saved in storage successfully
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(this.task);
         storage.save(this.task.toSimpleString());
-        ui.showAddition(this.task, tasks.getCount());
+        return ui.showAddition(this.task, tasks.getCount());
     }
 }
