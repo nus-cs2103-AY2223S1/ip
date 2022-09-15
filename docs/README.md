@@ -2,7 +2,7 @@
 
 ## Quick Start
 1. Ensure a minimum of Java 11 is installed on your computer.
-2. Download the latest Duke release from [Here](https://github.com/highorbit25/ip/releases/tag/A-Release).
+2. Download the latest Duke release from [here](https://github.com/highorbit25/ip/releases/tag/A-Release).
 3. Place the jar file at the directory where you wish to use as the home directory for duke.
 4. Run Duke.jar to start the chatbot.
 5. Start using Duke by typing the commands in the textbox.
