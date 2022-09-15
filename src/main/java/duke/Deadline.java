@@ -1,5 +1,5 @@
-/**
- * The Deadline class extends the Task class as it is a more specific type of task.
+package duke; /**
+ * The duke.Deadline class extends the duke.Task class as it is a more specific type of task.
  */
 import java.time.LocalDate;
 

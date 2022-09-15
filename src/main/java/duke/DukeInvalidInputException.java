@@ -1,10 +1,12 @@
+package duke;
+
 /**
- * A DukeInvalidInputException is thrown if the user gives an unknown input/command.
+ * A duke.DukeInvalidInputException is thrown if the user gives an unknown input/command.
  */
 public class DukeInvalidInputException extends DukeException {
 
     /**
-     * Public constructor for a DukeInvalidInputException which will print the standardized message when thrown and
+     * Public constructor for a duke.DukeInvalidInputException which will print the standardized message when thrown and
      * caught.
      */
     public DukeInvalidInputException() {

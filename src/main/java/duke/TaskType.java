@@ -1,3 +1,4 @@
+package duke;
 
 public enum TaskType {
     T,
