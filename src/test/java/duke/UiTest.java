@@ -13,17 +13,17 @@ public class UiTest {
     public Ui ui = new Ui();
 
     @Test
-    public void printsLogoCorrectly() {
+    public void showWelcome_showsCorrectWelcomeMessage() {
         assertEquals(ui.showWelcome(), "Hello from\n" + logo + "I'm Duke! \n What can I do for you?");
     }
 
     @Test
-    public void printsExitMessageCorrectly() {
+    public void showExitMessage_showsExitMessageCorrectly() {
         assertEquals(ui.showExitMessage(), "\nGoodbye! Hope to see you again!\n");
     }
 
     @Test
-    public void addsLineBreakProperly() {
+    public void addLineBreak_addsLineBreakToTextCorrectly() {
         assertEquals(ui.addLineBreak(""), "\n\n");
     }
 }
