@@ -9,6 +9,6 @@ public class IllegalIndexException extends DukeException {
      * Constructor for IllegalIndexException.
      */
     public IllegalIndexException() {
-        super("The index provided is illegal, or not an int.");
+        super("The index provided is illegal, or not an integer. Did you enter a non-positive index?");
     }
 }

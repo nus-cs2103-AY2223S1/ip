@@ -11,11 +11,12 @@ import tasks.Event;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
+import java.util.Arrays;
 
 public class EventCommand extends Command {
-    static final String EVENT_DATETIME_START_OR_END_FORMAT = "d/MM/uuuu HHmm";
+    static final String EVENT_DATETIME_START_OR_END_FORMAT = "d/M/uuuu HHmm";
     static final String EVENT_DATETIME_START_OR_END_STORAGE_FORMAT = "MMM dd uuuu, HHmm";
-    static final String EVENT_DATETIME_INPUT_FORMAT = "d/MM/uuuu HHmm - d/MM/uuuu HHmm";
+    static final String EVENT_DATETIME_INPUT_FORMAT = "d/M/uuuu HHmm - d/M/uuuu HHmm";
     private final String[] args;
 
     public EventCommand(String[] args) {
@@ -23,6 +24,13 @@ public class EventCommand extends Command {
     }
 
     public static void validateArguments(String[] args) throws DukeException {
+        assert args.length > 0 : "No arguments entered into EventCommand validateArguments";
+
+        // ERROR HANDLING: Check for missing /at delimiter
+        if (!Arrays.asList(args).contains("/at")) {
+            throw new DukeException("Please include /at to describe the time range of this Event!");
+        }
+
         String description = Parser.splitArrayIntoSubstrings(args, "/at").get(0);
 
         // ERROR HANDLING: Check for empty Tasks.Deadline description
