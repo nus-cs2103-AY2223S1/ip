@@ -79,7 +79,9 @@ public class Parser {
     }
 
     private String[] splitDescriptionAndDate(String[] ar) throws AnyaException {
-        if (ar.length < 2) {
+        boolean noDescription = ar.length < 2;
+        boolean onlyDate = ar[1].equals("/by") || ar[1].equals("/at");
+        if (noDescription || onlyDate) {
             throw new AnyaException(ui.printNoTaskDescriptionError(ar[0]));
         }
 
