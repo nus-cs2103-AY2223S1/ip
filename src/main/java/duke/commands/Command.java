@@ -1,11 +1,9 @@
 package duke.commands;
 
-import duke.Duke;
 import duke.DukeException;
 import duke.task.TaskList;
 import duke.task.TaskStorage;
 import duke.util.Ui;
-import javafx.application.Platform;
 
 import java.util.ArrayList;
 
@@ -50,6 +48,9 @@ public class Command {
                 case "delete":
                     DeleteCommand deleteCommand = new DeleteCommand(storage, taskList, ui);
                     return deleteCommand.deleteTask(parsedInput);
+                case "help":
+                    HelpCommand helpCommand = new HelpCommand(storage, taskList, ui);
+                    return helpCommand.help();
                 default:
                     throw new DukeException("Invalid input");
             }

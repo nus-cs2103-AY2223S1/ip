@@ -8,7 +8,7 @@ import duke.util.Ui;
 
 import java.util.ArrayList;
 
-public class TodoCommand extends Command{
+public class TodoCommand extends Command {
 
     public TodoCommand(TaskStorage storage, TaskList taskList, Ui ui) {
         super(storage, taskList, ui);
