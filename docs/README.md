@@ -142,7 +142,7 @@ Here are the tasks that you have:
 
 ### `find` - Finding tasks by keyword
 
-Searches for task descriptions or dates in TaskList that matches the case insensitive keyword.
+Searches for task descriptions or dates in TaskList that matches the **case-insensitive** keyword.
 
 Format: `find KEYWORD`
 
