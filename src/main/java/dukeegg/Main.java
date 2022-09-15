@@ -14,6 +14,7 @@ import ui.MainWindow;
  */
 public class Main extends Application {
     private static final String TITLE = "Dukegg Chatbot";
+
     private final Dukegg dukegg = new Dukegg("data/tasks.txt");
 
     @Override
