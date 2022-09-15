@@ -1,5 +1,6 @@
 package duke.logic.task;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import duke.storage.DukeEncoder;
  */
 public class Deadline extends Task {
 
-    protected LocalDate by;
+    protected LocalDateTime by;
 
     /**
      * Constructor for deadline.
@@ -21,7 +22,7 @@ public class Deadline extends Task {
      */
     public Deadline(String detail, String by) {
         super(detail);
-        this.by = LocalDate.parse(by);
+        this.by = LocalDateTime.parse(by);
     }
 
     /**
@@ -77,6 +78,6 @@ public class Deadline extends Task {
      */
     @Override
     public String storedData() {
-        return "D" + "|" + super.storedData() + "|" + by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return "D" + "|" + super.storedData() + "|" + by;
     }
 }
