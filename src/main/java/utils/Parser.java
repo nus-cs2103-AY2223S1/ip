@@ -59,7 +59,7 @@ public class Parser {
         return "Task has been postponed. (._.)";
     }
 
-    private static String performPostpone(String[] content, TaskList taskList) throws DukeException {
+    private static void performPostpone(String[] content, TaskList taskList) throws DukeException {
         int taskId = Integer.parseInt(content[0].trim()) - 1;
         String to = content[1].trim();
 
@@ -88,7 +88,7 @@ public class Parser {
             throw new DukeException("Error. Please enter an argument after \"mark\". (._.)");
         }
         try {
-            performMark(arr, taskList, storage);
+            return performMark(arr, taskList, storage);
         } catch (NumberFormatException e) {
             return "Please enter an integer id after \"mark\". (._.)";
         }
@@ -111,7 +111,7 @@ public class Parser {
             throw new DukeException("Error. Please enter an argument after \"unmark\". (._.)");
         }
         try {
-            performUnmark(arr, taskList, storage);
+            return performUnmark(arr, taskList, storage);
         } catch (NumberFormatException e) {
             return "Please enter an integer id after \"ummark\". (._.)";
         }
@@ -131,7 +131,7 @@ public class Parser {
 
     private static String handleDeleteCase(String[] arr, TaskList taskList, Storage storage) throws DukeException {
         try {
-            performDelete(arr, taskList, storage);
+            return performDelete(arr, taskList, storage);
         } catch (NumberFormatException e) {
             return "Please enter an integer id after \"delete\". (._.)";
         }
@@ -165,7 +165,7 @@ public class Parser {
         taskList.add(todo, Duke.TaskType.TODO, "");
         storage.save(taskList);
         return "Todo added successfully to task list.\n"
-                + "You have " + taskList.getSize() + " task(s) left in your task list. (._.)";
+                + "You now have " + taskList.getSize() + " task(s) in your task list. (._.)";
     }
 
     private static String handleDeadlineCase(String s, TaskList taskList, Storage storage) throws DukeException {
@@ -190,7 +190,7 @@ public class Parser {
         taskList.add(deadline, Duke.TaskType.DEADLINE, by);
         storage.save(taskList);
         return "Deadline added successfully to task list.\n"
-                + "You have " + taskList.getSize() + " task(s) left in your task list. (._.)";
+                + "You now have " + taskList.getSize() + " task(s) in your task list. (._.)";
     }
 
     private static String handleEventCase(String s, TaskList taskList, Storage storage) throws DukeException {
@@ -210,6 +210,6 @@ public class Parser {
         taskList.add(event, Duke.TaskType.EVENT, at);
         storage.save(taskList);
         return "Event added successfully to task list.\n"
-                + "You have " + taskList.getSize() + " task(s) left in your task list. (._.)";
+                + "You now have " + taskList.getSize() + " task(s) in your task list. (._.)";
     }
 }
