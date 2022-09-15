@@ -2,4 +2,5 @@ T|1|b
 T|0|a
 E|0|xyz|10
 T|0|abcxyz
-T|0|a
+T|0|test
+T|0|aaaaaa
