@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import duke.exceptions.DukeDuplicateException;
-import duke.exceptions.DukeException;
 import duke.exceptions.DukeMissingIndexException;
 
 
@@ -15,8 +14,8 @@ import duke.exceptions.DukeMissingIndexException;
 public class TaskList {
 
     // Used to check for duplicate
-    private static HashSet<String> taskSet = new HashSet<>();
-    private static ArrayList<Task> taskList = new ArrayList<>();
+    private static final HashSet<String> TASKSET = new HashSet<>();
+    private static final ArrayList<Task> TASKLIST = new ArrayList<>();
 
     /**
      * Add a task into the taskList.
@@ -25,27 +24,27 @@ public class TaskList {
      */
     public static void add(Task task) throws DukeDuplicateException {
         String shortenedDescription = task.toString().substring(3);
-        if (taskSet.contains(shortenedDescription)) {
+        if (TASKSET.contains(shortenedDescription)) {
             throw new DukeDuplicateException();
         }
-        taskSet.add(shortenedDescription);
-        System.out.println(taskSet.size());
-        taskList.add(task);
+        TASKSET.add(shortenedDescription);
+        System.out.println(TASKSET.size());
+        TASKLIST.add(task);
     }
 
     /**
      * Prints out the list of tasks currently stored.
      */
     public static String read() {
-        if (taskList.size() == 0) {
+        if (TASKLIST.size() == 0) {
             System.out.println("You have no task");
             return "You have no task";
         }
 
         StringBuilder ret = new StringBuilder();
         ret.append("Here are the tasks in your list: \n");
-        for (int i = 0; i < taskList.size(); i++) {
-            Task task = taskList.get(i);
+        for (int i = 0; i < TASKLIST.size(); i++) {
+            Task task = TASKLIST.get(i);
             ret.append(i + 1).append(". ").append(task).append("\n");
         }
 
@@ -59,10 +58,10 @@ public class TaskList {
      * @throws DukeMissingIndexException if no task with that index.
      */
     public static void mark(int index) throws DukeMissingIndexException {
-        if (index >= taskList.size() || taskList.get(index) == null) {
+        if (index >= TASKLIST.size() || TASKLIST.get(index) == null) {
             throw new DukeMissingIndexException();
         }
-        taskList.get(index).setDone();
+        TASKLIST.get(index).setDone();
     }
 
     /**
@@ -72,10 +71,10 @@ public class TaskList {
      * @throws DukeMissingIndexException if no task with that index.
      */
     public static void unMark(int index) throws DukeMissingIndexException {
-        if (index >= taskList.size() || taskList.get(index) == null) {
+        if (index >= TASKLIST.size() || TASKLIST.get(index) == null) {
             throw new DukeMissingIndexException();
         }
-        taskList.get(index).setNotDone();
+        TASKLIST.get(index).setNotDone();
     }
 
     /**
@@ -85,13 +84,13 @@ public class TaskList {
      * @throws DukeMissingIndexException if no task with that index.
      */
     public static void delete(int index) throws DukeMissingIndexException {
-        if (index >= taskList.size() || taskList.get(index) == null) {
+        if (index >= TASKLIST.size() || TASKLIST.get(index) == null) {
             throw new DukeMissingIndexException();
         }
-        Task taskToDelete = taskList.get(index);
+        Task taskToDelete = TASKLIST.get(index);
         String shortenedDescription = taskToDelete.toString().substring(3);
-        taskSet.remove(shortenedDescription);
-        taskList.remove(index);
+        TASKSET.remove(shortenedDescription);
+        TASKLIST.remove(index);
     }
 
     /**
@@ -104,8 +103,8 @@ public class TaskList {
         StringBuilder ret = new StringBuilder();
         ret.append("Here are the matching tasks in your list:");
 
-        for (int i = 0; i < taskList.size(); i++) {
-            Task curr = taskList.get(i);
+        for (int i = 0; i < TASKLIST.size(); i++) {
+            Task curr = TASKLIST.get(i);
             if (curr == null) {
                 continue;
             }
@@ -123,7 +122,7 @@ public class TaskList {
      * @return arrayList that store the tasks.
      */
     public static ArrayList<Task> getTaskList() {
-        return taskList;
+        return TASKLIST;
     }
 
 }

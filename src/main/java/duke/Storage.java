@@ -48,7 +48,7 @@ public class Storage {
     /**
      * Generate tasks from previous session.
      *
-     * @throws IOException
+     * @throws IOException when there is issue with getting file
      */
     public void load() throws IOException {
         String directoryPath = "data";
@@ -94,12 +94,10 @@ public class Storage {
                     throw new DukeInvalidReadException();
                 }
                 TaskList.add(newTask);
-            } catch (DukeInvalidReadException e) {
-                Ui.printError(e.getMessage());
-            } catch (DukeDuplicateException e) {
+            } catch (DukeInvalidReadException | DukeDuplicateException e) {
                 Ui.printError(e.getMessage());
             }
-        };
+        }
 
     }
 }

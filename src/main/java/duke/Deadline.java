@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Represents a <code>Task</code> with deadline.
  */
 public class Deadline extends Task {
-    private LocalDate deadline;
+    private final LocalDate DEADLINE;
 
     /**
      * Construct a <code>Deadline</code> <code>Task</code>.
@@ -16,7 +16,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String deadline) {
         super(description);
-        this.deadline = LocalDate.parse(deadline);
+        this.DEADLINE = LocalDate.parse(deadline);
     }
 
     /**
@@ -28,17 +28,17 @@ public class Deadline extends Task {
      */
     public Deadline(String description, boolean isDone , String deadline) {
         super(description, isDone);
-        this.deadline = LocalDate.parse(deadline);
+        this.DEADLINE = LocalDate.parse(deadline);
     }
 
     /**
-     * Returns string representaion of the <code>Deadline</code>.
+     * Returns string representation of the <code>Deadline</code>.
      *
-     * @return string representaion of the <code>Deadline</code>.
+     * @return string representation of the <code>Deadline</code>.
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " ( by: " + deadline + " )";
+        return "[D]" + super.toString() + " ( by: " + DEADLINE + " )";
     }
 
     /**
@@ -48,20 +48,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toStorageFormat() {
-        return "D | " + super.toStorageFormat() + " | " + deadline;
+        return "D | " + super.toStorageFormat() + " | " + DEADLINE;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof Deadline) {
-            Deadline otherTask = (Deadline) obj;
-            if (otherTask.description == this.description && this.deadline == otherTask.deadline) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 }

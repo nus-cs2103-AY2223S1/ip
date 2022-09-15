@@ -80,19 +80,5 @@ public class Task {
         }
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        System.out.println("called");
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof Task) {
-            Event otherTask = (Event) obj;
-            if (otherTask.description == this.description) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 }

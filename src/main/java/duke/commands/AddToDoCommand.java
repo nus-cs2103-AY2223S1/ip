@@ -38,9 +38,7 @@ public class AddToDoCommand extends Command {
             Task newTask = new ToDo(information);
             TaskList.add(newTask);
             return Ui.printAddTask(newTask);
-        } catch (DukeEmptyCommandException e) {
-            return Ui.printError(e.getMessage());
-        } catch (DukeDuplicateException e) {
+        } catch (DukeEmptyCommandException | DukeDuplicateException e) {
             return Ui.printError(e.getMessage());
         }
 

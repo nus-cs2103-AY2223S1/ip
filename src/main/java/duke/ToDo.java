@@ -25,9 +25,9 @@ public class ToDo extends Task {
     }
 
     /**
-     * Returns string representaion of the <code>Deadline</code>.
+     * Returns string representation of the <code>Deadline</code>.
      *
-     * @return string representaion of the <code>Deadline</code>.
+     * @return string representation of the <code>Deadline</code>.
      */
     @Override
     public String toString() {
@@ -44,19 +44,5 @@ public class ToDo extends Task {
         return "T | " + super.toStorageFormat();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        System.out.println("Called");
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof ToDo) {
-            ToDo otherTask = (ToDo) obj;
-            if (otherTask.description == this.description) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 }

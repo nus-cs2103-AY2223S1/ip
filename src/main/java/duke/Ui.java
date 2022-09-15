@@ -2,40 +2,20 @@ package duke;
 
 import duke.exceptions.DukeMissingIndexException;
 
-import javax.print.DocFlavor;
 import java.util.Scanner;
 
 /**
  * Represents an <code>Ui</code> class that handle user interaction.
  */
 public class Ui {
-    private static final String WELCOME = "Hello! I am Duke\n "
-            + "What can i do for you";
+
     private static final String EXIT = "See you later :)";
-    private static final String SEPARATOR = "------------------------------------";
-    private static final String ASK_FOR_COMMAND = "What do you want me to do?";
     private static final Scanner MYSCANNER = new Scanner(System.in);
-
-    /**
-     * Prints separator.
-     */
-    public static void printSeparator() {
-        System.out.println(SEPARATOR);
-    }
-
-    /**
-     * Prints welcome message.
-     */
-    public static String printWelcome() {
-        System.out.println(WELCOME);
-        return WELCOME;
-    }
 
     /**
      * Prints exit message.
      */
     public static String printExit() {
-        System.out.println(EXIT);
         return EXIT;
     }
 
@@ -49,23 +29,15 @@ public class Ui {
     /**
      * Prints successful loading message.
      */
-    public static String printSuccessfulLoad() {
+    public static void printSuccessfulLoad() {
         System.out.println("Successfully retrieved most recent TaskList");
-        return "Successfully retrieved most recent TaskList";
     }
 
     /**
      * Prints error when loading failed.
      */
-    public static String printFailedLoad() {
+    public static void printFailedLoad() {
         System.out.println("Error loading file, an empty TaskList is initialised");
-        return "Error loading file, an empty TaskList is initialised";
-    }
-
-
-    public static void printAskForCommand() {
-        printSeparator();
-        System.out.println(ASK_FOR_COMMAND);
     }
 
     /**
@@ -77,7 +49,7 @@ public class Ui {
         }
         Task task = TaskList.getTaskList().get(index);
         System.out.println("Task is marked as Done \n" + task.toString());
-        return "Task is marked as Done \n" + task.toString();
+        return "Task is marked as Done \n" + task;
     }
 
     /**
@@ -89,7 +61,7 @@ public class Ui {
         }
         Task task = TaskList.getTaskList().get(index);
         System.out.println("Task is marked as Undone \n" + task.toString());
-        return "Task is marked as Undone \n" + task.toString();
+        return "Task is marked as Undone \n" + task;
     }
 
     /**
@@ -99,7 +71,7 @@ public class Ui {
      */
     public static String printAddTask(Task task) {
         System.out.println("added: " + task.toString());
-        return "added: " + task.toString();
+        return "added: " + task;
     }
 
     /**
@@ -119,7 +91,7 @@ public class Ui {
         } catch (DukeMissingIndexException e) {
             return printError(e.getMessage());
         }
-        return "added: " + task.toString();
+        return "added: " + task;
     }
 
     /**

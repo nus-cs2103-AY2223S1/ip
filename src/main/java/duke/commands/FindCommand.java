@@ -12,7 +12,7 @@ public class FindCommand extends Command {
     /**
      * Constructs a <code>FindCommand</code>.
      *
-     * @param description
+     * @param description description of command
      */
     public FindCommand(String description) {
         super(description);
