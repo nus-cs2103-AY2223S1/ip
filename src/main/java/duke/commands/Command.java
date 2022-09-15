@@ -2,6 +2,7 @@ package duke.commands;
 
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
+import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
 
@@ -29,5 +30,4 @@ public abstract class Command {
      * @throws DukeException if errors are encountered during execution
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
-
 }

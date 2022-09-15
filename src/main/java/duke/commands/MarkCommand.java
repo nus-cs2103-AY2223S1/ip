@@ -49,12 +49,22 @@ public class MarkCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             tasks.markAsDone(taskIndex);
-            String result = MESSAGE_SUCCESS + System.lineSeparator() + tasks.getTask(taskIndex) + tasks.showNumberOfTasks();
+            String result = getResultString(tasks);
             ui.showMessage(result);
             return result;
         } catch (DukeException e) {
             ui.showErrorMessage(e.getMessage());
             return e.getMessage();
         }
+    }
+
+    /**
+     * Gets the string representation of the result to be returned to the user
+     *
+     * @param tasks An ArrayList of tasks
+     * @return A string presentation of the arraylist and the tasks
+     */
+    public String getResultString(TaskList tasks) throws DukeException {
+        return MESSAGE_SUCCESS + System.lineSeparator() + tasks.getTask(taskIndex) + tasks.showNumberOfTasks();
     }
 }

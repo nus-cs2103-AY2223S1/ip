@@ -42,8 +42,18 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String result = MESSAGE_SUCCESS + System.lineSeparator() + tasks.showList();
+        String result = getResultString(tasks);
         ui.showMessage(result);
         return result;
+    }
+
+    /**
+     * Gets the string representation of the result to be returned to the user
+     *
+     * @param tasks An ArrayList of tasks
+     * @return A string presentation of the arraylist and the tasks
+     */
+    public String getResultString(TaskList tasks) {
+        return MESSAGE_SUCCESS + System.lineSeparator() + tasks.showList();
     }
 }

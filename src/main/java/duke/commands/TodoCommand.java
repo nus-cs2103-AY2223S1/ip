@@ -2,6 +2,7 @@ package duke.commands;
 
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
+import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.tasks.Todo;
 import duke.ui.Ui;
@@ -50,8 +51,19 @@ public class TodoCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(todo);
-        String result = MESSAGE_SUCCESS + todo + " " + tasks.showNumberOfTasks();
+        String result = getResultString(tasks, todo);
         ui.showMessage(result);
         return result;
+    }
+
+    /**
+     * Gets the string representation of the result to be returned to the user
+     *
+     * @param tasks An ArrayList of tasks
+     * @param task The task to be printed
+     * @return A string presentation of the arraylist and the tasks
+     */
+    public String getResultString(TaskList tasks, Task task) {
+        return MESSAGE_SUCCESS + task + " " + tasks.showNumberOfTasks();
     }
 }
