@@ -140,7 +140,6 @@ public abstract class Task {
         boolean isFound = false;
         for (int x = 0; x < allDesc.length; x++) {
             String word = allDesc[x].toLowerCase();
-            word = word.replaceAll("][-+.<>?/:;',()#]", "");
             if (word.equals(keyword)) {
                 isFound = true;
                 break;
