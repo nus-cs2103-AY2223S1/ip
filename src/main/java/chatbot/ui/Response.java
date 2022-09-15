@@ -25,6 +25,9 @@ public class Response {
      * @param tasks the list containing all the tasks.
      */
     public String listAll(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            return "You are the least productive person I have seen.";
+        }
         return String.format("Really? If you are so forgetful...\n%s", list(tasks));
     }
 
