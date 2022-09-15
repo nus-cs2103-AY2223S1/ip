@@ -2,7 +2,26 @@
 
 Zlimez is a task management chat bot application. Zlimez allows user to add, delete, tag and mark tasks. However he can be slightly grumpy if you ask too much of him.
 
-## Features 
+## Get Started
+
+Ensure you have Java 11 installed on your machine. Download the latest jar file release of Zlimez from [here](https://github.com/zlimez/ip/releases). Double click the jar file and you should see a chat window pop up.
+
+![UI screenshot](./Ui_init.png)
+
+Enter the following commands one after another into the text area to populate your todo list.
+```
+todo Buy groceries
+deadline SEP Application /by 2022-09-25 #important #school
+event AFA /at 2022-08-08 #exciting
+```
+
+After which, enter `list`, you should see
+
+![UI screenshot](./Ui_list.png)
+
+Enter `bye` to exit the application.
+
+## Features
 
 ### Various task types
 
@@ -30,7 +49,7 @@ Users can tag their tasks, like tagging an assignment as urgent and difficult.
 
 Users can ask Zlimez to:
 1. List all their tasks
-2. List tasks on a specific date 
+2. List tasks on a specific date
 3. List tasks that contains a given keyword
 4. List tasks with a given tag
 
@@ -45,7 +64,7 @@ The tasks you have added will be automatically whenever you ends a chat session.
 
 List all tasks in the user's todo list. Shall a date be provided as an argument, only tasks with a matching deadline or events on that day will be shown.
 
-Example of usage: 
+Example of usage:
 
 `list`
 `list 2022-10-10`
@@ -83,7 +102,7 @@ For date sensitive tasks there will be a pair of brackets at the end that displa
 
 Adds a basic todo type task with the given task name to the user's todo list.
 
-Example of usage: 
+Example of usage:
 
 `todo Buy groceries #chores`
 
@@ -98,7 +117,7 @@ Wala now you have 5 tasks in the list.
 
 Adds a deadline type task with the given name and deadline to the user's todo list.
 
-Example of usage: 
+Example of usage:
 
 `deadline SEP Application /by 2022-09-25 #important #school`
 
@@ -113,7 +132,7 @@ Wala now you have 4 tasks in the list.
 
 Adds an event with the given name and date to the user's todo list.
 
-Example of usage: 
+Example of usage:
 
 `event Birthday celebration /at 2022-08-08 #expensive`
 
@@ -124,11 +143,54 @@ I've ADDED this task for you <_>
 Wala now you have 6 tasks in the list.
 ```
 
+### `delete INDEX`
+
+Removes the task at the given index (as per the ordering displayed when 'list' is executed).
+
+Example of usage:
+
+`delete 3`
+
+Expected outcome:
+```
+YES, I've removed this task for YOU:
+  [T][X] Buy groceries
+Wala now you have 5 tasks in the list.
+```
+
+### `mark INDEX`
+
+Marks the task at the given index (as per the ordering displayed when 'list' is executed) as complete.
+
+Example of usage:
+
+`mark 1`
+
+Expected outcome:
+```
+-_-, I've unmarked this task for YOU AGAIN:
+  [D][ ] SEP Application (by: Sep 25 2022)
+```
+
+### `unmark INDEX`
+
+Marks the task at the given index (as per the ordering displayed when 'list' is executed) as incomplete.
+
+Example of usage:
+
+`unmark 2`
+
+Expected outcome:
+```
+Wellz, I've marked this task for YOU
+  [E][ ] Birthday celebration (by: Aug 08 2022)
+```
+
 ### `find KEYWORD`
 
 Find tasks in the todo list that contains the given keyword.
 
-Example of usage: 
+Example of usage:
 
 `find celeb`
 
@@ -138,30 +200,49 @@ These are the tasks that match your incomplete description
   1. [E][ ] Birthday celebration (by: Aug 08 2022)
 ```
 
-### `delete INDEX`
+### `listtags`
 
-Removes the task at the given index (as per the ordering displayed when 'list' is executed).
+List all tags that user have attached thus far to the tasks in the todo list.
 
-Example of usage: 
+Example of usage:
 
-`delete 3`
-
-Expected outcome:
-```
-Wellz, I've marked this task for YOU
-  [E][X] Birthday celebration (by: Aug 08 2022)
-```
-
-### `mark INDEX`
-
-Marks the task at the given index (as per the ordering displayed when 'list' is executed) as complete.
-
-Example of usage: 
-
-`mark 1`
+`listtags`
 
 Expected outcome:
 ```
-Wellz, I've marked this task for YOU
-  [E][X] Birthday celebration (by: Aug 08 2022)
+These are all the tags you gave so far
+  1. important
+  2. urgent
+  3. school
+  4. chores
 ```
+
+### `findtag TAG`
+
+List all tasks that have the given tag.
+
+Example of usage:
+
+`findtag important`
+
+Expected outcome:
+```
+These are your tasks with the given tag
+   1. [D][ ] SEP Application (by: Sep 25 2022)
+```
+
+### `bye`
+
+Exits the application.
+
+Example of usage:
+
+`bye`
+
+Expected outcome:
+```
+Bye. zzz FINALLY~~ <_>
+```
+The application should close.
+
+## _Enjoy chatting with Zlimez_ 😏
