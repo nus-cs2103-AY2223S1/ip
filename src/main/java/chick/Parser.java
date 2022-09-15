@@ -100,8 +100,7 @@ public class Parser {
             assert t != null;
             return tasks.addTask(t);
         } catch (DateTimeParseException e) {
-            System.out.println("wrong date: " + e);
-            return "wrong date: " + e;
+            throw new ChickException("wrong date format, use yyyy-MM-dd");
         }
     }
 

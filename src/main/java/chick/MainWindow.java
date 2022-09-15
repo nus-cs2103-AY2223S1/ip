@@ -1,5 +1,6 @@
 package chick;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -54,5 +55,8 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, chickImage)
         );
         userInput.clear();
+        if (response.equals("bye")) {
+            Platform.exit();
+        }
     }
 }

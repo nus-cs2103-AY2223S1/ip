@@ -171,6 +171,6 @@ public class TaskList {
             store.writeText(t.toStorageString(), true);
         }
         store.closeWriter();
-        return ui.printMessage("orh bye");
+        return ui.printMessage("bye");
     }
 }

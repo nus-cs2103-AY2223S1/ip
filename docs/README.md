@@ -196,7 +196,7 @@ Exits Chick Bot and saves task list.
 Exit and save task list.
 
 ```
-orh bye
+bye
 ```
 
 ### 10. `help`
