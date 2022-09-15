@@ -8,7 +8,7 @@ import duke.tasks.Task;
  *
  * @author lauralee
  */
-public class UnMarkInstruction implements Instruction{
+public class UnMarkInstruction implements Instruction {
 
     TaskList taskList;
     String taskDescription;
@@ -23,7 +23,7 @@ public class UnMarkInstruction implements Instruction{
     public UnMarkInstruction(TaskList taskList, String taskDescription) {
         this.taskList = taskList;
         this.taskDescription = taskDescription;
-        char b = taskDescription.charAt(5);
+        char b = taskDescription.charAt(7);
         this.taskPos = Character.getNumericValue(b);
         assert this.taskPos <= Task.getNumberTasks() : "There is no task with the index number you have specified";
     }
