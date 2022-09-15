@@ -13,5 +13,17 @@ src/main/resources/docs/
 *.iml
 bin/
 
-/text-ui-test/ACTUAL.txt
-text-ui-test/EXPECTED-UNIX.TXT
+# text-ui-test folder
+text-ui-test/
+
+# Java Classes
+*.class
+
+# Side note
+notes.txt
+
+# javadoc folder
+javadoc/
+
+#tobtob.txt
+data/tobtob.txt
