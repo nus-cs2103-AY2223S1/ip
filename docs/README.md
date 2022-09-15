@@ -37,7 +37,7 @@ Example of usage:
 
 Expected outcome:
 
-![image](https://user-images.githubusercontent.com/77394751/190422495-942ac3d9-8e1b-4ac3-abf0-01ef3dfaeabd.png)
+![image](https://user-images.githubusercontent.com/77394751/190427133-c8262117-e781-49d3-b399-94b940b36122.png)
 
 
 ### Add a Event Task - `event`
