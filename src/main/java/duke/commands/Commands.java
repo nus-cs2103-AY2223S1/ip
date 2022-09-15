@@ -11,7 +11,8 @@ public enum Commands {
     deadline("deadline"),
     event("event"),
     mark("mark"),
-    unmark("unmark");
+    unmark("unmark"),
+    find("find");
 
     public String text;
 

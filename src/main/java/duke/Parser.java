@@ -6,6 +6,7 @@ import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.commands.Commands;
 import duke.commands.DeleteCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.UnmarkCommand;
@@ -48,6 +49,8 @@ public class Parser {
                     return new MarkCommand(inputInstruction);
                 case unmark:
                     return new UnmarkCommand(inputInstruction);
+                case find:
+                    return new FindCommand(inputInstruction);
                 default:
                     throw new DukeException("Sorry, I don't understand you. Please try again.");
             }
