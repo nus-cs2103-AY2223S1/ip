@@ -152,7 +152,7 @@ public class Parser {
      * @throws ParseInputException If the given date string is not in one of the preset formats.
      */
     public static LocalDate parseDateFormats(String dateString) throws ParseInputException {
-        // @@author Wu-Lezheng-reused
+        // @@author Matt Ball-reused
         // Reused from
         // https://stackoverflow.com/questions/4024544/how-to-parse-dates-in-multiple-formats-using-simpledateformat
         // with minor modifications
@@ -167,6 +167,7 @@ public class Parser {
                 // Let the loop continue
             }
         }
+        // @@author
         throw new ParseInputException("Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd");
     }
 

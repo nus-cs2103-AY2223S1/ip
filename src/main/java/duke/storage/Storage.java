@@ -110,6 +110,7 @@ public class Storage {
         // with minor modifications
         checkDirectory();
         checkFile();
+        // @@author
     }
 
 
@@ -147,11 +148,13 @@ public class Storage {
      * @throws DukeException If information in the local file cannot be understood.
      */
     public Task interpretFileContent(String str) throws DukeException {
+
         Task task;
-        String description = str.split("] ", 2)[1];
-        if (str.contains("[T]")) {
-            task = new ToDo(description);
-        } else {
+        boolean isFormatWithDate = str.matches(
+                "^\\[[DET]]+\\[[X| ]]+ +(\\w+ )+\\([by|at]+: +[A-Z]+[a-z]{2}+ \\d{2}+ \\d{4}+\\)");
+        boolean isFormatWithoutDate = str.matches("^\\[[DET]]+\\[[X| ]]+( \\w+)+");
+
+        if (isFormatWithDate) {
             String message = str.substring(str.indexOf("]", str.indexOf("]") + 1) + 2,
                     str.indexOf(" ("));
             String dateString = str.substring(str.indexOf(":") + 2, str.indexOf(")"));
@@ -161,10 +164,18 @@ public class Storage {
             } else {
                 task = new Event(message, localDate);
             }
+        } else if (isFormatWithoutDate) {
+            String description = str.split("] ", 2)[1];
+            task = new ToDo(description);
+        } else {
+            throw new StorageException("File corrupted! What's wrong with you?"
+                    + System.lineSeparator() + "Delete the data/duke.txt file!");
         }
+
         if (str.contains("[X]")) {
             task.markAsDone();
         }
+
         return task;
     }
 
