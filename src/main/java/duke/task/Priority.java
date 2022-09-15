@@ -16,7 +16,7 @@ public enum Priority {
     /**
      * Constructor for the Priority enum.
      *
-     * @param priority priority level specified.
+     * @param priority Priority level specified.
      */
     Priority(String priority) {
         this.priority = priority;
@@ -39,7 +39,7 @@ public enum Priority {
     }
 
     /**
-     * Overriden toString method for the priority enum class.
+     * Overrides toString method for the priority enum class.
      *
      * @return The priority level in a readable string.
      */

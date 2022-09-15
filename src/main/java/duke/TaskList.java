@@ -25,7 +25,7 @@ public class TaskList {
     }
 
     /**
-     * Getter for the task list.
+     * Gets the task list.
      *
      * @return The task list.
      */
@@ -36,10 +36,10 @@ public class TaskList {
     /**
      * Handles the addition of tasks.
      *
-     * @param type        type of task added.
-     * @param description description of the task.
-     * @throws DukeException for invalid inputs.
-     * @throws IOException for invalid inputs.
+     * @param type        Type of task added.
+     * @param description Description of the task.
+     * @throws DukeException For invalid inputs.
+     * @throws IOException   For invalid inputs.
      */
     public String addTask(Command type, String description) throws DukeException, IOException {
         Task task;
@@ -73,8 +73,8 @@ public class TaskList {
     /**
      * Marks/Unmarks Tasks.
      *
-     * @param markStatus       input to mark/unmark a task.
-     * @param userInstructions input of the user.
+     * @param markStatus       Input to mark/unmark a task.
+     * @param userInstructions Input of the user.
      */
     public String taskMarker(Command markStatus, String userInstructions) {
         try {
@@ -98,7 +98,7 @@ public class TaskList {
     /**
      * Deletes the task with the specified index.
      *
-     * @param inputIndex index to be deleted.
+     * @param inputIndex Index to be deleted.
      */
     public String deleteTask(String inputIndex) {
         try {
@@ -116,7 +116,7 @@ public class TaskList {
     /**
      * Finds tasks with a matching description to the user's input.
      *
-     * @param match The input by the user to be found by the method.
+     * @param match Input by the user to be found by the method.
      */
     public String findTask(String match) {
         if (!tasks.isEmpty()) {

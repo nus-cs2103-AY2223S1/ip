@@ -18,7 +18,7 @@ public class Deadline extends Task {
     /**
      * Constructor for the Deadline Task.
      *
-     * @param description description of the task.
+     * @param description Description of the task.
      */
     public Deadline(String description, LocalDateTime dueDate, Priority priority) {
         super(description, priority);
@@ -28,9 +28,9 @@ public class Deadline extends Task {
     /**
      * Factory Method for the construction of a Deadline for user input.
      *
-     * @param in user's input.
+     * @param in User's input.
      * @return Deadline with the relevant input fields.
-     * @throws DukeException if no task or incorrect formatting is given.
+     * @throws DukeException If no task or incorrect formatting is given.
      */
     public static Deadline createDeadline(String in) throws DukeException {
         String[] inputArr = splitDescAndDateDeadline(in);
@@ -64,7 +64,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Overriden toString method for the Deadline Task.
+     * Overrides toString method for the Deadline Task.
      *
      * @return String representation of the Deadline.
      */
@@ -74,9 +74,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Override save format method from Task class.
+     * Overrides save format method from Task class.
      *
-     * @return formatted String for the Event task.
+     * @return Formatted String for the Event task.
      */
     @Override
     public String saveFormat() {

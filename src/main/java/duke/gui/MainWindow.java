@@ -14,7 +14,9 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
-    /** String input to exit program. **/
+    /**
+     * String input to exit program.
+     **/
     private static final String END_PROGRAM = "bye";
 
     @FXML
@@ -41,6 +43,11 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(UI.greet(), dukeImage));
     }
 
+    /**
+     * Sets the Elp chatbot instance.
+     *
+     * @param d
+     */
     public void setDuke(Duke d) {
         duke = d;
     }

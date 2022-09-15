@@ -10,7 +10,7 @@ public class ToDo extends Task {
     /**
      * Constructor for the Todo Task.
      *
-     * @param description description of the task.
+     * @param description Description of the task.
      */
     public ToDo(String description, Priority priority) {
         super(description, priority);
@@ -21,7 +21,7 @@ public class ToDo extends Task {
      *
      * @param in User's input.
      * @return Todo with the relevant input fields.
-     * @throws DukeException if incorrect formatting of todo task.
+     * @throws DukeException If incorrect formatting of todo task.
      */
     public static ToDo createToDo(String in) throws DukeException {
         String[] prioritySplit = splitPriority(in);
@@ -35,7 +35,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Overriden toString method for the Todo Task.
+     * Overrides toString method for the Todo Task.
      *
      * @return String representation of the Todo.
      */
@@ -45,9 +45,9 @@ public class ToDo extends Task {
     }
 
     /**
-     * Override save format method from Task class.
+     * Overrides save format method from Task class.
      *
-     * @return formatted String for the Event task.
+     * @return Formatted String for the Event task.
      */
     @Override
     public String saveFormat() {

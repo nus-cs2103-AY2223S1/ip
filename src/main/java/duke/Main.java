@@ -18,6 +18,11 @@ public class Main extends Application {
     private Duke duke = new Duke();
     private Image appIcon = new Image(this.getClass().getResourceAsStream("/images/elp.png"));
 
+    /**
+     * Starts the Elp program.
+     *
+     * @param stage Stage of the program.
+     */
     @Override
     public void start(Stage stage) {
         try {

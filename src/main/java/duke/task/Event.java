@@ -18,7 +18,7 @@ public class Event extends Task {
     /**
      * Constructor for the Event Task.
      *
-     * @param description description of the task.
+     * @param description Description of the task.
      */
     public Event(String description, LocalDateTime duration, Priority priority) {
         super(description, priority);
@@ -28,7 +28,7 @@ public class Event extends Task {
     /**
      * Factory Method for the construction of an Event for user input.
      *
-     * @param in user's input.
+     * @param in User's input.
      * @return Event with the relevant input fields.
      * @throws DukeException if no task or incorrect formatting is given.
      */

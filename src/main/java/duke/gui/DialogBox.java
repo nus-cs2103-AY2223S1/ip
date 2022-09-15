@@ -25,6 +25,12 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructor for a dialog box.
+     *
+     * @param text Text in the dialog box.
+     * @param img  Image of the relevant party's profile picture.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -40,6 +46,30 @@ public class DialogBox extends HBox {
     }
 
     /**
+     * Gets the user dialog from the dialog box.
+     *
+     * @param text Text of the user's input.
+     * @param img  Image of the user's profile picture.
+     * @return A dialog box with the user's input and profile picture.
+     */
+    public static DialogBox getUserDialog(String text, Image img) {
+        return new DialogBox(text, img);
+    }
+
+    /**
+     * Gets Elp's dialog from the dialog box.
+     *
+     * @param text Text of Elp's output.
+     * @param img  Image of Elp's profile picture.
+     * @return A dialog box with the Elp's output and profile picture.
+     */
+    public static DialogBox getDukeDialog(String text, Image img) {
+        var db = new DialogBox(text, img);
+        db.flip();
+        return db;
+    }
+
+    /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
@@ -47,15 +77,5 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
-    }
-
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
-    }
-
-    public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        db.flip();
-        return db;
     }
 }

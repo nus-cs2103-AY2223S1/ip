@@ -11,7 +11,7 @@ public class Parser {
     /**
      * Parses input by user into a Command enum for interpretation by Elp.
      *
-     * @param in user input.
+     * @param in User input.
      */
     public static void parseInput(String in) throws IllegalArgumentException, IndexOutOfBoundsException {
         String[] inputArr = in.split(" ", 2);
@@ -26,18 +26,18 @@ public class Parser {
     }
 
     /**
-     * Getter for the user's command.
+     * Gets user's command.
      *
-     * @return command enum representing the user's command.
+     * @return Command enum representing the user's command.
      */
     public static Command getUserCommand() {
         return userCommand;
     }
 
     /**
-     * Getter for the user's instructions.
+     * Gets the user's instructions.
      *
-     * @return string representation of the user's instructions.
+     * @return String representation of the user's instructions.
      */
     public static String getUserInstructions() {
         return userInstructions;

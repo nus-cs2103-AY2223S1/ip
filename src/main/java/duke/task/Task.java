@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 import duke.exception.DukeException;
 
 /**
- * This abstract class encapsulates the logic of a task.
+ * Abstract class that encapsulates the logic of a task.
  */
 public abstract class Task {
     /* Constant fields representing the input and output format of the dates. */
@@ -24,7 +24,7 @@ public abstract class Task {
     /**
      * Constructor for a Task.
      *
-     * @param description description of the task.
+     * @param description Description of the task.
      */
     public Task(String description, Priority priority) {
         this.description = description;
@@ -52,7 +52,7 @@ public abstract class Task {
      *
      * @param priorityString Input string containing the priority.
      * @return Priority enum of HIGH/MEDIUM/LOW/NONE.
-     * @throws DukeException if invalid priority is input.
+     * @throws DukeException If invalid priority is input.
      */
     protected static Priority parsePriority(String priorityString) throws DukeException {
         Priority priority;
@@ -69,7 +69,7 @@ public abstract class Task {
      *
      * @param dateString Input string containing date.
      * @return Date of LocalDateTime type.
-     * @throws DukeException if date is misformatted.
+     * @throws DukeException If date is misformatted.
      */
     protected static LocalDateTime parseTime(String dateString) throws DukeException {
         LocalDateTime event;
@@ -84,14 +84,14 @@ public abstract class Task {
     /**
      * Returns a string representation for the task's current status.
      *
-     * @return a string representation of the task's status.
+     * @return String representation of the task's status.
      */
     protected String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
     /**
-     * Override toString method for a Task.
+     * Overrides toString method for a Task.
      *
      * @return String representation of the Task.
      */
@@ -124,7 +124,7 @@ public abstract class Task {
     }
 
     /**
-     * Getter for the description of the task.
+     * Gets the description of the task.
      *
      * @return String representation of the description of the task.
      */

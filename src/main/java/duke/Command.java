@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * This class encapsulates the commands that the user can input.
+ * Encapsulates the commands that the user can input.
  */
 public enum Command {
     TODO("todo"),
@@ -20,7 +20,7 @@ public enum Command {
     /**
      * Constructor for the command enum.
      *
-     * @param command input command
+     * @param command Input command
      */
     Command(String command) {
         inputCommand = command;
@@ -31,7 +31,7 @@ public enum Command {
      *
      * @param command Input command by user.
      * @return Enum value corresponding to the input command.
-     * @throws IllegalArgumentException if invalid command is given.
+     * @throws IllegalArgumentException If invalid command is given.
      */
     public static Command getCommand(String command) throws IllegalArgumentException {
         for (Command c : Command.values()) {

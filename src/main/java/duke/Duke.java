@@ -8,7 +8,7 @@ import duke.gui.UI;
 import duke.task.Task;
 
 /**
- * This class is the main logic unit for Duke
+ * The main logic unit for Duke
  */
 public class Duke {
     /* Defined Constants for output */
@@ -28,7 +28,7 @@ public class Duke {
     }
 
     /**
-     * Placeholder for now.
+     * Gets the response of the user.
      *
      * @param in User's input.
      * @return Output by Elp's logic unit to return to the user.

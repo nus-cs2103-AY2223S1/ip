@@ -16,7 +16,7 @@ import duke.task.Task;
 import duke.task.ToDo;
 
 /**
- * This class encapsulates the logic of the storage of the task list in the user's harddrive.
+ * This class encapsulates the logic of the storage of the task list in the user's hard drive.
  */
 public class Storage {
     /* Const fields for representation of the various paths. */
@@ -106,11 +106,11 @@ public class Storage {
     }
 
     /**
-     * Method to parse the saved text file data into usable data to be input into the task list.
+     * Parses the saved text file data into usable data to be input into the task list.
      *
-     * @param savedTask the task in the saved task list.
-     * @return a task to be input into the task list.
-     * @throws DukeException if the method fails, printing the message output.
+     * @param savedTask Task in the saved task list.
+     * @return Task to be input into the task list.
+     * @throws DukeException If the method fails, prints the message output.
      */
     private static Task parseTask(String savedTask) throws DukeException {
         Task task;
@@ -146,7 +146,7 @@ public class Storage {
     }
 
     /**
-     * Method for resetting the file.
+     * Resets the save file.
      */
     public static void resetTaskListFile() {
         try {
@@ -156,6 +156,16 @@ public class Storage {
         }
     }
 
+    /**
+     * Outputs a task from the information from the save file inputted.
+     *
+     * @param taskDescription Description of the task.
+     * @param taskTime Time of the task.
+     * @param type Type of task.
+     * @param priority Priority of the task.
+     * @return Task as specified by the type.
+     * @throws DukeException If an invalid save format is given.
+     */
     private static Task outputDateFormat(String taskDescription, String taskTime, String type, String priority)
             throws DukeException {
         LocalDateTime time = LocalDateTime.parse(taskTime, Task.OUTPUT_DATE_FORMAT);
