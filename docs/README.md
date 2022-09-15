@@ -13,7 +13,6 @@ Duke frees your mind of  of having to remember things u need to, its
 3. Copy the file to the folder you want to use as the home folder for your chat bot.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 
-<p align="center">
 <img src="https://user-images.githubusercontent.com/88762462/190427386-0ceb27f9-33d7-413e-91b2-05bd48e1e46a.png"  width="400">
 
 ## Command Summary
