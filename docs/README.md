@@ -35,7 +35,9 @@ Captain Duke-it is here to help you organise and manage your everyday tasks.
 
 ### Exiting the program
 
-`bye` Exits the program
+`bye`
+
+#
 
 
 ## Usage
