@@ -114,8 +114,7 @@ public class Parser {
         String date = arr[1].strip();
         LocalDate d = dateStringToLocalDate(date);
         Task t = new Deadline(desc, d);
-        lst.addNewTask(t);
-        lst.updateStorage(storage);
+        lst.addNewTask(t, storage);
         return ("Got it. I've added this duke.task: \n" + t.formatTask() + "\nNow you have "
                 + lst.size() + " tasks in the list.");
     }
@@ -127,8 +126,7 @@ public class Parser {
         String date = arr[1].strip();
         LocalDate d = dateStringToLocalDate(date);
         Task t = new Event(desc, d);
-        lst.addNewTask(t);
-        lst.updateStorage(storage);
+        lst.addNewTask(t, storage);
         return ("Got it. I've added this duke.task: \n" + t.formatTask() + "\nNow you have "
                 + lst.size() + " tasks in the list.");
 
@@ -136,9 +134,8 @@ public class Parser {
 
     public static String parseToDo(String desc, TaskList lst, Storage storage) throws DukeException {
         Task t = new Deadline.ToDo(desc);
-        lst.addNewTask(t);
-        lst.updateStorage(storage);
-        return ("Got it. I've added this duke.task: \n" + t.formatTask() + "\nNow you have "
+        lst.addNewTask(t, storage);
+        return ("Got it. I've added this task: \n" + t.formatTask() + "\nNow you have "
                 + lst.size() + " tasks in the list.");
     }
 
@@ -152,12 +149,17 @@ public class Parser {
     }
 
     public static String parseFind(String[] words, TaskList lst) throws DukeException {
+        assert words.length > 1 : "Please enter a keyword!";
         String toFind = words[1];
         String toReply = "Here are the matching tasks in your list:\n";
         if (toFind.length() == 0) {
             throw new DukeException("Please enter a keyword!");
         }
+
         ArrayList<String> result = lst.findTasks(toFind);
+        if (result.size() == 0) {
+            throw new DukeException("No task found!");
+        }
 
         for (int i = 0; i < result.size(); i++) {
             toReply += result.get(i) + "\n";

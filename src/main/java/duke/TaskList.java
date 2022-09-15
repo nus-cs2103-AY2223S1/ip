@@ -31,8 +31,9 @@ public class TaskList {
         }
     }
 
-    public void addNewTask(Task task) {
+    public void addNewTask(Task task, Storage storage) {
         this.lst.add(task);
+        updateStorage(storage);
     }
 
 
