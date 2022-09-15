@@ -35,7 +35,6 @@ public class Parser {
         String[] in = str.split(" ", 2);
         String input = in[0];
         this.checkEmptyInput(str);
-        this.checkInput(input, str.split(" ").length);
         switch (input) {
         case "help":
             return new HelpCommand();
@@ -43,25 +42,27 @@ public class Parser {
             return new ListCommand();
         case "mark":
             assert in.length == 2 : "in doesn't have length of 2";
-            return new ModifyCommand(ModifyCommand.ModifyType.MARK, Integer.parseInt(in[1].trim()));
+            return new ModifyCommand(ModifyCommand.ModifyType.MARK, intParser(in[1]));
         case "unmark":
             assert in.length == 2 : "in doesn't have length of 2";
-            return new ModifyCommand(ModifyCommand.ModifyType.UNMARK, Integer.parseInt(in[1].trim()));
+            return new ModifyCommand(ModifyCommand.ModifyType.UNMARK, intParser(in[1]));
         case "todo":
             assert in.length == 2 : "in doesn't have length of 2";
-            return new AddCommand(new Todo(str.split(" ", 2)[1]));
+            return new AddCommand(new Todo(checkValid(in, -1)));
         case "deadline":
             assert in[1].split("/by")[1].trim() != "" : "Time is empty";
-            return new AddCommand(new Deadline(in[1].split("/by")[0].trim(),
-              in[1].split("/by")[1].trim()));
+            System.out.println(in[1].split("/by").length);
+            return new AddCommand(new Deadline(checkValid(in[1].split("/by"), 0),
+              checkValid(in[1].split("/by"), 1)));
         case "event":
             assert in[1].split("/at")[1].trim() != "" : "Time is empty";
-            return new AddCommand(new Event(in[1].split("/at")[0].trim(),
-              in[1].split("/at")[1].trim()));
+            return new AddCommand(new Event(checkValid(in[1].split("/at"), 0),
+              checkValid(in[1].split("/at"), 1)));
         case "delete":
             assert in.length == 2 : "in doesn't have length of 2";
-            return new DeleteCommand(Integer.parseInt(in[1].trim()));
+            return new DeleteCommand(intParser(in[1]));
         case "bye":
+        case "BYE":
             return new ExitCommand();
         case "find":
             assert in.length == 2 : "in doesn't have length of 2";
@@ -83,31 +84,39 @@ public class Parser {
             throw new BroException("The description cannot be empty.");
         }
     }
-
     /**
-     * Checks whether the time and details have been given for the task provided by the user.
-     * @param str Input by the user.
-     * @param n Length of the split array of the input by the user.
-     * @throws BroException If the details are invalid.
+     * Checks whether the string can be parsed to int.
+     * @param integer The String number to be converted to int.
+     * @return The int form of String integer.
+     * @throws BroException If the string cannot be parsed to int.
      */
-    public void checkInput(String str, int n) throws BroException {
-        switch (str) {
-        case "todo":
-            if (n < 2) {
-                throw new BroException("Please give the description!");
-            }
-            break;
-        case "deadline":
-        case "event":
-            if (n < 4) {
-                throw new BroException("Please give the description and time!");
-            }
-            break;
-        default:
-            break;
+    public int intParser(String integer) throws BroException {
+        try {
+            return Integer.parseInt(integer.trim());
+        } catch (NumberFormatException e) {
+            throw new BroException("Please give a number!!");
         }
     }
-
+    /**
+     * Checks whether the deadline or event is in the correct format.
+     * @param arr Array after splitting the input.
+     * @param n The index of the array word to be returned.
+     * @return The word at the specified n.
+     * @throws BroException If the deadline or event is not in the correct format.
+     */
+    public String checkValid(String[] arr, int n) throws BroException {
+        if (n == -1) {
+            if (arr.length == 1 || arr[1].trim().equals("")) {
+                throw new BroException("Please type the command in correct format!!");
+            } else {
+                return arr[1].trim();
+            }
+        } else if (arr.length <= 1 || (arr[0].equals(""))) {
+            throw new BroException("Please type the command in correct format!!");
+        } else {
+            return arr[n].trim();
+        }
+    }
     /**
      * Converts the string date into LocalDateTime.
      * @param time The date and time provided for the deadline or event task.

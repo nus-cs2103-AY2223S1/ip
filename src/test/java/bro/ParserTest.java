@@ -48,7 +48,7 @@ public class ParserTest {
             parser.parse("deadline CS2109S /by ");
             fail();
         } catch (BroException e) {
-            assertEquals("Please give the description and time!", e.getMessage());
+            assertEquals("Please enter the date in the format dd/MM/yyyy hhmm", e.getMessage());
         }
     }
 
