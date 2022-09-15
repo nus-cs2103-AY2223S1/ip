@@ -26,7 +26,9 @@ public class Storage {
             + "Tasks might not be stored.";
     private static final String INVALID_DATA_FORMAT_MESSAGE = "OOPS!!! Invalid data format";
     private static final String NO_SAVE_DATA_MESSAGE = "OOPS!!! No save data found";
+
     private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
+
     private Path filePath;
 
     /**

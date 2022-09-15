@@ -60,7 +60,7 @@ public abstract class Task {
      */
     public void updateDescription(String newDescription) {
         String emptyString = "";
-        if (newDescription != emptyString) {
+        if (!newDescription.equals(emptyString)) {
             description = newDescription;
         }
     }
