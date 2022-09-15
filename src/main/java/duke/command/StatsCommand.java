@@ -10,11 +10,21 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
 
+/**
+ * Represents a command to view statistics.
+ */
 public class StatsCommand extends Command {
     private static final String SHOW_STAT = "here are some interesting stats!";
     private static final String NO_STAT = "hmmm... bbo has no statistics to show;"
             + "try completing some tasks first!";
 
+    /**
+     * Generates a pie chart based on the type of tasks completed.
+     *
+     * @param tasks The task list the task is to be added to.
+     * @param storage The storage manager that deals with loading and saving tasks to the hard disk.
+     * @return Type task Response containing the added task and an added successfully message.
+     */
     @Override
     public Response<PieChart> execute(TaskList tasks, Storage storage) {
         TaskList completedTasks = tasks.filter(Task::isCompleted);
