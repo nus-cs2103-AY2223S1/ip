@@ -174,15 +174,15 @@ public class Parser {
         }
 
         SecondaryCommand at = SecondaryCommand.AT;
-        boolean hasNoAtCommandInString = !input.contains(at.getValue());
-        if (hasNoAtCommandInString) {
-            throw new InvalidSecondaryCommandException(at.getValue());
-        }
-
         int atIndex = input.lastIndexOf(at.getValue());
         boolean isAtCommandAtStartOfString = atIndex == 0;
         if (isAtCommandAtStartOfString) {
             throw new InvalidTaskNameException();
+        }
+
+        boolean hasNoAtCommandInString = !input.contains(at.getValue());
+        if (hasNoAtCommandInString) {
+            throw new InvalidSecondaryCommandException(at.getValue());
         }
 
         result.secondaryData = input.substring(atIndex + at.getLength());
@@ -206,15 +206,15 @@ public class Parser {
         }
 
         SecondaryCommand by = SecondaryCommand.BY;
-        boolean hasNoByCommandInString = !input.contains(by.getValue());
-        if (hasNoByCommandInString) {
-            throw new InvalidSecondaryCommandException(by.getValue());
-        }
-
         int byIndex = input.lastIndexOf(by.getValue());
         boolean isByCommandAtStartOfString = byIndex == 0;
         if (isByCommandAtStartOfString) {
             throw new InvalidTaskNameException();
+        }
+
+        boolean hasNoByCommandInString = !input.contains(by.getValue());
+        if (hasNoByCommandInString) {
+            throw new InvalidSecondaryCommandException(by.getValue());
         }
 
         result.secondaryData = input.substring(byIndex + by.getLength());

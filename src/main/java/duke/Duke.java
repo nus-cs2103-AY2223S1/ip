@@ -58,7 +58,8 @@ public class Duke {
         try {
             storage = new Storage(FILEPATH);
         } catch (DukeException | IOException e) {
-            guiUi.displayOutput(String.format("%s\n%s", nekoResponses.loadFileFailed(), e.getMessage()));
+            guiUi.displayOutput(String.format("%s%s\n%s", nekoResponses.sayCatchPhrase(),
+                    nekoResponses.loadFileFailed(), e.getMessage()));
         }
     }
 
@@ -70,12 +71,13 @@ public class Duke {
             assert storage != null : "The storage should not be null when loading tasks";
             tasks = new TaskList(storage.load());
             if (tasks.isNotEmpty()) {
-                guiUi.displayOutput(String.format("%s\n%s", nekoResponses.loadTaskSuccessfully(),
-                        nekoResponses.listTasks(tasks)));
+                guiUi.displayOutput(String.format("%s%s\n%s", nekoResponses.sayCatchPhrase(),
+                        nekoResponses.loadTaskSuccessfully(), nekoResponses.listTasks(tasks)));
             }
         } catch (DukeException e) {
             tasks = new TaskList();
-            guiUi.displayOutput(String.format("%s\n%s", nekoResponses.loadTaskFailed(), e.getMessage()));
+            guiUi.displayOutput(String.format("%s%s\n%s", nekoResponses.sayCatchPhrase(),
+                    nekoResponses.loadTaskFailed(), e.getMessage()));
         }
     }
 
@@ -83,7 +85,7 @@ public class Duke {
      * Displays a welcome message to the user.
      */
     private void welcomeUser() {
-        guiUi.displayOutput(nekoResponses.startPrompt());
+        guiUi.displayOutput(String.format("%s%s", nekoResponses.sayCatchPhrase(), nekoResponses.startPrompt()));
     }
 
     /**
@@ -137,7 +139,7 @@ public class Duke {
         } catch (InvalidTaskNameException | InvalidIndexException | InvalidFindException err) {
             response = err.getMessage();
         } catch (InvalidSecondaryCommandException err) {
-            response = String.format("Please include %s command and the necessary information", err.getMessage());
+            response = String.format("Please include %scommand and the necessary information", err.getMessage());
         } catch (InvalidDateException err) {
             response = String.format("%s\n%s", err.getMessage(), nekoResponses.listValidDateFormats());
         } catch (DukeException err) {
@@ -145,7 +147,7 @@ public class Duke {
         } catch (Exception err) {
             response = String.format("Unhandled Exception: %s", err.getMessage());
         }
-        return response;
+        return nekoResponses.sayCatchPhrase() + response;
     }
 
     /**
@@ -155,7 +157,7 @@ public class Duke {
         try {
             assert tasks != null : "The tasks should not be null when storing them in storage";
             storage.storeTask(tasks);
-            guiUi.displayOutput(nekoResponses.endPrompt());
+            guiUi.displayOutput(String.format("%s%s", nekoResponses.sayCatchPhrase(), nekoResponses.endPrompt()));
             TimerTask exitApp = new TimerTask() {
                 @Override
                 public void run() {
