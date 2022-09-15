@@ -15,10 +15,10 @@ public class MarkCommand extends Command {
         try {
             int index = Integer.parseInt(instruction.substring(5)) - 1;
             tasks.get(index).setDone();
-            ui.printMarkMessage(tasks.get(index));
+            ui.print(ui.showMarkMessage(tasks.get(index)));
             storage.saveList(tasks);
         } catch (DukeException e) {
-            ui.printError(e);
+            ui.print(ui.showError(e));
         }
     }
 }

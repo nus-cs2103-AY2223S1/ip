@@ -17,12 +17,12 @@ public class DeleteCommand extends Command {
             int index = Integer.parseInt(instruction.substring(7)) - 1;
             Task deleted = tasks.get(index);
             tasks.delete(index);
-            ui.printDeleteMessage(deleted);
+            ui.print(ui.showDeleteMessage(deleted));
             storage.saveList(tasks);
         } catch (IndexOutOfBoundsException e) {
-            ui.printError(new DukeException(e.getMessage()));
+            ui.print(ui.showError(new DukeException(e.getMessage())));
         } catch (DukeException e) {
-            ui.printError(e);
+            ui.print(ui.showError(e));
         }
     }
 

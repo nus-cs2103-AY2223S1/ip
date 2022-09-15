@@ -15,10 +15,10 @@ public class UnmarkCommand extends Command {
         try {
             int index = Integer.parseInt(instruction.substring(7)) - 1;
             tasks.get(index).setUndone();
-            ui.printUnmarkMessage(tasks.get(index));
+            ui.print(ui.showUnmarkMessage(tasks.get(index)));
             storage.saveList(tasks);
         } catch (DukeException e) {
-            ui.printError(e);
+            ui.print(ui.showError(e));
         }
     }
 }

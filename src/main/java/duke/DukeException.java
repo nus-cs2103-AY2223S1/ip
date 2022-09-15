@@ -10,6 +10,6 @@ public class DukeException extends Exception {
 
     @Override
     public String getMessage() {
-        return "Oops! " + message;
+        return message;
     }
 }

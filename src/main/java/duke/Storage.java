@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -65,7 +66,8 @@ public class Storage {
                     list.add(new Deadline(description, dateTime, isDone));
                 } else if (type.equals("E")) {
                     String at = lineArray[3];
-                    list.add(new Event(description, at, isDone));
+                    LocalDate date = LocalDate.parse(at);
+                    list.add(new Event(description, date, isDone));
                 }
             }
             bufferedReader.close();
