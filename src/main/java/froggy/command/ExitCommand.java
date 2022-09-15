@@ -1,0 +1,31 @@
+package froggy.command;
+
+import froggy.ui.Ui;
+import froggy.storage.Storage;
+import froggy.task.TaskList;
+
+/**
+ * A class which extends from the Command abstract class.
+ * A ExitCommand object can be used to exit the program.
+ */
+public class ExitCommand extends Command {
+    /**
+     * Creates a ExitCommand object.
+     */
+    public ExitCommand() {
+        super(true);
+    }
+
+    /**
+     * Outputs the Goodbye message when triggered.
+     *
+     * @param tasks The TaskList object containing all the tasks and CRUD methods to modify the tasks.
+     * @param ui The Ui object capable of displaying user interface.
+     * @param storage The storage object capable of doing write, load, open functionality.
+     * @return the reply from the bot
+     */
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String messageToUser = ui.showGoodbye();
+        return messageToUser;
+    }
+}
