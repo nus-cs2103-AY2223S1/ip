@@ -18,10 +18,11 @@ public class Duke  {
         try {
             this.taskList = new TaskList();
             storage = new Storage(path, taskList);
+            storage.load();
             userInterface = new UserInterface(taskList);
             guiUserInterface = new GuiUserInterface(taskList);
-            storage.load();
         } catch (IOException e) {
+            e.printStackTrace();
             UserInterface.showLoadingError();
             this.taskList = new TaskList();
         }

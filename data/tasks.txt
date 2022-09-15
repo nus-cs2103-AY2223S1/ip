@@ -1,5 +1,0 @@
-[T][X] shopping
-[D][X] laundry (by: 12/12/2222 1500)
-[D][ ] testing (by: 12/12/2222 1500)
-[D][ ] work (by: 12/12/2222 1500)
-[T][ ] project

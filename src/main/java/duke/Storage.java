@@ -46,41 +46,60 @@ public class Storage {
      * @throws IOException Thrown when there is an IOException.
      */
     public void load() throws IOException {
-        createFile();
         File file = new File(path);
-        Scanner scanner = new Scanner(file);
         Task current = null;
-
-        while (scanner.hasNext()) {
-            String data = scanner.nextLine();
-            String type = data.substring(1, 2);
-            String status = data.substring(4, 5);
-
-            switch (type) {
-            case "T":
-                String todoDescription = data.substring(7);
-                current = new ToDo(todoDescription);
-                break;
-            case "D":
-                String deadlineDescription = data.substring(7, data.indexOf("(") - 1);
-                String by = data.substring(data.indexOf("(") + 5, data.length() - 1);
-                current = new Deadline(deadlineDescription, by);
-                break;
-            case "E":
-                String eventDescription = data.substring(7, data.indexOf("(") - 1);
-                String at = data.substring(data.indexOf("(") + 5, data.length() - 1);
-                current = new Deadline(eventDescription, at);
-                break;
-            default:
-                System.out.println("The file may be corrupted");
-                break;
+        try {
+            if (!file.exists()) {
+                if (file.getParentFile().mkdirs()) {
+                    System.out.println("Directory is created");
+                } else {
+                    System.out.println("Directory cannot be created");
+                }
+                if (file.createNewFile()) {
+                    System.out.println("File created");
+                }
+            } else {
+                System.out.println("File exists");
             }
-            if (status.equals("X")) {
-                current.markAsDone();
-            }
-            taskList.add(current);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        scanner.close();
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNext()) {
+                String data = scanner.nextLine();
+                String type = data.substring(1, 2);
+                String status = data.substring(4, 5);
+
+                switch (type) {
+                case "T":
+                    String todoDescription = data.substring(7);
+                    current = new ToDo(todoDescription);
+                    break;
+                case "D":
+                    String deadlineDescription = data.substring(7, data.indexOf("(") - 1);
+                    String by = data.substring(data.indexOf("(") + 5, data.length() - 1);
+                    current = new Deadline(deadlineDescription, by);
+                    break;
+                case "E":
+                    String eventDescription = data.substring(7, data.indexOf("(") - 1);
+                    String at = data.substring(data.indexOf("(") + 5, data.length() - 1);
+                    current = new Deadline(eventDescription, at);
+                    break;
+                default:
+                    System.out.println("The file may be corrupted");
+                    break;
+                }
+                if (status.equals("X")) {
+                    current.markAsDone();
+                }
+                taskList.add(current);
+            }
+            scanner.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void createFile() {

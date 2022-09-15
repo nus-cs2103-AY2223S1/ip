@@ -1,6 +1,8 @@
 package duke;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +15,10 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Duke duke = new Duke("data/tasks.txt");
+
+    private String workingDir = System.getProperty("user.dir");
+    private Path pathToDuke = Paths.get(workingDir, "out", "duke.txt");
+    public Duke duke = new Duke(String.valueOf(pathToDuke));
 
     @Override
     public void start(Stage stage) {
