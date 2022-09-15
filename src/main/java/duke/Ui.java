@@ -1,11 +1,12 @@
-package Duke;
-import java.util.List;
+package duke;
+
+
 import java.util.Scanner;
 
-public class UserInterface {
-    public Scanner sc;
+public class Ui {
+    private Scanner sc;
 
-    public UserInterface() {
+    public Ui() {
         this.sc = new Scanner(System.in);
     }
 
@@ -37,7 +38,7 @@ public class UserInterface {
         return "Nice! I've marked this task as done:" + "\n" + "  " + TaskList.taskList.get(index).toString();
     }
 
-    public String printUnmark(int index){
+    public String printUnmark(int index) {
         return "OK, I've marked this task as not done yet:" + "\n" + "  " + TaskList.taskList.get(index).toString();
     }
 
@@ -50,6 +51,11 @@ public class UserInterface {
                 + " tasks in the list.";
     }
 
+    public String printEdit(Task task) {
+        return "Edited task to:" + "\n"
+                + " " + task.toString();
+    }
+
     public String printDelete(Task task, int index) {
         return "Noted. I've removed this task:" + "\n"
                 + "  "
@@ -57,9 +63,24 @@ public class UserInterface {
                 + "Now you have " + TaskList.taskList.size() + " tasks in the list." + "\n";
 
     }
+    public String printFind(String description) {
+        String output = "";
+        TaskList.searchKeyword(description);
+        if (TaskList.getTempList().size() == 0) {
+            output = "Sorry could not find a match";
+        } else {
+            output = "Here are your results:" + "\n";
+            for (int i = 0; i < TaskList.getTempList().size(); i++) {
+                int number = i + 1;
+                output += number + "." + TaskList.getTempList().get(i) + "\n";
+            }
+        }
+        return output;
+    }
 
     public void printError(String message) {
         System.out.println(message);
     }
 
 }
+

@@ -1,2 +1,3 @@
-E|0|fl|monday
-D|1|wor|sunday 2pm
+T|0|sleep
+T|0|sleep
+T|0|sleep
