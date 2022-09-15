@@ -1,5 +1,6 @@
 package duke.models;
 
+import duke.DukeException;
 import org.junit.jupiter.api.Test;
 
 import duke.DateParser;
@@ -23,7 +24,7 @@ public class DeadlineTest {
      * Tests the markAsDone() method in {@code Deadline}
      */
     @Test
-    public void testMarkDone() {
+    public void testMarkDone() throws DukeException {
         Deadline deadline = new Deadline("return book", DateParser.parseDate("2020-08-08"));
         deadline.markAsDone();
         assert deadline.toString().equals("[D][X] return book (by: Aug 8 2020)");
@@ -33,7 +34,7 @@ public class DeadlineTest {
      * Tests the markAsUndone() method in {@code Deadline}
      */
     @Test
-    public void testMarkAsNotDone() {
+    public void testMarkAsNotDone() throws DukeException {
         Deadline deadline = new Deadline("return book", DateParser.parseDate("2020-08-08"));
         deadline.markAsDone();
         deadline.markAsNotDone();

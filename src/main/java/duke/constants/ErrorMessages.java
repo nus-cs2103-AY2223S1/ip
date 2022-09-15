@@ -12,5 +12,8 @@ public class ErrorMessages {
     public static final String INVALID_DELETE_MESSAGE = "Invalid index, enter delete <TASK_INDEX> to delete a task";
     public static final String INVALID_TODO_MESSAGE = "Invalid todo!, enter todo "
            + "<TASK_DESCRIPTION> to create a new todo";
+    public static final String INVALID_NOTE_MESSAGE = "Invalid note! enter note <NOTE_DESCRIPTION> "
+            + "to create a new note";
+    public static final String TASK_MARK_ALREADY = "Task is already marked as done!";
 }
 

@@ -1,10 +1,10 @@
-# User Guide
+# Deadline Duck
 
 ## Features 
 **Deadline Duck** is a Personal Assistant Chatbot 
 that helps you keep track of your upcoming 
-tasks, deadlines! Sometimes when adding tasks, you may be some 
-additional thoughts in your mind. Therefore, Deadline Duck allows you 
+tasks, deadlines! Sometimes, when adding tasks, you may be some 
+additional thoughts in your mind. Therefore, **Deadline Duck** allows you 
 to pen your thoughts with our Notes feature too!
 
 Types of tasks:
@@ -25,13 +25,13 @@ Format: `todo <TASK_DESCRIPTION>`
 
 Adds a new `todo` task to the task list.
 
-Format: `event <TASK_DESCRIPTION> /at <time>`
+Format: `event <TASK_DESCRIPTION> /at <YYYY-MM-DD>`
 
 ### Adding a new Deadline Task: `deadline`
 
 Adds a new `todo` task to the task list.
 
-Format: `deadline <TASK_DESCRIPTION> /by <time>`
+Format: `deadline <TASK_DESCRIPTION> /by <YYYY-MM-DD>`
 
 ### List out all Tasks and Notes: `list`
 
@@ -43,20 +43,27 @@ Format: `list`
 [//]: # (Describe the action and its outcome.)
 
 [//]: # ()
+[//]: # ()
 [//]: # (Example of usage: )
 
+[//]: # ()
 [//]: # ()
 [//]: # (`keyword &#40;optional arguments&#41;`)
 
 [//]: # ()
+[//]: # ()
 [//]: # (Expected outcome:)
 
+[//]: # ()
 [//]: # ()
 [//]: # (Description of the outcome.)
 
 [//]: # ()
+[//]: # ()
 [//]: # (```)
 
+[//]: # ()
 [//]: # (expected output)
 
+[//]: # ()
 [//]: # (```)

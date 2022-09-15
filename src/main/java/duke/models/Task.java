@@ -1,5 +1,8 @@
 package duke.models;
 
+import duke.DukeException;
+import duke.constants.ErrorMessages;
+
 /**
  * Task class with parameters of description and isDone state
  */
@@ -29,8 +32,12 @@ public abstract class Task {
     /**
      * Sets the isDone value of this task to true
      */
-    public void markAsDone() {
-        this.isDone = true;
+    public void markAsDone() throws DukeException {
+        if (this.isDone) {
+            throw new DukeException(ErrorMessages.TASK_MARK_ALREADY);
+        } else {
+            this.isDone = true;
+        }
     }
 
     /**

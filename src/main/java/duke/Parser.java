@@ -105,11 +105,15 @@ public class Parser {
                 int markIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
                 return new MarkCommand(markIndex);
             } catch (Exception e) {
-                throw new DukeException(ErrorMessages.INVALID_MARK_MESSAGE);
+                throw new DukeException(e.getMessage());
             }
         case Constants.UNMARK_STRING:
-            int unmarkIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
-            return new UnmarkCommand(unmarkIndex);
+            try {
+                int unmarkIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
+                return new UnmarkCommand(unmarkIndex);
+            } catch (Exception e) {
+                throw new DukeException(e.getMessage());
+            }
         case Constants.FIND_STRING:
             String query = command.split(Constants.EMPTY_SPACE)[0];
             return new FindCommand(query);
@@ -121,12 +125,15 @@ public class Parser {
         case Constants.HELP_STRING:
             return new HelpCommand();
         case Constants.NOTE:
-            System.out.println("hello");
-            Pattern notePattern = Pattern.compile("(?<=note ).+", Pattern.CASE_INSENSITIVE);
-            Matcher noteMatcher = notePattern.matcher(command);
-            noteMatcher.find();
-            Note note = new Note(noteMatcher.group(0));
-            return new AddCommand(note);
+            try {
+                Pattern notePattern = Pattern.compile("(?<=note ).+", Pattern.CASE_INSENSITIVE);
+                Matcher noteMatcher = notePattern.matcher(command);
+                noteMatcher.find();
+                Note note = new Note(noteMatcher.group(0));
+                return new AddCommand(note);
+            } catch (Exception e) {
+                throw new DukeException(ErrorMessages.INVALID_NOTE_MESSAGE);
+            }
         case Constants.BYE_STRING:
             return new ByeCommand();
         default:
