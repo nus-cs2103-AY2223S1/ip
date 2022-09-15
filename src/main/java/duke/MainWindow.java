@@ -48,6 +48,9 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
+    /**
+     * Creates a dialog box to echo Duke's greeting message
+     */
     @FXML
     public void greet() {
         String response = duke.greet();

@@ -4,7 +4,7 @@ import java.util.Date;
 import duke.DukeException;
 
 /**
- * Represents an Event task.
+ * A class to represent an Event task.
  */
 public class Event extends Task {
     private Date timing;

@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 import duke.command.Command;
 import duke.util.Parser;
 import duke.util.Storage;
@@ -31,33 +29,9 @@ public class Duke {
     }
 
     /**
-     * Runs the duke program.
+     * Returns string message to greet user.
+     * @return Greeting string.
      */
-    public void run() {
-        Scanner scanner = new Scanner(System.in);
-        do {
-            ui.showInputLine();
-            String input = scanner.nextLine();
-
-            try {
-                command = parser.parse(input);
-                command.execute();
-            } catch (NumberFormatException e) {
-                ui.showError("Please Enter a valid task number!");
-            } catch (IllegalArgumentException e) {
-                ui.showError("I'm sorry but I don't know what that means.");
-            } catch (DukeException e) {
-                ui.showError(e);
-            }
-        } while (command == null || !command.isExit());
-        scanner.close();
-    }
-
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
-    }
-
     public String greet() {
         return ui.greet();
     }

@@ -6,7 +6,7 @@ import duke.util.Storage;
 import duke.util.Ui;
 
 /**
- * Represents a user command and its functionalities.
+ * A class to represent a user command and its functionalities.
  */
 public abstract class Command {
 

@@ -6,13 +6,13 @@ import duke.util.TaskList;
 import duke.util.Ui;
 
 /**
- * Represents command to find tasks matching a search text.
+ * A class to represent command to find tasks matching a search text.
  */
 public class FindCommand extends Command {
     String searchText;
 
     /**
-     * Constructor to create new FindCommand.
+     * Constructs a new FindCommand.
      * 
      * @param storage Storage to be used.
      * @param ui Ui to be used.

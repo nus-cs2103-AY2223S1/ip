@@ -5,7 +5,7 @@ import duke.util.Storage;
 import duke.util.Ui;
 
 /**
- * Represents a command to exit from the program.
+ * A class to represent a command to exit from the program.
  */
 public class ExitCommand extends Command {
     /**

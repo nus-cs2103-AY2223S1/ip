@@ -4,13 +4,13 @@ import java.util.Date;
 import duke.DukeException;
 
 /**
- * Represents a Deadline task.
+ * A class to represent a Deadline task.
  */
 public class Deadline extends Task {
     private Date deadline;
 
     /**
-     * Constructor to create new Deadline.
+     * Creates new Deadline.
      * 
      * @param description Description of deadline you want to create.
      * @param deadline    Deadline of the task.
@@ -21,7 +21,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructor to create new Deadline with isDone.
+     * Creates new Deadline with isDone.
      * 
      * @param description Description of deadline you want to create.
      * @param deadline    Deadline of the task.

@@ -6,7 +6,7 @@ import duke.DukeException;
 import duke.task.Task;
 
 /**
- * Represents a list of tasks.
+ * A class to represent a list of tasks.
  */
 public class TaskList {
     ArrayList<Task> tasks;
@@ -19,7 +19,7 @@ public class TaskList {
     }
 
     /**
-     * Display all stored tasks.
+     * Displays all stored tasks.
      */
     public String displayList() {
         String output = "Here are the tasks in your list.\n";
@@ -30,7 +30,7 @@ public class TaskList {
     }
 
     /**
-     * Add task to tasks list.
+     * Adds task to tasks list.
      * 
      * @param task Task to be stored in task list.
      */
@@ -44,7 +44,7 @@ public class TaskList {
     }
 
     /**
-     * Add task to task list without any user messages (Used when loading data from file).
+     * Adds task to task list without any user messages (Used when loading data from file).
      * 
      * @param task Task to be pushed into task list.
      */
@@ -88,7 +88,7 @@ public class TaskList {
     }
 
     /**
-     * Return the string representation of all tasks in list to be stored in local file.
+     * Returns the string representation of all tasks in list to be stored in local file.
      * 
      * @return String representation of all tasks in list.
      */
