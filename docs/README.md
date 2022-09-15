@@ -124,3 +124,10 @@ bye
 
 Expected outcome:
 <img width="389" alt="feature 10" src="https://user-images.githubusercontent.com/62635032/189613435-60288a17-03e9-4293-a39d-00a6d954b817.png">
+
+
+
+# Acknowledgements
+- GUI adaptation [here](https://se-education.org/guides/tutorials/javaFx.html)
+- [JavaFx](https://openjfx.io)
+
