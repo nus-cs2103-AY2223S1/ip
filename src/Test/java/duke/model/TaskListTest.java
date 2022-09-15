@@ -1,10 +1,11 @@
 package duke.model;
 
-import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.exception.DukeException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

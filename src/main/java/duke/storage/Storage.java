@@ -20,7 +20,6 @@ import duke.model.ToDo;
  */
 public class Storage {
     private static String home = System.getProperty("user.home");
-    private static final String FILE_PATH = home + "/" + "data/Duke.txt";
 
     private String filePath;
 
