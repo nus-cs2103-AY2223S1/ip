@@ -13,6 +13,6 @@ public class DukeNoMatchFoundException extends DukeException {
      * @param keyword The keyword that has no matches.
      */
     public DukeNoMatchFoundException(String keyword) {
-        super("Keyword " + keyword + " has no matches found");
+        super("Keyword " + keyword + " has no matches found bro.");
     }
 }

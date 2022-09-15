@@ -1,4 +1,4 @@
-D | 0 | add something | 2018-11-12
+D | 1 | add something | 2018-11-12
 D | 1 | Go to Sentosa to relax | 2019-12-18
 E | 0 | go SEP to Korea University | 2023-08-20
 D | 0 | Kick Timmy out of dorm | 2022-08-31

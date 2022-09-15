@@ -13,6 +13,6 @@ public class DukeInvalidCommandException extends DukeException {
      * @param command The invalid command.
      */
     public DukeInvalidCommandException(String command) {
-        super("Command " + command + " not found. Please try again.");
+        super("Command " + command + " not found. Please try again bro.");
     }
 }
