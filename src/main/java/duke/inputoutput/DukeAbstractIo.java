@@ -54,7 +54,6 @@ public abstract class DukeAbstractIo implements DukeIo {
         printTask(txt, featuresEnum.value);
     }
 
-
     /**
      * {@inheritDoc}
      * 
@@ -63,5 +62,9 @@ public abstract class DukeAbstractIo implements DukeIo {
     @Override
     public void printError(Exception e) {
         printTask(String.format("🙄 OOPS!!! %s", e.getMessage()));
+    }
+
+    protected boolean isBitFlag(int bitsValue, DukeCliSettings flagEnum) {
+        return (bitsValue & flagEnum.value) == flagEnum.value;
     }
 }

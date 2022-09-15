@@ -35,10 +35,10 @@ public class DukeCliIo extends DukeAbstractIo {
      */
     @Override
     public void printTask(String txt, int features) {
-        if ((features & DukeCliSettings.INDENT.value) == DukeCliSettings.INDENT.value) {
+        if (isBitFlag(features, DukeCliSettings.INDENT)) {
             txt = StringParser.addIndent(txt);
         }
-        if ((features & DukeCliSettings.INDENT.value) == DukeCliSettings.WRAPPER.value) {
+        if (isBitFlag(features, DukeCliSettings.WRAPPER)) {
             txt = StringParser.addWrapper(txt);
         }
 
@@ -52,6 +52,6 @@ public class DukeCliIo extends DukeAbstractIo {
      */
     @Override
     public void printTask(String txt) {
-        printTask(txt, 3);
+        printTask(txt, DukeCliSettings.WRAP_INDENT);
     }
 }
