@@ -2,12 +2,12 @@ package yuna.gui;
 
 import java.io.IOException;
 
-import yuna.Yuna;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import yuna.Yuna;
 
 /**
  * A GUI for Yuna using FXML.
