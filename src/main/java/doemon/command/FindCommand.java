@@ -2,10 +2,10 @@ package doemon.command;
 
 import java.util.ArrayList;
 
+import doemon.response.Response;
 import doemon.storage.Storage;
 import doemon.task.Task;
 import doemon.task.TaskList;
-import doemon.response.Response;
 
 /**
  * Command to find tasks that match a user-inputted keyword.

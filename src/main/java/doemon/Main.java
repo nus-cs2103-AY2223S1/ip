@@ -1,9 +1,8 @@
 package doemon;
 
-import doemon.controller.MainWindow;
-
 import java.io.IOException;
 
+import doemon.controller.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +17,9 @@ public class Main extends Application {
     private static final String TASK_FILE_PATH = "./data/duke.txt";
     private Doemon doemon = new Doemon(TASK_FILE_PATH);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void start(Stage stage) {
         try {

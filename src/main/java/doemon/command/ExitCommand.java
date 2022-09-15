@@ -1,8 +1,8 @@
 package doemon.command;
 
+import doemon.response.Response;
 import doemon.storage.Storage;
 import doemon.task.TaskList;
-import doemon.response.Response;
 
 /**
  * Command to exit the Doemon chat bot.

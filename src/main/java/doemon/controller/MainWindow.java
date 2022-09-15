@@ -23,11 +23,17 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    /** Instance of doemon being used */
     private Doemon doemon;
 
+    /** Image of the user avatar */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/nota.png"));
+    /** Image of the doemon chat bot avatar */
     private Image doemonImage = new Image(this.getClass().getResourceAsStream("/images/doemon.png"));
 
+    /**
+     * Initializes the main window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -35,12 +41,18 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDoemonDialog(Response.welcomeString(), doemonImage));
     }
 
+    /**
+     * Sets the doemon field.
+     *
+     * @param d Doemon instance.
+     */
     public void setDoemon(Doemon d) {
         doemon = d;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Doemon's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the
+     * other containing Doemon's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
