@@ -1,19 +1,18 @@
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import cwq.CWQ;
 import javafx.stage.Stage;
 
-import cwq.CWQ;
 /**
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
 
-    private final CWQ CWQ = new CWQ();
+    private final CWQ cwq = new CWQ();
     private final String logo =
               " _______ \t                     \t    ________ \n"
             + "|      \\ \t  \\      /\\      /\t   |        |\n"
@@ -30,7 +29,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(CWQ);
+            fxmlLoader.<MainWindow>getController().setDuke(cwq);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
