@@ -23,6 +23,7 @@ public class Duke {
         } else {
             storage.createNewFile();
             tasks = new TaskList();
+            storage.update(tasks.getTasks());
         }
     }
 
