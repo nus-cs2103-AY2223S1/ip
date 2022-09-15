@@ -22,7 +22,7 @@ public class TaskList {
     private final String toStage;
     public TaskList() {
         this.tasks = new ArrayList<>(); //should be list as compile time type
-        this.tasks.add(new Task("", ""));
+        this.tasks.add(new Task("", "", ""));
         this.curr = 0;
         this.toStage = "";
     }
@@ -61,7 +61,8 @@ public class TaskList {
         }
         StringBuilder sb = new StringBuilder();
         sb.append("Here are you tasks: \n");
-        for (Task task: tasks) {
+        for (int i = 0; i < curr; i++) {
+            Task task = this.getTasks().get(i);
             sb.append(task);
             sb.append("\n");
         }
@@ -191,6 +192,51 @@ public class TaskList {
             }
         }
         return new TaskList(this.tasks, this.curr, sb.toString());
+    }
+
+    public TaskList updateTime(String command, Ui ui) {
+        String event = command.substring(11);
+        System.out.println(event);
+        String[] atUpdateTime = event.split(" /to ");
+        int index = Integer.parseInt(atUpdateTime[0]) - 1;
+        String timing = atUpdateTime[1];
+        Task task = this.getTasks().get(index);
+        String taskType = task.getType();
+        switch (taskType) {
+            case "D":
+                task = new Deadline(task.getVal(), task.getDone(), timing);
+                break;
+            case "E":
+                task = new Event(task.getVal(), task.getDone(), timing);
+                break;
+        }
+        this.getTasks().set(index, task);
+        String output = ui.updatePrint(task);
+        return new TaskList(this.getTasks(), this.getCurr(), output);
+    }
+
+    public TaskList updateTask(String command, Ui ui) {
+        String event = command.substring(11);
+        System.out.println(event);
+        String[] atUpdateTask = event.split(" /to ");
+        int index = Integer.parseInt(atUpdateTask[0]) - 1;
+        String taskInstruction = atUpdateTask[1];
+        Task task = this.getTasks().get(index);
+        String taskType = task.getType();
+        switch (taskType) {
+            case "D":
+                task = new Deadline(taskInstruction, task.getDone(), task.getDateTimeObject());
+                break;
+            case "E":
+                task = new Event(taskInstruction, task.getDone(), task.getDateTimeObject());
+                break;
+            case "T":
+                task = new ToDo(taskInstruction, task.getDone(), "");
+                break;
+        }
+        this.getTasks().set(index, task);
+        String output = ui.updatePrint(task);
+        return new TaskList(this.getTasks(), this.getCurr(), output);
     }
 
     public TaskList addCurr(String output) {

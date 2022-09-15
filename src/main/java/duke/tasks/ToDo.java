@@ -5,11 +5,11 @@ package duke.tasks;
  */
 public class ToDo extends Task {
     public ToDo(String input) {
-        super(input, "");
+        super(input, "", "T");
     }
 
     public ToDo(String input, boolean done, String dummy) {
-        super(input, done, "");
+        super(input, done, "", "T");
     }
 
     /**

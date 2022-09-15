@@ -7,4 +7,6 @@ mark 2
 unmark 2
 mark 3
 find Anime
+updateTime 2 /to 26/11/2022 0800
+updateTask 1 /to borrow another book
 bye

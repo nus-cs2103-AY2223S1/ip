@@ -96,6 +96,10 @@ public class Ui {
         return (emptyPrint("deadline"));
     }
 
+    public String emptyUpdatePrint() {
+        return (emptyPrint("update"));
+    }
+
     /**
      * @param no number of tasks left
      * @return formatted strings of no of task left
@@ -193,6 +197,14 @@ public class Ui {
     public String unmarkTaskPrint(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append("OK, I've marked this task as not done yet:\n");
+        sb.append(task);
+        sb.append("\n");
+        return sb.toString();
+    }
+
+    public String updatePrint(Task task) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nice! I've updated this task as:\n");
         sb.append(task);
         sb.append("\n");
         return sb.toString();
