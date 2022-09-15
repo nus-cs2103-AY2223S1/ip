@@ -39,23 +39,25 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(Storage storage, TaskList tasklist) throws DukeException {
-        // For future features, run a for loop through words to check if
-        // all words are numbers and delete all numbers. If not, throw an exception.
         StringBuilder output = new StringBuilder();
         if (tasklist.tasks.size() == 0) {
             throw new DukeException(String.format(Messages.EMPTY_TASK_ERROR, "delete"));
         }
+        if (words.size() == 0) {
+            throw new DukeException("Please use 'delete all' or 'delete <task numbers>'. T^T");
+        }
+
         if (words.get(0).equals("all") && words.size() == 1) {
             output.append(DELETE_ALL_TASKS);
             tasklist.tasks.clear();
         } else {
             output.append(String.format(DELETE_TASK, (words.size() == 1 ? "this task" : "these tasks")));
-            tasklist.deleteTask(parseToInt(words, tasklist, output));
+            tasklist.deleteTask(numToTask(words, tasklist, output));
         }
         return output.toString();
     }
 
-    private ArrayList<Task> parseToInt(ArrayList<String> str,
+    private ArrayList<Task> numToTask(ArrayList<String> str,
                                        TaskList tasklist, StringBuilder output) throws DukeException {
         ArrayList<Task> subTaskList = new ArrayList<>();
         for (String s : str) {
