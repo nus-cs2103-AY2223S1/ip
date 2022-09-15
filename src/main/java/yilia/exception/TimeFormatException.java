@@ -11,6 +11,6 @@ public class TimeFormatException extends Exception {
      */
     @Override
     public String getMessage() {
-        return "Please input a date in the correct format";
+        return "Please input a date in the correct format (YYYY-mm-dd)";
     }
 }

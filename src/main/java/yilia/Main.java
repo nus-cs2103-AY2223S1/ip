@@ -1,4 +1,4 @@
-package yilia.command;
+package yilia;
 
 import java.io.IOException;
 
@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import yilia.Yilia;
 import yilia.controller.MainWindow;
 
 /**
@@ -25,6 +24,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setYilia(yilia);
+            stage.setTitle("Yilia");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

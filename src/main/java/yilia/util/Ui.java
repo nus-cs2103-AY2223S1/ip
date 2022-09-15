@@ -106,7 +106,7 @@ public class Ui {
      */
     public String showDeleteStatus(Task task, TaskList tasks) {
         String message = "Noted. |･ω･｀) I've removed this task:\n  " + task + "\nNow you have "
-                + tasks.size() + " tasks in the list.";
+                + tasks.size() + " tasks in the list.\n";
         System.out.println(message);
         return message;
     }
@@ -144,7 +144,7 @@ public class Ui {
      * @return A message to inform users of the duplicate task.
      */
     public String showDuplicate(Task task) {
-        String message = "The task " + task + " already exists\n in the task list.( ´･ω･)ﾉ(._.`)";
+        String message = "The task " + task + " already exists in the task list.( ´･ω･)ﾉ(._.`)";
         System.out.println(message);
         return message;
     }
