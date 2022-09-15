@@ -6,6 +6,8 @@ package neo;
 public class Task {
     protected String description;
     protected Boolean isDone = false;
+    protected Boolean hasPriority = false;
+    protected String priority;
 
     /**
      * Constructor for task class.
@@ -44,6 +46,11 @@ public class Task {
         isDone = done;
     }
 
+    public void setPriority(String command) {
+        this.hasPriority = true;
+        this.priority = command;
+    }
+
     /**
      * ToString function which return task in a specific format.
      *
@@ -51,6 +58,9 @@ public class Task {
      */
     @Override
     public String toString() {
+        if (hasPriority) {
+            return "[" + getIsDone() + "] " + description + " priority: " + priority;
+        }
         return "[" + getIsDone() + "] " + description;
     }
 }

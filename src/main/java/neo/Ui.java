@@ -25,4 +25,8 @@ public class Ui {
     public String printEnd() {
         return "Exiting chat bot! Hope to see you again";
     }
+
+    public String errorMessage(String e) {
+        return e;
+    }
 }
