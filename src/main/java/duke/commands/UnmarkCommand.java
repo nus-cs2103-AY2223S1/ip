@@ -26,14 +26,14 @@ public class UnmarkCommand extends Command {
      * @param storage The storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             int index = Integer.parseInt(instruction.substring(7)) - 1;
             tasks.get(index).setUndone();
-            ui.print(ui.showUnmarkMessage(tasks.get(index)));
             storage.saveList(tasks);
+            return ui.showUnmarkMessage(tasks.get(index));
         } catch (DukeException e) {
-            ui.print(ui.showError(e));
+            return ui.showError(e);
         }
     }
 }

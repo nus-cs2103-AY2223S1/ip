@@ -34,10 +34,10 @@ public class AddCommand extends Command {
      * @param storage The storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(task);
-        ui.print(ui.addLineBreak(
-                "Got it. I've added this task:\n" + task + "\nNow you have " + tasks.size() + " tasks in the list."));
         storage.saveList(tasks);
+        return "Got it. I've added this task:\n" + task + "\nNow you have " + tasks.size() + " tasks in the list.";
+
     }
 }

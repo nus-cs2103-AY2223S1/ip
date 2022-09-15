@@ -29,7 +29,7 @@ public abstract class Command {
      * 
      * @param storage The storage.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         throw new DukeException("Should not run");
     }
 
