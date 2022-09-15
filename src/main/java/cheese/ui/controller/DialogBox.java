@@ -1,5 +1,8 @@
 package cheese.ui.controller;
 
+import java.io.IOException;
+import java.util.Collections;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,9 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-
-import java.io.IOException;
-import java.util.Collections;
 
 /**
  * Controls dialog box consisting of an ImageView to represent the speaker's face and a label

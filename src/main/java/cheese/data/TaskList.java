@@ -1,10 +1,10 @@
 package cheese.data;
 
+import java.util.ArrayList;
+
 import cheese.exception.CheeseException;
 import cheese.parser.Parser;
 import cheese.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Represents a list of tasks that supports adding tasks, deleting tasks, and marking tasks as
@@ -83,6 +83,13 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Delays task deadline by 1 day.
+     *
+     * @param taskIndex Index of task to snooze.
+     * @return Task that is snoozed.
+     * @throws CheeseException If index is not in the range of task list.
+     */
     public Task snoozeTask(int taskIndex) throws CheeseException {
         Task task = getTask(taskIndex);
         task.snooze();

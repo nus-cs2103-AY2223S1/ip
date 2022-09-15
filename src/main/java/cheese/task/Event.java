@@ -1,9 +1,9 @@
 package cheese.task;
 
+import java.time.LocalDateTime;
+
 import cheese.storage.Storage;
 import cheese.utils.DateTimeUtils;
-
-import java.time.LocalDateTime;
 
 /**
  * Represents an event with description, complete/incomplete status, and time interval.

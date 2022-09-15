@@ -17,7 +17,7 @@ public class DateTimeUtils {
 
     /**
      * Parses string to date time using input formatter.
-     * 
+     *
      * @param dateTime String to parse.
      * @return Parsed date time.
      */
@@ -27,7 +27,7 @@ public class DateTimeUtils {
 
     /**
      * Parses date time to string using output formatter.
-     * 
+     *
      * @param dateTime Date time to parse.
      * @return Parsed string representing date time.
      */
@@ -37,7 +37,7 @@ public class DateTimeUtils {
 
     /**
      * Parses date time to string using input formatter.
-     * 
+     *
      * @param dateTime Date time to parse.
      * @return Parsed string representing date time.
      */

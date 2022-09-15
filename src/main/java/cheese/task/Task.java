@@ -12,8 +12,6 @@ public abstract class Task {
     /** Whether task is complete or incomplete. */
     private boolean isDone;
 
-    public abstract void snooze();
-
     /**
      * Constructs an instance of <code>Task</code>.
      *
@@ -34,6 +32,8 @@ public abstract class Task {
         this.isDone = isDone;
         this.description = description;
     }
+
+    public abstract void snooze();
 
     public void setDone() {
         isDone = true;

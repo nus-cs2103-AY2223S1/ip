@@ -14,6 +14,14 @@ import javafx.scene.layout.VBox;
  */
 public class MainWindow extends AnchorPane {
 
+    /** Image to represent the user. */
+    private Image userImage =
+            new Image(this.getClass().getResourceAsStream("/images/User.png"));
+
+    /** Image to represent Cheese. */
+    private Image cheeseImage =
+            new Image(this.getClass().getResourceAsStream("/images/Cheese.png"));
+
     /** Scroll pane to contain the chat. */
     @FXML
     private ScrollPane scrollPane;
@@ -29,14 +37,6 @@ public class MainWindow extends AnchorPane {
     /** An instance of <code>Cheese</code>. */
     private Cheese cheese;
 
-    /** Image to represent the user. */
-    private final Image IMAGE_USER =
-            new Image(this.getClass().getResourceAsStream("/images/User.png"));
-
-    /** Image to represent Cheese. */
-    private final Image IMAGE_CHEESE =
-            new Image(this.getClass().getResourceAsStream("/images/Cheese.png"));
-
     /**
      * Initializes the main window.
      */
@@ -44,7 +44,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         this.dialogContainer.getChildren()
-                .add(DialogBox.getCheeseDialog(Response.getWelcomeMessage(), IMAGE_CHEESE));
+                .add(DialogBox.getCheeseDialog(Response.getWelcomeMessage(), cheeseImage));
     }
 
     /**
@@ -64,8 +64,8 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = cheese.getResponse(input);
-        dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, IMAGE_USER),
-                DialogBox.getCheeseDialog(response, IMAGE_CHEESE));
+        dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImage),
+                DialogBox.getCheeseDialog(response, cheeseImage));
         userInput.clear();
     }
 }
