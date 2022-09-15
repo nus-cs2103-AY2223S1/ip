@@ -23,7 +23,7 @@ public class DeadlineTest {
             assertEquals("[D][ ] test1 (by: Jan 01 2022)", deadline.toString());
             fail();
         } catch (DukeException e) {
-            assertEquals("☹ OOPS!!! You need to input in yyyy-mm-dd format!", e.getMessage());
+            assertEquals("OOPS!!! You need to input in yyyy-mm-dd format!", e.getMessage());
         }
     }
 

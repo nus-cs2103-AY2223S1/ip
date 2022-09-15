@@ -26,7 +26,7 @@ public class TaskListTest {
             assertEquals("1. [T][ ] test1", taskList.toString());
             fail();
         } catch (DukeException e) {
-            assertEquals("☹ OOPS!!! There is no such task number!", e.getMessage());
+            assertEquals("OOPS!!! There is no such task number!", e.getMessage());
         }
     }
 }

@@ -23,7 +23,7 @@ public class EventTest {
             assertEquals("[E][ ] test1 (at: Jan 01 2022)", event.toString());
             fail();
         } catch (DukeException e) {
-            assertEquals("☹ OOPS!!! You need to input in yyyy-mm-dd format!", e.getMessage());
+            assertEquals("OOPS!!! You need to input in yyyy-mm-dd format!", e.getMessage());
         }
     }
 
