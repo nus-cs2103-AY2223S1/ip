@@ -10,9 +10,7 @@ import doemon.task.TaskList;
  * Handles Doemon chat bot message displays.
  */
 public class Response {
-    /**
-     * Text art of Doemon.
-     */
+    /** Text art of Doemon. */
     private static final String logo =
             "                       _______________\n"
             + "                      /  --. --.      \\ \n"
@@ -23,13 +21,9 @@ public class Response {
             + "                    \\  (___|_______) /  /\n"
             + "                     \\              /  /\n"
             + "                       |== (t) ===|____";
-    /**
-     * Introduction string that is printed when Doemon is started.
-     */
+    /** Introduction string that is printed when Doemon is started. */
     private static final String introStr = "Hello I'm\n" + logo + "\t\t\tDoemon!";
-    /**
-     * String that is printed when Doemon is exited.
-     */
+    /** String that is printed when Doemon is exited. */
     private static final String exitStr = "I'm going to sleep now...See you again soon!";
 
     /**
