@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import mew.Mew;
@@ -23,11 +24,13 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
+            Image mewIcon = new Image(this.getClass().getResourceAsStream("/images/mew-logo.png"));
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
             Scene scene = new Scene(anchorPane);
             stage.setScene(scene);
             stage.setTitle("Mew");
+            stage.getIcons().add(mewIcon);
             fxmlLoader.<MainWindow>getController().setMew(mew);
             stage.show();
         } catch (IOException e) {

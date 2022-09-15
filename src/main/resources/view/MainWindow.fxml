@@ -13,7 +13,7 @@
          <font>
             <Font name="Montserrat Medium" size="13.0" />
          </font></TextField>
-        <Button fx:id="sendButton" layoutX="328.0" layoutY="565.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="30.0" prefWidth="67.0" text="Send">
+        <Button fx:id="sendButton" layoutX="328.0" layoutY="565.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="30.0" prefWidth="67.0" style="-fx-background-color: #d4e6fd; -fx-border-color: #c1c1c1; -fx-border-radius: 2px;" text="Send">
          <font>
             <Font name="Montserrat SemiBold" size="13.0" />
          </font></Button>
