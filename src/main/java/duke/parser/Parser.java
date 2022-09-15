@@ -1,12 +1,17 @@
 package duke.parser;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Scanner;
 
+import duke.commands.AddCommand;
+import duke.commands.ByeCommand;
+import duke.commands.Command;
+import duke.commands.DeleteCommand;
+import duke.commands.FindCommand;
 import duke.commands.HelpCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.UnmarkCommand;
 import duke.exceptions.DukeException;
-import duke.tasklist.TaskList;
 
 /**
  * Parser to handle user input.
@@ -37,7 +42,7 @@ public class Parser {
             for (int i = 0; i < temp.length; i++) {
                 next[i] = temp[i].trim().toLowerCase();
             }
-            identifyCommand(next);
+            identifyCommand(next).executeCommand();
         }
     }
 
@@ -47,12 +52,7 @@ public class Parser {
      * @return String that represents the output from Duke.
      * @throws DukeException In the event that the command is not recognised.
      */
-    public String handleGuiInput(String input) throws DukeException {
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(baos);
-        PrintStream old = System.out;
-        System.setOut(ps);
+    public Command handleGuiInput(String input) throws DukeException {
 
         String[] temp = input.trim().split(" ", 2);
         String[] next = new String[2];
@@ -60,49 +60,38 @@ public class Parser {
             next[i] = temp[i].trim().toLowerCase();
         }
 
-        identifyCommand(next);
-        System.out.flush();
-        System.setOut(old);
-        return baos.toString();
+        Command action = identifyCommand(next);
+        return action;
     }
+
 
     /**
      * Identifies command and calls appropriate functions.
      *
      * @param input User input packaged into a string array.
      */
-    public void identifyCommand(String[] input) throws DukeException {
-        TaskList tasklist = TaskList.getInstance();
+    public Command identifyCommand(String[] input) throws DukeException {
         String command = input[0];
 
         switch (command) {
         case "bye":
-            System.out.println("Bye. Hope to see you again soon!");
-            break;
+            return new ByeCommand();
         case "list":
-            tasklist.list();
-            break;
+            return new ListCommand();
         case "unmark":
-            tasklist.unmark(input[1]);
-            break;
+            return new UnmarkCommand(input[1]);
         case "mark":
-            tasklist.mark(input[1]);
-            break;
+            return new MarkCommand(input[1]);
         case "todo":
         case "deadline":
         case "event":
-            tasklist.addTask(input);
-            break;
+            return new AddCommand(input);
         case "delete":
-            tasklist.delete(input[1]);
-            break;
+            return new DeleteCommand(input[1]);
         case "find":
-            tasklist.findWithFilter(input[1]);
-            break;
+            return new FindCommand(input[1]);
         case "help":
-            HelpCommand help = new HelpCommand();
-            help.executeCommand();
-            break;
+            return new HelpCommand();
         default:
             throw new DukeException("Invalid command");
         }

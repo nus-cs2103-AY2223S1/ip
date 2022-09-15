@@ -2,12 +2,14 @@ package duke;
 
 import java.util.Scanner;
 
+import duke.commands.ByeCommand;
+import duke.commands.Command;
 import duke.exceptions.DukeException;
 import duke.gui.Launcher;
 import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.tasklist.TaskList;
 import duke.ui.Ui;
+import duke.utils.OutputHandler;
 
 
 /**
@@ -19,6 +21,7 @@ public class Duke {
 
     private Ui ui;
     private Storage storage;
+    private boolean isExit;
 
 
     /**
@@ -41,7 +44,14 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Parser parser = new Parser(new Scanner(System.in));
-            String outputForGui = parser.handleGuiInput(input);
+            Command action = parser.handleGuiInput(input);
+            OutputHandler handler = new OutputHandler();
+            String outputForGui = handler.getOutput(action);
+
+            if (action instanceof ByeCommand) {
+                this.setExit();
+            }
+
             assert !outputForGui.equals("");
             return outputForGui;
         } catch (DukeException e) {
@@ -51,6 +61,14 @@ public class Duke {
 
     public String getIntro() {
         return ui.getWelcomeMessage();
+    }
+
+    private void setExit() {
+        this.isExit = true;
+    }
+
+    public boolean getExit() {
+        return this.isExit;
     }
 
     /**

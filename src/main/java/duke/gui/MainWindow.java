@@ -1,6 +1,11 @@
 package duke.gui;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import duke.Duke;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -59,5 +66,16 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+
+        if (this.duke.getExit()) {
+            ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+            executor.schedule(new Runnable() {
+                @Override
+                public void run() {
+                    Platform.exit();
+                }
+            }, 5, TimeUnit.SECONDS);
+            executor.shutdown();
+        }
     }
 }
