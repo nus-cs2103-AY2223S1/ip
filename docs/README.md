@@ -3,18 +3,21 @@
 ## Introduction
 Mew is a task manager chatbot application that helps you manage your To-Dos, Events, and Deadlines.
 
+## Mew UI
+![img.png](img.png)
+
 ## General Command Format
 - Words in `UPPER_CASE` are the parameters to be supplied by the user, e.g. in `todo TODO_DESCRIPTION`, `TODO_DESCRIPTION` is a parameter that can be used as `todo Do laundry`.
 - All commands must be in lower case.
-- Parameters in square brackets are optional but at least one must be provided. e.g. `\by [YYYYMMDD, HHMM]` can be used as `\by 20220916` or `\by 20220916 2359` or `\by 2359`.
+- Parameters in square brackets are optional but at least one must be provided. e.g. `/by [YYYYMMDD, HHMM]` can be used as `/by 20220916` or `/by 20220916 2359` or `/by 2359`.
 - `YYYYMMDD` refers to the date format used in this application, e.g. `20220904`. Invalid date formats won't be accepted.
 - `HHMM` refers to the time format used in this application, e.g. `2359`. Invalid time formats won't be accepted. If the user only specifies the time without any date, the date will be regarded as today's date.
 - If parameters are specified for commands that do not take in parameters, the input will be rejected and error message will be shown.
 
 ## Commands Summary
 - `todo TODO_DESCRIPTION`
-- `deadline DEADLINE_DESCRIPTION \by [YYYYMMDD, HHMM]`
-- `event EVENT_DESCRIPTION \at [YYYYMMDD, HHMM]`
+- `deadline DEADLINE_DESCRIPTION /by [YYYYMMDD, HHMM]`
+- `event EVENT_DESCRIPTION /at [YYYYMMDD, HHMM]`
 - `list`
 - `mark TASK_INDEX`
 - `unmark TASK_INDEX`
@@ -39,35 +42,35 @@ Example of usage:
 
 Adds a Deadline task to the current task list.
 
-Format: `deadline DEADLINE_DESCRIPTION \by [YYYYMMDD, HHMM]`
+Format: `deadline DEADLINE_DESCRIPTION /by [YYYYMMDD, HHMM]`
 
 Notes:
 An error will be shown if the input satisfies one of the conditions below:
-- Deadline description and date time not separated by `\by`
+- Deadline description and date time not separated by `/by`
 - Date and time format is not valid
 
 
 Example of usage:
-- `deadline 2103 submit iP \by 20220916`
-- `deadline 3191 submit report \by 2359`
-- `deadline 3123 submit presentation \by 20221009`
+- `deadline 2103 submit iP /by 20220916`
+- `deadline 3191 submit report /by 2359`
+- `deadline 3123 submit presentation /by 20221009`
 
 ### Add Event - `event`
 
 Adds an Event task to the current task list.
 
-Format: `event EVENT_DESCRIPTION \at [YYYYMMDD, HHMM]`
+Format: `event EVENT_DESCRIPTION /at [YYYYMMDD, HHMM]`
 
 Note:
 An error will be shown if the input satisfies one of the conditions below:
-- Event description and date time not separated by `\at`
+- Event description and date time not separated by `/at`
 - Date and time format is not valid
 
 
 Example of usage:
-- `event 3122 CA1 \at 20220916 1100`
-- `event 2103 group project meeting \at 20220918`
-- `event dinner with Mike \at 1930`
+- `event 3122 CA1 /at 20220916 1100`
+- `event 2103 group project meeting /at 20220918`
+- `event dinner with Mike /at 1930`
 
 ### List all tasks - `list`
 
