@@ -109,4 +109,12 @@ public class Ui {
 
         Duke.addToResponse(String.format("\nYou have %d task(s) in your list\n", TaskList.getTaskCount()));
     }
+
+    /**
+     * Displays the text to be shown when the user sorts the tasks by name
+     */
+    public static void displaySortTasksByNameMessage(String order) {
+        Duke.addToResponse(String.format("Tasks sorted by name in %s order\n", order));
+        displayTasks();
+    }
 }

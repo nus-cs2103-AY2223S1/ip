@@ -14,6 +14,7 @@ public class Parser {
     private static final String CREATE_EVENT_COMMAND = "event";
     private static final String DELETE_COMMAND = "delete";
     private static final String FIND_COMMAND = "find";
+    private static final String SORT_COMMAND = "sort";
 
     /**
      * Parses an input string and calls the relevant method (if any).
@@ -57,6 +58,9 @@ public class Parser {
             break;
         case FIND_COMMAND:
             Ui.displaySearchTasksMessage(TaskList.searchTasks(args), args);
+            break;
+        case SORT_COMMAND:
+            Ui.displaySortTasksByNameMessage(TaskList.sortTaskListByName(args));
             break;
         default:
             throw new DukeException("Command not recognised");
