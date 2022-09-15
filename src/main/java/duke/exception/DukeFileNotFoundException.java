@@ -11,6 +11,6 @@ public class DukeFileNotFoundException extends DukeException {
      * Constructor for DukeFileNotFoundException.
      */
     public DukeFileNotFoundException() {
-        super("File not found, please try again");
+        super("File not found, please try again bro.");
     }
 }
