@@ -1,14 +1,13 @@
 package duke;
 
-import duke.commands.Command;
-
-import javafx.application.Platform;
-
 import java.time.format.DateTimeParseException;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import duke.commands.Command;
+import javafx.application.Platform;
 
 /**
  * Main class encapsulating the logic of the program.
@@ -27,9 +26,12 @@ public class Duke {
         this.storage = new Storage(FILE_PATH_DIR);
         this.tasks = storage.load();
     }
+
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns the response of duke given an input from user.
+     *
+     * @param input String input from user.
+     * @return String output of duke.
      */
     public String getResponse(String input) {
         Parser parser = new Parser();

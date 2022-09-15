@@ -4,8 +4,6 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 
-import java.util.Arrays;
-
 /**
  * Command that represents the list command.
  */

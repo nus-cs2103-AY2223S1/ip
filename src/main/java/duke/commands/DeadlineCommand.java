@@ -40,7 +40,7 @@ public class DeadlineCommand implements Command {
         storage.writeAll(tasks);
         String output = "";
         output += "Got it. I've added this task:\n";
-        output += newTask + "\n" ;
+        output += newTask + "\n";
         output += "Now you have " + tasks.getSize() + " tasks in the list\n";
         return output;
     }

@@ -1,7 +1,8 @@
 package duke.tasks;
 
-import java.time.format.DateTimeFormatter;
-
+/**
+ * Task that represents Expenses.
+ */
 public class ExpenseTask extends Task {
     private int expenseAmount;
 
@@ -29,6 +30,16 @@ public class ExpenseTask extends Task {
                 + " (amt: " + this.getAmount() + ")";
     }
 
+    /**
+     * Return the String representation of the object in CSV.
+     * The following attributes are saved.
+     * Type of task - DL,EV,TD,EX.
+     * Marked status - X," ".
+     * Name.
+     * Amount - Integer.
+     *
+     * @return String representation of Todo Task in CSV.
+     */
     @Override
     public String toCsv() {
         return TaskType.EX + "," + this.getStatusIcon() + "," + this.getName() + ","

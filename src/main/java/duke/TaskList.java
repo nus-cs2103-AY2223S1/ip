@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +29,7 @@ public class TaskList {
     }
 
     /**
-     * Return the Task at the given index.
+     * Returns the Task at the given index.
      *
      * @param index Position of the task.
      * @return Task at the position.
@@ -40,7 +39,7 @@ public class TaskList {
     }
 
     /**
-     * Remove the Task at the given index.
+     * Removes the Task at the given index.
      *
      * @param index Position of the task.
      */

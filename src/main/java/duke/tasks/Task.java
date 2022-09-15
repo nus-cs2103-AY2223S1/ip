@@ -4,7 +4,7 @@ package duke.tasks;
  * Abstract class that represents Task.
  */
 public abstract class Task {
-    private boolean marked;
+    private boolean isMarked;
     private String name;
 
     /**
@@ -14,11 +14,11 @@ public abstract class Task {
      */
     public Task(String name) {
         this.name = name;
-        this.marked = false;
+        this.isMarked = false;
     }
 
     public boolean isMarked() {
-        return this.marked;
+        return this.isMarked;
     }
     public String getName() {
         return this.name;
@@ -31,21 +31,21 @@ public abstract class Task {
      * @return Status icon of the Task.
      */
     public String getStatusIcon() {
-        return (marked ? "X" : " "); // mark done task with X
+        return (isMarked ? "X" : " "); // mark done task with X
     }
 
     /**
      * Changes the marked status of Task to true.
      */
     public void markAsDone() {
-        this.marked = true;
+        this.isMarked = true;
     }
 
     /**
      * Changes the marked status of Task to false.
      */
     public void unmark() {
-        this.marked = false;
+        this.isMarked = false;
     }
 
     /**

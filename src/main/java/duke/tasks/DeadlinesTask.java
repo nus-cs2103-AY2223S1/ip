@@ -37,7 +37,7 @@ public class DeadlinesTask extends Task {
     /**
      * Return the String representation of the object in CSV.
      * The following attributes are saved.
-     * Type of task - D,E,T.
+     * Type of task - DL,EV,TD,EX.
      * Marked status - X," ".
      * Name.
      * Date of deadline in YYYY-MM-DD HHmm.

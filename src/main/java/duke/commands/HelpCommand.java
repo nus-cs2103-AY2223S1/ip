@@ -4,8 +4,12 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 
+/**
+ * Command that represents user asking for help.
+ */
 public class HelpCommand implements Command {
-    private final String[] COMMAND_LIST = {"bye","list","todo","deadline","event","expense","find","mark","unmark","delete","help"};
+    private static final String[] COMMAND_LIST = { "bye", "list", "todo", "deadline", "event",
+        "expense", "find", "mark", "unmark", "delete", "help"};
     private String helpString;
 
     /**
@@ -27,9 +31,9 @@ public class HelpCommand implements Command {
         String output;
         switch(helpString) {
         case("all"):
-            output = "Here is a list of all available commands.\n" +
-                    "Type help <command_name> to find out more.\n" +
-            "---------------------------------------------------";
+            output = "Here is a list of all available commands.\n"
+                    + "Type help <command_name> to find out more.\n"
+                    + "---------------------------------------------------";
             for (String command : COMMAND_LIST) {
                 output += command + " ";
             }

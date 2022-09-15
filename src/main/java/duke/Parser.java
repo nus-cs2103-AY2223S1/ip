@@ -29,13 +29,15 @@ public class Parser {
 
     /**
      * Returns the Command object after processing an input text.
-     * List of commands include: bye, list, mark, unmark, delete, todo, deadline, event.
      *
      * @param input Input text to be parsed into a command.
      * @return Command object to be executed.
      * @throws DukeException If input text is not in the correct form.
      */
     public Command parseInput(String input) throws DukeException {
+        if (input.contains(",")) {
+            throw new DukeException("Cannot have any input with ','");
+        }
         String[] inputStringArray = input.split(" ");
         String commandText = inputStringArray[0];
         switch (inputStringArray[0]) {
@@ -55,7 +57,7 @@ public class Parser {
             validateArgument(inputStringArray);
             int[] integerArgumentsArray = new int[inputStringArray.length - 1];
             for (int i = 0; i < integerArgumentsArray.length; i++) {
-                integerArgumentsArray[i] = Integer.parseInt(inputStringArray[i+1]) - 1;
+                integerArgumentsArray[i] = Integer.parseInt(inputStringArray[i + 1]) - 1;
             }
             return new NumericCommand(commandText, integerArgumentsArray);
         case "todo":
@@ -100,7 +102,8 @@ public class Parser {
             return new FindCommand(searchKeyword);
 
         default:
-            throw new DukeException("No suitable command with that name!\nPlease type help for a list of available commands");
+            throw new DukeException("No suitable command with that name!\n"
+                    + "Please type help for a list of available commands");
         }
     }
 

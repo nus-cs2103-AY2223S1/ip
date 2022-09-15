@@ -58,7 +58,7 @@ public class Storage {
         return taskList;
     }
 
-    private Task parseLine(String entry) throws DukeException{
+    private Task parseLine(String entry) throws DukeException {
         String[] entryArray = entry.split(",");
         assert entryArray.length >= 3;
         String taskType = entryArray[0];
@@ -71,7 +71,7 @@ public class Storage {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
             LocalDateTime date = LocalDateTime.parse(entryArray[3], formatter);
             newTask = new DeadlinesTask(name, date);
-        } else if (taskType.equals("EV")){
+        } else if (taskType.equals("EV")) {
             newTask = new EventTask(name, entryArray[3]);
         } else if (taskType.equals("EX")) {
             int amount = Integer.parseInt(entryArray[3]);

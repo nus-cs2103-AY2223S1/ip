@@ -5,6 +5,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.tasks.ExpenseTask;
 
+/**
+ * Command that represents adding of an expense.
+ */
 public class ExpenseCommand implements Command {
 
     private String expenseName;
@@ -18,11 +21,6 @@ public class ExpenseCommand implements Command {
     public ExpenseCommand(String expenseName, int expenseAmount) {
         this.expenseName = expenseName;
         this.expenseAmount = expenseAmount;
-    }
-
-    @Override
-    public boolean isBye() {
-        return false;
     }
 
     /**
@@ -45,5 +43,9 @@ public class ExpenseCommand implements Command {
         return output;
     }
 
+    @Override
+    public boolean isBye() {
+        return false;
+    }
 
 }

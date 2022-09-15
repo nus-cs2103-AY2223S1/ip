@@ -1,10 +1,10 @@
 package duke.commands;
 
+import java.util.List;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-
-import java.util.List;
 
 /**
  * Command that represents the find command.
@@ -31,17 +31,16 @@ public class FindCommand implements Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         List taskListWithKeyword = tasks.search(searchKeyword);
-        if (taskListWithKeyword.size() > 0) {
-            String output = "";
-            output += "Here are the matching tasks in your list:\n";
-            for (int i = 0; i < taskListWithKeyword.size(); i++) {
-                int printedIndex = i + 1;
-                output += printedIndex + ": " + taskListWithKeyword.get(i) + "\n";
-            }
-            return output;
-        } else {
+        if (taskListWithKeyword.size() == 0) {
             return "No matching tasks found!";
         }
+        String output = "";
+        output += "Here are the matching tasks in your list:\n";
+        for (int i = 0; i < taskListWithKeyword.size(); i++) {
+            int printedIndex = i + 1;
+            output += printedIndex + ": " + taskListWithKeyword.get(i) + "\n";
+        }
+        return output;
     }
     @Override
     public boolean isBye() {

@@ -47,7 +47,7 @@ public class NumericCommand implements Command {
             output += "Nice! I've marked the following task(s) as done\n";
             for (int index : indexList) {
                 if (tasks.get(index).isMarked()) {
-                    throw new DukeException("Task " +  index + "is already marked!");
+                    throw new DukeException("Task " + index + "is already marked!");
                 }
                 tasks.get(index).markAsDone();
                 output += tasks.get(index) + "\n";
@@ -67,7 +67,7 @@ public class NumericCommand implements Command {
             break;
         case "delete":
             output += "Noted. I've removed the following task(s):\n";
-            for (int i=0; i < indexList.length; i++) {
+            for (int i = 0; i < indexList.length; i++) {
                 int index = indexList[i] - i;
                 output += tasks.get(index) + "\n";
                 tasks.remove(index);
@@ -81,7 +81,7 @@ public class NumericCommand implements Command {
         return output;
     }
 
-    private boolean validateIndexes (int[] indexList, TaskList tasks) {
+    private boolean validateIndexes(int[] indexList, TaskList tasks) {
         for (int index : indexList) {
             if (index < 0 || index >= tasks.getSize()) {
                 return false;
