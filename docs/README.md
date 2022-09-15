@@ -5,7 +5,7 @@ use via a Command Line Interface (CLI) while still having the benefits of a GUI*
 you manage your tasks **_faster_** than traditional GUI apps.
 
 <div style="text-align: center;">
-    <img src="./Ui.png" style="max-width: 400px; " alt="Screenshot of Dukegg"/>
+    <img src="./Ui.png" style="max-width: 800px; " alt="Screenshot of Dukegg"/>
 </div>
 
 ## Features
