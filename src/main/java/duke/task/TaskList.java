@@ -12,7 +12,7 @@ import duke.common.DukeException;
  */
 public class TaskList {
     /** The list of tasks */
-    private final ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     /**
      * Constructs a new TaskList object with no tasks.
@@ -49,7 +49,7 @@ public class TaskList {
     }
 
     /**
-     * Removes the task at the given index from the task list.
+     * Removes the task at the given index.
      *
      * @param index The index of the task to be removed.
      * @return The removed task.
@@ -62,6 +62,30 @@ public class TaskList {
         Task taskToDelete = tasks.get(index - 1);
         tasks.remove(index - 1);
         return taskToDelete;
+    }
+
+    /**
+     * Removes the task whose description contains specified String.
+     *
+     * @param termToDeleteBy The String that will be matched to task description.
+     * @return The removed tasks.
+     * @throws DukeException If specified task does not exist.
+     */
+    public ArrayList<Task> deleteItem(String termToDeleteBy) throws DukeException {
+        assert termToDeleteBy != null : "Term to delete is unspecified";
+        ArrayList<Task> tasksDeleted = new ArrayList<>();
+        ArrayList<Task> updatedTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(termToDeleteBy)) {
+                tasksDeleted.add(task);
+            } else {
+                updatedTasks.add(task);
+            }
+        }
+        assert tasks.size() == tasksDeleted.size() + updatedTasks.size()
+                : "Tasks deleted and remaining tasks shld add up to original tasks count";
+        tasks = updatedTasks;
+        return tasksDeleted;
     }
 
     /**

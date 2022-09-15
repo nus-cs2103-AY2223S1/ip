@@ -23,6 +23,8 @@ import duke.task.ToDo;
  * @author Tan Jun Wei
  */
 public abstract class Parser {
+    private static final String BULK_DELETE_FLAG = "-f";
+
     /**
      * Checks if input string contains restricted characters.
      * If a character used to encode task is entered by user, an exception is thrown.
@@ -75,6 +77,16 @@ public abstract class Parser {
         if (commandArgs.length < 2) {
             throw new DukeException("Please specify a task to delete.");
         }
+
+        if (commandArgs[1].contains(BULK_DELETE_FLAG)) {
+            String[] deleteArgs = (commandArgs[1].split("-f ", 2));
+            String termToDeleteBy = "";
+            if (deleteArgs.length == 2) {
+                termToDeleteBy = deleteArgs[1];
+            }
+            return new DeleteCommand(termToDeleteBy);
+        }
+
         try {
             return new DeleteCommand(Integer.parseInt(commandArgs[1]));
         } catch (NumberFormatException e) {

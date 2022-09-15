@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.common.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
@@ -15,6 +17,9 @@ public class DeleteCommand extends Command {
     /** Index of task to be deleted by this command */
     private int index;
 
+    /** String which task that contain will be deleted */
+    private String termToDeleteBy;
+
     /**
      * Constructs a new DeleteCommand with the given index.
      *
@@ -22,6 +27,15 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(int index) {
         this.index = index;
+    }
+
+    /**
+     * Constructs a new DeleteCommand with the term to delete by.
+     *
+     * @param termToDeleteBy String that will be matched to task descriptions to be deleted.
+     */
+    public DeleteCommand(String termToDeleteBy) {
+        this.termToDeleteBy = termToDeleteBy;
     }
 
     /**
@@ -34,9 +48,17 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task task = tasks.deleteItem(index);
+        if (termToDeleteBy == null) {
+            Task task = tasks.deleteItem(index);
+            ui.showOutput("OK, I've deleted the following task:\n  " + task + "\n");
+        } else {
+            ArrayList<Task> deletedTasks = tasks.deleteItem(termToDeleteBy);
+            ui.showOutput("OK, I've deleted the following tasks:\n"
+                    + deletedTasks.stream()
+                    .map(task -> task.toString() + "\n")
+                    .reduce("", String::concat));
+        }
         storage.saveAllTasks(tasks);
-        ui.showOutput("OK, I've added the following task:\n  " + task + "\n");
         ui.showOutput("Now you have " + tasks.size() + " tasks in the list.");
     }
 }
