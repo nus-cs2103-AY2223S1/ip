@@ -173,14 +173,14 @@ public class Parser {
      * @throws IOException From the writeToFile() method.
      */
     public String parseDeadline(String restOfString) throws DukeException, IOException {
-        //Get description and date and time of deadline task
+        //Get description and date and time of Deadline task
         String deadline = restOfString;
 
         if (deadline.equals("")) {
             //Throw exception if description and date and time are empty
             throw new DukeException("OOPS!!! " + "The description of a deadline cannot be empty.\n");
         } else {
-            //Getting the description and date and time individually
+            //Getting the description, date and time of the Deadline task
             int integer = deadline.indexOf("/by");
             String description = deadline.substring(0, integer - 1);
             String by = deadline.substring(integer + 4);
@@ -265,7 +265,7 @@ public class Parser {
             //Throw exception if description and date and time are empty
             throw new DukeException("OOPS!!! " + "The description of a event cannot be empty.\n");
         } else {
-            //Get the description and date and time individually
+            //Get the description, date and time of the Event task
             int integer = event.indexOf("/at");
             String description = event.substring(0, integer - 1);
             String at = event.substring(integer + 4);

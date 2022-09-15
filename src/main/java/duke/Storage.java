@@ -94,7 +94,7 @@ public class Storage {
         //Check that the loaded event has a date and time
         assert task.contains("[E]");
 
-        //Get the description and date and time fields of event
+        //Get the description, date and time fields of event
         int at = task.indexOf("(at:");
         String dateAndTime = task.substring(at + 5, task.lastIndexOf(")"));
 
@@ -148,7 +148,7 @@ public class Storage {
         //Check if task is a deadline
         assert task.contains("[D]");
 
-        //Get the description and date and time fields
+        //Get the description, date and time fields
         int by = task.indexOf("(by:");
         String timingWithBracket = task.substring(by + 5, task.lastIndexOf(")"));
 
