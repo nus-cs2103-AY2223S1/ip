@@ -50,109 +50,125 @@ public class ParserDuke {
      * Reads the user command, initiates completion of the appropriate action and prints response
      */
     public String parseCommand() {
+
         if (command.isEmpty()) {
-            respondToEmptyString();
+            String reply = respondToEmptyString();
+            return reply;
+
         } else {
+
             TaskList listOfItems = Storage.readFromFile(FILE_PATH);
+            String reply = "Hmm...LOOKS LIKE SOMETHING IS WRONG! Try Again!";
+            String comment = "Here is what I think...";
+            String taskNo = "-1";
+            int taskNoAsInt = -1;
+            String item = "Nothing here yet!";
+            String parts[] = command.split(" ");
+            String instruction = parts[0];
 
-            if (command.equals(LIST_CMD)) {
-                String comment = "These are the tasks on your list!";
-                String list = listOfItems.toString();
-                String reply = comment + list + BREAK_LINE;
-                System.out.println(reply);
-                return reply;
+            switch (instruction){
+                case LIST_CMD:
+                    comment = "These are the tasks on your list!";
+                    String list = listOfItems.toString();
+                    reply = comment + list + BREAK_LINE;
+                    break;
 
-            } else if (command.contains(MARK_CMD)) {
-                String taskNo = command.replaceAll("\\D+", "");
-                int taskNoAsInt = Integer.parseInt(taskNo)-1;
-                Storage.makeListFile(FILE_PATH, listOfItems);
-
-                if (!command.contains(UNMARK_CMD)) {
-                    String comment = "Very well! One less burden to bear! I have marked this complete:";
-                    String item = listOfItems.handleItem("UNMARK", taskNoAsInt);
-                    String reply = comment + "\n" + item;
-                    return reply;
-
-                } else {
-                    String comment = "Hmm....I have marked this incomplete:";
-                    String item = listOfItems.handleItem("MARK", taskNoAsInt);
-                    String reply = comment + "\n" + item;
-                    return reply;
-                }
-
-
-            } else if (command.contains(DELETE_CMD)) {
-                String taskNo = command.replaceAll("\\D+", "");
-                int taskNoAsInt = Integer.parseInt(taskNo)-1;
-                String comment = "And so it must be. We leave behind what we can not hold on to." +
-                       "\nI have removed this from your list:";
-                String item = listOfItems.handleItem("DELETE", taskNoAsInt);
-                String reply = "You have only " +  listOfItems.knowTaskCount()+ "remaining";
-                Storage.makeListFile(FILE_PATH, listOfItems);
-                return reply;
-            } else if (command.contains(TODO_CMD)) {
-                String todo = command.replaceAll("todo ", "");
-                if (todo.isEmpty()) {
-                    String comment = "The folly of youth to want to do nothing! Write your task following 'todo'";
-                    String reply = comment + BREAK_LINE;
-                    return reply;
-                } else {
-                    ListObject newItem = new ToDo(todo, 0);
-                    listOfItems.handleItemAddition(newItem);
+                case MARK_CMD:
+                    taskNo = command.replaceAll("\\D+", "");
+                    taskNoAsInt = Integer.parseInt(taskNo)-1;
                     Storage.makeListFile(FILE_PATH, listOfItems);
-                    String comment = "'Tis a new sky for you to scale! Here! \n" + newItem.toString();
-                    String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
-                    String reply = comment + info + BREAK_LINE;
-                    return reply;
-                }
-            } else if (command.contains(DEADLINE_CMD)) {
-                String deadline1 = command.replaceAll("deadline ", "");
-                String[] words = deadline1.split("/");
-                String task = words[0];
-                String deadline = words[1];
-                if (!task.isEmpty()) {
-                    ListObject newItem = new Deadline(task, 0, deadline);
-                    listOfItems.handleItemAddition(newItem);
+                    comment = "Very well! One less burden to bear! I have marked this complete:";
+                    item = listOfItems.handleItem("MARK", taskNoAsInt);
+                    reply = comment + "\n" + item;
+                    break;
+
+                case UNMARK_CMD:
+                    taskNo = command.replaceAll("\\D+", "");
+                    taskNoAsInt = Integer.parseInt(taskNo)-1;
                     Storage.makeListFile(FILE_PATH, listOfItems);
-                    String comment = "Mark this on your calendar! \n" + newItem.toString();
-                    String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
-                    String reply = comment + info + BREAK_LINE;
-                    return reply;
-                } else {
-                    String reply = "The folly of youth to cheat Time! Write your task following 'deadline'"
-                            + BREAK_LINE;
-                    return reply;
-                }
-            } else if (command.contains(EVENT_CMD)) {
-                String event1 = command.replaceAll("event ", "");
-                String[] words = event1.split("/");
-                String task = words[0];
-                String event = words[1];
-                if(!task.isEmpty()) {
-                    ListObject newItem = new Event(task, 0, event);
-                    listOfItems.handleItemAddition(newItem);
+                    comment = "Hmm....I have marked this incomplete:";
+                    item = listOfItems.handleItem("UNMARK", taskNoAsInt);
+                    reply = comment + "\n" + item;
+                    break;
+
+                case DELETE_CMD:
+                    taskNo = command.replaceAll("\\D+", "");
+                    taskNoAsInt = Integer.parseInt(taskNo)-1;
+                    comment = "And so it must be. We leave behind what we can not hold on to." +
+                            "\nI have removed this from your list:";
+                    item = listOfItems.handleItem("DELETE", taskNoAsInt);
+                    reply = "You have only " +  listOfItems.knowTaskCount()+ "remaining";
                     Storage.makeListFile(FILE_PATH, listOfItems);
-                    String comment = "Another moment to mark... \n" + newItem.toString();
-                    String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
-                    String reply = comment + info + BREAK_LINE;
-                    return reply;
-                } else {
-                    String comment = "Come Alive! Write an activity following 'event'";
-                    String reply = comment + BREAK_LINE;
-                    return reply;
-                }
-            } else if (command.contains(FIND_CMD)) {
-                String target = command.replaceAll("find ", "");
-                String list = listOfItems.findByKeyword(target);
-                String comment = "Here is what you are looking for!";
-                String reply = comment + list + BREAK_LINE;
-                return reply;
-            } else {
-                String comment = "Why trouble me with the unrefined language of the youth! Speak plainly, my friend!";
-                String reply = comment + BREAK_LINE;
-                return reply;
+                    break;
+
+                case FIND_CMD:
+                    String target = command.replaceAll("find ", "");
+                    list = listOfItems.findByKeyword(target);
+                    comment = "Here is what you are looking for!";
+                    reply = comment + list + BREAK_LINE;
+                    break;
+
+                case TODO_CMD:
+                    String todo = command.replaceAll("todo ", "");
+                    if (todo.isEmpty()) {
+                        comment = "The folly of youth to want to do nothing! Write your task following 'todo'";
+                        reply = comment + BREAK_LINE;
+                        break;
+                    } else {
+                        ListObject newItem = new ToDo(todo, 0);
+                        listOfItems.handleItemAddition(newItem);
+                        Storage.makeListFile(FILE_PATH, listOfItems);
+                        comment = "'Tis a new sky for you to scale! Here! \n" + newItem.toString();
+                        String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
+                        reply = comment + info + BREAK_LINE;
+                        break;
+                    }
+
+                case DEADLINE_CMD:
+                    String deadline1 = command.replaceAll("deadline ", "");
+                    String[] words = deadline1.split("/");
+                    item = words[0];
+                    String deadline = words[1];
+                    if (!item.isEmpty()) {
+                        ListObject newItem = new Deadline(item, 0, deadline);
+                        listOfItems.handleItemAddition(newItem);
+                        Storage.makeListFile(FILE_PATH, listOfItems);
+                        comment = "Mark this on your calendar! \n" + newItem.toString();
+                        String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
+                        reply = comment + info + BREAK_LINE;
+                        break;
+                    } else {
+                        reply = "The folly of youth to cheat Time! Write your task following 'deadline'"
+                                + BREAK_LINE;
+                        break;
+                    }
+
+                case EVENT_CMD:
+                    String event1 = command.replaceAll("event ", "");
+                    String[] words2 = event1.split("/");
+                    item = words2[0];
+                    String event = words2[1];
+
+                    if(!item.isEmpty()) {
+                        ListObject newItem = new Event(item, 0, event);
+                        listOfItems.handleItemAddition(newItem);
+                        Storage.makeListFile(FILE_PATH, listOfItems);
+                        comment = "Another moment to mark... \n" + newItem.toString();
+                        String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
+                        reply = comment + info + BREAK_LINE;
+                        break;
+                    } else {
+                        comment = "Come Alive! Write an activity following 'event'";
+                        reply = comment + BREAK_LINE;
+                        break;
+                    }
+
+                default:
+                    comment = "Why trouble me with the unrefined language of the youth! Speak plainly, my friend!";
+                    reply = comment + BREAK_LINE;
             }
+
+            return reply;
         }
-        return "Hmm..something is wrong";
     }
 }
