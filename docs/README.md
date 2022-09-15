@@ -121,3 +121,7 @@ Expected outcome :
 Deletes a Note. `index` field counts starting from 1.
 
 ![deletenote.png](deletenote.png)
+
+## Acknowlegements
+- [GUI adaptation](https://se-education.org/guides/tutorials/javaFx.html)
+- [JavaFX library](https://openjfx.io/)
