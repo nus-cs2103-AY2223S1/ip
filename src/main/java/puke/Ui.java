@@ -14,8 +14,7 @@ public class Ui {
      */
     public String systemMessage(int i , Duke d, Task t) {
         if (i == 1) {
-            return "\n"
-                    + "     Bye. Why are you still here?\n" ;
+            return "Bye" ;
         } else if (i == 2) {
             return "\n"
                     + "     Got it. I've added this task:\n"
@@ -51,7 +50,8 @@ public class Ui {
                 + "deadline xx /by yyyy-mm-dd hh:mm\n"
                 + "event xx /at yyyy-mm-dd hh:mm\n"
                 + "delete x : remove the task from the list\n"
-                + "find x : lists all tasks given a keyword\n";
+                + "find x : lists all tasks given a keyword\n"
+                + "bye : kills and exits the application";
 
     }
 

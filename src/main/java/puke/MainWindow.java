@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -23,6 +24,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    private Stage stage;
     private Duke duke;
 
     protected static MainWindow mw = new MainWindow();
@@ -52,6 +54,11 @@ public class MainWindow extends AnchorPane {
         assert !response.isEmpty() : "Puke doesn't feel like talking to you, try again later";
         Label inputLabel = new Label("You say: " + input);
         Label responseLabel = new Label(response);
+
+        if (response.equals("Puke says: Bye")) {
+            stage.close();
+            return;
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(inputLabel, new ImageView(userImage)),
                 DialogBox.getPukeDialog(responseLabel, new ImageView(dukeImage))
@@ -64,6 +71,10 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getPukeDialog(introLabel, new ImageView(dukeImage))
         );
+    }
+
+    public void setStage(Stage s) {
+        this.stage = s;
     }
 }
 
