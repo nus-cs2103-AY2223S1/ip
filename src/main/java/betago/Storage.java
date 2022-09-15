@@ -24,16 +24,16 @@ public class Storage {
     }
 
     /**
-     * Checks if data/duke.txt file exists.
+     * Checks if data/betago.txt file exists.
      * If it exists, calls the convertFile method accordingly to read file.
-     * Else, create an empty duke.txt file.
+     * Else, create an empty betago.txt file.
      * Errors in creating the file or invalid text in the data file will print errors accordingly.
      */
     public void loadDefaultFile() {
         try {
             File dir = new File("data");
-            File f = new File("data/duke.txt");
-            this.fileName = "data/duke.txt";
+            File f = new File("data/betago.txt");
+            this.fileName = "data/betago.txt";
             if (!dir.exists()) {
                 dir.mkdir();
                 f.createNewFile();
@@ -103,7 +103,7 @@ public class Storage {
         }
     }
     /**
-     * Saves tasks in TaskList into data/duke.txt file.
+     * Saves tasks in TaskList into data/betago.txt file.
      */
     public void saveItems() {
         try {

@@ -195,7 +195,7 @@ public class TaskList {
     }
 
     /**
-     * Read todo task from the data file and add a todo task accordingly into the TaskList.
+     * Reads todo task from the data file and adds a todo task accordingly into the TaskList.
      *
      * @param str Line of text from the data file to load task.
      * @throws DukeException If marker is not 1 or 0, or str is of the wrong format.
@@ -217,7 +217,7 @@ public class TaskList {
     }
 
     /**
-     * Read deadline task from the data file and add a deadline task accordingly into the TaskList.
+     * Reads deadline task from the data file and adds a deadline task accordingly into the TaskList.
      *
      * @param str Line of text from the data file to load task.
      * @throws DukeException If marker is not 1 or 0, or str is of the wrong format.
@@ -252,7 +252,7 @@ public class TaskList {
     }
 
     /**
-     * Read event task from the data file and add an event task accordingly into the TaskList.
+     * Reads event task from the data file and adds an event task accordingly into the TaskList.
      *
      * @param str Line of text from the data file to load task.
      * @throws DukeException If marker is not 1 or 0, or str is of the wrong format.
@@ -297,7 +297,7 @@ public class TaskList {
         return deadlineDate;
     }
     /**
-     * Find tasks that match the keyword inputted by user.
+     * Finds tasks that match the keyword inputted by user.
      *
      * @param str Line of text command from user including keyword to search.
      * @throws DukeException If no keyword is provided.
