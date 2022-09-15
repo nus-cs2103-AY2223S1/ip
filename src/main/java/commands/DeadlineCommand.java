@@ -5,7 +5,6 @@ import java.time.format.DateTimeParseException;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import ui.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDateTimeException;
 import exceptions.EmptyDescriptionException;
@@ -13,6 +12,7 @@ import exceptions.InvalidDateTimeException;
 import task.Deadline;
 import task.Task;
 import task.TaskType;
+import ui.Ui;
 
 /**
  * Creates a new deadline.

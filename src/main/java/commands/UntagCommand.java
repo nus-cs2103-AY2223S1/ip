@@ -2,10 +2,10 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import ui.Ui;
 import exceptions.DukeException;
 import exceptions.InvalidTaskIndexException;
 import task.Task;
+import ui.Ui;
 
 /**
  * Removes the tag of a task.

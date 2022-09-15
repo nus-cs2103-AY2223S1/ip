@@ -2,8 +2,8 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import ui.Ui;
 import exceptions.DukeException;
+import ui.Ui;
 
 /**
  * Represents the commands that are available in the chatbot.

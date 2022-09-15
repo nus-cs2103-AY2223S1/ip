@@ -2,11 +2,11 @@ package commands;
 
 import dukeegg.Storage;
 import dukeegg.TaskList;
-import ui.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDescriptionException;
 import task.TaskType;
 import task.Todo;
+import ui.Ui;
 
 /**
  * Creates a new Todo.
