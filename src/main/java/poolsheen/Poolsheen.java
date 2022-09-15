@@ -59,6 +59,9 @@ public class Poolsheen {
      */
     public static void forceExit() {
         Poolsheen.hasExited = true;
+        //@@author Darren12345677-reused
+        //Reused from https://github.com/Darren12345677/ip/blob/master/src/main/java/roofus/Roofus.java
+        // with minor modifications.
         CompletableFuture.runAsync(() -> {
             try {
                 Thread.sleep(LEAVE_TIME);
