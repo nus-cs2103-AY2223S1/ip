@@ -1,7 +1,9 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 
 /** A class that tests the ToDo class. */
 public class ToDoTest {
@@ -13,6 +15,6 @@ public class ToDoTest {
     public void descriptionTest() {
         String description = "assignment";
         ToDo test = new ToDo(description);
-        assertEquals("[T][ ]assignment", test.toString());
+        assertEquals("[T][ ][ ]assignment", test.toString());
     }
 }

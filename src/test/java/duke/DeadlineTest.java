@@ -1,7 +1,9 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 
 /** A class for testing the Deadline object. */
 public class DeadlineTest {
@@ -13,9 +15,9 @@ public class DeadlineTest {
     public void descriptionTest() {
         String description = "homework";
         String by = "1/3/2019 1500";
-        Deadline test = new Deadline(description, by);
-        test.parseDate("2019-03-01");
-        test.parseTime("15:00");
-        assertEquals("[D][ ]homework (by: Mar 01 2019 15:00)", test.toString());
+        Deadline testDeadline = new Deadline(description, by);
+        testDeadline.setDate("2019-03-01");
+        testDeadline.setTime("15:00");
+        assertEquals("[D][ ][ ]homework (by: Mar 01 2019 15:00)", testDeadline.toString());
     }
 }

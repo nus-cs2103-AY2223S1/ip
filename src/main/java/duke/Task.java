@@ -1,8 +1,5 @@
 package duke;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 /** Represents a Task. */
 public class Task {
     enum Priority {
@@ -12,8 +9,6 @@ public class Task {
     }
     protected String description;
     protected boolean isDone;
-    protected LocalDate date;
-    protected LocalTime time;
     protected Priority priority;
 
     /**
@@ -47,24 +42,6 @@ public class Task {
      */
     public void unMarkTask() {
         this.isDone = false;
-    }
-
-    /**
-     * Sets the task's date.
-     *
-     * @param date String representing the date to be set.
-     */
-    public void setDate(String date) {
-        this.date = LocalDate.parse(date);
-    }
-
-    /**
-     * Sets the task's time.
-     *
-     * @param time String representing the time to be set.
-     */
-    public void setTime(String time) {
-        this.time = LocalTime.parse(time);
     }
 
     /**
@@ -115,7 +92,7 @@ public class Task {
             default:
                 throw new DukeException("Invalid Priority!");
             }
-        } catch(DukeException e) {
+        } catch (DukeException e) {
             return e.getMessage();
         }
     }

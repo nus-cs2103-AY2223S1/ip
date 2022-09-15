@@ -53,13 +53,13 @@ public class Storage {
         Scanner sc = new Scanner(this.file);
 
         //Return empty task list
-        if(!sc.hasNextLine()) {
+        if (!sc.hasNextLine()) {
             return;
         }
 
         //Load the list of tasks from the text file
         String header = sc.nextLine();
-        while(sc.hasNextLine()) {
+        while (sc.hasNextLine()) {
             //Get the next task
             String task = sc.nextLine();
             char type = task.charAt(3);
@@ -215,7 +215,7 @@ public class Storage {
         int index = 1;
 
         //Add the relevant tasks to the list
-        while(scanner.hasNextLine()) {
+        while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.contains(keyword)) {
                 line = index + line.substring(1);

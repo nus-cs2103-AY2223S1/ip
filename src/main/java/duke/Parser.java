@@ -190,7 +190,10 @@ public class Parser {
 
             //Parse date and time of Deadline task
             if (by.contains("/") || by.contains("-")) {
-                this.parseDateAndTime(deadlineTask, by);
+                String dateTime = this.parseDateAndTime(by);
+                String[] dateTimeArray = dateTime.split(" ");
+                deadlineTask.setDate(dateTimeArray[0]);
+                deadlineTask.setTime(dateTimeArray[1]);
             }
 
             //Add Deadline task to the taskList array
@@ -211,10 +214,10 @@ public class Parser {
     /**
      * Parses date and time of task.
      *
-     * @param task The task that is involved.
      * @param dateAndTime String containing date and time of the task.
+     * @return String representing date and time after parsing.
      */
-    public void parseDateAndTime(Task task, String dateAndTime) {
+    public String parseDateAndTime(String dateAndTime) {
         //Get the date and time of task individually
         int space = dateAndTime.indexOf(' ');
         String date = dateAndTime.substring(0, space);
@@ -243,9 +246,7 @@ public class Parser {
         String hour = time.substring(0, 2);
         time = (hour + ":" + min);
 
-        //Set the time and date of task
-        task.setTime(time);
-        task.setDate(date);
+        return "date" + " " + "time";
     }
 
     /**
@@ -274,7 +275,10 @@ public class Parser {
 
             //Parse date and time of Event task
             if (at.contains("/") || at.contains("-")) {
-                this.parseDateAndTime(eventTask, at);
+                String dateTime = this.parseDateAndTime(at);
+                String[] dateTimeArray = dateTime.split(" ");
+                eventTask.setDate(dateTimeArray[0]);
+                eventTask.setTime(dateTimeArray[1]);
             }
 
             //Add Event task to taskList array

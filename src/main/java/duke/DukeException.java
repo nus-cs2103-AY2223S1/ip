@@ -1,7 +1,7 @@
 package duke;
 
 /** Represents an exception specific to Duke. */
-public class DukeException extends Exception{
+public class DukeException extends Exception {
 
     /**
      * Initialises the DukeException.
