@@ -4,7 +4,6 @@ import duke.commands.*;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.tasks.TaskType;
-import duke.ui.Ui;
 
 import java.util.Deque;
 
@@ -15,41 +14,40 @@ public class InputParser {
      * @param input Input string.
      * @param tasks TaskList in use by the app.
      * @param storage Storage in use by the app.
-     * @param ui Ui in use by the app.
      * @return Command to be executed.
      */
-    public Command parse(String input, TaskList tasks, Storage storage, Ui ui, Deque<Command> commandHistory) {
+    public Command parse(String input, TaskList tasks, Storage storage, Deque<Command> commandHistory) {
         String[] splitStr = splitInput(input);
         String command = splitStr[0];
         String body = splitStr[1];
-        return parseCommand(command, body, tasks, storage, ui, commandHistory);
+        return parseCommand(command, body, tasks, storage, commandHistory);
     }
 
-    private Command parseCommand(String command, String body, TaskList tasks, Storage storage, Ui ui,
+    private Command parseCommand(String command, String body, TaskList tasks, Storage storage,
             Deque<Command> commandHistory) {
         switch (command) {
             case "bye":
-                return new ExitCommand(ui);
+                return new ExitCommand();
             case "list":
-                return new PrintTasksCommand(ui, tasks);
+                return new PrintTasksCommand(tasks);
             case "mark":
-                return new MarkTaskCommand(storage, ui, tasks, body);
+                return new MarkTaskCommand(storage, tasks, body);
             case "unmark":
-                return new UnmarkTaskCommand(storage, ui, tasks, body);
+                return new UnmarkTaskCommand(storage, tasks, body);
             case "delete":
-                return new DeleteTaskCommand(storage, ui, tasks, body);
+                return new DeleteTaskCommand(storage, tasks, body);
             case "find":
-                return new FindTaskCommand(tasks, ui, body);
+                return new FindTaskCommand(tasks, body);
             case "undo":
                 return new UndoCommand(commandHistory);
             case "todo":
-                return new AddTaskCommand(storage, ui, tasks, TaskType.TODO, body);
+                return new AddTaskCommand(storage, tasks, TaskType.TODO, body);
             case "deadline":
-                return new AddTaskCommand(storage, ui, tasks, TaskType.DEADLINE, body);
+                return new AddTaskCommand(storage, tasks, TaskType.DEADLINE, body);
             case "event":
-                return new AddTaskCommand(storage, ui, tasks, TaskType.EVENT, body);
+                return new AddTaskCommand(storage, tasks, TaskType.EVENT, body);
             default:
-                return new UnrecognisedCommand(ui);
+                return new UnrecognisedCommand();
         }
     }
 

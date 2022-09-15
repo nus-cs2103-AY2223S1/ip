@@ -1,13 +1,8 @@
 package duke.commands;
 
-import duke.ui.Ui;
-
 public class ExitCommand extends Command {
 
-    private Ui ui;
-
-    public ExitCommand(Ui ui) {
-        this.ui = ui;
+    public ExitCommand() {
     }
 
     @Override

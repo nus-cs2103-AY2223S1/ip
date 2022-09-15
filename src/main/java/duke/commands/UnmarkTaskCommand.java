@@ -4,19 +4,16 @@ import duke.exceptions.TaskNotFoundException;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.utils.Storage;
-import duke.ui.Ui;
 
 public class UnmarkTaskCommand extends Command {
 
     private Storage storage;
-    private Ui ui;
     private TaskList tasks;
     private String index;
     private boolean hasExecutedSuccessfully;
 
-    public UnmarkTaskCommand(Storage storage, Ui ui, TaskList tasks, String index) {
+    public UnmarkTaskCommand(Storage storage, TaskList tasks, String index) {
         this.storage = storage;
-        this.ui = ui;
         this.tasks = tasks;
         this.index = index;
         hasExecutedSuccessfully = false;

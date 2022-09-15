@@ -2,19 +2,16 @@ package duke.commands;
 
 import duke.tasks.Task;
 import duke.tasks.TaskList;
-import duke.ui.Ui;
 
 import java.util.List;
 
 public class FindTaskCommand extends Command {
 
     private TaskList tasks;
-    private Ui ui;
     private String searchTerm;
 
-    public FindTaskCommand(TaskList tasks, Ui ui, String searchTerm) {
+    public FindTaskCommand(TaskList tasks, String searchTerm) {
         this.tasks = tasks;
-        this.ui = ui;
         this.searchTerm = searchTerm;
     }
 

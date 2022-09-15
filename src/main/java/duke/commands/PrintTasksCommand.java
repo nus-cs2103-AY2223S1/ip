@@ -1,15 +1,12 @@
 package duke.commands;
 
 import duke.tasks.TaskList;
-import duke.ui.Ui;
 
 public class PrintTasksCommand extends Command {
 
-    private Ui ui;
     private TaskList tasks;
 
-    public PrintTasksCommand(Ui ui, TaskList tasks) {
-        this.ui = ui;
+    public PrintTasksCommand(TaskList tasks) {
         this.tasks = tasks;
     }
 
