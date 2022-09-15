@@ -154,6 +154,7 @@ Here are your tasks at 2022-09-15
 ```
 
 ## Command Summary
+
 Action | Format, Examples
 --------|------------------
 **Todo** | `todo {description}` <br> e.g., `todo make the bed`
