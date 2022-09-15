@@ -1,7 +1,7 @@
 package duke.logic.task;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import duke.exception.DukeException;
@@ -13,7 +13,7 @@ import duke.storage.DukeEncoder;
  */
 public class Deadline extends Task {
 
-    protected LocalDateTime by;
+    protected LocalDate by;
 
     /**
      * Constructor for deadline.
@@ -22,7 +22,7 @@ public class Deadline extends Task {
      */
     public Deadline(String detail, String by) {
         super(detail);
-        this.by = LocalDateTime.parse(by);
+        this.by = LocalDate.parse(by);
     }
 
     /**
@@ -59,6 +59,8 @@ public class Deadline extends Task {
             return new DukeException.EmptyDeadlineException().throwDukeException();
         } catch (ArrayIndexOutOfBoundsException e) {
             return new DukeException.DeadlineWithoutByException().throwDukeException();
+        } catch (DateTimeParseException e) {
+            return new DukeException.WrongDateFormat().throwDukeException();
         }
 
     }
