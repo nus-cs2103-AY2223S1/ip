@@ -13,7 +13,7 @@ public class ChatResponse {
      * Returns the welcome text.
      */
     public static String chatShowWelcome() {
-        return String.format("Hello! I'm Duke!\nWhat can I do for you?");
+        return String.format("Hello! I'm SotongBoi! What's up?");
     }
 
     /**
@@ -29,14 +29,14 @@ public class ChatResponse {
      * Returns goodbye message.
      */
     public static String returnChatGoodbye() {
-        return String.format("Bye. Hope to see you again soon!");
+        return String.format("Please take care...");
     }
 
     /**
      * Returns invalid command chat.
      */
     public static String returnChatInvalidCommand() {
-        return String.format("I don't understand your command. Please enter a valid command!");
+        return String.format("I don't understand...");
     }
 
     /**
@@ -58,7 +58,7 @@ public class ChatResponse {
      * @param task Task to mark.
      */
     public static String returnChatMarkTask(Task task) {
-        return String.format("Nice! I've marked this task as done: %s\n", task);
+        return String.format("I see you've been hard at work! I marked this as done: %s\n", task);
     }
 
     /**
@@ -67,7 +67,7 @@ public class ChatResponse {
      * @param task Task to unmark.
      */
     public static String returnChatUnmarkTask(Task task) {
-        return String.format("OK, I've marked this task as not done yet: %s\n", task);
+        return String.format("Changed your mind? I unmarked this task as undone: %s\n", task);
     }
 
     /**
@@ -77,7 +77,7 @@ public class ChatResponse {
      * @param taskList Current task list after task is added.
      */
     public static String returnChatAddTask(Task task, TaskList taskList) {
-        return String.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
+        return String.format("Nice, I added a task:\n  %s\nNow you have %s %s in your list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
     }
 
     /**
@@ -87,7 +87,7 @@ public class ChatResponse {
      * @param taskList Current task list after task is added.
      */
     public static String returnChatDeleteTask(Task task, TaskList taskList) {
-        return String.format("Noted. I've removed this task:\n %s\nNow you have %s %s in the list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
+        return String.format("Cool. I've removed this task:\n %s\nNow you have %s %s in the list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
     }
 
     /**
@@ -121,7 +121,7 @@ public class ChatResponse {
      * @param taskList The task list.
      */
     public static String returnChatFindResults(TaskList taskList) {
-        String results = String.format("Here are the matching tasks in your list: \n");
+        String results = String.format("I found these tasks in your list: \n");
         return String.join(results, returnChatTaskList(taskList));
     }
 
