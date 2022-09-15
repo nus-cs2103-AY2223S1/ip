@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private Duke duke = new Duke();
-    private Image appIcon = new Image(this.getClass().getResourceAsStream("/images/elp.jpg"));
+    private Image appIcon = new Image(this.getClass().getResourceAsStream("/images/elp.png"));
 
     @Override
     public void start(Stage stage) {

@@ -13,7 +13,7 @@ public class UI {
      * Displays the Greeting message.
      */
     public static String greet() {
-        return "Greetings from Elp!\n What can I help you with?\n";
+        return "Greetings from Elp!\nWhat can I help you with?\n";
     }
 
     /**
