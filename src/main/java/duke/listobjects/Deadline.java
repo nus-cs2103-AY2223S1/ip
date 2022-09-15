@@ -1,9 +1,5 @@
 package duke.listobjects;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 /**
  * Represents Deadlines which are ListObjects that store deadline (date and time) with the task
  */
@@ -38,33 +34,8 @@ public class Deadline extends ListObject{
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + formatDateTime(doBy) + ")";
+        return "[D]" + super.toString() + " (by: " + formatDateTime(1) + ")";
     }
 
-
-    /**
-     * Reads String representing date and time and returns an alternate String representation of it
-     * @param txt String representing date and time in the format of yyyy-MM-dd HH:mm
-     * @return String representation of date and time in alternate format of MMM dd yyy HH:mm
-     */
-
-    public String formatDateTime(String txt) {
-
-        String[] words = txt.split(" ");
-        String date = words[0];
-        String time = words[1];
-
-        //format date of form yyyy-MM-dd
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate deadline = LocalDate.parse(date, formatter);
-        DateTimeFormatter formatNew = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        String dateNew = deadline.format(formatNew);
-
-        //format time of form HH:mm (24h clock)
-        LocalTime deadlineTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
-        String timeNew = deadlineTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
-
-        return dateNew + " at " + timeNew;
-    }
 
 }

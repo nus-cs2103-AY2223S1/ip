@@ -99,7 +99,7 @@ public class Ui {
 //        Scanner readInput = this.in;
 
         while (true) {
-//            String userMsg = readInput.nextLine();
+            assert userMsg != null;
             if (userMsg.equals(END_CMD)) {
                 return bidFarewell();
             } else {
