@@ -2,6 +2,8 @@ package duke.task;
 
 import duke.constant.PriorityLevel;
 
+import java.util.Locale;
+
 /**
  * An abstract class to represent a task.
  *
@@ -82,7 +84,7 @@ public abstract class Task {
      *     the task description.
      */
     public boolean isStringContained(String s) {
-        return task.contains(s);
+        return task.toLowerCase().contains(s.toLowerCase());
     }
 
     /**
