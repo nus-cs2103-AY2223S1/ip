@@ -8,7 +8,7 @@
 
 2. Download AlphaBot.jar from [here](https://github.com/L1uY1jun/ip/releases/tag/A-Release) in case you have yet to do so!
 
-3. When you start up the application, a GUI similar to below should appear in a few seconds.
+3. When you start up the application, a GUI similar to below should appear in a few seconds. <br>
   ![Ui](images/initialUi.png)
 
 4. There 3 types of tasks you can create on this application:
