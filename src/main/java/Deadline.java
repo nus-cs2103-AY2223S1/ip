@@ -7,9 +7,13 @@ public class Deadline extends Task {
      */
     public Deadline(String name) {
         super(name);
-        String[] split = name.split("/by ");
+        String[] split = name.split(" /by ");
         this.name = split[0];
         this.deadline = split.length < 2 ? "You didn't add a deadline!" : split[1];
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 
     /**
@@ -18,6 +22,11 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + String.format("(by: %s)", this.deadline);
+        return String.format("[D][%s] %s (by: %s)", getStatus(), name, deadline);
+    }
+
+    @Override
+    public String changeFormat() {
+        return String.format("D | %s | %s | %s", getStatus(), name, this.deadline);
     }
 }

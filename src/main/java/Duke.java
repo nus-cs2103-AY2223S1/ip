@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -7,6 +9,7 @@ public class Duke {
 
     public static void main(String[] args) {
         greetUser();
+        loadFile();
         main();
     }
 
@@ -14,7 +17,16 @@ public class Duke {
      * Prints out the greeting message.de
      */
     private static void greetUser() {
-        System.out.println("Hello! I'm Jukebox :)\n" + "What can I do for you today?\n");
+        System.out.println("Hello! I'm Jukebox :)\n" + "What can I do for you today?");
+    }
+
+    private static void loadFile() {
+        try {
+            SaveLoad.loadTaskList(taskList);
+            System.out.println("Loading save file... Done!");
+        } catch (DukeException e) {
+            System.out.println("Hmm... looks like you don't have an existing save file, let's make one!");
+        }
     }
 
     /**
@@ -42,13 +54,14 @@ public class Duke {
             // Updating the command word, catching any invalid inputs
             try {
                 command = CommandWord.getCommand(commandWord);
-            } catch (IllegalArgumentException e) {
+            } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
 
             // Print out goodbye message and exits the program
             if (command == CommandWord.BYE) {
                 exitJukebox();
+                SaveLoad.saveTaskList(taskList);
                 break;
             }
 
@@ -77,6 +90,7 @@ public class Duke {
             // Deletes a task from the task list
             if (command == CommandWord.DELETE) {
                 deleteTask(inputWordsSplit);
+                continue;
             }
         }
     }
@@ -196,14 +210,14 @@ public class Duke {
              * @return CommandWord from the enum that matches the input command
              * @throws IllegalArgumentException When an invalid command is inputted
              */
-            private static CommandWord getCommand(String input) throws IllegalArgumentException {
+            private static CommandWord getCommand(String input) throws DukeException {
                 for (int i = 0; i < CommandWord.values().length; i++) {
                     CommandWord temp = CommandWord.values()[i];
                     if (input.equals(temp.command)) {
                         return temp;
                     }
                 }
-                throw new IllegalArgumentException("There is no such command called " + input + "!\n" + "Please try again :)\n");
+                throw new DukeException("There is no such command called " + input + "!\n" + "Please try again :)\n");
             }
         }
     }
