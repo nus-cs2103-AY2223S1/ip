@@ -42,7 +42,7 @@ public class DateCommand extends Command {
         } catch (ParseInputException e) {
             return e.getMessage();
         } catch (NullPointerException npe) {
-            return "☹ Ah need to remind you again. Enter a date!";
+            return "Ah need to remind you again. Enter a date!";
         }
     }
 

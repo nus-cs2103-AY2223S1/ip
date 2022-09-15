@@ -1,9 +1,10 @@
 package duke.storage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,9 @@ import duke.task.ToDo;
  */
 public class Storage {
 
-    private String filePath;
+    private final String filePath;
+
+    private final Path path;
 
     /**
      * Constructs a Storage instance with a specified file path.
@@ -32,6 +35,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.filePath = filePath;
+        path = Paths.get(filePath);
     }
 
     /**
@@ -46,7 +50,7 @@ public class Storage {
             fw.write(textToAppend + "\n");
             fw.close();
         } catch (IOException e) {
-            throw new StorageException("☹ Error occurs when writing to local file!");
+            throw new StorageException("Error occurs when writing to local file!");
         }
     }
 
@@ -66,7 +70,7 @@ public class Storage {
             fw.write(textToAdd.toString());
             fw.close();
         } catch (IOException e) {
-            throw new StorageException("☹ Error occurs when writing to local file!");
+            throw new StorageException("Error occurs when writing to local file!");
         }
     }
 
@@ -79,6 +83,7 @@ public class Storage {
      */
     public List<Task> load() throws DukeException {
         try {
+            initialise();
             File file = new File(filePath);
             Scanner scanner = new Scanner(file);
             List<Task> tasks = new ArrayList<>();
@@ -88,8 +93,47 @@ public class Storage {
                 tasks.add(task);
             }
             return tasks;
-        } catch (FileNotFoundException e) {
-            throw new StorageException();
+        } catch (IOException e) {
+            throw new StorageException("Error occurs when loading the file!");
+        }
+    }
+
+    /**
+     * Checks whether a directory or file.
+     *
+     * @throws IOException If the target file cannot be created.
+     */
+    private void initialise() throws IOException {
+        // @@author TZL0-reused
+        // The following two methods are reused from
+        // https://tinyurl.com/github-TZL0
+        // with minor modifications
+        checkDirectory();
+        checkFile();
+    }
+
+
+    /**
+     * Checks whether directory exists.
+     * Creates one if it does not exist.
+     */
+    private void checkDirectory() {
+        File file = path.getParent().toFile();
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+    }
+
+    /**
+     * Checks whether file exists.
+     * Creates one if it does not exist.
+     *
+     * @throws IOException If the target file cannot be created.
+     */
+    private void checkFile() throws IOException {
+        File file = path.toFile();
+        if (!file.exists()) {
+            file.createNewFile();
         }
     }
 

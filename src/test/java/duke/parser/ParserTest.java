@@ -31,7 +31,7 @@ public class ParserTest {
                     Parser.parseDateFormats("something"));
             fail();
         } catch (Exception e) {
-            assertEquals("☹ Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd",
+            assertEquals("Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd",
                     e.getMessage());
         }
 
@@ -40,7 +40,7 @@ public class ParserTest {
                     Parser.parseDateFormats(""));
             fail();
         } catch (Exception e) {
-            assertEquals("☹ Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd",
+            assertEquals("Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd",
                     e.getMessage());
         }
 
@@ -49,7 +49,7 @@ public class ParserTest {
                     Parser.parseDateFormats("2021 11 23"));
             fail();
         } catch (Exception e) {
-            assertEquals("☹ Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd",
+            assertEquals("Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd",
                     e.getMessage());
         }
     }

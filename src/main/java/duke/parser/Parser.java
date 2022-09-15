@@ -76,7 +76,7 @@ public class Parser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         default:
-            String errorMessage = "☹ You are so dumb that you don't even know how to input a simple command!";
+            String errorMessage = "You are so dumb that you don't even know how to input a simple command!";
             throw new ParseInputException(errorMessage);
         }
     }
@@ -93,7 +93,7 @@ public class Parser {
      */
     public static Command prepareAdd(String commandWord, String description) throws ParseInputException {
         if (description == null) {
-            throw new ParseInputException("☹ Are you stupid? Description of a task cannot be empty!");
+            throw new ParseInputException("Are you stupid? Description of a task cannot be empty!");
         } else if (commandWord.equals(ToDoCommand.COMMAND_WORD)) {
             return new ToDoCommand(new ToDo(description));
         } else {
@@ -120,7 +120,7 @@ public class Parser {
                 LocalDate date = parseDateFormats(arr[1]);
                 return new DeadlineCommand(new Deadline(message, date));
             } else {
-                String errorMessage = "☹ Go read the user guide and "
+                String errorMessage = "Go read the user guide and "
                         + "follow the format <deadline description /by date>";
                 throw new ParseInputException(errorMessage);
             }
@@ -131,12 +131,12 @@ public class Parser {
                 LocalDate date = parseDateFormats(arr[1]);
                 return new EventCommand(new Event(message, date));
             } else {
-                String errorMessage = "☹ Go read the user guide and "
+                String errorMessage = "Go read the user guide and "
                         + "follow the format <event description /at date>";
                 throw new ParseInputException(errorMessage);
             }
         default:
-            String errorMessage = "☹ Wrong type of command detected!";
+            String errorMessage = "Wrong type of command detected!";
             throw new ParseInputException(errorMessage);
         }
     }
@@ -167,7 +167,7 @@ public class Parser {
                 // Let the loop continue
             }
         }
-        throw new ParseInputException("☹ Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd");
+        throw new ParseInputException("Invalid date format!\nFollow yyyy/MM/dd or yyyy-MM-dd");
     }
 
     /**
@@ -191,7 +191,7 @@ public class Parser {
                 return new UnmarkCommand(index);
             }
         } catch (NumberFormatException nfe) {
-            String errorMessage = "☹ Enter an index of a task!";
+            String errorMessage = "Enter an index of a task!";
             throw new ParseInputException(errorMessage);
         }
     }

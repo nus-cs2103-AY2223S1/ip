@@ -70,7 +70,7 @@ Now you have 7 tasks in the list.
 Super Duke **checks for duplicates**, so if you enter the same task more than once, Super Duke will be annoyed!
 
 ```
-☹ Don't you realise the input task has already been stored in the task list?
+Don't you realise the input task has already been stored in the task list?
 ```
 
 ***The checking applies to `event` and `deadline` features as well.***

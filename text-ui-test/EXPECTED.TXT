@@ -9,15 +9,15 @@ Just a moment...
 Hello! I am duke.Duke.
 Just ignore the symbol above. What can I do for you?
 -------------------
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+OOPS!!! I'm sorry, but I don't know what that means :-(
 -------------------
-☹ OOPS!!! The description of a duke.task cannot be empty.
+OOPS!!! The description of a duke.task cannot be empty.
 -------------------
 Got it. I've added this duke.task:
  [T][ ] watch tv
 Now you have 1 tasks in the list.
 -------------------
-☹ OOPS!!! Please follow the format </at date>.
+OOPS!!! Please follow the format </at date>.
 -------------------
 Got it. I've added this duke.task:
  [E][ ] group meeting ()
@@ -32,7 +32,7 @@ Here are the tasks in your list:
 2.[E][ ] group meeting ()
 3.[E][ ] group meeting (at monday 8pm)
 -------------------
-☹ OOPS!!! Please enter an index of a duke.task
+OOPS!!! Please enter an index of a duke.task
 -------------------
 Nice! I've marked this duke.task as done:
  [T][X] watch tv
@@ -48,9 +48,9 @@ Here are the tasks in your list:
 2.[E][ ] group meeting ()
 3.[E][X] group meeting (at monday 8pm)
 -------------------
-☹ OOPS!!! The description of a duke.task cannot be empty.
+OOPS!!! The description of a duke.task cannot be empty.
 -------------------
-☹ OOPS!!! Please follow the format </by date>.
+OOPS!!! Please follow the format </by date>.
 -------------------
 Got it. I've added this duke.task:
  [D][ ] submit this (by Friday)
