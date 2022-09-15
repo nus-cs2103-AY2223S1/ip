@@ -110,12 +110,12 @@ public class Ui {
      * @return All tasks currently in the list.
      */
     public String showTasks(TaskList tasks, String message) {
-        StringBuilder allTasks = new StringBuilder(message);
+        String allTasks = message;
         for (int i = 0; i < tasks.getSize(); i++) {
             Task curr = tasks.getTask(i);
-            allTasks.append(String.format("%d. %s\n", i + 1, curr.toString()));
+            allTasks += String.format("\n%d. %s", i + 1, curr.toString());
         }
-        return allTasks.toString();
+        return allTasks;
     }
 
     /**

@@ -35,7 +35,7 @@ public class ScheduleCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList scheduledTasks = tasks.findTasks(this.date);
-        return ui.showTasks(scheduledTasks, "Here are the scheduled tasks in your list:\n");
+        return ui.showTasks(scheduledTasks, "Here are the scheduled tasks in your list:");
     }
 
     /**
