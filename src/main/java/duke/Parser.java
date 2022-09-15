@@ -39,7 +39,7 @@ public class Parser {
      */
     public String parse(String request) throws InvalidInputException {
         if (request.equals("bye")) { // 1. Terminates Greg
-            System.exit(1);
+            System.exit(0);
             return "Goodbye, your tasks have been saved! See you soon!";
         }
 
