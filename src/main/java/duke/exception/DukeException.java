@@ -16,6 +16,9 @@ public class DukeException {
         this.message = message;
     }
 
+    /**
+     * Print error message to user
+     */
     public String throwDukeException() {
         return this.message;
     }

@@ -1,6 +1,7 @@
 package duke.storage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,15 +27,19 @@ public class DukeDecoder {
             Scanner s = new Scanner(file);
             while (s.hasNextLine()) {
                 String[] task = s.nextLine().split("\\|");
+                assert task.length > 0 : "Task in history data cannot be empty";
                 String typeOfTask = task[0];
+                assert typeOfTask.length() > 0 : "Type of task cannot be empty";
                 switch (typeOfTask) {
                 case "T":
                     workList.add(new ToDo(task[2], task[1].equals("1")));
                     break;
                 case "D":
+                    assert task.length >= 3 : "Deadline should be followed by a date";
                     workList.add(new Deadline(task[2], task[1].equals("1"), task[3]));
                     break;
                 case "E":
+                    assert task.length >= 3 : "Event should be followed by a date";
                     workList.add(new Event(task[2], task[1].equals("1"), task[3]));
                     break;
                 default:

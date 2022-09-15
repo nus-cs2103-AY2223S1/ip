@@ -1,4 +1,1 @@
-D|0|CS2100 Quiz|2022-09-18
-D|1|CS3230 Tutorial|2022-09-17
-E|0|Resident assistant workshop|2022-10-19
-T|1|update Ui for ip
+D|0|testing|2022-09-15

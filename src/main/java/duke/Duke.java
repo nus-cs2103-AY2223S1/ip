@@ -1,9 +1,9 @@
 package duke;
+import java.util.ArrayList;
 
 import duke.logic.task.Task;
 import duke.storage.DukeDecoder;
 
-import java.util.ArrayList;
 
 /**
  * Class for Duke.
@@ -17,6 +17,10 @@ public class Duke {
         dukeDecoder = new DukeDecoder();
     }
 
+    /**
+     * Initialize internal storage for bot
+     * @return ArrayList of Task
+     */
     public ArrayList<Task> initializeList() {
         return dukeDecoder.loadDataFromList();
     }
