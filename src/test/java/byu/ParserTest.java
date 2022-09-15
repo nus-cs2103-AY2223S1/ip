@@ -3,11 +3,12 @@ package byu;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import byu.util.Parser;
 import org.junit.jupiter.api.Test;
 
-import exceptions.ByuException;
-import exceptions.IncorrectFileInputException;
-import task.ToDo;
+import byu.exceptions.ByuException;
+import byu.exceptions.IncorrectFileInputException;
+import byu.task.ToDo;
 
 public class ParserTest {
 

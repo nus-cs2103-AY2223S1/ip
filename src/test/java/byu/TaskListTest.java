@@ -4,12 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import byu.util.TaskList;
 import org.junit.jupiter.api.Test;
 
-import exceptions.DuplicateException;
-import exceptions.InvalidIndexException;
-import task.Task;
-import task.ToDo;
+import byu.exceptions.DuplicateException;
+import byu.exceptions.InvalidIndexException;
+import byu.task.Task;
+import byu.task.ToDo;
 
 public class TaskListTest {
 
