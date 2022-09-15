@@ -1,4 +1,5 @@
-waacow butadon ,20,2022-09-14
-waacow chirashi ,15,2022-09-14
-waacow sukiyaki don ,17,2022-08-08
-waacow mentai fries ,5,2022-09-14
+waacow butadon ,20.0,2022-09-14
+waacow chirashi ,15.0,2022-09-14
+waacow sukiyaki don ,17.0,2022-08-08
+waacow mentai fries ,5.0,2022-09-14
+waacow mentai butadon ,19.5,2022-09-15

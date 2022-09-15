@@ -10,7 +10,7 @@ import dukepro.StorableObjects;
  */
 public class Expense extends StorableObjects {
     private String name;
-    private int amount;
+    private double amount;
     private LocalDate localDate;
 
     /**
@@ -21,7 +21,7 @@ public class Expense extends StorableObjects {
      * @param localDate the date of the expense.
      * @return An Expense
      */
-    public Expense(String name, int amount, LocalDate localDate) {
+    public Expense(String name, double amount, LocalDate localDate) {
         this.name = name;
         this.amount = amount;
         this.localDate = localDate;
@@ -64,7 +64,7 @@ public class Expense extends StorableObjects {
      *
      * @return An int.
      */
-    public int spent() {
+    public double spent() {
         return this.amount;
     }
 

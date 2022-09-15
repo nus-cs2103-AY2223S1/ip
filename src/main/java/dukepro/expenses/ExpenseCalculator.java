@@ -15,8 +15,8 @@ public class ExpenseCalculator {
      * @param expenses The ArrayList of expenses.
      * @return An int.
      */
-    public static int sumArrayList(ArrayList<? extends Expense> expenses) {
-        int sum = 0;
+    public static double sumArrayList(ArrayList<? extends Expense> expenses) {
+        double sum = 0;
         for (int i = 0; i < expenses.size(); i++) {
             sum = sum + expenses.get(i).spent();
         }
@@ -31,8 +31,8 @@ public class ExpenseCalculator {
      * @param localDate The LocalDate.
      * @return An int.
      */
-    public static int spentDay(ArrayList<? extends Expense> expenses, LocalDate localDate) {
-        int sum = 0;
+    public static double spentDay(ArrayList<? extends Expense> expenses, LocalDate localDate) {
+        double sum = 0;
         for (int i = 0; i < expenses.size(); i++) {
             if (expenses.get(i).compareDate(localDate)) {
                 sum = sum + expenses.get(i).spent();

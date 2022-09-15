@@ -278,10 +278,20 @@ public class Decoder {
         if (segmentAmt.length < 2) {
             throw new EmptyDescException(wordSplit[0]);
         }
+        /*
         if (!isValidNum(segmentAmt[0].strip())) {
             throw new BadFormatException("expense", "expense", "<AMOUNT> /on <DATE>", "/amount");
         }
-        int amount = Integer.parseInt(segmentAmt[0].strip());
+
+         */
+        double amount;
+
+        try {
+            amount = Double.parseDouble(segmentAmt[0].strip());
+        } catch (NumberFormatException e) {
+            throw new BadFormatException("expense", "expense", "<AMOUNT> /on <DATE>", "/amount");
+        }
+
         LocalDate ld = parseLD(segmentAmt[1]);
 
         Expense expense = new Expense(name, amount, ld);
@@ -298,6 +308,6 @@ public class Decoder {
      */
     public static Expense parseFromFileExpense(String word) {
         String[] wordSplit = word.split(",");
-        return new Expense(wordSplit[0], Integer.parseInt(wordSplit[1]), LocalDate.parse(wordSplit[2]));
+        return new Expense(wordSplit[0], Double.parseDouble(wordSplit[1]), LocalDate.parse(wordSplit[2]));
     }
 }

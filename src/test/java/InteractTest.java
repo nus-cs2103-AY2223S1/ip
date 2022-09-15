@@ -85,7 +85,7 @@ public class InteractTest {
         Expense expense2 = new Expense("dinner", 10, LocalDate.parse("2021-10-10"));
         expenseManager.add(expense1);
         expenseManager.add(expense2);
-        int total = expenseManager.operateOnList(arr -> ExpenseCalculator.sumArrayList(arr));
+        double total = expenseManager.operateOnList(arr -> ExpenseCalculator.sumArrayList(arr));
         assertEquals(15, total);
     }
 
@@ -100,7 +100,7 @@ public class InteractTest {
         expenseManager.add(expense1);
         expenseManager.add(expense2);
         expenseManager.add(expense3);
-        int spentToday = expenseManager.operateOnList(arr -> ExpenseCalculator.spentDay(arr,
+        double spentToday = expenseManager.operateOnList(arr -> ExpenseCalculator.spentDay(arr,
                 LocalDate.parse("2021-10-10")));
         assertEquals(20, spentToday);
     }
