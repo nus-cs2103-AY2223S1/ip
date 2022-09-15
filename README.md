@@ -22,3 +22,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+
+## Acknowlegements
+- GUI adaptation from [here](https://se-education.org/guides/tutorials/javaFx.html)
+- [JavaFX library](https://openjfx.io/)
