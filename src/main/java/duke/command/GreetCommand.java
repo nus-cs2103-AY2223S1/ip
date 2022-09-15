@@ -2,8 +2,6 @@ package duke.command;
 
 import duke.Duke;
 import duke.util.MessagePrinter;
-import duke.util.Storage;
-import duke.util.TaskList;
 
 /**
  * Represents a Command to greet the user in Duke.

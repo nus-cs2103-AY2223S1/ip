@@ -3,11 +3,11 @@ package duke;
 import duke.util.Storage;
 
 public class DukeTest {
-    private final String testPath = "test/data/duke.txt";
+    protected final String testPath = "test/data/duke.txt";
     protected final Storage testStorage = new Storage(testPath);
     protected Duke duke = new Duke(testPath);
 
-    protected final String WHOLE_FORMATTED_TASKLIST = "T } 1 } explore\n"
+    protected final String wholeFormattedTasklist = "T } 1 } explore\n"
             + "E } 0 } presentation } 2022-10-01 12:34\n"
             + "D } 0 } week 3 cs2103t project } 2022-08-25 23:45\n"
             + "E } 1 } CS2109S Lecture } 2022-08-26 11:22\n"

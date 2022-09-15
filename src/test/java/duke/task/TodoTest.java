@@ -1,10 +1,11 @@
 package duke.task;
 
-import duke.util.Parser;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import org.junit.jupiter.api.Test;
+
+import duke.util.Parser;
 
 public class TodoTest {
     @Test
@@ -36,6 +37,4 @@ public class TodoTest {
         actual.markAsDone();
         assertEquals(expected.equals(actual), false);
     }
-
-
 }

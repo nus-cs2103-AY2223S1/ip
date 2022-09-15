@@ -1,11 +1,12 @@
 package duke;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import duke.task.Task;
 import duke.util.Parser;
 import duke.util.TaskList;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskListTest {
     @Test
@@ -44,6 +45,5 @@ public class TaskListTest {
         actual = actualList.get(2);
         assertEquals(actual, expected);
     }
-
 
 }
