@@ -1,5 +1,11 @@
 # User Guide
 
+## Quick Start
+
+Get the JAR file, and place it in the directory of your choice. Run the JAR and you are set! On Windows and Mac, you may double-click the JAR to run it.
+
+Console mode is also provided. You may run `java -jar ./duke.jar console` in Windows if you prefer using the console.
+
 ## Features
 
 ### Chatbot
