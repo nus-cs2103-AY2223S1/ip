@@ -16,7 +16,7 @@ public class MarkTaskCommand extends Command {
     private List<Integer> taskIndices;
 
     /**
-     * Constructor for a MarkTaskCommand.
+     * Creates a Command to mark tasks as done.
      *
      * @param taskIndices Indices of the tasks to mark as done.
      */

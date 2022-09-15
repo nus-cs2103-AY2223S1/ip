@@ -19,6 +19,13 @@ public class ExitCommand extends Command {
         return true;
     }
 
+    /**
+     * Returns the exit message.
+     *
+     * @param tasks List of tasks.
+     * @param storage Storage for the task list.
+     * @return The exit message.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) {
         return "Bye. Hope to see you again soon!";

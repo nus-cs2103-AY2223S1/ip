@@ -16,7 +16,7 @@ public class Storage {
     private final Path filePath;
 
     /**
-     * Constructor for the Storage class.
+     * Creates a new Storage object.
      *
      * @param filePath Path to the file in the hard disk.
      */

@@ -17,7 +17,7 @@ public class AddEventCommand extends Command {
     private final LocalDate at;
 
     /**
-     * Constructor for an AddEventCommand.
+     * Creates a Command to add an Event.
      *
      * @param desc Description of the event.
      * @param at Date of the event.

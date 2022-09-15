@@ -7,7 +7,7 @@ public class Todo extends Task {
     public static final String STORAGE_CHAR = "T";
 
     /**
-     * Constructor for an Todo.
+     * Creates a new todo task.
      *
      * @param description Description for the todo.
      */

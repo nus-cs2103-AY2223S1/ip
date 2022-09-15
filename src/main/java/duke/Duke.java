@@ -22,7 +22,7 @@ public class Duke {
     private boolean isRunning;
 
     /**
-     * Constructor for Duke.
+     * Creates an instance of Duke.
      *
      * @param filePath Path to storage file.
      */
@@ -32,6 +32,9 @@ public class Duke {
         isRunning = true;
     }
 
+    /**
+     * Creates an instance of Duke with the default storage path.
+     */
     public Duke() {
         this(STORAGE_PATH);
     }

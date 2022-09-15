@@ -14,6 +14,9 @@ import duke.storage.Storage;
 public class TaskList {
     private final ArrayList<Task> tasks;
 
+    /**
+     * Creates a list of tasks.
+     */
     public TaskList() {
         tasks = new ArrayList<>();
     }
@@ -36,6 +39,11 @@ public class TaskList {
         return taskStrings.size();
     }
 
+    /**
+     * Adds a task to the task list.
+     * 
+     * @param t Task to add.
+     */
     public void addTask(Task t) {
         tasks.add(t);
     }
@@ -54,10 +62,20 @@ public class TaskList {
         return tasks.remove(taskIndex - 1);
     }
 
+    /**
+     * Marks a task in the list as done.
+     *
+     * @param taskIndex Index of the task to mark as done.
+     */
     public void markTaskAsDone(int taskIndex) {
         getTask(taskIndex).markAsDone();
     }
 
+    /**
+     * Marks a task in the list as not done yet.
+     *
+     * @param taskIndex Index of the task to mark as not done yet.
+     */
     public void markTaskAsNotDone(int taskIndex) {
         getTask(taskIndex).markAsNotDone();
     }
@@ -94,6 +112,11 @@ public class TaskList {
         return t;
     }
 
+    /**
+     * Returns the number of tasks in the list.
+     *
+     * @return Number of tasks in the list.
+     */
     public int size() {
         return tasks.size();
     }

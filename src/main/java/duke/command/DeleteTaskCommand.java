@@ -17,7 +17,7 @@ public class DeleteTaskCommand extends Command {
     private List<Integer> taskIndices;
 
     /**
-     * Constructor for a DeleteTaskCommand.
+     * Creates a Command to delete tasks.
      *
      * @param taskIndices Task indices to delete.
      */

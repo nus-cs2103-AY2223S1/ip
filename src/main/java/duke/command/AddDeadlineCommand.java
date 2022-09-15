@@ -17,7 +17,7 @@ public class AddDeadlineCommand extends Command {
     private final LocalDate by;
 
     /**
-     * Constructor for an AddDeadlineCommand.
+     * Creates a Command to add a Deadline.
      *
      * @param desc Description of the task.
      * @param by Deadline of the task.

@@ -16,7 +16,7 @@ public class UnmarkTaskCommand extends Command {
     private List<Integer> taskIndices;
 
     /**
-     * Constructor for a UnmarkTaskCommand.
+     * Creates a Command to mark tasks as not done yet.
      *
      * @param taskIndices Indices of the tasks to mark as not done.
      */

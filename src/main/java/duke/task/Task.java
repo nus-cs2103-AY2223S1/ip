@@ -14,7 +14,7 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for a task.
+     * Creates a new task.
      *
      * @param description Description of the task.
      */

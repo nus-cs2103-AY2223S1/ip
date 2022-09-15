@@ -14,7 +14,7 @@ public class AddTodoCommand extends Command {
     private final String desc;
 
     /**
-     * Constructor for an AddTodoCommand.
+     * Creates a Command to add a Todo.
      *
      * @param desc Description of the Todo task.
      */
