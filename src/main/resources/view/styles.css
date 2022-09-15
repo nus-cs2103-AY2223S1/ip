@@ -16,3 +16,7 @@
     -fx-effect: dropshadow(gaussian, grey, 3, 0, 0, 0);
     -fx-stroke-width: 1;
 }
+
+.dialogContainer {
+    -fx-background-image: url("../images/paw.jpg");
+}

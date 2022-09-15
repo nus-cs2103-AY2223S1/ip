@@ -11,9 +11,9 @@
     <children>
         <TextField fx:id="userInput" layoutY="658.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="374.0" AnchorPane.bottomAnchor="1.0" />
         <Button fx:id="sendButton" layoutX="374.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" />
-        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="657.0" prefWidth="450.0" vvalue="1.0">
+        <ScrollPane  fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="657.0" prefWidth="450.0" vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="652.0" prefWidth="438.0" />
+                <VBox styleClass="dialogContainer" fx:id="dialogContainer" prefHeight="652.0" prefWidth="438.0" />
             </content>
         </ScrollPane>
     </children>
