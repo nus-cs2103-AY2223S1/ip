@@ -39,7 +39,7 @@ public class Parser {
                     Todo todo = new Todo(description);
                     return new AddCommand(todo);
                 } catch(Exception e) {
-                    throw new ChachaException("The description of a todo cannot be empty.\n" + "Please enter again with a description.");
+                    throw new ChachaException("The description of a todo cannot be empty.\n" + "Please try again with a description.");
                 }
             case DEADLINE:
                 try {
@@ -53,9 +53,9 @@ public class Parser {
                     Deadline deadline = new Deadline(description, dateTime);
                     return new AddCommand(deadline);
                 } catch(DateTimeParseException e) {
-                    throw new ChachaException("Date should be in this format: yyyy-MM-dd HH:mm");
+                    throw new ChachaException("The date should be in this format: yyyy-MM-dd HH:mm");
                 } catch(Exception e) {
-                    throw new ChachaException("The description of a deadline cannot be empty.\n" + "Please enter again with a description.");
+                    throw new ChachaException("The description of a deadline cannot be empty.\n" + "Please try again with a description.");
                 }
             case EVENT:
                 try {
@@ -70,9 +70,9 @@ public class Parser {
                     Event event = new Event(description, dateTime);
                     return new AddCommand(event);
                 } catch(DateTimeParseException e) {
-                    throw new ChachaException("Date should be in this format: yyyy-MM-dd HH:mm");
+                    throw new ChachaException("The date should be in this format: yyyy-MM-dd HH:mm");
                 } catch(Exception e) {
-                    throw new ChachaException("The description of an event cannot be empty.\n" + "Please enter again with a description.");
+                    throw new ChachaException("The description of an event cannot be empty.\n" + "Please try again with a description.");
                 }
             case LIST:
                 if (inputArray.length == 1) {
@@ -119,7 +119,7 @@ public class Parser {
                     //return new FindCommand(keyword);
                     return new FindCommand(keywords);
                 } else {
-                    throw new ChachaException("Please enter valid keyword.");
+                    throw new ChachaException("Please enter valid search keyword.");
                 }
             case SORT:
                 if (inputArray.length == 1) {
@@ -128,7 +128,7 @@ public class Parser {
                     throw new ChachaException("Sorry, I don't recognise this command.");
                 }
             default:
-                throw new ChachaException("Invalid input.");
+                throw new ChachaException("Invalid input. Please try again!");
 
 
         }

@@ -29,7 +29,7 @@ public class Ui {
      * @return Welcome message as a string.
      */
     public void printWelcome() {
-        response = "Welcome! I'm Chacha.\n" + "How may I assist you?";
+        response = "Welcome! I'm Chacha.\n" + "How may I help you today?";
     }
 
     /**
@@ -55,8 +55,8 @@ public class Ui {
      * @param taskList Task list to add given task to.
      */
     public void printAdd(Task task, TaskList taskList) {
-        response = "Got it. I've added this task:\n" + task.toString() + 
-        "\nNow you have " + taskList.getSize() + " tasks in the list.";
+        response = "Gotcha! I've added:\n" + task.toString() +
+        "\nYou now have " + taskList.getSize() + " tasks in the list.";
     }
 
     /** 
@@ -66,7 +66,7 @@ public class Ui {
      * @param size Number of remaining tasks in task list.
      */
     public void printDelete(Task task, int size) {
-        response = "Noted. I've removed this task:\n" + task.toString() + 
+        response = "Gotcha! I've removed:\n" + task.toString() +
         "\nNow you have " + size + " tasks in the list.";
     }
     
@@ -76,7 +76,7 @@ public class Ui {
      * @param task Task to be marked.
      */
     public void printMark(Task task) {
-        response = "Nice! I've marked this task as done:\n" + task.toString();
+        response = "Great job! I've marked this as done:\n" + task.toString();
     }
 
     
@@ -86,7 +86,7 @@ public class Ui {
      * @param task Task to be unmarked.
      */
     public void printUnmark(Task task) {
-        response = "Nice! I've marked this task as not done yet:\n" + task.toString();
+        response = "Alrighty! I've marked this task as to be completed:\n" + task.toString();
     }
 
     /**
@@ -96,7 +96,7 @@ public class Ui {
      */
     public void printFind(TaskList taskList) {
         if (taskList.getSize() == 0) {
-            response = "There are no matching tasks in your list.";
+            response = "Can't seem to find such a task.";
         } else {
             String res = "";    
             for (int i = 0; i < taskList.getSize();i++) {
@@ -105,7 +105,7 @@ public class Ui {
                     ". " +
                     t.toString() + "\n"; 		
             } 
-        response = "Here are the matching tasks in your list:\n" + res; 
+        response = "Here are the tasks you're looking for:\n" + res;
         }
     }
 
@@ -115,11 +115,11 @@ public class Ui {
      * @param message Custom error message to be printed.
      */
     public void printError(String message) {
-            response = "Chacha serror: " + message;
+            response = "Chacha Error: " + message;
     }
 
     public void printExit() {
-        response = "Bye bye!";
+        response = "I've saved all your tasks! You may close the app now, Bye!";
     }
 
     public String buildResponse() {
