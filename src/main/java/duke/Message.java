@@ -4,9 +4,9 @@ import duke.task.TaskList;
 
 public class Message {
 
-    public static final String HORIZONTAL_BORDER = "________________________________________________________";
+    public static final String HORIZONTAL_BORDER = "______________________________________________________";
     public static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
-    public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
+    public static final String BYE_MESSAGE = "Bye! I'll be closing soon, till we meet again!";
     public static final String INVALID_TODO_INPUT = "The description of a todo cannot be empty.";
     public static final String INVALID_DEADLINE_INPUT =
             "Please use proper deadline formatting: deadline {task} /by {time}";

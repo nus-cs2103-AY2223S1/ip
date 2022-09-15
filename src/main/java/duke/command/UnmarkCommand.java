@@ -42,12 +42,12 @@ public class UnmarkCommand extends Command {
      * @throws DukeException if the change cannot be saved in storage successfully or task cannot be unmarked
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             tasks.unmarkTaskAtPos(this.index);
             Task currentTask = tasks.getTask(this.index);
             storage.save(tasks);
-            ui.showUnmarked(currentTask);
+            return ui.showUnmarked(currentTask);
         } catch (IndexOutOfBoundsException e) {
             if (tasks.getCount() == 0) {
                 throw new DukeException(Message.INVALID_ACCESS_EMPTY_TASKLIST);
