@@ -14,10 +14,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+//@@author leehuiyulaura-reused
+//Reused from https://se-education.org/guides/tutorials/javaFxPart3.html
 /**
  * Class for creating Duke and User's dialog boxes in the GUI.
- *
- * @author lauralee
  */
 public class DialogBox extends HBox {
 
@@ -80,4 +80,5 @@ public class DialogBox extends HBox {
         return db;
     }
 }
+//@@author
 

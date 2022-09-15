@@ -18,12 +18,12 @@ package duke;
     import javafx.stage.Stage;
     import javafx.scene.image.Image;
 
+//@@author leehuiyulaura-reused
+//Reused from https://se-education.org/guides/tutorials/javaFxPart3.html
+// with modifications
 /**
  * The class of the Duke bot.
- *
- * @author lauralee
  */
-
 public class Duke extends Application {
 
     private TaskList userTaskList;
@@ -54,13 +54,6 @@ public class Duke extends Application {
     */
     public TaskList getUserTaskList() {
         return this.userTaskList;
-     }
-
-    /**
-     * Empty Duke constructor to start GUI.
-     */
-     public Duke() {
-         start(new Stage());
      }
 
      @Override
@@ -180,5 +173,6 @@ public class Duke extends Application {
      }
 
 }
+//@@author
 
 

@@ -3,6 +3,7 @@ package duke.support;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 
+//Solution below adapted from https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
 /**
  * Class to format dates and times inputted by users into
  * a specific format.

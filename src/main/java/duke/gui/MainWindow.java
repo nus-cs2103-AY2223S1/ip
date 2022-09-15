@@ -5,13 +5,15 @@ import duke.Duke;
 
 import duke.support.Parser;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+//@@author leehuiyulaura-reused
+//Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+// with minor modifications
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -22,8 +24,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
 
     private Duke duke;
 
@@ -55,7 +55,7 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        this.parser = new Parser(); // new parser and thus tasklist being created everytime
+        this.parser = new Parser();
         String userText = userInput.getText();
         String dukeText = duke.getResponse(userText, this.parser);
         dialogContainer.getChildren().addAll(
