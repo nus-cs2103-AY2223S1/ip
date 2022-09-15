@@ -1,4 +1,4 @@
-package task;
+package byu.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
-import byu.task.Deadline;
 import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {
@@ -15,7 +14,7 @@ public class DeadlineTest {
     public void testStringConversion() {
         LocalDateTime dateTime = LocalDateTime.parse("2022-09-15T18:08");
         Deadline d = new Deadline("dance", dateTime);
-        assertEquals("[D][ ] dance (by: 15 Sep 2022 6:08pm)", d.toString());
+        assertEquals("[D][ ] dance (by: 15 Sep 6:08pm)", d.toString());
     }
 
     @Test

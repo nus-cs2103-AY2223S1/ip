@@ -1,10 +1,9 @@
-package byu;
+package byu.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import byu.util.TaskList;
 import org.junit.jupiter.api.Test;
 
 import byu.exceptions.DuplicateException;

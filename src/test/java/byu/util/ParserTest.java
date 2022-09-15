@@ -1,9 +1,8 @@
-package byu;
+package byu.util;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import byu.util.Parser;
 import org.junit.jupiter.api.Test;
 
 import byu.exceptions.ByuException;
