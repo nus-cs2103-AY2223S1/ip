@@ -28,6 +28,10 @@ public class Duke {
         parser = new Parser(storage, ui, taskList);
     }
 
+    /**
+     * Returns string message to greet user.
+     * @return Greeting string.
+     */
     public String greet() {
         return ui.greet();
     }

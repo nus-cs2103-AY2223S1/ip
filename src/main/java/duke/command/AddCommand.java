@@ -7,7 +7,7 @@ import duke.util.Storage;
 import duke.util.Ui;
 
 /**
- * Represents a command to add a task to the task list.
+ * A class to represent a command to add a task to the task list.
  */
 public class AddCommand extends Command {
     String input;

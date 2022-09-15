@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 /**
- * Represents a task.
+ * A class to represent a task.
  */
 public abstract class Task {
     protected String description;
