@@ -1,8 +1,8 @@
-[D][ ] read book  (by: Feb 02 2022)
+[D][X] read book  (by: Feb 02 2022)
 
 [D][ ] return book  (by: Apr 04 2022)
 
-[T][ ] sort library
+[T][ ] sort library priority: low
 
 [T][ ] help plan event
 

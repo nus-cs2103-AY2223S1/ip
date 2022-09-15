@@ -127,7 +127,11 @@ public class Neo {
             return ui.printEnd();
         }
 
-        return parser.checkText(userText);
+        try {
+            return parser.checkText(userText);
+        } catch (NeoException e) {
+            return ui.errorMessage(e.getMessage());
+        }
 
     }
 }

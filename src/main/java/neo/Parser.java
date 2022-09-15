@@ -14,6 +14,7 @@ public class Parser {
     private Ui ui;
     private Storage stor;
     private TaskList arrayLL;
+    private PriorityCommand priority;
     private int type;
 
     /**
@@ -54,6 +55,11 @@ public class Parser {
             String command = arr[0];
             String tempi = arr[1];
             switch (command) {
+                case "high":
+                case "medium":
+                case "low":
+                    this.priority = new PriorityCommand(ui, stor, arrayLL, type);
+                    return priority.complete(userText);
                 case "event":
                     type = 1;
                     this.add = new AddCommand(ui, stor, arrayLL, type);
