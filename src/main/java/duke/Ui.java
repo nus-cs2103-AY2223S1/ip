@@ -23,7 +23,7 @@ public class Ui {
      * Returns a String when the user wishes to exit.
      */
     public String exit() {
-        return "Bye bye. Hope to see you again soon!";
+        return "RAWR!! Byeeee. Hope to see you again soon!";
     }
 
     /**
@@ -62,7 +62,7 @@ public class Ui {
      * @param myTask The task that the user has marked.
      */
     public String complete(Task myTask) {
-        return "Hooray! You have completed this task:\n" + myTask;
+        return "RAWR! You have completed this task:\n" + myTask;
     }
 
     /**
@@ -71,7 +71,7 @@ public class Ui {
      * @param myTask The task that the user has unmarked.
      */
     public String incomplete(Task myTask) {
-        return "Oh no! You have more things to complete:\n" + myTask;
+        return "RAWR! You have more things to complete:\n" + myTask;
     }
 
     /**
