@@ -44,7 +44,7 @@ public class Duke {
             this.storage.writeToStorage(this.taskList);
             return msg;
         } catch (DukeException e) {
-            return e.toString();
+            return ChatResponse.returnChatError(e);
         }
     }
 

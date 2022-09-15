@@ -22,7 +22,7 @@ public class ChatResponse {
      * @param e Exception to returnChat.
      */
     public static String returnChatError(Exception e) {
-        return String.format(e.toString());
+        return String.format(e.getMessage());
     }
 
     /**
