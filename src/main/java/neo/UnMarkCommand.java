@@ -35,6 +35,7 @@ public class UnMarkCommand extends Command{
     @Override
     String complete(String tempi) throws NeoException, IOException {
         int tempii = Integer.valueOf(tempi);
+        assert arrayLL.getTask(tempii-1).getIsDone() == "X": "already unmarked";
         arrayLL.getTask(tempii-1).setIsDone(false);
         stor.writeData(arrayLL.getTask(0));
         for (int i = 1; i < arrayLL.arrayL.size(); i++) {

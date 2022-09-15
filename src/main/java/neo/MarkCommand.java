@@ -32,7 +32,7 @@ public class MarkCommand extends Command {
     @Override
     String complete(String tempi) throws NeoException, IOException {
         int tempii = Integer.valueOf(tempi);
-        System.out.println(arrayLL.getTask(0));
+        assert arrayLL.getTask(tempii-1).getIsDone() == " ": "already marked";
         arrayLL.getTask(tempii-1).setIsDone(true);
         stor.writeData(arrayLL.getTask(0));
         for (int i = 1; i < arrayLL.arrayL.size(); i++) {
