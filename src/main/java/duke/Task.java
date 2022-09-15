@@ -8,7 +8,7 @@ package duke;
 
 public class Task {
     private String taskDescription;
-    private boolean completed;
+    private boolean isCompleted;
 
     /**
      * Constructor for creating a task.
@@ -17,7 +17,7 @@ public class Task {
      */
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
-        this.completed = false;
+        this.isCompleted = false;
     }
 
 
@@ -26,7 +26,7 @@ public class Task {
      *
      */
     public void setCompleted() {
-        this.completed = true;
+        this.isCompleted = true;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Task {
      *
      */
     public void setUncompleted() {
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     /**
@@ -43,7 +43,7 @@ public class Task {
      * @return A boolean representing whether the task is marked as completed.
      */
     public boolean isCompleted() {
-        return this.completed;
+        return this.isCompleted;
     }
 
     public String getTextRepresentation() {
@@ -67,7 +67,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        String taskStatusIndicator = this.completed ? " [X] " : " [ ] ";
+        String taskStatusIndicator = this.isCompleted ? " [X] " : " [ ] ";
         return taskStatusIndicator + this.taskDescription;
     }
 

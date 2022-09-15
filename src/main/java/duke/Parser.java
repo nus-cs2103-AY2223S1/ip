@@ -77,7 +77,7 @@ public class Parser {
                         1,
                         bySeparationIndex));
         try {
-            assert bySeparationIndex + 1 < parsedUserResponse.length : "No date added after /byyy";
+            assert bySeparationIndex + 1 < parsedUserResponse.length : "No date added after /by";
             LocalDate deadline = LocalDate.parse(parsedUserResponse[bySeparationIndex + 1]);
             return new Deadline(newTaskDescription, deadline);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -163,12 +163,11 @@ public class Parser {
     /**
      * Parses the user input into a query string to be matched.
      *
-     * @param userInput
+     * @param userInput Search input provided by user.
      * @return A query string.
      */
     public static String parseSearchInput(String userInput) {
         String[] parsedUserResponse = userInput.split(" ");
-        String searchInput = String.join(" ", Arrays.copyOfRange(parsedUserResponse, 1, parsedUserResponse.length));
-        return searchInput;
+        return String.join(" ", Arrays.copyOfRange(parsedUserResponse, 1, parsedUserResponse.length));
     }
 }

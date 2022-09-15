@@ -44,7 +44,7 @@ public class Ui {
     public String showTasks(TaskList tasks) {
         if (tasks.length() != 0) {
             String listResponse = "Here are the tasks in your list:\n";
-            return listResponse + tasks.toString();
+            return listResponse + tasks;
         } else {
             return "There are no tasks in your list.\n";
         }

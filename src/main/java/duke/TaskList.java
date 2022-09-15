@@ -46,7 +46,6 @@ public class TaskList {
     public void deleteTask(int taskNumber) throws DukeException {
         try {
             assert taskNumber < this.userTasks.size() : "Task number exceeds the number of tasks";
-            Task userTask = this.userTasks.get(taskNumber);
             this.userTasks.remove(taskNumber);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("    " + "No such task exists.\n");
