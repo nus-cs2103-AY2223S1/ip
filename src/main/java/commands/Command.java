@@ -7,7 +7,7 @@ import tasklist.TaskList;
  * Command subclasses. Should override the abstract methods to
  * provide behavior expected of a Command class.
  */
-abstract public class Command {
+public abstract class Command {
     protected boolean isExit = false;
 
     /**

@@ -5,13 +5,22 @@ import dukeexceptions.DukeException;
 import dukeexceptions.InsufficientArgumentsException;
 import tasklist.TaskList;
 
+/**
+ * Represents a Find command to be executed.
+ */
 public class FindCommand extends Command {
-    String[] args;
+    private final String[] args;
 
     public FindCommand(String[] args) {
         this.args = args;
     }
 
+    /**
+     * Validates the passed arguments before executing the command.
+     *
+     * @param args Arguments to validate.
+     * @throws DukeException Exception to be thrown if validation fails.
+     */
     public static void validateArguments(String[] args) throws DukeException {
         assert args.length > 0 : "No arguments entered into validateArguments";
 

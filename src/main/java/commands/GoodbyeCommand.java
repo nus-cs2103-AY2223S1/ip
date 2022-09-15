@@ -3,6 +3,9 @@ package commands;
 import common.ChatResponse;
 import tasklist.TaskList;
 
+/**
+ * Represents a Goodbye Command to be executed.
+ */
 public class GoodbyeCommand extends Command {
     public GoodbyeCommand() {
         super();

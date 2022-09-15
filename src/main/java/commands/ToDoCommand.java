@@ -6,6 +6,9 @@ import dukeexceptions.MissingDescriptionException;
 import tasklist.TaskList;
 import tasks.ToDo;
 
+/**
+ * ToDo command to be executed.
+ */
 public class ToDoCommand extends Command {
     private final String[] args;
 
@@ -13,6 +16,12 @@ public class ToDoCommand extends Command {
         this.args = args;
     }
 
+    /**
+     * Validates the passed arguments before executing the command.
+     *
+     * @param args Arguments to validate.
+     * @throws DukeException Exception to be thrown if validation fails.
+     */
     public static void validateArguments(String[] args) throws DukeException {
         assert args.length > 0 : "No arguments entered into validateArguments";
 

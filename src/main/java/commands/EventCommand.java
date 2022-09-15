@@ -13,6 +13,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
 
+/**
+ * Represents an Event command.
+ */
 public class EventCommand extends Command {
     static final String EVENT_DATETIME_START_OR_END_FORMAT = "d/M/uuuu HHmm";
     static final String EVENT_DATETIME_START_OR_END_STORAGE_FORMAT = "MMM dd uuuu, HHmm";
@@ -23,6 +26,12 @@ public class EventCommand extends Command {
         this.args = args;
     }
 
+    /**
+     * Validates the passed arguments before executing the command.
+     *
+     * @param args Arguments to validate.
+     * @throws DukeException Exception to be thrown if validation fails.
+     */
     public static void validateArguments(String[] args) throws DukeException {
         assert args.length > 0 : "No arguments entered into EventCommand validateArguments";
 
@@ -45,17 +54,30 @@ public class EventCommand extends Command {
         assert !unparsedStartDateTime.equals("") : "Parsing error occured in Event: start datetime";
         assert !unparsedEndDateTime.equals("") : "Parsing error occured in Event: end datetime";
 
-        if (!Parser.isValidDatetime(unparsedStartDateTime, EVENT_DATETIME_START_OR_END_FORMAT) || !Parser.isValidDatetime(unparsedEndDateTime, EVENT_DATETIME_START_OR_END_FORMAT)) {
+        if (!Parser.isValidDatetime(unparsedStartDateTime, EVENT_DATETIME_START_OR_END_FORMAT)
+                || !Parser.isValidDatetime(unparsedEndDateTime, EVENT_DATETIME_START_OR_END_FORMAT)) {
             throw new WrongDatetimeFormatException(EVENT_DATETIME_INPUT_FORMAT);
         }
     }
 
+    /**
+     * Parsing EventDateTime from Storage
+     *
+     * @return LocalDateTime
+     **/
     public static LocalDateTime parseEventDatetimeFromStorage(String s) {
-        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(EVENT_DATETIME_START_OR_END_STORAGE_FORMAT).withResolverStyle(ResolverStyle.STRICT));
+        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(EVENT_DATETIME_START_OR_END_STORAGE_FORMAT)
+                .withResolverStyle(ResolverStyle.STRICT));
     }
 
+    /**
+     * Parsing EventDateTime
+     *
+     * @return LocalDateTime
+     **/
     public static LocalDateTime parseEventDatetime(String s) {
-        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(EVENT_DATETIME_START_OR_END_FORMAT).withResolverStyle(ResolverStyle.STRICT));
+        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(EVENT_DATETIME_START_OR_END_FORMAT)
+                .withResolverStyle(ResolverStyle.STRICT));
     }
 
     @Override

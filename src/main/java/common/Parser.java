@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-enum COMMANDS {
+enum Command {
     BYE,
     LIST,
     MARK,
@@ -36,7 +36,7 @@ public class Parser {
      * @return Command object to be executed later.
      * @throws DukeException Occurs when an error occurs during parsing, such as invalid arguments.
      */
-    public static Command parseInput(String fullCommand) throws DukeException {
+    public static commands.Command parseInput(String fullCommand) throws DukeException {
         String[] userInputs = fullCommand.split(" ");
         String unparsedCommand = userInputs[0];
         String[] args = Arrays.copyOfRange(userInputs, 1, userInputs.length);
@@ -46,7 +46,7 @@ public class Parser {
             throw new UnknownCommandException();
         }
 
-        COMMANDS command = COMMANDS.valueOf(userInputs[0].toUpperCase());
+        Command command = Command.valueOf(userInputs[0].toUpperCase());
 
         switch (command) {
         case BYE: {
@@ -98,7 +98,7 @@ public class Parser {
      * @return True if the provided string is a valid common.COMMANDS enum.
      */
     public static boolean isValidCommandEnum(String str) {
-        for (COMMANDS cmd : COMMANDS.values()) {
+        for (Command cmd : Command.values()) {
             if (str.equalsIgnoreCase(cmd.name())) {
                 return true;
             }

@@ -13,6 +13,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
 
+/**
+ * Represents a Deadline command to be executed.
+ */
 public class DeadlineCommand extends Command {
     static final String DEADLINE_DATETIME_FORMAT = "d/M/uuuu HHmm";
     static final String DEADLINE_STORAGE_FORMAT = "MMM dd uuuu, HHmm";
@@ -22,6 +25,12 @@ public class DeadlineCommand extends Command {
         this.args = args;
     }
 
+    /**
+     * Validates the passed arguments before executing the command.
+     *
+     * @param args Arguments to validate.
+     * @throws DukeException Exception to be thrown if validation fails.
+     */
     public static void validateArguments(String[] args) throws DukeException {
         assert args.length > 0 : "No arguments entered into DeadlineCommand validateArguments";
 
@@ -45,12 +54,24 @@ public class DeadlineCommand extends Command {
         }
     }
 
+    /**
+     * Converting String into LocalDateTime object (DateTime Formatting)
+     *
+     * @return LocalDateTime
+     **/
     public static LocalDateTime parseDeadlineDatetime(String s) {
-        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DEADLINE_DATETIME_FORMAT).withResolverStyle(ResolverStyle.STRICT));
+        return LocalDateTime.parse(s,
+                DateTimeFormatter.ofPattern(DEADLINE_DATETIME_FORMAT).withResolverStyle(ResolverStyle.STRICT));
     }
 
+    /**
+     * Changing DateTime Formatting to Storage Formatting
+     *
+     * @return LocalDateTime
+     **/
     public static LocalDateTime parseDeadlineDatetimeFromStorage(String s) {
-        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DEADLINE_STORAGE_FORMAT).withResolverStyle(ResolverStyle.STRICT));
+        return LocalDateTime.parse(s,
+                DateTimeFormatter.ofPattern(DEADLINE_STORAGE_FORMAT).withResolverStyle(ResolverStyle.STRICT));
     }
 
     @Override

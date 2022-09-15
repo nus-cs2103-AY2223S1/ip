@@ -10,31 +10,39 @@ import tasks.ToDo;
 /**
  * Types of statistics available
  **/
-enum STATISTIC_TYPES {
+enum StatisticType {
     COUNT,
 }
 
 /**
  * Valid targets to derive statistics from
  **/
-enum STATISTIC_TARGETS {
+enum StatisticTarget {
     TODOS,
     DEADLINES,
     EVENTS,
     ALL,
 }
 
+/**
+ * Statistics command to be executed.
+ */
 public class StatisticsCommand extends Command {
     private final String[] args;
-    private final STATISTIC_TYPES statistic_type;
-    private final STATISTIC_TARGETS statistic_target;
+    private final StatisticType statistic_type;
+    private final StatisticTarget statistic_target;
 
+    /**
+     * Constructor for Statistics command.
+     *
+     * @param args Arguments to instantiate the command.
+     */
     public StatisticsCommand(String[] args) {
         assert isValidStatisticType(args[0]) : "Invalid statistic type. Is there missing validation?";
         assert isValidStatisticTarget(args[1]) : "Invalid statistic target. Is there missing validation?";
         this.args = args;
-        this.statistic_type = STATISTIC_TYPES.valueOf(args[0].toUpperCase());
-        this.statistic_target = STATISTIC_TARGETS.valueOf(args[1].toUpperCase());
+        this.statistic_type = StatisticType.valueOf(args[0].toUpperCase());
+        this.statistic_target = StatisticTarget.valueOf(args[1].toUpperCase());
     }
 
     /**
@@ -48,8 +56,8 @@ public class StatisticsCommand extends Command {
             throw new DukeException("Missing statistic type! Please specify what kind of statistic you want to find.");
         }
         if (args.length == 1) {
-            throw new DukeException("Missing statistic target! Please specify the target of your statistic." +
-                    "This can be todos, deadlines, events, or all.");
+            throw new DukeException("Missing statistic target! Please specify the target of your statistic."
+                    + "This can be todos, deadlines, events, or all.");
         }
 
         String statisticType = args[0];
@@ -59,7 +67,8 @@ public class StatisticsCommand extends Command {
             throw new DukeException("Invalid statistic type provided! Available types are: count");
         }
         if (!isValidStatisticTarget(statisticTarget)) {
-            throw new DukeException("Invalid statistic target provided! Available targets are: todos, deadlines, events, all");
+            throw new DukeException("Invalid statistic target provided! "
+                    + "Available targets are: todos, deadlines, events, all");
         }
     }
 
@@ -70,7 +79,7 @@ public class StatisticsCommand extends Command {
      * @return Boolean value representing if string is a valid statistic type
      */
     public static boolean isValidStatisticType(String str) {
-        for (STATISTIC_TYPES cmd : STATISTIC_TYPES.values()) {
+        for (StatisticType cmd : StatisticType.values()) {
             if (str.equalsIgnoreCase(cmd.name())) {
                 return true;
             }
@@ -85,7 +94,7 @@ public class StatisticsCommand extends Command {
      * @return Boolean value representing if string is a valid statistic target.
      */
     public static boolean isValidStatisticTarget(String str) {
-        for (STATISTIC_TARGETS cmd : STATISTIC_TARGETS.values()) {
+        for (StatisticTarget cmd : StatisticTarget.values()) {
             if (str.equalsIgnoreCase(cmd.name())) {
                 return true;
             }
@@ -99,7 +108,7 @@ public class StatisticsCommand extends Command {
      * @param target Task to obtain the count of.
      * @return Count of the specified task in the task list.
      */
-    public String getStatisticCount(STATISTIC_TARGETS target, TaskList taskList) {
+    public String getStatisticCount(StatisticTarget target, TaskList taskList) {
         String msg = "";
         switch (target) {
         case TODOS:

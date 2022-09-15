@@ -6,6 +6,9 @@ import dukeexceptions.IllegalIndexException;
 import tasklist.TaskList;
 import tasks.Task;
 
+/**
+ * Represents a Delete command.
+ */
 public class DeleteCommand extends Command {
     private final String[] args;
 
@@ -13,6 +16,12 @@ public class DeleteCommand extends Command {
         this.args = args;
     }
 
+    /**
+     * Validates the passed arguments before executing the command.
+     *
+     * @param args Arguments to validate.
+     * @throws DukeException Exception to be thrown if validation fails.
+     */
     public static void validateArguments(String[] args) throws DukeException {
         assert args.length > 0 : "No arguments entered into validateArguments";
 
