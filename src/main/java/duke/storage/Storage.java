@@ -33,9 +33,11 @@ public class Storage {
             this.myReader = new Scanner(myObj);
             this.writer = new PrintWriter(FILE_PATH);
         } catch (FileNotFoundException e) {
-            System.out.println("Hi, u got error in storage file not exist");
+            final String errorMessage = "Hi, u got error in storage file not exist";
+            System.out.println(errorMessage);
             e.printStackTrace();
         }
+
     }
 
     /**
