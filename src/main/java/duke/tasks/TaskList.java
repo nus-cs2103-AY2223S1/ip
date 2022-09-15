@@ -37,6 +37,7 @@ public class TaskList {
             throw new TaskNotFoundException();
         }
         Task taskToMark = list.get(index);
+        assert taskToMark != null;
         taskToMark.mark();
         return taskToMark;
     }
@@ -52,6 +53,7 @@ public class TaskList {
             throw new TaskNotFoundException();
         }
         Task taskToUnmark = list.get(index);
+        assert taskToUnmark != null;
         taskToUnmark.unmark();
         return taskToUnmark;
     }
