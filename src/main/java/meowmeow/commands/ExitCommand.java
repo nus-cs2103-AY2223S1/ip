@@ -1,4 +1,8 @@
 package meowmeow.commands;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import meowmeow.Storage;
 import meowmeow.TaskList;
 import meowmeow.Ui;
@@ -23,7 +27,13 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        System.exit(0);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 3000);
         return "UwU Byebyeeee! Come back soon... Meowmeow misses you already =^._.^= ";
     }
 
