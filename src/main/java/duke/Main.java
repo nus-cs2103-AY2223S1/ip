@@ -32,6 +32,9 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Exits the programme.
+     */
     public static void exit() {
         try {
             Thread.sleep(1000);
