@@ -69,7 +69,7 @@ Now You have 1 task in your list.
 ```
 <br>
 
-### `mark` - Marking Tasks As Done
+### `mark` - Marking tasks as done
 
 Marks specified task as done.
 
@@ -121,7 +121,7 @@ Now You have 3 tasks in your list.
 ```
 <br>
 
-### `list` - Listing Tasks
+### `list` - Listing tasks
 
 Lists down all the tasks you have in your TaskList.
 
@@ -134,13 +134,13 @@ Example of usage:
 Expected outcome:
 ```
 Here are the tasks that you have:
-1. [D][] 2100 assignment (by: 29 Sep 2022 23:59)
+1. [D][] 2100 assignment (by: 29 September 2022 23:59)
 2. [T][] chinese homework 
-3. [E][] going out with friends (at: 25 Dec 2022 22:00)
+3. [E][] going out with friends (at: 25 December 2022 22:00)
 ```
 <br>
 
-### `find` - Finding Tasks by Keyword
+### `find` - Finding tasks by keyword
 
 Searches for task descriptions or dates in TaskList that matches the case insensitive keyword.
 
@@ -164,7 +164,7 @@ Example of usage with date:
 Expected outcome:
 ```
 Here are the matching tasks in your list:
-1. E][] going out with friends (at: 25 Dec 2022 22:00)
+1. E][] going out with friends (at: 25 December 2022 22:00)
 ```
 <br>
 
