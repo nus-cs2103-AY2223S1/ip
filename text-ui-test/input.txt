@@ -1,0 +1,31 @@
+list
+todo read book
+todo return book
+deadline finish ip /by thurs
+event attend lecture /at fri 4-6pm
+list
+mark 2
+list
+unmark 2
+list
+hi
+how are you doing
+mark
+mark hi
+unmark
+unmark hi
+todo
+deadline
+deadline read notes
+deadline /by wed
+event
+event go for class
+event /at fri 4-6pm
+delete
+delete hi
+delete 1
+list
+delete 5
+mark 5
+unmark 5
+bye
