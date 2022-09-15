@@ -1,7 +1,7 @@
 package duke;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
-
 
 public class Ui {
     private Scanner scanner;
@@ -11,7 +11,12 @@ public class Ui {
     }
 
     public String read() {
-        return scanner.nextLine();
+        return this.scanner.nextLine();
+    }
+
+    public void close() {
+        System.out.println("Bye. Hope to see you again soon!");
+        scanner.close();
     }
 
     public void print(String message) {
