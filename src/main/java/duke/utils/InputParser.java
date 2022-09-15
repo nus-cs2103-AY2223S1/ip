@@ -23,23 +23,27 @@ public class InputParser {
     }
 
     private Command parseCommand(String command, String body, TaskList tasks, Storage storage, Ui ui) {
-        if ("bye".equals(command)) {
-            return new ExitCommand(ui);
-        } else if ("list".equals(command)) {
-            return new PrintTasksCommand(ui, tasks);
-        } else if ("mark".equals(command)) {
-            return new MarkTaskCommand(storage, ui, tasks, body);
-        } else if ("unmark".equals(command)) {
-            return new UnmarkTaskCommand(storage, ui, tasks, body);
-        } else if ("delete".equals(command)) {
-            return new DeleteTaskCommand(storage, ui, tasks, body);
-        } else if ("find".equals(command)) {
-            return new FindTaskCommand(tasks, ui, body);
-        } else if (isTaskType(command)) {
-            TaskType type = getTaskType(command);
-            return new AddTaskCommand(storage, ui, tasks, type, body);
-        } else {
-            return new UnrecognisedCommand(ui);
+        switch (command) {
+            case "bye":
+                return new ExitCommand(ui);
+            case "list":
+                return new PrintTasksCommand(ui, tasks);
+            case "mark":
+                return new MarkTaskCommand(storage, ui, tasks, body);
+            case "unmark":
+                return new UnmarkTaskCommand(storage, ui, tasks, body);
+            case "delete":
+                return new DeleteTaskCommand(storage, ui, tasks, body);
+            case "find":
+                return new FindTaskCommand(tasks, ui, body);
+            case "todo":
+                return new AddTaskCommand(storage, ui, tasks, TaskType.TODO, body);
+            case "deadline":
+                return new AddTaskCommand(storage, ui, tasks, TaskType.DEADLINE, body);
+            case "event":
+                return new AddTaskCommand(storage, ui, tasks, TaskType.EVENT, body);
+            default:
+                return new UnrecognisedCommand(ui);
         }
     }
 
@@ -56,25 +60,6 @@ public class InputParser {
         }
 
         return ret;
-    }
-
-    private boolean isTaskType(String s) {
-        return "todo".equals(s) ||
-                "event".equals(s) ||
-                "deadline".equals(s);
-    }
-
-    private TaskType getTaskType(String type) {
-        switch(type) {
-        case "todo":
-            return TaskType.TODO;
-        case "event":
-            return TaskType.EVENT;
-        case "deadline":
-            return TaskType.DEADLINE;
-        default:
-            return null;
-        }
     }
 
 }
