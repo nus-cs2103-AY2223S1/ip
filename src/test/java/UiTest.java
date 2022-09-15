@@ -23,18 +23,6 @@ public class UiTest {
     }
 
     @Test
-    public void showTasksWithoutExceptions() {
-        try {
-            List<Task> tasks = new ArrayList<>();
-            tasks.add(new Todo("make breakfast"));
-            Ui.showTasks(tasks);
-            assertEquals("1.[T][ ] make breakfast", outputStreamCaptor.toString().trim());
-        } catch (NoTasksException e) {
-            fail("Test Fail: NoTasksException is thrown.");
-        }
-    }
-
-    @Test
     public void showTasksWithNoTasksException() {
         try {
             List<Task> tasks = new ArrayList<>();
