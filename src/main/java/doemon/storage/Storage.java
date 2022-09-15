@@ -90,58 +90,35 @@ public class Storage {
     public ArrayList<Task> loadTasks() throws TaskDataException {
         ArrayList<Task> loadedTasks = new ArrayList<>();
 
-        // Check and create data directory if necessary
+        // Check and create data directory if necessary.
         File directory = new File("./data");
         if (!directory.exists()) {
             directory.mkdir();
         }
 
-        BufferedReader br = null;
-        try {
-            File taskDataFile = new File(this.filePath);
-            if (taskDataFile.exists()) {
-                br = new BufferedReader(new FileReader(taskDataFile));
-                String taskData = br.readLine();
-                while (taskData != null) {
-                    String[] taskDataArr = taskData.split(" \\| ");
-                    String taskType = taskDataArr[0];
-                    boolean isMarked = taskDataArr[1].equals("1");
-                    String taskDescription = taskDataArr[2];
-                    if (taskType.equals("T")) {
-                        Task task = new Todo(taskDescription);
-                        if (isMarked) {
-                            task.mark();
-                        }
-                        loadedTasks.add(task);
-                    } else if (taskType.equals("D")) {
-                        Task task = new Deadline(taskDescription, taskDataArr[3]);
-                        if (isMarked) {
-                            task.mark();
-                        }
-                        loadedTasks.add(task);
-                    } else {
-                        Task task = new Event(taskDescription, taskDataArr[3]);
-                        if (isMarked) {
-                            task.mark();
-                        }
-                        loadedTasks.add(task);
-                    }
-                    this.taskSaveStrings.add(taskData);
-                    taskData = br.readLine();
-                }
-            } else {
+        // Create file if it does not exist.
+        File taskDataFile = new File(this.filePath);
+        if (!taskDataFile.exists()) {
+            try {
                 taskDataFile.createNewFile();
+            } catch (IOException e) {
+                throw new TaskDataException();
+            }
+            return loadedTasks;
+        }
+        // Load tasks.
+        try (BufferedReader reader = new BufferedReader(new FileReader(taskDataFile))) {
+            String taskData = reader.readLine();
+            while (taskData != null) {
+                String[] taskDataArr = taskData.split(" \\| ");
+                String flag = taskDataArr.length > 3 ? taskDataArr[3] : null;
+                Task task = getTaskFromSaveString(taskDataArr[0], taskDataArr[1], taskDataArr[2], flag);
+                loadedTasks.add(task);
+                this.taskSaveStrings.add(taskData);
+                taskData = reader.readLine();
             }
         } catch (IOException e) {
             throw new TaskDataException();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    throw new TaskDataException();
-                }
-            }
         }
         return loadedTasks;
     }
@@ -152,25 +129,42 @@ public class Storage {
      * @throws TaskDataException If data file update fails.
      */
     private void saveTasks() throws TaskDataException {
-        BufferedWriter bw = null;
-        try {
-            bw = new BufferedWriter(new FileWriter(new File(this.filePath)));
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.filePath))) {
             StringBuilder toWrite = new StringBuilder();
-            for (int i = 0; i < this.taskSaveStrings.size(); i++) {
-                toWrite.append(this.taskSaveStrings.get(i));
-                if (i < this.taskSaveStrings.size() - 1) {
-                    toWrite.append('\n');
-                }
+            int i = 0;
+            while (i < this.taskSaveStrings.size() - 1) {
+                toWrite.append(this.taskSaveStrings.get(i++));
+                toWrite.append('\n');
             }
-            bw.write(toWrite.toString());
+            if (this.taskSaveStrings.size() > 0) {
+                toWrite.append(this.taskSaveStrings.get(i));
+            }
+            writer.write(toWrite.toString());
         } catch (IOException e) {
             throw new TaskDataException();
-        } finally {
-            try {
-                bw.close();
-            } catch (IOException e) {
-                throw new TaskDataException();
-            }
         }
+    }
+
+    private Task getTaskFromSaveString(String type, String mark, String description, String flag)
+            throws TaskDataException {
+        boolean isMarked = mark.equals("1");
+        Task task = null;
+        switch (type) {
+        case "T":
+            task = new Todo(description);
+            break;
+        case "D":
+            task = new Deadline(description, flag);
+            break;
+        case "E":
+            task = new Event(description, flag);
+            break;
+        default:
+            throw new TaskDataException();
+        }
+        if (isMarked) {
+            task.mark();
+        }
+        return task;
     }
 }
