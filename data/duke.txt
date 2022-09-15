@@ -1,0 +1,6 @@
+TD, ,borrow book
+DL, ,code book,2022-12-12 1800
+EV, ,play,nus
+EX, ,food,5
+TD, ,game
+EX, ,groceries,10
