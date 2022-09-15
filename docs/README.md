@@ -1,6 +1,6 @@
 # User Guide
 
-Super Duke is a chatting bot that helps you **manage your tasks**.
+Super Duke is a chatting bot that helps you **manage your tasks**. :heart_eyes:
 
 ## Features 
 
