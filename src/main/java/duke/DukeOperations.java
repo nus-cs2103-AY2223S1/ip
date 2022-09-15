@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DukeOperations {
 
     /**
-    * method that returns exit message.
+    * Method that returns exit message.
     * @return String that displays the exit message.
     */
     public String exit() {
@@ -47,7 +47,7 @@ public class DukeOperations {
     }
 
     /**
-     * Unmarks as a task as done and displays output messages.
+     * Un marks as a task as done and displays output messages.
      * @param array arraylist of all the tasks so far.
      * @param number integer value of the task to be unmarked as not done.
      * @return String value showing which item has been unmarked

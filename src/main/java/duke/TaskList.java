@@ -19,12 +19,12 @@ public class TaskList {
 
     }
     public String todo(ArrayList<Task> array, String[] arr) throws DukeException{
-        boolean flag = false;
+        boolean contains = false;
         int j = 0;
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) != null && array.get(i).toString().contains(arr[1])) {
                 j++;
-                flag = true;
+                contains = true;
             }
         }
         String result = "";
@@ -32,10 +32,10 @@ public class TaskList {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
         }
 
-        else if (flag) {
+        else if (contains) {
             return "You have already added this task to the list";
-        }
-        else {
+
+        } else {
 
             array.add(new Todo(arr[1]));
 
@@ -52,16 +52,16 @@ public class TaskList {
     }
 
     public String deadline(ArrayList<Task> array,String item, String deadline, String timing){
-        boolean flag = false;
+        boolean contains = false;
         int j = 0;
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) != null && array.get(i).toString().contains(item)) {
                 j++;
-                flag = true;
+                contains = true;
             }
         }
 
-        if(flag) {
+        if(contains) {
             return "You have already added this task to the list";
         }
 
@@ -78,16 +78,16 @@ public class TaskList {
     }
 
     public String event(ArrayList<Task> array,String item, String deadline, String timing) {
-        boolean flag = false;
+        boolean contains = false;
         int j = 0;
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) != null && array.get(i).toString().contains(item)) {
                 j++;
-                flag = true;
+                contains = true;
             }
         }
 
-        if(flag) {
+        if(contains) {
             return "You have already added this task to the list";
         }
         String result = "";
