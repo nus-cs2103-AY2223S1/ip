@@ -33,8 +33,6 @@ public class Duke extends Application {
         tasks = storage.load();
     }
 
-    public Duke() {}
-
     public void run() {
         Ui.printInitialMessage();
         while (true) {
