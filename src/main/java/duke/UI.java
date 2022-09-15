@@ -49,52 +49,51 @@ public class UI {
 
     public static void help() { System.out.println(
             "I'm here to keep your life in check. \n" +
-                    "You may enter the following commands: \n" +
-                    "1. todo <task>:\n" +
-                    "\t Saves a task\n" +
-                    "2. deadline <task> /by <date>: \n" +
-                    "\t Saves a task with a deadline\n" +
-                    "3. event <task> /at <date>: \n" +
-                    "\t Saves an event with a date\n" +
-                    "4. list: \n" +
-                    "\t Lists out all the tasks you have\n" +
-                    "5. mark <task number(s)>: \n" +
-                    "\t Marks all the tasks stated as done\n" +
-                    "6. unmark <task number(s)>: \n" +
-                    "\t Marks all the tasks stated as undone\n" +
-                    "7. delete <task number(s)>: \n" +
-                    "\t Deletes all the tasks stated\n" +
-                    "8. find <keyword>: \n" +
-                    "\t Finds all tasks containing the keyword\n" +
-                    "9. update description <task number> <new description>: \n" +
-                    "\t Updates the task description\n" +
-                    "10. bye: \n" +
-                    "\t Exits the program\n");}
+                    "You may enter the following commands: \n\n" +
+                    "1. \t todo <task>\n" +
+                    "\t Saves a task\n\n" +
+                    "2. \t deadline <task> /by <date> \n" +
+                    "\t Saves a task with a deadline\n\n" +
+                    "3. \t event <task> /at <date> \n" +
+                    "\t Saves an event with a date\n\n" +
+                    "4. \t list: \n" +
+                    "\t Lists out all the tasks you have\n\n" +
+                    "5. \t mark <task no.(s)> \n" +
+                    "\t Marks all the tasks stated as done\n\n" +
+                    "6. \t unmark <task no.(s)> \n" +
+                    "\t Marks all the tasks stated as undone\n\n" +
+                    "7. \t delete <task no.(s)> \n" +
+                    "\t Deletes all the tasks stated\n\n" +
+                    "8. \t find <keyword> \n" +
+                    "\t Finds all tasks containing the keyword\n\n" +
+                    "9. \t update desc <task no.> <new desc> \n" +
+                    "\t Updates the task description\n\n" +
+                    "10. \t bye \n" +
+                    "\t Exits the program\n\n");}
 
     public static String helpResponse() {
-        return
-                "I'm here to keep your life in check. \n" +
-                        "You may enter the following commands: \n" +
-                        "1. todo <task>:\n" +
-                        "\t Saves a task\n" +
-                        "2. deadline <task> /by <date>: \n" +
-                        "\t Saves a task with a deadline\n" +
-                        "3. event <task> /at <date>: \n" +
-                        "\t Saves an event with a date\n" +
-                        "4. list: \n" +
-                        "\t Lists out all the tasks you have\n" +
-                        "5. mark <task number(s)>: \n" +
-                        "\t Marks all the tasks stated as done\n" +
-                        "6. unmark <task number(s)>: \n" +
-                        "\t Marks all the tasks stated as undone\n" +
-                        "7. delete <task number(s)>: \n" +
-                        "\t Deletes all the tasks stated\n" +
-                        "8. find <keyword>: \n" +
-                        "\t Finds all tasks containing the keyword\n" +
-                        "9. update description <task number> <new description>: \n" +
-                        "\t Updates the task description\n" +
-                        "10. bye: \n" +
-                        "\t Exits the program\n";
+        return "I'm here to keep your life in check. \n" +
+                        "You may enter the following commands: \n\n" +
+                        "1. \t todo <task>\n" +
+                        "\t Saves a task\n\n" +
+                        "2. \t deadline <task> /by <date> \n" +
+                        "\t Saves a task with a deadline\n\n" +
+                        "3. \t event <task> /at <date> \n" +
+                        "\t Saves an event with a date\n\n" +
+                        "4. \t list: \n" +
+                        "\t Lists out all the tasks you have\n\n" +
+                        "5. \t mark <task no.(s)> \n" +
+                        "\t Marks all the tasks stated as done\n\n" +
+                        "6. \t unmark <task no.(s)> \n" +
+                        "\t Marks all the tasks stated as undone\n\n" +
+                        "7. \t delete <task no.(s)> \n" +
+                        "\t Deletes all the tasks stated\n\n" +
+                        "8. \t find <keyword> \n" +
+                        "\t Finds all tasks containing the keyword\n\n" +
+                        "9. \t update desc <task no.> <new desc> \n" +
+                        "\t Updates the task description\n\n" +
+                        "10. \t bye \n" +
+                        "\t Exits the program\n\n";
     }
 
 
@@ -214,15 +213,19 @@ public class UI {
                 + matchedTasks;
     }
 
-    public static void updateTaskDesc(Task task) {
+    public static void updateTaskDesc(Task newTask, String prevTask) {
         System.out.println(DIVIDER);
-        System.out.println("The following task (" + " has been updated:");
-        System.out.println(task);
+        System.out.println("The following task has been updated from:");
+        System.out.println("  " + prevTask);
+        System.out.println("to: ");
+        System.out.println("  " + newTask);
         System.out.println(DIVIDER);
     }
 
-    public static String updateTaskDescResponse(Task task) {
-        return "The following task has been updated: \n"
-                + task + System.lineSeparator();
+    public static String updateTaskDescResponse(Task newTask, String prevTask) {
+        return "The following task has been updated from: \n"
+                + "  " + prevTask + System.lineSeparator()
+                + "to:" + System.lineSeparator()
+                + "  " + newTask;
     }
 }

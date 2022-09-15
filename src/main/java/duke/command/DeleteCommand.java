@@ -25,7 +25,6 @@ public class DeleteCommand extends Command {
     public void execute(TaskList taskList, Storage storage) throws DukeException {
         UI.delete(taskNos, taskList);
         response = UI.deleteResponse(taskNos, taskList);
-        storage.saveData(taskList);
         Arrays.sort(taskNos);
 
         for (int i = taskNos.length-1; i >= 0; i--) {
@@ -33,5 +32,6 @@ public class DeleteCommand extends Command {
             taskList.delete(task);
             Task.minusTaskCount();
         }
+        storage.saveData(taskList);
     }
 }

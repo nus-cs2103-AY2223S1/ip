@@ -52,9 +52,9 @@ public class Parser {
         String description = "";
         String date;
         while (!scanner.hasNext("/at")) {
-            description += scanner.next();
+            description += " " + scanner.next();
         }
-        scanner.next(); //skips "/at"
+        scanner.next();
         date = scanner.nextLine();
         return new AddEventCommand(description, false, date);
     }
@@ -118,7 +118,7 @@ public class Parser {
         for (String string : taskNosString) {
             int taskNo;
             try {
-                taskNo = Integer.parseInt(string) - 1;
+                taskNo = Integer.parseInt(string.trim()) - 1;
             } catch (NumberFormatException ne) {
                 return new ResponseCommand("OOPS!! Please enter a valid task number. " +
                         "To mark multiple tasks, add a comma between the task numbers.");
@@ -150,7 +150,7 @@ public class Parser {
         String updatedField = sc.nextLine();
 
         switch (field) {
-            case "description":
+            case "desc":
                 return new UpdateTaskDescriptionCommand(taskNo, updatedField);
 
                 // more additions can be made (e.g. update date for deadlines and events)

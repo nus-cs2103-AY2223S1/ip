@@ -39,7 +39,7 @@ public class DialogBox extends HBox {
         double picY = this.displayPicture.getY();
         double height = this.displayPicture.getFitHeight();
         double width = this.displayPicture.getFitWidth();
-        Circle clip = new Circle(picX + width/2, picY + height/2, Math.min(height/3, width/3));
+        Circle clip = new Circle(picX + width/2, picY + height/2, Math.min(height/2.5, width/2.5));
         this.displayPicture.setClip(clip);
     }
 
@@ -55,17 +55,15 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         DialogBox db = new DialogBox(text, img);
-        db.setSpacing(10);
-        db.setPadding(new Insets(10, 10, 10, 10));
-        db.dialog.setStyle("-fx-background-color: GOLDENROD; -fx-background-radius: 20");
+        db.dialog.setStyle("-fx-background-color: #191970; -fx-background-radius: 20");
         return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
-        db.setSpacing(10);
-        db.setPadding(new Insets(10, 10, 10, 10));
+//        db.setSpacing(10);
+//        db.setPadding(new Insets(10, 10, 10, 10));
         return db;
     }
 }

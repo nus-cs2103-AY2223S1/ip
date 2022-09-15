@@ -1,5 +1,4 @@
-T |   | c
-T |   | d
-T | X | read book
-T |   | j
-D |   | homework | 01 Jan 2022
+T |   | read book
+E |   | birthday party | 18 Jul 2022
+T |   | return book
+D |   |  assignment | 01 Jan 2022
