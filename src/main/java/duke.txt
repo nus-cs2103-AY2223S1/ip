@@ -1,4 +1,4 @@
-T | X | eat dinner#fun
 D |   | lecture vids|2022-09-11
-T |   | study code
-E | X | concert| september 15th#fun
+T | X | study code#todo
+E |   | concert| september 15th#fun
+T |   | buy groceries#todo
