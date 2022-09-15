@@ -32,6 +32,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
+        addSallyDialog("Hello! I'm Sally\nWhat can I do for you?");
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
