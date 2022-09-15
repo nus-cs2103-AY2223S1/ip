@@ -34,7 +34,7 @@ abstract public class Task {
     public Task(String name, boolean isCompleted, PriorityLevel priority) {
         this.name = name;
         this.isCompleted = isCompleted;
-        setPriority(priority);
+        this.priorityLevel = priority;
     }
 
     /**
@@ -72,7 +72,7 @@ abstract public class Task {
     @Override
     public String toString() {
         String mark = isCompleted ? "X" : "  ";
-        if (isPrioritised) {
+        if (isPrioritised()) {
             return String.format("[%s] [%s] %s", mark, priorityToSymbol(), name);
         } else {
             return String.format("[%s] %s", mark, name);
@@ -183,7 +183,6 @@ abstract public class Task {
             message = String.format("This task is marked as %s:", priorityToString());
         } else {
             this.priorityLevel = priorityLevel;
-            changeIsPrioritised();
             message = String.format("Noted, changed priority of this task to %s:", priorityToString());
         }
         return message + "\n" + this;
@@ -210,16 +209,19 @@ abstract public class Task {
         }
     }
 
-    private void changeIsPrioritised() {
+    /**
+     * Checks if task is of priority
+     * @return true if task is low medium or high priority, else false
+     */
+    private boolean isPrioritised() {
         switch(priorityLevel) {
             case LOW:
             case MEDIUM:
             case HIGH:
-                isPrioritised = true;
-                break;
+                return true;
             case NONE:
             default:
-                isPrioritised = false;
+                return false;
 
         }
     }
