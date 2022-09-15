@@ -1,7 +1,5 @@
 package jarvis;
 
-import jarvis.task.TaskList;
-
 /**
  * Jarvis (credit: Iron Man) is a a Personal Assistant Chatbot that helps a person
  * to keep track of their todos, events and deadlines
@@ -23,7 +21,7 @@ public class Jarvis {
         storage = new Storage(filePath);
         try {
             taskList = storage.loadTaskList();
-        } catch (DukeException e) {
+        } catch (JarvisException e) {
             ui.showLoadingError();
             taskList = new TaskList();
         }

@@ -1,4 +1,4 @@
-package jarvis;
+package jarvis.task;
 
 import jarvis.task.Task;
 
@@ -42,7 +42,7 @@ public class Event extends Task {
     @Override
     public String toDataForm() {
         String done = this.isDone ? "1" : "0";
-        return "D|" + done + "|" + this.description + "|" + this.at + "\n";
+        return "E|" + done + "|" + this.description + "|" + this.at + "\n";
     }
 
     @Override

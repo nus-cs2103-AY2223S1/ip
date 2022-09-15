@@ -1,7 +1,10 @@
-package jarvis.task;
+package jarvis;
 
-import jarvis.Event;
 import jarvis.Storage;
+import jarvis.task.Deadline;
+import jarvis.task.Event;
+import jarvis.task.Task;
+import jarvis.task.Todo;
 
 import java.io.IOException;
 import java.time.format.DateTimeParseException;

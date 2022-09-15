@@ -1,9 +1,6 @@
 package jarvis;
 
-import jarvis.task.Deadline;
-import jarvis.task.Task;
-import jarvis.task.TaskList;
-import jarvis.task.Todo;
+import jarvis.task.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -51,7 +48,7 @@ public class Storage {
         fw.close();
     }
 
-    public TaskList loadTaskList() throws DukeException {
+    public TaskList loadTaskList() throws JarvisException {
         TaskList taskList = new TaskList(this);
         try {
             //checkFileExists();
@@ -76,7 +73,7 @@ public class Storage {
             }
         } catch (Exception e) {
             System.out.println("Error when loading data" + e);
-            throw new DukeException(e.getMessage());
+            throw new JarvisException(e.getMessage());
         }
         return taskList;
     }
