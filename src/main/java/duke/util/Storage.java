@@ -22,6 +22,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         try {
+            assert filePath != null;
             dataFile = new File(filePath);
             if (dataFile.getParent() != null) {
                 File parentDir = new File(dataFile.getParent());
@@ -38,6 +39,7 @@ public class Storage {
      */
     public void loadTasks(TaskList taskList) {
         try {
+            assert dataFile != null;
             Scanner scanner = new Scanner(dataFile);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -54,6 +56,7 @@ public class Storage {
      */
     public void saveTasks(TaskList taskList) {
         try {
+            assert dataFile != null;
             FileWriter writer = new FileWriter(dataFile);
             writer.write(taskList.getFileText());
             writer.close();

@@ -56,6 +56,7 @@ public class Parser {
         case list:
             return new ListCommand(storage, ui, taskList);
         case delete:
+            assert input.split(" ").length > 1;
             taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
             return new DeleteCommand(storage, ui, taskList, taskIndex);
         case bye:
