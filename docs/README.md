@@ -101,7 +101,7 @@ Examples:
 ***
 ## Finding tasks: find
 Find a task from the list of tasks with the given keyword.
-Note that the search is **Case-Sensitive**
+Note that the search is **Case-Insensitive**.
 <br /><br />
 Format: `find KEYWORD`
 <br /><br />
