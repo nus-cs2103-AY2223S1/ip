@@ -109,14 +109,26 @@ public class AddCommand extends Command {
         return this.IS_EXIT;
     }
 
-    private LocalTime validateTimeString(String timeString) {
+    /**
+     * Format the timeString to desired format of LocalTime.
+     *
+     * @param timeString input by the user.
+     * @return formatted LocalTime with desired format.
+     */
+    public static LocalTime validateTimeString(String timeString) {
         //desired date format "1800"
         String validatedTimeString = timeString.substring(0, 2) + ":" + timeString.substring(2, 4) + ":" + "00";
         LocalTime time = LocalTime.parse(validatedTimeString);
         return time;
     }
 
-    private LocalDate validateDateString(String dateString) {
+    /**
+     * Format the dateString to desired format of LocalDate.
+     *
+     * @param dateString input by the user.
+     * @return formatted LocalDate with desired format.
+     */
+    public static LocalDate validateDateString(String dateString) {
         LocalDate date = LocalDate.parse(dateString);
         return date;
     }

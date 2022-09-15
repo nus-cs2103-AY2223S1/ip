@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import duke.command.AddCommand;
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -52,6 +53,7 @@ public class Storage {
             if (!newDirectory.exists()) {
                 newDirectory.mkdir();
                 newFile.createNewFile();
+                insertDummyTasks(newFile);
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -60,7 +62,25 @@ public class Storage {
         return newFile;
     }
 
-
+    /**
+     * Initialise task list with a few dummy tasks.
+     *
+     * @param file that task list is stored.
+     */
+    private void insertDummyTasks(File file) {
+        try {
+            Task todo = new ToDo("dummyTodo ", AddCommand.validateDateString("2020-01-02"),
+                    AddCommand.validateTimeString("0001"));
+            Task deadline = new Deadline("dummyDeadline ", AddCommand.validateDateString("2050-12-31"),
+                    AddCommand.validateTimeString("2359"));
+            FileWriter myWriter = new FileWriter(file);
+            myWriter.write(todo.toString());
+            myWriter.write(deadline.toString());
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("Initialisation of dummy tasks failed!");
+        }
+    }
 
     /**
      * Adds text which converted from Task into the file.
