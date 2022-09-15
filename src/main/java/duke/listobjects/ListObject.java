@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Class to store list items with task and status of completion
  */
-public class ListObject implements Serializable {
+public class ListObject implements Serializable, Comparable<ListObject> {
     private String task;
     private String time;
     private int status;
@@ -133,6 +133,30 @@ public class ListObject implements Serializable {
             return dateNew + " at " + timeNew;
         } else {
             return "Try again!";
+        }
+    }
+
+    /**
+     * Compares two ListObjects based on deadline, if present, and task otherwise
+     * @param obj the object to be compared.
+     * @return -1 if this has earlier deadline than object, 1 otherwise and 0 if equal
+     */
+    @Override
+    public int compareTo(ListObject obj) {
+
+        if(this.time.isEmpty() || obj.time.isEmpty()) {
+            int res = this.task.compareTo(obj.task);
+            if(res == 0 && this.status >= obj.status){
+                return -1;
+            }
+            if(res==0 && this.status < obj.status){
+                return 1;
+            }
+            else{
+                return res;
+            }
+        } else {
+            return obj.time.compareTo(this.time);
         }
     }
 
