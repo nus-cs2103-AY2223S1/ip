@@ -23,7 +23,7 @@ Duke is a Command Line Application to help you manage your tasks.
 
 ## Usage
 
-### `Add a ToDo Task` - todo
+### Add a ToDo Task - `todo`
 Add a ToDo task into the list.
 <br>
 
@@ -39,12 +39,12 @@ Expected outcome:
 
 ![image](https://user-images.githubusercontent.com/77394751/190419190-82958682-ca76-43ab-9d23-7465063be044.png)
 
-### `Add a Event Task` - event
+### Add a Event Task - `event`
 Add an Event task into the list.
 <br>
 
 Format: `event TASK_DESCRIPTION /by TASK_AT`
-* `TASK_DESCRIPTION`, `/by` and `TASK_AT` must be present.
+* `TASK_DESCRIPTION`, `/at` and `TASK_AT` must be present.
 * `TASK_AT` follows the format `YYYY-MM-DD`
 
 Example of usage: 
@@ -55,5 +55,25 @@ Expected outcome:
 <br>
 
 ![image](https://user-images.githubusercontent.com/77394751/190421015-30f33487-afc9-44cd-985c-1569d9537a80.png)
+
+### Add a Deadline Task - `deadline`
+Add an Event task into the list.
+<br>
+
+Format: `event TASK_DESCRIPTION /by TASK_DEADLINE`
+* `TASK_DESCRIPTION`, `/by` and `TASK_DEADLINE` must be present.
+* `TASK_DEADLINE` follows the format `YYYY-MM-DD`
+
+Example of usage: 
+<br>
+`deadline submit lab /by 2022-12-12`
+
+Expected outcome:
+<br>
+
+![image](https://user-images.githubusercontent.com/77394751/190421418-6052a39c-1957-4ea8-aacc-6295a14edc4f.png)
+
+
+
 
 
