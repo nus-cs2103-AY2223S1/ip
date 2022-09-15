@@ -35,6 +35,22 @@ public class Parser {
                 }
                 continue;
             }
+            // if userInput equals find, find tasks which match given string
+            if (userInput.length() > 4 && userInput.substring(0,4).equals("find")) {
+                String keyword = userInput.substring((5));
+                System.out.println("Here are the matching tasks in your list:");
+                for (int i = 0; i < tasks.getList().size(); i++) {
+                    Task currTask = tasks.getList().get(i);
+                    if (currTask == null) {
+                        break;
+                    }
+                    if (currTask.toString().contains(keyword)) {
+                        System.out.println((i + 1) + ". " + currTask.toString());
+                    }
+                }
+                continue;
+            }
+
             //if userinput equals mark, check which task and mark it
             if (userInput.length() > 4 && userInput.substring(0, 4).equals("mark")) {
                 int toMark = Integer.parseInt(userInput.substring(5)) - 1;
