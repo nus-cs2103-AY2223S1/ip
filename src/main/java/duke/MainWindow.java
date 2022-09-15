@@ -21,13 +21,19 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
+
     private Duke duke;
+
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    //@@ RusselDash332 - reused
+    // Reused a snippet of the code to initialise the welcome message
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(Duke.showWelcomeGUI(), dukeImage));
     }
 
     public void setDuke(Duke d) {
