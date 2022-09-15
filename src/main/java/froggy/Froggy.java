@@ -1,19 +1,19 @@
-package seedu.duke;
+package froggy;
 
 
-import seedu.duke.command.Command;
-import seedu.duke.exception.DukeException;
-import seedu.duke.parser.Parser;
-import seedu.duke.storage.Storage;
-import seedu.duke.task.TaskList;
-import seedu.duke.ui.Ui;
+import froggy.command.Command;
+import froggy.exception.DukeException;
+import froggy.parser.Parser;
+import froggy.storage.Storage;
+import froggy.task.TaskList;
+import froggy.ui.Ui;
 
 
 /**
  * The Duke class is the core of the entire program.
  * This is where all the commands are first read.
  */
-public class Duke {
+public class Froggy {
 
     private Storage storage;
     private TaskList tasks;
@@ -23,7 +23,7 @@ public class Duke {
     /**
      * Creates a Duke object.
      */
-    public Duke() {
+    public Froggy() {
         ui = new Ui();
         storage = new Storage("./data/duke.txt");
         try {
@@ -35,7 +35,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+        new Froggy().run();
     }
 
     /**

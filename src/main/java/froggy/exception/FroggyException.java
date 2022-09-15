@@ -1,4 +1,4 @@
-package seedu.duke.exception;
+package froggy.exception;
 
 /**
  * A custom class to handle any exceptions thrown by the Duke program.
