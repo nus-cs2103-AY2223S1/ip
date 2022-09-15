@@ -49,6 +49,7 @@ public class TaskList {
      * @throws IndexOutOfBoundsException If index is out of bounds.
      */
     public Task markAsDone(int index) throws IndexOutOfBoundsException {
+        assert index >= this.tasks.size() : "Index Out of Bound";
         Task doneTask = this.tasks.get(index);
         doneTask.setIsDone(true);               // Modify the task as done, this is a pointer
         return doneTask;
