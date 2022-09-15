@@ -3,6 +3,7 @@ package duke;
 import java.util.Scanner;
 
 import duke.command.Command;
+import duke.constants.ErrorMessages;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
@@ -23,7 +24,7 @@ public class Duke {
         this.ui = new Ui();
         this.storage = new Storage("./data/saved.txt");
         this.tasks = new TaskList(storage.loadData());
-        this.parser = new Parser(tasks);
+        this.parser = new Parser();
     }
 
     /**
@@ -35,13 +36,13 @@ public class Duke {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         this.tasks = new TaskList(storage.loadData());
-        this.parser = new Parser(tasks);
+        this.parser = new Parser();
     }
 
     /**
      * Starts the program with welcome message and initialize saved data if any
      */
-    public void run() {
+    public void run() throws DukeException {
         ui.showWelcome();
         Scanner sc = new Scanner(System.in);
         this.storage.run();
@@ -55,18 +56,23 @@ public class Duke {
     }
 
     /**
-     * Starts the Terminal application
+     * Starts the application
      *
      * @param args
      * @throws DukeException
      */
-    public static void main(String[] args) {
-        new Duke("/data/saved.txt").run();
+    public static void main(String[] args) throws DukeException {
+        new Duke("./data/saved.txt").run();
     }
 
     public String getResponse(String input) {
-        Command c = Parser.parse(input);
-        return c.execute(tasks, this.storage, ui);
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, storage, ui);
+        } catch (DukeException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
+        return ErrorMessages.INVALID_COMMAND_MESSAGE;
     }
 
 }

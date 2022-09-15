@@ -1,7 +1,7 @@
 package duke;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 /**
@@ -15,12 +15,11 @@ public class DateParser {
      */
     public static LocalDate parseDate(String date) {
         assert !Objects.equals(date, "") : "Date cannot be null";
-        LocalDate parsedDate = null;
         try {
-            parsedDate = LocalDate.parse(date);
-        } catch (DateTimeParseException e) {
-            e.printStackTrace();
+            LocalDate parsedDate = LocalDate.parse(date);
+            return parsedDate;
+        } catch (DateTimeException e) {
+            throw e;
         }
-        return parsedDate;
     }
 }

@@ -21,7 +21,8 @@
         <Circle fx:id="displayPicture" radius="20.0" stroke="#e8ed51" strokeWidth="2.0">
             <HBox.margin>
                 <Insets />
-            </HBox.margin></Circle>
+            </HBox.margin>
+        </Circle>
     </children>
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
