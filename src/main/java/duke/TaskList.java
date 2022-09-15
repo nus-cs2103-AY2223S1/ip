@@ -74,7 +74,7 @@ public class TaskList {
      * @return The task that was added.
      */
     public static Task addDeadline(String args) throws DukeException {
-        String[] argsArr = args.split(" /by ", 2);
+        String[] argsArr = args.split("/by", 2);
         if (argsArr.length < 2) {
             throw new DukeException("Failed to create deadline: Invalid number of arguments");
         }
@@ -107,9 +107,9 @@ public class TaskList {
      * @return The task that was added.
      */
     public static Task addEvent(String args) throws DukeException {
-        String[] argsArr = args.split(" /at ", 2);
+        String[] argsArr = args.split("/at", 2);
         if (argsArr.length < 2) {
-            throw new DukeException("Failed to create event: Invalid number of arguments");
+            throw new DukeException("Failed to create event: Invalid number of arguments\n");
         }
 
         String name = argsArr[0].strip();
