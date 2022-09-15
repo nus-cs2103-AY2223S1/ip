@@ -70,7 +70,8 @@ public class ExitCommand extends Command {
             return HELP_MESSAGE;
         } else {
             storage.writeTaskListToFile(tasks);
-            return ui.showGoodbyeString();
+            return ui.showGoodbyeString()
+                + "\n\nPress Enter to close the application...";
         }
     }
 }

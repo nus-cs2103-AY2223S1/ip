@@ -2,6 +2,7 @@ package stashy.launcher;
 
 import java.util.Random;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -63,7 +64,7 @@ public class MainWindow extends AnchorPane {
         boolean isError = false;
 
         String input = userInput.getText().strip();
-        if (input.isEmpty()) {
+        if (!isExit && input.isEmpty()) {
             return;
         }
         String response;
@@ -73,6 +74,7 @@ public class MainWindow extends AnchorPane {
                 response = stashy.executeCommandReturnString(c);
                 isExit = c.isExit();
             } else {
+                Platform.exit();
                 return;
             }
         } catch (StashyException se) {

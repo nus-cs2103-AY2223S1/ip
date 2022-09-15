@@ -24,13 +24,13 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            stage.setTitle("Stashy v1.0");
+            stage.setTitle("Stashy v1.1");
             stage.setResizable(false);
             stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/user.png")));
             fxmlLoader.<MainWindow>getController().setStashy(stashy);
             stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 }
