@@ -54,9 +54,12 @@ public enum Command {
                 if (input.length() ==5) {
                     throw new DukeException("Choose your tag for this task!");
                 }
-                taskNumber = Integer.parseInt(input.substring(4, 5));
+                taskNumber = Integer.parseInt(input.substring(4, 5)) - 1;
+                if (tasks.size() - 1 < taskNumber) {
+                    throw new DukeException("Please enter a valid task number!");
+                }
                 String tag = input.substring(6);
-                output += tasks.get(taskNumber - 1).setTag(tag);
+                output += tasks.get(taskNumber).setTag(tag);
                 break;
                 
 
@@ -64,8 +67,11 @@ public enum Command {
                 if (input.length() == 4) {
                     throw new DukeException("Choose which task to mark as done!");
                 }
-                taskNumber = Integer.parseInt(input.substring(5));
-                output += tasks.get(taskNumber - 1).setDone();
+                taskNumber = Integer.parseInt(input.substring(5)) - 1;
+                if (tasks.size() - 1 < taskNumber) {
+                    throw new DukeException("Please enter a valid task number!");
+                }
+                output += tasks.get(taskNumber).setDone();
                 break;
 
 
@@ -73,8 +79,11 @@ public enum Command {
                 if (input.length() == 6) {
                     throw new DukeException("Choose which task to mark as undone!");
                 }
-                taskNumber = Integer.parseInt(input.substring(7));
-                output += tasks.get(taskNumber - 1).setUndone();
+                taskNumber = Integer.parseInt(input.substring(7)) - 1;
+                if (tasks.size() - 1 < taskNumber) {
+                    throw new DukeException("Please enter a valid task number!");
+                }
+                output += tasks.get(taskNumber).setUndone();
                 break;
 
             case TODO:
@@ -92,10 +101,13 @@ public enum Command {
                 }
 
                 if (input.indexOf('/') == -1) {
-                    throw new DukeException("The date of the event should be input with the following format: /at YYYY-MM-DD hhmm");
+                    throw new DukeException("The date of the event should be input\n with the following format: /at YYYY-MM-DD hhmm");
                 }
 
                 split = input.substring(6).split("/");
+                if (split[1].length() < 4) {
+                    throw new DukeException("The date of the event should be input\n with the following format: /at YYYY-MM-DD hhmm");
+                }
                 task = new Event(split[0], split[1].substring(3));
                 output = addTask(tasks, task, ui, output);
                 break;
@@ -106,11 +118,15 @@ public enum Command {
                 }
 
                 if (input.indexOf('/') == -1) {
-                    throw new DukeException("The date of the deadline should be input with the following format: /by YYYY-MM-DD hhmm");
+                    throw new DukeException("The date of the deadline should be input\n with the following format: /by YYYY-MM-DD hhmm");
                 }
 
 
                 split = input.substring(9).split("/");
+                if (split[1].length() < 4) {
+                    throw new DukeException("The date of the deadline should be input\n with the following format: /by YYYY-MM-DD hhmm");
+                }
+
                 task = new Deadline(split[0], split[1].substring(3));
                 output = addTask(tasks, task, ui, output);
                 break;
@@ -120,6 +136,9 @@ public enum Command {
                     throw new DukeException("Choose which task to delete!");
                 }
                 taskNumber = Integer.parseInt(input.substring(7)) - 1;
+                if (tasks.size() - 1 < taskNumber) {
+                    throw new DukeException("Please enter a valid task number!");
+                }
                 task = tasks.get(taskNumber);
                 tasks.remove(taskNumber);
                 ui.remove(task);
@@ -132,6 +151,9 @@ public enum Command {
                 break;
 
             case FIND:
+                if (input.length() == 4) {
+                    throw new DukeException("Input your search keyword!");
+                }
                 output += "Here are the matching tasks in your list:\n";
                 
                 String keyword = input.substring(5);

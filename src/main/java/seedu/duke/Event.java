@@ -28,7 +28,7 @@ public class Event extends Task {
             LocalDateTime date = LocalDateTime.of(year, month, day, hours, minutes);
             this.at = date;
         } catch (Exception e) {
-            throw new DukeException("The date of the event should be input with the following format: /at YYYY-MM-DD hhmm");
+            throw new DukeException("The date of the event should be input\n with the following format: /at YYYY-MM-DD hhmm");
         }
     }
 

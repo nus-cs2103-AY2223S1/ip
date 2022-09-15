@@ -28,7 +28,7 @@ public class Deadline extends Task {
             LocalDateTime date = LocalDateTime.of(year, month, day, hours, minutes);
             this.by = date;
         } catch (Exception e) {
-            throw new DukeException("The date of the deadline should be input with the following format: /by YYYY-MM-DD hhmm");
+            throw new DukeException("The date of the deadline should be input\n with the following format: /by YYYY-MM-DD hhmm");
         }
 
     }
