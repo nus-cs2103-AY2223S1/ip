@@ -8,6 +8,7 @@ public class DeleteCommand extends Command {
     private Ui ui;
     private TaskList tasks;
     private String userResponse;
+    private Storage storage;
 
 
     /**
@@ -17,13 +18,15 @@ public class DeleteCommand extends Command {
      * @param tasks The list of current tasks.
      * @param userResponse The input string from the user.
      */
-    public DeleteCommand(Ui ui, TaskList tasks, String userResponse, int numberOfArguments) throws DukeException {
+    public DeleteCommand(Ui ui, TaskList tasks, String userResponse,
+                         Storage storage, int numberOfArguments) throws DukeException {
         if (numberOfArguments != ARGS_REQUIRED) {
             throw new DukeException("Invalid number of arguments. Usage: delete [task_number]");
         }
         this.ui = ui;
         this.tasks = tasks;
         this.userResponse = userResponse;
+        this.storage = storage;
     }
 
     /**
@@ -35,6 +38,7 @@ public class DeleteCommand extends Command {
     public String execute() {
         try {
             this.tasks.deleteTask(Parser.parseTaskNumber(userResponse));
+            this.storage.saveTasks(this.tasks);
             return this.ui.showRemoveTaskSuccess(Parser.parseTaskNumber(userResponse), this.tasks);
         } catch (DukeException e) {
             return this.ui.showError(e);

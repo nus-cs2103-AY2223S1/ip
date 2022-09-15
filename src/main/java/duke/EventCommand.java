@@ -8,6 +8,7 @@ public class EventCommand extends Command {
     private Ui ui;
     private TaskList tasks;
     private String userResponse;
+    private Storage storage;
 
 
     /**
@@ -17,7 +18,7 @@ public class EventCommand extends Command {
      * @param tasks The list of current tasks.
      * @param userResponse The input string from the user.
      */
-    public EventCommand(Ui ui, TaskList tasks, String userResponse,
+    public EventCommand(Ui ui, TaskList tasks, String userResponse, Storage storage,
                         int numberOfArguments, int atIndex) throws DukeException {
         if (numberOfArguments < ARGS_REQUIRED || atIndex == -1) {
             throw new DukeException("Incorrect arguments. Usage: event [task_description] /at [event_time]");
@@ -25,6 +26,7 @@ public class EventCommand extends Command {
         this.ui = ui;
         this.tasks = tasks;
         this.userResponse = userResponse;
+        this.storage = storage;
     }
 
     /**
@@ -36,6 +38,7 @@ public class EventCommand extends Command {
     public String execute() {
         try {
             this.tasks.addTasks(Parser.parseEventTask(userResponse));
+            this.storage.saveTasks(this.tasks);
             return this.ui.showAddTaskSuccess(this.tasks);
         } catch (DukeException e) {
             return this.ui.showError(e);

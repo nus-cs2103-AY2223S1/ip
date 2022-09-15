@@ -8,7 +8,7 @@ public class DeadlineCommand extends Command {
     private Ui ui;
     private TaskList tasks;
     private String userResponse;
-
+    private Storage storage;
 
 
     /**
@@ -18,7 +18,7 @@ public class DeadlineCommand extends Command {
      * @param tasks The list of current tasks.
      * @param userResponse The input string from the user.
      */
-    public DeadlineCommand(Ui ui, TaskList tasks, String userResponse,
+    public DeadlineCommand(Ui ui, TaskList tasks, String userResponse, Storage storage,
                            int numberOfArguments, int byIndex) throws DukeException {
         if (byIndex == -1 || numberOfArguments < ARGS_REQUIRED) {
             throw new DukeException("Incorrect arguments. Usage: deadline [task_description] /by [yyyy-mm-dd]");
@@ -26,6 +26,7 @@ public class DeadlineCommand extends Command {
         this.ui = ui;
         this.tasks = tasks;
         this.userResponse = userResponse;
+        this.storage = storage;
     }
 
     /**
@@ -37,6 +38,7 @@ public class DeadlineCommand extends Command {
     public String execute() {
         try {
             this.tasks.addTasks(Parser.parseDeadlineTask(userResponse));
+            this.storage.saveTasks(this.tasks);
             return this.ui.showAddTaskSuccess(this.tasks);
         } catch (DukeException e) {
             return this.ui.showError(e);

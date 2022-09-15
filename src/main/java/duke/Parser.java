@@ -100,7 +100,7 @@ public class Parser {
         int numberOfArguments = parsedUserResponse.length;
         switch(mainCommand) {
         case "bye":
-            return new ByeCommand(storage, ui, tasks, numberOfArguments);
+            return new ByeCommand(ui, tasks, numberOfArguments);
         case "list":
             return new ListCommand(ui, tasks, numberOfArguments);
         case "mark":
@@ -108,15 +108,15 @@ public class Parser {
         case "unmark":
             return new UnmarkCommand(ui, tasks, userResponse, numberOfArguments);
         case "todo":
-            return new TodoCommand(ui, tasks, userResponse, numberOfArguments);
+            return new TodoCommand(ui, tasks, userResponse, storage, numberOfArguments);
         case "deadline":
             int byIndex = Arrays.asList(parsedUserResponse).indexOf("/by");
-            return new DeadlineCommand(ui, tasks, userResponse, numberOfArguments, byIndex);
+            return new DeadlineCommand(ui, tasks, userResponse, storage, numberOfArguments, byIndex);
         case "event":
             int atIndex = Arrays.asList(parsedUserResponse).indexOf("/at");
-            return new EventCommand(ui, tasks, userResponse, numberOfArguments, atIndex);
+            return new EventCommand(ui, tasks, userResponse, storage, numberOfArguments, atIndex);
         case "delete":
-            return new DeleteCommand(ui, tasks, userResponse, numberOfArguments);
+            return new DeleteCommand(ui, tasks, userResponse, storage, numberOfArguments);
         case "find":
             return new FindCommand(ui, tasks, userResponse, numberOfArguments);
         default:

@@ -18,16 +18,6 @@ public class Ui {
     }
 
     /**
-     * Returns the goodbye message.
-     *
-     * @return String containing the goodbye message.
-     */
-    public String showGoodbye() {
-        String dukeGoodbye = "Bye. Hope to see you again soon!";
-        return dukeGoodbye;
-    }
-
-    /**
      * Returns the error message.
      *
      * @return String containing the error message.
@@ -105,6 +95,11 @@ public class Ui {
      */
     public String showMatchingTasks(String searchInput, TaskList tasks) {
         String matchingStart = "Here are the matching tasks in your list:\n";
-        return matchingStart + tasks.getMatchingTasksRepresentation(searchInput);
+        String matchingTaskString = tasks.getMatchingTasksRepresentation(searchInput);
+        if (matchingTaskString.length() > 0) {
+            return matchingStart + matchingTaskString;
+        } else {
+            return "There are no tasks matching the query: " + searchInput;
+        }
     }
 }
