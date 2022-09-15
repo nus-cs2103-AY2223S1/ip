@@ -43,7 +43,7 @@ public class Duke {
         } catch (NumberFormatException e) {
             return ui.showError("Please Enter a valid task number!");
         } catch (IllegalArgumentException e) {
-            return ui.showError("I'm sorry but I don't know what that means.");
+            return ui.showError("I'm sorry but I don't know what that means. Enter `help` to view list of available commands.");
         } catch (DukeException e) {
             return ui.showError(e);
         }

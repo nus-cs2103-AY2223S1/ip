@@ -69,7 +69,7 @@ public abstract class Task {
                 checkDescription(splitInput);
                 return Event.createEvent(splitInput[1]);
             default:
-                throw new DukeException("I'm sorry but I don't know what that means.");
+                throw new DukeException("I'm sorry but I don't know what that means. Enter `help` to view list of available commands.");
         }
     }
 

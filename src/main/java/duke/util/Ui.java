@@ -26,6 +26,24 @@ public class Ui {
     }
 
     /**
+     * Prints a help message to the user.
+     */
+    public String help() {
+        String message = "Here are the list of commands available: \n"
+            + "1. todo <task> - Adds a todo task to the list.\n"
+            + "2. deadline <task> /by <date> - Adds a deadline task to the list.\n"
+            + "3. event <task> /at <date> - Adds an event task to the list.\n"
+            + "4. list - Displays all tasks in the list.\n"
+            + "5. mark <task number> - Marks the specified task as done.\n"
+            + "6. unmark <task number> - Marks the specified task as not done.\n"
+            + "7. delete <task number> - Deletes the specified task.\n"
+            + "8. find <keyword> - Finds all tasks with the specified keyword.\n"
+            + "9. help - Displays this help message.\n"
+            + "10. bye - Exits the program.";
+        return message;
+    }
+
+    /**
      * Displays the error to the user.
      * 
      * @param error Error message to be shown to user.
