@@ -38,9 +38,17 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(this.dialogContainer.heightProperty());
     }
 
-
-    public void setDuke(Dukegg dukegg) {
+    /**
+     * Sets the chatbot instance in this MainWindow instance with the given chatbot instance, and also sends a
+     * greeting message.
+     *
+     * @param dukegg The specified chatbot instance.
+     */
+    public void setDukegg(Dukegg dukegg) {
         this.dukegg = dukegg;
+        this.dialogContainer.getChildren().addAll(
+                new ChatbotDialogBox(this.dukegg.getGreetingMessage(), this.dukeImage)
+        );
     }
 
     /**
