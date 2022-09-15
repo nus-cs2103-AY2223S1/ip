@@ -107,16 +107,10 @@ public class Storage {
             int pos = str.indexOf("(") - 1;
             String substring = str.substring(pos + 6, str.length() - 1);
             if (isDone) {
-<<<<<<< HEAD
-                addTaskWithMark(new Deadline(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
-            } else {
-                addTaskWithoutMark(new Deadline(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
-=======
                 addTaskWithMark(new Deadline(str.substring(7, pos), substring), arr);
             } else {
                 Deadline dl = new Deadline(str.substring(7, pos), substring);
                 addTaskWithoutMark(dl, arr);
->>>>>>> 57cea28019a6cccd3420dcf86b0bd4c6f66f9adf
             }
         }
     }
