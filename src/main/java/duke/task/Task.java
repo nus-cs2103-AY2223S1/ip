@@ -2,8 +2,6 @@ package duke.task;
 
 import duke.constant.PriorityLevel;
 
-import java.util.Locale;
-
 /**
  * An abstract class to represent a task.
  *
