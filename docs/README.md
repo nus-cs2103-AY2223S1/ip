@@ -116,7 +116,6 @@ Here are the tasks in your list:
 2. [E][ ] attend open house (at: Sat, Dec 10 2022)
 3. [T][ ] laundry
 
-I've updated task number 3 name to: dry clothes
 ```
 
 `3:rename:dry clothes`
