@@ -43,12 +43,11 @@ public class Parser {
                 return LocalDate.parse(time, DateTimeFormatter.ofPattern("yyyy MM dd"));
             } else if (time.matches("([0-9]{2}) ([0-9]{2}) ([0-9]{4})")) {
                 return LocalDate.parse(time, DateTimeFormatter.ofPattern("dd MM yyyy"));
-            } else {
-                throw new DukeException(INVALID_DATE_FORMAT, "");
             }
         } catch (Exception e) {
             throw new DukeException(INVALID_DATE, "");
         }
+        throw new DukeException(INVALID_DATE_FORMAT, "");
     }
 
 
@@ -59,8 +58,8 @@ public class Parser {
      * @param taskString a String array containing a user command, the first element in the array is the command type
      * @throws DukeException If the command is regarded invalid/incomplete by TaskDive chatbot.
      */
-    public void parseCommandType(String[] taskString) throws duke.exception.DukeException {
-        String type = taskString[0];
+    public void parseCommandType(String[] taskString) throws DukeException {
+        String type = taskString[0].trim();
         if (taskString.length == 1 && (type.equals("todo") || type.equals("deadline") || type.equals("event"))) {
             throw new DukeException(MISSING_DESCRIPTION, type);
         } else if (taskString.length == 1 && (type.equals("mark") || type.equals("unmark") || type.equals("delete")

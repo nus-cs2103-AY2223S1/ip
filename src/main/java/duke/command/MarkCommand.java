@@ -40,7 +40,7 @@ public class MarkCommand implements Command {
     public String execute() throws DukeException {
         String taskIndex = index.trim();
         if (taskIndex.equals("") || !taskIndex.matches("[0-9]+")) { // task description empty or not numeric
-            throw new DukeException(MISSING_INDEX, "");
+            throw new DukeException(MISSING_INDEX, commandType);
         } else if (Integer.parseInt(taskIndex) > tasks.getSize() || Integer.parseInt(taskIndex) < 1) {
             throw new DukeException(INVALID_INDEX, "");
         }
