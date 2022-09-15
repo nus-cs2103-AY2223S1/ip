@@ -16,7 +16,7 @@ public class Ui {
      * Displays welcome message
      */
     public void showWelcome() {
-        System.out.println("Hi... I'm Bishop... \nWhat can I do for you today?");
+        System.out.println("Hi... I'm Duke... \nWhat can I do for you today?");
     }
 
     /**

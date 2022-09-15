@@ -3,19 +3,19 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-Bishop is **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bishop will get your tasks sorted faster than traditional GUI apps.
+Duke is **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, duke will get your tasks sorted faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `bishop.jar` from [here](https://github.com/CeereeC/ip/releases).
+1. Download the latest `duke.jar` from [here](https://github.com/CeereeC/ip/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your app.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="https://github.com/CeereeC/ip/blob/master/docs/Ui.png?raw=true" alt="BishopStartup"/> <br>
+   <img src="https://github.com/CeereeC/ip/blob/master/docs/Ui.png?raw=true" alt="dukeStartup"/> <br>
 
 1. Type the command in the command box and press Enter to execute it. <br>
    Some example commands you can try:    
@@ -129,7 +129,7 @@ TaskList data are saved as a text file. Advanced users are welcome to update dat
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Bishop home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Duke home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
