@@ -3,10 +3,11 @@
 ## Quick Start
 1. Download the latest duke.jar.
 2. Copy the file to the folder you want to use as the home folder for your Duke.
-3. Double-click the file to start the app.
-4. Type the command in the command box and press Enter to execute it.
-5. Refer to the Features below for details of each command.
-6. Refer to the Usage below for each command.
+3. Open a command window in that folder.
+4. Run the command java -jar duke.jar (i.e., run the command in the same folder as the jar file).
+5. Type the command in the command box and press Enter to execute it.
+6. Refer to the Features below for details of each command.
+7. Refer to the Usage below for each command.
 
 ## Features 
 
