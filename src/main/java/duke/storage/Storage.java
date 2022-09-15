@@ -38,9 +38,8 @@ public class Storage {
     private File createFileWithDirIfNotExist(String directory, String fileName) throws DukeException {
         File f = new File(directory + fileName);
         try {
-            if (f.getParentFile().mkdirs()) {
-                f.createNewFile();
-            }
+            f.getParentFile().mkdirs();
+            f.createNewFile();
         } catch (IOException e) {
             throw new InputOutputException("Error finding/creating data file");
         }

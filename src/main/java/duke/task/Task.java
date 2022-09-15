@@ -9,7 +9,7 @@ import duke.exceptions.InvalidDateTimeException;
 /**
  * Task parent class.
  */
-public class Task {
+public abstract class Task {
 
     protected LocalDate date;
 
@@ -76,20 +76,7 @@ public class Task {
         this.isDone = false;
     }
 
-    public String getSaveString() {
-        String task = "";
-        if (taskType == TaskType.DEADLINE) {
-            task += "D | ";
-        } else if (taskType == TaskType.EVENT) {
-            task += "E | ";
-        } else {
-            task += "T | ";
-        }
-        task += isDone() ? "1 | " : "0 | ";
-        task += getDescription();
-
-        return task;
-    }
+    public abstract String getSaveString();
 
     @Override
     public String toString() {

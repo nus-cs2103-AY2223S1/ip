@@ -14,7 +14,7 @@ import duke.ui.Ui;
 public class Duke {
 
     private static final String DIRECTORY = "./data/";
-    private static final String FILENAME = "todo.txt";
+    private static final String FILENAME = "tasks.txt";
     private static final boolean isGui = true;
     private final Ui ui;
     private Storage storage;

@@ -11,6 +11,7 @@ import duke.task.Task;
 public class Ui {
 
     private final Scanner input = new Scanner(System.in);
+    private static final String exitMessage = "Bye. Hope to see you again soon!";
 
     /**
      * Shows welcome message upon initialization.
@@ -28,7 +29,11 @@ public class Ui {
      * Shows goodbye message upon exit.
      */
     public void showExit() {
-        showMessage("Bye. Hope to see you again soon!");
+        showMessage(exitMessage);
+    }
+
+    public static String getExit() {
+        return exitMessage;
     }
 
     /**

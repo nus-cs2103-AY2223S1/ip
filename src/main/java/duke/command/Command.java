@@ -25,7 +25,6 @@ public abstract class Command {
     }
 
     Command() {
-
     }
 
     public boolean getExit() {
