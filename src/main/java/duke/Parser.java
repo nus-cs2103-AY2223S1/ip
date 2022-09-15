@@ -6,6 +6,7 @@ import duke.expenses.Expense;
 import duke.expenses.ExpenseList;
 import duke.task.Deadline;
 import duke.task.Todo;
+import duke.exception.InvalidInputException;
 
 /**
  * The Parser class parses inputs for the Duke program. The Parser takes in inputs from the user and executes
@@ -36,7 +37,7 @@ public class Parser {
      * @param request Takes in user requests as Strings.
      * @return Returns a boolean to let the Duke program know whether the user has given instructions to terminate.
      */
-    public String parse(String request) {
+    public String parse(String request) throws InvalidInputException {
         if (request.equals("bye")) { // 1. Terminates Greg
             System.exit(1);
             return "Goodbye, your tasks have been saved! See you soon!";
@@ -48,12 +49,20 @@ public class Parser {
 
         else if (request.startsWith("mark")) { // 3. Mark task as done
             int taskNumber = Integer.parseInt(request.split(" ")[1]) - 1;
-            return taskList.markTask(taskNumber);
+            try {
+                return taskList.markTask(taskNumber);
+            } catch (NumberFormatException e) {
+                return "Please enter an appropriate number!";
+            }
         }
 
         else if (request.startsWith("unmark")) { // 4. Mark task as undone
             int taskNumber = Integer.parseInt(request.split(" ")[1]) - 1;
-            return taskList.unmarkTask(taskNumber);
+            try {
+                return taskList.unmarkTask(taskNumber);
+            } catch (NumberFormatException e) {
+                return "Please enter an appropriate number!";
+            }
         }
 
         else if (request.startsWith("todo ")) { // 5a. Adding in tasks (Todo)
@@ -78,9 +87,13 @@ public class Parser {
         else if (request.startsWith("event ")) { // 5c. Adding in tasks (Event)
             String[] eventTask = request.replace("event ", "").split(" /at ");
             String[] eventDateAndTime = eventTask[1].split(" ");
-            String eventTime = eventDateAndTime[1].substring(0, 2) + ":" + eventDateAndTime[1].substring(2, 4);
-            Event event = new Event(eventTask[0], eventDateAndTime[0], eventTime);
-            return taskList.addTask(event);
+            try {
+                String eventTime = eventDateAndTime[1].substring(0, 2) + ":" + eventDateAndTime[1].substring(2, 4);
+                Event event = new Event(eventTask[0], eventDateAndTime[0], eventTime);
+                return taskList.addTask(event);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                return "Event needs a time!";
+            }
         }
 
         else if (request.startsWith("delete ")) { // 6. Deleting tasks
@@ -100,21 +113,38 @@ public class Parser {
             }
             else if (expenseRequest.startsWith("/a ")) { // Add expense
                 String[] expeStrings = expenseRequest.replace("/a ", "").split("/c ");
-                Expense newExpense = new Expense(expeStrings[0], expeStrings[1]);
-                return expenseList.addExpense(newExpense);
+                try {
+                    Expense newExpense = new Expense(expeStrings[0], expeStrings[1]);
+                    return expenseList.addExpense(newExpense);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    return "Please type in the activity followed by /c and then the costs!";
+                }
             }
             else if (expenseRequest.startsWith("/d ")) { // Delete expense
                 String position = expenseRequest.replace("/d ", "");
-                return expenseList.deleteExpense(Integer.parseInt(position));
+                try {
+                    return expenseList.deleteExpense(Integer.parseInt(position));
+                } catch (NumberFormatException e) {
+                    return "Please give a position number!";
+                }
             }
             else if (expenseRequest.startsWith("/f ")) { // Find expense
                 String keyword = expenseRequest.replace("/f ", "");
                 return expenseList.find(keyword);
             } else {
-                return "OOPS!!! I'm sorry, but I don't know what that means :-(";
+                throw new InvalidInputException();
             }
+        } else if (request.equals("help")) {
+            String output = "Welcome to the help section!\n"; 
+            output += "Here are the available commands:\n\n";
+            output += "  todo/event/deadline XXX /at/by date time\n";
+            output += "  mark/unmark/delete <position>\n";
+            output += "  list\n";
+            output += "  expense /a XXX /c <cost>  |  /d <position>\n";  
+            output += "  expense /p  |  /f <keyword>";
+            return output;
         } else { // Inappropriate input
-            return "OOPS!!! I'm sorry, but I don't know what that means :-(\n";
+            throw new InvalidInputException();
         }
     }
 }

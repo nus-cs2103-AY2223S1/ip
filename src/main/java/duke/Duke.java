@@ -1,6 +1,7 @@
 package duke;
 
 import duke.task.TaskList;
+import duke.exception.InvalidInputException;
 import duke.expenses.ExpenseList;
 
 /**
@@ -35,12 +36,12 @@ public class Duke {
     }
 
     public String getResponse(String input) {
-        String reply = parser.parse(input);
         try {
+            String reply = parser.parse(input);
             storage.store(tasks.getList(), expenses.getList());
-        } catch (Exception e) {
-            System.out.println();
+            return "Greg says: " + reply;
+        } catch (InvalidInputException e) {
+            return "Greg says: I'm sorry, I don't know what that means :(";
         }
-        return "Greg says: " + reply;
     }
 }
