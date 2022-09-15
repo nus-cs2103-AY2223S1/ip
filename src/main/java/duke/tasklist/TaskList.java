@@ -1,14 +1,14 @@
 package duke.tasklist;
 
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import duke.command.CommandType;
-import duke.task.Task;
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
+import duke.task.Task;
+
 
 /**
  * A class containing taskList and its operation.
@@ -33,12 +33,11 @@ public class TaskList {
      * @param i The index of the deleted task.
      * @param storage The storage containing the this taskList.
      */
-    public String delete(int i, Storage storage) throws DukeException{
+    public String delete(int i, Storage storage) throws DukeException {
         try {
-            int index = i - 1;
             Task deletedTask = this.taskList.remove(i - 1);
-            String res = (" Noted. I've removed this task:\n" + deletedTask.printTask() +
-                    "\n" + "Now you have " + this.countTask() + " tasks in the list.");
+            String res = (" Noted. I've removed this task:\n" + deletedTask.printTask()
+                    + "\n" + "Now you have " + this.countTask() + " tasks in the list.");
             storage.updateFile(this.taskList);
             return res;
         } catch (IndexOutOfBoundsException e) {
@@ -52,8 +51,8 @@ public class TaskList {
      */
     public String addTask(Task task) {
         this.taskList.add(task);
-        return ("Got it. I've added this task:\n"+task.printTask()+
-                "\nNow you have "+this.countTask()+" task in the list.\n");
+        return ("Got it. I've added this task:\n" + task.printTask()
+                 + "\nNow you have " + this.countTask() + " task in the list.\n");
     }
     /**
      * The method that list all the tasks in a formatted string.
@@ -62,13 +61,18 @@ public class TaskList {
     public String listAllTask() {
         String res = "";
         for (int i = 0; i < this.taskList.size(); i++) {
-            if (this.taskList.get(i)!=null) {
-                res += (i+1)+". " + this.taskList.get(i).printTask() + "\n";
+            if (this.taskList.get(i) != null) {
+                res += (i + 1) + ". " + this.taskList.get(i).printTask() + "\n";
             }
         }
-        return  "Here are the tasks in your list:\n" + res;
+        return ("Here are the tasks in your list:\n" + res);
     }
-    //mark a certain task as done and print reply
+    /**
+     * Mark certain task status as done.
+     * @param i Index of the task.
+     * @param storage The storage contains target file.
+     * @return A response from duke.
+     */
     public String markAsDone(int i, Storage storage) throws DukeException {
         try {
             this.taskList.get(i).taskDone();
@@ -76,13 +80,18 @@ public class TaskList {
                     + this.taskList.get(i).printTask());
             storage.updateFile(this.taskList);
             return res;
-        }catch (IndexOutOfBoundsException e) {
-            throw new DukeException("The index of target task is wrong.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Traveller, the index of target task is wrong.");
         } catch (Exception e) {
-            throw new DukeException("Sorry, something went wrong when unmarking or marking the task!");
+            throw new DukeException("Sorry, something went wrong when unmarking or marking the task.");
         }
     }
-    //mark a certain task as not done and print reply
+    /**
+     * Mark certain task status as undone.
+     * @param i Index of the task.
+     * @param storage The storage contains target file.
+     * @return A response from duke.
+     */
     public String markUndone(int i, Storage storage) throws DukeException {
         try {
             this.taskList.get(i).taskUndone();
@@ -90,16 +99,21 @@ public class TaskList {
                     + this.taskList.get(i).printTask());
             storage.updateFile(this.taskList);
             return res;
-        }catch (IndexOutOfBoundsException e) {
-            throw new DukeException("The index of target task is wrong.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Traveller, the index of target task is wrong.");
         } catch (Exception e) {
-            throw new DukeException("Sorry, something went wrong when unmarking or marking the task!");
+            throw new DukeException("Sorry, something went wrong when unmarking or marking the task.");
         }
     }
 
-    public List<Task> getTaskList(){
+    public List<Task> getTaskList() {
         return this.taskList;
     }
+    /**
+     * Find tasks on a specific day.
+     * @param d The target day.
+     * @return A response from duke.
+     */
     public String taskOnSpecificDay(LocalDate d) {
         String res = "";
         for (int i = 0; i < this.taskList.size(); i++) {
@@ -109,7 +123,11 @@ public class TaskList {
         }
         return res;
     }
-
+    /**
+     * Find task on a certain day.
+     * @param s The description of the date.
+     * @return A response from duke.
+     */
     public String getASpecificDay(String s) throws DukeException {
         try {
             String day = s.split(" ")[1];
@@ -124,6 +142,11 @@ public class TaskList {
             throw new DukeException("the input format for find is not correct.");
         }
     }
+    /**
+     * Find task of a containing certain string.
+     * @param target The target words of task.
+     * @return Description of task.
+     */
     public String findMatch(String target) {
         String res = "";
         int count = 1;
@@ -132,27 +155,37 @@ public class TaskList {
             for (int j = 0; j < temp.length; j++) {
                 if (temp[j].contains(target)) {
                     res += count + "." + this.taskList.get(i).printTask() + "\n";
-                    count ++;
+                    count++;
                     break;
                 }
             }
         }
-        if (count == 1){
+        if (count == 1) {
             res += "There is no match for your search.";
         }
         return res;
     }
+    /**
+     * Find task of a certain type.
+     * @param fullCommand The description of task.
+     * @return Description of task.
+     */
     public String find(String fullCommand) {
         String res = "Are these tasks what you are looking for?\n";
-        String target = fullCommand.split(" ",2)[1];
-        CommandType c = CommandType.commandMap.get(target);
-        if (c != null){
+        String target = fullCommand.split(" ", 2)[1];
+        CommandType c = CommandType.COMMAND_MAP.get(target);
+        if (c != null) {
             res += findCertainTypeTask(c);
         } else {
             res += findMatch(target);
         }
         return res;
     }
+    /**
+     * Find task of a certain type.
+     * @param c The target type of task.
+     * @return Description of task.
+     */
     public String findCertainTypeTask(CommandType c) {
         String res = "";
         int count = 1;
@@ -162,7 +195,7 @@ public class TaskList {
                 continue;
             }
             String typeDes = t.getDescription().split(" ")[0];
-            if (CommandType.commandMap.get(typeDes).equals(c)) {
+            if (CommandType.COMMAND_MAP.get(typeDes).equals(c)) {
                 res += count + "." + this.taskList.get(i).printTask() + "\n";
             }
         }

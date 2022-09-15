@@ -1,12 +1,8 @@
 package duke.dukerobot;
 
-import java.io.IOException;
-
-import duke.command.Command;
 import duke.dukeexception.DukeException;
-import duke.storage.Storage;
 import duke.parser.Parser;
-import duke.ui.Ui;
+import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
 
@@ -16,13 +12,12 @@ import duke.tasklist.TaskList;
 public class Duke {
     private Storage storage;
     private TaskList taskList;
-    private Ui ui;
 
     /**
      * Class constructor.
+     * @param filepath Filepath of file that stores tasks.
      */
-    public Duke(String filepath)  {
-        this.ui = new Ui();
+    public Duke(String filepath) {
         try {
             this.storage = new Storage(filepath);
             this.taskList = this.storage.loadTasks();
@@ -31,27 +26,11 @@ public class Duke {
         }
 
     }
-
-
-
     /**
      * Instruct the robot to show user interface and read in command and execute.
      * Catch and dispose exceptions.
      */
     public String getResponse(String input) throws DukeException {
-        //this.ui.showWelcomeMessage()
         return Parser.parse(input, this.taskList, this.storage);
-
     }
-
-        //ui.showGoodbyeMessage();
-
-
-    /**
-     * The start point of the program. Run the duke itself.
-     * @param args
-     */
-    //public static void main(String[] args) {
-      // new Duke("data/duke.txt").run();
-    //}
 }

@@ -15,7 +15,7 @@ public class ExitCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage, CommandType c) {
         super.setIsExitTrue();
-        String goodbyeMessage = "Goodbye. Hope to see you soon.";
+        String goodbyeMessage = "Goodbye, traveller.";
         return goodbyeMessage;
     }
 }

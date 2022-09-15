@@ -13,6 +13,8 @@ public class EventTest {
                     new Event("event return book on 2/2/2022 1800").printTask());
             assertEquals("[E][ ] return book  (on: monday)",
                     new Event("e return book on monday").printTask());
+            assertEquals("[E][ ] return book  (on: tmr)",
+                    new Event("EVENT return book on tmr").printTask());
         } catch (DukeException e) {
             fail();
         }

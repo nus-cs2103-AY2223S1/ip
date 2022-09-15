@@ -1,8 +1,11 @@
 package duke.parser;
 
-import java.util.HashMap;
-
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.CommandType;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.MarkingCommand;
+import duke.command.OtherCommand;
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
@@ -10,7 +13,6 @@ import duke.tasklist.TaskList;
  * Represents a function of Duke robot, which can produce command corresponding to user input.
  */
 public class Parser {
-
 
     /**
      * Produce different type of command for execution, corresponding to user input.
@@ -22,11 +24,11 @@ public class Parser {
     public static String parse(String fullCommand, TaskList t, Storage s) throws DukeException {
         if (t == null) {
             s.clear();
-            throw new DukeException("Sorry, something went wrong when loading tasks." +
-                    "I have clear the file for you." +
-                    "Please restart and try again.");
+            throw new DukeException("Sorry, something went wrong when loading tasks."
+                    + "I have clear the file for you."
+                    + "Please restart and try again.");
         }
-        CommandType c = CommandType.commandMap.get(fullCommand.split(" ")[0]);
+        CommandType c = CommandType.COMMAND_MAP.get(fullCommand.split(" ")[0]);
         if (c == null) {
             throw new DukeException("Sorry, I don't get what you are saying.");
         }

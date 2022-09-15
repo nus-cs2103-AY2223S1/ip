@@ -1,8 +1,10 @@
 package duke.storage;
 
-import java.io.*;
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import duke.command.CommandType;
 import duke.dukeexception.DukeException;
@@ -34,6 +36,22 @@ public class Storage {
         }
     }
     /**
+     * Update the task content in the file.
+     * @param task Task that will be written in the file.
+     * @throws IOException Throws exception when file operation fails.
+     */
+    public void writeToFile(Task task, FileWriter fw) throws IOException {
+        if (task == null) {
+            throw new IOException();
+        }
+        if (task.getStatusIcon().equals("X")) {
+            fw.write(task.getStatusIcon() + " "
+                    + task.getDescription() + "\n");
+        } else {
+            fw.write("Wait " + task.getDescription() + "\n");
+        }
+    }
+    /**
      * Update the taskList content in the file.
      * @param t the corresponding list of task that will be written in the file.
      * @throws DukeException Throws exception when file operation fails.
@@ -42,14 +60,7 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter(this.file);
             for (int i = 0; i < t.size(); i++) {
-                if (t.get(i) != null) {
-                    if (t.get(i).getStatusIcon().equals("X")) {
-                        fw.write(t.get(i).getStatusIcon() + " "
-                                + t.get(i).getDescription() + "\n");
-                    } else {
-                        fw.write("Wait " + t.get(i).getDescription() + "\n");
-                    }
-                }
+                this.writeToFile(t.get(i), fw);
             }
             fw.close();
         } catch (IOException e) {
@@ -64,7 +75,7 @@ public class Storage {
 
     public TaskList loadTasks() throws DukeException {
         try {
-            Scanner s = new Scanner(this.file); // create a Scanner using the File as the source
+            Scanner s = new Scanner(this.file);
             TaskList taskList = new TaskList();
             while (s.hasNextLine()) {
                 String storedTaskString = s.nextLine();
@@ -77,15 +88,23 @@ public class Storage {
             throw new DukeException("Sorry, something went wrong when loading task.");
         }
     }
-    public void clear(){
+    /**
+     * Delete the file that used to store data.
+     */
+    public void clear() {
         this.file.delete();
     }
-    public Task disposeTaskString(String storedTaskString) throws DukeException{
-        String[] temp = storedTaskString.split(" ",3);
+    /**
+     * Create task according to a line of description in the file.
+     * @param storedTaskString the corresponding description of the task.
+     * @throws DukeException Throws exception when file operation or creation fails.
+     */
+    public Task disposeTaskString(String storedTaskString) throws DukeException {
+        String[] temp = storedTaskString.split(" ", 3);
         String status = temp[0];
         String type = temp[1];
         String fullDescription = temp[1] + " " + temp[2];
-        CommandType c = CommandType.commandMap.get(type);
+        CommandType c = CommandType.COMMAND_MAP.get(type);
         Task t = Task.createATask(fullDescription, c);
         t.markStatus(status);
         return t;

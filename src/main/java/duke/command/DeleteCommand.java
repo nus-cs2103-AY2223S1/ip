@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
      * Throws DukeException when error occurs.
      * @param taskList The target taskList that will be added or deleted task.
      * @param storage The object containing the corresponding file.
-     * @throws DukeException Throws DukeException when the task index is out of index.
+     * @throws DukeException Throws DukeException when the task index is out of index or the index is empty.
      */
     @Override
     public String execute(TaskList taskList, Storage storage, CommandType c) throws DukeException {
@@ -32,9 +32,9 @@ public class DeleteCommand extends Command {
             int intIndex = Integer.valueOf(stringIndex);
             return taskList.delete(intIndex, storage);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("The content of delete cannot be empty.");
-        } catch (Exception e){
-            throw new DukeException("The description of deleting index is wrong.");
+            throw new DukeException("Traveller, the content of delete cannot be empty.");
+        } catch (Exception e) {
+            throw new DukeException("Traveller, the description of deleting index is wrong.");
         }
     }
 }

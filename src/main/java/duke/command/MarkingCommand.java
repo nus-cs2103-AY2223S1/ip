@@ -32,8 +32,7 @@ public class MarkingCommand extends Command {
         case UNMARK:
             return taskList.markUndone(index, storage);
         default:
-            throw new DukeException("Sorry, something went wrong when unmarking or marking the task!");
+            throw new DukeException("Sorry, something went wrong when unmarking or marking the task.");
         }
-
     }
 }

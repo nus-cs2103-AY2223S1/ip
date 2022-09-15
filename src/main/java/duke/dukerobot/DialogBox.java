@@ -1,4 +1,5 @@
 package duke.dukerobot;
+
 import java.io.IOException;
 import java.util.Collections;
 
@@ -9,16 +10,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 
 /**
- * An example of a custom control using FXML.
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.
  */
@@ -29,9 +27,6 @@ public class DialogBox extends HBox {
     private Label labelWithText;
     @FXML
     private Circle displayPicture;
-
-
-
 
     private DialogBox(String text, Image img) {
         try {
@@ -44,7 +39,7 @@ public class DialogBox extends HBox {
         }
         labelWithText.setText(text);
         displayPicture.setFill(new ImagePattern(img));
-        dialog.getChildren().addAll(labelWithText,displayPicture);
+        dialog.getChildren().addAll(labelWithText, displayPicture);
     }
 
     /**
@@ -56,20 +51,33 @@ public class DialogBox extends HBox {
         this.dialog.getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
     }
-
+    /**
+     * Gets dialog box for user.
+     * @param text The user input.
+     * @param img User's profile picture.
+     * @return A dialogbox containing user's input.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.userAdjust();
         return db;
     }
-
+    /**
+     * Gets dialog box for duke.
+     * @param text The response from duke.
+     * @param img Duke's profile picture.
+     * @return A dialogbox containing duke's response.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
         db.dukeAdjust();
         return db;
     }
-    public void userAdjust(){
+    /**
+     * Adjusts user's dialogbox to a certain pattern.
+     */
+    public void userAdjust() {
         this.labelWithText.setStyle("-fx-background-color: #c0c0c0;"
                 + "-fx-text-fill: black;"
                 + "-fx-min-width: 200px;"
@@ -79,7 +87,10 @@ public class DialogBox extends HBox {
                 + "-fx-background-radius: 15.0;"
                 + "-fx-padding: 15.0");
     }
-    public void dukeAdjust(){
+    /**
+     * Adjusts Duke's dialogbox to a certain pattern.
+     */
+    public void dukeAdjust() {
         this.labelWithText.setStyle("-fx-background-color: #708090;"
                 + "-fx-text-fill: white;"
                 + "-fx-min-width: 200px;"
@@ -89,13 +100,22 @@ public class DialogBox extends HBox {
                 + "-fx-background-radius: 15.0;"
                 + "-fx-padding: 15.0");
     }
-    public static DialogBox getExceptionDialog(String response, Image img){
+    /**
+     * Gets dialog box for duke's exception message.
+     * @param response The response from duke.
+     * @param img Duke's profile picture.
+     * @return A dialogbox containing duke's response.
+     */
+    public static DialogBox getExceptionDialog(String response, Image img) {
         var db = new DialogBox(response, img);
         db.flip();
         db.exceptionAdjust();
         return db;
     }
-    public void exceptionAdjust(){
+    /**
+     * Wraps duke's response to a special pattern if exception is caught.
+     */
+    public void exceptionAdjust() {
         this.labelWithText.setStyle("-fx-background-color: #CD5C5C;"
                 + "-fx-text-fill: white;"
                 + "-fx-min-width: 200px;"

@@ -19,17 +19,19 @@ public class Event extends Task {
         try {
             String temp = description.split(" ")[1];
         } catch (IndexOutOfBoundsException ie) {
-            throw (new DukeException("OOPS!!! The description of a event cannot be empty."));
+            throw (new DukeException("Traveller, the description of a event cannot be empty."));
         }
         try {
-            super.correctDescrition(description.split("on",2)[0].split(" ", 2)[1]);
-            super.getFullDescription(description.split(" ",2)[1]);
-            this.at = description.split("on",2)[1];
+            String correct = description.split("on", 2)[0].split(" ", 2)[1];
+            String full = description.split(" ", 2)[1];
+            super.correctDescrition(correct);
+            super.getFullDescription(full);
+            this.at = description.split("on", 2)[1];
         } catch (Exception ie) {
-            throw (new DukeException("OOPS!!! The description of a event is still not correct."));
+            throw (new DukeException("Traveller, the description of a event is still not correct."));
         }
         int eventDescriptionLength = description.split(" ").length;
-        assert eventDescriptionLength > 3: "event description should have 4 words or more";
+        assert eventDescriptionLength > 3 : "event description should have 4 words or more";
         this.description = description;
 
     }
@@ -39,17 +41,20 @@ public class Event extends Task {
      * @return A string containing formatted description of the task.
      */
     @Override
-    public String printTask(){
+    public String printTask() {
         try {
             return "[E]" + super.printTask() + " (on:"
                     + super.showTime() + ")";
-        }catch (DukeException d){
+        } catch (DukeException d) {
             return "[E]" + super.printTask() + " (on:"
                     + this.at + ")";
         }
     }
+    /**
+     * Overrides the getDescription method.
+     */
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 }

@@ -21,6 +21,9 @@ public class OtherCommand extends Command {
      * Execute the get or list command. Print out the results.
      * @param taskList The target taskList will be checked or listed.
      * @param storage The object containing the corresponding file.
+     * @param c An Enum indicates the type of task.
+     * @return A string indicates execution status of the command.
+     * @throws DukeException
      */
     @Override
     public String execute(TaskList taskList, Storage storage, CommandType c) throws DukeException {
@@ -32,7 +35,7 @@ public class OtherCommand extends Command {
         case LIST:
             return (taskList.listAllTask());
         default:
-            throw new DukeException("Sorry, something went wrong when executing this command!");
+            throw new DukeException("Sorry, something went wrong when executing this command.");
         }
     }
 }

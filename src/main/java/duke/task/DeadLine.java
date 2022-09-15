@@ -17,16 +17,18 @@ public class DeadLine extends Task {
     public DeadLine(String description) throws DukeException {
         super("tempTask");
         try {
-            String temp=description.split(" ")[1];
+            String temp = description.split(" ")[1];
         } catch (IndexOutOfBoundsException ie) {
-            throw (new DukeException("OOPS!!! The description of a deadline cannot be empty."));
-        } try {
+            throw new DukeException("Traveller, the description of a deadline cannot be empty.");
+        }
+        try {
             String formattedDescription = description.split("by")[0].split(" ", 2)[1];
             super.correctDescrition(formattedDescription);
-            super.getFullDescription(description.split(" ",2)[1]);
+            String fullDescrption = description.split(" ", 2)[1];
+            super.getFullDescription(fullDescrption);
             this.by = description.split("by")[1];
         } catch (IndexOutOfBoundsException ie) {
-            throw (new DukeException("OOPS!!! The description of a deadline is still not correct."));
+            throw new DukeException("Traveller, the description of a deadline is still not correct.");
         }
         int ddlDescriptionLength = description.split(" ").length;
         assert ddlDescriptionLength > 3 : "deadline description should have 4 words or more";
@@ -46,9 +48,11 @@ public class DeadLine extends Task {
             return "[D]" + super.printTask() + " (by:" + this.by + ")";
         }
     }
-
+    /**
+     * Overrides the getDescription method.
+     */
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 }

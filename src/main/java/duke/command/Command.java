@@ -23,7 +23,6 @@ public abstract class Command {
     public void setIsExitTrue() {
         this.isExit = true;
     }
-
     /**
      * Returns the instruction about whether the program will end.
      * @return The isExit field of the object, indicating the ending of the program.
