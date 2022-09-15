@@ -30,47 +30,60 @@ public class Parser {
      * @throws AlphaException If the input is invalid.
      */
     public Command interpretMessage(String input) throws AlphaException {
+        input = input.trim();
         String[] inputTokens = input.split(" ", 2);
-        switch (inputTokens[0].toLowerCase()) {
+        switch (inputTokens[0].toLowerCase().trim()) {
         case "todo": {
             checkInvalidInput(inputTokens);
             assert inputTokens.length == 2;
-            return new Add(new Todo(input.substring(5), "T"));
+            return new Add(new Todo(input.substring(5).trim(), "T"));
         }
         case "event": {
             checkInvalidInput(inputTokens);
             assert inputTokens.length == 2;
-            String[] taskInfo = inputTokens[1].split(" /on ", 2);
+            String[] taskInfo = inputTokens[1].split("/on ", 2);
             if (taskInfo.length <= 1) {
                 throw new AlphaException("Invalid input: Incorrect format! "
                         + "(enter help to know more)");
             }
             assert taskInfo.length == 2;
             String formattedDate = checkDateFormat(taskInfo[1]);
-            return new Add(new Event(taskInfo[0], formattedDate, "E"));
+            return new Add(new Event(taskInfo[0].trim(), formattedDate, "E"));
 
         }
         case "deadline": {
             checkInvalidInput(inputTokens);
             assert inputTokens.length == 2;
-            String[] taskInfo = inputTokens[1].split(" /by ", 2);
+            String[] taskInfo = inputTokens[1].split("/by ", 2);
             if (taskInfo.length <= 1) {
                 throw new AlphaException("Invalid input: Incorrect format! "
                         + "(enter help to know more)");
             }
             assert taskInfo.length == 2;
             String formattedDate = checkDateFormat(taskInfo[1]);
-            return new Add(new Deadline(taskInfo[0], formattedDate, "D"));
+            return new Add(new Deadline(taskInfo[0].trim(), formattedDate, "D"));
         }
         case "mark": {
             checkInvalidInput(inputTokens);
             assert inputTokens.length == 2;
-            return new Mark(Integer.parseInt(inputTokens[1]));
+            int taskNumber;
+            try {
+                taskNumber = Integer.parseInt(inputTokens[1]);
+            } catch (Exception e) {
+                throw new AlphaException("Invalid input: Task number required!");
+            }
+            return new Mark(taskNumber);
         }
         case "unmark": {
             checkInvalidInput(inputTokens);
             assert inputTokens.length == 2;
-            return new Unmark(Integer.parseInt(inputTokens[1]));
+            int taskNumber = 0;
+            try {
+                taskNumber = Integer.parseInt(inputTokens[1]);
+            } catch (Exception e) {
+                throw new AlphaException("Invalid input: Task number required!");
+            }
+            return new Unmark(taskNumber);
         }
         case "list": {
             return new List();
@@ -78,7 +91,13 @@ public class Parser {
         case "delete": {
             checkInvalidInput(inputTokens);
             assert inputTokens.length == 2;
-            return new Delete(Integer.parseInt(inputTokens[1]));
+            int taskNumber = 0;
+            try {
+                taskNumber = Integer.parseInt(inputTokens[1]);
+            } catch (Exception e) {
+                throw new AlphaException("Invalid input: Task number required!");
+            }
+            return new Delete(taskNumber);
         }
         case "help": {
             return new Help();
