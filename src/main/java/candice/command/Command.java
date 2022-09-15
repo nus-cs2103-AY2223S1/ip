@@ -14,7 +14,7 @@ import java.time.LocalTime;
  */
 public abstract class Command {
     /** The type of this Command object */
-    private final CommandType commandType;
+    final CommandType commandType;
 
     /**
      * Constructor for Command objects to contain the type of the command inputted.
@@ -48,7 +48,7 @@ public abstract class Command {
          */
         @Override
         public void resolve(TaskList taskList) {
-            if (super.commandType == CommandType.LIST) {
+            if (this.commandType == CommandType.LIST) {
                 Ui.printMessageForList(taskList);
             }
         }
@@ -62,8 +62,8 @@ public abstract class Command {
         private final String commandDescription;
 
         /**
-         * Constructor for a command that does not have a time associated with it, namely creating a todo task or
-         * finding tasks that have a certain keyword.
+         * Constructor for a command that does not have a time associated with it, specifically commands to create a
+         * todo task or finding tasks that have a certain keyword.
          *
          * @param commandType The type of the command inputted.
          * @param commandDescription The description of the command, specifically the name of the task or the keyword
@@ -75,13 +75,14 @@ public abstract class Command {
         }
 
         /**
-         * Creates a new todo task and adds it to the task list.
+         * Creates a new todo task and adds it to the task list if the type of command inputted was "todo" or prints
+         * tasks with names that include the keyword inputted if the type of command inputted was "find".
          *
          * @param taskList The task list associated with this instance of Candice.
          */
         @Override
         public void resolve(TaskList taskList) {
-            if (super.commandType == CommandType.TODO) {
+            if (this.commandType == CommandType.TODO) {
                 Task newTask = new Task.ToDo(commandDescription);
                 taskList.addTask(newTask);
                 Ui.printMessageForAddTask(newTask, taskList);
@@ -111,7 +112,8 @@ public abstract class Command {
 
         /**
          * Deletes the respective task if the type of command inputted was "delete", sets a task as finished if the
-         * type of command inputted was "mark" and sets a task as unfinished if the command inputted was "unmark".
+         * type of command inputted was "mark" and sets a task as unfinished if the type of command inputted was
+         * "unmark".
          *
          * @param taskList The task list associated with this instance of Candice.
          * @throws IllegalArgumentException If the task number inputted was larger than the size of the task list or
@@ -119,10 +121,10 @@ public abstract class Command {
          */
         @Override
         public void resolve(TaskList taskList) throws IllegalArgumentException {
-            if (super.commandType == CommandType.DELETE) {
+            if (this.commandType == CommandType.DELETE) {
                 Task deletedTask = taskList.deleteTask(this.taskNumber);
                 Ui.printMessageForDeleteTask(deletedTask, taskList);
-            } else if (super.commandType == CommandType.MARK) {
+            } else if (this.commandType == CommandType.MARK) {
                 Task selectedTask = taskList.markTask(this.taskNumber);
                 Ui.printMessageForMarkTask(selectedTask);
             } else { // commandType == UNMARK
@@ -138,8 +140,10 @@ public abstract class Command {
     public abstract static class TimedTaskCommand extends Command {
         /** The name of the task in the inputted command */
         String taskName;
-        /** The dated associated to the task in the inputted command */
+        /** The date associated to the task in the inputted command */
         LocalDate taskDate;
+        /** The time associated to the task in the inputted command */
+        LocalTime taskTime;
 
         /**
          * Constructor for a command to add a task with a date associated to it.
@@ -147,11 +151,13 @@ public abstract class Command {
          * @param commandType The type of the command inputted.
          * @param taskName The name of the task in the inputted command.
          * @param date The date attached to the task.
+         * @param time The time attached to the task.
          */
-        public TimedTaskCommand(CommandType commandType, String taskName, LocalDate date) {
+        public TimedTaskCommand(CommandType commandType, String taskName, LocalDate date, LocalTime time) {
             super(commandType);
             this.taskName = taskName;
             this.taskDate = date;
+            this.taskTime = time;
         }
     }
 
@@ -159,9 +165,6 @@ public abstract class Command {
      * Encapsulates a command to add a deadline task to the task list.
      */
     public static class DeadlineCommand extends TimedTaskCommand { // deadline
-        /** The deadline time of the task to be created and added */
-        private final LocalTime deadlineTime;
-
         /**
          * Constructor for a command to add a task with a deadline to the task list.
          *
@@ -170,8 +173,7 @@ public abstract class Command {
          * @param deadlineTime The deadline time of the task.
          */
         public DeadlineCommand(String taskName, LocalDate deadlineDate, LocalTime deadlineTime) {
-            super(CommandType.DEADLINE, taskName, deadlineDate);
-            this.deadlineTime = deadlineTime;
+            super(CommandType.DEADLINE, taskName, deadlineDate, deadlineTime);
         }
 
         /**
@@ -181,7 +183,7 @@ public abstract class Command {
          */
         @Override
         public void resolve(TaskList taskList) {
-            Task newDeadline = new TimedTask.Deadline(this.taskName, this.taskDate, this.deadlineTime);
+            Task newDeadline = new TimedTask.Deadline(this.taskName, this.taskDate, this.taskTime);
 
             taskList.addTask(newDeadline);
             Ui.printMessageForAddTask(newDeadline, taskList);
@@ -192,8 +194,6 @@ public abstract class Command {
      * Encapsulates a command to add an event to the task list.
      */
     public static class EventCommand extends TimedTaskCommand { // event
-        /** The start time of the event to be created and added */
-        private final LocalTime eventStartTime;
         /** The end time of the event to be created and added */
         private final LocalTime eventEndTime;
 
@@ -206,8 +206,7 @@ public abstract class Command {
          * @param eventEndTime The ending time of the event.
          */
         public EventCommand(String taskName, LocalDate eventDate, LocalTime eventStartTime, LocalTime eventEndTime) {
-            super(CommandType.EVENT, taskName, eventDate);
-            this.eventStartTime = eventStartTime;
+            super(CommandType.EVENT, taskName, eventDate, eventStartTime);
             this.eventEndTime = eventEndTime;
         }
 
@@ -218,8 +217,7 @@ public abstract class Command {
          */
         @Override
         public void resolve(TaskList taskList) {
-            Task newEvent = new TimedTask.Event(this.taskName, this.taskDate, this.eventStartTime,
-                    this.eventEndTime);
+            Task newEvent = new TimedTask.Event(this.taskName, this.taskDate, this.taskTime, this.eventEndTime);
 
             taskList.addTask(newEvent);
             Ui.printMessageForAddTask(newEvent, taskList);
