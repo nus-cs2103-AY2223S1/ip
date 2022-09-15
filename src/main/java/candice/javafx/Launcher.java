@@ -1,5 +1,6 @@
-package candice.command;
+package candice.javafx;
 
+import candice.Candice;
 import javafx.application.Application;
 
 /**
@@ -7,6 +8,6 @@ import javafx.application.Application;
  */
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(candice.Candice.class, args);
+        Application.launch(Main.class, args);
     }
 }

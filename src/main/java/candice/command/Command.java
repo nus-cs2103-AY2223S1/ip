@@ -10,7 +10,7 @@ import java.time.LocalTime;
 
 /**
  * Encapsulates all the relevant info of the command inputted after parsing it.
- * Command objects can be resolved to execute the respective commands inputted.
+ * Command objects can be resolved to execute the respective commands inputted and return the respective messages.
  */
 public abstract class Command {
     /** The type of this Command object */
@@ -25,7 +25,7 @@ public abstract class Command {
         this.commandType = commandType;
     }
 
-    public abstract void resolve(TaskList taskList) throws IllegalArgumentException;
+    public abstract String resolve(TaskList taskList) throws IllegalArgumentException;
 
     /**
      * Encapsulates single word commands, specifically "bye" and "list".
@@ -42,14 +42,17 @@ public abstract class Command {
         }
 
         /**
-         * Prints out the current tasks in the task list if the command inputted was "list" and nothing otherwise.
+         * Returns the current tasks in the task list if the command inputted was "list" and the exit message otherwise.
          *
          * @param taskList The task list associated with this instance of Candice.
+         * @return The task list if the command type is list or exit message if the command type is bye.
          */
         @Override
-        public void resolve(TaskList taskList) {
+        public String resolve(TaskList taskList) {
             if (this.commandType == CommandType.LIST) {
-                Ui.printMessageForList(taskList);
+                return Ui.getMessageForList(taskList);
+            } else { // command type is bye
+                return Ui.getMessageForShuttingDown();
             }
         }
     }
@@ -75,19 +78,21 @@ public abstract class Command {
         }
 
         /**
-         * Creates a new todo task and adds it to the task list if the type of command inputted was "todo" or prints
+         * Creates a new todo task and adds it to the task list if the type of command inputted was "todo" or finds
          * tasks with names that include the keyword inputted if the type of command inputted was "find".
          *
          * @param taskList The task list associated with this instance of Candice.
+         * @return A message reflecting that a todo task was added or the tasks that have a task name that includes the
+         * keyword inputted.
          */
         @Override
-        public void resolve(TaskList taskList) {
+        public String resolve(TaskList taskList) {
             if (this.commandType == CommandType.TODO) {
                 Task newTask = new Task.ToDo(commandDescription);
                 taskList.addTask(newTask);
-                Ui.printMessageForAddTask(newTask, taskList);
+                return Ui.getMessageForAddTask(newTask, taskList);
             } else { // Command type is find
-                Ui.printMessageForFind(taskList, commandDescription);
+                return Ui.getMessageForFind(taskList, commandDescription);
             }
         }
     }
@@ -116,20 +121,22 @@ public abstract class Command {
          * "unmark".
          *
          * @param taskList The task list associated with this instance of Candice.
+         * @return A message reflecting that a task was deleted, marked as finished or marked as unfinished if the
+         * command type was delete, mark and unmark respectively.
          * @throws IllegalArgumentException If the task number inputted was larger than the size of the task list or
          * zero and below.
          */
         @Override
-        public void resolve(TaskList taskList) throws IllegalArgumentException {
+        public String resolve(TaskList taskList) throws IllegalArgumentException {
             if (this.commandType == CommandType.DELETE) {
                 Task deletedTask = taskList.deleteTask(this.taskNumber);
-                Ui.printMessageForDeleteTask(deletedTask, taskList);
+                return Ui.getMessageForDeleteTask(deletedTask, taskList);
             } else if (this.commandType == CommandType.MARK) {
                 Task selectedTask = taskList.markTask(this.taskNumber);
-                Ui.printMessageForMarkTask(selectedTask);
+                return Ui.getMessageForMarkTask(selectedTask);
             } else { // commandType == UNMARK
                 Task selectedTask = taskList.unmarkTask(this.taskNumber);
-                Ui.printMessageForUnmarkTask(selectedTask);
+                return Ui.getMessageForUnmarkTask(selectedTask);
             }
         }
     }
@@ -180,13 +187,14 @@ public abstract class Command {
          * Creates a new deadline task and adds it to the task list.
          *
          * @param taskList The task list associated with this instance of Candice.
+         * @return A message reflecting that a deadline task was added to the task list.
          */
         @Override
-        public void resolve(TaskList taskList) {
+        public String resolve(TaskList taskList) {
             Task newDeadline = new TimedTask.Deadline(this.taskName, this.taskDate, this.taskTime);
 
             taskList.addTask(newDeadline);
-            Ui.printMessageForAddTask(newDeadline, taskList);
+            return Ui.getMessageForAddTask(newDeadline, taskList);
         }
     }
 
@@ -214,13 +222,14 @@ public abstract class Command {
          * Creates a new event and adds it to the task list.
          *
          * @param taskList The task list associated with this instance of Candice.
+         * @return A message reflecting that an event was added to the task list.
          */
         @Override
-        public void resolve(TaskList taskList) {
+        public String resolve(TaskList taskList) {
             Task newEvent = new TimedTask.Event(this.taskName, this.taskDate, this.taskTime, this.eventEndTime);
 
             taskList.addTask(newEvent);
-            Ui.printMessageForAddTask(newEvent, taskList);
+            return Ui.getMessageForAddTask(newEvent, taskList);
         }
     }
 }
