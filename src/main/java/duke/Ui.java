@@ -117,4 +117,15 @@ public class Ui {
         Duke.addToResponse(String.format("Tasks sorted by name in %s order\n", order));
         displayTasks();
     }
+
+    /**
+     * Displays the list of available commands
+     */
+    public static void displayCommands() {
+        Duke.addToResponse("Available commands:\n\n");
+        List<String> commands = Parser.getCommandList();
+        for (String command : commands) {
+            Duke.addToResponse(String.format("%s\n", command));
+        }
+    }
 }

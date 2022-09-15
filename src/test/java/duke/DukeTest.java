@@ -19,21 +19,24 @@ public class DukeTest {
         });
 
         Assertions.assertEquals(
-                "Failed to create todo: No task name given", noTaskNameException.getMessage());
+                "Failed to create todo: No task name given\nCommand format: todo [taskName]",
+                noTaskNameException.getMessage());
 
         DukeException invalidDateException = Assertions.assertThrows(DukeException.class, () -> {
             TaskList.addDeadline("test /by abc");
         });
 
         Assertions.assertEquals(
-                "Failed to create deadline: Invalid date given", invalidDateException.getMessage());
+                "Failed to create deadline: Invalid date given\nCommand format: deadline [taskName] /by [date]",
+                invalidDateException.getMessage());
 
         DukeException invalidArgumentsException = Assertions.assertThrows(DukeException.class, () -> {
             TaskList.addEvent("123456789/aabsdbhu");
         });
 
         Assertions.assertEquals(
-                "Failed to create event: Invalid number of arguments", invalidArgumentsException.getMessage());
+                "Failed to create event: Invalid number of arguments\nCommand format: event [taskName] /at [date]",
+                invalidArgumentsException.getMessage());
     }
 
     /**
