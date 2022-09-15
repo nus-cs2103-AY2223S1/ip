@@ -23,33 +23,10 @@ public class Ui {
      * @return a string of duke's welcome message.
      */
     public String showWelcome() {
-        sb = new StringBuilder();
-        sb.append("Hello! I'm Duke\nHow may I help you?\nlist - lists out your tasks\nbye - quit\n"
+        return "Hello! I'm Duke\nHow may I help you?\nlist - lists out your tasks\nbye - quit\n"
                 + "todo - todo <task>\ndeadline - deadline <task /by yyyy-mm-dd>\nevent - event <task /by yyyy-mm-dd>\n"
                 + "delete - delete <index>\nmark - mark <index>\nunmark - unmark <index>\nfind - find <task>\n"
-                + "undo - undo <function>");
-        System.out.println("Hello! I'm Duke\nHow may I help you?\nlist - lists out your tasks\nbye - quit\n"
-                + "todo - todo <task>\ndeadline - deadline <task /by yyyy-mm-dd>\nevent - event <task /by yyyy-mm-dd>\n"
-                + "delete - delete <index>\nmark - mark <index>\nunmark - unmark <index>\nfind - find <task>\n"
-                + "undo - undo <function>");
-        return sb.toString();
-    }
-
-    /**
-     * Reads user command.
-     *
-     * @return String of user command.
-     */
-    public String readCommand() {
-        String fullCommand = sc.nextLine();
-        return fullCommand;
-    }
-
-    /**
-     * Prints straight line.
-     */
-    public void showLine() {
-        System.out.println("____________________________________________________________");
+                + "undo - undo <function>";
     }
 
     /**
@@ -61,10 +38,8 @@ public class Ui {
     public String showTaskList(TaskList listOfTasks) {
         sb = new StringBuilder();
         sb.append("Here are the tasks in your list:\n");
-        for (int index = 0; index < listOfTasks.getSize(); index++) {
-            sb.append(index + 1 + ". " + listOfTasks.getTask(index).toString());
-            sb.append(System.lineSeparator());
-            System.out.println(index + 1 + ". " + listOfTasks.getTask(index).toString());
+        for (int index = 1; index <= listOfTasks.getSize(); index++) {
+            sb.append(String.format("%d. %s\n", index, listOfTasks.getTask(index - 1)));
         }
         return sb.toString();
     }
@@ -77,14 +52,9 @@ public class Ui {
      * @return a string of confirmation for tasks marked as done.
      */
     public String showMarkedTask(int taskIndex, TaskList listOfTasks) {
-        sb = new StringBuilder();
-        sb.append("Nice! I've marked this task as done:\n" + "["
+        return "Nice! I've marked this task as done:\n" + "["
                 + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
-                + listOfTasks.getTask(taskIndex).getDescription());
-        System.out.println("Nice! I've marked this task as done:\n" + "["
-                + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
-                + listOfTasks.getTask(taskIndex).getDescription());
-        return sb.toString();
+                + listOfTasks.getTask(taskIndex).getDescription();
     }
 
     /**
@@ -95,14 +65,9 @@ public class Ui {
      * @return a string of confirmation for tasks marked as not done.
      */
     public String showUnmarkedTask(int taskIndex, TaskList listOfTasks) {
-        sb = new StringBuilder();
-        sb.append("Ok, I've marked this task as not done yet:\n" + "["
+        return "Ok, I've marked this task as not done yet:\n" + "["
                 + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
-                + listOfTasks.getTask(taskIndex).getDescription());
-        System.out.println("Ok, I've marked this task as not done yet:\n" + "["
-                + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
-                + listOfTasks.getTask(taskIndex).getDescription());
-        return sb.toString();
+                + listOfTasks.getTask(taskIndex).getDescription();
     }
 
     /**
@@ -113,12 +78,8 @@ public class Ui {
      * @return a string of the Todo task added to list of tasks.
      */
     public String showToDoTask(Task toDoTask, TaskList listOfTasks) {
-        sb = new StringBuilder();
-        sb.append("Got it. I've added this task:\n" + toDoTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        System.out.println("Got it. I've added this task:\n" + toDoTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        return sb.toString();
+        return "Got it. I've added this task:\n" + toDoTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.";
     }
 
     /**
@@ -129,12 +90,8 @@ public class Ui {
      * @return a string of the Deadline task added to list of tasks.
      */
     public String showDeadlineTask(Task deadlineTask, TaskList listOfTasks) {
-        sb = new StringBuilder();
-        sb.append("Got it. I've added this task:\n" + deadlineTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        System.out.println("Got it. I've added this task:\n" + deadlineTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        return sb.toString();
+        return "Got it. I've added this task:\n" + deadlineTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.";
     }
 
     /**
@@ -145,12 +102,8 @@ public class Ui {
      * @return a string of the Event task added to list of tasks.
      */
     public String showEventTask(Task eventTask, TaskList listOfTasks) {
-        sb = new StringBuilder();
-        sb.append("Got it. I've added this task:\n" + eventTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        System.out.println("Got it. I've added this task:\n" + eventTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        return sb.toString();
+        return "Got it. I've added this task:\n" + eventTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.";
     }
 
     /**
@@ -161,12 +114,8 @@ public class Ui {
      * @return a string of the task deleted from the list of tasks.
      */
     public String showDeletedTask(Task deletedTask, TaskList listOfTasks) {
-        sb = new StringBuilder();
-        sb.append("Noted. I've removed this task:\n" + deletedTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        System.out.println("Noted. I've removed this task:\n" + deletedTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        return sb.toString();
+        return "Noted. I've removed this task:\n" + deletedTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.";
     }
 
     /**
@@ -178,10 +127,8 @@ public class Ui {
     public String showFindTask(TaskList matchingTasks) {
         sb = new StringBuilder();
         sb.append("Here are the matching tasks in your list:\n");
-        for (int index = 0; index < matchingTasks.getSize(); index++) {
-            sb.append(index + 1 + ". " + matchingTasks.getTask(index).toString());
-            sb.append(System.lineSeparator());
-            System.out.println(index + 1 + ". " + matchingTasks.getTask(index).toString());
+        for (int index = 1; index <= matchingTasks.getSize(); index++) {
+            sb.append(String.format("%d. %s\n", index, matchingTasks.getTask(index - 1)));
         }
         return sb.toString();
     }
@@ -194,12 +141,8 @@ public class Ui {
      * @return a string of the task added to list of tasks.
      */
     public String showUndoDeletedTask(Task undoTask, TaskList listOfTasks) {
-        sb = new StringBuilder();
-        sb.append("Got it. I've added back this task:\n" + undoTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        System.out.println("Got it. I've added back this task:\n" + undoTask + "\nNow you have "
-                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-        return sb.toString();
+        return "Got it. I've added back this task:\n" + undoTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.";
     }
 
     /**
@@ -209,32 +152,20 @@ public class Ui {
      * @return a string of error message.
      */
     public String showError(String errorMessage) {
-        sb = new StringBuilder();
-        sb.append(errorMessage);
-        sb.append(System.lineSeparator());
-        System.out.println(errorMessage);
-        return sb.toString();
+        return errorMessage;
     }
 
     /**
      * Prints error in loading data message to console.
      */
     public String showLoadingError() {
-        sb = new StringBuilder();
-        sb.append("Unable to load data");
-        sb.append(System.lineSeparator());
-        System.out.println("Unable to load data");
-        return sb.toString();
+        return "Unable to load data\n";
     }
 
     /**
      * Prints bye message to console.
      */
     public String showBye() {
-        sb = new StringBuilder();
-        sb.append("Bye. Hope to see you again soon!");
-        sb.append(System.lineSeparator());
-        System.out.println("Bye. Hope to see you again soon!");
-        return sb.toString();
+        return "Bye. Hope to see you again soon!\n";
     }
 }

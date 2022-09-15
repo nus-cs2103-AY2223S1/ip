@@ -30,16 +30,6 @@ public class Duke {
     }
 
     /**
-     * Driver code that start Duke.
-     *
-     * @param args Accepts any String arguments.
-     */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
-    }
-
-    /**
      * Gets string of welcome message from Duke.
      *
      * @return string of welcome message from Duke.
@@ -61,26 +51,6 @@ public class Duke {
             return Parser.parse(input, tasks, ui, storage, undo);
         } catch (DukeException e) {
             return ui.showError(e.getMessage());
-        }
-    }
-
-    /**
-     * Loop that is called to receive and process user input.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Parser.parse(fullCommand, tasks, ui, storage, undo);
-                isExit = Parser.getIsExit();
-            } catch (IOException | DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
         }
     }
 }
