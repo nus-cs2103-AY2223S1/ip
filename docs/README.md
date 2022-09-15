@@ -1,4 +1,7 @@
-# User Guide
+# Mew User Guide
+
+## Introduction
+Mew is a task manager chatbot application that helps you manage your To-Dos, Events, and Deadlines.
 
 ## General Command Format
 - Words in `UPPER_CASE` are the parameters to be supplied by the user, e.g. in `todo TODO_DESCRIPTION`, `TODO_DESCRIPTION` is a parameter that can be used as `todo Do laundry`.
