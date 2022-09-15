@@ -34,6 +34,8 @@ Example of usage:
 `todo Hello World`
 
 Expected outcome:
+<br>
+
 ![image](https://user-images.githubusercontent.com/77394751/190419190-82958682-ca76-43ab-9d23-7465063be044.png)
 
 
