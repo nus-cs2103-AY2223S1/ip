@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class Storage {
 
     private static final String CSV_LOCATION = "SavedData/Save.txt";
+    private static final String DIRECTORY_NAME = "SavedData";
 
     /**
      * Takes in a list of items and saves each item
@@ -33,6 +34,7 @@ public class Storage {
 
     public static void save(List<Task> saveItems) {
         try {
+            File directory = new File(DIRECTORY_NAME);
             FileWriter csvWriter = new FileWriter(CSV_LOCATION, false);
 
             for (Task t: saveItems) {
@@ -62,6 +64,8 @@ public class Storage {
         //1) Try to create file and directory, if it does not already exist
         try {
             //Attempt to make CSV in appropriate location
+            File directory = new File(DIRECTORY_NAME);
+            directory.mkdir();
             File csvFile = new File(CSV_LOCATION);
             boolean isCreatedSuccessfully = csvFile.createNewFile();
             if (isCreatedSuccessfully) {
@@ -89,7 +93,8 @@ public class Storage {
                 } else if (taskType.equals("D")) {
                     readTasksList.add(Deadline.readTask(readValues));
                 } else {
-                    Exception invalidReadTask = new InvalidReadTaskException("Failed to read task at index: " + taskIndex);
+                    Exception invalidReadTask = new InvalidReadTaskException("Failed to read task at index: "
+                            + taskIndex);
                     System.out.println(invalidReadTask);
                 }
                 taskIndex += 1;

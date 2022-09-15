@@ -1,17 +1,15 @@
 package duke.main;
 
-import java.util.Scanner;
-
 import duke.DialogueBox;
 import duke.parser.Parser;
 import duke.save.Storage;
 import duke.TaskList;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-
 import javafx.scene.image.Image;
 
 /**
@@ -33,7 +31,9 @@ public class Duke {
 
     private static TaskList tasks;
 
-
+    public Duke() {
+        tasks = Storage.load();
+    }
 
     private void handleUserInput() {
         dialogContainer.getChildren().addAll(
@@ -52,9 +52,7 @@ public class Duke {
     public String getResponse(String input) {
         return Parser.parseData(input, tasks);
     }
-    public Duke() {
-        tasks = Storage.load();
-    }
+
 
 
 
