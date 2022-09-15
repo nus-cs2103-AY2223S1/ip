@@ -79,9 +79,9 @@ public class Parser {
             case "bye":
             case "exit":
             case "quit":
-                return ui.printQuitMessage();
+                return ui.quit();
             case "list":
-                return ui.printOutAllTasks(taskList);
+                return ui.listAllTasks(taskList);
             default:
                 throw invalidCommandException;
             }
@@ -104,7 +104,7 @@ public class Parser {
             case "mark":
                 Task taskToMark = getTaskToEdit(commandBody, commandBodyWordCount, taskList);
                 taskToMark.mark();
-                return ui.printMarkTaskMessage(taskToMark);
+                return ui.markTask(taskToMark);
             case "unmark":
                 Task taskToUnmark = getTaskToEdit(commandBody, commandBodyWordCount, taskList);
                 taskToUnmark.unmark();

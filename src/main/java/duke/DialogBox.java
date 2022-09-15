@@ -55,6 +55,12 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns DialogBox of user on left hand side of program
+     * @param text text input by user
+     * @param img image icon of user
+     * @return Dialogbox with user input and uesr icon
+     */
     public static DialogBox getUserDialog(String text, Image img) {
          var db = new DialogBox(text, img);
          db.displayPicture.setClip(new Circle(50, 50, 43));
@@ -63,6 +69,12 @@ public class DialogBox extends HBox {
 //        return new DialogBox(text, img);
     }
 
+    /**
+     * Returns DialogBox of Duke
+     * @param text Response of Duke
+     * @param img Duke icon image
+     * @return DialogBox of Duke containing its response and its icon image
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.displayPicture.setClip(new Circle(55, 50, 43));
