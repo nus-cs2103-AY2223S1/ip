@@ -26,19 +26,19 @@ public class DeadlineCommand extends TaskCommand {
        String dueDate = fullCommand.substring(index + 4);
        TaskList taskList = new TaskList(listOfTasks);
           try {
-              return addingTaskWithDateFormat(name, dueDate, taskList);
+              return addTaskWithDateFormat(name, dueDate, taskList);
         } catch (DateTimeException e) {
-              return addingTaskWithNoDateFormat(name, dueDate, taskList);
+              return addTaskWithNoDateFormat(name, dueDate, taskList);
         }
     }
 
-    String addingTaskWithDateFormat(String name, String dueDate,TaskList taskList) {
+    String addTaskWithDateFormat(String name, String dueDate,TaskList taskList) {
         LocalDate date = LocalDate.parse(dueDate);
         Task t = new Deadline(name,false, date);
         return taskList.addToList(t);
     }
 
-    String addingTaskWithNoDateFormat(String name, String dueDate, TaskList taskList) {
+    String addTaskWithNoDateFormat(String name, String dueDate, TaskList taskList) {
         Task t = new Deadline(name,false, dueDate);
         return taskList.addToList(t);
     }

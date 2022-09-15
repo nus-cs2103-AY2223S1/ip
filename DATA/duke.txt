@@ -1,17 +1,13 @@
 [T][] 1
-[T][] 2
+[T][X] 2
 [T][] 3
 [T][] test
 [D][] project 1 (by: Aug 20 2022)
-[E][] proj 3 (at: 2-4pm)
 [T][] testing 1
 [T][] 1
-[D][] 2 (by: 20-08-2002)
+[D][X] 2 (by: 20-08-2002)
 [T][] 3
 [D][] ss (by: Jul 20 2022)
-[E][] aa (at: 2-4pm)
+[E][X] aa (at: 2-4pm)
 [T][] 1
-[T][] 2
-[D][] proj (by: Aug 24 2022)
-[T][] 3
-[T][] 3
+[T][X] 2

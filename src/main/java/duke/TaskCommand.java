@@ -15,7 +15,6 @@ public abstract class TaskCommand extends Command {
         } catch (DukeException e) {
             return e.toString();
         }
-
     }
 
     abstract void handleEmptyTask(String fullCommand) throws DukeException;

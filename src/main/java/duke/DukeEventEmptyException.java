@@ -5,7 +5,7 @@ public class DukeEventEmptyException extends DukeException {
         super();
     }
     public String toString() {
-         Ui ui = new Ui();
-         return ui.getEmptyEventExceptionUi();
+        Ui ui = new Ui();
+        return ui.getEmptyEventExceptionUi();
     }
 }

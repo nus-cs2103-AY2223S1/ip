@@ -1,16 +1,9 @@
 package duke;
-import com.sun.javafx.application.PlatformImpl;
 import javafx.application.Application;
-
-import java.awt.*;
-import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -18,12 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import static javafx.application.Platform.exit;
 
 
 public class Duke extends Application {

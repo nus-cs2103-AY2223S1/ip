@@ -27,7 +27,7 @@ public class Task {
 
     /**
      * Marks task as done.
-     *  @return A string that would be outputted to the screen when marked task.
+     *  @return A string that would be outputted to the screen when user marks a task.
      */
 
     public String mark() {
@@ -38,7 +38,7 @@ public class Task {
 
     /**
      * Marks task as undone.
-     * @return A string that would be outputted to the screen when unmarked task.
+     * @return A string that would be outputted to the screen when user marks a task.
      */
     public String unmark() {
         this.isDone = false;
@@ -53,5 +53,4 @@ public class Task {
     public String getStatus() {
         return this.getStatusIcon() + "" + this.name;
     }
-
 }
