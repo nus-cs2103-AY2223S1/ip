@@ -1,13 +1,13 @@
 # [Duke](https://github.com/JonathanWiguna/ip)
 ***
 
-#User Guide
+# User Guide
 Duke is a Command Line Application to help you manage your tasks better.
 - Quick Start Guide
 - Features
 ***
 
-##Quick Start Guide
+## Quick Start Guide
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `duke.jar` from [here](https://github.com/JonathanWiguna/ip/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for your Duke.
