@@ -30,6 +30,7 @@ public class TaskListTest {
 
     @Test
     public void constructorTest2() {
+        dummyList1.clear();
         TaskList dummyTasks = new TaskList(dummyList1);
         String actualOutput = dummyUi.printList(dummyTasks.getList());
         String expectedOutput = dummyUi.printList(dummyList1);
@@ -38,6 +39,7 @@ public class TaskListTest {
 
     @Test
     public void addTaskTest() {
+        dummyList1.clear();
         Task dummyTask = new Deadline("finish matlab code", "2022-10-12");
         addDummyTasks(dummyList1);
         List<Task> dummyList2 = new ArrayList<Task>();
@@ -51,6 +53,7 @@ public class TaskListTest {
 
     @Test
     public void findTaskWithKeywordTest() {
+        dummyList1.clear();
         addDummyTasks(dummyList1);
         TaskList dummyTasks = new TaskList(dummyList1);
         String actualOutput = dummyUi.printMatchingList(dummyTasks.findTaskWithThisKeyword("violin"));
@@ -63,6 +66,7 @@ public class TaskListTest {
 
     @Test
     public void getSortedDeadlinesListTest() {
+        dummyList1.clear();
         addDummyTasks(dummyList1);
         TaskList dummyTasks = new TaskList(dummyList1);
         String actualOutput = dummyUi.printSortedDeadlineList(dummyTasks.getSortedDeadlinesList());
