@@ -12,7 +12,7 @@ import ui.Ui;
  * Creates a new Todo.
  */
 public class TodoCommand extends Command {
-    public static final String SYNTAX = "todo TASK_NAME";
+    public static final String SYNTAX = "todo DESCRIPTION";
 
     private final String[] inputStrings;
 

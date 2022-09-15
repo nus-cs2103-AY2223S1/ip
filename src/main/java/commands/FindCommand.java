@@ -10,7 +10,7 @@ import ui.Ui;
  * Finds all tasks that have a matching description field.
  */
 public class FindCommand extends Command {
-    public static final String SYNTAX = "find TASK_NAME";
+    public static final String SYNTAX = "find DESCRIPTION";
 
     private final String[] inputStrings;
 

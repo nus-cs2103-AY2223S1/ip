@@ -18,7 +18,7 @@ import ui.Ui;
  * Creates a new deadline.
  */
 public class DeadlineCommand extends Command {
-    public static final String SYNTAX = "deadline TASK_NAME /by DEADLINE";
+    public static final String SYNTAX = "deadline DESCRIPTION /by DEADLINE";
 
     private final String[] inputStrings;
 

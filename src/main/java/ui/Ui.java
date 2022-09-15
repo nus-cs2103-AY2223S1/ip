@@ -128,7 +128,7 @@ public class Ui {
      * @return The formatted message.
      */
     public String showMatchingTasks(TaskList tasks) {
-        return "Here are the matching tasks in your list:"
+        return "Here are the matching tasks in your list:\n"
                 + this.showTasks(tasks);
     }
 

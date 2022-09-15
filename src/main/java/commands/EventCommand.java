@@ -18,7 +18,7 @@ import ui.Ui;
  * Creates a new event.
  */
 public class EventCommand extends Command {
-    public static final String SYNTAX = "event TASK_NAME /at DEADLINE";
+    public static final String SYNTAX = "event DESCRIPTION /at TIMING";
 
     private final String[] inputStrings;
 

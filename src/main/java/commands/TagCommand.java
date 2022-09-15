@@ -11,7 +11,7 @@ import ui.Ui;
  * Tags a task with a some string.
  */
 public class TagCommand extends Command {
-    public static final String SYNTAX = "tag TAG_NAME TASK_NUMBER";
+    public static final String SYNTAX = "tag DESCRIPTION TASK_NUMBER";
 
     private final String[] inputStrings;
 
