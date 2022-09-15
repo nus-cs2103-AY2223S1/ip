@@ -34,6 +34,6 @@ public class ToDos extends Task {
      */
     @Override
     public String toSaveString() {
-        return "todo " + super.toSaveString();
+        return "todo," + super.toSaveString();
     }
 }

@@ -153,9 +153,9 @@ public class Parser {
     }
 
     private static Command parseClient(String info) throws DukeException {
-        String[] clientInformationList = info.split(" ", 3);
+        String[] clientInformationList = info.split(",", 3);
         if (clientInformationList.length != 3) { //Guard clause
-            throw new DukeException("client needs to have a name, phone number and address");
+            throw new DukeException("To add clients, use format client name,phone number,address");
         }
         String name = clientInformationList[0];
         int number = Integer.parseInt(clientInformationList[1]);
@@ -180,8 +180,8 @@ public class Parser {
      * @throws DukeException If the file format is incorrect.
      */
     public static Command parseSavedTaskList(String input) throws DukeException {
-        //Saved input is in the format: Instruction integer(indicating mark) task etc.
-        String[] inputSplit = input.split(" ", 3);
+        //Saved input is in the format: Instruction|integer(indicating mark)|task etc.
+        String[] inputSplit = input.split(",", 3);
         String instruction = inputSplit[0];
         boolean done = inputSplit[1].equals("1");
         String task = inputSplit[2];
@@ -189,12 +189,12 @@ public class Parser {
         case todo:
             return new AddSavedTaskCommand(task, done);
         case deadline:
-            String[] taskAndBy = task.split(" ", 2);
+            String[] taskAndBy = task.split(",", 2);
             String deadlineTask = taskAndBy[0];
             String deadlineTiming = taskAndBy[1];
             return new AddSavedTaskCommand(deadlineTask, Instructions.deadline, deadlineTiming, done);
         case event:
-            String[] taskAndAt = task.split(" ", 2);
+            String[] taskAndAt = task.split(",", 2);
             String eventTask = taskAndAt[0];
             String eventTiming = taskAndAt[1];
             return new AddSavedTaskCommand(eventTask, Instructions.event, eventTiming, done);
@@ -211,7 +211,7 @@ public class Parser {
      * @throws DukeException if client list saved file is in wrong format
      */
     public static Command parseSavedClientList(String input) throws DukeException {
-        String[] inputSplit = input.split(" ", 3);
+        String[] inputSplit = input.split(",", 3);
         String name = inputSplit[0];
         int phoneNumber;
         try {

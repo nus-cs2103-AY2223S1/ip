@@ -27,7 +27,6 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, ClientList clientList) {
-        System.exit(0);
         return CommandOutputs.showGoodbye();
     }
 }

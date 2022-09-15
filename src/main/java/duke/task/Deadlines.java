@@ -45,7 +45,7 @@ public class Deadlines extends Task {
     @Override
     public String toSaveString() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-        return "deadline " + super.toSaveString() + " " + deadline.format(format);
+        return "deadline," + super.toSaveString() + "," + deadline.format(format);
     }
 
     /**

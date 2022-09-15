@@ -64,7 +64,7 @@ public abstract class Task {
      */
     public String toSaveString() {
         int d = isDone() ? 1 : 0;
-        return String.format("%d %s", d, task);
+        return String.format("%d,%s", d, task);
     }
 
     /**

@@ -43,6 +43,6 @@ public class Client {
      * @return String representation of client in save file format.
      */
     public String toSaveString() {
-        return name + " " + phoneNumber + " " + address;
+        return name + "," + phoneNumber + "," + address;
     }
 }

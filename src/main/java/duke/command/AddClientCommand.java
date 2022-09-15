@@ -37,7 +37,7 @@ public class AddClientCommand extends Command {
     @Override
     public String execute(TaskList taskList, ClientList clientList) {
         clientList.add(client);
-        SaveClientListCommand.of();
+        SaveClientListCommand.of().execute(taskList, clientList);
         return CommandOutputs.showNewClient(client, clientList);
     }
 }
