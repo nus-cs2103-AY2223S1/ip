@@ -1,12 +1,6 @@
-[E][ ] project meeting  (at: Mon 2-4pm)
-[T][X] go meet rueben
-[T][X] go back to hall
-[T][ ] rueben
-[D][ ] go beach  (by: Sunday)
-[E][ ] go to drink water  (at: Tuesday 2-4pm)
-[T][ ] use computer
-[T][ ] go where
-[D][ ] drink coke  (by: Sunday)
-[T][ ] bye bye
-[T][ ] go where
-[T][ ] read book
+1.[T][ ] go school
+2.[T][X] go library
+3.[T][X] go CS2107
+4.[D][ ] finish homework  (by: 2.00pm)
+5.[E][X] fhd  (at: 12-3pm)
+6.[T][ ] go back loser

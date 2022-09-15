@@ -39,7 +39,8 @@ public class TaskList {
     public String addTask(String userInput) {
         Task t = new Task(userInput);
         storeTasks.add(t);
-        storage.appendToFile(t.description);
+//        storage.appendToFile(t.description);
+        storage.writeToFile(storeTasks);
         return "added: " + t.description;
     }
 
@@ -51,8 +52,9 @@ public class TaskList {
         String printStatement = "";
         printStatement += "Noted. I've removed this task: \n";
         printStatement += "\t" + storeTasks.get(taskIndex).toString() + "\n";
-        storage.removeLineInText(storeTasks.get(taskIndex).toString());
+//        storage.removeLineInText(storeTasks.get(taskIndex).toString());
         storeTasks.remove(taskIndex);
+        storage.writeToFile(storeTasks);
         printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
         return printStatement;
     }
@@ -99,7 +101,8 @@ public class TaskList {
         String oldText = storeTasks.get(taskIndex).toString();
         printStatement = storeTasks.get(taskIndex).markAsDone();
         String newText = storeTasks.get(taskIndex).toString();
-        storage.editTextInFile(newText, oldText);
+//        storage.editTextInFile(newText, oldText);
+        storage.writeToFile(storeTasks);
         return printStatement;
     }
 
@@ -112,7 +115,8 @@ public class TaskList {
         String oldText = storeTasks.get(taskIndex).toString();
         printStatement = storeTasks.get(taskIndex).markAsNotDone();
         String newText = storeTasks.get(taskIndex).toString();
-        storage.editTextInFile(newText, oldText);
+//        storage.editTextInFile(newText, oldText);
+        storage.writeToFile(storeTasks);
         return printStatement;
     }
 
@@ -134,7 +138,8 @@ public class TaskList {
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + todo.toString() + "\n";
         printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
-        storage.appendToFile(todo.toString());
+//        storage.appendToFile(todo.toString());
+        storage.writeToFile(storeTasks);
         return printStatement;
 
     }
@@ -155,7 +160,8 @@ public class TaskList {
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + deadline.toString() + "\n";
         printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
-        storage.appendToFile(deadline.toString());
+//        storage.appendToFile(deadline.toString());
+        storage.writeToFile(storeTasks);
         return printStatement;
     }
 
@@ -174,7 +180,8 @@ public class TaskList {
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + event.toString() + "\n";
         printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
-        storage.appendToFile(event.toString());
+//        storage.appendToFile(event.toString());
+        storage.writeToFile(storeTasks);
         return printStatement;
     }
 
