@@ -24,7 +24,6 @@ import duke.command.UndoCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.CompileException;
 import duke.exception.DukeException;
-import duke.exception.DukeRuntimeException;
 import duke.exception.InvalidArgumentException;
 import duke.exception.NoArgumentException;
 import duke.exception.ReadAttributeException;
@@ -413,7 +412,8 @@ public class Parser {
         } else if (i == 0) {
             return false;
         } else {
-            throw new ReadAttributeException("Parser", String.valueOf(i), i + " is not defined when converting int to bool.");
+            throw new ReadAttributeException("Parser", String.valueOf(i),
+                    i + " is not defined when converting int to bool.");
         }
     }
 
