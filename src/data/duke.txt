@@ -1,3 +1,4 @@
+D | 0 | return book | 2 DECEMBER 2019 18:00
 E | 0 | Anime convention | 27 NOVEMBER 2022 08:00
 T | 1 | borrow book
 E | 0 | CS2103 Finals | 25 NOVEMBER 2022 09:00
