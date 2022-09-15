@@ -29,7 +29,7 @@ public class DukeTest {
                 "Failed to create deadline: Invalid date given", invalidDateException.getMessage());
 
         DukeException invalidArgumentsException = Assertions.assertThrows(DukeException.class, () -> {
-            TaskList.addEvent("123456789/at bcdefg");
+            TaskList.addEvent("123456789/aabsdbhu");
         });
 
         Assertions.assertEquals(
@@ -75,7 +75,7 @@ public class DukeTest {
 
         Assertions.assertEquals("Command not recognised", blankCommandException.getMessage());
 
-        Assertions.assertDoesNotThrow(() -> Parser.parseInput("deadline test1/by /by 2020-01-01"));
-        Assertions.assertDoesNotThrow(() -> Parser.parseInput("event test2/at asdf /at 2020-01-01"));
+        Assertions.assertDoesNotThrow(() -> Parser.parseInput("deadline test1 /by 2020-01-01"));
+        Assertions.assertDoesNotThrow(() -> Parser.parseInput("event test2/at2020-01-01"));
     }
 }

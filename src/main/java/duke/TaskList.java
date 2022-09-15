@@ -109,7 +109,7 @@ public class TaskList {
     public static Task addEvent(String args) throws DukeException {
         String[] argsArr = args.split("/at", 2);
         if (argsArr.length < 2) {
-            throw new DukeException("Failed to create event: Invalid number of arguments\n");
+            throw new DukeException("Failed to create event: Invalid number of arguments");
         }
 
         String name = argsArr[0].strip();
