@@ -1,6 +1,4 @@
-package Duke.Commands;
-
-import Duke.Tasks.TaskList;
+package duke.commands;
 
 /**
  * Class that denotes the command of offering help and hints.

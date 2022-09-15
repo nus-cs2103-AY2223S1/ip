@@ -1,7 +1,7 @@
-package Duke.Commands;
+package duke.commands;
 
-import Duke.Tasks.Task;
-import Duke.Tasks.TaskList;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
 
 /**
  * Class that denotes the command of adding a task to current task list.

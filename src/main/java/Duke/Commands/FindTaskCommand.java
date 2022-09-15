@@ -1,7 +1,7 @@
-package Duke.Commands;
+package duke.commands;
 
-import Duke.Exceptions.DukeException;
-import Duke.Tasks.TaskList;
+import duke.exceptions.DukeException;
+import duke.tasks.TaskList;
 
 public class FindTaskCommand extends UserCommand{
     private String keyword;

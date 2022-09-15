@@ -1,10 +1,5 @@
-package Duke;
+package duke;
 
-import Duke.Exceptions.DukeException;
-import Duke.Parser.GUIParser;
-import Duke.Tasks.TaskList;
-import Duke.Tasks.ToDo;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package Duke.Commands;
+package duke.commands;
 
-import Duke.Tasks.TaskList;
+import duke.tasks.TaskList;
 
 /**
  * Class that denotes the command of showing all tasks' information.

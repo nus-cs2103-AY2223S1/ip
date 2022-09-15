@@ -1,8 +1,8 @@
-package Duke.Commands;
+package duke.commands;
 
-import Duke.Exceptions.TaskIndexException;
-import Duke.Tasks.TaskList;
-import Duke.Tasks.Task;
+import duke.exceptions.TaskIndexException;
+import duke.tasks.TaskList;
+import duke.tasks.Task;
 
 /**
  * Class that denotes the command of marking a task as done.

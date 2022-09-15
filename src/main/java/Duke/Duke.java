@@ -1,14 +1,14 @@
-package Duke;
+package duke;
 
-import Duke.Commands.UserCommand;
-import Duke.Exceptions.DukeException;
-import Duke.Parser.GUIParser;
-import Duke.Storage.FileReader;
-import Duke.Storage.FileSaver;
-import Duke.Tasks.TaskList;
+import duke.commands.UserCommand;
+import duke.exceptions.DukeException;
+import duke.parser.GUIParser;
+import duke.storage.FileReader;
+import duke.storage.FileSaver;
+import duke.tasks.TaskList;
 
-import Duke.UI.GUIUi;
-import Duke.UserServer.ServerCLI;
+import duke.ui.GUIUi;
+import duke.server.ServerCLI;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +19,7 @@ import java.nio.file.Paths;
  */
 public class Duke {
     private TaskList tasks;
-    private final String Name = "Duke";
+    private final String Name = "duke";
     private GUIUi GUIUi = new GUIUi();
     private GUIParser parser = new GUIParser();
 
@@ -88,7 +88,7 @@ public class Duke {
     }
 
     /**
-     * Main class.
+     * duke.Main class.
      * Sets a CLI server to handle input.
      * @param args
      * @throws IOException Exception may occur during this session.

@@ -1,8 +1,8 @@
-package Duke.Commands;
+package duke.commands;
 
-import Duke.Exceptions.TaskIndexException;
-import Duke.Tasks.Task;
-import Duke.Tasks.TaskList;
+import duke.exceptions.TaskIndexException;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
 
 /**
  * Class that denotes the command of deleting a task.

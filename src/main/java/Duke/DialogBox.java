@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.IOException;
 import java.util.Collections;
 
@@ -55,7 +57,7 @@ public class DialogBox extends HBox {
         DialogBox dialog = new DialogBox(text, img);
         dialog.setStyle("-fx-background-color: #FFFFFF;");
         return dialog;
-       // return new DialogBox(text, img);
+       // return new duke.DialogBox(text, img);
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
@@ -63,7 +65,7 @@ public class DialogBox extends HBox {
         db.flip();
         db.setStyle("-fx-background-color: #FFFFFF;");
         return db;
-//        var db = new DialogBox(text, img);
+//        var db = new duke.DialogBox(text, img);
 //        db.flip();
 //        return db;
     }
