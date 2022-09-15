@@ -3,14 +3,8 @@ package chacha;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import chacha.commands.AddCommand;
-import chacha.commands.Command;
-import chacha.commands.DeleteCommand;
-import chacha.commands.ExitCommand;
-import chacha.commands.FindCommand;
-import chacha.commands.ListCommand;
-import chacha.commands.MarkCommand;
-import chacha.commands.UnmarkCommand;
+
+import chacha.commands.*;
 import chacha.tasks.Deadline;
 import chacha.tasks.Event;
 import chacha.tasks.Todo;
@@ -117,6 +111,14 @@ public class Parser {
                     return new FindCommand(keyword);
                 } else {
                     throw new ChachaException("Please enter valid keyword.");
+                }
+            case "sort":
+
+                if (inputArray.length == 1) {
+
+                    return new SortCommand();
+                } else {
+                    throw new ChachaException("Sorry, I don't recognise this command.");
                 }
             default:
                 throw new ChachaException("Invalid input.");

@@ -46,10 +46,14 @@ public class Chacha {
      * Runs an instantiated Chacha.
      */
     public void run() {
+        System.out.println("run");
         while (!isExit) {
             try {
+                System.out.println("parsing");
                 String fullCommand = ui.readInput();
+
                 Command command = Parser.parse(fullCommand);
+
                 command.execute(taskList, ui, storage);
                 isExit = command.isExit();
             } catch (ChachaException e) {
@@ -71,9 +75,12 @@ public class Chacha {
      */
     public String getResponse(String input) {
         try {
+
             Command c = Parser.parse(input);
+
             c.execute(taskList, ui, storage);
         } catch (ChachaException e) {
+
             ui.printError(e.getMessage());
         }
         return ui.buildResponse();

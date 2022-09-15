@@ -9,7 +9,7 @@ public class Task {
     private String description;
     private boolean isDone;
     private String type;
-    private LocalDateTime date;
+    private LocalDateTime date = LocalDateTime.MAX;
 
     /**
      * Constructor for a task.

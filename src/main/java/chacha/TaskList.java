@@ -1,6 +1,8 @@
 package chacha;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import chacha.tasks.Task;
 
@@ -81,6 +83,10 @@ public class TaskList {
                 }
             }
             return newTasks;
+        }
+
+        public void sort() {
+            Collections.sort(tasks, new DateComparator());
         }
 
 
