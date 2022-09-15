@@ -27,7 +27,7 @@ import duke.chatbot.taskmanager.task.ToDoTask;
  * TaskManager class manages a list of task and provide functions to manipulate the list.
  */
 public class TaskManager {
-    private static final String FILE_PATH = "tasklist.txt";
+    private static final String FILE_PATH = "duke_save.txt";
     private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";
     private static final String ATTRIBUTE_SEPARATOR = "<>";
 

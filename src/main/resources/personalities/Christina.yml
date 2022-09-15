@@ -1,11 +1,15 @@
 greet:
   HEAD:
     - "Greetings, "
+    - "Lab Member 04 "
   TAIL:
     - " at your service.\nHow may I help you today?\n"
+    - " is here to help.\nWhat would you like to do today?\n"
 bye:
   HEAD:
     - "Goodbye! It was nice seeing you.\n"
+    - "See you later!\n"
+    - "Lab Member 04 signing off. El Psy Kongroo...\n"
   TAIL:
     - "Press enter to exit!\n"
 
@@ -16,71 +20,89 @@ list_task:
     - ""
 list_task_empty:
   HEAD:
-    - "You have no tasks in your list.\n"
+    - "You have no tasks in your list. Yay! :D\n"
+    - "There is nothing in your list right now. Do you want me to add some?\n"
   TAIL:
     - ""
 
 add_task:
   HEAD:
-    - "> Added: "
+    - "Roger that, Added: "
+    - "I have added the following task:\n"
   TAIL:
     - "\n"
 
 mark_task_success:
   HEAD:
     - "I've marked this task as done. Good Job!\n"
+    - "Looks like your completed a task. Well done!\n"
+    - "You finished a task. YAY!\n"
   TAIL:
     - ""
 mark_task_fail:
   HEAD:
     - "The task is already marked you dummy.\n"
+    - "You have already completed this task dummy...\n"
   TAIL:
     - ""
 unmark_task_success:
   HEAD:
     - "The task has been unmarked.\n"
+    - "I have unmarked the task.\n"
   TAIL:
     - ""
 unmark_task_fail:
   HEAD:
     - "The task is still not done you idiot.\n"
+    - "This task is not even completed -.-\n"
   TAIL:
     - ""
 
 delete_task:
   HEAD:
     - "The following item has been removed.\n"
+    - "I have deleted the following task.\n"
   BODY:
     - "You have "
+    - "Currently there are "
   TAIL:
     - " item(s) remaining.\n"
+    - " task(s) left.\n"
 
 find_task:
   HEAD:
     - "I have the matching tasks displayed below:\n"
+    - "I found some matching tasks:\n"
   TAIL:
     - ""
 find_task_empty:
   HEAD:
     - "You have no tasks in your list with the keyword \""
+    - "Sorry, I don't seem to have any tasks with the keyword \""
   TAIL:
     - "\".\n"
+    - "\" D:\n"
 
 
 update_task:
   HEAD:
-    - "The following item has been updated.\n"
+    - "The following item has been updated:\n"
+    - "I have updated the following task:\n"
+    - "Roger that, the following task has been updated:\n"
   TAIL:
     - "\n"
 
 EMPTY_COMMAND_EXCEPTION:
   HEAD:
     - "I don't know what you want if you don't tell me :("
+    - "Looks like you said nothing...\nMaybe you can try the command \"list\"?"
+    - "Did the cat get your tongue?"
   TAIL:
     - ""
 INVALID_COMMAND_EXCEPTION:
   HEAD:
-    - "Sorry, I don't understand what you mean :("
+    - "Sorry, I don't understand what you mean D:"
+    - "I seem to be unable to perform this action :("
   TAIL:
     - ""
 INVALID_ARGUMENTS_EXCEPTION:
@@ -96,6 +118,7 @@ EMPTY_DATE_FORMAT_EXCEPTION:
 EMPTY_TASK_EXCEPTION:
   HEAD:
     - "You cannot have an empty Task!"
+    - "You need to give me the task name..."
   TAIL:
     - ""
 INVALID_DEADLINE_EXCEPTION:
@@ -111,11 +134,13 @@ INVALID_EVENT_EXCEPTION:
 INVALID_INDEX_EXCEPTION:
   HEAD:
     - "You need to put a number after your command!\n"
+    - "I need a number after the command!\n"
   TAIL:
     - ""
 NO_SUCH_INDEX_EXCEPTION:
   HEAD:
     - "There is no such task!!\n"
+    - "This task does not exist!!\n"
   TAIL:
     - ""
 
