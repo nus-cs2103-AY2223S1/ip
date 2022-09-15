@@ -37,6 +37,16 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
+     * Our lovely Duke gives a sweet intro
+     */
+    public void sayHi() {
+        String salutation = "Hello! I'm Duke, your friendly chatbot!\n"
+                + "What can I do for you? :D\n";
+
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(salutation, dukeImage));
+    }
+    /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
