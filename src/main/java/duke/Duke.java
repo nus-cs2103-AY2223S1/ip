@@ -137,8 +137,12 @@ public class Duke  {
                 break;
 
             default:
-                response += tasks.printUpcomingTasks();
-                storage.save(tasks);
+                if (tasks.getTasks().size() != 0) {
+                    response += tasks.printUpcomingTasks();
+                    storage.save(tasks);
+                } else {
+                    throw new DukeException("There is currently no tasks!");
+                }
             }
             return response;
         } catch (DukeException e) {
