@@ -38,7 +38,8 @@ Example of usage:
 Expected outcome:
 <br>
 
-![image](https://user-images.githubusercontent.com/77394751/190419190-82958682-ca76-43ab-9d23-7465063be044.png)
+![image](https://user-images.githubusercontent.com/77394751/190422495-942ac3d9-8e1b-4ac3-abf0-01ef3dfaeabd.png)
+
 
 ### Add a Event Task - `event`
 Add an Event task into the list.
@@ -55,7 +56,7 @@ Example of usage:
 Expected outcome:
 <br>
 
-![image](https://user-images.githubusercontent.com/77394751/190421015-30f33487-afc9-44cd-985c-1569d9537a80.png)
+![image](https://user-images.githubusercontent.com/77394751/190422564-49a79f42-f946-4e69-bcde-ac7f005a87cd.png)
 
 ### Add a Deadline Task - `deadline`
 Add an Event task into the list.
@@ -72,7 +73,7 @@ Example of usage:
 Expected outcome:
 <br>
 
-![image](https://user-images.githubusercontent.com/77394751/190421418-6052a39c-1957-4ea8-aacc-6295a14edc4f.png)
+![image](https://user-images.githubusercontent.com/77394751/190422703-3d756675-b47d-4702-ad0a-fe714998af23.png)
 
 ### Mark Task as Done : `mark`
 Mark task with specified index as done
