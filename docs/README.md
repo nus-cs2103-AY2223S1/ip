@@ -3,7 +3,17 @@
   <img src="Ui.png" height="500px"></img>
 </p>
 
-## Features 
+## Features
+- [X] Add a ToDo task
+- [X] Add a Deadline task
+- [X] Add an Event task
+- [X] List all tasks
+- [X] Mark a task as Done
+- [X] Unmark a task
+- [X] Delete a task
+- [X] Find a task by keyword(s)
+- [X] Find a task by date
+- [X] Reschedule a task
 
 ### Feature-ABC
 

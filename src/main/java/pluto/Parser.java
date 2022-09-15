@@ -136,13 +136,13 @@ public class Parser {
     public static RescheduleCommand parseRescheduleTask(String input) throws PlutoException {
         String[] arrReschedule = input.split("\\s+", 2);
         if (arrReschedule.length == 1) {
-            throw new PlutoException("OOPS!!! 'reschedule <task number> <date>' format required.");
+            throw new PlutoException("OOPS!!! 'reschedule <index> <date>' format required.");
         }
         int taskNumber;
         try {
             taskNumber = parseIdx(arrReschedule[0].strip());
         } catch (PlutoException e) {
-            throw new PlutoException("OOPS!!! 'reschedule <task number> <date>' format required.");
+            throw new PlutoException("OOPS!!! 'reschedule <index> <date>' format required.");
         }
         return new RescheduleCommand(taskNumber, parseDate(arrReschedule[1].strip()));
     }
@@ -171,7 +171,7 @@ public class Parser {
             return LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
         } catch (DateTimeParseException e) {
             System.out.println(date);
-            throw new PlutoException("OOPS!!! dd-MM-yyyy HHmm date format required.");
+            throw new PlutoException("OOPS!!! dd-MM-yyyy HHmm date and time format required.");
         }
     }
 
