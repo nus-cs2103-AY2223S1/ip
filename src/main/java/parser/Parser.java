@@ -1,6 +1,13 @@
 package parser;
 
-import action.*;
+import action.Bye;
+import action.Delete;
+import action.Find;
+import action.ListOut;
+import action.Mark;
+import action.Unmark;
+
+import duke.Command;
 import duke.DukeException;
 
 import java.nio.file.Path;
@@ -10,17 +17,28 @@ import task.Event;
 import task.Todo;
 import task.TaskList;
 
-import duke.Command;
 
 public class Parser {
 
 
     protected Command command = Command.UNKNOWN;
 
+
+    /**
+     * Constructor of Parser object.
+     */
     public Parser() {
 
     }
 
+
+    /**
+     * Takes in the user input and check what type of input it is.
+     * @param taskList The TaskList to act the Command on.
+     * @param str The user input.
+     * @return Returns the System reply to the user input.
+     * @throws DukeException e
+     */
     public String parse(TaskList taskList, String str) throws DukeException {
         String[] input = str.split(" ");
         Command c = Command.read(input[0]);
@@ -54,6 +72,10 @@ public class Parser {
     }
 
 
+    /**
+     * Check if command is Command.BYE.
+     * @return True if command is Command.BYE.
+     */
     public Boolean isBye() {
         return this.command == Command.BYE;
     }
