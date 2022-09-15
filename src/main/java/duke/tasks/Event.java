@@ -93,4 +93,18 @@ public class Event extends Task {
     public String save() {
         return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + date;
     }
+
+    /*
+     * Returns true if the event is equal to the input event. Two events are equal
+     * if they have the same description and date.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Event) {
+            Event other = (Event) obj;
+            return this.description.equals(other.description) && this.date.equals(other.date);
+        } else {
+            return false;
+        }
+    }
 }
