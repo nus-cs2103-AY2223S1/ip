@@ -32,6 +32,8 @@ public class Parser {
      * @throws SallyException when illegal input is encountered
      */
     public static Command parseCommand(String command) throws SallyException {
+        assert !command.isEmpty();
+
         // Bye
         if (command.equals("bye")) {
             return new ByeCommand();
@@ -46,6 +48,7 @@ public class Parser {
         else if (command.startsWith("delete")) {
             if (command.length() > 7 && command.substring(7).trim().chars().allMatch(Character::isDigit)) {
                 int taskNum = Integer.parseInt(command.substring(7).trim()) - 1;
+                assert taskNum >= 0;
                 return new DeleteCommand(taskNum);
             } else {
                 throw new SallyException.SallyInvalidInputException();
@@ -55,6 +58,7 @@ public class Parser {
         // Unmark
         else if (command.startsWith("unmark")) {
             int taskNum = Integer.parseInt(command.substring(7)) - 1; // -1 so that index is constant
+            assert taskNum >= 0;
             checkUnmarkValidity(taskNum);
             return new UnmarkCommand(taskNum);
         }
@@ -62,6 +66,7 @@ public class Parser {
         // Mark
         else if (command.startsWith("mark")) {
             int taskNum = Integer.parseInt(command.substring(5)) - 1; // -1 so that index is constant
+            assert taskNum >= 0;
             checkMarkValidity(taskNum);
             return new MarkCommand(taskNum);
         }
