@@ -15,8 +15,8 @@ Example of usage:
 Expected outcome:
 These are example tasks that I saved
 ```
-T | X | Build a family in Oceana
-D |   | Retrieve a microfilm from a penguin | 2022-06-22
+1: [T][X] Build a family in Oceana
+2: [D][] Retrieve a microfilm from a penguin | 2022-06-22
 ```
 
 ### `todo (Task description)` - add a Todo task

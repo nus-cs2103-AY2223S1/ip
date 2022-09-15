@@ -105,7 +105,18 @@ public class TaskList {
     }
 
     /**
-     * @return list of tasks
+     * @return List with numbering
+     */
+    public String toNumberedString() {
+        String out = "";
+        for (int i = 1; i <= tasks.size(); i++) {
+            out += i + ": " + tasks.get(i - 1) + "\n";
+        }
+        return out;
+    }
+
+    /**
+     * @return List of tasks without numbering
      */
     public String toString() {
         String out = "";
