@@ -3,7 +3,7 @@ package byu;
 import java.io.IOException;
 
 import commands.Command;
-import exceptions.DukeException;
+import exceptions.ByuException;
 import exceptions.DuplicateException;
 import exceptions.IncorrectFileInputException;
 
@@ -45,7 +45,7 @@ public class Byu {
             command.execute(this.tasks, this.ui);
             this.storage.save();
             return this.ui.getValidOutput();
-        } catch (DukeException e) {
+        } catch (ByuException e) {
             return ui.getErrorOutput(e);
         }
     }

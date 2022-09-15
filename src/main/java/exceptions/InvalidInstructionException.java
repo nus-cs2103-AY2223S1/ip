@@ -3,7 +3,7 @@ package exceptions;
 /**
  * An exception that indicates the first instruction word of a command is invalid and not supported.
  */
-public class InvalidInstructionException extends DukeException {
+public class InvalidInstructionException extends ByuException {
 
     @Override
     public String getMessage() {

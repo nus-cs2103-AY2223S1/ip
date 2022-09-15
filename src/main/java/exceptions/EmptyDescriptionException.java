@@ -5,7 +5,7 @@ import byu.Instruction;
 /**
  * An exception that indicates the description of an instruction is empty.
  */
-public class EmptyDescriptionException extends DukeException {
+public class EmptyDescriptionException extends ByuException {
 
     private final Instruction instruction;
 

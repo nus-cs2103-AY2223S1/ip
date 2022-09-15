@@ -3,6 +3,7 @@ package byu;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Locale;
 
 import commands.AddCommand;
@@ -12,9 +13,8 @@ import commands.ExitCommand;
 import commands.FindCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
-import commands.NextCommand;
 import commands.UnmarkCommand;
-import exceptions.DukeException;
+import exceptions.ByuException;
 import exceptions.EmptyDescriptionException;
 import exceptions.IncorrectFileInputException;
 import exceptions.InvalidDescriptionException;
@@ -29,12 +29,15 @@ import task.ToDo;
  */
 public class Parser {
 
+    static final String DESCRIPTION_NOT_REQUIRED = "";
+    static final DateTimeFormatter DATE_TIME_INPUT_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
     /**
      * Returns the Command instance corresponding to the string.
      *
      * @param fullCommand the string to be parsed.
      */
-    public static Command parse(String fullCommand) throws DukeException {
+    public static Command parse(String fullCommand) throws ByuException {
         Command command;
         Instruction instruction = getInstruction(fullCommand);
         String description = getDescription(instruction, fullCommand);
@@ -67,7 +70,7 @@ public class Parser {
             command = new FindCommand(description);
             break;
         default:
-            command = new NextCommand();
+            throw new InvalidInstructionException();
         }
         return command;
     }
@@ -111,7 +114,7 @@ public class Parser {
             int startingIndexOfDescription = substringsSplitBySpace[0].length() + 1;
             return fullCommand.substring(startingIndexOfDescription);
         default:
-            return "";
+            return DESCRIPTION_NOT_REQUIRED;
         }
     }
 
@@ -144,8 +147,46 @@ public class Parser {
         } else {
             String name = substrings[0];
             String period = substrings[1];
-            Event event = new Event(name, period);
+            List<LocalDateTime> dateTimes = parsePeriod(period);
+            Event event = new Event(name, dateTimes.get(0), dateTimes.get(1));
             return new AddCommand(event);
+        }
+    }
+
+    /**
+     * Parses the string representing the period of an event,
+     * and returns a List containing the start and end time.
+     *
+     * @param period the period of the event.
+     * @return a List containing the start time as first element and end time as second element.
+     * @throws InvalidDescriptionException if the period cannot be parsed.
+     */
+    private static List<LocalDateTime> parsePeriod(String period) throws InvalidDescriptionException {
+        String[] substrings = period.split(" to ");
+        if (substrings.length != 2) {
+            throw new InvalidDescriptionException(Instruction.EVENT);
+        }
+        String startDateTimeInput = substrings[0];
+        String endDateTimeInput = substrings[1];
+        LocalDateTime startDateTime = parseDateTimeInput(Instruction.EVENT, startDateTimeInput);
+        LocalDateTime endDateTime = parseDateTimeInput(Instruction.EVENT, endDateTimeInput);
+        return List.of(startDateTime, endDateTime);
+    }
+
+    /**
+     * Parses the string representing the date and time,
+     * and returns a LocalDateTime object.
+     *
+     * @param instruction the instruction of command.
+     * @return a LocalDateTime object represented by the string.
+     * @throws InvalidDescriptionException if dateTimeInput cannot be parsed.
+     */
+    private static LocalDateTime parseDateTimeInput(
+            Instruction instruction, String dateTimeInput) throws InvalidDescriptionException {
+        try {
+            return LocalDateTime.parse(dateTimeInput, DATE_TIME_INPUT_FORMATTER);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDescriptionException(instruction);
         }
     }
 
@@ -163,13 +204,7 @@ public class Parser {
         }
         String name = substrings[0];
         String dateTimeInput = substrings[1];
-        LocalDateTime dateTime;
-        try {
-            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-            dateTime = LocalDateTime.parse(dateTimeInput, inputFormatter);
-        } catch (DateTimeParseException e) {
-            throw new InvalidDescriptionException(Instruction.DEADLINE);
-        }
+        LocalDateTime dateTime = parseDateTimeInput(Instruction.DEADLINE, dateTimeInput);
         Deadline deadline = new Deadline(name, dateTime);
         return new AddCommand(deadline);
     }
@@ -205,8 +240,11 @@ public class Parser {
             task = new Deadline(taskName, dateTime);
             break;
         case Event.SYMBOL:
-            String period = details[3];
-            task = new Event(taskName, period);
+            String startDateTimeInput = details[3];
+            String endDateTimeInput = details[4];
+            LocalDateTime startDateTime = LocalDateTime.parse(startDateTimeInput);
+            LocalDateTime endDateTime = LocalDateTime.parse(endDateTimeInput);
+            task = new Event(taskName, startDateTime, endDateTime);
             break;
         case ToDo.SYMBOL:
             task = new ToDo(taskName);

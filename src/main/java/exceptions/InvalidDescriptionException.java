@@ -5,13 +5,13 @@ import byu.Instruction;
 /**
  * An exception that indicates the description of an instruction is invalid.
  */
-public class InvalidDescriptionException extends DukeException {
+public class InvalidDescriptionException extends ByuException {
 
     private static final String NOT_AN_INTEGER_MESSAGE = "Description must be an integer!";
     private static final String WRONG_EVENT_FORMAT_MESSAGE =
-            "Description of EVENT must be in the format (EVENT /at YYYY/MM/DD TT:TT)!";
+            "Description of EVENT must be in the format (NAME /at DD/MM/YYYY TT:TT to DD/MM/YYYY TT:TT)!";
     private static final String WRONG_DEADLINE_FORMAT_MESSAGE =
-            "Description of DEADLINE must be in the format (DEADLINE /by YYYY/MM/DD TT:TT)!";
+            "Description of DEADLINE must be in the format (NAME /by DD/MM/YYYY TT:TT)!";
 
     private final Instruction instruction;
 
