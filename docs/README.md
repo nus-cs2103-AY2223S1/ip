@@ -29,9 +29,9 @@ Duke is a **desktop chatbot app for managing and storing tasks, optimized for us
 5. Type the command in the command box and press Enter to execute it. You can try the follow example commands:
     - `list` : Lists out all the tasks.
     - `deadline return book /by 2022-09-17` : Adds a deadline task `return book (by:17 Sep 2022)` to the list.
-    - `event read book /at 18 Sep 2022 12:00` : Adds an event task `family outing (at: 18 Sep 2022 12:00)`
+    - `event read book /at 18 Sep 2022 12:00` : Adds an event task `read book (at: 18 Sep 2022 12:00)`
     - `mark 1` : Marks the 1st task on the list as done.
-    - `delete 1` : Deletes the 1st on the list.
+    - `delete 1` : Deletes the 1st task on the list.
     - `find book` : Finds a task with the matching keyword `book`
     - `bye` : Exits the app.
 6. Refer to the [Features](#Features) below for details of each command.
@@ -44,10 +44,10 @@ e.g. in `todo {description}` , `{description}` is a parameter which can be used 
 ### Adding a todo task: `todo`
 Adds a todo task to the task list. <br>
 Format: `todo {description}` <br>
-Example: `todo buy groceries`
+Example: `todo buy book`
 <br> <br>
 Format: `t {description}` <br>
-Example: `t buy groceries`
+Example: `t buy book`
 
 ### Adding a deadline task: `deadline`
 Adds a deadline task to the task list. <br>
@@ -55,7 +55,7 @@ Format: `deadline {description} /by {YYYY-MM-DD}` <br>
 Example: `deadline {description} /by 2022-09-18`
 <br> <br>
 Format: `d {description} /by {YYYY-MM-DD}` <br>
-Example: `d {description} /by 15 Sep 2022`
+Example: `d {description} /by 2022-09-18`
 ### Adding an event task: `event`
 Adds a deadline task to the task list. <br>
 Format: `event {description} /at {date}` <br>
@@ -65,7 +65,7 @@ Format: `e {description} /at {date}` <br>
 Exmaple: `e read book /at 18 Sep 2022 19:00`
 
 ### Marking a task: `mark`
-Marks a task in the list as completed.<br>
+Marks a task in the list as done.<br>
 Format: `mark {index}`
 Example: `mark 2` marks the task at index 2 of the list <br>
 Expected outcome:
@@ -76,7 +76,7 @@ Nice! I've marked this task as done:
 💡 `[X]` indicates a completed task
 
 ### Unmarking a task: `unmark`
-Unmark a task in the list as incompleted.<br>
+Marks a task in the list as not done.<br>
 Format: `unmark {index}`
 Example: `unmark 1` unmark the task at index 1 of the list <br>
 Expected outcome:
@@ -109,7 +109,7 @@ Duke automatically saves the task data after a valid command is executed.
 
 ## FAQ
 **Q**: How do I transfer my data to another Computer? <br>
-**A**: Install the app on another computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Ado chatbot located at `[location of JAR file]/tasks.txt`. <br>
+**A**: Install the app on another computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Duke chatbot located at `[location of JAR file]/tasks.txt`. <br>
 
 ## Command summary
 
