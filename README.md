@@ -1,33 +1,24 @@
-# Conan bot
+# Duke project template
 
-![Manage your task as smart as Conan](https://www.nicepng.com/png/full/689-6894004_topic-screen-la-fin-de-dtective-conan.png)
+This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
-View the project on [GitHub](https://github.com/april-anh/ip).
+## Setting up in Intellij
 
-## Feature
-:rotating_light: Fields in [square bracket] are parameters supplied by the user.
+Prerequisites: JDK 11, update Intellij to the most recent version.
 
-| Command                            | Description                                                      |
-|------------------------------------|------------------------------------------------------------------|
-| `list`                             | List all tasks                                                   |
-| `todo [text]`                      | Add a todo task                                                  |
-| `deadline [text] /by [yyyy-mm-dd]` | Add a deadline task                                              |
-| `event [text] /at [yyyy-mm-dd]`    | Add a event task                                                 |
-| `mark [number]`                    | Mark a task as done, replace number by its index in the list     |
-| `unmark [number]`                  | Mark a task as not done, replace number by its index in the list |
-| `delete [number]`                  | Delete a task, replace number by its index in the list           |
-| `find [keyword]`                   | Find tasks that have the description matching the keyword        |
-| `bye`                              | Exit chat bot                                                    |
-
-:star::star::star: Flexible search!
-- The search is case-insensitive and matches partial words.
-- The `find` command will show all task that match at least 3 characters of your keyword, i.e. finding CON will return conan.
-
-## Saving data
-Task data is saved internally in the app’s directory only upon exit. 
-So closing the window mid-execution will discard all changes. 
-The task data is loaded from the internal storage when starting the app.
-
-### Acknowledgement
-This project is inspired by the Duke chat from [this repo](https://github.com/nus-cs2103-AY2223S1/ip).
-
+1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
+1. Open the project into Intellij as follows:
+   1. Click `Open`.
+   1. Select the project directory, and click `OK`.
+   1. If there are any further prompts, accept the defaults.
+1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
+   In the same dialog, set the **Project language level** field to the `SDK default` option.
+3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
+   ```
+   Hello from
+    ____        _        
+   |  _ \ _   _| | _____ 
+   | | | | | | | |/ / _ \
+   | |_| | |_| |   <  __/
+   |____/ \__,_|_|\_\___|
+   ```
