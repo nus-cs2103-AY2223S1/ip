@@ -17,7 +17,7 @@ public class Ui {
      * @return the greeting by Anya.
      */
     String greet() {
-        return "Helloooo! I'm Anya\n" + "What can Anya do for you,master?\n" + "Waku Waku :)\n" ;
+        return "Helloooo! I'm Anya\n" + "What can Anya do for you,master?\n" + "Waku Waku :)\n";
     }
 
     /**

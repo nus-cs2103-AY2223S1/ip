@@ -66,7 +66,7 @@ public class Parser {
         if (typeOfTask.equals("todo")) {
             return new ToDo(taskDescription[0]);
 
-        } else if (taskDescription[1].equals("")) {   //date is empty.
+        } else if (taskDescription[1].equals("")) { //missing date
             throw new AnyaException(ui.printMissingDateError(typeOfTask));
 
         } else if (typeOfTask.equals("deadline")) {
