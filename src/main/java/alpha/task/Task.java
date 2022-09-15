@@ -52,7 +52,7 @@ public abstract class Task {
      * @return Task status.
      */
     public String getStatus() {
-        return (status ? "X" : "~unmarked~");
+        return (status ? "X" : " ");
     }
 
     /**
@@ -89,7 +89,12 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] [%s] [%s] %s", this.getTaskType(), this.getTag(),
-                this.getStatus(), this.getDescription());
+        if (this.tag.equals("~no tag~")) {
+            return String.format("[%s] [%s] %s", this.getTaskType(),
+                    this.getStatus(), this.getDescription());
+        } else {
+            return String.format("[%s] [%s] [%s] %s", this.getTaskType(),
+                    this.getStatus(), this.getTag(), this.getDescription());
+        }
     }
 }

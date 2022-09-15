@@ -4,6 +4,7 @@ import alpha.AlphaException;
 import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
+import alpha.task.Task;
 
 /**
  * Deletes task of the input task number.
@@ -32,9 +33,9 @@ public class Delete extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
-        taskList.deleteTask(taskNumber);
+        Task t = taskList.deleteTask(taskNumber);
         fileOperations.rewriteFile(taskList);
-        return uI.generateCommandExecutionMessage(this, null, taskNumber);
+        return uI.generateCommandExecutionMessage(this, taskList, t, taskNumber);
     }
 
     /**

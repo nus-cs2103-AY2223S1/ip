@@ -49,7 +49,7 @@ public class Add extends Command {
                     + task.getStatus() + "] " + task.getDescription() + "\n";
         }
         fileOperations.writeToFile(textToAppend);
-        return uI.generateCommandExecutionMessage(this, task, 0);
+        return uI.generateCommandExecutionMessage(this, taskList, task, 0);
     }
 
     /**

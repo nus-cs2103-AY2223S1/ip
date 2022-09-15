@@ -10,7 +10,10 @@ import alpha.command.Help;
 import alpha.command.Mark;
 import alpha.command.Tag;
 import alpha.command.Unmark;
+import alpha.task.Deadline;
+import alpha.task.Event;
 import alpha.task.Task;
+import alpha.task.Todo;
 
 /**
  * Displays messages.
@@ -25,11 +28,34 @@ public class Ui {
      * @param taskNumber Task number of the task on which the command was executed.
      */
     @SuppressWarnings("checkstyle:Indentation")
-    public String generateCommandExecutionMessage(Command command, Task task, int taskNumber) {
+    public String generateCommandExecutionMessage(Command command, TaskList taskList, Task task, int taskNumber) {
+        int numberOfTasksLeft = taskList.getTaskList().size();
+        String taskLeft = "tasks";
+        if (numberOfTasksLeft == 1) {
+            taskLeft = "task";
+        }
+        String date = "";
+        if (task != null) {
+            if (!(task instanceof Todo)) {
+                date = getDateOrDeadline(task);
+            }
+        }
         if (command instanceof Add) {
-            return (">> " + "added task: " + task.getDescription());
+            if (date.equals("")) {
+                return (">> " + "added: " + task.getDescription() + "\nNow you have " + numberOfTasksLeft
+                        + " " + taskLeft + " in the list!");
+            } else {
+                return (">> " + "added: " + task.getDescription() + " (" + date + ")"
+                        + "\nNow you have " + numberOfTasksLeft + " " + taskLeft + " in the list!");
+            }
         } else if (command instanceof Delete) {
-            return (">> " + "deleted task: " + taskNumber);
+            if (date.equals("")) {
+                return (">> " + "deleted: " + task.getDescription() + "\nNow you have " + numberOfTasksLeft
+                        + " " + taskLeft + " in the list!");
+            } else {
+                return (">> " + "deleted: " + task.getDescription() + " (" + date + ")"
+                        + "\nNow you have " + numberOfTasksLeft + " " + taskLeft + " in the list!");
+            }
         } else if (command instanceof Exit) {
             return (">> Come back later to continue from where you left!\n See you, Bye!");
         } else if (command instanceof Help) {
@@ -43,14 +69,43 @@ public class Ui {
                     + "7. list     \t\t" + "list\n"
                     + "8. find     \t\t" + "find keyword\n"
                     + "9. tag      \t\t" + "tag task number /as tag\n"
-                    + "10. findTag \t" + "findTag tag";
+                    + "10. findTag \t" + "findTag tag\n"
+                    + "11. bye     \t" + "bye";
         } else if (command instanceof Mark) {
-            return (">> " + "marked task: " + taskNumber);
+            if (date.equals("")) {
+                return (">> " + "marked: " + task.getDescription());
+            } else {
+                return (">> " + "marked: " + task.getDescription() + " (" + date + ")");
+            }
         } else if (command instanceof Tag) {
-            return (">> " + "tagged task: " + taskNumber);
+            String tagAdded = task.getTag();
+            if (date.equals("")) {
+                return (">> " + "tagged: " + task.getDescription() + " as " + tagAdded);
+            } else {
+                return (">> " + "tagged: " + task.getDescription() + " (" + date + ")" + " as " + tagAdded);
+            }
         } else {
             assert command instanceof Unmark;
-            return (">> " + "unmarked task: " + taskNumber);
+            if (date.equals("")) {
+                return (">> " + "unmarked: " + task.getDescription());
+            } else {
+                return (">> " + "unmarked: " + task.getDescription() + " (" + date + ")");
+            }
+        }
+    }
+
+    /**
+     * Returns a string containing the date or deadline of the given task.
+     * @param task Task whose date/deadline is needed.
+     * @return Date/Deadline of the task.
+     */
+    private String getDateOrDeadline(Task task) {
+        if (task instanceof Event) {
+            Event e = (Event) task;
+            return e.getDate();
+        } else {
+            Deadline d = (Deadline) task;
+            return d.getDeadline();
         }
     }
 

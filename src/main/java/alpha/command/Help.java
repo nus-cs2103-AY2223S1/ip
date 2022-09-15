@@ -15,7 +15,7 @@ public class Help extends Command {
      * @return String containing list of commands and their format.
      */
     @Override
-    public String execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
-        return uI.generateCommandExecutionMessage(this, null, 0);
+    public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) {
+        return uI.generateCommandExecutionMessage(this, taskList, null, 0);
     }
 }

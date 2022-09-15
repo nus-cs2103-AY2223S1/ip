@@ -33,4 +33,21 @@ public class Find extends Command {
         TaskList filteredTasks = (new TaskList(taskList.filterTaskDescription(keyword)));
         return uI.generateTaskListToBePrinted(filteredTasks);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Checks the equality of two objects
+     * Returns true if both objects are instance of Find class and find tasks with the same keyword.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof Find) {
+            Find f = (Find) obj;
+            return (f.keyword == this.keyword);
+        }
+        return false;
+    }
 }

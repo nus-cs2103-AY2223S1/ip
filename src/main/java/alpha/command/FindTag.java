@@ -33,4 +33,21 @@ public class FindTag extends Command {
         TaskList filteredTasks = (new TaskList(taskList.filterTaskTag(tag)));
         return uI.generateTaskListToBePrinted(filteredTasks);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Checks the equality of two objects
+     * Returns true if both objects are instance of FindTag class and finds tasks with the same tag.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof FindTag) {
+            FindTag f = (FindTag) obj;
+            return (f.tag == this.tag);
+        }
+        return false;
+    }
 }

@@ -4,6 +4,7 @@ import alpha.AlphaException;
 import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
+import alpha.task.Task;
 
 /**
  * Marks task of the input task number.
@@ -31,9 +32,9 @@ public class Mark extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
-        taskList.modifyTaskStatus(taskNumber, true);
+        Task t = taskList.modifyTaskStatus(taskNumber, true);
         fileOperations.rewriteFile(taskList);
-        return uI.generateCommandExecutionMessage(this, null, taskNumber);
+        return uI.generateCommandExecutionMessage(this, taskList, t, taskNumber);
     }
 
     /**

@@ -40,6 +40,9 @@ public class MainWindow extends AnchorPane {
         );
     }
 
+    /** Sets the alpha object.
+     * @param a Instance of Alpha class.
+     */
     public void setAlpha(Alpha a) {
         alpha = a;
     }

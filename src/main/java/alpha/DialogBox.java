@@ -25,6 +25,10 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructor to initialise the text to be displayed.
+     * @param text Text to be displayed.
+     */
     private DialogBox(String text) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -37,6 +41,10 @@ public class DialogBox extends HBox {
         dialog.setText(text);
     }
 
+    /**
+     * Sets image to be displayed with the dialog box.
+     * @param img Image to be displayed.
+     */
     public void setImage(Image img) {
         displayPicture.setImage(img);
     }
@@ -51,20 +59,35 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns a Dialog box containing the user's input text.
+     * @param text Input text by user.
+     * @return Dialog box containing the user's input text.
+     */
     public static DialogBox getUserDialog(String text) {
         var db = new DialogBox(text);
         return db;
     }
 
+    /**
+     * Returns a Dialog box containing Alpha's response text.
+     * @param text Alpha's response to the user's input.
+     * @return Dialog box containing Alpha's response text.
+     */
     public static DialogBox getAlphaDialog(String text) {
         var db = new DialogBox(text);
         db.flip();
         return db;
     }
 
+    /**
+     * Returns a Dialog box containing the error message to be printed in red colour.
+     * @param text Error message.
+     * @return Dialog box containing the error message to be printed in red colour
+     */
     public static DialogBox getErrorDialog(String text) {
         var db = new DialogBox(text);
-        db.dialog.setStyle("-fx-font: 12 arial; -fx-text-fill: #fc6060;"
+        db.dialog.setStyle("-fx-text-fill: #fc6060;"
                 + "-fx-background-color: rgba(128, 128, 128, 0.50); -fx-background-radius: 7.5;");
         db.flip();
         return db;

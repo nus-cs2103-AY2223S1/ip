@@ -46,12 +46,15 @@ public class TaskList {
      * @param taskStatus The status to which the task status needs to be modified.
      * @throws AlphaException If the task number is out of bounds of the task list.
      */
-    public void modifyTaskStatus(int taskNumber, boolean taskStatus) throws AlphaException {
+    public Task modifyTaskStatus(int taskNumber, boolean taskStatus) throws AlphaException {
+        Task task;
         try {
+            task = tasks.get(taskNumber - 1);
             tasks.get(taskNumber - 1).changeStatus(taskStatus);
         } catch (IndexOutOfBoundsException e) {
             throw new AlphaException("Invalid input: This task number doesn't exist!");
         }
+        return task;
     }
 
     /**
@@ -60,12 +63,15 @@ public class TaskList {
      * @param taskNumber The task number of the task that needs to be deleted.
      * @throws AlphaException If the task number is out of bounds.
      */
-    public void deleteTask(int taskNumber) throws AlphaException {
+    public Task deleteTask(int taskNumber) throws AlphaException {
+        Task task;
         try {
+            task = tasks.get(taskNumber - 1);
             tasks.remove(taskNumber - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new AlphaException("Invalid input: This task number doesn't exist!");
         }
+        return task;
     }
 
     /**
@@ -106,11 +112,14 @@ public class TaskList {
      * @param tag Tag to be added to the task.
      * @throws AlphaException
      */
-    public void addTagToTask(int taskNumber, String tag) throws AlphaException {
+    public Task addTagToTask(int taskNumber, String tag) throws AlphaException {
+        Task task;
         try {
+            task = tasks.get(taskNumber - 1);
             tasks.get(taskNumber - 1).addTag(tag);
         } catch (IndexOutOfBoundsException e) {
             throw new AlphaException("Invalid input: This task number doesn't exist!");
         }
+        return task;
     }
 }

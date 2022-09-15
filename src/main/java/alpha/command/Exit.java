@@ -17,8 +17,8 @@ public class Exit extends Command {
      * @return Message to display successful completion of task.
      */
     @Override
-    public String execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
-        return uI.generateCommandExecutionMessage(this, null, 0);
+    public String execute(TaskList taskList, Ui uI, FileOperations fileOperations) {
+        return uI.generateCommandExecutionMessage(this, taskList, null, 0);
     }
 
     /**

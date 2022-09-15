@@ -13,8 +13,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+    /** Object of Alpha class to interpret input messages and generate response */
     private Alpha alpha = new Alpha();
-
     @Override
     public void start(Stage stage) {
         try {

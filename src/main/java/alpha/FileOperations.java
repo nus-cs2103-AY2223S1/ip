@@ -121,7 +121,7 @@ public class FileOperations {
             if (taskStatus) {
                 indexOfDescription = indexOfStatus + 3;
             } else {
-                indexOfDescription = indexOfStatus + 11;
+                indexOfDescription = indexOfStatus + 2;
             }
             switch (taskType) {
             case "T": {
