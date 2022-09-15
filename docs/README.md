@@ -108,7 +108,7 @@ Expected outcome:
 
 ### Marking/Un-marking a Task as complete - `mark`, `unmark`
 
-Marks/Un-marks a particular task from Skylark as done/not-done
+Marks/Un-marks a particular task from Duke as done/not-done
 
 Example of usage:
 * `mark INDEX`
@@ -196,4 +196,4 @@ Example of usage:
 
 ### Saving the data
 
-Tasks stored in Skylark are saved in the hard disk automatically after the `bye` command is ran. There is no need to save manually. 
+Tasks stored in Duke are saved in the hard disk automatically after the `bye` command is ran. There is no need to save manually. 
