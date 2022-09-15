@@ -4,17 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 
 
@@ -23,7 +19,7 @@ import javafx.stage.Stage;
  *
  * @author Kang Zong Xian
  */
-public class Duke extends Application {
+public class Duke {
 
     // Attributes of a Duke object
     private static final String FILEDESTINATION = "./duke.txt";
@@ -47,80 +43,6 @@ public class Duke extends Application {
         ui = new Ui();
         storage = new Storage(FILEDESTINATION);
         taskList = new TaskList();
-    }
-
-    @Override
-    public void start(Stage stage) {
-        //Step 1. Setting up required components
-
-        //The container for the content of the chat to scroll.
-        scrollPane = new ScrollPane();
-        dialogContainer = new VBox();
-        scrollPane.setContent(dialogContainer);
-
-
-        userInput = new TextField();
-        sendButton = new Button("Send");
-        sendButton.setStyle("-fx-background-color: #ff0000; ");
-
-        AnchorPane mainLayout = new AnchorPane();
-        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
-
-        scene = new Scene(mainLayout);
-
-        stage.setScene(scene);
-        stage.show();
-
-        //Step 2. Formatting the window to look as expected
-        stage.setTitle("Duke");
-        stage.setResizable(false);
-        stage.setMinHeight(600.0);
-        stage.setMinWidth(400.0);
-
-        mainLayout.setPrefSize(400.0, 600.0);
-
-        scrollPane.setPrefSize(385, 535);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
-        scrollPane.setVvalue(1.0);
-        scrollPane.setFitToWidth(true);
-
-        // You will need to import `javafx.scene.layout.Region` for this.
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-
-        userInput.setPrefWidth(325.0);
-
-        sendButton.setPrefWidth(55.0);
-
-        AnchorPane.setTopAnchor(scrollPane, 1.0);
-
-        AnchorPane.setBottomAnchor(sendButton, 1.0);
-        AnchorPane.setRightAnchor(sendButton, 1.0);
-
-        AnchorPane.setLeftAnchor(userInput , 1.0);
-        AnchorPane.setBottomAnchor(userInput, 1.0);
-
-        //Part 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            try {
-                handleUserInput();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        userInput.setOnAction((event) -> {
-            try {
-                handleUserInput();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        //Scroll down to the end every time dialogContainer's height changes.
-        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-
     }
 
     /**
@@ -172,29 +94,15 @@ public class Duke extends Application {
                 // Check if user wants to mark task
                 if (Parser.isMarkTask(words)) {
                     int taskNumber = Integer.parseInt(words[1]);
-                    // Check if user enters a number out of range
-                    if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
-                        throw new DukeException("Number out of range!");
-                    } else {
-                        return ui.markTaskDoneAndPrintOutput(taskNumber);
-                    }
+                    return markTask(taskNumber, taskArrayList);
                     // Checks if user wants to unmark task
                 } else if (Parser.isUnmarkTask(words)) {
                     int taskNumber = Integer.parseInt(words[1]);
-                    // Check if user enters a number out of range
-                    if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
-                        throw new DukeException("Number out of range!");
-                    } else {
-                        return ui.markTaskNotDoneAndPrintOutput(taskNumber);
-                    }
+                    return unmarkTask(taskNumber, taskArrayList);
                     // Check if user wants to delete a task
                 } else if (Parser.isDeleteTask(words)) {
                     int taskNumber = Integer.parseInt(words[1]);
-                    if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
-                        throw new DukeException("Number out of range!");
-                    } else {
-                        return ui.markTaskDeletedAndPrintOutput(taskNumber);
-                    }
+                    return deleteTask(taskNumber, taskArrayList);
                 } else {
                     // User is trying to add a new to-do / deadline / event
                     if (Parser.isAddTodoTask(words)) {
@@ -209,9 +117,7 @@ public class Duke extends Application {
                         String[] allKeywords = keywords.split(" ");
                         return findMatchingTasks(taskArrayList, allKeywords);
                     } else {
-                        String outputString = "I don't know what you mean, so I will just echo what you said!\n";
-                        outputString += input;
-                        return outputString;
+                        return "I don't know what you mean, did you type an invalid command?\n";
                     }
                 }
             }
@@ -221,6 +127,53 @@ public class Duke extends Application {
             storage.saveTasks();
         }
         return "Done";
+    }
+
+    /**
+     * Mark a task as done and return the string representing marking a task as done
+     * @param taskNumber the index of the task
+     * @param taskArrayList the list of tasks
+     * @return a string representing the task that has been marked
+     * @throws DukeException the exception to be thrown
+     */
+    public String markTask(int taskNumber, List<Task> taskArrayList ) throws DukeException {
+        // Check if user enters a number out of range
+        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
+            throw new DukeException("Number out of range!");
+        } else {
+            return ui.markTaskDoneAndPrintOutput(taskNumber);
+        }
+    }
+
+    /**
+     * Un-marking a task as done and return the string representing un-marking a task as done
+     * @param taskNumber the index of the task
+     * @param taskArrayList the list of tasks
+     * @return a string representing the task that has been un-marked
+     * @throws DukeException the exception to be thrown
+     */
+    public String unmarkTask(int taskNumber, List<Task> taskArrayList) throws DukeException {
+        // Check if user enters a number out of range
+        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
+            throw new DukeException("Number out of range!");
+        } else {
+            return ui.markTaskNotDoneAndPrintOutput(taskNumber);
+        }
+    }
+
+    /**
+     * Delete a task and return a string representing the task that has been deleted
+     * @param taskNumber the index of the task
+     * @param taskArrayList the list of tasks
+     * @return a string representing the task that has been deleted
+     * @throws DukeException the exception to be thrown
+     */
+    public String deleteTask(int taskNumber, List<Task> taskArrayList) throws DukeException {
+        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
+            throw new DukeException("Number out of range!");
+        } else {
+            return ui.markTaskDeletedAndPrintOutput(taskNumber);
+        }
     }
 
     /**
@@ -247,100 +200,8 @@ public class Duke extends Application {
         if (count == 0) {
             return "No matching Tasks Found!";
         }
-
         return outputString;
 
-    }
-
-    /**
-     * The method to run the Duke bot
-     * @throws DukeException exception to be thrown regarding DukeException
-     * @throws IOException exception to be thrown regarding IOException
-     */
-    public void run() throws DukeException, IOException {
-        storage.loadTasks();
-        ui.greet();
-        ui.showTaskList();
-
-        List<Task> taskArrayList = TaskList.getTaskArrayList();
-
-        // Boolean value to check if user wants to leave
-        boolean isQuit = false;
-
-        while (!isQuit) {
-            try {
-                String userCommand = ui.getCommand();
-                if (userCommand.equals("bye")) {
-                    isQuit = true;
-                    ui.bye();
-                } else if (userCommand.equals("list")) {
-                    ui.showTaskList();
-                } else {
-                    // Get all the words the user has typed
-                    String[] words = userCommand.split(" ");
-                    // Check if user wants to mark task
-                    if (Parser.isMarkTask(words)) {
-                        int taskNumber = Integer.parseInt(words[1]);
-                        // Check if user enters a number out of range
-                        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
-                            throw new DukeException("Number out of range!");
-                        } else {
-                            ui.markTaskDoneAndPrintOutput(taskNumber);
-                        }
-                        // Checks if user wants to unmark task
-                    } else if (Parser.isUnmarkTask(words)) {
-                        int taskNumber = Integer.parseInt(words[1]);
-                        // Check if user enters a number out of range
-                        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
-                            throw new DukeException("Number out of range!");
-                        } else {
-                            ui.markTaskNotDoneAndPrintOutput(taskNumber);
-                        }
-                        // Check if user wants to delete a task
-                    } else if (Parser.isDeleteTask(words)) {
-                        int taskNumber = Integer.parseInt(words[1]);
-                        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
-                            throw new DukeException("Number out of range!");
-                        } else {
-                            ui.markTaskDeletedAndPrintOutput(taskNumber);
-                        }
-                    } else {
-                        // User is trying to add a new to-do / deadline / event
-                        if (Parser.isAddTodoTask(words)) {
-                            createAndAddTodo(words);
-                        } else if (Parser.isAddDeadlineTask(words)) {
-                            if (words.length == 0) {
-                                throw new DukeException("No keywords entered!");
-                            }
-                            createAndAddDeadline(words);
-                        } else if (Parser.isAddEventTask(words)) {
-                            if (words.length == 0) {
-                                throw new DukeException("No keywords entered!");
-                            }
-                            createAndAddEvent(words);
-                        } else if (Parser.isFindTask(words)) {
-                            if (words.length == 0) {
-                                throw new DukeException("No keywords entered!");
-                            }
-                            String keywords = Parser.joinString(words, 1);
-                            keywords = keywords.substring(0, keywords.length() - 1);
-                            System.out.println("Here are the matching tasks in your list:");
-                            for (Task task : taskArrayList) {
-                                if (task.getDescription().contains(keywords)) {
-                                    System.out.println(task.toString());
-                                }
-                            }
-                        } else {
-                            throw new DukeException("I'm sorry, I don't know what that means!");
-                        }
-                    }
-                }
-            } catch (DukeException dukeException) {
-                System.out.println(dukeException.getMessage());
-            } finally {
-                storage.saveTasks();
-            }
-        }
     }
 
     /**
@@ -451,14 +312,6 @@ public class Duke extends Application {
             outputString += taskArrayList.get(taskIndex).toString();
         }
         return outputString;
-    }
-
-    /**
-     * The main function
-     * @param args arguments
-     */
-    public static void main(String[] args) throws DukeException, IOException {
-        new Duke().run();
     }
 
 

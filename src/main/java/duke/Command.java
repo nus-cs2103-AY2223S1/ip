@@ -11,7 +11,7 @@ public class Command {
     protected CommandName givenCommand;
 
     /**
-     * Constructor for the duke.Command class
+     * Constructor for the Command class
      * @param givenCommand the given command
      */
     public Command(CommandName givenCommand) {
