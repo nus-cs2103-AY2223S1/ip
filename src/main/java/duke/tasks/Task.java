@@ -9,12 +9,12 @@ import duke.functions.Ui;
  */
 public class Task {
 
+    private static int NUMBER_TASKS = 0;
     private String name;
     private String type;
 
     // Status of a task. The status of the task will be 0 when the task is unamrked and 1 when it is marked.
     private int status;
-    private static int NUMBER_TASKS = 0;
 
     /**
      * Constructor for the Task class.
@@ -71,7 +71,7 @@ public class Task {
     /**
      * Decrements the number of tasks by 1 when a task is deleted from the list.
      */
-    public static void deleteTask(){
+    public static void deleteTask() {
         NUMBER_TASKS--;
     }
 

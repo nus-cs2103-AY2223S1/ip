@@ -1,8 +1,19 @@
 package duke.support;
 
 import duke.functions.TaskList;
-import duke.instruction.*;
 import duke.gui.Main;
+import duke.instruction.ByeInstruction;
+import duke.instruction.DeadlineInstruction;
+import duke.instruction.DeleteInstruction;
+import duke.instruction.EventInstruction;
+import duke.instruction.ExceptionInstruction;
+import duke.instruction.FindInstruction;
+import duke.instruction.Instruction;
+import duke.instruction.ListInstruction;
+import duke.instruction.MarkInstruction;
+import duke.instruction.SnoozeInstruction;
+import duke.instruction.ToDoInstruction;
+import duke.instruction.UnMarkInstruction;
 
 /**
  * Parser class to make sense of user input.

@@ -3,14 +3,14 @@ package duke.support;
 /**
  * The DukeException class holds methods that will handle
  * checked exceptions that may arise in the Duke class.
- * 
+ *
  * @author lauralee
  */
 public class DukeException extends Exception {
 
     /**
      * Todo exception handler.
-     * 
+     *
      * @return The description shown when a Todo task exception is detected.
      */
     public static String todoException() {
@@ -28,7 +28,7 @@ public class DukeException extends Exception {
 
     /**
      * Date time exception Handler.
-     * 
+     *
      * @return The description shown when a date time exception is detected.
      */
     public static String dateTimeException() {
@@ -37,7 +37,7 @@ public class DukeException extends Exception {
 
     /**
      * Find exception handler.
-     * 
+     *
      * @return The description shown when a find exception is detected.
      */
     public static String findException() {

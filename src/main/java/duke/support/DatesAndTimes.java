@@ -1,7 +1,7 @@
 package duke.support;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 //Solution below adapted from https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
 /**

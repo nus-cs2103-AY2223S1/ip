@@ -8,12 +8,12 @@ import duke.tasks.Task;
  *
  * @author lauralee
  */
-public class DeleteInstruction implements Instruction{
+public class DeleteInstruction implements Instruction {
 
-    TaskList taskList;
-    String userInput;
-    int taskPos;
-    Task deletedTask;
+    private TaskList taskList;
+    private String userInput;
+    private int taskPos;
+    private Task deletedTask;
 
     /**
      * Constructor for the DeleteInstruction class.
@@ -24,7 +24,7 @@ public class DeleteInstruction implements Instruction{
     public DeleteInstruction(TaskList taskList, String userInput) {
         this.taskList = taskList;
         this.userInput = userInput;
-        char b = userInput.charAt(7);
+        char b = this.userInput.charAt(7);
         this.taskPos = Character.getNumericValue(b);
         this.deletedTask = this.taskList.getTaskArr()[this.taskPos];
     }

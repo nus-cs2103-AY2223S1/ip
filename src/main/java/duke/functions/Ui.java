@@ -15,8 +15,8 @@ public class Ui {
      * @return The introduction description.
      */
     public static String printIntro() {
-        return ("Hello! I'm Duke\n" +
-                "What can I do for you?");
+        return ("Hello! I'm Duke\n"
+                + "What can I do for you?");
     }
 
     /**
@@ -42,9 +42,9 @@ public class Ui {
      * @return The delete task description.
      */
     public static String printDelete(Task deletedTask, int numberTasksLeft) {
-        return "Noted. I've removed this task:\n" +
-                deletedTask.output() + "\n" +
-                "Now you have " + (numberTasksLeft) + " tasks in the list.";
+        return "Noted. I've removed this task:\n"
+                + deletedTask.output() + "\n"
+                + "Now you have " + (numberTasksLeft) + " tasks in the list.";
     }
 
     /**
@@ -54,9 +54,9 @@ public class Ui {
      * @return The Todo task description.
      */
     public static String printToDo(Task newTask) {
-        return "Got it. I've added this task:\n" +
-                newTask.output() + "\n" +
-                "Now you have " + Task.getNumberTasks() + " tasks in the list.";
+        return "Got it. I've added this task:\n"
+                + newTask.output() + "\n"
+                + "Now you have " + Task.getNumberTasks() + " tasks in the list.";
     }
 
     /**
@@ -66,9 +66,9 @@ public class Ui {
      * @return The Deadline task description.
      */
     public static String printDeadline(Task newTask) {
-        return "Got it. I've added this task:\n" +
-                newTask.output() + "\n" +
-                "Now you have " + Task.getNumberTasks() + " tasks in the list.";
+        return "Got it. I've added this task:\n"
+                + newTask.output() + "\n"
+                + "Now you have " + Task.getNumberTasks() + " tasks in the list.";
     }
 
     /**
@@ -78,9 +78,9 @@ public class Ui {
      * @return The Event task description.
      */
     public static String printEvent(Task newTask) {
-        return "Got it. I've added this task:\n" +
-                newTask.output() + "\n" +
-                "Now you have " + Task.getNumberTasks() + " tasks in the list.";
+        return "Got it. I've added this task:\n"
+                + newTask.output() + "\n"
+                + "Now you have " + Task.getNumberTasks() + " tasks in the list.";
     }
 
     /**
@@ -91,8 +91,8 @@ public class Ui {
      * @return The marked task description.
      */
     public static String printMark(String type, String name) {
-        return "Nice! I've marked this task as done:\n" +
-                "[" + type + "][X] " + name;
+        return "Nice! I've marked this task as done:\n"
+                + "[" + type + "][X] " + name;
     }
 
     /**
@@ -103,8 +103,8 @@ public class Ui {
      * @return The unmarked task description.
      */
     public static String printUnmark(String type, String name) {
-        return "OK, I've marked this task as not done yet: \n" +
-                "[" + type + "][ ] " + name;
+        return "OK, I've marked this task as not done yet: \n"
+                + "[" + type + "][ ] " + name;
     }
 
     /**
@@ -134,9 +134,9 @@ public class Ui {
      * @return The new description of the Deadline task that has been snoozed.
      */
     public static String printSnoozeDeadline(Task snoozedTask) {
-        return "Got it. I've snoozed this task:\n" +
-                snoozedTask.output() + "\n" +
-                "Now you have " + Task.getNumberTasks() + " tasks in the list.";
+        return "Got it. I've snoozed this task:\n"
+                + snoozedTask.output() + "\n"
+                + "Now you have " + Task.getNumberTasks() + " tasks in the list.";
     }
 
     /**
@@ -146,9 +146,9 @@ public class Ui {
      * @return The new description of the Event task that has been snoozed.
      */
     public static String printSnoozeEvent(Task snoozedTask) {
-        return "Got it. I've snoozed this task:\n" +
-                snoozedTask.output() + "\n" +
-                "Now you have " + Task.getNumberTasks() + " tasks in the list.";
+        return "Got it. I've snoozed this task:\n"
+                + snoozedTask.output() + "\n"
+                + "Now you have " + Task.getNumberTasks() + " tasks in the list.";
     }
 
     /**

@@ -10,9 +10,9 @@ import duke.tasks.Task;
  */
 public class UnMarkInstruction implements Instruction {
 
-    TaskList taskList;
-    String taskDescription;
-    int taskPos;
+    private TaskList taskList;
+    private String taskDescription;
+    private int taskPos;
 
     /**
      * Constructor for the UnMarkInstruction class.

@@ -12,9 +12,9 @@ import duke.tasks.Event;
 
 public class EventInstruction implements Instruction {
 
-    TaskList taskList;
-    String userInput;
-    Event newTask;
+    private TaskList taskList;
+    private String userInput;
+    private Event newTask;
 
     /**
      * Constructor for the EventInstruction class.

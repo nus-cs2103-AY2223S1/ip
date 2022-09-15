@@ -1,13 +1,13 @@
 package duke.instruction;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import duke.functions.TaskList;
 import duke.functions.Ui;
 import duke.support.DukeException;
 import duke.tasks.Deadline;
-
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 /**
  * DeadlineInstruction class to initiate a Deadline command as inputted by the user.
@@ -16,9 +16,9 @@ import java.time.format.DateTimeParseException;
  */
 public class DeadlineInstruction implements Instruction {
 
-    TaskList taskList;
-    String userInput;
-    Deadline newTask;
+    private TaskList taskList;
+    private String userInput;
+    private Deadline newTask;
 
     /**
      * Constructor for the DeadlineInstruction class.

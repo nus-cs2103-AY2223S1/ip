@@ -12,9 +12,9 @@ import duke.tasks.Task;
  */
 public class FindInstruction implements Instruction {
 
-    TaskList taskList;
-    String userInput;
-    String findList = "";
+    private TaskList taskList;
+    private String userInput;
+    private String findList = "";
 
     /**
      * Constructor for the FindInstruction class.

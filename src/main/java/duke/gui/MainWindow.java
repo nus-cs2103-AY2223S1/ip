@@ -1,8 +1,7 @@
 package duke.gui;
 
-import duke.functions.Ui;
 import duke.Duke;
-
+import duke.functions.Ui;
 import duke.support.Parser;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;

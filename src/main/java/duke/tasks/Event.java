@@ -1,7 +1,5 @@
 package duke.tasks;
 
-import duke.support.DatesAndTimes;
-
 /**
  * Class for Event Task.
  *

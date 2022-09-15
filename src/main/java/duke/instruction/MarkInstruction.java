@@ -8,11 +8,11 @@ import duke.tasks.Task;
  *
  * @author lauralee
  */
-public class MarkInstruction implements Instruction{
+public class MarkInstruction implements Instruction {
 
-    TaskList taskList;
-    String userInput;
-    int taskPos;
+    private TaskList taskList;
+    private String userInput;
+    private int taskPos;
 
     /**
      * Constructor for the MarkInstruction class.

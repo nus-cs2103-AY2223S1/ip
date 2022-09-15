@@ -12,9 +12,9 @@ import duke.tasks.Todo;
  */
 public class ToDoInstruction implements Instruction {
 
-    TaskList taskList;
-    String userInput;
-    Todo newTask;
+    private TaskList taskList;
+    private String userInput;
+    private Todo newTask;
 
     /**
      * Constructor for the ToDoInstruction class.

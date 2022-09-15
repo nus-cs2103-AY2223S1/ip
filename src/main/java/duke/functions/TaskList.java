@@ -9,7 +9,7 @@ import duke.tasks.Task;
  */
 public class TaskList {
 
-    Task[] taskArr;
+    private Task[] taskArr;
 
     /**
      * Constructor for TaskList class.
@@ -55,10 +55,8 @@ public class TaskList {
      * @return The description returned by Duke when a task is deleted.
      */
     public String deleteTask(int taskPos, Task deletedTask) {
-        /**
-         * Shifts tasks in task array behind the deleted task one unit
-         * down to replace the deleted task.
-         */
+        //Shifts tasks in task array behind the deleted task one unit
+        //down to replace the deleted task.
         Task.deleteTask();
         for (int i = (taskPos - 1); i <= Task.getNumberTasks(); i++) {
             this.taskArr[i] = this.taskArr[i + 1];

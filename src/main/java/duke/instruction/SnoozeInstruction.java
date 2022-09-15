@@ -5,12 +5,17 @@ import duke.functions.Ui;
 import duke.tasks.Event;
 import duke.tasks.Task;
 
+/**
+ * SnoozeInstruction class to initiate a snooze command as inputted by the user.
+ *
+ * @author lauralee
+ */
 public class SnoozeInstruction implements Instruction {
 
-    TaskList taskList;
-    String userInput;
-    int taskPos;
-    Task snoozedTask;
+    private TaskList taskList;
+    private String userInput;
+    private int taskPos;
+    private Task snoozedTask;
 
     /**
      * Constructor for the SnoozeInstruction class.

@@ -10,7 +10,7 @@ import duke.functions.Ui;
  */
 public class ListInstruction implements Instruction {
 
-    TaskList taskList;
+    private TaskList taskList;
 
     /**
      * Constructor for the ListInstruction class.
