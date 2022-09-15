@@ -11,10 +11,11 @@ import entities.Deadline;
 import entities.Event;
 import entities.Task;
 import entities.Todo;
+import exceptions.DukeException;
 
 public class StorageTest {
     @Test
-    public void testLoad() {
+    public void testLoad() throws DukeException {
         Storage s = new Storage("data/test.txt");
         List<Task> actual = s.load();
         List<Task> expected = new ArrayList<>();

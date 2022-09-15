@@ -15,41 +15,41 @@ public class Parser {
      * @throws DukeException A custom exception for handling errors unique to Duke.
      */
     public static String decide(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
-        assert(s.length() != 0);
-        assert(taskList != null);
-        assert(storage != null);
+         assert(s.length() != 0);
+         assert(taskList != null);
+         assert(storage != null);
 
         if (arr.length == 0) {
             return "Please enter a valid command.";
         } else {
             String command = arr[0];
             switch (command) {
-                case "find":
-                    return handleFindCase(s, arr, taskList);
-                case "mark":
-                    return handleMarkCase(arr, taskList, storage);
-                case "unmark":
-                    return handleUnmarkCase(arr, taskList, storage);
-                case "delete":
-                    return handleDeleteCase(arr, taskList, storage);
-                case "todo":
-                    return handleTodoCase(s, arr, taskList, storage);
-                case "deadline":
-                    return handleDeadlineCase(s, taskList, storage);
-                case "event":
-                    return handleEventCase(s, taskList, storage);
-                case "postpone":
-                    return handlePostponeCase(s, taskList, storage);
-                default:
-                    throw new DukeException("Error. Sorry, but I don't know what that means.");
+            case "find":
+                return handleFindCase(s, arr, taskList);
+            case "mark":
+                return handleMarkCase(arr, taskList, storage);
+            case "unmark":
+                return handleUnmarkCase(arr, taskList, storage);
+            case "delete":
+                return handleDeleteCase(arr, taskList, storage);
+            case "todo":
+                return handleTodoCase(s, arr, taskList, storage);
+            case "deadline":
+                return handleDeadlineCase(s, taskList, storage);
+            case "event":
+                return handleEventCase(s, taskList, storage);
+            case "postpone":
+                return handlePostponeCase(s, taskList);
+            default:
+                throw new DukeException("Error. Sorry, but I don't know what that means.");
             }
         }
     }
 
-    private static String handlePostponeCase(String s, TaskList taskList, Storage storage) throws DukeException {
+    private static String handlePostponeCase(String s, TaskList taskList) throws DukeException {
         String[] content = s.substring(8).trim().split("/to");
         if (content.length <= 1) {
-            throw new DukeException("Usage: postpone {id} /to {new date}");
+            throw new DukeException("Usage: postpone {id} /to {new date}.");
         }
         try {
             int taskId = Integer.parseInt(content[0].trim()) - 1;
@@ -95,7 +95,7 @@ public class Parser {
                 return "Please enter an integer within range.";
             }
         } catch (NumberFormatException e) {
-            return "Please enter an integer id after \"mark\"";
+            return "Please enter an integer id after \"mark\".";
         }
     }
 
@@ -115,7 +115,7 @@ public class Parser {
                 return "Please enter an integer within range.";
             }
         } catch (NumberFormatException e) {
-            return "Please enter an integer id after \"ummark\"";
+            return "Please enter an integer id after \"ummark\".";
         }
     }
 
@@ -129,32 +129,44 @@ public class Parser {
             if (i >= 0 && i < taskList.getSize()) {
                 taskList.delete(i);
                 storage.save(taskList);
-                return "Task updated in storage";
+                return "Task updated in storage.";
             } else {
                 return "Please enter an integer within range.";
             }
         } catch (NumberFormatException e) {
-            return "Please enter an integer id after \"delete\"";
+            return "Please enter an integer id after \"delete\".";
         }
     }
-    private static String handleTodoCase(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
+
+    private static String handleTodoCase(String s, String[] arr,
+                                         TaskList taskList, Storage storage) throws DukeException {
         if (arr.length == 1) {
             throw new DukeException("Error. The description of a todo cannot be empty.");
         }
         String todo = s.substring(4).trim();
+
+        if (todo.length() == 0) {
+            throw new DukeException("Please enter a valid description for your todo.");
+        }
+
         taskList.add(todo, Duke.TaskType.TODO, "");
         storage.save(taskList);
-        return "Task updated in storage";
+        return "Task updated in storage.";
     }
 
     private static String handleDeadlineCase(String s, TaskList taskList, Storage storage) throws DukeException {
         String[] deadlineBy = s.substring(8).trim().split("/by");
         if (deadlineBy.length <= 1) {
-            throw new DukeException("Error. The description and due date of a deadline\n\tshould be "
+            throw new DukeException("Error. The description and due date of a deadline\nshould be "
                     + "separated" + " by a \"/by\".");
         }
         String deadline = deadlineBy[0].trim();
         String by = deadlineBy[1].trim();
+
+        if (deadline.length() == 0) {
+            throw new DukeException("Please enter a valid description for your deadline.\n"
+                    + "Usage: deadline {description} /by {yyyy-mm-dd hhmm}.");
+        }
 
         // Regex adapted from:
         // stackoverflow.com/questions/37732/what-is-the-regex-pattern-for-datetime-2008-09-01-123545
@@ -169,13 +181,19 @@ public class Parser {
     private static String handleEventCase(String s, TaskList taskList, Storage storage) throws DukeException {
         String[] eventAt = s.substring(5).trim().split("/at");
         if (eventAt.length <= 1) {
-            throw new DukeException("Error. The description and time of an event\n\tshould be separated"
+            throw new DukeException("Error. The description and time of an event\nshould be separated"
                     + " by a \"/at\".");
         }
         String event = eventAt[0].trim();
+
+        if (event.length() == 0) {
+            throw new DukeException("Please enter a valid description for your event.\n"
+                    + "Usage: event {description} /at {place/time}.");
+        }
+
         String at = eventAt[1].trim();
         taskList.add(event, Duke.TaskType.EVENT, at);
         storage.save(taskList);
-        return "Task updated in storage";
+        return "Task updated in storage.";
     }
 }

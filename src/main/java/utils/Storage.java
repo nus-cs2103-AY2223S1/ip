@@ -12,6 +12,7 @@ import entities.Deadline;
 import entities.Event;
 import entities.Task;
 import entities.Todo;
+import exceptions.DukeException;
 
 /**
  * Handles storing and loading tasks from the hard disk between sessions.
@@ -64,7 +65,7 @@ public class Storage {
      * @return A TaskList which contains the cached tasks entered by the user
      *         during the previous session.
      */
-    public List<Task> load() {
+    public List<Task> load() throws DukeException {
         List<Task> taskList = new ArrayList<>();
         File file = handleFileCreation();
 
@@ -81,7 +82,7 @@ public class Storage {
         return taskList;
     }
 
-    private void handleSaveData(String[] taskData, List<Task> taskList) {
+    private void handleSaveData(String[] taskData, List<Task> taskList) throws DukeException {
         String taskType = taskData[0];
         boolean isDone = taskData[1].equals("d");
         String desc = taskData[2];

@@ -3,6 +3,7 @@ package utils;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.Duke;
 import entities.Deadline;
@@ -55,36 +56,42 @@ public class TaskList {
      * @param type The type of task to be added.
      * @param remarks The remarks to be added for events or deadlines.
      */
-    public void add(String description, Duke.TaskType type, String remarks) {
+    public void add(String description, Duke.TaskType type, String remarks) throws DukeException {
         String s = "Got it. I've added this task:\n\t";
         int size;
         switch (type) {
         case TODO:
             Todo t = new Todo(description);
 
+            if (this.tasks.contains(t)) {
+                throw new DukeException("Task already exists! Duplicates are not allowed.");
+            }
+
             size = this.tasks.size();
             this.tasks.add(t);
             assert(this.tasks.size() > size);
-
-            s = s + "  " + t;
             break;
         case DEADLINE:
             Deadline d = new Deadline(description, remarks);
 
+            if (this.tasks.contains(d)) {
+                throw new DukeException("Task already exists! Duplicates are not allowed.");
+            }
+
             size = this.tasks.size();
             this.tasks.add(d);
             assert(this.tasks.size() > size);
-
-            s = s + "  " + d;
             break;
         case EVENT:
             Event e = new Event(description, remarks);
 
+            if (this.tasks.contains(e)) {
+                throw new DukeException("Task already exists! Duplicates are not allowed.");
+            }
+
             size = this.tasks.size();
             this.tasks.add(e);
             assert(this.tasks.size() > size);
-
-            s = s + "  " + e;
             break;
         default:
             break;
@@ -92,7 +99,7 @@ public class TaskList {
     }
 
     /**
-     * Utility function for deleting an item in the user's task list.
+     * Deletes item in the user's task list.
      * @param index The position of the task to be deleted in the ArrayList.
      */
     public void delete(int index) {
@@ -103,7 +110,7 @@ public class TaskList {
         this.tasks.remove(index);
         int size = this.tasks.size();
 
-        assert(size > tempSize);
+         assert(size < tempSize);
 
         s = s + "\n\tNow you have " + (size) + (size == 1 ? " task" : " tasks") + " in the list.";
     }
@@ -112,7 +119,16 @@ public class TaskList {
      * Prints all tasks in the list.
      */
     public String listTasks() {
-        return Ui.getTasks(this.tasks); //TODO: Refactor
+        if (this.tasks.size() == 0) {
+            return "No items stored";
+        } else {
+            String s = "Here are the tasks in your list:\n";
+            for (int i = 0; i < this.tasks.size(); i++) {
+                Task t = this.tasks.get(i);
+                s = s + "\t" + (i + 1) + ". " + t + "\n";
+            }
+            return s.trim();
+        }
     }
 
     /**
@@ -133,6 +149,12 @@ public class TaskList {
         assert(!this.tasks.get(index).getStatus());
     }
 
+    /**
+     * Checks if the task at the specified is a deadline instance.
+     * @param index The index of the task in the task list.
+     * @return True if the task is a deadline instance, and false otherwise.
+     * @throws DukeException If the index entered is out of bounds.
+     */
     public boolean checkIfTaskIsDeadline(int index) throws DukeException {
         if (index < 0 || index >= this.tasks.size()) {
             throw new DukeException("Please enter a valid task ID.");
@@ -140,6 +162,13 @@ public class TaskList {
         return this.tasks.get(index) instanceof Deadline;
     }
 
+    /**
+     * Checks if the date to postpone the task to is later than the current date
+     * of the task at the specified index.
+     * @param index The index of the task in the task list.
+     * @param to The new date to update the task deadline to.
+     * @return True if the date entered is valid, and false otherwise.
+     */
     public boolean checkIfInvalidDate(int index, String to) {
         String date = to.split(" ")[0].trim();
         String time = to.split(" ")[1].trim();
@@ -150,29 +179,45 @@ public class TaskList {
         return false;
     }
 
+    /**
+     * Modifies the due date of the deadline task to the new date specified
+     * in the string 'to'.
+     * @param index The index of the deadline task to be modified.
+     * @param to The new due date of the deadline.
+     */
     public void updateDeadlineDueDate(int index, String to) {
         String date = to.split(" ")[0].trim();
         String time = to.split(" ")[1].trim();
         LocalDateTime dateTime = LocalDateTime.parse(date + "T" + time.substring(0, 2) + ":" + time.substring(2));
         if (this.tasks.get(index) instanceof Deadline) {
-            ((Deadline) this.tasks.get(index)).setDateTime(dateTime);
+            Deadline d = (Deadline) this.tasks.get(index);
+            d.setDateTime(dateTime);
         }
     }
 
     /**
      * Returns the String representation of a particular task.
-     * @param index The position of the task in the LIst.
+     * @param index The position of the task in the List.
      * @return A String representing the task.
      */
     public String getTaskAsString(int index) {
         return this.tasks.get(index).toString();
     }
 
+    /**
+     * Gets all tasks whose description match the input string.
+     * @param s The string to search the task list for.
+     * @return A string of tasks that match the input string.
+     */
     public String getAllOccurrencesOf(String s) {
         String result = "Here are the matching tasks in your list:\n";
+        List<String> ls = this.tasks.stream()
+                .map(t -> t.toString().toLowerCase())
+                .collect(Collectors.toList());
         return result + "\n\t" + this.tasks.stream()
                 .map(Task::toString)
                 .filter(str -> str.toLowerCase().contains(s))
+                .map(str -> ls.indexOf(str.toLowerCase()) + 1 + ". " + str)
                 .reduce((x, y) -> x + "\n\t" + y)
                 .orElse("No matching tasks found.");
     }

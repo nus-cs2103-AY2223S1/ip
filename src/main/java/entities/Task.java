@@ -23,6 +23,16 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Task) {
+            Task t = (Task) o;
+            return this.toString().equals(t.toString());
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Returns a visual representation of whether a task is marked completed.
      * @return A string with an 'X' if the task is completed, and no 'X' otherwise.

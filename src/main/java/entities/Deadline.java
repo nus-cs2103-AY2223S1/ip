@@ -2,6 +2,9 @@ package entities;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import exceptions.DukeException;
 
 /**
  * A subclass of the task class.
@@ -22,12 +25,17 @@ public class Deadline extends Task {
      * @param description The description of the Deadline instance.
      * @param by The due date or time of the Deadline instance.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws DukeException {
         super(description);
         this.by = by;
         String date = by.split(" ")[0].trim();
         String time = by.split(" ")[1].trim();
-        this.dateTime = LocalDateTime.parse(date + "T" + time.substring(0, 2) + ":" + time.substring(2));
+        try {
+            this.dateTime = LocalDateTime.parse(date + "T" + time.substring(0, 2) + ":" + time.substring(2));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid date-time entered.");
+        }
+
     }
 
     /**
@@ -68,6 +76,10 @@ public class Deadline extends Task {
         return this.by;
     }
 
+    /**
+     * Sets the date time for the deadline instance.
+     * @param dateTime The date and time value to set.
+     */
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }

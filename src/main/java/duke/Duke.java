@@ -96,7 +96,6 @@ public class Duke extends Application {
             String[] arr = s.split(" ");
             if (s.equals("bye")) {
                 Ui.sayGoodbye();
-                System.exit(0);
             } else if (s.equals("list")) {
                 this.taskList.listTasks();
             } else {
