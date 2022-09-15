@@ -12,7 +12,7 @@ Fret not, Duke is an interactive chat bot that is going to organise your life.
 
 All you need to do is,
 
-1. Download it here
+1. Download it [here](https://github.com/ryanlml/ip/releases)
 2. Double click it
 3. Done!
 
