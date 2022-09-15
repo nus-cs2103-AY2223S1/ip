@@ -7,16 +7,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import exceptions.DuplicateException;
 import exceptions.IncorrectFileInputException;
-import task.Deadline;
-import task.Event;
 import task.Task;
-import task.ToDo;
-
 
 /**
  * A storage that deals with loading tasks from the file
@@ -28,7 +23,6 @@ public class Storage {
     private File file;
     private Scanner scanner;
     private final TaskList tasks;
-    private Ui ui;
 
     /**
      * Creates a Storage with a file.
@@ -36,9 +30,8 @@ public class Storage {
      *
      * @throws IOException if an I/O error occurs.
      */
-    public Storage(Ui ui) throws IOException {
+    public Storage() throws IOException {
         try {
-            this.ui = ui;
             this.file = new File(TEXT_FILE);
             this.scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
@@ -47,7 +40,7 @@ public class Storage {
             this.file = new File(TEXT_FILE);
             this.scanner = new Scanner(file);
         } finally {
-            this.tasks = new TaskList(this.ui);
+            this.tasks = new TaskList();
         }
     }
 
@@ -61,40 +54,11 @@ public class Storage {
     public TaskList load() throws IncorrectFileInputException, DuplicateException {
         while (scanner.hasNext()) {
             String nextLine = scanner.nextLine();
-            Task task = getTaskFromFile(nextLine);
+            Task task = Parser.parseFileToTask(nextLine);
             tasks.addTask(task);
         }
         scanner.close();
         return this.tasks;
-    }
-
-    private Task getTaskFromFile(String nextLine) throws IncorrectFileInputException {
-        String[] details = nextLine.split(" \\| ");
-        String symbol = details[0];
-        String isDoneValue = details[1];
-        String taskName = details[2];
-        String description;
-        Task task;
-        switch (symbol) {
-        case Deadline.SYMBOL:
-            description = details[3];
-            LocalDateTime dateTime = LocalDateTime.parse(description);
-            task = new Deadline(taskName, dateTime);
-            break;
-        case Event.SYMBOL:
-            description = details[3];
-            task = new Event(taskName, description);
-            break;
-        case ToDo.SYMBOL:
-            task = new ToDo(taskName);
-            break;
-        default:
-            throw new IncorrectFileInputException();
-        }
-        if (isDoneValue.equals("1")) {
-            task.setDone(true);
-        }
-        return task;
     }
 
     /**

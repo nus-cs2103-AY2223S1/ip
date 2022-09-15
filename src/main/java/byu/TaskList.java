@@ -12,15 +12,13 @@ import task.Task;
 public class TaskList {
 
     private final ArrayList<Task> tasks;
-    private final Ui ui;
     private int numOfTasks = 0;
 
     /**
      * Creates a list that stores tasks.
      */
-    public TaskList(Ui ui) {
+    public TaskList() {
         this.tasks = new ArrayList<>();
-        this.ui = ui;
     }
 
     /**
@@ -43,8 +41,8 @@ public class TaskList {
      * Marks a task as done.
      *
      * @param i the index of the Task to be marked.
-     * @returns the task marked.
-     * @throws InvalidIndexException if i < 0 or i > number of tasks in the list.
+     * @return the task marked.
+     * @throws InvalidIndexException if i <= 0 or i > number of tasks in the list.
      */
     public Task mark(int i) throws InvalidIndexException {
         int arrayIndex = getValidArrayIndex(i);
@@ -57,8 +55,8 @@ public class TaskList {
      * Marks a task as incomplete.
      *
      * @param i the index of the Task to be unmarked.
-     * @returns the task unmarked.
-     * @throws InvalidIndexException if i < 0 or i > number of tasks in the list.
+     * @return the task unmarked.
+     * @throws InvalidIndexException if i <= 0 or i > number of tasks in the list.
      */
     public Task unmark(int i) throws InvalidIndexException {
         int arrayIndex = getValidArrayIndex(i);
@@ -71,8 +69,8 @@ public class TaskList {
      * Deletes a task from the list.
      *
      * @param i the index of the Task to be deleted.
-     * @returns the task deleted.
-     * @throws InvalidIndexException if i < 0 or i > number of tasks in the list.
+     * @return the task deleted.
+     * @throws InvalidIndexException if i <= 0 or i > number of tasks in the list.
      */
     public Task delete(int i) throws InvalidIndexException {
         int arrayIndex = getValidArrayIndex(i);

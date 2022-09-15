@@ -17,12 +17,12 @@ public class Byu {
     private Ui ui;
 
     /**
-     * Creates an instance of Byu with data from the file.
+     * Creates an instance of Byu and loads data from the file.
      */
     public Byu() {
         try {
             ui = new Ui();
-            storage = new Storage(ui);
+            storage = new Storage();
             tasks = storage.load();
         } catch (IOException e) {
             System.out.print(e.getMessage());
@@ -34,50 +34,19 @@ public class Byu {
     }
 
     /**
-     * Runs Byu and starts scanning for user input.
-     * Stops running when "bye" is entered.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui);
-                storage.save();
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e);
-            }
-        }
-    }
-
-    /**
-     * Creates a Byu instance and runs Byu.
-     */
-    public static void main(String[] args) {
-        new Byu().run();
-    }
-
-    /**
      * Generates a response to user input.
      *
      * @param input the user input Byu generates a response to.
+     * @return the response to a user input.
      */
     public String getResponse(String input) {
         try {
-            Command c = Parser.parse(input);
-            if (c.isExit()) {
-                this.storage.save();
-                return "Aww, see you soon!";
-            } else {
-                c.execute(this.tasks, this.ui);
-                this.storage.save();
-                return this.ui.showOutput();
-            }
+            Command command = Parser.parse(input);
+            command.execute(this.tasks, this.ui);
+            this.storage.save();
+            return this.ui.getValidOutput();
         } catch (DukeException e) {
-            return ui.showError(e);
+            return ui.getErrorOutput(e);
         }
     }
 }

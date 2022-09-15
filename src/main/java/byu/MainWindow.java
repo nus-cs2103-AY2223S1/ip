@@ -13,8 +13,6 @@ import javafx.scene.layout.VBox;
  */
 public class MainWindow extends AnchorPane {
 
-    private static final String WELCOME_MESSAGE = "Bonjour~~ I'm Byu, your personal task tracker! How can I help you?";
-
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -28,7 +26,7 @@ public class MainWindow extends AnchorPane {
 
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private final Image byuImage = new Image(this.getClass().getResourceAsStream("/images/panda.jpeg"));
-    private final DialogBox welcomeDialogBox = DialogBox.getByuDialog(WELCOME_MESSAGE, byuImage);
+    private final DialogBox welcomeDialogBox = DialogBox.getByuDialog(Ui.LOGO + Ui.WELCOME_MESSAGE, byuImage);
 
     /**
      * Initializes the main window, and displays a welcome message.
