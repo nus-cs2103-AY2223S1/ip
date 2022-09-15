@@ -22,7 +22,7 @@ public class Deadline extends Task {
 
 
     /**
-     * Return string representation of event object, prefixed with [D], and
+     * Returns string representation of event object, prefixed with [D], and
      * ending with the time information of the event.
      */
     @Override
@@ -33,7 +33,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return string representation of deadline object for saving to file.
+     * Returns string representation of deadline object for saving to file.
      */
     @Override
     public String getSavedFileFormat() {

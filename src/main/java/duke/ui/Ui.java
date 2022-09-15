@@ -8,13 +8,10 @@ public class Ui {
 
     private static Ui ui;
 
-    private static final String logo = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+    /** Welcome message */
     private static final String welcomeMessage = "Hello! What can I do for you?";
 
+    /** Help message */
     private static final String helpMessage = "Here are the commands you can use: \n"
             + "'todo (description)'\n"
             + "'deadline (description) /by (date*)'\n"
@@ -34,13 +31,6 @@ public class Ui {
     }
 
     /**
-     * Prints out welcome message.
-     */
-    public void bootUpDuke() {
-        System.out.println(welcomeMessage);
-    }
-
-    /**
      * Returns Ui instance if created, else create one.
      * Ensures Ui will only ever have one created object.
      *
@@ -53,6 +43,9 @@ public class Ui {
         return ui;
     }
 
+    /**
+     *  Returns Duke's welcome message.
+     */
     public String getWelcomeMessage() {
         return welcomeMessage;
     }

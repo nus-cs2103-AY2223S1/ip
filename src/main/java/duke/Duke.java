@@ -70,7 +70,7 @@ public class Duke {
     }
 
     /**
-     * Main method that initialises an instance of the Duke chatbot.
+     * Starts the GUI application.
      * @param args The command line arguments.
      */
     public static void main(String[] args) {

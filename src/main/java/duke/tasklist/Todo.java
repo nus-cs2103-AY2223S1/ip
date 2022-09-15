@@ -14,7 +14,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Return string representation of todo object prefixed with [T].
+     * Returns string representation of todo object prefixed with [T].
      */
     @Override
     public String toString() {
@@ -22,7 +22,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Return string representation of todo object for saving to file.
+     * Returns string representation of todo object for saving to file.
      */
     @Override
     public String getSavedFileFormat() {

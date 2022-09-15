@@ -23,7 +23,7 @@ public class Event extends Task {
 
 
     /**
-     * Return string representation of event object, prefixed with [E], and
+     * Returns string representation of event object, prefixed with [E], and
      * ending with the time information of the event.
      */
     @Override
@@ -34,7 +34,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return string representation of event object for saving to file.
+     * Returns string representation of event object for saving to file.
      */
     @Override
     public String getSavedFileFormat() {

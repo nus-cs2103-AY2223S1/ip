@@ -54,7 +54,7 @@ public class Task {
     }
 
     /**
-     * Return string representing the status of a task's completion.
+     * Returns string representing the status of a task's completion.
      * @return X if task is done, whitespace if not.
      */
     public String getStatusIcon() {
@@ -62,14 +62,14 @@ public class Task {
     }
 
     /**
-     * Return string representation of task object for saving to file.
+     * Returns string representation of task object for saving to file.
      */
     public String getSavedFileFormat() {
         return (this.isDone ? 1 : 0) + "|" + this.description;
     }
 
     /**
-     * Return string representation of task object.
+     * Returns string representation of task object.
      */
     @Override
     public String toString() {
