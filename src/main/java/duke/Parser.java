@@ -177,8 +177,11 @@ public class Parser {
         String deadline = restOfString;
 
         if (deadline.equals("")) {
-            //Throw exception if description and date and time are empty
+            //User only types "deadline"
             throw new DukeException("OOPS!!! " + "The description of a deadline cannot be empty.\n");
+        } else if (!deadline.contains("/by")) {
+            //User only types description of Deadline task
+            throw new DukeException("No date and time set for deadline task!\n");
         } else {
             //Getting the description, date and time of the Deadline task
             int integer = deadline.indexOf("/by");
@@ -262,8 +265,11 @@ public class Parser {
         String event = restOfString;
 
         if (event.equals("")) {
-            //Throw exception if description and date and time are empty
+            //User only inputs "event"
             throw new DukeException("OOPS!!! " + "The description of a event cannot be empty.\n");
+        } else if (!event.contains("/at")) {
+            //User only inputs description of Event task
+            throw new DukeException("No date and time set for event task!\n");
         } else {
             //Get the description, date and time of the Event task
             int integer = event.indexOf("/at");
