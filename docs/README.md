@@ -12,7 +12,7 @@ Description of the feature.
 
 ## Usage
 
-### `Duke.enum.Keyword` - Describe action
+### `duke.enum.Keyword` - Describe action
 
 Describe the action and its outcome.
 
