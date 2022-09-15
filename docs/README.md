@@ -1,16 +1,17 @@
 # BetaGo User Guide
-
 BetaGo is a personal assistant Chatbot that can help you keep track of
 your various tasks! 
 
+---
+
 ## Quickstart
 1. Ensure that you have **Java 11** installed on your computer.
-2. Download the latest `BetaGo.jar` file from here.
+2. Download the latest `betago.jar` file from here.
 3. Copy the file to the folder you want to use as your home folder.
 4. Double-click the file to start using BetaGo!
-5. Refer to the Command Summary table below for a quick guide on what commands you may give to BetaGo.
+5. Refer to the [Command Summary](#command-summary) table for a quick guide on what commands you may give to BetaGo.
 
-
+---
 
 ## Features 
 
@@ -29,10 +30,12 @@ Betago allows you to easily:
 - Search for specific tasks in the list using keywords
 - Load and Save tasks from a `.txt` file
 
+---
+
 ## Usage
 Notes about the command format:
-- Words in brackets () refer to fields that require the respective input from the user
-- Words in square brackets [] are optional fields
+- Words in brackets `()` refer to fields that require the respective input from the user
+- Words in square brackets `[]` are optional fields
 - Fields that require a date input should be in one of the following formats:
   - `yyyy-MM-dd`
   - `dd-MMM-yyyy`
@@ -167,5 +170,18 @@ Format:
 
 Data is automatically saved into the `betago.txt` or the loaded file after every change in data of the list.
 
+---
 
 ## Command Summary
+| Command  | Format                                     | Example                             |
+|----------|--------------------------------------------|-------------------------------------|
+| load     | `load (filename)`                          | load newdata.txt                    |
+| todo     | `todo (description)`                       | todo return book                    |
+| deadline | `deadline (description) /by (date) [time]` | deadline return book /by 2023-08-09 |
+| event    | `event (description) /at (date) [time]`    | event book fair /at 2023-08-09      |
+| list     | `list`                                     | list                                |
+| delete   | `delete (index)`                           | delete 1                            |
+| mark     | `mark (index)`                             | mark 2                              |
+| unmark   | `unmark (index)`                           | unmark 2                            |
+| find     | `find (keyword)`                           | find book                           |
+| bye      | `bye`                                      | bye                                 |
