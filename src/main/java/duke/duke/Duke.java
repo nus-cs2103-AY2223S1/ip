@@ -9,7 +9,9 @@ public class Duke {
     private TaskList taskList;
     private Storage storage;
 
-    public Duke(String filePath) throws DukeException {
+    public static final String GREETING_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
+
+    public Duke(String filePath) throws DukeException{
         assert !filePath.isEmpty() : "Filepath should not be empty";
         storage = new Storage(filePath);
         taskList = new TaskList(storage.loadTaskList());
