@@ -6,7 +6,6 @@ import duke.util.StringParser;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
-
 /**
  * Duke IO class to handle interactions with the GUI
  */
@@ -16,7 +15,8 @@ public class DukeGuiIo extends DukeAbstractIo {
     private final Function<String, Node> makeChild;
 
     /**
-     * Create an instance of the gui interaction object specifying a way to make a new child
+     * Create an instance of the gui interaction object specifying a way to make a
+     * new child
      * 
      * @param container the container which contains the spawned child
      * @param makeChild function to create a new child
@@ -32,7 +32,7 @@ public class DukeGuiIo extends DukeAbstractIo {
 
     @Override
     public void printTask(String txt, int features) {
-        if ((features & 2) == 2) {
+        if (isBitFlag(features, DukeCliSettings.INDENT)) {
             txt = StringParser.addIndent(txt);
         }
         addMsgToContainer(txt);
@@ -40,7 +40,7 @@ public class DukeGuiIo extends DukeAbstractIo {
 
     @Override
     public void printTask(String txt) {
-        printTask(txt, 3);
+        printTask(txt, DukeCliSettings.INDENT);
     }
 
     @Override

@@ -2,6 +2,7 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.inputoutput.DukeCliSettings;
 import duke.inputoutput.DukeIo;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -29,7 +30,7 @@ public class ByeCommand implements Command {
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs) throws IOException {
-        io.printTask(OUTRO, 3);
+        io.printTask(OUTRO, DukeCliSettings.WRAP_INDENT);
         storage.saveTasks(tasks);
     }
 
