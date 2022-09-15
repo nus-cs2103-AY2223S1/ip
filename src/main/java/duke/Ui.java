@@ -28,8 +28,9 @@ public class Ui {
     /**
      * Method to run at the end of running program
      */
-    public void farewell() {
+    public String farewell() {
         String bye = "Bye. Hope to see you again soon!";
         System.out.println(bye);
+        return bye;
     }
 }

@@ -1,12 +1,9 @@
 package duke;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -88,14 +85,14 @@ public class Storage {
                 throw new IOException("File does not exist.");
             }
 
-            FileWriter fwriter = new FileWriter(filePath);
+            FileWriter fw = new FileWriter(filePath);
             String output = "";
             for (Task item : textToAlter) {
                 output += (textToAlter.indexOf(item) + 1) + "." + item  + "\n";
             }
 
-            fwriter.write(output);
-            fwriter.close();
+            fw.write(output);
+            fw.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -107,6 +107,7 @@ public class Parser {
             return tasks.list();
         }
         if (userInput.equals("bye")) {
+            return ui.farewell();
         }
         if (userInput.split(" ", 2)[0].equals("mark")) {
             int inputTaskIndex = getTaskIndex(userInput);

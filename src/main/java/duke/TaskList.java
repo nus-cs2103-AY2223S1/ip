@@ -205,8 +205,8 @@ public class TaskList {
 
     public boolean duplicateCheck(Task task) {
         System.out.println("check");
-        for(int i = 0; i < storeTasks.size(); i++) {
-            if(storeTasks.get(i).equals(task)) {
+        for (Task storeTask : storeTasks) {
+            if (storeTask.equals(task)) {
                 return true;
             }
         }

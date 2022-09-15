@@ -1,6 +1,5 @@
-1.[T][ ] go school
-2.[T][X] go library
-3.[T][X] go CS2107
-4.[D][ ] finish homework  (by: 2.00pm)
-5.[E][X] fhd  (at: 12-3pm)
-6.[T][ ] go back loser
+1.[T][ ] go library
+2.[T][ ] go CS2107
+3.[T][ ] go to study spot
+4.[T][ ] go back home
+5.[T][ ] go out
