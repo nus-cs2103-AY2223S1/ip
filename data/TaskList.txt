@@ -1,11 +1,4 @@
-T | 1 | read book
-D | 1 | return book | 06/06/2022 1400
-E | 0 | project meeting | 06/08/2022 1000
-T | 1 | join sports club
-T | 0 | wash dishes
-D | 1 | 2100 tutorial | 28/08/2022 2359
-E | 0 | abcd | 30/09/2022 1000
-T | 1 | watch 2100 lecture
-D | 1 | 2101 reflection | 04/09/2022 0000
-T | 1 | eat dinner
-R | 0 |  2103t lecture | FRIDAY | 1600
+T | 1 | cook dinner
+D | 0 | return textbook to the library | 21/12/2022 1700
+E | 0 | Ed Sheeran concert | 24/06/2023 2000
+R | 0 |  weekly project meeting | FRIDAY | 1130
