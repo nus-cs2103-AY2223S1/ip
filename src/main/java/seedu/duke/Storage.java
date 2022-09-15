@@ -27,7 +27,7 @@ public class Storage {
         }
         catch(IOException e) {
             e.getStackTrace();
-            Ui.saveError();
+            Ui.saveFileError();
         }
 
         this.save = saveFile;
@@ -85,6 +85,7 @@ public class Storage {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            Ui.saveFileError();
         } catch (DukeException e) {
             e.printStackTrace();
         }

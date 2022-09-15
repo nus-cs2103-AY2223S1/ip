@@ -24,7 +24,7 @@ public class Ui {
     public static String deleteText(String deleted, int size) {
         return "Noted. I've removed this task: \n"
                 + deleted + "\n"
-                + "Now you have " + size + " tasks in the list. \n";
+                + "Now you have " + size + " task(s) in the list. \n";
     }
 
     /**
@@ -37,7 +37,7 @@ public class Ui {
     public static String addText(String added, int size) {
         return "Got it. I've added this task: \n"
                 + added + "\n"
-                + "Now you have " + size + " tasks in the list. \n";
+                + "Now you have " + size + " task(s) in the list. \n";
     }
 
     /**
@@ -50,7 +50,7 @@ public class Ui {
     }
 
     /**
-     * Informs the user that the format of their command was incorrect.
+     * Informs the user that the description field of their command cannot be empty.
      *
      * @param taskType The type of Task the user tried to create.
      * @return A response to be displayed to the user.
@@ -64,12 +64,12 @@ public class Ui {
     }
 
     /**
-     * Tells the user that Duke does not recognise the information in the save file.
+     * Informs the user that there is an empty field in their command.
      *
      * @return A response to be displayed to the user.
      */
-    public static String unknownElement() {
-        return "OOPS!!! Unknown element in save file. \n";
+    public static String emptyField() {
+        return "OOPS!!! all fields of your command must be filled. \n";
     }
 
     /**
@@ -95,7 +95,7 @@ public class Ui {
      *
      * @return A response to be displayed to the user.
      */
-    public static String saveError() {
+    public static String saveFileError() {
         return "OOPS!!! Unable to find/create save file. \n";
     }
 

@@ -45,6 +45,12 @@ public class TaskList {
                 }
 
                 String[] temp = command.substring(9).split("/by ");
+
+                String checkForValidCommand = checkForEmptyField(temp);
+                if (checkForValidCommand != null) {
+                    return checkForValidCommand;
+                }
+
                 newTask = new Deadline(temp[0], temp[1]);
 
             } catch (DateTimeParseException e) {
@@ -57,6 +63,12 @@ public class TaskList {
             }
 
             String[] temp = command.substring(6).split("/at ");
+
+            String checkForValidCommand = checkForEmptyField(temp);
+            if (checkForValidCommand != null) {
+                return checkForValidCommand;
+            }
+
             newTask = new Event(temp[0], temp[1]);
 
         } else if (command.startsWith("FixedDuration")) {
@@ -65,6 +77,12 @@ public class TaskList {
             }
 
             String[] temp = command.substring(14).split("/needs ");
+
+            String checkForValidCommand = checkForEmptyField(temp);
+            if (checkForValidCommand != null) {
+                return checkForValidCommand;
+            }
+
             newTask = new FixedDurationTask(temp[0], temp[1]);
 
         } else {
@@ -78,6 +96,18 @@ public class TaskList {
         saveFile.addTask(newTask.toStore());
 
         return Ui.addText(tempStorage.get(tempStorage.size() - 1).toString(), tempStorage.size());
+    }
+
+    private String checkForEmptyField(String[] temp) {
+        if (temp.length < 2 || temp[1].length() == 0) {
+            return Ui.emptyField();
+        }
+
+        if (temp[0].length() == 0) {
+            return Ui.emptyDescription("Deadline");
+        }
+
+        return null;
     }
 
     /**
@@ -165,7 +195,7 @@ public class TaskList {
             }
         }
 
-        String found = "Here are the matching tasks in your list:";
+        String found = "Here are the matching tasks in your list: \n";
 
         int index = 1;
         Iterator<Task> resultIterator = result.iterator();
