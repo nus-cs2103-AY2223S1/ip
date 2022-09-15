@@ -31,9 +31,10 @@ public class FindCommand extends Command {
         TaskList results = taskList.findMatchingTasks(this.keyword);
         if (results.size() > 0) {
             ListBox lb = ListBox.getListBox(results);
-            return new CommandResult("Here are the matching tasks in your list:\n", lb);
+            return new CommandResult("Here are the matching tasks in your list. Now leave me alone.\n", lb);
         } else {
-            return new CommandResult("There are no matching tasks in your list.");
+            return new CommandResult("Can't believe what an idiot I'm dealing with... "
+                    + "there's no matching tasks in your list!");
         }
     }
 }

@@ -10,6 +10,7 @@ import duke.commands.Command;
 import duke.commands.DeleteCommand;
 import duke.commands.ExitCommand;
 import duke.commands.FindCommand;
+import duke.commands.HelpCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
@@ -28,11 +29,12 @@ import duke.tasks.Todo;
 public class Parser {
     // Constants used by parseCommand and its prepare methods
     private static final String USER_INPUT_DELIMITER = " ";
-    private static final InvalidCommand INVALID_NUMBER_FORMAT = new InvalidCommand("Task index should be integers!");
+    private static final InvalidCommand INVALID_NUMBER_FORMAT = new InvalidCommand("It's really not that "
+            + "hard, is it? Task index should be integers!");
     // Constants used by parseDateTime and its helper methods
     private static final String DATETIME_DELIMITER = "[-:.|/]";
-    private static final ParseDateTimeException ERR_WRONG_DATETIME_FORMAT = new ParseDateTimeException("Date and time"
-            + " is in the wrong format! Correct format: yyyy-mm-dd HH:MM");
+    private static final ParseDateTimeException ERR_WRONG_DATETIME_FORMAT = new ParseDateTimeException(
+            "How have you not seen how dates should be written? It's 'yyyy-mm-dd HH:MM'");
 
     /**
      * Parses the user input and returns the appropriate Command.
@@ -44,6 +46,8 @@ public class Parser {
         String command = userInput.split(USER_INPUT_DELIMITER, 2)[0].toLowerCase();
 
         switch (command) {
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
         case AddCommand.COMMAND_WORD:
             return prepareAdd(userInput);
         case DeleteCommand.COMMAND_WORD:
@@ -61,7 +65,8 @@ public class Parser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:
-            return new InvalidCommand("Sorry, I wasn't programmed to understand this...");
+            return new InvalidCommand("Is this some new magic word? Why don't I understand "
+                    + "anything you're saying?\n (psst! Try inputting 'help' for help with commands.)");
         }
     }
 
@@ -77,7 +82,7 @@ public class Parser {
     private Command prepareAdd(String userInput) {
         String[] tokens = userInput.split(USER_INPUT_DELIMITER, 3);
         if (tokens.length < 3) {
-            return new InvalidCommand("Oh no! Try add <task type> <description>!");
+            return new InvalidCommand("How do you not know this? It's 'add <task type> <description>'!");
         }
 
         // TASK_WORDs are all in lowercase, to match all other class identifiers such as COMMAND_WORDs
@@ -90,7 +95,7 @@ public class Parser {
         case Event.TASK_WORD:
             return prepareEvent(tokens);
         default:
-            return new InvalidCommand("There's no such event type as " + taskType + "!");
+            return new InvalidCommand("What part of '" + taskType + "' makes you think that it's a valid task type?");
         }
     }
 
@@ -104,7 +109,7 @@ public class Parser {
         try {
             String[] deadlineTokens = tokens[2].split("/by");
             if (deadlineTokens.length < 2) {
-                return new InvalidCommand("Oh no! Try doing 'add deadline <description> /by " + "<date>'!");
+                return new InvalidCommand("What? It's 'add deadline <description> /by " + "<date>'!");
             }
             String deadlineDescription = deadlineTokens[0].trim();
             LocalDateTime by = parseDateTime(deadlineTokens[1].trim());
@@ -119,7 +124,7 @@ public class Parser {
         try {
             String[] eventTokens = tokens[2].split("/at");
             if (eventTokens.length < 2) {
-                return new InvalidCommand("Oh no! Try doing 'add event <description> /at" + " <date>'!");
+                return new InvalidCommand("It's 'add event <description> /at" + " <date>' Do your research.");
             }
             String eventDescription = eventTokens[0].trim();
             LocalDateTime at = parseDateTime(eventTokens[1].trim());
@@ -140,7 +145,8 @@ public class Parser {
     private Command prepareDelete(String userInput) {
         String[] tokens = userInput.split(USER_INPUT_DELIMITER, 2);
         if (tokens.length < 2) {
-            return new InvalidCommand("Oh no! Try delete <task index>!");
+            return new InvalidCommand("Excuse you, I'm a sovereign bot and I don't have to receive bad orders from you."
+                    + " Get it right, it's 'delete <task index>'.");
         }
         try {
             int taskIndex = Integer.parseInt(tokens[1], 10) - 1;
@@ -160,7 +166,7 @@ public class Parser {
     private Command prepareMark(String userInput) {
         String[] tokens = userInput.split(USER_INPUT_DELIMITER, 2);
         if (tokens.length < 2) {
-            return new InvalidCommand("Oh no! Try delete <mark index>!");
+            return new InvalidCommand("This is unacceptable... It's 'mark <task index>'. I know my rights!");
         }
         try {
             int taskIndex = Integer.parseInt(tokens[1], 10) - 1;
@@ -180,7 +186,7 @@ public class Parser {
     private Command prepareUnmark(String userInput) {
         String[] tokens = userInput.split(USER_INPUT_DELIMITER, 2);
         if (tokens.length < 2) {
-            return new InvalidCommand("Oh no! Try delete <unmark index>!");
+            return new InvalidCommand("No. 'unmark <task index>'.");
         }
         try {
             int taskIndex = Integer.parseInt(tokens[1], 10) - 1;
@@ -200,7 +206,7 @@ public class Parser {
     private Command prepareFind(String userInput) {
         String[] tokens = userInput.split(USER_INPUT_DELIMITER, 2);
         if (tokens.length < 2) {
-            return new InvalidCommand("Oh no! Try find <keyword>!");
+            return new InvalidCommand("I don't accept that. It's 'find <keyword>', I know my rights!");
         }
         return new FindCommand(tokens[1]);
     }
@@ -215,8 +221,7 @@ public class Parser {
     private Command prepareViewSchedule(String userInput) {
         String[] tokens = userInput.split(USER_INPUT_DELIMITER, 2);
         if (tokens.length < 2) {
-            return new InvalidCommand("Oh no! Try find view <keyword>!\nYou can use the following keywords: "
-                    + "[today, tomorrow, week]");
+            return new InvalidCommand("You're being cheeky now, aren't you? It's 'view <today|tomorrow|week>'.");
         }
         String keyword = tokens[1].toLowerCase();
         switch (keyword) {
@@ -235,8 +240,7 @@ public class Parser {
             LocalDateTime endWeek = LocalDateTime.of(endOfWeek, LocalTime.MAX);
             return new ViewScheduleCommand(startWeek, endWeek);
         default:
-            return new InvalidCommand("You have entered an invalid keyword!\nYou can use the following "
-                    + "keywords: [today, tomorrow, week]");
+            return new InvalidCommand("You're being cheeky now, aren't you? It's 'view <today|tomorrow|week>'.");
         }
     }
 
@@ -254,7 +258,7 @@ public class Parser {
         String[] dateTextTokens = dateText.split(USER_INPUT_DELIMITER);
         // Require 2 tokens, as the first token represents date input, the second token represents time input
         if (dateTextTokens.length != 2) {
-            throw new ParseDateTimeException("Make sure that you inputted both date and time!");
+            throw ERR_WRONG_DATETIME_FORMAT;
         }
 
         String parsedDate = parseDateTokens(dateTextTokens[0]);

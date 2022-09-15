@@ -21,7 +21,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public CommandResult execute(TaskList taskList, Storage storage) {
-        String msg = "Bye. Hope to see you again soon!\n(exiting in a second...)";
+        String msg = "Go away, don't come back!\n(exiting in a second...)";
         storage.writeAllToStorage(taskList);
         new Timer().schedule(new TimerTask() {
             @Override

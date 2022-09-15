@@ -33,7 +33,8 @@ public class AddCommand extends Command {
 
         int size = taskList.size();
         String taskString = size > 1 ? "tasks" : "task";
-        String msg = "Got it. I've added the task.\nNow you have " + size + " " + taskString + " in this list.";
+        String msg = "Okay, I've added the task, but not because you told me to.\nNow you have " + size + " "
+                + taskString + " in this list.";
         ListBox lb = ListBox.getListBox(this.task);
 
         storage.appendTaskToStorage(task);

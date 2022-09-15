@@ -30,7 +30,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Storage storage) {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
-            String msg = "There is no such task index... Try 'list' to view all the tasks and their index!";
+            String msg = "Do you even know what you're doing? There's such no task index!\n";
             return new CommandResult(msg);
         }
         Task task = taskList.getTask(taskIndex);
@@ -38,7 +38,8 @@ public class DeleteCommand extends Command {
 
         int size = taskList.size();
         String taskString = size > 1 ? "tasks" : "task";
-        String msg = "Noted. I've removed the task.\nNow you have " + size + " " + taskString + " in this list.";
+        String msg = "Deleting away your poor life choices, I see.\nNow you have "
+                + size + " " + taskString + " in this list.";
         ListBox lb = ListBox.getListBox(task);
 
         storage.writeAllToStorage(taskList);

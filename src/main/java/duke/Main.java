@@ -26,11 +26,11 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
-            stage.setTitle("Dodie");
+            stage.setTitle("KarenBot");
             stage.widthProperty().addListener((o, oldValue, newValue) -> {
-                if (newValue.intValue() < 400.0) {
+                if (newValue.intValue() < 500) {
                     stage.setResizable(false);
-                    stage.setWidth(400);
+                    stage.setWidth(500);
                     stage.setResizable(true);
                 }
             });

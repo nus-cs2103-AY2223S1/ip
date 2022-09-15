@@ -29,12 +29,13 @@ public class UnmarkCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Storage storage) {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
-            String msg = "There is no such task index... Try 'list' to view all the tasks and their index!";
+            String msg = "Are you seriously not right in your head? There's no such task index!\n";
             return new CommandResult(msg);
         }
         taskList.unmarkTask(this.taskIndex);
 
-        String msg = "OK, I've marked this task as not done yet:\n ";
+        String msg = "Of course... I knew you've haven't really managed to get anything done... "
+                + "I've marked this task as not done:\n ";
         ListBox lb = ListBox.getListBox(taskList.getTask(this.taskIndex));
 
         storage.writeAllToStorage(taskList);

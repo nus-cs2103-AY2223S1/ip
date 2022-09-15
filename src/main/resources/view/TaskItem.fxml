@@ -10,8 +10,8 @@
 <fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" type="GridPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
       <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="NEVER" maxWidth="501.0" minWidth="10.0" />
-    <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="501.0" minWidth="10.0" prefWidth="200.0" />
-      <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="115.0" />
+    <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="200.0" />
+      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="115.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="216.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -29,7 +29,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <Label fx:id="isDone" alignment="CENTER_RIGHT" style="-fx-background-radius: 15; -fx-border-radius: 15;" text="Done" textAlignment="RIGHT" GridPane.columnIndex="2">
+      <Label fx:id="isDone" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 15; -fx-border-radius: 15;" text="Done" textAlignment="RIGHT" GridPane.columnIndex="2">
          <font>
             <Font name="Arial Bold" size="11.0" />
          </font>

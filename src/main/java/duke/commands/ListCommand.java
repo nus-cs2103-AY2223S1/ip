@@ -21,9 +21,9 @@ public class ListCommand extends Command {
     public CommandResult execute(TaskList taskList, Storage storage) {
         String msg;
         if (taskList.size() <= 0) {
-            msg = "You currently have no task in your list! Great job for completing all your tasks :-)";
+            msg = "There's nothing in your list! I want to see your manager for wasting my time.";
         } else {
-            msg = "Here are the tasks in your list:\n";
+            msg = "Look at all these tasks you're never going to complete anyway:\n";
         }
         ListBox lb = ListBox.getListBox(taskList);
         return new CommandResult(msg, lb);

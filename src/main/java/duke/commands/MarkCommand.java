@@ -29,12 +29,13 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Storage storage) {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
-            String msg = "There is no such task index... Try 'list' to view all the tasks and their index!";
+            String msg = "Can't believe what an idiot I'm dealing with... There's no such task index!\n";
             return new CommandResult(msg);
         }
         taskList.markTask(this.taskIndex);
 
-        String msg = "Nice! I've marked this task as done:\n ";
+        String msg = "Wow, did you really complete a task? That's so unlike you... "
+                + "I've marked your task as done:\n ";
         ListBox lb = ListBox.getListBox(taskList.getTask(this.taskIndex));
 
         storage.writeAllToStorage(taskList);

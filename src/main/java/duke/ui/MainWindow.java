@@ -30,8 +30,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/KarenBot.jpg"));
     // @authors
     /**
      * Initializes the MainWindow.
@@ -40,9 +40,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        scrollPane.setFitToWidth(true);
         // Greet user upon GUI initialize
-        String greetingMsg = "Hello! I'm Duke!\nWhat can I do for you?";
+        String greetingMsg = "What do you want? Do you know who I am?\n(psst! type in help for help with commands!)";
         dialogContainer.getChildren().add(
                 DialogBox.getDukeDialog(greetingMsg, dukeImage)
         );

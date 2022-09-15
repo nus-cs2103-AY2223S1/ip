@@ -35,9 +35,9 @@ public class ViewScheduleCommand extends Command {
         TaskList results = taskList.findDatedTasks(this.startDateRange, this.endDateRange);
         if (results.size() > 0) {
             ListBox lb = ListBox.getListBox(results);
-            return new CommandResult("Here are the matching tasks in your list:\n", lb);
+            return new CommandResult("Why are you trying to get your sad life together now?\n", lb);
         } else {
-            return new CommandResult("There are no matching tasks in your list.");
+            return new CommandResult("There are no matching tasks... No surprises that you've got nothing planned...");
         }
     }
 }
