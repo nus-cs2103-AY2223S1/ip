@@ -227,57 +227,6 @@ public class Duke {
     }
 
 
-    private Task createTodoTask(String[] commands) throws IllegalArgumentException {
-
-        // Check if the given commands are valid
-        if (!isValidToDoCommand(commands)) {
-            throw new IllegalArgumentException("todo");
-        }
-
-        // Second token onwards is the description
-        String description = commands[1];
-        for (int i = 2; i < commands.length; i++) {
-            description = description.concat(String.format(" %s", commands[i]));
-        }
-
-        return new ToDo(description);
-    }
-
-
-    // Same method used for a deadline and event task.
-    // Differentiate between the two types of tasks using a boolean flag.
-    private Task createDeadlineOrEventTask(String[] commands, boolean isDeadlineTask) {
-
-        // Check if the given commands are valid
-        if (!isValidEventCommand(commands)) {
-            String taskType = isDeadlineTask ? "deadline" : "event";
-            throw new IllegalArgumentException(taskType);
-        }
-
-        // Second token until /at is the description
-        String description = commands[1];
-
-        int i = 0;
-        for (i = 2; i < commands.length; i++) {
-            if (commands[i].charAt(0) == TIME_DELIMITER) {
-                // Stop adding tokens to the description
-                break;
-            }
-            description = description.concat(String.format(" %s", commands[i]));
-        }
-
-        // Skip over the delimiter token
-        // The tokens after the delimiter are the date and time
-        i++;
-        String dateAndTime = commands[i];
-        for (i++; i < commands.length; i++) {
-            dateAndTime = dateAndTime.concat(String.format(" %s", commands[i]));
-        }
-
-        return isDeadlineTask ? new Deadline(description, dateAndTime) : new Event(description, dateAndTime);
-    }
-
-
     private Task createTask(String[] commands) throws IllegalArgumentException {
 
         // The first token is used to identify which type of task to create
@@ -316,12 +265,64 @@ public class Duke {
     }
 
 
+    private Task createTodoTask(String[] commands) throws IllegalArgumentException {
+
+        // Check if the given commands are valid
+        if (!isValidToDoCommand(commands)) {
+            throw new IllegalArgumentException("todo");
+        }
+
+        // Second token onwards is the description
+        String description = commands[1];
+        for (int i = 2; i < commands.length; i++) {
+            description = description.concat(String.format(" %s", commands[i]));
+        }
+
+        return new ToDo(description);
+    }
+
+
+    // Same method used to create a deadline and event task.
+    // Differentiate between the two types of tasks using a boolean flag.
+    private Task createDeadlineOrEventTask(String[] commands, boolean isDeadlineTask) throws IllegalArgumentException {
+
+        // Check if the given commands are valid
+        if (!isValidEventCommand(commands)) {
+            String taskType = isDeadlineTask ? "deadline" : "event";
+            throw new IllegalArgumentException(taskType);
+        }
+
+        // Second token until /at is the description
+        String description = commands[1];
+
+        int i = 0;
+        for (i = 2; i < commands.length; i++) {
+            if (commands[i].charAt(0) == TIME_DELIMITER) {
+                // Stop adding tokens to the description
+                break;
+            }
+            description = description.concat(String.format(" %s", commands[i]));
+        }
+
+        // Skip over the delimiter token
+        // The tokens after the delimiter are the date and time
+        i++;
+        String dateAndTime = commands[i];
+        for (i++; i < commands.length; i++) {
+            dateAndTime = dateAndTime.concat(String.format(" %s", commands[i]));
+        }
+
+        return isDeadlineTask ? new Deadline(description, dateAndTime) : new Event(description, dateAndTime);
+    }
+
+
     private boolean isValidToDoCommand(String[] commands) {
         // Format of ToDo task: todo description
 
         // Therefore, second token onwards is the description
-        // So check if there is a second token
-        return commands.length >= 2;
+        int toDoCommandMinimumLength = 2;
+
+        return commands.length >= toDoCommandMinimumLength;
     }
 
 
@@ -337,6 +338,7 @@ public class Duke {
         */
 
         int delimiterIndex = -1;
+        int thirdTokenIndex = 2;
 
 
         try {
@@ -347,13 +349,14 @@ public class Duke {
             return false;
         }
 
+
         // Check 1: /at is the 3rd token or further
-        if (delimiterIndex < 3) {
-            return false;
-        }
+        boolean isDelimiterThirdTokenOrFurther = delimiterIndex >= thirdTokenIndex;
 
         // Check 2: at least 1 token after /at, i.e. delimiter must not be the last item
-        return delimiterIndex < commands.length - 1;
+        boolean isDelimiterNotLastItem = delimiterIndex < commands.length - 1;
+
+        return isDelimiterThirdTokenOrFurther && isDelimiterNotLastItem;
     }
 
 
@@ -365,7 +368,7 @@ public class Duke {
             }
         }
 
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("No delimiter found");
     }
 
 
