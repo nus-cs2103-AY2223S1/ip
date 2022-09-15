@@ -19,6 +19,7 @@ import duke.constants.Constants;
 import duke.constants.ErrorMessages;
 import duke.models.Deadline;
 import duke.models.Event;
+import duke.models.Note;
 import duke.models.Task;
 import duke.models.Todo;
 
@@ -119,6 +120,13 @@ public class Parser {
             return new PostponeCommand(postponeIndex);
         case Constants.HELP_STRING:
             return new HelpCommand();
+        case Constants.NOTE:
+            System.out.println("hello");
+            Pattern notePattern = Pattern.compile("(?<=note ).+", Pattern.CASE_INSENSITIVE);
+            Matcher noteMatcher = notePattern.matcher(command);
+            noteMatcher.find();
+            Note note = new Note(noteMatcher.group(0));
+            return new AddCommand(note);
         case Constants.BYE_STRING:
             return new ByeCommand();
         default:

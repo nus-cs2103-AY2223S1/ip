@@ -59,8 +59,10 @@ public class Storage {
             e.printStackTrace();
         }
         try {
-            File myObj = new File(filePath);
+            String currentDirectory = System.getProperty("user.dir");
+            File myObj = new File(currentDirectory + "/data/saved.txt");
             Scanner myReader = new Scanner(myObj);
+            System.out.println(myReader);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] split = data.split("\\|");
