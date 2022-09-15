@@ -6,7 +6,7 @@ public class UI {
      * @return String with greet message
      */
     public String greet(){
-        String greeting = "Hello! I'm Duke \n" 
+        String greeting = "Hello! I'm chatNUS! \n" 
                         + "What can I do for you? \n" ;
         
         return greeting;
