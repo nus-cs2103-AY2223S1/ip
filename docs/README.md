@@ -120,11 +120,22 @@ eg.
 
 Deletes a specific task in your task list.
 
-`delete[task number]` - Deletes the task with the task number specified by the user from the task list.
+`delete [task number]` - Deletes the task with the task number specified by the user from the task list.
 ```
 eg. 
 - User Input: `delete 1`
 - Expected Output: Noted i've removed this task:
 		   [T][] study 
 		   Now you have 2 tasks in the list.
+```
+
+### Exit
+
+Ends the Duke bot programme.
+
+`bye` - Stops the Duke bot from running.
+```
+eg. 
+- User Input: `bye`
+- Expected Output: Bye. Hope to see you again soon!
 ```
