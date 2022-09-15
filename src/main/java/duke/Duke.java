@@ -1,6 +1,7 @@
 package duke;
 
 import command.Command;
+import javafx.application.Platform;
 
 import java.time.format.DateTimeParseException;
 
@@ -56,10 +57,14 @@ public class Duke {
         try {
             Command c = Parser.parse(command);
             String output = c.execute(tasks, ui, storage);
+            if (c.isExit()) {
+                Platform.exit();
+            }
             return output;
         } catch (Exception e) {
             return ui.showError(e.getMessage());
         }
+
     }
 
     public static void main(String[] args) {
