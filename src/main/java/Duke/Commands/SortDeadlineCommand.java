@@ -2,8 +2,15 @@ package Duke.Commands;
 
 import Duke.Tasks.TaskList;
 
+/**
+ * Class that denotes the command of sorting all deadlines based on emergency.
+ */
 public class SortDeadlineCommand extends UserCommand {
 
+    /**
+     * Public constructor of SortDeadlineCommand class.
+     * @param tasks TaskList containing current tasks.
+     */
     public SortDeadlineCommand(TaskList tasks){
         super(tasks);
     }

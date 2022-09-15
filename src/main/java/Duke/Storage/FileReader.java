@@ -8,67 +8,65 @@ import Duke.Tasks.ToDo;
 import Duke.Tasks.Event;
 import Duke.Tasks.Deadline;
 
-
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
 /**
- * FileReader
- * provides methods to load the data stored before.
+ * Class that provides methods to load the data stored before.
  */
 public class FileReader {
-
     private Path filePath;
 
-    public FileReader(String fileName){
-        String dirPath = System.getProperty("user.dir");
-        this.filePath = Paths.get(dirPath, "src", "test", "artifacts", "ip_jar", "data", fileName + ".txt");    // Change the storage path
+    /**
+     * Public constructor of FileReader Class.
+     * Sets up the file path, and checks whether the file exists.
+     * @param inputFileName File name to read the data from.
+     * @throws IOException Exception may occur when creating new file.
+     */
+    public FileReader(String inputFileName) throws IOException {
+        String fileName = inputFileName + ".txt";
+        File dukeFile = new File("data", fileName);
+        if (!dukeFile.exists()) {
+            dukeFile.createNewFile();
+        }
+        this.filePath = Paths.get(String.valueOf(dukeFile));
     }
 
     /**
-     * Load all tasks the stored before.
-     *
-     * @return the stored tasks with a TaskList Object.
+     * Loads all tasks which are stored in the file.
+     * @return TaskList with all tasks in the file.
      */
     public TaskList load() {
         try {
             Scanner sc = new Scanner(filePath);
-            TaskList tasks = new TaskList();        // Set up a class
+            TaskList tasks = new TaskList();
             while (sc.hasNextLine()) {
-
                 String nextLine = sc.nextLine();
                 Task newTask = convertToTask(nextLine);
                 tasks.addTask(newTask);
-
             }
             return tasks;
-
         } catch (StoredFileException e) {
-            System.out.println(e.toString());
             return null;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
-
         }
-
     }
 
-
     /**
-     * Covert from the input line to the task
-     * @param content
-     * @return the tasks with a Task Object
-     * @throws StoredFileException
+     * Converts from the input line to the task.
+     * @param content String of input.
+     * @return Task based on input string.
+     * @throws StoredFileException If the content of stored file has exception, e.g. not stored in the correct form.
      */
     private Task convertToTask(String content) throws StoredFileException {  // will be changed later
         try {
-            String[] components = content.split(" \\| "); // Here it is very important
+            String[] components = content.split(" \\| ");
             String type = components[0].strip();
 
             switch (type) {
@@ -90,7 +88,6 @@ public class FileReader {
                         components[1].strip().equals("true"));
             default:
                 throw new Exception();
-
             }
 
         } catch (Exception e) {

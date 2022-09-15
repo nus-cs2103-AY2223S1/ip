@@ -3,18 +3,25 @@ package Duke.Tasks;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Class that contains all operations to handle the task list.
+ */
 public class TaskList {
     protected List<Task> tasks = new ArrayList<>();
 
-
-
-
+    /**
+     * Adds a task to the current task list.
+     * @param task Task to be added.
+     */
     public void addTask(Task task){
         this.tasks.add(task);
     }
 
+    /**
+     * Shows the current task list.
+     * @return String contains all the tasks' information.
+     */
     public String showTasks(){
-
         String output = "";
         if (tasks.size() >= 1) {
             Task curTask = tasks.get(0);
@@ -24,18 +31,34 @@ public class TaskList {
                 output += "\n" + (i + 1) + "." + curTask.toString();
             }
         }
-
         return output;
     }
 
-    public int getTotalTaskNumber() { return this.tasks.size(); }
+    /**
+     * Gets the size of current task list.
+     * @return Number of tasks in the current task list.
+     */
+    public int getTotalTaskNumber() {
+        return this.tasks.size();
+    }
 
+    /**
+     * Marks a task as done.
+     * @param index Index of the task needed to mark as done.
+     * @return Task that has marked as done.
+     * @throws IndexOutOfBoundsException If index is out of bounds.
+     */
     public Task markAsDone(int index) throws IndexOutOfBoundsException {
         Task doneTask = this.tasks.get(index);
         doneTask.setIsDone(true);               // Modify the task as done, this is a pointer
         return doneTask;
     }
 
+    /**
+     * Finds all tasks that contain the keyword.
+     * @param keyword String that tasks could contain.
+     * @return TaskList that contains all satisfying tasks.
+     */
     public TaskList findTask(String keyword) {
         TaskList foundTasks = new TaskList();
         for(Task t : this.tasks) {
@@ -46,8 +69,18 @@ public class TaskList {
         return foundTasks;
     }
 
+    /**
+     * Deletes a task from the task list.
+     * @param index Index of task to be deleted.
+     * @return The deleted task.
+     * @throws IndexOutOfBoundsException If index is out of bounds.
+     */
     public Task deleteTask(int index) throws IndexOutOfBoundsException { return this.tasks.remove(index - 1); }
 
+    /**
+     * Save all tasks' information.
+     * @return String of all tasks' information in formal.
+     */
     public String save() {
         String output = "";
         for (Task task : this.tasks) {
@@ -56,7 +89,10 @@ public class TaskList {
         return output;
     }
 
-
+    /**
+     * Sorts all tasks based on the emergency order.
+     * @return TaskList containing all previous tasks in a new order.
+     */
     public String sortAll() {
         this.tasks.sort((t1, t2) -> {
             if (t1.getIsDone() && !t2.getIsDone()) {
@@ -81,6 +117,10 @@ public class TaskList {
         return this.showTasks();
     }
 
+    /**
+     * Sorts all deadlines based on the emergency order.
+     * @return TaskList containing all previous deadlines in a new order.
+     */
     public String sortDeadline() {
         List<Deadline> deadlines = new ArrayList<>();
         for (Task task : this.tasks) {
@@ -88,20 +128,14 @@ public class TaskList {
         }
 
         deadlines.sort((d1, d2) -> {
-
             if (d1.getIsDone() && !d2.getIsDone()) {
                 return 1;
             }
-
             if (!d1.getIsDone() && d2.getIsDone()) {
                 return -1;
             }
-
             return d1.getDateTime().compareTo(d2.getDateTime());
-
         });
-
-
         Deadline curDeadline;
         String output = "";
         for(int i = 0; i < deadlines.size(); i++) {
@@ -112,29 +146,17 @@ public class TaskList {
             }
         }
         return output;
-
-
     }
 
+    /**
+     * Gets a task based on its index.
+     * @param index Index of the task to be gotten.
+     * @return Task given its index.
+     */
     public Task getTaskByIndex(int index) { return this.tasks.get(index); }
 
     @Override
     public String toString() { return this.tasks.toString(); }
 
 
-//    public static void main(String[] args) {
-//        Deadline d1 = new Deadline("d1", LocalDate.parse("2022-11-11"), false);
-//        Deadline d2 = new Deadline("d2", LocalDate.parse("2022-11-11"), LocalTime.parse("11:11"), false);
-//        Deadline d3 = new Deadline("d3", LocalDate.parse("2022-11-12"), LocalTime.parse("22:22"), true);
-//        Deadline d4 = new Deadline("d4", LocalDate.parse("2022-11-13"), LocalTime.parse("23:59"), false);
-//
-//        Deadline d5 = new Deadline("d5", LocalDate.parse("2022-11-14"), false);
-//
-//        System.out.print(d1.save());
-//        System.out.print(d4.save());
-//        System.out.print(d3.save());
-//        System.out.print(d2.save());
-//        System.out.print(d5.save());
-//
-//    }
 }

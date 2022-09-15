@@ -10,8 +10,10 @@ import Duke.Tasks.TaskList;
 
 import Duke.UI.CLIUi;
 
+import java.io.IOException;
+
 /**
- * ServerCLI
+
  * provides methods to serve a user's commands
  */
 public class ServerCLI {
@@ -22,9 +24,7 @@ public class ServerCLI {
     private final String Name = "Duke";
     private final CLIUi CLIUi = new CLIUi();
     private final CLIParser parser = new CLIParser();
-
-
-    public void run() {
+    public void run() throws IOException {
         CLIUi.showWelcome();
         load();
         serve();
@@ -33,7 +33,7 @@ public class ServerCLI {
     }
 
 
-    private void load() {
+    private void load() throws IOException {
         FileReader fileReader = new FileReader(Name);
         TaskList storedTaskList = fileReader.load();
         if (storedTaskList == null) {
@@ -59,7 +59,7 @@ public class ServerCLI {
         } while (!(curCommand instanceof QuitCommand));
     }
 
-    private void save(){
+    private void save() throws IOException {
         FileSaver filesaver = new FileSaver(Name);
         try {
             filesaver.save(tasks);

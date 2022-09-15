@@ -1,7 +1,9 @@
 package Duke.Commands;
 
+import Duke.Tasks.TaskList;
+
 /**
- *
+ * Class that denotes the command of offering help and hints.
  */
 public class HelpCommand extends UserCommand {
     private static final String HELP =

@@ -9,6 +9,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.TimerTask;
 import java.util.Timer;
 
@@ -27,9 +31,7 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Girl.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Boy.png"));
-
-    private String greetings   = "Hello! I am Duke.\n" + "Nice to Meet you, how can I help you ?";
-
+    private String greetings   = "Hello! I am Duke.\n" + "Nice to meet you, how can I help you ?";
     private String hint        = "You can type \"help\" to see all my services and get more information : )";
     @FXML
     public void initialize() {
@@ -38,8 +40,8 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(hint, dukeImage));
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    public void setDuke() throws IOException {
+        duke = new Duke();
     }
 
     /**
@@ -47,7 +49,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing. TextField and Button are onAction #handleUserInput
      */
     @FXML
-    private void handleUserInput() {
+    private void handleUserInput() throws IOException {
 
         String input = userInput.getText().trim();
         String response = duke.getResponse(input);
@@ -70,10 +72,18 @@ public class MainWindow extends AnchorPane {
             alert.showAndWait();
 
         } else {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(response, dukeImage)
-            );
+            if (response.contains("Sorry")) {
+                dialogContainer.getChildren().addAll(
+                        DialogBox.getUserDialog(input, userImage),
+                        DialogBox.getDukeDialog(response, dukeImage),
+                        DialogBox.getDukeDialog(hint, dukeImage)
+                );
+            } else {
+                dialogContainer.getChildren().addAll(
+                        DialogBox.getUserDialog(input, userImage),
+                        DialogBox.getDukeDialog(response, dukeImage)
+                );
+            }
 
             if (input.trim().equals("bye")) {
                 TimerTask task = new TimerTask() {
