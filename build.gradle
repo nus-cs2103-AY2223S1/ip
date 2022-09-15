@@ -48,6 +48,10 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+checkstyleMain {
+    source = 'src/main/java'
+}
+
 application {
     mainClassName = "seedu.deku.Launcher"
 }
