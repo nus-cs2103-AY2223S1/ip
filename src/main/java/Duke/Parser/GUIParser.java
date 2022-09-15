@@ -116,7 +116,6 @@ public class GUIParser {
     private FindTaskCommand parseFindTaskCommand(String commandElse, TaskList userTasks) {
         return new FindTaskCommand(userTasks, commandElse.strip());
     }
-
     private DeleteTaskCommand parseDeleteTaskCommand(String commandElse, TaskList userTasks) throws TaskIndexException {
         try {
             return new DeleteTaskCommand(Integer.valueOf(commandElse), userTasks);
