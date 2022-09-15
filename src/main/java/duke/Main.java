@@ -2,10 +2,7 @@ package duke;
 
 import gui.MainWindow;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +15,9 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Duke duke = new Duke("data/duke.txt");
+    //private Duke duke = new Duke("data/duke.txt");
 
-    public Main() throws FileNotFoundException {
+    public Main() {
     }
 
     @Override
@@ -30,6 +27,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            Duke duke = new Duke("data/duke.txt");
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {

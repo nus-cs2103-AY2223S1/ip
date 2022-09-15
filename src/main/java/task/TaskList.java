@@ -31,17 +31,7 @@ public class TaskList {
 
 
 
-    public String printContent() throws DukeException {
-        String out = "";
-        try {
-            for (int i = 0; i < taskListSize(); i++) {
-                out = out + taskArray.get(i).toString() + "\n";
-            }
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("");
-        }
-        return out;
-    }
+
 
 
     /**

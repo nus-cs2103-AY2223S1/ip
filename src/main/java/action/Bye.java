@@ -12,17 +12,13 @@ import task.TaskList;
 
 
 /**
- * Bye is a class that writes all the tasks from the tasklist to duke.txt.
+ * Bye is a class that writes all the tasks from the TaskList to duke.txt.
  */
 public class Bye {
 
     public static String bye(String[] str, TaskList taskList, File file) {
 
         assert str.length == 1 : "must be a single word";
-
-        if (str.length != 1) {
-            return "Error";
-        }
 
         ArrayList<Task> listOfActions = taskList.getTaskList();
         Reminder reminder = new Reminder();
@@ -37,7 +33,7 @@ public class Bye {
             System.out.println("Oops");
         }
         reminder.writeAllReminder();
-        return "Goodbye hehe see u again";
+        return "Goodbye see u again";
     }
 
     @Override

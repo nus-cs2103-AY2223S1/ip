@@ -5,14 +5,23 @@ package duke;
  */
 public enum Command {
 
+    //todo must have some other things behind
     TODO("todo"),
+    //deadline need to have deadline, action, /by, date and time
     DEADLINE("deadline"),
+    //event need event, action, /at, date and time
     EVENT("event"),
+    //bye need only bye nothing else
     BYE("bye"),
+    //list need only list nothing else
     LIST("list"),
+    //find can only find 1 word, so find and a word
     FIND("find"),
+    //mark can only mark one index, so mark and integer
     MARK("mark"),
+    //unmark can only unmark one index, so unmark and integer
     UNMARK("unmark"),
+    //delete can only delete one index, so delete and integer
     DELETE("delete"),
     UNKNOWN("unknown");
 
@@ -29,12 +38,96 @@ public enum Command {
      * @return The Command that matches the user input.
      */
     public static Command read(String input) {
-        for (Command c : Command.values()) {
-            if (c.command.equals(input)) {
-                return c;
+        String[] strArr = input.split(" ");
+        if (strArr.length == 1) {
+            return singleWord(input);
             }
+        if (strArr.length == 2) {
+            return twoWords(strArr);
+        }
+
+        if (strArr.length > 2) {
+            return moreThanTwoWords(input);
         }
         return UNKNOWN;
+    }
+
+
+    /**
+     * Check what Command it can be based on input that is 1 word long.
+     * @param input The user input.
+     * @return The corresponding Command for the input.
+     */
+    private static Command singleWord(String input) {
+        if (input.equals("bye")) {
+            return BYE;
+        } else if (input.equals("list")) {
+            return LIST;
+        } else {
+            return UNKNOWN;
+        }
+    }
+
+    /**
+     * Check what Command it can be based on input that is 2 words long.
+     * @param input The user input.
+     * @return The corresponding Command for the input.
+     */
+    private static Command twoWords(String[] input) {
+        if (input[0].equals("todo")) {
+            return TODO;
+        } else if (input[0].equals("mark")) {
+            try {
+                int i = Integer.parseInt(input[1]);
+                return MARK;
+            } catch (NumberFormatException e) {
+                return UNKNOWN;
+            }
+        } else if (input[0].equals("unmark")) {
+            try {
+                int i = Integer.parseInt(input[1]);
+                return UNMARK;
+            } catch (NumberFormatException e) {
+                return UNKNOWN;
+            }
+        } else if (input[0].equals("find")) {
+            return FIND;
+        } else if (input[0].equals("delete")) {
+            try {
+                int i = Integer.parseInt(input[1]);
+                return DELETE;
+            } catch (NumberFormatException e) {
+                return UNKNOWN;
+            }
+        } else {
+            return UNKNOWN;
+        }
+    }
+
+    /**
+     * Check what Command it can be based on input that are more than 2 words long.
+     * @param input The user input.
+     * @return The corresponding Command for the input.
+     */
+    private static Command moreThanTwoWords(String input) {
+        String[] strArr = input.split(" ");
+        if (strArr[0].equals("deadline")) {
+            if (input.contains("/by ")) {
+                return DEADLINE;
+            } else {
+                return UNKNOWN;
+            }
+        } else if (strArr[0].equals("event")) {
+            if (input.contains("/at ")) {
+                return EVENT;
+            } else {
+                return UNKNOWN;
+            }
+        } else if (strArr[0].equals("todo")) {
+            return TODO;
+        } else {
+            return UNKNOWN;
+        }
     }
 
 }

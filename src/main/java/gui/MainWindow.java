@@ -10,14 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import storage.Storage;
-import task.Task;
-import task.TaskList;
-import ui.UI;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import ui.UI;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -34,11 +28,11 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private UI ui = new UI();
+    private final UI ui = new UI();
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-    private Image reminderImage = new Image(this.getClass().getResourceAsStream("/images/DaReminder.jpg"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image reminderImage = new Image(this.getClass().getResourceAsStream("/images/DaReminder.jpg"));
 
     @FXML
     public void initialize() {

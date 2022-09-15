@@ -37,7 +37,7 @@ public class Parser {
      * @param taskList The TaskList to act the Command on.
      * @param str The user input.
      * @return Returns the System reply to the user input.
-     * @throws DukeException
+     * @throws DukeException e
      */
     public String parse(TaskList taskList, String str) throws DukeException {
         String[] input = str.split(" ");

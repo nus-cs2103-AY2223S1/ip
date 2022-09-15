@@ -3,7 +3,7 @@ package task;
 public class Task {
     protected String description;
 
-    protected String[] splitDesscription;
+    protected String[] splitDescription;
     protected boolean isDone;
 
     /**
@@ -13,7 +13,7 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        this.splitDesscription = description.split(" ");
+        this.splitDescription = description.split(" ");
     }
 
     /**
@@ -22,7 +22,7 @@ public class Task {
      * @return True if the Task contains the word.
      */
     public Boolean hasWord(String word) {
-        for (String str : splitDesscription) {
+        for (String str : splitDescription) {
             if (str.equals(word)) {
                 return true;
             }

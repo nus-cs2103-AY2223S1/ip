@@ -9,15 +9,11 @@ import java.time.LocalDate;
 public class Deadline extends Task {
     protected String by;
 
-    protected String output;
-
     protected String string_Date;
 
     protected LocalDate date;
 
     protected String string_Time;
-
-    protected LocalDate dateUse;
 
 
     /**
@@ -26,19 +22,21 @@ public class Deadline extends Task {
      * @param by The time to do the deadline by.
      */
     public Deadline(String description, String by) {
+
         super(description);
         this.by = by;
-        String[] dateAndTime = by.split(" ");;
-        this.string_Date = dateAndTime[0];
-        this.string_Time = dateAndTime[1];
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        String[] dateAndTime = by.split(" ", 4);
+        this.string_Date = dateAndTime[1] + "/" + dateAndTime[0] + "/" + dateAndTime[2];
+        this.string_Time = dateAndTime[3];
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
         this.date = LocalDate.parse(string_Date, formatter);
-        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        output = date.format(formatter1);
+
     }
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        String output = date.format(formatter1);
         return "[D]" + super.toString() + " (by: " +
                 output + " " + string_Time + ")";
     }

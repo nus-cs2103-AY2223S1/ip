@@ -15,7 +15,7 @@ import task.TaskList;
  */
 public class Reminder {
 
-    private File file = new File("data/reminder.txt");
+    private final File file = new File("data/reminder.txt");
 
     private TaskList taskList = new TaskList();
 
