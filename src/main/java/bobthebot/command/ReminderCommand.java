@@ -2,7 +2,6 @@ package bobthebot.command;
 
 import bobthebot.tasks.ToDoList;
 import bobthebot.utils.LanguageBank;
-import bobthebot.utils.Ui;
 
 /**
  * Reminder Command class representing deadline command executed by the user.

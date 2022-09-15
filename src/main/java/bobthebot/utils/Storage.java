@@ -76,7 +76,7 @@ public class Storage {
 
                 // checking if the task is done
                 if (Integer.parseInt(parsedInput[1]) == 1) {
-                    assert task != null: "Storage.java: task is null";
+                    assert task != null : "Storage.java: task is null";
                     task.markDone();
                 }
 
@@ -117,7 +117,7 @@ public class Storage {
             FileWriter fw = new FileWriter(this.filePath, isAppendMode);
 
             for (Task task : list) {
-                assert task != null: "Storage.java: task is null";
+                assert task != null : "Storage.java: task is null";
                 fw.append(task.toStorageFormat() + "\n");
             }
             fw.close();

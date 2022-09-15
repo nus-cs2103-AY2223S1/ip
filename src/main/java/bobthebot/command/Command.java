@@ -4,7 +4,7 @@ package bobthebot.command;
  * Command class representing commands executed by the user.
  */
 public abstract class Command {
-    public String command;
+    private String command;
 
     /**
      * Constructs command.

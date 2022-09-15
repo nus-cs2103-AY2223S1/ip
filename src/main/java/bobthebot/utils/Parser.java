@@ -1,14 +1,21 @@
 package bobthebot.utils;
 
-import bobthebot.command.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import bobthebot.command.DeadlineCommand;
+import bobthebot.command.DeleteCommand;
+import bobthebot.command.EventCommand;
+import bobthebot.command.FindCommand;
+import bobthebot.command.ListCommand;
+import bobthebot.command.MarkCommand;
+import bobthebot.command.TodoCommand;
+import bobthebot.command.UnmarkCommand;
 import bobthebot.exceptions.BobException;
 import bobthebot.exceptions.InvalidDateTimeException;
 import bobthebot.tasks.ToDoList;
 
-import java.lang.reflect.InaccessibleObjectException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Parser class which handles the logic of how the handle the input.
@@ -38,9 +45,9 @@ public class Parser {
         case "todo":
             return parseTodo(splitCommand, list);
         case "deadline":
-             return parseDeadline(splitCommand, list);
+            return parseDeadline(splitCommand, list);
         case "event":
-             return parseEvent(splitCommand, list);
+            return parseEvent(splitCommand, list);
         default:
             throw new BobException(LanguageBank.INVALID_INPUT_ERROR_MESSAGE);
         }
@@ -191,7 +198,7 @@ public class Parser {
 
         try {
             parseDateTime(dueDate);
-        } catch(InvalidDateTimeException exception) {
+        } catch (InvalidDateTimeException exception) {
             throw new BobException(exception.getMessage());
         }
 
@@ -222,7 +229,7 @@ public class Parser {
 
         try {
             parseDateTime(eventDate);
-        } catch(InvalidDateTimeException exception) {
+        } catch (InvalidDateTimeException exception) {
             throw new BobException(exception.getMessage());
         }
 

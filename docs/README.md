@@ -50,7 +50,7 @@ Add a todo (an event without specific time and date).
 
 Todo is added to the list.
 
-```aidl
+```
 Got it. I've added this task:
 [T][] MA2104 tutorial
 You now have 1 task in the list.
@@ -74,7 +74,7 @@ Adds a deadline (a task that needs to be done by a specified date and time).
 
 Deadline is added to the list.
 
-```aidl
+```
 Got it. I've added this task:
 [D][] CS2103T iP (by: Sep 16 2022, 2359)
 You now have 2 tasks in the list.
@@ -98,7 +98,7 @@ Adds an event (a task that occurs at a specific date and time).
 
 Event is added to the list.
 
-```aidl
+```
 Got it. I've added this task:
 [E][] CS2103T team meeting (at: Sep 17 2022, 2100)
 You now have 3 tasks in the list.
@@ -119,7 +119,7 @@ Marks a task as done.
 
 1st item on the list is marked as done.
 
-```aidl
+```
 GOOD JOB! I'm marking this task as done:
 [T][X] MA2104 tutorial 
 ```
@@ -139,7 +139,7 @@ Marks a task as undone.
 
 1st item on the list is marked as undone.
 
-```aidl
+```
 It's sad that you thought you finished your work but didn't.
 But alright, marking this task as undone:
 [T][] MA2104 tutorial 
@@ -160,7 +160,7 @@ Deletes a task.
 
 1st item on the list deleted.
 
-```aidl
+```
 Got it. I've removed this task:
     [T][] MA2104 tutorial
 You now have 2 tasks.
@@ -179,7 +179,7 @@ Lists all the tasks Bob is helping keep track of.
 
 All items are listed in the order which you added them.
 
-```aidl
+```
 Here are your tasks:
 1. [D][X] CS2103T iP (by: Sep 16 2022, 2359)
 2. [E][] CS2103T team meeting (by: Sep 17 2022, 2100)
@@ -200,7 +200,7 @@ Find items containing a certain keyword.
 
 Finds all tasks in list containing keyword _CS2103T_
 
-```aidl
+```
 Here are the matching items on your list:
 1. [D][] CS2103T iP (by: Sep 16 2022, 2359)
 2. [E][] CS2103T team meeting (by: Sep 17 2022, 2100)
@@ -221,7 +221,7 @@ the number of tasks left in the list.
 
 Finds all tasks in list containing keyword _CS2103T_
 
-```aidl
+```
 Watch out! These tasks are due soon!
 1. [D][] CS2103T iP (by: Sep 16 2022, 2359)
 2. [E][] CS2103T team meeting (by: Sep 17 2022, 2100)

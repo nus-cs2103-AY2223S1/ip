@@ -1,13 +1,10 @@
 package bobthebot.bob;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import bobthebot.command.GoodbyeCommand;
 import bobthebot.command.ReminderCommand;
 import bobthebot.exceptions.BobException;
-import bobthebot.tasks.Deadline;
-import bobthebot.tasks.Task;
 import bobthebot.tasks.ToDoList;
 import bobthebot.utils.Parser;
 import bobthebot.utils.Storage;

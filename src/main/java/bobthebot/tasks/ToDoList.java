@@ -46,7 +46,6 @@ public class ToDoList {
      * Marks a specific event from the list as done, and updates the storage.
      *
      * @param index Specifies 1 index of task to be marked as done.
-     * @return Task mark item done message.
      */
     public void markItemDone(int index) {
         this.list.get(index - 1).markDone();
@@ -57,7 +56,6 @@ public class ToDoList {
      * Marks a specific event from the list as undone, and updating the storage.
      *
      * @param index Specifies 1 index of task to be marked as undone.
-     * @return Task mark item undone message.
      */
     public void markItemUndone(int index) {
         this.list.get(index - 1).markUndone();
@@ -83,6 +81,12 @@ public class ToDoList {
         return this.list.get(index);
     }
 
+    /**
+     * Finds the tasks that match a given keyword and puts all tasks in a ToDoList.
+     *
+     * @param keyword Keyword that tasks need to match.
+     * @return ToDoList containing all matching tasks.
+     */
     public ToDoList findTasks(String keyword) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (int i = 0; i < this.getLength(); i++) {

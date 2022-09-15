@@ -1,7 +1,7 @@
 package bobthebot.command;
 
-import bobthebot.utils.Ui;
 import bobthebot.tasks.ToDoList;
+import bobthebot.utils.Ui;
 
 /**
  * List Command class representing list command executed by the user.

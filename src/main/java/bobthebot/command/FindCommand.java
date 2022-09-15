@@ -6,7 +6,7 @@ import bobthebot.utils.LanguageBank;
 /**
  * Constructs find command.
  */
-public class FindCommand extends Command{
+public class FindCommand extends Command {
     private ToDoList list;
     private String keyword;
 

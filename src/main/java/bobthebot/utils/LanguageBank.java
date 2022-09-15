@@ -4,7 +4,7 @@ package bobthebot.utils;
  * Class which stores all the constants which act as responses for BobTheBot.
  */
 public class LanguageBank {
-    public static final String MATCHING_ITEMS_MESSAGE =  "\tHere are the matching items on your list: \n";
+    public static final String MATCHING_ITEMS_MESSAGE = "\tHere are the matching items on your list: \n";
     public static final String INVALID_INPUT_ERROR_MESSAGE = "\tDeepest apologies, I am a mere automated bot.\n"
             + "\tPlease stick to input that start with \n"
             + "\t1. todo - for items that you have to do\n"
@@ -19,7 +19,8 @@ public class LanguageBank {
     public static final String MARK_DONE_EMPTY_LIST_ERROR_MESSAGE = "\tPlease add items to your list "
             + "before wanting to mark them as done!";
     public static final String MARK_DONE_INVALID_INDEX_ERROR_MESSAGE = "\tPlease input a valid index to mark as done!";
-    public static final String MARK_UNDONE_INVALID_INDEX_ERROR_MESSAGE = "\tPlease input a valid index to mark as undone!";
+    public static final String MARK_UNDONE_INVALID_INDEX_ERROR_MESSAGE = "\tPlease input a valid index to mark as "
+            + "undone!";
     public static final String MARK_UNDONE_EMPTY_LIST_ERROR_MESSAGE = "\tPlease add items to your list before "
             + "wanting to mark them as undone!";
     public static final String DELETE_INVALID_INDEX_ERROR_MESSAGE = "\tPlease input a valid index to delete!";
@@ -44,7 +45,6 @@ public class LanguageBank {
     public static final String IOEXCEPTION_ERROR_MESSAGE = "Not sure what an IOException is but it has occurred.";
     public static final String FILE_LOADING_ERROR_MESSAGE = "Error occurred during file loading. I do not "
             + "process this task type.";
-
     public static final String WELCOME_MESSAGE = "\tHello! I am Bob the Bot, your friendly task manager! \uD83D\uDE0A\n"
             + "\tWhen using me, please stick to the following commands:\n"
             + "\t\t1. todo - for items that you have to do\n"
