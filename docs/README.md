@@ -25,7 +25,7 @@
 
 <a name="start" style = "color: inherit;">
 
-## Quick start
+# Quick start
 
 </a>
 
@@ -39,7 +39,7 @@
 
 <a name="features" style = "color: inherit;">
 
-## Features
+# Features
 
 </a>
 
@@ -54,11 +54,11 @@
 - [X] Find a task by date
 - [X] Reschedule a task
 
-## Usage
+# Usage
 
 <a name="todo" style = "color: inherit;">
 
-### Adding a ToDo Task : `todo`
+## Adding a ToDo Task : `todo`
 
 </a>
 
@@ -77,7 +77,7 @@ todo join meeting
 
 <a name="deadline" style = "color: inherit;">
 
-### Adding a Deadline Task : `deadline`
+## Adding a Deadline Task : `deadline`
 
 </a>
 
@@ -96,7 +96,7 @@ deadline submit essay /by 01-10-2023 2359
 
 <a name="event" style = "color: inherit;">
 
-### Adding an Event Task : `event`
+## Adding an Event Task : `event`
 
 </a>
 
@@ -115,7 +115,7 @@ event dinner /at 30-09-2022 2000
 
 <a name="list" style = "color: inherit;">
 
-### Listing all tasks : `list`
+## Listing all tasks : `list`
 
 </a>
 
@@ -135,7 +135,7 @@ list
 
 <a name="mark" style = "color: inherit;">
 
-### Marking a task as done : `mark`
+## Marking a task as done : `mark`
 
 </a>
 
@@ -153,7 +153,7 @@ mark 1
 
 <a name="unmark" style = "color: inherit;">
 
-### Marking a task as not done : `unmark`
+## Marking a task as not done : `unmark`
 
 </a>
 
@@ -171,7 +171,7 @@ unmark 1
 
 <a name="delete" style = "color: inherit;">
 
-### Deleting a task : `delete`
+## Deleting a task : `delete`
 
 </a>
 
@@ -190,7 +190,7 @@ Now you have 2 tasks in the list.
 
 <a name="show" style = "color: inherit;">
 
-### Finding day schedule : `show`
+## Finding day schedule : `show`
 
 </a>
 
@@ -208,7 +208,7 @@ show 30-09-2022
 
 <a name="find" style = "color: inherit;">
 
-### Finding tasks by keyword(s) : `find`
+## Finding tasks by keyword(s) : `find`
 
 </a>
 
@@ -237,7 +237,7 @@ find read novel
 
 <a name="reschedule" style = "color: inherit;">
 
-### Rescheduling a task : `reschedule`
+## Rescheduling a task : `reschedule`
 
 </a>
 
@@ -255,7 +255,7 @@ reschedule 2 29-09-2022 2030
 
 <a name="help" style = "color: inherit;">
 
-### Displaying help message : `help`
+## Displaying help message : `help`
 
 </a>
 
@@ -286,7 +286,7 @@ help
 
 <a name="bye" style = "color: inherit;">
 
-### Exiting the program : `bye`
+## Exiting the program : `bye`
 
 </a>
 
@@ -303,9 +303,10 @@ bye
 
 <a name="summary" style = "color: inherit;">
 
-## Command summary
+# Command summary
 
 </a>
+<center>
 
 | Action     | Format, Examples                                                                                                        |
 |------------|-------------------------------------------------------------------------------------------------------------------------|
@@ -321,3 +322,5 @@ bye
 | Reschedule | `reschedule <task number> <date & time in 'dd-MM-yyyy HHmm' format>` <br/>e.g., `reschedule 3 25-09-2022 1900`          |
 | Help       | `help`                                                                                                                  |
 | Bye        | `bye`                                                                                                                   |
+
+</center>
