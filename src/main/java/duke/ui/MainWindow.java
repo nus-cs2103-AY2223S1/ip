@@ -2,8 +2,9 @@ package duke.ui;
 
 import java.util.Objects;
 
-import duke.constants.Constants;
 import duke.Duke;
+import duke.DukeException;
+import duke.constants.Constants;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -51,7 +52,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() {
+    private void handleUserInput() throws DukeException {
         //Check if user input is empty
         assert !Objects.equals(userInput.getText(), "") : "User input is null";
         String input = userInput.getText();

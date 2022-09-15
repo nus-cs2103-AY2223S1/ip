@@ -4,17 +4,18 @@ import duke.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
-import static duke.constants.Constants.INVALID_COMMAND_MESSAGE;
-
 /**
  * When the command is not recognised
  */
 public class InvalidCommand extends Command {
-    public InvalidCommand() {
+    private final String errorMessage;
 
+    public InvalidCommand(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
+
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui) {
-        return INVALID_COMMAND_MESSAGE;
+        return errorMessage;
     }
 }

@@ -18,6 +18,8 @@ public class MarkCommand extends Command {
     public String execute(TaskList tasks, Storage storage, Ui ui) {
         Task t = tasks.getTask(index);
         t.markAsDone();
+        System.out.println(tasks.getTask(index));
+        storage.rewrite(tasks);
         return ui.showTaskMarkMessage(t);
     }
 }

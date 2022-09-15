@@ -9,6 +9,15 @@ public class Todo extends Task {
     }
 
     /**
+     * Additional constructor for Todo class
+     * @param description description of the Todo
+     * @param isDone indicate if the Todo is done
+     */
+    public Todo(String description, Boolean isDone) {
+        super(description, isDone);
+    }
+
+    /**
      * Returns the string representation of the {@code Todo} object
      * @return "T"
      */

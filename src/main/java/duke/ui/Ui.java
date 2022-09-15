@@ -115,4 +115,8 @@ public class Ui {
                 + t + "\n";
     }
 
+    public String printErrorMessage(String errorMessage) {
+        return errorMessage;
+    }
+
 }

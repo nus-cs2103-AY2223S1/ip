@@ -33,6 +33,15 @@ public class Storage {
      * to initialize data from saved file
      */
     public void run() {
+
+    }
+
+    /**
+     * Helper function to load data into the application from saved file
+     * @return A list of tasks
+     */
+    public List<Task> loadData() {
+        List<Task> result = new ArrayList<>();
         try {
             String currentDirectory = System.getProperty("user.dir");
             Path path = java.nio.file.Paths.get(currentDirectory, "/data");
@@ -49,28 +58,25 @@ public class Storage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Helper function to load data into the application from saved file
-     * @return A list of tasks
-     */
-    public List<Task> loadData() {
-        List<Task> result = new ArrayList<>();
         try {
             File myObj = new File(filePath);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                String[] split = data.split("\\| ", 4);
-                switch (split[0]) {
-                case "T ":
-                    result.add(new Todo(split[2]));
+                String[] split = data.split("\\|");
+                System.out.println(data.substring(0, 1));
+
+                switch (data.substring(0, 1)) {
+                case "T":
+                    System.out.println(split[2]);
+                    result.add(new Todo(split[2], split[1].equals("1")));
                     break;
-                case "D ":
+                case "D":
+                    System.out.println(split[0]);
                     result.add(new Deadline(split[2], LocalDate.parse(split[3])));
                     break;
-                case "E ":
+                case "E":
+                    System.out.println(split[0]);
                     result.add(new Event(split[2], LocalDate.parse(split[3])));
                     break;
                 default:
@@ -81,6 +87,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println(result);
         return result;
     }
 
@@ -91,7 +98,8 @@ public class Storage {
     public void write(String text) {
         assert text != null : "Text should not be null";
         try {
-            FileWriter myWriter = new FileWriter(this.filePath, true);
+            String savedDirectory = System.getProperty("user.dir") + "/data/saved.txt";
+            FileWriter myWriter = new FileWriter(savedDirectory, true);
             myWriter.write(text + "\n");
             myWriter.close();
         } catch (IOException e) {
@@ -107,10 +115,13 @@ public class Storage {
      */
     public void rewrite(TaskList tasks) {
         try {
-            FileWriter myWriter = new FileWriter(filePath, true);
-            PrintWriter pw = new PrintWriter(filePath);
-            for (int i = 0; i < tasks.getSize() - 1; i++) {
-                myWriter.write(tasks.getTask(i).toString());
+            String savedDirectory = System.getProperty("user.dir") + "/data/saved.txt";
+            FileWriter myWriter = new FileWriter(savedDirectory, true);
+            PrintWriter pw = new PrintWriter(savedDirectory);
+            System.out.println(tasks.getSize());
+            for (int i = 1; i < tasks.getSize() + 1; i++) {
+                System.out.println(tasks.getTask(i).toString());
+                myWriter.write(tasks.getTask(i).stringToWrite() + "\n");
             }
             pw.close();
             myWriter.close();
