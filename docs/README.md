@@ -6,13 +6,13 @@
 
 You can perform the following operations: 
 
-1. Add tasks as `todo`, `event`, or `deadline`. 
-2. Delete tasks 
-3. List tasks
-4. Mark tasks as done
-5. Mark tasks as undone
-6. Search for tasks
-7. Postpone deadlines *(new!)*
+1. [Add](https://nseah21.github.io/ip/#feature-1) tasks as `todo`, `event`, or `deadline`. 
+2. [Delete](https://nseah21.github.io/ip/#feature-2) tasks 
+3. [List](https://nseah21.github.io/ip/#feature-3) tasks
+4. [Mark](https://nseah21.github.io/ip/#feature-4) tasks as done
+5. [Mark](https://nseah21.github.io/ip/#feature-5) tasks as undone
+6. [Search](https://nseah21.github.io/ip/#feature-6) for tasks
+7. [Postpone](https://nseah21.github.io/ip/#feature-7) deadlines *(new!)*
 
 ### Feature 1
 
@@ -161,4 +161,3 @@ Expected output when calling `list`:
 ```
 
 And there you go! You are ready to use **Ditto!**
-

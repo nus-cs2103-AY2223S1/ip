@@ -1,9 +1,5 @@
 package utils;
 
-import java.util.List;
-
-import entities.Task;
-
 /**
  * Handles printing messages and errors to the user.
  */
