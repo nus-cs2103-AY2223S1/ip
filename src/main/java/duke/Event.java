@@ -9,17 +9,17 @@ import java.time.format.DateTimeParseException;
  */
 public class Event extends Task {
 
-    private LocalDate at;
+    private LocalDate startDate;
 
     /**
      * Creates a new event task with a description and an occurrence date.
      * @param description the description of the task
-     * @param at the occurrence date of the task
+     * @param startDate the occurrence date of the task
      */
-    public Event(String description, String at) throws DukeException {
+    public Event(String description, String startDate) throws DukeException {
         super(description);
         try {
-            this.at = LocalDate.parse(at);
+            this.startDate = LocalDate.parse(startDate);
         } catch (DateTimeParseException e) {
             throw new DukeException("☹ OOPS!!! The date of a event must be in the format of yyyy-mm-dd.");
         }
@@ -27,12 +27,12 @@ public class Event extends Task {
 
     @Override
     public String fileFormat() {
-        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, at);
+        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, startDate);
     }
 
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
-                + at.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+                + startDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 }
