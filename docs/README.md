@@ -161,6 +161,12 @@ Example:
 
 Terminates the Chatbot session. Note that the chatbot window is **not** automatically closed.
 
+### Pure CLI Experience
+
+More experienced users may also decide to use a command-line interface in their preferred terminal.
+To do so, simply navigate to the directory where TedBot's executable is located and type in
+`java -jar TedBot.jar cli` to the terminal.
+
 ## Command Summary
 
 | Command                                     | Function                       |
@@ -177,6 +183,6 @@ Terminates the Chatbot session. Note that the chatbot window is **not** automati
 
 ## Troubleshooting
 
-- If you encounter issues regarding characters not being displayed correctly, you may the following command in your 
-  preferred terminal: `java -Dfile.encoding=UTF-8 -jar duke.jar`.
+- If you encounter issues regarding characters not being displayed correctly, you may try the following command in your 
+  preferred terminal: `java -Dfile.encoding=UTF-8 -jar TedBot.jar`.
 

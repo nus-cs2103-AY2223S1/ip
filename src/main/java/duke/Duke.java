@@ -106,7 +106,7 @@ public class Duke {
     }
 
     /**
-     * Entry point to run Duke on terminal.
+     * Runs Duke on the terminal.
      *
      * @param args The provided arguments.
      */

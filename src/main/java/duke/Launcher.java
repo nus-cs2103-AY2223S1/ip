@@ -4,6 +4,10 @@ import javafx.application.Application;
 
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(Main.class, args);
+        if (args.length >= 1 && args[0].equals("cli")) {
+            Duke.main(args);
+        } else {
+            Application.launch(Main.class, args);
+        }
     }
 }
