@@ -22,7 +22,7 @@ public class ParserTest {
         try {
             assertEquals(23, Parser.parseTaskNumber("mark 2e3"));
         } catch (DukeException e) {
-            assertEquals("   2e3 is not a valid task number.\n", e.getMessage());
+            assertEquals("2e3 is not a valid task number.\n", e.getMessage());
         }
 
     }
