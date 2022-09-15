@@ -9,7 +9,7 @@ public class DukeException extends RuntimeException {
      * @param message
      */
     public DukeException(String message) {
-        super("☹ OOPS!!! " + message);
+        super("OOPS!!! " + message);
     }
 
     /**
