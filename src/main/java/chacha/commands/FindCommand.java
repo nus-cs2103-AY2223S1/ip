@@ -8,27 +8,26 @@ import chacha.Ui;
  * Represents Find Command.
  */
 public class FindCommand extends Command {
-    private String keyword;
+    private String[] keywords;
 
     /**
      * Constructor for FindCommand with keyword to find.
      * 
-     * @param keyword Keyword to use in find.
+     * @param keywords Keyword to use in find.
      */
-    public FindCommand(String keyword) {
-        this.keyword = keyword;
+    public FindCommand(String[] keywords) {
+        this.keywords = keywords;
     }   
 
     /**
      * Executes command to find keyword in task list.
      *
-     * @param tasks Task list to find keyword in.
      * @param ui Ui to print output message.
      * @param storage Storage.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        TaskList newTasks = taskList.find(keyword);
+        TaskList newTasks = taskList.find(keywords);
         ui.printFind(newTasks);
     }
 
