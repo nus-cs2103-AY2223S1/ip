@@ -42,8 +42,11 @@ public class Ui {
      */
     public String showAddTask(Task task, int size) {
         String output = size == 1 ? " task in the list." : " tasks in the list.";
-        return "Got it. I've added this task:\n" + task
-                + "\nNow you have " + size + output;
+        return "Got it. I've added this task:\n"
+                + task
+                + "\nNow you have "
+                + size
+                + output;
     }
 
     /**
@@ -53,8 +56,11 @@ public class Ui {
      */
     public String showDeleteTask(Task task, int size) {
         String output = size == 1 ? " task in the list." : " tasks in the list.";
-        return "Got it. I've deleted this task:\n" + task
-                + "\nNow you have " + size + output;
+        return "Got it. I've deleted this task:\n"
+                + task
+                + "\nNow you have "
+                + size
+                + output;
     }
 
     public String showList(TaskList tasks) {
