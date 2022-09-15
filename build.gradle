@@ -50,7 +50,7 @@ javafx {
 }
 
 application {
-    mainClassName = "duke.Duke"
+    mainClassName = "Launcher"
 }
 
 //create a single Jar with all dependencies
