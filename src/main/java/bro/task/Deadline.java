@@ -15,7 +15,7 @@ public class Deadline extends Task {
     private boolean isMonthFormat;
 
     /**
-     * Constructor of Deadline class.
+     * Constructs the Deadline class.
      * @param description The title of the task to be done.
      * @param by Time of the task to be done.
      * @throws BroException If the time format is invalid.
@@ -29,11 +29,6 @@ public class Deadline extends Task {
         } else {
             byStore = Parser.timeParser(by);
         }
-    }
-
-    @Override
-    public String getTaskType() {
-        return "bro.task.Deadline";
     }
 
     @Override

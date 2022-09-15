@@ -20,7 +20,7 @@ public class Storage {
     private String path;
 
     /**
-     * Constructor of the Storage class.
+     * Constructs the Storage class.
      * @param path String with the file location.
      */
     public Storage(String path) {

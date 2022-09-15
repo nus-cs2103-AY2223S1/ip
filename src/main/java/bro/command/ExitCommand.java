@@ -16,7 +16,6 @@ public class ExitCommand extends Command {
 
     /**
      * {@inheritDoc}
-     *
      * Bye message will be printed.
      */
     @Override

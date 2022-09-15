@@ -5,7 +5,6 @@ import java.util.TimerTask;
 
 import bro.Ui;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -22,8 +21,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
 
     private bro.Bro bro;
 
@@ -61,6 +58,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getBroDialog(response, broImage)
         );
         userInput.clear();
+        //@@author anuanas2007-reused
+        //Reused from https://github.com/RezwanArefin01/ip/blob/master/src/main/java/duke/command/ExitCommand.java
+        //with minor modifications
         if (response.equals("See you later broo!")) {
             new Timer().schedule(new TimerTask() {
                 @Override
@@ -69,5 +69,6 @@ public class MainWindow extends AnchorPane {
                 }
             }, 1000L);
         }
+        //@@author
     }
 }

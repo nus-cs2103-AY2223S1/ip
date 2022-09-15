@@ -24,7 +24,6 @@ public class DeleteCommand extends Command {
 
     /**
      * {@inheritDoc}
-     *
      * Deletes the given task by the user.
      */
     @Override
@@ -37,7 +36,7 @@ public class DeleteCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new BroException("Index is out of bound. Enter a valid index");
         } catch (IOException e) {
-            throw new BroException("Couldn't delete task!");
+            throw new BroException("Sry! Couldn't delete task!");
         }
     }
 }

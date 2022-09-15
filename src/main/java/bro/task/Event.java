@@ -30,12 +30,6 @@ public class Event extends Task {
             atStore = Parser.timeParser(at);
         }
     }
-
-    @Override
-    public String getTaskType() {
-        return "bro.task.Event";
-    }
-
     @Override
     public String toString() {
         if (isMonthFormat) {

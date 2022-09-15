@@ -10,7 +10,7 @@ public class Bro {
     private Ui ui;
     private String filePath = "./bro.Bro.txt";
     /**
-     * Constructor for the class Bro.
+     * Constructs the Bro class.
      */
     public Bro() {
         ui = new Ui();

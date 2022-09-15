@@ -33,7 +33,6 @@ public class ModifyCommand extends Command {
 
     /**
      * {@inheritDoc}
-     *
      * Marks or unmarks the task.
      */
     @Override

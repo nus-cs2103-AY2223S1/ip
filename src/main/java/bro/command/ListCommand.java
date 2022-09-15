@@ -16,7 +16,6 @@ public class ListCommand extends Command {
 
     /**
      * {@inheritDoc}
-     *
      * Lists all the tasks.
      */
     @Override

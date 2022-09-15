@@ -24,7 +24,6 @@ public class AddCommand extends Command {
 
     /**
      * {@inheritDoc}
-     *
      * Adds the given task to the file.
      */
     @Override

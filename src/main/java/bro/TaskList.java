@@ -62,7 +62,7 @@ public class TaskList {
      * Marks the task as done by setting isDone boolean to true.
      * @param n Index of the task to be marked.
      */
-    public void markTask(int n) throws BroException {
+    public void markTask(int n) {
         this.tasks.get(n - 1).markAsDone();
     }
 

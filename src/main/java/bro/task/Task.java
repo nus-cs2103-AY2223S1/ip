@@ -8,7 +8,7 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Constructor of Task class.
+     * Constructs the Task class.
      * @param description Description to be given to the variable description.
      */
     public Task(String description) {
@@ -36,14 +36,6 @@ public class Task {
      */
     public void markAsNotDone() {
         isDone = false;
-    }
-
-    /**
-     * Gets the task type of the given task.
-     * @return A string with the task type.
-     */
-    public String getTaskType() {
-        return "bro.task.Task";
     }
 
     @Override

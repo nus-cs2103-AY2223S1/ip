@@ -20,7 +20,6 @@ public class FindCommand extends Command {
 
     /**
      * {@inheritDoc}
-     *
      * Finds whether any task has the keyword provided.
      */
     @Override
