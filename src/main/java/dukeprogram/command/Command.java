@@ -1,12 +1,10 @@
 package dukeprogram.command;
 
+import java.util.Iterator;
 
 import dukeprogram.Duke;
-import dukeprogram.InternalAction;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
-
-import java.util.Iterator;
 
 /**
  * A general purpose Command that allows the executing without additional
@@ -14,7 +12,6 @@ import java.util.Iterator;
  */
 public abstract class Command {
 
-    private int numberOfInvokes = 0;
     protected Duke duke;
 
     /**

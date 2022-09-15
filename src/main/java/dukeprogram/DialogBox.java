@@ -1,38 +1,30 @@
 package dukeprogram;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 /**
@@ -46,15 +38,13 @@ public class DialogBox extends HBox {
     private static final Color USER_COLOR = Color.color(1, 0.5, 0);
 
     @FXML
-    private HBox parentPanel;
-    @FXML
     private Label name;
     @FXML
     private Label dialog;
     @FXML
-    private VBox dialogLayout;
+    private Label date;
     @FXML
-    private ImageView displayPicture;
+    private VBox dialogLayout;
     @FXML
     private Widget widget;
 
@@ -76,90 +66,40 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        name.getStyleClass().add("header");
+        dialog.getStyleClass().add("regular");
+        date.getStyleClass().add("tag");
+
         name.setText(user.getName());
         dialog.setText(dialogText);
+        dialog.setMinWidth(Region.USE_PREF_SIZE);
+        dialog.widthProperty().addListener(c -> {
+            dialog.setMinWidth(Math.min(dialog.getWidth(), dialogLayout.getMaxWidth()));
+        });
 
-        setDisplayPicture(user.getUserImage());
-
-        dialog.setPadding(new Insets(5, 5, 5, 5));
+        dialog.setPadding(new Insets(0, 0, 0, 20));
+        date.setPrefWidth(Double.MAX_VALUE);
+        date.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm a")));
 
         if (user.equals(User.DUKE)) {
             isDuke = true;
             this.flip();
         }
-
-        this.layoutBoundsProperty().addListener(new ChangeListener<Bounds>() {
-            @Override
-            public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
-                double width = getBoundsInParent().getWidth();
-                double height = getBoundsInParent().getHeight();
-
-                TranslateTransition translateTransition = new TranslateTransition(Duration.millis(500),
-                        DialogBox.this);
-                translateTransition.setFromX((user.equals(User.DUKE) ? -1 : 1) * width / 2);
-                translateTransition.setFromY(-height / 2);
-                translateTransition.setToX(0);
-                translateTransition.setToY(0);
-
-                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(500),
-                        DialogBox.this);
-                scaleTransition.setFromX(0);
-                scaleTransition.setFromY(0);
-                scaleTransition.setToX(1);
-                scaleTransition.setToY(1);
-
-                new ParallelTransition(translateTransition, scaleTransition).play();
-                DialogBox.this.layoutBoundsProperty().removeListener(this);
-            }
-        });
-    }
-
-    private void setDisplayPicture(Image img) {
-        displayPicture.setImage(img);
-        double width = displayPicture.getFitWidth() / 2;
-        double height = displayPicture.getFitHeight() / 2;
-        Circle circle = new Circle(
-                width,
-                height,
-                Math.min(width, height) - 5);
-
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setOffsetX(0.5);
-        dropShadow.setOffsetY(0.5);
-
-        circle.setEffect(dropShadow);
-        displayPicture.setClip(circle);
+        dialogLayout.minWidthProperty().bind(dialog.widthProperty());
+        createAnimation(user);
     }
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(parentPanel.getChildren());
-        Collections.reverse(tmp);
-        parentPanel.getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
-        parentPanel.setAlignment(Pos.TOP_LEFT);
+        dialog.setPadding(new Insets(0, 20, 0, 0));
         dialogLayout.setAlignment(Pos.TOP_LEFT);
+        dialog.setAlignment(Pos.TOP_LEFT);
+        date.setAlignment(Pos.CENTER_RIGHT);
     }
 
-    private Timeline createAnimation() {
-        Timeline timeline = new Timeline();
-        double finalWidth = parentPanel.getMaxWidth();
-        double finalHeight = parentPanel.getMaxHeight();
-
-        timeline.getKeyFrames().addAll(
-                new KeyFrame(Duration.ZERO,
-                        new KeyValue(parentPanel.maxWidthProperty(), 0),
-                        new KeyValue(parentPanel.maxHeightProperty(), 0)
-                ),
-                new KeyFrame(new Duration(1000),
-                        new KeyValue(parentPanel.maxWidthProperty(), finalWidth),
-                        new KeyValue(parentPanel.maxHeightProperty(), finalHeight)
-                )
-        );
-        return timeline;
-    }
 
     /**
      * Creates a dialog box belonging to the user
@@ -213,7 +153,7 @@ public class DialogBox extends HBox {
             offsetUser = 0;
         }
 
-        box.setBackground(new Background(new BackgroundFill(
+        box.dialogLayout.setBackground(new Background(new BackgroundFill(
                 new LinearGradient(startX,
                         0.5,
                         endX,
@@ -224,7 +164,35 @@ public class DialogBox extends HBox {
                         new Stop(offsetUser, USER_COLOR)
                 ),
                 new CornerRadii(10),
-                new Insets(5, 5, 5, 5)))
+                Insets.EMPTY))
         );
+    }
+
+    private void createAnimation(User user) {
+        this.layoutBoundsProperty().addListener(new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends Bounds> observable,
+                                Bounds oldValue, Bounds newValue) {
+                double width = getBoundsInParent().getWidth();
+                double height = getBoundsInParent().getHeight();
+
+                TranslateTransition translateTransition =
+                        new TranslateTransition(Duration.millis(500), DialogBox.this);
+                translateTransition.setFromX((user.equals(User.DUKE) ? -1 : 1) * width / 2);
+                translateTransition.setFromY(-height / 2);
+                translateTransition.setToX(0);
+                translateTransition.setToY(0);
+
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(500),
+                        DialogBox.this);
+                scaleTransition.setFromX(0);
+                scaleTransition.setFromY(0);
+                scaleTransition.setToX(1);
+                scaleTransition.setToY(1);
+
+                new ParallelTransition(translateTransition, scaleTransition).play();
+                DialogBox.this.layoutBoundsProperty().removeListener(this);
+            }
+        });
     }
 }

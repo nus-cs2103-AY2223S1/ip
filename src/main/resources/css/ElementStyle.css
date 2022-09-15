@@ -1,0 +1,46 @@
+@font-face {
+    src: url("/fonts/Corbel_Bold.ttf");
+}
+
+@font-face {
+    src: url("/fonts/Corbel_Italic.ttf");
+}
+
+@font-face {
+    src: url("/fonts/Corbel_Bold_Italic.ttf");
+}
+
+@font-face {
+    src: url("/fonts/CORBEL.TTF");
+}
+
+@font-face {
+    src: url("/fonts/corbeli.ttf");
+}
+
+.regular {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Corbel';
+    -fx-font-size: 12px;
+}
+
+.header {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Corbel';
+    -fx-font-weight: bolder;
+    -fx-font-size: 13px;
+}
+
+.tag {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Corbel';
+    -fx-font-weight: bolder;
+    -fx-font-size: 10px;
+}
+
+#backgroundWindow {
+    -fx-background-image: url("../images/skyline_bg.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}

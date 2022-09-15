@@ -40,7 +40,6 @@ public class ListTasksCommand extends Command {
                 .mapToObj(i -> i + 1 + ". " + currentTaskList.get(i).toString())
                 .collect(Collectors.joining("\n"));
 
-        duke.sendMessage("Here is your task list:",
-                new Widget("Tasks", formattedTaskListString));
+        duke.sendMessage("Here is your task list:\n" + formattedTaskListString);
     }
 }

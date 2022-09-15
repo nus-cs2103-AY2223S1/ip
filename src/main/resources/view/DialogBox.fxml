@@ -2,32 +2,22 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Separator?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" style="-fx-font-family: Corbel;">
+<fx:root alignment="BOTTOM_RIGHT" maxHeight="Infinity" maxWidth="Infinity" type="javafx.scene.layout.HBox"
+         xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" spacing="3">
     <children>
-        <HBox fx:id="parentPanel" alignment="TOP_RIGHT">
-                <children>
-                    <VBox fx:id="dialogLayout" alignment="TOP_RIGHT" spacing="1">
-                        <children>
-                            <Label fx:id="name" text="Label" wrapText="true" style="-fx-font-weight: bold;-fx-font-size: 15px;">
-                                <padding>
-                                    <Insets left="5.0" right="5.0"/>
-                                </padding>
-                            </Label>
-                            <Label fx:id="dialog" text="Label" wrapText="true" maxHeight="Infinity" style="-fx-font-size: 13.0px" />
-                        </children>
-                    </VBox>
-                    <ImageView fx:id="displayPicture" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                </children>
-        </HBox>
+        <VBox fx:id="dialogLayout" alignment="TOP_RIGHT" prefWidth="200" minWidth="200" maxWidth="350">
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
+            <children>
+                <Label fx:id="name" text="Label" wrapText="true" style="-fx-padding: 0 0 5 0"/>
+                <Label fx:id="dialog" text="Label" wrapText="true" maxWidth="350"
+                       alignment="TOP_RIGHT"/>
+                <Label fx:id="date" text="Label" wrapText="true" maxHeight="Infinity"/>
+            </children>
+        </VBox>
     </children>
-    <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
-    </padding>
 </fx:root>
