@@ -61,7 +61,8 @@ public class TaskList {
     public static Task addToDo(String args) throws DukeException {
         String name = args.strip();
         if (name == "") {
-            throw new DukeException("Failed to create todo: No task name given");
+            throw new DukeException("Failed to create todo: No task name given\n"
+                    + "Command format: todo [taskName]");
         }
 
         return addToList(new ToDo(name, false));
@@ -76,25 +77,29 @@ public class TaskList {
     public static Task addDeadline(String args) throws DukeException {
         String[] argsArr = args.split("/by", 2);
         if (argsArr.length < 2) {
-            throw new DukeException("Failed to create deadline: Invalid number of arguments");
+            throw new DukeException("Failed to create deadline: Invalid number of arguments\n"
+                    + "Command format: deadline [taskName] /by [date]");
         }
 
         String name = argsArr[0].strip();
         String dateStr = argsArr[1].strip();
 
         if (name == "") {
-            throw new DukeException("Failed to create deadline: No task name given");
+            throw new DukeException("Failed to create deadline: No task name given\n"
+                    + "Command format: deadline [taskName] /by [date]");
         }
 
         if (dateStr == "") {
-            throw new DukeException("Failed to create deadline: No date given");
+            throw new DukeException("Failed to create deadline: No date given\n"
+                    + "Command format: deadline [taskName] /by [date]");
         }
 
         LocalDate date;
         try {
             date = LocalDate.parse(dateStr);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Failed to create deadline: Invalid date given");
+            throw new DukeException("Failed to create deadline: Invalid date given\n"
+                    + "Command format: deadline [taskName] /by [date]");
         }
 
         return addToList(new Deadline(name, false, date));
@@ -109,25 +114,29 @@ public class TaskList {
     public static Task addEvent(String args) throws DukeException {
         String[] argsArr = args.split("/at", 2);
         if (argsArr.length < 2) {
-            throw new DukeException("Failed to create event: Invalid number of arguments");
+            throw new DukeException("Failed to create event: Invalid number of arguments\n"
+                    + "Command format: event [taskName] /at [date]");
         }
 
         String name = argsArr[0].strip();
         String dateStr = argsArr[1].strip();
 
         if (name == "") {
-            throw new DukeException("Failed to create event: No task name given");
+            throw new DukeException("Failed to create event: No task name given\n"
+                    + "Command format: event [taskName] /at [date]");
         }
 
         if (dateStr == "") {
-            throw new DukeException("Failed to create event: No date given");
+            throw new DukeException("Failed to create event: No date given\n"
+                    + "Command format: event [taskName] /at [date]");
         }
 
         LocalDate date;
         try {
             date = LocalDate.parse(dateStr);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Failed to create event: Invalid date given");
+            throw new DukeException("Failed to create event: Invalid date given\n"
+                    + "Command format: event [taskName] /at [date]");
         }
 
         return addToList(new Event(name, false, date));
@@ -146,12 +155,14 @@ public class TaskList {
         try {
             index = Integer.parseInt(indexString.strip());
         } catch (NumberFormatException e) {
-            throw new DukeException("Mark failed, invalid index");
+            throw new DukeException("Mark failed, invalid index\n"
+                    + String.format("Command format: %s [index]", isDone ? "mark" : "unmark"));
         }
         index--;
 
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("Mark failed, index out of range");
+            throw new DukeException("Mark failed, index out of range\n"
+                    + String.format("Command format: %s [index]", isDone ? "mark" : "unmark"));
         }
 
         Task task = tasks.get(index);
@@ -176,12 +187,14 @@ public class TaskList {
         try {
             index = Integer.parseInt(indexString.strip());
         } catch (NumberFormatException e) {
-            throw new DukeException("Delete failed, invalid index");
+            throw new DukeException("Delete failed, invalid index\n"
+                    + "Command format: delete [index]");
         }
         index--;
 
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("Delete failed, index out of range");
+            throw new DukeException("Delete failed, index out of range\n"
+                    + "Command format: delete [index]");
         }
 
         Task task = tasks.get(index);
@@ -248,7 +261,8 @@ public class TaskList {
             tasks.sort((taskA, taskB) -> taskB.getTaskName().compareTo(taskA.getTaskName()));
             return "descending";
         default:
-            throw new DukeException("Sort failed, missing order argument: /a for ascending, /d for descending");
+            throw new DukeException("Failed to sort: No sorting order specified\n"
+                    + "Command format: sort [/a for ascending or /d for descending]");
         }
     }
 }

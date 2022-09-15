@@ -13,6 +13,8 @@ import javafx.stage.Stage;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    private static final String BACKGROUND_COLOR = "#111111";
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -27,9 +29,13 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/UserIcon.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DukeIcon.png"));
 
+    /**
+     * Sets up GUI components after creation.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogueContainer.heightProperty());
+        dialogueContainer.setStyle(String.format("-fx-background-color: %s;", BACKGROUND_COLOR));
     }
 
     public void setStage(Stage stage) {

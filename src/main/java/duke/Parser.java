@@ -1,5 +1,9 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * A class that handles user input.
  */
@@ -15,6 +19,7 @@ public class Parser {
     private static final String DELETE_COMMAND = "delete";
     private static final String FIND_COMMAND = "find";
     private static final String SORT_COMMAND = "sort";
+    private static final String HELP_COMMAND = "help";
 
     /**
      * Parses an input string and calls the relevant method (if any).
@@ -62,8 +67,32 @@ public class Parser {
         case SORT_COMMAND:
             Ui.displaySortTasksByNameMessage(TaskList.sortTaskListByName(args));
             break;
+        case HELP_COMMAND:
+            Ui.displayCommands();
+            break;
         default:
             throw new DukeException("Command not recognised");
         }
+    }
+
+    /**
+     * Gets a list of commands recognized by the Parser.
+     *
+     * @return An arraylist of strings that are recognized commands.
+     */
+    public static List<String> getCommandList() {
+        return new ArrayList<>(Arrays.asList(
+                GREET_COMMAND,
+                EXIT_COMMAND,
+                DISPLAY_COMMAND,
+                MARK_COMMAND,
+                UNMARK_COMMAND,
+                CREATE_TODO_COMMAND,
+                CREATE_DEADLINE_COMMAND,
+                CREATE_EVENT_COMMAND,
+                DELETE_COMMAND,
+                FIND_COMMAND,
+                SORT_COMMAND,
+                HELP_COMMAND));
     }
 }
