@@ -15,11 +15,11 @@ public class Deadline extends Task {
 
 
     /**
-     * The information regarding the Deadline
+     * The constructor for the Deadline task
      * @param description the description of the task to do by the deadline
-     * @param byDate the due date
-     * @param byTime the due time
-     * @throws DukeException self created exception
+     * @param byDate the due date of the deadline task
+     * @param byTime the due time of the deadline task
+     * @throws DukeException the exception to be thrown
      */
     public Deadline(String description, LocalDate byDate, String byTime) throws DukeException {
         super(description);
@@ -40,8 +40,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * A string representation to write to the file
-     * @return a string that represents what to write to the file
+     * A string representation of the deadline task to be saved
+     * @return a string representing the description and the due date of the deadline task to be saved
      */
     public String saveToDisk() {
         String alreadyDone = super.getStatusIcon();

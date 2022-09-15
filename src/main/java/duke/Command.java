@@ -19,7 +19,7 @@ public class Command {
     }
 
     /**
-     * Greet the user depending on the given command
+     * Sends a greeting to the user
      */
     public void printCommand() {
         switch (givenCommand) {
