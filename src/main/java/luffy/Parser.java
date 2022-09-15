@@ -188,7 +188,7 @@ public class Parser {
      */
     public String parse(String s, TaskList tasks) {
         if (s.equals("list")) {
-            return tasks.toString();
+            return tasks.getSize() <= 0 ? "You have no tasks!" : tasks.toString();
         } else if (s.length() >= 6 && s.substring(0, 4).equals("mark")) {
             return markTask(s, tasks);
         } else if (s.length() >= 8 && s.substring(0, 6).equals("unmark")) {
