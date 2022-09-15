@@ -9,7 +9,7 @@
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <TextFlow snapToPixel="false">
-            <Label fx:id="dialog" style="-fx-border-radius: 20px; -fx-border-color: white; -fx-label-padding: 15px; -fx-background-color: #e0cab8 #e0cab8; -fx-background-radius: 20px;" text="Label" wrapText="true">
+            <Label fx:id="dialog" maxWidth="350.0" style="-fx-border-radius: 20px; -fx-border-color: white; -fx-label-padding: 15px; -fx-background-color: #e0cab8 #e0cab8; -fx-background-radius: 20px;" text="Label" wrapText="true">
                 <padding>
                     <Insets right="10.0" />
                 </padding>
