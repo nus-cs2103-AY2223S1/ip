@@ -2,6 +2,10 @@ package jarvis;
 
 import jarvis.task.TaskList;
 
+/**
+ * Jarvis (credit: Iron Man) is a a Personal Assistant Chatbot that helps a person
+ * to keep track of their todos, events and deadlines
+ */
 public class Jarvis {
     static String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
