@@ -1,0 +1,28 @@
+todo 2103T iP project
+deadline 2103 iP project /by Thursday
+event dota TI finals /at 29-30 Oct
+list
+deadline study /by forever
+event Eat /at sometime when i wan 2 ;3
+mark 5
+mark 2
+list
+unmark 2
+list
+mark 5
+unmark 2
+list
+delete 3
+delete 4
+list
+event Play games
+todo
+deadline f4cts of the day
+mark
+unmark
+delete
+Rubbish command
+qrrwqrerq
+3410341
+find study
+bye
