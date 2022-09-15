@@ -1,7 +1,8 @@
 package duke.models;
 
-import duke.DateParser;
 import org.junit.jupiter.api.Test;
+
+import duke.DateParser;
 
 public class EventTest {
 
