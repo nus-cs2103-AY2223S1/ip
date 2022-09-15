@@ -1,16 +1,16 @@
 package cheese.storage;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 import cheese.data.TaskList;
 import cheese.exception.CheeseException;
 import cheese.task.Deadline;
 import cheese.task.Event;
 import cheese.task.Task;
 import cheese.task.Todo;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Represents a storage that interacts with <code>Cheese</code>'s save file.

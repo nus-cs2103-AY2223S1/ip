@@ -1,7 +1,9 @@
 package cheese.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
+
 import cheese.task.Deadline;
 import cheese.task.Event;
 import cheese.task.Todo;

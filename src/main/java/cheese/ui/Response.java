@@ -1,9 +1,9 @@
 package cheese.ui;
 
+import java.util.ArrayList;
+
 import cheese.data.TaskList;
 import cheese.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Contains the responses given by Cheese.
@@ -15,7 +15,8 @@ public class Response {
      * @return Message to display to welcome user.
      */
     public static String getWelcomeMessage() {
-        return "Woof! I'm Cheese, your puppy assistant.\n" + "What can I do for you?";
+        return "Woof! I'm Cheese, your puppy assistant.\n"
+                + "What can I do for you?";
     }
 
     /**
@@ -26,7 +27,9 @@ public class Response {
      * @return Message to display after adding task.
      */
     public static String getAddTaskMessage(Task addedTask, int newListSize) {
-        return "Gotcha! I have a paw-fect memory!\n" + "  " + addedTask + "\n" + "You have " + newListSize + " task(s) in the list.";
+        return "Gotcha! I have a paw-fect memory!\n"
+                + "  " + addedTask + "\n"
+                + "You have " + newListSize + " task(s) in the list.";
     }
 
     /**
@@ -37,7 +40,9 @@ public class Response {
      * @return Message to display after deleting task.
      */
     public static String getDeleteTaskMessage(Task deletedTask, int remainingListSize) {
-        return "Gotcha master! I'll forget about this task!\n" + "  " + deletedTask + "\n" + "You have " + remainingListSize + " task(s) remaining.";
+        return "Gotcha master! I'll forget about this task!\n"
+                + "  " + deletedTask + "\n"
+                + "You have " + remainingListSize + " task(s) remaining.";
     }
 
     /**
@@ -57,7 +62,8 @@ public class Response {
      * @return Message to display after marking task as incomplete.
      */
     public static String getMarkTaskAsNotDoneMessage(Task taskNotDone) {
-        return "Okay master, I've marked this task as incomplete.\n" + "  " + taskNotDone;
+        return "Okay master, I've marked this task as incomplete.\n"
+                + "  " + taskNotDone;
     }
 
     /**
@@ -67,7 +73,8 @@ public class Response {
      * @return Message to display after snoozing task.
      */
     public static String getSnoozeTaskMessage(Task taskSnoozed) {
-        return "Gotcha! I've snoozed this task by 1 day. Wanna go for a walk now??\n" + "  " + taskSnoozed;
+        return "Gotcha! I've snoozed this task by 1 day. Wanna go for a walk now??\n"
+                + "  " + taskSnoozed;
     }
 
     /**
