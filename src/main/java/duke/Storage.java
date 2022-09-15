@@ -18,7 +18,7 @@ public class Storage {
         try {
             File file = new File("./data/duke.txt");
             if (!file.getParentFile().exists()) {
-                file.mkdirs();
+                file.getParentFile().mkdirs();
             }
             file.createNewFile();
             FileWriter writer = new FileWriter("./data/duke.txt", false);
