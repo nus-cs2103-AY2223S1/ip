@@ -87,7 +87,7 @@ public class Ui {
     }
 
     /**
-     * Generates a message marking task as undone in TaskList.
+     * Generates a message marking a done task as undone in TaskList.
      *
      * @param index Index of task that was marked.
      * @param task Task marked as undone.

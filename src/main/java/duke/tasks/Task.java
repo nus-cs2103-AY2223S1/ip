@@ -94,7 +94,8 @@ public abstract class Task {
      * @return If keyword was found in current task.
      */
     public Boolean isFoundInDescription(String keyword) {
-        return description.contains(keyword);
+        // Checks if keyword is found in description in case-insensitive manner.
+        return (description.toLowerCase()).contains(keyword.toLowerCase());
     }
 
     /**
