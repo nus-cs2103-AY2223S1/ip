@@ -69,7 +69,7 @@ Example: `unmark 2` --> Marks the 2nd task as not done yet
 > Note that keyword need not be full words.
 
 Format: `find {keyword}` <br>
-Example: `find assignment` 
+Example: `find assignment` <br>
   ![Demonstration of find command](images/findCommandDemo.png)
 
 ### Delete a task: `delete`
@@ -85,7 +85,7 @@ Example: `delete 1` --> Delete and remove the 1st task from AlphaBot
 > Note that description will not be updated if it is left empty.
 
 Format: `update {index} {description} /by {date}` or `update {index} {description} /at {date} {time}` <br>
-Example: `update /by 17/12/2022` --> Only updates date of a deadline task.
+Example: `update /by 17/12/2022` --> Only updates date of a deadline task. <br>
   ![Demonstration of update command](images/updateCommandDemo.png)
 
 ### Exits application: `bye`
