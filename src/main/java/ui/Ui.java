@@ -65,6 +65,7 @@ public class Ui {
      * Prints the goodbye text by the Chatbot to the Ui.
      *
      * @param dialogContainer VBox to add the goodbye text to.
+     * @param userDialog contains the user's dialog to be added to the VBox.
      */
     public void sayGoodbye(VBox dialogContainer, DialogBox userDialog) {
         appendUncleCheongResponseAndUserInput(GOODBYE_MESSAGE, dialogContainer, userDialog);
