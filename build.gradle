@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClassName = "main.java.duke.Duke"
+    mainClassName = "Launcher"
 }
 
 shadowJar {

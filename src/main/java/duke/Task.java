@@ -118,5 +118,7 @@ public class Task {
     public static void main(String[] args) {
         Task t = new Task("return books");
         t.hasKeyword("return");
+
+        t.markAsDone();
     }
 }
