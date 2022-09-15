@@ -51,7 +51,6 @@ public class Duke extends Application {
      * Constructs Duke (default)
      */
     public Duke() {
-        //default constructor
     }
 
     /**
@@ -282,14 +281,7 @@ public class Duke extends Application {
     public void stop() {
         isRunning = false;
     }
-
-    /**
-     * Prints a line separator.
-     */
-    public static void printLine() {
-        System.out.println("--------------------------------------");
-    }
-
+    
     /**
      * Enums for the range of commands Duke can complete.
      */
