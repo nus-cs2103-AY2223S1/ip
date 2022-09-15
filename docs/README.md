@@ -1,5 +1,5 @@
 # Duke: User Guide
-
+![Ui.png](Ui.png)
 ## Quick start
 1. Ensure you have Java 11 or above installed.
 
@@ -171,20 +171,4 @@ Exits the program
 
 Format: `bye`
 
-## Usage
 
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
