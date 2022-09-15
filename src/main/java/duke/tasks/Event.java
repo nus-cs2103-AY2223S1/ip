@@ -36,7 +36,8 @@ public class Event extends Task {
         int year = this.timing.getYear();
         int hour = this.timing.getHour();
         int min = this.timing.getMinute();
-        return(String.format("%s %s %s %02d:%02d", day, month, year, hour, min));
+        String format = "%s %s %s %02d:%02d";
+        return(String.format(format, day, month, year, hour, min));
     }
 
     /**
@@ -58,12 +59,14 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
+        String format;
         if(this.getDone()) {
-            return (String.format("[E][X] %s (%s)", this.getVal(), this.getTiming()));
+            format = "[E][X] %s (%s)";
         }
         else {
-            return String.format("[E][ ] %s (%s)", this.getVal(), this.getTiming());
+            format = "[E][ ] %s (%s)";
         }
+        return (String.format(format, this.getVal(), this.getTiming()));
     }
 
     /**
@@ -71,7 +74,9 @@ public class Event extends Task {
      */
     @Override
     public String toText() {
-        return String.format("E | %s | %s | %s", this.getDone() ? 1 : 0, this.getVal(), getTiming());
+        var isDone = this.getDone() ? 1 : 0;
+        String format = "E | %s | %s | %s";
+        return String.format(format, isDone, this.getVal(), getTiming());
     }
 
     private LocalDateTime getTime(String str) {
