@@ -92,7 +92,7 @@ public enum Command {
                 }
 
                 if (input.indexOf('/') == -1) {
-                    throw new DukeException("The date of the event cannot be empty");
+                    throw new DukeException("The date of the event should be input with the following format: /at YYYY-MM-DD hhmm");
                 }
 
                 split = input.substring(6).split("/");
@@ -106,7 +106,7 @@ public enum Command {
                 }
 
                 if (input.indexOf('/') == -1) {
-                    throw new DukeException("The date of the deadline cannot be empty");
+                    throw new DukeException("The date of the deadline should be input with the following format: /by YYYY-MM-DD hhmm");
                 }
 
 

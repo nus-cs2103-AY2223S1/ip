@@ -43,7 +43,8 @@ public class Duke  {
 
     public String getResponse(String input) {
         try {
-            Command command = parser.parse(input.strip());
+            input = input.strip();
+            Command command = parser.parse(input);
             String output = command.execute(tasks, ui, storage, input);
             return output;
             

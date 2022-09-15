@@ -16,16 +16,21 @@ public class Deadline extends Task {
      * @param description the name of the task.
      * @param by the due date of the task.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws DukeException{
         super(description);
-        int year = Integer.parseInt(by.substring(0, 4));
-        int month = Integer.parseInt(by.substring(5, 7));
-        int day = Integer.parseInt(by.substring(8, 10));
-        int hours = Integer.parseInt(by.substring(11, 13));
-        int minutes = Integer.parseInt(by.substring(13, 15));
+        try{
+            int year = Integer.parseInt(by.substring(0, 4));
+            int month = Integer.parseInt(by.substring(5, 7));
+            int day = Integer.parseInt(by.substring(8, 10));
+            int hours = Integer.parseInt(by.substring(11, 13));
+            int minutes = Integer.parseInt(by.substring(13, 15));
 
-        LocalDateTime date = LocalDateTime.of(year, month, day, hours, minutes);
-        this.by = date;
+            LocalDateTime date = LocalDateTime.of(year, month, day, hours, minutes);
+            this.by = date;
+        } catch (Exception e) {
+            throw new DukeException("The date of the deadline should be input with the following format: /by YYYY-MM-DD hhmm");
+        }
+
     }
 
     /**
