@@ -76,13 +76,13 @@ public class TaskList {
      * @param searchTerm the keyword to search for
      */
     public TaskList find(String searchTerm) {
-        TaskList foundTasks = new TaskList();
-        for (Task t : tasks) {
-            if (t.getDescription().contains(searchTerm)) {
-                foundTasks.add(t);
-            }
-        }
+        TaskList foundTasks = tasks.stream()
+                .filter((t) -> t.getDescription().contains(searchTerm))
+                .collect(TaskList::new, TaskList::add, TaskList::addAll);
         return foundTasks;
+    }
+    public void addAll(TaskList other) {
+        tasks.addAll(other.tasks);
     }
 
     public ArrayList<Task> getTasks() {
