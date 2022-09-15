@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.exceptions.DukeException;
@@ -43,7 +41,7 @@ public class Duke {
      */
     public String getResponse(String input) {
         try {
-            Parser parser = new Parser(new Scanner(System.in));
+            Parser parser = new Parser();
             Command action = parser.handleGuiInput(input);
             OutputHandler handler = new OutputHandler();
             String outputForGui = handler.getOutput(action);

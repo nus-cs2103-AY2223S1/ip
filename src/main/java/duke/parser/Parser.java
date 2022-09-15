@@ -1,7 +1,5 @@
 package duke.parser;
 
-import java.util.Scanner;
-
 import duke.commands.AddCommand;
 import duke.commands.ByeCommand;
 import duke.commands.Command;
@@ -17,34 +15,6 @@ import duke.exceptions.DukeException;
  * Parser to handle user input.
  */
 public class Parser {
-
-    /** Scanner to take in user input. */
-    private Scanner in;
-
-    /**
-     * Constructor for parser object.
-     * @param in Scanner object that reads user input.
-     */
-    public Parser(Scanner in) {
-        this.in = in;
-    }
-
-    /**
-     * Handles user input and calls methods accordingly, was originally for CLI
-     * version, but kept for test cases.
-     *
-     * @throws DukeException In the event that the command is not recognised.
-     */
-    public void handleInput() throws DukeException {
-        while (in.hasNext()) {
-            String[] temp = in.nextLine().trim().split(" ", 2);
-            String[] next = new String[2];
-            for (int i = 0; i < temp.length; i++) {
-                next[i] = temp[i].trim().toLowerCase();
-            }
-            identifyCommand(next).executeCommand();
-        }
-    }
 
     /**
      * Handles user input and calls methods accordingly (GUI).
