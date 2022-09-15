@@ -21,6 +21,7 @@ public class ChatBot {
     private final CommandManager commandManager;
     private final Personality personality;
     private boolean isRunning;
+    private boolean isAnnoyed;
     private String latestResponse;
     /**
      * Constructor for a chatbot that can be intialized or terminated.
@@ -35,6 +36,7 @@ public class ChatBot {
         this.commandManager = new CommandManager();
         this.personality = new Personality(name);
         this.isRunning = false;
+        this.isAnnoyed = false;
         this.latestResponse = "";
     }
 
@@ -45,6 +47,15 @@ public class ChatBot {
      */
     public boolean isRunning() {
         return this.isRunning;
+    }
+
+    /**
+     * Returns the annoyed state of the chatbot
+     *
+     * @return annoyed state of the chatbot
+     */
+    public boolean isAnnoyed() {
+        return this.isAnnoyed;
     }
 
     /**
@@ -117,9 +128,9 @@ public class ChatBot {
         this.logger.updateLog(input);
         assert isRunning : "chatbot should be running";
         input = input.strip();
-        assert isRunning == true : "chatbot should be running";
         String response = "";
         try {
+            this.isAnnoyed = false;
             // Guard Clause for empty commands
             if (input.length() == 0) {
                 throw new EmptyCommandException(this.personality);
@@ -138,6 +149,7 @@ public class ChatBot {
             this.taskManager.saveData(personality);
             System.out.println(wrapMessage(response));
         } catch (Exception exception) {
+            this.isAnnoyed = true;
             response = exception.getMessage();
         } finally {
             this.latestResponse = response;

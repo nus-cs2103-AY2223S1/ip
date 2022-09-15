@@ -1,5 +1,7 @@
 package duke.gui;
 
+import java.util.Objects;
+
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -13,7 +15,6 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-
 
 /**
  * DialogContainer is a container to contain dialog boxes generated through user interaction.
@@ -34,6 +35,7 @@ public class DialogContainer extends ScrollPane {
 
     private final Image userPicture;
     private final Image chatbotPicture;
+    private final Image chatbotAnnoyedPicture;
     private final Background userTextBackground;
     private final Background chatbotTextBackground;
     /**
@@ -43,8 +45,11 @@ public class DialogContainer extends ScrollPane {
      */
     public DialogContainer(MainWindow mainWindow) {
         // DisplayPicture properties
-        this.userPicture = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
-        this.chatbotPicture = new Image(this.getClass().getResourceAsStream("/images/Christina.jpg"));;
+        this.userPicture = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.jpg")));
+        this.chatbotPicture =
+                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Christina.jpg")));
+        this.chatbotAnnoyedPicture =
+                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Christina_annoyed.jpg")));
 
         // DisplayTextBackground properties
         BackgroundFill userOuterFill = new BackgroundFill(USER_DB_OUTER_COLOUR, DB_CORNER_RADII, Insets.EMPTY);
@@ -55,7 +60,8 @@ public class DialogContainer extends ScrollPane {
         this.chatbotTextBackground = new Background(chatbotOuterFill, chatbotInnerFill);
 
         // DialogBoxContainer properties
-        Image backgroundPicture = new Image(this.getClass().getResourceAsStream("/images/Background.png"));
+        Image backgroundPicture =
+                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Background.png")));
         BackgroundImage backgroundImage = new BackgroundImage(backgroundPicture,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -93,14 +99,20 @@ public class DialogContainer extends ScrollPane {
      * @param userText String of the text input by the user
      * @param chatbotText String of the response by the chatbot
      */
-    public void updateDialog(String userText, String chatbotText) {
+    public void updateDialog(String userText, String chatbotText, boolean isAnnoyed) {
         Label userTextLabel = new Label(userText);
         Label chatbotTextLabel = new Label(chatbotText);
         userTextLabel.setTextFill(USER_TEXT_COLOUR);
         chatbotTextLabel.setTextFill(CHATBOT_TEXT_COLOUR);
-        this.dialogBoxContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userTextLabel, userPicture, userTextBackground),
-                DialogBox.getChatbotDialog(chatbotTextLabel, chatbotPicture, chatbotTextBackground)
-        );
+
+        Image currentChatbotPicture = chatbotPicture;
+        if (isAnnoyed) {
+            currentChatbotPicture = chatbotAnnoyedPicture;
+        }
+
+        DialogBox userDialogBox = DialogBox.getUserDialog(userTextLabel, userPicture, userTextBackground);
+        DialogBox chatBotDialogBox = DialogBox.getChatbotDialog(chatbotTextLabel,
+                currentChatbotPicture, chatbotTextBackground);
+        this.dialogBoxContainer.getChildren().addAll(userDialogBox, chatBotDialogBox);
     }
 }

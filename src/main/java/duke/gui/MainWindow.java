@@ -41,7 +41,7 @@ public class MainWindow extends GridPane {
     public void handleUserInput(String userInput) {
         if (this.chatBot.isRunning()) {
             this.chatBot.processCommand(userInput);
-            this.dialogContainer.updateDialog(userInput, this.chatBot.getLatestResponse());
+            this.dialogContainer.updateDialog(userInput, this.chatBot.getLatestResponse(), this.chatBot.isAnnoyed());
         } else {
             System.exit(0);
         }
