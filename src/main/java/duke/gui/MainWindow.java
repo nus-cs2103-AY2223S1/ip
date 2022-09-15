@@ -68,6 +68,8 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
 
         if (this.duke.getExit()) {
+            // Solution below adapted from
+            // https://stackoverflow.com/questions/2258066/java-run-a-function-after-a-specific-number-of-seconds
             ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
             executor.schedule(new Runnable() {
                 @Override

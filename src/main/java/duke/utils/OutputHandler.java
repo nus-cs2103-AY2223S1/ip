@@ -20,6 +20,8 @@ public class OutputHandler {
      * @return String representing the printed output.
      */
     public String getOutput(Command action) throws DukeException {
+        // Solution below adapted from
+        // https://stackoverflow.com/questions/8708342/redirect-console-output-to-string-in-java
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
         PrintStream old = System.out;
