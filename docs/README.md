@@ -170,6 +170,7 @@ Data is automatically saved into the `betago.txt` or the loaded file after every
 ---
 
 ## Command Summary
+
 | Command  | Format                                     | Example                             |
 |----------|--------------------------------------------|-------------------------------------|
 | load     | `load (filename)`                          | load newdata.txt                    |
