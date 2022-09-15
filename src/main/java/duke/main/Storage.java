@@ -1,5 +1,7 @@
 package duke.main;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import duke.task.Formatting;
@@ -28,7 +30,16 @@ public class Storage {
      * @return an ArrayList of Tasks
      */
     public ArrayList<Task> load() throws DukeException {
-        this.arr = FileManipulation.read(filePath);
+        try {
+            File f = new File(filePath);
+            if (!f.exists()) {
+                f.getParentFile().mkdirs();
+                f.createNewFile();
+            }
+        } catch (IOException e) {
+            throw new DukeException("Cannot load data!");
+        }
+        arr = FileManipulation.read(filePath);
         return this.arr;
     }
     /**
