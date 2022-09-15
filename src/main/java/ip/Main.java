@@ -15,6 +15,9 @@ public class Main extends Application {
     /** The instance of Duke that the GUI interacts with */
     private final Duke duke = new Duke("data");
 
+    public static void main(String[] args) {
+
+    }
     /**
      * Entry point for this JavaFX application.
      *

@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 import ip.exception.BadLineFormat;
 import ip.task.Deadline;
@@ -81,27 +82,42 @@ public class Storage {
             TaskList taskListFromStorage = new TaskList();
             String fileContent = new String(Files.readAllBytes(Path.of(filePath)));
             String[] linesInFile = fileContent.split("\\r?\\n");
+            ArrayList<BadLineFormat> badLines = new ArrayList<>();
             for (String line : linesInFile) {
-                String[] taskMetadata = line.split("\\|");
-                String taskType = taskMetadata[0];
-                switch (taskType) {
-                case "t":
-                    taskListFromStorage.add(new ToDo(taskMetadata));
-                    break;
-                case "d":
-                    taskListFromStorage.add(new Deadline(taskMetadata));
-                    break;
-                case "e":
-                    taskListFromStorage.add(new Event(taskMetadata));
-                    break;
-                default:
-                    throw new BadLineFormat(line);
+                try {
+                    addLineToList(line, taskListFromStorage);
+                } catch (BadLineFormat e) {
+                    badLines.add(e);
                 }
             }
+            for (BadLineFormat badLine : badLines) {
+                System.out.println(badLine);
+            }
             return taskListFromStorage;
-        } catch (IOException | BadLineFormat e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return new TaskList();
+        }
+    }
+
+    private void addLineToList(String line, TaskList taskList) throws BadLineFormat {
+        if (line.isBlank()) {
+            return;
+        }
+        String[] taskMetadata = line.split("\\|");
+        String taskType = taskMetadata[0];
+        switch (taskType) {
+        case "t":
+            taskList.add(new ToDo(taskMetadata));
+            break;
+        case "d":
+            taskList.add(new Deadline(taskMetadata));
+            break;
+        case "e":
+            taskList.add(new Event(taskMetadata));
+            break;
+        default:
+            throw new BadLineFormat(line);
         }
     }
 

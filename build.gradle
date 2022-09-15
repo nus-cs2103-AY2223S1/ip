@@ -16,14 +16,14 @@ repositories {
 }
 
 javafx {
-    version = "18"
+    version = "18.0.2"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
-    String javaFxVersion = '18'
+    String javaFxVersion = '18.0.2'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -54,7 +54,7 @@ test {
 }
 
 application {
-    mainClassName = "ip.Main"
+    mainClassName = "ip.Launcher"
 }
 
 shadowJar {
@@ -64,16 +64,4 @@ shadowJar {
 
 run {
     standardInput = System.in
-}
-
-jar {
-    // Will include every single one of your dependencies, project or not
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    manifest {
-        attributes(
-                'Main-Class': 'ip.Main'
-        )
-    }
 }
