@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
      * @param ui interaction class.
      * @return the response of the anya.
      */
-    String execute(TaskList tasks, Ui ui) {
+    String execute(TaskList tasks, Ui ui) throws AnyaException {
         String[] taskInfo = tasks.delete(this.taskNo);
         int noOfTasks = Integer.parseInt(taskInfo[1]);
         String task = taskInfo[0];

@@ -77,7 +77,7 @@ public class Ui {
     String printList(List<Task> taskList) {
         String printedList = "";
 
-        if (taskList == null) {
+        if (taskList.isEmpty()) {
             printedList = "There are no tasks in the list yet.";
         } else if (taskList != null) {
             printedList = "Here are the tasks in your list:\n";
@@ -94,7 +94,7 @@ public class Ui {
     String printMatchingList(List<Task> taskList) {
         String printedList = "";
 
-        if (taskList == null) {
+        if (taskList.isEmpty()) {
             printedList = "There are no matching tasks, please recheck your keyword.";
         } else if (taskList != null) {
             printedList = "Here are the matching tasks in your list:\n";
@@ -111,7 +111,7 @@ public class Ui {
     String printSortedDeadlineList(List<Deadline> sortedDeadlines) {
         String printedList = "";
 
-        if (sortedDeadlines == null) {
+        if (sortedDeadlines.isEmpty()) {
             printedList = "There are no deadlines.";
             return printedList;
         } else if (sortedDeadlines != null) {
@@ -135,7 +135,35 @@ public class Ui {
      * Reply the users when there is no task description given.
      */
     String printNoTaskDescriptionError(String task) {
-        return "The description of a " + task + " cannot be empty.";
+        return "The description of a " + task + " cannot be empty.\n" + "Please give a task description.\n";
     }
+
+    /**
+     * Reply the users when the task number given is out of bound of tasklist.
+     */
+    String printIndexOutOfBoundError(int taskNo) {
+        return "Your tasklist has only " + taskNo + " tasks.\n" + "Please re-enter the task no.\n";
+    }
+
+    /**
+     * Reply the users when there is missing dates in the deadline or event.
+     */
+    String printMissingDateError(String task) {
+        String missingData = "";
+        if (task.equals("deadline")) {
+            missingData = "/by YYYY-MM-DD";
+        } else if (task.equals("event")) {
+            missingData = "/at YYYY-MM-DD";
+        }
+        return "There is missing date in " + task + ".\n" + "Please add " + missingData + " in your command.\n";
+    }
+
+    /**
+     * Reply the users when the date typed is of incorrect format.
+     */
+    String printDateFormatError() {
+        return "Please retype the date in YYYY-MM-DD format.\n";
+    }
+
 
 }

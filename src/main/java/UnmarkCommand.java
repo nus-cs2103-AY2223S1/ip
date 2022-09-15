@@ -16,8 +16,9 @@ public class UnmarkCommand extends Command {
      * @param tasks current tasklist.
      * @param ui interaction class.
      * @return the response of the anya that shows the task that is being unmarked.
+     * @throws AnyaException.
      */
-    String execute(TaskList tasks, Ui ui) {
+    String execute(TaskList tasks, Ui ui) throws AnyaException {
         String modifiedTask = tasks.unmark(this.taskNo);
         String response = ui.unmarked(modifiedTask);
         return response;

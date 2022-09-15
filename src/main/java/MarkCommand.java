@@ -16,8 +16,9 @@ public class MarkCommand extends Command {
      * @param tasks current tasklist.
      * @param ui interaction class.
      * @return the response of the anya.
+     * @throws AnyaException
      */
-    String execute(TaskList tasks, Ui ui) {
+    String execute(TaskList tasks, Ui ui) throws AnyaException {
         String modifiedTask = tasks.mark(this.taskNo);
         String response = ui.marked(modifiedTask);
         return response;

@@ -85,8 +85,12 @@ public class TaskList {
      * Update the keyword hashtable.
      * @param int taskNo: TaskNo given by the users for deletion.
      * @return the deleted task description and the current number of tasks in the list after deletion.
+     * @throws AnyaException.
      */
-    String[] delete(int taskNo) {
+    String[] delete(int taskNo) throws AnyaException {
+        if (taskNo > noOfTasks) {
+            throw new AnyaException(ui.printIndexOutOfBoundError(this.getSize()));
+        }
         Task currentTask = this.list.get(taskNo - 1);
         String currentTaskDescription = currentTask.getTaskDescription();
         removeTaskFromKeyword(currentTaskDescription, currentTask);
@@ -116,7 +120,10 @@ public class TaskList {
      * @return the list of tasks that contain the keyword.
      */
     List<Task> findTaskWithThisKeyword(String keyword) {
-        List<Task> matchingTasks = taskByKeyword.get(keyword);
+        List<Task> matchingTasks = new ArrayList<Task>();
+        if (taskByKeyword.containsKey(keyword)) {
+            matchingTasks = taskByKeyword.get(keyword);
+        }
         return matchingTasks;
     }
 
@@ -126,6 +133,10 @@ public class TaskList {
      */
     List<Task> getList() {
         return this.list;
+    }
+
+    int getSize() {
+        return this.noOfTasks;
     }
 
     List<Deadline> getSortedDeadlinesList() {
@@ -138,8 +149,12 @@ public class TaskList {
      * Mark the task with this taskNo as done.
      * @param int taskNo: TaskNo given by the users to mark it as done.
      * @return String markedTask: the string version of the task that is marked.
+     * @throws AnyaException.
      */
-    String mark(int taskNo) {
+    String mark(int taskNo) throws AnyaException {
+        if (taskNo > noOfTasks) {
+            throw new AnyaException(ui.printIndexOutOfBoundError(this.getSize()));
+        }
         Task taskToBeModify = list.get(taskNo - 1);
         taskToBeModify.markAsDone();
         String markedTask = taskToBeModify.toString();
@@ -150,8 +165,12 @@ public class TaskList {
      * Unmark the task with this taskNo.
      * @param int taskNo: TaskNo given by the users to mark it as undone.
      * @return String unmarkedTask: the string version of the task that is unmarked.
+     * @throws AnyaException.
      */
-    String unmark(int taskNo) {
+    String unmark(int taskNo) throws AnyaException {
+        if (taskNo > noOfTasks) {
+            throw new AnyaException(ui.printIndexOutOfBoundError(this.getSize()));
+        }
         Task taskToBeModify = list.get(taskNo - 1);
         taskToBeModify.markAsUndone();
         String unmarkedTask = taskToBeModify.toString();

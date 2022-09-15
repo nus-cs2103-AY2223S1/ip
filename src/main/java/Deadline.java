@@ -1,7 +1,9 @@
 package anya;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a deadline task with task description and deadline date.
@@ -11,7 +13,7 @@ class Deadline extends Task {
     private LocalDate time;
     private String timeInString;
 
-    Deadline(String description, String date) {
+    Deadline(String description, String date) throws DateTimeParseException {
         super(description);
         this.time = LocalDate.parse(date);
         this.timeInString = date;

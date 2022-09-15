@@ -48,9 +48,11 @@ public class MainWindow extends AnchorPane {
      * Creates two dialog boxes, one echoing user input and the other containing Anya's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      * Ends chatbot when the user's input is bye.
+     * @throws IOException.
+     * @throws AnyaException.
      */
     @FXML
-    private void handleUserInput() throws IOException {
+    private void handleUserInput() throws IOException, AnyaException {
         String input = userInput.getText();
         String response = anya.getResponse(input);
         if (anya.getHasReturnError() == false) {

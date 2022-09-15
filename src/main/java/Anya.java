@@ -1,6 +1,7 @@
 package anya;
 
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 
 
 /**
@@ -41,8 +42,9 @@ public class Anya {
      * Process the command received by the user, implement it and return the respective response.
      * @return String : the respective response by Duke.
      * @throws IOException.
+     * @throws AnyaException.
      */
-    public String getResponse(String fullCommand) throws IOException {
+    public String getResponse(String fullCommand) throws IOException, AnyaException {
         String response = "";
         String [] strArr = fullCommand.split(" ");
 
@@ -51,12 +53,11 @@ public class Anya {
             response = c.execute(tasks, ui);
             this.hasReturnError = false;
 
-        } catch (MismatchInputException e) {
-            response = ui.printMisMatchInputError();
+        } catch (AnyaException e) {
+            response = e.getMessage();
             this.hasReturnError = true;
-
-        } catch (TaskWithNoDescriptionException e) {
-            response = ui.printNoTaskDescriptionError(strArr[0]);
+        } catch (DateTimeParseException e) {
+            response = ui.printDateFormatError();
             this.hasReturnError = true;
         }
 

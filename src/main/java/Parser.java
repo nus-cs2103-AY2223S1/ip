@@ -5,18 +5,19 @@ package anya;
  */
 public class Parser {
 
-    Parser() {
+    private Ui ui;
 
+    Parser() {
+        this.ui = new Ui();
     }
 
     /**
      * Process the input command by the users to give the respective command to the ChatBot to execute.
      * @param String fullCommand : the full command that is given by the users.
      * @return command : the specific command to execute later.
-     * @throws MismatchInputException
-     * @throws TaskWithNoDescriptionException
+     * @throws AnyaException.
      */
-    Command parse(String fullCommand) throws MismatchInputException, TaskWithNoDescriptionException {
+    Command parse(String fullCommand) throws AnyaException {
         String[] strArr = fullCommand.split(" ");
         String command = strArr[0];
         boolean isToDo = command.equals("todo");
@@ -54,16 +55,19 @@ public class Parser {
             return new SortDeadlineCommand();
 
         } else {
-            throw new MismatchInputException();
+            throw new AnyaException(ui.printMisMatchInputError());
         }
     }
 
-    private Task parseAddCommand(String[] strArr) throws TaskWithNoDescriptionException {
+    private Task parseAddCommand(String[] strArr) throws AnyaException {
         String[] taskDescription = splitDescriptionAndDate(strArr);
         String typeOfTask = strArr[0];
 
         if (typeOfTask.equals("todo")) {
             return new ToDo(taskDescription[0]);
+
+        } else if (taskDescription[1].equals("")) {   //date is empty.
+            throw new AnyaException(ui.printMissingDateError(typeOfTask));
 
         } else if (typeOfTask.equals("deadline")) {
             return new Deadline(taskDescription[0], taskDescription[1]);
@@ -74,25 +78,25 @@ public class Parser {
         return null;
     }
 
-    private String[] splitDescriptionAndDate(String[] strarr) throws TaskWithNoDescriptionException {
-        if (strarr.length < 2) {
-            throw new TaskWithNoDescriptionException();
+    private String[] splitDescriptionAndDate(String[] ar) throws AnyaException {
+        if (ar.length < 2) {
+            throw new AnyaException(ui.printNoTaskDescriptionError(ar[0]));
         }
 
-        String description = strarr[1];
+        String description = ar[1];
         String date = "";
         String[] strarr1 = new String[2];
 
-        for (int i = 2; i < strarr.length; i++) {
-            boolean isBy = strarr[i].equals("/by");
-            boolean isAt = strarr[i].equals("/at");
+        for (int i = 2; i < ar.length; i++) {
+            boolean isBy = ar[i].equals("/by");
+            boolean isAt = ar[i].equals("/at");
             boolean haveDate = isBy || isAt;
 
             if (haveDate) {
-                date = strarr[i + 1];
+                date = ar[i + 1];
                 break;
             } else {
-                description = description + " " + strarr[i];
+                description = description + " " + ar[i];
             }
 
         }
