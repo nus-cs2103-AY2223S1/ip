@@ -204,4 +204,4 @@ Done can be 1 or 0 which stands for marked or not marked respectively.
 - **Delete Task:** `delete [index]`
 - **Mark Task:** `mark [index]`
 - **Unmark Task:** `unmark [index]`
-- **Exit:** `bye`
+- **Exit:** `bye

@@ -12,7 +12,7 @@ public class Ui {
      */
     public static String greet() {
         return "Hello! I'm BotChat123. \nI am glad that you are using me"
-                + "Please read my user guide if you are wondering to use me."
+                + "\nPlease read my user guide if you are wondering to use me."
                 + " \nWhat can I do for you? :)";
     }
 
