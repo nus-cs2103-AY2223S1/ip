@@ -20,8 +20,10 @@ import duke.task.ToDo;
  */
 public class Storage {
     public final String fileName;
-    public final String filePath;
+    //public final String filePath;
     public final File myFile;
+    private static final String home = System.getProperty("user.dir");
+    private final java.nio.file.Path filePath;
 
     /**
      * Constructs a Storage instance provided the fileName and known filePath.
@@ -30,9 +32,35 @@ public class Storage {
      */
     Storage(String fileName) {
         this.fileName = fileName;
-        this.filePath = "./data/" + fileName;
-        this.myFile = new File(this.filePath);
+        this.filePath = java.nio.file.Paths.get(home, "data", this.fileName);
+        this.myFile = initialise();
     }
+
+
+    /**
+     * Check if duke.txt file and its directory exists, if not create new file for storing task list.
+     *
+     * @return old duke.txt file or newly created duke.txt file
+     */
+    //@@author eesung00-reused
+    //Reused from https://github.com/eesung00/ip/blob/master/src/main/java/duke/storage/FileManager.java
+    // with minor modifications
+    private File initialise() {
+        File newDirectory = new File(this.filePath.getParent().toUri());
+        File newFile = new File(this.filePath.toUri());
+        try {
+            if (!newDirectory.exists()) {
+                newDirectory.mkdir();
+                newFile.createNewFile();
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            assert false : "error in initialise";
+        }
+        return newFile;
+    }
+
+
 
     /**
      * Adds text which converted from Task into the file.
@@ -41,7 +69,7 @@ public class Storage {
      */
     public void write(String text) throws DukeException {
         try {
-            FileWriter myWriter = new FileWriter(this.filePath);
+            FileWriter myWriter = new FileWriter(this.filePath.toFile());
             myWriter.write(text);
             myWriter.close();
         } catch (IOException e) {
@@ -58,7 +86,7 @@ public class Storage {
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<Task>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader(this.filePath));
+            BufferedReader br = new BufferedReader(new FileReader(this.filePath.toFile()));
             String line;
             while ((line = br.readLine()) != null) {
                 Task task = this.convertStringToTask(line);
