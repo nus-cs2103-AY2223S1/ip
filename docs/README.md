@@ -1,5 +1,12 @@
 # Stashy - User Guide
 
+```
+ ____  ____  __   ____  _  _  _  _ 
+/ ___)(_  _)/ _\ / ___)/ )( \( \/ )
+\___ \  )( /    \\___ \) __ ( )  / 
+(____/ (__)\_/\_/(____/\_)(_/(__/  
+```
+
 ## Features 
 
 ### ToDo, Event, Deadline
@@ -48,11 +55,22 @@ Format:
 
 Example of usage: 
 
-`deadline Buy milk /by Aug 10 2022, 13:30`
+`deadline Buy milk /by Aug 10 2022 13:30`
 
 Expected outcome:
 
 A new deadline with the given due time is added into the task list.
+
+Acceptable formats for `<TIME>`:
+- "MMM dd yyyy HH:mm", e.g. Aug 10 2022 13:30
+- "dd/MM/yyyy HH:mm", e.g. 10/08/2022 13:30
+- "yyyy/MM/dd HH:mm", e.g. 2022/08/10 13:30
+- "yyyy/MM/dd'T'HH:mm", e.g. 2022/08/10T13:30
+- "yyyy-MM-dd HH:mm", e.g. 2022-08-10 13:30
+- "dd MMM yyyy HH:mm", e.g. 10 Aug 2022 13:30
+- "MMM dd, yyyy HH:mm", e.g. Aug 10, 2022 13:30
+
+(optionally, you omit the colon between HH and mm)
 
 
 ### `event` - Add an event
@@ -65,11 +83,22 @@ Format:
 
 Example of usage: 
 
-`event Go to Jurong /at Aug 10 2022, 13:30`
+`event Go to Jurong /at Aug 10 2022 13:30`
 
 Expected outcome:
 
 A new event with the given timing is added into the task list.
+
+Acceptable formats for `<TIME>`:
+- "MMM dd yyyy HH:mm", e.g. Aug 10 2022 13:30
+- "dd/MM/yyyy HH:mm", e.g. 10/08/2022 13:30
+- "yyyy/MM/dd HH:mm", e.g. 2022/08/10 13:30
+- "yyyy/MM/dd'T'HH:mm", e.g. 2022/08/10T13:30
+- "yyyy-MM-dd HH:mm", e.g. 2022-08-10 13:30
+- "dd MMM yyyy HH:mm", e.g. 10 Aug 2022 13:30
+- "MMM dd, yyyy HH:mm", e.g. Aug 10, 2022 13:30
+
+(optionally, you omit the colon between HH and mm)
 
 ### `mark` - Mark a task as done
 
