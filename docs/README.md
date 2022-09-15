@@ -32,14 +32,14 @@ Example: `todo Buy lunch`
 
 ### Creating a Deadline task: `deadline`
 > Creates a task to be done by specified due date with a short description on the details. <br>
-> Note that date must be in format: dd/mm/yyyy.
+> Note that date must be in format: ***dd/mm/yyyy***.
 
 Format: `deadline {description} /by {date}` <br>
 Example: `deadline Assignment /by 21/09/2022`
 
-## Creating an Event task: `event`
+### Creating an Event task: `event`
 > Creates a task specifying date and time of the task with a short description of the details. <br>
-> Note that date and time (in 24hr) must be in format: dd/mm/yyyy HHmm with only one whitespace.
+> Note that date and time (in 24hr) must be in format: ***dd/mm/yyyy HHmm*** with only one whitespace.
 
 Format: `event {description} /at {date} {time}`<br>
 Example: `event Project group meet up /at 10/11/2022 1000`
