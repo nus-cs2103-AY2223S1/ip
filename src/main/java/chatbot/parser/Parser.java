@@ -16,6 +16,7 @@ import chatbot.commands.Find;
 import chatbot.commands.FindWith;
 import chatbot.commands.List;
 import chatbot.commands.ListOn;
+import chatbot.commands.ListTags;
 import chatbot.commands.Mark;
 import chatbot.commands.Unmark;
 import chatbot.exceptions.DukeException;
@@ -60,6 +61,8 @@ public class Parser {
             } else {
                 return new ListOn(date);
             }
+        case "listtags":
+            return ListTags.LIST_TAGS;
         case "delete":
             return new Delete(parseTargetIndex(args));
         case "mark":

@@ -1,0 +1,23 @@
+/* solution adapted from @sharmainec */
+
+.root{
+    -fx-background-color: #2C394B;
+}
+
+.scroll-pane{
+    -fx-background-image: url(../images/background.jpg);
+    -fx-background-size: cover
+}
+
+.scroll-pane .viewport {
+    -fx-background-image: url(../images/background.jpg);
+    -fx-background-size: cover
+}
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #2C394B;
+}

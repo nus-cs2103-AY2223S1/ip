@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chatbot.gui.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" stylesheets="@application.css"  xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chatbot.gui.MainWindow">
     <children>
-        <TextField fx:id="userInput" layoutX="8.0" layoutY="558.0" onAction="#handleUserInput" prefHeight="35.0" prefWidth="312.0" promptText="What you want ..." AnchorPane.bottomAnchor="4.0" />
-        <Button fx:id="sendButton" layoutX="330.0" layoutY="564.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="29.0" prefWidth="64.0" text="Send">
+        <TextField fx:id="userInput" layoutX="8.0" layoutY="558.0" onAction="#handleUserInput" prefHeight="35.0" prefWidth="312.0" promptText="What you want ..." style="-fx-background-color: #678388; -fx-text-fill: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="4.0" />
+        <Button fx:id="sendButton" layoutX="330.0" layoutY="564.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="29.0" prefWidth="64.0" style="-fx-button-padding: 1; -fx-background-color: #c16115; -fx-text-fill: white; -fx-background-radius: 20;" text="Send">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Button>

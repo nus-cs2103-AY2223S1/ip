@@ -11,10 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 /**
@@ -22,7 +19,7 @@ import javafx.scene.shape.Circle;
  * in the GUI.
  */
 public class DialogBox extends HBox {
-    private static final float PROFILE_PICTURE_RADIUS = 50;
+    private static final float PROFILE_PICTURE_RADIUS = 40;
     @FXML
     private Label dialog;
     @FXML
@@ -41,9 +38,8 @@ public class DialogBox extends HBox {
      *
      * @param l The dialog text.
      * @param iv The profile image of the speaker.
-     * @param who The identity of the speaker.
      */
-    public DialogBox(String l, Image iv, Who who) {
+    public DialogBox(String l, Image iv) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -58,10 +54,8 @@ public class DialogBox extends HBox {
 
         Circle clip = new Circle(PROFILE_PICTURE_RADIUS);
         clip.setCenterX(PROFILE_PICTURE_RADIUS);
-        clip.setCenterY(50);
+        clip.setCenterY(PROFILE_PICTURE_RADIUS);
         displayPicture.setClip(clip);
-        Color color = who == Who.ZLIMEZ ? Color.LIGHTPINK : Color.LIGHTBLUE;
-        this.setBackground(new Background(new BackgroundFill(color, null, null)));
     }
 
     /**
@@ -72,15 +66,17 @@ public class DialogBox extends HBox {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         FXCollections.reverse(tmp);
         this.getChildren().setAll(tmp);
+        setAlignment(Pos.CENTER_LEFT);
     }
 
     public static DialogBox getUserDialog(String l, Image image) {
-        return new DialogBox(l, image, Who.USER);
+        return new DialogBox(l, image);
     }
 
     public static DialogBox getZlimezDialog(String l, Image image) {
-        DialogBox db = new DialogBox(l, image, Who.ZLIMEZ);
+        DialogBox db = new DialogBox(l, image);
         db.flip();
+        db.dialog.setStyle("-fx-background-color: #66789f; -fx-text-fill: white; -fx-background-radius: 10;");
         return db;
     }
 }

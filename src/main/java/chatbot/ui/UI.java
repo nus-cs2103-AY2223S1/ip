@@ -2,6 +2,7 @@ package chatbot.ui;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import chatbot.exceptions.DukeException;
 import chatbot.tasks.Task;
@@ -39,6 +40,7 @@ public class UI {
 
     /**
      * Displays the tasks in the todo list on the specified date.
+     *
      * @param tasks The list containing the relevant tasks.
      */
     public void listTaskOn(List<Task> tasks) {
@@ -47,6 +49,24 @@ public class UI {
             list(tasks);
         } else {
             System.out.println("\tWell you are a lazy bum, you have nothing on the day");
+        }
+    }
+
+    /**
+     * Displays all the tags.
+     *
+     * @param tags The list containing all tags.
+     */
+    public void listAllTags(Set<String> tags) {
+        if (tags.isEmpty()) {
+            System.out.println("\tYou have no tags, no belonging in life.");
+        }
+
+        int index = 1;
+        System.out.println("\tThese are all the tags you gave so far");
+        for (String tag : tags) {
+            System.out.println(String.format("\t%d. %s", index, tag));
+            index++;
         }
     }
 

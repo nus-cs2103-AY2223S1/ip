@@ -53,7 +53,6 @@ public abstract class Task {
     public String saveTags() {
         if (this.tags.length > 0) {
             StringBuffer sb = new StringBuffer();
-            System.out.println(tags.length);
             for (int i = 0; i < tags.length; i++) {
                 sb.append(tags[i]);
                 sb.append("#");

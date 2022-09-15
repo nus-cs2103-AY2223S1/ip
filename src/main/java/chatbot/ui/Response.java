@@ -1,6 +1,7 @@
 package chatbot.ui;
 
 import java.util.List;
+import java.util.Set;
 
 import chatbot.exceptions.DukeException;
 import chatbot.tasks.Task;
@@ -22,7 +23,6 @@ public class Response {
      * The method determines the response after users query for all tasks in the todo list.
      *
      * @param tasks The list containing all the tasks.
-     * @return
      */
     public String listAll(List<Task> tasks) {
         return String.format("Really? If you are so forgetful...\n%s", list(tasks));
@@ -70,11 +70,31 @@ public class Response {
     private StringBuffer list(List<Task> tasks) {
         StringBuffer todos = new StringBuffer();
         for (int i = 1; i <= tasks.size(); i++) {
-            todos.append("\t" + i + ". " + tasks.get(i - 1) + "\n");
+            todos.append(String.format("\t%d. %s\n", i, tasks.get(i - 1)));
         }
 
         return todos;
     }
+
+    /**
+     * The method determines the response after a user requests for all tags from the todo list.
+     *
+     * @param tags The list containing all tags.
+     */
+    public String listAllTags(Set<String> tags) {
+        if (tags.isEmpty()) {
+            return "You have no tags, no belonging in life.";
+        }
+
+        int index = 1;
+        StringBuffer sb = new StringBuffer("These are all the tags you gave so far\n");
+        for (String tag : tags) {
+            sb.append(String.format("\t%d. %s\n", index, tag));
+            index++;
+        }
+        return sb.toString();
+    }
+
 
     /**
      * The method determines the response after a specific task has been added and the new todo list status.

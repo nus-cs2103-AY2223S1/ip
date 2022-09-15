@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import chatbot.exceptions.DukeException;
 
@@ -108,6 +109,15 @@ public class TaskList {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Retrieves all the tags from all the tasks in the todo list.
+     *
+     * @return The set containing all tags.
+     */
+    public Set<String> listTags() {
+        return taskByTags.keySet();
     }
 
     /**

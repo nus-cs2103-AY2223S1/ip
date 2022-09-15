@@ -4,11 +4,24 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" spacing="10.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<!--Solution for dialog adapted from @rehad-a-->
+<fx:root alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="2.7976931348623157E308" prefWidth="400.0" spacing="10.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" text="Label" translateY="5.0" wrapText="true" />
-        <ImageView fx:id="displayPicture" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="dialog" lineSpacing="1.0" minHeight="-Infinity" style="-fx-background-color: #3b9a89; -fx-text-fill: white; -fx-background-radius: 10; -fx-label-padding: 1;" text="Label" textAlignment="JUSTIFY" translateY="5.0" wrapText="true">
+            <padding>
+                <Insets topRightBottomLeft="10.0" />
+            </padding>
+            <font>
+                <Font name="Verdana" size="12.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="displayPicture" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets right="5.0" left="5.0"/>
+            </HBox.margin>
+        </ImageView>
     </children>
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
