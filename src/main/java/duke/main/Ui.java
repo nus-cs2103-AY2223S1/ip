@@ -25,6 +25,11 @@ public class Ui {
     private static final String[] DELETE_LIST = {"OK! I've removed this task: ",
         "i've removed this task: "};
 
+    private static final String[] BEFORE_LIST_COUNT = {"I'm keeping track of ",
+        "you have "};
+    private static final String[] AFTER_LIST_COUNT = {" task(s) currently!",
+        " tasks(s) currently..."};
+
     private static final String[] MARK_DONE = {"I've marked this task as done:",
         "you've completed this task, but there are many more... so keep me here?"};
     private static final String[] MARK_UNDONE = {"I've marked this task as not done:",
@@ -62,7 +67,7 @@ public class Ui {
 
     /**
      * Sets the MainWindow object for Ui to use.
-     * @param window
+     * @param window The MainWindow object to be used by Ui.
      */
     public void setMainWindow(MainWindow window) {
         this.mainWindow = window;
@@ -94,9 +99,9 @@ public class Ui {
      * @return The message for showing total number of Task objects.
      */
     private String getListSizeMsg(int num) {
-        String[] listCount = {"I'm keeping track of " + num + " task(s) currently!",
-            "you have " + num + " tasks(s) currently..."};
-        return listCount[this.messageStatus];
+        return BEFORE_LIST_COUNT[this.messageStatus]
+                + num
+                + AFTER_LIST_COUNT[this.messageStatus];
     }
 
     /**
@@ -129,7 +134,7 @@ public class Ui {
 
     /**
      * Shows the message that the state of the Task object was already what the user wanted to set it to.
-     * @param isDone
+     * @param isDone Whether we are marking the task as done or not.
      */
     public void showAlreadyMarked(boolean isDone) {
         if (isDone) {
@@ -141,8 +146,8 @@ public class Ui {
 
     /**
      * Shows the message that the status of the Task object has changed.
-     * @param task
-     * @param isDone
+     * @param task The task to be marked.
+     * @param isDone Whether we are marking the task as done or not.
      */
     public void showStatusChange(Task task, boolean isDone) {
         StringBuilder output = new StringBuilder();
