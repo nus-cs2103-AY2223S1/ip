@@ -1,13 +1,6 @@
 package bobthebot.gui;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import bobthebot.command.ReminderCommand;
-import bobthebot.exceptions.BobException;
-import bobthebot.tasks.ToDoList;
-import bobthebot.utils.Parser;
-import bobthebot.utils.Storage;
+import bobthebot.bob.BobTheBot;
 import bobthebot.utils.Ui;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -46,13 +39,14 @@ public class Main extends Application {
     private static final int SEND_BUTTON_WIDTH = 65;
 
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image bob = new Image(this.getClass().getResourceAsStream("/images/bob.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image bobImage = new Image(this.getClass().getResourceAsStream("/images/bob.png"));
 
-    private Parser parser = new Parser();
-    private ToDoList todolist;
-    private Storage storage = new Storage(FILEPATH);
+    private BobTheBot bob = new BobTheBot(FILEPATH);
 
+    // @@author janelleljt-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     @Override
     public void start(Stage stage) {
         initialise();
@@ -77,8 +71,6 @@ public class Main extends Application {
 
         scene = new Scene(mainLayout);
 
-        this.todolist = new ToDoList(this.storage.load(), storage);
-
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
         });
@@ -91,6 +83,9 @@ public class Main extends Application {
         stage.show();
     }
 
+    // @@author janelleljt-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     /**
      * Initialises the components of the GUI.
      */
@@ -113,12 +108,15 @@ public class Main extends Application {
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(getDialogLabel(
-                Ui.sayWelcome()), new ImageView(bob)));
+                Ui.sayWelcome()), new ImageView(bobImage)));
 
         userInput.setPrefWidth(USER_INPUT_WIDTH);
         sendButton.setPrefWidth(SEND_BUTTON_WIDTH);
     }
 
+    // @@author janelleljt-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     private Label getDialogLabel(String text) {
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
@@ -126,55 +124,31 @@ public class Main extends Application {
         return textToAdd;
     }
 
+    // @@author janelleljt-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
+    @FXML
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
         Label bobText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(bobText, new ImageView(bob))
+                DialogBox.getUserDialog(userText, new ImageView(userImage)),
+                DialogBox.getDukeDialog(bobText, new ImageView(bobImage))
         );
         userInput.clear();
     }
 
+    // @@author janelleljt-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     /**
      * Gets Bob's response to the input.
      */
     private String getResponse(String input) {
-        if (input.equals("bye")) {
-            quit();
-
-            ReminderCommand reminderCommand = new ReminderCommand(todolist);
-            String response = reminderCommand.execute() + "\n";
-            response += Ui.sayGoodbye(todolist);
-
-            return response;
-        }
-
-        String response = null;
-        try {
-            response = parser.parseCommand(input, this.todolist);
-        } catch (BobException exception) {
-            response = exception.getMessage();
-        } finally {
-            return response;
-        }
-    }
-
-
-    /**
-     * Quits the program.
-     */
-    private void quit() {
-        TimerTask exitApp = new TimerTask() {
-            @Override
-            public void run() {
-                System.exit(0);
-            }
-        };
-        new Timer().schedule(exitApp, 2000);
+        return bob.getResponse(input);
     }
 }

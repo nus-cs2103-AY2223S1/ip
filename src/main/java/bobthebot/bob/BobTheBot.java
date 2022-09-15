@@ -1,6 +1,8 @@
 package bobthebot.bob;
 
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import bobthebot.command.GoodbyeCommand;
 import bobthebot.command.ReminderCommand;
@@ -31,32 +33,42 @@ public class BobTheBot {
     }
 
     /**
-     * Runs BobTheBot on CLI.
+     * Gets Bob's response given a certain command.
+     *
+     * @param command Command given to Bob.
+     * @return String which represents Bob's response.
      */
-    public void run() throws BobException {
-        Ui.sayWelcome();
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()) {
-            String command = scanner.nextLine();
-            if (command.equals("bye")) {
-                assert command == "bye" : "BobTheBot.java: command should be bye";
-                ReminderCommand reminderCommand = new ReminderCommand(list);
-                GoodbyeCommand goodbyeCommand = new GoodbyeCommand(list);
-                reminderCommand.execute();
-                goodbyeCommand.execute();
-                break;
-            }
+    public String getResponse(String command) {
+        if (command.equals("bye")) {
+            quit();
 
-            try {
-                parser.parseCommand(command, list);
-            } catch (BobException exception) {
-                Ui.printErrorMessage(exception.getMessage());
-            }
+            ReminderCommand reminderCommand = new ReminderCommand(list);
+            String response = reminderCommand.execute() + "\n";
+            response += Ui.sayGoodbye(list);
+
+            return response;
         }
-        scanner.close();
+
+        String response = null;
+        try {
+            response = parser.parseCommand(command, list);
+        } catch (BobException exception) {
+            response = exception.getMessage();
+        } finally {
+            return response;
+        }
     }
 
-    public static void main(String[] args) throws BobException {
-        new BobTheBot("./../../data/data.txt").run();
+    /**
+     * Quits the program.
+     */
+    private void quit() {
+        TimerTask exitApp = new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        };
+        new Timer().schedule(exitApp, 2000);
     }
 }
