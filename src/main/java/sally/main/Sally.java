@@ -16,11 +16,9 @@ import sally.ui.Ui;
  */
 
 public class Sally {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
-    private Parser parser;
-    private boolean isBye = false;
+    private final Ui ui;
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image sally = new Image(this.getClass().getResourceAsStream("/images/sally.png"));

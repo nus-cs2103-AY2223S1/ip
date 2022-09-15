@@ -119,9 +119,7 @@ public class Parser {
             }
 
             // Any other messages
-            else {
-                throw new SallyException.SallyInvalidInputException();
-            }
+            throw new SallyException.SallyInvalidInputException();
         }
     }
 
