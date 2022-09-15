@@ -35,6 +35,8 @@ public class UnmarkCommand extends Command {
             response = Ui.unmark(taskList.getTask(this.taskNumber));
         } catch (DukeException e) {
             response = e.getMessage();
+        } catch (IndexOutOfBoundsException e) {
+            response = "Invalid task number!";
         }
 
         assert response != null : "Response should not be null";

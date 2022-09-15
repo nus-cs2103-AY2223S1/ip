@@ -36,6 +36,8 @@ public class MarkCommand extends Command {
             response = Ui.mark(taskList.getTask(this.taskNumber));
         } catch (DukeException e) {
             response = e.getMessage();
+        } catch (IndexOutOfBoundsException e) {
+            response = "Invalid task number!";
         }
 
         assert response != null : "Response should not be null";

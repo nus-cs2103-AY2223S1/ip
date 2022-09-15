@@ -35,6 +35,8 @@ public class DeleteCommand extends Command {
             storage.writeToFile(taskList);
         } catch (DukeException e) {
             response = e.getMessage();
+        } catch (IndexOutOfBoundsException e) {
+            response = "Invalid task number!";
         }
 
         assert response != null : "Response should not be null";
