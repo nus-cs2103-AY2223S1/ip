@@ -10,7 +10,7 @@ DukePro frees your mind of having to remember things you need to do. It's,
 
 All you need to do is,
 
-1. download it from [here](/).
+1. download it from [here](../).
 2. double-click it.
 3. add your tasks.
 4. let it manage your tasks for you 😉
