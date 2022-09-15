@@ -30,7 +30,7 @@ Describe the action and its outcome.
 
 Example of usage: 
 <br>
-`todo Hello World`
+'todo Hello World'
 
 Expected outcome:
 
