@@ -39,7 +39,7 @@ public abstract class Task implements Comparable<Task> {
 
     /**
      * Check if task is completed.
-     * 
+     *
      * @return
      */
     public boolean isCompleted() {
@@ -48,7 +48,7 @@ public abstract class Task implements Comparable<Task> {
 
     /**
      * {@inheritDoc} Compares order based on data assigned to task.
-     * 
+     *
      * @param task The other task
      * @return a task is bigger if its time higher and biggest if non-existent
      */
@@ -65,7 +65,7 @@ public abstract class Task implements Comparable<Task> {
 
     /**
      * Useful comparison with time directly
-     * 
+     *
      * @param o
      * @return int
      */
@@ -79,7 +79,7 @@ public abstract class Task implements Comparable<Task> {
 
     /**
      * Returns the [complete status] description.
-     * 
+     *
      * @return String
      */
     @Override
@@ -89,7 +89,7 @@ public abstract class Task implements Comparable<Task> {
 
     /**
      * Convert the current task data into parsedata to be saved.
-     * 
+     *
      * @return converted Task
      */
     public abstract ParsedData convertToParseData();

@@ -1,12 +1,9 @@
 package duke.command;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import duke.exceptions.InvalidTimeFormatException;
 import duke.inputoutput.DukeIo;
-import duke.task.Task;
 import duke.util.DataParser;
 import duke.util.ParsedData;
 import duke.util.Storage;
@@ -20,7 +17,7 @@ public class ByCommand extends DataCommand {
 
     /**
      * Takes in ParsedData potentially containing a datetime pattern.
-     * 
+     *
      * @param parsedData ParsedData containing a possible datetime pattern
      */
     public ByCommand(ParsedData parsedData) {
@@ -30,7 +27,7 @@ public class ByCommand extends DataCommand {
     /**
      * {@inheritDoc} Prints all task (with datetime assigned) that is before the
      * specified date.
-     * 
+     *
      * @throws InvalidTimeFormatException raised if no datetime format is detected
      */
     @Override

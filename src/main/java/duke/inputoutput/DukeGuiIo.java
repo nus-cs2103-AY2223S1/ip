@@ -17,7 +17,7 @@ public class DukeGuiIo extends DukeAbstractIo {
     /**
      * Create an instance of the gui interaction object specifying a way to make a
      * new child
-     * 
+     *
      * @param container the container which contains the spawned child
      * @param makeChild function to create a new child
      */

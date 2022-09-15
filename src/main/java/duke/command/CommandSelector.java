@@ -23,11 +23,10 @@ public class CommandSelector {
         }
     }
 
-
     /**
      * Adds an alias to replace a current command
-     * 
-     * @param alias alias to be used
+     *
+     * @param alias  alias to be used
      * @param target command to be simplified
      * @throws DukeException thrown when invalid
      */
@@ -42,12 +41,12 @@ public class CommandSelector {
         commands.put(alias, commands.get(target));
     }
 
-
     /**
      * Deletes a alias from the alias list
-     * 
+     *
      * @param alias to be deleted
-     * @throws DukeException thrown when alias doesn't exist or trying to delete base commands
+     * @throws DukeException thrown when alias doesn't exist or trying to delete
+     *                       base commands
      */
     public void deleteAlias(String alias) throws DukeException {
         if (!commands.containsKey(alias)) {
@@ -63,7 +62,7 @@ public class CommandSelector {
 
     /**
      * Method to get the correct enum based on string version
-     * 
+     *
      * @return returns the Enum for the command
      */
     public CommandsEnum getCommand(String command) {

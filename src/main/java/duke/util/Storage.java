@@ -24,7 +24,7 @@ public class Storage {
 
     /**
      * Factory to create use a path as save file if possible
-     * 
+     *
      * @param path Path to save file
      * @return Storage
      * @throws IOException Throws if pathing cannot exist.
@@ -41,7 +41,7 @@ public class Storage {
 
     /**
      * Factory to use the default save path.
-     * 
+     *
      * @return Storage
      * @throws IOException
      */
@@ -51,7 +51,7 @@ public class Storage {
 
     /**
      * Read the save file and convert it to a list of Task.
-     * 
+     *
      * @return List of Tasks
      * @throws FileNotFoundException Throws when save file does not exist
      */
@@ -79,7 +79,7 @@ public class Storage {
 
     /**
      * Takes in ParsedData and saves them into the save file.
-     * 
+     *
      * @param dataList Data to be saved
      * @throws IOException Throws when save file doesn't exist
      */
@@ -101,7 +101,7 @@ public class Storage {
 
     /**
      * Saves all entries in a {@code TaskList}
-     * 
+     *
      * @param tl Task to save
      * @throws IOException Throws when save file is missing
      */
@@ -111,7 +111,7 @@ public class Storage {
 
     /**
      * Saves an individual task by appending to the save file.
-     * 
+     *
      * @param task Task to append
      * @throws IOException Throws when save file is missing
      */

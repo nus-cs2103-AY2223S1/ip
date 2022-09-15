@@ -19,7 +19,7 @@ public class DukeCliIo extends DukeAbstractIo {
 
     /**
      * Returns a line entered by the user as <code>String</code>.
-     * 
+     *
      * @return String
      */
     @Override
@@ -29,7 +29,7 @@ public class DukeCliIo extends DukeAbstractIo {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param txt
      * @param features
      */
@@ -47,7 +47,7 @@ public class DukeCliIo extends DukeAbstractIo {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param txt
      */
     @Override

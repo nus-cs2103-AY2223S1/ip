@@ -22,7 +22,7 @@ public class InvalidCommand implements Command {
 
     /**
      * {@inheritDoc} Throws invalid command exception
-     * 
+     *
      * @throws UnknownCommandException Throw invalid command
      */
     @Override

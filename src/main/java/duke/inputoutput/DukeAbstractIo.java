@@ -10,7 +10,7 @@ public abstract class DukeAbstractIo implements DukeIo {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param <U>
      * @param list
      */
@@ -31,7 +31,7 @@ public abstract class DukeAbstractIo implements DukeIo {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param <U>
      * @param list
      */
@@ -56,7 +56,7 @@ public abstract class DukeAbstractIo implements DukeIo {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param e
      */
     @Override

@@ -17,7 +17,7 @@ public class DeleteAliasCommand extends DataCommand {
 
     /**
      * Create a instance of the deadline command.
-     * 
+     *
      * @param d ParsedData from the command input
      */
     public DeleteAliasCommand(ParsedData d) {
@@ -26,9 +26,9 @@ public class DeleteAliasCommand extends DataCommand {
 
     /**
      * {@inheritDoc} Adds a deadline task to the tasklist and prints it.
-     * 
+     *
      * @throws DukeException Thrown when invalid/missing data
-     * @throws IOException Thrown when saving of data failed
+     * @throws IOException   Thrown when saving of data failed
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)

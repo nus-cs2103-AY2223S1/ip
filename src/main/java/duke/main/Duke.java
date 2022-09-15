@@ -45,7 +45,7 @@ public class Duke {
 
     /**
      * Takes in user input as string and does appropriate commands via the Duke IO
-     * 
+     *
      * @param txt user input given by the user
      * @return
      */
@@ -65,7 +65,7 @@ public class Duke {
 
     /**
      * Creates a duke cli object using the sepecied filepath.
-     * 
+     *
      * @param filepath
      * @return Duke
      */
@@ -76,7 +76,7 @@ public class Duke {
 
     /**
      * Creates a Duke cli object with the default save path.
-     * 
+     *
      * @return Duke a cli duke object
      */
     public static Duke createApplication() {
@@ -86,7 +86,7 @@ public class Duke {
 
     /**
      * Creates a standard duke application given an io source
-     * 
+     *
      * @param userIo io object to communicate
      * @return returns an instance of Duke
      */
@@ -108,7 +108,7 @@ public class Duke {
     /**
      * Creates a standard duke application given an io source while loading from a
      * save file
-     * 
+     *
      * @param userIo   io object to communicate
      * @param filePath path to the save file
      * @return
