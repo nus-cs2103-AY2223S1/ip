@@ -12,9 +12,9 @@ import duke.task.TaskList;
  */
 public class FindTaskCommand extends Command {
     private static final String MATCHING_TASK_FOUND_SUCCESS_MESSAGE = "sure thing!"
-            + "here are the matching tasks bobo found";
+            + " here are the matching tasks bobo found";
     private static final String NO_MATCHING_TASK_ERROR_MESSAGE = "uh-oh."
-            + "bobo can't find any matching tasks in your list...";
+            + " bobo can't find any matching tasks in your list...";
     /** The keyword to be used to search the task list */
     private final String keyword;
 

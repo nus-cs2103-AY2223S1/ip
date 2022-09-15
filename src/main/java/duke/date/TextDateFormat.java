@@ -15,7 +15,6 @@ public class TextDateFormat extends DateFormat {
     private static final String DAY_REGEX = "([1-9]|[12][0-9]|3[01])";
     private static final String TWO_DIGIT_DAY_REGEX = "(0?[1-9]|[12][0-9]|3[01])";
     private static final String FOUR_DIGIT_YEAR_REGEX = "((19|20)\\d{2})";
-    private static final String TWO_DIGIT_REGEX = "(\\d{2})";
 
     /**
      * {@inheritDoc}
