@@ -24,9 +24,10 @@ public class Parser {
     public static Command parse(String userInput) throws ChachaException {
         assert userInput.length() > 0 : "userInput length should be more than 0";
         String[] inputArray = userInput.split(" ");
-        String command = inputArray[0];
+        String commandStr = inputArray[0];
+        CommandEnums command = CommandEnums.valueOf(commandStr.toUpperCase());
         switch (command) {
-            case "todo":
+            case TODO:
                 try {
                     String description = userInput.substring(userInput.indexOf("todo ") + 5);
                     description.trim();
@@ -35,7 +36,7 @@ public class Parser {
                 } catch(Exception e) {
                     throw new ChachaException("The description of a todo cannot be empty.\n" + "Please enter again with a description.");
                 }
-            case "deadline":
+            case DEADLINE:
                 try {
                     String description = userInput.substring(0, userInput.indexOf("/") - 1);
                     description = description.substring(userInput.indexOf("deadline ") + 9);
@@ -51,7 +52,7 @@ public class Parser {
                 } catch(Exception e) {
                     throw new ChachaException("The description of a deadline cannot be empty.\n" + "Please enter again with a description.");
                 }
-            case "event":
+            case EVENT:
                 try {
                     String description = userInput.substring(0, userInput.indexOf("/") - 1);
                     description = description.substring(userInput.indexOf("event ") + 6);
@@ -68,13 +69,13 @@ public class Parser {
                 } catch(Exception e) {
                     throw new ChachaException("The description of an event cannot be empty.\n" + "Please enter again with a description."); 
                 }
-            case "list":
+            case LIST:
                 if (inputArray.length == 1) {
                     return new ListCommand();
                 } else {
                     throw new ChachaException("Sorry, I don't recognise this command.");
                 }
-            case "mark":
+            case MARK:
                 if (inputArray.length == 2) {
                     String[] split = userInput.split("\\s+");
                     int taskIndex = Integer.valueOf(split[1]) - 1;
@@ -82,7 +83,7 @@ public class Parser {
                 } else {
                     throw new ChachaException("Please enter valid task number to mark.");
                 }
-            case "unmark":
+            case UNMARK:
                 if (inputArray.length == 2) {
                     String[] split = userInput.split("\\s+");
                     int taskIndex = Integer.valueOf(split[1]) - 1;
@@ -90,7 +91,7 @@ public class Parser {
                 } else {
                     throw new ChachaException("Please enter valid task number to unmark.");
                 }
-            case "delete":
+            case DELETE:
                 if (inputArray.length == 2) {
                     String[] split = userInput.split("\\s+");
                     int taskIndex = Integer.valueOf(split[1]) - 1;
@@ -98,13 +99,13 @@ public class Parser {
                 } else {
                     throw new ChachaException("Please enter valid task number to delete.");
                 }
-            case "exit":
+            case EXIT:
                 if (inputArray.length == 1) {
                     return new ExitCommand();
                 } else {
                     throw new ChachaException("Sorry, I don't recognise this command.");
                 }
-            case "find":
+            case FIND:
                 if (inputArray.length >= 2) {
                     int findCommandStr = 5;
                     String keywordsStr = userInput.substring(5);
@@ -115,7 +116,7 @@ public class Parser {
                 } else {
                     throw new ChachaException("Please enter valid keyword.");
                 }
-            case "sort":
+            case SORT:
                 if (inputArray.length == 1) {
                     return new SortCommand();
                 } else {
