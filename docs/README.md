@@ -44,7 +44,7 @@ Now you have 2 tasks in the list, quack!
 ```
 ---
 
-### (3) `Deadline`: Add Deadline
+### (3) `deadline`: Add Deadline
 
 Create a new Deadline with a description, date and time of the deadline.
 Keyword used is `/by`. After the keyword, please take note that:
