@@ -1,24 +1,24 @@
-# duke project template
+# SotongBoi Chatbot
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+### Introduction
 
-## Setting up in Intellij
+Welcome to SotongBoi chatbot! This is a Java CLI project created for the Individual Project section
+of [CS2103T - Software Engineering](https://nusmods.com/modules/CS2103T/software-engineering).
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+SotongBoi is a CLI todo list application that allows you to create, update, and delete Tasks. There are three kinds of
+tasks:
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/duke.java` file, right-click it, and choose `Run duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+* ToDos are simple todo items (e.g. homework)
+* Deadlines are todo items with a deadline associated with it (e.g. submit assignment by 2/2/2012, 23:59)
+* Events are situations that occur between a given timerange, e.g. (Holiday from 2/2/2012, 00:00 to 4/2/2012, 23:59)
+
+<Image Here>
+
+Please refer to the [User Guide](/docs/README.md) for more information on using SotongBoi!
+
+Try it!
+
+* Go to releases and download the latest SotongBoi.jar
+* With command prompt, navigate to the same folder as SotongBoi.jar and enter java -jar SotongBoi.jar. This runs
+  SotongBoi!
+* Refer to the [User Guide](/docs/README.md) on what commands are available. Have fun!
