@@ -27,7 +27,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Unmark the task from the list of tasks
+     * Unmarks the task from the list of tasks
      *     and returns the response message.
      *
      * @param taskList the list of tasks.

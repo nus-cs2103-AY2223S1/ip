@@ -26,7 +26,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Find the specified tasks from the list of tasks
+     * Finds the specified tasks from the list of tasks
      *     and returns a response message.
      *
      * @param taskList the current list of tasks.

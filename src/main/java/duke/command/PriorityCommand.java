@@ -7,7 +7,7 @@ import duke.exception.InvalidPriorityException;
 import duke.task.TaskList;
 
 /**
- * a calls to represent the priority command.
+ * a class to represent the priority command.
  */
 public class PriorityCommand extends Command {
     public static final String COMMAND = "priority";

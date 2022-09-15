@@ -38,7 +38,7 @@ public class Storage {
     }
 
     /**
-     * Retrieve the list of tasks from the save file.
+     * Retrieves the list of tasks from the save file.
      *
      * @return a Tasklist instance representing the saved tasks.
      * @throws DukeException If data is corrupted or there is a problem when
