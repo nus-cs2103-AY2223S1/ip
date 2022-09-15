@@ -2,3 +2,4 @@
 [D] | 1 | say bye | 2022-09-01
 [E] | 0 | jellyfish catching | 2022-09-02
 [T] | 1 | say DUKE!
+[E] | 0 | DUKE celebration | 2022-10-04

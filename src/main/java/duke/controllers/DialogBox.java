@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -14,7 +15,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -56,13 +59,19 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.setStyle("-fx-background-color: azure;");
+        Color col = Color.rgb(241,255,255);
+        CornerRadii corn = new CornerRadii(10);
+        Background background = new Background(new BackgroundFill(col, corn, Insets.EMPTY));
+        db.dialog.setBackground(background);
         return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.setStyle("-fx-background-color: blanchedalmond;");
+        Color col = Color.rgb(255,235,205);
+        CornerRadii corn = new CornerRadii(10);
+        Background background = new Background(new BackgroundFill(col, corn, Insets.EMPTY));
+        db.dialog.setBackground(background);
         db.flip();
         return db;
     }
