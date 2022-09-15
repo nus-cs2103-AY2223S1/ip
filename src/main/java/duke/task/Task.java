@@ -34,12 +34,12 @@ public abstract class Task {
     /**
      * Creates tasks through a factory method.
      *
-     * @param x Type of task.
+     * @param taskType Type of task.
      * @param details Additional details of the task.
      * @return Task object created.
      */
-    public static Task of(TaskType x, String details) {
-        switch (x) {
+    public static Task of(TaskType taskType, String details) {
+        switch (taskType) {
         case TODO:
             return new ToDo(details);
         case DEADLINE:
@@ -110,23 +110,23 @@ public abstract class Task {
     }
 
     /**
-     * Represents a todo task.
+     * Represents a toDo task.
      */
     private static class ToDo extends Task {
 
         /**
          * Represents the details of what to do.
          */
-        private final String todo;
+        private final String toDo;
 
         /**
          * Creates a task through a constructor method.
          *
-         * @param s Details of task.
+         * @param toDo Details of task.
          */
-        private ToDo(String s) {
+        private ToDo(String toDo) {
             super();
-            this.todo = s;
+            this.toDo = toDo;
         }
 
         /**
@@ -146,7 +146,7 @@ public abstract class Task {
          */
         @Override
         public String toString() {
-            return this.workTypeBox() + this.checkBox() + " " + todo;
+            return this.workTypeBox() + this.checkBox() + " " + toDo;
         }
 
         /**
@@ -155,8 +155,8 @@ public abstract class Task {
          * @return String message.
          */
         @Override
-        public String textFileMessage() {
-            return craftStringForFile(new String[]{"T", completionStatusForFile(), this.todo});
+        public String constructTextFileMessage() {
+            return craftStringForFile(new String[]{"T", completionStatusForFile(), this.toDo});
         }
 
         /**
@@ -165,8 +165,8 @@ public abstract class Task {
          * @return Boolean.
          */
         @Override
-        public boolean contains(String s) {
-            return this.todo.contains(s);
+        public boolean containString(String s) {
+            return this.toDo.contains(s);
         }
 
         /**
@@ -187,7 +187,7 @@ public abstract class Task {
         /**
          * Represents the details of what to do.
          */
-        private final String todo;
+        private final String toDo;
 
         /**
          * Represents the date to complete the task by.
@@ -202,7 +202,7 @@ public abstract class Task {
         private Deadline(String s) {
             super();
             String[] split = s.split(" /by ");
-            this.todo = split[0];
+            this.toDo = split[0];
             this.date = LocalDate.parse(split[1]);
         }
 
@@ -223,7 +223,7 @@ public abstract class Task {
          */
         @Override
         public String toString() {
-            return this.workTypeBox() + this.checkBox() + " " + todo + " (by: " + date + ")";
+            return this.workTypeBox() + this.checkBox() + " " + toDo + " (by: " + date + ")";
         }
 
         /**
@@ -232,9 +232,9 @@ public abstract class Task {
          * @return String message.
          */
         @Override
-        public String textFileMessage() {
+        public String constructTextFileMessage() {
             return craftStringForFile(new String[]
-                {"D", completionStatusForFile(), this.todo, String.valueOf(this.date)});
+                {"D", completionStatusForFile(), this.toDo, String.valueOf(this.date)});
         }
 
         /**
@@ -243,8 +243,8 @@ public abstract class Task {
          * @return Boolean.
          */
         @Override
-        public boolean contains(String s) {
-            return this.todo.contains(s) || this.date.toString().contains(s);
+        public boolean containString(String s) {
+            return this.toDo.contains(s) || this.date.toString().contains(s);
         }
 
         /**
@@ -265,7 +265,7 @@ public abstract class Task {
         /**
          * Represents the details of what to do.
          */
-        private final String todo;
+        private final String toDo;
 
         /**
          * Represents the date of event.
@@ -280,7 +280,7 @@ public abstract class Task {
         private Event(String s) {
             super();
             String[] split = s.split(" /at ");
-            this.todo = split[0];
+            this.toDo = split[0];
             this.date = LocalDate.parse(split[1]);
         }
 
@@ -301,7 +301,7 @@ public abstract class Task {
          */
         @Override
         public String toString() {
-            return this.workTypeBox() + this.checkBox() + " " + todo + " (at: " + date + ")";
+            return this.workTypeBox() + this.checkBox() + " " + toDo + " (at: " + date + ")";
         }
 
         /**
@@ -310,9 +310,9 @@ public abstract class Task {
          * @return String message.
          */
         @Override
-        public String textFileMessage() {
+        public String constructTextFileMessage() {
             return craftStringForFile(new String[]
-                {"E", completionStatusForFile(), this.todo, String.valueOf(this.date)});
+                {"E", completionStatusForFile(), this.toDo, String.valueOf(this.date)});
         }
 
         /**
@@ -321,8 +321,8 @@ public abstract class Task {
          * @return Boolean.
          */
         @Override
-        public boolean contains(String s) {
-            return this.todo.contains(s) || this.date.toString().contains(s);
+        public boolean containString(String s) {
+            return this.toDo.contains(s) || this.date.toString().contains(s);
         }
 
         /**
@@ -347,14 +347,14 @@ public abstract class Task {
      *
      * @return String message.
      */
-    public abstract String textFileMessage();
+    public abstract String constructTextFileMessage();
 
     /**
      * Checks whether task object contains certain String.
      * @param s String.
      * @return Boolean.
      */
-    public abstract boolean contains(String s);
+    public abstract boolean containString(String s);
 
     /**
      * Gets the task type of task.

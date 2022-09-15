@@ -94,10 +94,10 @@ public class Duke {
     }
 
 
-
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets response of Duke when given a string message.
+     * @param input Message passed to Duke.
+     * @return Pair consisting of a String and a Boolean.
      */
     Pair<String, Boolean> getResponse(String input) {
         try {

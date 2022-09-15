@@ -1,9 +1,10 @@
 package seedu.duke;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import duke.task.Task;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import duke.task.Task;
+
 
 /**
  * Represents a DukeTask Class.
@@ -17,7 +18,7 @@ public class DukeTest {
      * Basic test to make sure Gradle is working.
      */
     @Test
-    public void dummyTest(){
+    public void dummyTest() {
         assertEquals(2, 2);
     }
 
@@ -25,8 +26,8 @@ public class DukeTest {
      * Test to check if the formatting of the task when sent to the file is right.
      */
     @Test
-    public void taskToFileTest(){
-        assertEquals(Task.of(Task.TaskType.TODO, "finish CS2103T assignment").textFileMessage(),
+    public void taskToFileTest() {
+        assertEquals(Task.of(Task.TaskType.TODO, "finish CS2103T assignment").constructTextFileMessage(),
                 "T | 0 | finish CS2103T assignment");
     }
 
@@ -34,7 +35,7 @@ public class DukeTest {
      * Test to check if the formatting of the task for the task list is right.
      */
     @Test
-    public void taskTest(){
+    public void taskTest() {
         assertEquals(Task.of(Task.TaskType.TODO, "finish CS2103T assignment").toString(),
                 "[T][ ] finish CS2103T assignment");
     }
@@ -43,8 +44,8 @@ public class DukeTest {
      * Tests whether the contains method in Task Class works.
      */
     @Test
-    public void TaskContainsTest(){
-        assertEquals(Task.of(Task.TaskType.TODO, "ACHIEVE SUCCESS").contains("SU"), true);
+    public void taskContainsTest() {
+        assertEquals(Task.of(Task.TaskType.TODO, "ACHIEVE SUCCESS").containString("SU"), true);
     }
 
 }

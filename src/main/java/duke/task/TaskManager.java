@@ -41,7 +41,7 @@ public class TaskManager {
      * Crafts a list of tasks.
      * @return String formatting of tasks in the task list.
      */
-    public String craftTaskList() {
+    public String craftTaskString() {
         int length = arr.size();
         String result = "";
         for (int x = 0; x < length; x++) {
@@ -66,7 +66,7 @@ public class TaskManager {
      */
     public String findAndCraftTaskList(String s) {
         List<Task> filteredList = arr.stream()
-                .filter(x -> x.contains(s))
+                .filter(x -> x.containString(s))
                 .collect(Collectors.toList());
         return convertListToFormattedString(filteredList);
     }
@@ -103,9 +103,9 @@ public class TaskManager {
                 break;
             } else {
                 if (x == 0) {
-                    result += task.textFileMessage();
+                    result += task.constructTextFileMessage();
                 } else {
-                    result += "\n" + task.textFileMessage();
+                    result += "\n" + task.constructTextFileMessage();
                 }
             }
         }
@@ -117,7 +117,7 @@ public class TaskManager {
      *
      * @return String representing the message.
      */
-    public String craftRemindersList() {
+    public String craftRemindersString() {
         List<Task> filteredList = arr.stream()
                 .filter(x -> x.getTaskType() == Task.TaskType.DEADLINE)
                 .filter(x -> !x.checkIfCompleted())
@@ -149,7 +149,7 @@ public class TaskManager {
      * Represents the number of task is the task list.
      * @return Number of tasks in task list.
      */
-    public int numOfTasks() {
+    public int getNumOfTasks() {
         return arr.size();
     }
 
@@ -158,7 +158,7 @@ public class TaskManager {
      * @param type Task type.
      * @return Number of tasks.
      */
-    public int numOfTaskType(Task.TaskType type) {
+    public int getNumOfMatchingTaskType(Task.TaskType type) {
         return (int) arr.stream()
                 .filter(x -> x.getTaskType() == type)
                 .count();
@@ -169,7 +169,7 @@ public class TaskManager {
      * @param location Index where the task is located.
      * @return Task.
      */
-    public Task markTaskComplete(int location) {
+    public Task markTaskAsCompleted(int location) {
         assert location >= 0 : "the task number should not be negative";
         Task task = arr.get(location);
         task.markComplete();
@@ -181,7 +181,7 @@ public class TaskManager {
      * @param location Index where the task is located.
      * @return Task.
      */
-    public Task markTaskIncomplete(int location) {
+    public Task markTaskAsIncomplete(int location) {
         assert location >= 0 : "the task number should not be negative";
         Task task = arr.get(location);
         task.markIncomplete();

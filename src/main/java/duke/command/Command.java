@@ -92,7 +92,7 @@ public abstract class Command {
      * @param keyword First word given by user.
      * @param s Full command given by user.
      * @return Command.
-     * @throws DukeException should there be no valid command.
+     * @throws DukeException If there is no such valid command.
      */
     public static Command handleMultiWordCommand(String keyword, String s) throws DukeException {
         switch (keyword) {
@@ -164,23 +164,23 @@ public abstract class Command {
         /**
          * Represents what task has to be done.
          */
-        private final String todo;
+        private final String toDo;
 
         /**
          * Represents the date of task, if any.
          */
-        private final LocalDate by;
+        private final LocalDate date;
 
         /**
          * Creates Add Command Class through a constructor method.
          * @param type Task type.
-         * @param todo Task to be done.
-         * @param by Date when task has to be done, if any.
+         * @param toDo Task to be done.
+         * @param date Date when task has to be done, if any.
          */
-        public AddCommand(Task.TaskType type, String todo, LocalDate by) {
+        public AddCommand(Task.TaskType type, String toDo, LocalDate date) {
             this.taskType = type;
-            this.todo = todo;
-            this.by = by;
+            this.toDo = toDo;
+            this.date = date;
         }
 
         /**
@@ -193,17 +193,17 @@ public abstract class Command {
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
             if (taskType == Task.TaskType.TODO) {
-                Task task = Task.of(Task.TaskType.TODO, todo);
+                Task task = Task.of(Task.TaskType.TODO, toDo);
                 tasks.addTask(task);
-                return ui.sendAndReturnMessage(ActionKeywords.TODO, task, String.valueOf(tasks.numOfTasks()));
+                return ui.sendAndReturnMessage(ActionKeywords.TODO, task, String.valueOf(tasks.getNumOfTasks()));
             } else if (taskType == Task.TaskType.DEADLINE) {
-                Task task = Task.of(Task.TaskType.DEADLINE, todo + " /by " + by);
+                Task task = Task.of(Task.TaskType.DEADLINE, toDo + " /by " + date);
                 tasks.addTask(task);
-                return ui.sendAndReturnMessage(ActionKeywords.DEADLINE, task, String.valueOf(tasks.numOfTasks()));
+                return ui.sendAndReturnMessage(ActionKeywords.DEADLINE, task, String.valueOf(tasks.getNumOfTasks()));
             } else if (taskType == Task.TaskType.EVENT) {
-                Task task = Task.of(Task.TaskType.EVENT, todo + " /at " + by);
+                Task task = Task.of(Task.TaskType.EVENT, toDo + " /at " + date);
                 tasks.addTask(task);
-                return ui.sendAndReturnMessage(ActionKeywords.EVENT, task, String.valueOf(tasks.numOfTasks()));
+                return ui.sendAndReturnMessage(ActionKeywords.EVENT, task, String.valueOf(tasks.getNumOfTasks()));
             } else {
                 return null;
             }
@@ -222,7 +222,7 @@ public abstract class Command {
 
         /**
          * Creates Delete Command through a constructor method.
-         * @param location Index where the task is located
+         * @param location Index where the task is located.
          */
         public DeleteCommand(int location) {
             this.location = location;
@@ -234,13 +234,13 @@ public abstract class Command {
          * @param ui User interface being used.
          * @param storage Storage where text is stored.
          * @return Message.
-         * @throws DukeException If it is found.
+         * @throws DukeException If index is out of bounds.
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
             try {
                 Task task = tasks.removeTask(location);
-                return ui.sendAndReturnMessage(ActionKeywords.DELETE, task, String.valueOf(tasks.numOfTasks()));
+                return ui.sendAndReturnMessage(ActionKeywords.DELETE, task, String.valueOf(tasks.getNumOfTasks()));
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("index out of bounds");
             }
@@ -318,7 +318,7 @@ public abstract class Command {
         private final boolean isCompleted;
 
         /**
-         * Represents the location of the task.
+         * Represents the index location of the task.
          */
         private final int location;
 
@@ -344,11 +344,11 @@ public abstract class Command {
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
             try {
                 if (isCompleted) {
-                    Task task = tasks.markTaskComplete(location);
-                    return ui.sendAndReturnMessage(ActionKeywords.MARK, task, String.valueOf(tasks.numOfTasks()));
+                    Task task = tasks.markTaskAsCompleted(location);
+                    return ui.sendAndReturnMessage(ActionKeywords.MARK, task, String.valueOf(tasks.getNumOfTasks()));
                 } else {
-                    Task task = tasks.markTaskIncomplete(location);
-                    return ui.sendAndReturnMessage(ActionKeywords.UNMARK, task, String.valueOf(tasks.numOfTasks()));
+                    Task task = tasks.markTaskAsIncomplete(location);
+                    return ui.sendAndReturnMessage(ActionKeywords.UNMARK, task, String.valueOf(tasks.getNumOfTasks()));
                 }
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("index out of bounds");
@@ -377,8 +377,8 @@ public abstract class Command {
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
-            String message = tasks.craftTaskList();
-            return ui.sendAndReturnMessage(ActionKeywords.LIST, null, String.valueOf(tasks.numOfTasks()), message);
+            String message = tasks.craftTaskString();
+            return ui.sendAndReturnMessage(ActionKeywords.LIST, null, String.valueOf(tasks.getNumOfTasks()), message);
         }
     }
 
@@ -402,9 +402,9 @@ public abstract class Command {
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
-            String message = tasks.craftRemindersList();
+            String message = tasks.craftRemindersString();
             return ui.sendAndReturnMessage(ActionKeywords.REMIND, null,
-                    String.valueOf(tasks.numOfTaskType(Task.TaskType.DEADLINE)), message);
+                    String.valueOf(tasks.getNumOfMatchingTaskType(Task.TaskType.DEADLINE)), message);
         }
     }
 
