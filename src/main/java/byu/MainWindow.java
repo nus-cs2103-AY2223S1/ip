@@ -24,8 +24,8 @@ public class MainWindow extends AnchorPane {
 
     private Byu byu;
 
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private final Image byuImage = new Image(this.getClass().getResourceAsStream("/images/panda.jpeg"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.gif"));
+    private final Image byuImage = new Image(this.getClass().getResourceAsStream("/images/panda.png"));
     private final DialogBox welcomeDialogBox = DialogBox.getByuDialog(Ui.LOGO + Ui.WELCOME_MESSAGE, byuImage);
 
     /**

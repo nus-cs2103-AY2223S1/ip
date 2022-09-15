@@ -10,7 +10,7 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" style="-fx-background-color: #FFB6C1#FFB6C1;" text="Label" textFill="#1b1a1a" wrapText="true">
+        <Label fx:id="dialog" style="-fx-background-color: #FFB6C1#FFB6C1; -fx-background-radius: 7;" text="Label" textFill="#1b1a1a" wrapText="true">
          <font>
             <Font name="Chalkboard SE Light" size="12.0" />
          </font>
@@ -18,10 +18,13 @@
             <ColorAdjust />
          </effect>
          <padding>
-            <Insets left="2.0" right="2.0" top="2.0" />
+            <Insets bottom="5.0" left="7.0" right="7.0" top="5.0" />
          </padding>
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
       </Label>
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true">
+        <ImageView fx:id="displayPicture" fitHeight="61.0" fitWidth="61.0" pickOnBounds="true">
          <viewport>
             <Rectangle2D />
          </viewport>
