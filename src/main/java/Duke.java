@@ -8,10 +8,12 @@ import java.io.IOException;
  */
 
 public class Duke {
+
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
     private Parser parser;
+    private boolean hasReturnError;
 
     /**
      * Create ChatBot.
@@ -23,6 +25,7 @@ public class Duke {
         this.storage = new Storage(filePath);
         this.tasks = new TaskList(storage.readFile());
         this.parser = new Parser();
+        this.hasReturnError = false;
     }
 
     /**
@@ -46,17 +49,24 @@ public class Duke {
         try {
             Command c = parser.parse(fullCommand);
             response = c.execute(tasks, ui);
+            this.hasReturnError = false;
 
         } catch (MismatchInputException e) {
             response = ":( OOPS!!! I'm sorry, but I don't know what that means";
+            this.hasReturnError = true;
 
         } catch (TaskWithNoDescriptionException e) {
             response = ":( OOPS!!! The description of a "
                     + strArr[0] + " cannot be empty.";
+            this.hasReturnError = true;
         }
 
         storage.saveNewChanges(tasks);
         return response;
+    }
+
+    public boolean getHasReturnError() {
+        return this.hasReturnError;
     }
 
 }

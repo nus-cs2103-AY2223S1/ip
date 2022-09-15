@@ -25,8 +25,11 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+
+    private Image dukeWelcomeImage = new Image(this.getClass().getResourceAsStream("/images/AnyaWelcome.png"));
+    private Image dukeErrorImage = new Image(this.getClass().getResourceAsStream("/images/AnyaError.png"));
+    private Image dukeRespondImage = new Image(this.getClass().getResourceAsStream("/images/Anya.png"));
 
     @FXML
     public void initialize() {
@@ -37,7 +40,7 @@ public class MainWindow extends AnchorPane {
         duke = d;
         String greet = d.start();
         dialogContainer.getChildren().addAll(
-            DialogBox.getDukeDialog(greet, dukeImage)
+            DialogBox.getDukeDialog(greet, dukeWelcomeImage)
         );
     }
 
@@ -50,15 +53,23 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() throws IOException {
         String input = userInput.getText();
         String response = duke.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
-        );
+        if (duke.getHasReturnError() == false) {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getUserDialog(input, userImage),
+                    DialogBox.getDukeDialog(response, dukeRespondImage)
+            );
+        } else {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getUserDialog(input, userImage),
+                    DialogBox.getErrorDialog(response, dukeErrorImage)
+            );
+        }
 
         if (input.equals("bye")) {
             System.exit(0);
         }
 
         userInput.clear();
+
     }
 }

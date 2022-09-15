@@ -24,9 +24,15 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    private DialogBox(boolean isDuke, boolean hasError, String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DukeDialogBox.fxml"));
+            if (isDuke == false) {
+                fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/UserDialogBox.fxml"));
+            }
+            if (hasError == true) {
+                fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/ErrorDialogBox.fxml"));
+            }
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
@@ -48,11 +54,17 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        return new DialogBox(false, false, text, img);
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        var db = new DialogBox(true, false, text, img);
+        db.flip();
+        return db;
+    }
+
+    public static DialogBox getErrorDialog(String text, Image img) {
+        var db = new DialogBox(true, true, text, img);
         db.flip();
         return db;
     }
