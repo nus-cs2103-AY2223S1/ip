@@ -42,12 +42,12 @@ public class Alpha {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    String getResponse(String input) {
+    DialogBox getResponse(String input) {
         try {
             Command c = parser.interpretMessage(input);
-            return c.execute(taskList, uI, fileOperations);
+            return DialogBox.getAlphaDialog(c.execute(taskList, uI, fileOperations));
         } catch (AlphaException a) {
-            return a.getMessage();
+            return DialogBox.getErrorDialog(a.getMessage());
         }
     }
 }

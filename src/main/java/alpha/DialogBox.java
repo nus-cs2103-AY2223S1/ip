@@ -25,7 +25,7 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -35,6 +35,9 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
         dialog.setText(text);
+    }
+
+    public void setImage(Image img) {
         displayPicture.setImage(img);
     }
 
@@ -48,12 +51,21 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+    public static DialogBox getUserDialog(String text) {
+        var db = new DialogBox(text);
+        return db;
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+    public static DialogBox getAlphaDialog(String text) {
+        var db = new DialogBox(text);
+        db.flip();
+        return db;
+    }
+
+    public static DialogBox getErrorDialog(String text) {
+        var db = new DialogBox(text);
+        db.dialog.setStyle("-fx-font: 12 arial; -fx-text-fill: #fc6060;"
+                + "-fx-background-color: rgba(128, 128, 128, 0.50); -fx-background-radius: 7.5;");
         db.flip();
         return db;
     }
