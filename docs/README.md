@@ -16,6 +16,7 @@ You can also mark tasks as done/not done.
 Lastly, you can search for your tasks, or by type of task!
 
 ### Usage
+
 | Command               | Usage                                   |
 |-----------------------|-----------------------------------------|
 | Insert a TODO         | `todo <description>`                    |
