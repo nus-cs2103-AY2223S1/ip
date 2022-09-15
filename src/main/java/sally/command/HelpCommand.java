@@ -5,7 +5,6 @@ import sally.task.TaskList;
 import sally.ui.Ui;
 
 public class HelpCommand extends Command {
-    protected static final String KEYWORD = "help";
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
