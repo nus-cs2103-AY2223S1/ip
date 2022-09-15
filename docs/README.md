@@ -2,14 +2,8 @@ Duke User Guide
 ===
 
 - [Duke User Guide](#duke-user-guide)
-  - [Features](#features)
-    - [Adding Tasks](#adding-tasks)
-    - [Listing Tasks](#listing-tasks)
-    - [Marking/Unmarking Tasks](#markingunmarking-tasks)
-    - [Searching for Tasks](#searching-for-tasks)
-    - [Deleting Tasks](#deleting-tasks)
-    - [Undo Changes](#undo-changes)
-    - [Exit the App](#exit-the-app)
+  - [About](#about)
+    - [Features](#features)
   - [Usage](#usage)
     - [`list` - List all tasks](#list---list-all-tasks)
     - [`todo` - Add a to-do](#todo---add-a-to-do)
@@ -23,45 +17,21 @@ Duke User Guide
     - [`bye` - Save tasks and exit](#bye---save-tasks-and-exit)
 
 ---
+## About
 
-## Features
+Duke is your personal task manager! Manage all your tasks, events, and deadlines with Duke!
 
-### Adding Tasks
-
-You can tell Duke tasks you wish to track!
-
-Supported commands: `to-do`, `deadline`, and `event`.
-
-### Listing Tasks
-
-After adding some tasks, view them all with the `list` command.
-
-### Marking/Unmarking Tasks
-
-Upon completion, `mark` will check the task off your list.
-
-`unmark` will uncheck the task, in case there's more to be done!
-
-### Searching for Tasks
-
-When things get messy, search for tasks with `find`!
-
-### Deleting Tasks
-
-You can delete tasks once you're sure it's done to free up space.
-
-### Undo Changes
-
-If you've accidentally deleted a task, use `undo` to revert to the previous state.
-
-Works with mark and unmark too!
-
-### Exit the App
-
-Calling it a day? Say `bye` to Duke to save your tasks and exit the app!
+### Features
+1. Mark and unmark tasks
+   1. todo's
+   2. events
+   3. deadlines
+2. Delete tasks once you're done with them (for good)
+3. Undo if you've made a mistake
+4. Task data is saved *locally*, don't worry about people stealing your data!
+5. Find tasks matching a keywords
 
 ---
-
 ## Usage
 
 ### `list` - List all tasks
