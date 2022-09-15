@@ -146,14 +146,14 @@ public class Decoder {
         String[] delExpense = word.split(" ");
 
         if (delExpense.length != 2) {
-            throw new BadTaskOperationException("delete", "delete");
+            throw new BadTaskOperationException("delete");
         }
         if (!isValidNum(delExpense[1])) {
             throw new BadFormatException("delete", "delete", "<EXPENSE ID>", "");
         }
         int expenseNo = Integer.parseInt(delExpense[1]);
         if (expenseNo > len) {
-            throw new BadTaskOperationException("delete", "delete");
+            throw new BadTaskOperationException("delete");
         }
         return expenseNo;
     }
@@ -170,14 +170,14 @@ public class Decoder {
         String[] deleteTasks = word.split(" ");
 
         if (deleteTasks.length != 2) {
-            throw new BadTaskOperationException("delete", "delete");
+            throw new BadTaskOperationException("delete");
         }
         if (!isValidNum(deleteTasks[1])) {
             throw new BadFormatException("delete", "delete", "<TASK ID>", "");
         }
         int taskNo = Integer.parseInt(deleteTasks[1]);
         if (taskNo > len) {
-            throw new BadTaskOperationException("delete", "delete");
+            throw new BadTaskOperationException("delete");
         }
         return taskNo;
     }
@@ -193,14 +193,14 @@ public class Decoder {
     public static int handleDone(String word, int len) throws DukeException {
         String[] doneTasks = word.split(" ");
         if (doneTasks.length != 2) {
-            throw new BadTaskOperationException("done", "done");
+            throw new BadTaskOperationException("done");
         }
         if (!isValidNum(doneTasks[1])) {
             throw new BadFormatException("done", "done", "<TASK ID>", "");
         }
         int taskNo = Integer.parseInt(doneTasks[1]);
         if (taskNo > len) {
-            throw new BadTaskOperationException("done", "done");
+            throw new BadTaskOperationException("done");
         }
         return taskNo;
     }
@@ -278,12 +278,7 @@ public class Decoder {
         if (segmentAmt.length < 2) {
             throw new EmptyDescException(wordSplit[0]);
         }
-        /*
-        if (!isValidNum(segmentAmt[0].strip())) {
-            throw new BadFormatException("expense", "expense", "<AMOUNT> /on <DATE>", "/amount");
-        }
 
-         */
         double amount;
 
         try {

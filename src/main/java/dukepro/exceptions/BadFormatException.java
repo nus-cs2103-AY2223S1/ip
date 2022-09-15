@@ -4,7 +4,6 @@ package dukepro.exceptions;
  * Class for BadFormatException.
  */
 public class BadFormatException extends DukeException {
-    private static final String LINE = "_______________________________________";
     private String taskType;
     private String format;
     private String separator;
@@ -31,8 +30,8 @@ public class BadFormatException extends DukeException {
      */
     @Override
     public String toString() {
-        String error = LINE + "\n Oh no, the format of a " + this.taskType + " is: " + this.taskType
-                + " <YOUR TASK HERE> " + separator + this.format + "\n" + LINE;
+        String error = "\n Oh no, the format of a " + this.taskType + " is: " + this.taskType
+                + " <YOUR TASK HERE> " + separator + this.format + "\n";
         return error;
     }
 }
