@@ -42,11 +42,4 @@ public class Ui {
     public String showError(Exception e) {
         return "OOPS! " + e.getMessage();
     }
-
-    /**
-     * Displays the start of the input line to user.
-     */
-    public void showInputLine() {
-        System.out.print("--> ");
-    }
 }
