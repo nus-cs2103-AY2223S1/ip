@@ -94,7 +94,7 @@ public class TaskList {
         Task taskToCreate;
         String separator = "/";
         String invalidInputMessage = "Invalid Input";
-        String outputMessage = "Got it. I've added this task:\n";
+        String outputMessage = "Got it. I've added this task:" + System.lineSeparator();
         String emptyTodoDescMessage = "Empty description for Todo task";
 
         switch (taskEnum) {
@@ -133,8 +133,8 @@ public class TaskList {
 
     private String handleDelete(String indexStr) throws DukeException {
         String[] outputMessage = new String[]{
-            "Noted. I've removed this task:\n",
-            "\nNow you have ",
+            "Noted. I've removed this task:" + System.lineSeparator(),
+            System.lineSeparator() + "Now you have ",
             " tasks in the list."
         };
         int index;

@@ -3,8 +3,10 @@ package duke;
 import java.util.ArrayList;
 
 class Ui {
+    private static final String breakLine = System.lineSeparator();
     private static final String OPENING =
-            "    Hello! I'm Duke\n    What can I do for you?\n    Type help for detailed useful guide.";
+            "    Hello! I'm Duke" + breakLine + "    What can I do for you?"
+            + breakLine + "Type help for detailed useful guide.";
     private static final String ENDING = "    Bye. Hope to see you again soon! Please close the app!";
     private static final String ERROR_DEFAULT_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String ERROR_UNFOUND_MESSAGE = "OOPS!!! There is no record matching your keyword :(";
@@ -13,8 +15,10 @@ class Ui {
     private static final String ERROR_WRITE_MESSAGE =
             "OOPS!!! I fail to write in the file, possibly due to no permission. Please help me out :(";
     private static final String HELP_MESSAGE =
-            "Sample instructions as follows:\nlist\ntodo sleep1\nevent sleep2 /at 2019-10-10\n"
-            + "deadline sleep3 /by 2019-10-10\nmark 1\nunmark 1\ndelete 1\n\n\n"
+            "Sample instructions as follows:" + breakLine + "list" + breakLine + "todo sleep1" + breakLine
+            + "event sleep2 /at 2019-10-10" + breakLine
+            + "deadline sleep3 /by 2019-10-10" + breakLine + "mark 1" + breakLine + "unmark 1" + breakLine
+            + "delete 1" + breakLine + breakLine
             + "Currently, only yyyy-mm-dd format is supported such as 2019-10-10.";
     private static final String ENDED_SESSION_MESSAGE = "This program has terminated. "
         + "No input is taken any more. Please close and reopen program.";
@@ -35,8 +39,8 @@ class Ui {
      * @param taskList the list of tasks
      */
     public static String listPrint(TaskList taskList) {
-        String opening = "Here are the tasks in your list:\n";
-        String[] separators = new String[] {"\n", ". "};
+        String opening = "Here are the tasks in your list:" + breakLine;
+        String[] separators = new String[] {breakLine, ". "};
         ArrayList<Task> arr = taskList.getTaskArrayList();
         int count = 1;
         String result = opening;
@@ -100,8 +104,8 @@ class Ui {
      * @return result string to be displayed to user
      */
     public static String taskStateChangePrint(Task t, boolean isDone) {
-        String successMsg = "Nice! I've marked this task as done:\n";
-        String failMsg = "OK, I've marked this task as not done yet:\n";
+        String successMsg = "Nice! I've marked this task as done:" + breakLine;
+        String failMsg = "OK, I've marked this task as not done yet:" + breakLine;
         String res;
         if (isDone) {
             res = successMsg;

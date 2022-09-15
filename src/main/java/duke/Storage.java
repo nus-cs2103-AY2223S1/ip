@@ -31,7 +31,7 @@ class Storage {
             String line = br.readLine();
 
             while (line != null) {
-                line = line.replace("\n", "");
+                line = line.replace(System.lineSeparator(), "");
                 taskList.readPreCreatedTask(line);
                 line = br.readLine();
             }
@@ -45,7 +45,7 @@ class Storage {
             FileWriter fw = new FileWriter(dest);
 
             for (Task t : arrayList) {
-                fw.write(t.toStorageString() + "\n");
+                fw.write(t.toStorageString() + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {

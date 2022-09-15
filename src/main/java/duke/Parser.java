@@ -27,7 +27,7 @@ public class Parser {
      * @return String to be displayed to user
      */
     protected static String parseCommand(String args, TaskList taskList, Storage storage, Duke duke) {
-        String command = args.replace("\n", "").replace("/r", "");
+        String command = args.replace(System.lineSeparator(), "").replace("/r", "");
         switch (command) {
         case LIST_WORD:
             return Ui.listPrint(taskList);
