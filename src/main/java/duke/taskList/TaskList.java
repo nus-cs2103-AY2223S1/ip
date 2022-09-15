@@ -75,6 +75,7 @@ public class TaskList {
      * @return this task list
      */
     public TaskList markTask(String[] atMark, Ui ui) {
+        assert(checkInt(atMark[1]));
         int index = Integer.parseInt(atMark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markDone());
         String output = ui.markTaskPrint(tasks.get(index - 1));
@@ -88,6 +89,7 @@ public class TaskList {
      * @return this task list
      */
     public TaskList unmarkTask(String[] atUnmark, Ui ui) {
+        assert(checkInt(atUnmark[1]));
         int index = Integer.parseInt(atUnmark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markUndone());
         String output = ui.unmarkTaskPrint(tasks.get(index - 1));
@@ -102,6 +104,7 @@ public class TaskList {
      * @return new TaskList object, with specified task removed
      */
     public TaskList deleteTask (String[] atDel, Ui ui) {
+        assert(checkInt(atDel[1]));
         int index = Integer.parseInt(atDel[1]);
         index--;
         Task del = tasks.get(index);
@@ -240,6 +243,10 @@ public class TaskList {
             output = ui.findPrint(foundTasks);
         }
         return new TaskList(this.tasks, this.curr, output);
+    }
+
+    private boolean checkInt(String str) {
+        return Integer.parseInt(str) == (int) Integer.parseInt(str);
     }
 
 }
