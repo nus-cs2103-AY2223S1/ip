@@ -27,17 +27,17 @@ public class DeleteCommand extends Command {
      * @param storage The storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             int index = Integer.parseInt(instruction) - 1;
             Task deleted = tasks.get(index);
             tasks.delete(index);
-            ui.print(ui.showDeleteMessage(deleted));
             storage.saveList(tasks);
+            return ui.showDeleteMessage(deleted);
         } catch (IndexOutOfBoundsException e) {
-            ui.print(ui.showError(new DukeException(e.getMessage())));
+            return ui.showError(new DukeException(e.getMessage()));
         } catch (DukeException e) {
-            ui.print(ui.showError(e));
+            return ui.showError(e);
         }
     }
 }

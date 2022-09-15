@@ -22,8 +22,8 @@ public class ByeCommand extends Command {
      * @param storage The storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.print(ui.showExitMessage());
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showExitMessage();
     }
 
     /*

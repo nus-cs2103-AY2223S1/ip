@@ -28,14 +28,14 @@ public class MarkCommand extends Command {
      * @param storage The storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             int index = Integer.parseInt(instruction.substring(5)) - 1;
             tasks.get(index).setDone();
-            ui.print(ui.showMarkMessage(tasks.get(index)));
             storage.saveList(tasks);
+            return ui.showMarkMessage(tasks.get(index));
         } catch (DukeException e) {
-            ui.print(ui.showError(e));
+            return ui.showError(e);
         }
     }
 }
