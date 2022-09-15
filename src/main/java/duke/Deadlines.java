@@ -10,6 +10,12 @@ public class Deadlines extends Task {
 
     private LocalDateTime dateTime;
 
+    /**
+     * Constructor for a deadline class.
+     *
+     * @param description Description of deadline.
+     * @param dateTime Date and Time of deadline.
+     */
     public Deadlines(String description, LocalDateTime dateTime) {
         super(description);
         this.dateTime = dateTime;

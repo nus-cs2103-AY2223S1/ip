@@ -12,6 +12,13 @@ public class Parser {
     private static TaskList tasklist;
     private static Storage storage;
 
+    /**
+     * Constructor for Parser class.
+     *
+     * @param ui Ui object.
+     * @param tasklist Tasklist containing tasks.
+     * @param storage Storage object.
+     */
     public Parser(Ui ui, TaskList tasklist, Storage storage) {
         this.ui = ui;
         this.tasklist = tasklist;
@@ -72,8 +79,8 @@ public class Parser {
      */
     public static String markDone(String userInput) throws DukeException {
         int indexInStr = 5;
-        int taskNum = Integer.parseInt(String.valueOf(userInput.charAt(indexInStr)));
-        if (taskNum <= tasklist.getSize()) {
+        int taskNum = Integer.parseInt(userInput.substring(indexInStr));
+        if (taskNum <= tasklist.getSize() && taskNum > 0) {
             Task task = tasklist.mark(taskNum - 1);
             assert task.isDone : "task should be marked done";
             storage.save(tasklist);
@@ -91,8 +98,8 @@ public class Parser {
      */
     public static String markUndone(String userInput) throws DukeException {
         int indexInStr = 7;
-        int taskNum = Integer.parseInt(String.valueOf(userInput.charAt(indexInStr)));
-        if (taskNum <= tasklist.getSize()) {
+        int taskNum = Integer.parseInt(userInput.substring(indexInStr));
+        if (taskNum <= tasklist.getSize() && taskNum > 0) {
             Task task = tasklist.unmark(taskNum - 1);
             assert task.isDone : "task should be marked as not done";
             storage.save(tasklist);
@@ -192,7 +199,7 @@ public class Parser {
      */
     public static String deleteTask(String str) throws DukeException {
         int indexInStr = 7;
-        int taskToDel = Integer.parseInt(String.valueOf(str.charAt(indexInStr)));
+        int taskToDel = Integer.parseInt(str.substring(indexInStr));
 
         if (taskToDel <= tasklist.getSize()) {
             String finalStr = "";

@@ -5,14 +5,19 @@ package duke;
  */
 public class ToDos extends Task {
 
+    /**
+     * Constructor of ToDos class.
+     *
+     * @param description Description of todo.
+     */
     public ToDos(String description) {
         super(description);
     }
 
     /**
-     * Returns formatted string to saved file
+     * Returns formatted string to saved file.
      *
-     * @return String of formatted todo task to saved file
+     * @return String of formatted todo task to saved file.
      */
     public String printSavedData() {
         return "T | " + super.printSavedData() + "\n";

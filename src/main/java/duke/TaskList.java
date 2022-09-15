@@ -16,10 +16,6 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-    /**public TaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
-    }*/
-
     public TaskList(ArrayList<Task> tasks, int tdCount, int deadlineCount, int eventCount) {
         this.todoCount = tdCount;
         this.tasks = tasks;
@@ -30,7 +26,7 @@ public class TaskList {
     /**
      * Adds task to list.
      *
-     * @param task task to be added.
+     * @param task Task to be added.
      * @return Task added.
      */
     public Task addTask(Task task) {
@@ -41,7 +37,7 @@ public class TaskList {
     /**
      * Deletes tasks from list.
      *
-     * @param taskNum task to be deleted.
+     * @param taskNum Task to be deleted.
      */
     public void deleteTask(int taskNum) {
         tasks.remove(taskNum);
@@ -50,7 +46,7 @@ public class TaskList {
     /**
      * Marks task as done.
      *
-     * @param index index of task to be marked.
+     * @param index Index of task to be marked.
      * @return Task marked.
      */
     public Task mark(int index) {
@@ -61,7 +57,7 @@ public class TaskList {
     /**
      * Unmarks task.
      *
-     * @param index index of task to be unmarked.
+     * @param index Index of task to be unmarked.
      * @return Task unmarked.
      */
     public Task unmark(int index) {
@@ -72,7 +68,7 @@ public class TaskList {
     /**
      * Gets a specific task.
      *
-     * @param index index of task to get.
+     * @param index Index of task to get.
      * @return Task to get.
      */
     public Task getTask(int index) {
@@ -96,13 +92,6 @@ public class TaskList {
     }
 
     /**
-     * Decreases count of todos.
-     */
-    public void decreaseTodoCount() {
-        this.todoCount--;
-    }
-
-    /**
      * Gets number of todos.
      *
      * @return Number of todos.
@@ -116,13 +105,6 @@ public class TaskList {
      */
     public void increaseDeadlineCount() {
         this.deadlineCount++;
-    }
-
-    /**
-     * Decreases count of deadlines.
-     */
-    public void decreaseDeadlineCount() {
-        this.deadlineCount--;
     }
 
     /**
@@ -142,13 +124,6 @@ public class TaskList {
     }
 
     /**
-     * Decreases count of events.
-     */
-    public void decreaseEventCount() {
-        this.eventCount--;
-    }
-
-    /**
      * Gets number of events.
      *
      * @return Number of events.
@@ -158,17 +133,17 @@ public class TaskList {
     }
 
     /**
-     * Reduces task count when task is deleted
+     * Reduces task count when task is deleted.
      *
-     * @param task task that is deleted
+     * @param task Task that is deleted.
      */
     public void reduceTaskCount(Task task) {
         if (task instanceof ToDos) {
-            decreaseTodoCount();
+            this.todoCount--;
         } else if (task instanceof Deadlines) {
-            decreaseDeadlineCount();
+            this.deadlineCount--;
         } else {
-            decreaseEventCount();
+            this.eventCount--;
         }
     }
 }

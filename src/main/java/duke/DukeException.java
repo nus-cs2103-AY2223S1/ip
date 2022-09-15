@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Handles errors for Duke
+ * Handles errors for Duke.
  */
 public class DukeException extends Exception {
 

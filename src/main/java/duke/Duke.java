@@ -10,9 +10,15 @@ public class Duke {
     private static Storage storage;
     private static TaskList tasklist;
 
+    /**
+     * Constructor for Duke class.
+     */
     public Duke() {
         ui = new Ui();
-        storage = new Storage("out/duke.txt");
+        String workingDir = System.getProperty("user.dir");
+        System.out.println(workingDir);
+        String pathToDuke = workingDir + "/out/duke.txt";
+        storage = new Storage(pathToDuke);
         try {
             tasklist = storage.load();
         } catch (DukeException de) {

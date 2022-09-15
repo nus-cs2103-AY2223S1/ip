@@ -4,12 +4,18 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents an events task to be added to Duke with a event date.
+ * Represents an events task to be added to Duke with an event date.
  */
 public class Events extends Task {
 
     private LocalDateTime dateTime;
 
+    /**
+     * Constructor for events class.
+     *
+     * @param description Description of event.
+     * @param dateTime Date and time of event.
+     */
     public Events(String description, LocalDateTime dateTime) {
         super(description);
         this.dateTime = dateTime;
@@ -38,7 +44,7 @@ public class Events extends Task {
     /**
      * Returns string of event shown on Duke bot.
      *
-     * @return event shown on Duke bot.
+     * @return Event shown on Duke bot.
      */
     @Override
     public String toString() {

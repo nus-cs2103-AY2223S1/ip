@@ -10,14 +10,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Deals with loading tasks from the file and saving tasks in the file
+ * Deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
 
     private String filePath;
 
+    /**
+     * Constructor of Storage class.
+     *
+     * @param filePath String of file to read from and save to.
+     */
     public Storage(String filePath) {
-
         this.filePath = filePath;
     }
 
@@ -29,7 +33,7 @@ public class Storage {
      */
     public void save(TaskList tasklist) throws DukeException {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter(this.filePath);
             for (int i = 0; i < tasklist.getSize(); i++) {
                 fw.write(tasklist.getTask(i).printSavedData());
             }

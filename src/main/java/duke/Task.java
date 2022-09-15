@@ -7,6 +7,11 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructor of Task class.
+     *
+     * @param description Description of task.
+     */
     public Task(String description) {
         assert description.length() > 0 : "description should not be empty";
         this.description = description;

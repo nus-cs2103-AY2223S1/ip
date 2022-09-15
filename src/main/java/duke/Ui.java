@@ -10,6 +10,9 @@ public class Ui {
 
     private Scanner scanner;
 
+    /**
+     * Constructor of Ui class.
+     */
     public Ui() {
         scanner = new Scanner(System.in);
     }
@@ -144,7 +147,7 @@ public class Ui {
      * Returns number of todos in the list.
      *
      * @param taskType Type of tasks to be counted.
-     * @param taskNum Number of todos in list
+     * @param taskNum Number of todos in list.
      * @return String of number of todos in list.
      */
     public String printTaskCount(String taskType, int taskNum) {
