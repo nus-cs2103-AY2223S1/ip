@@ -34,7 +34,6 @@ public class Parser {
     public static Command parseCommand(String command) throws SallyException {
         // Bye
         if (command.equals("bye")) {
-            System.out.println("gets in bye");
             return new ByeCommand();
         }
 

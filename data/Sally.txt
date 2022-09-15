@@ -1,3 +1,3 @@
-T | 1 | finish dinner
-D | 1 | sal's surprise | 2022-12-10
-E | 0 | dinner | techno edge
+T | 0 | read book
+D | 0 | finish gui | 2022-09-15
+E | 1 | dinner | techno edge

@@ -47,7 +47,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Handles command by creating the dialog boxes for both user and input, as well as clearing the input after it is processed.
+     * Handles command by creating the dialog boxes for both user and input,
+     * as well as clearing the input after it is processed.
      */
     @FXML
     private void handleUserInput() {

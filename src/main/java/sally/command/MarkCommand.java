@@ -28,9 +28,6 @@ public class MarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = tasks.getTask(index);
         String taskInString = task.toString();
-        ui.displaySally("index = " + index);
-        ui.displaySally("task = " + taskInString);
-        ui.displaySally("task.getDoneStatus() = " + task.getDoneStatus());
         if (!task.getDoneStatus()) {
             task.markAsDone();
             String markTask = task.toString();
