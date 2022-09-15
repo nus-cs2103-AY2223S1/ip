@@ -24,7 +24,7 @@ public class Parser {
         try {
             return Integer.parseInt(taskNumberString) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeException("   " + taskNumberString + " is not a valid task number.\n");
+            throw new DukeException(taskNumberString + " is not a valid task number.\n");
         }
 
     }
@@ -81,10 +81,9 @@ public class Parser {
             LocalDate deadline = LocalDate.parse(parsedUserResponse[bySeparationIndex + 1]);
             return new Deadline(newTaskDescription, deadline);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("    " + "Error: No date added for the deadline.\n");
+            throw new DukeException("No date added for the deadline.\n");
         } catch (DateTimeParseException e) {
-            throw new DukeException("    "
-                    + "Error: Invalid deadline format, please key in as yyyy-mm-dd\n");
+            throw new DukeException("Invalid deadline format, please key in as yyyy-mm-dd\n");
         }
     }
 
@@ -98,65 +97,30 @@ public class Parser {
                                             Storage storage, Ui ui, TaskList tasks) throws DukeException {
         String[] parsedUserResponse = userResponse.split(" ");
         String mainCommand = parsedUserResponse[0];
+        int numberOfArguments = parsedUserResponse.length;
         switch(mainCommand) {
         case "bye":
-            if (parsedUserResponse.length > 1) {
-                throw new DukeException("Invalid number of arguments, only one required\n");
-            } else {
-                return new ByeCommand(storage, ui, tasks);
-            }
+            return new ByeCommand(storage, ui, tasks, numberOfArguments);
         case "list":
-            if (parsedUserResponse.length > 1) {
-                throw new DukeException("Invalid number of arguments, only one required\n");
-            } else {
-                return new ListCommand(ui, tasks);
-            }
+            return new ListCommand(ui, tasks, numberOfArguments);
         case "mark":
-            if (parsedUserResponse.length != 2) {
-                throw new DukeException("Invalid number of arguments, two required\n");
-            } else {
-                return new MarkCommand(ui, tasks, userResponse);
-            }
+            return new MarkCommand(ui, tasks, userResponse, numberOfArguments);
         case "unmark":
-            if (parsedUserResponse.length != 2) {
-                throw new DukeException("Invalid number of arguments, two required\n");
-            } else {
-                return new UnmarkCommand(ui, tasks, userResponse);
-            }
+            return new UnmarkCommand(ui, tasks, userResponse, numberOfArguments);
         case "todo":
-            if (parsedUserResponse.length < 2) {
-                throw new DukeException("The description of a todo cannot be empty.\n");
-            } else {
-                return new TodoCommand(ui, tasks, userResponse);
-            }
+            return new TodoCommand(ui, tasks, userResponse, numberOfArguments);
         case "deadline":
-            int bySeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/by");
-            if (bySeparationIndex == -1) {
-                throw new DukeException("Error: No date added for the deadline.\n");
-            } else {
-                return new DeadlineCommand(ui, tasks, userResponse);
-            }
+            int byIndex = Arrays.asList(parsedUserResponse).indexOf("/by");
+            return new DeadlineCommand(ui, tasks, userResponse, numberOfArguments, byIndex);
         case "event":
-            int atSeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/at");
-            if (atSeparationIndex == -1) {
-                throw new DukeException("Error: No date added for the event.\n");
-            } else {
-                return new EventCommand(ui, tasks, userResponse);
-            }
+            int atIndex = Arrays.asList(parsedUserResponse).indexOf("/at");
+            return new EventCommand(ui, tasks, userResponse, numberOfArguments, atIndex);
         case "delete":
-            if (parsedUserResponse.length != 2) {
-                throw new DukeException("Invalid number of arguments, two required\n");
-            } else {
-                return new DeleteCommand(ui, tasks, userResponse);
-            }
+            return new DeleteCommand(ui, tasks, userResponse, numberOfArguments);
         case "find":
-            if (parsedUserResponse.length < 2) {
-                throw new DukeException("Invalid number of arguments, at least two required\n");
-            } else {
-                return new FindCommand(ui, tasks, userResponse);
-            }
+            return new FindCommand(ui, tasks, userResponse, numberOfArguments);
         default:
-            throw new DukeException("I'm sorry, but I don't know what that means :-(\n");
+            throw new DukeException("Invalid command entered.\n");
         }
     }
 

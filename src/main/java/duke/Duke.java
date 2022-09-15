@@ -29,6 +29,7 @@ public class Duke {
             tasks = new TaskList();
         } catch (IOException e) {
             ui.showError(e);
+            tasks = new TaskList();
         }
     }
 

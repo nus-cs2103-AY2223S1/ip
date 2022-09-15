@@ -4,10 +4,13 @@ package duke;
  * Encapsulates a 'bye' user command.
  */
 public class ByeCommand extends Command {
+    private static final int ARGS_REQUIRED = 1;
 
     private Storage storage;
     private Ui ui;
     private TaskList tasks;
+
+
 
     /**
      * Constructor for a <code>ByeCommand</code>.
@@ -16,7 +19,10 @@ public class ByeCommand extends Command {
      * @param ui The user interface for Duke.
      * @param tasks The list of current tasks.
      */
-    public ByeCommand(Storage storage, Ui ui, TaskList tasks) {
+    public ByeCommand(Storage storage, Ui ui, TaskList tasks, int numberOfArguments) throws DukeException {
+        if (numberOfArguments > ARGS_REQUIRED) {
+            throw new DukeException("Invalid number of arguments, Usage: bye\n");
+        }
         this.storage = storage;
         this.ui = ui;
         this.tasks = tasks;

@@ -26,7 +26,7 @@ public class Storage {
      *
      * @return An <code>ArrayList</code> of tasks read from the input file.
      * @throws IOException If the file does not exist.
-     * @throws DukeException         If the file does not have the correct format.
+     * @throws DukeException If the file does not have the correct format.
      */
     public List<Task> loadTasks() throws IOException, DukeException {
         List<Task> userTasks = new ArrayList<>();
@@ -43,33 +43,45 @@ public class Storage {
             String taskDescription = parsedTaskTextRepresentation[2];
             switch (taskType) {
             case "T":
-                Task savedTodo = new Todo(taskDescription);
-                if (isTaskDone) {
-                    savedTodo.setCompleted();
-                }
-                userTasks.add(savedTodo);
+                userTasks.add(this.loadTodo(taskDescription, isTaskDone));
                 break;
             case "D":
                 LocalDate taskDeadline = LocalDate.parse(parsedTaskTextRepresentation[3]);
-                Task savedDeadline = new Deadline(taskDescription, taskDeadline);
-                if (isTaskDone) {
-                    savedDeadline.setCompleted();
-                }
-                userTasks.add(savedDeadline);
+                userTasks.add(this.loadDeadline(taskDescription, isTaskDone, taskDeadline));
                 break;
             case "E":
                 String taskEventTime = parsedTaskTextRepresentation[3];
-                Task savedEvent = new Event(taskDescription, taskEventTime);
-                if (isTaskDone) {
-                    savedEvent.setCompleted();
-                }
-                userTasks.add(savedEvent);
+                userTasks.add(this.loadEvent(taskDescription, isTaskDone, taskEventTime));
                 break;
             default:
                 throw new DukeException("Corrupted task file");
             }
         }
         return userTasks;
+    }
+
+    private Task loadEvent(String taskDescription, boolean isTaskDone, String taskEventTime) {
+        Task savedEvent = new Event(taskDescription, taskEventTime);
+        if (isTaskDone) {
+            savedEvent.setCompleted();
+        }
+        return savedEvent;
+    }
+
+    private Task loadDeadline(String taskDescription, boolean isTaskDone, LocalDate taskDeadline) {
+        Task savedDeadline = new Deadline(taskDescription, taskDeadline);
+        if (isTaskDone) {
+            savedDeadline.setCompleted();
+        }
+        return savedDeadline;
+    }
+
+    private Task loadTodo(String taskDescription, boolean isTaskDone) {
+        Task savedTodo = new Todo(taskDescription);
+        if (isTaskDone) {
+            savedTodo.setCompleted();
+        }
+        return savedTodo;
     }
 
     /**

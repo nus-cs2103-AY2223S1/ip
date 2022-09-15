@@ -48,7 +48,7 @@ public class TaskList {
             assert taskNumber < this.userTasks.size() : "Task number exceeds the number of tasks";
             this.userTasks.remove(taskNumber);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("    " + "No such task exists.\n");
+            throw new DukeException("No such task exists.\n");
         }
     }
 
@@ -63,12 +63,12 @@ public class TaskList {
             assert taskNumber < this.userTasks.size() : "Task number exceeds the number of tasks";
             Task userTask = this.userTasks.get(taskNumber);
             if (userTask.isCompleted()) {
-                throw new DukeException("    " + "This task is already marked as done.\n");
+                throw new DukeException("This task is already marked as done.\n");
             } else {
                 userTask.setCompleted();
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("    " + "No such task exists.\n");
+            throw new DukeException("No such task exists.\n");
         }
     }
 
@@ -83,13 +83,12 @@ public class TaskList {
             assert taskNumber < this.userTasks.size() : "Task number exceeds the number of tasks";
             Task userTask = this.userTasks.get(taskNumber);
             if (!userTask.isCompleted()) {
-                throw new DukeException("    "
-                        + "This task is already marked as not done yet.\n");
+                throw new DukeException("This task is already marked as not done yet.\n");
             } else {
                 userTask.setUncompleted();
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("    " + "No such task exists.\n");
+            throw new DukeException("No such task exists.\n");
         }
     }
 
@@ -125,7 +124,7 @@ public class TaskList {
         String output = "";
         for (int i = 0; i < this.userTasks.size(); i++) {
             Task userTask = this.userTasks.get(i);
-            output += "        " + (i + 1) + ". " + userTask + "\n";
+            output += (i + 1) + ". " + userTask + "\n";
         }
         return output;
     }
@@ -135,7 +134,7 @@ public class TaskList {
         for (int i = 0; i < this.userTasks.size(); i++) {
             Task userTask = this.userTasks.get(i);
             if (userTask.matchesString(searchInput)) {
-                output += "        " + (i + 1) + ". " + userTask + "\n";
+                output += (i + 1) + ". " + userTask + "\n";
             }
 
         }

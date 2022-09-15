@@ -4,18 +4,24 @@ package duke;
  * Encapsulates a user command to mark a task as done.
  */
 public class MarkCommand extends Command {
+    private static final int ARGS_REQUIRED = 2;
     private Ui ui;
     private TaskList tasks;
     private String userResponse;
 
+
     /**
      * Constructor for a <code>MarkCommand</code>.
      *
-     * @param ui The user interface for Duke.
-     * @param tasks The list of current tasks.
-     * @param userResponse The input string from the user.
+     * @param ui                The user interface for Duke.
+     * @param tasks             The list of current tasks.
+     * @param userResponse      The input string from the user.
+     * @param numberOfArguments The number of arguments supplied by the user.
      */
-    public MarkCommand(Ui ui, TaskList tasks, String userResponse) {
+    public MarkCommand(Ui ui, TaskList tasks, String userResponse, int numberOfArguments) throws DukeException {
+        if (numberOfArguments != ARGS_REQUIRED) {
+            throw new DukeException("Invalid number of arguments, Usage: mark [task number]\n");
+        }
         this.ui = ui;
         this.tasks = tasks;
         this.userResponse = userResponse;

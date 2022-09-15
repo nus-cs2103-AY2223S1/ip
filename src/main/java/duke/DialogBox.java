@@ -44,6 +44,7 @@ public class DialogBox extends HBox {
      */
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+        // reuse dialog for bot with different background color
         this.dialog.setStyle("-fx-background-radius: 20; -fx-background-color: #a8caff;");
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
