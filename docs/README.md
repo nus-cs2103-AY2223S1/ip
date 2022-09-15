@@ -15,10 +15,6 @@ Your personal assistant who will make sure you never forget your tasks ever agai
                            ░                  
 ```
 
-## Features
-
----
-
 ## Installation
 
 ---
