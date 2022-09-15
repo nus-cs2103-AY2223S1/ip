@@ -25,7 +25,7 @@ Duke is a Command Line Application to help you manage your tasks.
 
 ### `Add a ToDo Task` - todo
 Add a ToDo task into the list
-Format: 'ToDo TASK_DESCRIPTION`
+Format: `ToDo TASK_DESCRIPTION`
 Describe the action and its outcome.
 
 Example of usage: 
