@@ -1,9 +1,9 @@
-# BetaGo User Guide
+# :robot: BetaGo User Guide
 BetaGo is a personal assistant Chatbot that can help you keep track of
 your various tasks! 
 
 
-## Quickstart
+## :gear: Quickstart
 1. Ensure that you have **Java 11** installed on your computer.
 2. Download the latest `betago.jar` file from [here](https://github.com/linuschancs/ip/releases/download/A-Release/betago.jar).
 3. Copy the file to the folder you want to use as your home folder.
@@ -11,7 +11,7 @@ your various tasks!
 5. Refer to the [Command Summary](#command-summary) table for a quick guide on what commands you may give to BetaGo.
 
 
-## Features 
+## :sparkles: Features 
 
 ### Types of Tasks
 
@@ -29,7 +29,7 @@ Betago allows you to easily:
 - Load and Save tasks from a `.txt` file
 
 
-## Usage
+## :desktop_computer: Usage
 Notes about the command format:
 - Words in brackets `()` refer to fields that require the respective input from the user
 - Words in square brackets `[]` are optional fields
