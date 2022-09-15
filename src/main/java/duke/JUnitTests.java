@@ -7,15 +7,6 @@ import task.ToDos;
 
 
 public class JUnitTests {
-    @Test
-    public void checkNumeric() throws IOException, ParseException {
-        SavedTaskHandler storage = new SavedTaskHandler();
-        Parser parser = new Parser(storage);
-        assertEquals(parser.isNumeric("i am not numeric"), false);
-        assertEquals(parser.isNumeric("i am not numeric 2"), false);
-        assertEquals(parser.isNumeric("i am not numeric"), false);
-        assertEquals(parser.isNumeric("111111"), true);
-    }
 
     @Test
     public void addAddsTasks() {

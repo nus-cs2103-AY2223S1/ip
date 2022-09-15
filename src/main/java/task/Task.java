@@ -12,6 +12,10 @@ public class Task {
     private boolean isDone = false;
     private String priority = "[ ]";
 
+    /**
+     * Constructor for Task Object
+     * @param taskName the string representation of task to be done
+     */
     public Task(String taskName) {
         this.taskName = taskName;
     }

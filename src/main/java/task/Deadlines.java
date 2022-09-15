@@ -16,6 +16,11 @@ public class Deadlines extends Task {
 
     private LocalDate localDate;
 
+    /**
+     * Constructor for Deadlines Object
+     * @param deadline the string representation of deadline to be done
+     * @param dateStr the string representation of the date of the event
+     */
     public Deadlines(String deadline, String dateStr) throws ParseException {
         super(deadline);
         assert deadline != null : "Please input a Deadline task!";

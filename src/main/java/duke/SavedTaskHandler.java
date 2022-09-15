@@ -33,6 +33,9 @@ public class SavedTaskHandler {
     private boolean isFileExists = false;
     private String previousList = "";
 
+    /**
+     * Constructor for SavedTaskHandler Object
+     */
     SavedTaskHandler() throws IOException, ParseException {
 
         this.file = new File(filePath);
@@ -51,7 +54,7 @@ public class SavedTaskHandler {
         }
     }
 
-    public void processPreviousList(Scanner scanner) throws ParseException {
+    private void processPreviousList(Scanner scanner) throws ParseException {
 
         while (scanner.hasNextLine()) {
             String nextTaskStr = scanner.nextLine();
@@ -84,13 +87,18 @@ public class SavedTaskHandler {
 
     }
 
+    /**
+     * Returns the string representation of the previously saved TaskList
+     * @return a String representing the previously saved TaskList
+     *
+     */
     public String getPreviousList() {
         return this.previousList;
     }
 
     /**
      * Returns the TaskList object encapsulated in this SavedTaskHandler object
-     * @return TaskList obejct
+     * @return TaskList object
      *
      */
     public TaskList getTaskList() {
@@ -98,6 +106,11 @@ public class SavedTaskHandler {
         return this.taskList;
     }
 
+    /**
+     * Returns the String displaying a message on whether a previous list existed
+     * @return String message of whether a previous list existed
+     *
+     */
     public String getFileMessage() {
         if (isFileExists) {
             return FILE_EXISTS;

@@ -10,6 +10,10 @@ public class DukeException extends Exception {
 
     private String errorMessage;
 
+    /**
+     * Constructor for DukeException Object
+     * @param errorMessage the error message to be displayed
+     */
     public DukeException(String errorMessage) {
         super(errorMessage);
         this.errorMessage = errorMessage;

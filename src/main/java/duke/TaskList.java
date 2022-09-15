@@ -13,7 +13,11 @@ import java.util.function.Consumer;
 public class TaskList {
     private ArrayList<Task> arrayList;
 
+    /**
+     * Constructor for TaskList Object
+     */
     public TaskList() {
+
         this.arrayList = new ArrayList<>(100);
     }
 
@@ -48,6 +52,12 @@ public class TaskList {
 
     }
 
+    /**
+     * Replaces the element at the specified position in this list with the specified element.
+     * @param index index of the element to replace
+     * @param task Task to be stored at the specified position
+     * @return the Task previously at the specified position
+     */
     public Task set(int index, Task task) {
         return this.arrayList.set(index, task);
     }
@@ -71,6 +81,10 @@ public class TaskList {
         return this.arrayList.size();
     }
 
+    /**
+     * Performs the given action for each element of the Iterable
+     * until all elements have been processed or the action throws an exception.
+     */
     public void forEach(Consumer<? super Task> consumer) {
 
         arrayList.forEach(consumer);

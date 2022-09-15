@@ -12,6 +12,11 @@ public class Events extends Task {
 
     private final String date;
 
+    /**
+     * Constructor for Events Object
+     * @param event the string representation of event to be done
+     * @param date the string representation of the date of the event
+     */
     public Events(String event, String date) {
         super(event);
         assert event != null : "Please input an Event task!";

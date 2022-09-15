@@ -22,6 +22,9 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Constructor for Duke Object
+     */
     public Duke() throws IOException, ParseException {
         ui = new Ui();
         storage = new SavedTaskHandler();
@@ -31,7 +34,7 @@ public class Duke {
 
     public String getResponse(String input) throws ParseException {
         try {
-            Command c = parser.parse1(input);
+            Command c = parser.parse(input);
             return c.execute();
         } catch (DukeException e) {
             return "exception bro";

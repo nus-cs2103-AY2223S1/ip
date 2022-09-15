@@ -10,6 +10,10 @@ package task;
  */
 public class ToDos extends Task {
 
+    /**
+     * Constructor for ToDos Object
+     * @param todo the string representation of todo task to be done
+     */
     public ToDos(String todo) {
 
         super(" " + todo);

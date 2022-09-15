@@ -10,7 +10,7 @@
     <children>
         <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #1e81b0#1e81b0; -fx-text-fill: white; -fx-label-padding: 8; -fx-background-radius: 20;" text="Label" wrapText="true">
             <font>
-                <Font name="Wawati SC Regular" size="18.0" />
+                <Font name="Wawati SC Regular" size="13.0" />
             </font>
             <HBox.margin>
                 <Insets right="6.0" />

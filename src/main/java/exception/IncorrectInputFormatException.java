@@ -4,6 +4,10 @@ public class IncorrectInputFormatException extends Exception {
 
     private String errorMessage;
 
+    /**
+     * Constructor for IncorrectInputFormatException Object
+     * @param errorMessage the error message to be displayed
+     */
     public IncorrectInputFormatException(String errorMessage) {
         super(errorMessage);
         this.errorMessage = errorMessage;

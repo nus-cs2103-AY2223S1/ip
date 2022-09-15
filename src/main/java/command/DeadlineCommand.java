@@ -3,9 +3,15 @@ package command;
 import duke.TaskList;
 import duke.Ui;
 import task.Deadlines;
-
 import java.text.ParseException;
 
+/**
+ * An abstract class that represents DeadlineCommand which extends Command
+ *
+ * @author  Wee Xin Yang, Markus
+ * @version 0.2
+ * @since   2022-9-15
+ */
 public class DeadlineCommand extends Command{
 
     private TaskList taskList;
@@ -13,6 +19,9 @@ public class DeadlineCommand extends Command{
     private String taskAndDate;
     private Ui ui;
 
+    /**
+     * Constructor for DeadlineCommand Object
+     */
     public DeadlineCommand(TaskList taskList, String input, String taskAndDate) {
         this.taskList = taskList;
         this.input = input;
@@ -20,6 +29,10 @@ public class DeadlineCommand extends Command{
         this.ui = new Ui();
     }
 
+    /**
+     * Returns a string of the executed DeadlineCommand
+     * @return a string after the execution of DeadlineCommand
+     */
     @Override
     public String execute() throws ParseException {
         String[] findTask = input.split(taskAndDate);
