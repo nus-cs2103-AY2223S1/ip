@@ -17,7 +17,7 @@ Tutter is **not** your average chat bot! Modelled after our favourite loveable r
 
 5. Within your terminal, execute `java -jar Duke.jar` to launch the chatbot. 
 
-6. The interface should look like this:
+6. The interface should look like this: 
 
    ![image](https://user-images.githubusercontent.com/97384776/190425169-636a29e1-dd0b-4cb2-8780-760fb81f8cc6.png)
   
