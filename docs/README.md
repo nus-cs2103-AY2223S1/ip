@@ -52,7 +52,7 @@ Mark a task as complete in the task list.
 
 Mark a task as incomplete in the task list. Tasks are marked as incomplete by default.
 
-### Tag :label:
+### Tag 🏷
 
 Tag a task in task list with a custom tag message.
 
@@ -193,7 +193,7 @@ Success message containing task that has been unmarked.
 Okay! The following task "{Task}" has been marked as not done!"
 ```
 
-### :label: `tag` - tag a task with a custom tag message
+### 🏷 `tag` - tag a task with a custom tag message
 
 Tag a task given the task index and a custom tag message.
 Display success message with tagged task.
