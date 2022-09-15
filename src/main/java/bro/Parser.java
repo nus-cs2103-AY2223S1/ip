@@ -116,9 +116,9 @@ public class Parser {
      */
     public static LocalDateTime timeParser(String time) throws BroException {
         try {
-            return LocalDateTime.parse(time.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
+            return LocalDateTime.parse(time.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy hhmm"));
         } catch (DateTimeParseException e) {
-            throw new BroException("Please enter the date in the format dd/MM/yyyy kkmm");
+            throw new BroException("Please enter the date in the format dd/MM/yyyy hhmm");
         }
     }
 }

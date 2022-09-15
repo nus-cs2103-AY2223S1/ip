@@ -48,7 +48,7 @@ public class ModifyCommand extends Command {
             } catch (IOException e) {
                 throw new BroException("Couldn't delete task!");
             }
-            return ui.markUi(tasklist, index) + ui.listSize(tasklist);
+            return ui.markUi(tasklist, index);
         case UNMARK:
             try {
                 tasklist.unmarkTask(this.index);

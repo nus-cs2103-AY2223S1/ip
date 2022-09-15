@@ -105,14 +105,18 @@ public class Ui {
      */
     public static String helpUi() {
         return " COMMAND" + "\t\t" + "PURPOSE" + "\n"
-                + "1. list :\n\t\tTo view the task left \n"
-                + "2. todo description :\n\t\tTo add todo task \n"
-                + "3. deadline desc /by dd/mm/yyyy kkmm :\n\t\tTo add deadline task \n"
-                + "4. event desc /at dd/mm/yyyy kkmm :\n\t\tTo add event task \n"
+                + "1. list :\n\t\tTo view the tasks left \n"
+                + "2. todo descr :\n\t\tTo add todo task \n"
+                + "3. deadline descr /by dd/mm/yyyy hhmm :\n\t\tTo add task with deadline\n"
+                + "4. event descr /at dd/mm/yyyy hhmm :\n\t\tTo add an event\n"
                 + "5. mark index :\n\t\tTo mark the task as done \n"
                 + "6. unmark index :\n\t\tTo mark the task as not done \n"
                 + "7. delete index :\n\t\tTo delete the task in that index \n"
                 + "8. find keyword :\n\t\tTo find task with the keyword \n"
-                + "9. bye :\n\t\tTo exit the chatbot";
+                + "9. bye :\n\t\tTo exit the chatbot\n\n"
+                + "EXAMPLES :\n"
+                + "~ todo buy grocery\n"
+                + "~ deadline CS2109S HW /by 14/09/2022 1159\n"
+                + "~ event Christmas party /at 24/12/2022 0930";
     }
 }
