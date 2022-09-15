@@ -11,9 +11,10 @@ import tasks.Deadline;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
+import java.util.Arrays;
 
 public class DeadlineCommand extends Command {
-    static final String DEADLINE_DATETIME_FORMAT = "d/MM/uuuu HHmm";
+    static final String DEADLINE_DATETIME_FORMAT = "d/M/uuuu HHmm";
     static final String DEADLINE_STORAGE_FORMAT = "MMM dd uuuu, HHmm";
     private final String[] args;
 
@@ -22,6 +23,14 @@ public class DeadlineCommand extends Command {
     }
 
     public static void validateArguments(String[] args) throws DukeException {
+        assert args.length > 0 : "No arguments entered into DeadlineCommand validateArguments";
+
+        // ERROR HANDLING: Check for missing /by delimiter
+        if (!Arrays.asList(args).contains("/by")) {
+            throw new DukeException("Please include /by to describe the time range of this Deadline!");
+        }
+
+
         String description = Parser.splitArrayIntoSubstrings(args, "/by").get(0);
         // ERROR HANDLING: Check for empty Tasks.Deadline description
         if (description.equalsIgnoreCase("")) {
