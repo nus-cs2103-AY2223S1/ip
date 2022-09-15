@@ -19,7 +19,7 @@ public class Ui {
     public static String showNewTask(Task newTask) {
         String toReturn = "Got it. I've added this task:\n" +
                 newTask +
-                String.format("Now you have %d tasks in the list.", Task.getTaskCount());
+                String.format("\nNow you have %d tasks in the list.", Task.getTaskCount());
         return toReturn;
     }
 
