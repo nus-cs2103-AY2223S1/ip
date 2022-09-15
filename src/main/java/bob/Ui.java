@@ -67,6 +67,7 @@ public class Ui {
      * @return list of tasks
      */
     public String displayTaskList(TaskList taskList, String outputMessage) {
+        assert taskList.getLength() > 0 : "length of taskList should never be negative";
         if (taskList.getLength() == 0) {
             return this.displayError("you have no tasks!");
         }
@@ -88,6 +89,7 @@ public class Ui {
      * @return task marked
      */
     public String displayMarked(TaskList tasks, int index) {
+        assert tasks.getLength() > 0 : "length of taskList should never be negative";
         String response = "yay! you've completed a task!\n" + tasks.getTask(index).toString();
         return print(response);
     }
@@ -100,8 +102,10 @@ public class Ui {
      * @return task unmarked
      */
     public String displayUnmarked(TaskList tasks, int index) {
+        assert tasks.getLength() > 0 : "length of taskList should never be negative";
         String response = "aw...i guess there's another task.\n" + tasks.getTask(index).toString();
         return print(response);
+
     }
 
     /**
@@ -112,6 +116,7 @@ public class Ui {
      * @return task removed and number of tasks left
      */
     public String displayRemoved(TaskList tasks, Task task) {
+        assert tasks.getLength() > 0 : "length of taskList should never be negative";
         String response = "that's one less task for you! removed:" + "\n  "
                 + task.toString() + "\njust " + (tasks.getLength()) + " tasks left!";
         return print(response);
@@ -125,6 +130,7 @@ public class Ui {
      * @return task added and number of tasks
      */
     public String displayAddedTask(TaskList tasks, Task task) {
+        assert tasks.getLength() > 0 : "length of taskList should never be negative";
         String response = "okay! new task:" + "\n  " + task.toString()
                 + "\njust " + tasks.getLength() + " tasks left!";
         return print(response);

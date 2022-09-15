@@ -109,6 +109,7 @@ public class TaskList {
      * @return number of tasks in the task list
      */
     public int getLength() {
+        assert this.length >= 0: "length of list should never be negative";
         return this.length;
     }
 }
