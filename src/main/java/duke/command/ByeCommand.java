@@ -5,7 +5,7 @@ import duke.task.TaskList;
 
 public class ByeCommand extends Command {
     @Override
-    public void execute(TaskList tasks) {
-        Parser.printMsg("Bye. Hope to see you again soon!");
+    public String execute(TaskList tasks) {
+        return "Bye. Hope to see you again soon!";
     }
 }

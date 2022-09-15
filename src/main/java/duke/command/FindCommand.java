@@ -16,9 +16,9 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) {
+    public String execute(TaskList tasks) {
         TaskList matchingList = tasks.findByKeyword(keyword);
-        Parser.printMsg(String.format("Here are the matching tasks in your list:\n%s",
-                matchingList));
+        return String.format("Here are the matching tasks in your list:\n%s",
+                matchingList);
     }
 }

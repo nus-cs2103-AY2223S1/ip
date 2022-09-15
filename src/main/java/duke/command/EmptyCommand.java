@@ -4,6 +4,7 @@ import duke.task.TaskList;
 
 public class EmptyCommand extends Command {
     @Override
-    public void execute(TaskList tasks) {
+    public String execute(TaskList tasks) {
+        return null;
     }
 }
