@@ -31,10 +31,20 @@ public class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Gets the description of a task
+     *
+     * @return task description
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Gets the status icon of a task
+     *
+     * @return task status icon
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
