@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.deku;
 
 import java.io.IOException;
 
@@ -11,21 +11,21 @@ import java.util.ArrayList;
 public class Parser {
 
 
-    static void validate(String type) throws DukeException {
+    static void validate(String type) throws DekuException {
         if (!type.equals("todo") && !type.equals("deadline") && !type.equals("event")) {
-            throw new DukeException("");
+            throw new DekuException("");
         }
     }
 
     /**
-     * Takes in a user input and informs Duke what to do.
+     * Takes in a user input and informs Deku what to do.
      *
-     * @param command  The main action of Duke.
+     * @param command  The main action of Deku.
      * @param input    The whole user input.
-     * @param taskList tasks attribute of Duke.
+     * @param taskList tasks attribute of Deku.
      * @return String output command.
      */
-    public static String parse(String command, String input, TaskList taskList, Duke duke) {
+    public static String parse(String command, String input, TaskList taskList, Deku deku) {
         assert input != "" : "input must not be empty!";
         String[] inputArr = input.split(" ");
         switch (command) {
@@ -68,17 +68,19 @@ public class Parser {
                 String addLine = TaskList.addTask("todo", input);
                 Storage.rewriteTasks(taskList);
                 return addLine;
-            } catch (IndexOutOfBoundsException | DukeException | IOException e) {
+            } catch (IndexOutOfBoundsException | DekuException | IOException e) {
                 System.out.println(e.getMessage());
                 return String.format("Oops!! The description of a %s cannot be empty", inputArr[0]);
             }
+//            finally {
+//                return "I added a todo task!";
+//            }
         case "deadline":
             try {
                 String addLine = TaskList.addTask("deadline", input);
-                System.out.println("I added this deadline");
                 Storage.rewriteTasks(taskList);
                 return addLine;
-            } catch (IndexOutOfBoundsException | DukeException | IOException e) {
+            } catch (IndexOutOfBoundsException | DekuException | IOException e) {
                 System.out.println(e.getMessage());
                 return String.format("Oops!! The description of a %s cannot be empty", inputArr[0]);
             }
@@ -87,7 +89,7 @@ public class Parser {
                 String addLine = TaskList.addTask("event", input);
                 Storage.rewriteTasks(taskList);
                 return addLine;
-            } catch (IndexOutOfBoundsException | DukeException | IOException e) {
+            } catch (IndexOutOfBoundsException | DekuException | IOException e) {
                 System.out.println(e.getMessage());
                 return String.format("Oops!! The description of a %s cannot be empty", inputArr[0]);
             }
@@ -96,7 +98,7 @@ public class Parser {
             ArrayList<Task> tasks = taskList.find(keyword);
             return Ui.showMatchingTasks(tasks);
         case "bye":
-            duke.closeWindow();
+            deku.closeWindow();
             return Ui.showGoodbyeMessage();
         case "reschedule":
             try {
@@ -116,7 +118,7 @@ public class Parser {
         default:
             try {
                 validate(inputArr[0]);
-            } catch (DukeException e) {
+            } catch (DekuException e) {
                 return "Oh no!! I'm sorry, but I don't know what that means :(";
             }
         }

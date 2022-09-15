@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.deku;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.Scanner;
@@ -19,10 +20,11 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+
 /**
- * Represents the Duke Application.
+ * Represents the Deku Application.
  */
-public class Duke extends Application {
+public class Deku extends Application {
 
     private Storage storage;
     private TaskList tasks;
@@ -35,16 +37,24 @@ public class Duke extends Application {
     private Button sendButton;
     private Scene scene;
 
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/deku.png"));
+    // link to deku: https://www.facebook.com/izuku.gemsouls/photos/a.110536514587209/110537464587114/
+    // link to kacchan: https://twinfinite.net/wp-content/uploads/2022/06/Matching-Pfp-My-hero-1.jpg
+    private Image deku = new Image(this.getClass().getResourceAsStream("/images/deku.png"));
     private Image user = new Image(this.getClass().getResourceAsStream("/images/kacchan.png"));
 
     /**
-     * Initializes the Duke Application.
-     * @param filePath Path to extract the current list of tasks Duke has kept track of.
+     * Initializes the Deku Application.
+     * @param filePath Path to extract the current list of tasks Deku has kept track of.
      */
-    public Duke(String filePath) {
+    public Deku(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+
+        File theDir = new File(filePath);
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
+
         try {
             tasks = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
@@ -55,8 +65,8 @@ public class Duke extends Application {
 
 
     /**
-     * Prints the initial tasks Duke has based on data/duke.txt.
-     * @param filePath Path to duke.txt.
+     * Prints the initial tasks Deku has based on data/deku.txt.
+     * @param filePath Path to deku.txt.
      * @throws FileNotFoundException
      */
     private static void printFileContents(String filePath) throws FileNotFoundException {
@@ -89,7 +99,7 @@ public class Duke extends Application {
 
         // more code to be added here later
 
-        stage.setTitle("Duke2");
+        stage.setTitle("Deku");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
@@ -147,12 +157,12 @@ public class Duke extends Application {
     }
 
     /**
-     * Runs Duke.
+     * Runs Deku.
      */
-    public void run() {
+    public void run() throws IOException, DekuException {
         try {
             System.out.println("Current Tasks:");
-            printFileContents("data/duke.txt");
+            printFileContents("data/deku.txt");
         } catch (FileNotFoundException e) {
             System.out.println("File not found, added file");
         }
@@ -185,7 +195,7 @@ public class Duke extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    String getResponse(String input) {
+    String getResponse(String input) throws IOException, DekuException {
         String command = this.ui.getUserCommand(input);
         String response = Parser.parse(command, input, tasks, this);
         return response;
@@ -195,8 +205,8 @@ public class Duke extends Application {
         return this.isClose;
     }
 
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+    public static void main(String[] args) throws IOException, DekuException {
+        new Deku("data/deku.txt").run();
     }
 }
 

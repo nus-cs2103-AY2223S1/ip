@@ -1,26 +1,26 @@
-package seedu.duke;
+package seedu.deku;
 
 import java.util.ArrayList;
 
 /**
- * Represents the Ui for Duke.
+ * Represents the Ui for Deku.
  */
 public class Ui {
 
-    public static final String INTRO = "Hello! I'm Duke\nWhat can I do for you?";
+    public static final String INTRO = "Hello! I'm Deku\nWhat can I do for you?";
     public static final String DIVIDER = "____________________________________________________";
     public static final String GOODBYE = "Bye. Hope to see you again soon!";
 
 
     /**
-     * Prints loading error if data/duke.txt does not exist.
+     * Prints loading error if data/deku.txt does not exist.
      */
     public static void showLoadingError() {
 
     }
 
     /**
-     * Prints welcome message when Duke is initialized.
+     * Prints welcome message when Deku is initialized.
      */
     public static String showWelcomeMessage() {
         return String.format("%s\n%s\n%s", DIVIDER, INTRO, DIVIDER);

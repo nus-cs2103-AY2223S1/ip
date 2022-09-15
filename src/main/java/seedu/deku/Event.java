@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.deku;
 
 /**
  * Represents an Event task.

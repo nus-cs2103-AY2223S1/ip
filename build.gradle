@@ -49,11 +49,11 @@ checkstyle {
 }
 
 application {
-    mainClassName = "seedu.duke.Launcher"
+    mainClassName = "seedu.deku.Launcher"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "deku"
     archiveClassifier = null
 }
 

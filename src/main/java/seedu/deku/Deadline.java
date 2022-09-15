@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.deku;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -49,7 +49,6 @@ public class Deadline extends Task {
      * @return String of due date and time.
      */
     public String dueDateToString() {
-        System.out.println("I called date to string");
         String dueDateString = this.dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         String output;
         if (this.dueTime.equals("")) {

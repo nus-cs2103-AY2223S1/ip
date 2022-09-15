@@ -1,15 +1,13 @@
-package seedu.duke;
+package seedu.deku;
 
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskListTest {
 
     @Test
-    public void addTaskTest()  throws DukeException{
+    public void addTaskTest()  throws DekuException{
         TaskList tasklist = new TaskList();
         Event event = new Event("seminar", "blank time");
         tasklist.addTask("event", "event seminar /at blank time");
@@ -18,7 +16,7 @@ public class TaskListTest {
 
     // it doesn't seem right that my test for one method should rely on the 1st method being correct first
     @Test
-    public void deleteTaskTest() throws DukeException {
+    public void deleteTaskTest() throws DekuException {
         TaskList tasklist = new TaskList();
         Event event = new Event("seminar", "blank time");
         tasklist.addTask("event", "event seminar /at blank time");

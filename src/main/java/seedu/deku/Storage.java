@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.deku;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Represents the Storage for Duke.
+ * Represents the Storage for Deku.
  */
 public class Storage {
 
@@ -28,7 +28,7 @@ public class Storage {
 
 
     /**
-     * Returns list of tasks in an ArrayList based on lines in data/duke.txt
+     * Returns list of tasks in an ArrayList based on lines in data/deku.txt
      *
      * @return list of tasks.
      * @throws FileNotFoundException
@@ -59,7 +59,6 @@ public class Storage {
         List<String> list = Arrays.asList(year, month, day);
 
         String dateToParse = String.join("-", list);
-        System.out.println(dateToParse);
         return LocalDate.parse(dateToParse);
     }
 
@@ -71,7 +70,6 @@ public class Storage {
      * @param description Task description.
      */
     public void addToDo(ArrayList<Task> taskList, String isMarked, String description) {
-//        System.out.println("added T");
         ToDo todo = new ToDo(description);
         if (isMarked.equals("1")) {
             todo.mark();
@@ -126,13 +124,13 @@ public class Storage {
     }
 
     /**
-     * Reads lines from data/duke.txt and updates Duke.tasks with tasks stored in duke.txt.
+     * Reads lines from data/deku.txt and updates Deku.tasks with tasks stored in deku.txt.
      *
      * @param taskList tasklist of Storage object.
      * @throws FileNotFoundException
      */
     public void getTasks(ArrayList<Task> taskList) throws FileNotFoundException {
-        File f = new File("data/duke.txt");
+        File f = new File("data/deku.txt");
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String[] taskInList = s.nextLine().split(" \\| ");
@@ -165,30 +163,30 @@ public class Storage {
     }
 
     /**
-     * Updates data/duke.txt whenever there is a change to the list of tasks.
+     * Updates data/deku.txt whenever there is a change to the list of tasks.
      *
      * @param tl
      * @throws IOException
      */
-    public static void rewriteTasks(TaskList tl) throws IOException{
-        System.out.println("I am rewriting");
+    public static void rewriteTasks(TaskList tl) throws IOException {
         ArrayList<Task> currTaskList = tl.taskList;
-        String path = "data/duke.txt";
+        File theDir = new File("/data/deku.txt");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
+        String path = "data/deku.txt";
         FileWriter fw = new FileWriter(path);
         ArrayList<String> taskListArray = new ArrayList<>();
         for (int i = 0; i < currTaskList.size(); i++) {
             if (currTaskList.get(i) instanceof ToDo) {
-                System.out.println("task is a todo");
                 String taskString = String.format("T | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
                         currTaskList.get(i).getDescription());
                 taskListArray.add(taskString);
             } else if (currTaskList.get(i) instanceof Deadline) {
-                System.out.println("task is a deadline");
                 String taskString = String.format("D | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
                         currTaskList.get(i).getDescription(), ((Deadline) currTaskList.get(i)).dueDateString);
                 taskListArray.add(taskString);
             } else {
-                System.out.println("task is an event");
                 String taskString = String.format("E | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
                         currTaskList.get(i).getDescription(), getEventDueDate((Event) currTaskList.get(i)));
                 taskListArray.add(taskString);

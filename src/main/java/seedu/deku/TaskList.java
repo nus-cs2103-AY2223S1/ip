@@ -1,18 +1,18 @@
-package seedu.duke;
+package seedu.deku;
 
 import java.time.LocalDate;
 
 import java.util.ArrayList;
 
 /**
- * Represents a list of tasks for Duke.
+ * Represents a list of tasks for Deku.
  */
 public class TaskList {
 
     public static ArrayList<Task> taskList;
 
     /**
-     * Creates a list of tasks for Duke.
+     * Creates a list of tasks for Deku.
      *
      * @param taskList
      */
@@ -21,7 +21,7 @@ public class TaskList {
     }
 
     /**
-     * Represents a list of tasks for Duke.
+     * Represents a list of tasks for Deku.
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
@@ -42,9 +42,9 @@ public class TaskList {
      *
      * @param taskType Either a "todo", "deadline" or "event"
      * @param input User input
-     * @throws DukeException
+     * @throws DekuException
      */
-    public static String addTask(String taskType, String input) throws DukeException {
+    public static String addTask(String taskType, String input) throws DekuException {
         String addLine = "Got it. I've added this task:";
         switch (taskType) {
             case "todo":
@@ -71,11 +71,11 @@ public class TaskList {
     }
 
 
-    private static ToDo addToDo(String input) throws DukeException {
+    private static ToDo addToDo(String input) throws DekuException {
         String[] removeTaskType = input.split("todo ");
         String description = String.join("", removeTaskType);
         if (description.equals("todo")) {
-            throw new DukeException("");
+            throw new DekuException("");
         }
         return new ToDo(description);
 
@@ -200,7 +200,7 @@ public class TaskList {
     }
 
     /**
-     * Prints tasks in data/duke.txt when Duke is initialized.
+     * Prints tasks in data/deku.txt when Deku is initialized.
      */
     public String printList() {
         String list = "Here are the tasks in your list:";

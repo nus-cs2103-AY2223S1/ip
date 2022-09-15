@@ -1,9 +1,0 @@
-E | 0 | return book | June 19th
-E | 1 | project meeting | Aug 6th 2-4pm
-T | 1 | join sports club
-E | 0 | project meeting | Mon 2-4pm
-T | 0 | visit teacher
-E | 0 | help me | 1800
-E | 0 | help me | 1800
-T | 0 | readdddd
-D | 0 | return book | 10-2-2020 
