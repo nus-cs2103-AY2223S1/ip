@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import duke.Duke;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -60,7 +61,7 @@ public class MainWindow extends AnchorPane {
     }
 
     private void checkByeMessage(String response) {
-        String byeMessage = "Bye. See you again soon!";
+        String byeMessage = "Bye. Hope to see you again soon!";
         if (response == byeMessage) {
             TimerTask exitTask = new TimerTask() {
                 @Override
