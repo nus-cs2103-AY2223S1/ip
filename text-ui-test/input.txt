@@ -1,0 +1,42 @@
+random
+todo
+deadline
+deadline /by
+deadline  /by
+deadline  /by Thursday
+event
+event /at
+event  /at
+event  /at IDK
+mark 69
+mark -1
+unmark 420
+unmark -69
+todo borrow book
+list
+deadline return book /by 2022-02-02
+list
+event project meeting /at 2022-02-02
+list
+mark 1
+list
+mark 2
+list
+mark 3
+list
+unmark 2
+list
+unmark 1
+list
+unmark 3
+list
+deadline do homework /by 2023-11-01
+list
+random command
+delete -1
+list
+delete 7290
+list
+delete 2
+list
+bye
