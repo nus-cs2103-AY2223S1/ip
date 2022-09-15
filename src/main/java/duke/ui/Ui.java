@@ -10,6 +10,8 @@ public class Ui {
 
     /**
      * Greets the user by printing some lines upon start-up.
+     *
+     * @return A response to the user with respect to the commmand.
      */
     public static String greetUser() {
         return "Charmposter! What move should I use?";
@@ -17,15 +19,18 @@ public class Ui {
 
     /**
      * Bids farewell to the user by printing some lines before exit.
+     *
+     * @return A response to the user with respect to the commmand.
      */
     public static String sayBye() {
-         return "Nooooo, not the pokeball! AHHHHHH!\n*pop*";
+        return "Nooooo, not the pokeball! AHHHHHH!\n*pop*";
     }
 
     /**
      * Displays the relevant information when a Task is added into the TaskList.
      *
-     * @param task a Task that is added to the TaskList
+     * @param task A Task that is added to the TaskList.
+     * @return A response to the user with respect to the commmand.
      */
     public static String add(Task task) {
         String str = "Charmposter! I've added this task for you!\n\t"
@@ -37,7 +42,8 @@ public class Ui {
     /**
      * Displays a list of tasks from a TaskList.
      *
-     * @param taskList a TaskList to be displayed
+     * @param taskList A TaskList to be displayed.
+     * @return A response to the user with respect to the commmand.
      */
     public static String list(TaskList taskList) {
         return taskList.toString();
@@ -46,7 +52,8 @@ public class Ui {
     /**
      * Displays the relevant information when a Task is deleted from a TaskList.
      *
-     * @param task a Task that is deleted from a TaskList
+     * @param task A Task that is deleted from a TaskList.
+     * @return A response to the user with respect to the commmand.
      */
     public static String delete(Task task) {
         String str = "Charmposter! I've incinerated the following task!\n" + task;
@@ -56,7 +63,8 @@ public class Ui {
     /**
      * Displays the relevant information when a Task is mark as done.
      *
-     * @param task a Task to be marked as done
+     * @param task A Task to be marked as done.
+     * @return A response to the user with respect to the commmand.
      */
     public static String mark(Task task) {
         String str = "Charmposter! I've marked this task as done!\n\t" + task;
@@ -66,7 +74,8 @@ public class Ui {
     /**
      * Displays the relevant information when a Task is mark as not done.
      *
-     * @param task a Task to be marked as not done
+     * @param task a Task to be marked as not done.
+     * @return A response to the user with respect to the commmand.
      */
     public static String unmark(Task task) {
         String str = "Charmposter! I've unmarked this task for you!\n\t" + task;
@@ -76,8 +85,9 @@ public class Ui {
     /**
      * Searches and displays a list of tasks which match the input description.
      *
-     * @param description keywords for searching the TaskList
-     * @param taskList the TaskList to search in
+     * @param description Keywords for searching the TaskList.
+     * @param taskList The TaskList to search in.
+     * @return A response to the user with respect to the commmand.
      */
     public static String find(String description, TaskList taskList) {
         String str = "";
@@ -98,6 +108,13 @@ public class Ui {
         return str;
     }
 
+    /**
+     * Displays the relevant information when undoing a command.
+     *
+     * @param isReverted A boolean representing if undoing of command is successful.
+     * @param lastUserInput The user input given for the previous command to be undone.
+     * @return A response to the user with respect to the commmand.
+     */
     public static String undoCommandMessage(Boolean isReverted, String lastUserInput) {
         if (isReverted) {
             return "Alright! I've reverted your last change:\n\t" + lastUserInput;

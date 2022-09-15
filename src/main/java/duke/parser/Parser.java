@@ -1,5 +1,8 @@
 package duke.parser;
 
+import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
+
 import duke.command.Command;
 import duke.command.AddCommand;
 import duke.command.DeleteCommand;
@@ -13,9 +16,6 @@ import duke.exception.DukeException;
 import duke.model.Deadline;
 import duke.model.Event;
 import duke.model.ToDo;
-
-import java.time.format.DateTimeParseException;
-import java.time.LocalDate;
 
 import static java.lang.Integer.parseInt;
 
@@ -43,7 +43,7 @@ public class Parser {
         /**
          * A constructor for a Keyword.
          *
-         * @param keyword a string indicating the user's intentions
+         * @param keyword a string indicating the user's intentions.
          */
         Keyword(String keyword) {
             this.value = keyword;
@@ -52,8 +52,8 @@ public class Parser {
         /**
          * Finds and returns a Keyword based on the user's input Keyword.
          *
-         * @param inputKeyword the user's input Keyword
-         * @return the corresponding Keyword related to a Command
+         * @param inputKeyword The user's input Keyword.
+         * @return The corresponding Keyword related to a Command.
          */
         public static Keyword getKeyword(String inputKeyword) throws DukeException {
             for (Keyword k : Keyword.values()) {
@@ -68,8 +68,8 @@ public class Parser {
     /**
      * Returns the corresponding Command with respect to the user's input.
      *
-     * @param userInput the user's input
-     * @return a Command associated with the user's input
+     * @param userInput The user's input.
+     * @return A Command associated with the user's input.
      */
     public static Command parse(String userInput) throws DukeException {
         String[] input = userInput.split(" ", 2);
@@ -84,52 +84,59 @@ public class Parser {
         String[] dates;
 
         switch (keyword) {
-            case BYE:
-                command = new ExitCommand();
-                break;
-            case LIST:
-                command = new ListCommand();
-                break;
-            case MARK:
-                command = new MarkCommand(parseInt(input[1]));
-                Parser.updateLastUserInput(userInput);
-                break;
-            case UNMARK:
-                command = new UnmarkCommand(parseInt(input[1]));
-                Parser.updateLastUserInput(userInput);
-                break;
-            case TODO:
-                command = new AddCommand(new ToDo(input[1]));
-                Parser.updateLastUserInput(userInput);
-                break;
-            case DEADLINE:
-                description = input[1].split(" /by ", 2);
-                command = new AddCommand(new Deadline(description[0], description[1]));
-                Parser.updateLastUserInput(userInput);
-                break;
-            case EVENT:
-                description = input[1].split(" /at ", 2);
-                dates = description[1].split(" ");
-                command = new AddCommand(new Event(description[0], dates[0], dates[1]));
-                Parser.updateLastUserInput(userInput);
-                break;
-            case DELETE:
-                command = new DeleteCommand(parseInt(input[1]));
-                Parser.updateLastUserInput(userInput);
-                break;
-            case FIND:
-                command = new FindCommand(input[1]);
-                break;
-            case UNDO:
-                command = new UndoCommand(lastUserInput);
-                break;
-            default:
-                throw new DukeException("Don't understand command: " + inputKeyword);
+        case BYE:
+            command = new ExitCommand();
+            break;
+        case LIST:
+            command = new ListCommand();
+            break;
+        case MARK:
+            command = new MarkCommand(parseInt(input[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
+        case UNMARK:
+            command = new UnmarkCommand(parseInt(input[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
+        case TODO:
+            command = new AddCommand(new ToDo(input[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
+        case DEADLINE:
+            description = input[1].split(" /by ", 2);
+            command = new AddCommand(new Deadline(description[0], description[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
+        case EVENT:
+            description = input[1].split(" /at ", 2);
+            dates = description[1].split(" ");
+            command = new AddCommand(new Event(description[0], dates[0], dates[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
+        case DELETE:
+            command = new DeleteCommand(parseInt(input[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
+        case FIND:
+            command = new FindCommand(input[1]);
+            break;
+        case UNDO:
+            command = new UndoCommand(lastUserInput);
+            break;
+        default:
+            throw new DukeException("Don't understand command: " + inputKeyword);
         }
         assert command != null : "Command should not be null";
         return command;
     }
 
+    /**
+     * Checks the validity of the user input.
+     *
+     * @param userInput The user's input.
+     * @param keyword The keyword given by the user.
+     * @throws DukeException An exception related to the program.
+     */
     public static void checkInputValidity(String userInput, Keyword keyword) throws DukeException {
         String[] input = userInput.split(" ", 2);
         String[] inputArray = userInput.split(" ", 0);

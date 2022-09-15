@@ -1,11 +1,5 @@
 package duke.storage;
 
-import duke.model.Task;
-import duke.model.TaskList;
-import duke.model.ToDo;
-import duke.model.Deadline;
-import duke.model.Event;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -15,6 +9,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
+
+import duke.model.Task;
+import duke.model.TaskList;
+import duke.model.ToDo;
+import duke.model.Deadline;
+import duke.model.Event;
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
@@ -54,7 +54,7 @@ public class Storage {
     /**
      * Loads the last previous state from the storage file.
      *
-     * @return a list of Tasks from the storage file memory.
+     * @return A list of Tasks from the storage file memory.
      */
     public List<Task> loadFromFile() {
         String line = "";
@@ -77,7 +77,11 @@ public class Storage {
                     case "E":
                         t = new Event(str[2], str[3], str[4]);
                         break;
+                    default:
+                        break;
                     }
+                    assert t != null : "t should not be null";
+
                     tasks.add(t);
                     if (parseInt(str[1]) == 1) {
                         t.mark();

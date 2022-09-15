@@ -19,7 +19,7 @@ public class Duke {
     /**
      * A constructor for the chatbot.
      *
-     * @param filePath the file path for storage
+     * @param filePath The file path for storage.
      */
     public Duke(String filePath) {
         this.ui = new Ui();
@@ -28,9 +28,10 @@ public class Duke {
     }
 
     /**
-     * Returns a string representation of a response based on the user's input
-     * @param input
-     * @return a string representation of the response
+     * Returns a string representation of a response based on the user's input.
+     *
+     * @param input The user's input.
+     * @return A string representation of the response.
      */
     public String getResponse(String input) {
         try {

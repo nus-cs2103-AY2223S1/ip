@@ -1,11 +1,12 @@
 package duke.command;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.model.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * A command the exit the program.
