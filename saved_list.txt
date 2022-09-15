@@ -1,4 +1,2 @@
-E | 0 | orbital splashdown | 2022/08/22 13:00:00
-D | 0 | CS2103T iP Week 4 | 2022/08/27 18:00:00
-D | 0 | CS2101 OP1 | 2022/09/08 16:00:00
-T | 1 | read a book
+D | 0 | CS2103T iP submission | 2022/09/16 23:59:00
+E | 0 | NUS internship day | 2022/09/14 16:00:00
