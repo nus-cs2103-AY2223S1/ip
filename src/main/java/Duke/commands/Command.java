@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public abstract class Command {
 
+    
     /**
      * Executes the command.
      *
