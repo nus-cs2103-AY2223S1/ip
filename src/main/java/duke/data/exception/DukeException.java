@@ -2,6 +2,7 @@ package duke.data.exception;
 
 /**
  * This class encapsulates the Duke Exception
+ * The exception is thrown when the chatbot encounters invalid inputs
  */
 public class DukeException extends Exception {
 

@@ -20,7 +20,6 @@ public class ListCommand extends Command {
 
     /**
      * Constructs a new list command
-     *
      * @param info Essential information for the output list
      */
     public ListCommand(String... info) {
@@ -30,16 +29,6 @@ public class ListCommand extends Command {
         } else {
             date = info[0];
         }
-    }
-
-    /**
-     * Checks if the command is an Exit Command
-     *
-     * @return True if it is an Exit Command
-     */
-    @Override
-    public boolean isExit() {
-        return false;
     }
 
     /**

@@ -11,15 +11,6 @@ import duke.ui.Ui;
 public class InvalidCommand extends Command {
 
     /**
-     * Checks if the command is an Exit Command
-     * @return True if it is an Exit Command
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * Executes the Command
      * @param ui Prints the messages based on the type of Command
      * @param storage Saves the modified list of tasks

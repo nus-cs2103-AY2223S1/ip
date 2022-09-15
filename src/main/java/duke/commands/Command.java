@@ -9,13 +9,6 @@ import duke.ui.Ui;
  * This class represents a command provided by the user
  */
 public abstract class Command {
-    private boolean isExit = false;
-
-    /**
-     * Checks if the command is an Exit Command
-     * @return True if it is an Exit Command
-     */
-    public abstract boolean isExit();
 
     /**
      * Executes the Command

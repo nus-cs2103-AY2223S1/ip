@@ -9,7 +9,10 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import duke.data.exception.DukeException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
 import duke.tasks.Task;
+import duke.tasks.ToDo;
 
 /**
  * This class encapsulates a list of tasks
@@ -21,8 +24,23 @@ public class TaskList {
      * Constructs a new Task List
      * @param tasks The list of tasks
      */
-    public TaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
+    public TaskList(ArrayList<String> tasks) {
+        this.tasks = new ArrayList<>();
+        for (String task : tasks) {
+            switch (task.charAt(0)) {
+            case 'T':
+                this.tasks.add(ToDo.createTodo(task));
+                break;
+            case 'D':
+                this.tasks.add(Deadline.createDeadline(task));
+                break;
+            case 'E':
+                this.tasks.add(Event.createEvent(task));
+                break;
+            default:
+                // nothing happens
+            }
+        }
     }
 
     /**

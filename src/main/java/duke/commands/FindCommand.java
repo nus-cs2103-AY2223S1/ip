@@ -14,13 +14,12 @@ import duke.ui.Ui;
 public class FindCommand extends Command {
     private final String[] keyword;
 
+    /**
+     * Constructs a new Find Command
+     * @param keyword A list of keywords to match
+     */
     public FindCommand(String ...keyword) {
         this.keyword = keyword;
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 
     @Override

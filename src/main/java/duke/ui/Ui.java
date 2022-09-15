@@ -175,7 +175,7 @@ public class Ui {
      * @return A summary of user's activities
      */
     public String printSummary(List<Task> completedWithinRange, List<Task> completedTasks, List<Task> upcomingTasks) {
-        String overview = "Your activity log :D\n\n";
+        String overview = "Your activity log :D\n";
         String completedOverTheWeek = printCompletedOverTheWeek(completedWithinRange);
         String completed = printCompleted(completedTasks);
         String upcoming = printUpcoming(upcomingTasks);
@@ -184,7 +184,7 @@ public class Ui {
 
     private String printCompletedOverTheWeek(List<Task> list) {
         if (list.size() == 0) {
-            return "No activities in the past week!";
+            return "\nNo activities in the past week!";
         }
 
         String header = "\nYou have completed the following tasks in the past week!";
@@ -200,11 +200,11 @@ public class Ui {
 
     private String printCompleted(List<Task> list) {
         if (list.size() == 0) {
-            return "0 tasks completed!\n\n";
+            return "\n0 tasks completed!\n";
         }
 
-        String header = String.format("\nYou have completed %d %s in your list!\n", list.size(),
-                list.size() > 1 ? "tasks" : "task");
+        String header = String.format("\nYou have completed %d %s in your list!\n",
+                list.size(), list.size() > 1 ? "tasks" : "task");
         StringBuilder stringBuilder = new StringBuilder(header);
         for (int i = 0; i < list.size(); i++) {
             String formatted = String.format("%d. %s\n", i + 1, list.get(i));
@@ -216,10 +216,10 @@ public class Ui {
 
     private String printUpcoming(List<Task> list) {
         if (list.size() == 0) {
-            return "No upcoming tasks!\n\n";
+            return "\nNo upcoming tasks!\n";
         }
 
-        String header = String.format("You have %d upcoming %s in your list!\n",
+        String header = String.format("\nYou have %d upcoming %s in your list!\n",
                 list.size(), list.size() > 1 ? "tasks" : "task");
         StringBuilder stringBuilder = new StringBuilder(header);
 

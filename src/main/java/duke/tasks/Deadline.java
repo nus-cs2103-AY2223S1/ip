@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
  * This class encapsulates a deadline item
  */
 public class Deadline extends Task {
+    private static final String TASK_TYPE = "D";
     protected LocalDate by;
 
     /**
@@ -17,10 +18,30 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(by, formatter);
-        this.by = localDate;
+        this.by = LocalDate.parse(by, formatter);
     }
 
+    /**
+     * Creates a new deadline using the information provided
+     * @param deadline Deadline information
+     * @return A deadline task
+     */
+    public static Deadline createDeadline(String deadline) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        String[] components = deadline.split(",");
+        LocalDate eventDate = LocalDate.parse(components[3], format);
+        Deadline d = new Deadline(components[2], eventDate.format(formatter));
+        d.setIsDone(components[1].equals("true"));
+        d.setDateMarked(components[4]);
+
+        return d;
+    }
+
+    /**
+     * Returns a string representation of the deadline object
+     * @return A string representation of the deadline object
+     */
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
@@ -43,6 +64,23 @@ public class Deadline extends Task {
      */
     @Override
     public String getTaskType() {
-        return "D";
+        return TASK_TYPE;
+    }
+
+    /**
+     * Converts the task to the storage format
+     * @return The storage format
+     */
+    @Override
+    public String stringify() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        String formattedDate = by.format(formatter);
+        String dateMarkedCompleted = dateMarked == null
+                ? "na"
+                : dateMarked.format(formatter);
+        String sep = System.getProperty("line.separator");
+        String storageFormat = String.format("%s,%s,%s,%s,%s,%s", TASK_TYPE, isDone,
+                description, formattedDate, dateMarkedCompleted, sep);
+        return storageFormat;
     }
 }

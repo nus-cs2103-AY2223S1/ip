@@ -16,11 +16,13 @@ import duke.ui.Ui;
  */
 public class SummariseCommand extends Command {
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
+    /**
+     * Executes the Command
+     * @param ui Prints the messages based on the type of Command
+     * @param storage Saves the modified list of tasks
+     * @param taskList List of tasks
+     * @throws DukeException if invalid inputs are provided
+     */
     @Override
     @SuppressWarnings("unchecked")
     public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {

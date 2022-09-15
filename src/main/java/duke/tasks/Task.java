@@ -13,8 +13,8 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor to create a new task.
-     * @param description The task description.
+     * Constructs a new task
+     * @param description The task description
      */
     public Task(String description) {
         dateMarked = null;
@@ -23,15 +23,15 @@ public abstract class Task {
     }
 
     /**
-     * To get the task status
-     * @return A string that describes the task status. X indicates that the task is completed.
+     * Gets the task status
+     * @return A string that describes the task status. X indicates that the task is completed
      */
     public String getStatusIcon() {
         return isDone ? "X" : " ";
     }
 
     /**
-     * To mark a task as completed.
+     * Marks a task as completed.
      */
     public void markAsDone() {
         isDone = true;
@@ -39,7 +39,7 @@ public abstract class Task {
     }
 
     /**
-     * To mark a task as not completed.
+     * Marks a task as not completed.
      */
     public void markAsNotDone() {
         isDone = false;
@@ -105,4 +105,10 @@ public abstract class Task {
      * @return The task type
      */
     public abstract String getTaskType();
+
+    /**
+     * Converts the task to the storage format
+     * @return The storage format
+     */
+    public abstract String stringify();
 }

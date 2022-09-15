@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
  * This class encapsulates an event item
  */
 public class Event extends Task {
+    private static final String TASK_TYPE = "E";
     protected LocalDate at;
 
     /**
@@ -21,6 +22,27 @@ public class Event extends Task {
         this.at = localDate;
     }
 
+    /**
+     * Creates a new event using the information provided
+     * @param event The event information
+     * @return An event
+     */
+    public static Event createEvent(String event) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        String[] components = event.split(",");
+        LocalDate eventDate = LocalDate.parse(components[3], format);
+        Event e = new Event(components[2], eventDate.format(formatter));
+        e.setIsDone(components[1].equals("true"));
+        e.setDateMarked(components[4]);
+
+        return e;
+    }
+
+    /**
+     * Returns a string representation of the event object
+     * @return A string representation of the event object
+     */
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
@@ -43,6 +65,23 @@ public class Event extends Task {
      */
     @Override
     public String getTaskType() {
-        return "E";
+        return TASK_TYPE;
+    }
+
+    /**
+     * Converts the task to the storage format
+     * @return The storage format
+     */
+    @Override
+    public String stringify() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        String formattedDate = at.format(formatter);
+        String sep = System.getProperty("line.separator");
+        String dateMarkedCompleted = dateMarked == null
+                ? "na"
+                : dateMarked.format(formatter);
+        String storageFormat = String.format("%s,%s,%s,%s,%s,%s", TASK_TYPE, isDone,
+                description, formattedDate, dateMarkedCompleted, sep);
+        return storageFormat;
     }
 }
