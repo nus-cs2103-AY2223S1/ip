@@ -1,4 +1,4 @@
-package Duke.Task;
+package Task;
 
 import java.util.Arrays;
 

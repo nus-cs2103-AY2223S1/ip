@@ -1,4 +1,4 @@
-package Duke.Exception;
+package Exception;
 
 /**
  * Represents the Exceptions thrown by the methods of the classes when handling data.

@@ -1,4 +1,4 @@
-package Duke.Task;
+package Task;
 
 /**
  * Represents an object that allows user to describe something they need to do.

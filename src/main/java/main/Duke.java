@@ -1,15 +1,26 @@
-package Duke;
+package main;
 
-import Duke.Exception.DukeException;
-import Duke.Parser.Parser;
-import Duke.Storage.Storage;
-import Duke.TaskList.TaskList;
-import Duke.UI.Ui;
+import Exception.DukeException;
+import Parser.Parser;
+import Storage.Storage;
+import TaskList.TaskList;
+import UI.Ui;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 
 /**
  * The launcher for the Duke application.
  */
-public class Duke {
+public class Duke extends Application {
+//    private ScrollPane scrollPane;
+//    private VBox dialogContainer;
+//    private TextField userInput;
+//    private Button sendButton;
+//    private Scene scene;
+
     private TaskList taskList;
     private final Storage storage;
     private final Ui ui;
@@ -25,6 +36,15 @@ public class Duke {
             this.taskList = new TaskList();
         }
         this.parser = new Parser(this.ui, this.taskList);
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 
     private void run() {

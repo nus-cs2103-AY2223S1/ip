@@ -1,12 +1,12 @@
-package Duke.Parser;
+package Parser;
 
-import Duke.Exception.DukeException;
-import Duke.Task.Deadline;
-import Duke.Task.Task;
-import Duke.Task.ToDo;
-import Duke.Task.Event;
-import Duke.TaskList.TaskList;
-import Duke.UI.Ui;
+import Exception.DukeException;
+import Task.Deadline;
+import Task.Task;
+import Task.ToDo;
+import Task.Event;
+import TaskList.TaskList;
+import UI.Ui;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

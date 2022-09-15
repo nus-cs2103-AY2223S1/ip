@@ -1,7 +1,7 @@
-package Duke.UI;
+package UI;
 
-import Duke.Task.Task;
-import Duke.TaskList.TaskList;
+import Task.Task;
+import TaskList.TaskList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,10 +131,6 @@ public class Ui {
             printables.add(String.format("%d.%s", index, task.toString()));
         }
         prettyPrint(printables);
-    }
-
-    private void prettyPrint() {
-        prettyPrint("");
     }
 
     private void prettyPrint(String printable) {

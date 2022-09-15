@@ -5,17 +5,10 @@ import Duke.Task.Deadline;
 import Duke.Task.Task;
 import Duke.Task.ToDo;
 import Duke.Task.Event;
-import Duke.TaskList.TaskList;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class StorageStub {
     public Task loadTask(String taskStr) throws DukeException {
