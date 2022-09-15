@@ -121,7 +121,7 @@ Here are the matching tasks in your task list:
 1. [T][ ] first task
 ```
 
-###`bye` - Exit the program.
+### `bye` - Exit the program.
 To exit the program, run `bye` and a goodbye message will appear before the application closes.
 
 Example usage: `bye`
