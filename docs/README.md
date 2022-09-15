@@ -11,7 +11,7 @@ Interface.
 
 ## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer
-2. Download the latest`duke.jar` from [here](https://github.com/Jnwkm/ip/releases/tag/v2.0).
+2. Download the latest`duke.jar` from [here](https://github.com/Jnwkm/ip/releases/tag/v0.2).
 3. Copy file to the folder you want to use as the home folder for DaDuke.
 4. Double-click the file to start the app & let DaDuke do the rest!
 
