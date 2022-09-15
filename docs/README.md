@@ -41,7 +41,7 @@ Notes about the command format:
 - Some commands have a shorter aliases for keywords. The format below will show both keywords for the same command. 
   
    e.g. Both `list` and `l` will display a list of the current tasks. 
-
+---
 
 ### `list` - List all tasks
 
@@ -68,6 +68,7 @@ Here are the tasks in your list:
 2.[E][] project meeting (at: 14-Sep-22 12:00)
 3.[D][] math homework (by: 01-Oct-22 23:59)
 ```
+---
 
 ### `todo` - Add a new ToDo
 
@@ -88,7 +89,7 @@ Got it. I've added this task:
  [T][] borrow book
 Now you have 4 task(s) in the list.
 ```
-
+---
 
 ### `deadline` - Add a new Deadline
 
@@ -109,7 +110,7 @@ Got it. I've added this task:
  [D][] math homework (by: 01-Nov-22 23:59)
 Now you have 4 task(s) in the list.
 ```
-
+---
 
 ### `event` - Add a new Event
 
@@ -127,9 +128,10 @@ Expected outcome:
 
 ```
 Got it. I've added this task:
- [E][] project meeting (by: 01-Nov-22 23:59)
+ [E][] project meeting (at: 01-Nov-22 23:59)
 Now you have 4 task(s) in the list.
 ```
+---
 
 ### `delete` - delete task
 
@@ -152,6 +154,7 @@ Noted. I've removed this task:
  [T][] borrow book
 Now you have 4 task(s) in the list.
 ```
+---
 
 ### `mark` - mark task as done
 
@@ -173,7 +176,7 @@ Expected outcome:
 Nice! I've marked this as done:
  [T][X] borrow book
 ```
-
+---
 
 ### `unmark` - mark task as undone
 
@@ -195,7 +198,7 @@ Expected outcome:
 Ok, I've marked this task as not done yet:
  [T][] borrow book
 ```
-
+---
 
 ### `find` - find tasks by description
 
@@ -215,10 +218,13 @@ Expected outcome:
 Here are the matching tasks in your list:
 1.[E][] project meeting (at: 14-Sep-22 12:00)
 ```
+---
 
 ### `bye` - Exit Duke
 
 Exits and closes the Duke application after 1 second.
 
 Format: `bye`
+- Extraneous parameters will result in bye command not being recognized.
 
+  e.g. if the command specifies `bye 123`, Duke will not understand this command and will not close the application.
