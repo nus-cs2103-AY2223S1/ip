@@ -1,7 +1,7 @@
 package duke.storage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,6 +24,7 @@ public class DukeDecoder {
             File directory = new File("./data");
             directory.mkdir();
             File file = new File(directory, "List.txt");
+            file.createNewFile();
             Scanner s = new Scanner(file);
             while (s.hasNextLine()) {
                 String[] task = s.nextLine().split("\\|");
@@ -50,6 +51,8 @@ public class DukeDecoder {
             return workList;
         } catch (FileNotFoundException e) {
             System.out.println("File not found!");
+        } catch (IOException e) {
+            System.out.println("Cannot load file!");
         }
         return new ArrayList<Task>();
     }

@@ -59,7 +59,7 @@ public class Task {
             Task task = workList.get(index - 1);
             task.isDone = true;
             DukeEncoder.rewriteList(workList);
-            return TextUi.MARK_AS_DONE_MESSAGE + task;
+            return TextUi.MARK_AS_DONE_MESSAGE + "\n" + task;
         } catch (StringIndexOutOfBoundsException e) {
             return new DukeException.EmptyMarkingException().throwDukeException();
         } catch (NumberFormatException e) {
@@ -79,7 +79,7 @@ public class Task {
             Task task = workList.get(index - 1);
             task.isDone = false;
             DukeEncoder.rewriteList(workList);
-            return TextUi.UNMARK_MESSAGE + task;
+            return TextUi.UNMARK_MESSAGE + "\n" + task;
         } catch (StringIndexOutOfBoundsException e) {
             return new DukeException.EmptyMarkingException().throwDukeException();
         } catch (NumberFormatException e) {
