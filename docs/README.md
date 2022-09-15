@@ -19,7 +19,7 @@ View the project on [GitHub](https://github.com/april-anh/ip).
 | `find [keyword]`                   | Find tasks that have the description matching the keyword        |
 | `bye`                              | Exit chat bot                                                    |
 
-:star::star::star: Flexible search!
+:star: :star: :star: Flexible search!
 - The search is case-insensitive and matches partial words.
 - The `find` command will show all task that match at least 3 characters of your keyword, i.e. finding CON will return conan.
 
