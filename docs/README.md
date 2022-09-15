@@ -1,7 +1,6 @@
----
-layout: page
-title: User Guide
----
+# User Guide
+
+<br>
 
 DukePro is a **ChatBot application for managing tasks with Command Line style syntax** with a Graphical User Interface (GUI). You get to talk to the ChatBot **_Christina_**!
 
