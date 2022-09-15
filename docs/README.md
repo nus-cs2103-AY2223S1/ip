@@ -33,8 +33,8 @@ Adds any three type of tasks into the list shown in sample below:
 - deadline tasks: `deadline final year project /by 2022-09-10 2215`
 
 <details><summary><mark>Tips!</mark></summary>
-Please follow the format shown above! Every first word in the input line is a command. (Case-sensitive)
-The second section of the input line is the tasks detail.
+Please follow the format shown above! Every first word in the input line is a command. (Case-sensitive) <br>
+The second section of the input line is the tasks detail.<br>
 The third section after /at and /by is the date and time of the task. Please follow the format.(YYYY-MM-DD HHmm)
 </details>
 
@@ -78,10 +78,50 @@ Use list command to show the current tasks list you have if you are not sure wha
   <li>Expected outcome:
   <pre><code>  ~~~~~~~-----DUKE-----~~~~~~~
   New task is registered as you wish, you can come back to check if you wish!:
-  [E][ ] go for final exam (at: Nov 04 2022 10:00)
+    [E][ ] go for final exam (at: Nov 04 2022 10:00)
   Now you have 1 tasks in your list.</code></pre>
   </li>
   <li><b>Description:</b> There is currently 1 task in user's list and the adding command performed successfully.</li>
+</ul>
+
+</details>
+
+### `todo` - adding a todo task
+
+<details><summary>ToDo task is added with a correct format and duke response user the command success status</summary>
+
+<ul>
+  <li> Example of usage:<br>
+    <code>todo workout tomorrow morning.</code>
+  </li>
+
+  <li>Expected outcome:
+  <pre><code>  ~~~~~-----DUKE-----~~~~~
+  New task is registered as you wish, you can come back to check if you wish!:
+    [T][ ] workout tomorrow morning.
+  Now you have 1 tasks on your list.</code></pre>
+  </li>
+  <li><b>Description:</b> There is currently 1 task in user's list and the adding command performed successfully.</li>
+</ul>
+
+</details>
+
+### `deadline` - adding a deadline task
+
+<details><summary>Deadline task is added with a correct format and duke response user the command success status</summary>
+
+<ul>
+  <li> Example of usage:<br>
+    <code>deadline ip project /by 2022-09-15 2359</code>
+  </li>
+
+  <li>Expected outcome:
+  <pre><code>  ~~~~~-----DUKE-----~~~~~
+  New task is registered as you wish, you can come back to check if you wish!:
+    [D][ ] ip project (by: Sep 15 2022 23:59)
+  Now you have 2 tasks on your list.</code></pre>
+  </li>
+  <li><b>Description:</b> There are currently 2 tasks in user's list and the adding command performed successfully.</li>
 </ul>
 
 </details>
