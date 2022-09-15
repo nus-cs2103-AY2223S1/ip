@@ -54,11 +54,11 @@ dependencies {
 }
 
 application {
-    mainClassName = "duke.Launcher"
+    mainClassName = "anya.Launcher"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "anya"
     archiveClassifier = null
 }
 

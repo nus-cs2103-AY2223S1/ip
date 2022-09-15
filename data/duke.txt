@@ -1,27 +1,29 @@
 1:D:X:return book:2022-06-13
-2:E: :birthday party:2022-12-31
-3:D: :submit homework 1:2022-08-17
-4:E:X:wedding:2022-07-18
-5:D:X:book review:2022-11-24
-6:T: :go USS
-7:D: :finish assignment 2:2022-11-04
-8:E: :birthday party:2022-10-10
-9:T: :go Japan
-10:T:X:watch Harry Potter
-11:D: :finish quiz:2022-12-04
-12:D: :watch lecture video:2022-09-18
-13:T: :eat at bread kitchen restaurant
-14:T: :go cat cafe
-15:D: :review journal:2022-09-10
-16:T: :sleep 12 hours
-17:D: :finish peer review:2022-11-24
-18:T: :go Japan
-19:E: :birthday party:2022-12-12
-20:E: :prom:2022-12-21
-21:D: :finish assignment 3:2022-12-12
-22:E: :anime fair:2022-11-09
-23:T:X:play game
-24:D: :write resume:2022-03-03
-25:E: :tea party:2022-12-14
-26:T: :carnival
-27:D: :assignment 3:2022-12-14
+2:D: :submit homework 1:2022-08-17
+3:E:X:wedding:2022-07-18
+4:D:X:book review:2022-11-24
+5:T: :go USS
+6:D: :finish assignment 2:2022-11-04
+7:E: :birthday party:2022-10-10
+8:T: :go Japan
+9:T:X:watch Harry Potter
+10:D: :finish quiz:2022-12-04
+11:D: :watch lecture video:2022-09-18
+12:T: :eat at bread kitchen restaurant
+13:D: :review journal:2022-09-10
+14:T: :sleep 12 hours
+15:D: :finish peer review:2022-11-24
+16:T: :go Japan
+17:E: :birthday party:2022-12-12
+18:E: :prom:2022-12-21
+19:D: :finish assignment 3:2022-12-12
+20:E: :anime fair:2022-11-09
+21:T:X:play game
+22:D: :write resume:2022-03-03
+23:E: :tea party:2022-12-14
+24:T: :carnival
+25:D: :assignment 3:2022-12-14
+26:D: :finish assignment 1:2022-09-15
+27:D: :finish assignment 2:2022-09-20
+28:E: :violin trial lesson:2022-12-11
+29:T: :cat cafe
