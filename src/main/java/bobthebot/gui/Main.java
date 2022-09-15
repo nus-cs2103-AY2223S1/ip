@@ -34,50 +34,38 @@ public class Main extends Application {
     @FXML
     private Button sendButton;
 
-    private static final String filePath = "./../../data/data.txt";
+    private static final String FILEPATH = "./../../data/data.txt";
+    private static final String TITLE = "BobTheBot - Friendly Task Managing Bot";
+    private static final int STAGE_MIN_HEIGHT = 700;
+    private static final int STAGE_MAX_HEIGHT = 500;
+    private static final int MAIN_LAYOUT_PREF_WIDTH = 500;
+    private static final int MAIN_LAYOUT_PREF_HEIGHT = 700;
+    private static final int SCROLLPANE_PREF_WIDTH = 500;
+    private static final int SCROLLPANE_PREF_HEIGHT = 675;
+    private static final int USER_INPUT_WIDTH = 440;
+    private static final int SEND_BUTTON_WIDTH = 65;
+
     private Scene scene;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image bob = new Image(this.getClass().getResourceAsStream("/images/bob.png"));
 
     private Parser parser = new Parser();
     private ToDoList todolist;
-    private Storage storage = new Storage(filePath);
+    private Storage storage = new Storage(FILEPATH);
 
     @Override
     public void start(Stage stage) {
-        scrollPane = new ScrollPane();
-        dialogContainer = new VBox();
-        scrollPane.setContent(dialogContainer);
-
-        userInput = new TextField();
-        sendButton = new Button("Send");
+        initialise();
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
-        stage.setTitle("BobTheBot - Friendly Task Managing Bot");
-        stage.setResizable(false);
-        stage.setMinHeight(700);
-        stage.setMinWidth(500);
+        stage.setTitle(TITLE);
+        stage.setResizable(true);
+        stage.setMinHeight(STAGE_MIN_HEIGHT);
+        stage.setMinWidth(STAGE_MAX_HEIGHT);
 
-        mainLayout.setPrefSize(500, 700);
-
-        scrollPane.setPrefSize(500, 675);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
-        scrollPane.setVvalue(1.0);
-        scrollPane.setFitToWidth(true);
-
-        // You will need to import `javafx.scene.layout.Region` for this.
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(getDialogLabel(
-                Ui.sayWelcome()), new ImageView(bob)));
-
-        userInput.setPrefWidth(440.0);
-
-        sendButton.setPrefWidth(65.0);
+        mainLayout.setPrefSize(MAIN_LAYOUT_PREF_WIDTH, MAIN_LAYOUT_PREF_HEIGHT);
 
         AnchorPane.setTopAnchor(scrollPane, 1.0);
 
@@ -101,6 +89,34 @@ public class Main extends Application {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * Initialises the components of the GUI.
+     */
+    private void initialise() {
+        scrollPane = new ScrollPane();
+        dialogContainer = new VBox();
+        scrollPane.setContent(dialogContainer);
+
+        userInput = new TextField();
+        sendButton = new Button("Send");
+
+        scrollPane.setPrefSize(SCROLLPANE_PREF_WIDTH, SCROLLPANE_PREF_HEIGHT);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+        scrollPane.setVvalue(1.0);
+        scrollPane.setFitToWidth(true);
+
+        // You will need to import `javafx.scene.layout.Region` for this.
+        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(getDialogLabel(
+                Ui.sayWelcome()), new ImageView(bob)));
+
+        userInput.setPrefWidth(USER_INPUT_WIDTH);
+        sendButton.setPrefWidth(SEND_BUTTON_WIDTH);
     }
 
     private Label getDialogLabel(String text) {
@@ -159,6 +175,6 @@ public class Main extends Application {
                 System.exit(0);
             }
         };
-        new Timer().schedule(exitApp, 10000);
+        new Timer().schedule(exitApp, 2000);
     }
 }

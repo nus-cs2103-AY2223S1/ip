@@ -12,14 +12,16 @@ public class DialogBox extends HBox {
 
     private Label text;
     private ImageView displayPicture;
+    private static final int DISPLAY_PICTURE_WIDTH = 100;
+    private static final int DISPLAY_PICTURE_HEIGHT = 100;
 
     public DialogBox(Label l, ImageView iv) {
         text = l;
         displayPicture = iv;
 
         text.setWrapText(true);
-        displayPicture.setFitWidth(100.0);
-        displayPicture.setFitHeight(100.0);
+        displayPicture.setFitWidth(DISPLAY_PICTURE_WIDTH);
+        displayPicture.setFitHeight(DISPLAY_PICTURE_HEIGHT);
 
         this.setAlignment(Pos.TOP_RIGHT);
         this.getChildren().addAll(text, displayPicture);
