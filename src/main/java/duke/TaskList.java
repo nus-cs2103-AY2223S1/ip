@@ -3,6 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -230,5 +231,24 @@ public class TaskList {
      */
     public static void clearTaskList() {
         tasks.clear();
+    }
+
+    /**
+     * Sorts all tasks by name in ascending or descending order.
+     *
+     * @param order String that determines whether to sort in ascending or descending order.
+     * @return A string that describes whether the sort was in ascending or descending order.
+     */
+    public static String sortTaskListByName(String order) throws DukeException {
+        switch (order.strip()) {
+        case "/a":
+            tasks.sort(Comparator.comparing(Task::getTaskName));
+            return "ascending";
+        case "/d":
+            tasks.sort((taskA, taskB) -> taskB.getTaskName().compareTo(taskA.getTaskName()));
+            return "descending";
+        default:
+            throw new DukeException("Sort failed, missing order argument: /a for ascending, /d for descending");
+        }
     }
 }
