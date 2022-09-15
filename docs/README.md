@@ -15,11 +15,11 @@
  
 5. Run the command java -jar Wagwan.jar (i.e., run the command in the same folder as the jar file)
 
-6. The GUI similar to the below should appear in a few seconds.
+6. The GUI similar to the image below should appear in a few seconds.
+
+7. Type the command in the command box and press Enter to execute it. Refer to the Features below for details of each command.
 
 ![Ui](Ui.png)
-
-5. Type the command in the command box and press Enter to execute it. Refer to the Features below for details of each command.
 
 ## Features
 
