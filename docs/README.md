@@ -12,27 +12,27 @@ Duke is a Command Line Application to help you manage your tasks.
 
 ## Features 
 
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
+* [Add Task]
+  * [Add ToDo]
+  * [Add Deadline]
+  * [Add Event]
+* [Mark/unmark Task as Done]
+* [List All Tasks]
+* [Find Task]
+* [Delete Task]
 
 ## Usage
 
-### `Keyword` - Describe action
-
+### `Add a ToDo Task` - todo [<Task Description>]
+Add a ToDo task into the list
 Describe the action and its outcome.
 
 Example of usage: 
-
-`keyword (optional arguments)`
+<br>
+`todo Hello World`
 
 Expected outcome:
 
-Description of the outcome.
 
 ```
 expected output
