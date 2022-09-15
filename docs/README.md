@@ -159,6 +159,12 @@ Format: `bye`
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Acknowledgements
+
+* [SnakeYAML](https://mvnrepository.com/artifact/org.yaml/snakeyaml) (under **APACHE 2.0** License) for YAML parsing
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
 Command | Format, Examples
