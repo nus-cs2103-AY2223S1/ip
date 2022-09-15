@@ -13,8 +13,8 @@ import duke.util.TaskList;
  * @author hyuchen@u.nus.edu
  */
 public class MarkCommand extends Command {
-    private static final String MARK_TASK = "Great Job on completing this task! ^.^ :\n";
-    private static final String UNMARK_TASK = "Grrr, remember to finish your task! =3=:\n";
+    private static final String MARK_TASK = "Great Job on completing %s! ^.^ :\n";
+    private static final String UNMARK_TASK = "Grrr, remember to finish %s! =3=:\n";
     private final ArrayList<String> words;
     private final String firstWord;
 
@@ -41,36 +41,81 @@ public class MarkCommand extends Command {
     @Override
     public String execute(Storage storage, TaskList tasklist) throws DukeException {
         StringBuilder output = new StringBuilder();
-        int taskNum = Integer.parseInt(words.get(0));
         switch (firstWord) {
         case "mark":
-            // Work on implementing error for empty mark argument
-            if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
-                tasklist.tasks.get(taskNum - 1).markDone();
-                output.append(MARK_TASK)
-                        .append(tasklist.tasks.get(taskNum - 1));
-            } else if (tasklist.tasks.size() == 0) {
-                throw new DukeException("There's nothing in your list to mark! T^T");
-            } else {
-                throw new DukeException("Please enter a valid task number to mark. T^T");
-            }
+            markTaskNumber(tasklist, output);
             break;
         case "unmark":
-            // Work on implementing error for empty unmark argument
-            if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
-                tasklist.tasks.get(taskNum - 1).markUndone();
-                output.append(UNMARK_TASK)
-                        .append(tasklist.tasks.get(taskNum - 1));
-            } else if (tasklist.tasks.size() == 0) {
-                throw new DukeException("There's nothing in your list to unmark! T^T");
-            } else {
-                throw new DukeException("Please enter a valid task number to unmark. T^T");
-            }
+            unmarkTaskNumber(tasklist, output);
             break;
         default:
             // Defensive coding for default statement.
             output.append(Messages.UNKNOWN_COMMAND);
         }
         return output.toString();
+    }
+
+    private void markTaskNumber(TaskList tasklist, StringBuilder output) throws DukeException {
+        if (tasklist.tasks.size() == 0) {
+            throw new DukeException(String.format(Messages.EMPTY_TASK_ERROR, "mark"));
+        }
+        if (words.get(0).equals("all") && words.size() == 1) {
+            output.append(String.format(MARK_TASK, "all your tasks"));
+            for (int i = 0; i < tasklist.tasks.size(); ++i) {
+                tasklist.tasks.get(i).markDone();
+                output.append(i + 1)
+                        .append(". ")
+                        .append(tasklist.tasks.get(i))
+                        .append("\n");
+            }
+        } else {
+            output.append(String.format(MARK_TASK, (words.size() == 1 ? "this task" : "all these tasks")));
+            for (String str : words) {
+                try {
+                    int taskNum = Integer.parseInt(str);
+                    tasklist.tasks.get(taskNum - 1).markDone();
+                    output.append(taskNum)
+                            .append(". ")
+                            .append(tasklist.tasks.get(taskNum - 1))
+                            .append("\n");
+                } catch (NumberFormatException e) {
+                    throw new DukeException("Please use 'mark all' or 'mark <task numbers>'. T^T");
+                } catch (IndexOutOfBoundsException e) {
+                    throw new DukeException(String.format(Messages.INVALID_TASK_NUMBER, "mark"));
+                }
+            }
+        }
+    }
+
+    private void unmarkTaskNumber(TaskList tasklist, StringBuilder output) throws DukeException {
+        if (tasklist.tasks.size() == 0) {
+            throw new DukeException(String.format(Messages.EMPTY_TASK_ERROR, "unmark"));
+        }
+        if (words.get(0).equals("all") && words.size() == 1) {
+            output.append(String.format(UNMARK_TASK, "all your tasks"));
+            for (int i = 0; i < tasklist.tasks.size(); ++i) {
+                tasklist.tasks.get(i).markUndone();
+                output.append(i + 1)
+                        .append(". ")
+                        .append(tasklist.tasks.get(i))
+                        .append("\n");
+            }
+        } else {
+            output.append(String.format(UNMARK_TASK, (words.size() == 1 ? "this task" : "all these tasks")));
+            for (String str : words) {
+                try {
+                    int taskNum = Integer.parseInt(str);
+                    tasklist.tasks.get(taskNum - 1).markUndone();
+                    output.append(taskNum)
+                            .append(". ")
+                            .append(tasklist.tasks.get(taskNum - 1))
+                            .append("\n");
+                } catch (NumberFormatException e) {
+                    throw new DukeException("Please use 'unmark all' or 'unmark <task numbers>'. T^T");
+                } catch (IndexOutOfBoundsException e) {
+                    throw new DukeException(String.format(Messages.INVALID_TASK_NUMBER, "unmark"));
+                }
+            }
+        }
     }
 }

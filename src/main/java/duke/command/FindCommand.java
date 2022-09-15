@@ -12,6 +12,8 @@ import duke.util.TaskList;
  * @author hyuchen@u.nus.edu
  */
 public class FindCommand extends Command {
+    private static final String TASK_FOUND = "These are the tasks you are searching for ^3^:\n";
+    private static final String TASK_NOT_FOUND = "I couldn't find matching tasks T^T";
     private final ArrayList<String> words;
 
     /**
@@ -42,9 +44,9 @@ public class FindCommand extends Command {
             }
         }
         if (foundTasksList.tasks.size() == 0) {
-            output.append("I couldn't find matching tasks T^T");
+            output.append(TASK_NOT_FOUND);
         } else {
-            output.append("These are the tasks you are searching for ^3^:\n")
+            output.append(TASK_FOUND)
                     .append(foundTasksList.printList());
         }
         return output.toString();

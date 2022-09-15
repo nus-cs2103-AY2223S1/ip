@@ -10,8 +10,8 @@ import duke.task.Task;
  * @author hyuchen@u.nus.edu
  */
 public class TaskList {
-    /* The list of tasks */
-    public final ArrayList<Task> tasks;
+    /** The list of tasks */
+    public final ArrayList<Task> tasks; // Use getter method for better abstraction.
 
     /**
      * Constructor for the TaskList class.
@@ -43,8 +43,8 @@ public class TaskList {
      *
      * @param taskNum the index of task to be deleted
      */
-    public void deleteTask(int taskNum) {
-        tasks.remove(taskNum - 1);
+    public void deleteTask(ArrayList<Task> toDelete) {
+        tasks.removeAll(toDelete);
     }
 
     /**

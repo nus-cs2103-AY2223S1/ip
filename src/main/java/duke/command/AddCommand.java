@@ -18,7 +18,10 @@ import duke.util.TaskList;
  * @author hyuchen@u.nus.edu
  */
 public class AddCommand extends Command {
-    private static final String TASK_ADDED = "I've added this task for you! :>\n";
+    public static final String TASK_ADDED = "I've added this task for you! :>\n";
+    public static final String EMPTY_TASK_ERROR = "Please enter a task description! T^T";
+    public static final String TASK_FORMAT_ERROR_1 = "Please enter a task following the format: ";
+    public static final String TASK_FORMAT_ERROR_2 = "Then I'll know how to add it into your list. T^T";
     private final ArrayList<String> words;
     private final String firstWord;
 
@@ -64,20 +67,27 @@ public class AddCommand extends Command {
     }
 
     private void addTodo(TaskList tasklist, StringBuilder output) throws DukeException {
-        String input = String.join(" ", words);
-        if (words.size() != 0) {
-            Todo todo = new Todo(input);
-            tasklist.addTask(todo);
-            output.append(TASK_ADDED)
-                    .append(todo).append("\n")
-                    .append("You have ").append(tasklist.tasks.size())
-                    .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
-        } else {
-            throw new DukeException("Please enter a task following 'todo' and I'll add it into your list. T^T");
+        if (words.size() == 0) {
+            throw new DukeException(TASK_FORMAT_ERROR_1 + "'todo <task description>'.\n"
+                    + TASK_FORMAT_ERROR_2);
         }
+        String input = String.join(" ", words);
+        Todo todo = new Todo(input);
+        tasklist.addTask(todo);
+        output.append(TASK_ADDED)
+                .append(todo).append("\n")
+                .append("You have ").append(tasklist.tasks.size())
+                .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
     }
 
     private void addDeadline(TaskList tasklist, StringBuilder output) throws DukeException {
+        if (words.size() == 0) {
+            throw new DukeException(EMPTY_TASK_ERROR);
+        }
+        if (!words.contains("/by")) {
+            throw new DukeException(TASK_FORMAT_ERROR_1 + "'deadline <task description> /by <deadline>'.\n"
+                    + TASK_FORMAT_ERROR_2);
+        }
         String remainingDdlWords = String.join(" ", words.subList(0, words.indexOf("/by")));
         String ddl = String.join(" ", words.subList(words.indexOf("/by") + 1, words.size()));
         Deadline deadline;
@@ -96,6 +106,14 @@ public class AddCommand extends Command {
     }
 
     private void addEvent(TaskList tasklist, StringBuilder output) throws DukeException {
+        if (words.size() == 0) {
+            throw new DukeException(EMPTY_TASK_ERROR);
+        }
+        if (!words.contains("/at")) {
+            throw new DukeException(TASK_FORMAT_ERROR_1
+                    + "'event <task description> /at <location or time>'.\n"
+                    + TASK_FORMAT_ERROR_2);
+        }
         String remainingEventWords = String.join(" ", words.subList(0, words.indexOf("/at")));
         String evt = String.join(" ", words.subList(words.indexOf("/at") + 1, words.size()));
         Event event;
