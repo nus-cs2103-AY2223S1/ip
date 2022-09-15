@@ -1,5 +1,7 @@
 package sally.task;
 
+import java.time.LocalDate;
+
 /**
  * ToDo class to represent new Todo task
  *
@@ -7,6 +9,9 @@ package sally.task;
  */
 
 public class ToDo extends Task {
+    protected LocalDate TODAY = LocalDate.now();
+    protected LocalDate createdBy;
+
     /**
      * Constructor for todo tasks
      *
@@ -14,6 +19,7 @@ public class ToDo extends Task {
      */
     public ToDo(String description) {
         super(description);
+        this.createdBy = LocalDate.now();
     }
 
     /**
@@ -23,6 +29,14 @@ public class ToDo extends Task {
      */
     public String getOutput() {
         return String.format("T | %d | %s", isDone ? 1 : 0, description);
+    }
+
+    public LocalDate getCreatedBy() {
+        return createdBy;
+    }
+
+    public boolean isWithin(int days) {
+        return getCreatedBy().compareTo(TODAY) <= days;
     }
 
     @Override

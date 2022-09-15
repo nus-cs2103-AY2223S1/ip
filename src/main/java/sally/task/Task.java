@@ -21,9 +21,10 @@ public class Task {
     }
 
     /**
-     * Gets done status for tasks
+     * Constructor for tasks
      *
-     * @return X if done and " " if undone
+     * @param description description for the task
+     * @param isDone true if task is marked as done, false otherwise
      */
     public Task(String description, boolean isDone) {
         this.description = description;

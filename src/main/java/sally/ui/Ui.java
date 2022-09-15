@@ -5,7 +5,9 @@ import sally.task.Task;
 import sally.task.TaskList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * Ui class where all ui is handled.
@@ -17,6 +19,19 @@ public class Ui {
     protected String BORDER ="-------------------------------------------------------------------------------------";
     private Scanner sc;
     private MainWindow mainWindow;
+    private static final String[] COMMANDS = {
+        "todo: adds a todo task (e.g. todo read book)",
+        "deadline: adds a deadline task (e.g. deadline iP /by tonight OR deadline iP /by 16-09-2022)",
+        "event: adds an event task, followed by venue of event (e.g. event tP discussion /at COM3)",
+        "list: shows current list of tasks",
+        "mark: marks a task as done (e.g. 'mark 2' will mark task 2 as done)",
+        "unmark: cancels a mark of task (e.g. 'unmark 2' will unmark task 2)",
+        "find: finds a task with a certain keyword",
+        "delete: deletes a task by their given index",
+        "bye: bid goodbye to Sally and saves current task list",
+        "help: displays all commands Sally understands"
+    };
+    private static final String TOTAL_COMMANDS = Arrays.stream(COMMANDS).collect(Collectors.joining("\n"));
 
     /**
      * Constructor for Ui Class
@@ -178,5 +193,9 @@ public class Ui {
      */
     public void setMainWindow(MainWindow mw) {
         this.mainWindow = mw;
+    }
+
+    public void showHelpList() {
+        displaySally("Here are the list of commands Sally understands!\n" + TOTAL_COMMANDS);
     }
 }
