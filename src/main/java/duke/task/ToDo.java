@@ -1,7 +1,7 @@
-package duke;
+package duke.task;
 
 /**
- * The duke.ToDo class extends the duke.Task class as it is a more specific type of task.
+ * The duke.task.ToDo class extends the duke.task.Task class as it is a more specific type of task.
  */
 public class ToDo extends Task {
 
