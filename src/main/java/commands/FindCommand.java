@@ -33,7 +33,7 @@ public class FindCommand extends Command {
 
     @Override
     public String generateResponse(TaskList tasks) {
-        StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
+        StringBuilder response = new StringBuilder("These are the matching tasks I found:\n");
         for (int i = 1; i <= tasks.getNumOfTasks(); i++) {
             Task task = tasks.getTask(i);
             if (task.getName().contains(this.substring)) {

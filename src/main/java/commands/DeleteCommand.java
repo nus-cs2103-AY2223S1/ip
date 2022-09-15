@@ -36,9 +36,9 @@ public class DeleteCommand extends Command {
 
     @Override
     public String generateResponse(TaskList tasks) {
-        String removeResponse = "Alright! I've removed this task:\n%s\n";
-        String summaryForOneTask = "Now you have %d task in the list.\n";
-        String summaryForManyTasks = "Now you have %d tasks in the list.\n";
+        String removeResponse = "Yay! I've removed this task:\n%s\n";
+        String summaryForOneTask = "Now you have %d upcoming task.\n";
+        String summaryForManyTasks = "Now you have %d upcoming tasks.\n";
 
         int numOfTasks = tasks.getNumOfTasks();
         if (numOfTasks == 1) {

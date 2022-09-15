@@ -36,6 +36,6 @@ public class MarkCommand extends Command {
 
     @Override
     public String generateResponse(TaskList tasks) {
-        return String.format("Nice! I've marked this task as done:\n%s\n", this.task);
+        return String.format("Good job for completing the task!\nThis task is now marked as done:\n%s\n", this.task);
     }
 }

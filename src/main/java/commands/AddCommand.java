@@ -35,8 +35,8 @@ public class AddCommand extends Command {
 
     @Override
     public String generateResponse(TaskList tasks) {
-        String responseForOneTask = "Added: %s\nNow you have %d task in the list.\n";
-        String responseForManyTasks = "Added: %s\nNow you have %d tasks in the list.\n";
+        String responseForOneTask = "Okie! I've added this task:\n%s\nNow you have %d upcoming task.\n";
+        String responseForManyTasks = "Okie! I've added this task:\n%s\nNow you have %d upcoming tasks.\n";
 
         int numOfTasks = tasks.getNumOfTasks();
         if (numOfTasks == 1) {

@@ -36,6 +36,7 @@ public class UnmarkCommand extends Command {
 
     @Override
     public String generateResponse(TaskList tasks) {
-        return String.format("OK, I've marked this task as not done yet:\n%s\n", this.task);
+        return String.format("Alright, this task is now marked as incomplete:\n%s\n", this.task)
+                + "Work on it soon..?\n";
     }
 }

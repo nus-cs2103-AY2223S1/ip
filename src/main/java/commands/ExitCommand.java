@@ -22,6 +22,6 @@ public class ExitCommand extends Command {
 
     @Override
     public String generateResponse(TaskList tasks) {
-        return "Awww see you soon!!";
+        return "Awww, I'll miss you :(\nSee you soon!!";
     }
 }

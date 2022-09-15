@@ -25,7 +25,7 @@ public class ListCommand extends Command {
     @Override
     public String generateResponse(TaskList tasks) {
         assert tasks.getNumOfTasks() >= 0 : "size of list should be non-negative";
-        String output = "These are the tasks in your list:\n";
+        String output = "Here is a list of your tasks:\n";
         IntStream intStream = IntStream.rangeClosed(1, tasks.getNumOfTasks());
         Stream<String> stringStream = intStream.mapToObj(
                 i -> String.format("%d. %s\n", i, tasks.getTask(i).toString()));

@@ -8,7 +8,10 @@ import exceptions.DukeException;
 public class Ui {
 
     static final String LOGO = "*\\(^o^)/*\n";
-    static final String WELCOME_MESSAGE = "Bonjour~~ I'm Byu, your personal task tracker!\nHow can I help you?\n";
+    static final String WELCOME_MESSAGE = "Bonjour~~ I'm Byu, your personal task tracker!\n"
+            + "Nice to see you here!\n"
+            + "Tracking your tasks brings you one step closer to finishing them on time.\n"
+            + "Let's get started~\n";
     private static final String ERROR_FORMAT = "Ohno! Error: %s\n";
 
     private String output;
