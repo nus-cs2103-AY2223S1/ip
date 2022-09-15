@@ -34,11 +34,10 @@ you can try are:
 
 Refer to the [Features](#features) below for details of each command!
 
-## Features 
-<div markdown="block" class="alert alert-info">
+## Features
 **Note: Words in 'UPPER_CASE' are the parameters to be supplied by the user.** <br>
 e.g. in 'todo DESCRIPTION /p PRIORITY', 'DESCRIPTION' and 'PRIORITY' are parameters to be supplied by the user.
-</div>
+
 
 ### To-Do 📒
 A to-do is a simple task with a description field and priority field.
