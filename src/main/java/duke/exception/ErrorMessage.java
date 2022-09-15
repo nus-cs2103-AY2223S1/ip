@@ -17,7 +17,7 @@ public enum ErrorMessage {
             + "Please follow the format: tag {task index} /with {tag}."),
     INVALID_COMMAND_TYPE ("☹ OOPS!!! I'm sorry, but I don't know what that means :-("),
     INVALID_INDEX ("☹ OOPS!!! The task index exceeds task list size limit."),
-    MISSING_INDEX ("☹ OOPS!!! The task index of a %s command cannot be empty."),
+    MISSING_INDEX ("☹ OOPS!!! The task index of a %s command can only be an integer and it cannot be empty."),
     INVALID_DATE_RANGE ("☹ OOPS!!! The start date of a Event task cannot be after end date."),
     INVALID_TAG ("☹ OOPS!!! The tag can only contain alphabets and it cannot be empty."),
     EXCEEDING_TAG_NUMBER ("☹ OOPS!!! The tag cannot be added because a task cannot have more than 3 tags."),

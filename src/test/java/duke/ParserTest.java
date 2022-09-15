@@ -78,7 +78,8 @@ public class ParserTest {
         exception = assertThrows(DukeException.class, () -> {parser.parseCommand("unmark  0", taskList);});
         assertEquals("☹ OOPS!!! The task index exceeds task list size limit.",exception.getMessage());
         exception = assertThrows(DukeException.class, () -> {parser.parseCommand("delete     ", taskList);});
-        assertEquals("☹ OOPS!!! The task index of a delete command cannot be empty.",exception.getMessage());
+        assertEquals("☹ OOPS!!! The task index of a delete command can only be an integer and it "
+                + "cannot be empty.",exception.getMessage());
     }
 
     @Test

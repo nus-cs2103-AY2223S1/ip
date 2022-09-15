@@ -34,7 +34,7 @@ public class AddDeadlineCommand extends AddCommand {
      * @return a string containing commandType "deadline" and task index.
      */
     public String execute() throws DukeException {
-        if (!description.contains("/by")) {
+        if (!description.contains("/by") || description.equals("/by")) {
             throw new DukeException(INVALID_DEADLINE_COMMAND, "");
         }
         String taskDescription = description.split("/by")[0].trim();

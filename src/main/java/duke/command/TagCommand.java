@@ -34,10 +34,12 @@ public class TagCommand implements Command {
      * @return a string containing task index and tag.
      */
     public String splitInfo() throws DukeException {
-        if (!info.contains("/with")) { //check command format
+        if (!info.contains("/with") || info.equals("/with")) { //check command format
             throw new DukeException(INVALID_TAG_COMMAND, "");
-        } else if (info.split("/with").length == 1) {
+        } else if (info.split("/with").length == 1 && info.substring(0,5).equals("/with")) {
             throw new DukeException(INVALID_TAG, "");
+        } else if (info.split("/with").length == 1) {
+            throw new DukeException(MISSING_INDEX, "");
         }
         String index = info.split("/with")[0].trim();
         String tag = info.split("/with")[1].trim();

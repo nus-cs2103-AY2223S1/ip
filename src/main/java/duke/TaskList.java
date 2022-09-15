@@ -40,7 +40,7 @@ public class TaskList {
      */
     public String printTaskList() {
         if (this.getSize() == 0) {
-            return "Oops! There's no matching tasks found :-(";
+            return "☹ OOPS!!! There's no matching tasks found :-(";
         }
         int count = 1;
         String listString = "";
