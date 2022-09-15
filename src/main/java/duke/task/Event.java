@@ -1,7 +1,9 @@
+package duke.task;
+
 import java.time.LocalDate;
 
 /**
- * The Deadline class extends the Task class as it is a more specific type of task.
+ * The Duke.Deadline class extends the Duke.Task class as it is a more specific type of task.
  */
 public class Event extends Task {
     private LocalDate at;

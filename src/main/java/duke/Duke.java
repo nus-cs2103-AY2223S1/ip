@@ -1,8 +1,10 @@
-import java.time.LocalDate;
+package duke;
+
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.task.TaskList;
+
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class Duke {
     private Storage storage;
@@ -21,7 +23,7 @@ public class Duke {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private static final String GREETING = "Hello! I'm Duke\n"
+    private static final String GREETING = "Hello! I'm Duke.Duke\n"
             + "What can I do for you?\n";
 
     public static void main(String[] args) {

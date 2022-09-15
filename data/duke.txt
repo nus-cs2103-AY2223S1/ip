@@ -1,2 +1,2 @@
-ToDo|qd|true
+duke.task.ToDo|qd|true
 
