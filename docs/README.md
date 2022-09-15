@@ -129,7 +129,10 @@ Exits the program after a certain time.
 <br /><br />
 Format: `bye`
 
-#Command Summary
+***
+
+##Command Summary
+
 | Action         | Format, Examples                                                                 |
 |----------------|----------------------------------------------------------------------------------|
 | **Add ToDo**   | `todo DESCRIPTION` <br /> e.g.`todo write a todo list`                           |
