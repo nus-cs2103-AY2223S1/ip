@@ -42,7 +42,7 @@ public class TaskList {
                         .append(my_note.toString()).append("\n");
             }
         } else {
-            builder.append("RAWR! You have no notes!\n");
+            builder.append("\nRAWR! You have no notes!\n");
         }
 
         return builder.toString();
