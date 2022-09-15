@@ -19,7 +19,7 @@ public class ParserTest {
     }
     
     @Test
-    public void parse_randomCommand_throwsDukeException() throws DukeException {
+    public void parse_randomCommand_throwsDukeException() {
         try {
             Parser.parse("random command");
             fail();
