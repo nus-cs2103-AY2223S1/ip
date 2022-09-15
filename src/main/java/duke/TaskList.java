@@ -48,6 +48,7 @@ public class TaskList {
 
     /**
      * Check if a specified task already exists in the tasklist.
+     *
      * @param task Task to be checked
      * @return Whether specified task exists in the tasklist
      */

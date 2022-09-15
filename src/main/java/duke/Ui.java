@@ -8,7 +8,7 @@ import duke.tasks.Task;
 public class Ui {
     private static final String noOfTasksString = "Now, you have %d task(s) in the list.";
     private static final String markString = "Nice! I've marked this task as done:\n";
-    private static final String unMarkString = "Nice! I've marked this task as undone:\n";
+    private static final String unMarkString = "I've unmarked this task as undone:\n";
     public Ui() {}
 
     /**
@@ -36,9 +36,9 @@ public class Ui {
      */
     public String print(boolean isMark, Task task) {
         if (isMark) {
-            return unMarkString + task.toString();
-        } else {
             return markString + task.toString();
+        } else {
+            return unMarkString + task.toString();
         }
     }
     /**
