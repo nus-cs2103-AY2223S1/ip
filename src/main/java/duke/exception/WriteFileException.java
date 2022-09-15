@@ -5,7 +5,7 @@ import java.nio.file.Path;
 /**
  * The DukeRuntimeException that cannot write file correctly.
  */
-public class WriteFileException extends RuntimeException {
+public class WriteFileException extends DukeRuntimeException {
     /**
      * The constructor of the Exception.
      * @param path The path of the file.

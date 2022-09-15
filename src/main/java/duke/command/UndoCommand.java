@@ -32,7 +32,7 @@ public class UndoCommand extends Command {
         }
         TaskList lastStage = taskListHistory.pop();
         duke.setTaskList(lastStage);
-        return messagePrinter.printMessage("Successfully undo last command.\n"
+        return messagePrinter.printMessage("Successfully undo last modification to the TaskList.\n"
                 + "Type [list] to view current Tasks");
     }
 

@@ -413,7 +413,7 @@ public class Parser {
         } else if (i == 0) {
             return false;
         } else {
-            throw new DukeRuntimeException(i + " is not defined when converting int to bool.");
+            throw new ReadAttributeException("Parser", String.valueOf(i), i + " is not defined when converting int to bool.");
         }
     }
 
@@ -442,7 +442,10 @@ public class Parser {
      * @param string The given String representation.
      * @return The LocalDateTime from given String representation.
      */
-    public static LocalDateTime parseStringToDateTime(String string) {
+    public static LocalDateTime parseStringToDateTime(String string) throws ReadAttributeException {
+        if (!isValidDate(string)) {
+            throw new ReadAttributeException("Parser", string, "Date is invalid.");
+        }
         return LocalDateTime.parse(string, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 }

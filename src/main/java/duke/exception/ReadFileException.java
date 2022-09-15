@@ -5,7 +5,7 @@ import java.nio.file.Path;
 /**
  * The DukeRuntimeException that cannot read from file correctly.
  */
-public class ReadFileException extends RuntimeException {
+public class ReadFileException extends DukeRuntimeException {
     /**
      * The constructor of the Exception.
      * @param path The path of the file.

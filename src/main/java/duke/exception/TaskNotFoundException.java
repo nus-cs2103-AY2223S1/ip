@@ -3,7 +3,7 @@ package duke.exception;
 /**
  * The DukeRuntimeException when index is not found in the TaskList.
  */
-public class TaskNotFoundException extends RuntimeException {
+public class TaskNotFoundException extends DukeRuntimeException {
     /**
      * The constructor of the Exception.
      * @param idTask The index of the Task.
