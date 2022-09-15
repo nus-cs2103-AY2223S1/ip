@@ -3,6 +3,8 @@ package duke.gui;
 import static java.util.Objects.nonNull;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.annotation.Nullable;
 
 import duke.task.Deadline;
@@ -13,6 +15,7 @@ import duke.task.ToDo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -52,7 +55,7 @@ public class TaskListItemDialog extends HBox {
     private Image calendar = new Image(this.getClass().getResourceAsStream("/images/calendar icon.png"));
 
     private TaskListItemDialog(TaskType taskType, String description, boolean completed,
-                               Task task, @Nullable Integer taskNumber) {
+                               Task task, @Nullable Integer taskNumber, @Nullable LocalDateTime completionDate) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/TaskListItem.fxml"));
             fxmlLoader.setController(this);
@@ -97,6 +100,9 @@ public class TaskListItemDialog extends HBox {
             checkbox.setFitWidth(19);
             checkbox.setImage(checkedCheckbox);
             taskStatus.setFill(Color.rgb(0, 145, 124));
+            String readableDateString = completionDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a"));
+            String completionDateString = String.format("Task completed on %s", readableDateString);
+            Tooltip.install(checkbox, new Tooltip(completionDateString));
         } else {
             checkbox.setImage(emptyCheckbox);
             taskStatus.setFill(Color.rgb(255, 200, 61));
@@ -123,13 +129,14 @@ public class TaskListItemDialog extends HBox {
     public static TaskListItemDialog getTaskListItemDialog(Task task, @Nullable Integer taskNumber) {
         String description = task.getDescription();
         boolean completed = task.isCompleted();
+        LocalDateTime completionDate = task.getCompletionDateTime();
 
         if (task instanceof ToDo) {
-            return new TaskListItemDialog(TaskType.TODO, description, completed, task, taskNumber);
+            return new TaskListItemDialog(TaskType.TODO, description, completed, task, taskNumber, completionDate);
         } else if (task instanceof Event) {
-            return new TaskListItemDialog(TaskType.EVENT, description, completed, task, taskNumber);
+            return new TaskListItemDialog(TaskType.EVENT, description, completed, task, taskNumber, completionDate);
         } else {
-            return new TaskListItemDialog(TaskType.DEADLINE, description, completed, task, taskNumber);
+            return new TaskListItemDialog(TaskType.DEADLINE, description, completed, task, taskNumber, completionDate);
         }
     }
 }

@@ -1,6 +1,8 @@
 package duke.task;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import javax.annotation.Nullable;
 
 import duke.exception.DukeException;
 
@@ -10,6 +12,7 @@ import duke.exception.DukeException;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected LocalDateTime completionDateTime;
 
     /**
      * Constructs a task, whose completion status is initially set to
@@ -25,11 +28,13 @@ public abstract class Task {
     /**
      * Constructs a task, whose completion status is initially set to the specified completion status.
      * @param description The task description.
-     * @param completed Whether the task has been marked done.
+     * @param isCompleted Whether the task has been marked done.
+     * @param completionDateTime The datetime when the task was marked completed.
      */
-    public Task(String description, boolean completed) {
+    public Task(String description, boolean isCompleted, @Nullable LocalDateTime completionDateTime) {
         this.description = description;
-        this.isDone = completed;
+        isDone = isCompleted;
+        this.completionDateTime = completionDateTime;
     }
 
     /**
@@ -61,17 +66,29 @@ public abstract class Task {
     }
 
     /**
-     * Marks the task as completed.
+     * Returns the completion datetime of the task.
+     *
+     * @return The completion datetime of the task.
      */
-    public void markTaskAsDone() {
-        isDone = true;
+    public LocalDateTime getCompletionDateTime() {
+        return completionDateTime;
     }
 
     /**
-     * Marks the task as not completed.
+     * Marks the task as completed. Sets the completion datetime to the current datetime.
+     */
+    public void markTaskAsDone() {
+        isDone = true;
+        completionDateTime = LocalDateTime.now();
+    }
+
+    /**
+     * Marks the task as not completed. Will also remove the completion datetime
+     * associated to the task.
      */
     public void markTaskAsUndone() {
         isDone = false;
+        completionDateTime = null;
     }
 
     public abstract String toSaveFormat();

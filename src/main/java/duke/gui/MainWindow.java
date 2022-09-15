@@ -35,6 +35,8 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user icon.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/bobo icon.png"));
     private Image studiousDukeImage = new Image(this.getClass().getResourceAsStream("/images/bobo studious.png"));
+    private Image dukeErrorImage = new Image(this.getClass().getResourceAsStream("/images/bobo error.png"));
+    private Image dukeStarImage = new Image(this.getClass().getResourceAsStream("/images/bobo star.png"));
 
     /**
      * Initialises the MainWindow, called once on the implementing controller when the contents of its
@@ -83,12 +85,19 @@ public class MainWindow extends AnchorPane {
             tasklistItemDialogs.push(DialogBox.getDukeDialog(replyMessage, studiousDukeImage));
             tasklistItemDialogs.push(DialogBox.getUserDialog(input, userImage));
             dialogContainer.getChildren().addAll(tasklistItemDialogs);
+        } else if (responseType.equals(ResponseType.PIE_CHART)) {
+            String replyMessage = response.getResponseMessage();
+            PieChart pieChart = (PieChart) response.getResponseObject();
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getUserDialog(input, userImage),
+                    DialogBox.getDukeDialog(replyMessage, dukeStarImage),
+                    pieChart
+            );
         } else if (responseType.equals(ResponseType.ERROR)) {
-            // todo
             String replyMessage = response.getResponseMessage();
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(replyMessage, dukeImage)
+                    DialogBox.getDukeDialog(replyMessage, dukeErrorImage)
             );
         } else {
             String replyMessage = response.getResponseMessage();

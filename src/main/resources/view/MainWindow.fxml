@@ -16,10 +16,10 @@
     <children>
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" layoutX="-4.0" prefHeight="491.0" prefWidth="404.0" styleClass="edge-to-edge" translateY="51.0" vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="492.0" prefWidth="387.0" style="-fx-background-color: #121212;" />
+                <VBox fx:id="dialogContainer" prefHeight="492.0" prefWidth="388.0" style="-fx-background-color: #121212;" />
             </content>
         </ScrollPane>
-        <TextField fx:id="userInput" layoutX="22.0" layoutY="546.0" onAction="#handleUserInput" prefHeight="44.0" prefWidth="324.0" promptText="Give Duke a command" style="-fx-background-color: #202020; -fx-background-radius: 24px; -fx-prompt-text-fill: #3D3D3D; -fx-text-fill: #DEDEDE;">
+        <TextField fx:id="userInput" layoutX="22.0" layoutY="546.0" onAction="#handleUserInput" prefHeight="44.0" prefWidth="324.0" promptText="Give Bobo a command" style="-fx-background-color: #202020; -fx-background-radius: 24px; -fx-prompt-text-fill: #3D3D3D; -fx-text-fill: #DEDEDE;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.annotation.Nullable;
 
 import duke.date.DateTimeParse;
 import duke.exception.DukeException;
@@ -35,10 +36,12 @@ public class Event extends Task {
      * @param eventStartDatetime The start datetime of the event.
      * @param eventEndDatetime The end datetime of the event.
      * @param isCompleted Whether the event task is done or not.
+     * @param completionDateTime The datetime when the task was marked completed.
      */
     public Event(String description, LocalDateTime eventStartDatetime,
-                 LocalDateTime eventEndDatetime, boolean isCompleted) {
-        super(description, isCompleted);
+                 LocalDateTime eventEndDatetime, boolean isCompleted,
+                 @Nullable LocalDateTime completionDateTime) {
+        super(description, isCompleted, completionDateTime);
         this.eventStartDatetime = eventStartDatetime;
         this.eventEndDatetime = eventEndDatetime;
     }
@@ -147,8 +150,8 @@ public class Event extends Task {
         String savableCompletion = isDone ? "Y" : "N";
         // escape instances of deliminator in task description
         String escapedDescription = description.replace("|", "\\|");
-        return String.format("E | %s | %s | %s | %s", savableCompletion, escapedDescription,
-                eventStartDatetime, eventEndDatetime);
+        return String.format("E | %s | %s | %s | %s | %s", savableCompletion, escapedDescription,
+                eventStartDatetime, eventEndDatetime, completionDateTime);
     }
 
     /**

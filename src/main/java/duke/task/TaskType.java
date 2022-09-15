@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
 
@@ -30,9 +31,20 @@ public enum TaskType {
         public ToDo parseSavedFormat(String savedFormat) throws DukeException {
             try {
                 String[] savedData = TaskType.parseFormatArray(savedFormat);
-                boolean status = savedData[0].equals("Y");
+                boolean isNotCompleted = savedData[0].equals("N");
                 String description = savedData[1];
-                return new ToDo(description, status);
+                if (isNotCompleted) {
+                    // incomplete tasks do not have an associated completion date
+                    return new ToDo(description, false, null);
+                }
+                LocalDateTime completionDate;
+                try {
+                    completionDate = LocalDateTime.parse(savedData[2]);
+                } catch (DateTimeParseException e) {
+                    // if the saved completion date was corrupted, default to the current day
+                    completionDate = LocalDateTime.now();
+                }
+                return new ToDo(description, true, completionDate);
             } catch (ArrayIndexOutOfBoundsException e) {
                 // task was saved in the wrong format for some reason
                 throw new DukeException("Could not parse saved todo: " + savedFormat);
@@ -61,11 +73,23 @@ public enum TaskType {
         public Event parseSavedFormat(String savedFormat) throws DukeException {
             try {
                 String[] savedData = TaskType.parseFormatArray(savedFormat);
-                boolean status = savedData[0].equals("Y");
+                boolean notCompleted = savedData[0].equals("N");
                 String description = savedData[1];
                 LocalDateTime startDatetime = LocalDateTime.parse(savedData[2]);
                 LocalDateTime endDatetime = LocalDateTime.parse(savedData[3]);
-                return new Event(description, startDatetime, endDatetime, status);
+                // if the event is not completed, there is no associated completion date
+                if (notCompleted) {
+                    return new Event(description, startDatetime, endDatetime,
+                            false, null);
+                }
+                LocalDateTime completionDate;
+                try {
+                    completionDate = LocalDateTime.parse(savedData[4]);
+                } catch (DateTimeParseException e) {
+                    // if the completion datetime is corrupted, default to the current date
+                    completionDate = LocalDateTime.now();
+                }
+                return new Event(description, startDatetime, endDatetime, true, completionDate);
             } catch (ArrayIndexOutOfBoundsException e) {
                 // task was saved in the wrong format for some reason
                 throw new DukeException("Could not parse saved event: " + savedFormat);
@@ -93,10 +117,21 @@ public enum TaskType {
         public Deadline parseSavedFormat(String savedFormat) throws DukeException {
             try {
                 String[] savedData = TaskType.parseFormatArray(savedFormat);
-                boolean status = savedData[0].equals("Y");
+                boolean isNotCompleted = savedData[0].equals("N");
                 String description = savedData[1];
                 LocalDateTime datetime = LocalDateTime.parse(savedData[2]);
-                return new Deadline(description, datetime, status);
+                if (isNotCompleted) {
+                    // incomplete tasks have no associated datetime
+                    return new Deadline(description, datetime, false, null);
+                }
+                LocalDateTime completionDateTime;
+                try {
+                    completionDateTime = LocalDateTime.parse(savedData[3]);
+                } catch (DateTimeParseException e) {
+                    // if the saved datetime is corrupted, default to the current datetime
+                    completionDateTime = LocalDateTime.now();
+                }
+                return new Deadline(description, datetime, true, completionDateTime);
             } catch (ArrayIndexOutOfBoundsException e) {
                 // task was saved in the wrong format for some reason
                 throw new DukeException("Could not parse saved deadline: " + savedFormat);

@@ -1,6 +1,8 @@
 package duke.task;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import javax.annotation.Nullable;
 
 /**
  * A to do task is a task that does not have any date/time attached to it.
@@ -20,9 +22,10 @@ public class ToDo extends Task {
      *
      * @param description The description of the to-do task.
      * @param completion Whether the to-do task has been completed.
+     * @param completionDateTime The datetime when the task was marked completed.
      */
-    public ToDo(String description, boolean completion) {
-        super(description, completion);
+    public ToDo(String description, boolean completion, @Nullable LocalDateTime completionDateTime) {
+        super(description, completion, completionDateTime);
     }
 
     @Override
@@ -54,7 +57,7 @@ public class ToDo extends Task {
         String completionStatus = this.isDone ? "Y" : "N";
         // escape instances of deliminator in task description
         String escapedDescription = this.description.replace("|", "\\|");
-        return String.format("T | %s | %s", completionStatus, escapedDescription);
+        return String.format("T | %s | %s | %s", completionStatus, escapedDescription, completionDateTime);
     }
 
     /**
