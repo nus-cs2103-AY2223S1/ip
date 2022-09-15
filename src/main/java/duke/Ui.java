@@ -9,7 +9,7 @@ public class Ui {
      *
      */
     public Ui() {
-        this.welcomeMessage = "Hello! I'm Duke\nWhat can I do for you?\n";
+        this.welcomeMessage = "Hello! I'm Duke!\nWhat can I do for you?\n";
     }
 
     /**

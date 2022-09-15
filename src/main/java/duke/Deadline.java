@@ -4,9 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-/** Represents a Task of type Deadline. */
+/**
+ * Represents a Task of type Deadline.
+ */
 public class Deadline extends Task {
-    protected String by;
     protected LocalDate date;
     protected LocalTime time;
 
@@ -14,11 +15,9 @@ public class Deadline extends Task {
      * Creates a Deadline task.
      *
      * @param description Description of the Deadline task.
-     * @param by Date and time of the Deadline task.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description) {
         super(description);
-        this.by = by;
     }
 
     /**
@@ -28,17 +27,13 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        if (by.contains("/") || by.contains("-")) {
-            String date = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-            String time = this.time.toString();
-            return "[D]" + super.toString() + " (by: " + date + " " + time + ")";
-        } else {
-            return "[D]" + super.toString() + " (by: " + by + ")";
-        }
+        String date = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        String time = this.time.toString();
+        return "[D]" + super.toString() + " (by: " + date + " " + time + ")";
     }
 
     /**
-     * Sets the deadline task's date.
+     * Sets the Deadline task's date using string representation of date.
      *
      * @param date String representing the date to be set.
      */
@@ -47,7 +42,16 @@ public class Deadline extends Task {
     }
 
     /**
-     * Sets the deadline task's time.
+     * Sets the Deadline task's date using date in the form of LocalDate.
+     *
+     * @param date LocalDate representing the date to be set.
+     */
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    /**
+     * Sets the Deadline task's time.
      *
      * @param time String representing the time to be set.
      */

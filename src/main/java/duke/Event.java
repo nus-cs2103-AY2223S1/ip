@@ -4,9 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-/** Represents a Task of type Event. */
+/**
+ * Represents a Task of type Event.
+ */
 public class Event extends Task {
-    protected String at;
     protected LocalDate date;
     protected LocalTime time;
 
@@ -14,11 +15,9 @@ public class Event extends Task {
      * Initialises the Event task.
      *
      * @param description Describes the activity of the Event task.
-     * @param at Date and time of the Event task.
      */
-    public Event(String description, String at) {
+    public Event(String description) {
         super(description);
-        this.at = at;
     }
 
     /**
@@ -28,17 +27,13 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        if (this.at.contains("/") || at.contains("-")) {
-            String date = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-            String time = this.time.toString();
-            return "[E]" + super.toString() + " (at: " + date + " " + time + ")";
-        } else {
-            return "[E]" + super.toString() + " (at: " + at + ")";
-        }
+        String date = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        String time = this.time.toString();
+        return "[E]" + super.toString() + " (at: " + date + " " + time + ")";
     }
 
     /**
-     * Sets the event task's date.
+     * Sets the Event task's date using string representation of date.
      *
      * @param date String representing the date to be set.
      */
@@ -47,7 +42,16 @@ public class Event extends Task {
     }
 
     /**
-     * Sets the event task's time.
+     * Sets the Event task's date using date in the form of LocalDate.
+     *
+     * @param date LocalDate representing the date to be set.
+     */
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    /**
+     * Sets the Event task's time.
      *
      * @param time String representing the time to be set.
      */

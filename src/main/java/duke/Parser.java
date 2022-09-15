@@ -3,7 +3,9 @@ package duke;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-/** A class that handles the user input commands. */
+/**
+ * A class that handles the user input commands.
+ */
 public class Parser {
     private TaskList taskList;
     private Storage storage;
@@ -138,7 +140,7 @@ public class Parser {
      * @param restOfString String that contains the necessary information for the Todo task.
      * @return String showing the Todo task that was added.
      * @throws DukeException Thrown when user does not enter any description and date and time for the task.
-     * @throws IOException From the writeToFile() method.
+     * @throws IOException   From the writeToFile() method.
      */
     public String parseToDo(String restOfString) throws DukeException, IOException {
         //Get description and date and time of task
@@ -170,7 +172,7 @@ public class Parser {
      * @param restOfString String input containing description and date and time of Deadline task.
      * @return String showing the Deadline task that was added.
      * @throws DukeException Thrown when user does not enter description and date and time for the task.
-     * @throws IOException From the writeToFile() method.
+     * @throws IOException   From the writeToFile() method.
      */
     public String parseDeadline(String restOfString) throws DukeException, IOException {
         //Get description and date and time of Deadline task
@@ -181,23 +183,22 @@ public class Parser {
             throw new DukeException("OOPS!!! " + "The description of a deadline cannot be empty.\n");
         } else if (!deadline.contains("/by")) {
             //User only types description of Deadline task
-            throw new DukeException("No date and time set for deadline task!\n");
+            throw new DukeException("Please set a date and time for your deadline task!\n");
         } else {
             //Getting the description, date and time of the Deadline task
             int integer = deadline.indexOf("/by");
             String description = deadline.substring(0, integer - 1);
-            String by = deadline.substring(integer + 4);
+            String dateAndTime = deadline.substring(integer + 4);
 
             //Create a new Deadline task
-            Deadline deadlineTask = new Deadline(description, by);
+            Deadline deadlineTask = new Deadline(description);
 
             //Parse date and time of Deadline task
-            if (by.contains("/") || by.contains("-")) {
-                String dateTime = this.parseDateAndTime(by);
-                String[] dateTimeArray = dateTime.split(" ");
-                deadlineTask.setDate(dateTimeArray[0]);
-                deadlineTask.setTime(dateTimeArray[1]);
-            }
+            String dateTime = this.parseDateAndTime(dateAndTime);
+            String[] dateTimeArray = dateTime.split(" ");
+            deadlineTask.setDate(dateTimeArray[0]);
+            deadlineTask.setTime(dateTimeArray[1]);
+
 
             //Add Deadline task to the taskList array
             this.taskList.addTask(deadlineTask);
@@ -258,7 +259,7 @@ public class Parser {
      * @param restOfString String input from user containing the necessary information to create an Event task.
      * @return String showing the Event task that was added.
      * @throws DukeException Thrown when user does not enter any description or date and time for the task.
-     * @throws IOException From the writeToFile() method.
+     * @throws IOException   From the writeToFile() method.
      */
     public String parseEvent(String restOfString) throws DukeException, IOException {
         //Get description and date and time of Event task
@@ -269,23 +270,22 @@ public class Parser {
             throw new DukeException("OOPS!!! " + "The description of a event cannot be empty.\n");
         } else if (!event.contains("/at")) {
             //User only inputs description of Event task
-            throw new DukeException("No date and time set for event task!\n");
+            throw new DukeException("Please set a time and date for your event task!\n");
         } else {
             //Get the description, date and time of the Event task
             int integer = event.indexOf("/at");
             String description = event.substring(0, integer - 1);
-            String at = event.substring(integer + 4);
+            String dateAndTime = event.substring(integer + 4);
 
             //Create a new Event task
-            Event eventTask = new Event(description, at);
+            Event eventTask = new Event(description);
 
             //Parse date and time of Event task
-            if (at.contains("/") || at.contains("-")) {
-                String dateTime = this.parseDateAndTime(at);
-                String[] dateTimeArray = dateTime.split(" ");
-                eventTask.setDate(dateTimeArray[0]);
-                eventTask.setTime(dateTimeArray[1]);
-            }
+            String dateTime = this.parseDateAndTime(dateAndTime);
+            String[] dateTimeArray = dateTime.split(" ");
+            eventTask.setDate(dateTimeArray[0]);
+            eventTask.setTime(dateTimeArray[1]);
+
 
             //Add Event task to taskList array
             this.taskList.addTask(eventTask);

@@ -15,7 +15,7 @@ public class EventTest {
     public void descriptionTest() {
         String description = "soccer match";
         String at = "2/8/2020 0800";
-        Event testEvent = new Event(description, at);
+        Event testEvent = new Event(description);
         testEvent.setDate("2020-08-02");
         testEvent.setTime("08:00");
         assertEquals("[E][ ][ ]soccer match (at: Aug 02 2020 08:00)", testEvent.toString());

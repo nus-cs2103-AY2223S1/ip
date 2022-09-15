@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /** Represents a storage which saves the list of tasks. */
@@ -97,9 +99,17 @@ public class Storage {
         //Get the description, date and time fields of event
         int at = task.indexOf("(at:");
         String dateAndTime = task.substring(at + 5, task.lastIndexOf(")"));
+        String[] dateTimeArray = dateAndTime.split(" ");
+        String date = dateTimeArray[0] + " " + dateTimeArray[1] + " " + dateTimeArray[2];
+        LocalDate deadlineDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM dd yyyy"));
+
+        //Create new Event task
+        Event event = new Event(" " + task.substring(12, at - 1));
+        event.setDate(deadlineDate);
+        event.setTime(dateTimeArray[3]);
 
         //Add the task to the task list array and update the file contents
-        this.previousTaskList.addTask(new Event(" " + task.substring(12, at - 1), dateAndTime));
+        this.previousTaskList.addTask(event);
 
         //Check if task is marked as done
         if (status == 'X') {
@@ -150,10 +160,18 @@ public class Storage {
 
         //Get the description, date and time fields
         int by = task.indexOf("(by:");
-        String timingWithBracket = task.substring(by + 5, task.lastIndexOf(")"));
+        String dateAndTime = task.substring(by + 5, task.lastIndexOf(")"));
+        String[] dateTimeArray = dateAndTime.split(" ");
+        String date = dateTimeArray[0] + " " + dateTimeArray[1] + " " + dateTimeArray[2];
+        LocalDate deadlineDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM dd yyyy"));
+
+        //Create new Deadline task
+        Deadline deadline = new Deadline(" " + task.substring(12, by - 1));
+        deadline.setDate(deadlineDate);
+        deadline.setTime(dateTimeArray[3]);
 
         //Add the task to the task list array and update the file contents
-        this.previousTaskList.addTask(new Deadline(" " + task.substring(12, by - 1), timingWithBracket));
+        this.previousTaskList.addTask(deadline);
 
         //Check if task is marked as done
         if (status == 'X') {
