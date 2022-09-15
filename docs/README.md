@@ -1,17 +1,18 @@
 # User Guide for Duke
 
 # Contents
-1. Starting the app
-2. Features
-    - Adding tasks
-    - Listing saved tasks
-    - Marking and unmarking tasks 
-    - Deleting tasks
-3. Sample usages
-4. Troubleshooting
-5. Report a bug
+1. [Starting the app](#starting-the-app)
+2. [Features](#features)
+    - [Adding tasks](#adding-tasks)
+    - [Listing saved tasks](#listing-saved-tasks)
+    - [Marking and unmarking tasks](#marking-and-unmarking-tasks)
+    - [Deleting tasks](#deleting-tasks)
+3. [Sample usages](#sample-usages)
+4. [Troubleshooting](#troubleshooting)
+5. [Report a bug](#reporting-bugs)
 
 ## Starting the app
+Please ensure that Java 11 is installed on your computer.
 Simply click on the program file to start, and the ChatBot will boot up.
 
 ## Features
@@ -124,7 +125,10 @@ Shuts down the app. Your tasks stored will be saved.
     `bye`
 
 ## Troubleshooting
-
+- ### `Errors related to starting the app`
+    Please ensure that your computer has Java version 11 installed. You
+    may have to switch your version if you already have an incorrect
+    version installed.
 - ### `Invalid command`
     Ensure the command you called is valid, with no typos. Use `help` 
     command if you are unsure of the various commands.
