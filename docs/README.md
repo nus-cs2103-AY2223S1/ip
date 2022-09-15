@@ -1,6 +1,10 @@
 # User Guide
 
-## Features 
+## Features - Adding tasks
+### Allows for addition of three type of tasks
+    -todo task
+    -event task
+    -deadline task
 
 ### Feature-ABC
 
