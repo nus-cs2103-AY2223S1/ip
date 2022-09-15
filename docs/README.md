@@ -11,16 +11,26 @@ editing, and deleting. Manage your to-dos, deadlines, and events in one app!
 
 ### Supports natural dates
 
-Wide support of dates! Bobo understands many date formats with Bobo's own
-date library- including natural dates so you can easily enter dates. See
-the [Supported Natural Dates](#supported-natural-dates) section for more information.
+With a wide support of dates, bobo understands many date formats with bobo's own
+date library- including natural dates, so you can easily enter dates.
+
+See the [Supported Natural Dates](#supported-natural-dates) section for more details.
 
 ### Generate statistics to track your progress
+
 Leverage statistics about the items managed by the App! Bobo breaks down
 your tasks for you and allows you to keep track of your progress with
 data visualisation.
 
 <img src="images/Stats.png" width="400"/>
+
+### Schedule your day
+
+Bobo can even help you schedule your day! Just ask bobo for your
+schedule, so you can have a productive day and stay on top of your tasks!
+
+<img src="images/Schedule.png" width="400"/>
+
 
 ## Usage
 
