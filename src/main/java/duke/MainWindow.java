@@ -8,6 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -58,7 +62,7 @@ public class MainWindow extends AnchorPane {
                     DialogBox.getDukeDialog(input, dukeImage)
             );
             userInput.clear();
-            Platform.exit();
+            CompletableFuture.delayedExecutor(2, TimeUnit.SECONDS).execute(Platform::exit);
         }
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
