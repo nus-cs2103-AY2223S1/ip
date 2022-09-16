@@ -55,7 +55,7 @@ public class DeleteTaskCommand extends Command {
                     "so there is nothing to undo.";
         }
 
-        tasks.addTask(deletedTask);
+        tasks.getList().add(Integer.parseInt(index) - 1, deletedTask);
         storage.saveToFile(tasks.getList());
 
         String response = String.format(
