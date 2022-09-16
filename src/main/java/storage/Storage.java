@@ -66,7 +66,7 @@ public class Storage {
         try {
             ArrayList<Task> taskList = new ArrayList<>();
             File file = new File(filePath);
-            Scanner scanner = new Scanner(file).useDelimiter("\\s\\|\\s");
+            Scanner scanner = new Scanner(file);
 
             while (scanner.hasNext()) {
                 String entry = scanner.nextLine();
