@@ -96,7 +96,7 @@ public class TaskList {
         } catch (NumberFormatException e) {
             throw new DukeException("Please input a number.");
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(String.format("Please input a valid number! There are %d duke.tasks remaining.",
+            throw new DukeException(String.format("Please input a valid number! There are %d tasks remaining.",
                     taskList.size()));
         }
     }
