@@ -219,47 +219,40 @@ Dates for the task: go climbing
 
 <br/>
 
-### `find`
+### `find` - Search for tasks containing the input keyword.
 **Response:**  
+Doomba will display a list of all tasks that contains the keyword
 
+**Command:** `find [keyword]`
 
-**Command:** ``
-
-**Input:** ``
+**Input:** `find buy`
 
 **Output:**
 ```
+I have found the following tasks containing 'buy'
 
+    1.[T][ ] buy groceries
 ```
 
 <br/>
 
-### `/?`
+### `/?` - Show help
 **Response:**  
+Doomba will show the list of all commands that a user can use.
 
-
-**Command:** ``
-
-**Input:** ``
-
-**Output:**
-```
-
-```
+**Input:** `/?`
 
 <br/>
 
-### `bye`
+### `bye` - Saves tasks to file
 **Response:**  
+Doomba will reply with a goodbye message.
 
-
-**Command:** ``
-
-**Input:** ``
+**Input:** `bye`
 
 **Output:**
 ```
-
+Bye! Hope that I was of service!
 ```
 
 <br/>
