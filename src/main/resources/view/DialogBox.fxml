@@ -11,7 +11,7 @@
     <children>
       <TextFlow maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <children>
-              <Label fx:id="dialog" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="300.0" text="Label" wrapText="true" />
+              <Label fx:id="dialog" maxWidth="300.0" text="Label" wrapText="true" />
          </children>
       </TextFlow>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
