@@ -151,8 +151,8 @@ public class Storage {
 
         Task task;
         boolean isFormatWithDate = str.matches(
-                "^\\[[DET]]+\\[[X| ]]+ +(\\w+ )+\\([by|at]+: +[A-Z]+[a-z]{2}+ \\d{2}+ \\d{4}+\\)");
-        boolean isFormatWithoutDate = str.matches("^\\[[DET]]+\\[[X| ]]+( \\w+)+");
+                "(\\[[D|E]]\\[[X| ]] )(.*?)(\\([by|at]+: +[A-Z]+[a-z]{2}+ \\d{2}+ \\d{4}+\\))");
+        boolean isFormatWithoutDate = str.matches("(\\[T]\\[[X| ]] )(.*)");
 
         if (isFormatWithDate) {
             String message = str.substring(str.indexOf("]", str.indexOf("]") + 1) + 2,
@@ -168,8 +168,7 @@ public class Storage {
             String description = str.split("] ", 2)[1];
             task = new ToDo(description);
         } else {
-            throw new StorageException("File corrupted! What's wrong with you?"
-                    + System.lineSeparator() + "Delete the data/duke.txt file!");
+            throw new StorageException("Delete the problematic line in the data/duke.txt file!");
         }
 
         if (str.contains("[X]")) {

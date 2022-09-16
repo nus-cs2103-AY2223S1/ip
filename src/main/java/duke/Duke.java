@@ -29,7 +29,7 @@ public class Duke {
         } catch (DukeException e) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText("Local file corrupted!");
-            error.setContentText("Close the program and delete the data/duke.txt file!");
+            error.setContentText(e.getMessage());
             error.showAndWait();
             tasks = new TaskList();
             Platform.exit();
