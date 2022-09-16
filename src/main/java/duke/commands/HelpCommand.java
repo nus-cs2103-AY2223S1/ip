@@ -26,10 +26,10 @@ public class HelpCommand extends Command {
             "bye: closes the program",
             "mark: marks task as done",
             "unmark: marks task as not done",
-            "todo: adds a todo task",
             "find: finds all tasks containing given keyword",
-            "deadline: adds a task with a deadline",
-            "event: adds an event"
+            "todo: adds a todo task",
+            "deadline: adds a task with a deadline (use /by)",
+            "event: adds an event (use /at)"
         };
 
         for (int i = 0; i < commands.length; ++i) {
