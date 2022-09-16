@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import scottie.storage.Storage;
 
-class TaskListTest {
+class AutoSavingTaskListTest {
     private static final String SAMPLE_TODO_DATA = "T|0|Todo Description";
     private static final String SAMPLE_DEADLINE_DATA = "D|1|Deadline Description|1/2/34 1234";
     private static final String SAMPLE_EVENT_DATA = "E|0|Event Description|5/6/78";
@@ -22,26 +22,26 @@ class TaskListTest {
 
     @Test
     void testIsEmpty() {
-        assertTrue(new TaskList(new StorageMock(List.of())).isEmpty());
-        assertFalse(new TaskList(new StorageMock(List.of(SAMPLE_TASK_STUB_DATA))).isEmpty());
+        assertTrue(new AutoSavingTaskList(new StorageMock(List.of())).isEmpty());
+        assertFalse(new AutoSavingTaskList(new StorageMock(List.of(SAMPLE_TASK_STUB_DATA))).isEmpty());
     }
 
     @Test
     void testSize() {
-        assertEquals(0, new TaskList(new StorageMock(List.of())).size());
+        assertEquals(0, new AutoSavingTaskList(new StorageMock(List.of())).size());
 
         int correctSize = 123;
         List<String> taskDataList = new ArrayList<>();
         for (int i = 0; i < correctSize; i++) {
             taskDataList.add(SAMPLE_TODO_DATA);
         }
-        assertEquals(correctSize, new TaskList(new StorageMock(taskDataList)).size());
+        assertEquals(correctSize, new AutoSavingTaskList(new StorageMock(taskDataList)).size());
     }
 
     @Test
     void testGetAndAddTask() {
         StorageMock storageMock = new StorageMock(List.of(SAMPLE_DEADLINE_DATA, SAMPLE_EVENT_DATA));
-        TaskList taskList = new TaskList(storageMock);
+        TaskList taskList = new AutoSavingTaskList(storageMock);
         taskList.addTask(SAMPLE_TASK_STUB);
 
         assertSame(SAMPLE_TASK_STUB, taskList.getTask(2));
@@ -53,7 +53,7 @@ class TaskListTest {
     @Test
     void testDeleteTask() {
         StorageMock storageMock = new StorageMock(List.of(SAMPLE_DEADLINE_DATA, SAMPLE_EVENT_DATA));
-        TaskList taskList = new TaskList(storageMock);
+        TaskList taskList = new AutoSavingTaskList(storageMock);
         assertFalse(taskList.isEmpty());
         assertEquals(2, taskList.size());
 
@@ -71,7 +71,7 @@ class TaskListTest {
     @Test
     void testTaskMarking() {
         StorageMock storageMock = new StorageMock(List.of(SAMPLE_TASK_STUB_DATA));
-        TaskList taskList = new TaskList(storageMock);
+        TaskList taskList = new AutoSavingTaskList(storageMock);
         assertFalse(taskList.isMarked(0));
         assertEquals(SAMPLE_TASK_STUB_DATA, storageMock.getSavedData(0));
 
@@ -88,7 +88,7 @@ class TaskListTest {
     void testFilterTasks() {
         List<String> taskDatas =
                 List.of(SAMPLE_TODO_DATA, SAMPLE_DEADLINE_DATA, SAMPLE_EVENT_DATA, SAMPLE_TASK_STUB_DATA);
-        TaskList taskList = new TaskList(new StorageMock(taskDatas));
+        TaskList taskList = new AutoSavingTaskList(new StorageMock(taskDatas));
         assertEquals(3, taskList.filterTasks("deScrIPtiOn").size());
         assertEquals(2, taskList.filterTasks("a").size());
         assertEquals(1, taskList.filterTasks("TODO").size());
@@ -104,7 +104,7 @@ class TaskListTest {
         List<String> taskDatasReverseSorted =
                 List.of(SAMPLE_TODO_DATA, SAMPLE_TASK_STUB_DATA, SAMPLE_EVENT_DATA, SAMPLE_DEADLINE_DATA);
         StorageMock storageMock = new StorageMock(taskDatas);
-        TaskList taskList = new TaskList(storageMock);
+        TaskList taskList = new AutoSavingTaskList(storageMock);
 
         taskList.sortByDescription(false);
         for (int i = 0; i < 4; i++) {
@@ -126,7 +126,7 @@ class TaskListTest {
         List<String> taskDatasReverseSorted =
                 List.of(SAMPLE_EVENT_DATA, SAMPLE_DEADLINE_DATA);
         StorageMock storageMock = new StorageMock(taskDatas);
-        TaskList taskList = new TaskList(storageMock);
+        TaskList taskList = new AutoSavingTaskList(storageMock);
 
         taskList.sortByDate(false);
         for (int i = 0; i < 2; i++) {
