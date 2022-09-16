@@ -59,18 +59,18 @@ public class Ui {
         } else if (command instanceof Exit) {
             return (">> Come back later to continue from where you left!\n See you, Bye!");
         } else if (command instanceof Help) {
-            return "COMMAND\t " + "FORMAT\n"
-                    + "1. todo     \t" + "todo description\n"
-                    + "2. event    \t" + "event description /on yyyy-mm-dd\n"
-                    + "3. deadline \t" + "deadline description /by yyyy-mm-dd\n"
-                    + "4. mark     \t" + "mark task number\n"
-                    + "5. unmark   \t" + "unmark task number\n"
-                    + "6. delete   \t" + "delete task number\n"
-                    + "7. list     \t\t" + "list\n"
-                    + "8. find     \t\t" + "find keyword\n"
-                    + "9. tag      \t\t" + "tag task number /as tag\n"
-                    + "10. findTag \t" + "findTag tag\n"
-                    + "11. bye     \t" + "bye";
+            return "COMMAND\t" + "FORMAT\n\n"
+                    + "1. todo\n\t\t\t" + "todo description\n"
+                    + "2. event\n\t\t\t" + "event description /on yyyy-mm-dd\n"
+                    + "3. deadline\n\t\t\t" + "deadline description /by yyyy-mm-dd\n"
+                    + "4. mark\n\t\t\t" + "mark task_number\n"
+                    + "5. unmark\n\t\t\t" + "unmark task_number\n"
+                    + "6. tag\n\t\t\t" + "tag task_number /as tag_name\n"
+                    + "7. find\n\t\t\t" + "find keyword\n"
+                    + "8. findTag\n\t\t\t" + "findTag tag\n"
+                    + "9. delete\n\t\t\t" + "delete task_number\n"
+                    + "10. list\n\t\t\t" + "list\n"
+                    + "11. bye\n\t\t\t" + "bye";
         } else if (command instanceof Mark) {
             if (date.equals("")) {
                 return (">> " + "marked: " + task.getDescription());
