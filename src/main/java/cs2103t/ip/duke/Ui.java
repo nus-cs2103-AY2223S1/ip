@@ -1,14 +1,8 @@
 package cs2103t.ip.duke;
 
-import javafx.application.Platform;
-
 public class Ui {
 
     private final String LINE = "_______________________________\n";
-
-    public String showLine() {
-        return LINE;
-    }
 
     public String showWelcome() {
         return LINE +
@@ -75,6 +69,10 @@ public class Ui {
         return LINE + "Noted. I've removed this task: \n" +
                 toDelete.toString() + "\n" +
                 "Now you have " + index + " tasks in the list. \n" + LINE;
+    }
+
+    public String showStats(Statistics stat) {
+        return stat.toString();
     }
 
     public void showLoadingError() {

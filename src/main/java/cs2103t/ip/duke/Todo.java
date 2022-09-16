@@ -2,12 +2,10 @@ package cs2103t.ip.duke;
 
 public class Todo extends Task {
 
-    protected String by;
     private final String LINE = "_______________________________\n";
 
     public Todo(String description) {
         super(description);
-        this.by = by;
     }
 
     /**
@@ -18,7 +16,7 @@ public class Todo extends Task {
     @Override
     public String addString(int i) {
         String gotIt = "Got it. I've added this task: \n";
-        String task = this.toString() + "\n";
+        String task = this + "\n";
         String now = String.format("Now you have %d tasks in the list \n", i);
         return LINE + gotIt + task + now + LINE;
     }

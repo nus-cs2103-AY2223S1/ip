@@ -84,4 +84,8 @@ public class Parser {
     public boolean isFind(String input) {
         return input.startsWith("find");
     }
+
+    public boolean isStats(String input) {
+        return input.startsWith("statistics");
+    }
 }

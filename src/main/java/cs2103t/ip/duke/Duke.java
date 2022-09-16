@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDate;
-
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -25,9 +24,12 @@ import javafx.util.Duration;
 public class Duke extends Application {
 
     public static final String FOLDER_PATH = "../data";
-    public static final String FILE_PATH = "../data/duke.txt";
+    public static final String TASK_FILE_PATH = "../data/duke.txt";
+    public static final String STATS_FILE_PATH = "../data/dukeStats.txt";
 
-    private Storage storage;
+    private Storage taskStorage;
+    private Storage statsStorage;
+    private Statistics statistics;
     private Tasklist tasks;
     private Ui ui;
     private Parser parser;
@@ -151,7 +153,7 @@ public class Duke extends Application {
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
-        if (userInput.getText().equals("bye")) {
+        if (parser.isBye(userInput.getText())) {
             PauseTransition delay = new PauseTransition(Duration.seconds(3));
             delay.setOnFinished(event -> Platform.exit());
             delay.play();
@@ -166,21 +168,26 @@ public class Duke extends Application {
      */
     private String getResponse(String input) throws IOException {
         int index = tasks.size();
+        assert input.length() > 0 : "Error! No input";
             if (parser.isBye(input)) {
                 for (int i = 0; i < tasks.size(); i++) {
                     Task task = tasks.getTasks().get(i);
                     String toSave = task.saveString();
                     if (i == 0) {
-                        storage.writeToFile(FILE_PATH, toSave);
+                        taskStorage.writeToFile(TASK_FILE_PATH, toSave);
                     } else {
-                        storage.appendToFile(FILE_PATH, toSave);
+                        taskStorage.appendToFile(TASK_FILE_PATH, toSave);
                     }
                 }
+                String statsSave = "Done " + "/" + statistics.getDoneCount() + "/" + statistics.getTodoCount()
+                        + "/" + statistics.getEventCount() + "/" + statistics.getDeadlineCount();
+                statsStorage.writeToFile(STATS_FILE_PATH, statsSave);
                 return ui.showBye();
             } else if (parser.isMark(input)){
                 if (input.length() > 5) {
                     int taskNum = Integer.parseInt(input.substring(5));
                     tasks.markDone(taskNum);
+                    statistics.addDone();
                     return ui.showMark(tasks, taskNum);
                 } else {
                     return "☹ OOPS!!! Please include the index of the task you'd like to mark as completed!";
@@ -189,6 +196,7 @@ public class Duke extends Application {
                 if (input.length() > 7) {
                     int taskNum = Integer.parseInt(input.substring(7));
                     tasks.markUndone(taskNum);
+                    statistics.delDone();
                     return ui.showUnmark(tasks, taskNum);
                 } else {
                     return "☹ OOPS!!! Please include the index of the task you'd like to mark as incomplete!";
@@ -199,6 +207,7 @@ public class Duke extends Application {
                 if (input.length() > 5) {
                     Todo todo = new Todo(input.substring(5));
                     tasks.addTasks(todo);
+                    statistics.addTodo();
                     index++;
                     return ui.showTodo(todo, index);
                 } else {
@@ -209,6 +218,7 @@ public class Duke extends Application {
                     String[] dead = input.split(" /by ");
                     Deadlines deadlines = new Deadlines(dead[0].substring(9), LocalDate.parse(dead[1]));
                     tasks.addTasks(deadlines);
+                    statistics.addDeadline();
                     index++;
                     return ui.showDeadline(deadlines, index);
                 } else {
@@ -219,6 +229,7 @@ public class Duke extends Application {
                     String[] time = input.split(" /at ");
                     Event event = new Event(time[0].substring(6), LocalDate.parse(time[1]));
                     tasks.addTasks(event);
+                    statistics.addEvent();
                     index++;
                     return ui.showEvent(event, index);
                 } else {
@@ -245,18 +256,24 @@ public class Duke extends Application {
                     }
                     return ui.showFilteredList(filteredTasks, filteredTasks.size());
                 }
-            } else {
-                return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+                 else {
+                    return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+                }
+            } else if (parser.isStats(input)) {
+                return ui.showStats(statistics);
             }
+
         return "☹ OOPS!!! I'm sorry, but I don't know what that means!!!";
     }
 
     public Duke() {
-        storage = new Storage(FOLDER_PATH, FILE_PATH);
+        taskStorage = new Storage(FOLDER_PATH, TASK_FILE_PATH);
+        statsStorage = new Storage(FOLDER_PATH, STATS_FILE_PATH);
         ui = new Ui();
         parser = new Parser();
         try {
-            tasks = new Tasklist(storage.loadFileData());
+            tasks = new Tasklist(taskStorage.loadFileData());
+            statistics = statsStorage.loadStatsFileData();
         } catch (DukeException e) {
             ui.showLoadingError();
             ArrayList<Task> array = new ArrayList<>();
@@ -276,9 +293,9 @@ public class Duke extends Application {
                     Task task = tasks.getTasks().get(i);
                     String toSave = task.saveString();
                     if (i == 0) {
-                        storage.writeToFile(FILE_PATH, toSave);
+                        taskStorage.writeToFile(TASK_FILE_PATH, toSave);
                     } else {
-                        storage.appendToFile(FILE_PATH, toSave);
+                        taskStorage.appendToFile(TASK_FILE_PATH, toSave);
                     }
                 }
                 ui.showBye();
