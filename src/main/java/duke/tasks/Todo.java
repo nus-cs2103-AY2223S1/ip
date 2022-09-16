@@ -32,6 +32,12 @@ public class Todo extends Task{
         return this.getStatus() + " " + this.description;
     }
 
+    /**
+     * Returns true if object passed is of type Todo and has the same description as the Todo object.
+     *
+     * @param obj Object to be compared with.
+     * @return Whether object passed and the Todo object are equal.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Todo) {

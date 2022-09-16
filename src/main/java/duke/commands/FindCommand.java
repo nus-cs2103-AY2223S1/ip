@@ -25,7 +25,7 @@ public class FindCommand extends Command{
      *
      * @param taskList Tasklist from which tasks that match search criteria is listed.
      * @param ui Ui sends a message to user after successful execution of command or when an error is thrown.
-     * @param storage Storage
+     * @param storage Storage.
      * @throws DukeException
      * @throws IOException
      */

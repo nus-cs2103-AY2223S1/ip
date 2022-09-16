@@ -39,6 +39,12 @@ public class Event extends Task{
                 this.time.format(DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy")) + ")";
     }
 
+    /**
+     * Returns true if object passed is of type Event and has the same description as the Event object.
+     *
+     * @param obj Object to be compared with.
+     * @return Whether object passed and the Event object are equal.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Event) {

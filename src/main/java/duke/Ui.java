@@ -37,7 +37,7 @@ public class Ui {
      * Prints a message for mark and unmark commands.
      *
      * @param isMark Whether the message is for a mark or unmark command.
-     * @param task Task which string is to be returned
+     * @param task Task which string is to be returned.
      */
     public String print(boolean isMark, Task task) {
         if (isMark) {
@@ -49,7 +49,7 @@ public class Ui {
     /**
      * Prints welcome message when a user logs on to Duke.
      *
-     * @return welcome message
+     * @return Welcome message.
      */
     public String printWelcomeMsg() {
         String greeting = "Hello! I'm Duke\n";

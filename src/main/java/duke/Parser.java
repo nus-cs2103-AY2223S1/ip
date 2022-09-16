@@ -29,7 +29,7 @@ public class Parser {
      * Parses the given input to determine the type of command the input contains.
      *
      * @param input Input to be parsed.
-     * @return Command object
+     * @return Command object.
      * @throws DukeException
      */
     public static Command parseInput(String input) throws DukeException{
