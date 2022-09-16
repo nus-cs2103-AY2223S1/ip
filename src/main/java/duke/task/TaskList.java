@@ -117,6 +117,9 @@ public class TaskList {
      * @return str
      */
     public String printListWithMessage(String message) {
+        if (taskList.size() == 0) {
+            return "There are no tasks in the task list";
+        }
         String[] strArray = IntStream.range(0, taskList.size())
                 .mapToObj(i -> String.format("%d.%s", i + 1, taskList.get(i).toString())).toArray(String[]::new);
         StringBuilder sb = new StringBuilder(message + "\n");
