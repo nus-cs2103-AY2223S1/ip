@@ -1,6 +1,6 @@
 Here are the tasks in your list:
 1.[D][ ][L] homework (by: Oct 02 2022 15:00)
-2.[E][ ][H] match (at: Oct 12 2022 13:00)
-3.[T][ ][ ] study
+2.[E][ ][M] match (at: Oct 12 2022 13:00)
+3.[T][X][ ] study
 4.[T][ ][ ] play
 5.[E][ ][ ] charity (at: Oct 13 2022 09:00)
