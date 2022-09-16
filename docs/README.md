@@ -123,6 +123,7 @@ Displays the list of task that matches the given keyword in the current task lis
 Format: `find KEYWORDS`
 
 * Only the task name for a task is searched.
+* The search is case-insensitive. e.g. `book` will match `Book` 
 * Matches will be returned as long as part of the task name matches the keywords. `Book` will match `Books`
 
 Examples:

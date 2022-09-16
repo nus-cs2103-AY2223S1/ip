@@ -186,7 +186,8 @@ public class TaskManager {
      */
     public String findTask(String keyword) {
         int[] keywordList = IntStream.range(0, this.taskList.size())
-                .filter(i -> this.taskList.get(i).getTaskName().contains(keyword)).toArray();
+                .filter(i -> this.taskList.get(i).getTaskName().toLowerCase()
+                        .contains(keyword.toLowerCase())).toArray();
         StringBuilder stringBuilder = new StringBuilder();
         for (Integer index : keywordList) {
             stringBuilder.append(index + 1).append(") ").append(this.taskList.get(index)).append("\n");
