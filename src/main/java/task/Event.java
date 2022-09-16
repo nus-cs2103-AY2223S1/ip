@@ -14,7 +14,10 @@ public class Event extends Task{
         if (duration.equals("")) {
             throw new MissingArgumentException("ERROR: event command is missing arguments.");
         }
-        this.duration = super.dateTime;
+        if (description.equals("")) {
+            throw new MissingArgumentException("Description is missing");
+        }
+        this.duration = super.date;
     }
 
     public Event(String description, String duration, boolean isDone) throws MissingArgumentException, InvalidDateException {
@@ -22,7 +25,10 @@ public class Event extends Task{
         if (duration.equals("")) {
             throw new MissingArgumentException("ERROR: event command is missing arguments.");
         }
-        this.duration = super.dateTime;
+        if (description.equals("")) {
+            throw new MissingArgumentException("Description is missing");
+        }
+        this.duration = super.date;
     }
 
     @Override

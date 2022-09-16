@@ -28,23 +28,42 @@ public class Parser {
         ;
     }
 
-    public Command parseCommand(String userCommand) throws InvalidCommandException {
+    public Command parse(String userCommand) throws InvalidCommandException {
+
         String splitUserStatement[] = userCommand.split(" ", 2);
         String command = splitUserStatement[0];
-        String commandArgs = splitUserStatement[1];
+        String commandArgs = "";
+        if (splitUserStatement.length > 1){
+            commandArgs = splitUserStatement[1].strip();
+        }
         switch(command) { //no breaks as all cases lead to return
         case COMMAND_LOAD:
-            return new LoadCommand(commandArgs);
+            if (!commandArgs.equals("")) {
+                throw new InvalidCommandException("Argument given for command not needing argument");
+            }
+            return new LoadCommand();
         case COMMAND_LIST:
-            return new ListCommand(commandArgs);
+            if (!commandArgs.equals("")) {
+                throw new InvalidCommandException("Argument given for command not needing argument");
+            }
+            return new ListCommand();
         case COMMAND_BYE:
-            return new ByeCommand(commandArgs);
+            if (!commandArgs.equals("")) {
+                throw new InvalidCommandException("Argument given for command not needing argument");
+            }
+            return new ByeCommand();
         case COMMAND_TODO:
             return new TodoCommand(commandArgs);
-        case COMMAND_DEADLINE:            
-            return new DeadlineCommand(commandArgs);
-        case COMMAND_EVENT:          
-            return new EventCommand(commandArgs);
+        case COMMAND_DEADLINE:   
+            String[] deadlineArgs = parseCommandArgs("/by",commandArgs); 
+            String deadlineDescription = deadlineArgs[0];
+            String deadlineDate = deadlineArgs[1].strip();  
+            return new DeadlineCommand(deadlineDescription, deadlineDate);
+        case COMMAND_EVENT:
+            String[] eventArgs = parseCommandArgs("/at",commandArgs); 
+            String eventDescription = eventArgs[0];
+            String eventDate = eventArgs[1].strip();          
+            return new EventCommand(eventDescription, eventDate);
         case COMMAND_MARK:
             return new MarkCommand(commandArgs);
         case COMMAND_UNMARK:
@@ -54,5 +73,10 @@ public class Parser {
         default:
             throw new InvalidCommandException("Command entered is invalid");
         }
+    }
+
+    public String[] parseCommandArgs(String delimiter, String args) {
+        String[] splitByDelimiter = args.split(delimiter, 2);
+        return splitByDelimiter;
     }
 }

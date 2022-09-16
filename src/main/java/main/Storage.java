@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import command.Command;
+import exception.DukeException;
+import exception.DukeFileNotFoundException;
+import exception.DukeIOException;
 import exception.InvalidCommandException;
-import exception.InvalidDateException;
-import exception.MissingArgumentException;
 import task.Task;
 
 public class Storage {
@@ -28,7 +29,7 @@ public class Storage {
         this.storage = storage;
     }
     
-    public TaskList loadLog() throws InvalidCommandException, InvalidDateException, MissingArgumentException, FileNotFoundException{
+    public TaskList loadLog() throws DukeException{
         try {
             Parser parser = new Parser();
             Scanner fileReader = new Scanner(new File(logFileAddress));
@@ -41,18 +42,22 @@ public class Storage {
             fileReader.close();
             for (String[] loggedTask : loggedTasks) {
                 boolean isDone = Integer.parseInt(loggedTask[0]) == 1;
-                Command parsedCommand = parser.parseCommand(loggedTask[1]);
+                Command parsedCommand = parser.parse(loggedTask[1]);
+                Task newTask = parsedCommand.getTask();
+                if (isDone) {
+                    newTask.mark();
+                }
                 newTaskList.add(parsedCommand.getTask());
             }
             return newTaskList;
         } catch (InvalidCommandException e) {
             throw e;
         } catch (FileNotFoundException e) {
-            throw e;
+            throw new DukeFileNotFoundException(e.getLocalizedMessage());
         }
     }
 
-    public void cleanUp() throws IOException {
+    public void cleanUp() throws DukeException {
         if (existingTasks.size() == 0) {
             this.sendNoTasksMessage();
         }
@@ -67,7 +72,7 @@ public class Storage {
             this.sendEndMessage(numOfTasks);
         }
         catch (IOException e) {
-            throw new IOException("Error in saving Tasks\n");
+            throw new DukeIOException("Error in saving Tasks\n");
         }
     }
 

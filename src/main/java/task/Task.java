@@ -10,7 +10,7 @@ public class Task {
     protected DateTimeFormatter outputDateFormatter = DateTimeFormatter.ofPattern("E, d MMM yyyy");
     protected String type;
     protected String description;
-    protected LocalDate dateTime;
+    protected LocalDate date;
     protected boolean isDone;
     protected boolean isEmpty;
 
@@ -32,18 +32,18 @@ public class Task {
         this.isEmpty = false;
     }
 
-    Task (String type, String description, String dateTime) throws InvalidDateException {
+    Task (String type, String description, String date) throws InvalidDateException {
         this.type = type;
         this.description = description;
-        this.dateTime = convert(dateTime);
+        this.date = convert(date);
         this.isDone = false;
         this.isEmpty = false;
     }
 
-    Task (String type, String description, String dateTime, boolean isDone) throws InvalidDateException{
+    Task (String type, String description, String date, boolean isDone) throws InvalidDateException{
         this.type = type;
         this.description = description;
-        this.dateTime = convert(dateTime);
+        this.date = convert(date);
         this.isDone = isDone;
         this.isEmpty = false;
     }
@@ -79,9 +79,9 @@ public class Task {
         case "todo":
             return String.format("%d,todo %s\n", binIsDone, this.description);
         case "deadline":
-            return String.format("%d,deadline %s/by%s\n", binIsDone, this.description, this.dateTime.format(inputDateFormatter));
+            return String.format("%d,deadline %s/by%s\n", binIsDone, this.description, this.date.format(inputDateFormatter));
         case "event":
-            return String.format("%d,event %s/at%s\n", binIsDone, this.description, this.dateTime.format(inputDateFormatter));
+            return String.format("%d,event %s/at%s\n", binIsDone, this.description, this.date.format(inputDateFormatter));
         default:
             return "N";
         }

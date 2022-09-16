@@ -6,26 +6,32 @@ import exception.MissingArgumentException;
 
 public class Deadline extends Task{
 
-    protected LocalDate dateTime;
+    protected LocalDate date;
 
-    public Deadline(String description, String dateTime) throws MissingArgumentException, InvalidDateException{
-        super("deadline", description, dateTime);
-        if (dateTime.equals("")) {
+    public Deadline(String description, String date) throws MissingArgumentException, InvalidDateException{
+        super("deadline", description, date);
+        if (date.equals("")) {
             throw new MissingArgumentException("ERROR: deadline command is missing arguments.");
         }
-        this.dateTime = super.dateTime;
+        if (description.equals("")) {
+            throw new MissingArgumentException("Description is missing");
+        }
+        this.date = super.date;
     }
 
-    public Deadline(String description, String dateTime, boolean isDone) throws MissingArgumentException, InvalidDateException{
-        super("deadline", description, dateTime, isDone);
-        if (dateTime.equals("")) {
+    public Deadline(String description, String date, boolean isDone) throws MissingArgumentException, InvalidDateException{
+        super("deadline", description, date, isDone);
+        if (date.equals("")) {
             throw new MissingArgumentException("ERROR: deadline command is missing arguments.");
         }
-        this.dateTime = super.dateTime;
+        if (description.equals("")) {
+            throw new MissingArgumentException("Description is missing");
+        }
+        this.date = super.date;
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.dateTime.format(super.outputDateFormatter));
+        return String.format("[D]%s (by: %s)", super.toString(), this.date.format(super.outputDateFormatter));
     }
 }

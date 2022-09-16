@@ -1,10 +1,6 @@
 package command;
 
-import java.io.FileNotFoundException;
-
-import exception.InvalidCommandException;
-import exception.InvalidDateException;
-import exception.MissingArgumentException;
+import exception.DukeException;
 import main.Storage;
 import main.TaskList;
 import main.Ui;
@@ -12,8 +8,8 @@ import task.Task;
 
 public class LoadCommand extends Command{
     
-    public LoadCommand(String commandArgs) {
-        super(commandArgs);
+    public LoadCommand() {
+        super();
     }
 
     @Override
@@ -21,13 +17,16 @@ public class LoadCommand extends Command{
         return false;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws InvalidDateException, InvalidCommandException, MissingArgumentException, FileNotFoundException{
-        storage.loadLog();
-       
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+        try {
+            storage.loadLog();
+        } catch (DukeException e) {
+            throw e;
+        }
     }
 
     @Override
     public Task getTask() {
-        return null;
+        return Task.empty();
     }
 }

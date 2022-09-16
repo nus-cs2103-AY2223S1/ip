@@ -7,8 +7,8 @@ import task.Task;
 
 public class ListCommand extends Command {
 
-    public ListCommand(String commandArgs) {
-        super(commandArgs);
+    public ListCommand() {
+        super();
     }
 
     @Override
@@ -23,6 +23,6 @@ public class ListCommand extends Command {
 
     @Override
     public Task getTask() {
-        return null;
+        return Task.empty();
     }
 }

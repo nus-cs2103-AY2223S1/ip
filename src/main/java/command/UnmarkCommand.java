@@ -1,14 +1,19 @@
 package command;
 
+import exception.DukeException;
+import exception.TaskListOutOfBoundsException;
 import main.Storage;
 import main.TaskList;
 import main.Ui;
 import task.Task;
 
 public class UnmarkCommand extends Command{
+
+    private int pos;
     
-    public UnmarkCommand(String commandArgs) {
-        super(commandArgs);
+    public UnmarkCommand(String pos) {
+        super();
+        this.pos = Integer.parseInt(pos);
     }
 
     @Override
@@ -16,14 +21,18 @@ public class UnmarkCommand extends Command{
         return false;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        try {
+            tasks.unmark(this.pos);
+            ui.unmark(this.pos);
+        } catch (TaskListOutOfBoundsException e) {
+            throw new DukeException(e.getLocalizedMessage());
+        }
     }
 
     @Override
     public Task getTask() {
-        // TODO Auto-generated method stub
-        return null;
+        return Task.empty();
     }
 
 }
