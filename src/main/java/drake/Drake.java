@@ -1,57 +1,27 @@
 package drake;
 
 import java.io.IOException;
-import java.util.List;
 
-import drake.commands.Command;
+import drake.gui.Main;
+import javafx.application.Application;
 
 /**
  * Entrypoint for the Drake to-do list chatbot.
  */
 public class Drake {
 
-    private final Storage storage;
-    private final TaskList tasks;
-    private final Ui ui;
-
     private Drake() throws IOException, DrakeException {
-        ui = new Ui();
-        storage = new Storage();
-        tasks = new TaskList(storage.fileToList());
-    }
-
-    private void run() {
-        ui.replyWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullInput = ui.readInput();
-                ui.printDash(); // show the divider line ("_______")
-                Command c = Parser.parse(fullInput);
-                List<String> reply = c.execute(tasks, ui, storage);
-                for (String line : reply) {
-                    ui.printLine(line);
-                }
-                isExit = c.isExit();
-            } catch (IOException | DrakeException e) {
-                ui.printError(e.getMessage());
-            } finally {
-                ui.printDash();
-            }
-        }
+        Storage storage = new Storage();
+        new TaskList(storage.fileToList());
     }
 
     /**
-     * Entrypoint for the command-line app.
+     * Entrypoint for app.
      *
      * @param args Command-line arguments.
      */
     public static void main(String[] args) {
-        try {
-            new Drake().run();
-        } catch (IOException | DrakeException e) {
-            System.out.println(e.getMessage());
-        }
+        Application.launch(Main.class, args);
     }
 
 }
