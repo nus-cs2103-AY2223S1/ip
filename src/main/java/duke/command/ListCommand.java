@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.Parser;
 import duke.task.TaskList;
 
 public class ListCommand extends Command {

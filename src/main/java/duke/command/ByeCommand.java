@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.Parser;
 import duke.task.TaskList;
 
 public class ByeCommand extends Command {

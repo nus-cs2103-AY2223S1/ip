@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.task.TaskList;
@@ -15,8 +13,8 @@ public class Duke {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String GREETING = "Hello! I'm Duke!\n";
 
+    private boolean hasTasksEnd = false;
     private TaskList tasks;
-    public boolean hasTasksEnd = false;
 
     /**
      * Initialises Duke class with empty {@code TaskList}.
@@ -39,5 +37,9 @@ public class Duke {
 
     public String getWelcomeMessage() {
         return String.format("%s%sYou have %s. What can I do for you?", LOGO, GREETING, tasks.lengthString());
+    }
+
+    public boolean hasTasksEnd() {
+        return hasTasksEnd;
     }
 }

@@ -2,7 +2,6 @@ package duke;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +21,6 @@ import duke.command.ListCommand;
 import duke.command.SetDoneCommand;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
-import duke.task.Task;
 import duke.task.TodoTask;
 
 public final class Parser {

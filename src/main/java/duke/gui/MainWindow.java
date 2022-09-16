@@ -1,5 +1,7 @@
 package duke.gui;
 
+import java.util.Objects;
+
 import duke.Duke;
 import duke.DukeException;
 import javafx.animation.PauseTransition;
@@ -12,8 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-
-import java.util.Objects;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -67,10 +67,10 @@ public class MainWindow extends AnchorPane {
                     DialogBox.getUserDialog(input, userImage),
                     DialogBox.getDukeDialog(response, dukeImage)
             );
-            if (duke.hasTasksEnd) {
+            if (duke.hasTasksEnd()) {
                 userInput.setDisable(true);
                 PauseTransition delay = new PauseTransition(Duration.seconds(3));
-                delay.setOnFinished( event -> Platform.exit() );
+                delay.setOnFinished(event -> Platform.exit());
                 delay.play();
             }
         } catch (DukeException e) {
