@@ -39,7 +39,7 @@ public class DialogBox extends HBox {
         dialog.setText(text);
         dialog.setPrefHeight(USE_COMPUTED_SIZE);
         displayPicture.setImage(img);
-        Circle clip = new Circle(50, 50, 49);
+        Circle clip = new Circle(50, 50, 45);
         displayPicture.setClip(clip);
     }
 
@@ -55,7 +55,7 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.dialog.setStyle("-fx-background-color:#b8b8b8; -fx-padding: 15px; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-width: 2px;");
+        db.dialog.setStyle("-fx-background-color:#cefad0; -fx-padding: 15px; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-width: 2px;");
         return db;
     }
 
