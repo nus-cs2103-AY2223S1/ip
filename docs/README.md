@@ -12,8 +12,6 @@ This command allows you to list the tasks that have been previously added.
 
 ### `list` - Displays list of tasks
 
-Describe the action and its outcome.
-
 Example of usage:
 
 `list`
@@ -30,8 +28,6 @@ This command allows you to create a to-do task that does not have a specific dat
 ### Usage
 
 ### `todo` - Creates a to-do task
-
-Describe the action and its outcome.
 
 Example of usage:
 
@@ -51,8 +47,6 @@ This command allows you to create a deadline task that has to be done by a speci
 
 ### `deadline` - Creates a deadline task
 
-Describe the action and its outcome.
-
 Example of usage:
 
 `deadline wash dishes /by 2022-10-12`
@@ -71,8 +65,6 @@ This command allows you to create a event task that occurs on a specific date.
 
 ### `event` - Creates an event task
 
-Describe the action and its outcome.
-
 Example of usage:
 
 `event wash dishes /at 2022-10-12`
@@ -90,8 +82,6 @@ This command allows you to mark a task as done once it is completed.
 ### Usage
 
 ### `mark` - marks a task as done
-
-Describe the action and its outcome.
 
 Example of usage:
 
@@ -162,7 +152,7 @@ This command allows you to display the schedule of you tasks according to the da
 
 ### Usage
 
-### `schedule` - deleting a task
+### `schedule` - display the users schedule
 
 Example of usage:
 
