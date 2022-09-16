@@ -1,6 +1,7 @@
 package duke.tools;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 import duke.exception.TaskNotFoundException;
 
@@ -25,7 +26,18 @@ public class CommandParser extends Parser {
         FIND,
         TODO,
         DEADLINE,
-        EVENT
+        EVENT,
+        SORT
+    }
+
+    /**
+     * Collection of sorting criteria recognised by Duke.
+     */
+    public enum Sorting {
+        DATES,
+        NAME,
+        TASK,
+        DONE
     }
 
     /**
@@ -42,6 +54,8 @@ public class CommandParser extends Parser {
         commandMap.put("deadline", Commands.DEADLINE);
         commandMap.put("event", Commands.EVENT);
         commandMap.put("find", Commands.FIND);
+        commandMap.put("sort", Commands.SORT);
+
         this.input = input;
         this.keywords = input.split(" ", 2);
     }
@@ -52,7 +66,7 @@ public class CommandParser extends Parser {
      * @throws TaskNotFoundException When user input command does not correspond to recognised command.
      */
     public Commands getCommand() throws TaskNotFoundException {
-        String command = this.keywords[0];
+        String command = this.keywords[0].toLowerCase(Locale.ROOT);
         if (!commandMap.containsKey(command)) {
             throw new TaskNotFoundException(input);
         }
@@ -77,5 +91,14 @@ public class CommandParser extends Parser {
     public String getWord() {
 
         return this.keywords[1];
+    }
+
+    /**
+     * Returns the sorting criteria for the list.
+     * @return Criteria for sorting
+     */
+    public Sorting getSortCriteria() {
+
+        return Sorting.valueOf(this.keywords[1].toUpperCase(Locale.ROOT));
     }
 }

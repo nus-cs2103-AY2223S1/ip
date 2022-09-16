@@ -3,9 +3,14 @@ package duke.task;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import duke.comparator.CompletionComparator;
+import duke.comparator.DateComparator;
+import duke.comparator.NameComparator;
+import duke.comparator.TaskTypeComparator;
 import duke.exception.ContentNotFoundException;
 import duke.exception.DateNotFoundException;
 import duke.exception.TaskNotFoundException;
+import duke.tools.CommandParser;
 import duke.tools.TaskParser;
 import duke.tools.Ui;
 
@@ -128,5 +133,29 @@ public class TaskList {
             }
         }
         return searchResult;
+    }
+
+    public ArrayList<Task> sortTasks(CommandParser.Sorting criteria) {
+
+        switch (criteria) {
+        case DATES:
+            DateComparator dateComparator = new DateComparator();
+            this.tasks.sort(dateComparator);
+            return this.tasks;
+        case NAME:
+            NameComparator nameComparator = new NameComparator();
+            this.tasks.sort(nameComparator);
+            return this.tasks;
+        case TASK:
+            TaskTypeComparator taskComparator = new TaskTypeComparator();
+            this.tasks.sort(taskComparator);
+            return this.tasks;
+        case DONE:
+            CompletionComparator completionComparator = new CompletionComparator();
+            this.tasks.sort(completionComparator);
+            return this.tasks;
+        default:
+            return this.tasks;
+        }
     }
 }

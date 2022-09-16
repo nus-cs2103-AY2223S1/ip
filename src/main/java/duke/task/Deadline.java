@@ -1,16 +1,17 @@
 package duke.task;
 
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 import duke.exception.DateNotFoundException;
 import duke.tools.DateTime;
 
 public class Deadline extends Task {
-    private String dateTime;
+    private DateTime dateTime;
 
     private Deadline(String taskText, DateTime dateTime) {
         super(taskText.trim());
-        this.dateTime = dateTime.getDate();
+        this.dateTime = dateTime;
     }
 
     /**
@@ -56,6 +57,16 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         //ui : (by: date)
-        return "D" + super.toString() + " | " + dateTime;
+        return "D" + super.toString() + " | " + getDateTime();
+    }
+
+    public String getDateTime() {
+
+        return dateTime.getDate();
+    }
+
+    public DateTime getParsedDate() {
+
+        return this.dateTime;
     }
 }

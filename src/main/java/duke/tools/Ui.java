@@ -185,4 +185,13 @@ public class Ui {
         return "Here are the tasks that match your search: ";
     }
 
+    /**
+     * Returns task sort result header.
+     * @return Task sort result header string.
+     */
+    public static String sortTaskToast(String criteria) {
+        System.out.println("Here are the tasks, sorted by " + criteria);
+        return "Here are the tasks, sorted by " + criteria;
+    }
+
 }

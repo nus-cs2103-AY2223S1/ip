@@ -55,6 +55,10 @@ public class Duke {
             ArrayList<Task> result = tasks.findTasks(keywordParser.getWord());
             return Ui.foundTaskToast() + "\n"
                     + Ui.printList(result);
+        case SORT:
+            result = tasks.sortTasks(keywordParser.getSortCriteria());
+            return Ui.sortTaskToast(keywordParser.getWord()) + "\n"
+                    + Ui.printList(result);
         default:
             return getTaskResponse(input);
         }
