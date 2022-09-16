@@ -6,86 +6,70 @@ import java.util.Scanner;
 
 public class Parser {
 
-    private final String HORIZONTAL_LINE_BREAK = "-------------------------";
     private Duke duke;
 
     public Parser(Duke duke) {
         this.duke = duke;
     }
 
-    public void initialise() {
-        Scanner sc = new Scanner(System.in);
-        String command = sc.next();
+    public String initialise(String input) {
+        String[] splitInput = input.split(" ", 2);
+        try {
+            switch (splitInput[0]) {
 
-        while (!command.equals("bye")) {
-            try {
-
-                switch (command) {
-
-                case "list": {
-                    duke.showList();
-                    break;
-                }
-
-                case "mark": {
-                    int index = sc.nextInt() - 1;
-                    duke.mark(index);
-                    break;
-                }
-
-                case "unmark": {
-                    int index = sc.nextInt() - 1;
-                    duke.unmark(index);
-                    break;
-                }
-
-                case "todo": {
-                    String description = sc.nextLine();
-                    duke.setToDo(description);
-                    break;
-                }
-
-                case "deadline": {
-                    String input = sc.nextLine();
-                    String description = input.substring(0, input.indexOf("/") - 1);
-                    String by = input.substring(input.indexOf("/") + 4);
-                    duke.setDeadLine(description, by);
-                    break;
-                }
-
-                case "event": {
-                    String input = sc.nextLine();
-                    String description = input.substring(0, input.indexOf("/") - 1);
-                    String at = input.substring(input.indexOf("/") + 4);
-                    duke.setEvent(description, at);
-                    break;
-                }
-
-                case "delete": {
-                    int index = sc.nextInt() - 1;
-                    duke.delete(index);
-                    break;
-                }
-
-                case "find": {
-                    String string = sc.next() + sc.nextLine();
-                    duke.find(string);
-                    break;
-                }
-
-                default:
-                    sc.nextLine();
-                    throw new DukeException("I'm sorry, but I don't know what that means.");
-                }
-            } catch (DukeException exception) {
-                System.out.println(exception);
+            case "list": {
+                return duke.showList();
             }
-            command = sc.next();
+
+            case "mark": {
+                int index = Integer.parseInt(splitInput[1]) - 1;
+                return duke.mark(index);
+            }
+
+            case "unmark": {
+                int index = Integer.parseInt(splitInput[1]) - 1;
+                return duke.unmark(index);
+            }
+
+            case "todo": {
+                String description = splitInput[1].trim();
+                return duke.setToDo(description);
+            }
+
+            case "deadline": {
+                String string = splitInput[1].trim();
+                String description = string.substring(0, string.indexOf("/") - 1);
+                String by = string.substring(string.indexOf("/") + 4);
+                return duke.setDeadLine(description, by);
+            }
+
+            case "event": {
+                String string = splitInput[1].trim();
+                String description = string.substring(0, string.indexOf("/") - 1);
+                String at = string.substring(string.indexOf("/") + 4);
+                return duke.setEvent(description, at);
+            }
+
+            case "delete": {
+                int index = Integer.parseInt(splitInput[1]) - 1;
+                return duke.delete(index);
+            }
+
+            case "find": {
+                String string = splitInput[1].trim();
+                return duke.find(string);
+            }
+
+            case "bye" : {
+                return duke.sayBye();
+            }
+
+            default:
+                throw new DukeException("I'm sorry, but I don't know what that means.");
+            }
+        } catch (DukeException exception) {
+            return exception.toString();
         }
-
     }
-
-
-
 
 }
