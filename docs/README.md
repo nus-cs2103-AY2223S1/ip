@@ -25,6 +25,7 @@ for a short summary on the differences between CLI and GUI.
 
 ## Quick Start / Setting Up
 1. Ensure you have Java `11` installed in your computer. 
+
    > _Not familiar with Java?_ Refer to [this](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
    > installation guide.
 2. Download the latest iteration of Isara [here](https://github.com/melissaharijanto/ip/releases/tag/A-Release). The specific file to download is `isara-{version}.jar`, e.g. `isara-v0.2.jar`.
@@ -72,7 +73,7 @@ Got it. I've added this task:
 [E][ ] Concert (at: YST Conservatory)
 Now you have 2 tasks in the list.
 ```
-###3. **Deadline** : `deadline` 
+### 3. **Deadline** : `deadline` 
 Tasks that need to be done before a specific time.
 
 **Format:** `deadline <TASK_NAME> /by <YYYY-MM-DD>`
