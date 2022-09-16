@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.massops.MassOperation;
 import duke.storage.Storage;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
@@ -14,16 +15,16 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     private static final String MESSAGE_SUCCESS = "Yo, I managed to delete this task: \n";
 
-    private int taskIndex;
+    private MassOperation massOperation;
 
     /**
      * Constructs a DeleteCommand instance
      *
-     * @param taskIndex the index of the task to be deleted
+     * @param massOperation the index of the task to be deleted
      */
-    public DeleteCommand(int taskIndex) {
+    public DeleteCommand(MassOperation massOperation) {
         super();
-        this.taskIndex = taskIndex;
+        this.massOperation = massOperation;
     }
 
     /**
@@ -49,9 +50,8 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            Task t = tasks.getTask(taskIndex);
-            String result = getResultString(tasks, t);
-            tasks.deleteTask(taskIndex);
+            String tasksToShow = tasks.deleteBasedOnMassOperation(massOperation);
+            String result = MESSAGE_SUCCESS + System.lineSeparator() + tasksToShow + tasks.showNumberOfTasks();
             ui.showMessage(result);
             return result;
         } catch (DukeException e) {

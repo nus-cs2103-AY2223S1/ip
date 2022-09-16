@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.massops.MassOperation;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
@@ -13,16 +14,16 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
     private static final String MESSAGE_SUCCESS = "Yo, I managed to mark this task done: ";
 
-    private int taskIndex;
+    private MassOperation massOp;
 
     /**
      * Constructs a MarkCommand instance
      *
-     * @param taskIndex the index of the task to be marked as done
+     * @param op the mass operation to be applied to the mark command
      */
-    public MarkCommand(int taskIndex) {
+    public MarkCommand(MassOperation op) {
         super();
-        this.taskIndex = taskIndex;
+        massOp = op;
     }
 
     /**
@@ -48,8 +49,8 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            tasks.markAsDone(taskIndex);
-            String result = getResultString(tasks);
+            String tasksToShow = tasks.markBasedOnMassOperation(massOp);
+            String result = MESSAGE_SUCCESS + System.lineSeparator() + tasksToShow + tasks.showNumberOfTasks();
             ui.showMessage(result);
             return result;
         } catch (DukeException e) {
