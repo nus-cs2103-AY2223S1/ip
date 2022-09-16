@@ -216,7 +216,7 @@ public class Duke {
      * Method to find index in the Tasklist from the command
      * @param command full command given by the user
      */
-    private int getIndexInTaskList(String command) {
+    public static int getIndexInTaskList(String command) {
         String number = command.replaceAll("[^\\d.]", "");
         int n = Integer.parseInt(number);
         return n-1;
