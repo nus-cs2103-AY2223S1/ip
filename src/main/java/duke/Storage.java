@@ -23,10 +23,16 @@ public class Storage {
      *
      * @param filePath Location of the file that stores the data as a result of running the main class.
      */
-    public Storage(String filePath) {
+    public Storage(String filePath) throws IOException {
         this.filePath = filePath;
         this.inputList = new ArrayList<>();
         this.file = new File(filePath);
+        File folder = new File("data");
+        if (!folder.exists()) {
+            folder.mkdir();
+        } if (!this.file.exists()) {
+            this.file.createNewFile();
+        }
     }
 
     /**
@@ -65,7 +71,7 @@ public class Storage {
             } else {
                 while (scanner.hasNextLine()) {
                     String task = scanner.nextLine();
-                    String type = String.valueOf(task.charAt(3));
+                    String type = String.valueOf(task.charAt(1));
                     assert type.equals("T") || type.equals("E") || type.equals("D");
 
                     if (type.equals("T")) {

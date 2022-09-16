@@ -86,3 +86,19 @@ Q: How do I transfer my data to another Computer?\
 A: Install the app in the other computer and overwrite the empty data file it creates 
 with the file that contains the data of your previous AddressBook home folder.
 
+---
+## Command Summary
+
+| Action   | Format                              | Examples                         |
+|----------|-------------------------------------|----------------------------------|
+| help     | -                                   | `help`                           |
+| mark     | mark [index]                        | `mark 3`                         |
+| unmark   | unmark [index]                      | `unmark 2`                       |
+| list     | -                                   | `list`                           |
+| delete   | delete [index]                      | `delete 1`                       |
+| find     | find [keyword]                      | `find books`                     |
+| deadline | deadline [task] /by<br/> [deadline] | `deadline return books /by 3pm`  |
+| event    | event [task] /at<br/> [timing]      | `event book signing /at 2pm-4pm` |
+| todo     | todo [task]                         | `todo read books`                |
+| hi       | -                                   | `hi`                             |
+| bye      | -                                   | `bye`                            |

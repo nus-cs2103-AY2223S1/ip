@@ -19,13 +19,15 @@ public class Duke {
      * Constructor for the Duke main class.
      */
     public Duke () {
-        ui = new Ui();
-        storage = new Storage(filePath);
         try {
+            ui = new Ui();
+            storage = new Storage(filePath);
             taskList = new TaskList(storage.load());
         } catch (DukeException e) {
             ui.showLoadingError();
             taskList = new TaskList();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -82,9 +84,9 @@ public class Duke {
         } else if (firstWord.equals("help")) {
             String response = "";
 
-            response += "Refer to this link:\n" +
-                    "https://mohamedsaf1.github.io/ip/";
-
+            response += "Refer to this link:\n";
+            String url = "https://mohamedsaf1.github.io/ip/";
+            response += url;
             return response;
 
         } else {
