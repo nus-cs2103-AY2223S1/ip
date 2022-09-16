@@ -12,7 +12,7 @@ maximising your productivity by spending less time on handling your tasks!
 
 ## Quick start
 1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest `duke.jar` from here.
+2. Download the latest `duke.jar` from [here](https://github.com/sikai00/ip/releases/tag/A-Release).
 3. Copy the file to the folder you want to use as the home folder for your _KarenBot_.
 4. Navigate to the folder containing _KarenBot_ via CLI.
 5. Run _KarenBot_ using the following command: `java -jar duke.jar`
