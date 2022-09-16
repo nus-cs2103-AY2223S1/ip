@@ -10,7 +10,7 @@ Why should you use Sakura?
 
 So what are you waiting for? Download Sakura [here](https://github.com/Kok-je/ip) and get started on your tasks! („• ◡ •„) ♡
 
-Here's a screenshot of Sakura in action:<br>![](../images/Ui.png)
+Here's a screenshot of Sakura in action:<br>![](../images/Ui.PNG)
 
 ---
 
@@ -46,7 +46,7 @@ Example of usage:
 
 `todo homework`
 
-Expected outcome:<br>![](../images/todo.png)
+Expected outcome:<br>![](../images/todo.PNG)
 
 ### 🌸 `Event` - Adds a Event task to your list
 
@@ -57,7 +57,7 @@ Example of usage:
 
 `event concert /at 2022-10-12 2000`
 
-Expected outcome:<br>![](../images/event.png)
+Expected outcome:<br>![](../images/event.PNG)
 
 ---
 
@@ -73,7 +73,7 @@ Example of usage:
 > **Note**
 You will not be allowed to add a task with the same description as it will be treated as duplicate.
 
-Expected outcome:<br>![](../images/deadline.png)
+Expected outcome:<br>![](../images/Deadline.png)
 
 ---
 
@@ -85,7 +85,7 @@ Example of usage:
 
 `mark 1`
 
-Expected outcome:<br>![](../images/mark.png)
+Expected outcome:<br>![](../images/mark.PNG)
 
 ---
 
@@ -97,7 +97,7 @@ Example of usage:
 
 `unmark 1`
 
-Expected outcome:<br>![](../images/unmark.png)
+Expected outcome:<br>![](../images/unmark.PNG)
 
 ---
 
@@ -107,7 +107,7 @@ Example of usage:
 
 `list`
 
-Expected outcome:<br>![](../images/list.png)
+Expected outcome:<br>![](../images/list.PNG)
 
 ---
 
@@ -119,7 +119,7 @@ Example of usage:
 
 `delete 9`
 
-Expected outcome:<br>![](../images/delete.png)
+Expected outcome:<br>![](../images/delete.PNG)
 
 ---
 
@@ -131,7 +131,7 @@ Example of usage:
 
 `find book`
 
-Expected outcome:<br>![](../images/find.png)
+Expected outcome:<br>![](../images/find.PNG)
 
 ---
 
@@ -141,7 +141,7 @@ Example of usage:
 
 `sort`
 
-Expected outcome:<br>![](../images/sort.png)
+Expected outcome:<br>![](../images/sort.PNG)
 
 ---
 
@@ -151,7 +151,7 @@ Example of usage:
 
 `bye`
 
-Expected outcome:<br>![](../images/bye.png)
+Expected outcome:<br>![](../images/bye.PNG)
 
 ---
 
