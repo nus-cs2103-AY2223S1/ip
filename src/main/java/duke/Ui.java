@@ -18,8 +18,8 @@ public class Ui {
     /**
      * Method prints out duke.Duke's default greeting.
      */
-    public void greet() {
-        System.out.println(NAME + "Hello! I'm doimoibot\n" + "What can I do you for?");
+    public String greet() {
+        return "Hello! I'm doimoibot\n" + "What can I do you for?";
     }
 
     /**

@@ -126,10 +126,11 @@ public class Duke extends Application {
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
-        System.out.println("Duke starting");
         Duke duke = new Duke("./data/duke.txt");
         assert duke.tasks != null : "TaskList should exist!";
         duke.storage.readData(duke.tasks);
+        Label greeting = getDialogLabel(this.ui.greet());
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(greeting, new ImageView(this.duke)));
         System.out.println("Duke started");
 
         sendButton.setOnMouseClicked((event) -> {
@@ -175,17 +176,11 @@ public class Duke extends Application {
      */
     private String getResponse(String input) {
         try {
-            String fullCommand = input;
-        //    this.ui.printLine(); // show the divider line ("_______")
-            Command c = Parser.parse(fullCommand);
+            Command c = Parser.parse(input);
             return c.execute(this.tasks, this.ui, this.storage);
         } catch (DukeException e) {
-            return "That command was not valid. Try again!";
-        } finally {
-        //    this.ui.printLine();
+            return e.getMessage();
         }
-
-        //return "Duke heard: " + input;
     }
 
 }

@@ -17,6 +17,7 @@ faster than traditional GUI apps, provided that you can type fast.
 
 ## Features
 
+
 ### Adding tasks : `todo/deadline/event/doafter`
 
 Adds a task of the specified type to the task list.
@@ -27,11 +28,13 @@ Format:
 - `event <description> /at DD/MM/YYYY HHMM`
 - `doafter <description> /after DD/MM/YYYY HHMM`
 
+
 ### List : `list`
 
 Lists out all tasks and their status of completion.
 
 Format: `list`
+
 
 ### Changing status of completion: `mark/unmark`
 
@@ -42,17 +45,20 @@ Format:
 - `mark <task index>`
 - `unmark <task index>`
 
+
 ### Deleting tasks: `delete`
 
 Removes the specified task from the task list.
 
 Format: `delete <task index>`
 
+
 ### Finding tasks: `find`
 
 Displays all the tasks that contain the text that is searched for.
 
 Format: `find <text to find>`
+
 
 ### Exiting Duke: `bye`
 
