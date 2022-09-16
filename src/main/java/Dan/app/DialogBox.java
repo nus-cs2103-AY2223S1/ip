@@ -1,4 +1,4 @@
-package dan;
+package dan.app;
 
 import java.io.IOException;
 import java.util.Collections;

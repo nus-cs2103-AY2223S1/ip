@@ -1,4 +1,4 @@
-package dan;
+package dan.exceptions;
 
 /**
  * Dan-specific exception class

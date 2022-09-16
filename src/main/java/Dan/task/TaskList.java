@@ -2,7 +2,7 @@ package dan.task;
 
 import java.util.List;
 
-import dan.DanException;
+import dan.exceptions.DanException;
 import dan.ui.Ui;
 
 /**
@@ -56,10 +56,9 @@ public class TaskList {
             tasks.add(new Event(description, dateString));
         }
         StringBuilder result = new StringBuilder();
-        result.append(Ui.printIndent("Okay okay, I'll add this task then:"));
-        result.append(Ui.printIndent(tasks.get(tasks.size() - 1).toString()));
-        result.append(Ui.printIndent(String.format("You now have %d many tasks in your list", tasks.size())))
-                .append("\n");
+        result.append(Ui.printIndent("Okay okay, I'll add this task then:\n"));
+        result.append(Ui.printIndent(tasks.get(tasks.size() - 1).toString())).append("\n");
+        result.append(Ui.printIndent(String.format("You now have %d many tasks in your list", tasks.size())));
         return result.toString();
     }
 

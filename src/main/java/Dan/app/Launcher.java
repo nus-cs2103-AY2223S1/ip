@@ -1,4 +1,4 @@
-package dan;
+package dan.app;
 
 import javafx.application.Application;
 
