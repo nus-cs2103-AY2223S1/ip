@@ -32,7 +32,7 @@ public class Storage {
     public static ArrayList<Task> initializeTaskList() throws ChadException {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
-            File currentFile = new File("./data/chad_data.txt");
+            File currentFile = new File("chad_data.txt");
 
             if (currentFile.createNewFile()) {
                 System.out.println("Created new file");
@@ -59,7 +59,7 @@ public class Storage {
      */
     public static void writeToFile(String str) throws ChadException {
         try {
-            FileWriter fileWriter = new FileWriter("./data/chad_data.txt", true);
+            FileWriter fileWriter = new FileWriter("chad_data.txt", true);
             BufferedWriter writer = new BufferedWriter(fileWriter);
             writer.write(str);
             writer.newLine();
@@ -71,12 +71,12 @@ public class Storage {
 
     /**
      * Archive current task list into another file
-     * 
+     *
      * @throws ChadException If file cannot be opened
      */
-    public static void archiveToFile() throws ChadException{
-        Path source = Paths.get("./data/chad_data.txt");
-        Path dest = Paths.get("./data/chad_archived.txt");
+    public static void archiveToFile() throws ChadException {
+        Path source = Paths.get("chad_data.txt");
+        Path dest = Paths.get("chad_archived.txt");
         try {
             Files.move(source, dest, StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
@@ -93,7 +93,7 @@ public class Storage {
     public static void deleteTaskInFile(int index) throws ChadException {
         try {
             File tempFile = new File("tempFile.txt");
-            File currentFile = new File("./data/chad_data.txt");
+            File currentFile = new File("chad_data.txt");
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
             BufferedReader reader = new BufferedReader(new FileReader(currentFile));
@@ -127,7 +127,7 @@ public class Storage {
     public static void toggleMarkTaskInFile(int index) throws ChadException {
         try {
             File tempFile = new File("tempFile.txt");
-            File currentFile = new File("./data/chad_data.txt");
+            File currentFile = new File("chad_data.txt");
             tempFile.deleteOnExit();
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));

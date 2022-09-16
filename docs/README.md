@@ -1,29 +1,63 @@
 # User Guide
 
 ## Features 
+- Create tasks
+### Create tasks
 
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
+Create 3 different types of tasks - todo, deadline and event
 
 ## Usage
 
-### `Keyword` - Describe action
+### `todo` - Add a todo task
 
-Describe the action and its outcome.
+Todo task is added into task list
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`todo read book`
 
 Expected outcome:
 
-Description of the outcome.
+Chad bot returns the following output
 
 ```
 expected output
+Got it. I've added this task:
+[T][] read book
+```
+
+### `deadline` - Add a deadline task
+
+Deadline task is added into task list
+
+Example of usage:
+
+`deadline return book /by 2/12/2019 1800`
+
+Expected outcome:
+
+Chad bot returns the following output
+
+```
+expected output
+Got it. I've added this task:
+[D][] return book (by: 02 Decemeber 2019 18:00 PM)
+```
+
+### `event` - Add a event task
+
+Event task is added into task list
+
+Example of usage:
+
+`event party /at 2/12/2020 1800`
+
+Expected outcome:
+
+Chad bot returns the following output
+
+```
+expected output
+Got it. I've added this task:
+[E][] party (at: 02 Decemeber 2020 18:00 PM)
 ```
