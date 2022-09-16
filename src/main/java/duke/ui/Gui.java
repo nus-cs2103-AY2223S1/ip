@@ -37,7 +37,7 @@ public class Gui extends Application {
             stage.setScene(scene);
 
             // create path = current directory / data / data.txt
-            Path path = Paths.get(".", "data", "data.txt");
+            Path path = Paths.get(System.getProperty("user.dir"), "data", "data.txt");
             fxmlLoader.<MainWindow>getController().initDuke(path);
 
             stage.show();

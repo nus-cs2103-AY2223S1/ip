@@ -27,7 +27,8 @@ It is optimized for keyboard users, but has a GUI for the looks as well.
 - Download the latest jar from the [release page](https://github.com/RezwanArefin01/ip/releases/).
 - Copy the file to the folder you want to use as the home folder for your Duke.
 - Make sure the directory has read and write permissions.
-- Double-click the file to start the app. If it does not work then try running `java -jar duke.jar` in a terminal.
+- Run `java -jar duke.jar` in a terminal to start Duke. A data directory will be created in the location you execute the command from.
+  - Do not use double click to start the application. Because your OS can decide to execute the command from a different place.
 - Enter `help` to get started!
 
 # Features <a name="features"></a>
