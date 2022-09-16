@@ -1,6 +1,8 @@
 package duke.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 
 import org.junit.jupiter.api.Test;
 
@@ -18,14 +20,20 @@ public class ParserTest {
             p.parseInput("todo", false);
         } catch (NoArgumentException | WrongArgumentException | FileParseException e) {
             if (e instanceof NoArgumentException) {
-                assertEquals("The proper command is: todo [description]", (
-                        (NoArgumentException) e).getMessage());
+                assertEquals("The proper command is: \ntodo [description]", e.getMessage());
             }
         }
     }
 
     @Test
-    public void todoValid() throws NoArgumentException, WrongArgumentException, FileParseException {
-
+    public void unknownCommand() {
+        String check = "";
+        this.p = new Parser(new TaskList());
+        try {
+            check = p.parseInput("whatever", false);
+        } catch (WrongArgumentException | FileParseException | NoArgumentException | ClassCastException e) {
+            fail();
+        }
+        assertEquals(check, "what's this?! REDO!!!!");
     }
 }
