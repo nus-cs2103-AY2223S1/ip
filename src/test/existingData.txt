@@ -1,0 +1,6 @@
+d|true|Read book|23/4/2334 2334|
+e|false|Speedboating|1/5/2022 2330 - 0000|
+t|true|Talk about the ostrich in the room||
+t|true|Feed fishes||
+d|true|Homework|2/3/2222 2222|
+e|false|Captain America|Today 2200 - 2300|

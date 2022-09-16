@@ -1,0 +1,30 @@
+not a command
+list
+todo
+todo Feed the crocodiles
+list
+deadline
+deadline Math homework
+deadline Math homework /by 2/3/2022 2359
+deadline Math homework /by 22/3/2022 2400
+list
+event
+event Meeting /at
+event Meeting /at Some timespan here
+list
+mark
+mark 0
+mark 9
+mark 2
+list
+unmark
+unmark 0
+unmark 2
+unmark 9
+list
+delete
+delete 0
+delete 9
+delete 2
+list
+bye

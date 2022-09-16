@@ -15,3 +15,10 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+
+src/main/java/ip/taskData.txt
+data/
+
+META-INF/
+
+changes.md

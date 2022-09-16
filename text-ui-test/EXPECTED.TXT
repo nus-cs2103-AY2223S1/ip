@@ -1,7 +1,149 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Searching for existing task data...
+Error in loading task data file. Using default location.
+WARNING: Task data will be deleted after this run.
+________________________________
+You have entered an invalid command.
+not is an invalid command.
+List of valid commands:
+list
+todo
+deadline
+event
+mark
+unmark
+delete
+bye
+________________________________
+You have 0 tasks. Get started now!
 
+Current task list successfully saved.
+________________________________
+________________________________
+The commands todo, deadline, and event need a task description to be specified.
+For example, entering `todo Feed fishes` will add a task called "Feed fishes".
+________________________________
+________________________________
+CREATED TASK: Feed the crocodiles
+Current task list successfully saved.
+________________________________
+________________________________
+1. [T][ ] Feed the crocodiles
+You have 1 tasks. Get started now!
+
+Current task list successfully saved.
+________________________________
+________________________________
+The commands todo, deadline, and event need a task description to be specified.
+For example, entering `todo Feed fishes` will add a task called "Feed fishes".
+________________________________
+________________________________
+Deadline not specified for event!
+Correct example: `deadline Homework /by 2/5/2022 2359`
+________________________________
+________________________________
+CREATED DEADLINE: Math homework DUE ON: 2 Mar, 23:59
+Current task list successfully saved.
+________________________________
+________________________________
+CREATED DEADLINE: Math homework DUE ON: 23 Mar, 00:00
+Current task list successfully saved.
+________________________________
+________________________________
+1. [T][ ] Feed the crocodiles
+2. [D][ ] Math homework (Deadline: 2 Mar, 23:59)
+3. [D][ ] Math homework (Deadline: 23 Mar, 00:00)
+You have 3 tasks. Get started now!
+
+Current task list successfully saved.
+________________________________
+________________________________
+The commands todo, deadline, and event need a task description to be specified.
+For example, entering `todo Feed fishes` will add a task called "Feed fishes".
+________________________________
+________________________________
+Timespan not specified for event!
+Correct example: `event Meeting /at Tuesday, 2-3pm`
+________________________________
+________________________________
+CREATED EVENT: Meeting AT: Some timespan here
+Current task list successfully saved.
+________________________________
+________________________________
+1. [T][ ] Feed the crocodiles
+2. [D][ ] Math homework (Deadline: 2 Mar, 23:59)
+3. [D][ ] Math homework (Deadline: 23 Mar, 00:00)
+4. [E][ ] Meeting (At: Some timespan here)
+You have 4 tasks. Get started now!
+
+Current task list successfully saved.
+________________________________
+________________________________
+The commands mark, unmark, and delete need an index to be specified.
+For example, entering `delete 3` will delete the task at index 3.
+________________________________
+________________________________
+No task was found at index: 0
+________________________________
+________________________________
+No task was found at index: 9
+________________________________
+________________________________
+Current task list successfully saved.
+________________________________
+________________________________
+1. [T][ ] Feed the crocodiles
+2. [D][X] Math homework (Deadline: 2 Mar, 23:59)
+3. [D][ ] Math homework (Deadline: 23 Mar, 00:00)
+4. [E][ ] Meeting (At: Some timespan here)
+You have 4 tasks. Get started now!
+
+Current task list successfully saved.
+________________________________
+________________________________
+The commands mark, unmark, and delete need an index to be specified.
+For example, entering `delete 3` will delete the task at index 3.
+________________________________
+________________________________
+No task was found at index: 0
+________________________________
+________________________________
+Current task list successfully saved.
+________________________________
+________________________________
+No task was found at index: 9
+________________________________
+________________________________
+1. [T][ ] Feed the crocodiles
+2. [D][ ] Math homework (Deadline: 2 Mar, 23:59)
+3. [D][ ] Math homework (Deadline: 23 Mar, 00:00)
+4. [E][ ] Meeting (At: Some timespan here)
+You have 4 tasks. Get started now!
+
+Current task list successfully saved.
+________________________________
+________________________________
+The commands mark, unmark, and delete need an index to be specified.
+For example, entering `delete 3` will delete the task at index 3.
+________________________________
+________________________________
+No task was found at index: 0
+________________________________
+________________________________
+No task was found at index: 9
+________________________________
+________________________________
+Current task list successfully saved.
+________________________________
+________________________________
+1. [T][ ] Feed the crocodiles
+2. [D][ ] Math homework (Deadline: 23 Mar, 00:00)
+3. [E][ ] Meeting (At: Some timespan here)
+You have 3 tasks. Get started now!
+
+Current task list successfully saved.
+________________________________
+ ^ ^
+(O,O)
+(   ) BYE?
+-"-"---------
+Storage wiped.
