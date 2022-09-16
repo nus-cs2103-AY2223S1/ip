@@ -42,6 +42,7 @@ public class TaskList {
      * @param task Task to be added.
      */
     public void addTask(Task task) {
+        assert task != null : "Task to be added to tasks is null.";
         tasks.add(task);
     }
 
@@ -118,6 +119,8 @@ public class TaskList {
     private Task parseTaskString(String taskString) {
         String withoutNumber = taskString.substring(taskString.indexOf(".") + 2);
         String typeOfTask = withoutNumber.substring(1, 2);
+        assert (typeOfTask.equals("T") || typeOfTask.equals("D") || typeOfTask.equals("E")) : "Invalid stored task " +
+                "type.";
         String marked = withoutNumber.substring(4, 5);
         String description = withoutNumber.substring(7);
         if (typeOfTask.equals("T")) {
@@ -127,6 +130,7 @@ public class TaskList {
             }
             return task;
         } else if (typeOfTask.equals("D")) {
+            assert description.contains(" (by: ") : "Stored deadline does not contain by date.";
             String[] descriptionAndDate = description.split(" \\(by: ");
             String descriptionOnly = descriptionAndDate[0];
             String dateOnly = descriptionAndDate[1].substring(0, descriptionAndDate[1].length() - 1);
@@ -139,6 +143,7 @@ public class TaskList {
             }
             return task;
         } else {
+            assert description.contains(" (at: ") : "Stored event does not contain at date.";
             String[] descriptionAndDate = description.split(" \\(at: ");
             String descriptionOnly = descriptionAndDate[0];
             String dateOnly = descriptionAndDate[1].substring(0, descriptionAndDate[1].length() - 1);

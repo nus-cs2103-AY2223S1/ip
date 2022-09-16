@@ -23,6 +23,7 @@ public class Storage {
      * @param filePath Path to file where data should be stored.
      */
     public Storage(String filePath) {
+        assert !filePath.equals("");
         this.file = new File(filePath);
         this.filePath = filePath;
     }
