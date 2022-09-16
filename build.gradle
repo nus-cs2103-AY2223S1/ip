@@ -46,11 +46,11 @@ test {
 }
 
 application {
-    mainClassName = "duke.javafx.Launcher"
+    mainClassName = "violet.javafx.Launcher"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "violet"
     archiveClassifier = null
 }
 
