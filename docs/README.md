@@ -2,7 +2,7 @@
 
 <b>Pluto</b> is a <b>personal assistant to manage all your tasks</b> and keep them in one place. No need to worry about keeping track of all your upcoming deadlines and events anymore!
 
-* <a href="#start">Quick start</a>
+* <a href="#start" name="top">Quick start</a>
 * <a href="#features">Features</a>
     * <a href="#todo">Adding a ToDo Task : `todo`</a>
     * <a href="#deadline">Adding a Deadline Task : `deadline`</a>
@@ -23,19 +23,23 @@
   <img src="Ui.png" height="650px">
 </p>
 
-
+---
 
 # <a name="start" style = "color: inherit;"></a>Quick start
 
 * Ensure that you have Java 11 or above installed in your computer.
-* Download the latest `Pluto.jar` from [here](http://example.com).
+* Download the latest `Pluto.jar` from [here](https://github.com/pratham31012002/ip/releases/download/A-Release/pluto.jar).
 * Copy the file to the directory you want to use as the home folder for your assistant.
 * Make sure the directory has read and write permissions.
 * Double-click the file to start the application. A GUI similar to the one above should appear in a few seconds.
 * If the previous step doesn't work, open the terminal, go to the application directory and try running `java -jar Pluto.jar`.
 * Type in the command and press Enter or click on the Send button to execute it. Enter `help` to know about all commands.
 
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
+---
 
 # <a name="features" style = "color: inherit;"></a>Features
 
@@ -50,9 +54,13 @@
 - [X] Find a task by date
 - [X] Reschedule a task
 
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
+
+---
+
 # Usage
-
-
 
 ## <a name="todo" style = "color: inherit;"></a>Adding a ToDo Task : `todo`
 
@@ -68,8 +76,11 @@ todo join meeting
 > 	[T][ ] join meeting
 > Now you have 1 task in the list.
 ```
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
-
+---
 
 ## <a name="deadline" style = "color: inherit;"></a>Adding a Deadline Task : `deadline`
 
@@ -86,7 +97,11 @@ deadline submit essay /by 01-10-2023 2359
 > Now you have 2 tasks in the list.
 ```
 
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
+---
 
 ## <a name="event" style = "color: inherit;"></a>Adding an Event Task : `event`
 
@@ -103,7 +118,11 @@ event dinner /at 30-09-2022 2000
 > Now you have 3 tasks in the list.
 ```
 
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
+---
 
 ## <a name="list" style = "color: inherit;"></a>Listing all tasks : `list`
 
@@ -120,8 +139,11 @@ list
 > 	2. [D][ ] submit essay (by: Oct 01 2023 23:59)
 >	3. [E][ ] dinner (at: Sep 30 2022 20:00)
 ```
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
-
+---
 
 ## <a name="mark" style = "color: inherit;"></a>Marking a task as done : `mark`
 
@@ -137,7 +159,11 @@ mark 1
 > 	[T][X] join meeting
 ```
 
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
+---
 
 ## <a name="unmark" style = "color: inherit;"></a>Marking a task as not done : `unmark`
 
@@ -153,7 +179,11 @@ unmark 1
 > 	[T][ ] join meeting
 ```
 
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
+---
 
 ## <a name="delete" style = "color: inherit;"></a>Deleting a task : `delete`
 
@@ -170,7 +200,11 @@ delete 2
 Now you have 2 tasks in the list.
 ```
 
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
+---
 
 ## <a name="show" style = "color: inherit;"></a>Finding day schedule : `show`
 
@@ -185,8 +219,11 @@ show 30-09-2022
 > Here are the tasks on this date:
 >	1. [E][ ] dinner (at: Sep 30 2022 20:00)
 ```
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
-
+---
 
 ## <a name="find" style = "color: inherit;"></a>Finding tasks by keyword(s) : `find`
 
@@ -213,7 +250,11 @@ find read novel
 >	1. [T][ ] read Harry Potter novel
 ```
 
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
+---
 
 ## <a name="reschedule" style = "color: inherit;"></a>Rescheduling a task : `reschedule`
 
@@ -229,7 +270,11 @@ reschedule 2 29-09-2022 2030
 >	[E][ ] dinner (at: Sep 29 2022 20:30)
 ```
 
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
+---
 
 ## <a name="help" style = "color: inherit;"></a>Displaying help message : `help`
 
@@ -268,7 +313,11 @@ help
 >
 > NOTE: All dates should be in 'dd-MM-yyyy HHmm' format.
 ```
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
+---
 
 ## <a name="bye" style = "color: inherit;"></a>Exiting the program : `bye`
 
@@ -282,8 +331,11 @@ Exits the program.
 bye
 > See You Later!
 ```
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
 
-
+---
 
 # <a name="summary" style = "color: inherit;"></a>Command summary
 
@@ -305,3 +357,7 @@ bye
 | Bye        | `bye`                                                                                                                  |
 
 </div>
+
+<p align="right">
+<a href="#top">Back To Top</a>
+</p>
