@@ -27,11 +27,13 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
+            tasks = new TaskList();
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText("Local file corrupted!");
             error.setContentText(e.getMessage());
             error.showAndWait();
             Platform.exit();
+            System.exit(0);
         }
     }
 
