@@ -1,23 +1,6 @@
 package duke;
 
-import java.util.Scanner;
-
 public class Ui {
-
-    private Scanner in;
-
-    public Ui() {
-        in = new Scanner(System.in);
-    }
-
-    /**
-     * Reads command from the user.
-     *
-     * @return the command parsed in by the user.
-     */
-    public String readCommand() {
-        return in.nextLine();
-    }
 
     /**
      * Prints initial message.

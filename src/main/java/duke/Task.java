@@ -10,10 +10,6 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public String getStatusIcon() {
-        return (isDone ? "X" : " ");
-    }
-
     /**
      * Marks the task as done.
      */
