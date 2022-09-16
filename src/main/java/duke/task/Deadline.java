@@ -3,6 +3,7 @@ package duke.task;
 import duke.task.Task;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
@@ -17,6 +18,13 @@ public class Deadline extends Task {
         } catch (DateTimeParseException e) {
             System.out.println("Wrong input format!");
         }
+    }
+
+    @Override
+    public boolean needToRemind() {
+        LocalDate now = LocalDate.now();
+        Period period = Period.between(now, exactTime);
+        return (period.getYears() == 0 && period.getMonths() == 0 && period.getDays() <= 7);
     }
 
     @Override

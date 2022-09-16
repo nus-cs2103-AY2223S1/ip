@@ -9,6 +9,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public boolean needToRemind() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

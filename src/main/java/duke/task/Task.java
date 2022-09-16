@@ -25,6 +25,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public boolean needToRemind() {
+        return false;
+    }
+
     @Override
     public String toString() {
         if (this.isDone) {
