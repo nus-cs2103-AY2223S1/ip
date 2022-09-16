@@ -1,8 +1,9 @@
 package dan.task;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.LocalDateTime;
+
 
 /**
  * One of the task types. A task associated with a timing for which it is due by.

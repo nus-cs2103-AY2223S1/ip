@@ -2,7 +2,7 @@ package dan.parser;
 
 import java.time.format.DateTimeParseException;
 
-import dan.DanException;
+import dan.exceptions.DanException;
 import dan.task.TaskList;
 import dan.ui.Ui;
 /**
@@ -10,6 +10,7 @@ import dan.ui.Ui;
  */
 public class Parser {
     private TaskList tasks;
+    private boolean isExit = false;
 
     /**
      * Constructor method. Associates the parser to its list of tasks to perform actions on.
@@ -26,46 +27,44 @@ public class Parser {
      * @param input The raw input data entered by the user
      * @return A boolean of the program exit status
      */
-    public boolean parse(String input) {
+    public String parse(String input) {
         String action = input.split(" ")[0];
         try {
             switch (action) {
             case "bye":
-                Ui.bye();
-                return true;
+                isExit = true;
+                return Ui.bye();
             case "list":
-                tasks.showTasks();
-                break;
+                return tasks.showTasks();
             case "mark":
-                tasks.markTask(Integer.parseInt(input.split(" ")[1]));
-                break;
+                return tasks.markTask(Integer.parseInt(input.split(" ")[1]));
             case "unmark":
-                tasks.unmarkTask(Integer.parseInt(input.split(" ")[1]));
-                break;
+                return tasks.unmarkTask(Integer.parseInt(input.split(" ")[1]));
             case "delete":
-                tasks.deleteTask(Integer.parseInt(input.split(" ")[1]));
-                break;
+                return tasks.deleteTask(Integer.parseInt(input.split(" ")[1]));
             case "find":
-                tasks.findTask(input.split(" ", 1)[1]);
-                break;
+                return tasks.findTask(input.split(" ", 2)[1]);
             case "todo":
                 //fall through
             case "deadline":
                 //fall through
             case "event":
-                tasks.addTask(input);
-                break;
+                return tasks.addTask(input);
             default:
                 throw new DanException("I don't really understand what do you mean by that...");
             }
 
         } catch (DanException e) {
-            Ui.printBlock(e.getMessage());
+            return Ui.printIndent(e.getMessage());
         } catch (NumberFormatException nfe) {
-            Ui.printBlock("Please use an integer instead");
+            return Ui.printIndent("Please use an integer instead");
         } catch (DateTimeParseException dte) {
-            Ui.printBlock("Please use the format dd/MM/yyyy HHmm for dates");
+            return Ui.printIndent("Please use the format dd/MM/yyyy HHmm for dates");
         }
-        return false;
     }
+
+    public boolean getIsExit() {
+        return isExit;
+    }
+
 }

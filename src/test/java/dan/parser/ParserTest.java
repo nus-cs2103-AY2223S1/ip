@@ -12,6 +12,7 @@ class ParserTest {
     @Test
     public void parse_bye_getExit() {
         Parser parser = new Parser(new TaskList(new ArrayList<>()));
-        assertTrue(parser.parse("bye"));
+        parser.parse("bye");
+        assertTrue(parser.getIsExit());
     }
 }

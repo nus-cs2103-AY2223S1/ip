@@ -1,26 +1,25 @@
 package dan.tasklistreader;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dan.task.Task;
-import dan.task.ToDo;
-import dan.task.Event;
 import dan.task.Deadline;
+import dan.task.Event;
+import dan.task.Task;
 import dan.task.TaskList;
+import dan.task.ToDo;
 
 
 /**
  * Handles the processing of data for the list of tasks with the system.
  * Namely, the storage, loading and saving of data.
- *<</p>
- * Stores data separated by <SEPARATOR> in the format with no whitespace:
+ * </p>
+ * Stores data separated by {SEPARATOR} in the format with no whitespace:
  *     eg. SEPARATOR = "|"
  *     Tasktype{T,D,E}|Task.isDone{1,0}|Task.Name|(optional)Deadline String
  */
