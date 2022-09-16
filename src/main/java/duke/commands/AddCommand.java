@@ -13,6 +13,12 @@ import duke.utils.TaskList;
 public class AddCommand extends Command {
     /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "add";
+    public static final String MESSAGE_USAGE = "Adds a Todo:\n"
+            + "    add todo <description>\n"
+            + "Add a Deadline:\n"
+            + "    add deadline <description> /by <yyyy-mm-dd HH:MM>\n"
+            + "Add an Event:\n"
+            + "    add event <description> /at <yyyy-mm-dd HH:MM>\n";
     private final Task task;
 
     /**

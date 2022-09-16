@@ -12,6 +12,8 @@ import duke.utils.TaskList;
 public class MarkCommand extends Command {
     /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "mark";
+    public static final String MESSAGE_USAGE = "Mark a task as done:\n"
+            + "    mark <task index>\n";
     private final int taskIndex;
 
     /**

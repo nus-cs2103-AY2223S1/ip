@@ -12,6 +12,8 @@ import duke.utils.TaskList;
 public class UnmarkCommand extends Command {
     /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "unmark";
+    public static final String MESSAGE_USAGE = "Mark a task as not done:\n"
+            + "    unmark <task index>\n";
     private final int taskIndex;
 
     /**

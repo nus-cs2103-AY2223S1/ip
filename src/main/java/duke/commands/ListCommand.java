@@ -13,6 +13,8 @@ import duke.utils.TaskList;
 public class ListCommand extends Command {
     /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "list";
+    public static final String MESSAGE_USAGE = "List all tasks:\n"
+            + "    list\n";
 
     /**
      * {@inheritDoc}

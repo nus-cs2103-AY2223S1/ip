@@ -15,6 +15,8 @@ import javafx.application.Platform;
 public class ExitCommand extends Command {
     /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "bye";
+    public static final String MESSAGE_USAGE = "Exit KarenBot:\n"
+            + "    exit\n";
 
     /**
      * {@inheritDoc}

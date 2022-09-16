@@ -12,6 +12,8 @@ import duke.utils.TaskList;
 public class FindCommand extends Command {
     /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "find";
+    public static final String MESSAGE_USAGE = "Find a task:\n"
+            + "    find <keyword>\n";
     private final String keyword;
 
     /**

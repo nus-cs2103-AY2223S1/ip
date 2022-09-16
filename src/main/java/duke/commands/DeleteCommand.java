@@ -13,6 +13,8 @@ import duke.utils.TaskList;
 public class DeleteCommand extends Command {
     /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "delete";
+    public static final String MESSAGE_USAGE = "Delete a task:\n"
+            + "    delete <task index>\n";
     private final int taskIndex;
 
     /**
