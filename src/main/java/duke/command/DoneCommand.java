@@ -6,7 +6,7 @@ import duke.main.TaskList;
 import duke.main.Ui;
 
 /**
- * Mark a task as done when command is called.
+ * Marks a task as done when command is called.
  */
 public class DoneCommand extends Command {
     private final int taskNum;
@@ -14,7 +14,7 @@ public class DoneCommand extends Command {
     /**
      * Marks task as done based on index entered when command is called.
      *
-     * @param taskNum index of task to be marked as done
+     * @param taskNum index of task to be marked as done.
      */
     public DoneCommand(int taskNum) {
         this.taskNum = taskNum;
@@ -23,11 +23,11 @@ public class DoneCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (taskNum < 1 || taskNum > tasks.size()) {
-            throw new DukeException("OOPS!!! The index of the task is not in the list.");
+            throw new DukeException("◔ ‸◔？ The index of the task is not in the list :(");
         }
 
         tasks.markTaskAsDone(taskNum - 1);
-        ui.outputMessage("Nice! I've marked this task as done:\n"
+        ui.outputMessage("Good job! ʕ•̀ω•́ʔ I've marked this task as done:\n"
                 + tasks.get(taskNum - 1).toString());
         storage.save(tasks);
     }

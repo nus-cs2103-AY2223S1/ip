@@ -17,10 +17,10 @@ public class AddDeadlineCommand extends Command {
     private LocalDateTime byDate;
 
     /**
-     * Adds a deadline based on command received
+     * Adds a deadline based on command received.
      *
-     * @param description description of deadline
-     * @param by time by which task needs to be done
+     * @param description description of deadline.
+     * @param by time by which task needs to be done.
      */
     public AddDeadlineCommand(String description, String by) {
         this.description = description;
@@ -28,10 +28,10 @@ public class AddDeadlineCommand extends Command {
     }
 
     /**
-     * Adds a deadline based on command received
+     * Adds a deadline based on command received.
      *
-     * @param description description of deadline
-     * @param byDate deadline in date representation
+     * @param description description of deadline.
+     * @param byDate deadline in date representation.
      */
     public AddDeadlineCommand(String description, LocalDateTime byDate) {
         this.description = description;
@@ -48,10 +48,10 @@ public class AddDeadlineCommand extends Command {
         }
 
         tasks.add(deadline);
-        ui.outputMessage("Got it. I've added this task:\n"
+        ui.outputMessage("Okay! (๑´ڡ`๑) I've added this task:\n"
                 + deadline
                 + "\nNow you have " + tasks.size()
-                + " tasks in the list.");
+                + " tasks in the list!");
         storage.save(tasks);
     }
 }

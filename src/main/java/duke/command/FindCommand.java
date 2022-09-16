@@ -8,11 +8,16 @@ import duke.main.Ui;
 import duke.task.Task;
 
 /**
- * Finds a task by keyword search.
+ * Finds tasks by keyword search.
  */
 public class FindCommand extends Command {
     private String toFind;
 
+    /**
+     * Finds tasks based on keyword when command is called.
+     *
+     * @param toFind keyword to search for.
+     */
     public FindCommand(String toFind) {
         this.toFind = toFind;
     }

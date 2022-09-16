@@ -16,6 +16,7 @@ import duke.task.Todo;
  * Deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
+
     private String filePath;
 
     Storage(String filePath) {
@@ -41,7 +42,6 @@ public class Storage {
 
             while (sc.hasNext()) {
                 String input = sc.nextLine();
-                //String[] splitInput = input.split(" \\| ");
 
                 switch (input.charAt(0)) {
                 case 'T':
@@ -90,7 +90,7 @@ public class Storage {
     /**
      * Saves tasks in the file.
      *
-     * @param tasks list of tasks to be saved
+     * @param tasks list of tasks to be saved.
      * @throws DukeException  If there is an error.
      */
     public void save(TaskList tasks) throws DukeException {

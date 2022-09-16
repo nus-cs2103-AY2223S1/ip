@@ -13,9 +13,9 @@ public class AddTodoCommand extends Command {
     private final String description;
 
     /**
-     * Adds a todo based on command received
+     * Adds a todo based on command received.
      *
-     * @param description description of todo
+     * @param description description of todo.
      */
     public AddTodoCommand(String description) {
         this.description = description;
@@ -25,11 +25,11 @@ public class AddTodoCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Todo todo = new Todo(description);
         tasks.add(todo);
-        ui.outputMessage("Got it. I've added this task:\n"
+        ui.outputMessage("Okay! (๑´ڡ`๑) I've added this task:\n"
                 + todo
                 + "\nNow you have "
                 + tasks.size()
-                + " tasks in the list.");
+                + " tasks in the list!");
         storage.save(tasks);
     }
 }

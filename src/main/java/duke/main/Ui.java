@@ -27,8 +27,8 @@ public class Ui {
     /**
      * Prints an exit message.
      */
-    public void exitMessage() {
-        String exit = "Bye. Hope to see you again soon!";
+    public void showExitMessage() {
+        String exit = "Bye _(:τ」∠)_ Hope to see you again soon!";
         this.outputMessage(exit);
     }
 
@@ -39,11 +39,11 @@ public class Ui {
     /**
      * Lists all the tasks stored.
      *
-     * @param tasks all tasks in the list
+     * @param tasks all tasks in the list.
      */
     public void listTasks(ArrayList<Task> tasks) {
         StringBuilder output = new StringBuilder();
-        output.append("Here are the tasks in your list:" + "\n");
+        output.append("≖‿≖✧ Here are the tasks in your list:" + "\n");
         for (int i = 0; i < tasks.size(); i++) {
             output.append((i + 1) + ". " + tasks.get(i).toString() + "\n");
         }
@@ -53,11 +53,11 @@ public class Ui {
     /**
      * Lists all the tasks found.
      *
-     * @param tasks all tasks found in the list
+     * @param tasks all tasks found in the list.
      */
     public void listFoundTasks(ArrayList<Task> tasks) {
         StringBuilder output = new StringBuilder();
-        output.append("Here are the matching tasks in your list:" + "\n");
+        output.append("≖‿≖✧ Here are the matching tasks in your list:" + "\n");
         for (int i = 0; i < tasks.size(); i++) {
             output.append((i + 1) + ". " + tasks.get(i).toString() + "\n");
         }

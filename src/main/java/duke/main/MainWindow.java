@@ -63,7 +63,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void showWelcomeMessage() {
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog("Hello! I'm Duke\n"
+                DialogBox.getDukeDialog("Hello! I'm Duke ╰(●’◡’●)╮\n"
                         + "What can I do for you?", dukeImage)
         );
     }

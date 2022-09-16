@@ -22,7 +22,7 @@ public class Command {
     }
 
     /**
-     * Keeps the bot running except when exit command is called
+     * Keeps the bot running except when exit command is called.
      *
      * @return false when exit command is not called.
      */

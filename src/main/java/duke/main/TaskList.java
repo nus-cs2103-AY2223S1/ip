@@ -22,7 +22,7 @@ public class TaskList {
     /**
      * Gets all the tasks from the list.
      *
-     * @return all tasks in the list
+     * @return all tasks in the list.
      */
     public ArrayList<Task> getAllTasks() {
         return tasks;
@@ -31,8 +31,8 @@ public class TaskList {
     /**
      * Returns a specified task based on index.
      *
-     * @param index index of the required task
-     * @return the required task
+     * @param index index of the required task.
+     * @return the required task.
      */
     public Task get(int index) {
         return tasks.get(index);
@@ -41,7 +41,7 @@ public class TaskList {
     /**
      * Marks a specified task based on index as done.
      *
-     * @param index index of the task to be marked as done
+     * @param index index of the task to be marked as done.
      */
     public void markTaskAsDone(int index) {
         tasks.get(index).markAsDone();
@@ -50,7 +50,7 @@ public class TaskList {
     /**
      * Marks a specified task based on index as undone.
      *
-     * @param index index of the task to be marked as undone
+     * @param index index of the task to be marked as undone.
      */
     public void markTaskAsUndone(int index) {
         tasks.get(index).markAsUndone();
@@ -59,7 +59,7 @@ public class TaskList {
     /**
      * Adds a task to the list.
      *
-     * @param task task to be added to the list
+     * @param task task to be added to the list.
      */
     public void add(Task task) {
         tasks.add(task);
@@ -68,12 +68,12 @@ public class TaskList {
     /**
      * Deletes a task from the list.
      *
-     * @param index index of task to be deleted
-     * @throws DukeException when the index is out of range
+     * @param index index of task to be deleted.
+     * @throws DukeException when the index is out of range.
      */
     public void delete(int index) throws DukeException {
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("OOPS!!! The index to remove cannot be less than 0 or "
+            throw new DukeException("◔ ‸◔？ The index to remove cannot be less than 0 or "
                     + "greater than the length of the list.");
         }
 

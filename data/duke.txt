@@ -2,4 +2,4 @@ T | 1 | test | test
 E | 1 | project meeting | Mon 2-4pm | test2
 D | 1 | return book | Sunday | testt
 T | 1 | return book | no tag
-T | 0 | add GUI | no tag
+T | 1 | add GUI | no tag

@@ -21,21 +21,8 @@ public class Duke {
 
     /**
      * Initializes the chatbot.
-     *
-     * @param filePath path to store all the tasks.
      */
-    public Duke(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (DukeException e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
-        }
-    }
-
-    public Duke() {
+     public Duke() {
         ui = new Ui();
         storage = new Storage(filePath);
         try {

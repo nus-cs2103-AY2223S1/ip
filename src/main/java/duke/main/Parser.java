@@ -73,7 +73,7 @@ public class Parser {
     /**
      * Identifies if the deadline entered is a date.
      *
-     * @param input deadline entered by user
+     * @param input deadline entered by user.
      * @return true if the deadline entered is a date.
      */
     private static boolean isDate(String input) {
@@ -92,9 +92,9 @@ public class Parser {
     }
 
     /**
-     * Parses date entered from string into LocalDateTime
+     * Parses date entered from string into LocalDateTime.
      *
-     * @param date date entered
+     * @param date date entered.
      */
     private static LocalDateTime parseDate(String date) {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
@@ -104,7 +104,7 @@ public class Parser {
     /**
      * Checks whether the description is empty.
      *
-     * @param todo description of todo
+     * @param todo description of todo.
      * @throws DukeException  If description is empty.
      */
     public static void validateTodo(String todo) throws DukeException {
@@ -116,7 +116,7 @@ public class Parser {
     /**
      * Checks whether the keyword to find is empty.
      *
-     * @param toFind keyword to find
+     * @param toFind keyword to find.
      * @throws DukeException  If keyword is empty.
      */
     public static void validateFind(String toFind) throws DukeException {
@@ -128,7 +128,7 @@ public class Parser {
     /**
      * Checks whether the index of task to be marked as done is in legal range.
      *
-     * @param taskNum index of task to be marked as done
+     * @param taskNum index of task to be marked as done.
      * @throws DukeException  If index is < 1.
      */
     public static void validateMark(int taskNum) throws DukeException {
@@ -140,7 +140,7 @@ public class Parser {
     /**
      * Checks whether the index of task to be deleted is in legal range.
      *
-     * @param taskNum index of task to be deleted
+     * @param taskNum index of task to be deleted.
      * @throws DukeException  If index is < 1.
      */
     public static void validateDelete(int taskNum) throws DukeException {

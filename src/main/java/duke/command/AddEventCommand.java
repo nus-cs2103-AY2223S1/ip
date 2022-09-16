@@ -14,10 +14,10 @@ public class AddEventCommand extends Command {
     private final String time;
 
     /**
-     * Adds an event based on command received
+     * Adds an event based on command received.
      *
-     * @param description description of event
-     * @param time duration of event
+     * @param description description of event.
+     * @param time duration of event.
      */
     public AddEventCommand(String description, String time) {
         this.description = description;
@@ -29,10 +29,10 @@ public class AddEventCommand extends Command {
         Event event;
         event = new Event(description, time);
         tasks.add(event);
-        ui.outputMessage("Got it. I've added this task:\n"
+        ui.outputMessage("Okay! (๑´ڡ`๑) I've added this task:\n"
                 + event
                 + "\nNow you have " + tasks.size()
-                + " tasks in the list.");
+                + " tasks in the list!");
         storage.save(tasks);
     }
 }

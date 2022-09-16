@@ -9,12 +9,13 @@ import duke.main.Ui;
  * Mark a task as undone when command is called.
  */
 public class UndoneCommand extends Command {
+
     private int taskNum;
 
     /**
      * Marks task as undone based on index entered when command is called.
      *
-     * @param taskNum index of task to be marked as undone
+     * @param taskNum index of task to be marked as undone.
      */
     public UndoneCommand(int taskNum) {
         this.taskNum = taskNum;
@@ -27,7 +28,7 @@ public class UndoneCommand extends Command {
         }
 
         tasks.markTaskAsUndone(taskNum - 1);
-        ui.outputMessage("Nice! I've marked this task as done:\n"
+        ui.outputMessage("Nice! ʕ•̀ω•́ʔ I've marked this task as done:\n"
                 + tasks.get(taskNum - 1).toString());
         storage.save(tasks);
     }
