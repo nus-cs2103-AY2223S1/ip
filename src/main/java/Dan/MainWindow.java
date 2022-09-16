@@ -1,5 +1,6 @@
 package dan;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -22,6 +23,8 @@ public class MainWindow extends AnchorPane {
 
     private Dan dan;
 
+    private boolean isExit = false;
+
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaGhost.png"));
 
@@ -40,8 +43,12 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
+        if (isExit) {
+            Platform.exit();
+        }
+        String input = userInput.getText().strip();
         String response = dan.getResponse(input);
+        isExit = dan.getExitStatus();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)

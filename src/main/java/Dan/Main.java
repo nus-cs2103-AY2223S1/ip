@@ -22,6 +22,8 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            //stage.setTitle("Dan v1.1");
+            //stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setDuke(dan);
             stage.show();
         } catch (IOException e) {

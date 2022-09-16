@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
  * @author Daniel Lee
  * @version 0.1
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class Dan {
     private TaskListReader tlr;
     private TaskList tasks;
@@ -62,7 +63,8 @@ public class Dan {
         while (!isExit) {
             try {
                 String input = sc.nextLine().strip();
-                isExit = parser.parse(input);
+                parser.parse(input);
+                isExit = parser.getIsExit();
                 tlr.writeTaskListToFile(tasks);
             } catch (IOException ioe) {
                 Ui.printIndent(ioe.getMessage() + "Error when creating saving to data file");
@@ -79,6 +81,11 @@ public class Dan {
      */
     @FXML
     String getResponse(String input) {
-        return "Duke heard: " + input;
+        return parser.parse(input);
     }
+
+    boolean getExitStatus() {
+        return parser.getIsExit();
+    }
+
 }

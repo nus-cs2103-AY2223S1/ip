@@ -73,7 +73,7 @@ public class TaskList {
             throw new DanException("Your list is empty!");
         }
         StringBuilder result = new StringBuilder();
-        result.append(Ui.printIndent("Here are the tasks in your list:"));
+        result.append(Ui.printIndent("Here are the tasks in your list:\n"));
         result.append(Ui.printIndent(this));
         return result.toString();
     }
@@ -91,7 +91,7 @@ public class TaskList {
         Task task = tasks.get(index - 1);
         task.setDone(true);
         StringBuilder result = new StringBuilder();
-        result.append(Ui.printIndent(String.format("Hehe okay guess this is now done"
+        result.append(Ui.printIndent(String.format("Hehe okay guess this is now done\n"
                 + "  %s", task)));
         return result.toString();
     }
@@ -109,7 +109,7 @@ public class TaskList {
         }
         Task task = tasks.get(index - 1);
         task.setDone(false);
-        result.append(Ui.printIndent(String.format("Ooops, you haven't done this yet? Here ya go:"
+        result.append(Ui.printIndent(String.format("Ooops, you haven't done this yet? Here ya go:\n"
                 + "  %s", task)));
         return result.toString();
     }
@@ -128,7 +128,7 @@ public class TaskList {
         result.append(Ui.printIndent("Alright then, I'll remove this task from your list:"));
         result.append(Ui.printIndent(tasks.get(index - 1).toString()));
         tasks.remove(index - 1);
-        result.append(Ui.printIndent(String.format("You now have %d many tasks in your list", tasks.size())));
+        result.append(Ui.printIndent(String.format("\nYou now have %d many tasks in your list", tasks.size())));
         return result.toString();
     }
 
@@ -139,17 +139,19 @@ public class TaskList {
      */
     public String findTask(String keyword) {
         StringBuilder result = new StringBuilder();
+        result.append(Ui.printIndent("Alright! Here are the matching tasks in your list:\n"));
+        int count = 0;
         for (int i = 1; i <= tasks.size(); i++) {
             Task task = tasks.get(i - 1);
             if (task.description.contains(keyword)) {
-                result.append(i + "." + task + "\n");
+                result.append(Ui.printIndent(i + "." + task + "\n"));
+                count += 1;
             }
         }
-        result.append(Ui.printIndent("Alright! Here are the matching tasks in your list"));
         result.append(Ui.printIndent(
                 result.toString().length() == 0
                 ? "I couldn't find any task that matches your description"
-                : result.toString()));
+                : String.format("There are a total of %d tasks that matches your keyword %s", count, keyword)));
         return result.toString();
     }
 
