@@ -128,7 +128,6 @@ public class Task {
 
     @Override
     public String toString() {
-        //return "[" + (this.isMarked() ? "X" : " ") + "]" + this.taskName + this.getDateAndTime() + "\n";
         return (this.isMarked() ? "1" : "0") + "," + this.taskName + this.getToStringDateAndTime() + "\n";
     }
 }
