@@ -62,7 +62,7 @@ public class Storage {
     }
 
     /**
-     * Updates the file with the current state of the Tasklist.
+     * Updates the file with the current state of the TaskList.
      */
     public void save() {
         try {

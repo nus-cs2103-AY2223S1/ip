@@ -59,7 +59,7 @@ public abstract class Task {
 
     /**
      * Saves the task by writing it to a file using a FileWriter.
-     * @param fileWriter the Filewriter to save the task to a file.
+     * @param fileWriter the FileWriter to save the task to a file.
      * @throws IOException if an I/O error occurs.
      */
     public abstract void write(FileWriter fileWriter) throws IOException;
