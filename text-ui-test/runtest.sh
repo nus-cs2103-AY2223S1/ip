@@ -13,7 +13,11 @@ then
 fi
 
 # compile the code into the bin folder, terminates if error occurred
+<<<<<<< HEAD
 if ! javac -cp ../src -Xlint:none -d C:\Users\65833\Documents\ip\src\main\java\Duke.java
+=======
+if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java
+>>>>>>> origin/add-gradle-support
 then
     echo "********** BUILD FAILURE **********"
     exit 1
