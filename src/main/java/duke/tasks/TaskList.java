@@ -1,7 +1,14 @@
 package duke.tasks;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeInvalidCommandException;
 import duke.exceptions.DukeOutOfRangeException;
+
+import duke.massops.AllOperation;
+import duke.massops.MassOperation;
+import duke.massops.RangeOperation;
+import duke.massops.SingleOperation;
+
 import duke.parser.Parser;
 import duke.storage.Storage;
 
@@ -185,5 +192,145 @@ public class TaskList {
             str += (tasks.size() + "." + tasks.get(tasks.size() - 1));
         }
         return str;
+    }
+
+    private String showListInRange(RangeOperation op) {
+        String str = "";
+        int startRange = op.getStartRange();
+        int endRange = op.getEndRange();
+        int indexStart = startRange - 1;
+        int counter = 1;
+        for (int i = indexStart; i < endRange - 1; i++) {
+            str += (counter + "." + tasks.get(i) + "\n");
+            counter++;
+        }
+        if (tasks.size() != 0) {
+            str += (counter + "." + tasks.get(endRange - 1));
+        }
+        return str;
+    }
+
+    public String commandBasedOnMassOperation(String commandWord, MassOperation op) throws DukeException {
+        switch (commandWord) {
+        case "mark":
+            return markBasedOnMassOperation(op);
+        case "unmark":
+            return unmarkBasedOnMassOperation(op);
+        case "delete":
+            return deleteBasedOnMassOperation(op);
+        default:
+            throw new DukeInvalidCommandException();
+        }
+    }
+
+    public String markBasedOnMassOperation(MassOperation op) throws DukeException {
+        if (op instanceof AllOperation) {
+            markAll();
+            return showList();
+        } else if (op instanceof RangeOperation) {
+            RangeOperation rangeOp = (RangeOperation) op;
+            markRange(rangeOp);
+            return showListInRange(rangeOp);
+        } else if (op instanceof SingleOperation) {
+            SingleOperation singleOp = (SingleOperation) op;
+            return markSingle(singleOp);
+        } else {
+            throw new DukeException("Operation not defined");
+        }
+    }
+
+    private void markAll() throws DukeException {
+        for (int i = 1; i <= tasks.size(); i++) {
+            markAsDone(i);
+        }
+    }
+
+    private void markRange(RangeOperation op) throws DukeException {
+        int startRange = op.getStartRange();
+        int endRange = op.getEndRange();
+        for (int i = startRange; i <= endRange; i++) {
+            markAsDone(i);
+        }
+    }
+
+    private String markSingle(SingleOperation op) throws DukeException {
+        int index = op.getIndex();
+        markAsDone(index);
+        return getTask(index);
+    }
+
+    public String unmarkBasedOnMassOperation(MassOperation op) throws DukeException {
+        if (op instanceof AllOperation) {
+            unmarkAll();
+            return showList();
+        } else if (op instanceof RangeOperation) {
+            RangeOperation rangeOp = (RangeOperation) op;
+            unmarkRange(rangeOp);
+            return showListInRange(rangeOp);
+        } else if (op instanceof SingleOperation) {
+            SingleOperation singleOp = (SingleOperation) op;
+            return unmarkSingle(singleOp);
+        } else {
+            throw new DukeException("Operation not defined");
+        }
+    }
+
+    private void unmarkAll() throws DukeException {
+        for (int i = 1; i <= tasks.size(); i++) {
+            markAsNotDone(i);
+        }
+    }
+
+    private void unmarkRange(RangeOperation op) throws DukeException {
+        int startRange = op.getStartRange();
+        int endRange = op.getEndRange();
+        for (int i = startRange; i <= endRange; i++) {
+            markAsNotDone(i);
+        }
+    }
+
+    private String unmarkSingle(SingleOperation op) throws DukeException {
+        int index = op.getIndex();
+        markAsDone(index);
+        return getTask(index);
+    }
+
+    public String deleteBasedOnMassOperation(MassOperation op) throws DukeException {
+        if (op instanceof AllOperation) {
+            return deleteAll();
+        } else if (op instanceof RangeOperation) {
+            RangeOperation rangeOp = (RangeOperation) op;
+            return deleteRange(rangeOp);
+        } else if (op instanceof SingleOperation) {
+            SingleOperation singleOp = (SingleOperation) op;
+            return deleteSingle(singleOp);
+        } else {
+            throw new DukeException("Operation not defined");
+        }
+    }
+
+    private String deleteAll() {
+        String deletedTasks = showList();
+        tasks = new ArrayList<>();
+        return deletedTasks;
+    }
+
+    private String deleteRange(RangeOperation op) throws DukeException {
+        ArrayList<Task> deletedTasks = new ArrayList<>();
+        int startRange = op.getStartRange();
+        int endRange = op.getEndRange();
+        for (int i = startRange; i <= endRange; i++) {
+            Task t = tasks.get(startRange - 1);
+            deletedTasks.add(t);
+            deleteTask(startRange);
+        }
+        return changeListToString(deletedTasks);
+    }
+
+    private String deleteSingle(SingleOperation op) throws DukeException {
+        int index = op.getIndex();
+        Task t = tasks.get(index - 1);
+        deleteTask(index);
+        return t.toString();
     }
 }

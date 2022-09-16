@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.massops.MassOperation;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
@@ -13,16 +14,16 @@ public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
     private static final String MESSAGE_SUCCESS = "Yo, I managed to unmark this task: ";
 
-    private int taskIndex;
+    private MassOperation massOperation;
 
     /**
      * Constructs an UnmarkCommand instance
      *
-     * @param taskIndex the index of the task to be marked as not done
+     * @param massOperation the mass operation specifying the range of the unmark operation
      */
-    public UnmarkCommand(int taskIndex) {
+    public UnmarkCommand(MassOperation massOperation) {
         super();
-        this.taskIndex = taskIndex;
+        this.massOperation = massOperation;
     }
 
     /**
@@ -48,8 +49,8 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            tasks.markAsNotDone(taskIndex);
-            String result = MESSAGE_SUCCESS + System.lineSeparator() + tasks.getTask(taskIndex) + tasks.showNumberOfTasks();
+            String tasksToShow = tasks.unmarkBasedOnMassOperation(massOperation);
+            String result = MESSAGE_SUCCESS + System.lineSeparator() + tasksToShow + tasks.showNumberOfTasks();
             ui.showMessage(result);
             return result;
         } catch (DukeException e) {
