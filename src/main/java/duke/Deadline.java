@@ -28,7 +28,7 @@ public class Deadline extends Task {
         if (by.matches("\\d{4}-\\d{2}-\\d{2}") || by.matches("\\d{4}/\\d{2}/\\d{2}")) {
             this.dateBy = LocalDate.parse(by);
         } else {
-            throw new DukeTaskException("invalid date format");
+            throw new DukeTaskException("invalid date format, please follow yyyy-mm-dd");
         }
     }
 

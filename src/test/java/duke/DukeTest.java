@@ -8,7 +8,7 @@ public class DukeTest {
     private final TaskList t = new TaskList();
 
     @Test
-    public void dummyTest(){
+    public void todoInputParser_todoAbc_todoCommand (){
         try {
             assertEquals(Duke.Command.TODO, p.parse("todo abc").x);
         } catch (Exception e) {
@@ -17,7 +17,7 @@ public class DukeTest {
     }
 
     @Test
-    public void anotherDummyTest(){
+    public void todoCreation_sample_todoSample(){
         try {
             assertEquals(new Todo("sample", false).getName(), t.addTodo("sample").getName());
         } catch (Exception e) {
