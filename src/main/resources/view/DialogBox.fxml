@@ -4,14 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" style="-fx-background-color: #4fe8ff;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" maxHeight="-Infinity" minHeight="-Infinity" style="-fx-background-color: paleturquoise; -fx-background-radius: 30; -fx-padding: 10;" text="Label" textFill="#b26211" wrapText="true">
-         <font>
-            <Font name="Book Antiqua" size="12.0" />
-         </font></Label>
+        <Label fx:id="dialog" maxHeight="-Infinity" minHeight="-Infinity" style="-fx-background-color: paleturquoise; -fx-background-radius: 30; -fx-padding: 10;" text="Label" textFill="#b26211" wrapText="true" />
         <ImageView fx:id="displayPicture" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
             <Insets bottom="10.0" left="10.0" top="10.0" />
