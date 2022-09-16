@@ -1,8 +1,12 @@
 package duke;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,22 +35,19 @@ public class Storage {
      */
     public ArrayList<Task> loadFile() {
         try {
-            File file = new File(filePath);
-            Scanner scanner = new Scanner(file);
-            if (file.length() == 0) {
-                throw new DukeException ("File is Empty!");
-
-            } else {
-                while (scanner.hasNextLine()) {
-                    String task = scanner.nextLine();
+            Path path = Paths.get(filePath);
+            Files.createDirectories(path.getParent());
+            File taskFile = path.toFile();
+            if (!taskFile.createNewFile()) {
+                Scanner sc = new Scanner(new FileReader(taskFile));
+                while (sc.hasNextLine()) {
+                    String task = sc.nextLine();
                     renderStringAsTask(task);
                 }
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-        } catch (DukeException e) {
-            System.out.println("File is empty");
         }
         return storeLists;
     }

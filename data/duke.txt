@@ -1,4 +1,2 @@
-1.[T][ ] go CS2107
-2.[T][ ] go out
-3.[D][ ] finish homework  (by: 2.00pm)
-4.[E][ ] birthday dinner  (at: 7-8pm)
+1.[T][ ] homework
+2.[T][ ] go back home
