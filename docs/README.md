@@ -3,7 +3,7 @@
 Duke is a chatbot that is used on desktop for task management, Duke can help to track and manage tasks using a GUI.
 ## Quick start
 1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest version of Duke from [here](https://github.com/Guanzhou03/ip/releases)
+2. Download the latest version v2 of Duke from [here](https://github.com/Guanzhou03/ip/releases)
 3. Copy the file to the folder you want to use as the _home folder_ for Duke.
 ## Features 
 - Add tasks
