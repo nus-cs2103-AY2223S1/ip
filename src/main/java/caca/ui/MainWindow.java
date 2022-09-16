@@ -34,11 +34,11 @@ public class MainWindow extends AnchorPane {
 
     private CaCa caca;
 
-    // User.jpg from https://m.duitang.com/blog/?id=1325275817
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
+    // User.png from https://m.duitang.com/blog/?id=1325275817
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
 
-    // CaCa.jpg from https://m.duitang.com/blog/?id=1325275816
-    private final Image cacaImage = new Image(this.getClass().getResourceAsStream("/images/CaCa.jpg"));
+    // CaCa.png from https://m.duitang.com/blog/?id=1325275816
+    private final Image cacaImage = new Image(this.getClass().getResourceAsStream("/images/CaCa.png"));
 
     // LightBulb.png from https://similarpng.com/illustration-of-light-bulb-icon-on-transparent-background-png/
     private final Image guideImage = new Image(this.getClass().getResourceAsStream("/images/LightBulb.png"));
