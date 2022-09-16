@@ -32,7 +32,7 @@ public class Ui {
      * @return The farewell message.
      */
     public String printFarewell() {
-        return formatOutput("Bye, hope to see you again!");
+        return formatOutput("Bye, hope to see you again! °‿‿°");
 
     }
 
@@ -66,7 +66,7 @@ public class Ui {
      */
     public String printTaskAdded(Task a, TaskList tList) {
         return formatOutput("added: " + a.toString() + "\n"
-                + String.format("Now you have %d tasks in the list", tList.getCount()));
+                + String.format("(๑•́ ₃ •̀๑) Now you have %d tasks in the list", tList.getCount()));
 
     }
 
@@ -77,7 +77,7 @@ public class Ui {
      * @return String of all the tasks.
      */
     public String printList(TaskList tList) {
-        String output = "Here are your tasks :";
+        String output = "♪♪ ヽ(ˇ∀ˇ )ゞ Here are your tasks :";
         for (int i = 0; i < tList.getCount(); i++) {
             String display = String.format("%d.%s", i + 1, tList.getTask(i).toString());
             output += "\n" + display;
@@ -95,7 +95,7 @@ public class Ui {
         if (t.size() == 0) {
             return formatOutput("Opps! No matching tasks.");
         } else {
-            String output = "Here are the matching tasks in your list:";
+            String output = "(づ｡◕‿‿◕)づ Here are the matching tasks in your list:";
             for (int i = 0; i < t.size(); i++) {
                 String display = String.format("%d.%s", i + 1, t.get(i).toString());
                 output += "\n" + display;
@@ -147,7 +147,9 @@ public class Ui {
     public static String printGreetings() {
 
         String output = "----------------------" + "\n"
-                + "Hello! I'm Duke" + "\n" + "What can i do for you?" + "\n" + "----------------------";
+                + "Yo! I'm Duke" + "\n"
+                + "Your personal chat bot! (｡◕‿◕｡)" + "\n"
+                + "What can i do for you?" + "\n" + "----------------------";
         return output;
 
     }
