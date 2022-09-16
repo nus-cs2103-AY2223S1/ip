@@ -24,7 +24,7 @@ Update tasks previously stored in Duke
 
 ## Usage
 
-### list - List all tasks
+### `list` - List all tasks
 
 Example of usage:
 
@@ -36,7 +36,7 @@ Duke will display a list of tasks previously created
 
 
 
-### find - Find tasks matching the query
+### `find` - Find tasks matching the query
 
 Example of usage:
 
@@ -49,7 +49,7 @@ Duke will display a list of tasks matching the query (case-sensitive)
 
 
 
-### mark - Mark a task as completed
+### `mark` - Mark a task as completed
 
 Example of usage:
 
@@ -61,7 +61,7 @@ Mark a task as completed
 
 
 
-### unmark - Mark a task as incomplete
+### `unmark` - Mark a task as incomplete
 
 Example of usage:
 
@@ -73,7 +73,7 @@ Unmark a completed task
 
 
 
-### delete - Delete a task from Duke
+### `delete` - Delete a task from Duke
 
 Example of usage:
 delete <index>
@@ -85,7 +85,7 @@ Delete a task from Duke
 
 
 
-### todo - Creates a new todo task
+### `todo` - Creates a new todo task
 
 Example of usage:
 
@@ -97,7 +97,7 @@ Creates a new todo
 
 
 
-### deadline - Creates a new deadline task
+### `deadline` - Creates a new deadline task
 
 Example of usage:
 
@@ -109,7 +109,7 @@ Creates a new deadline
 
 
 
-### event - Describe action
+### `event` - Describe action
 
 Example of usage:
 
@@ -122,7 +122,7 @@ Creates a new event
 
 
 
-### quit / exit / bye - Quit the application
+### `bye` - Quit the application
 
 Example of usage:
 
