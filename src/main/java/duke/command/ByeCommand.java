@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.concurrent.TimeUnit;
+
 import duke.TaskList;
 import duke.Ui;
 import duke.storage.Storage;
@@ -22,8 +24,8 @@ public class ByeCommand extends Command {
 
     @Override
     public String execute(TaskList taskList, Storage storage) {
-        return "You can't leave!";
+        System.exit(0);
+        return "Bye!";
     }
-
 
 }

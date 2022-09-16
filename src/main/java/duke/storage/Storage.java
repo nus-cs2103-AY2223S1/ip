@@ -2,6 +2,7 @@ package duke.storage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+import duke.DukeException;
 import duke.Parser;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
@@ -148,6 +150,17 @@ public class Storage {
      * @throws IOException if the file cannot be located or read from.
      */
     public ArrayList<Task> load() throws IOException {
+        //@@author tin-jy-reused
+        //Reused from https://github.com/nus-cs2103-AY2223S1/ip/pull/75/files#diff-fc0329f0e80ed7375e64928e3f814aadfc17888a375a110d013704f9cbdfc7d7
+        //with minor modifications
+        File dataStorage = new File(filePath);
+        new File("data").mkdir();
+        try {
+            dataStorage.createNewFile();
+        } catch (IOException e) {
+            throw new DukeException("Unable to create storage file");
+        }
+
         try {
             String line = readLine(1);
             int lineNum = 1;
