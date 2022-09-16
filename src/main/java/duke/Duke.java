@@ -25,7 +25,7 @@ public class Duke {
         try {
             tasks = Storage.load();
         } catch (DukeException e) {
-            e.printStackTrace();
+            tasks = new TaskList();
         }
     }
 
