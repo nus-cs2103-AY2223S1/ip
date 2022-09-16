@@ -17,6 +17,8 @@ public class ByeCommand extends Command {
      *
      * @param ui The user interface for Duke.
      * @param tasks The list of current tasks.
+     * @param numberOfArguments The number of arguments in the user input.
+     * @throws DukeException If there is an invalid number of arguments provided.
      */
     public ByeCommand(Ui ui, TaskList tasks, int numberOfArguments) throws DukeException {
         if (numberOfArguments > ARGS_REQUIRED) {

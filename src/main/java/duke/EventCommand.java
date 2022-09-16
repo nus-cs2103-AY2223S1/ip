@@ -17,6 +17,10 @@ public class EventCommand extends Command {
      * @param ui The user interface for Duke.
      * @param tasks The list of current tasks.
      * @param userResponse The input string from the user.
+     * @param storage The storage for tasks from the previous session.
+     * @param numberOfArguments The number of arguments in the user input.
+     * @param atIndex Index of the /at keyword.
+     * @throws DukeException If no /at keyword is present or invalid number of arguments is provided.
      */
     public EventCommand(Ui ui, TaskList tasks, String userResponse, Storage storage,
                         int numberOfArguments, int atIndex) throws DukeException {

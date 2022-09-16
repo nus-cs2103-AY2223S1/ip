@@ -17,6 +17,9 @@ public class DeleteCommand extends Command {
      * @param ui The user interface for Duke.
      * @param tasks The list of current tasks.
      * @param userResponse The input string from the user.
+     * @param storage The storage for tasks from the previous session.
+     * @param numberOfArguments The number of arguments in the user input.
+     * @throws DukeException If an invalid number of arguments is provided.
      */
     public DeleteCommand(Ui ui, TaskList tasks, String userResponse,
                          Storage storage, int numberOfArguments) throws DukeException {

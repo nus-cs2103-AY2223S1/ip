@@ -129,6 +129,12 @@ public class TaskList {
         return output;
     }
 
+    /**
+     * Returns the string representation of the list of matching tasks.
+     *
+     * @param searchInput The search query entered by the user.
+     * @return A String representation of tasks matching the query.
+     */
     public String getMatchingTasksRepresentation(String searchInput) {
         String output = "";
         for (int i = 0; i < this.userTasks.size(); i++) {

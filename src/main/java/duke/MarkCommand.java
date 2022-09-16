@@ -16,7 +16,8 @@ public class MarkCommand extends Command {
      * @param ui                The user interface for Duke.
      * @param tasks             The list of current tasks.
      * @param userResponse      The input string from the user.
-     * @param numberOfArguments The number of arguments supplied by the user.
+     * @param numberOfArguments The number of arguments in the user input.
+     * @throws DukeException If an invalid number of arguments is provided.
      */
     public MarkCommand(Ui ui, TaskList tasks, String userResponse, int numberOfArguments) throws DukeException {
         if (numberOfArguments != ARGS_REQUIRED) {

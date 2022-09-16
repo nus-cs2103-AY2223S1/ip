@@ -60,6 +60,14 @@ public class Storage {
         return userTasks;
     }
 
+    /**
+     * Loads an event task from the local storage.
+     *
+     * @param taskDescription The description of the event task.
+     * @param isTaskDone The boolean representing whether the task is marked as done.
+     * @param taskEventTime The String representing the time of occurrence of the event.
+     * @return An <code>Event</code> instance.
+     */
     private Task loadEvent(String taskDescription, boolean isTaskDone, String taskEventTime) {
         Task savedEvent = new Event(taskDescription, taskEventTime);
         if (isTaskDone) {
@@ -68,6 +76,14 @@ public class Storage {
         return savedEvent;
     }
 
+    /**
+     * Loads a deadline task from the local storage.
+     *
+     * @param taskDescription The description of the task.
+     * @param isTaskDone The boolean representing whether the task is marked as done.
+     * @param taskDeadline The LocalDate object representing the deadline of the task.
+     * @return A <code>Deadline</code> instance.
+     */
     private Task loadDeadline(String taskDescription, boolean isTaskDone, LocalDate taskDeadline) {
         Task savedDeadline = new Deadline(taskDescription, taskDeadline);
         if (isTaskDone) {
@@ -76,6 +92,13 @@ public class Storage {
         return savedDeadline;
     }
 
+    /**
+     * Loads a task from the local storage.
+     *
+     * @param taskDescription The description of the task.
+     * @param isTaskDone The boolean representing whether the task is marked as done.
+     * @return A <code>Todo</code> instance.
+     */
     private Task loadTodo(String taskDescription, boolean isTaskDone) {
         Task savedTodo = new Todo(taskDescription);
         if (isTaskDone) {

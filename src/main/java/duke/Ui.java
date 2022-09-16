@@ -20,6 +20,7 @@ public class Ui {
     /**
      * Returns the error message.
      *
+     * @param e The exception caught by Duke.
      * @return String containing the error message.
      */
     public String showError(Exception e) {

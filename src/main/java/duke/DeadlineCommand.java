@@ -17,6 +17,10 @@ public class DeadlineCommand extends Command {
      * @param ui The user interface for Duke.
      * @param tasks The list of current tasks.
      * @param userResponse The input string from the user.
+     * @param storage The storage for tasks from the previous session.
+     * @param numberOfArguments The number of arguments in the user input.
+     * @param byIndex Index of the /by keyword.
+     * @throws DukeException If no /by keyword is present or invalid number of arguments is provided.
      */
     public DeadlineCommand(Ui ui, TaskList tasks, String userResponse, Storage storage,
                            int numberOfArguments, int byIndex) throws DukeException {
