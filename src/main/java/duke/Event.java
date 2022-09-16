@@ -60,7 +60,7 @@ public class Event extends Task {
      */
     @Override
     public String printAdded() {
-        return "\n  Looks like you have a new event:\n    [E][ ] " + this.getDescription()
+        return "  Looks like you have a new event:\n    [E][ ] " + this.getDescription()
                 + " (at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")"
                 + "\n  " + this.getIndex() + " tasks left, ganbare!\n";
     }
@@ -121,10 +121,10 @@ public class Event extends Task {
     @Override
     public String printDeleted() {
         if (!this.getStatus()) {
-            return "\n  duke.Task deleted!\n    [E][ ] " + this.getDescription()
+            return "  Event deleted!\n    [E][ ] " + this.getDescription()
                     + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
         } else {
-            return "\n  duke.Task deleted!\n    [E][X] " + this.getDescription()
+            return "  Event deleted!\n    [E][X] " + this.getDescription()
                     + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
         }
     }

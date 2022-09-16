@@ -49,7 +49,7 @@ public class ToDo extends Task {
      */
     @Override
     public String printAdded() {
-        return "\n  Its been added!\n    [T][ ] " + this.getDescription()
+        return "  Its been added!\n    [T][ ] " + this.getDescription()
                 + "\n  " + this.getIndex() + " tasks left! ^-^\n";
     }
 
@@ -98,9 +98,9 @@ public class ToDo extends Task {
     @Override
     public String printDeleted() {
         if (!this.getStatus()) {
-            return "\n  Task deleted!\n    [T][ ] " + this.getDescription();
+            return "  Task deleted!\n    [T][ ] " + this.getDescription();
         } else {
-            return "\n  Task deleted!\n    [T][X] " + this.getDescription();
+            return "  Task deleted!\n    [T][X] " + this.getDescription();
         }
     }
 

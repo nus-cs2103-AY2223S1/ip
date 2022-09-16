@@ -23,12 +23,15 @@ import javafx.scene.shape.Circle;
 
 
 public class DialogBox extends HBox {
+    private static final String[] dukeStyleClasses = {"duke-dialog-background"};
+    private static final String[] userStyleClasses = {"user-dialog-background"};
+
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text, Image img, String[] styleClasses) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -44,6 +47,7 @@ public class DialogBox extends HBox {
         clip.setRadius(50.0f);
         displayPicture.setClip(clip);
         dialog.setText(text);
+        dialog.getStyleClass().addAll(styleClasses);
         displayPicture.setImage(img);
     }
 
@@ -58,14 +62,12 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        DialogBox user = new DialogBox(text, img);
-        user.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        DialogBox user = new DialogBox(text, img, userStyleClasses);
         return user;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        db.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
+        var db = new DialogBox(text, img, dukeStyleClasses);
         db.flip();
         return db;
     }

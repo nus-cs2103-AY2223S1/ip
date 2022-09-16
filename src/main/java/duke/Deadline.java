@@ -58,7 +58,7 @@ public class Deadline extends Task {
      */
     @Override
     public String printAdded() {
-        return "\n  Yep, it's in!\n    [D][ ] " + this.getDescription() + " (by: "
+        return "  Yep, it's in!\n    [D][ ] " + this.getDescription() + " (by: "
                 + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")\n  "
                 + this.getIndex() + " tasks left, ganbare!\n";
     }
@@ -119,10 +119,10 @@ public class Deadline extends Task {
     @Override
     public String printDeleted() {
         if (!this.getStatus()) {
-            return "\n  duke.Task deleted!\n    [D][ ] " + this.getDescription()
+            return "  Deadline deleted!\n    [D][ ] " + this.getDescription()
                     + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")";
         } else {
-            return "\n  duke.Task deleted!\n    [D][X] " + this.getDescription()
+            return "  Deadline deleted!\n    [D][X] " + this.getDescription()
                     + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")";
         }
     }
