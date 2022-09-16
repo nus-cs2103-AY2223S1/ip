@@ -10,7 +10,7 @@ The GUI would not have been possible without the help of these borrowed code pie
 
 - The ability to resize chat bubbles based on text font, size and length is handled by a function adapted from a code piece from StackOverflow, [computeTextWidth()](https://stackoverflow.com/questions/12737829/javafx-textfield-resize-to-text-length)
 
-I would like to thank [Seerlight](https://www.deviantart.com/seerlight) from DeviantArt for creating this beautiful wallpaper [Let's Go Home](https://www.deviantart.com/seerlight/art/Let-s-Go-Home-743542427) which is used as the background of the application. It is free for personal use.
+I would like to thank [Seerlight](https://www.deviantart.com/seerlight) from DeviantArt for creating this beautiful wallpaper [Let's Go Home](https://www.deviantart.com/seerlight/art/Let-s-Go-Home-743542427). It is used as the background of the application and is free for personal use.
 
 ---
 ## Features
