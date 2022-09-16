@@ -14,7 +14,7 @@ class Storage {
     private final String filePath;
 
     Storage(String arg) {
-        assert !arg.equals("");
+        // assert !arg.equals("");
         this.filePath = arg;
     }
 

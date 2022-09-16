@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
@@ -42,13 +43,19 @@ test {
 }
 
 application {
-    mainClassName = "duke.Main"
+    mainClassName = "Launcher"
+}
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "xinyu_ip"
     archiveClassifier = null
 }
+
 
 checkstyle {
     toolVersion = '10.2'
