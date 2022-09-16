@@ -133,7 +133,7 @@ public class Event extends Task {
      * @return the complete string representation of the event.
      */
     public String toString() {
-        return this.getType() + this.getStatus() + " " + this.getPriority() + " " +this.getName()
+        return this.getType() + this.getStatus() + " " + this.getPriority() + " " + this.getName()
                 + " (at: " + formatDateString(this.time) + ")" + "\n";
     }
 

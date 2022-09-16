@@ -1,1 +1,3 @@
-[D][X] H cs2103t_ip  (by: Sep 16 2022 11:59 PM)
+[T][X] L shopping       
+[E][ ] L wedding  (at: Dec 12 2022 11:59 PM)
+[T][ ] L l  

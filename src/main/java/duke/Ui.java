@@ -38,11 +38,6 @@ public class Ui {
                 + "What can I do for you?" + "\n" + Duke.LINE + "\n");
     }
 
-    public String Ui() {
-        return Duke.LINE + "\n" + "Hello! I'm Duke" + "\n"
-                + "What can I do for you?" + "\n" + Duke.LINE + "\n";
-    }
-
     /**
      * Closes the program.
      */

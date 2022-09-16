@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -26,6 +27,9 @@ public class MainWindow extends AnchorPane {
     private Image welcomeImage = new Image(this.getClass().getResourceAsStream("/images/welcome.png"));
     private Image unmarkImage = new Image(this.getClass().getResourceAsStream("/images/unmark.png"));
 
+    /**
+     * Initialize scroll pane.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -69,6 +73,7 @@ public class MainWindow extends AnchorPane {
         String[] outputs = input.split(" ");
         if (outputs.length == 2 && outputs[0].equals("unmark")) {
             return unmarkImage;
-        } return dukeImage;
+        }
+        return dukeImage;
     }
 }

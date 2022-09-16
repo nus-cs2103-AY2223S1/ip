@@ -4,7 +4,6 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Scanner;
 public class Parser {
 
     private Scanner sc = new Scanner(System.in);
-    private String filepath = "duke.txt";
+    private String filepath = "dukes.txt";
     private Storage storage = new Storage(filepath);
     private Duke duke = new Duke();
 
@@ -134,6 +133,8 @@ public class Parser {
         } catch (Exception e) {
             if (e instanceof MarkException) {
                 return e.getMessage();
+            } else if (e instanceof IndexOutOfBoundsException) {
+                return "Try a smaller number!";
             }
             return "Hey!! Please input a number";
         }
@@ -159,9 +160,10 @@ public class Parser {
         } catch (Exception e) {
             if (e instanceof MarkException) {
                 return e.getMessage();
-            } else if (e instanceof ArrayIndexOutOfBoundsException) {
-                return "Please try a smaller number";
-            } return "Hey!! Please input a number";
+            } else if (e instanceof NumberFormatException) {
+                return "Hey! Please insert a number";
+            }
+            return "Hey friend! Please try a smaller number";
         }
     }
 
@@ -233,15 +235,19 @@ public class Parser {
      * @param file the file to be stored.
      */
     public String findPriorityRespondGui(String command, String[] descriptions, TaskList list, File file) {
-        String st = "";
-        if (descriptions.length == 1) {
-            st += list.findPriority(list, command);
-        } else {
-            int index = Integer.parseInt(descriptions[1]);
-            st += list.setPriority(list, index, Character.toUpperCase(command.charAt(0)));
+        try {
+            String st = "";
+            if (descriptions.length == 1) {
+                st += list.findPriority(list, command);
+            } else {
+                int index = Integer.parseInt(descriptions[1]);
+                st += list.setPriority(list, index, Character.toUpperCase(command.charAt(0)));
+            }
+            storage.overwriteFile(file, list);
+            return st;
+        } catch (NumberFormatException e) {
+            return "Hey fren! Please insert a number.";
         }
-        storage.overwriteFile(file, list);
-        return st;
     }
 
     /**
@@ -250,7 +256,7 @@ public class Parser {
     public void respond() {
         try {
             String input = sc.nextLine();
-            TaskList list = new Storage(filepath).load(new File(filepath));
+            TaskList list = new Storage(filepath).load(filepath);
             String[] descriptions = input.split(" ", 2);
             String command = descriptions[0];
             File file = new File(filepath);
@@ -270,7 +276,8 @@ public class Parser {
                 findPriorityRespond(command, descriptions, list, file);
             } else {
                 throw new InvalidCommandException(command);
-            } respond();
+            }
+            respond();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             respond();
@@ -285,9 +292,9 @@ public class Parser {
      */
     public String respond(String input) {
         try {
-            String filepath = "duke.txt";
-            Duke duke = new Duke();
-            TaskList list = new Storage(filepath).load(new File(filepath));
+            String filepath = this.filepath;
+            Storage storage = new Storage(filepath);
+            TaskList list = storage.load(filepath);
             String[] descriptions = input.split(" ", 2);
             String command = descriptions[0];
             File file = new File(filepath);
@@ -303,12 +310,13 @@ public class Parser {
             } else if (input.equals("list")) {
                 return list.listGui();
             } else if (command.equals("find")) {
-                return list.findGui(list, descriptions[1]);
+                return list.findGui(list, descriptions);
             } else if (command.equals("low") || command.equals("high") || command.equals("medium")) {
                 return findPriorityRespondGui(command, descriptions, list, file);
             } else {
                 throw new InvalidCommandException(command);
-            } return st;
+            }
+            return st;
         } catch (Exception e) {
             return (e.getMessage());
         }

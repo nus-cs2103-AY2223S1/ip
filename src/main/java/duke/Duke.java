@@ -26,7 +26,6 @@ public class Duke {
      * @param filePath the file path in which the data is being stored.
      */
     public Duke(String filePath) {
-        this.ui = new Ui();
         this.storage = new Storage(filePath);
         this.tasklist = new TaskList();
         this.parser = new Parser();
@@ -36,7 +35,7 @@ public class Duke {
      * Runs the bot.
      */
     public void run() {
-        storage.loadTask(new File("duke.txt"));
+        storage.loadTask(new File("dukes.txt"));
         parser.respond();
     }
 

@@ -1,8 +1,6 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Represents a task list.
@@ -154,12 +152,16 @@ public class TaskList {
      * @return a confirmation that the command has been executed.
      */
     public String setPriority(TaskList list, int index, char priority) {
-        String output = determinePriority(priority);
-        System.out.println("I have set" + list.getList().get(index - 1).printDescription() + " to "
-                + output + " priority" );
-        list.getList().get(index - 1).setPriority(priority);
-        return ("I have set " + list.getList().get(index - 1).printDescription() + "to " + output
-                + " priority");
+        try {
+            String output = determinePriority(priority);
+            System.out.println("I have set" + list.getList().get(index - 1).printDescription() + " to "
+                    + output + " priority");
+            list.getList().get(index - 1).setPriority(priority);
+            return "I have set " + list.getList().get(index - 1).printDescription() + "to " + output
+                    + " priority";
+        } catch (Exception e) {
+            return "Hey friend! Please insert a smaller number";
+        }
     }
 
     private String determinePriority(char priority) {
@@ -199,14 +201,17 @@ public class TaskList {
      * @param keyword the keyword to be mapped.
      * @return the found tasks.
      */
-    public String findGui(TaskList list, String keyword) {
+    public String findGui(TaskList list, String[] keyword) {
+        if (keyword.length == 1) {
+            return "Hi friend! What you wanna find?";
+        }
         String printString = Ui.FIND_HEADER_GUI;
         Task task = null;
         int find = 1;
         for (int i = 0; i < duke.getCount(); i++) {
             task = list.get(i);
             String finding = task.getName();
-            if (finding.contains(keyword)) {
+            if (finding.contains(keyword[1])) {
                 printString += find++ + "." + task.toString();
             }
         }

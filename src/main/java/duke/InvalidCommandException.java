@@ -11,6 +11,6 @@ public class InvalidCommandException extends Exception {
      * @param command command by the user.
      */
     public InvalidCommandException(String command) {
-        super(String.format("OOPS!!! I'm sorry, but I don't know what that means :-(" ));
+        super(String.format("OOPS!!! I'm sorry, but I don't know what that means :-("));
     }
 }

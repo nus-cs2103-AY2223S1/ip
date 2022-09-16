@@ -2,10 +2,10 @@ package duke;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Stores the data of the bot.
@@ -49,29 +49,35 @@ public class Storage {
     }
 
     private String loadInitialGui(File file) {
+        TaskList tl = new TaskList();
+        BufferedReader br = null;
+        String st = "";
         try {
-            TaskList tl = new TaskList();
-            BufferedReader br = null;
-            String st;
+            file = new File("dukes.txt");
+            /*
+            File parentFolder = file.getParentFile();
+            if (!parentFolder.exists()) {
+                parentFolder.mkdirs();
+            }
+            assert parentFolder.exists() : "Parent folder should exist";
+
+             */
             if (!file.exists()) {
                 file.createNewFile();
+                return st;
             }
-            br = new BufferedReader(new FileReader(file));
-        while (true) {
-            if (!((st = br.readLine()) != null)) {
-                break;
+            assert file.exists() : "File should exist";
+            Scanner sc = new Scanner(file);
+            if (!sc.hasNextLine()) {
+                return st;
             }
             tl.getList().add(convertStringToTask(st));
             duke.addCount();
             st += st;
-        } return st;
         } catch (Exception e) {
-        if (e instanceof FileNotFoundException) {
-            throw new RuntimeException(e);
-        } else if (e instanceof IOException) {
-            return e.getMessage();
-        } return e.getMessage();
+            return "File not found!";
         }
+        return st;
     }
 
     private void loadInitial(File file) {
@@ -99,19 +105,24 @@ public class Storage {
     /**
      * Returns the task list in the specified file.
      *
-     * @param file the file that stores the task list.
      * @return the task list in the specified file.
      */
-    public TaskList load(File file) {
+    public TaskList load(String filepath) {
         try {
             TaskList tl = new TaskList();
             duke.setCount(0);
             BufferedReader br = null;
+            file = new File(filepath);
+            if (!file.exists()) {
+                file.createNewFile();
+                return tl;
+            }
+            assert file.exists() : "File should exist";
             br = new BufferedReader(new FileReader(file));
             String st;
             while (true) {
                 if (!((st = br.readLine()) != null)) {
-                        break;
+                    break;
                 }
                 tl.getList().add(convertStringToTask(st));
                 duke.addCount();
