@@ -11,13 +11,13 @@ Hi! Doomba is your personal chatbot that tracks all the tasks that you plan on d
   - Recurring Tasks
 
 - Multiple commands
- - add
- - delete
- - mark
- - unmark
- - list
- - help
- - bye
+  - add
+  - delete
+  - mark
+  - unmark
+  - list
+  - help
+  - bye
 
 - Wrong command handling
 
