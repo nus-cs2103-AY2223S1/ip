@@ -14,4 +14,37 @@ An interact platorm for the users to interact with Duke
 
 ## Usage
 
-```todo```
+```todo``` - Adds a ToDo task
+A ToDo task will be created.
+
+User input command:
+Format to be specified: todo {task description}
+```
+todo borrow book
+```
+Expected outcome:
+(output here)
+
+
+```deadline``` - Adds a Deadline task
+A Deadline task will be created.
+
+User input command:
+Format to be specified: deadline {task description} /by {date}
+```
+deadline return book /by 2/12/2019 1800
+```
+Expected outcome:
+(output here)
+
+
+```event``` - Adds a Deadline task
+An Event task will be created.
+
+User input command:
+Format to be specified: event {task description} /by {date}
+```
+event return book /by 2/12/2019 1800
+```
+Expected outcome:
+(output here)
