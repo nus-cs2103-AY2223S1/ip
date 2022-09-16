@@ -88,7 +88,7 @@ public class Parser {
      * @throws DukeException If there is an exception.
      */
     public static Commands massCommandHandler(String input) throws DukeException {
-        if (input.isEmpty()) {
+        if (input.isBlank()) {
             throw new EmptyArgumentException(Commands.All);
         }
         switch(input) {
@@ -132,7 +132,7 @@ public class Parser {
      * @throws EmptyArgumentException If no details of the task is provided.
      */
     public static ToDo toDoHandler(String information) throws EmptyArgumentException {
-        if (information.isEmpty()) {
+        if (information.isBlank()) {
             throw new EmptyArgumentException(Commands.ToDo);
         }
         ToDo todo = new ToDo(information);
@@ -147,14 +147,19 @@ public class Parser {
      * @throws DukeException If the information provided is in the wrong format.
      */
     public static Deadline deadlineHandler(String information) throws DukeException {
-        if (information.isEmpty()) {
+        if (information.isBlank()) {
             throw new EmptyArgumentException(Commands.Deadline);
         }
         if (!information.contains("/by")) {
             throw new InvalidArgumentException(Commands.Deadline);
         }
         String[] stringArr = information.split(" /by ", 2);
-        String[] dateTimeArr = stringArr[1].split(" ");
+        if (stringArr.length == 1 || stringArr[0].isBlank()) {
+            throw new EmptyArgumentException(Commands.Deadline);
+        }
+        if (stringArr.length == 2 && stringArr[1].isBlank()) {
+            throw new EmptyArgumentException(Commands.Deadline);
+        }
         Deadline deadline = null;
         try {
             deadline = new Deadline(stringArr[0], stringArr[1]);
@@ -172,13 +177,19 @@ public class Parser {
      * @throws DukeException If the information provided is in the wrong format.
      */
     public static Event eventHandler(String information) throws DukeException {
-        if (information.isEmpty()) {
+        if (information.isBlank()) {
             throw new EmptyArgumentException(Commands.Event);
         }
         if (!information.contains("/at")) {
             throw new InvalidArgumentException(Commands.Event);
         }
         String[] stringArr = information.split(" /at ", 2);
+        if (stringArr.length == 1 || stringArr[0].isBlank()) {
+            throw new EmptyArgumentException(Commands.Event);
+        }
+        if (stringArr.length == 2 && stringArr[1].isBlank()) {
+            throw new EmptyArgumentException(Commands.Event);
+        }
         Event event = new Event(stringArr[0], stringArr[1]);
         return event;
     }
@@ -191,7 +202,7 @@ public class Parser {
      * @throws DukeException If the information provided is not an int.
      */
     public static int markHandler(String information) throws DukeException {
-        if (information.isEmpty()) {
+        if (information.isBlank()) {
             throw new EmptyArgumentException(Commands.Mark);
         }
         if (!information.chars().allMatch(Character :: isDigit)) {
@@ -236,7 +247,7 @@ public class Parser {
      * @throws DukeException If the information provided is invalid.
      */
     public static String findHandler(String information) throws DukeException {
-        if (information.isEmpty()) {
+        if (information.isBlank()) {
             throw new EmptyArgumentException(Commands.Find);
         }
         return information;

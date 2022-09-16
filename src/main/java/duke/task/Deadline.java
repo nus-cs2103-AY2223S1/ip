@@ -27,7 +27,11 @@ public class Deadline extends Task {
         String[] details = dateTime.split(" ");
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("d/MM/yyyy");
         date = LocalDate.parse(details[0], inputFormat);
-        time = details[1];
+        if (details.length == 1) {
+            time = "";
+        } else {
+            time = details[1];
+        }
         this.dateTime = dateTime;
     }
 
