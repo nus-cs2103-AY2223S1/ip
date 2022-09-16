@@ -16,14 +16,16 @@ public class Duke {
      * Constructor that creates Duke object
      */
     public Duke() {
-        ui = new Ui();
-        ui.greeting();
-        storage = new Storage(filePath);
         try {
+            ui = new Ui();
+            ui.greeting();
+            storage = new Storage(filePath);
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -43,7 +45,7 @@ public class Duke {
         if ("hi".equals(command) || "hello".equals(command)) {
             return ui.greeting();
         } else if ("bye".equals(command)) {
-            return Parser.echo("Bye. Hope to see you again soon!");
+            return Parser.echo("Aww going so soon :(( \nHope to see you again soon!");
         } else if ("list".equals(command)) {
             return Parser.echo(TaskList.printTaskList(tasks));
         } else if (command.contains("unmark")) { // to detect unmark command
@@ -77,7 +79,7 @@ public class Duke {
         } else {
             TaskList keywordList = tasks.find(findWord);
             String stringList = TaskList.printTaskList(keywordList);
-            return Parser.echo("Here are the matching tasks in your list:\n" + stringList);
+            return Parser.echo("Found these tasks in your list:\n" + stringList);
         }
     }
 
@@ -100,9 +102,9 @@ public class Duke {
                 return Parser.echo(DukeException.IndexOutofBoundsException(tasks));
             }
             Task deletedTask = tasks.remove(n);
-            String taskStatus = String.format("Noted. I've removed this task:\n" +
+            String taskStatus = String.format("One less task. I've removed this task:\n" +
                     "%s\n" +
-                    "Now you have %d tasks in the list.", deletedTask, tasks.size());
+                    "Now you have %d tasks in the list.You got this!", deletedTask, tasks.size());
             Parser.writeToFile(tasks);
             return Parser.echo(taskStatus);
         }
@@ -121,7 +123,7 @@ public class Duke {
             String[] parts = eventTask.split(" /",2);
             Task newTask = new Event(parts[0], parts[1]);
             tasks.add(newTask);
-            String taskStatus = String.format("Got it. I've added this task:\n" +
+            String taskStatus = String.format("Oki, niceee. I've added this task:\n" +
                     "%s\n" +
                     "Now you have %d tasks in the list.", newTask, tasks.size());
             Parser.writeToFile(tasks);
@@ -142,7 +144,7 @@ public class Duke {
             String[] parts = deadlineTask.split(" /by ", 2);
             Deadline newTask = new Deadline(parts[0], parts[1]);
             tasks.add(newTask);
-            String taskStatus = String.format("Got it. I've added this task:\n" +
+            String taskStatus = String.format("Oki, niceee. I've added this task:\n" +
                     "%s\n" +
                     "Now you have %d tasks in the list.", newTask, tasks.size());
             Parser.writeToFile(tasks);
@@ -162,7 +164,7 @@ public class Duke {
         }
         Task newTask = new Todo(todoTask);
         tasks.add(newTask);
-        String taskStatus = String.format("Got it. I've added this task:\n" +
+        String taskStatus = String.format("Oki, nicee. I've added this task:\n" +
                 "%s\n" +
                 "Now you have %d tasks in the list.", newTask, tasks.size());
         Parser.writeToFile(tasks);
@@ -194,18 +196,18 @@ public class Duke {
                 tasks.get(i).markAsUndone();
             }
             Parser.writeToFile(tasks);
-            taskStatus = String.format("OK, I've marked all %d task(s) as not done yet.\n", tasks.size());
+            taskStatus = String.format("Awww, I've marked all %d task(s) as not done yet.\n", tasks.size());
         } else if (command.contains("mark")) {
             for(int i = 0; i < tasks.size(); i++) {
                 tasks.get(i).markAsDone();
             }
             Parser.writeToFile(tasks);
-            taskStatus = String.format("Nice! I've marked all %d task(s) as done:\n", tasks.size());
+            taskStatus = String.format("You are really amazing!! I've marked all %d task(s) as done.\n", tasks.size());
         } else if (command.contains("delete")) {
             int initialTaskSize = tasks.size();
             tasks.clear();
             Parser.writeToFile(tasks);
-            taskStatus = String.format("Noted. I've removed all %d task(s)\n" +
+            taskStatus = String.format("The tasks were boring anyway, I've removed all %d task(s)\n" +
                     "Now you have 0 task in the list.\n", initialTaskSize);
         }
         return Parser.echo(taskStatus);
@@ -229,7 +231,7 @@ public class Duke {
         Task commandedTask = tasks.get(n);
         if (command.contains("unmark")) {
             commandedTask.markAsUndone();
-            taskStatus = String.format("OK, I've marked this task as not done yet:\n%s", commandedTask);
+            taskStatus = String.format("Aww, I've marked this task as not done yet:\n%s", commandedTask);
         } else {
             commandedTask.markAsDone();
             taskStatus = String.format("Nice! I've marked this task as done:\n%s", commandedTask);

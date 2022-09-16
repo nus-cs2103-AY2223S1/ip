@@ -22,8 +22,15 @@ public class Storage {
      * Constructor for Storage class
      * @param filePath Location of file with Tasks
      */
-    public Storage (String filePath){
+    public Storage (String filePath) throws IOException {
         this.filePath = filePath;
+        File file = new File(filePath);
+        File folder = new File("data");
+        if(!folder.exists()) {
+            folder.mkdir();
+        } if (!file.exists()) {
+            file.createNewFile();
+        }
     }
 
     /**
@@ -63,8 +70,7 @@ public class Storage {
 
     private void extractDeadlineTask(ArrayList<Task> tasklist, String modifiedLine) {
         if (modifiedLine.contains("[ ]")) {
-            // replace the formats with empty string
-            String deadlineDsc = modifiedLine.replace("[D][ ] ", "");
+            String deadlineDsc = modifiedLine.replace("[D][ ] ", ""); // replace target with '' string
             // get 2 substring for description and deadlineTime
             String description = deadlineDsc.substring(0, deadlineDsc.indexOf("(") - 1);
             String dlTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
