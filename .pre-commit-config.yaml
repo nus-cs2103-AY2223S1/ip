@@ -4,6 +4,7 @@ repos:
     hooks:
       - id: cpd
       - id: check-no-tabs
+        exclude: ^Makefile$
       - id: check-eof-newline
         exclude: ^text-ui-test/EXPECTED.TXT$
       - id: check-trailing-whitespace
