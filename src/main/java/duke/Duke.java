@@ -1,6 +1,5 @@
 package duke;
 
-import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
 import duke.handlers.HandlerFactory;
 import duke.handlers.IHandler;

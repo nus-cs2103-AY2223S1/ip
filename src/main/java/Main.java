@@ -1,3 +1,6 @@
+import java.io.File;
+import java.util.Scanner;
+
 import duke.Duke;
 import duke.data.FileStorage;
 import duke.data.IStorage;
@@ -5,9 +8,6 @@ import duke.gui.Gui;
 import duke.service.Service;
 import duke.service.Ui;
 import javafx.application.Application;
-
-import java.io.File;
-import java.util.Scanner;
 
 /**
  * Main entrypoint for Duke Application

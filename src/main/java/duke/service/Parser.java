@@ -3,9 +3,6 @@ package duke.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import duke.handlers.HandlerFactory;
-import duke.handlers.IHandler;
-
 /** Parser class handles user-inputs */
 public class Parser {
     private static final Pattern COMMAND_REGEX =

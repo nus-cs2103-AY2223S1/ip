@@ -1,13 +1,11 @@
 package duke.handlers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import duke.entities.Task;
 import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
 import duke.service.Service;
-import duke.service.Ui;
 
 /**
  * Handles the user action for finding a task.
