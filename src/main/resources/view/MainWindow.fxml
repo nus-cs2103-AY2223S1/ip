@@ -6,6 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
+<!--@@author j-lum-reused
+Reused from https://se-education.org/guides/tutorials/javaFx.html
+with minor modifications-->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
             prefWidth="400.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="tuna.gui.MainWindow">
