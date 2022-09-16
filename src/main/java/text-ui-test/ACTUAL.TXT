@@ -1,0 +1,32 @@
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
+
+Good Morning!
+My name is
+
+ $$$$$$\  $$\        $$$$$$\  $$\   $$\
+$$  __$$\ $$ |      $$  __$$\ $$$\  $$ |
+$$ /  $$ |$$ |      $$ /  $$ |$$$$\ $$ |
+$$$$$$$$ |$$ |      $$$$$$$$ |$$ $$\$$ |
+$$  __$$ |$$ |      $$  __$$ |$$ \$$$$ |
+$$ |  $$ |$$ |      $$ |  $$ |$$ |\$$$ |
+$$ |  $$ |$$$$$$$$\ $$ |  $$ |$$ | \$$ |
+\__|  \__|\________|\__|  \__|\__|  \__|
+
+How may I be of service?
+_______________________________________
+Here are the tasks you have added:
+  1. [D][ ] buy things (by: tonight)
+  2. [E][X] throw stuff (by: 11/11/2023 12:13)
+  3. [D][ ] throw stuff (by: tomorrow)
+  4. [D][X] throw stuff (by: 12/08/2024 13:14)
+  5. [E][X] throw stuff (by: 01/21/2025 14:15)
+  6. [T][ ] throw stuff
+_______________________________________
+_______________________________________
+Goodbye! See you soon!
+_______________________________________
