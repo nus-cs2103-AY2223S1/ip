@@ -1,5 +1,4 @@
-T | 1 | test | test
-E | 1 | project meeting | Mon 2-4pm | test2
-D | 1 | return book | Sunday | testt
-T | 1 | return book | no tag
-T | 1 | add GUI | no tag
+T | 1 | test | fun
+E | 1 | project meeting | Mon 2-4pm | work
+D | 1 | return book | Sunday | reminder
+T | 0 | borrow book | no tag
