@@ -2,8 +2,9 @@ package duke;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
+
+import duke.exception.DukeException;
 
 public class StorageTest {
 
