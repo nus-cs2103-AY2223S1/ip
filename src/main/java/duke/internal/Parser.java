@@ -276,8 +276,7 @@ public class Parser {
     }
 
     /**
-     * Not to be mistaken for `getAliasCommand`, which handles the `alias` commands.
-     * This method de-aliases aliased commands and returns the Command object to execute.
+     * Returns a de-aliased command to execute.
      * For example, it expands `m 1` to `mark 1`.
      *
      * @return the Command object to execute
