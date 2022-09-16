@@ -51,11 +51,13 @@ Example: ```todo buy bananas```
 ### Adding a deadline task: ```deadline```
 Adds a deadline task to the task list.    
 Format: ```deadline {description} /by {dd-MMM-yyyy HH:mm}```  
+❗Ensure that the month's first letter is in caps and the rest is not, e.g. ```Jan``` rather than ```JAN``` or ```jan```   
 Example: ```deadline reflection 1 /by 13-Sep-2022 18:00```
 
 ### Adding an event task: ```event```
 Adds a deadline task to the task list.  
 Format: ```event {description} /at {dd-MMM-yyyy HH:mm}```  
+❗Ensure that the month's first letter is in caps and the rest is not, e.g. ```Jan``` rather than ```JAN``` or ```jan```   
 Example: ```event project meeting /at 18 Sep 2022 19:00```
 
 ### Marking a task: ```mark```
