@@ -1,5 +1,4 @@
 D | 1 | finish iP | 2022-09-16
-T | 1 | test length
-T | 0 | test length
-T | 0 | test length
-T | 1 | d
+E | 0 | CS2103T tp meeting | COM3
+T | 0 | brainstorm on CS2101
+D | 0 | submit iP | 2022-09-16
