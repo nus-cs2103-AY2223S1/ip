@@ -66,8 +66,8 @@ public class Duke {
 
     private String getTaskResponse(String input) {
         try {
-            assert tasks != null: "task list is not null";
-            assert storage != null: "storage is not null";
+            assert tasks != null : "task list is not null";
+            assert storage != null : "storage is not null";
             String response = tasks.addTask(input);
             storage.saveTasks(tasks);
             return response;

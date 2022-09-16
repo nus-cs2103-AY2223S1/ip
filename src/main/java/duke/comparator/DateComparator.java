@@ -1,10 +1,8 @@
 package duke.comparator;
 
-import duke.task.Task;
-import duke.task.ToDo;
-import duke.tools.DateTime;
-
 import java.util.Comparator;
+
+import duke.task.Task;
 
 public class DateComparator implements Comparator<Task> {
 

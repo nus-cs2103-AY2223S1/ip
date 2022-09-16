@@ -1,9 +1,8 @@
 package duke.comparator;
 
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.util.Comparator;
+
+import duke.task.Task;
 
 public class NameComparator implements Comparator<Task> {
 

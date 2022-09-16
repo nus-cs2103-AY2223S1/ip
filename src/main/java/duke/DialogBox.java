@@ -86,7 +86,7 @@ public class DialogBox extends HBox {
         var db = new DialogBox(text, img);
         db.flip();
         db.setSpacing(10);
-        db.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,null,null)));
+        db.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
         //@@author nseah21
 
         return db;

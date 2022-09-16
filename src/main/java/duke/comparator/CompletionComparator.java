@@ -1,8 +1,8 @@
 package duke.comparator;
 
-import duke.task.Task;
-
 import java.util.Comparator;
+
+import duke.task.Task;
 
 public class CompletionComparator implements Comparator<Task> {
 
