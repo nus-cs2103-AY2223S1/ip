@@ -44,6 +44,7 @@ public class TaskList {
      * @param taskIndex The index of the Task to be deleted.
      */
     public String deleteTask(int taskIndex) {
+        assert taskIndex >= 0 && taskIndex < taskIndex - 1;
         Task temp = this.arrayList.remove(taskIndex - 1);
         return String.format(
                 "Noted. I've removed this task:\n\t%s\nNow you have %d task%s in the list.",
@@ -69,6 +70,7 @@ public class TaskList {
      * @param keyword Keyword used to search for tasks.
      */
     public String findKeyword(String keyword) {
+        assert keyword != "";
         ArrayList<Integer> tempArray = new ArrayList<>();
         for (int i = 0; i < this.arrayList.size(); i++) {
             if (isFound(keyword, i)) {
