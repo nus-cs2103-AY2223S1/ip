@@ -1,8 +1,13 @@
 T | 0 | sleep
-T | 0 | sleep
 T | 0 | eat
 T | 0 | cry
 T | 0 | cry
 D | 0 | ST2334 midterm | 2022-9-26
 D | 0 | ST2334 midterm | Sep 26 2022
 E | 0 | eat | Sep 26 2022
+T | 0 | eat
+D | 0 | return book | Sep 6 2022
+D | 0 | return book | Sep 6 2022 10:00PM
+D | 0 | return book | 2200
+D | 0 | return book | Saturday
+E | 0 | graduation | Sep 6 2022

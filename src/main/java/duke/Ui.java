@@ -170,7 +170,7 @@ public class Ui {
     }
 
     public void showPriority(Task t, String priority) {
-        description = t + "has been marked as " + priority.toUpperCase() + " priority.";
+        description = t + " has been marked as " + priority.toUpperCase() + " priority.";
     }
 
     /**
