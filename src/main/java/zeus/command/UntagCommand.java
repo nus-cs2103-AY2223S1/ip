@@ -32,6 +32,11 @@ public class UntagCommand extends Command {
      */
     public String handle(Storage storage, Ui ui, TaskList taskList) throws ZeusException {
         Task t = taskList.getTask(index);
+        String assignedTag = t.getTag();
+        if (assignedTag.isEmpty()) {
+            throw new ZeusException("The task is already not tagged by default, you cant untag nothing!");
+        }
+        assert !assignedTag.isBlank();
         t.untagTask();
         return "Zeus says:\n" + ui.formatMessage("Great, I've untagged the task for you.");
     }

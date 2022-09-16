@@ -75,6 +75,15 @@ public class Task {
     }
 
     /**
+     * Returns the tag assigned to the task.
+     *
+     * @return the tag assigned to the task
+     */
+    public String getTag() {
+        return tag;
+    }
+
+    /**
      * Returns a task from the string description stored in the hard disk.
      *
      * @param input the string description of the task

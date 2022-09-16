@@ -1,6 +1,7 @@
 package zeus;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import zeus.command.AddCommand;
 import zeus.command.ByeCommand;
@@ -34,7 +35,7 @@ public class Parser {
      * @throws ZeusException if there is an error parsing the input from the user
      */
     public static Todo handleTodo(String input) throws ZeusException {
-        if (input.length() == 0) {
+        if (input.isBlank()) {
             throw new ZeusException("OOPS!!! The description of a todo cannot be empty.");
         }
         return new Todo(input);
@@ -48,18 +49,23 @@ public class Parser {
      * @throws ZeusException if there is an error parsing the input from the user
      */
     public static Event handleEvent(String input) throws ZeusException {
-        if (input.length() == 0) {
+        if (input.isBlank()) {
             throw new ZeusException(ERROR_DID_NOT_SPECIFY_WHAT);
         }
         String[] modifiedInput = input.split("/", 2);
-        String description = modifiedInput[0];
         if (modifiedInput.length == 1) {
             throw new ZeusException("Did you forget to specify when your event is at?"
-            + " In yyyy-mm-dd format please.");
+                    + " In yyyy-mm-dd format please.");
         }
+        String description = modifiedInput[0];
         String when = modifiedInput[1];
         String[] secondModifiedInput = when.split(" ", 2);
         String dateAt = secondModifiedInput[1];
+        try {
+            LocalDate.parse(dateAt);
+        } catch (DateTimeParseException e) {
+            throw new ZeusException("Invalid date format entered! Use YYYY-MM-DD format please!");
+        }
         LocalDate localDateAt = LocalDate.parse(dateAt);
         return new Event(description, localDateAt);
     }
@@ -72,7 +78,7 @@ public class Parser {
      * @throws ZeusException if there is an error parsing the input from the user
      */
     public static Deadline handleDeadline(String input) throws ZeusException {
-        if (input.length() == 0) {
+        if (input.isBlank()) {
             throw new ZeusException(ERROR_DID_NOT_SPECIFY_WHAT);
         }
         String[] modifiedInput = input.split("/", 2);
@@ -84,6 +90,11 @@ public class Parser {
         String when = modifiedInput[1];
         String[] secondModifiedInput = when.split(" ", 2);
         String dateBy = secondModifiedInput[1];
+        try {
+            LocalDate.parse(dateBy);
+        } catch (DateTimeParseException e) {
+            throw new ZeusException("Invalid date format entered! Use YYYY-MM-DD format please!");
+        }
         LocalDate localDateBy = LocalDate.parse(dateBy);
         return new Deadline(description, localDateBy);
     }
@@ -96,7 +107,7 @@ public class Parser {
      * @throws ZeusException if there is an error parsing the input from the user
      */
     public static int parseInt(String input) throws ZeusException {
-        if (input.length() == 0) {
+        if (input.isBlank()) {
             throw new ZeusException("Did you forget to specify which task to delete?");
         }
         try {
@@ -114,7 +125,7 @@ public class Parser {
      * @throws ZeusException if there is an error in the input given from the user
      */
     public static String handleFind(String input) throws ZeusException {
-        if (input.length() == 0) {
+        if (input.isBlank()) {
             throw new ZeusException("Did you forget to specify what you are looking for?");
         } else {
             return input;
@@ -129,13 +140,13 @@ public class Parser {
      * @throws ZeusException if input  from user is invalid
      */
     public static String[] handleTag(String input) throws ZeusException {
-        if (input.length() == 0) {
+        if (input.isBlank()) {
             throw new ZeusException("Please specify which task to tag and to tag as what");
         }
-        if (input.length() == 1) {
+        String[] strArray = input.split(" ", 2);
+        if (strArray.length == 1) {
             throw new ZeusException("Hello! What do you want to tag it with?");
         }
-        String[] strArray = input.split("", 2);
         return strArray;
     }
 
@@ -147,7 +158,7 @@ public class Parser {
      * @throws ZeusException if input from user is invalid
      */
     public static int handleUntag(String input) throws ZeusException {
-        if (input.length() == 0) {
+        if (input.isBlank()) {
             throw new ZeusException("Maybe you want to specify which task to untag?");
         }
         return Integer.parseInt(input);
