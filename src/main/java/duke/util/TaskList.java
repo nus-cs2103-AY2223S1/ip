@@ -20,6 +20,8 @@ public class TaskList {
 
     /**
      * Displays all stored tasks.
+     * 
+     * @return String representation of all tasks in the task list.
      */
     public String displayList() {
         String output = "Here are the tasks in your list.\n";
@@ -33,6 +35,7 @@ public class TaskList {
      * Adds task to tasks list.
      * 
      * @param task Task to be stored in task list.
+     * @return String representation of task added.
      */
     public String addTask(Task task) {
         tasks.add(task);
@@ -56,6 +59,7 @@ public class TaskList {
      * Removes specified task from tasks list.
      * 
      * @param taskIndex Index of task to be removed.
+     * @return String representation of task removed.
      * @throws DukeException if given index is out of bounds.
      */
     public String removeTask(int taskIndex) throws DukeException {
@@ -74,6 +78,7 @@ public class TaskList {
      * 
      * @param taskIndex Index of task to be changed.
      * @param isDone true if task is completed, false otherwise.
+     * @return String representation of task whose status has been changed.
      * @throws DukeException if given index is out of bounds.
      */
     public String changeTaskStatus(int taskIndex, boolean isDone) throws DukeException {
@@ -104,6 +109,7 @@ public class TaskList {
      * Finds the tasks matching the search text and displays them.
      * 
      * @param searchText Search text to be searched for
+     * @return String representation of all tasks matching the search text.
      */
     public String findTask(String searchText) {
         int i = 0;

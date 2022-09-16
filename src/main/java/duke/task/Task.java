@@ -129,6 +129,11 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Returns a string representation of the date
+     * @param date Date object
+     * @return String representation of the date
+     */
     public static String formatDate(Date date) {
         SimpleDateFormat standardDateFormat = new SimpleDateFormat("EEE, MMM d, hh:mm a");
         return standardDateFormat.format(date);

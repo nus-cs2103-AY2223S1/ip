@@ -22,6 +22,8 @@ public class HelpCommand extends Command{
 
     /**
      * Prints a help message.
+     * 
+     * @return help message
      */
     @Override
     public String execute() {

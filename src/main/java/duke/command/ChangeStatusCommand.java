@@ -34,6 +34,7 @@ public class ChangeStatusCommand extends Command {
     /**
      * Changes the status of the specified task.
      * 
+     * @return String representation of the task whose status has been changed
      * @throws DukeException if taskindex is invalid
      */
     @Override

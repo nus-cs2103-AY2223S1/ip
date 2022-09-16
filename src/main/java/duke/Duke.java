@@ -36,6 +36,11 @@ public class Duke {
         return ui.greet();
     }
 
+    /**
+     * Returns message output from executing user input.
+     * @param input User input.
+     * @return Message output from executing user input.
+     */
     public String getResponse(String input) {
         try {
             command = parser.parse(input);

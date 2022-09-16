@@ -21,6 +21,8 @@ public class ExitCommand extends Command {
 
     /**
      * Prints a goodbye message, saves the tasks to storage and exits the program
+     * 
+     * @return goodbye message
      */
     @Override
     public String execute() {

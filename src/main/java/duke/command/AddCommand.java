@@ -28,6 +28,7 @@ public class AddCommand extends Command {
     /**
      * Adds a task to the task list.
      * 
+     * @return String representation of the task added
      * @throws DukeException if the input is invalid
      */
     @Override

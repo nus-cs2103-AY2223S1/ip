@@ -27,6 +27,7 @@ public class DeleteCommand extends Command {
     /**
      * Deletes the specified task from the task list.
      * 
+     * @return String representation of the task deleted
      * @throws DukeException if taskindex is invalid
      */
     @Override

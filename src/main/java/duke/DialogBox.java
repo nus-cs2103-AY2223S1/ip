@@ -24,6 +24,11 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructor for DialogBox.
+     * @param text Text to be displayed.
+     * @param img Image representing user.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader =
@@ -49,10 +54,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Creates a dialog box for user.
+     * @param text Text to be displayed.
+     * @param img Image representing user.
+     * @return DialogBox for user.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Creates a dialog box for Cerebro.
+     * @param text Text to be displayed.
+     * @param img Image representing Cerebro.
+     * @return DialogBox for Cerebro.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

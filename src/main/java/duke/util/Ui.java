@@ -1,11 +1,13 @@
 package duke.util;
 
 /**
- * Text UI for Duke app.
+ * A class representing the Text UI for Duke app.
  */
 public class Ui {
     /**
      * Prints a greeting to the user.
+     * 
+     * @return greeting message.
      */
     public String greet() {
         String logo = "_________                                         ___\n"
@@ -20,6 +22,8 @@ public class Ui {
 
     /**
      * Prints a goodbye message to the user.
+     * 
+     * @return goodbye message.
      */
     public String bye() {
         return "Goodbye! See you soon!";
@@ -27,6 +31,8 @@ public class Ui {
 
     /**
      * Prints a help message to the user.
+     * 
+     * @return help message.
      */
     public String help() {
         String message = "Here are the list of commands available: \n"
@@ -47,6 +53,7 @@ public class Ui {
      * Displays the error to the user.
      * 
      * @param error Error message to be shown to user.
+     * @return error message.
      */
     public String showError(String error) {
         return "OOPS! " + error;
@@ -56,6 +63,7 @@ public class Ui {
      * Displays the error to the user.
      * 
      * @param e Exception to be shown to user.
+     * @return error message.
      */
     public String showError(Exception e) {
         return "OOPS! " + e.getMessage();

@@ -22,6 +22,8 @@ public class ListCommand extends Command {
 
     /**
      * Lists all tasks in the task list.
+     * 
+     * @return String representation of all tasks in the task list
      */
     @Override
     public String execute() {

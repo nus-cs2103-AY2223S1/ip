@@ -31,6 +31,8 @@ public class FindCommand extends Command {
 
     /**
      * Finds the tasks matching the search text and displays them.
+     * 
+     * @return String representation of the tasks matching the search text
      */
     @Override
     public String execute() {
