@@ -20,11 +20,11 @@ public class Ui {
     private Scanner sc;
     private MainWindow mainWindow;
     private static final String[] COMMANDS = {
-        "todo: adds a todo task (e.g. todo read book)",
-        "deadline: adds a deadline task (e.g. deadline iP /by tonight OR deadline iP /by 16-09-2022)",
-        "event: adds an event task, followed by venue of event (e.g. event tP discussion /at COM3)",
-        "list: shows current list of tasks",
-        "mark: marks a task as done (e.g. 'mark 2' will mark task 2 as done)",
+        "todo",
+        "deadline",
+        "event",
+        "list",
+        "mark",
         "unmark: cancels a mark of task (e.g. 'unmark 2' will unmark task 2)",
         "find: finds a task with a certain keyword",
         "delete: deletes a task by their given index",
