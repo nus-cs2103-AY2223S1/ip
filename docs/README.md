@@ -2,28 +2,45 @@
 
 ## Features 
 
-### Feature-ABC
+### Adding todos, events, and deadlines
 
-Description of the feature.
+Example:
 
-### Feature-XYZ
+```
+todo <name>
+event <name> /at DD/MM/YY HH:MM
+deadline <name> /by DD/MM/YY HH:MM
+```
 
-Description of the feature.
+### List, mark, unmark, delete
+
+Example:
+
+```
+list
+mark <index>
+unmark <index>
+delete <index>
+```
+
+### Snooze
+
+Snooze a task by 1 day.
+
+Example:
+
+```
+snooze <index>
+```
 
 ## Usage
 
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
+### `snooze` - Postpone a task by 1 day
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`snooze 3`
 
 Expected outcome:
 
-Description of the outcome.
-
-```
-expected output
-```
+Adds 1 day to the date of task 3.
