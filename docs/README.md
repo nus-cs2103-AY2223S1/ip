@@ -8,16 +8,15 @@ Duke is a **desktop chatbot app for managing and storing tasks, optimized for us
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-    * [Adding a todo task : `todo`, `t`](#adding-a-todo-task-todo)
-    * [Adding a deadline Task: `deadline`, `d`](#adding-a-deadline-task-deadline)
-    * [Adding an event Task: `event`, `e`](#adding-an-event-task-event)
-    * [Marking a task: `mark`](#marking-a-task-mark)
-    * [Unmarking a task: `unmark`](#unmarking-a-task-unmark)
-    * [Deleting a task: `delete`, `rm`](#deleting-a-task-delete)
-    * [Finding a task by description: `find`, `f`](#finding-a-task-by-description-find)
-    * [Listing all tasks: `list`](#listing-all-tasks-list)
-    * [Exiting the program: `bye`, `exit`, `quit`](#exiting-the-program-bye)
-    * [Saving the data](#saving-the-data)
+    * [Add a todo task : `todo`, `t`](#add-a-todo-task-todo)
+    * [Add a deadline Task: `deadline`, `d`](#add-a-deadline-task-deadline)
+    * [Add an event Task: `event`, `e`](#add-an-event-task-event)
+    * [List all tasks: `list`](#list-all-tasks-list)
+    * [Mark a task: `mark`](#mark-a-task-mark)
+    * [Unmark a task: `unmark`](#unmark-a-task-unmark)
+    * [Find a task by keyowrd: `find`, `f`](#find-a-task-by-keyword-find)
+    * [Delete a task: `delete`, `rm`](#delete-a-task-delete)
+    * [Exit the program: `bye`, `exit`, `quit`](#exiting-the-program-bye)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -26,90 +25,91 @@ Duke is a **desktop chatbot app for managing and storing tasks, optimized for us
 2. Download the latest `Duke.jar` file from [here](https://github.com/jialatteo/ip/releases/tag/v0.2).
 3. Copy the file to the folder you want to use as the home folder for your task list.
 4. Double-click the file to start the app. 
-5. Type the command in the command box and press Enter to execute it. You can try the follow example commands:
-    - `list` : Lists out all the tasks.
-    - `deadline return book /by 2022-09-17` : Adds a deadline task `return book (by:17 Sep 2022)` to the list.
-    - `event read book /at 18 Sep 2022 12:00` : Adds an event task `read book (at: 18 Sep 2022 12:00)`
-    - `mark 1` : Marks the 1st task on the list as done.
-    - `delete 1` : Deletes the 1st task on the list.
-    - `find book` : Finds a task with the matching keyword `book`
-    - `bye` : Exits the app.
-6. Refer to the [Features](#Features) below for details of each command.
+5. Refer to the [Features](#Features) below for details on how to use each command.
 
-##  Features
-💡 Notes about the command format: <br>
-Words in `{curly brackets}` are the parameters to be supplied by the user. <br>
-e.g. in `todo {description}` , `{description}` is a parameter which can be used as `todo homework`
-
-### Adding a todo task: `todo`
-Adds a todo task to the task list. <br>
+### Add a todo task: `todo`
+Adds a todo task to the task list. <br><br>
 Format: `todo {description}` <br>
-Example: `todo buy book`
-<br> <br>
+Example: `todo buy book` <br><br>
 Format: `t {description}` <br>
 Example: `t buy book`
 
-### Adding a deadline task: `deadline`
-Adds a deadline task to the task list. <br>
+### Add a deadline task: `deadline`
+Adds a deadline task to the task list. <br><br>
 Format: `deadline {description} /by {YYYY-MM-DD}` <br>
 Example: `deadline {description} /by 2022-09-18`
 <br> <br>
 Format: `d {description} /by {YYYY-MM-DD}` <br>
 Example: `d {description} /by 2022-09-18`
-### Adding an event task: `event`
-Adds a deadline task to the task list. <br>
+
+### Add an event task: `event`
+Adds an event task to the task list. <br><br>
 Format: `event {description} /at {date}` <br>
 Exmaple: `event read book /at 18 Sep 2022 19:00`
 <br> <br>
 Format: `e {description} /at {date}` <br>
 Exmaple: `e read book /at 18 Sep 2022 19:00`
 
-### Marking a task: `mark`
-Marks a task in the list as done.<br>
-Format: `mark {index}`
-Example: `mark 2` marks the task at index 2 of the list <br>
+### List all tasks: `list`
+Lists out all tasks in the task list.<br><br>
+Format: `list` <br> <br>
+Expected outcome:
+```
+Here are the tasks in your list:
+1.[E][X] Borrow book (at: Sep 10 2022)
+2.[T][] Read book
+3.[D][] Return book to library (by: Sep 17 2022)
+4.[D][] Finish CS2100 lab (by: Sep 17 2022)
+```
+
+### Mark a task: `mark`
+Marks a task in the list as done.<br><br>
+Format: `mark {index}` <br>
+Example: `mark 2` marks the task at index 2 of the list <br><br>
 Expected outcome:
 ```
 Nice! I've marked this task as done:
-[E][X] Read book (at: 22 Sep 2022 19:30)
+[T][X] Read book 
 ```
-💡 `[X]` indicates a completed task
 
-### Unmarking a task: `unmark`
+### Unmark a task: `unmark`
 Marks a task in the list as not done.<br>
-Format: `unmark {index}`
-Example: `unmark 1` unmark the task at index 1 of the list <br>
+Format: `unmark {index}` <br>
+Example: `unmark 1` unmark the task at index 1 of the list <br> <br>
 Expected outcome:
 ```
 Ok, I've marked this task as not done yet:
-[T][ ] Read book
+[E][] Borrow book (at: Sep 10 2022)
 ```
-💡 `[ ]` indicates an incomplete task
 
-### Deleting a task: `delete`
-Deletes a task from the task list.<br>
-Format: `delete {index}`, `d {index}` <br>
-Example: `delete 1` and `d 1` deletes the task at index 1 of the list
-
-### Finding a task by description: `find`
+### Find a task by keyword: `find`
 Finds all tasks matching the keyword.<br>
-Format: `find {keyword}`, `f {keyword}`
--  All task descriptions with the matching sequence of characters will be returned. e.g. `bo` matches with `book` and `bought`.
+Format: `find {keyword}`, `f {keyword}` <br>
+Example: `find book` will find all tasks with keyword "book"
+ <br> <br>
+Expected outcome:
+```
+Here are the matching tasks in your list:
+1.[E][] Borrow book (at: Sep 10 2022)
+2.[T][] Read book
+3.[D][] Return book to library (by: Sep 17 2022)
+```
 
-### Listing all tasks: `list`
-Lists all out tasks in the task list.<br>
-Format: `list`
+### Delete a task: `delete`
+Deletes a task from the task list.<br>
+Format: `delete {index}`, `rm  {index}` <br> 
+Example: `delete 1` and `rm 1` deletes the task at index 1 of the list
+<br> <br>
+Expected outcome:
+```
+Noted. I've removed this task.
+[E][] Borrow book (at: Sep 10 2022)
+Now you have 3 tasks in the list
+```
 
 ### Exiting the program: `bye`
 Exits the program immediately.<br>
 Format: `bye`, `exit`, `quit`
-
-### Saving the data
-Duke automatically saves the task data after a valid command is executed. 
-
-## FAQ
-**Q**: How do I transfer my data to another Computer? <br>
-**A**: Install the app on another computer and overwrite the data.txt file it creates with the data.txt that contains the data of your previous Duke chatbot located at `[location of JAR file]/tasks.txt`. <br>
 
 ## Command summary
 
