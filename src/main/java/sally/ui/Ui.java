@@ -25,11 +25,11 @@ public class Ui {
         "event",
         "list",
         "mark",
-        "unmark: cancels a mark of task (e.g. 'unmark 2' will unmark task 2)",
-        "find: finds a task with a certain keyword",
-        "delete: deletes a task by their given index",
-        "bye: bid goodbye to Sally and saves current task list",
-        "help: displays all commands Sally understands"
+        "unmark",
+        "find",
+        "delete",
+        "bye",
+        "help"
     };
     private static final String TOTAL_COMMANDS = Arrays.stream(COMMANDS).collect(Collectors.joining("\n"));
 
@@ -196,6 +196,86 @@ public class Ui {
     }
 
     public void showHelpList() {
-        displaySally("Here are the list of commands Sally understands!\n" + TOTAL_COMMANDS);
+        displaySally("Here are the list of commands Sally understands!\n" + TOTAL_COMMANDS + "\nFor more information on each command, type 'help <command>'");
+    }
+
+    public String getTodoHelp() {
+        return "written in: todo DESCRIPTION, where DESCRIPTION is the todo description.\n\nExample: todo read book";
+    }
+
+    public String getDeadlineHelp() {
+        return "written in: deadline DESCRIPTION /by TIME, where DESCRIPTION is the deadline description, and TIME is the given deadline.\n\n"
+                + "TIME using dates must be written in the form of dd-mm-yyyy, otherwise can be written without any format.\n\n"
+                + "Example: deadline do CS2103T quiz /by 16-09-2022 or deadline do CS2103T quiz /by tonight";
+    }
+
+    public String getEventHelp() {
+        return "written in: event DESCRIPTION /at VENUE, where DESCRIPTION is the event description, and VENUE is the event venue.\n\n" +
+                "Example: event tP meeting /at COM3";
+    }
+
+    public String getListHelp() {
+        return "displays all the task list. \n\nExample: list";
+    }
+
+    public String getMarkHelp() {
+        return "marks a task based on the given number.\n\n" +
+                "written in: mark INDEX where INDEX is the task number to be marked as done.\n\n" +
+                "Example: mark 2";
+    }
+
+    public String getUnmarkHelp() {
+        return "unmarks a task based on the given number.\n\n" +
+                "written in: unmark INDEX where INDEX is the task number to be unmarked.\n\n" +
+                "Example: unmark 3";
+    }
+
+    public String getDeleteHelp() {
+        return "deletes a task based on the given number.\n\n" +
+                "written in: delete INDEX where INDEX is the task number to be deleted.\n\n" +
+                "Example: delete 2";
+    }
+
+    public String getFindHelp() {
+        return "finds a task containing the given keyword.\n\n" +
+                "written in: find KEYWORD where KEYWORD is the keyword used to filter tasks.\n\n" +
+                "Example: find meeting";
+    }
+
+    public String getByeHelp() {
+        return "bid farewell to Sally to save your list\n\n" +
+                "Example: bye";
+    }
+
+    public void showHelpFor(String command) {
+        switch (command) {
+            case "todo":
+                displaySally(getTodoHelp());
+                break;
+            case "deadline":
+                displaySally(getDeadlineHelp());
+                break;
+            case "event":
+                displaySally(getEventHelp());
+                break;
+            case "list":
+                displaySally(getListHelp());
+                break;
+            case "mark":
+                displaySally(getMarkHelp());
+                break;
+            case "unmark":
+                displaySally(getUnmarkHelp());
+                break;
+            case "delete":
+                displaySally(getDeleteHelp());
+                break;
+            case "find":
+                displaySally(getFindHelp());
+                break;
+            case "bye":
+                displaySally(getByeHelp());
+                break;
+        }
     }
 }

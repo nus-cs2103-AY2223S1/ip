@@ -1,6 +1,16 @@
 package sally.parser;
 
-import sally.command.*;
+import sally.command.AddDeadlineCommand;
+import sally.command.AddEventCommand;
+import sally.command.AddTodoCommand;
+import sally.command.ByeCommand;
+import sally.command.Command;
+import sally.command.DeleteCommand;
+import sally.command.FindCommand;
+import sally.command.HelpCommand;
+import sally.command.ListCommand;
+import sally.command.MarkCommand;
+import sally.command.UnmarkCommand;
 import sally.exception.SallyException;
 
 import java.time.LocalDate;
@@ -73,7 +83,11 @@ public class Parser {
 
         // Help
         else if (command.startsWith("help")) {
-            return new HelpCommand();
+            if (command.length() <= 4) {
+                return new HelpCommand();
+            }
+            String keyword = command.replace("help ", "");
+            return new HelpCommand(keyword);
         }
 
         // sally.task.Task Commands
