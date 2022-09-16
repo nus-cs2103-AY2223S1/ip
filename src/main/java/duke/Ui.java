@@ -59,7 +59,12 @@ public class Ui {
         }
         return "Here are all the tasks in your list: \n" + allTasks;
     }
-    
+
+    /**
+     * Displays all the tasks in the task list that matches to the search term.
+     *
+     * @param tasks all the current tasks in the task list
+     */
     protected String printMatchingTasks(ArrayList<Task> tasks) {
         String allTasks = "";
         for (int i = 0; i < tasks.size(); i++) {
@@ -117,9 +122,9 @@ public class Ui {
     }
 
     /**
-     * Displays the task that was deleted from the task list.
+     * Displays the task that was undid.
      *
-     * @param task the task that was deleted
+     * @param task the task that was undid
      * @param size the total number of tasks in the task list
      */
     protected String printTaskUndone(Task task, int size) {
