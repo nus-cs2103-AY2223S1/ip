@@ -32,7 +32,14 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        scrollPane.setOnScroll(event -> {
+            scrollPane.setVvalue(scrollPane.getVvalue() - event.getDeltaX() / dialogContainer.getHeight());
+        });
+
+        dialogContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
+            scrollPane.setVvalue(1.0);
+        });
+
         dialogContainer.getChildren().add(DialogBox.getUwuDialog("hellu!\ni am oo woo <:"
                 + "\nhow can i be of service today?\ntype 'help' to view the list of commands~", uwuImage));
 
