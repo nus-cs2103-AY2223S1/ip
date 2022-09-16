@@ -26,13 +26,16 @@ Duke is a **desktop chatbot app for managing and storing tasks, optimized for us
 3. Copy the file to the folder you want to use as the home folder for your task list.
 4. Double-click the file to start the app. 
 5. Refer to the [Features](#Features) below for details on how to use each command.
+<br><br>
 
+## Features
 ### Add a todo task: `todo`
 Adds a todo task to the task list. <br><br>
 Format: `todo {description}` <br>
 Example: `todo buy book` <br><br>
 Format: `t {description}` <br>
 Example: `t buy book`
+<br><br>
 
 ### Add a deadline task: `deadline`
 Adds a deadline task to the task list. <br><br>
@@ -41,14 +44,16 @@ Example: `deadline {description} /by 2022-09-18`
 <br> <br>
 Format: `d {description} /by {YYYY-MM-DD}` <br>
 Example: `d {description} /by 2022-09-18`
+<br><br>
 
 ### Add an event task: `event`
 Adds an event task to the task list. <br><br>
 Format: `event {description} /at {date}` <br>
-Exmaple: `event read book /at 18 Sep 2022 19:00`
+Example: `event read book /at 18 Sep 2022 19:00`
 <br> <br>
 Format: `e {description} /at {date}` <br>
-Exmaple: `e read book /at 18 Sep 2022 19:00`
+Example: `e read book /at 18 Sep 2022 19:00`
+<br><br>
 
 ### List all tasks: `list`
 Lists out all tasks in the task list.<br><br>
@@ -61,6 +66,7 @@ Here are the tasks in your list:
 3.[D][] Return book to library (by: Sep 17 2022)
 4.[D][] Finish CS2100 lab (by: Sep 17 2022)
 ```
+<br><br>
 
 ### Mark a task: `mark`
 Marks a task in the list as done.<br><br>
@@ -71,6 +77,7 @@ Expected outcome:
 Nice! I've marked this task as done:
 [T][X] Read book 
 ```
+<br><br>
 
 ### Unmark a task: `unmark`
 Marks a task in the list as not done.<br>
@@ -81,6 +88,7 @@ Expected outcome:
 Ok, I've marked this task as not done yet:
 [E][] Borrow book (at: Sep 10 2022)
 ```
+<br><br>
 
 ### Find a task by keyword: `find`
 Finds all tasks matching the keyword.<br>
@@ -94,6 +102,7 @@ Here are the matching tasks in your list:
 2.[T][] Read book
 3.[D][] Return book to library (by: Sep 17 2022)
 ```
+<br><br>
 
 ### Delete a task: `delete`
 Deletes a task from the task list.<br>
@@ -106,10 +115,12 @@ Noted. I've removed this task.
 [E][] Borrow book (at: Sep 10 2022)
 Now you have 3 tasks in the list
 ```
+<br><br>
 
 ### Exiting the program: `bye`
 Exits the program immediately.<br>
 Format: `bye`, `exit`, `quit`
+<br><br>
 
 ## Command summary
 
