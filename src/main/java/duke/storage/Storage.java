@@ -24,7 +24,7 @@ public class Storage {
             File listFile = new File(filePath);
         }
         catch (Exception e) {
-            System.out.println("OH NO");
+            e.printStackTrace();
         }
     }
 
@@ -45,7 +45,7 @@ public class Storage {
             inList.setTasks(allTasks);
             in.close();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         } finally{
             return inList;
         }
@@ -67,7 +67,7 @@ public class Storage {
             out.writeObject(listOfItems);
             out.close();
         } catch (IOException e) {
-            System.out.println(e.toString());
+           e.printStackTrace();
         }
 
     }
