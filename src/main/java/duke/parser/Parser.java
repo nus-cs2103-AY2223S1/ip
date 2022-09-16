@@ -12,10 +12,7 @@ import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
 
-import duke.exceptions.DukeEmptyDescriptionException;
-import duke.exceptions.DukeException;
-import duke.exceptions.DukeInvalidCommandException;
-import duke.exceptions.DukeInvalidFormatException;
+import duke.exceptions.*;
 
 import duke.massops.AllOperation;
 import duke.massops.MassOperation;
@@ -49,13 +46,11 @@ public class Parser {
      * @throws DukeException if the command is invalid
      */
     public Command parse(String input) throws DukeException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
-        if (!matcher.matches()) {
-            throw new DukeInvalidCommandException();
-        }
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final Matcher matcher = prepareMatcher(input);
+
+        final String commandWord = extractCommandWord(matcher);
+        final String arguments = extractArguments(matcher);
 
         switch (commandWord) {
         case TodoCommand.COMMAND_WORD:
@@ -144,35 +139,13 @@ public class Parser {
      *     follow a specific command
      */
     private static String[] parseDeadlineArgument(String args) throws DukeException {
-        String description = "";
-        String by = "";
-
-        String[] splitted = args.split("\\s+");
-
-        boolean isSplitterFound = false;
-
-        if (splitted.length <= 1) {
+        String[] splittedStrings = args.split("\\s+");
+        if (splittedStrings.length <= 1) {
             throw new DukeEmptyDescriptionException();
         }
-
-        for (int i = 0; i < splitted.length; i++) {
-            if (splitted[i].equals("/by")) {
-                isSplitterFound = true;
-            } else if (isSplitterFound) {
-                by = by + splitted[i] + " ";
-            } else {
-                description = description + splitted[i] + " ";
-            }
-        }
-
-        if (!isSplitterFound) {
-            throw new DukeInvalidFormatException("deadline", "/by");
-        }
-
-        String[] strArr = new String[2];
-        strArr[0] = description.trim();
-        strArr[1] = by.trim();
-        return strArr;
+        String[] descAndTime = parseDeadlineDescriptionAndTime(splittedStrings);
+        descAndTime = trimSpaces(descAndTime);
+        return descAndTime;
     }
 
     /**
@@ -185,35 +158,13 @@ public class Parser {
      *     follow a specific command
      */
     private static String[] parseEventArgument(String args) throws DukeException {
-        String description = "";
-        String at = "";
-
-        String[] splitted = args.split("\\s+");
-
-        boolean isSplitterFound = false;
-
-        if (splitted.length <= 1) {
+        String[] splittedStrings = args.split("\\s+");
+        if (splittedStrings.length <= 1) {
             throw new DukeEmptyDescriptionException();
         }
-
-        for (int i = 0; i < splitted.length; i++) {
-            if (splitted[i].equals("/at")) {
-                isSplitterFound = true;
-            } else if (isSplitterFound) {
-                at = at + splitted[i] + " ";
-            } else {
-                description = description + splitted[i] + " ";
-            }
-        }
-
-        if (!isSplitterFound) {
-            throw new DukeInvalidFormatException("event", "/at");
-        }
-
-        String[] strArr = new String[2];
-        strArr[0] = description.trim();
-        strArr[1] = at.trim();
-        return strArr;
+        String[] descAndTime = parseEventDescriptionAndTime(splittedStrings);
+        descAndTime = trimSpaces(descAndTime);
+        return descAndTime;
     }
 
     /**
@@ -267,58 +218,238 @@ public class Parser {
      * @return the task after the arguments are parsed
      */
     public static Task parseTask(String args) throws DukeException {
+        Matcher m = prepareStoredDataMatcher(args);
+        final boolean isMarked = isMarked(m);
+        final String commandWord = extractStoredDataCommandWord(m);
+        Task t;
+        switch(commandWord) {
+        case TodoCommand.COMMAND_WORD:
+            t = createStoredTodo(m);
+            break;
+        case DeadlineCommand.COMMAND_WORD:
+            t = createStoredDeadline(m);
+            break;
+        case EventCommand.COMMAND_WORD:
+            t = createStoredEvent(m);
+            break;
+        default:
+            throw new DukeException("Task was not parsed successfully");
+        }
+        markStoredTask(t, isMarked);
+        return t;
+    }
 
-        boolean isMarked = false;
+    /**
+     * Prepares the Matcher object to be used for pattern matching on
+     * commandWord and arguments
+     *
+     * @param input The input string to be applied to the matcher
+     * @return The matcher object ready to be extracted
+     * @throws DukeException if the input does not match the match pattern
+     */
+    private Matcher prepareMatcher(String input) throws DukeException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
+        if (!matcher.matches()) {
+            throw new DukeInvalidCommandException();
+        }
+        return matcher;
+    }
 
-        Matcher m = STORED_TASK_DATA_RAW_FORMAT.matcher(args);
+    /**
+     * Extracts the command word from a matched pattern
+     *
+     * @param matcher The matched character sequence with the pattern
+     * @return The commandWord group of the matcher
+     */
+    private String extractCommandWord(Matcher matcher) {
+        return matcher.group("commandWord");
+    }
 
-        m.find();
+    /**
+     * Extracts the arguments from a matched pattern
+     *
+     * @param matcher The matched character sequence with the pattern
+     * @return The arguments group of the matcher
+     */
+    private String extractArguments(Matcher matcher) {
+        return matcher.group("arguments");
+    }
 
-        final String markedStatus = m.group(1);
-        final String commandWord = m.group(2);
+    /**
+     * Parses the description and time for the arguments of the Deadline constructor
+     *
+     * @param splittedStrings An array of strings after being splitted
+     * @return A string array containing the description as the first element and the date as the second element
+     * @throws DukeException if the deadline command does not follow the specified format
+     */
+    private static String[] parseDeadlineDescriptionAndTime(String[] splittedStrings) throws DukeException {
+        boolean isSplitterFound = false;
+        String description = "";
+        String time = "";
+        for (int i = 0; i < splittedStrings.length; i++) {
+            if (splittedStrings[i].equals("/by")) {
+                isSplitterFound = true;
+            } else if (isSplitterFound) {
+                time += (splittedStrings[i] + " ");
+            } else {
+                description += (splittedStrings[i] + " ");
+            }
+        }
+        if (!isSplitterFound) {
+            throw new DukeInvalidFormatException("deadline", "/by");
+        }
+        return new String[] {description, time};
+    }
 
+    /**
+     * Parses the description and time for the arguments of the Event constructor
+     *
+     * @param splittedStrings An array of strings after being splitted
+     * @return A string array containing the description as the first element and the date as the second element
+     * @throws DukeException if the event command does not follow the specified format
+     */
+    private static String[] parseEventDescriptionAndTime(String[] splittedStrings) throws DukeException {
+        boolean isSplitterFound = false;
+        String description = "";
+        String time = "";
+        for (int i = 0; i < splittedStrings.length; i++) {
+            if (splittedStrings[i].equals("/at")) {
+                isSplitterFound = true;
+            } else if (isSplitterFound) {
+                time += (splittedStrings[i] + " ");
+            } else {
+                description += (splittedStrings[i] + " ");
+            }
+        }
+        if (!isSplitterFound) {
+            throw new DukeInvalidFormatException("event", "/at");
+        }
+        return new String[] {description, time};
+    }
+
+    /**
+     * Trims the trailing white spaces of the elements of a string array
+     *
+     * @param arr an array of strings
+     * @return an array of strings with the trailing white spaces removed
+     */
+    private static String[] trimSpaces(String[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].trim();
+        }
+        return arr;
+    }
+
+    /**
+     * Checks whether a stored task is marked
+     *
+     * @param matcher A matched character sequence with a pattern
+     * @return true if the stored task is marked, false otherwise
+     */
+    private static boolean isMarked(Matcher matcher) {
+        final String markedStatus = matcher.group(1);
         switch (markedStatus) {
         case "M":
-            isMarked = true;
-            break;
+            return true;
         case "N":
         default:
-            isMarked = false;
-            break;
+            return false;
         }
+    }
 
-        Task t;
+    /**
+     * Prepares the matcher for the stored data
+     *
+     * @param args the arguments to be matched to the Stored task data pattern
+     * @return the matcher containing the matched character sequence
+     */
+    private static Matcher prepareStoredDataMatcher(String args) {
+        Matcher m = STORED_TASK_DATA_RAW_FORMAT.matcher(args);
+        m.find();
+        return m;
+    }
 
-        switch(commandWord) {
+    /**
+     * Extracts the command word from a stored data
+     *
+     * @param matcher the matcher containing the matched character sequence
+     * @return the extracted command word
+     */
+    private static String extractStoredDataCommandWord(Matcher matcher) {
+        final String commandWord = matcher.group(2);
+        return commandWord;
+    }
 
-        case TodoCommand.COMMAND_WORD:
-            t = new Todo(m.group(3).trim());
-            break;
-
-        case DeadlineCommand.COMMAND_WORD:
-            String[] deadlineStrArr = parseDeadlineArgument(m.group(3));
-            t = new Deadline(deadlineStrArr[0], deadlineStrArr[1]);
-            break;
-
-        case EventCommand.COMMAND_WORD:
-            String[] eventStrArr = parseEventArgument(m.group(3));
-            t = new Event(eventStrArr[0], eventStrArr[1]);
-            break;
-
-        default:
-            t = null;
-            break;
-        }
-
-        if (t == null) {
-            throw new DukeException("hi");
-        }
-
+    /**
+     * Marks a stored task as done
+     *
+     * @param task a Task object from the stored task data
+     * @param isMarked a boolean value, true if the task is marked, false otherwise
+     */
+    private static void markStoredTask(Task task, boolean isMarked) {
         if (isMarked) {
-            t.markAsDone();
+            task.markAsDone();
+        } else {
+            task.markAsNotDone();
         }
+    }
 
-        return t;
+    /**
+     * Creates a Todo instance for the stored data
+     *
+     * @param m the matcher containing the matched character sequence
+     * @return the Todo instance containing the description
+     */
+    private static Task createStoredTodo(Matcher m) {
+        return new Todo(m.group(3).trim());
+    }
+
+    /**
+     * Creates a Deadline instance for the stored data
+     *
+     * @param m the matcher containing the matched character sequence
+     * @return the Deadline instance containing the description and time
+     * @throws DukeException if the date cannot be parsed correctly in Deadline
+     */
+    private static Task createStoredDeadline(Matcher m) throws DukeException {
+        String[] deadlineStrArr = parseDeadlineArgument(m.group(3));
+        return createDeadlineFromArray(deadlineStrArr);
+    }
+
+    /**
+     * Creates an Event instance for the stored data
+     *
+     * @param m the matcher containing the matched character sequence
+     * @return the Event instance containing the description and time
+     * @throws DukeException if the date cannot be parsed correctly in Event
+     */
+    private static Task createStoredEvent(Matcher m) throws DukeException {
+        String[] eventStrArr = parseEventArgument(m.group(3));
+        return createEventFromArray(eventStrArr);
+    }
+
+    /**
+     * Creates a Deadline instance from a string array containing the description and
+     * the time
+     *
+     * @param strArr a string array of 2 elements, containing the description and the time
+     * @return the Deadline instance containing the description and time
+     * @throws DukeInvalidDateException  if the date cannot be parsed correctly in Deadline
+     */
+    private static Task createDeadlineFromArray(String[] strArr) throws DukeInvalidDateException {
+        return new Deadline(strArr[0], strArr[1]);
+    }
+
+    /**
+     * Creates an Event instance from a string array containing the description and
+     * the time
+     *
+     * @param strArr a string array of 2 elements, containing the description and the time
+     * @return the Event instance containing the description and time
+     * @throws DukeInvalidDateException  if the date cannot be parsed correctly in Event
+     */
+    private static Task createEventFromArray(String[] strArr) throws DukeInvalidDateException {
+        return new Event(strArr[0], strArr[1]);
     }
 
     private MassOperation parseMassOpsCommand(String args) throws DukeException {
