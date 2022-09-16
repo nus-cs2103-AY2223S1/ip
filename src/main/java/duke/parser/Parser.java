@@ -452,6 +452,13 @@ public class Parser {
         return new Event(strArr[0], strArr[1]);
     }
 
+    /**
+     * Parses an argument into a mass operation
+     *
+     * @param args The argument to be parsed to the mass operation
+     * @return The mass operation corresponding to the argument
+     * @throws DukeException if the input is not a valid number (for number range and single number)
+     */
     private MassOperation parseMassOpsCommand(String args) throws DukeException {
         args = args.trim();
         if (args.equals("all")) {
@@ -465,13 +472,27 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a range argument into an integer array for constructing RangeOperation instance
+     *
+     * @param args the arguments to be parsed to a RangeOperation instance
+     * @return an integer array containing the start and end of the range
+     * @throws DukeException if the values cannot be parsed into an integer
+     */
     private int[] parseRange(String args) throws DukeException {
         String[] rangeSplit = args.split("-");
-        int firstValue = tryParseToInteger(rangeSplit[0]);
-        int secondValue = tryParseToInteger(rangeSplit[1]);
-        return new int[] { firstValue, secondValue };
+        int startRange = tryParseToInteger(rangeSplit[0]);
+        int endRange = tryParseToInteger(rangeSplit[1]);
+        return new int[] { startRange, endRange };
     }
 
+    /**
+     * Tries to parse a string to an integer
+     *
+     * @param args A string that represents an integer value
+     * @return An integer value parsed from the string
+     * @throws DukeException if the number cannot be parsed to an integer
+     */
     private int tryParseToInteger(String args) throws DukeException {
         try {
             int idx = Integer.valueOf(args);

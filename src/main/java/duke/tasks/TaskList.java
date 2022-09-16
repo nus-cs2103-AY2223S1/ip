@@ -209,6 +209,12 @@ public class TaskList {
         return str;
     }
 
+    /**
+     * Shows the list of tasks in the range specified by the RangeOperation
+     *
+     * @param op A RangeOperation instance specifying the range of tasks
+     * @return THe string representation of the list of tasks in the range specified
+     */
     private String showListInRange(RangeOperation op) {
         String str = "";
         int startRange = op.getStartRange();
@@ -225,19 +231,13 @@ public class TaskList {
         return str;
     }
 
-    public String commandBasedOnMassOperation(String commandWord, MassOperation op) throws DukeException {
-        switch (commandWord) {
-        case "mark":
-            return markBasedOnMassOperation(op);
-        case "unmark":
-            return unmarkBasedOnMassOperation(op);
-        case "delete":
-            return deleteBasedOnMassOperation(op);
-        default:
-            throw new DukeInvalidCommandException();
-        }
-    }
-
+    /**
+     * Marks the tasks specified by the MassOperation instance
+     *
+     * @param op A MassOperation instance specifying the type of mass operation
+     * @return A String representation of the tasks executed
+     * @throws DukeException if the specified task is not found
+     */
     public String markBasedOnMassOperation(MassOperation op) throws DukeException {
         if (op instanceof AllOperation) {
             markAll();
@@ -254,12 +254,23 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks all the tasks in the list of tasks
+     *
+     * @throws DukeException if the task is not found (which is not possible in this case)
+     */
     private void markAll() throws DukeException {
         for (int i = 1; i <= tasks.size(); i++) {
             markAsDone(i);
         }
     }
 
+    /**
+     * Marks a range of tasks specified by the RangeOperation
+     *
+     * @param op A RangeOperation instance specifying the range of tasks to be marked
+     * @throws DukeException if the task is not found
+     */
     private void markRange(RangeOperation op) throws DukeException {
         int startRange = op.getStartRange();
         int endRange = op.getEndRange();
@@ -268,12 +279,26 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a single task specified by the SingleOperation instance
+     *
+     * @param op A SingleOperation instance specifying the task to be marked
+     * @return the string representation of the task
+     * @throws DukeException if the task is not found
+     */
     private String markSingle(SingleOperation op) throws DukeException {
         int index = op.getIndex();
         markAsDone(index);
-        return getTask(index);
+        return getTask(index).toString();
     }
 
+    /**
+     * Unmarks the tasks specified by the MassOperation instance
+     *
+     * @param op A MassOperation instance specifying the type of mass operation
+     * @return A String representation of the tasks executed
+     * @throws DukeException if the specified task is not found
+     */
     public String unmarkBasedOnMassOperation(MassOperation op) throws DukeException {
         if (op instanceof AllOperation) {
             unmarkAll();
@@ -290,12 +315,23 @@ public class TaskList {
         }
     }
 
+    /**
+     * Unmarks all the tasks in the list of tasks
+     *
+     * @throws DukeException if the task is not found (which is not possible in this case)
+     */
     private void unmarkAll() throws DukeException {
         for (int i = 1; i <= tasks.size(); i++) {
             markAsNotDone(i);
         }
     }
 
+    /**
+     * Unmarks a range of tasks specified by the RangeOperation
+     *
+     * @param op A RangeOperation instance specifying the range of tasks to be unmarked
+     * @throws DukeException if the task is not found
+     */
     private void unmarkRange(RangeOperation op) throws DukeException {
         int startRange = op.getStartRange();
         int endRange = op.getEndRange();
@@ -304,12 +340,26 @@ public class TaskList {
         }
     }
 
+    /**
+     * Unmarks a single task specified by the SingleOperation instance
+     *
+     * @param op A SingleOperation instance specifying the task to be unmarked
+     * @return the string representation of the task
+     * @throws DukeException if the task is not found
+     */
     private String unmarkSingle(SingleOperation op) throws DukeException {
         int index = op.getIndex();
         markAsDone(index);
-        return getTask(index);
+        return getTask(index).toString();
     }
 
+    /**
+     * Deletes the tasks specified by the MassOperation instance
+     *
+     * @param op A MassOperation instance specifying the type of mass operation
+     * @return A String representation of the tasks executed
+     * @throws DukeException if the specified task is not found
+     */
     public String deleteBasedOnMassOperation(MassOperation op) throws DukeException {
         if (op instanceof AllOperation) {
             return deleteAll();
@@ -324,16 +374,30 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes all the tasks in the list of tasks
+     *
+     * @throws DukeException if the task is not found (which is not possible in this case)
+     */
     private String deleteAll() {
         String deletedTasks = showList();
         tasks = new ArrayList<>();
         return deletedTasks;
     }
 
+    /**
+     * Deletes a range of tasks specified by the RangeOperation
+     *
+     * @param op A RangeOperation instance specifying the range of tasks to be deleted
+     * @throws DukeException if the task is not found
+     */
     private String deleteRange(RangeOperation op) throws DukeException {
         ArrayList<Task> deletedTasks = new ArrayList<>();
         int startRange = op.getStartRange();
         int endRange = op.getEndRange();
+        if (endRange > tasks.size()) {
+            throw new DukeException("index out of range");
+        }
         for (int i = startRange; i <= endRange; i++) {
             Task t = tasks.get(startRange - 1);
             deletedTasks.add(t);
@@ -342,6 +406,13 @@ public class TaskList {
         return changeListToString(deletedTasks);
     }
 
+    /**
+     * Deletes a single task specified by the SingleOperation instance
+     *
+     * @param op A SingleOperation instance specifying the task to be deleted
+     * @return the string representation of the task
+     * @throws DukeException if the task is not found
+     */
     private String deleteSingle(SingleOperation op) throws DukeException {
         int index = op.getIndex();
         Task t = tasks.get(index - 1);
