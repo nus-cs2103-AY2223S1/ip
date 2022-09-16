@@ -30,7 +30,6 @@ public class Storage {
                     if (next.charAt(4) == '1') {
                         taskList.get(taskList.size() - 1).mark();
                     }
-
                 }
                 if (next.charAt(0) == 'E') {
                     String description = next.substring(8, divisor - 1);
