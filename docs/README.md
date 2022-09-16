@@ -5,7 +5,15 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 * [Summary of commands](https://github.com/therealdaofu/ip/blob/master/docs/README.md#summary-of-commands)
 * Features:
   * [adding a todo](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-todo-todo)
-  * [adding a deadline]
+  * [adding a deadline](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-deadline-deadline)
+  * [adding a event](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-event-event)
+  * [mark a task as complete](https://github.com/therealdaofu/ip/blob/master/docs/README.md#mark-a-task-mark)
+  * [mark a task as incomplete](https://github.com/therealdaofu/ip/blob/master/docs/README.md#unmark-a-task-unmark)
+  * [deletes a task](https://github.com/therealdaofu/ip/blob/master/docs/README.md#delete-a-task-delete)
+  * [list all stored tasks](https://github.com/therealdaofu/ip/blob/master/docs/README.md#list-all-stored-tasks-list)
+  * [find tasks with a keyword](https://github.com/therealdaofu/ip/blob/master/docs/README.md#find-task-by-a-keyword-find)
+  * [display help page](https://github.com/therealdaofu/ip/blob/master/docs/README.md#get-help-page-help)
+  * [exit the app](https://github.com/therealdaofu/ip/blob/master/docs/README.md#exit-from-the-app-bye)
 
 ## Summary of Commands.
 |Function                 |Command                                                    |
@@ -47,7 +55,7 @@ Adds a new todo, 'Sign up for gym' to the app.
 Adds a new deadline to the app.
 
 Format: `deadline <DESCRIPTION> /by <DATE_AND_TIME>`
-<Note: DATE_AND_TIME should be in ISO 8601 format>
+Note: DATE_AND_TIME should be in ISO 8601 format
 
 Example of usage:
 ```
@@ -136,7 +144,7 @@ Deletes the task at index 3.
 
 
 
-### List all stored task: `list`
+### List all stored tasks: `list`
 Shows a list of all stored tasks in the app.
 
 Format: `list`
@@ -149,12 +157,25 @@ Returns a list of all tasks that contains the given keyword.
 Format: `find <KEYWORD>`
 
 Note: 
-- The index refers to the index number shown in the displayed list.
-- The index **must be a positive integer**, 1, 2, 3...
-- The index **must be a valid index**, ie. calling delete 4 on a list with only 3 tasks will return an error.
+- The search is case_sensitive, ie. `Read` will return a different result from `read`.
+- The keyword does not need to be proper word, ie. `re` will return both `read book` and `return book`.
 
 Example of usage:
 ```
-delete 3
+find assignment
 ```
-Deletes the task at index 3.
+This will return all tasks containing 'assignment' in their description.
+
+
+
+### Get help page: `help`
+Returns a list of all valid commands and their format in the app.
+
+Format: `help`
+
+
+
+### Exit from the app: `bye`
+Exits the app.
+
+Format: `bye`
