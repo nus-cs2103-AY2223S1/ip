@@ -23,7 +23,7 @@ Format to be specified: todo {task description}
 todo borrow book
 ```
 Expected outcome:
-(output here)
+ToDo Task added to list and shows no of tasks in list
 
 
 ```deadline``` - Adds a Deadline task
@@ -35,7 +35,7 @@ Format to be specified: deadline {task description} /by {date}
 deadline return book /by 2/12/2019 1800
 ```
 Expected outcome:
-(output here)
+Deadline Task added to list and shows no of tasks in list
 
 
 ```event``` - Adds a Deadline task
@@ -47,7 +47,7 @@ Format to be specified: event {task description} /by {date}
 event return book /by 2/12/2019 1800
 ```
 Expected outcome:
-(output here)
+Event Task added to list and shows no of tasks in list
 
 
 Expected date time format:
@@ -63,7 +63,7 @@ mark 1
 ```
 
 Expected outcome:
-(output here)
+Task shown as done in list
 
 ```unmark``` - unmarks given task as done
 Command would unmark task as done
@@ -74,7 +74,7 @@ unmark 1
 ```
 
 Expected outcome:
-(output here)
+Task shown as not done in list
 
 
 ```delete``` - delete given task as done
@@ -86,7 +86,7 @@ delete 1
 ```
 
 Expected outcome:
-(output here)
+Task removed form list
 
 
 ```find``` - Finda all tasks specified
@@ -98,7 +98,7 @@ find Anime
 ```
 
 Expected outcome:
-(output here)
+Prints out all task that contains the keyword
 
 
 ```list``` - Shows all task
@@ -110,7 +110,7 @@ list
 ```
 
 Expected outcome:
-(output here)
+Prints out all the task in the list
 
 
 ```bye``` - Exits the program
@@ -122,4 +122,4 @@ bye
 ```
 
 Expected outcome:
-(output here)
+exits the program and stores the output into duke.txt
