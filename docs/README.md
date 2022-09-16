@@ -32,7 +32,7 @@ Searches for task which contains the keyword specified
 
 Undoes any previous command made by the user 
 
----
+
 
 ## Guide on how to use various commands
 
@@ -52,7 +52,7 @@ Nice! This task has been successfully added!
 You currently have 3 tasks in the list
 ```
 
-
+---
 ### `Deadline`
 
 **Adds a Deadline task to the Duke bot. Note that the format for date is
@@ -71,6 +71,8 @@ Nice! This task has been successfully added!
 You currently have 4 tasks in the list
 ```
 
+---
+
 ### `Event`
 
 **Adds an Event task to the Duke bot. Note that the format for date is
@@ -88,6 +90,7 @@ Nice! This task has been successfully added!
         [E][] attend meeting (at: Sep 14 2022)
 You currently have 5 tasks in the list
 ```
+---
 
 ### `Delete`
 **Deletes a task which has been added into Duke bot based on position given.**
@@ -103,6 +106,7 @@ Noted! This task has been successfully removed!
         [T][] running
 You currently have 2 tasks in the list
 ```
+---
 
 ### `List`
 **List the tasks which have been added to the Duke bot.**
@@ -125,6 +129,7 @@ are currently stored in DukeBot
 2. [E][] attend meeting (at: Sep 14 2022)
 3. [T][] running
 ```
+---
 
 ### `Mark`
 
@@ -141,6 +146,7 @@ are currently stored in DukeBot
 Congratulations! This task has been marked as done!
         [T][X] running
 ```
+---
 
 ### `Unmark`
 
@@ -157,6 +163,7 @@ Congratulations! This task has been marked as done!
 Congratulations! This task has been successfully unmarked!
         [T][] running
 ```
+---
 
 ### `Find`
 
@@ -180,6 +187,7 @@ Here are the list of matching tasks!
         1. [E][] running marathon (at: Sep 14 2022)
         2. [T][] running 
 ```
+---
 
 ### `Undo`
 
@@ -198,6 +206,7 @@ the task located at position 1.
 This task has just been unmarked!
         [T][] running
 ```
+---
 
 ### `Bye`
 
