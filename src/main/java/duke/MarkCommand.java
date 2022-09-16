@@ -1,3 +1,8 @@
+package duke;
+
+import duke.Command;
+import duke.Duke;
+
 public class MarkCommand extends Command {
     int index;
     boolean isDone;

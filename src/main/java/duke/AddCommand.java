@@ -1,3 +1,7 @@
+package duke;
+
+import duke.Duke;
+
 public class AddCommand extends Command {
     private char type;
     private String description;

@@ -1,3 +1,8 @@
+package duke;
+
+import duke.Task;
+import duke.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -8,7 +13,7 @@ public class Ui {
     }
 
     public void greet() {
-        print("Hello! I'm Duke");
+        print("Hello! I'm duke.Duke");
         print("What can I do for you?");
     }
 

@@ -1,3 +1,5 @@
+package duke;
+
 public class Duke {
     private final Storage storage = new Storage("./duke.txt");
     private final TaskList tasks = storage.load();
@@ -27,7 +29,7 @@ public class Duke {
 
     public void markTask(int index, boolean isDone) {
         if (index >= tasks.size()) {
-            return; // throw new DukeException("Index out of bound!");
+            return; // throw new duke.DukeException("Index out of bound!");
         }
         Task task = tasks.get(index);
         if (isDone) {
@@ -41,7 +43,7 @@ public class Duke {
 
     public void deleteTask(int index) {
         if (index >= tasks.size()) {
-            return; // throw new DukeException("Index out of bound!");
+            return; // throw new duke.DukeException("Index out of bound!");
         }
         Task task = tasks.remove(index);
         ui.deleteTask(task);

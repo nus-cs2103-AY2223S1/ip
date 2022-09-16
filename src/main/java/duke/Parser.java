@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
     public static Task parseStorageTask(String input) {
         String[] inputParts = input.split(", ");
@@ -39,7 +41,7 @@ public class Parser {
             case "delete":
                 return new DeleteCommand(Integer.parseInt(inputParts[1]) - 1);
             default:
-                return new ExitCommand(); // throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                return new ExitCommand(); // throw new duke.DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
