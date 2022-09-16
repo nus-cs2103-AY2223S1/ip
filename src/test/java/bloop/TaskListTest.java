@@ -8,8 +8,7 @@ class TaskListTest {
 
     @Test
     public void addTask_emptyCommand_exceptionThrown() {
-        Ui ui = new Ui();
-        Storage storage = new Storage("BloopDataTest.txt", ui);
+        Storage storage = new Storage();
         TaskList taskList = new TaskList(storage);
         try {
             taskList.addTask("todo", 'T');

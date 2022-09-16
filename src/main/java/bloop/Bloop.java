@@ -1,19 +1,16 @@
 package bloop;
 
-
 import java.io.IOException;
 
+import bloop.gui.Main;
 import javafx.application.Application;
-
-import bloop.GUI.Main;
-
 
 /**
  * Chatbot to keep track of tasks.
  */
 public class Bloop {
 
-    private static Storage storage = new Storage("BloopData.txt");;
+    private static Storage storage = new Storage();
     private static TaskList tasks = new TaskList(storage);
     private static Parser parser = new Parser(tasks);
 

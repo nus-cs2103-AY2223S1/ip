@@ -1,14 +1,14 @@
-package bloop.GUI;
+package bloop.gui;
 
 import java.io.IOException;
 
+import bloop.Bloop;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import bloop.Bloop;
 
 /**
  * A GUI for Duke using FXML.

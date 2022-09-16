@@ -111,7 +111,7 @@ public class TaskList {
         assert Character.toUpperCase(input.split(" ")[0].charAt(0)) == type : "Wrong type";
         Task task;
         if (type == 'T') {
-           if (input.trim().length() == 4) {
+            if (input.trim().length() == 4) {
                 throw new BloopException("There is no task to do");
             }
             task = new ToDo(input.substring(5));

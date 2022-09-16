@@ -12,16 +12,9 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private String filePath;
-
-    /**
-     * Constructor for Storage object.
-     *
-     * @param filePath File path.
-     */
-    public Storage(String filePath) {
-        this.filePath = filePath;
-    }
+    private static final String FOLDER_PATH = "./data/";
+    private static final String FILE_NAME = "bloopData.text";
+    private static final String FILE_PATH = FOLDER_PATH + FILE_NAME;
 
     /**
      * Creates a file if not already created.
@@ -30,7 +23,11 @@ public class Storage {
      */
     public void makeFile(ArrayList<Task> tasks) {
         try {
-            File file = new File(filePath);
+            File folder = new File(FOLDER_PATH);
+            File file = new File(FILE_PATH);
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
             boolean isCreated = file.createNewFile();
             if (!isCreated) {
                 addPrevTasks(tasks);
@@ -48,7 +45,7 @@ public class Storage {
      * @throws IOException If there is a problem writing to the file.
      */
     public void writeToFile(Task task) throws IOException {
-        FileWriter fw = new FileWriter(filePath, true);
+        FileWriter fw = new FileWriter(FILE_PATH, true);
         fw.write(task.getType() + "-"
                 + (task.getStatus() ? "1" : "0") + "-" + task.getTask() + "-" + task.getBy() + "\n");
         fw.close();
@@ -61,7 +58,7 @@ public class Storage {
      * @throws IOException If there is a problem writing to the file.
      */
     public void rewriteFile(ArrayList<Task> tasks) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
+        FileWriter fw = new FileWriter(FILE_PATH);
         fw.write("");
         for (Task task : tasks) {
             writeToFile(task);
@@ -70,7 +67,7 @@ public class Storage {
     }
 
     private void addPrevTasks(ArrayList<Task> tasks) throws FileNotFoundException {
-        File file = new File(filePath);
+        File file = new File(FILE_PATH);
         Scanner sc = new Scanner(file);
         while (sc.hasNext()) {
             String[] taskArr = sc.nextLine().split("-");
