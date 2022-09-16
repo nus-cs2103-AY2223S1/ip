@@ -29,8 +29,7 @@ public class Duke extends Application {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
-    public Duke() {
-    }
+    public Duke() {}
 
     /**
      * Constructor that creates an instance of duke.Duke linked to the specified file path.
@@ -120,17 +119,6 @@ public class Duke extends Application {
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        //Step 3. Add functionality to handle user input.
-//        sendButton.setOnMouseClicked((event) -> {
-//            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-//            userInput.clear();
-//        });
-//
-//        userInput.setOnAction((event) -> {
-//            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-//            userInput.clear();
-//        });
-
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
@@ -147,7 +135,6 @@ public class Duke extends Application {
         userInput.setOnAction((event) -> {
             handleUserInput(duke);
         });
-
     }
 
     /**

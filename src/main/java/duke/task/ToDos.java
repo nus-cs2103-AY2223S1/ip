@@ -38,14 +38,4 @@ public class ToDos extends Task {
         }
         return str;
     }
-
-//    public duke.task.ToDos(String description) throws duke.dukeexception.MissingDescriptionException {
-//        super();
-//        try {
-//            String substring = description.substring(5);
-//            this.description = substring;
-//        } catch (StringIndexOutOfBoundsException e) {
-//            throw new duke.dukeexception.MissingDescriptionException();
-//        }
-//    }
 }

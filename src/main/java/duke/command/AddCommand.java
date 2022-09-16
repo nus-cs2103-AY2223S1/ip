@@ -24,6 +24,7 @@ public class AddCommand extends Command {
      * @param tasks Task list containing the task to be marked.
      * @param ui Ui that will output messages to the user.
      * @param storage Storage on hard disk that stores the task list.
+     * @return String to notify of addition of a task.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {

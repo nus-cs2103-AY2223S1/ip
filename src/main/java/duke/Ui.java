@@ -31,6 +31,7 @@ public class Ui {
 
     /**
      * Method prints duke.Duke's default farewell.
+     * @return returns string representation of notification.
      */
     public String farewell() {
         System.out.println(NAME + "Goodbye! See you soon!");
@@ -50,6 +51,7 @@ public class Ui {
      * Method prints out notification that specified task has been added to task list.
      *
      * @param task duke.task.Task to be added to task list.
+     * @return returns string representation of notification.
      */
     public String notifyAdded(Task task) {
         System.out.println("Successfully added Task!\n" + task);
@@ -61,6 +63,7 @@ public class Ui {
      *
      * @param task The task that has been marked.
      * @param isDone The status of the task has been marked as.
+     * @return returns string representation of notification.
      */
     public String notifyMarked(Task task, boolean isDone) {
         if (isDone) {
@@ -76,6 +79,7 @@ public class Ui {
      * Method prints notification that specified task has been deleted from task list.
      *
      * @param task duke.task.Task to be deleted from task list.
+     * @return returns string representation of notification
      */
     public String notifyDeleted(Task task) {
         System.out.println("Deleted task!\n" + task);
@@ -101,6 +105,7 @@ public class Ui {
     /**
      * Method prints out the information currently stored in the task list.
      * @param tasks duke.TaskList object whose information will be printed.
+     * @return String representation of list of tasks to print.
      */
     public String printList(TaskList tasks) {
         String toPrint = "";
