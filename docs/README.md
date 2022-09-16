@@ -1,4 +1,4 @@
-# Duke Bot User Guide
+# Duke Bot User Guide ‼️
 
 Duke is a bot that will help you keep track of your tasks in a task list. 👍🏻
 
