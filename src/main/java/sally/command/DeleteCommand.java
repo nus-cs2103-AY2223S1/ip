@@ -24,7 +24,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws SallyException {
+        if (index >= tasks.getNumOfTasks()) {
+            throw new SallyException("Oops! Enter a valid task number!");
+        }
         if (0 <= index && index < tasks.getNumOfTasks()) {
             String removed = tasks.getTask(index).toString();
             tasks.deleteTask(index);

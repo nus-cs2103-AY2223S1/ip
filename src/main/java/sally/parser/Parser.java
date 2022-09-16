@@ -49,16 +49,23 @@ public class Parser {
         else if (command.startsWith("delete")) {
             if (command.length() > 7 && command.substring(7).trim().chars().allMatch(Character::isDigit)) {
                 int taskNum = Integer.parseInt(command.substring(7).trim()) - 1;
-                assert taskNum >= 0;
+                checkDeleteValidity(taskNum);
                 return new DeleteCommand(taskNum);
             } else {
-                throw new SallyException.SallyInvalidInputException();
+                throw new SallyException("Oops! I don't understand that, make sure to enter 'delete <index> :)");
             }
         }
 
         // Unmark
         else if (command.startsWith("unmark")) {
-            int taskNum = Integer.parseInt(command.substring(7)) - 1; // -1 so that index is constant
+            if (command.equals("unmark")) {
+                throw new SallyException("Oops! Make sure to enter 'unmark <index>'");
+            }
+            String taskNumString = command.replace("unmark ", "");
+            if (taskNumString == "") {
+                throw new SallyException("Oops! Make sure to enter 'unmark <index>'");
+            }
+            int taskNum = Integer.parseInt(taskNumString) - 1; // -1 so that index is constant
             assert taskNum >= 0;
             checkUnmarkValidity(taskNum);
             return new UnmarkCommand(taskNum);
@@ -66,8 +73,14 @@ public class Parser {
 
         // Mark
         else if (command.startsWith("mark")) {
-            int taskNum = Integer.parseInt(command.substring(5)) - 1; // -1 so that index is constant
-            assert taskNum >= 0;
+            if (command.equals("mark")) {
+                throw new SallyException("Oops! Make sure to enter 'mark <index>'");
+            }
+            String taskNumString = command.replace("mark ", "");
+            if (taskNumString == "") {
+                throw new SallyException("Oops! Make sure to enter 'mark <index>'");
+            }
+            int taskNum = Integer.parseInt(taskNumString) - 1; // -1 so that index is constant
             checkMarkValidity(taskNum);
             return new MarkCommand(taskNum);
         }
@@ -76,7 +89,7 @@ public class Parser {
         else if (command.startsWith("find")) {
             String keyword = command.replace("find ", "");
             if (keyword.isEmpty()) {
-                throw new SallyException.SallyInvalidInputException();
+                throw new SallyException("Oops! I don't understand that, make sure to enter 'find <keyword> :)");
             }
             return new FindCommand(keyword);
         }
@@ -123,18 +136,18 @@ public class Parser {
             else if (command.startsWith("event")) {
                 String description, at;
                 if (command.length() <= 5) {
-                    throw new SallyException.SallyInvalidInputException();
+                    throw new SallyException("Oops! I don't understand that, make sure to enter 'event <venue> :)");
                 } else if (command.contains("/at ")) {
                     description = command.substring(6, command.indexOf("/at") - 1);
                     at = command.substring(command.indexOf("/at") + 4);
                     return new AddEventCommand(description, at);
                 } else {
-                    throw new SallyException.SallyNoPlaceException();
+                    throw new SallyException("Oops! I don't understand that, make sure to enter 'event <venue> :)");
                 }
             }
 
             // Any other messages
-            throw new SallyException.SallyInvalidInputException();
+            throw new SallyException("Sorry, I am still learning and don't understand that :<");
         }
     }
 
@@ -145,8 +158,8 @@ public class Parser {
      * @throws SallyException when invalid input is encountered
      */
     public static void checkUnmarkValidity(int taskNum) throws SallyException {
-        if (taskNum < 1) {
-            throw new SallyException.SallyTaskNotFoundException();
+        if (taskNum < 0) {
+            throw new SallyException("Oops! Enter a valid task number!");
         }
     }
 
@@ -157,8 +170,20 @@ public class Parser {
      * @throws SallyException when invalid input is encountered
      */
     public static void checkMarkValidity(int taskNum) throws SallyException {
-        if (taskNum < 1) {
-            throw new SallyException.SallyTaskNotFoundException();
+        if (taskNum < 0) {
+            throw new SallyException("Oops! Enter a valid task number!");
+        }
+    }
+
+    /**
+     * Validates whether task is available to delete
+     *
+     * @param taskNum task index to be unmarked
+     * @throws SallyException when invalid input is encountered
+     */
+    public static void checkDeleteValidity(int taskNum) throws SallyException {
+        if (taskNum < 0) {
+            throw new SallyException("Oops! Enter a valid task number!");
         }
     }
 
@@ -170,7 +195,7 @@ public class Parser {
      */
     public static void checkTodoValidity(String todo) throws SallyException {
         if (todo.isEmpty()) {
-            throw new SallyException.SallyNoDescriptionException();
+            throw new SallyException("Oops! I don't understand that, make sure to enter 'todo <description> :)\"");
         }
     }
 

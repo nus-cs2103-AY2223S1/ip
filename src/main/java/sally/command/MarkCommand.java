@@ -25,7 +25,10 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws SallyException {
+        if (index >= tasks.getNumOfTasks()) {
+            throw new SallyException("Oops! Enter a valid task number!");
+        }
         Task task = tasks.getTask(index);
         String taskInString = task.toString();
         if (!task.getDoneStatus()) {
