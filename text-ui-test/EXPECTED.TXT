@@ -1,7 +1,28 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello! I'm BotChat123
+What can I do for you?
+Got it. I've added this task:
+[T][] borrow book
+Now you have 1 in the list.
+Got it. I've added this task:
+[D][] return book (by: Sunday)
+Now you have 2 in the list.
+Got it. I've added this task:
+[E][] project meeting (at: Mon 2-4pm)
+Now you have 3 in the list.
+1: [T][] borrow book
+2: [D][] return book (by: Sunday)
+3: [E][] project meeting (at: Mon 2-4pm)
+Now you have 3 in the list.
+Nice! I've marked this task as done liao!:
+[T][X] borrow book
+Now you have 3 in the list.
+OK, I unmark this task as not done le:
+[T][] borrow book
+Now you have 3 in the list.
+1: [T][] borrow book
+2: [D][] return book (by: Sunday)
+3: [E][] project meeting (at: Mon 2-4pm)
+Now you have 3 in the list.
+Please input correctly
+Please input correctly
+Bye. Please chat with me again!
