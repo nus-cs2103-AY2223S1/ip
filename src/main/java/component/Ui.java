@@ -37,6 +37,8 @@ public class Ui {
             + "cannot be empty.";
     protected static final String INVALID_DATETIME_FORMAT_STATEMENT = "Please enter date and time in YYYYMMDD HHMM "
             + "format";
+    protected static final String INVALID_SEPARATOR_STATEMENT = "Whoops, ensure Deadlines are separated by `/by`, "
+            + "and Events are separated by `/at`! Unsure? send `help`!";
     protected static final String UNKNOWN_STATEMENT = "Oops, I don't know what that means T_T";
 
     /**
@@ -178,6 +180,14 @@ public class Ui {
      */
     public static String showInvalidDatetimeInput() {
         return INVALID_DATETIME_FORMAT_STATEMENT;
+    }
+
+    /**
+     * Shows warning when invalid separator for Deadline and Event is given.
+     * @return Warning statement
+     */
+    public static String showInvalidSeparatorWarning() {
+        return INVALID_SEPARATOR_STATEMENT;
     }
 
     /**

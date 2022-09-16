@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import mew.MewDateTimeParseException.InputOverFlowException;
 import mew.MewDateTimeParseException.InvalidDateTimeFormatException;
+import mew.MewInputParseException.InvalidSeparatorException;
 
 class ParserTest {
 
@@ -72,7 +73,7 @@ class ParserTest {
             assertEquals(task3.getCode(), testTask3.getCode());
             assertEquals(task3.getStatusIcon(), testTask3.getStatusIcon());
             assertEquals(task3.printText(), testTask3.printText());
-        } catch (InputOverFlowException | InvalidDateTimeFormatException e) {
+        } catch (InputOverFlowException | InvalidDateTimeFormatException | InvalidSeparatorException e) {
             System.out.println(e);
         }
     }

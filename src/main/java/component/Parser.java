@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import mew.MewDateTimeParseException.InputOverFlowException;
 import mew.MewDateTimeParseException.InvalidDateTimeFormatException;
+import mew.MewInputParseException.InvalidSeparatorException;
 
 /**
  * Parser class that parses user input.
@@ -25,7 +25,6 @@ public class Parser {
     public static Command parse(String input) {
         assert (input.length() > 0) : "Empty input";
         List<String> inputList = Stream.of(input.split(" "))
-                .map(e -> new String(e))
                 .collect(Collectors.toList());
         String command = inputList.get(0);
         switch (command) {
@@ -93,7 +92,8 @@ public class Parser {
      * @return parsed Task object
      */
     public static Task parseTask(String input, String code)
-            throws InputOverFlowException, InvalidDateTimeFormatException, DateTimeParseException {
+            throws InputOverFlowException, InvalidDateTimeFormatException,
+            DateTimeParseException, InvalidSeparatorException {
         assert code.length() == 1 : "Invalid task code";
         Task newTask = null;
         if (code.equals("T")) {
@@ -102,18 +102,22 @@ public class Parser {
             return newTask;
         }
         String separator = code.equals("E") ? "/at" : "/by";
-        int indexOfDateTime = input.indexOf(separator);
-        if (indexOfDateTime == -1) {
+        int indexOfSeparator = input.indexOf("/");
+        if (indexOfSeparator == -1) {
             throw new DateTimeParseException("No date given", input, input.length() - 1);
         }
-        String stringDateTime = input.substring(indexOfDateTime + 4);
+        String userSeparator = input.substring(indexOfSeparator, indexOfSeparator + 3);
+        if (!userSeparator.equals(separator)) {
+            throw new InvalidSeparatorException("Invalid datetime separator");
+        }
+        String stringDateTime = input.substring(indexOfSeparator + 4);
         LocalDateTime dateTime = Parser.processDateTime(stringDateTime);
         String description;
         if (code.equals("E")) {
-            description = input.substring(6, indexOfDateTime - 1);
+            description = input.substring(6, indexOfSeparator - 1);
             newTask = new Event(dateTime, description);
         } else if (code.equals("D")) {
-            description = input.substring(9, indexOfDateTime - 1);
+            description = input.substring(9, indexOfSeparator - 1);
             newTask = new Deadline(dateTime, description);
         }
         return newTask;
@@ -162,6 +166,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an individual Task in form of a string loaded from a file.
+     * @param taskString String form of Task
+     * @return Task object
+     * @throws InputOverFlowException
+     * @throws InvalidDateTimeFormatException
+     */
     public static Task parseFromFile(String taskString)
             throws InputOverFlowException, InvalidDateTimeFormatException {
         Task newTask = null;
@@ -188,6 +199,11 @@ public class Parser {
         return newTask;
     }
 
+    /**
+     * Generates LocalDateTime object from a String date time format.
+     * @param stringDateTime Date and time in string format
+     * @return LocalDateTime object
+     */
     public static LocalDateTime processDateTimeFromFile(String stringDateTime) {
         String dateString = stringDateTime.substring(5, 16);
         String timeString = stringDateTime.substring(19, stringDateTime.length() - 1);

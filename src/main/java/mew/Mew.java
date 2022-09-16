@@ -14,6 +14,7 @@ import component.Ui;
 import javafx.application.Platform;
 import mew.MewDateTimeParseException.InputOverFlowException;
 import mew.MewDateTimeParseException.InvalidDateTimeFormatException;
+import mew.MewInputParseException.InvalidSeparatorException;
 
 /**
  * Main class Mew that runs the application.
@@ -119,14 +120,13 @@ public class Mew {
             tasks.addTask(newTask);
             storage.saveData(tasks);
             return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
-        } catch (InvalidDateTimeFormatException | InputOverFlowException e) {
-            System.out.println("input datetime trouble");
-            return Ui.showInvalidDatetimeInput();
-        } catch (StringIndexOutOfBoundsException | DateTimeParseException e) {
-            System.out.println("empty description event");
+        } catch (DateTimeParseException e) {
             return Ui.showEmptyEventDescriptionWarning();
+        } catch (InvalidSeparatorException e) {
+            return Ui.showInvalidSeparatorWarning();
+        } catch (InvalidDateTimeFormatException | InputOverFlowException e) {
+            return Ui.showInvalidDatetimeInput();
         } catch (Exception e) {
-            System.out.println("other exceptions");
             return Ui.printException(e);
         }
     }
@@ -142,9 +142,11 @@ public class Mew {
             tasks.addTask(newTask);
             storage.saveData(tasks);
             return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
-        } catch (StringIndexOutOfBoundsException e) {
+        } catch (DateTimeParseException e) {
             return Ui.showEmptyDeadlineDescriptionWarning();
-        } catch (InvalidDateTimeFormatException | InputOverFlowException | DateTimeParseException e) {
+        } catch (InvalidSeparatorException e) {
+            return Ui.showInvalidSeparatorWarning();
+        } catch (InvalidDateTimeFormatException | InputOverFlowException e) {
             return Ui.showInvalidDatetimeInput();
         } catch (Exception e) {
             return Ui.printException(e);
