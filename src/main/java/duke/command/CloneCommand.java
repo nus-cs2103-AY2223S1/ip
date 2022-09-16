@@ -36,12 +36,4 @@ public class CloneCommand extends Command {
             return Ui.showError(e);
         }
     }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

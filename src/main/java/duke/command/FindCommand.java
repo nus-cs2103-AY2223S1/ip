@@ -22,7 +22,7 @@ public class FindCommand extends Command {
     /**
      * Find tasks in the tasks based on keyword.
      *
-     * @param tasks The task to be executed.
+     * @param tasks The task list containing all tasks
      */
     @Override
     public String execute(TaskList tasks) {
@@ -35,13 +35,5 @@ public class FindCommand extends Command {
             }
         }
         return Ui.showFindTaskMessage(this.keyword, response);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

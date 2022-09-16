@@ -1,4 +1,5 @@
-[D][X] return book (2022-09-12)
 [T][ ] read book
-[E][X] go buffet (2022-09-11)
-[E][ ] graduation (2022-08-08)
+[D][ ] finish cs2103 assignment (2022-09-16)
+[E][X] open house (2022-08-01)
+[D][X] finish cs2105 assignment (2022-09-18)
+[D][X] finish cs2105 assignment (2022-09-18)

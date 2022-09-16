@@ -1,0 +1,32 @@
+#sendButton {
+  -fx-color-one: #06B7FF;
+  -fx-color-two: #0799D4;
+  -fx-color-three: #03709C;
+
+  -fx-background-color:
+      linear-gradient(#f2f2f2, -fx-color-one),
+      linear-gradient(#fcfcfc 0%, -fx-color-two 20%, -fx-color-one 100%),
+      linear-gradient(#dddddd 0%, -fx-color-three 50%);
+  -fx-background-radius: 8, 7, 6;
+  -fx-background-insets: 0, 1, 2;
+  -fx-text-fill: black;
+  -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+        -fx-font-size: 18px;
+
+}
+
+#sendButton:hover {
+    -fx-color-one: #03425C;
+    -fx-color-two: #03425C;
+    -fx-color-three: #03425C;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+#sendButton:pressed {
+    -fx-color-one: #050E84;
+    -fx-color-two: #050E84;
+    -fx-color-three: #050E84;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}

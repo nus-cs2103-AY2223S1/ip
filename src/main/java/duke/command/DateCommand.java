@@ -49,12 +49,4 @@ public class DateCommand extends Command {
         }
         return Ui.showTasksOnDateMessage(this.localDate, response);
     }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

@@ -31,6 +31,7 @@ public class Parser {
     private static final char UNDONE_STATUS = ' ';
     private static final int INPUT_SPLIT_LIMIT = 2;
     private static final int TASK_TYPE_POSITION = 1;
+    private static final int STATUS_POSITION = 4;
     private static final int CHARS_BEFORE_DESCRIPTION = 7;
     private static final char TODO_SYMBOL = 'T';
     private static final char EVENT_SYMBOL = 'E';
@@ -82,8 +83,9 @@ public class Parser {
      */
     public static void parseStorageData(TaskList tasks, String line) {
         char taskType = line.charAt(TASK_TYPE_POSITION);
-        assert taskType == 'T' || taskType == 'D' || taskType == 'E' : "The task status should be either X or empty";
-        char taskStatus = line.charAt(4);
+        assert taskType == TODO_SYMBOL || taskType == EVENT_SYMBOL || taskType == DEADLINE_SYMBOL
+                : "The task status should be either X or empty";
+        char taskStatus = line.charAt(STATUS_POSITION);
         assert taskStatus == 'X' || taskStatus == ' ' : "The task status should be either X or empty";
         if (taskType == TODO_SYMBOL) {
             String description = line.substring(CHARS_BEFORE_DESCRIPTION);
@@ -119,7 +121,8 @@ public class Parser {
         return new AddCommand(new ToDo(toDo, UNDONE_STATUS));
     }
 
-    private static Command addDeadline(String[] arguments) throws EmptyDescriptionException, EmptyDateException {
+    private static Command addDeadline(String[] arguments) throws EmptyDescriptionException, EmptyDateException,
+            InvalidDateException {
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }
@@ -129,7 +132,13 @@ public class Parser {
             throw new EmptyDateException();
         }
         String description = inputs[0];
-        LocalDate date = LocalDate.parse(extractDateByKeyword("by", inputs[1]));
+        String dateDescription = inputs[1];
+        LocalDate date;
+        try {
+            date = LocalDate.parse(extractDateByKeyword("by", dateDescription));
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException();
+        }
         return new AddCommand(new Deadline(description, date, UNDONE_STATUS));
     }
 
@@ -144,9 +153,10 @@ public class Parser {
             throw new EmptyDateException();
         }
         String description = inputs[0];
+        String dateDescription = inputs[1];
         LocalDate date;
         try {
-            date = LocalDate.parse(extractDateByKeyword("at", inputs[1]));
+            date = LocalDate.parse(extractDateByKeyword("at", dateDescription));
         } catch (DateTimeParseException e) {
             throw new InvalidDateException();
         }
@@ -216,12 +226,6 @@ public class Parser {
         return date;
     }
 
-    /**
-     * Removes the last char in a string.
-     *
-     * @param s The string to remove last char.
-     * @return The string without last char.
-     */
     private static String removeLastChar(String s) {
         s = s.substring(0, s.length() - 1);
         return s;

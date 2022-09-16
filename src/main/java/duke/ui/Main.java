@@ -1,7 +1,6 @@
 package duke.ui;
 import java.io.IOException;
 
-import duke.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,7 +24,7 @@ public class Main extends Application {
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.setTitle("Duke");
             stage.setResizable(false);
-            stage.setMinHeight(600.0);
+            stage.setMinHeight(800.0);
             stage.setMinWidth(400.0);
             stage.show();
         } catch (IOException e) {

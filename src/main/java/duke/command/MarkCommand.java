@@ -34,12 +34,4 @@ public class MarkCommand extends Command {
         }
         return Ui.markTaskMessage(tasks.getTask(taskNo));
     }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

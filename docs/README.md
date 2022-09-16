@@ -1,5 +1,5 @@
 # User Guide
-Duke Scheduler is a useful tool for keeping track of todos, events and deadlines.
+Duke Scheduler is a useful tool for keeping track of todos, events and deadlines, making scheduling easy, never get late anymore!
 
 ## Features 
 -[x] Adding a task
@@ -31,6 +31,8 @@ todo Do CS2103 Assignment
 event Graduation / at 2022-08-08
 deadline CS2103 Assignment / by 2022-09-16
 ```
+#### outcome:
+![picture alt](https://i.postimg.cc/0jyCBxjn/add.png)
 
 <br/><br/>
 ### List all tasks
@@ -40,7 +42,7 @@ Shows all the tasks by completed and uncompleted status.
 list
 ```
 #### outcome:
-[//]: # (![picture alt]&#40;https://i.postimg.cc/x8K5RK0j/find-Command.png&#41;)
+![picture alt](https://i.postimg.cc/66fLx7NQ/List.png)
 
 <br/><br/>
 ### Finding task based on keyword
@@ -54,7 +56,7 @@ find keyword
 find assignment
 ```
 #### outcome:
-![picture alt](https://i.postimg.cc/x8K5RK0j/find-Command.png)
+![picture alt](https://i.postimg.cc/W1HwYQc6/find-Keyword.png)
 
 <br/><br/>
 ### Finding task based on date
@@ -68,7 +70,7 @@ date YYYY-MM-DD
 date 2022-08-08
 ```
 #### outcome:
-[//]: # (![picture alt]&#40;https://i.postimg.cc/x8K5RK0j/find-Command.png&#41;)
+![picture alt](https://i.postimg.cc/brc6C4bF/date.png)
 
 <br/><br/>
 ### Clone a task
@@ -82,7 +84,7 @@ clone INDEX
 clone 1
 ```
 #### outcome:
-[//]: # (![picture alt]&#40;https://i.postimg.cc/x8K5RK0j/find-Command.png&#41;)
+![picture alt](https://i.postimg.cc/449q6QtS/clone.png)
 
 
 <br/><br/>
@@ -97,7 +99,7 @@ mark INDEX
 mark 1
 ```
 #### outcome:
-[//]: # (![picture alt]&#40;https://i.postimg.cc/x8K5RK0j/find-Command.png&#41;)
+![picture alt](https://i.postimg.cc/FzTLdL9g/mark.png)
 
 
 
@@ -113,7 +115,7 @@ unmark INDEX
 unmark 1
 ```
 #### outcome:
-[//]: # (![picture alt]&#40;https://i.postimg.cc/x8K5RK0j/find-Command.png&#41;)
+![picture alt](https://i.postimg.cc/hjpjpRHK/unmark.png)
 
 
 <br/><br/>
@@ -128,7 +130,7 @@ delete INDEX
 delete 1
 ```
 #### outcome:
-[//]: # (![picture alt]&#40;https://i.postimg.cc/x8K5RK0j/find-Command.png&#41;)
+![picture alt](https://i.postimg.cc/C1D7qJtC/delete.png)
 
 
 <br/><br/>
@@ -139,7 +141,7 @@ Exits the program.
 bye
 ```
 #### outcome:
-[//]: # (![picture alt]&#40;https://i.postimg.cc/x8K5RK0j/find-Command.png&#41;)
+![picture alt](https://i.postimg.cc/TwF8Rkbr/bye.png)
 
 
 
@@ -147,21 +149,3 @@ bye
 ### Saving data
 The program will automatically save the task data, so no need to worry about data lost.
 
-
-
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```

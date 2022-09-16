@@ -18,5 +18,7 @@ public abstract class Command {
     /**
      * @inheritDoc
      */
-    public abstract boolean isExit();
+    public boolean isExit() {
+        return false;
+    };
 }

@@ -74,10 +74,11 @@ public class Ui {
     }
 
     /** Print the message when a list command is called. */
-    public static String showPrintListMessage(String uncompletedTasks, String completedTasks) {
+    public static String showPrintListMessage(String uncompletedTasks, String completedTasks,
+                                              int completedIndex, int uncompletedIndex) {
         String reply = "Here are the tasks in your list:\n"
-                + "--------Uncompleted Tasks--------\n" + uncompletedTasks + "\n"
-                + "--------Completed Tasks--------\n" + completedTasks;
+                + "-------- " + uncompletedIndex + " Uncompleted Tasks --------\n" + uncompletedTasks + "\n"
+                + "-------- " + completedIndex + " Completed Tasks --------\n" + completedTasks;
         return reply;
     }
 }

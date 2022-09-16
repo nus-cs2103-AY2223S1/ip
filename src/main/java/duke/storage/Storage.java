@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.parser.Parser;
@@ -26,11 +25,6 @@ public class Storage {
     /** Get the file path which is Folder path + /duke.txt. */
     private static final Path FILE_PATH = Paths.get(FOLDER_PATH + "/duke.txt");
 
-    private static final int TASK_TYPE_POSITION = 1;
-    private static final int CHARS_BEFORE_DESCRIPTION = 7;
-    private static final char TODO_SYMBOL = 'T';
-    private static final char EVENT_SYMBOL = 'E';
-    private static final char DEADLINE_SYMBOL = 'D';
 
     /**
      * Handles loading of data from file
@@ -71,9 +65,8 @@ public class Storage {
     public static void save(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(FILE_PATH.toString());
         String fullText = "";
-        int listLength = tasks.getSize();
-        for (int i = 0; i < listLength; i++) {
-            fullText = fullText + tasks.getTask(i).getDescription() + System.lineSeparator();
+        for (Task task : tasks.getTasks()) {
+            fullText = fullText + task.getDescription() + System.lineSeparator();
         }
         fw.write(fullText);
         fw.close();

@@ -37,12 +37,4 @@ public class AddCommand extends Command {
         }
         return Ui.showAddTaskMessage(this.task, tasks.getSize());
     }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

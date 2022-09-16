@@ -16,29 +16,21 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks) {
-//      int completedIndex = 0;
-//      int uncompletedIndex = 0;
+        int completedIndex = 0;
+        int uncompletedIndex = 0;
         int i = 0;
         String completedTasks = "";
         String uncompletedTasks = "";
         for (Task task : tasks.getTasks()) {
             i++;
             if (task.getStatus()) {
-//                completedIndex++;
+                completedIndex++;
                 completedTasks = completedTasks + i + ". " + task + "\n";
             } else {
-//                uncompletedIndex++;
+                uncompletedIndex++;
                 uncompletedTasks = uncompletedTasks + i + ". " + task + "\n";
             }
         }
-        return Ui.showPrintListMessage(uncompletedTasks, completedTasks);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        return Ui.showPrintListMessage(uncompletedTasks, completedTasks, completedIndex, uncompletedIndex);
     }
 }

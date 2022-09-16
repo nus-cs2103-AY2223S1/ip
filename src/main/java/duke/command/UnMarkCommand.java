@@ -34,13 +34,5 @@ public class UnMarkCommand extends Command {
         }
         return Ui.unMarkTaskMessage(tasks.getTask(taskNo));
     }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
 
