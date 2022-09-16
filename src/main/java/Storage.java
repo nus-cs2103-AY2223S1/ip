@@ -27,12 +27,16 @@ public class Storage {
      * Check whether the file in the filePath exists or not.
      * @return true or false.
      */
+    //@@author xhphoong-reused
+    //Reused from https://www.sghill.net/2014/how-do-i-make-cross-platform-file-paths-in-java/
+    //with minor modifications
     boolean checkFile() {
         String base = System.getProperty("user.dir");
         java.nio.file.Path path = java.nio.file.Paths.get(base, fileLocation);
         boolean hasFile = java.nio.file.Files.exists(path);
         return hasFile;
     }
+    //@@author
 
     /**
      * Create new file.
@@ -107,6 +111,10 @@ public class Storage {
      * @param newList taskList that has been modified.
      * @throws IOException.
      */
+    //@@author xhphoong-reused
+    //Reused from https://github.com/nus-cs2103-AY2223S1/ip/pull/364/commits/039486f33c5fc0a4f3a560793102540c6c374d6e
+    //eugenetayyj: Level-7 commit : Duke.java's saveTasks() method
+    //with minor modifications
     void saveNewChanges(TaskList newList) throws IOException {
         File taskFile = new File(this.fileLocation);
         PrintWriter pw = new PrintWriter(taskFile);
@@ -118,5 +126,6 @@ public class Storage {
 
         pw.close();
     }
+    //@@author
 
 }

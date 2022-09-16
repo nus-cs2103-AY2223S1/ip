@@ -1,3 +1,4 @@
+// Class below adapted from https://se-education.org/guides/tutorials/junit.html
 package anya;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

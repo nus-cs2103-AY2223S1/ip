@@ -1,0 +1,38 @@
+Credits 
+
+1. Storage class: checkFile() reuse code from https://www.sghill.net/2014/how-do-i-make-cross-platform-file-paths-in-java/ with minor modification
+
+2. Storage class: saveNewChanges() reuse code from https://github.com/nus-cs2103-AY2223S1/ip/pull/364/commits/039486f33c5fc0a4f3a560793102540c6c374d6e 
+   (eugenetayyj: Level-7 commit : Duke.java's saveTasks() method) with minor modification
+    
+3. OOP classes idea: Ui, Storage, Parser, TaskList, Command classes adopted from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+
+4. build.gradle:
+    -upstream: author-damithc
+    -add plugins, checkstyle, dependencies (reuse from https://se-education.org/guides/tutorials/gradle.html) 
+
+5. Junit test adapted from https://se-education.org/guides/tutorials/junit.html
+
+6. Pr description reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week4/project.html with minor modifcation
+
+7. Checkstyle.xml and suppressions.xml reused from https://github.com/se-edu/addressbook-level3/tree/master/config/checkstyle
+
+8. All fxml files reuse code from https://se-education.org/guides/tutorials/javaFxPart4.html with minor modification
+
+9. MainWindow, Main, DialogBox, Launcher classes reuse code from https://se-education.org/guides/tutorials/javaFxPart4.html with minor modification
+
+10.Gradle.yml reuse code from https://github.com/se-edu/duke/blob/full-template/.github/workflows/gradle.yml
+
+11.Anya.png from https://i.pinimg.com/originals/39/46/88/394688795696c1374d1d052b2c20e5c1.jpg
+
+12.AnyaWelcome.png from https://i.pinimg.com/originals/fe/9a/1e/fe9a1e39ebfacb0e63478db650f4991f.jpg
+
+13.AnyaError.png from https://i.pinimg.com/originals/b8/33/22/b83322ef743ad30431b100a379b87957.jpg
+
+14.User.png from https://i.pinimg.com/originals/62/f0/a0/62f0a01c1fcad279c738ac11180cb5d5.jpg
+
+15.fxml files other credits:
+
+    fix labels not showing full text with help from https://github.com/nus-cs2103-AY2223S1/forum/issues/128
+    modify font, style background, color and padding (adapted from chloeelim's fxml: https://github.com/chloeelim/ip/blob/master/src/main/resources/view/DukeDialogBox.fxml)
+    color hex from https://www.color-hex.com/
