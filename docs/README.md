@@ -34,6 +34,7 @@ Expected outcome:
 RoboTask provides a list of tasks
 
 
+
 ### `todo` - Creates a new todo task
 
 
@@ -44,7 +45,9 @@ Example of usage:
 Expected outcome:
 
 ![This is an image](todo.png)
+
 RoboTasks creates a new todo
+
 
 
 ### `deadline` - Creates a new deadline
@@ -58,7 +61,9 @@ Example of usage:
 Expected outcome:
 
 ![This is an image](deadline.png)
+
 RoboTask creates a new deadline
+
 
 
 
@@ -73,7 +78,9 @@ Example of usage:
 Expected outcome:
 
 ![This is an image](event.png)
+
 Robotask creats a new event
+
 
 
 
@@ -87,7 +94,9 @@ Example of usage:
 Expected outcome:
 
 ![This is an image](delete.png)
+
 Robotask deletes the task
+
 
 
 
@@ -101,7 +110,9 @@ Example of usage:
 Expected outcome:
 
 ![This is an image](done.png)
+
 RoboTask marks a task as complete
+
 
 
 
@@ -116,7 +127,9 @@ Example of usage:
 Expected outcome:
 
 ![This is an image](find.png)
+
 Robotask finds tasks with matching keyword
+
 
 
 
@@ -126,11 +139,12 @@ Finds any task scheduled on a specified date
 
 Example of usage:
 
-`keyword (optional arguments)`
+`view 2022-02-02`
 
 Expected outcome:
 
 ![This is an image](View.png)
+
 RoboTask shows the tasks occuring on the date
 
 
