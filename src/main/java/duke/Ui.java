@@ -9,7 +9,7 @@ public class Ui {
      * Prints welcome message for user
      */
     public static String showWelcome() {
-        return("Hello! I'm Duke\nWhat can I do for you?" +
+        return("Hello! I'm RoboTask\nWhat can I do for you?" +
                 "\n" + "icons provided by Freepik and Trazobanana");
     }
 
