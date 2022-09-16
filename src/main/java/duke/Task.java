@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * A Task has a name and keeps track of whether it has been done.
+ */
 public class Task {
 
     protected String name;

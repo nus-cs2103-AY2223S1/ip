@@ -14,7 +14,7 @@ public class Parser {
      */
     public Pair<Duke.Command, String> parse(String s) throws DukeException {
 
-        boolean isMultipleWords = false;
+        boolean isMultipleWords;
         String firstWord = s;
         String restWord = "";
 

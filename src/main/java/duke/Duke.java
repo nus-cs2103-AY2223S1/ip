@@ -22,7 +22,6 @@ import java.io.IOException;
 
 public class Duke extends Application {
 
-
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
@@ -32,6 +31,13 @@ public class Duke extends Application {
     private TaskList tasklist;
 
     private boolean isRunning = false;
+
+    /**
+     * Constructs Duke (default)
+     */
+    public Duke() {
+        //default constructor
+    }
 
     /**
      * Constructs Duke with a file path.
@@ -46,15 +52,11 @@ public class Duke extends Application {
     }
 
     /**
-     * Constructs Duke (default)
-     */
-    public Duke() {
-    }
 
     /**
      * Starts the Duke Application.
      *
-     * @param stage
+     * @param stage Javafx stage.
      */
     @Override
     public void start(Stage stage) {
@@ -125,22 +127,11 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 1:
-     * Creates a label with the specified text and adds it to the dialog container.
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
-     */
-    private Label getDialogLabel(String text) {
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
-    }
-
-    /**
-     * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
+     *
+     * @param userInput Contains text the user has inputted.
+     * @param dialogContainer Contains the text/image layout for the chat.
      */
     private void handleUserInput(TextField userInput, VBox dialogContainer) {
         Label userText = new Label(userInput.getText());
@@ -153,8 +144,10 @@ public class Duke extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets Duke's text response to the user's text input.
+     *
+     * @param input User's input text.
+     * @return String Duke's output text.
      */
     protected String getResponse(String input) {
         try {
@@ -224,7 +217,6 @@ public class Duke extends Application {
         switch(c) {
         case BYE:
             stop();
-            ui.end();
             isRunning = false;
             return ("Bye. Hope to see you again soon!");
             //fallthrough
@@ -281,7 +273,7 @@ public class Duke extends Application {
     public void stop() {
         isRunning = false;
     }
-    
+
     /**
      * Enums for the range of commands Duke can complete.
      */

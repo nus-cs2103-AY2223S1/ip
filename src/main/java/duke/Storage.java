@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
@@ -19,16 +20,12 @@ public class Storage {
 
     private final String filePath;
 
-    Storage(String filePath) {
-        if (filePath != null) {
-            this.filePath = filePath;
-        } else {
-            this.filePath = "data/tasks.txt";
-        }
-    }
-
     Storage() {
         this.filePath = "data/tasks.txt";
+    }
+
+    Storage(String filePath) {
+        this.filePath = Objects.requireNonNullElse(filePath, "data/tasks.txt");
     }
 
     /**
@@ -75,6 +72,12 @@ public class Storage {
         t.setLog(log);
     }
 
+    /**
+     * Helper method for load.
+     *
+     * @throws IOException  If there is a file access error.
+     * @throws DukeException  If something went wrong when parsing.
+     */
     private void tryLoading() throws IOException, DukeException {
         log = new ArrayList<>();
         String s;
@@ -85,6 +88,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Calls correct Task subclass based on letter in text.
+     *
+     * @param c Character indicating what Task type data s contains.
+     * @param s Task data.
+     * @throws DukeException  If invalid data is used to create a task.
+     */
     private void parse(char c, String s) throws DukeException {
         switch (c) {
         case 'T':

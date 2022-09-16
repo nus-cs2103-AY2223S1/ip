@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * An Event is a type of Task with a date at which it occurs.
+ */
 public class Event extends Task {
 
     private String at;

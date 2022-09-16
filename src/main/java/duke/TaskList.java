@@ -93,15 +93,15 @@ public class TaskList {
             wasFinding = false;
             return ("There were no matching results :(");
         } else {
-            String text;
+            StringBuilder text;
             int count = 1;
-            text = ("Here are the tasks in your list: \n");
+            text = new StringBuilder(("Here are the tasks in your list: \n"));
             for (Task item : findCurrentList()) {
-                text = text + (count + ". " + item.toString() + "\n");
+                text.append(count).append(". ").append(item.toString()).append("\n");
                 count++;
             }
             assert count > 1;
-            return text;
+            return text.toString();
         }
     }
 
