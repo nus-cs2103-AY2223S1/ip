@@ -18,6 +18,7 @@ public class Task {
         }
         this.name = name;
         this.isDone = isDone;
+        assert this.name != null;
     }
 
     /**
