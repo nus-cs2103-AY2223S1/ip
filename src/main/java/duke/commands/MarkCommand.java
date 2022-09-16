@@ -28,6 +28,8 @@ public class MarkCommand extends Command {
      */
     @Override
     public CommandResult execute(TaskList taskList, Storage storage) {
+        // Checks for correct task index can only occur within the execution of the task.
+        // Parser can only perform preliminary basic checks for correct input formats.
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
             String msg = "Can't believe what an idiot I'm dealing with... There's no such task index!\n";
             return new CommandResult(msg);

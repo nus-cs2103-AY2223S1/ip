@@ -28,6 +28,8 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public CommandResult execute(TaskList taskList, Storage storage) {
+        // Checks for correct task index can only occur within the execution of the task.
+        // Parser can only perform preliminary basic checks for correct input formats.
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
             String msg = "Are you seriously not right in your head? There's no such task index!\n";
             return new CommandResult(msg);

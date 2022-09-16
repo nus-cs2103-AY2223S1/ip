@@ -31,6 +31,7 @@ public class Parser {
     private static final String USER_INPUT_DELIMITER = " ";
     private static final InvalidCommand INVALID_NUMBER_FORMAT = new InvalidCommand("It's really not that "
             + "hard, is it? Task index should be integers!");
+
     // Constants used by parseDateTime and its helper methods
     private static final String DATETIME_DELIMITER = "[-:.|/]";
     private static final ParseDateTimeException ERR_WRONG_DATETIME_FORMAT = new ParseDateTimeException(

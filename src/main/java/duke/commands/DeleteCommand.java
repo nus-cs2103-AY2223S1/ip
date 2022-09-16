@@ -29,6 +29,8 @@ public class DeleteCommand extends Command {
      */
     @Override
     public CommandResult execute(TaskList taskList, Storage storage) {
+        // Checks for correct task index can only occur within the execution of the task.
+        // Parser can only perform preliminary basic checks for correct input formats.
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
             String msg = "Do you even know what you're doing? There's such no task index!\n";
             return new CommandResult(msg);
