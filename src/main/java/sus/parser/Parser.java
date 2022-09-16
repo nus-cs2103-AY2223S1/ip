@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import sus.DukeException;
+import sus.SusException;
 import sus.commands.ColourCommand;
 import sus.commands.Command;
 import sus.commands.DeadlineCommand;
@@ -88,7 +88,7 @@ public class Parser {
         try {
             final String description = parseTodo(args);
             return new TodoCommand(description);
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
@@ -97,7 +97,7 @@ public class Parser {
         try {
             final String[] desTime = parseDeadline(args);
             return new DeadlineCommand(desTime[0].trim(), desTime[1].trim());
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
@@ -106,7 +106,7 @@ public class Parser {
         try {
             final String[] desTime = parseEvent(args);
             return new EventCommand(desTime[0].trim(), desTime[1].trim());
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
@@ -119,7 +119,7 @@ public class Parser {
             }
             final int targetIndex = parseArgsAsDisplayedIndex(matcher.group("targetIndex"));
             return new UpdateCommand(targetIndex, matcher.group("description").trim());
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
@@ -147,7 +147,7 @@ public class Parser {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
             return new DeleteCommand(targetIndex);
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
@@ -156,7 +156,7 @@ public class Parser {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
             return new MarkCommand(targetIndex);
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
@@ -165,24 +165,24 @@ public class Parser {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
             return new UnmarkCommand(targetIndex);
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
 
-    private String parseTodo(String args) throws DukeException {
+    private String parseTodo(String args) throws SusException {
         final Matcher matcher = TODO_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new DukeException(Messages.MESSAGE_EMPTY_DESCRIPTION);
+            throw new SusException(Messages.MESSAGE_EMPTY_DESCRIPTION);
         }
         return args.trim();
     }
 
-    private String[] parseDeadline(String args) throws DukeException {
+    private String[] parseDeadline(String args) throws SusException {
         return parseArgsAsDescriptionDate(args, "/by");
     }
 
-    private String[] parseEvent(String args) throws DukeException {
+    private String[] parseEvent(String args) throws SusException {
         return parseArgsAsDescriptionDate(args, "/at");
     }
 
@@ -191,27 +191,27 @@ public class Parser {
      *
      * @param args user input
      * @return index in the task list
-     * @throws DukeException if input is not a number
+     * @throws SusException if input is not a number
      */
-    private int parseArgsAsDisplayedIndex(String args) throws DukeException {
+    private int parseArgsAsDisplayedIndex(String args) throws SusException {
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new DukeException(Messages.MESSAGE_TASK_NOT_SPECIFIED);
+            throw new SusException(Messages.MESSAGE_TASK_NOT_SPECIFIED);
         }
         return Integer.parseInt(matcher.group());
     }
 
-    private String[] parseArgsAsDescriptionDate(String args, String separator) throws DukeException {
+    private String[] parseArgsAsDescriptionDate(String args, String separator) throws SusException {
         if (!args.contains(separator)) {
-            throw new DukeException(String.format(Messages.MESSAGE_MISSING_SEPARATOR, separator));
+            throw new SusException(String.format(Messages.MESSAGE_MISSING_SEPARATOR, separator));
         }
 
         String[] argsArray = args.trim().split(separator);
         if (argsArray.length == 0) {
-            throw new DukeException(Messages.MESSAGE_EMPTY_DESCRIPTION);
+            throw new SusException(Messages.MESSAGE_EMPTY_DESCRIPTION);
         }
         if (argsArray.length == 1) {
-            throw new DukeException(Messages.MESSAGE_EMPTY_DATE);
+            throw new SusException(Messages.MESSAGE_EMPTY_DATE);
         }
         LocalDate date = Utils.parseDate(argsArray[1].trim());
 

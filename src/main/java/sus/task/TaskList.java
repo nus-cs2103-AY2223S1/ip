@@ -3,7 +3,7 @@ package sus.task;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import sus.DukeException;
+import sus.SusException;
 import sus.common.Messages;
 import sus.common.Utils;
 
@@ -45,7 +45,7 @@ public class TaskList {
      * @param description description of the deadline
      * @param dueDate date deadline is to be completed by
      */
-    public Task addDeadline(String description, String dueDate) throws DukeException {
+    public Task addDeadline(String description, String dueDate) throws SusException {
         Task task = new Deadline(description, Utils.parseDate(dueDate));
         tasks.add(task);
         return task;
@@ -57,7 +57,7 @@ public class TaskList {
      * @param description description of the event
      * @param timeFrame time frame of the event
      */
-    public Task addEvent(String description, String timeFrame) throws DukeException {
+    public Task addEvent(String description, String timeFrame) throws SusException {
         Task task = new Event(description, Utils.parseDate(timeFrame));
         tasks.add(task);
         return task;
@@ -68,7 +68,7 @@ public class TaskList {
      *
      * @param inputIndex visible index of the task
      */
-    public Task deleteTask(int inputIndex) throws DukeException {
+    public Task deleteTask(int inputIndex) throws SusException {
         int targetIndex = checkIndex(inputIndex);
         return tasks.remove(targetIndex);
     }
@@ -78,10 +78,10 @@ public class TaskList {
      *
      * @param inputIndex visible index of the task
      */
-    public Task markTask(int inputIndex) throws DukeException {
+    public Task markTask(int inputIndex) throws SusException {
         Task targetTask = tasks.get(checkIndex(inputIndex));
         if (targetTask.isDone()) {
-            throw new DukeException(Messages.MESSAGE_TASK_ALREADY_MARKED);
+            throw new SusException(Messages.MESSAGE_TASK_ALREADY_MARKED);
         }
         targetTask.setDone(true);
         return targetTask;
@@ -92,10 +92,10 @@ public class TaskList {
      *
      * @param inputIndex visible index of the task
      */
-    public Task unmarkTask(int inputIndex) throws DukeException {
+    public Task unmarkTask(int inputIndex) throws SusException {
         Task targetTask = tasks.get(checkIndex(inputIndex));
         if (!targetTask.isDone()) {
-            throw new DukeException(Messages.MESSAGE_TASK_ALREADY_UNMARKED);
+            throw new SusException(Messages.MESSAGE_TASK_ALREADY_UNMARKED);
         }
         targetTask.setDone(false);
         return targetTask;
@@ -108,7 +108,7 @@ public class TaskList {
      * @param inputDescription description to update task with
      * @return updated Task
      */
-    public Task updateTask(int inputIndex, String inputDescription) throws DukeException {
+    public Task updateTask(int inputIndex, String inputDescription) throws SusException {
         Task targetTask = tasks.get(checkIndex(inputIndex));
         targetTask.setDescription(inputDescription);
         return targetTask;
@@ -146,10 +146,10 @@ public class TaskList {
         return sb.toString();
     }
 
-    private int checkIndex(int inputIndex) throws DukeException {
+    private int checkIndex(int inputIndex) throws SusException {
         int actualListIndex = inputIndex - 1;
         if (actualListIndex >= tasks.size() || actualListIndex < 0) {
-            throw new DukeException(Messages.MESSAGE_INVALID_NUMBER);
+            throw new SusException(Messages.MESSAGE_INVALID_NUMBER);
         }
         return actualListIndex;
     }

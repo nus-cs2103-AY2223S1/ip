@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
 
-import sus.DukeException;
+import sus.SusException;
 
 /**
  * Utility methods.
@@ -18,11 +18,11 @@ public class Utils {
      * @param inputString string to be converted to date (format: yyyy-MM-dd)
      * @return LocalDate converted from the given string
      */
-    public static LocalDate parseDate(String inputString) throws DukeException {
+    public static LocalDate parseDate(String inputString) throws SusException {
         try {
             return LocalDate.parse(inputString);
         } catch (DateTimeParseException ignored) {
-            throw new DukeException(Messages.MESSAGE_WRONG_DATE_FORMAT);
+            throw new SusException(Messages.MESSAGE_WRONG_DATE_FORMAT);
         }
     }
 

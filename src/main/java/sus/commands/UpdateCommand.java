@@ -1,6 +1,6 @@
 package sus.commands;
 
-import sus.DukeException;
+import sus.SusException;
 import sus.common.Messages;
 import sus.storage.StorageFile;
 import sus.task.Task;
@@ -37,7 +37,7 @@ public class UpdateCommand extends Command {
             Task task = taskList.updateTask(targetIndex, newDescription);
             storage.save(taskList);
             return new CommandResult(String.format(Messages.MESSAGE_UPDATED_DESCRIPTION, task));
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new CommandResult(e.getMessage());
         }
     }

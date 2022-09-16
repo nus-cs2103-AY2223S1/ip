@@ -1,6 +1,6 @@
 package sus.commands;
 
-import sus.DukeException;
+import sus.SusException;
 import sus.common.Messages;
 import sus.storage.StorageFile;
 import sus.task.Task;
@@ -39,7 +39,7 @@ public class EventCommand extends Command {
             return new CommandResult(Messages.MESSAGE_TASK_ADDED + "\n"
                     + task + "\n"
                     + String.format(Messages.MESSAGE_TASK_NUMBER, taskList.getNumberOfTasks()));
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new CommandResult(e.getMessage());
         }
     }

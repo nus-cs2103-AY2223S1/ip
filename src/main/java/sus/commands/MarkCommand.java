@@ -1,6 +1,6 @@
 package sus.commands;
 
-import sus.DukeException;
+import sus.SusException;
 import sus.common.Messages;
 import sus.storage.StorageFile;
 import sus.task.Task;
@@ -34,7 +34,7 @@ public class MarkCommand extends Command {
             Task task = taskList.markTask(targetIndex);
             storage.save(taskList);
             return new CommandResult(String.format(Messages.MESSAGE_TASK_UPDATE_STATUS + "\n%s", "done", task));
-        } catch (DukeException e) {
+        } catch (SusException e) {
             return new CommandResult(e.getMessage());
         }
     }

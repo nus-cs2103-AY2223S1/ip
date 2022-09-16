@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import sus.DukeException;
+import sus.SusException;
 import sus.task.Deadline;
 import sus.task.Event;
 import sus.task.Task;
@@ -47,7 +47,7 @@ public class StorageFile {
      *
      * @param taskList task list data to save
      */
-    public void save(TaskList taskList) throws DukeException {
+    public void save(TaskList taskList) throws SusException {
         try {
             BufferedWriter writer = Files.newBufferedWriter(path);
             writer.write("");
@@ -55,7 +55,7 @@ public class StorageFile {
             writer.write(taskList.encodeToString());
             writer.close();
         } catch (IOException e) {
-            throw new DukeException("Error writing to file: " + path);
+            throw new SusException("Error writing to file: " + path);
         }
     }
 

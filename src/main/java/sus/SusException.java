@@ -3,9 +3,9 @@ package sus;
 /**
  * Signals that some error occurred.
  */
-public class DukeException extends Exception {
+public class SusException extends Exception {
 
-    public DukeException(String message) {
+    public SusException(String message) {
         super(message);
     }
 
