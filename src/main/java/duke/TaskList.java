@@ -218,6 +218,9 @@ public class TaskList {
             case "deadline":
                 return this.createEvent(TaskEnum.Deadline, arguments[1]);
             case "todo":
+                if (arguments.length != 2) {
+                    throw new DukeException("No description for todo");
+                }
                 return this.createEvent(TaskEnum.Todo, arguments[1]);
             case "event":
                 return this.createEvent(TaskEnum.Event, arguments[1]);
