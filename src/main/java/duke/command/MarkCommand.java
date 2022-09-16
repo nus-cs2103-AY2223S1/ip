@@ -68,7 +68,8 @@ public class MarkCommand extends Command {
         } catch (ArrayIndexOutOfBoundsException ex) {
             throw new DukeException("You did not specify which task to be marked/unmarked.\n");
         } catch (IndexOutOfBoundsException ex) {
-            throw new DukeException("Your list only has " + taskList.getSize() + " tasks.\n");
+            throw new DukeException("Your list only has " + taskList.getSize() + " tasks. "
+                    + "Also ensure your task index is a positive integer.\n");
         }
     }
 
