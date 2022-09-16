@@ -1,5 +1,12 @@
 package duke;
 
+<<<<<<< Updated upstream
+=======
+/**
+ * Represents a Task with description, boolean to set the Task as done or not done, and type (ToDo = 'T',
+ * Deadline = 'D', Event = 'E').
+ */
+>>>>>>> Stashed changes
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -32,7 +39,16 @@ public class Task {
         return String.format("[%c][%c] %s", type, getStatusIcon(), description);
     }
 
+<<<<<<< Updated upstream
     public String data() {
+=======
+    /**
+     * Returns the String representation of the Task for Storage.
+     *
+     * @return String representation of the Task for Storage.
+     */
+    public String toData() {
+>>>>>>> Stashed changes
         return String.format("%c, %c, %s", type,  getStatusIcon(), description);
     }
 }

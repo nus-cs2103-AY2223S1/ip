@@ -33,7 +33,7 @@ public class Storage {
     public void save(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter("./duke.txt");
-            fw.write(tasks.data());
+            fw.write(tasks.toData());
             fw.close();
         } catch (IOException e) {
 

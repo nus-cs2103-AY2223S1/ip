@@ -19,17 +19,17 @@ public class AddCommand extends Command {
     public void run(Duke duke) {
         Task task;
         switch (type) {
-            case 'T':
-                task = new ToDo(description);
-                break;
-            case 'D':
-                task = new Deadline(description, detail);
-                break;
-            case 'E':
-                task = new Event(description, detail);
-                break;
-            default:
-                task = new Task(""); // error
+        case 'T':
+            task = new ToDo(description);
+            break;
+        case 'D':
+            task = new Deadline(description, detail);
+            break;
+        case 'E':
+            task = new Event(description, detail);
+            break;
+        default:
+            task = new Task(""); // error
         }
         duke.add(task);
     }

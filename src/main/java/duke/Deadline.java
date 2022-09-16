@@ -23,7 +23,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String data() {
-        return super.data() + ", " + deadline;
+    public String toData() {
+        return super.toData() + ", " + deadline;
     }
 }

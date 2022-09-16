@@ -23,7 +23,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String data() {
-        return super.data() + ", " + time;
+    public String toData() {
+        return super.toData() + ", " + time;
     }
 }

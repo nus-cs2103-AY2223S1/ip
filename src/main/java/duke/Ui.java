@@ -28,8 +28,8 @@ public class Ui {
 
     public void printTasks(TaskList tasks) {
         print("Here are the tasks in your list:");
-        for (int a = 0; a < tasks.size(); a++) {
-            print((a + 1) + ". " + tasks.get(a));
+        for (int i = 0; i < tasks.size(); i++) {
+            print((i + 1) + ". " + tasks.get(i));
         }
     }
 
