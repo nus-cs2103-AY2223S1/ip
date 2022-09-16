@@ -36,7 +36,7 @@ public class Main extends Application {
             // Quick fix of window resizing problem is
             // adapted from https://github.com/nus-cs2103-AY2223S1/forum/issues/206
             stage.setResizable(false);
-            stage.setTitle("CaCa chatbot 🤖");
+            stage.setTitle("CaCa chatbot");
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setCaCa(caca);
             stage.show();
