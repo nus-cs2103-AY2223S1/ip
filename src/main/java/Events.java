@@ -46,6 +46,9 @@ public class Events extends Task {
         return dateTime;
     }
 
+    public String getEventDeadlineString() {
+        return this.Eventsdeadlineby;
+    }
 
 
 
