@@ -12,4 +12,10 @@ public class TodoTest {
         Todo todo = new Todo("return book");
         assert todo.toString().equals("[T][ ] return book");
     }
+
+    @Test public void testPostpone() {
+        Todo todo = new Todo("return book");
+        todo.postponeTask();
+        assert todo.toString().equals("[T][ ] return book");
+    }
 }

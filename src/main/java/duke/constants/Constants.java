@@ -20,7 +20,7 @@ public final class Constants {
     public static final String QUACK_STRING = "quack";
     public static final String POSTPONE = "postpone";
     public static final String NOTE = "note";
-    public static final String INVALID_COMMAND_MESSAGE =
-            "INVALID COMMAND! QUACK! Type help to see the list of commands";
+    public static final String BYE_MESSAGE = "Bye! Deadline Duck hopes that you have a great day! Come back again!";
+
 }
 

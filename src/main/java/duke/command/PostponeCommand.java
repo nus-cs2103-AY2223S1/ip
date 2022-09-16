@@ -6,11 +6,15 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * Command to postpone a task
+ * Postpones a {@link Task} in the {@link TaskList}
  */
 public class PostponeCommand extends Command {
     private final int index;
 
+    /**
+     * Initializes the PostponeCommand to postpone a task
+     * @param index Index of the task to be postponed
+     */
     public PostponeCommand(int index) {
         this.index = index;
     }

@@ -13,10 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import duke.TaskList;
-import duke.models.Deadline;
-import duke.models.Event;
-import duke.models.Task;
-import duke.models.Todo;
+import duke.models.*;
 
 /**
  * Storage class to handle file operations
@@ -80,6 +77,10 @@ public class Storage {
                 case "E":
                     System.out.println(split[0]);
                     result.add(new Event(split[2], LocalDate.parse(split[3])));
+                    break;
+                case "NOTE":
+                    System.out.println(split[0]);
+                    result.add(new Note(split[1]));
                     break;
                 default:
                     break;

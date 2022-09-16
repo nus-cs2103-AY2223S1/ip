@@ -3,23 +3,24 @@ package duke.command;
 import java.util.concurrent.CompletableFuture;
 
 import duke.TaskList;
+import duke.constants.Constants;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * Command to exit the program and show bye message
+ * Terminates the program and show a bye message
  */
 public class ByeCommand extends Command {
-    public ByeCommand() {
-        super();
-    }
 
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui) {
         CompletableFuture.runAsync(this::terminate);
-        return "Bye! Deadline Duck hopes that you have a great day! Come back again!";
+        return Constants.BYE_MESSAGE;
     }
 
+    /**
+     * Terminates the program while showing an exit message for 850 milliseconds
+     */
     private void terminate() {
         try {
             Thread.sleep(850);

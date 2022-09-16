@@ -12,9 +12,14 @@ import duke.ui.Ui;
 public class UnmarkCommand extends Command {
     private final int index;
 
+    /**
+     * Initializes the UnmarkCommand to unmark a task
+     * @param index Index of the task to be unmarked
+     */
     public UnmarkCommand(int index) {
         this.index = index;
     }
+
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui) throws DukeException {
         Task t = tasks.getTask(index);

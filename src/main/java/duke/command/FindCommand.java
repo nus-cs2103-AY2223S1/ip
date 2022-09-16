@@ -10,27 +10,20 @@ import duke.ui.Ui;
 
 
 /**
- * Command that searches for a {@link Task} in the {@link TaskList}
+ * Searches for a {@link Task} in the {@link TaskList} with a query input from user
  */
 public class FindCommand extends Command {
     private String query;
 
     /**
-     * Constructor for FindCommand
-     * @param query the query to search for
+     * Initializes a FindCommand instance with the query to search for
+     * @param query query to search for in the {@link TaskList}
      */
     public FindCommand(String query) {
         assert query != null : "Query cannot be null";
         this.query = query;
     }
 
-    /**
-     * Executes the command to search for a {@link Task} in the {@link TaskList}
-     * @param tasks List of tasks
-     * @param storage Storage Instance
-     * @param ui Ui Instance
-     * @return String of the result of the command
-     */
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui) {
         List<Task> result = tasks.findTask(this.query);

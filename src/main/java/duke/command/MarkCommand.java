@@ -6,14 +6,19 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * Marks the Task in the TaskList
+ * Marks the {@link Task} in the {@link TaskList} as done
  */
 public class MarkCommand extends Command {
     private final int index;
 
+    /**
+     * Initializes the MarkCommand to mark a task
+     * @param index Index of the task to be marked
+     */
     public MarkCommand(int index) {
         this.index = index;
     }
+
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui) {
         try {

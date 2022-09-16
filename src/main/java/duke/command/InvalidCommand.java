@@ -5,11 +5,15 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * When the command is not recognised
+ * Executes when the input entered is not recognized
  */
 public class InvalidCommand extends Command {
     private final String errorMessage;
 
+    /**
+     * Initialises a {@link InvalidCommand} instance with the error message
+     * @param errorMessage Error message to be shown to the user
+     */
     public InvalidCommand(String errorMessage) {
         this.errorMessage = errorMessage;
     }

@@ -6,11 +6,15 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * Command that removes Task from the task list
+ * Removes a {@link Task} from the {@link TaskList}
  */
 public class DeleteCommand extends Command {
     private final int index;
 
+    /**
+     * Initializes the DeleteCommand to delete a task from the {@link TaskList}
+     * @param index
+     */
     public DeleteCommand(int index) {
         this.index = index;
     }

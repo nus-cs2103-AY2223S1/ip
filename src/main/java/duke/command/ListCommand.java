@@ -5,7 +5,7 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * List all the tasks that the user has
+ * List all the {@link duke.models.Task} in the {@link TaskList}
  */
 public class ListCommand extends Command {
 
