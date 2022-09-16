@@ -29,7 +29,7 @@ It provides a range of features to help you organize your tasks in a better way.
 
 ## Getting Started <a name="getting_started"></a>
 - Ensure you have Java 11 or above installed in your Computer.
-- Download the latest jar from the [release page](https://github.com/agarwal-anjali/ip/releases/download/Level-10/alpha.jar).
+- Download the latest jar from the [release page](https://github.com/agarwal-anjali/ip/releases/download/A-Release/alpha.jar).
 - Copy the file to the folder you want to use as the home folder for your Alpha.
 - Make sure the directory has read and write permissions.
 - Double-click the file to start the app. If it does not work then try running `java -jar alpha.jar` in a terminal.
