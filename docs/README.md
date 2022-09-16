@@ -31,14 +31,14 @@ Adds a new todo to the app.
 Format: `todo **DESCRIPTION**`
 
 Example of usage:
-'''
+```
 todo Read the Hobbit
-'''
+```
 Adds a new todo, 'read the hobbit' to the app.
 
-'''
+```
 todo Sign up for gym
-'''
+```
 Adds a new todo, 'Sign up for gym' to the app.
 
 ### Add a deadline: `deadline DESCRIPTION /by DATE_AND_TIME`
