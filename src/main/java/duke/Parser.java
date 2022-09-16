@@ -214,8 +214,7 @@ public class Parser {
             lst.deleteTask(t);
             storage.updateFile(lst);
             return Ui.deleteMessage(t, lst.count());
-        }
-        else {
+        } else {
             throw new DukeException("You have to enter the task index that you want to delete");
         }
     }
