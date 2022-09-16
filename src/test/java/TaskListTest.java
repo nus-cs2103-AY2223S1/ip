@@ -1,3 +1,4 @@
+import duke.exceptions.DukeDateException;
 import duke.exceptions.TaskNotFoundException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,6 +39,7 @@ public class TaskListTest {
         } catch (DukeException e) {
         } catch (TaskNotFoundException e) {
             assertEquals("This task cannot be found in our list! Check your index!", e.getMessage());
+        } catch (DukeDateException e) {
         }
     }
 }

@@ -9,12 +9,22 @@ import duke.util.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a class that creates Event Task and adds it to the list
+ */
 public class EventCommand extends Command {
 
     public EventCommand(TaskStorage storage, TaskList taskList, Ui ui) {
         super(storage, taskList, ui);
     }
 
+    /**
+     * Creates a new Event Task and adds it to the list
+     *
+     * @param parsedInput
+     * @return Response to be displayed
+     * @throws DukeException
+     */
     public String addEvent(ArrayList<String> parsedInput) throws DukeException {
         try {
             Event newEvent = new Event(parsedInput.get(1), parsedInput.get(2), false);

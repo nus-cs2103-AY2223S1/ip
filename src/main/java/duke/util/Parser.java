@@ -10,6 +10,13 @@ import java.util.Arrays;
  * Represents class that makes sense of the user input so that Duke can understand the command
  */
 public class Parser {
+    /**
+     * Makes sense of the user input and parse it so that Duke can process the commands
+     *
+     * @param userInput made by the user
+     * @return ArrayList of Strings for Commands to execute
+     * @throws DukeException
+     */
 
     public ArrayList<String> parse(String userInput) throws DukeException {
         String[] temp = userInput.trim().split(" ", 2);
@@ -42,6 +49,13 @@ public class Parser {
         return res;
     }
 
+    /**
+     * Separate parser to parse the descriptions and date of user input
+     *
+     * @param details the String that follows the first command word
+     * @return Array of String
+     * @throws DukeException
+     */
     private String[] parseDetails(String[] details) throws DukeException {
         if (details.length < 2) {
             throw new DukeException("The description or date for this task is missing!"

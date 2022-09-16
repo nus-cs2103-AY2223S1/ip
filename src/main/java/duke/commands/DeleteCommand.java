@@ -8,12 +8,22 @@ import duke.util.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the class that deletes a task from the list
+ */
 public class DeleteCommand extends Command {
 
     public DeleteCommand(TaskStorage storage, TaskList taskList, Ui ui) {
         super(storage, taskList, ui);
     }
 
+    /**
+     * Deletes the task specified and informs the user
+     *
+     * @param parsedInput
+     * @return Response to be displayed and how many tasks are left
+     * @throws TaskNotFoundException
+     */
     public String deleteTask(ArrayList<String> parsedInput) throws TaskNotFoundException {
         try {
             Task task = taskList.delete(Integer.parseInt(parsedInput.get(1)));

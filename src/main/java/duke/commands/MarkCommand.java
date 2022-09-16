@@ -9,12 +9,24 @@ import duke.util.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a class that marks a task as not done
+ */
+
 public class MarkCommand extends Command {
 
     public MarkCommand(TaskStorage storage, TaskList taskList, Ui ui) {
         super(storage, taskList, ui);
     }
 
+    /**
+     * Marks the function as done and returns the response to be displayed by Duke
+     *
+     * @param parsedInput input after being parsed by Parser
+     * @return Response String to be displayed
+     * @throws TaskNotFoundException
+     * @throws DukeException
+     */
     protected String mark(ArrayList<String> parsedInput) throws  DukeException, TaskNotFoundException {
         try {
             Task task = taskList.mark(Integer.parseInt(parsedInput.get(1)));

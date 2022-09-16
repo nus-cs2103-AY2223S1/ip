@@ -40,7 +40,13 @@ public class TaskStorage {
         }
     }
 
-
+    /**
+     * Writes a particular task into the task file
+     *
+     * @param task Task to be written
+     * @param writer FileWriter that writes the task
+     * @throws IOException
+     */
     public void encodeTask(Task task, FileWriter writer) throws IOException {
         String completed = task.getDone();
         if (task.isTodo()) {

@@ -8,6 +8,9 @@ import duke.util.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the class that reads the parsed user input and select the corresponding Commands to be executed
+ */
 public class Command {
     protected TaskStorage storage;
     protected TaskList taskList;
@@ -19,6 +22,13 @@ public class Command {
         this.ui = ui;
     }
 
+    /**
+     * Executes the parsed user input
+     *
+     * @param parsedInput
+     * @return Response to be displayed
+     * @throws DukeException
+     */
     public String execute(ArrayList<String> parsedInput) throws DukeException {
         try {
             switch (parsedInput.get(0)) {
