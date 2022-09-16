@@ -1,4 +1,2 @@
-T | 1 | buy bread
-T | 0 | cs2101
-D | 1 | cs2101 | 2022-10-10
-E | 1 | cs2101 things | 2022-10-15
+E | 0 | Football | 2022-09-17
+D | 0 | Assignment | 2022-09-18
