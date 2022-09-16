@@ -27,6 +27,10 @@ public class UnrecognisedCommand extends Command {
         return response;
     }
 
+    /**
+     * Does nothing.
+     * @return A string indicating that there is nothing to undo.
+     */
     @Override
     public String undo() {
         return "There is nothing to undo for your previous unrecognised command.";

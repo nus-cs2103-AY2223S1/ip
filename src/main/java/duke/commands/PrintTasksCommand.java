@@ -28,6 +28,10 @@ public class PrintTasksCommand extends Command {
         return sb.toString();
     }
 
+    /**
+     * Does nothing.
+     * @return A string indicating that there is nothing to undo.
+     */
     @Override
     public String undo() {
         return "There is nothing to undo for your previous list tasks command.";

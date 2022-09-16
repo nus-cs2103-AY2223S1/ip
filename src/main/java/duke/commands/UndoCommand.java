@@ -33,6 +33,10 @@ public class UndoCommand extends Command {
         }
     }
 
+    /**
+     * Does nothing.
+     * @return An empty string.
+     */
     @Override
     public String undo() {
         return "";

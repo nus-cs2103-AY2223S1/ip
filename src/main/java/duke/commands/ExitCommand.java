@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
 
     /**
      * Exits the App.
-     * @return
+     * @return Empty string.
      */
     @Override
     public String execute() {
@@ -21,6 +21,10 @@ public class ExitCommand extends Command {
         return "";
     }
 
+    /**
+     * Does nothing.
+     * @return Empty string.
+     */
     @Override
     public String undo() {
         return "";
