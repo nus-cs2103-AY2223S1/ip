@@ -22,6 +22,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setTitle("ChadBot");
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.getIcons().add(new Image("/images/Chad.png"));
             fxmlLoader.<MainWindow>getController().setDuke(duke);
