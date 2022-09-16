@@ -29,7 +29,11 @@ public class Duke extends Application {
     private Button sendButton;
     private Scene scene;
 
+    // Image taken from https://static.mothership.sg/1/2018/01/bmt-recruit-face-epic-cover-1.jpg
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaEnlistee.jpg"));
+
+    // Image taken from
+    // https://static.wikia.nocookie.net/pokemon/images/3/36/132Ditto.png/revision/latest?cb=20140328210732
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Ditto.png"));
 
     /**

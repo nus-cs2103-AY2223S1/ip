@@ -26,6 +26,8 @@ public class Launcher extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("Ditto!");
+            // Icon taken from
+            // https://www.deviantart.com/exoticpoke/art/132-Shiny-Ditto-872570354
             stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/Icon.png")));
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
