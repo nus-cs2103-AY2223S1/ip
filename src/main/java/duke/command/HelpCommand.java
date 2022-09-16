@@ -10,7 +10,7 @@ import duke.ui.Ui;
 public class HelpCommand extends Command {
 
     /**
-     * Initialises a {@link HelpCommand} instance
+     * Initialises a {@link HelpCommand} instance to show the help message
      */
     public HelpCommand() {
         super();
