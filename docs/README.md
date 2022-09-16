@@ -28,9 +28,9 @@ for its latest version.
 ## Quick Start
 
 1. Ensure you have `Java 11` installed on your computer.
-2. Download the latest `duke.jar` from [here](https://github.com/kxrt/ip/releases).
+2. Download the latest `Artemis.jar` from [here](https://github.com/kxrt/ip/releases).
 3. Copy the file to the folder you want to use as your **home** folder for *Artemis*.
-4. Navigate to the aforementioned folder via CLI and run `java -jar duke.jar`.
+4. Navigate to the aforementioned folder via CLI and run `java -jar Artemis.jar`. 
 5. The GUI similar to the [Main Window screenshot](#ui-screenshots) should appear.
 6. Type your desired command in the message box and press `Enter` to execute it.  
    eg. Type `help` and press `Enter` to view a list of possible commands!
@@ -70,7 +70,7 @@ under [UI Screenshots](#ui-screenshots). Here is a table summarising them:
 
 ### Editing, Exporting or Importing Saved Data
 
-Saved data is stored in the `duke.txt` file, which itself is stored inside the `data`
+Saved data is stored in the `artemis.txt` file, which itself is stored inside the `data`
 folder present inside *Artemis*' home folder.
 
 ## Usage

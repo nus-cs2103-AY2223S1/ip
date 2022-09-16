@@ -21,7 +21,7 @@ import duke.task.ToDo;
 public class Storage {
     private static final String FILE_FOLDER_NAME = "data";
     private static final String FILENAME = "artemis.txt";
-    private static final String FILEPATH = FILE_FOLDER_NAME + File.separator + FILENAME;
+    private static final String FILEPATH = "./" + FILE_FOLDER_NAME + File.separator + FILENAME;
 
     public Storage() throws DukeException {
         this.createStorageFile();
@@ -108,8 +108,9 @@ public class Storage {
 
     /**
      * Checks if the loaded task is completed.
+     *
      * @param taskSplit loaded task data
-     * @param task DukeTask representation of loaded task
+     * @param task      DukeTask representation of loaded task
      */
     private void checkTaskDone(String[] taskSplit, DukeTask task) {
         if (taskSplit[1].equals("1")) {
