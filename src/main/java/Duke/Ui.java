@@ -137,7 +137,7 @@ public class Ui {
      * @return URL for Duke help page.
      */
     public String helpResponse() {
-        String url = "https://github.com/shogun187/helpPage/blob/main/README.md";
+        String url = "https://shogun187.github.io/ip/";
         return "Please refer to the user guide: " + url;
     }
 }
