@@ -29,7 +29,11 @@ public class Duke extends Application {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
-    public Duke() {}
+    public Duke() {
+        ui = new Ui();
+        storage = new Storage("./data/duke.txt");
+        tasks = new TaskList();
+    }
 
     /**
      * Constructor that creates an instance of duke.Duke linked to the specified file path.
