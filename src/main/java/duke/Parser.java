@@ -79,6 +79,7 @@ public class Parser {
                 checkValidString(str, command);
                 String s5 = str.substring(6);
                 String[] eventResult = s5.split(" /at ");
+                this.tasks.checkClash(eventResult[1]);
                 Event e = new Event(eventResult[0], eventResult[1]);
                 return this.tasks.addTask(e);
             case "delete":

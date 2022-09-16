@@ -1,29 +1,80 @@
 # User Guide
+Duke is a to-do list that helps the user to keep track of tasks, and is operated by a sleek looking GUI.
+## Features
+- Add tasks
+- Delete tasks
+- Mark tasks as done
+- Mark tasks as not done 
+- List all current tasks
+- Find task by keyword
+- Detect clashing tasks
 
-## Features 
+Note about command format: words in ```UPPER_CASE``` are the parameters to be supplied by the user.
 
-### Feature-ABC
+### Add tasks
+Adds either a todo item, deadline, or event to the to-do list.
+####TODO Task
+Adds a todo item to the list.
+Format: ```todo TASK```
 
-Description of the feature.
+Examples:
+- ```todo clean room```
+- ```todo shower```
 
-### Feature-XYZ
+####DEADLINE Task
+Adds a deadline item to the list.
+Format: ```deadline TASK /by YYYY-MM-DD```
 
-Description of the feature.
+Examples:
+- ```deadline clean room /by 2022-09-16```
+- ```deadline shower /by 2022-09-16```
 
-## Usage
+####EVENT Task
+Adds a event item to the list.
+Format: ```event TASK /at YYYY-MM-DD```
 
-### `Keyword` - Describe action
+Examples:
+- ```event clean room /at 2022-09-16```
+- ```event shower /at 2022-09-16```
 
-Describe the action and its outcome.
 
-Example of usage: 
+### Delete tasks
+Delete an existing task from the to-do list.
 
-`keyword (optional arguments)`
+Format: ```delete INDEX```
 
-Expected outcome:
+Example:
+- ```delete 1```
+### Mark tasks
+Mark an existing task in the to-do list as done.
 
-Description of the outcome.
+Format: ```mark INDEX```
 
+Example:
+- ```mark 1```
+### Unmark tasks
+Mark an existing task in the to-do list as not done yet.
+
+Format: ```unmark INDEX```
+
+Example:
+- ```unmark 1```
+### List tasks
+List all existing tasks in the to-do list.
+
+Format: ```list```
+
+### Find tasks
+Find specific tasks from the to-do list by matching a input string with the task description.
+
+Format: ```find SUBSTRING```
+
+Example:
+- ```find home```
+
+### Detect clashing tasks
+Trying to add an event with the same time as an existing event will display an error message:
 ```
-expected output
+Sorry, there is a clash in the Events!
 ```
+

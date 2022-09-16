@@ -49,7 +49,6 @@ public class Storage {
                 String data = sc.nextLine();
                 result.add(data);
             }
-            assert !result.isEmpty() : "result not added";
             return result;
 
         } catch (IOException e) {
