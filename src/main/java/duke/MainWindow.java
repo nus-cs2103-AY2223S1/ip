@@ -71,13 +71,7 @@ public class MainWindow extends AnchorPane {
 
                 @Override
                 public void run() {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            Platform.exit();
-                        }
-                    });
-
+                    System.exit(0);
                 }
             }, 3000);
         }

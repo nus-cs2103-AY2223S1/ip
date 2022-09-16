@@ -1,5 +1,2 @@
-[T][ ][ ]    Homework
-[T][ ][ ]    Gym
-[E][ ][ ] Dad's Birthday (at:tomorrow 7pm)
-[D][ ][ ] Lab 3 (by:Sep 17 2022)
-[T][ ][ ]  work
+[T][ ][H] work
+[E][X][ ] work (at:noon)

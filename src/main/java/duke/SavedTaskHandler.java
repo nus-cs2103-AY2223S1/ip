@@ -66,7 +66,22 @@ public class SavedTaskHandler {
             String[] strArr = nextTaskStr.split("] ");
             String str = strArr[1];
             if (nextTaskStr.contains("[T]")) {
-                ToDos todo = new ToDos(" " + str);
+                ToDos todo = new ToDos(str);
+                if (nextTaskStr.contains("[X]")) {
+                    todo.mark();
+                }
+
+                if (nextTaskStr.contains("[H]")) {
+                    todo.setPriority("[H]");
+                }
+
+                if (nextTaskStr.contains("[M]")) {
+                    todo.setPriority("[M]");
+                }
+
+                if (nextTaskStr.contains("[L]")) {
+                    todo.setPriority("[L]");
+                }
                 taskList.add(todo);
             } else {
                 String[] findDate = str.split(":");
@@ -81,9 +96,39 @@ public class SavedTaskHandler {
                     Date date1 = format1.parse(date);
                     String formattedDate = format2.format(date1);
                     Deadlines deadline = new Deadlines(" " + task, formattedDate);
+                    if (nextTaskStr.contains("[X]")) {
+                        deadline.mark();
+                    }
+
+                    if (nextTaskStr.contains("[H]")) {
+                        deadline.setPriority("[H]");
+                    }
+
+                    if (nextTaskStr.contains("[M]")) {
+                        deadline.setPriority("[M]");
+                    }
+
+                    if (nextTaskStr.contains("[L]")) {
+                        deadline.setPriority("[L]");
+                    }
                     taskList.add(deadline);
                 } else {
                     Events events = new Events(" " + task, date);
+                    if (nextTaskStr.contains("[X]")) {
+                        events.mark();
+                    }
+
+                    if (nextTaskStr.contains("[H]")) {
+                        events.setPriority("[H]");
+                    }
+
+                    if (nextTaskStr.contains("[M]")) {
+                        events.setPriority("[M]");
+                    }
+
+                    if (nextTaskStr.contains("[L]")) {
+                        events.setPriority("[L]");
+                    }
                     taskList.add(events);
                 }
             }
