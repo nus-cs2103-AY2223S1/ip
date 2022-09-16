@@ -1,8 +1,5 @@
 package duke;
 
-import duke.Task;
-import duke.TaskList;
-
 import java.util.Scanner;
 
 public class Ui {
@@ -52,6 +49,15 @@ public class Ui {
         print(task.toString());
     }
 
+    /**
+     * Print all matching tasks to the UI.
+     */
+    public void findTasks(TaskList tasks) {
+        print("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            print((i + 1) + ". " + tasks.get(i));
+        }
+    }
 
     public void close() {
         print("Bye. Hope to see you again soon!");

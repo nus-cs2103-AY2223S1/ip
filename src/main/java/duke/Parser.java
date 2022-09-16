@@ -30,6 +30,8 @@ public class Parser {
                 return new MarkCommand(Integer.parseInt(inputParts[1]) - 1, true);
             case "unmark":
                 return new MarkCommand(Integer.parseInt(inputParts[1]) - 1, false);
+        case "find":
+            return new FindCommand(inputParts[1]);
             case "todo":
                 return new AddCommand('T', inputParts[1]);
             case "deadline":

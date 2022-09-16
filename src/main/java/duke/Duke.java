@@ -17,7 +17,7 @@ public class Duke {
         ui.close();
     }
 
-    public void add(Task task) { // error if description is empty
+    public void addTask(Task task) { // error if description is empty
         tasks.add(task);
         ui.addTask(task);
         ui.infoCount(tasks.size());
@@ -48,6 +48,17 @@ public class Duke {
         Task task = tasks.remove(index);
         ui.deleteTask(task);
         ui.infoCount(tasks.size());
+    }
+
+    /**
+     * Print all tasks that matches the keyword to the UI.
+     *
+     * @param keyword Keyword to match.
+     */
+    public void findTasks(String keyword) {
+        TaskList matches = (TaskList) tasks.clone();
+        matches.removeIf(task -> !task.toString().toLowerCase().contains(keyword.toLowerCase()));
+        ui.findTasks(matches);
     }
 
     public void exit() {
