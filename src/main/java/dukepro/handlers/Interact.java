@@ -47,7 +47,7 @@ public class Interact {
             bye();
         } else if (word.startsWith("list") || word.startsWith("List")) {
             return tasksManager.showList();
-        } else if (word.startsWith("done") || word.startsWith("Done")) {
+        } else if (word.startsWith("mark") || word.startsWith("unmark")) {
             return handleDone(word);
         } else if (word.startsWith("delete") || word.startsWith("Delete")) {
             return tasksManager.delete(Decoder.handleDelete(word, tasksManager.numStored()));
@@ -82,10 +82,18 @@ public class Interact {
      */
     public String handleDone(String word) throws DukeException {
         int taskNo = Decoder.handleDone(word, tasksManager.numStored());
-        Task doneTask = tasksManager.operateOnList(arr -> TaskFunction.markAsDone(arr, taskNo));
+        Task doneTask;
+        String ret;
+
+        if (word.startsWith("mark")) {
+            doneTask = tasksManager.operateOnList(arr -> TaskFunction.markAsDone(arr, taskNo, true));
+            ret = "Nice! I've marked this task as done:\n";
+        } else {
+            doneTask = tasksManager.operateOnList(arr -> TaskFunction.markAsDone(arr, taskNo, false));
+            ret = "Nice! I've marked this task as undone:\n";
+        }
         tasksManager.updateFile();
-        String ret = "Nice! I've marked this task as done:\n" + doneTask;
-        return ret;
+        return ret + doneTask;
     }
 
     /**

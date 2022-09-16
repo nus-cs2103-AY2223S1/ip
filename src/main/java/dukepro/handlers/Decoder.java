@@ -192,15 +192,20 @@ public class Decoder {
      */
     public static int handleDone(String word, int len) throws DukeException {
         String[] doneTasks = word.split(" ");
+
+        if (!doneTasks[0].equals("mark") && !doneTasks[0].equals("unmark")) {
+            throw new BadFormatException("[unmark / mark]", "[unmark / mark]", "<TASK ID>", "");
+        }
+
         if (doneTasks.length != 2) {
-            throw new BadTaskOperationException("done");
+            throw new BadFormatException(doneTasks[0], doneTasks[0], "<TASK ID>", "");
         }
         if (!isValidNum(doneTasks[1])) {
-            throw new BadFormatException("done", "done", "<TASK ID>", "");
+            throw new BadTaskOperationException(doneTasks[0]);
         }
         int taskNo = Integer.parseInt(doneTasks[1]);
         if (taskNo > len) {
-            throw new BadTaskOperationException("done");
+            throw new BadTaskOperationException(doneTasks[0]);
         }
         return taskNo;
     }

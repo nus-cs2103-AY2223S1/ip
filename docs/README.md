@@ -112,15 +112,13 @@ Bubbles: The following task has been deleted:
 [T][X] CS2100 Lab
 ```
 
-### `done/Done` - Marks a task as "done"
+### `mark` - Marks a task as "done"
 
 Marks a task as "done", to indicate the task is finished
 
 Example of usage:
 
-`done 1`
-
-`Done 1`
+`mark 1`
 
 Expected outcome:
 
@@ -129,6 +127,23 @@ The task with the corresponding ID (Task Number) is marked as "done".
 ```
 Bubbles: Nice! I've marked this task as done:
 [T][/] CS2100 Lab
+```
+
+### `unmark` - Marks a task as not "done"
+
+Marks a task as not "done", to indicate the task is not finished
+
+Example of usage:
+
+`unmark 1`
+
+Expected outcome:
+
+The task with the corresponding ID (Task Number) is marked as "done".
+
+```
+Bubbles: Nice! I've marked this task as done:
+[T][X] CS2100 Lab
 ```
 
 ### `list/List` - Displays all tasks stored

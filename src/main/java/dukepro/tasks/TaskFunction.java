@@ -13,11 +13,17 @@ public class TaskFunction {
      * @param tasks The ArrayList.
      * @param n The index of task to
      *          be marked as done.
+     * @param isDone Indicates whether to
+     *               mark task as done or not.
      * @return Task.
      */
-    public static Task markAsDone(ArrayList<? extends Task> tasks, int n) {
+    public static Task markAsDone(ArrayList<? extends Task> tasks, int n, boolean isDone) {
         Task done = tasks.get(n - 1);
-        done.markAsDone();
+        if (isDone) {
+            done.markAsDone();
+        } else {
+            done.markAsUndone();
+        }
         return done;
     }
 }

@@ -57,7 +57,7 @@ public class InteractTest {
         Task test = new Todo("test");
         tm.add(test);
         int taskNo = 1;
-        Task doneTask = tm.operateOnList(arr -> TaskFunction.markAsDone(arr, taskNo));
+        Task doneTask = tm.operateOnList(arr -> TaskFunction.markAsDone(arr, taskNo, true));
         String correct = "[T][/] test";
         assertEquals(correct, doneTask.toString());
     }

@@ -29,6 +29,13 @@ public class Task extends StorableObjects {
     }
 
     /**
+     * Marks this task as not done.
+     */
+    public void markAsUndone() {
+        isFinished = false;
+    }
+
+    /**
      * Returns String format of this class.
      *
      * @return A String.
