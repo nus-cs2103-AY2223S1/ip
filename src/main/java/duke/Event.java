@@ -12,8 +12,6 @@ public class Event extends Task {
         super(description);
         this.at = at;
         dateTime = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-        // System.out.println(dateTime.toString());
-
     }
 
     @Override
