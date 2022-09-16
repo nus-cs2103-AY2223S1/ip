@@ -15,7 +15,7 @@ public class Ui {
             + "\nTo mark a task as done, type mark <task number>"
             + "\nTo mark a task as undone, type unmark <task number>"
             + "\nTo delete a task, type delete <task number>"
-            + "\nTo search for task descriptions, type search <query>";
+            + "\nTo search for task descriptions, type find <query>";
     private final Scanner scanner;
     private final PrintStream out;
 
