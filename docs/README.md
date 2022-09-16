@@ -1,14 +1,27 @@
-# User Guide
+# User Guide for SoCCat
 
-## Features 
+## About
+SoCCat is your very own Personal Assistant Chatbot that helps to keep track of various
+things. Never forget another task again!
 
-### Feature-ABC
+## Features
+### List
+View all your tasks in a single glance!
 
-Description of the feature.
+### Add tasks
+You can add up to 3 different type of tasks!
+- ToDos
+- Deadlines
+- Events
 
-### Feature-XYZ
+### Mark and unmark tasks
+Easily mark or unmark a task as completed or not completed yet!
 
-Description of the feature.
+### Find
+Search any keywords and all the tasks associated with it will appear.
+
+### Undo
+Undo any accidental command you make.
 
 ## Usage
 
