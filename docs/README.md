@@ -56,7 +56,11 @@ Adds a new todo, 'Sign up for gym' to the app.
 Adds a new deadline to the app.
 
 Format: `deadline <DESCRIPTION> /by <DATE_AND_TIME>`
-Note: DATE_AND_TIME should be in ISO 8601 format
+Note: 
+- DATE_AND_TIME should be in ISO 8601 format.
+- Date should be given in year, month, day order, each seperated by **-**.
+- Date and time should be seperated by a **T**.
+- Time should be given in 24hrs format, with hour and time being seperated by a **:**.
 
 Example of usage:
 ```
