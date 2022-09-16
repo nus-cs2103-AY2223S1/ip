@@ -2,7 +2,6 @@ package duke.task;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import duke.comparator.CompletionComparator;
 import duke.comparator.DateComparator;
@@ -14,8 +13,6 @@ import duke.exception.TaskNotFoundException;
 import duke.tools.CommandParser;
 import duke.tools.TaskParser;
 import duke.tools.Ui;
-
-import static duke.tools.CommandParser.Sorting.DATES;
 
 /**
  * List of tasks.
@@ -139,27 +136,26 @@ public class TaskList {
     }
 
     public ArrayList<Task> sortTasks(CommandParser.Sorting criteria) {
-        ArrayList<Task> sortedList = this.tasks;
 
         switch (criteria) {
         case DATES:
             DateComparator dateComparator = new DateComparator();
-            sortedList.sort(dateComparator);
-            return sortedList;
+            this.tasks.sort(dateComparator);
+            return this.tasks;
         case NAME:
             NameComparator nameComparator = new NameComparator();
-            sortedList.sort(nameComparator);
-            return sortedList;
+            this.tasks.sort(nameComparator);
+            return this.tasks;
         case TASK:
             TaskTypeComparator taskComparator = new TaskTypeComparator();
-            sortedList.sort(taskComparator);
-            return sortedList;
-        case UNDONE:
+            this.tasks.sort(taskComparator);
+            return this.tasks;
+        case DONE:
             CompletionComparator completionComparator = new CompletionComparator();
-            sortedList.sort(completionComparator);
-            return sortedList;
+            this.tasks.sort(completionComparator);
+            return this.tasks;
         default:
-            return sortedList;
+            return this.tasks;
         }
     }
 }

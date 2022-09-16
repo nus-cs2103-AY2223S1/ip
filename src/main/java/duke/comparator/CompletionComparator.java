@@ -12,9 +12,9 @@ public class CompletionComparator implements Comparator<Task> {
         if (o1.isDone() && o2.isDone()) {
             return 0;
         } else if (o2.isDone()) {
-            return 1;
-        } else if (o1.isDone()) {
             return -1;
+        } else if (o1.isDone()) {
+            return 1;
         } else {
             return 0;
         }

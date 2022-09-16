@@ -37,7 +37,7 @@ public class CommandParser extends Parser {
         DATES,
         NAME,
         TASK,
-        UNDONE
+        DONE
     }
 
     /**
