@@ -1,0 +1,8 @@
+@font-face {
+    src: url('SourceCodePro-Regular.ttf');
+}
+
+.button, .text-field, .text {
+    -fx-font-family: 'Source Code Pro', monospace;
+    -fx-font-size: 14;
+}
