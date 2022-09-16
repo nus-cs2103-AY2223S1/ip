@@ -48,12 +48,26 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Create a dialog on the user's side. Wraps text.
+     *
+     * @param text The string to be displayed.
+     * @param img The user's avatar.
+     * @return A dialog box.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.dialog.setWrapText(true);
         return db;
     }
 
+    /**
+     * Create a dialog on the Duke's side. Wraps text. Flips the orientation.
+     *
+     * @param text The string to be displayed.
+     * @param img Duke's avatar.
+     * @return A dialog box.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
