@@ -177,6 +177,10 @@ public class Ui {
         return "Please retype the date in YYYY-MM-DD format.\n";
     }
 
+    String printWrongTypeInputException() {
+        return "Please type TASK_NUMBER instead of word.\n";
+    }
+
 
 
 

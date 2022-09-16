@@ -59,6 +59,9 @@ public class Anya {
         } catch (DateTimeParseException e) {
             response = ui.printDateFormatError();
             this.hasReturnError = true;
+        } catch (NumberFormatException e) {
+            response = ui.printWrongTypeInputException();
+            this.hasReturnError = true;
         }
 
         storage.saveNewChanges(tasks);

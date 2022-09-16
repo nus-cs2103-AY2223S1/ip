@@ -13,11 +13,12 @@ public class Parser {
 
     /**
      * Process the input command by the users to give the respective command to the ChatBot to execute.
+     *
      * @param String fullCommand : the full command that is given by the users.
      * @return command : the specific command to execute later.
      * @throws AnyaException.
      */
-    Command parse(String fullCommand) throws AnyaException {
+    Command parse(String fullCommand) throws AnyaException, NumberFormatException {
         String[] strArr = fullCommand.split(" ");
         String command = strArr[0];
         boolean isToDo = command.equals("todo");
@@ -117,3 +118,5 @@ public class Parser {
 
 
 }
+
+
