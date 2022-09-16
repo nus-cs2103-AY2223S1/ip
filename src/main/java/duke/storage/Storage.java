@@ -151,7 +151,7 @@ public class Storage {
 
         Task task;
         boolean isFormatWithDate = str.matches(
-                "(\\[[DE]]\\[[X| ]] )(.*?)(\\([by|at]+: +[A-Z]+[a-z]{2}+ \\d{2}+ \\d{4}+\\))");
+                "(\\[[D|E]]\\[[X| ]] )(.*?)(\\([by|at]+: +[A-Z]+[a-z]{2}+ \\d{2}+ \\d{4}+\\))");
 
         boolean isFormatWithoutDate = str.matches("(\\[T]\\[[X| ]] )(.*)");
 
