@@ -29,6 +29,7 @@ public class DeleteHandler implements IHandler {
         try {
             Tasklist list = s.getList();
             int number = Integer.parseInt(this.taskIndex);
+            s.saveTasks();
             Task item = list.remove(number - 1);
             int size = list.size();
             return String.format("Noted. I've removed this task:\n"

@@ -1,9 +1,6 @@
 package duke.handlers;
 
 import duke.enums.Command;
-import duke.exceptions.DukeException;
-import duke.service.Service;
-
 
 /**
  * Creates different Handlers based on user-input from Parser
@@ -13,13 +10,6 @@ public class HandlerFactory {
     private String taskName;
     private String flag;
     private String flagOption;
-
-    private static class UnknownHandler implements IHandler {
-        @Override
-        public String handle(Service s) throws DukeException {
-            throw new DukeException("Unknown command! Please try again.");
-        }
-    }
 
     public HandlerFactory(String command) {
         this.command = command;
@@ -82,6 +72,8 @@ public class HandlerFactory {
                 return new FindHandler(this);
             case BYE:
                 return new ByeHandler();
+            case UNDO:
+                return new UndoHandler();
             default:
                 return new UnknownHandler();
             }

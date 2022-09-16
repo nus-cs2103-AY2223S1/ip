@@ -12,5 +12,6 @@ public enum Command {
     LIST,
     BYE,
     DELETE,
-    FIND;
+    FIND,
+    UNDO;
 }

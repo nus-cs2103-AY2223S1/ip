@@ -48,6 +48,7 @@ public class DeadlineHandler implements IHandler {
         }
         try {
             Task deadline = new Deadline(this.deadlineName, this.flagOption);
+            s.saveTasks();
             s.addToList(deadline);
             int size = s.getList().size();
             assert size != 0;

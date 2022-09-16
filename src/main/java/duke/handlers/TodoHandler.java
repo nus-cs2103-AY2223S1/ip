@@ -25,6 +25,7 @@ public class TodoHandler implements IHandler {
             throw new DukeException("Please enter a task name!");
         }
         Task todo = new Todo(this.todoName);
+        s.saveTasks();
         s.addToList(todo);
         int size = s.getList().size();
         assert size != 0;

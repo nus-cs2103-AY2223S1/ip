@@ -1,7 +1,7 @@
 package duke;
 
-import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
+import duke.handlers.HandlerFactory;
 import duke.handlers.IHandler;
 import duke.service.Parser;
 import duke.service.Service;
@@ -17,7 +17,6 @@ public class Duke {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n"
             + "\n";
-    private static final Tasklist list = new Tasklist();
     private Service service;
 
     /**
@@ -43,7 +42,9 @@ public class Duke {
      */
     public String handleCommand(String str) {
         try {
-            IHandler handler = Parser.parse(str);
+            String[] tokens = Parser.parse(str);
+            HandlerFactory handlerFactory = new HandlerFactory(tokens[0]);
+            IHandler handler = handlerFactory.taskName(tokens[1]).flag(tokens[2]).flagOption(tokens[3]).build();
             String message = handler.handle(this.service);
             this.service.updateStorage();
             return message;

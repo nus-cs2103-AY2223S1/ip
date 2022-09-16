@@ -3,9 +3,6 @@ package duke.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import duke.handlers.HandlerFactory;
-import duke.handlers.IHandler;
-
 /** Parser class handles user-inputs */
 public class Parser {
     private static final Pattern COMMAND_REGEX =
@@ -17,7 +14,7 @@ public class Parser {
      * @param s
      * @return IHandler
      */
-    public static IHandler parse(String s) {
+    public static String[] parse(String s) {
         try {
             Matcher m = COMMAND_REGEX.matcher(s);
             m.find();
@@ -26,11 +23,11 @@ public class Parser {
             String flag = m.group(3);
             String options = m.group(4);
 
-            HandlerFactory handlerFactory = new HandlerFactory(command);
-            return handlerFactory.taskName(value).flag(flag).flagOption(options).build();
+            return new String[]{command, value, flag, options};
+
         } catch (IllegalStateException ex) {
-            // catch when no match found, returns unknown handler
-            return (new HandlerFactory("")).build();
+            // catch when no match found, returns empty strings
+            return new String[]{"", "", "", ""};
         }
     }
 }

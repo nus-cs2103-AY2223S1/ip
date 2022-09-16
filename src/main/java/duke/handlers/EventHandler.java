@@ -2,7 +2,6 @@ package duke.handlers;
 
 import java.time.format.DateTimeParseException;
 
-import duke.Duke;
 import duke.entities.Event;
 import duke.entities.Task;
 import duke.exceptions.DukeException;
@@ -48,6 +47,7 @@ public class EventHandler implements IHandler {
         }
         try {
             Task event = new Event(this.eventName, this.flagOption);
+            s.saveTasks();
             s.addToList(event);
             int size = s.getList().size();
             assert size != 0;

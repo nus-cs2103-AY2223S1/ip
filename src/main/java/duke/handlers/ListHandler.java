@@ -3,7 +3,6 @@ package duke.handlers;
 import duke.entities.Tasklist;
 import duke.exceptions.DukeException;
 import duke.service.Service;
-import duke.service.Ui;
 
 /**
  * Handles the user action for listing all tasks.
