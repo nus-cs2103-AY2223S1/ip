@@ -1,5 +1,5 @@
 # <a name = "top"></a>User Guide
-Are you missing deadlines because you can't remember all the work you have?<br> Do not worry!! We have **The Bro**, your personal task manager to the rescue.
+Are you missing deadlines because you can't remember all the work you have?<br> Do not worry!! We have **Bro**, your personal task manager to the rescue.
 
 <p align = "left">
 <img src= "Ui.png" width = "300">
@@ -183,7 +183,7 @@ help
 >            To exit the chatbot
 ```
 ----
-### <a name = "bye"></a>To exit the chatbot - `bye`
+### <a name = "bye"></a> To exit the chatbot - `bye`
 
 Closes the program.
 
@@ -200,21 +200,21 @@ bye
 <a href = "#top">Back to top</a>
 </p>
 
-## <a name = "summary"></a>Command Summary
+## <a name = "summary"></a> Command Summary
 
 
-| COMMAND                    | FORMAT, EXAMPLES                                                                         |
-|----------------------------|------------------------------------------------------------------------------------------|
-| Help                       | `help`                                                                                   |
-| Add ToDo Task              | todo [descr] <br> e.g., `todo buy grocery`                                               |
-| Add Deadline Task          | deadline [descr] /by [dd/mm/yyyy hhmm]<br> e.g., `deadline CS2109S HW /by 10/10/2022 2359|
-| Add Event Task             | event [descr] /at [dd/mm/yyyy hhmm]<br> e.g., `event Neon Party /at 18/09/2022 2110`     |
-| Mark Task                  | mark [index] <br> e.g., `mark 2`                                                         |
-| Unmark Task                | unmark [index] <br> e.g., `unmark 2`                                                     |
-| Find Task with the keyword | find [keyword] <br> e.g., `find party`                                                   |
-| Delete Task                | delete [index] <br> e.g., `delete 1`                                                     |
-| View all Tasks             | `list`                                                                                   |
-| Exit                       | `bye`                                                                                    |
+| COMMAND                    | FORMAT, EXAMPLES                                                                           |
+|----------------------------|--------------------------------------------------------------------------------------------|
+| Help                       | `help`                                                                                     |
+| Add ToDo Task              | todo [descr] <br> e.g., `todo buy grocery`                                                 |
+| Add Deadline Task          | deadline [descr] /by [dd/mm/yyyy hhmm]<br> e.g., `deadline CS2109S HW /by 10/10/2022 2359` |
+| Add Event Task             | event [descr] /at [dd/mm/yyyy hhmm]<br> e.g., `event Neon Party /at 18/09/2022 2110`       |
+| Mark Task                  | mark [index] <br> e.g., `mark 2`                                                           |
+| Unmark Task                | unmark [index] <br> e.g., `unmark 2`                                                       |
+| Find Task with the keyword | find [keyword] <br> e.g., `find party`                                                     |
+| Delete Task                | delete [index] <br> e.g., `delete 1`                                                       |
+| View all Tasks             | `list`                                                                                     |
+| Exit                       | `bye`                                                                                      |
 
 <p align = "right">
 <a href = "#top">Back to top</a>
