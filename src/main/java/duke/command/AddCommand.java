@@ -92,9 +92,14 @@ public class AddCommand extends Command {
             if (parts[i].charAt(0) != '/') {
                 taskName += parts[i] + " ";
             } else {
-                dateString = parts[i + 1];
-                timeString = parts[i + 2];
-                break;
+                try {
+                    dateString = parts[i + 1];
+                    timeString = parts[i + 2];
+                    break;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeException("Wrong command format. "
+                            + "Enter 'help' to see the correct format.");
+                }
             }
         }
         ArrayList<String> taskDateTime = new ArrayList<String>();
