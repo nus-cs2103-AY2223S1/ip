@@ -12,8 +12,8 @@ public class Event extends Task {
      * @param isDone Boolean value of the status of Event.
      * @param time The time of the Event.
      */
-    public Event(String description, boolean isDone, String time) {
-        super(description, isDone);
+    public Event(String description, boolean isDone, String time, PriorityLevel.Priority level) {
+        super(description, isDone, level);
         this.time = time;
     }
 
@@ -24,8 +24,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E][%s] %s (at: %s)", super.getStatusIcon(),
-                super.toString(), this.time);
+        return String.format("[E][%s] %s (at: %s) (Priority: %s)", super.getStatusIcon(),
+                super.toString(), this.time, super.getPriorityLevel());
     }
 
     /**
@@ -34,6 +34,7 @@ public class Event extends Task {
      */
     @Override
     public String toFileString() {
-        return String.format("E | %s | %s | %s", super.getFileIcon(), super.toString(), this.time);
+        return String.format("E | %s | %s | %s | %d", super.getFileIcon(), super.toString(), this.time,
+                super.getPriorityInteger());
     }
 }

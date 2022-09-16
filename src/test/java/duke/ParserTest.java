@@ -1,12 +1,12 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParserTest {
 
@@ -23,9 +23,9 @@ public class ParserTest {
             assertEquals("OOPS!!! I'm sorry, but I don't know what that means :-("
                     + "\nCommands should be in the following format:"
                     + "\n\tlist"
-                    + "\n\ttodo (description)"
-                    + "\n\tdeadline (description) /by (dd/MM/yyyy)"
-                    + "\n\tevent (description) /at (time)"
+                    + "\n\ttodo (description) /p (level)"
+                    + "\n\tdeadline (description) /by (dd/MM/yyyy) /p (level)"
+                    + "\n\tevent (description) /at (time) /p (level)"
                     + "\n\tmark (number)"
                     + "\n\tunmark (number)"
                     + "\n\tdelete (number)", e.getMessage());

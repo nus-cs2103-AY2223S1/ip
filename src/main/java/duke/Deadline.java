@@ -16,8 +16,8 @@ public class Deadline extends Task {
      * @param isDone Boolean value of the status of Deadline.
      * @param deadlineDate The deadline of the object.
      */
-    public Deadline(String description, boolean isDone, LocalDate deadlineDate) {
-        super(description, isDone);
+    public Deadline(String description, boolean isDone, LocalDate deadlineDate, PriorityLevel.Priority level) {
+        super(description, isDone, level);
         this.deadlineDate = deadlineDate;
     }
 
@@ -28,8 +28,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D][%s] %s (by: %s)", super.getStatusIcon(),
-                super.toString(), deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+        return String.format("[D][%s] %s (by: %s) (Priority: %s)", super.getStatusIcon(),
+                super.toString(), deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")), super.getPriorityLevel());
     }
 
     /**
@@ -38,7 +38,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileString() {
-        return String.format("D | %s | %s | %s", super.getFileIcon(),
-                super.toString(), this.deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+        return String.format("D | %s | %s | %s | %d", super.getFileIcon(),
+                super.toString(), this.deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")),
+                super.getPriorityInteger());
     }
 }
