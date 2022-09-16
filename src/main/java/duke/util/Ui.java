@@ -33,7 +33,7 @@ public class Ui {
         return "________________________________________\n"
                 + "Kon'nichiwa, I am Raijinmaru! A Fat Capybara!\n"
                 + "How may I assist you today?\n"
-                + "Type --help for list of commands\n"
+                + "Type help for list of commands\n"
                 + "________________________________________";
     }
 

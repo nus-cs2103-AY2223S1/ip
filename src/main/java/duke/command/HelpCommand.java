@@ -27,6 +27,8 @@ public class HelpCommand extends Command {
                 + "unmark -> marks a task as not done in the task list\n"
                 + "delete -> removes the task from the task list\n"
                 + "find -> searches for task with the same keyword\n"
-                + "bye -> end and close the ChatBot\n";
+                + "undo -> returns to the state before execution of the previous command\n"
+                + "bye -> end and close the ChatBot\n"
+                + "________________________________________\n";
     };
 }

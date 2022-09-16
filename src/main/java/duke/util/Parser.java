@@ -28,7 +28,7 @@ public class Parser {
     public static final String UNMARKCOMMAND = "unmark";
     public static final String DELETECOMMAND = "delete";
     public static final String FINDCOMMAND = "find";
-    public static final String HELPCOMMAND = "--help";
+    public static final String HELPCOMMAND = "help";
 
     //The Strings representing the 3 types of Tasks
     public static final String TODO = "todo";

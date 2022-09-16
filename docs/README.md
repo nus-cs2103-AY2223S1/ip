@@ -280,17 +280,17 @@ Undo Complete! I added back the deleted task.
 ________________________________________
 ```
 
-### `--help` - Prints the list of commands available.
+### `help` - Prints the list of commands available.
 
 Prints out the list of commands and simple description of its functions.
 
 Format:
 
-`--help`
+`help`
 
 Example of usage: 
 
-`--help`
+`help`
 
 Expected outcome:
 
@@ -306,6 +306,7 @@ mark -> marks a task as done in the task list
 unmark -> marks a task as not done in the task list
 delete -> removes the task from the task list
 find -> searches for task with the same keyword
+undo -> returns to the state before execution of the previous command
 bye -> end and close the ChatBot
 ________________________________________
 ```
