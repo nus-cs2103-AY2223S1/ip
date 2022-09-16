@@ -41,9 +41,11 @@ public class TaskList {
             taskArr.add(todoTask);
         } else {
             int slashChar = input.indexOf("/");
+
             if (slashChar == -1) {
                 throw new DukeException("oops, looks like you're missing the command to tell me the deadline");
             }
+            assert slashChar > 0;
             String taskDesc = input.substring(0, slashChar);
             String deadlineInput = input.substring(slashChar + 1);
             if (taskDesc.isBlank() || deadlineInput.isBlank()) {
@@ -73,6 +75,7 @@ public class TaskList {
      */
     public String deleteTask(String input, Ui ui) {
         Integer taskNo = Integer.valueOf(input) - 1;
+        assert taskNo > -1;
         Task taskToRemove = this.taskArr.get(taskNo);
         this.taskArr.remove(getTask(taskNo));
         return ui.showDeletingTask(taskToRemove.toString());
