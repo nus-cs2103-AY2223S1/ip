@@ -1,0 +1,24 @@
+deadline submit report /by 10/12/2022
+todo read book
+deadline submit project /by 18/08/2022
+event project meeting /at 20/09/2022
+todo sweep the floor
+list
+mark 3
+mark 1
+list
+unmark 1
+blah
+play
+todo
+event
+deadline
+mark
+unmark
+deadline /by 05/07/2022
+delete 10
+delete 1
+list
+deadline return john's book
+event cooking class
+bye
