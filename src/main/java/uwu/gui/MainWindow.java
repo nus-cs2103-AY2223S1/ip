@@ -1,5 +1,6 @@
 package uwu.gui;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -39,6 +40,8 @@ public class MainWindow extends AnchorPane {
         dialogContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
             scrollPane.setVvalue(1.0);
         });
+
+        sendButton.disableProperty().bind(Bindings.isEmpty(userInput.textProperty()));
 
         dialogContainer.getChildren().add(DialogBox.getUwuDialog("hellu!\ni am oo woo <:"
                 + "\nhow can i be of service today?\ntype 'help' to view the list of commands~", uwuImage));
