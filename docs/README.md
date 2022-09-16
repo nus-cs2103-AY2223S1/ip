@@ -1,4 +1,4 @@
-#User Guide
+# <a name = "top"></a>User Guide
 Are you missing deadlines because you can't remember all the work you have? Do not worry!! We have **The Bro**, your personal task manager to the rescue.
 
 <p align="center">
@@ -7,7 +7,7 @@ Are you missing deadlines because you can't remember all the work you have? Do n
 
 ## Quick Start
 * Please ensure that you have Java 11 or above installed in your computer.
-* Download the latest Bro.jar from here.
+* Download the latest Bro.jar from [here](https://github.com/anuanas2007/ip/releases/download/A-Release/bro.jar).
 * Copy the file to the directory you want to use.
 * Please run the application.
 * A GUI similar to the above one appears.
@@ -15,20 +15,20 @@ Are you missing deadlines because you can't remember all the work you have? Do n
 * Type in the command and press Enter or click on the Send button to execute it.
 
 ## Features
-[1. Add your ToDo task](#to-add-your-todo-task---`todo`)<br>
-[2. Add your task with Deadline](#to-add-your-task-with-deadline---`deadline`)<br>
-[3. Add your Event task](#to-add-your-event-task---`event`)<br>
-[4. View all your tasks](#to-view-all-your-tasks---`list`)<br>
-[5. Mark your task as done](#to-mark-your-task-as-done---`mark`)<br>
-[6. Mark your task as undone](#to-mark-your-task-as-undone---`unmark`)<br> 
-[7. Delete your task](#to-delete-your-task---`delete`)<br>
-[8. Find your task by keyword](#to-find-your-task-by-keyword---`find`) <br>
-[9. Display help message](#to-display-help-message---`help`)<br>
-[10. Exit chatbot](#to-exit-the-chatbot---`bye`)
+<a href = "#todo">1. Add your ToDo task</a><br>
+<a href = "#deadline">2. Add your task with Deadline<br>
+<a href = "#event">3. Add your Event task</a><br>
+<a href = "#list">4. View all your tasks</a><br>
+<a href = "#mark">5. Mark your task as done</a><br>
+<a href = "#unmark">6. Mark your task as undone</a><br>
+<a href = "#delete">7. Delete your task</a><br>
+<a href = "#find">8. Find your task by keyword</a><br>
+<a href = "#help">9. Display help message</a><br>
+<a href = "#bye">10. Exit chatbot</a>
 
 ## Usage
 
-###To add your ToDo task - `todo`
+### <a name = "todo"></a>To add your ToDo task - `todo`
 
 Adds To Do task to your task manager.
 
@@ -42,7 +42,7 @@ todo buy grocery
 > You only have 1 task left!
 ```
 ----
-###To add your task with Deadline - `deadline`
+### <a name = "deadline"></a>To add your task with Deadline - `deadline`
 
 Adds task with deadline to your task manager.
 
@@ -56,7 +56,7 @@ deadline CS2109S assignment /by 11/10/2022 2359
 > You only have 2 tasks left!
 ```
 ----
-###To add your Event task - `event`
+### <a name = "event"></a>To add your Event task - `event`
 
 Adds an Event task to your task manager.
 
@@ -70,7 +70,7 @@ event birthday party /at 18/09/2022 2230
 > You only have 3 tasks left!
 ```
 ----
-###To view all your tasks - `list`
+### <a name = "list"></a>To view all your tasks - `list`
 
 Shows all the task in the task manager with the mark and unmark sign.
 
@@ -87,7 +87,7 @@ list
 > You can doo ittt!!
 ```
 ----
-###To mark your task as done - `mark`
+### <a name = "mark"></a>To mark your task as done - `mark`
 
 Marks the task as done with a "X" sign.
 
@@ -101,7 +101,7 @@ mark 1
 > [T][X] buy grocery
 ```
 ----
-###To mark your task as undone - `unmark`
+### <a name = "unmark"></a>To mark your task as undone - `unmark`
 
 Marks the task as not done by replacing "X" sign with " ".
 
@@ -116,7 +116,7 @@ unmark 1
 > You only have 3 tasks left!
 ```
 ----
-###To delete your task - `delete`
+### <a name = "delete"></a>To delete your task - `delete`
 
 Removes the task from the task manager.
 
@@ -131,7 +131,7 @@ delete 1
 > You only have 2 tasks left!
 ```
 ----
-###To find your task by keyword - `find`
+### <a name = "find"></a>To find your task by keyword - `find`
 
 Finds the task(s) with the given keyword.
 
@@ -146,7 +146,7 @@ find party
 > 2.[E][ ] diwali party (at: Oct 17 2022 1030)
 ```
 ----
-###To display help message - `help`
+### <a name = "help"></a>To display help message - `help`
 
 Displays the help message.
 
@@ -177,7 +177,7 @@ help
 >            To exit the chatbot
 ```
 ----
-###To exit the chatbot - `bye`
+### <a name = "bye"></a>To exit the chatbot - `bye`
 
 Closes the program.
 
@@ -189,4 +189,4 @@ Closes the program.
 bye
 > See you later broo!
 ```
-[Back to top](#user-guide)
+<a href = "#top">Back to top</a>
