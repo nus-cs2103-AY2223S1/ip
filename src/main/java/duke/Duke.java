@@ -1,8 +1,6 @@
 package duke;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -20,15 +18,13 @@ import javafx.application.Platform;
 public class Duke {
     private TaskList taskList;
     private Storage storage;
-
+    private static final String FILE_NAME = "data.txt";
 
     /**
      * Constructs a new {@code Duke} using a String path.
      */
     public Duke() {
-        String home = System.getProperty("user.home");
-        Path filepath = Paths.get(home, "Desktop", "duke.txt");
-        storage = new Storage(filepath.toString());
+        storage = new Storage(FILE_NAME);
         try {
             taskList = new TaskList(storage.load());
         } catch (DukeException e) {
