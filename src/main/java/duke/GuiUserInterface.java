@@ -115,4 +115,18 @@ public class GuiUserInterface {
                 "   find Laundry\n";
         return output;
     }
+
+    /**
+     * Returns output when user says hi.
+     *
+     * @return Returns the Hi message.
+     */
+    public String welcomeMessage() {
+        String output = "Please use one of the 3 commands to add a task:\n";
+        output = output +
+                "   todo [TASK]\n" +
+                "   deadline [TASK] /by DD/MM/YYYY HHmm\n" +
+                "   event [TASK] /at DD/MM/YYYY HHmm\n";
+        return output;
+    }
 }

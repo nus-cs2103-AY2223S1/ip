@@ -64,6 +64,8 @@ public class Duke  {
             return handler.find(input);
         } else if (input.startsWith("help")) {
             return handler.help();
+        } else if (input.startsWith("hi"))  {
+            return handler.hi();
         } else {
             throw new DukeUnknownCommandException();
         }

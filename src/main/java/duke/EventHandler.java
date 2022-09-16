@@ -165,4 +165,13 @@ public class EventHandler {
     public String help() {
         return guiUserInterface.printHelp();
     }
+
+    /**
+     * Handles output of user saying hi.
+     *
+     * @return The response from Duke.
+     */
+    public String hi() {
+        return guiUserInterface.welcomeMessage();
+    }
 }
