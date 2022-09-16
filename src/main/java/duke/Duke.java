@@ -34,12 +34,11 @@ public class Duke {
     public String run(String input) {
         try {
             ArrayList<String> parsedInput = new Parser().parse(input);
-            return new Command(storage, taskList, ui).execute(parsedInput);
+            String response = new Command(storage, taskList, ui).execute(parsedInput);
+            assert response != null : "Response should not be null";
+            return response;
         } catch (DukeException e) {
             return e.getMessage();
         }
     }
-    /*public static void main(String[] args) {
-        new Duke("data/Tasks.txt");
-    }*/
 }

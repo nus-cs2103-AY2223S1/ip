@@ -12,8 +12,7 @@ public class DukeDate {
 
     public DukeDate(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime time = LocalDateTime.parse(input, formatter);
-        this.dateTime = time;
+        this.dateTime = LocalDateTime.parse(input, formatter);
     }
 
 
