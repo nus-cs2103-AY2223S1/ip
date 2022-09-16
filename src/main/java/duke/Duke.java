@@ -1,6 +1,8 @@
 package duke;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -246,6 +249,9 @@ public class Duke extends Application {
             return Ui.printUnmarkMessage(tasks.getTaskDescription(taskIndex));
         }
         case QUIT:
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
+            delay.setOnFinished( event -> Platform.exit() );
+            delay.play();
             return Ui.printGoodbyeMessage();
         case LIST:
             return Ui.printTasks(tasks);
