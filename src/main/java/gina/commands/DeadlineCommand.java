@@ -2,7 +2,7 @@ package gina.commands;
 
 import gina.GinaException;
 import gina.Storage;
-import gina.TaskList;
+import gina.TaskAndContactList;
 import gina.Ui;
 import gina.task.Deadline;
 
@@ -25,7 +25,7 @@ public class DeadlineCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws GinaException {
+    public String execute(TaskAndContactList taskAndContactList, Ui ui, Storage storage) throws GinaException {
         if (input.isBlank()) {
             throw new GinaException("Hold up! Description cannot be empty!");
         }
@@ -36,9 +36,9 @@ public class DeadlineCommand extends Command {
         }
         Deadline newDeadline = new Deadline(str[0], str[1]);
 
-        taskList.addTask(newDeadline);
-        storage.save(taskList);
-        return ui.showAddTask(newDeadline, taskList);
+        taskAndContactList.addTask(newDeadline);
+        storage.save(taskAndContactList);
+        return ui.showAddTask(newDeadline, taskAndContactList);
     }
 
     /**

@@ -8,7 +8,7 @@ import gina.commands.Command;
 public class Gina {
     private Ui ui;
     private Storage storage;
-    private TaskList tasks;
+    private TaskAndContactList tasks;
 
     /**
      * Constructs a chatbot.
@@ -18,12 +18,12 @@ public class Gina {
     public Gina(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
-        TaskList currTasks;
+        TaskAndContactList currTasks;
         try {
-            currTasks = new TaskList(storage.load());
+            currTasks = storage.load();
         } catch (GinaException e) {
             ui.showError(e.getMessage());
-            currTasks = new TaskList();
+            currTasks = new TaskAndContactList();
         }
         tasks = currTasks;
     }

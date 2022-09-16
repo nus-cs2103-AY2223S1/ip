@@ -1,10 +1,7 @@
 package gina.commands;
 
-import gina.GinaException;
-import gina.Storage;
+import gina.*;
 import gina.task.Task;
-import gina.TaskList;
-import gina.Ui;
 
 /**
  * Represents a command to delete a task.
@@ -25,12 +22,21 @@ public class DeleteCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws GinaException {
+    public String execute(TaskAndContactList taskAndContactList, Ui ui, Storage storage) throws GinaException {
         try {
-            int index = Integer.parseInt(input.trim()) - 1;
-            Task deletedTask = taskList.deleteTask(index);
-            storage.save(taskList);
-            return ui.showDeleteTask(deletedTask, taskList);
+            String c = input.trim().substring(0, 1);
+            int index = Integer.parseInt(input.trim().substring(1)) - 1;
+            if (c.equals("t")) {
+                Task deletedTask = taskAndContactList.deleteTask(index);
+                storage.save(taskAndContactList);
+                return ui.showDeleteTask(deletedTask, taskAndContactList);
+            } else if (c.equals("c")) {
+                Contact deletedContact = taskAndContactList.deleteContact(index);
+                storage.save(taskAndContactList);
+                return ui.showDeleteContact(deletedContact);
+            } else {
+                throw new GinaException("Is it a contact (e.g C1) or task(e.g T2)??");
+            }
         } catch (NumberFormatException e) {
             throw new GinaException("Hey! Input a valid number!");
         }

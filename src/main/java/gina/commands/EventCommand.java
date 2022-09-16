@@ -2,7 +2,7 @@ package gina.commands;
 
 import gina.GinaException;
 import gina.Storage;
-import gina.TaskList;
+import gina.TaskAndContactList;
 import gina.Ui;
 import gina.task.Event;
 
@@ -25,7 +25,7 @@ public class EventCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws GinaException {
+    public String execute(TaskAndContactList taskAndContactList, Ui ui, Storage storage) throws GinaException {
         if (input.isBlank()) {
             throw new GinaException("Hold your horses! Description can't be empty!");
         }
@@ -36,9 +36,9 @@ public class EventCommand extends Command {
         }
         Event newEvent = new Event(str[0], str[1]);
 
-        taskList.addTask(newEvent);
-        storage.save(taskList);
-        return ui.showAddTask(newEvent, taskList);
+        taskAndContactList.addTask(newEvent);
+        storage.save(taskAndContactList);
+        return ui.showAddTask(newEvent, taskAndContactList);
     }
 
     /**

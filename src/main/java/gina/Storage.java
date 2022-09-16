@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,8 +34,9 @@ public class Storage {
      * @return List of tasks from file.
      * @throws GinaException If there is an error in loading the tasks from file.
      */
-    public ArrayList<Task> load() throws GinaException {
+    public TaskAndContactList load() throws GinaException {
         ArrayList<Task> tasks = new ArrayList<>();
+        ArrayList<Contact> contacts = new ArrayList<>();
         try {
             File f1 = new File(filePathStr);
             f1.getParentFile().mkdirs();
@@ -43,8 +45,14 @@ public class Storage {
             Scanner scanner = new Scanner(f1);
             String line;
             while (scanner.hasNext()) {
-                Task newTask;
                 line = scanner.nextLine();
+                if (line.contains("Tasks:")) {
+                    continue;
+                } else if (line.contains("Contacts:")) {
+                    break;
+                }
+                Task newTask;
+                // process data
                 switch (line.charAt(4)) {
                 case 'T':
                     newTask = ToDo.createToDoFromString(line);
@@ -62,6 +70,13 @@ public class Storage {
                 assert(newTask != null);
                 tasks.add(newTask);
             }
+            while (scanner.hasNext()) {
+                line = scanner.nextLine();
+                if (!line.isBlank()) {
+                    Contact newContact = Contact.createContactFromString(line);
+                    contacts.add(newContact);
+                }
+            }
         } catch (FileNotFoundException e) {
             throw new GinaException("File couldn't be created so... no tasks loaded!");
         } catch (NullPointerException e) {
@@ -69,22 +84,22 @@ public class Storage {
         } catch (IOException e) {
             throw new GinaException("There was an error loading your data!");
         }
-        return tasks;
+        TaskAndContactList list = new TaskAndContactList(tasks, contacts);
+        return list;
     }
 
     /**
      * Saves the specified list of tasks.
      *
-     * @param taskList The specified list of tasks.
-     * @throws GinaException If there was an error saving changes to hard disk.
+     * @param taskAndContactList The specified list of tasks.
      */
-    public void save(TaskList taskList) throws GinaException {
+    public void save(TaskAndContactList taskAndContactList) {
         try {
             FileWriter fw = new FileWriter(filePathStr);
-            fw.write(taskList.toString());
+            fw.write(taskAndContactList.toString());
             fw.close();
         } catch (IOException e) {
-            throw new GinaException("There was an error saving your changes!");
+            System.out.println("There was an error saving your file, your changes were not saved!");
         }
     }
 }

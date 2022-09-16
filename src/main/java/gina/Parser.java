@@ -9,6 +9,7 @@ import gina.commands.FindCommand;
 import gina.commands.ListCommand;
 import gina.commands.MarkCommand;
 import gina.commands.OnCommand;
+import gina.commands.ContactCommand;
 import gina.commands.ToDoCommand;
 import gina.commands.UnmarkCommand;
 
@@ -73,6 +74,12 @@ public class Parser {
                 return new FindCommand("");
             }
             return new FindCommand(input[1].trim());
+        case "contact":
+            if (input.length < 2) {
+                throw new GinaException("How would I know who you want me to add??"
+                        + "\nGive me a name!");
+            }
+            return new ContactCommand(input[1]);
         default:
             throw new GinaException("What's " + command + " ??\n"
                     + "Say something I can understand!");

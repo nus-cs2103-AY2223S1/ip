@@ -2,7 +2,7 @@ package gina.commands;
 
 import gina.GinaException;
 import gina.Storage;
-import gina.TaskList;
+import gina.TaskAndContactList;
 import gina.Ui;
 
 /**
@@ -24,8 +24,8 @@ public class OnCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws GinaException {
-        TaskList tasksOnDate = taskList.getTasksOnDate(input);
+    public String execute(TaskAndContactList taskAndContactList, Ui ui, Storage storage) throws GinaException {
+        TaskAndContactList tasksOnDate = taskAndContactList.getTasksOnDate(input);
         return ui.showTasksOnDate(tasksOnDate, input);
     }
 

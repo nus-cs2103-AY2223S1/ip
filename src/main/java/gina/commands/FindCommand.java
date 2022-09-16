@@ -2,7 +2,7 @@ package gina.commands;
 
 import gina.GinaException;
 import gina.Storage;
-import gina.TaskList;
+import gina.TaskAndContactList;
 import gina.Ui;
 
 /**
@@ -24,12 +24,12 @@ public class FindCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws GinaException {
+    public String execute(TaskAndContactList taskAndContactList, Ui ui, Storage storage) throws GinaException {
         if (input.isBlank()) {
             throw new GinaException("Wait a minute :/ "
                     + "what are you finding??");
         }
-        TaskList tasksWithWord = taskList.getTasksWithWord(input);
+        TaskAndContactList tasksWithWord = taskAndContactList.getTasksWithWord(input);
         return ui.showFindings(tasksWithWord, input);
     }
 

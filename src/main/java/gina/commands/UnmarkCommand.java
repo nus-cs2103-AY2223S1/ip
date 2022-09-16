@@ -2,7 +2,7 @@ package gina.commands;
 
 import gina.GinaException;
 import gina.Storage;
-import gina.TaskList;
+import gina.TaskAndContactList;
 import gina.Ui;
 
 /**
@@ -24,12 +24,12 @@ public class UnmarkCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws GinaException {
+    public String execute(TaskAndContactList taskAndContactList, Ui ui, Storage storage) throws GinaException {
         try {
             int index = Integer.parseInt(input.trim()) - 1;
-            taskList.get(index).markAsUndone();
-            storage.save(taskList);
-            return ui.showUnmarkedTask(taskList.get(index));
+            taskAndContactList.getTask(index).markAsUndone();
+            storage.save(taskAndContactList);
+            return ui.showUnmarkedTask(taskAndContactList.getTask(index));
         } catch (NumberFormatException e) {
             throw new GinaException("Hey! Input a valid number!");
         }

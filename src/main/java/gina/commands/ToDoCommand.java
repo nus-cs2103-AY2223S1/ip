@@ -2,7 +2,7 @@ package gina.commands;
 
 import gina.GinaException;
 import gina.Storage;
-import gina.TaskList;
+import gina.TaskAndContactList;
 import gina.Ui;
 import gina.task.ToDo;
 
@@ -25,14 +25,14 @@ public class ToDoCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws GinaException {
+    public String execute(TaskAndContactList taskAndContactList, Ui ui, Storage storage) throws GinaException {
         if (input.isBlank()) {
             throw new GinaException("Hold your horses! The description can't be empty!");
         }
         ToDo newTodo = new ToDo(input);
-        taskList.addTask(newTodo);
-        storage.save(taskList);
-        return ui.showAddTask(newTodo, taskList);
+        taskAndContactList.addTask(newTodo);
+        storage.save(taskAndContactList);
+        return ui.showAddTask(newTodo, taskAndContactList);
     }
 
     /**
