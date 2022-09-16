@@ -3,3 +3,4 @@ D | 0 |   | return book | June 6th
 E | 0 |   | project meeting | Aug 6th 2-4pm
 T | 1 |   | join sports club
 E | 1 |   | team meeting | 2022-09-03
+D | 1 | High | submit homework | 2020-09-16
