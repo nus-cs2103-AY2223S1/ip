@@ -6,15 +6,6 @@ package duke.listobjects;
 public class Event extends ListObject {
 
     /**
-     * Constructs an Event object with given task decription and status and unspecified time
-     * @param task String representing task decription
-     * @param status int with value 1 if event is completed and 0 otherwise
-     */
-    public Event(String task, int status) {
-        super(task, "unspecified", status);
-    }
-
-    /**
      * Constructs an Event object with give task description, status and time
      * @param task String representing task description
      * @param status int with value 1 if event is completed and 0 otherwise

@@ -5,16 +5,6 @@ package duke.listobjects;
  */
 public class Deadline extends ListObject{
 
-
-    /**
-     * Constructs a Deadline object with given task description and status, with unspecified deadline
-     * @param task String description of task
-     * @param status int representing completion status as 1 if finished and 0 otherwise
-     */
-    public Deadline(String task, int status) {
-        super(task, "unspecified", status);
-    }
-
     /**
      * Constructs a Deadline object with given task description, status, and deadline
      * @param task String description of tas

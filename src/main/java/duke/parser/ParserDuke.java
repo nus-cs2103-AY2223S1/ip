@@ -25,6 +25,8 @@ public class ParserDuke {
     private final String DEADLINE_CMD = "deadline";
     private final String FIND_CMD = "find";
 
+    private final String SORT_CMD = "sort";
+
     private static final String BREAK_LINE = "\n";
     private final String FILE_PATH = "src/main/java/duke/DukeTasks.txt";
 
@@ -163,6 +165,11 @@ public class ParserDuke {
                     reply = comment + BREAK_LINE;
 
                 }
+
+            } else if(instruction.equals(SORT_CMD)) {
+                listOfItems.sortList();
+                comment = "Indeed I shall invoke the Eye of Agomotto to turn time ... \n";
+                reply = comment + listOfItems.toString();
 
             } else{
                 comment = "Why trouble me with the unrefined language of the youth! Speak plainly, my friend!";

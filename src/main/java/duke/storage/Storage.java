@@ -41,13 +41,13 @@ public class Storage {
             File listFile = new File(path);
             listFile.createNewFile();
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(listFile));
-            while (in.available() > 0) {
                 ArrayList<ListObject> allIn = (ArrayList<ListObject>) in.readObject();
                 inList.setTasks(allIn);
                 in.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (EOFException e) {
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         finally{
             return inList;

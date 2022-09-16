@@ -12,7 +12,7 @@ public class ToDo extends ListObject {
      * @param status int with value 1 if task is complete and 0 otherwise
      */
     public ToDo(String task, int status) {
-        super(task, status);
+        super(task, "untimed", status);
     }
 
 

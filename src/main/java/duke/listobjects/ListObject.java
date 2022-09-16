@@ -145,6 +145,7 @@ public class ListObject implements Serializable, Comparable<ListObject> {
     public int compareTo(ListObject obj) {
 
         if(this.time.isEmpty() || obj.time.isEmpty()) {
+            System.out.println(this);
             int res = this.task.compareTo(obj.task);
             if(res == 0 && this.status >= obj.status){
                 return -1;
