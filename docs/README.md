@@ -137,6 +137,23 @@ Expected outcome:
 
 Task at index 1 is deleted.
 
+### `list` - Display full tasklist
+
+Finds and returns all tasks before given deadline.
+
+Example of usage:
+
+`before 1/01/2023`
+
+Expected outcome:
+
+```
+Think you are free?
+1. [E][✘] Book fair (at: 12/12/2022)
+2. [D][✘] Return book (by: 12/12/2022)
+3. [T][✘] Throw book 
+```
+
 ### `joke` - Generate random joke
 
 Generates random joke from database.
