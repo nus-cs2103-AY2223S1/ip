@@ -17,36 +17,19 @@ import duke.ui.Ui;
  */
 public class Duke {
 
-    private static final String defaultFilePath = "src/main/java/duke/data/tasks.txt";
     private static final String greetingMessage = "Welcome to Aladdin Services";
     private final Storage storage;
     private final TaskList tasks;
     private final Ui ui;
     private final Parser parser;
-    private final String filepath;
-
-    /**
-     * Duke Constructor
-     *
-     * @param filePath
-     *            The path to the file where the data is stored.
-     */
-    public Duke(String filePath) {
-        this.filepath = filePath;
-        ui = new Ui();
-        storage = new Storage();
-        tasks = new TaskList(storage.load(this.filepath));
-        parser = new Parser();
-    }
 
     /**
      * Duke Constructor
      */
     public Duke() {
-        this.filepath = defaultFilePath;
         ui = new Ui();
         storage = new Storage();
-        tasks = new TaskList(storage.load(this.filepath));
+        tasks = new TaskList(storage.load());
         parser = new Parser();
     }
 
@@ -91,7 +74,7 @@ public class Duke {
             BaseTaskCommand taskCommand = (BaseTaskCommand) command;
             taskCommand.setTaskList(this.tasks);
             result = taskCommand.execute();
-            storage.writeDataToFile(this.filepath, tasks.exportTaskList());
+            storage.writeDataToFile(tasks.exportTaskList());
             return result;
         }
         return command.execute();
@@ -119,23 +102,7 @@ public class Duke {
      *            the input arguments
      */
     public static void main(String[] args) {
-        if (args.length > 0 && isValidFilePath(args[0])) {
-            new Duke(args[0]).run();
-        } else {
-            new Duke().run();
-        }
-    }
-
-    /**
-     * The isValidFilePath function checks to see if the string passed in is a valid
-     * file path.
-     *
-     * @param string
-     *            Check if the file path is valid
-     * @return True
-     */
-    private static boolean isValidFilePath(String string) {
-        return true;
+        new Duke().run();
     }
 
     /**
@@ -157,8 +124,12 @@ public class Duke {
         } catch (NoCommandException | ParseException e) {
             command = new ErrorCommand(e.getMessage());
         }
-        CommandResult result = runCommand(command);
-        return result.getMessage();
+        try {
+            CommandResult result = runCommand(command);
+            return result.getMessage();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     /**

@@ -15,7 +15,6 @@ public class FindTaskCommand extends BaseTaskCommand {
     /**
      * Find Task Command Constructor
      *
-     * @param searchTerm
      */
     public FindTaskCommand(String searchTerm) {
         assert Objects.nonNull(searchTerm);

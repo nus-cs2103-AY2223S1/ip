@@ -11,7 +11,6 @@ public class TaskIndex {
     /**
      * TaskIndex constructor method
      *
-     * @param zeroBasedTaskIndex
      */
     private TaskIndex(int zeroBasedTaskIndex) {
         if (zeroBasedTaskIndex < 0) {

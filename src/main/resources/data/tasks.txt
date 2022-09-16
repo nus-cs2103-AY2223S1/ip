@@ -1,0 +1,8 @@
+T@@@0@@@buy book@@@$_$
+T@@@0@@@buy milk@@@$_$
+T@@@0@@@buy milk@@@$_$
+T@@@0@@@read book@@@$_$
+D@@@0@@@return book@@@06-06-2019 00:00
+E@@@0@@@project meeting@@@05-12-2019 12:00
+E@@@0@@@project meeting@@@05-12-2019 12:00
+T@@@0@@@revise for exams@@@$_$

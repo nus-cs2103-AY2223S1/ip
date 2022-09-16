@@ -14,7 +14,6 @@ public class AddTodoCommand extends BaseTaskCommand {
     /**
      * AddTodoCommand constructor method
      *
-     * @param todo
      */
     public AddTodoCommand(Todo todo) {
         this.todo = todo;

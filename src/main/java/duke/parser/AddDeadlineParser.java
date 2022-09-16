@@ -16,11 +16,10 @@ import duke.exceptions.ParseException;
 public class AddDeadlineParser implements IParser<AddDeadlineCommand> {
     private static final Pattern ADD_DEADLINE_COMMAND_FORMAT = Pattern.compile(
             String.format("(?<title>.*)%s(?<subArgs>.*)", AddDeadlineCommand.SUBCOMMAND_WORD));
-    private Matcher matcher;
 
     @Override
     public AddDeadlineCommand parse(String arguments) throws ParseException {
-        matcher = ADD_DEADLINE_COMMAND_FORMAT.matcher(arguments.trim());
+        Matcher matcher = ADD_DEADLINE_COMMAND_FORMAT.matcher(arguments.trim());
         if (!matcher.matches()) {
             throw new ParseException(
                     "Deadlines need a by command");

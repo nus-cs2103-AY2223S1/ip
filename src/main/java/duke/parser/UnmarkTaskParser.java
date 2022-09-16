@@ -12,7 +12,7 @@ public class UnmarkTaskParser implements IParser<UnmarkTaskCommand> {
     @Override
     public UnmarkTaskCommand parse(String arguments) throws ParseException {
         String taskIndexString = arguments.trim();
-        if (!ParserUtil.isNumeric(taskIndexString)) {
+        if (ParserUtil.isNumeric(taskIndexString)) {
             throw new ParseException(
                     "Sorry the second argument is not a number");
         }

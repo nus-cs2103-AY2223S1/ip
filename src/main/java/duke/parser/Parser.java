@@ -31,7 +31,6 @@ public class Parser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
             "(?<commandWord>^\\s*\\w+)(?<arguments>.*)");
     private final Set<String> availableCommands;
-    private Matcher matcher;
 
     /**
      * Parser constructor method
@@ -60,11 +59,9 @@ public class Parser {
      *
      * @param userInput
      *            Get the user input
-     * @throws NoCommandException
-     * @throws ParseException
      */
     public BaseCommand parse(String userInput) throws NoCommandException, ParseException {
-        matcher = BASIC_COMMAND_FORMAT.matcher(
+        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(
                 userInput
                         .trim()
                         .replaceAll(" +", " "));

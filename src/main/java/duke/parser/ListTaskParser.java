@@ -13,11 +13,10 @@ import duke.commands.tasks.ListTasksCommand;
 public class ListTaskParser implements IParser<ListTasksCommand> {
     private static final Pattern LIST_TASKS_COMMAND_FORMAT = Pattern.compile(
             "(?<subCommandWord>^\\s*\\w+)(?<subArgs>.*)");
-    private Matcher matcher;
 
     @Override
     public ListTasksCommand parse(String args) {
-        matcher = LIST_TASKS_COMMAND_FORMAT.matcher(args.trim());
+        Matcher matcher = LIST_TASKS_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new ListTasksCommand();
         }

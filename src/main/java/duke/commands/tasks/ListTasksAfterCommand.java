@@ -16,7 +16,6 @@ public class ListTasksAfterCommand extends ListTasksCommand {
     /**
      * ListTaskAfterCommand constructor
      *
-     * @param dateTime
      */
     public ListTasksAfterCommand(LocalDateTime dateTime) {
         assert Objects.nonNull(dateTime);

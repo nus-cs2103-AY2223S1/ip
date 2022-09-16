@@ -12,7 +12,7 @@ public class DeleteTaskParser implements IParser<DeleteTaskCommand> {
     @Override
     public DeleteTaskCommand parse(String arguments) throws ParseException {
         String taskIndexString = arguments.trim();
-        if (!ParserUtil.isNumeric(taskIndexString)) {
+        if (ParserUtil.isNumeric(taskIndexString)) {
             throw new ParseException(
                     "Sorry the second argument is not a number");
         }

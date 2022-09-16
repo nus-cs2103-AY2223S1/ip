@@ -81,14 +81,14 @@ public class ParserUtil {
      */
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
-            return false;
+            return true;
         }
         try {
             Integer.parseInt(strNum);
         } catch (NumberFormatException nfe) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**

@@ -15,7 +15,6 @@ public class AddEventCommand extends BaseTaskCommand {
     /**
      * AddEventCommand constructor method
      *
-     * @param event
      */
     public AddEventCommand(Event event) {
         this.event = event;

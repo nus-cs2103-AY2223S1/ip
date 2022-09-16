@@ -17,7 +17,6 @@ public class SortTasksCommand extends BaseTaskCommand {
     /**
      * SortTasksCommand constructor method
      *
-     * @param direction
      */
     public SortTasksCommand(SortTaskEnum direction) {
         assert Objects.nonNull(direction);

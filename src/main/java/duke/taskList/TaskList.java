@@ -109,11 +109,6 @@ public class TaskList {
      * @return the list
      */
     public List<String> exportTaskList() {
-        // List<String> result = new ArrayList<>();
-        // for (int i = 0; i < this.taskList.size(); i++) {
-        // result.add(this.taskList.get(i).exportString());
-        // }
-        // return result;
         return this.taskList
                 .stream()
                 .map(Task::exportString)

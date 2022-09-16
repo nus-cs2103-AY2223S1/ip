@@ -16,11 +16,10 @@ import duke.exceptions.ParseException;
 public class AddEventParser implements IParser<AddEventCommand> {
     private static final Pattern ADD_EVENT_COMMAND_FORMAT = Pattern.compile(
             String.format("(?<title>.*)%s(?<subArgs>.*)", AddEventCommand.SUBCOMMAND_WORD));
-    private Matcher matcher;
 
     @Override
     public AddEventCommand parse(String arguments) throws ParseException {
-        matcher = ADD_EVENT_COMMAND_FORMAT.matcher(arguments.trim());
+        Matcher matcher = ADD_EVENT_COMMAND_FORMAT.matcher(arguments.trim());
         if (!matcher.matches()) {
             throw new ParseException(
                     "Events need a at command");

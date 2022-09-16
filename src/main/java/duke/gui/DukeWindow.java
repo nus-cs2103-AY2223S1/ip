@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 import duke.Duke;
+import duke.commands.ExitCommand;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -83,6 +84,9 @@ public class DukeWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DukeDialogBox.getUserDialog(input, userImage),
                 DukeDialogBox.getDukeDialog(response, dukeImage));
+        if (Objects.equals(response, ExitCommand.SUCCESS_STRING)) {
+            System.exit(0);
+        }
         userInput.clear();
     }
 }

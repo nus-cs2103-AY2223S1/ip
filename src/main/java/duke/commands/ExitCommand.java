@@ -5,11 +5,11 @@ package duke.commands;
  */
 public class ExitCommand implements BaseCommand {
     public static final String COMMAND_WORD = "exit";
+    public static final String SUCCESS_STRING = "Thank you for using aladdin services!\n";
 
     @Override
     public CommandResult execute() {
-        String successMessage = "Thank you for using aladdin services!\n";
-        return new CommandResult(successMessage);
+        return new CommandResult(SUCCESS_STRING);
     }
 
     public static boolean equals(BaseCommand command) {
