@@ -201,7 +201,6 @@ Expected outcome:
 You have 2 events. ;)
 ```
 
-
 ## Command Summary
 | Action          | Format, Example                          |
 |-----------------|------------------------------------------|
