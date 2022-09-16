@@ -62,7 +62,6 @@ public class Storage {
             this.createFile();
             return existingTasks;
         }
-
         FileReader file = new FileReader(fileLocation);
         Scanner sc = new Scanner(file);
         while (sc.hasNextLine()) {

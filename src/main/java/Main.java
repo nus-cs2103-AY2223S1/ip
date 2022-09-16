@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private static final String FILE_LOCATION = "./data/duke.txt";
+    private static final String FILE_LOCATION = "./data/anya.txt";
 
     private Anya anya;
 
@@ -29,6 +29,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setAnya(anya);
             stage.show();
         } catch (IOException e) {

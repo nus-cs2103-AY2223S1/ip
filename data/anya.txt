@@ -7,6 +7,7 @@
 7:T: :go Japan
 8:D:X:finish hw 4:2022-11-11
 9:T: :learn how to make cake
-10:D: :finish hw 3:2022-09-16
-11:E: :project meeting:2022-09-17
-12:D: :assignment 5:2022-12-13
+10:D:X:finish hw 3:2022-09-16
+11:D: :assignment 5:2022-12-13
+12:T: :learn dance
+13:D: :finish tp code:2022-11-11
