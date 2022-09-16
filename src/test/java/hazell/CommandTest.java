@@ -1,9 +1,13 @@
 package hazell;
 
-import hazell.exceptions.KwargNotFound;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import hazell.exceptions.KwargNotFound;
+
 
 public class CommandTest {
     @Test

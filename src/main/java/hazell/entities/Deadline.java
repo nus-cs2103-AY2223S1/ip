@@ -1,12 +1,10 @@
 package hazell.entities;
 
-import hazell.exceptions.TaskDescriptionEmpty;
-
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import hazell.exceptions.TaskDescriptionEmpty;
 
 /**
  * A task that needs to be done by a specific time.

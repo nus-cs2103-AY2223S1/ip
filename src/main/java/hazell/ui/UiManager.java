@@ -1,9 +1,9 @@
 package hazell.ui;
 
-import hazell.Hazell;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import hazell.Hazell;
 
 /**
  * Manages multiple Ui objects.

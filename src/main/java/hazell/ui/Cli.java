@@ -1,9 +1,8 @@
 package hazell.ui;
 
-import hazell.Command;
-import hazell.Hazell;
-
 import java.util.Scanner;
+
+import hazell.Hazell;
 
 /**
  * A class that abstracts the interactions with user via the command line.

@@ -1,12 +1,12 @@
 package hazell;
 
+import java.io.IOException;
+
 import hazell.entities.TaskList;
 import hazell.exceptions.HazellException;
 import hazell.ui.Cli;
 import hazell.ui.UiInterface;
 import hazell.ui.UiManager;
-
-import java.io.IOException;
 
 /**
  * Main class of the chatbot.

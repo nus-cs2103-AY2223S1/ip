@@ -1,10 +1,11 @@
 package hazell;
 
-import hazell.entities.ToDo;
-import hazell.exceptions.TaskDescriptionEmpty;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import hazell.entities.ToDo;
+import hazell.exceptions.TaskDescriptionEmpty;
 
 public class ToDoTest {
     @Test
