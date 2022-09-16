@@ -5,6 +5,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * ListCommand lists the tasks currently present in task list.
+ */
 public class ListCommand extends Command{
 
     /**
@@ -13,6 +16,8 @@ public class ListCommand extends Command{
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.
+     * @return String output to be displayed by duke.
+     * @throws DukeException
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{

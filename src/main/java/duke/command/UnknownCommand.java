@@ -5,6 +5,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * UnknownCommand represents the commands that the user inputs that are not recognised by duke.
+ */
 public class UnknownCommand extends Command {
 
     /**
@@ -13,6 +16,7 @@ public class UnknownCommand extends Command {
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.
+     * @return String output to be displayed by duke.
      * @throws DukeException
      */
     @Override

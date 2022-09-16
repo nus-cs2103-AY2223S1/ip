@@ -5,6 +5,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * UnmarkCommand marks the task specified as incomplete.
+ */
 public class UnmarkCommand extends Command {
 
     /**
@@ -22,6 +25,8 @@ public class UnmarkCommand extends Command {
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.
+     * @return String output to be displayed by duke.
+     * @throws DukeException
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{

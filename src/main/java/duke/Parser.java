@@ -13,7 +13,9 @@ import duke.command.TodoCommand;
 import duke.command.UnknownCommand;
 import duke.command.UnmarkCommand;
 
-
+/**
+ * Parser parses the string input
+ */
 public class Parser {
 
     /**

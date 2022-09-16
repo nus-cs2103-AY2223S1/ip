@@ -2,6 +2,9 @@ package duke;
 
 import duke.command.Command;
 
+/**
+ * The main duke program.
+ */
 public class Duke {
 
     /**
@@ -29,7 +32,9 @@ public class Duke {
      */
     private boolean isExit = false;
 
-    
+    /**
+     * Creates an instance of Duke.
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage("./data/dukeInfo.txt");
@@ -42,6 +47,12 @@ public class Duke {
         return this.ui;
     }
 
+    /**
+     * Gets the response from duke, from the execution of the user command.
+     *
+     * @param input User input.
+     * @return String representation of duke's response to user command.
+     */
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);

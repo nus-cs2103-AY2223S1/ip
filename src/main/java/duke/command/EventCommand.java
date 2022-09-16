@@ -1,15 +1,17 @@
 package duke.command;
 
-import duke.Deadline;
+
 import duke.DukeException;
 import duke.Event;
 import duke.Storage;
-import duke.Task;
 import duke.TaskList;
 import duke.Ui;
 
 import java.time.LocalDate;
 
+/**
+ * EventCommand creates a new Event task based on the user input.
+ */
 public class EventCommand extends Command {
 
     private String input;
@@ -18,6 +20,11 @@ public class EventCommand extends Command {
     private static final String yyyymmddRegex = "[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}";
     private static final String timeRegex = "[0-9]{4}";
 
+    /**
+     * Creates a new EventCommand.
+     *
+     * @param input User input from the command line interface.
+     */
     public EventCommand (String input) {
         this.input = input;
     }
@@ -28,6 +35,8 @@ public class EventCommand extends Command {
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.
+     * @return String output to be displayed by duke.
+     * @throws DukeException
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{

@@ -7,6 +7,9 @@ import duke.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * FindCommand looks for tasks in the task list based on user input.
+ */
 public class FindCommand extends Command{
 
     /**
@@ -14,6 +17,11 @@ public class FindCommand extends Command{
      */
     private String input;
 
+    /**
+     * Creates a new FindCommand.
+     *
+     * @param input String used for find command.
+     */
     public FindCommand(String input) {
         this.input = input;
     }
@@ -24,6 +32,7 @@ public class FindCommand extends Command{
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.
+     * @return String output to be displayed by duke.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {

@@ -3,6 +3,9 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A deadline is a type of task that contains a date that the task is due by.
+ */
 public class Deadline extends Task{
 
     /**
@@ -17,6 +20,12 @@ public class Deadline extends Task{
 
     private boolean isConverterdTime = false;
 
+
+    /**
+     * Creates a new Deadline.
+     *
+     * @param name The name of the deadline.
+     */
     public Deadline(String name) {
         super(name);
 

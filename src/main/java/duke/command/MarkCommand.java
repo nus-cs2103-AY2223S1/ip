@@ -5,6 +5,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * MarkCommand marks the task specified as completed.
+ */
 public class MarkCommand extends Command{
 
     /**
@@ -12,6 +15,11 @@ public class MarkCommand extends Command{
      */
     private String[] arg;
 
+    /**
+     * Creates a new MarkCommand.
+     *
+     * @param arg String array containing arguments from the user input.
+     */
     public MarkCommand(String[] arg) {
         this.arg = arg;
     }
@@ -22,6 +30,8 @@ public class MarkCommand extends Command{
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.
+     * @return String output to be displayed by duke.
+     * @throws DukeException
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

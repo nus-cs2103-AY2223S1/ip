@@ -14,6 +14,12 @@ import javafx.scene.layout.HBox;
 import java.io.IOException;
 import java.util.Collections;
 
+
+/**
+ * An example of a custom control using FXML.
+ * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
+ * containing text from the speaker.
+ */
 public class DialogBox extends HBox{
 
     @FXML
@@ -22,7 +28,7 @@ public class DialogBox extends HBox{
     @FXML
     private ImageView displayPicture;
 
-    public DialogBox(String txt, Image img) {
+    private DialogBox(String txt, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(duke.MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -37,6 +43,9 @@ public class DialogBox extends HBox{
         displayPicture.setImage(img);
     }
 
+    /**
+     * Flips the dialog box such that the ImageView is on the left and text on the right.
+     */
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
@@ -44,10 +53,24 @@ public class DialogBox extends HBox{
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Creates a DialogBox that belongs to the user.
+     *
+     * @param txt the text shown in the dialog box.
+     * @param img the image shown in the dialog box.
+     * @return
+     */
     public static DialogBox getUserDialog(String txt, Image img) {
         return new DialogBox(txt, img);
     }
 
+    /**
+     * Creates a DialogBox that belongs to duke.
+     *
+     * @param txt the text shown in the dialog box.
+     * @param img the image shown in the dialog box.
+     * @return
+     */
     public static DialogBox getDukeDialog(String txt, Image img) {
         var db = new DialogBox(txt, img);
         db.flip();

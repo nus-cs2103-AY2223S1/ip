@@ -1,13 +1,16 @@
 package duke.command;
 
 import duke.Deadline;
-import duke.Duke;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import java.time.LocalDate;
 
+/**
+ * DeadlineCommand creates a new deadline task based on the user input.
+ * Adds the new task to the existing task list.
+ */
 public class DeadlineCommand extends Command {
 
     /**
@@ -19,6 +22,11 @@ public class DeadlineCommand extends Command {
     private static final String yyyymmddRegex = "[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}";
     private static final String timeRegex = "[0-9]{4}";
 
+    /**
+     * Creates a new DeadlineCommand.
+     *
+     * @param input
+     */
     public DeadlineCommand (String input) {
         this.input = input;
     }
@@ -28,7 +36,9 @@ public class DeadlineCommand extends Command {
      *
      * @param tasks List of tasks.
      * @param ui User interface for duke.
-     * @param storage Storage information for tasks.
+     * @param storage Storage information for task.
+     * @return String output to be displayed by duke.
+     * @throws DukeException
      */
 
     @Override
