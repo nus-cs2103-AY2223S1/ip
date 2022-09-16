@@ -1,10 +1,16 @@
 # User Guide
-
+![](Ui.png)
 ## Features 
 
-### Feature-ABC
+### Adding a Todo task: `todo`
 
-Description of the feature.
+Adds a Todo task to the list.
+
+Format: `todo DESCRIPTION`
+
+Examples:
+
+- `todo Read book`
 
 ### Feature-XYZ
 
