@@ -38,8 +38,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileString() {
-        return String.format("D | %s | %s | %s | %d", super.getFileIcon(),
+        return String.format("D | %s | %s | %s | %s", super.getFileIcon(),
                 super.toString(), this.deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")),
-                super.getPriorityInteger());
+                super.getPriorityLevel());
     }
 }
