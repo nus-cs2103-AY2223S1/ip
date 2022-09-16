@@ -36,7 +36,7 @@ public class Parser {
      * @return A length-2 {@code String} array with the command as the first element
      *     and the parameters as the second element.
      */
-    protected String[] parseFullCommand(String input) {
+    protected static String[] parseFullCommand(String input) {
         return input.split(" ", 2);
     }
 
@@ -47,7 +47,7 @@ public class Parser {
      * @param input The input {@code String} to be parsed.
      * @return The {@code Command} in the input.
      */
-    protected Command parseCommand(String input) throws DukeInvalidCommandException {
+    protected static Command parseCommand(String input) throws DukeInvalidCommandException {
         String[] fullCommand = parseFullCommand(input);
         String command = fullCommand[0].toUpperCase();
         if (!Command.contains(command)) {
@@ -63,7 +63,7 @@ public class Parser {
      * @param timeZone The timezone of the input.
      * @return The {@code ZonedDateTime} object.
      */
-    protected ZonedDateTime parseDateTime(String input, ZoneId timeZone) {
+    protected static ZonedDateTime parseDateTime(String input, ZoneId timeZone) {
         return ZonedDateTime.parse(input + " " + timeZone, DATE_TIME_FORMATTER);
     }
 
@@ -73,7 +73,7 @@ public class Parser {
      * @param input The input {@code String} to be parsed.
      * @return The {@code Duration} object.
      */
-    protected Duration parseDuration(String input) {
+    protected static Duration parseDuration(String input) {
         // TODO: Implement parseDuration
         return Duration.ofHours(Integer.parseInt(input));
     }

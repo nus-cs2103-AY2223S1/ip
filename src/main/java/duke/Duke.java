@@ -45,7 +45,6 @@ public class Duke {
 
     private final Storage storage;
     private final Ui ui;
-    private final Parser parser;
     private final TaskList tasks;
 
     /**
@@ -54,7 +53,6 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         storage = new Storage();
-        parser = new Parser();
         tasks = new TaskList(storage.loadTasks(timeZone));
     }
 
@@ -66,7 +64,6 @@ public class Duke {
     public Duke(String saveFile) {
         ui = new Ui();
         storage = new Storage(saveFile);
-        parser = new Parser();
         tasks = new TaskList(storage.loadTasks(timeZone));
     }
 
@@ -77,8 +74,8 @@ public class Duke {
      */
     protected String getResponse(String input) {
         try {
-            String[] fullCommand = parser.parseFullCommand(input);
-            Command command = parser.parseCommand(input);
+            String[] fullCommand = Parser.parseFullCommand(input);
+            Command command = Parser.parseCommand(input);
 
             // Handle commands
             switch (command) {
@@ -252,7 +249,7 @@ public class Duke {
 
         try {
             String[] newDeadline = fullCommand[1].split(" /by ", 2);
-            ZonedDateTime by = parser.parseDateTime(newDeadline[1], timeZone);
+            ZonedDateTime by = Parser.parseDateTime(newDeadline[1], timeZone);
             Deadline deadline = new Deadline(newDeadline[0], by);
             tasks.add(deadline);
             return ui.getNewTaskMessage(deadline, tasks.size());
@@ -277,7 +274,7 @@ public class Duke {
 
         try {
             String[] newEvent = fullCommand[1].split(" /at ", 2);
-            ZonedDateTime at = parser.parseDateTime(newEvent[1], timeZone);
+            ZonedDateTime at = Parser.parseDateTime(newEvent[1], timeZone);
             Event event = new Event(newEvent[0], at);
             tasks.add(event);
             return ui.getNewTaskMessage(event, tasks.size());
@@ -301,7 +298,7 @@ public class Duke {
 
         try {
             String[] newActivity = fullCommand[1].split(" /for ", 2);
-            Duration duration = parser.parseDuration(newActivity[1]);
+            Duration duration = Parser.parseDuration(newActivity[1]);
             Activity activity = new Activity(newActivity[0], duration);
             tasks.add(activity);
             return ui.getNewTaskMessage(activity, tasks.size());
