@@ -77,7 +77,10 @@ public class ChatResponse {
      * @param taskList Current task list after task is added.
      */
     public static String returnChatAddTask(Task task, TaskList taskList) {
-        return String.format("Nice, I added a task:\n  %s\nNow you have %s %s in your list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
+        return String.format("Nice, I added a task:\n  %s\nNow you have %s %s in your list.\n",
+                task,
+                taskList.size(),
+                taskList.size() != 1 ? "tasks" : "task");
     }
 
     /**
@@ -87,7 +90,10 @@ public class ChatResponse {
      * @param taskList Current task list after task is added.
      */
     public static String returnChatDeleteTask(Task task, TaskList taskList) {
-        return String.format("Cool. I've removed this task:\n %s\nNow you have %s %s in the list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
+        return String.format("Cool. I've removed this task:\n %s\nNow you have %s %s in the list.\n",
+                task,
+                taskList.size(),
+                taskList.size() != 1 ? "tasks" : "task");
     }
 
     /**

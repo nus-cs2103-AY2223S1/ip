@@ -29,8 +29,8 @@ enum StatisticTarget {
  */
 public class StatisticsCommand extends Command {
     private final String[] args;
-    private final StatisticType statistic_type;
-    private final StatisticTarget statistic_target;
+    private final StatisticType statisticType;
+    private final StatisticTarget statisticTarget;
 
     /**
      * Constructor for Statistics command.
@@ -41,8 +41,8 @@ public class StatisticsCommand extends Command {
         assert isValidStatisticType(args[0]) : "Invalid statistic type. Is there missing validation?";
         assert isValidStatisticTarget(args[1]) : "Invalid statistic target. Is there missing validation?";
         this.args = args;
-        this.statistic_type = StatisticType.valueOf(args[0].toUpperCase());
-        this.statistic_target = StatisticTarget.valueOf(args[1].toUpperCase());
+        this.statisticType = StatisticType.valueOf(args[0].toUpperCase());
+        this.statisticTarget = StatisticTarget.valueOf(args[1].toUpperCase());
     }
 
     /**
@@ -134,9 +134,9 @@ public class StatisticsCommand extends Command {
     @Override
     public String execute(TaskList taskList) {
         String msg = "";
-        switch (statistic_type) {
+        switch (statisticType) {
         case COUNT: {
-            msg = getStatisticCount(statistic_target, taskList);
+            msg = getStatisticCount(statisticTarget, taskList);
             break;
         }
         default: {

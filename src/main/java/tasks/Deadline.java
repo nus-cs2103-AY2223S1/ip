@@ -44,7 +44,8 @@ public class Deadline extends Task {
      */
     @Override
     public String getEncodedValue() {
-        String formattedBy = this.by.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT));
+        String formattedBy = this.by.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm")
+                .withResolverStyle(ResolverStyle.STRICT));
         return String.format("[D]#%s#%s#%s", getTaskDescription(), getIsComplete(), formattedBy);
     }
 
@@ -55,7 +56,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String formattedBy = this.by.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT));
+        String formattedBy = this.by.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm")
+                .withResolverStyle(ResolverStyle.STRICT));
         return String.format("[D] %s (by: %s)", super.toString(), formattedBy);
     }
 }

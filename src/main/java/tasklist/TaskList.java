@@ -1,9 +1,10 @@
 package tasklist;
 
-import tasks.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import tasks.Task;
+
 
 /**
  * Utility class that handles CRUD operations regarding the task list in memory.

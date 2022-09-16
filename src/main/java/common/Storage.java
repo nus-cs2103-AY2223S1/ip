@@ -1,12 +1,5 @@
 package common;
 
-import commands.DeadlineCommand;
-import commands.EventCommand;
-import tasklist.TaskList;
-import tasks.Deadline;
-import tasks.Event;
-import tasks.ToDo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +7,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+
+import commands.DeadlineCommand;
+import commands.EventCommand;
+import tasklist.TaskList;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.ToDo;
 
 /**
  * Utility class that handles reading and writing from an external storage (.txt) file.
@@ -92,11 +92,14 @@ public class Storage {
                 break;
             }
             case "[D]": {
-                taskList.addTask(new Deadline(encodedTask[1], Boolean.parseBoolean(encodedTask[2]), DeadlineCommand.parseDeadlineDatetimeFromStorage(encodedTask[3])));
+                taskList.addTask(new Deadline(encodedTask[1], Boolean.parseBoolean(encodedTask[2]),
+                        DeadlineCommand.parseDeadlineDatetimeFromStorage(encodedTask[3])));
                 break;
             }
             case "[E]": {
-                taskList.addTask(new Event(encodedTask[1], Boolean.parseBoolean(encodedTask[2]), EventCommand.parseEventDatetimeFromStorage(encodedTask[3]), EventCommand.parseEventDatetimeFromStorage(encodedTask[4])));
+                taskList.addTask(new Event(encodedTask[1], Boolean.parseBoolean(encodedTask[2]),
+                        EventCommand.parseEventDatetimeFromStorage(encodedTask[3]),
+                        EventCommand.parseEventDatetimeFromStorage(encodedTask[4])));
                 break;
             }
             default:

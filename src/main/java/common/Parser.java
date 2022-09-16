@@ -1,14 +1,24 @@
 package common;
 
-import commands.*;
-import dukeexceptions.DukeException;
-import dukeexceptions.UnknownCommandException;
-
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import commands.DeadlineCommand;
+import commands.DeleteCommand;
+import commands.EventCommand;
+import commands.FindCommand;
+import commands.GoodbyeCommand;
+import commands.InvalidCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
+import commands.StatisticsCommand;
+import commands.ToDoCommand;
+import commands.UnmarkCommand;
+import dukeexceptions.DukeException;
+import dukeexceptions.UnknownCommandException;
 
 enum Command {
     BYE,

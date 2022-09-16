@@ -1,5 +1,10 @@
 package commands;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+import java.util.Arrays;
+
 import common.ChatResponse;
 import common.Parser;
 import dukeexceptions.DukeException;
@@ -7,11 +12,6 @@ import dukeexceptions.MissingDescriptionException;
 import dukeexceptions.WrongDatetimeFormatException;
 import tasklist.TaskList;
 import tasks.Event;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
-import java.util.Arrays;
 
 /**
  * Represents an Event command.

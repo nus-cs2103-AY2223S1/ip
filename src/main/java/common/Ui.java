@@ -1,9 +1,9 @@
 package common;
 
+import java.util.Scanner;
+
 import tasklist.TaskList;
 import tasks.Task;
-
-import java.util.Scanner;
 
 /**
  * Utility class that handles printing to terminal and reading user input.
@@ -97,7 +97,10 @@ public class Ui {
      * @param taskList Current task list after task is added.
      */
     public static void printAddTask(Task task, TaskList taskList) {
-        System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
+        System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n",
+                task,
+                taskList.size(),
+                taskList.size() != 1 ? "tasks" : "task");
     }
 
     /**
@@ -107,7 +110,10 @@ public class Ui {
      * @param taskList Current task list after task is added.
      */
     public static void printDeleteTask(Task task, TaskList taskList) {
-        System.out.format("Noted. I've removed this task:\n %s\nNow you have %s %s in the list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
+        System.out.format("Noted. I've removed this task:\n %s\nNow you have %s %s in the list.\n",
+                task,
+                taskList.size(),
+                taskList.size() != 1 ? "tasks" : "task");
     }
 
     /**

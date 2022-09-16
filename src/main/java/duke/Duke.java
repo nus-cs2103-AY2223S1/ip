@@ -1,5 +1,7 @@
 package duke;
 
+import java.io.IOException;
+
 import commands.Command;
 import common.ChatResponse;
 import common.Parser;
@@ -8,15 +10,14 @@ import common.Ui;
 import dukeexceptions.DukeException;
 import tasklist.TaskList;
 
-import java.io.IOException;
 
 /**
  * Duke is a CLI-program that allows users to perform CRUD operations
  * on user-defined tasks. These are saved to an external storage (txt file).
  */
 public class Duke {
-    static final String storageName = "storage.txt";
-    static final String storageDirName = "data";
+    private static final String storageName = "storage.txt";
+    private static final String storageDirName = "data";
     private Storage storage;
     private TaskList taskList = new TaskList();
 

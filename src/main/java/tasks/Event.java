@@ -48,9 +48,15 @@ public class Event extends Task {
      */
     @Override
     public String getEncodedValue() {
-        String formattedStartDateTime = this.startDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT));
-        String formattedEndDateTime = this.endDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT));
-        return String.format("[E]#%s#%s#%s#%s", getTaskDescription(), getIsComplete(), formattedStartDateTime, formattedEndDateTime);
+        String formattedStartDateTime = this.startDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm")
+                .withResolverStyle(ResolverStyle.STRICT));
+        String formattedEndDateTime = this.endDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm")
+                .withResolverStyle(ResolverStyle.STRICT));
+        return String.format("[E]#%s#%s#%s#%s",
+                getTaskDescription(),
+                getIsComplete(),
+                formattedStartDateTime,
+                formattedEndDateTime);
     }
 
     /**
@@ -60,8 +66,10 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String formattedStartDateTime = this.startDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT));
-        String formattedEndDateTime = this.endDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT));
+        String formattedStartDateTime = this.startDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm")
+                .withResolverStyle(ResolverStyle.STRICT));
+        String formattedEndDateTime = this.endDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm")
+                .withResolverStyle(ResolverStyle.STRICT));
         return String.format("[E] %s (at: %s to %s)", super.toString(), formattedStartDateTime, formattedEndDateTime);
     }
 }
