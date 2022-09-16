@@ -14,7 +14,7 @@ public class DukeException extends Exception {
      * @return The description shown when a Todo task exception is detected.
      */
     public static String todoException() {
-        return "☹ OOPS!!! The description of a todo cannot be empty.";
+        return "OOPS!!! The description of a todo cannot be empty.";
     }
 
     /**
@@ -23,7 +23,7 @@ public class DukeException extends Exception {
      * @return The description shown when a task exception is detected.
      */
     public static String taskException() {
-        return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+        return "OOPS!!! I'm sorry, but I don't know what that means :-(";
     }
 
     /**
@@ -32,7 +32,7 @@ public class DukeException extends Exception {
      * @return The description shown when a date time exception is detected.
      */
     public static String dateTimeException() {
-        return "☹ OOPS!!! Please provide a valid date in yyyy-mm-dd format";
+        return "OOPS!!! Please provide a valid date in yyyy-mm-dd format";
     }
 
     /**
@@ -41,7 +41,7 @@ public class DukeException extends Exception {
      * @return The description shown when a find exception is detected.
      */
     public static String findException() {
-        return "☹ OOPS!!! This word cannot be found in any of the tasks in your task list.";
+        return "OOPS!!! This word cannot be found in any of the tasks in your task list.";
     }
 
     /**
@@ -50,6 +50,6 @@ public class DukeException extends Exception {
      * @return The description shown when a snooze exception is detected.
      */
     public static String snoozeException() {
-        return "☹ OOPS!!! This task cannot be snoozed.";
+        return "OOPS!!! This task cannot be snoozed.";
     }
 }
