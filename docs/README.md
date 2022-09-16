@@ -7,7 +7,7 @@ Duke is a Personal Assistant Chatbot that helps a person to keep track of variou
 
 >***Notes about command format***
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `todo /TASK`, `TASK` is a parameter which can be used as `todo Homework`.
+  e.g. in `todo TASK`, `TASK` is a parameter which can be used as `todo Homework`.
   
 * Date formats must be ***exactly*** as stated.
 * Commands are case-sensitive
