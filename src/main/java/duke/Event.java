@@ -32,7 +32,7 @@ public class Event extends Task {
         matcher.find();
         String description = matcher.group("description");
         String time = matcher.group("time");
-        time = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("d MMM yyyy HHmm", Locale.ENGLISH))
+        time = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd MMM yyyy HHmm", Locale.ENGLISH))
                 .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 
         return new Event(description, isDone, time);

@@ -261,7 +261,6 @@ public class Duke extends Application {
             matcher.find();
             int index = Integer.parseInt(matcher.group("index"));
             String newTask = matcher.group("newTask");
-            System.out.print("update");
             switch (Parser.parse(newTask)) {
             case TODO:
                 Task todo = new Todo(newTask.replace("todo", "").trim(), false);
