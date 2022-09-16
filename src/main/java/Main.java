@@ -1,20 +1,20 @@
 import java.io.File;
 import java.util.Scanner;
 
-import duke.Duke;
-import duke.data.FileStorage;
-import duke.data.IStorage;
-import duke.gui.Gui;
-import duke.service.Service;
-import duke.service.Ui;
+import zupey.Zupey;
+import zupey.data.FileStorage;
+import zupey.data.IStorage;
+import zupey.gui.Gui;
+import zupey.service.Service;
+import zupey.service.Ui;
 import javafx.application.Application;
 
 /**
- * Main entrypoint for Duke Application
+ * Main entrypoint for Zupey Application
  */
 public class Main {
 
-    /** Launches the Duke Application. */
+    /** Launches the Zupey Application. */
     public static void main(String[] args) {
         Application.launch(Gui.class, args);
         Ui ui = new Ui();
@@ -24,14 +24,14 @@ public class Main {
                 ui.receiveMessage("Could not create /data directory");
             }
         }
-        IStorage storage = new FileStorage("./data/duke.txt");
+        IStorage storage = new FileStorage("./data/Zupey.txt");
         Service service = new Service(storage, ui);
-        Duke duke = new Duke(service);
+        Zupey Zupey = new Zupey(service);
 
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
             String userInput = sc.nextLine();
-            String message = duke.handleCommand(userInput);
+            String message = Zupey.handleCommand(userInput);
             ui.receiveMessage(message);
             if (userInput.equals("bye")) {
                 break;
