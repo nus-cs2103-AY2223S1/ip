@@ -91,11 +91,12 @@ public class Ui {
         } else {
             int count = 1;
             for (int i = 0; i < tasks.size(); i++) {
+                result += "Here are the tasks:\n ";
                 result += count + "." + tasks.get(i) + "\n";
                 count++;
             }
         }
-        return "Here are the tasks: \n" + result;
+        return result;
     }
 
     /**

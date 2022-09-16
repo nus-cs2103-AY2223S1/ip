@@ -11,7 +11,7 @@ Are you missing deadlines because you can't remember all the work you have? Do n
 * Copy the file to the directory you want to use.
 * Please run the application.
 * A GUI similar to the above one appears.
-* If the previous step doesn't work, open the terminal and try running java -jar Bro.jar.
+* If the previous step doesn't work, open the terminal and try running java -jar bro.jar.
 * Type in the command and press Enter or click on the Send button to execute it.
 
 ## Features
