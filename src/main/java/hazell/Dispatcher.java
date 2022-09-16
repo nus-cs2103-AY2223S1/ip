@@ -14,13 +14,14 @@ public class Dispatcher {
     public Dispatcher() { }
 
     public String handle(Command command, TaskList taskList) throws HazellException {
-        String description, time;
+        String description;
+        String time;
         int index;
 
         switch (command.getFirstArg()) {
         case "bye":
             return "Bye. Hope to see you again soon!";
-//            System.exit(0);
+            // System.exit(0);
         case "list":
             return String.format("Here are the tasks in your list:\n%s", taskList);
         case "mark":

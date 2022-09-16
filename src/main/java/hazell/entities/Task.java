@@ -24,7 +24,9 @@ public abstract class Task {
      * @throws TaskDescriptionEmpty
      */
     protected void validate() throws TaskDescriptionEmpty {
-        if (description.equals("")) throw new TaskDescriptionEmpty();
+        if (description.equals("")) {
+            throw new TaskDescriptionEmpty();
+        }
     }
 
     public String getDescription() {

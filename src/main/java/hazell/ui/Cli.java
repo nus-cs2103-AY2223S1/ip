@@ -8,9 +8,6 @@ import hazell.Hazell;
  * A class that abstracts the interactions with user via the command line.
  */
 public class Cli implements UiInterface {
-    private Scanner scanner;
-
-    private Hazell hazell;
     private static final String APP_LOGO = "  _    _               _ _ \n"
             + " | |  | |             | | |\n"
             + " | |__| | __ _ _______| | |\n"
@@ -18,6 +15,11 @@ public class Cli implements UiInterface {
             + " | |  | | (_| |/ /  __/ | |\n"
             + " |_|  |_|\\__,_/___\\___|_|_|\n";
 
+    private static final String DIVIDER = "\t____________________________________________________________";
+
+    private Scanner scanner;
+
+    private Hazell hazell;
 
     /**
      * Create a new Ui instance.
@@ -59,7 +61,6 @@ public class Cli implements UiInterface {
 
     @Override
     public void displayBotResponse(String response) {
-        String DIVIDER = "\t____________________________________________________________";
         System.out.println(DIVIDER);
         for (String line : response.split("\n")) {
             System.out.println("\t" + line);

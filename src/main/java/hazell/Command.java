@@ -7,19 +7,18 @@ import java.util.Map;
 
 import hazell.exceptions.KwargNotFound;
 
+/**
+ * Represents userinput from user, parsed into arguments (args) and keyword arguments (kwargs).
+ *
+ * PARSING
+ * Format: [ARGS]... [/OPTION VALUE]...
+ * Options are specified by a slash (/) followed by a word. All non-option words that come after it
+ * are considered to be the value corresponding to that option.
+ *
+ * LIMITATIONS
+ * - Doesn't allow for multiple repeated options
+ */
 public class Command {
-    /**
-     * Represents userinput from user, parsed into arguments (args) and keyword arguments (kwargs).
-     *
-     * PARSING
-     * Format: [ARGS]... [/OPTION VALUE]...
-     * Options are specified by a slash (/) followed by a word. All non-option words that come after it
-     * are considered to be the value corresponding to that option.
-     *
-     * LIMITATIONS
-     * - Doesn't allow for multiple repeated options
-     */
-
     private final List<String> args;
     private final Map<String, String> kwargs;
 
@@ -75,8 +74,8 @@ public class Command {
 
     @Override
     public String toString() {
-        return this.args.toString() +
-                "\n" +
-                this.kwargs.toString();
+        return this.args.toString()
+                + "\n"
+                + this.kwargs.toString();
     }
 }

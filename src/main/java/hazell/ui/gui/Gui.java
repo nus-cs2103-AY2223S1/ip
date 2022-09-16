@@ -12,12 +12,12 @@ public class Gui implements UiInterface {
 
     private MainWindow window;
 
+    private String userInput = null;
+    private Hazell hazell;
+
     public Gui(MainWindow window) {
         this.window = window;
     }
-
-    private String userInput = null;
-    private Hazell hazell;
 
     @Override
     public void attachBotInstance(Hazell hazell) {

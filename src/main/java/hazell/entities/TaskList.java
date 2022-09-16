@@ -21,14 +21,15 @@ public class TaskList {
         this.store = new ArrayList<>();
     }
 
+    public TaskList(List<Task> tasks) {
+        this.store = tasks;
+    }
+
     // Quick workaround method
     public void setStorage(Storage storage) {
         this.storage = storage;
     }
 
-    public TaskList(List<Task> tasks) {
-        this.store = tasks;
-    }
 
     /**
      * Retrieves a specified task using an index (1-indexed).
@@ -55,9 +56,9 @@ public class TaskList {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return String.format("Got it. I've added this task:\n\t%s", task.toString()) +
-                "\n" +
-                this.getSummary();
+        return String.format("Got it. I've added this task:\n\t%s", task.toString())
+                + "\n"
+                + this.getSummary();
     }
 
     /**
@@ -79,9 +80,9 @@ public class TaskList {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return String.format("Noted. I've removed this task:\n\t%s", task.toString()) +
-                "\n" +
-                this.getSummary();
+        return String.format("Noted. I've removed this task:\n\t%s", task.toString())
+                + "\n"
+                + this.getSummary();
     }
 
     /**
@@ -176,9 +177,6 @@ public class TaskList {
             sb.append(task.toString());
         }
         return sb.toString();
-
-
-
     }
 
     /**
@@ -200,7 +198,9 @@ public class TaskList {
                 // This block will never be executed as we are looping within the size of store.
             }
             sb.append(String.format("%d. %s", i + 1, task));
-            if (i != this.size() - 1) sb.append("\n");
+            if (i != this.size() - 1) {
+                sb.append("\n");
+            }
         }
         return sb.toString();
     }

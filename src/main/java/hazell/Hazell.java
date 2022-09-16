@@ -12,17 +12,18 @@ import hazell.ui.UiManager;
  * Main class of the chatbot.
  */
 public class Hazell {
-    private Storage storage;
-    private TaskList taskList;
-    private Dispatcher dispatcher;
-    private UiManager ui;
-
     private static final String APP_LOGO = "  _    _               _ _ \n"
             + " | |  | |             | | |\n"
             + " | |__| | __ _ _______| | |\n"
             + " |  __  |/ _` |_  / _ \\ | |\n"
             + " | |  | | (_| |/ /  __/ | |\n"
             + " |_|  |_|\\__,_/___\\___|_|_|\n";
+
+    private Storage storage;
+    private TaskList taskList;
+    private Dispatcher dispatcher;
+    private UiManager ui;
+
 
     /**
      * Creates a new instance of the chatbot.
