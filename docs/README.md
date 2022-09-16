@@ -40,7 +40,7 @@ Notes about the command format:
 Words in ```{curly brackets}``` are the parameters to be supplied by the user.  
 e.g. in ```todo {description}``` , ```{description}``` is a parameter which can be used as ```todo homework```
 
-### Viewing help: help
+### Viewing help: ```help```
 Displays a list of available commands with examples.
 
 ### Adding a todo task: ```todo```
