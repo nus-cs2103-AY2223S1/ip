@@ -23,12 +23,7 @@ public class Ui {
      * Prints initial message.
      */
     public static String printInitialMessage() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        return logo + "Hello! I'm Yale\nWhat can I do for you?\n";
+        return "Hello! I'm Duke\nWhat can I do for you?\n";
     }
 
     /**
