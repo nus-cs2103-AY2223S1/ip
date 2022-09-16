@@ -96,7 +96,7 @@ public class Ui {
      */
     public String showBye() {
         System.out.println("Thank you for the great chat!\n\nYour task list has been successfully saved.");
-        return "Thank you for the great chat!\n\nYour task list has been successfully saved.";
+        return "Thank you for the great chat!\n\nYour task list has been successfully saved. You may exit the chatbot now.";
     }
 
     /**

@@ -2,6 +2,7 @@ package dukeprotemp;
 
 import duke.*;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -55,8 +56,10 @@ public class DukePro extends Application {
                     DialogBox.getDukeDialog(dukeText, new ImageView(duke), botBackground)
             );
         }
+
         userInput.clear();
     }
+
 
     /**
      * You should have your own function to generate a response to user input.
@@ -152,6 +155,7 @@ public class DukePro extends Application {
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
         startupDuke();
         greet();
+
     }
 }
 

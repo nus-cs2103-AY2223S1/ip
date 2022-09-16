@@ -1,5 +1,5 @@
   [T] [ ] Buy eggs
-  [T] [ ] Charge laptop
+  [T] [X] Charge laptop
   [D] [X] Drink water (by: 2022-08-26)
   [T] [ ] ES2660 Presentation Preparation
   [E] [X] Internship Day (at: Sports Hall)

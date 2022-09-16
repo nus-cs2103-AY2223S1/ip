@@ -91,6 +91,10 @@ public class Storage {
      */
     public void save(TaskList tasks) throws IOException {
         try {
+            File directory = new File("src/dukesave");
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
             File createFile = new File("src/dukesave/Duke.txt");
             if (createFile.createNewFile()) {
                 System.out.println("Creating Duke.txt...");
