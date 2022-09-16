@@ -43,6 +43,8 @@ public class DeleteTaskCommand extends Command implements ContinuableCommand {
             deleteAt(index);
             duke.sendMessage("Okay, I've removed this task,");
         }
+
+        duke.save();
     }
 
     @Override
@@ -68,6 +70,8 @@ public class DeleteTaskCommand extends Command implements ContinuableCommand {
         default:
             throw new InvalidCommandException("The previous command was ignored.");
         }
+
+        duke.save();
     }
 
     private void deleteAt(int index) {

@@ -4,17 +4,19 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import dukeprogram.User;
+import dukeprogram.facilities.User;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -27,6 +29,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.util.Duration;
+import utilities.StringUtilities;
 
 /**
  * An example of a custom control using FXML.
@@ -54,7 +57,14 @@ public class DialogBox extends HBox {
     protected DialogBox(String dialogText, User user, Color backgroundColor, Widget widget) {
         this(dialogText, user, backgroundColor);
         this.widget = widget;
-        dialogLayout.getChildren().add(widget);
+
+        ObservableList<Node> observableList = dialogLayout.getChildren();
+
+        Region spacing = new Region();
+        spacing.setMinHeight(20);
+
+        observableList.add(observableList.size() - 1, spacing);
+        observableList.add(observableList.size() - 1, widget);
     }
 
     protected DialogBox(String dialogText, User user, Color backgroundColor) {
@@ -73,12 +83,11 @@ public class DialogBox extends HBox {
 
         name.setText(user.getName());
         dialog.setText(dialogText);
-        dialog.setMinWidth(Region.USE_PREF_SIZE);
-        dialog.widthProperty().addListener(c -> {
-            dialog.setMinWidth(Math.min(dialog.getWidth(), dialogLayout.getMaxWidth()));
-        });
+        dialog.setMinWidth(Math.min(
+                StringUtilities.computeTextWidth(dialog.getFont(), dialog.getText(), 50),
+                dialogLayout.getMaxWidth()));
 
-        dialog.setPadding(new Insets(0, 0, 0, 20));
+        dialog.setPadding(new Insets(0, 0, 0, 15));
         date.setPrefWidth(Double.MAX_VALUE);
         date.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm a")));
 
@@ -95,7 +104,7 @@ public class DialogBox extends HBox {
      */
     private void flip() {
         setAlignment(Pos.TOP_LEFT);
-        dialog.setPadding(new Insets(0, 20, 0, 0));
+        dialog.setPadding(new Insets(0, 15, 0, 0));
         dialogLayout.setAlignment(Pos.TOP_LEFT);
         dialog.setAlignment(Pos.TOP_LEFT);
         date.setAlignment(Pos.CENTER_RIGHT);

@@ -42,12 +42,10 @@ public class FindTaskCommand extends Command {
                 .filter(task -> pattern.matcher(task.getName()).matches())
                 .forEach(matches::add);
 
-        duke.sendMessage("Here are the matches that I've found:",
-                new Widget("Matches",
-                        matches.stream()
+        duke.sendMessage("Here are the matches that I've found:\n"
+                        + matches.stream()
                                 .map(Task::toString)
                                 .collect(Collectors.joining("\n"))
-                )
         );
     }
 }

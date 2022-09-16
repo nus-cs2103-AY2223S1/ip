@@ -4,7 +4,8 @@ import java.util.Iterator;
 import java.util.Optional;
 
 import dukeprogram.Duke;
-import dukeprogram.User;
+import dukeprogram.facilities.LoanCollection;
+import dukeprogram.facilities.User;
 import dukeprogram.facilities.TaskList;
 import dukeprogram.storage.SaveManager;
 import exceptions.KeyNotFoundException;
@@ -16,6 +17,7 @@ public class LoadUserCommand extends Command {
 
     private User user;
     private TaskList taskList;
+    private LoanCollection loanCollection;
 
     public LoadUserCommand(Duke duke) {
         super(duke);
@@ -29,19 +31,19 @@ public class LoadUserCommand extends Command {
         if (SaveManager.deserialize("saveFile")) {
             try {
                 user = SaveManager.load("user");
-                taskList = TaskList.loadTaskList();
                 duke.sendMessage("Welcome back " + user.getName());
-                return Optional.of(user);
             } catch (KeyNotFoundException e) {
                 return Optional.empty();
             }
         } else {
             user = new User(System.getProperty("user.name"), User.USER_IMAGE);
             SaveManager.save("user", user);
-            taskList = TaskList.loadTaskList();
             duke.sendMessage("Nice to meet you " + user.getName());
-            return Optional.of(user);
         }
+
+        taskList = TaskList.loadTaskList();
+        loanCollection = LoanCollection.loadLoanCollection();
+        return Optional.of(user);
     }
 
     /**
@@ -59,5 +61,9 @@ public class LoadUserCommand extends Command {
 
     public Optional<TaskList> getTaskList() {
         return Optional.of(taskList);
+    }
+
+    public Optional<LoanCollection> getLoanCollection() {
+        return Optional.of(loanCollection);
     }
 }

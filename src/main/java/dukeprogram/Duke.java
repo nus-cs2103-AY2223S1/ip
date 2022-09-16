@@ -7,7 +7,9 @@ import java.util.TimerTask;
 
 import dukeprogram.command.ContinuableCommand;
 import dukeprogram.command.LoadUserCommand;
+import dukeprogram.facilities.LoanCollection;
 import dukeprogram.facilities.TaskList;
+import dukeprogram.facilities.User;
 import dukeprogram.parser.Parser;
 import dukeprogram.storage.SaveManager;
 import dukeprogram.userinterface.DukeResponse;
@@ -24,6 +26,7 @@ public class Duke {
 
     private User user;
     private TaskList taskList;
+    private LoanCollection loanCollection;
     private final Parser parser;
 
     private Optional<ContinuableCommand> attachedState = Optional.empty();
@@ -40,6 +43,7 @@ public class Duke {
                 loadedUser -> {
                     this.user = loadedUser;
                     this.taskList = loadUserCommand.getTaskList().orElseThrow(NullPointerException::new);
+                    this.loanCollection = loadUserCommand.getLoanCollection().orElseThrow(NullPointerException::new);
                 },
                 //CHECKSTYLE.OFF: SeparatorWrap
                 () -> sendMessage("I can't identify you, file was corrupted...")
@@ -49,13 +53,8 @@ public class Duke {
         saveTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                try {
-                    SaveManager.serialize("savefile");
-                    sendMessage("Oh, by the way, I just saved your file.");
-                } catch (IOException e) {
-                    sendMessage("I tried to save this file, but I couldn't for some reason...");
-                    sendMessage("Is the save file open on your computer?");
-                }
+                save();
+                sendMessage("Oh, by the way, I just saved your file.");
             }
         }, 300_000, 300_000);
     }
@@ -114,7 +113,24 @@ public class Duke {
         return taskList;
     }
 
+    public LoanCollection getLoanCollection() {
+        return loanCollection;
+    }
+
     public User getUser() {
         return user;
+    }
+
+    /**
+     * Saves this file to disk by calling the serialize method on the SaveManager
+     */
+    public void save() {
+        try {
+            SaveManager.serialize("savefile");
+        } catch (IOException e) {
+            sendMessage("Hey, I tried to save this file, but I couldn't for some reason...");
+            sendMessage("Is the save file open on your computer?");
+            System.out.println(e);
+        }
     }
 }

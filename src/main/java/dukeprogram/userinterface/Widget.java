@@ -9,14 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 
 /**
  * A Widget that is optionally nested in a Dialog Box, showing additional information
  */
-public class Widget extends Pane {
+public class Widget extends VBox {
 
     @FXML
     private Label titleLabel;
@@ -28,7 +29,7 @@ public class Widget extends Pane {
     /**
      * Creates a widget
      */
-    public Widget(String title, String description) {
+    public Widget(Region... elements) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/Widget.fxml"));
             fxmlLoader.setController(this);
@@ -44,7 +45,11 @@ public class Widget extends Pane {
                 new Insets(5, 5, 5, 5)))
         );
 
-        titleLabel.setText(title);
-        descriptionLabel.setText(description);
+        this.widthProperty().addListener(c -> {
+            for (Region element : elements) {
+                element.setMinWidth(this.getWidth());
+            }
+        });
+        getChildren().addAll(elements);
     }
 }

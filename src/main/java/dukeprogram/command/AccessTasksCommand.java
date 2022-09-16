@@ -30,7 +30,7 @@ public class AccessTasksCommand extends Command {
 
         switch (thisElement) {
         case "list":
-            new ListTasksCommand(duke).listTasksToGui();
+            new ListTasksCommand(duke).printToGui();
             break;
 
         case "find":
@@ -53,8 +53,22 @@ public class AccessTasksCommand extends Command {
             new DeleteTaskCommand(duke).parse(elements);
             break;
 
+        case "help":
+            printHelp();
+            break;
+
         default:
             throw new InvalidCommandException(String.format("I'm cannot perform %s", thisElement));
         }
+    }
+
+    private void printHelp() {
+        duke.sendMessage("You can specify "
+                + "list, find, add, mark, unmark or delete "
+                + "after the tasks arguments to use a procedure in tasks.");
+        duke.sendMessage("For example, you can do \"tasks list\" to list all current tasks.");
+        duke.sendMessage("Or, you could also do \"tasks add <args>\" to add a new task.");
+        duke.sendMessage("Don't forget you can also specify the help command after any argument"
+                + "to learn what you can do!");
     }
 }

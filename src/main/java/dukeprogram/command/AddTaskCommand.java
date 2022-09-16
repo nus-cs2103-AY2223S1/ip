@@ -45,9 +45,14 @@ public class AddTaskCommand extends Command {
 
             default:
                 duke.sendMessage(String.format("Sorry, %s is not a valid task type", thisElement));
+                duke.sendMessage("The valid task types are \"todo\", \"event\" and \"deadline\".");
+                duke.sendMessage("For example, \"tasks add todo buy groceries\" "
+                        + "will add the a ToDo task called \"buy groceries\"");
             }
         } catch (InvalidCommandException e) {
             duke.sendMessage(e.getMessage());
         }
+
+        duke.save();
     }
 }

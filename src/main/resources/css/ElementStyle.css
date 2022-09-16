@@ -21,21 +21,21 @@
 .regular {
     -fx-text-fill: #FFFFFF;
     -fx-font-family: 'Corbel';
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
 }
 
 .header {
     -fx-text-fill: #FFFFFF;
     -fx-font-family: 'Corbel';
     -fx-font-weight: bolder;
-    -fx-font-size: 13px;
+    -fx-font-size: 15px;
 }
 
 .tag {
     -fx-text-fill: #FFFFFF;
     -fx-font-family: 'Corbel';
     -fx-font-weight: bolder;
-    -fx-font-size: 10px;
+    -fx-font-size: 12px;
 }
 
 #backgroundWindow {

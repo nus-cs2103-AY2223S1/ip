@@ -3,10 +3,20 @@ package utilities;
 import java.util.Iterator;
 import java.util.stream.IntStream;
 
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
+
 /**
  * StringUtilities provides utilities for strings and collections containing strings
  */
 public class StringUtilities {
+
+    private static final Text HELPER = new Text();
+    private static final double DEFAULT_WRAPPING_WIDTH = HELPER.getWrappingWidth();
+    private static final double DEFAULT_LINE_SPACING = HELPER.getLineSpacing();
+    private static final String DEFAULT_TEXT = HELPER.getText();
+    private static final TextBoundsType DEFAULT_BOUNDS_TYPE = HELPER.getBoundsType();
 
     /**
      * Helper method to split a String array by a delimiter.
@@ -77,5 +87,28 @@ public class StringUtilities {
         }
 
         return sb.toString();
+    }
+
+    /**
+     * Calculates the width of a text font
+     * @param font the font of the text
+     * @param text the text in the text field
+     * @param buffer the amount of width to add to the final width
+     * @return
+     */
+    public static double computeTextWidth(Font font, String text, double buffer) {
+        HELPER.setText(text);
+        HELPER.setFont(font);
+
+        HELPER.setWrappingWidth(0.0D);
+        HELPER.setLineSpacing(0.0D);
+        double d = Math.min(HELPER.prefWidth(-1.0D), 0);
+        HELPER.setWrappingWidth((int) Math.ceil(d));
+        d = Math.ceil(HELPER.getLayoutBounds().getWidth());
+
+        HELPER.setWrappingWidth(DEFAULT_WRAPPING_WIDTH);
+        HELPER.setLineSpacing(DEFAULT_LINE_SPACING);
+        HELPER.setText(DEFAULT_TEXT);
+        return d + buffer;
     }
 }

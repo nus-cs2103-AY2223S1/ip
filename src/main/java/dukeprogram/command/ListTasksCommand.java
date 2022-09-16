@@ -23,14 +23,14 @@ public class ListTasksCommand extends Command {
 
     @Override
     public void parse(Iterator<String> elements) {
-
+        printToGui();
     }
 
     /**
      * Sends a message to the window of the Duke instance to list
      * all the tasks to the GUI window
      */
-    public void listTasksToGui() {
+    public void printToGui() {
         TaskList currentTaskList = duke.getTaskList();
 
         String formattedTaskListString = IntStream.range(0, currentTaskList.getSize())
