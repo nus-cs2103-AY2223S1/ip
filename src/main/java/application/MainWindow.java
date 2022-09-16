@@ -59,6 +59,8 @@ public class MainWindow extends AnchorPane {
             );
             mew.endApplication();
             return;
+        } else if (input.isEmpty()) {
+            return;
         }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
