@@ -139,7 +139,7 @@ public class TaskList {
                 return res;
             }
         } catch (Exception e) {
-            throw new DukeException("the input format for find is not correct.");
+            throw new DukeException("The input format for find is not correct.");
         }
     }
     /**
