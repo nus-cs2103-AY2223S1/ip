@@ -25,18 +25,21 @@ Undo any accidental command you make.
 
 ## Usage
 
-### `Keyword` - Describe action
+### `todo` - add a todo task to the task list
 
 Describe the action and its outcome.
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`todo borrow books`
 
 Expected outcome:
+A todo as displayed by [T] will be added to your task list.
+Another empty bracket will appear beside it which indicates its completion status.
 
-Description of the outcome.
 
 ```
-expected output
+![image](https://user-images.githubusercontent.com/13201751/190663580-e4070c0f-45ae-4cc8-b80c-2d5175e2553f.png)
 ```
+
+
