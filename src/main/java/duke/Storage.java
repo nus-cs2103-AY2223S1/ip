@@ -39,15 +39,15 @@ public class Storage {
 
                 switch (typeOfTask) {
                 case "T":
-                    currList.add(new Todo(tempArray[2], tempArray[1].equals("1")));
+                    currList.add(new Todo(tempArray[2], tempArray[1].equals("1"), PriorityLevel.getPriorityString(tempArray[3])));
                     break;
                 case "D":
                     LocalDate tempDate = LocalDate.parse(tempArray[3], DateTimeFormatter.ofPattern("MMM dd yyyy"));
-                    Deadline tmpTask = new Deadline(tempArray[2], tempArray[1].equals("1"), tempDate);
+                    Deadline tmpTask = new Deadline(tempArray[2], tempArray[1].equals("1"), tempDate, PriorityLevel.getPriorityString(tempArray[4]));
                     currList.add(tmpTask);
                     break;
                 case "E":
-                    currList.add(new Event(tempArray[2], tempArray[1].equals("1"), tempArray[3]));
+                    currList.add(new Event(tempArray[2], tempArray[1].equals("1"), tempArray[3], PriorityLevel.getPriorityString(tempArray[4])));
                     break;
                 default:
                     System.out.println("Error: Wrong type of task");

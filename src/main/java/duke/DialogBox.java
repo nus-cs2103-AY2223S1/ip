@@ -17,8 +17,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 /**
  * An example of a custom control using FXML.

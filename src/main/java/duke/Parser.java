@@ -115,7 +115,10 @@ public class Parser {
         if (isEmptyString(todoString)) {
             throw new EmptyDescriptionException();
         } else {
-            Todo tmpTask = new Todo(todoString, false);
+            String[] tempSplit = todoString.split(" /p ");
+
+            Todo tmpTask = new Todo(tempSplit[0], false, PriorityLevel.getPriorityString(tempSplit[1]));
+
             String toDoMessage = this.taskList.addTask(tmpTask);
             this.storage.save(this.taskList);
             return toDoMessage;
@@ -137,8 +140,10 @@ public class Parser {
         } else {
             try {
                 String[] tempSplit = deadlineString.split(" /by ");
-                LocalDate tempDate = LocalDate.parse(tempSplit[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate);
+                String[] prioritySplit = tempSplit[1].split(" /p ");
+                LocalDate tempDate = LocalDate.parse(prioritySplit[0], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate, PriorityLevel.getPriorityString(prioritySplit[1]));
+
                 String DeadlineMessage = this.taskList.addTask(tmpTask);
                 this.storage.save(this.taskList);
                 return DeadlineMessage;
@@ -159,13 +164,15 @@ public class Parser {
         String eventString = String.join(" ", subCmd);
         if (isEmptyString(eventString)) {
             throw new EmptyDescriptionException();
-        }
+        } else {
             String[] tempSplit = eventString.split(" /at ");
-            Event tmpTask = new Event(tempSplit[0], false, tempSplit[1]);
+            String[] prioritySplit = tempSplit[1].split(" /p ");
+            Event tmpTask = new Event(tempSplit[0], false, prioritySplit[0], PriorityLevel.getPriorityString(prioritySplit[1]));
             String EventMessage = this.taskList.addTask(tmpTask);
             this.storage.save(this.taskList);
             return EventMessage;
         }
+    }
 
 
     /**
