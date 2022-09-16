@@ -18,6 +18,8 @@ import jude.task.Todo;
  */
 public class Parser {
     public static final String DEFAULT_DATE_FORMAT = "dd MMM yyyy HH:mm";
+    public static final String INVALID_INDEX_ERROR = "Invalid index.";
+
     private static final String TERMINATION_COMMAND = "bye";
     private static final long DEFAULT_REMINDER_SECONDS = 86400; // corresponding to 24 hours
     private static final String NO_TASKS_STRING = "No tasks found\n";
@@ -26,7 +28,6 @@ public class Parser {
             + "and an end time.";
     private static final String INVALID_DATE_FORMAT_ERROR = "Please input a valid date/time, e.g. 21 Aug "
             + "2022 14:00, Aug 21 2022 2:00PM or 2022-08-21.";
-    private static final String INVALID_INDEX_ERROR = "Invalid index.";
 
     private static final String NO_DEADLINE_ERROR = "A deadline task must have a deadline.";
     private static final String NO_DATE_ERROR = "Date cannot be empty.";

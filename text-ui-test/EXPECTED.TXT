@@ -167,22 +167,22 @@ The task list now contains 5 task(s).
 
 
 
-> Invalid index
+> Invalid index.
 
 
-> Invalid index
+> Invalid index.
 
 
-> Invalid index
+> Invalid index.
 
 
-> Invalid index
+> Invalid index.
 
 
-> Invalid index
+> Invalid index.
 
 
-> Invalid index
+> Invalid index.
 
 
 > Description of todo cannot be empty.
@@ -271,13 +271,13 @@ The task list now contains 6 task(s).
 
 
 
-> Invalid index
+> Invalid index.
 
 
-> Invalid index
+> Invalid index.
 
 
-> Invalid index
+> Invalid index.
 
 
 > 1.[T][ ] task1

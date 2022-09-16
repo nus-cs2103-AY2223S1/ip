@@ -1,5 +1,7 @@
 package jude;
 
+import static jude.Parser.INVALID_INDEX_ERROR;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class TaskList {
      */
     private void checkIndex(int index) {
         if (index <= 0 || index > tasks.size()) {
-            throw new IllegalCommandException("Invalid index");
+            throw new IllegalCommandException(INVALID_INDEX_ERROR);
         }
     }
 
