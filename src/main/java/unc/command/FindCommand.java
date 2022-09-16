@@ -14,6 +14,16 @@ public class FindCommand extends Command {
     public FindCommand(String input) {
         this.keyword = input;
     }
+
+    /**
+     * Find the tasks in the list that contains the keyword.
+     *
+     * @param taskList List to be operated on.
+     * @param ui UI to print message.
+     * @param storage Storage to save updated list.
+     * @return the message to be shown by UI
+     * @throws UncException
+     */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
         TaskList foundList = taskList.find(keyword);

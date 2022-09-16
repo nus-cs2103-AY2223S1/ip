@@ -15,6 +15,7 @@ public abstract class Command {
      * @param taskList List to be operated on.
      * @param ui UI to print message.
      * @param storage Storage to save updated list.
+     * @return the message to be shown by UI
      * @throws UncException
      */
     public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws UncException;

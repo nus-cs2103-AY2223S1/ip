@@ -27,6 +27,7 @@ public class DeleteCommand extends Command {
      * @param taskList {@inheritDoc}
      * @param ui {@inheritDoc}
      * @param storage {@inheritDoc}
+     * @return the message to be shown by UI
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {

@@ -38,7 +38,7 @@ public class Event extends Task {
      * @throws UncException If the date/time can't be parsed correctly.
      */
     public Event(String description, String at, String done) throws UncException {
-        super(description, done == "true");
+        super(description, done.equals("true"));
         try {
             this.at = LocalDate.parse(at);
         } catch (DateTimeParseException exception) {

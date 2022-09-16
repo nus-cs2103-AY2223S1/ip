@@ -23,7 +23,7 @@ public class Todo extends Task {
      * @param done Whether the task was saved as done.
      */
     public Todo(String description, String done) {
-        super(description, done == "true");
+        super(description, done.equals("true"));
     }
 
     @Override

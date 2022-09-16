@@ -38,7 +38,7 @@ public class Deadline extends Task {
      * @throws UncException If the date/time can't be parsed correctly.
      */
     public Deadline(String description, String by, String done) throws UncException {
-        super(description, done == "true");
+        super(description, done.equals("true"));
         try {
             this.by = LocalDate.parse(by);
         } catch (DateTimeParseException exception) {

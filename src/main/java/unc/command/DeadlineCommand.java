@@ -29,6 +29,7 @@ public class DeadlineCommand extends Command {
      * @param taskList {@inheritDoc}
      * @param ui {@inheritDoc}
      * @param storage {@inheritDoc}
+     * @return the message to be shown by UI
      * @throws UncException If error occurs when creating new Deadline.
      */
     @Override

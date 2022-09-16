@@ -29,6 +29,7 @@ public class EventCommand extends Command {
      * @param taskList List to be operated on.
      * @param ui UI to print message.
      * @param storage Storage to save updated list.
+     * @return the message to be shown by UI
      * @throws UncException If error occurs when creating new Event.
      */
     @Override
