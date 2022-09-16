@@ -8,3 +8,4 @@ repos:
       - id: check-eof-newline
         exclude: ^text-ui-test/EXPECTED.TXT$
       - id: check-trailing-whitespace
+        exclude: ^text-ui-test/EXPECTED.TXT$
