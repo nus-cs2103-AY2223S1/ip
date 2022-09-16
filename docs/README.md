@@ -106,12 +106,12 @@ Doomba will reply with a confirmation that the recurring task has been added, al
 
 **Command:** `recurring [ description ] /every [ frequency ] </at time> *[ number of times ]`
 
-| Frequency | Format                                             |
-|-----------|----------------------------------------------------|
-| Yearly    | dd/MM/yy                                           |
-| Monthly   | dd (from 1-31)                                     |
-| Weekly    | 3 letter day of the week, first letter capitalized |
-| Daily     | HHmm (optional time argument not applicable)       |  
+| Frequency | Format |
+|---|---|
+| Yearly | dd/MM/yy |
+| Monthly | dd (from 1-31) |
+| Weekly | 3 letter day of the week, first letter capitalized |
+| Daily | HHmm (optional time argument not applicable) |  
 If optional time argument is not provided, the default time would be 12:00PM.
 
 **Input:** `recurring go climbing /every Wed /at 1330 *8` - _with optional time argument_
