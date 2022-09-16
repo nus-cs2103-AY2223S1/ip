@@ -26,13 +26,15 @@ public class Deadline extends Task {
 
     @Override
     public String fileFormat() {
-        return String.format("D | %d | %s | %s", isDone ? 1 : 0, description, by);
+        return String.format("D | %d | %s | %s | %s", isDone ? 1 : 0,
+        priority == null ? "0" : priority, description, by);
     }
 
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: "
-                + by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+                + by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")"
+                + (priority == null ? "" : " - " + priority);
     }
     @Override
     public boolean equals(Object obj) {

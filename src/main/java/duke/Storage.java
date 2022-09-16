@@ -39,24 +39,27 @@ public class Storage {
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String[] task = s.nextLine().split(" \\| ");
-            if (task.length <= 1) {
+            if (task.length < 5) {
                 throw new DukeException("☹ OOPS!!! The file is corrupted.");
             }
             switch (task[0]) {
             case "T":
-                tasks.add(new Todo(task[2]));
+                tasks.add(new Todo(task[3]));
                 break;
             case "D":
-                tasks.add(new Deadline(task[2], task[3]));
+                tasks.add(new Deadline(task[3], task[4]));
                 break;
             case "E":
-                tasks.add(new Event(task[2], task[3]));
+                tasks.add(new Event(task[3], task[4]));
                 break;
             default:
                 throw new DukeException("☹ OOPS!!! The file is corrupted.");
             }
             if (task[1].equals("1")) {
                 tasks.get(tasks.size() - 1).markAsDone();
+            }
+            if (!task[2].equals("0")) {
+                tasks.get(tasks.size() - 1).priority(task[2]);
             }
         }
         return tasks;

@@ -6,6 +6,7 @@ package duke;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected String priority;
 
     /**
      * Creates a new task with a description.
@@ -35,17 +36,27 @@ public class Task {
         isDone = false;
         return false;
     }
+    public void priority(String priority) {
+        this.priority = priority;
+    }
 
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Returns the string representation of the task for writing to file.
+     * @return the string representation of the task for writing to file
+     */
     public String fileFormat() {
-        return "T | " + (isDone ? "1" : "0") + " | " + description;
+        return "T | " + (isDone ? "1" : "0") + " | "
+                + (priority == null ? "0" : priority)
+                + " | " + description + " | " + "null";
     }
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + this.getStatusIcon() + "] "
+                + this.description;
     }
 }
