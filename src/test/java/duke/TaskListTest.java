@@ -11,11 +11,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class TaskListTest {
     @Test
     public void taskList_getSize_correctSize() {
-        Duke duke = new Duke();
         TaskList testTaskList = new TaskList();
-        Task testTask1 = new Task("Dummy Test 1");
-        Todo testTask2 = new Todo("todo Dummy2");
-        Todo testTask3 = new Todo("todo Dummy3");
+        Todo testTask1 = new Todo("todo Dummy1", false);
+        Todo testTask2 = new Todo("todo Dummy2", false);
+        Todo testTask3 = new Todo("todo Dummy3", false);
         testTaskList.addTask(testTask1);
         testTaskList.addTask(testTask2);
         testTaskList.addTask(testTask3);
@@ -25,9 +24,9 @@ public class TaskListTest {
     @Test
     public void taskList_deleteTask_isDeleted() {
         TaskList testTaskList = new TaskList();
-        Task testTask1 = new Task("Dummy Test 1");
-        Todo testTask2 = new Todo("todo Dummy2");
-        Todo testTask3 = new Todo("todo Dummy3");
+        Todo testTask1 = new Todo("todo Dummy1", false);
+        Todo testTask2 = new Todo("todo Dummy2", false);
+        Todo testTask3 = new Todo("todo Dummy3", false);
         testTaskList.addTask(testTask1);
         testTaskList.addTask(testTask2);
         testTaskList.addTask(testTask3);

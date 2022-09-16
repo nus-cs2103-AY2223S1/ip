@@ -15,17 +15,15 @@ public class ParserTest {
 
     @Test
     public void parser_parseDateTime_exceptionThrown() {
-        Parser testParser = new Parser();
         String badDateTime = "41-05-2022-22-24";
         assertThrows(IllegalDateTimeException.class,
-                () -> testParser.parseDateTime(badDateTime));
+                () -> Parser.parseDateTime(badDateTime));
     }
 
     @Test
     public void parser_parseCommand_exceptionNotThrown() {
-        Parser testParser = new Parser();
         String[] testCommandArgs = new String[]{"event",
                 "test /at 15-03-2019-21-01"};
-        assertAll(() -> testParser.parseCommand(testCommandArgs));
+        assertAll(() -> Parser.parseCommand(testCommandArgs));
     }
 }

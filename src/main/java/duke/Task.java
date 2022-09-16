@@ -51,7 +51,7 @@ public abstract class Task implements Comparable<Task> {
      * @param chars The sequence of chars to match with task name
      * @return True if yes, False if no
      */
-    public Boolean doesNameContain(String chars) {
+    public boolean doesNameContain(String chars) {
         return this.taskName.contains(chars);
     }
 
