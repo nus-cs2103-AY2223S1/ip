@@ -40,9 +40,6 @@ public class TaskList {
         } else {
             Task completedTask = tasks.get(index);
             completedTask.markAsDone();
-            System.out.println(HORIZONTAL_LINE_BREAK);
-            System.out.println("Nice! I've marked this task as done:" + "\n" + completedTask);
-            System.out.println(HORIZONTAL_LINE_BREAK);
         }
     }
 
@@ -53,23 +50,17 @@ public class TaskList {
         } else {
             Task unfinishedTask = tasks.get(index);
             unfinishedTask.markAsNotDone();
-            System.out.println(HORIZONTAL_LINE_BREAK);
-            System.out.println("OK, I've marked this task as not done yet:" + "\n" + unfinishedTask);
-            System.out.println(HORIZONTAL_LINE_BREAK);
         }
     }
 
-    public void deleteTask(int index) throws DukeException {
+    public Task deleteTask(int index) throws DukeException {
         int size = tasks.size();
         if (index >= size || index < 0) {
             throw new DukeException("The index of the task does not exists.");
         } else {
             Task toBeDeleted = tasks.get(index);
             tasks.remove(index);
-            System.out.println(HORIZONTAL_LINE_BREAK);
-            System.out.println("Noted. I've removed this task:" + "\n" + toBeDeleted + "\n" + "Now you have " + tasks.size()
-                    + " tasks in your list.");
-            System.out.println(HORIZONTAL_LINE_BREAK);
+            return toBeDeleted;
         }
     }
 }
