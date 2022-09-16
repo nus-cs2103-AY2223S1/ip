@@ -168,7 +168,7 @@ public class Storage {
             String description = str.split("] ", 2)[1];
             task = new ToDo(description);
         } else {
-            throw new StorageException("Delete the problematic line in data/duke.txt file!");
+            throw new StorageException("Delete the problematic line in the data/duke.txt file!");
         }
 
         if (str.contains("[X]")) {
