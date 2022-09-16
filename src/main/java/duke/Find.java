@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Find extends Parser {
     private String target;
-    ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> list = new ArrayList<>();
 
     public Find(String target, ArrayList<String> list) {
         super(target);
@@ -22,7 +22,7 @@ public class Find extends Parser {
      * @return boolean
      */
     @Override
-    public boolean AddToList() {
+    public boolean addToList() {
         return false;
     }
 

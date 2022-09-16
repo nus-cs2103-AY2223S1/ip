@@ -1,6 +1,6 @@
 package duke;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -8,8 +8,8 @@ import java.util.ArrayList;
  */
 public class Duke {
     private TaskList tasks;
-    ArrayList<String> arrayList = new ArrayList<>();
-    int num = 1;
+    private ArrayList<String> arrayList = new ArrayList<>();
+    private int num = 1;
 
     public String hello = "Hello from\n" + " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -22,20 +22,20 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     String getResponse(String command, Duke duke, Storage storage) {
-            try {
-                if (command.equals("bye")) {
-                    return "Bye. Hope to see you again soon!";
-                }
-                if (command.equals("list")) {
-                    return duke.getList();
-                } else {
-                    storage.push(duke.getList());
-                    duke.tasks.set(storage.load());
-                    return duke.printCommand(command);
-                }
-            } catch (DukeException | IOException e) {
-                return e.toString();
+        try {
+            if (command.equals("bye")) {
+                return "Bye. Hope to see you again soon!";
             }
+            if (command.equals("list")) {
+                return duke.getList();
+            } else {
+                storage.push(duke.getList());
+                duke.tasks.set(storage.load());
+                return duke.printCommand(command);
+            }
+        } catch (DukeException | IOException e) {
+            return e.toString();
+        }
     }
 
     public Duke() {
@@ -63,7 +63,7 @@ public class Duke {
             return task.toString();
         } else {
             Parser parser = Parser.of(command, arrayList, num);
-            if (parser.AddToList()) {
+            if (parser.addToList()) {
                 num++;
             }
             return parser.toString();

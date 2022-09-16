@@ -1,13 +1,15 @@
 package duke;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Represents a storage that stores the command list.
  */
 public class Storage {
     private OutputStream out;
-    public String input;
+    private String input;
 
     public Storage(String filePath) throws IOException {
         this.out = new FileOutputStream(filePath);

@@ -1,7 +1,5 @@
 package duke;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +24,7 @@ public class Parser {
      * @return Parser
      * @throws DukeException if duke cannot identify the command.
      */
-    public static Parser of (String command, ArrayList<String> arrayList, int number) throws DukeException {
+    public static Parser of(String command, ArrayList<String> arrayList, int number) throws DukeException {
         if (command.split(" ")[0].equals("mark")) {
             try {
                 int num = Integer.parseInt(command.substring(5)) - 1;
@@ -89,7 +87,7 @@ public class Parser {
      *
      * @return boolean
      */
-    public boolean AddToList() {
+    public boolean addToList() {
         return true;
     }
 

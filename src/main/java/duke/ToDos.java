@@ -20,6 +20,7 @@ public class ToDos extends Parser {
      */
     @Override
     public String toString() {
-        return "Got it. I've added this task:\n" + "[T][ ] " + this.command + "\n" + "Now you have " + this.num + " tasks in the list.";
+        return "Got it. I've added this task:\n" + "[T][ ] " + this.command + "\n" + "Now you have " + this.num
+                + " tasks in the list.";
     }
 }

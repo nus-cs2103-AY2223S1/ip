@@ -17,7 +17,7 @@ public class Tag extends Parser {
      * @return boolean
      */
     @Override
-    public boolean AddToList() {
+    public boolean addToList() {
         return false;
     }
 

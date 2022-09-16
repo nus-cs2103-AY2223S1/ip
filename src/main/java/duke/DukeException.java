@@ -4,7 +4,7 @@ package duke;
  * Represents the DukeException.
  */
 public class DukeException extends RuntimeException {
-    String message;
+    private String message;
 
     public DukeException(String message) {
         this.message = message;

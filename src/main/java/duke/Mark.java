@@ -20,7 +20,7 @@ public class Mark extends Parser {
      * @return boolean
      */
     @Override
-    public boolean AddToList() {
+    public boolean addToList() {
         return false;
     }
 
@@ -31,6 +31,7 @@ public class Mark extends Parser {
      */
     @Override
     public String toString() {
-        return "Nice! I've marked this task as done:\n" + this.command.substring(0, 3) + "[X]" + this.command.substring(6);
+        return "Nice! I've marked this task as done:\n" + this.command.substring(0, 3) + "[X]"
+                + this.command.substring(6);
     }
 }

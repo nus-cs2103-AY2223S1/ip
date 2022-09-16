@@ -6,7 +6,7 @@ package duke;
 public class TaskList {
     private String list;
 
-    public  TaskList() {}
+    public TaskList() {}
 
     /**
      * Sets the list to be current list.
