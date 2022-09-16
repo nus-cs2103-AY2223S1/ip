@@ -40,6 +40,11 @@ public class Duke {
         ui.greetings();
         boolean isExit = false;
         assert this.storage != null && this.tasks != null && this.ui != null : "The Duke object is not initialized!";
+        try {
+             tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
 
         while (!isExit) {
             try {
@@ -54,6 +59,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("src/main/java/duke.txt").run();
+        new Duke("tasks.txt").run();
     }
 }

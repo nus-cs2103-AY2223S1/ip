@@ -22,9 +22,13 @@ public class Deadline extends Task {
 
     @Override
     public boolean needToRemind() {
-        LocalDate now = LocalDate.now();
-        Period period = Period.between(now, exactTime);
-        return (period.getYears() == 0 && period.getMonths() == 0 && period.getDays() <= 7);
+        if (isDone) {
+            return false;
+        } else {
+            LocalDate now = LocalDate.now();
+            Period period = Period.between(now, exactTime);
+            return (period.getYears() == 0 && period.getMonths() == 0 && period.getDays() <= 7);
+        }
     }
 
     @Override

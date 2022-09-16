@@ -41,6 +41,9 @@ public class Ui {
     }
 
     public String listAllItems(List<Task> tasks) {
+        if(tasks.size() == 0) {
+            return "There is no task right now!";
+        }
         String result = "";
         for (int i = 0; i < tasks.size() - 1; i++) {
             int number = i + 1;

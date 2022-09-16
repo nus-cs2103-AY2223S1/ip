@@ -38,6 +38,8 @@ public class Parser {
             String deadlineName = deadlineArr[0];
             String deadlineTime = deadlineArr[1];
             return new AddDeadlineCommand(deadlineName, deadlineTime);
+        case "reminder":
+            return new ReminderCommand();
         default:
             throw new DukeException("Shindo, I am confused...");
         }

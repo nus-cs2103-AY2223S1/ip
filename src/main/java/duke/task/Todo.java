@@ -10,7 +10,7 @@ public class Todo extends Task {
 
     @Override
     public boolean needToRemind() {
-        return true;
+        return !isDone;
     }
 
     @Override
