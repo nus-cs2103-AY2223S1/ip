@@ -1,0 +1,44 @@
+list
+mark 1
+unmark 1
+todo finish this ip
+deadline finish ip /by 2000-12-30 12:34
+event go to school /at 2001-12-30 05:12 2011-12-30 08:10
+event some event /at 1234-12-30 05:12 2222-12-30 13:10
+list
+mark 1
+mark 3
+list
+unmark 1
+unmark 2
+mark -1
+unmark -1
+list
+todo a b c d e f g 123141534! /by /at test
+deadline missingBy
+event missingAt
+deadline nothingAfter /by
+event nothingAfter /at
+deadline wrongTag /at
+event wrongTag /by
+deadline /by1234
+event /by1234
+deadline a b c d /by 2000-12-12 12:34
+event 1 2 3 4 /at 1234-12-30 05:12 2222-12-30 08:10
+mark
+list
+delete -1
+delete 1
+list
+delete 7
+event sleep /at 0000-2400hrs
+list
+deadline bad date /by 2000-88-88
+deadline wrongFormat /by 01-01-2000
+event wrongFormat /at 2000-12-34
+list
+find finish
+find e ip ip ip
+find 1
+list
+bye

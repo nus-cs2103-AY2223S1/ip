@@ -1,0 +1,114 @@
+Hello from
+ ____        _        
+|  _ \ _   _| | _____ 
+| | | | | | | |/ / _ \
+| |_| | |_| |   <  __/
+|____/ \__,_|_|\_\___|
+
+____________________________________________________________
+Hello! I'm duke.Duke
+What can I do for you?
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[D][ ] finish ip (by: Dec 30 2000 12:34 PM)
+2.[E][X] go to school (at: Dec 30 2001 05:12 AM - Dec 30 2011 08:10 AM)
+3.[E][ ] some event (at: Dec 30 1234 05:12 AM - Dec 30 2222 01:10 PM)
+4.[T][ ] a b c d e f g 123141534! /by /at test
+5.[D][ ] a b c d (by: Dec 12 2000 12:34 PM)
+6.[E][ ] 1 2 3 4 (at: Dec 30 1234 05:12 AM - Dec 30 2222 08:10 AM)
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!! You tried to delete task 7 but it doesn't exist in the list!
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[D][ ] finish ip (by: Dec 30 2000 12:34 PM)
+2.[E][X] go to school (at: Dec 30 2001 05:12 AM - Dec 30 2011 08:10 AM)
+3.[E][ ] some event (at: Dec 30 1234 05:12 AM - Dec 30 2222 01:10 PM)
+4.[T][ ] a b c d e f g 123141534! /by /at test
+5.[D][ ] a b c d (by: Dec 12 2000 12:34 PM)
+6.[E][ ] 1 2 3 4 (at: Dec 30 1234 05:12 AM - Dec 30 2222 08:10 AM)
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[T][ ] finish these test cases
+Now you have 7 task(s) in the list.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!! I can't recognise the date you just inputted :-(
+Dates should be inputted in a 'YYYY-MM-DD HH:MM' format, and events should have 2 dates.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!! I can't recognise the date you just inputted :-(
+Dates should be inputted in a 'YYYY-MM-DD HH:MM' format, and events should have 2 dates.
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[E][ ] 1 2 3 4 (at: Dec 30 1234 05:12 AM - Dec 30 2222 08:10 AM)
+Now you have 8 task(s) in the list.
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[D][ ] finish ip (by: Dec 30 2000 12:34 PM)
+2.[E][X] go to school (at: Dec 30 2001 05:12 AM - Dec 30 2011 08:10 AM)
+3.[E][ ] some event (at: Dec 30 1234 05:12 AM - Dec 30 2222 01:10 PM)
+4.[T][ ] a b c d e f g 123141534! /by /at test
+5.[D][ ] a b c d (by: Dec 12 2000 12:34 PM)
+6.[E][ ] 1 2 3 4 (at: Dec 30 1234 05:12 AM - Dec 30 2222 08:10 AM)
+7.[T][ ] finish these test cases
+8.[E][ ] 1 2 3 4 (at: Dec 30 1234 05:12 AM - Dec 30 2222 08:10 AM)
+____________________________________________________________
+
+____________________________________________________________
+Noted. I've removed this task:
+[T][ ] finish these test cases
+Now you have 7 task(s) in the list.
+____________________________________________________________
+
+____________________________________________________________
+Noted. I've removed this task:
+[E][ ] 1 2 3 4 (at: Dec 30 1234 05:12 AM - Dec 30 2222 08:10 AM)
+Now you have 6 task(s) in the list.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!! You tried to delete task 7 but it doesn't exist in the list!
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[D][ ] finish ip (by: Dec 30 2000 12:34 PM)
+2.[E][X] go to school (at: Dec 30 2001 05:12 AM - Dec 30 2011 08:10 AM)
+3.[E][ ] some event (at: Dec 30 1234 05:12 AM - Dec 30 2222 01:10 PM)
+4.[T][ ] a b c d e f g 123141534! /by /at test
+5.[D][ ] a b c d (by: Dec 12 2000 12:34 PM)
+6.[E][ ] 1 2 3 4 (at: Dec 30 1234 05:12 AM - Dec 30 2222 08:10 AM)
+____________________________________________________________
+
+____________________________________________________________
+☹ Woah there!!! Your input contains a "|" character which is not allowed!!
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[D][ ] finish ip (by: Dec 30 2000 12:34 PM)
+2.[E][X] go to school (at: Dec 30 2001 05:12 AM - Dec 30 2011 08:10 AM)
+3.[E][ ] some event (at: Dec 30 1234 05:12 AM - Dec 30 2222 01:10 PM)
+4.[T][ ] a b c d e f g 123141534! /by /at test
+5.[D][ ] a b c d (by: Dec 12 2000 12:34 PM)
+6.[E][ ] 1 2 3 4 (at: Dec 30 1234 05:12 AM - Dec 30 2222 08:10 AM)
+____________________________________________________________
+
+____________________________________________________________
+Bye. Hope to see you again soon!
+____________________________________________________________
+
