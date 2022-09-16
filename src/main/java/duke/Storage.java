@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +13,6 @@ import java.util.Scanner;
  */
 public class Storage {
     private final String filepath;
-    private static final Path FILEPATH_HELP = Path.of("data/help.txt");
     private static final char INDEX_TASKTYPE = 4;
 
     Storage(String filepath) {
@@ -46,25 +43,17 @@ public class Storage {
     }
 
     /**
-     * Reads all valid commands for Duke stored in help.txt.
-     *
-     * @return String message containing all valid commands for Duke.
-     */
-    protected static String loadHelpTextFile() {
-        try {
-            return Files.readString(FILEPATH_HELP);
-        } catch (IOException ex) {
-            return "Help Instruction File Missing";
-        }
-    }
-
-    /**
      * Saves a given instance of a Task List to the user's local directory.
      *
      * @param tasks TaskList of tasks.
      */
     protected void saveExistingTasks(TaskList tasks) {
         try {
+            File file = new File(filepath);
+            File dir = new File(file.getParent());
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
             FileWriter fw = new FileWriter(filepath);
             fw.write(tasks.enumerateList());
             fw.close();
