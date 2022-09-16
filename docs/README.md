@@ -1,15 +1,12 @@
 # User Guide for `Zuke`
 `Zuke` is a task manager that helps you keep track of different types of tasks.
-It provides the flexibility to use the CLI :computer: or the GUI :sparkles:.
+It provides the flexibility to use the CLI :computer: or the GUI :sparkles:.<br><br>
+**Note: Release v0.2 will be be the GUI only!**
 
 ## CLI or GUI?
 There is not much difference between the two, and you can use them interchangeably without
 worrying about difference in functionalities. You might find the GUI more 
 user-friendly to use though, since it looks like a chat bot's interface.
-
-## Quick Start
-* **CLI** &rarr; run `Duke`
-* **GUI** &rarr; run `Launcher`
 
 ## Features 
 
