@@ -481,8 +481,8 @@ public class Parser {
      */
     private int[] parseRange(String args) throws DukeException {
         String[] rangeSplit = args.split("-");
-        int startRange = tryParseToInteger(rangeSplit[0]);
-        int endRange = tryParseToInteger(rangeSplit[1]);
+        int startRange = tryParseToInteger(rangeSplit[0].trim());
+        int endRange = tryParseToInteger(rangeSplit[1].trim());
         return new int[] { startRange, endRange };
     }
 
