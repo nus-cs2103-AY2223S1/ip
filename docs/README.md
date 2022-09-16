@@ -11,10 +11,11 @@ tasks done faster than traditional GUI apps.
 * [Features](#features)
   * [Adding a task : `todo`/`event`/`deadline`](#1-adding-a-task-todo-deadline-event)
   * [Viewing the task list : `list`](#2-viewing-the-task-list-list)
-  * [Deleting a task : `delete`](#3-deleting-a-task-delete)
-  * [Finding a task : `find`](#4-finding-a-task-find)
-  * [Marking a task : `mark`/`undone`](#4-marking-a-task)
-  * [Exiting the program : `exit`](#5-exiting-the-program)
+  * [Finding a task : `find`](#3-finding-a-task-find)
+  * [Deleting a task : `delete`](#4-deleting-a-task-delete)
+  * [Marking a task : `mark`/`undone`](#5-marking-a-task)
+  * [Exiting the program : `exit`](#6-exiting-the-program)
+  * [Prompting the reminder](#7-reminder)
 * [FAQ](#faq)
 
 ---
@@ -47,11 +48,9 @@ sample data.<br>
 
 ## Features 
 
-<details>
-  <summary><i>Notes about the command format:</i></summary>
-
-- Words in UPPER_CASE are the parameters to be supplied by the user. 
-<br>
+_Notes about the command format:_
+- Words in UPPER_CASE are the parameters to be supplied by the user.
+  <br>
 e.g. in `find KEYWORD`, `KEYWORD` is a parameter which can be used as
 `find midterm`.
 
@@ -66,7 +65,7 @@ as `study midterm /by 2020-12-12 1234`.
 parameters (such as `list` and `exit`) will be ignored.
 e.g. if the command specifies `list 123`, it will be interpreted as `help`.
 
-</details>
+
 <br>
 
 ### 1. Adding A Task: `todo`, `deadline`, `event`
@@ -81,11 +80,10 @@ Enter your command by following the format below:
 <br>
 `TASK_TYPE TASK_DESCRIPTION [/by DATE TIME]`
 
-<details>
-  <summary><i>Notes!</i></summary>
-
+_Notes:_
+<br>
 _`DATE TIME` must follow the format of `YYYY-MM-DD HHMM`_
-</details>
+
 
 Examples:
 <br>
@@ -104,7 +102,7 @@ Enter your command by following the format below:
 
 <br>
 
-### 4. Finding A Task: `find`
+### 3. Finding A Task: `find`
 
 Finds the task(s) which contains the specified keyword.
 
@@ -112,14 +110,12 @@ Enter your command by following the format below:
 <br>
 `find KEYWORD`
 
-<details>
-  <summary><i>Notes!</i></summary>
-
+_Notes:_
+<br>
 - _`KEYWORD` is perceived as one whole phrase._
 - _e.g. `cs2103 assignment` will match `complete cs2103 assignment`
 instead of `cs2103 iP assignment`._
 
-</details>
 
 Examples:
 <br>
@@ -128,7 +124,7 @@ Examples:
 
 <br>
 
-### 3. Deleting A Task: `delete`
+### 4. Deleting A Task: `delete`
 
 Deletes the specified numbered task.
 
@@ -136,13 +132,10 @@ Enter your command by following the format below:
 <br>
 `delete TASK_INDEX`
 
-<details>
-  <summary><i>Notes!</i></summary>
-
+_Notes:_
+<br>
 - _`TASK_INDEX` must not exceed the size of the task list._
 - _`TASK_INDEX` must be positive integer e.g. 1,2,3..._
-
-</details>
 
 Examples:
 <br> 
@@ -151,7 +144,7 @@ in the task list.
 
 <br>
 
-### 4. Marking A Task
+### 5. Marking A Task
 
 Marks/un-marks task from the task list
 by using the following keywords (`MARK_TYPE`):
@@ -162,13 +155,11 @@ Enter your command by following the format below:
 <br>
 `MARK_TYPE TASK_NUMBER`
 
-<details>
-  <summary><i>Notes!</i></summary>
-
+_Notes:_
+<br>
 - _`TASK_INDEX` must not exceed the size of the task list._
 - _`TASK_INDEX` must be positive integer e.g. 1,2,3..._
 
-</details>
 
 Examples:
 - `mark 3`
@@ -176,7 +167,7 @@ Examples:
 
 <br>
 
-### 5. Exiting The Program
+### 6. Exiting The Program
 
 Exits the program.
 
@@ -186,7 +177,7 @@ Enter your command by following the format below:
 
 <br>
 
-### 6. Reminder
+### 7. Reminder
 
 Prompts reminder on the next coming and undone task.
 
