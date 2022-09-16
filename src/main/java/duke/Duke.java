@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
- * A Duke object which load the SoCCat,  a Personal Assistant Chatbot that helps a person to keep track of various
+ * A Duke object which load the SoCCat, a Personal Assistant Chatbot that helps a person to keep track of various
  * things. The task list will be saved whenever there are changes, and will be loaded the next time the bot starts up.
  */
 public class Duke {
@@ -181,7 +181,13 @@ public class Duke {
                 return "You have nothing to undo\n" + Ui.promptUserInput();
         }
     }
-
+    
+    /**
+     * Returns SoCCat's response to the user's input.
+     *
+     * @param input the user input
+     * @return the response by SoCCat for the corresponding input
+     */
     public String getResponse(String input) {
         String[] words = parser.parseInput(input);
         String command = parser.getKeyword(input);

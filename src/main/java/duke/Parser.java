@@ -45,6 +45,12 @@ public class Parser {
     protected int getTaskIndex(String[] input) {
         return Integer.parseInt(input[1]) - 1;
     }
+
+    /**
+     * Validates that the user input has the minimal number of arguements needed.
+     *
+     * @param input The task description that is retrieve from the user input
+     */
     protected void checkValidArgLength(String[] input) throws DukeEmptyException {
         if (input.length < 2) {
             throw new DukeEmptyException(input[0]);

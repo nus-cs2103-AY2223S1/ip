@@ -16,11 +16,4 @@ public class UiTest {
         String output = ui.printNumberOfTasks(0);
         assertEquals("Now you have 0 task in your list.", output);
     }
-//    @Test
-//    void printTask_emptyList() {
-//        Ui ui = new Ui();
-//        System.setOut(new PrintStream(outputStream));
-//        ui.printAllTasks(new ArrayList<>());
-//        assertEquals("Here are the tasks in your list: \r\n", outputStream.toString());
-//    }
 }

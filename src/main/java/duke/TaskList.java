@@ -36,7 +36,7 @@ public class TaskList {
     }
 
     /**
-     * Retrieves the task in the task list that corresponds to the given index.
+     * Returns the task in the task list that corresponds to the given index.
      *
      * @param taskIndex the specified index of the task in the task list
      * @return the specified Task corresponding to the given number
@@ -46,14 +46,20 @@ public class TaskList {
     }
 
     /**
-     * Adds the given task into the task list.
+     * Inserts the specified task into the task list.
      *
      * @param task the specified task to be added into the task list.
      */
     protected void addTask(Task task) {
         this.tasks.add(task);
     }
-
+    
+    /**
+     * Inserts the specified task at the specified position in the task list.
+     *
+     * @param task the specified task to be added into the task list
+     * @param index the specified index for the task to be inserted in
+     */
     protected void addTask(Task task, int index) {
         this.tasks.add(index, task);
     }
