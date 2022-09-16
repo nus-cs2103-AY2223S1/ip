@@ -11,6 +11,9 @@ import javafx.scene.layout.VBox;
 
 import java.util.Objects;
 
+//@@author yeojunjie-reused
+//Reused from https://se-education.org/guides/tutorials/javaFx.html with minor modifications.
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
