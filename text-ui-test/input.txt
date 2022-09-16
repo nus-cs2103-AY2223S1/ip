@@ -1,0 +1,26 @@
+todo borrow book
+deadline return book /by 2022-10-15
+event project meeting /at 2022-10-15
+deadline do homework /by 2022-10-16
+deadline return book /by blabla
+event project meeting /at blabla
+list
+mark 2
+mark 4
+list
+unmark 2
+on 2022-10-15
+on 2022-10-16
+on 2022-10-17
+list
+delete 3
+list
+mark 20
+delete 20
+boom shakalaka
+todo
+event
+deadline
+event abc
+deadline abc
+bye
