@@ -2,11 +2,6 @@
 
 Duke is a chatbot for managing tasks, optimized for use via a command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents
-  {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Features
 
 **Notes about the command format:**<br>
@@ -220,49 +215,3 @@ Format: `bye`
 Example of usage:
 
 `bye`
-
-[//]: # (### Feature-ABC)
-
-[//]: # ()
-[//]: # (Description of the feature.)
-
-[//]: # ()
-[//]: # (### Feature-XYZ)
-
-[//]: # ()
-[//]: # (Description of the feature.)
-
-[//]: # ()
-[//]: # (## Usage)
-
-[//]: # (### `Keyword` - Describe action)
-
-[//]: # ()
-[//]: # ()
-[//]: # (Describe the action and its outcome.)
-
-[//]: # ()
-[//]: # ()
-[//]: # (Example of usage: )
-
-[//]: # ()
-[//]: # ()
-[//]: # (`keyword &#40;optional arguments&#41;`)
-
-[//]: # ()
-[//]: # ()
-[//]: # (Expected outcome:)
-
-[//]: # ()
-[//]: # ()
-[//]: # (Description of the outcome.)
-
-[//]: # ()
-[//]: # ()
-[//]: # (```)
-
-[//]: # ()
-[//]: # (expected output)
-
-[//]: # ()
-[//]: # (```)
