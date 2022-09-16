@@ -74,7 +74,7 @@ public class MainWindow extends AnchorPane {
             }
             userInput.clear();
         } catch (DukeException | AssertionError e) {
-            System.out.println("Input cannot be empty.");
+            System.out.println(e.getMessage());
         }
     }
 
