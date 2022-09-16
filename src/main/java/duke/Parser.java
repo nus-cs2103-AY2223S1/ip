@@ -16,7 +16,10 @@ public class Parser {
         TODO,
         DEADLINE,
         EVENT,
-        FIND
+        FIND,
+        H,
+        M,
+        L
     }
 
     /**
@@ -56,7 +59,7 @@ public class Parser {
         case FIND:
             return new FindCommand(description);
         default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            return new PriorityCommand(command.toString(), Integer.parseInt(description));
         }
     }
 }

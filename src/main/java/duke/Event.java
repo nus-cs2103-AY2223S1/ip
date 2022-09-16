@@ -27,12 +27,14 @@ public class Event extends Task {
 
     @Override
     public String fileFormat() {
-        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, startDate);
+        return String.format("E | %d | %s | %s | %s", isDone ? 1 : 0,
+                priority == null ? "0" : priority, description, startDate);
     }
 
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
-                + startDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+                + startDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")"
+                + (priority == null ? "" : " - " + priority);
     }
 }
