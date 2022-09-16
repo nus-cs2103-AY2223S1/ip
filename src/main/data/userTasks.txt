@@ -1,1 +1,2 @@
-N|deadline say hello /by 2022-09-09 1900
+N|todo say hello
+N|todo say somemthing

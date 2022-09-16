@@ -14,6 +14,11 @@ import duke.commands.UnmarkCommand;
 
 import duke.exceptions.*;
 
+import duke.massops.AllOperation;
+import duke.massops.MassOperation;
+import duke.massops.RangeOperation;
+import duke.massops.SingleOperation;
+
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Task;
@@ -168,14 +173,9 @@ public class Parser {
      * @param args the description for initialising a Mark command
      * @return the command of initialising a Mark command
      */
-    private Command prepareMark(String args) {
-        int taskIndex;
-        try {
-            taskIndex = Integer.valueOf(args.trim());
-        } catch (NumberFormatException e) {
-            return new IncorrectCommand("Mark should be given a number input :)");
-        }
-        return new MarkCommand(taskIndex);
+    private Command prepareMark(String args) throws DukeException {
+        MassOperation massOp = parseMassOpsCommand(args);
+        return new MarkCommand(massOp);
     }
 
     /**
@@ -184,14 +184,9 @@ public class Parser {
      * @param args the description for initialising an Unmark command
      * @return the command of initialising an Unmark command
      */
-    private Command prepareUnmark(String args) {
-        int taskIndex;
-        try {
-            taskIndex = Integer.valueOf(args.trim());
-        } catch (NumberFormatException e) {
-            return new IncorrectCommand("Unmark should be given a number input :)");
-        }
-        return new UnmarkCommand(taskIndex);
+    private Command prepareUnmark(String args) throws DukeException {
+        MassOperation massOperation = parseMassOpsCommand(args);
+        return new UnmarkCommand(massOperation);
     }
 
     /**
@@ -200,14 +195,9 @@ public class Parser {
      * @param args the description for initialising a Delete command
      * @return the command of initialising a Delete command
      */
-    private Command prepareDelete(String args) {
-        int taskIndex;
-        try {
-            taskIndex = Integer.valueOf(args.trim());
-        } catch (NumberFormatException e) {
-            return new IncorrectCommand("Delete should be given a number input :)");
-        }
-        return new DeleteCommand(taskIndex);
+    private Command prepareDelete(String args) throws DukeException {
+        MassOperation massOperation = parseMassOpsCommand(args);
+        return new DeleteCommand(massOperation);
     }
 
     /**
@@ -460,5 +450,34 @@ public class Parser {
      */
     private static Task createEventFromArray(String[] strArr) throws DukeInvalidDateException {
         return new Event(strArr[0], strArr[1]);
+    }
+
+    private MassOperation parseMassOpsCommand(String args) throws DukeException {
+        args = args.trim();
+        if (args.equals("all")) {
+            return new AllOperation();
+        } else if (args.contains("-")) {
+            int[] range = parseRange(args);
+            return new RangeOperation(range);
+        } else {
+            int idx = tryParseToInteger(args);
+            return new SingleOperation(idx);
+        }
+    }
+
+    private int[] parseRange(String args) throws DukeException {
+        String[] rangeSplit = args.split("-");
+        int firstValue = tryParseToInteger(rangeSplit[0]);
+        int secondValue = tryParseToInteger(rangeSplit[1]);
+        return new int[] { firstValue, secondValue };
+    }
+
+    private int tryParseToInteger(String args) throws DukeException {
+        try {
+            int idx = Integer.valueOf(args);
+            return idx;
+        } catch (NumberFormatException e) {
+            throw new DukeException("A non-numerical value has been encountered");
+        }
     }
 }
