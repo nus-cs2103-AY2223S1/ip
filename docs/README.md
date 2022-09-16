@@ -98,7 +98,7 @@ current number of tasks recorded by the application.
 ```
 Alright this task has been successfully added!
 [T][ ] Studying day (at: SEPTEMBER 22 2022
-Thurssday)
+THURSDAY)
 Total of 3 tasks now
 ```
 
