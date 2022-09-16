@@ -36,11 +36,11 @@ test {
 }
 
 application {
-    mainClassName = "bobthebot.utils.Launcher";
+    mainClassName = "bobthebot.gui.Main";
 }
 
 shadowJar {
-    archiveBaseName = "bob"
+    archiveBaseName = "bobby"
     archiveClassifier = null
 }
 

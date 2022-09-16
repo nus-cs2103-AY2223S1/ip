@@ -1,10 +1,8 @@
 package bobthebot.bob;
 
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import bobthebot.command.GoodbyeCommand;
 import bobthebot.command.ReminderCommand;
 import bobthebot.exceptions.BobException;
 import bobthebot.tasks.ToDoList;
