@@ -13,14 +13,14 @@ public class Ui {
     private final String REMOVED_TASK = "Noted. I've removed this task:";
     /** Message to be displayed when user exit the program */
     private final String GOODBYE = "Bye! Thanks for using Luke!";
-   
-    
+
+
 
     /**
      * A constructor for Ui
      */
     public Ui() {
-        
+
     }
 
     /**
@@ -30,7 +30,7 @@ public class Ui {
         return WELCOME;
     }
 
- 
+
     /**
      * Prints message after adding a task
      *
@@ -54,7 +54,7 @@ public class Ui {
      */
     public String showGoodbye() {
         return GOODBYE;
-        
+
     }
 
 

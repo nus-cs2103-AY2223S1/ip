@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
-    
+
     @FXML
     private Text dialog;
     @FXML

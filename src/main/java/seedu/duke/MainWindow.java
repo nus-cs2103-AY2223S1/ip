@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.application.Platform;
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -49,7 +49,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
-        
+
         if (response.equals("Bye! Thanks for using Luke!")) {
             Platform.exit();
         }

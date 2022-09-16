@@ -68,17 +68,18 @@ public class Storage {
                         task = new Event(data.substring(7, symbol), date);
                     } else if (action == 'D') {
                         task = new Deadline(data.substring(7, symbol), date);
-                    } else  {
+                    } else {
                         reader.close();
                         throw new DukeException("Task loaded is not of the right format");
-                        
+
                     }
 
 
                 }
 
                 char isDone = data.charAt(4);
-                assert isDone == 'X' || isDone == ' ': "The state of whether the task is completed is not stored properly";
+                assert isDone == 'X'
+                    || isDone == ' ' : "The state of whether the task is completed is not stored properly";
                 tasks.add(task);
                 if (isDone == 'X') {
                     task.setDone();

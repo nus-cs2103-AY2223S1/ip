@@ -17,9 +17,9 @@ public class Deadline extends Task {
      * @param by the due date of the task.
      * @throws DukeException if the format of the date is wrong.
      */
-    public Deadline(String description, String by) throws DukeException{
+    public Deadline(String description, String by) throws DukeException {
         super(description);
-        try{
+        try {
             int year = Integer.parseInt(by.substring(0, 4));
             int month = Integer.parseInt(by.substring(5, 7));
             int day = Integer.parseInt(by.substring(8, 10));
@@ -29,7 +29,8 @@ public class Deadline extends Task {
             LocalDateTime date = LocalDateTime.of(year, month, day, hours, minutes);
             this.by = date;
         } catch (Exception e) {
-            throw new DukeException("The date of the deadline should be input\n with the following format: /by YYYY-MM-DD hhmm");
+            throw new DukeException(
+                "The date of the deadline should be input\n with the following format: /by YYYY-MM-DD hhmm");
         }
 
     }

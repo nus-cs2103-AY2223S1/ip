@@ -16,7 +16,7 @@ public class Event extends Task {
      * @param at The date and time of the event.
      * @throws DukeException if the date is of the wrong format.
      */
-    public Event(String description, String at) throws DukeException{
+    public Event(String description, String at) throws DukeException {
         super(description);
         try {
 
@@ -25,11 +25,12 @@ public class Event extends Task {
             int day = Integer.parseInt(at.substring(8, 10));
             int hours = Integer.parseInt(at.substring(11, 13));
             int minutes = Integer.parseInt(at.substring(13, 15));
-    
+
             LocalDateTime date = LocalDateTime.of(year, month, day, hours, minutes);
             this.at = date;
         } catch (Exception e) {
-            throw new DukeException("The date of the event should be input\n with the following format: /at YYYY-MM-DD hhmm");
+            throw new DukeException(
+                "The date of the event should be input\n with the following format: /at YYYY-MM-DD hhmm");
         }
     }
 

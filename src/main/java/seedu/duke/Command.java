@@ -40,7 +40,7 @@ public enum Command {
 
             case LIST:
                 output += "Here are the tasks in your list:\n";
-            
+
                 for (int i = 0; i < tasks.size(); i++) {
                     task = tasks.get(i);
                     output += String.valueOf(i + 1) + "." + task + "\n";
@@ -52,7 +52,7 @@ public enum Command {
                     throw new DukeException("Choose which task to tag!");
                 }
 
-                if (input.length() ==5) {
+                if (input.length() == 5) {
                     throw new DukeException("Choose your tag for this task!");
                 }
                 taskNumber = Integer.parseInt(input.substring(4, 5)) - 1;
@@ -62,7 +62,7 @@ public enum Command {
                 String tag = input.substring(6);
                 output += tasks.get(taskNumber).setTag(tag);
                 break;
-                
+
 
             case MARK:
                 if (input.length() == 4) {
@@ -102,12 +102,14 @@ public enum Command {
                 }
 
                 if (input.indexOf('/') == -1) {
-                    throw new DukeException("The date of the event should be input\n with the following format: /at YYYY-MM-DD hhmm");
+                    throw new DukeException(
+                        "The date of the event should be input\n with the following format: /at YYYY-MM-DD hhmm");
                 }
 
                 split = input.substring(6).split("/");
                 if (split[1].length() < 4) {
-                    throw new DukeException("The date of the event should be input\n with the following format: /at YYYY-MM-DD hhmm");
+                    throw new DukeException(
+                        "The date of the event should be input\n with the following format: /at YYYY-MM-DD hhmm");
                 }
                 task = new Event(split[0], split[1].substring(3));
                 output = addTask(tasks, task, ui, output);
@@ -119,13 +121,15 @@ public enum Command {
                 }
 
                 if (input.indexOf('/') == -1) {
-                    throw new DukeException("The date of the deadline should be input\n with the following format: /by YYYY-MM-DD hhmm");
+                    throw new DukeException(
+                        "The date of the deadline should be input\n with the following format: /by YYYY-MM-DD hhmm");
                 }
 
 
                 split = input.substring(9).split("/");
                 if (split[1].length() < 4) {
-                    throw new DukeException("The date of the deadline should be input\n with the following format: /by YYYY-MM-DD hhmm");
+                    throw new DukeException(
+                        "The date of the deadline should be input\n with the following format: /by YYYY-MM-DD hhmm");
                 }
 
                 task = new Deadline(split[0], split[1].substring(3));
@@ -144,7 +148,7 @@ public enum Command {
                 tasks.remove(taskNumber);
                 ui.remove(task);
                 output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
-                + " in the list.";
+                    + " in the list.";
                 break;
 
             case BYE:
@@ -156,7 +160,7 @@ public enum Command {
                     throw new DukeException("Input your search keyword!");
                 }
                 output += "Here are the matching tasks in your list:\n";
-                
+
                 String keyword = input.substring(5);
                 int listValue = 1;
 
@@ -164,12 +168,12 @@ public enum Command {
                     task = tasks.get(i);
                     if (task.toString().indexOf(keyword) != -1) {
                         output += (String.valueOf(listValue) + "." + task + "\n");
-        
+
                         listValue++;
                     }
                 }
                 break;
-            
+
             default:
                 throw new DukeException("I'm sorry, but I dont know what you mean :(");
 
@@ -187,9 +191,9 @@ public enum Command {
 
     /**
      * Returns a String about the number of tasks in the list.
-     * 
+     *
      * @param tasks ArrayList of tasks.
-     * @param task An object containing its description and tag and whether it is done. 
+     * @param task An object containing its description and tag and whether it is done.
      * @param ui Ui of the application.
      * @param output An intermediate string to be returned.
      * @return a string to be displayed in GUI when task is added.
@@ -198,7 +202,7 @@ public enum Command {
         tasks.add(task);
         ui.add(task);
         return output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
-        + " in the list.";
+            + " in the list.";
     }
 
 }
