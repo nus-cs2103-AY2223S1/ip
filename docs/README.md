@@ -19,7 +19,7 @@ CHAN BOT is a **desktop app for managing tasks** with a Graphical User Interface
 3. Copy the file to the folder you want to use as the home folder for your task manager.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.<br>
-   ![example](example.png)
+   ![Ui](Ui.png)
 
 5. Type the command in the command box and press Enter to execute it.
 
@@ -107,16 +107,16 @@ Format: `bye`
 
 ## Command summary
 
-| Action           | Format                              | Example                                 |
-|------------------|-------------------------------------|-----------------------------------------|
-| **Help**         | `help`                              | `help`                                  |
-| **Add todo**     | `todo DESCRIPTION`                  | `todo iP`                               |
+| Action          | Format                              | Example                                 |
+|-----------------|-------------------------------------|-----------------------------------------|
+| **Help**        | `help`                              | `help`                                  |
+| **Add todo**    | `todo DESCRIPTION`                  | `todo iP`                               |
 | **Add deadline** | `deadline DESCRIPTION /by DATETIME` | `deadline iP /by 21/12/2022 15:30`      |
-| **Add event**    | `event DESCRIPTION /at DATETIME`    | `event tP meeting /at 21/12/2022 15:30` |
-| **List**         | `list`                              | `list`                                  |
-| **Mark**         | `mark INDEX`                        | `mark 1`                                |
-| **Unmark**       | `unmark INDEX`                      | `unmark 1`                              |
-| **Delete**       | `delete INDEX`                      | `delete 1`                              |
-| **Find**         | `find KEYWORD`                      | `find meeting`                          |
-| **Statistics**   | `statistics`                        | `statistics`                            |
-| **Exit**         | `bye`                               | `bye`                                   |
+| **Add vent**    | `event DESCRIPTION /at DATETIME`    | `event tP meeting /at 21/12/2022 15:30` |
+| **List**        | `list`                              | `list`                                  |
+| **Mark**        | `mark INDEX`                        | `mark 1`                                |
+| **Unmark**      | `unmark INDEX`                      | `unmark 1`                              |
+| **Delete**      | `delete INDEX`                      | `delete 1`                              |
+| **Find**        | `find KEYWORD`                      | `find meeting`                          |
+| **Statistics**  | `statistics`                        | `statistics`                            |
+| **Exit**        | `bye`                               | `bye`                                   |
