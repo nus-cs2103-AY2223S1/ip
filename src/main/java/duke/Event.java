@@ -74,10 +74,10 @@ public class Event extends Task {
     public String printTask() {
         if (!this.getStatus()) {
             return "  " + this.getIndex() + ".[E][ ] " + this.getDescription() + " (at: "
-                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
+                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")\n #" + this.getTag();
         } else {
             return "  " + this.getIndex() + ".[E][X] " + this.getDescription() + " (at: "
-                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
+                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")\n #" + this.getTag();
         }
     }
 

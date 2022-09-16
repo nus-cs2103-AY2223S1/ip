@@ -61,9 +61,9 @@ public class ToDo extends Task {
     @Override
     public String printTask() {
         if (!this.getStatus()) {
-            return "  " + this.getIndex() + ".[T][ ] " + this.getDescription();
+            return "  " + this.getIndex() + ".[T][ ] " + this.getDescription() + "\n #" + this.getTag();
         } else {
-            return "  " + this.getIndex() + ".[T][X] " + this.getDescription();
+            return "  " + this.getIndex() + ".[T][X] " + this.getDescription() + "\n #" + this.getTag();
         }
     }
 

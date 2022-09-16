@@ -72,10 +72,10 @@ public class Deadline extends Task {
     public String printTask() {
         if (!this.getStatus()) {
             return "  " + this.getIndex() + ".[D][ ] " + this.getDescription() + " (by: "
-                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")";
+                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ") \n #" + this.getTag();
         } else {
             return "  " + this.getIndex() + ".[D][X] " + this.getDescription() + " (by: "
-                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
+                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ") \n #" + this.getTag();
         }
     }
 

@@ -152,6 +152,10 @@ public class TaskList {
             }
         }
 
+        if (matches == "") {
+            return ui.printNoMatchingTaskCurrently();
+        }
+
         return matches;
     }
 

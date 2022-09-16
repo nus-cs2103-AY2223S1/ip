@@ -39,7 +39,7 @@ public class Ui {
      * @return a String with the goodbye message.
      */
     public static String printGoodbyeMessage() {
-        return "\n  sayonara, goodbye\n";
+        return "sayonara, goodbye";
     }
 
     /**
@@ -48,7 +48,7 @@ public class Ui {
      * @return a String informing user task list is empty.
      */
     public static String printTaskListEmpty() {
-        return "\n" + "  Nothing to do currently ehe\n";
+        return "Nothing to do currently ehe";
     }
 
     /**
@@ -60,9 +60,9 @@ public class Ui {
     public String printIndexOutOfBoundsException(Keywords keyword) {
         switch (keyword) {
         case delete:
-            return "\n  Can't delete something that isn't there...\n" + "\n";
+            return "Can't delete something that isn't there...";
         case unmark:
-            return "\n  HEY THERE'S NO SUCH TASK! >:(\n" + "\n";
+            return "HEY THERE'S NO SUCH TASK! >:(";
         default:
             return "Oh no, unrecognised";
         }
@@ -77,19 +77,19 @@ public class Ui {
     public String printInsufficientInfoException(Keywords keyword) {
         switch (keyword) {
         case delete:
-            return "\n  Insufficient information to delete! Please input more ;-;\n";
+            return "Insufficient information to delete! Please input more ;-;";
         case mark:
-            return "\n  Insufficient information to mark! Please input more ;-;\n";
+            return "Insufficient information to mark! Please input more ;-;";
         case unmark:
-            return "\n  Insufficient information to unmark! Please input more ;-;\n";
+            return "Insufficient information to unmark! Please input more ;-;";
         case todo:
-                return "\n  Insufficient information to make a todo! Please input more ;-;\n";
+                return "Insufficient information to make a todo! Please input more ;-;";
         case deadline:
-                return "\n  Insufficient information to make a deadline! "
-                        + "Please input more ;-;\n";
+                return "Insufficient information to make a deadline! "
+                        + "Please input more ;-;";
         case event:
-                return "\n  Insufficient information to make a event! "
-                        + "Please input more ;-;\n";
+                return "Insufficient information to make a event! "
+                        + "Please input more ;-;";
         default:
             return "This does not make sense, what are you trying to do?";
         }
@@ -101,7 +101,7 @@ public class Ui {
      * @return a String to inform user input not recognised.
      */
     public String printUnrecognisedWord() {
-        return "\n  What do you mean by Justin Bieber plays~\n";
+        return "What do you mean by Justin Bieber plays~";
     }
 
     /**
@@ -137,7 +137,11 @@ public class Ui {
      * @return a String to inform users no task exist when find function used.
      */
     public String printNoMatchingTask() {
-        return "\n No tasks exist yet, can't find a match :( \n";
+        return "No tasks exist yet, can't find a match :(";
+    }
+
+    public String printNoMatchingTaskCurrently() {
+        return "No matches, try your luck on Tinder!";
     }
 
 }
