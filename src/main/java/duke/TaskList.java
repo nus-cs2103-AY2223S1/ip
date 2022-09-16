@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-    private int capacity;
     private List<Task> tasks;
 
     /**
      * Default constructor for duke.TaskList creates a duke.TaskList of capacity 100.
      */
     public TaskList() {
-        this.capacity = 100;
         this.tasks = new ArrayList<>(100);
     }
 
@@ -23,7 +21,6 @@ public class TaskList {
      * @param capacity The capacity of the duke.TaskList.
      */
     public TaskList(int capacity) {
-        this.capacity = capacity;
         this.tasks = new ArrayList<>(capacity);
     }
 
