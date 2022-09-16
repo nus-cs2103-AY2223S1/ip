@@ -73,7 +73,6 @@ public class StorageFile {
                 String[] inputArray = Arrays.stream(line.split("\\|")).map(String::trim).toArray(String[]::new);
                 String taskType = inputArray[0];
                 String description = inputArray[2];
-                LocalDate date = LocalDate.parse(inputArray[3]);
                 Task task = null;
 
                 switch (taskType) {
@@ -81,10 +80,10 @@ public class StorageFile {
                     task = new Todo(description);
                     break;
                 case "D":
-                    task = new Deadline(description, date);
+                    task = new Deadline(description, LocalDate.parse(inputArray[3]));
                     break;
                 case "E":
-                    task = new Event(description, date);
+                    task = new Event(description, LocalDate.parse(inputArray[3]));
                     break;
                 default:
                     break;

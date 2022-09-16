@@ -130,7 +130,7 @@ public class TaskList {
     public static String convertListOfTasksToString(List<Task> tasks) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            sb.append(String.format("%d.%s\n\t", i + 1, tasks.get(i)));
+            sb.append(String.format("%d.%s\n", i + 1, tasks.get(i)));
         }
         return sb.toString().stripTrailing();
     }
