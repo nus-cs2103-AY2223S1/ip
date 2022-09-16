@@ -235,11 +235,15 @@ Expected outcome:
 Modifies your task list so that the specified task
 is removed from the task list.
 
-### `stats` - Generate statistics
+### `stats [-STATISTIC_TYPE_FLAG]` - Generate statistics
 
-Generates the breakdown of completed tasks by their task type
-in a pie chart. If there are no completed tasks, no pie chart
-will be generated.
+Generates statistics for the completed tasks stored in your task
+list. Currently supports two types of data visualisation, pie chart
+and bar graph. See the following sections on how to generate each
+statistic.
+
+Note that if no `[-STATISTIC_TYPE_FLAG]` is provided (ie: command
+`stats` is typed), Bobo will simply generate a pie chart.
 
 <img src="images/Stats.png" width="400"/>
 
@@ -251,6 +255,67 @@ Expected outcome:
 
 A pie chart breaking down completed tasks by their task type
 will be generated.
+
+
+### `stats [-p]` - Generate statistics in a pie chart
+
+Generates the breakdown of **all** completed tasks by their task type
+in a pie chart. If there are no completed tasks, no pie chart
+will be generated.
+
+<img src="images/PieChart.png" width="400"/>
+
+Example of usage:
+
+`stats -p`
+
+Expected outcome:
+
+A pie chart breaking down completed tasks by their task type
+will be generated.
+
+### `stats -b [/BAR_CHART_TYPE] [DATE]` - Generate statistics in a bar chart
+
+Generates the breakdown of completed tasks by their completion date
+in a bar chart. If there are no completed tasks, no bar chart
+will be generated.
+
+There are two types of bar charts supported by Bobo. You can
+view either **daily** (`/day`) or **weekly** (`/week`) statistics.
+You can specify the type of bar chart to generate with the
+`/BAR_CHART_TYPE` tag. If no `/BAR_CHART_TYPE` tag is specified, Bobo will default to a
+daily-type bar chart statistic.
+
+In addition, you can also specify the date to view the statistics
+for. If no date is specified, Bobo will default to the current day.
+
+For a **day-type bar** chart, this means viewing the breakdown
+of tasks completed by hour for that specified day.
+
+<img src="images/BarChartDay.png" width="400"/>
+
+For a **week-type bar** chart, this means viewing the breakdown of
+tasks completed by week for the week the specified day falls within.
+
+<img src="images/BarChartWeek.png" width="400"/>
+
+Example of usage:
+
+`stats -b /day yesterday`
+
+Expected outcome:
+
+A bar chart breaking down completed tasks by hour yesterday will
+be generated.
+
+Example of usage:
+
+`stats -b /week 21/09/22`
+
+Expected outcome:
+
+A bar chart breaking down completed tasks by day on the week of
+21st September 2022 will be generated.
 
 ### `schedule [DATE]` - Get the daily schedule
 
