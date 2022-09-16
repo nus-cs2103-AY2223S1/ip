@@ -19,7 +19,7 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 
 ## Features
 
-`test #d98b0f`
+
 ### Add a todo: `todo`
 Adds a todo to the app.
 
