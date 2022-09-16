@@ -12,6 +12,7 @@ import duke.task.ToDo;
 import duke.utils.Parser;
 import duke.utils.Storage;
 import duke.utils.TaskList;
+import javafx.application.Platform;
 
 /**
  * The main class of the Duke program.
@@ -35,7 +36,7 @@ public class Duke {
             System.out.println(e);
         }
     }
-    
+
     public String invokeSecondary(String input) {
         return taskList.secondary.apply(input);
     }
@@ -64,6 +65,7 @@ public class Duke {
             String content = parser.getContent();
             switch (keyword) {
             case BYE:
+                Platform.exit();
                 String byeMessage = "Goodbye. Hope to see you again soon!";
                 return byeMessage;
             case LIST:
