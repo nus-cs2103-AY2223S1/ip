@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.duke.Duke;
 import duke.duke.DukeException;
 import duke.util.Storage;
 import duke.task.TaskList;
@@ -7,22 +8,23 @@ import duke.task.TaskList;
 /** Represents the command to end the Duke program. */
 public class ExitCommand extends Command {
 
-    private static final String farewellMessage = "Bye. Hope to see you again soon! \n\nApplication is now closing.";
-
+    /** Represents a ExitCommand object */
     public ExitCommand() {
         super();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         storage.saveTaskList(taskList);
-        return farewellMessage;
+        return Duke.EXIT_MESSAGE;
     }
 
-    public static String getFarewellMessage() {
-        return farewellMessage;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return true;

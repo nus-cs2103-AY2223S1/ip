@@ -5,6 +5,15 @@ import duke.task.TaskList;
 
 /** Represents the command to list out Tasks in TaskList that inherits from Command. */
 public class ListCommand extends Command {
+
+    /** Represents a ExitCommand object */
+    public ListCommand() {
+        super();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList taskList, Storage storage) {
         String message = "";
@@ -13,6 +22,9 @@ public class ListCommand extends Command {
         return message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

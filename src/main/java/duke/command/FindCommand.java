@@ -6,12 +6,17 @@ import duke.task.TaskList;
 
 /** Represents the command to find tasks with given keyword that inherits from Command. */
 public class FindCommand extends Command {
+    /** Represents the input keyed by the user. */
     private final String userInput;
 
+    /** Represents a FindCommand object */
     public FindCommand(String userInput) {
         this.userInput = userInput;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         String message = "";
@@ -27,6 +32,9 @@ public class FindCommand extends Command {
         return message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

@@ -5,14 +5,23 @@ import duke.util.Storage;
 import duke.task.TaskList;
 import duke.task.Task;
 
-/** Represents the command to delete task that inherits from Command. */
+/** Represents the command to delete task that inherits from Command */
 public class DeleteCommand extends Command {
+    /** Represents the input keyed by the user. */
     private final String userInput;
 
+    /**
+     * Represents a DeleteCommand object
+     *
+     * @param userInput string from the user
+     */
     public DeleteCommand(String userInput) {
         this.userInput = userInput;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         String message = "";
@@ -27,6 +36,9 @@ public class DeleteCommand extends Command {
         return message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

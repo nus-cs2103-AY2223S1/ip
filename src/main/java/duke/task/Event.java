@@ -6,11 +6,17 @@ import java.time.format.DateTimeParseException;
 
 import duke.duke.DukeException;
 
+/**
+ * Represents a Event Task.
+ */
 public class Event extends Task {
+    /**
+     * Represents the end date of the Deadline task.
+     */
     private LocalDateTime dateTime;
 
     /**
-     * Returns a Event object.
+     * Returns an Event object.
      * Throws a DukeException if the time is not parsable.
      *
      * @param taskName Name of the task
@@ -30,12 +36,18 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
                 + this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toFileString() {
         return "E" + "|" + (this.getTaskStatus() ? "1" : "0") + "|" + this.getPriorityNumber() + "|"

@@ -5,14 +5,18 @@ import java.util.ArrayList;
 import duke.duke.DukeException;
 import duke.task.Task;
 
-/** Represents a list of Tasks objects */
+/**
+ * Represents a list of Tasks objects
+ */
 public class TaskList {
+    /**
+     * Data structure used to store the Tasks
+     */
     private final ArrayList<Task> taskList;
 
     /**
      * Represents a TaskList object.
      * Initialises a new empty ArrayList of Tasks and Initialises ui to print responses when task methods are executed
-     *
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
@@ -85,7 +89,8 @@ public class TaskList {
      * Updates the status of the Task object at specified index
      *
      * @param index Index of the Task object which needs its task status modified.
-     * @param isDone True to mark task as done and false to mark task as not done
+     * @param isDone True to mark task as done and false to mark task as not done.
+     * @return updated Task object.
      * @throws DukeException If provided index is out of range.
      */
     public Task updateTaskStatus(int index, boolean isDone) throws DukeException {
@@ -99,12 +104,18 @@ public class TaskList {
         return task;
     }
 
-    public String findTaskThatContains(String query) throws DukeException {
+    /**
+     * Finds and return a string representation of tasks that contain the keyword
+     * provided by the user.
+     *
+     * @param keyword provided by the user to find tasks that contain it.
+     * @return String representation of tasks that contain the keyword.
+     */
+    public String findTaskThatContains(String keyword) {
         int index = 1;
         String message = "";
-        for (int i = 0; i < this.getTaskListSize(); i++) {
-            Task currentTask = this.getTaskAtIndex(i + 1);
-            if (currentTask.toString().contains(query)) {
+        for (Task currentTask : taskList) {
+            if (currentTask.toString().contains(keyword)) {
                 message += index + ". " + currentTask + "\n";
                 index += 1;
             }
@@ -112,6 +123,15 @@ public class TaskList {
         return message;
     }
 
+    /**
+     * Updates the priority level of the Task object at specified index with the given
+     * priority level
+     *
+     * @param index Index of the Task object which needs its task priority modified.
+     * @param priorityString string representation of priority levels
+     * @return updated Task object.
+     * @throws DukeException If provided index is out of range.
+     */
     public Task updateTaskPriority(int index, String priorityString) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
             throw new DukeException("OOPS!!! The task index is out of range");

@@ -10,7 +10,9 @@ import java.util.Scanner;
 import duke.duke.DukeException;
 import duke.task.*;
 
-/** Storage object used for file operations such as read and write of TaskList to text file. */
+/**
+ * Storage object used for file operations such as read and write of TaskList to text file.
+ */
 public class Storage {
 
     private String filePath;

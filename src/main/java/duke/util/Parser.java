@@ -4,6 +4,9 @@ import duke.command.*;
 import duke.duke.Duke;
 import duke.duke.DukeException;
 
+/**
+ * A Parser class to parse text inputs from user
+ */
 public class Parser {
     /**
      * Returns parsed command from user input based on keywords.

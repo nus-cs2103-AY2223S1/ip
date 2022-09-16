@@ -114,7 +114,7 @@ public abstract class Task {
     }
 
     /**
-     * Abstract method that returns the string representation of the task that is used to save into text file
+     * Returns the string representation of the task that is used to save into text file
      *
      * @return String representation of the task that is used to save into text file.
      */

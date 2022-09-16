@@ -5,13 +5,23 @@ import duke.util.Storage;
 import duke.task.TaskList;
 import duke.task.Task;
 
+/** Represents the command to change the priority level of Tasks in TaskList that inherits from Command. */
 public class PriorityCommand extends Command{
+    /** Represents the input keyed by the user. */
     private final String userInput;
 
+    /**
+     * Represents a PriorityCommand object
+     *
+     * @param userInput string from the user
+     */
     public PriorityCommand(String userInput) {
         this.userInput = userInput;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         String message = "";
@@ -28,6 +38,9 @@ public class PriorityCommand extends Command{
         return message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

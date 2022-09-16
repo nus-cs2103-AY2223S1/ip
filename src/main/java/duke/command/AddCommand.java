@@ -11,12 +11,21 @@ import duke.task.Todo;
 
 /** Represents the command to add task that inherits from Command. */
 public class AddCommand extends Command {
+    /** Represents the input keyed by the user. */
     private final String userInput;
 
+    /**
+     * Represents a AddCommand object
+     *
+     * @param userInput string from the user
+     */
     public AddCommand(String userInput) {
         this.userInput = userInput;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
         String command;
@@ -69,6 +78,9 @@ public class AddCommand extends Command {
         return message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

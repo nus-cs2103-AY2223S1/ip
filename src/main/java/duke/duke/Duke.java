@@ -5,14 +5,25 @@ import duke.util.Storage;
 import duke.task.TaskList;
 import duke.command.Command;
 
-/** Represents the main class of the Duke application */
+/**
+ * Represents the main class of the Duke application
+ */
 public class Duke {
     private TaskList taskList;
     private Storage storage;
 
+    public static final String EXIT_MESSAGE = "Bye. Hope to see you again soon! \n\nApplication is now closing.";
     public static final String GREETING_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
     public static final String TITLE = "Duke";
 
+    /**
+     * Represents a Duke object.
+     * Initialises Storage and TaskList, data of tasklist is read from provided filepath using method
+     * from Storage class
+     *
+     * @param filePath File path of the data text file
+     * @throws DukeException from the loadTaskList method
+     */
     public Duke(String filePath) throws DukeException{
         assert !filePath.isEmpty() : "Filepath should not be empty";
         storage = new Storage(filePath);
@@ -34,6 +45,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns the response from the user after parsing and executing the command.
+     *
+     * @param userInput Input from the user.
+     * @return text response of the executed command.
+     */
     public String getResponse(String userInput) {
         try {
             assert !userInput.isEmpty() : "User input should not be empty";
