@@ -38,7 +38,7 @@ public class Parser {
         } else if (userInput.matches("(?i)schedule.*")) {
             return new ViewScheduleCommand(userInput.substring(8));
         } else if (userInput.matches("(?i)stats.*")) {
-            return new StatsCommand();
+            return StatsCommand.getStatsCommand(userInput.substring(5));
         } else if (userInput.matches("((?i)^(todo)(.*))|((?i)^(deadline)(.*))|((?i)^(event)(.*))")) {
             return new AddTaskCommand(userInput);
         } else if (userInput.equals("bye")) {
