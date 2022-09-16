@@ -13,13 +13,13 @@ Duke is a chatbot which allows you to manage tasks, namely:
 - [ ] Ensure you have Java 11 or above installed on your Computer
 
 
-- [ ] Download the latest Jar File of Duke, available here
+- [ ] Download the latest Jar file of Duke
 
 
 - [ ] Copy the file to the folder you want to use as the home folder for Duke
 
 
-- [ ] Double click Duke to run
+- [ ] **Double click** Duke to run
 
 ![Welcome to Duke](https://tan-jin-waye.github.io/ip/Ui.png)
 
@@ -47,9 +47,28 @@ Examples of tasks look like this:
 From left to right:
 
 - `[T]`, `[D]`, `[E]` denote a **Todo**, **Deadline**, or **Event** task respectively
-- `[ ]`, `[X]` denote an **Active** or **Completed** task
-- The text in the middle denotes the **Description** of the task
+- `[ ]`, `[X]` denote an **active** or **completed** task
+- The text in the middle denotes the **description** of the task
 - **Deadline** and **Event** tasks additionally have a `by` or `at` date respectively
+
+### Saving
+
+The app automatically saves the list of tasks in a **SaveData.txt** file created in the same directory as the Jar file. 
+
+Each task is stored as a line entry and looks like this:
+
+`T/F/Return book`
+
+`D/T/Finish assignment/2023-09-17`
+
+`E/F/Attend lecture/2022-01-09`
+
+The attributes for a task are separated by `/`. From left to right:
+
+- `T`, `D`, `E` denote a **Todo**, **Deadline**, or **Event** task respectively
+- The second field, `T` or `F` represent **True** or **False** corresponding to whether task has been **completed**.
+- The text in the middle denotes the **Description** of the task
+- **Deadline** and **Event** tasks additionally have the by or at **date** respectively
 
 ### Detailed Command List
 
