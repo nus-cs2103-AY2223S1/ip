@@ -13,7 +13,7 @@ public class Parser {
     private static final String ESCAPE = "/";
 
     /**
-     * A static method which parses the user input and returns a command based on the input.
+     * Parses the user input and returns a command based on the input.
      *
      * @param input User input.
      * @return Command based on the user input.

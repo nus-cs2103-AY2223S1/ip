@@ -22,7 +22,6 @@ public class UnmarkCommand implements Command{
 
     /**
      * Executes the un-mark command by un-marking the task and printing the un-mark message.
-     * Refreshes the storage to write the new changes.
      *
      * @param tasks TaskList which contains all the tasks Duke currently has.
      * @param storage Storage created when starting Duke.

@@ -21,7 +21,6 @@ public class MarkCommand implements Command{
 
     /**
      * Executes the mark command by marking the task and printing the mark message.
-     * Refreshes the storage to write the new changes.
      *
      * @param tasks TaskList which contains all the tasks Duke currently has.
      * @param storage Storage created when starting Duke.
@@ -32,7 +31,7 @@ public class MarkCommand implements Command{
         try {
             res = tasks.mark(TO_MARK);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeInvalidParameterException("target to unmark does not exist!");
+            throw new DukeInvalidParameterException("target to mark does not exist!");
         }
         storage.refresh(tasks);
 

@@ -9,7 +9,7 @@ import duke.task.TaskList;
 public class ListCommand implements Command {
 
     /**
-     * Executes the command by retrieving the list from Duke's TaskList and printing it.
+     * Executes the command by retrieving a string representation of Duke's TaskList.
      *
      * @param tasks TaskList which contains all the tasks Duke currently has.
      * @param storage Storage created when starting Duke.

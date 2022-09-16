@@ -21,7 +21,7 @@ public class DeleteCommand implements Command{
     }
 
     /**
-     * Executes the delete command and prints the results of this delete command using Duke's Ui.
+     * Executes the delete command and prints the results of this delete command.
      *
      * @param tasks TaskList which contains all the tasks Duke currently has
      * @param storage Storage created when starting Duke.

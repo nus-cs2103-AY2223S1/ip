@@ -29,7 +29,7 @@ public class TaskList {
     /**
      * Returns the String representation of this TaskList.
      *
-     * @return Array of String in according to the printing format.
+     * @return String to be shown to the user.
      */
     public String list() {
         StringBuilder sb = new StringBuilder(tasks.size() + 1);
@@ -44,7 +44,7 @@ public class TaskList {
     }
 
     /**
-     * Mark a specific task in this Tasklist.
+     * Marks a specific task in this Tasklist as complete.
      *
      * @param index Index of the Task to be marked.
      * @return Output message of a successful mark.
@@ -57,7 +57,7 @@ public class TaskList {
     }
 
     /**
-     * Un-mark a specific task in this Tasklist.
+     * Marks a specific task in this Tasklist as incomplete.
      *
      * @param index Index of the Task to be unmarked.
      * @return Output message of a successful un-mark.
@@ -98,6 +98,13 @@ public class TaskList {
                 String.format("Now you have %d tasks in the list.", this.tasks.size());
     }
 
+    /**
+     * Adds a new tag to a task in this TaskList.
+     *
+     * @param to_tag Index of task to be tagged.
+     * @param tag Tag to be added to the task.
+     * @return Output message after successfully adding the tag.
+     */
     public String addTag(int to_tag, Tag tag) {
         Task tagTask = tasks.get(to_tag);
         tagTask.addTag(tag);
@@ -135,6 +142,11 @@ public class TaskList {
         return sb.toString();
     }
 
+    /**
+     * Checks if this TaskList is empty.
+     *
+     * @return True if the TaskList is empty, false otherwise.
+     */
     public boolean isEmpty() {
         return tasks.isEmpty();
     }

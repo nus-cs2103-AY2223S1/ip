@@ -9,7 +9,7 @@ import duke.task.TaskList;
 public interface Command {
 
     /**
-     * The method to execute this command.
+     * Executes this command.
      *
      * @param tasks TaskList which contains all the tasks Duke currently has.
      * @param storage Storage created when starting Duke.

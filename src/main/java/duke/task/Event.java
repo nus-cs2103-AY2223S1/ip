@@ -32,7 +32,7 @@ public class Event extends Task {
     }
 
     /**
-     * String representation of this event.
+     * Returns the string representation of this event.
      *
      * @return String representing this event.
      */

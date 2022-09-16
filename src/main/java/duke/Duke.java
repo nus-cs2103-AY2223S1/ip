@@ -21,6 +21,11 @@ public class Duke {
         this.loadTask();
     }
 
+    /**
+     * Loads the task from storage.
+     *
+     * @throws DukeException Exceptions from loading the task.
+     */
     public void loadTask() throws DukeException {
         try {
             tasks = new TaskList(storage.load());
@@ -30,6 +35,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Reads the user input and returns a string response from executing duke commands.
+     *
+     * @param input User input.
+     * @return String response from executing duke commands.
+     */
     public String getResponse(String input) {
         String res;
         try {

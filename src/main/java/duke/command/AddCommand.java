@@ -24,7 +24,7 @@ public class AddCommand implements Command {
     }
 
     /**
-     * Executes the add command and prints the results of this add command using Duke's Ui.
+     * Executes the add command and prints the results of this add command.
      *
      * @param tasks TaskList which contains all the tasks Duke currently has.
      * @param storage Storage created when starting Duke.

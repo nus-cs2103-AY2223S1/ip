@@ -25,7 +25,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * String representation of this todo.
+     * Returns the string representation of this todo.
      *
      * @return String representing this todo.
      */

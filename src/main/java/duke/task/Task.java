@@ -111,7 +111,7 @@ public abstract class Task {
     }
 
     /**
-     * String representation of this task.
+     * Returns the string representation of this task.
      *
      * @return String representing this task.
      */
