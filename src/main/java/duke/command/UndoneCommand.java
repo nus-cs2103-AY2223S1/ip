@@ -27,7 +27,7 @@ public class UndoneCommand extends Command {
         }
 
         tasks.markTaskAsUndone(taskNum - 1);
-        ui.outputMessage("\tNice! I've marked this task as done:\n\t"
+        ui.outputMessage("Nice! I've marked this task as done:\n"
                 + tasks.get(taskNum - 1).toString());
         storage.save(tasks);
     }

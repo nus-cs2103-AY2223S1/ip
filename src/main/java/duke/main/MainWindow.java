@@ -28,6 +28,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
+        scrollPane.setStyle("-fx-background: rgb(233,208,247);");
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         showWelcomeMessage();
     }
@@ -62,7 +63,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void showWelcomeMessage() {
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog("\tHello! I'm Duke\n\t"
+                DialogBox.getDukeDialog("Hello! I'm Duke\n"
                         + "What can I do for you?", dukeImage)
         );
     }

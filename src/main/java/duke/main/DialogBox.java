@@ -7,12 +7,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  * An example of a custom control using FXML.
@@ -36,6 +46,7 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
+        dialog.setPadding(new Insets(5, 10, 5, 10));
         displayPicture.setImage(img);
     }
 
@@ -50,12 +61,17 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        DialogBox userDialog = new DialogBox(text, img);
+        userDialog.dialog.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.ITALIC, 10));
+        userDialog.dialog.setBackground(new Background(new BackgroundFill(Color.rgb(179, 149, 191), new CornerRadii(10), Insets.EMPTY)));
+        return userDialog;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        db.flip();
-        return db;
+        var dukeDialog = new DialogBox(text, img);
+        dukeDialog.flip();
+        dukeDialog.dialog.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        dukeDialog.dialog.setBackground(new Background(new BackgroundFill(Color.rgb(244, 237, 245), new CornerRadii(10), Insets.EMPTY)));
+        return dukeDialog;
     }
 }

@@ -27,6 +27,6 @@ public class TagCommand extends Command {
         System.out.println(tag);
 
         tasks.tagTask(taskNum, tag);
-        ui.outputMessage("\tSuccessfully tagged task No." + (taskNum + 1) + " with # " + tag);
+        ui.outputMessage("Successfully tagged task No." + (taskNum + 1) + " with # " + tag);
     }
 }

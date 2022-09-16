@@ -25,9 +25,9 @@ public class AddTodoCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Todo todo = new Todo(description);
         tasks.add(todo);
-        ui.outputMessage("\tGot it. I've added this task:\n\t"
+        ui.outputMessage("Got it. I've added this task:\n"
                 + todo
-                + "\n\tNow you have "
+                + "\nNow you have "
                 + tasks.size()
                 + " tasks in the list.");
         storage.save(tasks);
