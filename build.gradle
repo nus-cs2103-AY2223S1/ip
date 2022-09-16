@@ -52,7 +52,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.Launcher"
+    mainClassName = "duke.Main"
 }
 
 shadowJar {
