@@ -4,7 +4,8 @@ This is the user guide for Duke.
 Duke is a program designed for keyboard users. While it is designed with a graphical user interface, most of the user interactions happening on the CLI (Command Line Interface).
 
 **Acknowledgements**
-The GUI would not have been possible without the help of these borrowed code pieces:
+
+The appearance of the GUI would not have been possible without the help of these sources:
 
 - The sliding animations on dialogue appearance and window resize are handled by a class that has been adapted from the following [LayoutAnimation](https://gist.github.com/jewelsea/5683558).
 
