@@ -81,7 +81,7 @@ public class TaskList {
      */
     public String untag(int index) {
         Task task = this.list.get(index - 1);
-        task.setTag(null);
+        task.setTag("");
         return this.ui.showTagDeleted(task);
     }
 

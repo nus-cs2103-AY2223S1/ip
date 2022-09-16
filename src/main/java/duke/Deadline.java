@@ -31,7 +31,7 @@ public class Deadline extends Task {
     public String getStorageString() {
         String result = "D | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | "
                 + this.by.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        if (this.getTag() != null) {
+        if (this.getTag().length() != 0) {
             result += " | " + this.getTag();
         }
         return result;
@@ -46,7 +46,7 @@ public class Deadline extends Task {
     public String toString() {
         String result = "[D]" + super.toString() + " (by: "
                 + this.by.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")";
-        if (this.getTag() != null) {
+        if (this.getTag().length() != 0) {
             result += " #" + this.getTag();
         }
         return result;

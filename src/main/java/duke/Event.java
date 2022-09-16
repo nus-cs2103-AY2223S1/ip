@@ -27,7 +27,7 @@ public class Event extends Task {
     @Override
     public String getStorageString() {
         String result = "E | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | " + this.time;
-        if (this.getTag() != null) {
+        if (this.getTag().length() != 0) {
             result += " | " + this.getTag();
         }
         return result;
@@ -41,7 +41,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         String result = "[E]" + super.toString() + " (at: " + this.time + ")";
-        if (this.getTag() != null) {
+        if (this.getTag().length() != 0) {
             result += " #" + this.getTag();
         }
         return result;

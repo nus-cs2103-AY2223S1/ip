@@ -18,6 +18,7 @@ public abstract class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+        this.tag = "";
     }
 
     public String getStatusIcon() {
@@ -47,8 +48,7 @@ public abstract class Task {
      * @return Boolean representing whether description of task contains keyword.
      */
     public boolean containsKeyword(String keyword) {
-        keyword = keyword.toLowerCase();
-        return this.description.contains(keyword);
+        return this.description.toLowerCase().contains(keyword.toLowerCase());
     }
 
     public abstract String getStorageString();

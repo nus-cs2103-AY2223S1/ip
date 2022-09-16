@@ -28,7 +28,7 @@ public class Todo extends Task {
     @Override
     public String getStorageString() {
         String result = "T | " + (this.isDone ? "1 | " : "0 | ") + this.description;
-        if (this.getTag() != null) {
+        if (this.getTag().length() != 0) {
             result += " | " + this.getTag();
         }
         return result;
@@ -42,7 +42,7 @@ public class Todo extends Task {
     @Override
     public String toString() {
         String result = "[T]" + super.toString();
-        if (this.getTag() != null) {
+        if (this.getTag().length() != 0) {
             result += " #" + this.getTag();
         }
         return result;
