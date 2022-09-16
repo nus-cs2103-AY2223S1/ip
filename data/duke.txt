@@ -7,3 +7,5 @@ T|false|your family|0|
 T|false|your granny|0|
 T|false|your grandpa|0|
 T|false|your brother|0|
+T|false|your sister|0|
+D|false|your sister|01/01/2023 1900|
