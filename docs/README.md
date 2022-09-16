@@ -37,10 +37,10 @@ Expected outcome:
 All your tasks will be displayed.
 
 ```
-here! ur tasks:
-1.[T][ ] read book
-2.[E][X] swim (at: Feb 3 2022 5-6pm)
-3.[T][ ] cs2103t increments
+here! u have 3 task(s):
+1. [T][ ] read book
+2. [E][X] swim (at: Feb 3 2022 5-6pm)
+3. [T][ ] cs2103t increments
 ```
 
 ### `mark` - Marks a task as done
@@ -121,7 +121,7 @@ Expected outcome:
 Displays a list of tasks that match the keyword.
 
 ```
-here are the matching tasks: 
+here are the 2 matching task(s): 
 1.[T][ ] read book
 2.[T][ ] read notes
 ```

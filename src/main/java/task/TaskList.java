@@ -101,14 +101,11 @@ public class TaskList {
      * @return String containing format for saving.
      */
     public String formatTasks() {
-       // String str = "";
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < getSize(); i++) {
             stringBuilder.append(getTask(i).formatToSave() + "\n");
-            //str += getTask(i).formatToSave() + "\n";
         }
         return stringBuilder.toString();
-        //return str;
     }
 
     /**

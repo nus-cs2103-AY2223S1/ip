@@ -74,8 +74,9 @@ public class Ui {
      * @return String showing tasks with matching keyword.
      */
     public String showMatchingTasks(TaskList taskList) {
-        if (taskList.getSize() > 0) {
-            return "here are the matching tasks: \n" + taskList + "\n";
+        int size = taskList.getSize();
+        if (size > 0) {
+            return "here are the " + size + " matching task(s): \n" + taskList + "\n";
         } else {
            return "there are no tasks matching this keyword!\n";
         }
