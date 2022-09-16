@@ -13,6 +13,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline.
+     *
      * @param description deadline description.
      * @param by due date of deadline.
      */
@@ -25,6 +26,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline.
+     *
      * @param description deadline description.
      * @param by due date of deadline.
      * @param priority priority of task.
@@ -38,6 +40,7 @@ public class Deadline extends Task {
 
     /**
      * Returns deadline description.
+     *
      * @return deadline description.
      */
     public String getDescription() {

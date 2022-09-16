@@ -13,6 +13,7 @@ public class Event extends Task {
 
     /**
      * Constructor for Event.
+     *
      * @param description Event description.
      * @param at when the event is happening.
      */
@@ -25,6 +26,7 @@ public class Event extends Task {
 
     /**
      * Constructor for Event.
+     *
      * @param description Event description.
      * @param at when the event is happening.
      * @param priority priority of task.
@@ -38,6 +40,7 @@ public class Event extends Task {
 
     /**
      * Returns event description.
+     *
      * @return even description.
      */
     public String getDescription() {

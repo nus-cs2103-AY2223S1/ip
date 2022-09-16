@@ -14,6 +14,7 @@ public class Task {
 
     /**
      * Constructor for Task.
+     *
      * @param description task description.
      */
     public Task(String description) {
@@ -24,6 +25,7 @@ public class Task {
 
     /**
      * Constructor for Task.
+     *
      * @param description task description.
      * @param priority priority of task.
      */
@@ -68,6 +70,7 @@ public class Task {
 
     /**
      * Returns status icon of task.
+     *
      * @return status icon of task.
      */
     public String getStatusIcon() {
@@ -76,6 +79,7 @@ public class Task {
 
     /**
      * Returns status of task.
+     *
      * If task is done, return 1. If task is not done, return 0.
      * @return status of task.
      */
@@ -85,6 +89,7 @@ public class Task {
 
     /**
      * Returns task description.
+     *
      * @return task description.
      */
     public String getDescription() {
@@ -107,6 +112,7 @@ public class Task {
 
     /**
      * Returns task type of task.
+     *
      * @return task type.
      */
     public String getTaskType() {

@@ -24,6 +24,7 @@ public class Storage {
 
     /**
      * Constructor for Storage.
+     *
      * @param projectRoot filepath for storage.
      */
     public Storage(String projectRoot) {
@@ -34,6 +35,7 @@ public class Storage {
 
     /**
      * Returns a task that is parsed from string form.
+     *
      * @param details details of the task.
      * @param taskType type of task.
      * @return task object.
@@ -76,6 +78,7 @@ public class Storage {
 
     /**
      * Returns an ArrayList containing task objects that were previously saved.
+     *
      * @return ArrayList containing task objects.
      * @throws IOException
      */

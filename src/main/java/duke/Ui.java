@@ -21,6 +21,7 @@ public class Ui {
 
     /**
      * Reads user input.
+     *
      * @return user input as string.
      */
     public String readCommand() {
@@ -54,6 +55,7 @@ public class Ui {
 
     /**
      * Prints out all tasks.
+     *
      * @param tasks TaskList containing tasks list.
      */
     public void showListMessage(TaskList tasks) {
@@ -72,6 +74,7 @@ public class Ui {
 
     /**
      * Prints out tasks that contain search keyword.
+     *
      * @param tasks TaskList with tasks containing search keyword.
      */
     public void showFindMessage(TaskList tasks) {
@@ -90,6 +93,7 @@ public class Ui {
 
     /**
      * Prints out task that has been marked as done.
+     *
      * @param task task to be marked as done.
      */
     public void showMarkMessage(Task task) {
@@ -99,6 +103,7 @@ public class Ui {
 
     /**
      * Prints out task that has been unmarked as done.
+     *
      * @param task task to be unmarked as done.
      */
     public void showUnmarkMessage(Task task) {
@@ -108,6 +113,7 @@ public class Ui {
 
     /**
      * Prints out task that is added.
+     *
      * @param tasks TaskList containing tasks list.
      * @param task task that is added.
      */
@@ -120,6 +126,7 @@ public class Ui {
 
     /**
      * Prints out task that is deleted.
+     *
      * @param tasks TaskList containing tasks list.
      * @param task task that is deleted.
      */
@@ -132,6 +139,7 @@ public class Ui {
 
     /**
      * Prints out error message.
+     *
      * @param message error message.
      */
     public void showError(String message) {

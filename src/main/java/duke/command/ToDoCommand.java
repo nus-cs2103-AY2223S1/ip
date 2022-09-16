@@ -13,6 +13,7 @@ public class ToDoCommand extends Command {
 
     /**
      * Constructor for ToDoCommand.
+     *
      * @param toDoDescription ToDo description.
      */
     public ToDoCommand(String toDoDescription) {

@@ -17,6 +17,7 @@ public class EventCommand extends Command {
 
     /**
      * Constructor for EventCommand.
+     *
      * @param eventDescription event description.
      * @param at when the event is occurring.
      */

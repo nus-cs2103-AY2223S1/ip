@@ -13,6 +13,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * Constructor for UnmarkCommand
+     *
      * @param indexToUnmark index of task to unmark.
      */
     public UnmarkCommand(int indexToUnmark) {
@@ -36,5 +37,6 @@ public class UnmarkCommand extends Command {
 
         return String.format("OK, I've marked this task as not done yet:\n"
                 + "%s", tasks.getTask(indexToUnmark).toString());
+
     }
 }

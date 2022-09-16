@@ -13,7 +13,7 @@ public class PriorityCommand extends Command {
     private String priority;
 
     /**
-     * Constructor for PriorityCommand
+     * Constructor for PriorityCommand.
      *
      * @param indexToChangePriority index of task to delete.
      */

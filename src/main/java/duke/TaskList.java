@@ -19,6 +19,7 @@ public class TaskList {
 
     /**
      * Constructor for duke.TaskList, which stores task entered by user in duke.Duke.
+     *
      * @param taskList ArrayList containing task objects.
      */
     public TaskList(ArrayList<Task> taskList) {
@@ -27,6 +28,7 @@ public class TaskList {
 
     /**
      * Returns the task list.
+     *
      * @return task list.
      */
     public ArrayList<Task> getTasks() {
@@ -35,6 +37,7 @@ public class TaskList {
 
     /**
      * Adds task to taskList.
+     *
      * @param task task to be added to taskList.
      */
     public void addToTaskList(Task task) {
@@ -43,6 +46,7 @@ public class TaskList {
 
     /**
      * Removes task from taskList.
+     *
      * @param taskIndex index of task to be removed.
      */
     public void removeFromTaskList(int taskIndex) {
@@ -52,6 +56,7 @@ public class TaskList {
 
     /**
      * Returns size of taskList.
+     *
      * @return size of taskList.
      */
     public int getSize() {
@@ -62,6 +67,7 @@ public class TaskList {
 
     /**
      * Returns task in taskList at specified index.
+     *
      * @param index index of task in taskList.
      * @return task in taskList at specified index.
      */
@@ -71,6 +77,7 @@ public class TaskList {
 
     /**
      * Returns tasks that contain search keyword.
+     *
      * @param searchKeyword search keyword for task.
      * @return TaskList with tasks that contain search keyword.
      */

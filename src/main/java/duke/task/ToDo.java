@@ -8,6 +8,7 @@ public class ToDo extends Task {
 
     /**
      * Constructor for Task.
+     *
      * @param description task description.
      */
     public ToDo(String description) {
@@ -17,6 +18,7 @@ public class ToDo extends Task {
 
     /**
      * Constructor for Task.
+     *
      * @param description task description.
      * @param priority priority of task.
      */
@@ -27,6 +29,7 @@ public class ToDo extends Task {
 
     /**
      * Returns task description.
+     *
      * @return task description.
      */
     public String getDescription() {

@@ -25,6 +25,7 @@ public abstract class Command {
 
     /**
      * Returns if command is an exit command.
+     *
      * @return boolean value whether command is exit command.
      */
     public boolean isExit() {
@@ -33,6 +34,7 @@ public abstract class Command {
 
     /**
      * Executes command.
+     *
      * @param tasks TaskList containing tasks list.
      * @param ui Ui dealing with user interaction.
      * @param storage storage loading and saving tasks.
