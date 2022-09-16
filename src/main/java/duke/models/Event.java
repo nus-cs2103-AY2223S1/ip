@@ -19,29 +19,16 @@ public class Event extends Task {
         this.at = at;
     }
 
-    /**
-     * Returns the string representation of the {@code Event} object
-     * @return
-     */
     @Override
     public String getSymbol() {
         return "E";
     }
 
-    /**
-     * Returns the description of the {@code Event} object
-     * @return description as a string
-     */
     @Override
     public String getDescription() {
         return this.description;
     }
 
-    /**
-     * Returns the string representation of the {@code Event} object
-     * in a format that is convenient to save and load files
-     * @return String to write to file
-     */
     @Override
     public String stringToWrite() {
         return this.getSymbol() + "|" + (super.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.at;

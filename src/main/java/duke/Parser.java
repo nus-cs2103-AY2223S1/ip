@@ -39,7 +39,7 @@ public class Parser {
      * Takes the input given by the user, extracts the verb
      * and translates it into a command
      *
-     * @param command
+     * @param command The input given by the user
      * @return Command object corresponding to the specified command
      */
     public static Command parse(String command) throws DukeException {
