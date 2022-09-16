@@ -215,6 +215,7 @@ public class Parser {
                 System.out.println(toReply);
             }
             return toReply;
+            
         } catch (DukeException | IllegalArgumentException e) {
             System.out.println(e);
             return e.toString();
