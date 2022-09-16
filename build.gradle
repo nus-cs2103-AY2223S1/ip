@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "zeus.main.Zeus"
+    mainClassName = "zeus.main.Launcher"
 }
 
 shadowJar {
