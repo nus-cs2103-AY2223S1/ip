@@ -7,6 +7,7 @@ import static java.time.temporal.ChronoUnit.SECONDS;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Period;
+import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.task.Task;
@@ -80,6 +81,35 @@ public class Reminder {
     }
 
     private String getCountDown(Task task) {
+        ArrayList<Integer> yearMonthDay = this.identifyYearMonthDay(task);
+        int year = yearMonthDay.get(0);
+        int month = yearMonthDay.get(1);
+        int day = yearMonthDay.get(2);
+        String countdownString = "";
+        if (year != 0) {
+            countdownString += year + " Year, ";
+        }
+        if (month != 0) {
+            countdownString += month + " Month, ";
+        }
+        if (day != 0) {
+            countdownString += day + " Day, ";
+        }
+
+        long periodMinutes = this.nowTime.until(task.getTime(), MINUTES);
+        long hour = periodMinutes / MINUTES_IN_AN_HOUR;
+        long minute = periodMinutes % MINUTES_IN_AN_HOUR;
+        if (hour != 0) {
+            countdownString += hour + " Hour, ";
+        }
+        if (minute != 0) {
+            countdownString += minute + " Minute ";
+        }
+        return countdownString;
+    }
+
+
+    private ArrayList<Integer> identifyYearMonthDay(Task task) {
         int year = 0;
         int month = 0;
         int day = 0;
@@ -106,27 +136,11 @@ public class Reminder {
                 break;
             }
         }
-        String countdownString = "";
-        if (year != 0) {
-            countdownString += year + " Year, ";
-        }
-        if (month != 0) {
-            countdownString += month + " Month, ";
-        }
-        if (day != 0) {
-            countdownString += day + " Day, ";
-        }
-
-        long periodMinutes = this.nowTime.until(task.getTime(), MINUTES);
-        long hour = periodMinutes / MINUTES_IN_AN_HOUR;
-        long minute = periodMinutes % MINUTES_IN_AN_HOUR;
-        if (hour != 0) {
-            countdownString += hour + " Hour, ";
-        }
-        if (minute != 0) {
-            countdownString += minute + " Minute ";
-        }
-        return countdownString;
+        ArrayList<Integer> yearMonthDay = new ArrayList<Integer>();
+        yearMonthDay.add(year);
+        yearMonthDay.add(month);
+        yearMonthDay.add(day);
+        return yearMonthDay;
     }
 
 
