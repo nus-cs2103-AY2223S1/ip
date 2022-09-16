@@ -13,10 +13,19 @@ import java.util.ArrayList;
 public class Ui {
 
     /**
-     * Returns a message when Duke faces a loading error.
+     * Prints a message when Duke faces a loading error.
      */
     public void showLoadingError() {
         System.out.println("RAWR! Error loading previous tasks.");
+    }
+
+    /**
+     * Returns the duke exception.
+     * @param str The error message.
+     * @return The String of the error message.
+     */
+    public static String showError(String str) {
+        return str;
     }
 
     /**
@@ -24,36 +33,6 @@ public class Ui {
      */
     public String exit() {
         return "RAWR!! Byeeee. Hope to see you again soon!";
-    }
-
-    /**
-     * Throws an exception when the user does not enter a valid description.
-     *
-     * @throws DukeException
-     *          Thrown when description is empty.
-     */
-    public void emptyDescription() throws DukeException {
-        throw new DukeException("RAWR! Empty description.");
-    }
-
-    /**
-     * Throws an exception when the user does not enter a valid task.
-     *
-     * @throws DukeException
-     *          Thrown when task is invalid.
-     */
-    public static void invalidTask() throws DukeException {
-        throw new DukeException("RAWR! Invalid task.");
-    }
-
-    /**
-     * Throws an exception when the user does not enter a date when needed.
-     *
-     * @throws DukeException
-     *          Thrown when there is a missing date.
-     */
-    public void missingDate() throws DukeException {
-        throw new DukeException("RAWR! Missing date.");
     }
 
     /**
@@ -92,11 +71,16 @@ public class Ui {
      */
     public String matchTask(ArrayList<Task> matching) {
         StringBuilder builder = new StringBuilder();
-        builder.append("RAWR! Here are the matching tasks Dino found:\n");
+        if (matching.size() > 0) {
+            builder.append("RAWR! Here are the matching tasks Dino found:\n");
 
-        for (int i = 0; i < matching.size(); i++) {
-            builder.append(i + 1).append(". ").append(matching.get(i).toString()).append("\n");
+            for (int i = 0; i < matching.size(); i++) {
+                builder.append(i + 1).append(". ").append(matching.get(i).toString()).append("\n");
+            }
+        } else {
+            builder.append("RAWR! There are no matching tasks!\n");
         }
+
         return builder.toString();
     }
 
@@ -107,11 +91,16 @@ public class Ui {
      */
     public String matchNote(ArrayList<Note> matching) {
         StringBuilder builder = new StringBuilder();
-        builder.append("RAWR! Here are the matching notes Dino found:\n");
+        if (matching.size() > 0) {
+            builder.append("RAWR! Here are the matching notes Dino found:\n");
 
-        for (Note note : matching) {
-            builder.append("> ").append(note.toString()).append("\n");
+            for (Note note : matching) {
+                builder.append("> ").append(note.toString()).append("\n");
+            }
+        } else {
+            builder.append("RAWR! There are no matching notes!\n");
         }
+
         return builder.toString();
     }
 

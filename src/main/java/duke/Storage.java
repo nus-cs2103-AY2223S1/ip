@@ -1,5 +1,7 @@
 package duke;
 
+import duke.exception.DukeException;
+import duke.exception.DukeInvalidTaskException;
 import duke.task.*;
 
 import java.io.*;
@@ -76,8 +78,7 @@ public class Storage {
                         loadNote(str);
                         break;
                     default:
-                        Ui.invalidTask();
-                        break;
+                        throw new DukeInvalidTaskException();
                 }
                 current = br.readLine();
             }

@@ -1,6 +1,7 @@
 package duke.task;
 
-import duke.DukeException;
+import duke.exception.DukeException;
+import duke.exception.DukeInvalidDateException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,7 +30,7 @@ public class Deadline extends Task {
         try {
             this.DATE = LocalDate.parse(by, formatter);
         } catch (Exception e) {
-            throw new DukeException("Please enter date in the format: dd/M/yyyy");
+            throw new DukeInvalidDateException();
         }
     }
 

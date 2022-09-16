@@ -1,6 +1,7 @@
 package duke.command;
 
-import duke.DukeException;
+import duke.exception.DukeEmptyDescriptionException;
+import duke.exception.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -28,11 +29,11 @@ public class NoteCommand extends Command {
      *          Thrown when the description is not given.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Note myNote = null;
+        Note myNote;
         try {
             myNote = new Note(STR[1]);
         } catch (Exception e) {
-            ui.emptyDescription();
+            throw new DukeEmptyDescriptionException();
         }
         tasks.add(myNote);
         storage.writeFile(tasks);

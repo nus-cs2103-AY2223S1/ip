@@ -1,9 +1,12 @@
 package duke.command;
 
-import duke.DukeException;
+import duke.exception.DukeEmptyDescriptionException;
+import duke.exception.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeInvalidDateException;
+import duke.exception.DukeInvalidTaskException;
 import duke.task.Task;
 import duke.task.Deadline;
 import duke.task.ToDo;
@@ -46,21 +49,20 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task myTask = null;
+        Task myTask;
         assert COMMAND == Commands.DEADLINE || COMMAND == Commands.EVENT || COMMAND == Commands.TODO;
         switch(COMMAND) {
         case DEADLINE:
-            myTask = executeDl(ui);
+            myTask = executeDl();
             break;
         case TODO:
-            myTask = executeTd(ui);
+            myTask = executeTd();
             break;
         case EVENT:
-            myTask = executeEvnt(ui);
+            myTask = executeEvnt();
             break;
         default:
-            Ui.invalidTask();
-            break;
+            throw new DukeInvalidTaskException();
         }
         tasks.add(myTask);
         storage.writeFile(tasks);
@@ -70,62 +72,56 @@ public class AddCommand extends Command {
     /**
      * Executes the deadline command the user inputs.
      *
-     * @param ui The ui to deal with user interactions.
      * @throws DukeException
      *          Thrown when the task has no description or no date is given.
      */
-    private Deadline executeDl(Ui ui) throws DukeException {
-        String[] dl = new String[2];
+    private Deadline executeDl() throws DukeException {
+        String[] dl;
         try {
             dl = STR[1].split(" /by ");
         } catch (Exception e) {
-            ui.emptyDescription();
+            throw new DukeEmptyDescriptionException();
         }
 
         try {
             return new Deadline(dl[0], dl[1]);
         } catch (Exception e) {
-            ui.missingDate();
+            throw new DukeInvalidDateException();
         }
-        return null;
     }
 
     /**
      * Executes the to do command the user inputs.
      *
-     * @param ui The ui to deal with user interactions.
      * @throws DukeException
      *          Thrown when the task has no description.
      */
-    private ToDo executeTd(Ui ui) throws DukeException {
+    private ToDo executeTd() throws DukeException {
         try {
             return new ToDo(STR[1]);
         } catch (Exception e) {
-            ui.emptyDescription();
+            throw new DukeEmptyDescriptionException();
         }
-        return null;
     }
 
     /**
      * Executes the event command the user inputs.
      *
-     * @param ui The ui to deal with user interactions.
      * @throws DukeException
      *          Thrown when the task has no description or no date and time is given.
      */
-    private Event executeEvnt(Ui ui) throws DukeException {
-        String[] evnt = new String[0];
+    private Event executeEvnt() throws DukeException {
+        String[] evnt;
         try {
             evnt = STR[1].split(" /at ");
         } catch (Exception e) {
-            ui.emptyDescription();
+            throw new DukeEmptyDescriptionException();
         }
 
         try {
             return new Event(evnt[0], evnt[1]);
         } catch (Exception e) {
-            ui.emptyDescription();
+            throw new DukeEmptyDescriptionException();
         }
-        return null;
     }
 }

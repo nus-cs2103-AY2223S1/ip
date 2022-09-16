@@ -1,9 +1,11 @@
 package duke.command;
 
-import duke.DukeException;
+import duke.exception.DukeEmptyDescriptionException;
+import duke.exception.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeInvalidTaskException;
 import duke.task.Task;
 
 /**
@@ -37,17 +39,17 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        int index = 0;
+        int index;
         Task myTask;
 
         try {
             index = Integer.parseInt(STR[1]) - 1;
         } catch (Exception e) {
-            ui.emptyDescription();
+            throw new DukeEmptyDescriptionException();
         }
 
         if (index > tasks.getTaskSize() || index < 0) {
-            Ui.invalidTask();
+            throw new DukeInvalidTaskException();
         }
 
         myTask = tasks.getTask(index);

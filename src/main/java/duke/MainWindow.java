@@ -1,11 +1,18 @@
 package duke;
 
+import duke.exception.DukeException;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+
+import java.util.Objects;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -46,6 +53,12 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+
+        if (Objects.equals(input, "bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
+            delay.setOnFinished( event -> Platform.exit() );
+            delay.play();
+        }
         userInput.clear();
     }
 }

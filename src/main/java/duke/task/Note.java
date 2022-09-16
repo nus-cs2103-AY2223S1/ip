@@ -9,7 +9,6 @@ public class Note {
      * @param description The name of the task.
      */
     public Note(String description) {
-        super();
         this.DESCRIPTION = description;
     }
 

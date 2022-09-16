@@ -1,8 +1,18 @@
 package duke;
 
-import duke.command.*;
+import duke.command.Command;
+import duke.command.AddCommand;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.NoteCommand;
+import duke.exception.DukeException;
+import duke.exception.DukeInvalidCommandException;
+import duke.exception.DukeInvalidTaskException;
 
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Makes sense of the user commands.
@@ -11,7 +21,6 @@ import java.util.Locale;
  */
 public class Parser {
     private enum Commands {
-        BYE,
         LIST,
         MARK,
         UNMARK,
@@ -37,9 +46,10 @@ public class Parser {
         try {
             myTask = Commands.valueOf(str[0].toUpperCase(Locale.ROOT));
         } catch (Exception e) {
-            throw new DukeException("Oops! I don't know what that means.");
+            throw new DukeInvalidCommandException();
         }
-        assert myTask == Commands.BYE || myTask == Commands.LIST || myTask == Commands.MARK
+        assert !Objects.equals(str[0], "");
+        assert myTask == Commands.LIST || myTask == Commands.MARK
                 || myTask == Commands.UNMARK || myTask == Commands.DEADLINE || myTask == Commands.TODO
                 || myTask == Commands.EVENT || myTask == Commands.DELETE || myTask == Commands.FIND
                 || myTask == Commands.NOTE;
@@ -48,29 +58,26 @@ public class Parser {
 
     private static Command parseCommand(Commands myTask, String[] str) throws DukeException {
         switch (myTask) {
-            case BYE:
-                return new ExitCommand();
-            case LIST:
-                return new ListCommand();
-            case MARK:
-                return new MarkCommand(str, true);
-            case UNMARK:
-                return new MarkCommand(str, false);
-            case DEADLINE:
-                return new AddCommand(str, 0);
-            case TODO:
-                return new AddCommand(str, 1);
-            case EVENT:
-                return new AddCommand(str, 2);
-            case DELETE:
-                return new DeleteCommand(str);
-            case FIND:
-                return new FindCommand(str);
-            case NOTE:
-                return new NoteCommand(str);
-            default:
-                Ui.invalidTask();
+        case LIST:
+            return new ListCommand();
+        case MARK:
+            return new MarkCommand(str, true);
+        case UNMARK:
+            return new MarkCommand(str, false);
+        case DEADLINE:
+            return new AddCommand(str, 0);
+        case TODO:
+            return new AddCommand(str, 1);
+        case EVENT:
+            return new AddCommand(str, 2);
+        case DELETE:
+            return new DeleteCommand(str);
+        case FIND:
+            return new FindCommand(str);
+        case NOTE:
+            return new NoteCommand(str);
+        default:
+            throw new DukeInvalidTaskException();
         }
-        return new ExitCommand();
     }
 }

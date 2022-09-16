@@ -1,6 +1,7 @@
 package duke.command;
 
-import duke.DukeException;
+import duke.exception.DukeEmptyDescriptionException;
+import duke.exception.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -33,11 +34,11 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String match = null;
+        String match;
         try {
             match = FIND_MATCH[1];
         } catch (Exception e) {
-            ui.emptyDescription();
+            throw new DukeEmptyDescriptionException();
         }
         ArrayList<Task> matchT = tasks.findTask(match);
         ArrayList<Note> matchN = tasks.findNote(match);

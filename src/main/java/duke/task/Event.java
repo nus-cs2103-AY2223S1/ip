@@ -1,6 +1,7 @@
 package duke.task;
 
-import duke.DukeException;
+import duke.exception.DukeException;
+import duke.exception.DukeInvalidDateTimeException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,7 +31,7 @@ public class Event extends Task {
         try {
             this.DATE = LocalDateTime.parse(at, formatter);
         } catch (Exception e) {
-            throw new DukeException("Please enter date and time in the format: dd/M/yyyy HH:mm");
+            throw new DukeInvalidDateTimeException();
         }
     }
 

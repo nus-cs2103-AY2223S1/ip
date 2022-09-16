@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.exception.DukeException;
 
 /**
  * Tracks all objects.
@@ -38,10 +40,15 @@ public class Duke {
      */
     protected String run(String input) throws DukeException {
         if (!Objects.equals(input, "bye")) {
-            Command c = Parser.parse(input);
-            return c.execute(tasks, UI, STORAGE);
+            try {
+                Command c = Parser.parse(input);
+                return c.execute(tasks, UI, STORAGE);
+            } catch (DukeException e) {
+                return Ui.showError(e.getMessage());
+            }
         } else {
-            return UI.exit();
+            Command exit = new ExitCommand();
+            return exit.execute(tasks, UI, STORAGE);
         }
 
     }
@@ -53,7 +60,6 @@ public class Duke {
      * @return The string to be displayed.
      */
     public String getResponse(String input) throws DukeException {
-        assert !Objects.equals(input, "");
         return run(input);
     }
 }
