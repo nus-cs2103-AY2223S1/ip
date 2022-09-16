@@ -28,7 +28,7 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 ### Add a todo: `todo`
 Adds a new todo to the app.
 
-Format: `todo **DESCRIPTION**`
+Format: `todo DESCRIPTION`
 
 Example of usage:
 ```
@@ -41,37 +41,49 @@ todo Sign up for gym
 ```
 Adds a new todo, 'Sign up for gym' to the app.
 
-### Add a deadline: `deadline DESCRIPTION /by DATE_AND_TIME`
+
+### Add a deadline: `deadline`
 Adds a new deadline to the app.
 
-Format: `deadline **DESCRIPTION** /by **DATE_AND_TIME`
+Format: `deadline DESCRIPTION /by DATE_AND_TIME`
 <Note: DATE_AND_TIME should be in ISO 8601 format>
 
 Example of usage:
-- deadline assignment 1 /by 2022-08-15T23:59
-- deadline critical reflection 1A /by 2022-09-01T08:00
+```
+deadline assignment 1 /by 2022-08-15T23:59
+```
+Adds a new deadline, assignment 1, due on Aug 8th, 2022 at 23:59hrs.
 
-### Add a event: `event DESCRIPTION /at DURATION`
+```
+deadline critical reflection 1A /by 2022-09-01T08:00
+```
+Adds a new deadline, critical reflection 1A, due on Sep 1th, 2022, at 08:00hrs.
+
+
+### Add a event: `event`
 Adds a new event to the app.
 
-Format: `event **DESCRIPTION** /at **DURATION**`
+Format: `event DESCRIPTION /at DURATION`
 
 Example of usage:
--
-## Usage
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
+```
+event birthday party /at Friday 5-8pm
+```
+Adds a new event, birthday party at Friday, 5-8pm
 
 ```
-expected output
+event team meeting /at 27/8/22 at 8-10am
 ```
+Adds a new event, team meeting on 27th Aug 2022, at 8-10am.
+
+
+### Mark a task: `mark`
+Marks the task at given index as complete.
+
+Format: `mark INDEX`
+<sub>
+ Note: 
+ - The index refers to the index number shown in the displayed list.
+ - The index **must be a positive integer**, 1, 2, 3...
+</sub>
+
