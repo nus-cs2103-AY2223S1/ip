@@ -5,3 +5,28 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+How can I help you ?
+
+Got it. I've added this task:
+ [T][ ] task 1
+Now you have 1 tasks in the list.
+Got it. I've added this task:
+ [E][ ] task 2 (at: time 1)
+Now you have 2 tasks in the list.
+Got it. I've added this task:
+ [D][ ] task 3 (by: time 2)
+Now you have 3 tasks in the list.
+1. [T][ ] task 1
+2. [E][ ] task 2 (at: time 1)
+3. [D][ ] task 3 (by: time 2)
+Nice! I've marked this task as done:
+ [T][X] task 1
+1. [T][X] task 1
+2. [E][ ] task 2 (at: time 1)
+3. [D][ ] task 3 (by: time 2)
+OK, I've marked this task as not done yet:
+ [T][ ] task 1
+1. [T][ ] task 1
+2. [E][ ] task 2 (at: time 1)
+3. [D][ ] task 3 (by: time 2)
+Bye. Hope to see you again soon!
