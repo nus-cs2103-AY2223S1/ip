@@ -2,7 +2,7 @@
 
 Duke is a Command Line Application to help you manage your tasks.
 
-![Ui][Ui.png]
+![Ui](Ui.png)
 
 ## Start Guide
 
