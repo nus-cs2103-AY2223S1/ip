@@ -67,7 +67,7 @@ public class AddCommand extends Command {
 
     private void addTodo(TaskList tasklist, StringBuilder output) throws DukeException {
         if (words.size() == 0) {
-            throw new DukeException(String.format(TASK_FORMAT_ERROR, "todo <task description>."));
+            throw new DukeException(String.format(TASK_FORMAT_ERROR, "todo <task description>"));
         }
         String input = String.join(" ", words);
         Todo todo = new Todo(input);
@@ -81,7 +81,7 @@ public class AddCommand extends Command {
     private void addDeadline(TaskList tasklist, StringBuilder output) throws DukeException {
         if (!words.contains("/by")) {
             throw new DukeException(String.format(TASK_FORMAT_ERROR,
-                    "deadline <task description> /by <deadline>."));
+                    "deadline <task description> /by <deadline>"));
         }
         String remainingDdlWords = String.join(" ", words.subList(0, words.indexOf("/by")));
         String ddl = String.join(" ", words.subList(words.indexOf("/by") + 1, words.size()));
@@ -103,7 +103,7 @@ public class AddCommand extends Command {
     private void addEvent(TaskList tasklist, StringBuilder output) throws DukeException {
         if (!words.contains("/at")) {
             throw new DukeException(String.format(TASK_FORMAT_ERROR,
-                    "event <task description> /at <location or time>."));
+                    "event <task description> /at <location or time>"));
         }
         String remainingEventWords = String.join(" ", words.subList(0, words.indexOf("/at")));
         String evt = String.join(" ", words.subList(words.indexOf("/at") + 1, words.size()));

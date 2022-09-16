@@ -1,0 +1,7 @@
+T | 1 | read book
+D | 0 | iP submission | 16 Sep 2022
+E | 1 | mid-autumn festival | home
+T | 0 | user guide
+T | 0 | catch up lectures
+E | 1 | birthday party | Adam's house
+D | 0 | math assignment | tomorrow
