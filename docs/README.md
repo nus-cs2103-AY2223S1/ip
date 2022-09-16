@@ -27,6 +27,7 @@ Example of usage:
 `list`
 
 Expected outcome:
+
 ![This is an image](List.png)
 
 
@@ -41,6 +42,7 @@ Example of usage:
 `todo ES2660 Assignment`
 
 Expected outcome:
+
 ![This is an image](todo.png)
 RoboTasks creates a new todo
 
@@ -54,6 +56,7 @@ Example of usage:
 `deadline Assignment /by 2022-09-20 23:59`
 
 Expected outcome:
+
 ![This is an image](deadline.png)
 RoboTask creates a new deadline
 
@@ -68,6 +71,7 @@ Example of usage:
 `event homecoming /at 2022-02-02 12:00`
 
 Expected outcome:
+
 ![This is an image](event.png)
 Robotask creats a new event
 
@@ -81,6 +85,7 @@ Example of usage:
 `delete 3`
 
 Expected outcome:
+
 ![This is an image](delete.png)
 Robotask deletes the task
 
@@ -94,6 +99,7 @@ Example of usage:
 `done 2`
 
 Expected outcome:
+
 ![This is an image](done.png)
 RoboTask marks a task as complete
 
@@ -108,6 +114,7 @@ Example of usage:
 `find homework`
 
 Expected outcome:
+
 ![This is an image](find.png)
 Robotask finds tasks with matching keyword
 
@@ -122,6 +129,7 @@ Example of usage:
 `keyword (optional arguments)`
 
 Expected outcome:
+
 ![This is an image](View.png)
 RoboTask shows the tasks occuring on the date
 
