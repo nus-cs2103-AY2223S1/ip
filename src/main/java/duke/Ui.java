@@ -15,26 +15,26 @@ public class Ui {
     }
 
     public static String printAddStatement(String res, int len) {
-        String s = "ok!\n" + "  " + res + "\nhas been added.\nnow you have " + len
+        String s = "ok!\n\n" + "  " + res + "\n\nhas been added.\nnow you have " + len
                 + " tasks in the list.\n";
         return s;
     }
 
     public static String printDeleteStatement(String res, int len) {
-        String s = "okie!\n" + res + "\nhas been deleted forever.\n"
+        String s = "okie!\n\n" + res + "\n\nhas been deleted forever.\n"
                 + "you have " + len + " task" + ((len!=1)?"s ":" ") + "left!\n";
         return s;
     }
 
     public String printHelp() {
-        String s = "need help? try these commands!\n" + "todo [description]: adds a new todo\n"
-                + "deadline [description] /by DD/MM/YYYY HH:mm: adds a new task with a deadline\n"
-                + "event [description] /at DD/MM/YYYY HH:mm: adds a new event\n"
-                + "list: lists out all the current tasks\n" + "mark [index]: marks the task at index as completed\n"
-                + "unmark [index]: marks the task at index as incomplete\n"
-                + "delete [index]: deletes task at specified index\n"
-                + "find [keyword]: finds the tasks containing specified keyword\n"
-                + "statistics: shows you your task statistics.\n" + "bye: exits program!\n";
+        String s = "need help? try these commands!\n\n" + "todo [description]: adds a new todo\n\n"
+                + "deadline [description] /by DD/MM/YYYY HH:mm: adds a new task with a deadline\n\n"
+                + "event [description] /at DD/MM/YYYY HH:mm: adds a new event\n\n"
+                + "list: lists out all the current tasks\n\n" + "mark [index]: marks the task at index as completed\n\n"
+                + "unmark [index]: marks the task at index as incomplete\n\n"
+                + "delete [index]: deletes task at specified index\n\n"
+                + "find [keyword]: finds the tasks containing specified keyword\n\n"
+                + "statistics: shows you your task statistics.\n\n" + "bye: exits program!\n\n";
         return s;
     }
 }
