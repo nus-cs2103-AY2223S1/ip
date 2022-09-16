@@ -1,11 +1,7 @@
 package component;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import mew.MewDateTimeParseException.InputOverFlowException;
 import mew.MewDateTimeParseException.InvalidDateTimeFormatException;
@@ -30,26 +26,8 @@ public class TaskList {
     public TaskList(ArrayList<String> tasks) {
         try {
             this.list = new ArrayList<>();
-            Task newTask = null;
             for (String task : tasks) {
-                List<String> stringList = Stream
-                        .of(task.split("\\p{Punct}"))
-                        .map(e -> new String(e))
-                        .collect(Collectors.toList());
-                String description = stringList.get(2);
-                boolean isDone = stringList.get(1).equals("X") ? true : false;
-                if (stringList.size() == 3) {
-                    newTask = new ToDo(description, isDone);
-                } else {
-                    String code = stringList.get(0);
-                    String stringDateTime = stringList.get(3);
-                    LocalDateTime dateTime = Parser.processDateTime(stringDateTime);
-                    if (code.equals("E")) {
-                        newTask = new Event(dateTime, description, isDone);
-                    } else {
-                        newTask = new Deadline(dateTime, description, isDone);
-                    }
-                }
+                Task newTask = Parser.parseFromFile(task);
                 this.list.add(newTask);
             }
         } catch (InputOverFlowException | InvalidDateTimeFormatException e) {

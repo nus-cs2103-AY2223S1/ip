@@ -5,7 +5,20 @@ package component;
  */
 public class Ui {
     protected static final String OPENING_STATEMENT = "Meow~\n"
-            + "Mew here. How can I help you? :3";
+            + "Mew here. How can I help you?\n"
+            + "Send `help` for a list of commands.";
+    protected static final String HELP_STATEMENT = "Here are the list of commands that I understand!\n"
+            + "`todo DESC`\n    => add To-Do\n"
+            + "`deadline DESC /by DATETIME`\n    => add Deadline\n"
+            + "`event DESC /at DATETIME`\n    => add Event\n"
+            + "`list`\n    => list all tasks\n"
+            + "`mark TASK_NUMBER`\n    => marks a task as done\n"
+            + "`unmark TASK_NUMBER`\n    => unmarks a task as not done\n"
+            + "`delete TASK_NUMBER`\n    => delete task\n"
+            + "`edit TASK_NUMBER NEW_DESC`\n    => edit task description\n"
+            + "`find KEYWORD`\n    => find task\n"
+            + "`help`\n    => list all commands\n"
+            + "`bye`\n    => exits Mew";
     protected static final String EXIT_STATEMENT = "Bye! Good luck and have fun ><";
     protected static final String LOADING_ERROR_STATEMENT = "Oops, there is a loading error!";
     protected static final String TASK_LIST_STATEMENT = "Here's what I have:\n";
@@ -24,6 +37,8 @@ public class Ui {
             + "cannot be empty.";
     protected static final String INVALID_DATETIME_FORMAT_STATEMENT = "Please enter date and time in YYYYMMDD HHMM "
             + "format";
+    protected static final String INVALID_SEPARATOR_STATEMENT = "Whoops, ensure Deadlines are separated by `/by`, "
+            + "and Events are separated by `/at`! Unsure? send `help`!";
     protected static final String UNKNOWN_STATEMENT = "Oops, I don't know what that means T_T";
 
     /**
@@ -40,6 +55,15 @@ public class Ui {
      */
     public static String showExitStatement() {
         return EXIT_STATEMENT;
+    }
+
+
+    /**
+     * Lists all the available commands.
+     * @return Help statement
+     */
+    public static String showHelpStatement() {
+        return HELP_STATEMENT;
     }
 
     /**
@@ -156,6 +180,14 @@ public class Ui {
      */
     public static String showInvalidDatetimeInput() {
         return INVALID_DATETIME_FORMAT_STATEMENT;
+    }
+
+    /**
+     * Shows warning when invalid separator for Deadline and Event is given.
+     * @return Warning statement
+     */
+    public static String showInvalidSeparatorWarning() {
+        return INVALID_SEPARATOR_STATEMENT;
     }
 
     /**

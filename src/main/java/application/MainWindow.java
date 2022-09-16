@@ -53,8 +53,13 @@ public class MainWindow extends AnchorPane {
         String response = mew.processResponse(input);
         if (mew.isEndInput(input)) {
             userInput.clear();
-            dialogContainer.getChildren().addAll(DialogBox.getMewDialog(response, mewImage));
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getUserDialog(input, userImage),
+                    DialogBox.getMewDialog(response, mewImage)
+            );
             mew.endApplication();
+            return;
+        } else if (input.isEmpty()) {
             return;
         }
         dialogContainer.getChildren().addAll(

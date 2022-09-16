@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 import mew.MewDateTimeParseException.InputOverFlowException;
 import mew.MewDateTimeParseException.InvalidDateTimeFormatException;
+import mew.MewInputParseException.InvalidSeparatorException;
 
 /**
  * Parser class that parses user input.
@@ -24,7 +25,6 @@ public class Parser {
     public static Command parse(String input) {
         assert (input.length() > 0) : "Empty input";
         List<String> inputList = Stream.of(input.split(" "))
-                .map(e -> new String(e))
                 .collect(Collectors.toList());
         String command = inputList.get(0);
         switch (command) {
@@ -46,6 +46,8 @@ public class Parser {
             return Command.FIND;
         case "edit":
             return Command.EDIT;
+        case "help":
+            return Command.HELP;
         case "bye":
             return Command.EXIT;
         default:
@@ -90,7 +92,8 @@ public class Parser {
      * @return parsed Task object
      */
     public static Task parseTask(String input, String code)
-            throws InputOverFlowException, InvalidDateTimeFormatException, DateTimeParseException {
+            throws InputOverFlowException, InvalidDateTimeFormatException,
+            DateTimeParseException, InvalidSeparatorException {
         assert code.length() == 1 : "Invalid task code";
         Task newTask = null;
         if (code.equals("T")) {
@@ -99,18 +102,22 @@ public class Parser {
             return newTask;
         }
         String separator = code.equals("E") ? "/at" : "/by";
-        int indexOfDateTime = input.indexOf(separator);
-        if (indexOfDateTime == -1) {
+        int indexOfSeparator = input.indexOf("/");
+        if (indexOfSeparator == -1) {
             throw new DateTimeParseException("No date given", input, input.length() - 1);
         }
-        String stringDateTime = input.substring(indexOfDateTime + 4);
+        String userSeparator = input.substring(indexOfSeparator, indexOfSeparator + 3);
+        if (!userSeparator.equals(separator)) {
+            throw new InvalidSeparatorException("Invalid datetime separator");
+        }
+        String stringDateTime = input.substring(indexOfSeparator + 4);
         LocalDateTime dateTime = Parser.processDateTime(stringDateTime);
         String description;
         if (code.equals("E")) {
-            description = input.substring(6, indexOfDateTime - 1);
+            description = input.substring(6, indexOfSeparator - 1);
             newTask = new Event(dateTime, description);
         } else if (code.equals("D")) {
-            description = input.substring(9, indexOfDateTime - 1);
+            description = input.substring(9, indexOfSeparator - 1);
             newTask = new Deadline(dateTime, description);
         }
         return newTask;
@@ -123,7 +130,6 @@ public class Parser {
      */
     public static LocalDateTime processDateTime(String stringDateTime)
             throws InputOverFlowException, InvalidDateTimeFormatException, DateTimeParseException {
-        System.out.println(stringDateTime);
         String date = "None";
         String time = "None";
         if (stringDateTime.length() > 9) { // date and time and given
@@ -135,7 +141,6 @@ public class Parser {
         } else if (stringDateTime.length() == 8) { // date given only
             date = stringDateTime;
         } else if (stringDateTime.length() <= 4 && stringDateTime.length() >= 1) { // time given only
-            System.out.println("this condition");
             time = stringDateTime;
         } else if (stringDateTime.length() == 0) {
             throw new DateTimeParseException("Empty input", stringDateTime, 0);
@@ -143,24 +148,70 @@ public class Parser {
             throw new InvalidDateTimeFormatException("Invalid input");
         }
         if (!date.equals("None") && !time.equals("None")) { // date and time are given
-            System.out.println("date and time are given");
             DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyyMMdd");
             DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
             LocalDate localDate = LocalDate.parse(date, formatDate);
             LocalTime localTime = LocalTime.parse(time, formatTime);
             return LocalDateTime.of(localDate, localTime);
         } else if (!date.equals("None")) { // just the date is given
-            System.out.println("Just date is given");
             DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyyMMdd");
             DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
             LocalDate localDate = LocalDate.parse(date, formatDate);
             LocalTime localTime = LocalTime.parse("0000", formatTime);
             return LocalDateTime.of(localDate, localTime);
         } else { // just the time is given
-            System.out.println("Just time is given");
             DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
             LocalTime localTime = LocalTime.parse(time, formatTime);
             return LocalDateTime.of(LocalDate.now(), localTime);
         }
     }
+
+    /**
+     * Parses an individual Task in form of a string loaded from a file.
+     * @param taskString String form of Task
+     * @return Task object
+     * @throws InputOverFlowException
+     * @throws InvalidDateTimeFormatException
+     */
+    public static Task parseFromFile(String taskString)
+            throws InputOverFlowException, InvalidDateTimeFormatException {
+        Task newTask = null;
+        List<String> stringList = Stream
+                .of(taskString.split(" \\| "))
+                .collect(Collectors.toList());
+        boolean isDone = stringList.get(1).equals("X") ? true : false;
+        String code = stringList.get(0);
+        String stringDateTime;
+        String description;
+        if (code.equals("E") || code.equals("D")) {
+            stringDateTime = stringList.get(3).substring(1);
+            description = stringList.get(2);
+            LocalDateTime dateTime = Parser.processDateTimeFromFile(stringDateTime);
+            if (code.equals("E")) {
+                newTask = new Event(dateTime, description, isDone);
+            } else {
+                newTask = new Deadline(dateTime, description, isDone);
+            }
+        } else {
+            description = stringList.get(2);
+            newTask = new ToDo(description, isDone);
+        }
+        return newTask;
+    }
+
+    /**
+     * Generates LocalDateTime object from a String date time format.
+     * @param stringDateTime Date and time in string format
+     * @return LocalDateTime object
+     */
+    public static LocalDateTime processDateTimeFromFile(String stringDateTime) {
+        String dateString = stringDateTime.substring(5, 16);
+        String timeString = stringDateTime.substring(19, stringDateTime.length() - 1);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("hh:mm a");
+        LocalDate date = LocalDate.parse(dateString, dateFormat);
+        LocalTime time = LocalTime.parse(timeString, timeFormat);
+        return LocalDateTime.of(date, time);
+    }
 }
+
