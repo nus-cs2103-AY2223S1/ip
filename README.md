@@ -1,5 +1,5 @@
 # User Guide - Duke Task Manager
-![Screenshot](Ui.png)
+![Screenshot](./docs/Ui.png)
 
 ## Features
 
