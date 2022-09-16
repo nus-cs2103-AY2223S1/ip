@@ -14,7 +14,8 @@
     @@author
 -->
 
-<fx:root minWidth="-Infinity" prefWidth="300.0" type="HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minWidth="-Infinity" prefWidth="300.0" type="HBox" xmlns="http://javafx.com/javafx/11"
+         xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fx:id="dialog" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0">
          <HBox.margin>
