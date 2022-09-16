@@ -28,7 +28,7 @@ public class Duke {
     }
 
     public void markTask(int index, boolean isDone) {
-        if (index >= tasks.size()) {
+        if (index < 0 || index >= tasks.size()) {
             return; // throw new duke.DukeException("Index out of bound!");
         }
         Task task = tasks.get(index);
@@ -42,7 +42,7 @@ public class Duke {
     }
 
     public void deleteTask(int index) {
-        if (index >= tasks.size()) {
+        if (index < 0 || index >= tasks.size()) {
             return; // throw new duke.DukeException("Index out of bound!");
         }
         Task task = tasks.remove(index);
