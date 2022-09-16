@@ -1,6 +1,5 @@
 package duke.command;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
@@ -16,7 +15,7 @@ import duke.task.Task;
 import duke.task.ToDo;
 
 /**
- * Add Tasks into TaskList depending on the relevant command given.
+ * Adds Tasks into TaskList depending on the relevant command given.
  */
 public class AddCommand extends Command {
     public static final boolean IS_EXIT = false;
@@ -129,7 +128,7 @@ public class AddCommand extends Command {
      * @return false.
      */
     public boolean isExit() {
-        return this.IS_EXIT;
+        return IS_EXIT;
     }
 
     /**
@@ -141,8 +140,7 @@ public class AddCommand extends Command {
     public static LocalTime validateTimeString(String timeString) {
         //desired date format "1800"
         String validatedTimeString = timeString.substring(0, 2) + ":" + timeString.substring(2, 4) + ":" + "00";
-        LocalTime time = LocalTime.parse(validatedTimeString);
-        return time;
+        return LocalTime.parse(validatedTimeString);
     }
 
     /**
@@ -152,7 +150,6 @@ public class AddCommand extends Command {
      * @return formatted LocalDate with desired format.
      */
     public static LocalDate validateDateString(String dateString) {
-        LocalDate date = LocalDate.parse(dateString);
-        return date;
+        return LocalDate.parse(dateString);
     }
 }
