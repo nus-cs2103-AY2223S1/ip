@@ -48,7 +48,7 @@ public class ParserTest {
         try {
             Parser.parse("deadline return book /by 2 jan 2020 1800");
         } catch (DukeException e) {
-            assertEquals(e.toString(), "OOPS!!! The description of the Date is invalid!\n"
+            assertEquals(e.toString(), "OOPS!!! The description of the Date command is invalid!\n"
                     + "Please input the date in d/MM/yyyy format e.g. 2/12/2019 1800.");
         }
     }
