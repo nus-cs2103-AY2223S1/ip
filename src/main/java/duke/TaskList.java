@@ -71,6 +71,21 @@ public class TaskList {
         return "☹ OOPS!!! The index is out of bounds.";
     }
 
+    public String setPriority(String priority, int index) {
+        try {
+            Task t = tasks.get(index - 1);
+            assert t != null : "Task should not be null";
+            t.priority(priority);
+            return "Nice! I've assigned this task priority "
+                    + priority
+                    + ":\n"
+                    + t;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("☹ OOPS!!! The index is out of bounds.");
+        }
+        return "☹ OOPS!!! The index is out of bounds.";
+    }
+
     /**
      * Finds all tasks that contain the given keyword.
      * @param searchTerm the keyword to search for
