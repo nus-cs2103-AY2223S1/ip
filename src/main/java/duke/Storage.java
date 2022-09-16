@@ -61,7 +61,12 @@ class Storage {
      */
     protected int writeResult(TaskList taskList) {
         assert taskList != null;
-        int endIndex = filePath.lastIndexOf("/");
+        int endIndex;
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            endIndex = filePath.lastIndexOf("\\");
+        } else {
+            endIndex = filePath.lastIndexOf("/");
+        }
         String dirPath = filePath.substring(0, endIndex);
         File dest = new File(dirPath);
 
