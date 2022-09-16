@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 import tuna.Tuna;
 import tuna.TunaException;
 
+//@@author j-lum-reused
+//Reused from https://se-education.org/guides/tutorials/javaFx.html
+//with minor modifications
 /**
  * A GUI for Duke using FXML.
  */

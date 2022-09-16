@@ -12,6 +12,9 @@ import javafx.scene.layout.VBox;
 import tuna.Tuna;
 import tuna.TunaException;
 
+//@@author j-lum-reused
+//Reused from https://se-education.org/guides/tutorials/javaFx.html
+//with minor modifications
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
