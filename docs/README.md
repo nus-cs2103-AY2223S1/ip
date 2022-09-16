@@ -8,7 +8,6 @@ keep track of your **todos**, **deadlines**, and **events**.
 1. [Features](#features)
 2. [Usage](#usage)
 3. [Command Summary](#command-summary)
-4. [Screenshots](#screenshots)
 
 ## Features 
 
@@ -38,7 +37,7 @@ tasks are still there the next time you start it up.
 
 ## Usage
 
-### `Todo` - Add a todo
+### `todo` - Add a todo
 
 **Format:**
 `todo DESCRIPTION`
@@ -50,7 +49,7 @@ tasks are still there the next time you start it up.
 A new todo with the description "buy groceries" is
 added to your list of tasks.
 
-### `Event` - Add an event
+### `event` - Add an event
 
 **Format:**
 `event DESCRIPTION /at DATE`
@@ -63,7 +62,7 @@ A new event with the description "my birthday"
 occuring at 2022-01-01 is added to your list 
 of tasks.
 
-### `Deadline` - Add a deadline
+### `deadline` - Add a deadline
 
 **Format:**
 `deadline DESCRIPTION /by DATE`
@@ -72,11 +71,11 @@ of tasks.
 `deadline draft contract /by 2022-01-01`
 
 **Expected outcome:** 
-A new deadline with the description "draft contract"
-,which must be done by 2022-01-01, is added to 
+A new deadline with the description "draft contract", 
+which must be done by 2022-01-01, is added to 
 your list of tasks.
 
-### `Delete` - Delete a task
+### `delete` - Delete a task
 
 **Format:** 
 `delete INDEX`
@@ -88,7 +87,7 @@ your list of tasks.
 The task with index number 1 is deleted from your
 list of tasks.
 
-### `List` - Display your list of tasks
+### `list` - Display your list of tasks
 
 **Format:** 
 `list`
@@ -99,7 +98,7 @@ list of tasks.
 **Expected outcome:** 
 Your list of tasks is displayed neatly.
 
-### `Find` - Search for tasks
+### `find` - Search for tasks
 
 **Format:**
 `find`
@@ -111,7 +110,7 @@ Your list of tasks is displayed neatly.
 Tasks with the phrase "buy" in their description
 are displayed neatly.
 
-### `Mark` - Mark a task
+### `mark` - Mark a task
 
 **Format:**
 `mark INDEX`
@@ -123,7 +122,7 @@ are displayed neatly.
 The task with index number 1 is marked as done.
 It will be indicated as done in the list view.
 
-### `Unmark` - Unmark a task
+### `unmark` - Unmark a task
 
 **Format:**
 `unmark INDEX`
@@ -135,7 +134,7 @@ It will be indicated as done in the list view.
 The task with index number 1 is marked as not done. It will
 be indicated as not done in the list view.
 
-### `Undo` - Undo your previous command
+### `undo` - Undo your previous command
 
 **Format:**
 `undo`
@@ -159,7 +158,3 @@ Your previous command is undone.
 | Mark     | `mark INDEX`                    |
 | Unmark   | `unmark INDEX`                  |
 | Undo     | `undo`                          |
-
-## Screenshots
-
-![Demo](Ui.png)
