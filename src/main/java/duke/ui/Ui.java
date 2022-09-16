@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 /**
  * Represents the user interface and handles all input and output.
- * Including styles like colours, indentation and lines.
  */
 public class Ui {
     private Scanner scanner = new Scanner(System.in);
@@ -28,7 +27,7 @@ public class Ui {
     }
 
     /**
-     * Greets the user with a coloured logo.
+     * Greets the user.
      */
     public String getGreeting() {
         return "Hi! I am Duke! :^)";
