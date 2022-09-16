@@ -14,12 +14,29 @@ public class Task {
 
     }
 
+
+    /**
+     * Method to return date of a particular task.
+     * @return String representation of date
+     */
+    public String date() {
+        return "";
+    }
+
+    /**
+     * Method to return timing of a particular task.
+     * @return String representation of the task timing
+     */
+    public String timing() {
+        return "";
+    }
+
     /**
      * tells us if a particular task is done or not.
      * @return cross represents done, otherwise blank space means not done.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : "O"); // mark done task with X
     }
 
     /**

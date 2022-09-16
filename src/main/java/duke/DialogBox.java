@@ -50,16 +50,13 @@ public class DialogBox extends HBox {
         dialog.setText(text);
         displayPicture.setImage(img);
 
-        dialog.setPadding(new Insets(15,12,15,12));
+        //dialog.setPadding(new Insets(20,20,20,20));
 
 
-        displayPicture.setFitHeight(80);
-        displayPicture.setFitWidth(80);
-        Circle circle = new Circle(40);
-        circle.setStrokeWidth(60);
-        circle.setCenterX(displayPicture.getFitWidth() / 2);
-        circle.setCenterY(displayPicture.getFitHeight() / 2);
-        displayPicture.setClip(circle);
+        displayPicture.setFitHeight(150);
+        displayPicture.setFitWidth(110);
+
+
     }
 
     /**
@@ -74,13 +71,12 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.setPadding(new Insets(15, 12, 15, 12));
-        return new DialogBox(text, img);
+        return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.setPadding(new Insets(20, 20, 20, 20));
+
         db.flip();
         return db;
     }

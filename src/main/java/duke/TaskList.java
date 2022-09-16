@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 public class TaskList {
 
+    /**
+     * returns the String value of which task has been deleted from list and how many tasks are remaining
+     * @param array  arraylist of tasks present
+     * @param number index of task to be deleted.
+     */
     public String delete(ArrayList<Task> array, int number) {
         String result = "";
         result = result + "Noted. I've removed this task:" + "\n";
@@ -15,9 +20,14 @@ public class TaskList {
         Storage.clearFile();
         Storage.writeToFile(array);
         return result;
-
-
     }
+
+    /**
+     * returns the String value of which task has been deleted from list and how many tasks are remaining
+     * @param array  arraylist of tasks present
+     * @param arr String array containing description of todo task.
+     * @throws DukeException if the input for todo task is not given.
+     */
     public String todo(ArrayList<Task> array, String[] arr) throws DukeException{
         boolean contains = false;
         int j = 0;
@@ -37,7 +47,7 @@ public class TaskList {
 
         } else {
 
-            array.add(new Todo(arr[1]));
+            array.add(new Todo(arr[1],false));
 
             result = result + "Got it. I've added this task:" + "\n";
             result = result + array.get(array.size() - 1).toString() + "\n";
@@ -51,6 +61,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * returns the String value of which task has been deleted from list and how many tasks are remaining
+     * @param array  arraylist of tasks present
+     * @param item description of the deadline task
+     * @param deadline date the task is due by
+     * @param timing the time it is due by on that date.
+     */
     public String deadline(ArrayList<Task> array,String item, String deadline, String timing){
         boolean contains = false;
         int j = 0;
@@ -66,7 +83,7 @@ public class TaskList {
         }
 
         String result = "";
-        array.add(new Deadline(item, deadline, timing));
+        array.add(new Deadline(item, deadline, timing, false));
         result = result + "Got it. I've added this task:" + "\n";
         result = result + array.get(array.size() - 1).toString() + "\n";
         result = result + "Now you have " + array.size() + " tasks in the list." + "\n";
@@ -77,6 +94,13 @@ public class TaskList {
 
     }
 
+    /**
+     * returns the String value of which task has been deleted from list and how many tasks are remaining
+     * @param array  arraylist of tasks present
+     * @param item description of the deadline task
+     * @param deadline date the task is due by
+     * @param timing the time it is due by on that date.
+     */
     public String event(ArrayList<Task> array,String item, String deadline, String timing) {
         boolean contains = false;
         int j = 0;
@@ -91,7 +115,7 @@ public class TaskList {
             return "You have already added this task to the list";
         }
         String result = "";
-        array.add(new Event(item,deadline, timing));
+        array.add(new Event(item,deadline, timing, false));
         result = result + "Got it. I've added this task:" + "\n";
         result = result + array.get(array.size() - 1).toString() + "\n";
         result = result + "Now you have " + array.size() + " tasks in the list." + "\n";

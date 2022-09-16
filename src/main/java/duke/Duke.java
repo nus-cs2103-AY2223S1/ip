@@ -1,4 +1,5 @@
 package duke;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,25 +11,23 @@ import javafx.application.Application;
  * Main class that calls the launching of the Main class
  */
 public class Duke {
-    public static void main(String[] args) {
-        FileWriter fwOb = null;
+
+    public Duke() {
         try {
-            fwOb = new FileWriter("data/duke.txt", false);
-        } catch (IOException e) {
-            e.printStackTrace();
+            Storage.load();
+        } catch (FileNotFoundException e) {
+            System.out.println("no file yet");
         }
-        PrintWriter pwOb = new PrintWriter(fwOb, false);
-        pwOb.flush();
-        pwOb.close();
-        try {
-            fwOb.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Application.launch(Main.class,args);
     }
 
+    public static void main(String[] args) {
+        Application.launch(Launcher.class,args);
+
+    }
+
+
     public String getResponse(String input) {
+
         return Parser.startParse(input);
     }
 }
