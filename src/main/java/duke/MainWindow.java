@@ -56,19 +56,14 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        if (input.equals("bye")) {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(input, dukeImage)
-            );
-            userInput.clear();
-            CompletableFuture.delayedExecutor(2, TimeUnit.SECONDS).execute(Platform::exit);
-        }
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+        if (input.equals("bye")) {
+            CompletableFuture.delayedExecutor(2, TimeUnit.SECONDS).execute(Platform::exit);
+        }
     }
 }
