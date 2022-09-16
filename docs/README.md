@@ -8,7 +8,7 @@ It is also optimised for users who are more familiar with Command-Line-Interface
 
 ## Pre-requisites
 1. Ensure that you have at least Java 11 or above installed in your computer.
-2. Download the latest version of [Zeus](https://github.com/drkkjh/ip/releases/download/A-Jar3/zeus.jar)
+2. Download the latest version of [Zeus](https://github.com/drkkjh/ip/releases/download/A-Release/zeus.jar)
 
 ## Quick start
 1. Move the file ```zeus.jar``` to a folder that you want to set as the home directory for Zeus. *Note that your data will be stored here*
