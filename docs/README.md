@@ -11,7 +11,9 @@ faster than traditional GUI apps, provided that you can type fast.
 2. Download Duke.jar
 3. Copy the file to the folder you want to use as the home folder for your AddressBook.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
-![Duke GUI](https://)
+
+![Duke GUI](https://https://github.com/doimoiboi/ip/blob/master/resources/duke-gui.png)
+
 5. Type the command in the command box and press Enter to execute it.
 6. Refer to the Features section below for details of the commands.
 
