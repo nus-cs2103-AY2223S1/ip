@@ -37,7 +37,7 @@ In CWQ, we can remind you of all your deadlines.
 
 ## <font color='#bc6c25'>Usage</font>
 
-### <font color='#dda15e'>`add /p TASK_TYPE /p CONTENT /p [TASK_TIME]` - Add a task </font>
+### `add /p TASK_TYPE /p CONTENT /p [TASK_TIME]` <font color='#dda15e'>- Add a task </font>
 
 This command allows you to add a task, including ToDo, Event, Deadline, to your task list.
 
@@ -67,7 +67,7 @@ This command allows you to add a task, including ToDo, Event, Deadline, to your 
 
 
 
-### <font color='#dda15e'>`list` - Visualise task list</font>
+### `list` <font color='#dda15e'>- Visualise task list</font>
 
 This command allows you to visualise your task list
 
@@ -79,7 +79,7 @@ expected outcome: <img src="README.assets/Screenshot 2022-09-15 at 4.24.23 PM.pn
 
 
 
-### <font color='#dda15e'>`delete /p TASK_INDEX` - Delete a task</font>
+### `delete /p TASK_INDEX` <font color='#dda15e'>- Delete a task</font>
 
 This command allows you to delete a specific task indicated by the `TASK_INDEX`
 
@@ -93,7 +93,7 @@ This command allows you to delete a specific task indicated by the `TASK_INDEX`
 
 ​		expected outcome: <img src="README.assets/Screenshot 2022-09-15 at 5.30.21 PM.png" alt="Screenshot 2022-09-15 at 5.30.21 PM" style="zoom:50%;" />
 
-### <font color='#dda15e'>`mark /p TASK_INDEX` - Mark a task to be done</font>
+### `mark /p TASK_INDEX` <font color='#dda15e'>- Mark a task to be done</font>
 
 This command allows you to mark a task at index `TASK_INDEX` to be done.
 
@@ -107,7 +107,7 @@ This command allows you to mark a task at index `TASK_INDEX` to be done.
 
   expected outcome:<img src="README.assets/Screenshot 2022-09-15 at 5.34.41 PM.png" alt="Screenshot 2022-09-15 at 5.34.41 PM" style="zoom:50%;" />
 
-### <font color='#dda15e'>`unmark /p TASK_INDEX` - Unmark a task to be undone</font>
+### `unmark /p TASK_INDEX` <font color='#dda15e'>- Unmark a task to be undone</font>
 
 This command is the inverse of `mark`. It allows you to set the status of a task to be undone.
 
@@ -121,7 +121,7 @@ This command is the inverse of `mark`. It allows you to set the status of a task
 
   expected outcome: <img src="README.assets/Screenshot 2022-09-15 at 5.50.18 PM.png" alt="Screenshot 2022-09-15 at 5.50.18 PM" style="zoom:50%;" />
 
-### <font color='#dda15e'>`find /p KEYWORDS` - Find task containing keywords</font>
+### `find /p KEYWORDS` <font color='#dda15e'>- Find task containing keywords</font>
 
 This command allows you to find tasks that contain your keywords in the content.
 
@@ -137,7 +137,7 @@ This command allows you to find tasks that contain your keywords in the content.
 
 
 
-### <font color='#dda15e'>`sort` - Sort you events and deadlines by time</font>
+### `sort` <font color='#dda15e'>- Sort you events and deadlines by time</font>
 
 This command allows you to sort all your events and deadlines by time.
 
@@ -147,7 +147,7 @@ This command allows you to sort all your events and deadlines by time.
 
   expected outcome: <img src="README.assets/Screenshot 2022-09-15 at 6.04.57 PM.png" alt="Screenshot 2022-09-15 at 6.04.57 PM" style="zoom:50%;" />
 
-### <font color='#dda15e'>`reminder` - List all the upcoming deadlines</font>
+### `reminder` <font color='#dda15e'>- List all the upcoming deadlines</font>
 
 This command help to remind you of all your upcoming deadlines.
 
@@ -157,6 +157,6 @@ This command help to remind you of all your upcoming deadlines.
 
   expected outcome: <img src="README.assets/Screenshot 2022-09-15 at 6.06.53 PM.png" alt="Screenshot 2022-09-15 at 6.06.53 PM" style="zoom:50%;" />
 
-### <font color='#dda15e'>`exit` - Exit the App</font>
+### `exit` <font color='#dda15e'>- Exit the App</font>
 
 This command allows you to exit our app.
