@@ -1,0 +1,25 @@
+todo read a book
+deadline finish homework /by Wednesday
+event attend IU concert /at Sunday 2-4pm
+list
+mark 1
+list
+mark 2
+list
+mark 3
+list
+unmark 1
+list
+unmark 2
+list
+unmark 3
+delete 3
+list
+delete 2
+list
+delete 1
+list
+mark 1
+unmark 1
+delete 1
+bye
