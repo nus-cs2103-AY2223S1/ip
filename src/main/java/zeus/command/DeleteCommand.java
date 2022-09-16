@@ -34,6 +34,7 @@ public class DeleteCommand extends Command {
      */
     public String handle(Storage storage, Ui ui, TaskList taskList) throws ZeusException {
         Task t = taskList.deleteTask(this.index);
+        storage.saveData(taskList);
         return "Zeus says:\n" + ui.formatMessage("Noted. I've removed this task:\n"
                 + t + "\n" + taskList.getArraySize());
     }

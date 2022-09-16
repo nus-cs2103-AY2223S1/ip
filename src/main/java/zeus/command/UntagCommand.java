@@ -38,6 +38,7 @@ public class UntagCommand extends Command {
         }
         assert !assignedTag.isBlank();
         t.untagTask();
+        storage.saveData(taskList);
         return "Zeus says:\n" + ui.formatMessage("Great, I've untagged the task for you.");
     }
 }

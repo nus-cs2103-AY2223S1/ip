@@ -34,6 +34,7 @@ public class AddCommand extends Command {
     @Override
     public String handle(Storage storage, Ui ui, TaskList taskList) throws ZeusException {
         taskList.addTask(this.task);
+        storage.saveData(taskList);
         return "Zeus says:\n" + ui.formatMessage("Got it. I've added this task:\n"
                 + this.task + "\n" + taskList.getArraySize());
     }

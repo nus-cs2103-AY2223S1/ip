@@ -140,6 +140,6 @@ public class Task {
      */
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + this.description + tagToString();
+        return "[" + getStatusIcon() + "] " + this.description + " " + tagToString();
     }
 }

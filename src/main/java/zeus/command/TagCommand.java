@@ -36,6 +36,7 @@ public class TagCommand extends Command {
     public String handle(Storage storage, Ui ui, TaskList taskList) throws ZeusException {
         Task t = taskList.getTask(index);
         t.tagTask(tag);
+        storage.saveData(taskList);
         return "Zeus says:\n" + ui.formatMessage("Nice, I've tagged the task with:\n"
                 + tag);
     }

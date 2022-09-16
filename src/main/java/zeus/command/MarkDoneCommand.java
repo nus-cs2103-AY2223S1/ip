@@ -33,6 +33,7 @@ public class MarkDoneCommand extends Command {
     public String handle(Storage storage, Ui ui, TaskList taskList) throws ZeusException {
         Task t = taskList.getTask(index);
         t.markDone();
+        storage.saveData(taskList);
         return "Zeus says:\n" + ui.formatMessage("Nice, I've marked this task as done:\n"
                 + t);
     }
