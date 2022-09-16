@@ -48,10 +48,11 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input, taskList);
-            storage.writeFile(taskList);
             return c.getResponse(taskList, ui, storage);
         } catch (DukeException e) {
             return e.getMessage();
+        } finally {
+            storage.writeFile(taskList);
         }
     }
 
