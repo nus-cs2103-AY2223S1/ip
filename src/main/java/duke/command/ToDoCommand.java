@@ -25,7 +25,7 @@ public class ToDoCommand extends Command {
      * Executes the ToDoCommand by creating a new Todo and adding it to the TaskList.
      *
      * @param taskList A list of tasks
-     * @param ui A ui responsible for printing output to the user
+     * @param ui An ui responsible for printing output to the user
      */
     @Override
     public void execute(TaskList taskList, Ui ui) {

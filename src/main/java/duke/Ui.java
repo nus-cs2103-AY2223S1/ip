@@ -85,4 +85,9 @@ public class Ui {
         System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
     }
+
+    public void printSearchedList(String searchedList) {
+        System.out.println("Here are the matching tasks in your list:");
+        System.out.println(searchedList);
+    }
 }

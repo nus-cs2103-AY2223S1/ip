@@ -44,10 +44,6 @@ public abstract class Task {
         return task;
     }
 
-    public String stringify() {
-        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
-    }
-
     public String stringifyTask() {
         return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
     }
@@ -79,6 +75,23 @@ public abstract class Task {
     public String unmark() {
         this.isDone = false;
         return this.toString();
+    }
+
+    /**
+     * Returns true if the Task matches the keyword, and returns false otherwise.
+     *
+     * @param keyword The keyword being searched for
+     * @return boolean depending on whether the Task matches the keyword
+     */
+    public boolean match(String keyword) {
+        String[] keywords = keyword.split(" ");
+        boolean isMatch = true;
+        for (String currKeyword : keywords) {
+            if (!this.description.contains(currKeyword)) {
+                isMatch = false;
+            }
+        }
+        return isMatch;
     }
 
     /**

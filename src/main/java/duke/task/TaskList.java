@@ -120,6 +120,23 @@ public class TaskList {
     }
 
     /**
+     * Searches for and returns a List of Tasks containing the keyword.
+     *
+     * @param keyword The keyword
+     * @return List of Tasks containing the keyword
+     */
+    public TaskList searchTasks (String keyword) {
+        TaskList result = new TaskList();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr = tasks.get(i);
+            if (curr.match(keyword)) {
+                result.addToTasks(curr);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Returns the String representation of the TaskList.
      *
      * @return The String representation of the TaskList

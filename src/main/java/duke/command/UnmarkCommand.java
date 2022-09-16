@@ -25,7 +25,7 @@ public class UnmarkCommand extends Command {
      * Executes the UnmarkCommand by unmarking the specified Task.
      *
      * @param taskList A list of tasks
-     * @param ui A ui responsible for printing output to the user
+     * @param ui An ui responsible for printing output to the user
      */
     @Override
     public void execute(TaskList taskList, Ui ui) {
