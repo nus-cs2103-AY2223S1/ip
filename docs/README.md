@@ -2,9 +2,6 @@
 
 ![Manage your task as smart as Conan](https://www.nicepng.com/png/full/689-6894004_topic-screen-la-fin-de-dtective-conan.png)
 
-View the project on [GitHub](https://github.com/april-anh/ip).
-**This project is maintained by [april-anh](https://github.com/april-anh)**
-
 ## Feature
 &#10004; Fields in *[square bracket]* are parameters supplied by the user.
 
