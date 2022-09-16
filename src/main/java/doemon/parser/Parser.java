@@ -82,10 +82,10 @@ public class Parser {
         if (isTodoCommand(command, description)) {
             return new AddCommand(new Todo(description));
         } else if (isDeadlineCommand(command, description)) {
-            details = description.split(" /by ", 1);
+            details = description.split(" /by ", 2);
             return new AddCommand(new Deadline(details[0], details[1]));
         } else if (isEventCommand(command, description)) {
-            details = description.split(" /at ", 1);
+            details = description.split(" /at ", 2);
             return new AddCommand(new Event(details[0], details[1]));
         } else {
             throw new InvalidCommandException();
@@ -212,7 +212,7 @@ public class Parser {
     private static boolean isDeadlineCommand(String command, String description)
             throws EmptyTaskException, MissingArgumentException {
         boolean isDeadline = command.equals("deadline") || command.equals("d");
-        String[] details = description.split("/by", 1);
+        String[] details = description.split(" /by ", 2);
         if (isDeadline && details[0].trim().equals("")) {
             throw new EmptyTaskException("deadline");
         }
@@ -234,10 +234,10 @@ public class Parser {
     private static boolean isEventCommand(String command, String description)
             throws EmptyTaskException, MissingArgumentException {
         boolean isEvent = command.equals("event") || command.equals("e");
-        if (isEvent && description.equals("")) {
+        String[] details = description.split(" /at ", 2);
+        if (isEvent && details[0].trim().equals("")) {
             throw new EmptyTaskException("event");
         }
-        String[] details = description.split("/at", 1);
         if (isEvent && details.length == 1) {
             throw new MissingArgumentException("event", "/at");
         }
