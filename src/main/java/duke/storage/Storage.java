@@ -89,8 +89,12 @@ public class Storage {
             List<Task> tasks = new ArrayList<>();
             while (scanner.hasNext()) {
                 String str = scanner.nextLine();
-                Task task = interpretFileContent(str);
-                tasks.add(task);
+                try {
+                    Task task = interpretFileContent(str);
+                    tasks.add(task);
+                } catch (DukeException ignored) {
+                    // let the loop continue
+                }
             }
             return tasks;
         } catch (IOException e) {

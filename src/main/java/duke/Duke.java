@@ -5,8 +5,6 @@ import duke.exceptions.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.storage.TaskList;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
 
 /**
  * Represents a bot that will carry out different command with user input.
@@ -28,12 +26,6 @@ public class Duke {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
             tasks = new TaskList();
-            Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setHeaderText("Local file corrupted!");
-            error.setContentText(e.getMessage());
-            error.showAndWait();
-            Platform.exit();
-            System.exit(0);
         }
     }
 
