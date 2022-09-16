@@ -52,6 +52,6 @@ public class AddCommand extends Command {
         default:
             task = new Task(""); // error
         }
-        duke.add(task);
+        duke.addTask(task);
     }
 }

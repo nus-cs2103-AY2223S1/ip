@@ -96,6 +96,18 @@ public class Ui {
     }
 
     /**
+     * Print all matching tasks to the UI.
+     *
+     * @param tasks List of matching tasks.
+     */
+    public void findTasks(TaskList tasks) {
+        print("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            print((i + 1) + ". " + tasks.get(i));
+        }
+    }
+
+    /**
      * Prints a goodbye message and closes the UI.
      */
     public void close() {
