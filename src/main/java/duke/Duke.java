@@ -93,11 +93,13 @@ public class Duke {
             try {
                 String removedTask = taskList.get(index).toString();
                 taskList.remove(index);
+                sb.append(index + 1);
+                sb.append(".");
                 sb.append(removedTask);
                 sb.append(lineSep);
             } catch (IndexOutOfBoundsException e) {
                 sb.setLength(0);
-                sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "remove", indices[i] + 1, taskList.getSize()));
+                sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "remove", index + 1, taskList.getSize()));
                 break;
             }
         }
@@ -111,6 +113,8 @@ public class Duke {
         try {
             taskList.mark(index);
             sb.append(ResponseMessages.TASK_MARKED);
+            sb.append(index + 1);
+            sb.append(".");
             sb.append(taskList.get(index).toString());
             sb.append(lineSep);
         } catch (IndexOutOfBoundsException e) {
@@ -125,6 +129,8 @@ public class Duke {
         try {
             taskList.unmark(index);
             sb.append(ResponseMessages.TASK_UNMARKED);
+            sb.append(index + 1);
+            sb.append(".");
             sb.append(taskList.get(index).toString());
             sb.append(lineSep);
         } catch (IndexOutOfBoundsException e) {
@@ -180,6 +186,8 @@ public class Duke {
         sb.append(String.format(ResponseMessages.FIND_TASKS, key));
         for (int i = 0; i < taskList.getSize(); i++) {
             if (taskList.get(i).getDescription().contains(key)) {
+                sb.append(i + 1);
+                sb.append(".");
                 sb.append(taskList.get(i).toString());
                 sb.append(lineSep);
             }
