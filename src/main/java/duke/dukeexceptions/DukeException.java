@@ -1,4 +1,4 @@
-package duke;
+package duke.dukeexceptions;
 
 /**
  * Encapsulates an Exception related to the Duke chatbot.

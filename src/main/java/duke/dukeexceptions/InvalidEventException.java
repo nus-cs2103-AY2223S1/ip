@@ -1,4 +1,4 @@
-package duke;
+package duke.dukeexceptions;
 
 /**
  * Encapsulates a Duke Exception for trying to add an invalid Event.

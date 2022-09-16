@@ -1,4 +1,4 @@
-package duke;
+package duke.dukeexceptions;
 
 /**
  * Encapsulates a Duke Exception for leaving the description of a todo empty.

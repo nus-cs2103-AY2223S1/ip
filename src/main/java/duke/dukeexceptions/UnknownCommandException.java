@@ -1,4 +1,4 @@
-package duke;
+package duke.dukeexceptions;
 
 /**
  * DukeException for when an unknown command is given.

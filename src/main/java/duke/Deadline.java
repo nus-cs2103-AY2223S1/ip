@@ -50,4 +50,13 @@ public class Deadline extends Task {
             return this.deadline.compareTo(otherDeadline.deadline);
         }
     }
+
+    /**
+     * Returns deadline String in format YYYY-MM-DD
+     *
+     * @return the deadline
+     */
+    public String toLocalDate() {
+        return this.deadline.toString();
+    }
 }

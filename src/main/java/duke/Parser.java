@@ -2,6 +2,12 @@ package duke;
 
 import java.time.format.DateTimeParseException;
 
+import duke.dukeexceptions.DateNotRecognisedException;
+import duke.dukeexceptions.EmptyTodoException;
+import duke.dukeexceptions.InvalidDeadlineException;
+import duke.dukeexceptions.InvalidEventException;
+import duke.dukeexceptions.UnknownCommandException;
+
 /**
  * Class which parses commands and executes code based off the commands.
  *

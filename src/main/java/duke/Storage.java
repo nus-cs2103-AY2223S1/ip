@@ -104,15 +104,15 @@ public class Storage {
                 ArrayList<String> lineArray = new ArrayList<>();
                 Task task = taskList.getTask(i);
                 if (task instanceof Deadline) {
-                    lineArray.add("Task");
+                    lineArray.add("Deadline");
                     lineArray.add(task.getName());
                     Deadline deadline = (Deadline) task;
-                    lineArray.add(deadline.getDeadline());
+                    lineArray.add(deadline.toLocalDate());
                 } else if (task instanceof Event) {
                     lineArray.add("Event");
                     Event event = (Event) task;
                     lineArray.add(task.getName());
-                    lineArray.add(event.getDuration());
+                    lineArray.add(event.toLocalDate());
                 } else if (task instanceof ToDo) {
                     lineArray.add("ToDo");
                     lineArray.add(task.getName());

@@ -53,4 +53,13 @@ public class Event extends Task {
             return this.duration.compareTo(otherEvent.duration);
         }
     }
+
+    /**
+     * Returns duration String in format YYYY-MM-DD
+     *
+     * @return the duration
+     */
+    public String toLocalDate() {
+        return this.duration.toString();
+    }
 }

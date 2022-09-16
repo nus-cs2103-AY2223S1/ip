@@ -1,12 +1,12 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class ParserTest {
     @Test
-    public void parseTodoCommand(){
+    public void parseTodoCommand() {
         Parser parser = new Parser();
         Ui ui = new Ui();
         TaskList taskList = new TaskList();
@@ -18,7 +18,7 @@ public class ParserTest {
     }
 
     @Test
-    public void parseDeleteCommand(){
+    public void parseDeleteCommand() {
         Parser parser = new Parser();
         Ui ui = new Ui();
         TaskList taskList = new TaskList();
