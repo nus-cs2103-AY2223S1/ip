@@ -33,7 +33,7 @@ public class MainWindow extends AnchorPane {
     public void setFred(Fred f) {
         fred = f;
         dialogContainer.getChildren().addAll(
-                DialogBox.getFredDialog("Hello! I'm Fred! What can I do for you?", fredImage)
+                FredDialogBox.getFredDialog("Hello! I'm Fred! What can I do for you?", fredImage)
         );
     }
 
@@ -46,8 +46,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = fred.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getFredDialog(response, fredImage)
+                UserDialogBox.getUserDialog(input, userImage),
+                FredDialogBox.getFredDialog(response, fredImage)
         );
         userInput.clear();
     }
