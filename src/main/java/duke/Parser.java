@@ -35,12 +35,12 @@ public class Parser {
         String restInput = "";
         if (input.contains(" ")) {
             inputArr = input.split(" ", 2);
+            assert inputArr.length == 2;
             commandWord = inputArr[0];
             restInput = inputArr[1];
         } else {
             commandWord = input;
         }
-        boolean hasRestInput = (restInput.length() >= 1);
         Command command;
 
         switch (commandWord) {
@@ -48,66 +48,42 @@ public class Parser {
             command = new ListCommand();
             break;
         case "mark":
-            if (!hasRestInput) {
-                throw new DukeException("Oops, no task given to mark as done.");
-            }
-            command = new MarkCommand(Integer.parseInt(restInput) - 1, true);
+            command = new MarkCommand(restInput, true);
             break;
         case "unmark":
-            if (!hasRestInput) {
-                throw new DukeException("Oops, no task given to mark as not done.");
-            }
-            command = new MarkCommand(Integer.parseInt(restInput) - 1, false);
+            command = new MarkCommand(restInput, false);
             break;
         case "todo":
-            if (!hasRestInput) {
-                throw new DukeException("Oops, the description of a todo task cannot be empty.");
-            }
-            String desc = restInput;
-            command = new AddCommand(new Todo(desc));
+            command = new AddCommand(new Todo(restInput));
             break;
         case "deadline":
-            if (!hasRestInput) {
-                throw new DukeException("Oops, the description of a deadline task cannot be empty.");
-            } else if (!restInput.contains("/by")) {
+            if (!restInput.contains("/by")) {
                 throw new DukeException("Oops, no deadline given for deadline task.");
             }
             String[] str = restInput.split(" /by ", 2);
             command = new AddCommand(new Deadline(str[0], str[1]));
             break;
         case "event":
-            if (!hasRestInput) {
-                throw new DukeException("Oops, the description of an event task cannot be empty.");
-            } else if (!restInput.contains("/at")) {
+            if (!restInput.contains("/at")) {
                 throw new DukeException("Oops, no date given for event task.");
             }
             String[] str1 = restInput.split(" /at ", 2);
             command = new AddCommand(new Event(str1[0], str1[1]));
             break;
         case "delete":
-            if (!hasRestInput) {
-                throw new DukeException("Oops, no task given to delete.");
-            }
-            command = new DeleteCommand(Integer.parseInt(restInput) - 1);
+            command = new DeleteCommand(restInput);
             break;
         case "date":
-            if (!hasRestInput) {
-                throw new DukeException("Oops, no date given.");
-            }
-            String dateStr = restInput;
-            command = new DateCommand(dateStr);
+            command = new DateCommand(restInput);
             break;
         case "find":
-            if (!hasRestInput) {
-                throw new DukeException("Oops, no keyword given.");
-            }
-            String keyword = restInput;
-            command = new SearchCommand(keyword);
+            command = new SearchCommand(restInput);
             break;
         default:
             throw new DukeException("Oops, I don't know what " + commandWord + " means");
         }
 
+        assert command != null;
         return command;
     }
 }

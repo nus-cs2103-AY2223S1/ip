@@ -24,6 +24,7 @@ public class Ui {
     public String giveInput(TaskList tasks, String input) throws DukeException {
         try {
             Command command = this.parser.parseUserInput(input, tasks);
+            assert command != null;
             return command.executeWithMessage(tasks);
         } catch (DukeException e) {
             return e.getMessage();

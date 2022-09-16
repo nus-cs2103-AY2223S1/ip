@@ -9,8 +9,11 @@ import java.time.LocalDateTime;
 public class SearchCommand extends Command {
     private String keyword;
 
-    public SearchCommand(String keyword) {
+    public SearchCommand(String keyword) throws DukeException {
         super();
+        if (keyword.length() == 0) {
+            throw new DukeException("Oops, no keyword given.");
+        }
         this.keyword = keyword;
     }
 

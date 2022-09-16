@@ -7,9 +7,12 @@ import duke.TaskList;
 public class DeleteCommand extends Command {
     private int index;
 
-    public DeleteCommand(int index) {
+    public DeleteCommand(String indexStr) throws DukeException{
         super();
-        this.index = index;
+        if (indexStr.length() == 0) {
+            throw new DukeException("Oops, no task given to delete.");
+        }
+        this.index = Integer.parseInt(indexStr) - 1;
     }
 
     @Override
