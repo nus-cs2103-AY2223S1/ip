@@ -25,6 +25,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/DaDuke.png")));
             stage.setTitle("PUKE");
+            stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             fxmlLoader.<MainWindow>getController().setStage(stage);
             stage.show();

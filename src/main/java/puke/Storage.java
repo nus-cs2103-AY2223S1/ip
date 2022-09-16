@@ -15,10 +15,12 @@ import java.util.Scanner;
  */
 public class Storage {
 
+    private static String file_path = "data/pukeData.txt";
+
     /**
      * File that is created on hard Disk
      */
-    public static File savedTasks = new File("pukeData.txt");
+    public static File savedTasks = new File(file_path);
 
     /**
      * Creates a Storage object
@@ -26,12 +28,16 @@ public class Storage {
     public Storage() {
 
         try {
-            File file = new File("pukeData.txt");
+            savedTasks.getParentFile().mkdir();
+            savedTasks.createNewFile();
+            File file = new File(file_path);
             file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
     /**
      * @@24Donovan24-reused
@@ -71,7 +77,6 @@ public class Storage {
             }
             return temp;
         } catch (FileNotFoundException e) {
-            System.out.println("Aiya cant find the file la");
             return new ArrayList<>();
         }
     }
