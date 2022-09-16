@@ -6,21 +6,23 @@ View the project on [GitHub](https://github.com/april-anh/ip).
 **This project is maintained by [april-anh](https://github.com/april-anh)**
 
 ## Feature
-*Fields in [square bracket] are parameters supplied by the user.*
+:rotating_light: Fields in *[square bracket]* are parameters supplied by the user.
 
-| Command                            | Description                                                      |
-|------------------------------------|------------------------------------------------------------------|
-| `list`                             | List all tasks                                                   |
-| `todo [text]`                      | Add a todo task                                                  |
-| `deadline [text] /by [yyyy-mm-dd]` | Add a deadline task                                              |
-| `event [text] /at [yyyy-mm-dd]`    | Add a event task                                                 |
-| `mark [number]`                    | Mark a task as done, replace number by its index in the list     |
-| `unmark [number]`                  | Mark a task as not done, replace number by its index in the list |
-| `delete [number]`                  | Delete a task, replace number by its index in the list           |
-| `find [keyword]`                   | Find tasks that have the description matching the keyword        |
-| `bye`                              | Exit chat bot                                                    |
+:rotating_light: Fields in *[date]* are in format of `yyyy-mm-dd`.
 
-**Flexible search!**
+| Command                                  | Description                                                      |
+|------------------------------------------|------------------------------------------------------------------|
+| `list`                                   | List all tasks                                                   |
+| `todo [text]`                            | Add a todo task                                                  |
+| `deadline [text] /by [date]`       | Add a deadline task                                              |
+| `event [text] /at [date]`          | Add a event task                                                 |
+| `mark [number]`                          | Mark a task as done, replace number by its index in the list     |
+| `unmark [number]`                        | Mark a task as not done, replace number by its index in the list |
+| `delete [number]`                        | Delete a task, replace number by its index in the list           |
+| `find [keyword]`                         | Find tasks that have the description matching the keyword        |
+| `bye`                                    | Exit chat bot                                                    |
+
+:star2: :star2: :star2: **Flexible search!**
 - The search is case-insensitive and matches partial words.
 - The `find` command will show all task that match at least 3 characters of your keyword, i.e. finding CON will return conan.
 
