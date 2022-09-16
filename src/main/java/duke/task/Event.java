@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,7 +8,7 @@ public class Event extends Task {
     protected LocalDate timeDescription;
     protected String timeDescriptionInput;
 
-    Event(String description, String timeQualifier, String timeDescription) {
+    public Event(String description, String timeQualifier, String timeDescription) {
         super(description);
         this.timeQualifier = timeQualifier;
         this.timeDescription = LocalDate.parse(timeDescription);

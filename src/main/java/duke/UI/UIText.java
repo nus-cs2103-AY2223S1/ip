@@ -1,6 +1,6 @@
-package duke;
+package duke.UI;
 
-public class UI {
+public class UIText {
     public static String GREETING = "Hello, I'm LishBot!\n" + "How may I help you today?\n";
     public static String TASK_LIST_OPENING = "Finding your task list...\n" + "Found it! Here are what you have to do:\n";
     public static String NO_LIST_FOUND = "\nCongrats! You have finished all your task!\n";

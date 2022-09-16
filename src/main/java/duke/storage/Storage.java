@@ -1,4 +1,12 @@
-package duke;
+package duke.storage;
+
+import duke.UI.UIText;
+import duke.exception.DukeException;
+import duke.tasklist.TaskList;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,8 +19,8 @@ public class Storage {
     private String dataPath;
     private String taskDataFileName;
     private String memoryDataFileName;
-    protected static UI UI;
-    Storage(String dataPath, String taskDataFileName, String memoryDataFileName) {
+    protected static UIText UIText;
+    public Storage(String dataPath, String taskDataFileName, String memoryDataFileName) {
         this.dataPath = dataPath;
         this.taskDataFileName = taskDataFileName;
         this.memoryDataFileName = memoryDataFileName;
@@ -38,12 +46,12 @@ public class Storage {
                     readMemoryLineByLine(memory, memoryDataFile);
                 } else {
                     taskDataFile.createNewFile();
-                    throw new DukeException(UI.FILE_NOT_FOUND + UI.CREATE_FILE);
+                    throw new DukeException(UIText.FILE_NOT_FOUND + UIText.CREATE_FILE);
                 }
             } else {
                 path.mkdirs();
                 taskDataFile.createNewFile();
-                throw new DukeException(UI.FILE_NOT_FOUND + UI.CREATE_FILE);
+                throw new DukeException(UIText.FILE_NOT_FOUND + UIText.CREATE_FILE);
             }
         } catch (FileNotFoundException e) {
             throw new DukeException(e.getMessage() + "\n");

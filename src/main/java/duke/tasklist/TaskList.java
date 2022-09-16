@@ -1,13 +1,17 @@
-package duke;
+package duke.tasklist;
+
+import duke.UI.UIText;
+import duke.exception.DukeException;
+import duke.task.Task;
 
 import java.util.ArrayList;
 
 public class TaskList {
 
-    protected static final UI UI = new UI();
+    protected static final UIText UIText = new UIText();
     protected ArrayList<Task> taskList;
 
-    TaskList() {
+    public TaskList() {
         this.taskList = new ArrayList<Task>();
     }
 
@@ -30,10 +34,10 @@ public class TaskList {
             }
         }
 
-        String response = UI.FINDING_RELATED_TASK;
+        String response = UIText.FINDING_RELATED_TASK;
 
         if (relatedTaskList.size() <= 0) {
-            response += UI.NO_RELATED_TASK_FOUND;
+            response += UIText.NO_RELATED_TASK_FOUND;
         } else {
             for (int i = 1; i <= relatedTaskList.size(); ++i) {
                 response += (i + ". " + relatedTaskList.get(i - 1).toString()) + "\n";
@@ -50,17 +54,17 @@ public class TaskList {
      */
     public String add(Task task) {
         taskList.add(task);
-        return UI.ADD_TASK + task.toString() + "\n" + UI.NUMBER_OF_TASK_LEFT + taskList.size() + "\n";
+        return UIText.ADD_TASK + task.toString() + "\n" + UIText.NUMBER_OF_TASK_LEFT + taskList.size() + "\n";
     }
 
     /**
      * Prints each task in the array list of tasks
      */
     public String printTaskList() {
-        String response = UI.TASK_LIST_OPENING;
+        String response = UIText.TASK_LIST_OPENING;
 
         if (taskList.size() <= 0) {
-            response += UI.NO_LIST_FOUND;
+            response += UIText.NO_LIST_FOUND;
         } else {
             for (int i = 1; i <= taskList.size(); ++i) {
                 response += (i + ". " + taskList.get(i - 1).toString()) + "\n";
@@ -78,13 +82,13 @@ public class TaskList {
      */
     public String markTaskAsDone(int index) throws DukeException {
         if (index < 0) {
-            throw new DukeException(UI.INDEX_IS_INVALID);
+            throw new DukeException(UIText.INDEX_IS_INVALID);
         } else if (index >= taskList.size()) {
-            throw new DukeException(UI.TASK_DOES_NOT_EXIST);
+            throw new DukeException(UIText.TASK_DOES_NOT_EXIST);
         }
 
         taskList.get(index).markAsDone();
-        return UI.MARK_AS_DONE + taskList.get(index).toString();
+        return UIText.MARK_AS_DONE + taskList.get(index).toString();
     }
 
     /**
@@ -95,13 +99,13 @@ public class TaskList {
      */
     public String markTaskAsNotDone(int index) throws DukeException{
         if (index < 0) {
-            throw new DukeException(UI.INDEX_IS_INVALID);
+            throw new DukeException(UIText.INDEX_IS_INVALID);
         } else if (index >= taskList.size()) {
-            throw new DukeException(UI.TASK_DOES_NOT_EXIST);
+            throw new DukeException(UIText.TASK_DOES_NOT_EXIST);
         }
 
         taskList.get(index).markAsNotDone();
-        return UI.MARK_AS_NOT_DONE + taskList.get(index).toString();
+        return UIText.MARK_AS_NOT_DONE + taskList.get(index).toString();
     }
 
     /**
@@ -113,12 +117,12 @@ public class TaskList {
         String response = "";
 
         if (index < 0) {
-            throw new DukeException(UI.INDEX_IS_INVALID);
+            throw new DukeException(UIText.INDEX_IS_INVALID);
         } else if (index >= taskList.size()) {
-            throw new DukeException(UI.TASK_DOES_NOT_EXIST);
+            throw new DukeException(UIText.TASK_DOES_NOT_EXIST);
         }
 
-        response = UI.REMOVE_TASK + taskList.get(index).toString() + "\n" + UI.NUMBER_OF_TASK_LEFT
+        response = UIText.REMOVE_TASK + taskList.get(index).toString() + "\n" + UIText.NUMBER_OF_TASK_LEFT
                 + (taskList.size() - 1) + "\n";
 
         taskList.remove(index);

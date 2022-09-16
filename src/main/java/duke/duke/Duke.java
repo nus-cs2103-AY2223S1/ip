@@ -1,6 +1,12 @@
-package duke;
+package duke.duke;
 
-import java.util.ArrayList;
+import duke.UI.UIText;
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.tasklist.TaskList;
+
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,7 +17,7 @@ public class Duke {
     private static final String taskDataPath = "data";
     private static final String taskDataFileName = "duke.txt";
     private static final String memoryDataFileName = "memory.txt";
-    private static UI UI = new UI();
+    private static UIText UIText = new UIText();
     private static Parser parser = new Parser();
     private static Storage storage = new Storage(taskDataPath, taskDataFileName, memoryDataFileName);
     private TaskList taskList;
@@ -19,7 +25,7 @@ public class Duke {
     private HashMap<String, String> memory;
 
 
-    Duke() {
+    public Duke() {
         taskList = new TaskList();
         memory = new HashMap<>();
         loadStorage(taskList, memory);
@@ -55,7 +61,7 @@ public class Duke {
                     System.exit(0);
                 }
             }, 1500);
-            response = UI.GOODBYE;
+            response = UIText.GOODBYE;
 
         } else {
             response = processComplexInput(input);
@@ -81,7 +87,7 @@ public class Duke {
             String[] commands = input.split(" ");
 
             if (commands.length < 2) {
-                throw new DukeException(UI.DO_NOT_UNDERSTAND_COMMAND);
+                throw new DukeException(UIText.DO_NOT_UNDERSTAND_COMMAND);
             }
 
             if (commands[0].equals("mark") || commands[0].equals("unmark") || commands[0].equals("delete")) {
@@ -94,7 +100,7 @@ public class Duke {
                 } else if (commands[0].equals("delete")) {
                     response = taskList.deleteTask(index);
                 } else {
-                    throw new DukeException(UI.DO_NOT_UNDERSTAND_COMMAND);
+                    throw new DukeException(UIText.DO_NOT_UNDERSTAND_COMMAND);
                 }
             } else if (commands[0].equals("find")) {
                 String description = commands[1];
@@ -104,16 +110,16 @@ public class Duke {
                 commands = input.split("/");
 
                 if (commands.length < 2) {
-                    throw new DukeException(UI.DO_NOT_UNDERSTAND_COMMAND);
+                    throw new DukeException(UIText.DO_NOT_UNDERSTAND_COMMAND);
                 }
 
                 String question = commands[0];
                 String answer = commands[1];
 
                 memory.put(question, answer);
-                response = UI.COMMAND_MEMORIZED;
+                response = UIText.COMMAND_MEMORIZED;
             } else {
-                Task newTask; 
+                Task newTask;
                 if (commands[0].equals("todo")) {
                     newTask = parser.generateToDoFromInput(input);
                 } else if (commands[0].equals("deadline")) {
@@ -121,7 +127,7 @@ public class Duke {
                 } else if (commands[0].equals("event")) {
                     newTask = parser.generateEventFromInput(input);
                 } else {
-                    throw new DukeException(UI.DO_NOT_UNDERSTAND_COMMAND);
+                    throw new DukeException(UIText.DO_NOT_UNDERSTAND_COMMAND);
                 }
                 response = taskList.add(newTask);
             }

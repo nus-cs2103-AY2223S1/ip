@@ -1,4 +1,8 @@
-package duke;
+package duke.parser;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
 
 public class Parser {
     private static final String ASSERTION_INPUT_TOO_SHORT = "Invalid Input: Input is too short";
