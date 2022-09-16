@@ -10,7 +10,7 @@ public class UiTest {
         String expectedOutput = "________________________________________\n"
                 + "Kon'nichiwa, I am Raijinmaru! A Fat Capybara!\n"
                 + "How may I assist you today?\n"
-                + "Type --help for list of commands\n"
+                + "Type help for list of commands\n"
                 + "________________________________________";
         assertEquals(expectedOutput, Ui.welcomeMessage());
     }
