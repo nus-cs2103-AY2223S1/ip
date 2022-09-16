@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Encapsulates A TaskList that stores the list of tasks given by the user.
@@ -34,6 +35,8 @@ public class TaskList {
      */
     public String addTask(Task task) {
         this.arrayList.add(task);
+        System.out.println(task.getPriorityInteger());
+        this.arrayList.sort(Comparator.comparing((Task t) -> t.getPriorityInteger()));
         return String.format("Got it. I've added this task:\n\t%s\n"
                         + "Now you have %d task%s in the list.\n", task, this.arrayList.size(),
                 this.arrayList.size() == 1 ? "" : "s");

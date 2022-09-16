@@ -3,6 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -110,19 +111,21 @@ public class Parser {
      * @throws DukeException Throws a DukeException.
      */
     public String parseTodo(String[] subCmd) throws DukeException {
-
         String todoString = String.join(" ", subCmd);
         if (isEmptyString(todoString)) {
             throw new EmptyDescriptionException();
-        } else {
-            String[] tempSplit = todoString.split(" /p ");
-
-            Todo tmpTask = new Todo(tempSplit[0], false, PriorityLevel.getPriorityString(tempSplit[1]));
-
-            String toDoMessage = this.taskList.addTask(tmpTask);
-            this.storage.save(this.taskList);
-            return toDoMessage;
         }
+
+        ArrayList<String> prioritySplit = new ArrayList<>(Arrays.asList(todoString.split(" /p ")));
+        if (prioritySplit.size() <= 1) {
+            prioritySplit.add("LOW");
+        }
+
+        Todo tmpTask = new Todo(prioritySplit.get(0), false, PriorityLevel.getPriorityString(prioritySplit.get(1)));
+        String toDoMessage = this.taskList.addTask(tmpTask);
+        this.storage.save(this.taskList);
+        return toDoMessage;
+
     }
 
     /**
@@ -137,20 +140,21 @@ public class Parser {
             throw new EmptyDescriptionException();
         } else if (!Arrays.asList(subCmd).contains("/by")) {
             throw new InvalidDescriptionException();
-        } else {
-            try {
-                String[] tempSplit = deadlineString.split(" /by ");
-                String[] prioritySplit = tempSplit[1].split(" /p ");
-                LocalDate tempDate = LocalDate.parse(prioritySplit[0], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate, PriorityLevel.getPriorityString(prioritySplit[1]));
+        }
 
-                String DeadlineMessage = this.taskList.addTask(tmpTask);
-                this.storage.save(this.taskList);
-                return DeadlineMessage;
-
-            } catch (DateTimeParseException e) {
-                throw new DukeException("Please change Date format to dd/mm/yyyy");
+        try {
+            String[] tempSplit = deadlineString.split(" /by ");
+            ArrayList<String> prioritySplit = new ArrayList<>(Arrays.asList(tempSplit[1].split(" /p ")));
+            if (prioritySplit.size() <= 1) {
+                prioritySplit.add("LOW");
             }
+            LocalDate tempDate = LocalDate.parse(prioritySplit.get(0), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate, PriorityLevel.getPriorityString(prioritySplit.get(1)));
+            String DeadlineMessage = this.taskList.addTask(tmpTask);
+            this.storage.save(this.taskList);
+            return DeadlineMessage;
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please change Date format to dd/mm/yyyy");
         }
     }
 
@@ -164,17 +168,21 @@ public class Parser {
         String eventString = String.join(" ", subCmd);
         if (isEmptyString(eventString)) {
             throw new EmptyDescriptionException();
-        } else {
-            String[] tempSplit = eventString.split(" /at ");
-            String[] prioritySplit = tempSplit[1].split(" /p ");
-            Event tmpTask = new Event(tempSplit[0], false, prioritySplit[0], PriorityLevel.getPriorityString(prioritySplit[1]));
-            String EventMessage = this.taskList.addTask(tmpTask);
-            this.storage.save(this.taskList);
-            return EventMessage;
+        } else if (!Arrays.asList(subCmd).contains("/at")) {
+            throw new InvalidDescriptionException();
         }
-    }
+        String[] tempSplit = eventString.split(" /at ");
+        ArrayList<String> prioritySplit = new ArrayList<>(Arrays.asList(tempSplit[1].split(" /p ")));
+        if (prioritySplit.size() <= 1) {
+            prioritySplit.add("LOW");
+        }
 
+        Event tmpTask = new Event(tempSplit[0], false, prioritySplit.get(0), PriorityLevel.getPriorityString(prioritySplit.get(1)));
+        String EventMessage = this.taskList.addTask(tmpTask);
+        this.storage.save(this.taskList);
+        return EventMessage;
 
+}
     /**
      * Parses the delete command.
      * @param subCmd An Array of Strings containing the remaining command arguments.

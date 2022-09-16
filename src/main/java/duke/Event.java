@@ -34,7 +34,7 @@ public class Event extends Task {
      */
     @Override
     public String toFileString() {
-        return String.format("E | %s | %s | %s | %d", super.getFileIcon(), super.toString(), this.time,
-                super.getPriorityInteger());
+        return String.format("E | %s | %s | %s | %s", super.getFileIcon(), super.toString(), this.time,
+                super.getPriorityLevel());
     }
 }

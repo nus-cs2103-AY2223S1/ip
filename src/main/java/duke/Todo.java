@@ -31,7 +31,7 @@ public class Todo extends Task {
      */
     @Override
     public String toFileString() {
-        return String.format("T | %s | %s | %d", super.getFileIcon(),
-                super.toString(), super.getPriorityInteger());
+        return String.format("T | %s | %s | %s", super.getFileIcon(),
+                super.toString(), super.getPriorityLevel());
     }
 }
