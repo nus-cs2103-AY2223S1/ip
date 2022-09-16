@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    private LocalDate deadline;
+    private final LocalDate deadline;
 
     public Deadline(String description, String deadline) {
         super(description);
@@ -10,9 +10,14 @@ public class Deadline extends Task {
         type = 'D';
     }
 
+    public Deadline(String description, boolean isDone, String deadline) {
+        this(description, deadline);
+        this.isDone = isDone;
+    }
+
     @Override
     public String toString() {
-        return super.toString() + "(by: " + deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return super.toString() + " (by: " + deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     @Override

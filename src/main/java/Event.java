@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task{
-    private LocalDate time;
+    private final LocalDate time;
 
     public Event(String description, String time) {
         super(description);
@@ -10,9 +10,14 @@ public class Event extends Task{
         type = 'E';
     }
 
+    public Event(String description, boolean isDone, String time) {
+        this(description, time);
+        this.isDone = isDone;
+    }
+
     @Override
     public String toString() {
-        return super.toString() + "(at: " + time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return super.toString() + " (at: " + time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     @Override

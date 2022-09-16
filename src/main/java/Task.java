@@ -5,17 +5,12 @@ public class Task {
 
     public Task(String description) {
         this.description = description;
-        this.isDone = false;
-        type = 'T';
+        isDone = false;
     }
 
-    public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
-    }
-
-    @Override
-    public String toString() {
-        return "[" + type + "][" + getStatusIcon() + "]" + description;
+    public Task(String description, boolean isDone) {
+        this(description);
+        this.isDone = isDone;
     }
 
     public void markAsDone() {
@@ -26,7 +21,16 @@ public class Task {
         isDone = false;
     }
 
+    public char getStatusIcon() {
+        return isDone ? 'X' : ' '; // done = X
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%c][%c] %s", type, getStatusIcon(), description);
+    }
+
     public String data() {
-        return type + ", " + (isDone ? 1 : 0) + ", " + description;
+        return String.format("%c, %c, %s", type,  getStatusIcon(), description);
     }
 }
