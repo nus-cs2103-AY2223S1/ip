@@ -32,7 +32,7 @@ public class Duke {
      * @return the corresponding response.
      */
     String getResponse(String input) {
-        TaskHandler taskHandler = new TaskHandler(tasklist, ui);
+        TaskHandler taskHandler = new TaskHandler(tasklist, ui, storage);
         if (input.equals("bye")) {
             storage.writeData();
             return ui.farewellMsg();
@@ -55,7 +55,7 @@ public class Duke {
      * Sends welcome greeting and processes inputs.
      */
     public void run() {
-        TaskHandler taskHandler = new TaskHandler(tasklist, ui);
+        TaskHandler taskHandler = new TaskHandler(tasklist, ui, storage);
         ui.welcomeMsg();
         boolean isDone = false;
         sc = new Scanner(System.in);
@@ -68,17 +68,21 @@ public class Duke {
                 tasklist.showList();
             } else if (input.startsWith("mark ")) {
                 taskHandler.markChild(input);
+                storage.writeData();
             } else if (input.startsWith("unmark ")) {
                 taskHandler.unmarkChild(input);
+                storage.writeData();
             } else if (input.startsWith("delete ")) {
                 taskHandler.deleteTask(input);
+                storage.writeData();
             } else if (input.startsWith("find ")) {
                 taskHandler.findTask(input);
+                storage.writeData();
             } else {
                 taskHandler.addTask(input);
+                storage.writeData();
             }
         }
-        storage.writeData();
     }
 
     public static void main(String[] args) {

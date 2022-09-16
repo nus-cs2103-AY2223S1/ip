@@ -16,7 +16,7 @@ public class TaskList {
         return newArr;
     }
 
-    public static String add(String input) {
+    public static String add(String input, Storage storage) {
         Task newTask = new Task("");
         try {
             if (input.startsWith("todo") || input.startsWith("deadline") || input.startsWith("event")) {
@@ -60,19 +60,20 @@ public class TaskList {
             } else {
                 throw new DukeUnknownException();
             }
+            storage.writeData();
             return Ui.addedMsg(newTask);
-
         } catch (DukeException e) {
             return (e.getMessage());
         }
     }
 
-    public static String delete(String input) {
+    public static String delete(String input, Storage storage) {
         if (!input.equals("delete")) {
             try {
                 int index = Integer.parseInt(input.substring(7)) - 1;
                 assert index >= 0 : "index should at least 0";
                 Task removedTask = taskList.remove(index);
+                storage.writeData();
                 return Ui.deleteMsg(removedTask);
             } catch (IndexOutOfBoundsException e) {
                 return (new DukeException("ERROR: there is no item in the list there!").getMessage());
@@ -98,13 +99,15 @@ public class TaskList {
         return "Here are your tasks:" + "\n" + list;
     }
 
-    static String markChild(int index) {
+    static String markChild(int index, Storage storage) {
         taskList.get(index).mark();
+        storage.writeData();
         return Ui.markMsg(index);
     }
 
-    static String unmarkChild(int index) {
+    static String unmarkChild(int index, Storage storage) {
         taskList.get(index).unmark();
+        storage.writeData();
         return Ui.unmarkMsg(index);
     }
 

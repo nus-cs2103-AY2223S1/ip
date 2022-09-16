@@ -6,17 +6,20 @@ package duke;
 public class TaskHandler {
     private TaskList taskList;
     private Ui ui;
+    private Storage storage;
 
     /**
      * Default constructor for TaskHandler.
      *
      * @param taskList TaskList to edit the list.
      * @param ui Ui to return messages.
+     * @param storage Storage folder to store as file.
      */
 
-    public TaskHandler(TaskList taskList, Ui ui) {
+    public TaskHandler(TaskList taskList, Ui ui, Storage storage) {
         this.taskList = taskList;
         this.ui = ui;
+        this.storage = storage;
     }
 
     /**
@@ -25,8 +28,8 @@ public class TaskHandler {
      * @param input Input to be added to the list.
      * @return string message.
      */
-    static String addTask(String input) {
-        return TaskList.add(input);
+    String addTask(String input) {
+        return TaskList.add(input, storage);
     }
 
     /**
@@ -35,8 +38,8 @@ public class TaskHandler {
      * @param input Input to be deleted from the list.
      * @return string message.
      */
-    static String deleteTask(String input) {
-        return TaskList.delete(input);
+    String deleteTask(String input) {
+        return TaskList.delete(input, storage);
     }
 
     /**
@@ -48,7 +51,7 @@ public class TaskHandler {
     public String markChild(String input) {
         int index = Integer.parseInt(input.substring(5)) - 1;
         assert index >= 0 : "index should at least 0";
-        return taskList.markChild(index);
+        return taskList.markChild(index, storage);
     }
 
     /**
@@ -60,7 +63,7 @@ public class TaskHandler {
     public String unmarkChild(String input) {
         int index = Integer.parseInt(input.substring(7)) - 1;
         assert index >= 0 : "index should at least 0";
-        return taskList.unmarkChild(index);
+        return taskList.unmarkChild(index, storage);
     }
 
     public String findTask(String input) {

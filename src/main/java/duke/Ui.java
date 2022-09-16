@@ -23,13 +23,12 @@ public class Ui {
                 + (TaskList.taskList.size() > 1 ? " tasks in your list." : " task in your list."));
     }
 
-    static void welcomeMsg() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+    static String welcomeMsg() {
+        return("Hello from DaDuke!\n");
+    }
+
+    static String instructionsMsg() {
+        return "To input a deadline or event, type the date and time in the format: 'dd-mm-YYYY hhmm'\n";
     }
 
     static String markMsg(int index) {
@@ -42,6 +41,7 @@ public class Ui {
     }
 
     static String farewellMsg() {
+        javafx.application.Platform.exit();
         return ("Bye Bye!");
     }
 
