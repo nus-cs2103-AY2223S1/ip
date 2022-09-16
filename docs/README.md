@@ -6,6 +6,8 @@ Duke is a desktop application for managing tasks.
 It is optimized for usage for fast typists familiar with the Command Line Interface (CLI), while still having the benefits of a Graphical User Interface (GUI).
 Furthermore, it has a gentle learning curve and is fast to use, enabling you to supercharge your productivity and *get things done*.
 
+![Duke](./Ui.png)
+
 > Duke frees your mind of having to remember things you need to do
 
 ---
@@ -15,9 +17,9 @@ Furthermore, it has a gentle learning curve and is fast to use, enabling you to 
 2. You can check whether Java 11 is installed by opening your terminal window and running the command `java -version`
 3. If Java 11 is not installed, please download Java 11 from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11).
 4. For Mac users, you may use the [Azul build of OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
-5. Download the latest duke.jar from here.
+5. Download the latest duke.jar from [the application's release page](https://github.com/EmilyOng/ip/releases/tag/v0.2).
 6. Copy the file to the folder you want to use as the home folder for your Duke.
-7. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+7. Double-click the file to start the app.
 
 ---
 
