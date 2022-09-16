@@ -49,7 +49,7 @@ test {
 }
 
 application {
-    mainClassName = "luffy.Luffy"
+    mainClassName = "luffy.Launcher"
 }
 
 shadowJar {
