@@ -58,7 +58,7 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
 
-        if (response.equals("Bye. Hope to see you again soon!")) {
+        if (response.equals("See you later :)")) {
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
