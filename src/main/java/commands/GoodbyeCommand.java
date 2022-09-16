@@ -11,6 +11,12 @@ public class GoodbyeCommand extends Command {
         super();
     }
 
+    /**
+     * Executes Goodbye Command.
+     *
+     * @param taskList The taskList relevant to the command.
+     * @return String with messages from execution.
+     */
     @Override
     public String execute(TaskList taskList) {
         this.isExit = true;

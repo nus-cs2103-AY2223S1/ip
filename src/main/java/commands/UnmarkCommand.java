@@ -36,6 +36,12 @@ public class UnmarkCommand extends Command {
         }
     }
 
+    /**
+     * Executes Unmark Command.
+     *
+     * @param taskList The taskList relevant to the command.
+     * @return String with messages from execution.
+     */
     @Override
     public String execute(TaskList taskList) {
         int index = Integer.parseInt(args[0]) - 1;

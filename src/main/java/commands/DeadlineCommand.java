@@ -55,25 +55,37 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Converting String into LocalDateTime object (DateTime Formatting)
+     * Returns LocalDateTime object parsed from given String.
+     * Parsed string follows the DEADLINE_DATETIME_FORMAT format.
+     * This parses datetime strings from user input.
      *
-     * @return LocalDateTime
-     **/
+     * @param s String to parse.
+     * @return Parsed LocalDateTime object.
+     */
     public static LocalDateTime parseDeadlineDatetime(String s) {
         return LocalDateTime.parse(s,
                 DateTimeFormatter.ofPattern(DEADLINE_DATETIME_FORMAT).withResolverStyle(ResolverStyle.STRICT));
     }
 
     /**
-     * Changing DateTime Formatting to Storage Formatting
+     * Returns LocalDateTime object parsed from given String in storage.
+     * Parsed string follows the DEADLINE_STORAGE_FORMAat.
+     * This parses datetime strings from storage.
      *
-     * @return LocalDateTime
+     * @param s String to parse.
+     * @return Parsed LocalDateTime object.
      **/
     public static LocalDateTime parseDeadlineDatetimeFromStorage(String s) {
         return LocalDateTime.parse(s,
                 DateTimeFormatter.ofPattern(DEADLINE_STORAGE_FORMAT).withResolverStyle(ResolverStyle.STRICT));
     }
 
+    /**
+     * Executes Deadline Command.
+     *
+     * @param taskList The taskList relevant to the command.
+     * @return String with messages from execution.
+     */
     @Override
     public String execute(TaskList taskList) {
         String description = Parser.splitArrayIntoSubstrings(this.args, "/by").get(0);

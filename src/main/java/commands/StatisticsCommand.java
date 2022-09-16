@@ -103,7 +103,7 @@ public class StatisticsCommand extends Command {
     }
 
     /**
-     * Obtain the count of a specific target, e.g. ToDos.
+     * Returns the count of a specific target, e.g. ToDos.
      *
      * @param target Task to obtain the count of.
      * @return Count of the specified task in the task list.
@@ -131,6 +131,12 @@ public class StatisticsCommand extends Command {
     }
 
 
+    /**
+     * Executes Statistics Command.
+     *
+     * @param taskList The taskList relevant to the command.
+     * @return String with messages from execution.
+     */
     @Override
     public String execute(TaskList taskList) {
         String msg = "";
@@ -150,7 +156,7 @@ public class StatisticsCommand extends Command {
     }
 
     /**
-     * Obtains frequency of ToDos in taskList, returns message with count.
+     * Returns frequency of ToDos in taskList, returns message with count.
      *
      * @param taskList Task list to count the ToDos.
      * @return Formatted string with count of ToDos.
@@ -167,7 +173,7 @@ public class StatisticsCommand extends Command {
     }
 
     /**
-     * Obtains frequency of Deadlines in taskList, returns message with count.
+     * Returns frequency of Deadlines in taskList, returns message with count.
      *
      * @param taskList Task list to count the Deadlines.
      * @return Formatted string with count of Deadlines.
@@ -184,7 +190,7 @@ public class StatisticsCommand extends Command {
     }
 
     /**
-     * Obtains frequency of Events in taskList, returns message with count.
+     * Returns frequency of Events in taskList, returns message with count.
      *
      * @param taskList Task list to count the Events.
      * @return Formatted string with count of Events.
@@ -201,7 +207,7 @@ public class StatisticsCommand extends Command {
     }
 
     /**
-     * Obtains size of taskList, returns message with count.
+     * Returns size of taskList, returns message with count.
      *
      * @param taskList Task list to obtain size of.
      * @return Formatted string with size of task list.

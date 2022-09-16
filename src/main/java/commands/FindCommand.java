@@ -29,6 +29,12 @@ public class FindCommand extends Command {
         }
     }
 
+    /**
+     * Executes Find Command.
+     *
+     * @param taskList The taskList relevant to the command.
+     * @return String with messages from execution.
+     */
     @Override
     public String execute(TaskList taskList) {
         TaskList results = new TaskList();

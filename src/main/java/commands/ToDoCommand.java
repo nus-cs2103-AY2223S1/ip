@@ -30,6 +30,12 @@ public class ToDoCommand extends Command {
         }
     }
 
+    /**
+     * Executes ToDo Command.
+     *
+     * @param taskList The taskList relevant to the command.
+     * @return String with messages from execution.
+     */
     @Override
     public String execute(TaskList taskList) {
         String todoItem = String.join(" ", this.args);

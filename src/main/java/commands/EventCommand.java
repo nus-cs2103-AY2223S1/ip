@@ -61,25 +61,37 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Parsing EventDateTime from Storage
+     * Returns LocalDateTime object parsed from given String.
+     * Parsed string follows the DEADLINE_DATETIME_FORMAT format.
+     * This parses datetime strings from user input.
      *
-     * @return LocalDateTime
-     **/
+     * @param s String to parse.
+     * @return Parsed LocalDateTime object.
+     */
+    public static LocalDateTime parseEventDatetime(String s) {
+        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(EVENT_DATETIME_START_OR_END_FORMAT)
+                .withResolverStyle(ResolverStyle.STRICT));
+    }
+
+    /**
+     * Returns LocalDateTime object parsed from given String in storage.
+     * Parsed string follows the DEADLINE_STORAGE_FORMAat.
+     * This parses datetime strings from storage.
+     *
+     * @param s String to parse.
+     * @return Parsed LocalDateTime object.
+     */
     public static LocalDateTime parseEventDatetimeFromStorage(String s) {
         return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(EVENT_DATETIME_START_OR_END_STORAGE_FORMAT)
                 .withResolverStyle(ResolverStyle.STRICT));
     }
 
     /**
-     * Parsing EventDateTime
+     * Executes Event Command.
      *
-     * @return LocalDateTime
-     **/
-    public static LocalDateTime parseEventDatetime(String s) {
-        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(EVENT_DATETIME_START_OR_END_FORMAT)
-                .withResolverStyle(ResolverStyle.STRICT));
-    }
-
+     * @param taskList The taskList relevant to the command.
+     * @return String with messages from execution.
+     */
     @Override
     public String execute(TaskList taskList) {
         String description = Parser.splitArrayIntoSubstrings(this.args, "/at").get(0);
