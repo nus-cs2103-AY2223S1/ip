@@ -12,12 +12,9 @@ import java.util.List;
 
 public class Storage {
 
-    private List<Task> taskList;
-
     private File saveFile;
 
     public Storage(File givenSaveFile) {
-        taskList = new ArrayList<>();
         saveFile = givenSaveFile;
     }
 
@@ -26,6 +23,59 @@ public class Storage {
      * @return List of tasks.
      */
     public List<Task> loadFromFile() {
+        checkFileExists();
+        return parseSaveFile();
+    }
+
+    /**
+     * Persists the list of tasks to the save file.
+     * @param taskList List of tasks in use by the app.
+     */
+    public void saveToFile(List<Task> taskList) {
+        checkFileExists();
+        writeSaveFile(taskList);
+    }
+
+    private Task stringToTask(String dataString) {
+        String[] arr = splitDataString(dataString);
+        return parseSplitString(arr);
+    }
+
+    private String[] splitDataString(String dataString) {
+        String[] arr = dataString.split("\\|");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].trim();
+        }
+        return arr;
+    }
+
+    private Task parseSplitString(String[] arr) {Task ret;
+        try {
+            switch(arr[0]) {
+                case "[T]":
+                    ret = new Todo(arr[2]);
+                    break;
+                case "[D]":
+                    ret = new Deadline(arr[2], DateParser.stringToDate(arr[3]));
+                    break;
+                case "[E]":
+                    ret = new Event(arr[2], DateParser.stringToDate(arr[3]));
+                    break;
+                default:
+                    return null;
+            }
+        } catch (UnrecognisedDateException e) {
+            return null;
+        }
+
+        if ("1".equals(arr[1])) {
+            ret.mark();
+        }
+
+        return ret;
+    }
+
+    private void checkFileExists() {
         boolean isSaveFileCreated = saveFile.exists();
         if (!isSaveFileCreated) {
             try {
@@ -39,8 +89,11 @@ public class Storage {
             System.out.println("Unable to find or create save file, exiting...");
             System.exit(1);
         }
+    }
 
+    private List<Task> parseSaveFile() {
         assert saveFile.exists();
+        List<Task> taskList = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(saveFile));
             taskList.clear();
@@ -56,12 +109,7 @@ public class Storage {
         return taskList;
     }
 
-    /**
-     * Persists the list of tasks to the save file.
-     * @param givenTaskList List of tasks in use by the app.
-     */
-    public void saveToFile(List<Task> givenTaskList) {
-        taskList = givenTaskList;
+    private void writeSaveFile(List<Task> taskList) {
         assert saveFile.exists();
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
@@ -73,39 +121,6 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("Error while saving file: " + e);
         }
-
-    }
-
-    private static Task stringToTask(String dataString) {
-        String[] arr = dataString.split("\\|");
-        Task ret;
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = arr[i].trim();
-        }
-
-        try {
-            switch(arr[0]) {
-            case "[T]":
-                ret = new Todo(arr[2]);
-                break;
-            case "[D]":
-                ret = new Deadline(arr[2], DateParser.stringToDate(arr[3]));
-                break;
-            case "[E]":
-                ret = new Event(arr[2], DateParser.stringToDate(arr[3]));
-                break;
-            default:
-                return null;
-            }
-        } catch (UnrecognisedDateException e) {
-            return null;
-        }
-
-        if ("1".equals(arr[1])) {
-            ret.mark();
-        }
-
-        return ret;
     }
 
 }
