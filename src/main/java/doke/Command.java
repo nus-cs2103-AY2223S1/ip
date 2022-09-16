@@ -117,10 +117,14 @@ public class Command {
     }
 
     static Pair<Boolean, String> deleteCommand(TaskList taskList, Ui ui, Storage storage, int num) {
-        Task toDelete = taskList.getTask(num);
-        taskList.deleteTask(num);
-        storage.updateFile(taskList.getList(), ui);
-        ui.printDeleteMessage(toDelete, taskList.getSize());
+        try {
+            Task toDelete = taskList.getTask(num);
+            taskList.deleteTask(num);
+            storage.updateFile(taskList.getList(), ui);
+            ui.printDeleteMessage(toDelete, taskList.getSize());
+        } catch (IndexOutOfBoundsException exception) {
+            return new Pair<>(true, "Please enter a valid number");
+        }
         return new Pair<>(true, "I've deleted that task");
     }
 
