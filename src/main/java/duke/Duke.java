@@ -19,7 +19,7 @@ public class Duke {
      */
     public Duke() {
         ui = new Ui();
-        storage = new Storage("duke.txt");
+        storage = new Storage("mytasklist.txt");
         try {
             taskList = new TaskList(storage.load());
             if (taskList.isEmpty()) {

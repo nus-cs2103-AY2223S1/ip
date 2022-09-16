@@ -2,13 +2,14 @@ package duke;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
 
 public class StorageTest {
 
     @Test
-    public void testStorage() {
-        Storage storage = new Storage("duke.txt");
+    public void testStorage() throws DukeException {
+        Storage storage = new Storage("mytasklist.txt");
 
         assertEquals(storage.load().toString(),
                 "[T,0,haha \n, T,1,booooooom 2020-12-12 1222 \n, "

@@ -34,7 +34,7 @@ public class Reminder {
     }
 
     private TaskList loadTaskList() throws DukeException {
-        return new TaskList(new Storage("duke.txt").load());
+        return new TaskList(new Storage("mytasklist.txt").load());
     }
 
     /**
