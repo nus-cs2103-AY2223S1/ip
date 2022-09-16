@@ -1,6 +1,8 @@
 # Jude the chatbot
 
-This is a task tracker chatbot which came from a project template for a greenfield Java project. It's named after the Beatles' hit song *Hey Jude*. Given below are instructions on how to use it.
+This is a task tracker chatbot which came from a project template for a greenfield Java project. 
+It's named after the Beatles' hit song *Hey Jude*. Given below are instructions on how to set up
+the project. For information on how to use Jude the chatbot, go [here](https://cheeheng.github.io/ip/).
 
 ## Setting up in Intellij
 
