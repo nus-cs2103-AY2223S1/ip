@@ -3,13 +3,20 @@ package duke;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+
 /**
  * A chatbot program that manages tasks.
  */
-public class Duke {
+public class Duke  {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+
+    public Duke() throws FileNotFoundException, DukeException {
+        this.ui = new Ui();
+        this.storage = new Storage("data", "duke.txt");
+        this.tasks = new TaskList(storage.getTasksFromDisk());
+    }
 
     /**
      * Constructor method for a Duke.
@@ -25,28 +32,13 @@ public class Duke {
         this.tasks = new TaskList(storage.getTasksFromDisk());
     }
 
-    /**
-     * Runs the Duke program.
-     *
-     * @throws IOException if an I/O error occurs when saving tasks to disk
-     * @throws DukeException if a Duke error occurs
-     */
-    public void start() throws IOException, DukeException {
-        this.ui.doGreeting();
-        this.ui.giveInput(this.tasks);
-        this.storage.saveTasks(this.tasks.getList());
-        this.ui.doBye();
+
+    public String getResponse(String input) throws DukeException {
+        String response = this.ui.giveInput(this.tasks, input);
+        return response;
     }
 
-    public static void main(String[] args) {
-        try {
-            Duke duke = new Duke("data", "duke.txt");
-            duke.start();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("Oops, something went wrong: " + e.getMessage());
-        } catch (DukeException e) {
-        }
+    public void save() throws IOException {
+        this.storage.saveTasks(this.tasks.getList());
     }
 }

@@ -1,5 +1,12 @@
 package duke;
 
+import duke.command.DateCommand;
+import duke.command.AddCommand;
+import duke.command.DeleteCommand;
+import duke.command.SearchCommand;
+import duke.command.Command;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -9,22 +16,10 @@ import duke.task.Todo;
  * A parser which handles parsing of the user input.
  */
 public class Parser {
-    private boolean hasExited;
-
     /**
      * Constructor method for a Parser.
      */
     public Parser() {
-        this.hasExited = false;
-    }
-
-    /**
-     * Tests whether the user has exited.
-     *
-     * @return true if the user has exited, false otherwise
-     */
-    public boolean isExit() {
-        return this.hasExited;
     }
 
     /**
@@ -34,70 +29,85 @@ public class Parser {
      * @param tasks list of tasks of the user
      * @throws DukeException if there is an error with the input
      */
-    public void parse(String input, TaskList tasks) throws DukeException {
-        if (input.equals("bye")) {
-            this.hasExited = true;
-        } else if (input.equals("list")) {
-            tasks.showList();
-        } else if (input.startsWith("mark")) {
-            if (input.length() < 6) {
+    public Command parseUserInput(String input, TaskList tasks) throws DukeException {
+        String[] inputArr;
+        String commandWord;
+        String restInput = "";
+        if (input.contains(" ")) {
+            inputArr = input.split(" ", 2);
+            commandWord = inputArr[0];
+            restInput = inputArr[1];
+        } else {
+            commandWord = input;
+        }
+        boolean hasRestInput = (restInput.length() >= 1);
+        Command command;
+
+        switch (commandWord) {
+        case "list":
+            command = new ListCommand();
+            break;
+        case "mark":
+            if (!hasRestInput) {
                 throw new DukeException("Oops, no task given to mark as done.");
             }
-            int i = Integer.parseInt(input.substring(5)) - 1;
-            tasks.markTask(i, true);
-        } else if (input.startsWith("unmark")) {
-            if (input.length() < 8) {
+            command = new MarkCommand(Integer.parseInt(restInput) - 1, true);
+            break;
+        case "unmark":
+            if (!hasRestInput) {
                 throw new DukeException("Oops, no task given to mark as not done.");
             }
-            int i = Integer.parseInt(input.substring(7)) - 1;
-            tasks.markTask(i, false);
-        } else if (input.startsWith("todo")) {
-            if (input.length() < 6) {
+            command = new MarkCommand(Integer.parseInt(restInput) - 1, false);
+            break;
+        case "todo":
+            if (!hasRestInput) {
                 throw new DukeException("Oops, the description of a todo task cannot be empty.");
             }
-            String desc = input.substring(5);
-            Task t = new Todo(desc);
-            tasks.addTask(t);
-        } else if (input.startsWith("deadline")) {
-            if (input.length() < 10) {
+            String desc = restInput;
+            command = new AddCommand(new Todo(desc));
+            break;
+        case "deadline":
+            if (!hasRestInput) {
                 throw new DukeException("Oops, the description of a deadline task cannot be empty.");
-            } else if (!input.contains("/by")) {
+            } else if (!restInput.contains("/by")) {
                 throw new DukeException("Oops, no deadline given for deadline task.");
             }
-            String[] str = input.split(" /by ", 2);
-            String s1 = str[0].substring(9);
-            Task t = new Deadline(s1, str[1]);
-            tasks.addTask(t);
-        } else if (input.startsWith("event")) {
-            if (input.length() < 7) {
+            String[] str = restInput.split(" /by ", 2);
+            command = new AddCommand(new Deadline(str[0], str[1]));
+            break;
+        case "event":
+            if (!hasRestInput) {
                 throw new DukeException("Oops, the description of an event task cannot be empty.");
-            } else if (!input.contains("/at")) {
+            } else if (!restInput.contains("/at")) {
                 throw new DukeException("Oops, no date given for event task.");
             }
-            String[] str = input.split(" /at ", 2);
-            String s1 = str[0].substring(6);
-            Task t = new Event(s1, str[1]);
-            tasks.addTask(t);
-        } else if (input.startsWith("delete")) {
-            if (input.length() < 8) {
+            String[] str1 = restInput.split(" /at ", 2);
+            command = new AddCommand(new Event(str1[0], str1[1]));
+            break;
+        case "delete":
+            if (!hasRestInput) {
                 throw new DukeException("Oops, no task given to delete.");
             }
-            int i = Integer.parseInt(input.substring(7)) - 1;
-            tasks.deleteTask(i);
-        } else if (input.startsWith("date")) {
-            if (input.length() < 6) {
+            command = new DeleteCommand(Integer.parseInt(restInput) - 1);
+            break;
+        case "date":
+            if (!hasRestInput) {
                 throw new DukeException("Oops, no date given.");
             }
-            String dateStr = input.substring(5);
-            tasks.getDateTasks(dateStr);
-        } else if (input.startsWith("find")) {
-            if (input.length() < 6) {
+            String dateStr = restInput;
+            command = new DateCommand(dateStr);
+            break;
+        case "find":
+            if (!hasRestInput) {
                 throw new DukeException("Oops, no keyword given.");
             }
-            String keyword = input.substring(5);
-            tasks.getSearchResults(keyword);
-        } else {
-            throw new DukeException("Oops, I don't know what that means");
+            String keyword = restInput;
+            command = new SearchCommand(keyword);
+            break;
+        default:
+            throw new DukeException("Oops, I don't know what " + commandWord + " means");
         }
+
+        return command;
     }
 }
