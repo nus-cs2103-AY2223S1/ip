@@ -8,8 +8,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.util.Duration;
+
+//@@author dlimyy-reused
+//Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+//with minor modifications
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -27,13 +30,23 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/image/ZeeUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/image/ZeeDuke.png"));
 
+    /**
+     * Initialises the scrollPane vvalue, Ui and displays the
+     * greeting from Duke, the Duke Bot.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         Ui ui = new Ui();
-        dialogContainer.getChildren().add(DialogBox.getDialog(ui.Greet(),dukeImage,true));
+        dialogContainer.getChildren().add(DialogBox.getDialog(ui.greet(),
+                dukeImage, true));
     }
 
+    /**
+     * Initialises the Duke.
+     *
+     * @param d The Duke to be initialised.
+     */
     public void setDuke(Duke d) {
         duke = d;
     }
@@ -57,5 +70,6 @@ public class MainWindow extends AnchorPane {
             //@@author
         }
     }
-
 }
+
+//@@author

@@ -1,7 +1,6 @@
 package duke;
 
 import duke.task.Task;
-import java.util.Scanner;
 
 /**
  * Ui class represents the Ui interaction with the user.
@@ -13,7 +12,7 @@ public class Ui {
      *
      * @return The greeting by Duke.
      */
-    public String Greet() {
+    public String greet() {
         MultiLineFormatter multiLineFormatter = new MultiLineFormatter();
         multiLineFormatter.add("Hello, this is Duke, the Duke Bot! It is a pleasure to meet you!\n");
         multiLineFormatter.add("How may I assist you?");
@@ -25,7 +24,7 @@ public class Ui {
      *
      * @return The farewell to the user.
      */
-    public String GoodBye() {
+    public String goodBye() {
         return "So Long, Farewell!";
     }
 

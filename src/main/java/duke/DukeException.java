@@ -3,7 +3,7 @@ package duke;
 /**
  * DukeException represents the list of exceptions encountered by Duke
  */
-public class DukeException extends Exception{
+public class DukeException extends Exception {
 
     /**
      * Constructor of DukeException class.
@@ -17,7 +17,8 @@ public class DukeException extends Exception{
 
     @Override
     public String toString() {
-        return super.getMessage();
+        String customErrorHeader = "Exception Alert! Exception Alert!\n";
+        return customErrorHeader + super.getMessage();
     }
 }
 

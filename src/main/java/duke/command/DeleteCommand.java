@@ -2,11 +2,11 @@ package duke.command;
 
 import duke.CommandHistory;
 import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.TaskList;
-import duke.Ui;
 import duke.task.ToDo;
 
 /**
@@ -67,19 +67,19 @@ public class DeleteCommand extends Command {
             Event event = (Event) taskRemoved;
             taskList.add(event, storage);
             String message = "This event has been successfully re-added";
-            return ui.displayCommandMessage(message,event,taskList.getSize() - 1);
+            return ui.displayCommandMessage(message, event, taskList.getSize() - 1);
         }
         if (taskRemoved instanceof ToDo) {
             ToDo toDo = (ToDo) taskRemoved;
             taskList.add(toDo, storage);
             String message = "This ToDo has been successfully re-added";
-            return ui.displayCommandMessage(message,toDo,taskList.getSize() - 1);
+            return ui.displayCommandMessage(message, toDo, taskList.getSize() - 1);
         }
         if (taskRemoved instanceof Deadline) {
             Deadline deadline = (Deadline) taskRemoved;
             taskList.add(deadline, storage);
             String message = "This deadline has been successfully re-added";
-            return ui.displayCommandMessage(message,deadline,taskList.getSize() - 1);
+            return ui.displayCommandMessage(message, deadline, taskList.getSize() - 1);
         }
 
         return null;

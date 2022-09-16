@@ -3,9 +3,8 @@ package duke.command;
 import duke.CommandHistory;
 import duke.Storage;
 import duke.TaskList;
-import duke.task.Deadline;
-import duke.task.ToDo;
 import duke.Ui;
+import duke.task.ToDo;
 
 /**
  * ToDoCommand class represents the ToDo command given by the user.
@@ -58,6 +57,6 @@ public class ToDoCommand extends Command {
         ToDo deletedToDo = new ToDo(this.description);
         taskList.remove(taskList.getSize() - 1, storage);
         String message = "This ToDo is no longer added!";
-        return ui.displayCommandMessage(message,deletedToDo, taskList.getSize());
+        return ui.displayCommandMessage(message, deletedToDo, taskList.getSize());
     }
 }

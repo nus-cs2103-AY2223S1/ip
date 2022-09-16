@@ -1,7 +1,8 @@
 package duke;
 
-import duke.command.Command;
 import java.util.ArrayList;
+
+import duke.command.Command;
 
 /**
  * The CommandHistory class represents the list of commands made by the

@@ -2,9 +2,9 @@ package duke.command;
 
 import duke.CommandHistory;
 import duke.Storage;
-import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
 
 /**
  * UnmarkCommand class represents the Unmark command given by the user.

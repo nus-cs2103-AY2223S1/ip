@@ -1,13 +1,12 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.CommandHistory;
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.time.LocalDate;
+import duke.task.Event;
 
 /**
  * EventCommand class represents an event command given by user.
@@ -44,7 +43,7 @@ public class EventCommand extends Command {
             CommandHistory commandHistory) {
         Event event = new Event(this.description, this.period);
         commandHistory.addCommand(this);
-        taskList.add(event,storage);
+        taskList.add(event, storage);
         String message = "Nice! This task has been successfully added!";
         return ui.displayCommandMessage(message, event, taskList.getSize());
     }
@@ -63,6 +62,6 @@ public class EventCommand extends Command {
         Event deletedEvent = new Event(this.description, this.period);
         taskList.remove(taskList.getSize() - 1, storage);
         String message = "This event is no longer added!";
-        return ui.displayCommandMessage(message,deletedEvent, taskList.getSize());
+        return ui.displayCommandMessage(message, deletedEvent, taskList.getSize());
     }
 }

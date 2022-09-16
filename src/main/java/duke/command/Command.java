@@ -15,13 +15,4 @@ public abstract class Command {
 
     public abstract String undoExecute(Ui ui, Storage storage, TaskList taskList,
             CommandHistory commandHistory);
-
-    /**
-     * Checks whether the current command is a ByeCommand.
-     *
-     * @return true if command is a ByeCommand; else return false.
-     */
-    public Boolean isTerminated() {
-        return this instanceof ByeCommand;
-    }
 }

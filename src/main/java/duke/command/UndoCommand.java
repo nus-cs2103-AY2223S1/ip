@@ -8,7 +8,7 @@ import duke.Ui;
 /**
  * The UndoCommand class represents the Undo command made by the user.
  */
-public class UndoCommand extends Command{
+public class UndoCommand extends Command {
     /**
      * Undoes changes made by the command to revert to original state.
      *

@@ -1,7 +1,8 @@
 package duke;
 
-import duke.task.Task;
 import java.util.ArrayList;
+
+import duke.task.Task;
 
 /**
  * TaskList class which represents an array of tasks in the list.
@@ -32,7 +33,7 @@ public class TaskList {
      */
     public void remove(int position, Storage storage) {
         taskList.remove(position);
-        storage.saveToFile(true,taskList);
+        storage.saveToFile(true, taskList);
     }
 
     /**

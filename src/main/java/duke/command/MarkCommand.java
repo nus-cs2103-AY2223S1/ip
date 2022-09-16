@@ -2,9 +2,9 @@ package duke.command;
 
 import duke.CommandHistory;
 import duke.Storage;
-import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
 
 /**
  * MarkCommand class which represents the mark command given by the user.

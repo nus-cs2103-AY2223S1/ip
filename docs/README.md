@@ -2,33 +2,33 @@
 
 ## Features 
 
-### `Add tasks`
+### Add tasks
 Adds the various kinds of tasks to the Duke Bot. These include
 1. ToDo tasks 
 2. Deadline tasks 
 3. Event tasks
 
-### `Delete tasks`
+### Delete tasks
 
 Removes the task from the duke bot
 
-### `List tasks`
+### List tasks
 
 Lists out the tasks in the duke bot
 
-### `Mark tasks`
+### Mark tasks
 
 Marks tasks in the duke bot which are completed
 
-### `Unmark tasks`
+### Unmark tasks
 
 Unmarks tasks in the duke bot which have been previously marked
 
-### `Find tasks`
+### Find tasks
 
 Searches for task which contains the keyword specified
 
-### `Undo commands`
+### Undo commands
 
 Undoes any previous command made by the user 
 

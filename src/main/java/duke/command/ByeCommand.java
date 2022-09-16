@@ -22,7 +22,7 @@ public class ByeCommand extends Command {
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList,
             CommandHistory commandHistory) {
-        return ui.GoodBye();
+        return ui.goodBye();
     }
 
     /**

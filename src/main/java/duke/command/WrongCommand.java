@@ -33,7 +33,7 @@ public class WrongCommand extends Command {
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
      * @param commandHistory History of commands made.
-     * @return
+     * @return The message that the wrong command cannot be executed.
      */
     @Override
     public String undoExecute(Ui ui, Storage storage, TaskList taskList, CommandHistory commandHistory) {

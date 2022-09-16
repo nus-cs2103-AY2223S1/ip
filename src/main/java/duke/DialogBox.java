@@ -1,5 +1,8 @@
 package duke;
 
+import java.io.IOException;
+import java.util.Collections;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,13 +14,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.io.IOException;
-import java.util.Collections;
+//@@author dlimyy-reused
+//Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+//with minor modifications
 
 /**
- * An example of a custom control using FXML.
- * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
- * containing text from the speaker.
+ * The dialog box is made up of an image of the speaker
+ * and the text spoken from the speaker.
  */
 public class DialogBox extends HBox {
     @FXML
@@ -34,7 +37,6 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
         displayPicture.setImage(img);
     }
@@ -57,3 +59,5 @@ public class DialogBox extends HBox {
         return db;
     }
 }
+
+//@@author

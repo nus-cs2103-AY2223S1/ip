@@ -1,9 +1,5 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +7,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 /**
  * Storage class represents storage object which interacts
@@ -27,7 +28,7 @@ public class Storage {
      * @throws IOException If the file cannot be found by scanner or I/O error occurred.
      */
     public ArrayList<Task> readFile() throws IOException {
-        ArrayList<Task> dukeBotArray  = new ArrayList<>();
+        ArrayList<Task> dukeBotArray = new ArrayList<>();
         File dataDirectory = new File("Info");
         if (!dataDirectory.isDirectory()) {
             dataDirectory.mkdir();
@@ -81,14 +82,14 @@ public class Storage {
         if (task.length == 4) {
             if (task[0].equals("D")) {
                 LocalDate currDate = LocalDate.parse(task[3]);
-                Deadline deadline = new Deadline(task[2],currDate);
+                Deadline deadline = new Deadline(task[2], currDate);
                 boolean isMarked = task[1].equals("T");
                 deadline.setCompleted(isMarked);
                 dukeBotArray.add(deadline);
             }
             if (task[0].equals("E")) {
                 LocalDate currDate = LocalDate.parse(task[3]);
-                Event event = new Event(task[2],currDate);
+                Event event = new Event(task[2], currDate);
                 boolean isMarked = task[1].equals("T");
                 event.setCompleted(isMarked);
                 dukeBotArray.add(event);

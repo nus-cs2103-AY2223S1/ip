@@ -1,12 +1,13 @@
 package duke;
 
-import duke.command.Command;
-import duke.task.Task;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.command.Command;
+import duke.task.Task;
 
 /**
  * Duke class represents the Duke Bot which serves the user.
@@ -48,7 +49,7 @@ public class Duke {
             Command command = Parser.parse(input, taskList);
             reply = command.execute(ui, storage, taskList, commandHistory);
         } catch (DukeException e) {
-            reply = ui.showExceptionMessage(e.toString());
+            reply = e.toString();
         } catch (NumberFormatException e) {
             reply = ui.showExceptionMessage("Please enter a valid number");
         } catch (DateTimeParseException e) {

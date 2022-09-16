@@ -1,12 +1,12 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.CommandHistory;
-import duke.task.Deadline;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.time.LocalDate;
+import duke.task.Deadline;
 
 /**
  * DeadlineCommand class represents the deadline command given by user.
@@ -42,7 +42,7 @@ public class DeadlineCommand extends Command {
             CommandHistory commandHistory) {
         Deadline deadline = new Deadline(this.description, this.deadline);
         commandHistory.addCommand(this);
-        taskList.add(deadline,storage);
+        taskList.add(deadline, storage);
         String message = "Nice! This task has been successfully added!";
         return ui.displayCommandMessage(message, deadline, taskList.getSize());
     }
@@ -61,6 +61,6 @@ public class DeadlineCommand extends Command {
         Deadline deletedDeadline = new Deadline(this.description, this.deadline);
         taskList.remove(taskList.getSize() - 1, storage);
         String message = "This deadline is no longer added!";
-        return ui.displayCommandMessage(message,deletedDeadline, taskList.getSize());
+        return ui.displayCommandMessage(message, deletedDeadline, taskList.getSize());
     }
 }
