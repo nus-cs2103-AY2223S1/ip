@@ -57,11 +57,13 @@ Example: `todo buy groceries`
 Adds a deadline task to the task list. <br>
 Format: `deadline {description} /by {dd MMM yyyy}` <br>
 Example: `deadline presentation /by 15 Sep 2022`
+- ❗ The the format of `MMM` is case sensitive and only the first letter needs to be capital letter <br>
+   * ❗ `16 Sep 2022` is a valid date while `16 sep 2022` is an invalid date.
 
 ### Adding an event task: `event`
 Adds a deadline task to the task list. <br>
 Format: `event {description} /at {dd MMM yyyy HH:mm}` <br>
-Exmaple: `event project meeting /at 18 Sep 2022 19:00`
+Example: `event project meeting /at 18 Sep 2022 19:00`
 
 ### Marking a task: `mark`
 Marks a task in the list as completed.<br>
