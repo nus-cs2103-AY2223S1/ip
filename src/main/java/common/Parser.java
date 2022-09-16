@@ -102,7 +102,7 @@ public class Parser {
     }
 
     /**
-     * Given a string, return true if it is a valid common.COMMANDS enum.
+     * Return true if it is a valid common.COMMANDS enum.
      *
      * @param str String to check if the enum exists.
      * @return True if the provided string is a valid common.COMMANDS enum.
@@ -117,8 +117,7 @@ public class Parser {
     }
 
     /**
-     * Given a string and a DateTime format, validate if the given string
-     * follows the DateTime format.
+     * Validates if the given string follows the DateTime format.
      *
      * @param str    The string to be validated against.
      * @param format The format the string should follow.
@@ -135,6 +134,7 @@ public class Parser {
     }
 
     /**
+     * Returns a list of substrings.
      * Splits an array into subarrays at a given delimiter, and concatenates the substrings.
      * For example, given ['a', 'b', '\n', 'c', 'd'], with the delimiter specified to be '\n',
      * the function splits the array at '\n' and concatenates the split subarrays to return
@@ -162,8 +162,7 @@ public class Parser {
     }
 
     /**
-     * Splits a string according to a given delimiter, and returns the
-     * string at the specified index.
+     * Returns the string at a specified index after splitting a string according to a given delimiter.
      *
      * @param target    String to split.
      * @param delimiter Delimiter to split string at.

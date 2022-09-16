@@ -40,7 +40,7 @@ public class ChatResponse {
     }
 
     /**
-     * Formats and returnChats the contents of a given TaskList object.
+     * Returns formatted contents of a given TaskList object.
      *
      * @param taskList Task list to returnChat.
      */

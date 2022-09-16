@@ -16,9 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 
 /**
- * An example of a custom control using FXML.
- * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
- * containing text from the speaker.
+ * Represents one message block in SotongBoi.
  */
 public class DialogBox extends HBox {
     @FXML
@@ -26,6 +24,12 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructor for DialogBox.
+     *
+     * @param text String to display.
+     * @param img  Image to display.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -42,10 +46,26 @@ public class DialogBox extends HBox {
         displayPicture.setClip(imageCircle);
     }
 
+    /**
+     * Returns a DialogBox with the specified text and image.
+     * Factory method for DialogBox for users.
+     *
+     * @param text Text to display.
+     * @param img  Image to display.
+     * @return DialogBox instance.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns a DialogBox with the specified text and image.
+     * Factory method for DialogBox for users.
+     *
+     * @param text Text to display.
+     * @param img  Image to display.
+     * @return DialogBox instance.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

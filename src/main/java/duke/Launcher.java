@@ -15,6 +15,11 @@ public class Launcher extends Application {
 
     private final Duke duke = new Duke();
 
+    /**
+     * Displays the JavaFX stage.
+     *
+     * @param stage Stage to render to screen.
+     */
     @Override
     public void start(Stage stage) {
         try {
