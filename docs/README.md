@@ -8,7 +8,7 @@ GUI apps.
 ---
 ## Quickstart
 1. Ensure you have Java 11 installed in your computer.
-2. Download the latest Duke.jar from [here - add link]()
+2. Download the latest Duke.jar from [here](https://github.com/mohamedsaf1/ip/releases/tag/v0.2)
 3. Copy the file to the folder you want to use as the *home folder*
 for your DukeBruv.
 4. Double-click the file to start the app. The GUI as shown should appear
