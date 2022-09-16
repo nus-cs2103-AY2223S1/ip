@@ -29,7 +29,7 @@ public class DialogBox extends HBox {
      * Creates a dialog box.
      *
      * @param text Text from the speaker.
-     * @param img Image to represent the speaker's face.
+     * @param img  Image to represent the speaker's face.
      */
     private DialogBox(String text, Image img) {
         try {
@@ -60,7 +60,7 @@ public class DialogBox extends HBox {
      * Creates a dialog box with the user's face as image and the input of the user.
      *
      * @param text Input of the user.
-     * @param img Image of the user's face.
+     * @param img  Image of the user's face.
      * @return Dialog box containing the user input and the user's image.
      */
     public static DialogBox getUserDialog(String text, Image img) {
@@ -71,7 +71,7 @@ public class DialogBox extends HBox {
      * Creates a flipped dialog box with the text returned by Duke bot and the image of the Duke bot.
      *
      * @param text Text returned by the Duke bot.
-     * @param img Image of the Duke bot.
+     * @param img  Image of the Duke bot.
      * @return Dialog box containing the text returned by Duke bot and the image of the Duke bot.
      */
     public static DialogBox getDukeDialog(String text, Image img) {

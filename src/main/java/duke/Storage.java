@@ -48,7 +48,7 @@ public class Storage {
     /**
      * Loads the list of tasks from the text file.
      *
-     * @throws IOException From loadEvent, loadDeadline and loadToDo methods.
+     * @throws IOException It an I/O error occurred when loading tasks.
      */
     public void loadUpData() throws IOException {
         //Initialise scanner object for the file
@@ -87,10 +87,10 @@ public class Storage {
     /**
      * Loads the Event task from the file.
      *
-     * @param task String containing the event task.
+     * @param task String representation of the Event task.
      * @param status char indicating if the task is marked as done or not.
      * @param priority char indicating priority of the task.
-     * @throws IOException From writeToFile() method.
+     * @throws IOException If I/O error occurred when writing to file.
      */
     public void loadEvent(String task, char status, char priority) throws IOException {
         //Check that the loaded event has a date and time
@@ -101,11 +101,11 @@ public class Storage {
         String dateAndTime = task.substring(at + 5, task.lastIndexOf(")"));
         String[] dateTimeArray = dateAndTime.split(" ");
         String date = dateTimeArray[0] + " " + dateTimeArray[1] + " " + dateTimeArray[2];
-        LocalDate deadlineDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        LocalDate eventDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM dd yyyy"));
 
         //Create new Event task
-        Event event = new Event(" " + task.substring(12, at - 1));
-        event.setDate(deadlineDate);
+        Event event = new Event(task.substring(12, at - 1));
+        event.setDate(eventDate);
         event.setTime(dateTimeArray[3]);
 
         //Add the task to the task list array and update the file contents
@@ -152,7 +152,7 @@ public class Storage {
      * @param task String containing the deadline task.
      * @param status char indicating if the task is marked as done or not.
      * @param priority char indicating priority of the task.
-     * @throws IOException From the writeToFile() method.
+     * @throws IOException If an I/O error occurred when writing to the file.
      */
     public void loadDeadline(String task, char status, char priority) throws IOException {
         //Check if task is a deadline
@@ -166,7 +166,7 @@ public class Storage {
         LocalDate deadlineDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM dd yyyy"));
 
         //Create new Deadline task
-        Deadline deadline = new Deadline(" " + task.substring(12, by - 1));
+        Deadline deadline = new Deadline(task.substring(12, by - 1));
         deadline.setDate(deadlineDate);
         deadline.setTime(dateTimeArray[3]);
 
@@ -194,14 +194,14 @@ public class Storage {
      * @param task String containing the ToDo task.
      * @param status char indicating if the task is marked as done or not.
      * @param priority char indicating priority of the task.
-     * @throws IOException From the writeToFile() method.
+     * @throws IOException If an I/O error occurred when writing to the file.
      */
     public void loadToDo(String task, char status, char priority) throws IOException {
         //Get description of ToDo
         String description = task.substring(12);
 
         //Add ToDo to task list
-        this.previousTaskList.addTask(new ToDo(" " + description));
+        this.previousTaskList.addTask(new ToDo(description));
 
         //Check if task is marked as done
         if (status == 'X') {
@@ -218,7 +218,7 @@ public class Storage {
     }
 
     /**
-     * Returns string of list of tasks with the keyword.
+     * Returns string representation of list of tasks with the keyword.
      *
      * @param keyword Keyword to find the relevant tasks.
      * @return List of tasks with the keyword.

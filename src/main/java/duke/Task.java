@@ -24,7 +24,7 @@ public class Task {
     /**
      * Returns the status of the task.
      *
-     * @return The string that indicates if the task is done or not.
+     * @return String that indicates if the task is done or not.
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
@@ -47,7 +47,7 @@ public class Task {
     /**
      * Sets the priority of the task based on user input.
      *
-     * @param priority String input representing desired priority.
+     * @param priority String representation of the desired priority.
      */
     public void setPriority(String priority) {
         try {
@@ -72,7 +72,7 @@ public class Task {
     /**
      * Gets priority of the task.
      *
-     * @return String representing the priority of the task.
+     * @return String representation of the priority of the task.
      */
     public String getPriority() {
         //Return blank space if no priority is set
@@ -104,6 +104,6 @@ public class Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "]" + "[" + this.getPriority() + "]" + this.description;
+        return "[" + this.getStatusIcon() + "]" + "[" + this.getPriority() + "] " + this.description;
     }
 }

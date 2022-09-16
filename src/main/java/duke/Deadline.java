@@ -35,7 +35,7 @@ public class Deadline extends Task {
     /**
      * Sets the Deadline task's date using string representation of date.
      *
-     * @param date String representing the date to be set.
+     * @param date String representation of the date to be set.
      */
     public void setDate(String date) {
         this.date = LocalDate.parse(date);
@@ -53,7 +53,7 @@ public class Deadline extends Task {
     /**
      * Sets the Deadline task's time.
      *
-     * @param time String representing the time to be set.
+     * @param time String representation of the time to be set.
      */
     public void setTime(String time) {
         this.time = LocalTime.parse(time);

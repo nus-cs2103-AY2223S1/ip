@@ -73,7 +73,7 @@ public class TaskList {
     /**
      * Gets the task stored at an index of the ArrayList
      *
-     * @param index Integer where a task is stored.
+     * @param index Index value where a task is stored.
      * @return Task that is stored at the index of the ArrayList.
      */
     public Task getTask(int index) {
@@ -122,7 +122,7 @@ public class TaskList {
      * Sets the priority of the task in the ArrayList.
      *
      * @param index Index of the task involved.
-     * @param priority String representing the priority of the task to be set.
+     * @param priority String representation of the priority to be set for the task.
      */
     public void setTaskPriority(int index, String priority) {
         this.taskArray.get(index - 1).setPriority(priority);

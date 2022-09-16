@@ -6,7 +6,6 @@ public class Ui {
 
     /**
      * Initialises the UI of the bot.
-     *
      */
     public Ui() {
         this.welcomeMessage = "Hello! I'm Duke!\nWhat can I do for you?\n";

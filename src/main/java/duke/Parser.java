@@ -13,7 +13,7 @@ public class Parser {
     /**
      * Initialises the Parser object.
      *
-     * @param taskList List of tasks stored as an array.
+     * @param taskList List of tasks stored as an ArrayList.
      * @param storage  Stores the data of the list of tasks.
      */
     public Parser(TaskList taskList, Storage storage) {
@@ -33,11 +33,8 @@ public class Parser {
         String firstWord = inputString[0];
         int numberOfWords = inputString.length;
 
-        //Forms the string without the first word
-        String restOfString = "";
-        for (int i = 1; i < numberOfWords; i++) {
-            restOfString += (" " + inputString[i]);
-        }
+        //Get the rest of the string besides the first word
+        String restOfString = this.getRestOfString(inputString, numberOfWords);
 
         //Parse user input
         try {
@@ -72,11 +69,30 @@ public class Parser {
     }
 
     /**
+     * Gets the rest of the string input of user besides the first word.
+     *
+     * @param inputString String array of words from user input.
+     * @param numberOfWords Number of words of user input.
+     * @return String representation of the rest of the user input besides the first word.
+     */
+    public String getRestOfString(String[] inputString, int numberOfWords) {
+        String restOfString = "";
+        for (int i = 1; i < numberOfWords; i++) {
+            if (i == 1) {
+                restOfString += inputString[1];
+            } else {
+                restOfString += (" " + inputString[i]);
+            }
+        }
+        return restOfString;
+    }
+
+    /**
      * Sets priority of the task.
      *
      * @param inputString String array containing all the words in the user input.
      * @return String showing that the priority of the task has been set.
-     * @throws IOException From the writeToFile() method.
+     * @throws IOException If an I/O error occurred from writing to the file.
      */
     public String setPriority(String[] inputString) throws IOException {
         //Get the task number to set priority for
@@ -97,7 +113,7 @@ public class Parser {
      *
      * @param inputString String array that contains all the words in the user input.
      * @return String showing that the chosen task is marked as done.
-     * @throws IOException From the writeToFile() method.
+     * @throws IOException If an I/O error occurred from writing to the file.
      */
     public String markTask(String[] inputString) throws IOException {
         //Get the task number to mark
@@ -117,8 +133,8 @@ public class Parser {
      * Commands the Duke bot to unmark a task.
      *
      * @param inputString String array that contains all the words in the user input.
-     * @return String showing that the chosen task is unmarked as not done.
-     * @throws IOException From the writeToFile() method.
+     * @return String showing that the chosen task is marked as not done.
+     * @throws IOException If an I/O error occurred from writing to the file.
      */
     public String unmarkTask(String[] inputString) throws IOException {
         //Get the task number to unmark
@@ -139,8 +155,8 @@ public class Parser {
      *
      * @param restOfString String that contains the necessary information for the Todo task.
      * @return String showing the Todo task that was added.
-     * @throws DukeException Thrown when user does not enter any description and date and time for the task.
-     * @throws IOException   From the writeToFile() method.
+     * @throws DukeException Thrown when user does not enter any description, date and time for the task.
+     * @throws IOException   If an I/O error occurred from writing to the file.
      */
     public String parseToDo(String restOfString) throws DukeException, IOException {
         //Get description and date and time of task
@@ -162,17 +178,17 @@ public class Parser {
 
             return "Got it. I've added this task:\n"
                     + this.taskList.getTask(this.taskList.getIndex() - 1).toString()
-                    + "\nNow you have " + this.taskList.getIndex() + " tasks in the list.\n";
+                    + "\nNow you have " + this.taskList.getIndex() + " task(s) in the list.\n";
         }
     }
 
     /**
      * Commands the Duke bot to create a Deadline task.
      *
-     * @param restOfString String input containing description and date and time of Deadline task.
+     * @param restOfString String input containing description, date and time of Deadline task.
      * @return String showing the Deadline task that was added.
-     * @throws DukeException Thrown when user does not enter description and date and time for the task.
-     * @throws IOException   From the writeToFile() method.
+     * @throws DukeException Thrown when user does not enter description or date and time for the task.
+     * @throws IOException If an I/O error occurred from writing to the file.
      */
     public String parseDeadline(String restOfString) throws DukeException, IOException {
         //Get description and date and time of Deadline task
@@ -199,7 +215,6 @@ public class Parser {
             deadlineTask.setDate(dateTimeArray[0]);
             deadlineTask.setTime(dateTimeArray[1]);
 
-
             //Add Deadline task to the taskList array
             this.taskList.addTask(deadlineTask);
 
@@ -211,7 +226,7 @@ public class Parser {
 
             return "Got it. I've added this task:\n "
                     + this.taskList.getTask(this.taskList.getIndex() - 1).toString()
-                    + "\nNow you have " + this.taskList.getIndex() + " tasks in the list.\n";
+                    + "\nNow you have " + this.taskList.getIndex() + " task(s) in the list.\n";
         }
     }
 
@@ -219,7 +234,7 @@ public class Parser {
      * Parses date and time of task.
      *
      * @param dateAndTime String containing date and time of the task.
-     * @return String representing date and time after parsing.
+     * @return String indicating the date and time after parsing.
      */
     public String parseDateAndTime(String dateAndTime) {
         //Get the date and time of task individually
@@ -259,7 +274,7 @@ public class Parser {
      * @param restOfString String input from user containing the necessary information to create an Event task.
      * @return String showing the Event task that was added.
      * @throws DukeException Thrown when user does not enter any description or date and time for the task.
-     * @throws IOException   From the writeToFile() method.
+     * @throws IOException If an I/O error occurred from writing to the file.
      */
     public String parseEvent(String restOfString) throws DukeException, IOException {
         //Get description and date and time of Event task
@@ -286,7 +301,6 @@ public class Parser {
             eventTask.setDate(dateTimeArray[0]);
             eventTask.setTime(dateTimeArray[1]);
 
-
             //Add Event task to taskList array
             this.taskList.addTask(eventTask);
 
@@ -298,7 +312,7 @@ public class Parser {
 
             return "Got it. I've added this task:\n "
                     + this.taskList.getTask(this.taskList.getIndex() - 1).toString() + "\nNow you have "
-                    + this.taskList.getIndex() + " tasks in the list.\n";
+                    + this.taskList.getIndex() + " task(s) in the list.\n";
         }
     }
 
@@ -306,12 +320,18 @@ public class Parser {
      * Commands the Duke bot to delete a task.
      *
      * @param inputString String array of words entered by the user.
-     * @return String containing the task that was removed and number of tasks left.
-     * @throws IOException From the writeToFile() method.
+     * @return String showing the task that was removed and the number of tasks left.
+     * @throws DukeException If the task number to delete is invalid.
+     * @throws IOException If an I/O error occurred from writing to the file.
      */
-    public String parseDelete(String[] inputString) throws IOException {
+    public String parseDelete(String[] inputString) throws DukeException, IOException {
         //Get the task number to delete
         int deleteIndex = Integer.parseInt(inputString[1]);
+
+        //Check if task number is valid
+        if (deleteIndex > this.taskList.getIndex()) {
+            throw new DukeException("Invalid task number to delete!");
+        }
 
         //Get the task in the task list
         Task task = this.taskList.getTask(deleteIndex - 1);
@@ -326,15 +346,15 @@ public class Parser {
         this.storage.writeToFile();
 
         return "Noted. I've removed this task:\n " + task.toString() + "\nNow you have "
-                + (this.taskList.getIndex()) + " tasks in the list.\n";
+                + (this.taskList.getIndex()) + " task(s) in the list.\n";
     }
 
     /**
      * Commands the Duke bot to find tasks.
      *
      * @param restOfString String input from user with the keywords to find tasks.
-     * @return List of tasks containing the keywords.
-     * @throws FileNotFoundException From the findTasks method.
+     * @return String representation of the list of tasks containing the keywords.
+     * @throws FileNotFoundException If the file does not exist during execution of findTasks method.
      */
     public String parseFind(String restOfString) throws FileNotFoundException {
         //Get the keywords to find tasks

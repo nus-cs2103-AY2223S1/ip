@@ -2,7 +2,9 @@ package duke;
 
 import java.io.IOException;
 
-/** Represents the Duke bot. */
+/**
+ * Represents the Duke bot.
+ */
 public class Duke {
     private Storage storage;
     private TaskList taskList;
@@ -13,7 +15,7 @@ public class Duke {
      *
      * @param taskList List of tasks.
      * @param pathName The path of the text file to store and load data.
-     * @throws IOException From loadUpData() method.
+     * @throws IOException If there is an error from loading the data.
      */
     public Duke(TaskList taskList, String pathName) throws IOException {
         this.taskList = taskList;
@@ -28,7 +30,7 @@ public class Duke {
      * Parses the input entered by the user.
      *
      * @param text String input from the user.
-     * @return String representing the output after parsing the user input.
+     * @return String representing the output of Duke bot.
      */
     public String parse(String text) {
         return this.parser.parse(text);

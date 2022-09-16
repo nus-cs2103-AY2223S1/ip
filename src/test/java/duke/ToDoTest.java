@@ -15,6 +15,6 @@ public class ToDoTest {
     public void descriptionTest() {
         String description = "assignment";
         ToDo test = new ToDo(description);
-        assertEquals("[T][ ][ ]assignment", test.toString());
+        assertEquals("[T][ ][ ] assignment", test.toString());
     }
 }

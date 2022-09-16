@@ -18,6 +18,6 @@ public class DeadlineTest {
         Deadline testDeadline = new Deadline(description);
         testDeadline.setDate("2019-03-01");
         testDeadline.setTime("15:00");
-        assertEquals("[D][ ][ ]homework (by: Mar 01 2019 15:00)", testDeadline.toString());
+        assertEquals("[D][ ][ ] homework (by: Mar 01 2019 15:00)", testDeadline.toString());
     }
 }

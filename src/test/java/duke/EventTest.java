@@ -18,6 +18,6 @@ public class EventTest {
         Event testEvent = new Event(description);
         testEvent.setDate("2020-08-02");
         testEvent.setTime("08:00");
-        assertEquals("[E][ ][ ]soccer match (at: Aug 02 2020 08:00)", testEvent.toString());
+        assertEquals("[E][ ][ ] soccer match (at: Aug 02 2020 08:00)", testEvent.toString());
     }
 }
