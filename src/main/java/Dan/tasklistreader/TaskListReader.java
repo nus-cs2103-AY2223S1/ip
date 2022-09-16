@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dan.exceptions.DanException;
 import dan.task.Deadline;
 import dan.task.Event;
 import dan.task.Task;
@@ -62,11 +63,12 @@ public class TaskListReader {
      * @return List of Tasks created from the specified data file
      * @throws IOException If there are any I/O issues.
      */
-    public List<Task> readTaskListFromFile() throws IOException {
+    public List<Task> readTaskListFromFile() throws IOException, DanException {
         List<String> lines = Files.readAllLines(this.filePath);
         List<Task> taskList = new ArrayList<>(lines.size());
         for (String line : lines) {
             String[] data = line.split(SEPARATOR);
+            assert data.length > 2;
             switch (data[0].strip()) {
             case "T":
                 taskList.add(new ToDo(data[2].strip()));
@@ -81,7 +83,7 @@ public class TaskListReader {
                 break;
 
             default:
-                break;
+                throw new DanException("Your data is corrupted!");
             }
 
             Task addedTask = taskList.get(taskList.size() - 1);

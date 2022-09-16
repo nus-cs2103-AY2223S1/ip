@@ -22,6 +22,7 @@ public class TaskList {
      * @throws DanException if the input format is not expected
      */
     public String addTask(String input) throws DanException {
+        assert tasks != null : "Tasklist is missing!";
         String description;
         String dateString;
         if (input.startsWith("todo")) {
@@ -73,6 +74,7 @@ public class TaskList {
         }
         StringBuilder result = new StringBuilder();
         result.append(Ui.printIndent("Here are the tasks in your list:\n"));
+        assert tasks != null && tasks.size() >= 1 : "Something is wrong with the TaskList!";
         result.append(Ui.printIndent(this));
         return result.toString();
     }
@@ -120,7 +122,7 @@ public class TaskList {
      * @throws DanException if the given task number does not exist in the list
      */
     public String deleteTask(int index) throws DanException {
-        if (index > tasks.size()) {
+        if (index > tasks.size() && index >= 0) {
             throw new DanException("This task number doesn't exist!");
         }
         StringBuilder result = new StringBuilder();
@@ -155,6 +157,7 @@ public class TaskList {
     }
 
     public List<Task> getTasks() {
+        assert tasks != null;
         return tasks;
     }
 

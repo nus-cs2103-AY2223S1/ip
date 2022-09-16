@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.util.Scanner;
 
+import dan.exceptions.DanException;
 import dan.parser.Parser;
 import dan.task.TaskList;
 import dan.tasklistreader.TaskListReader;
@@ -50,6 +51,8 @@ public class Dan {
         } catch (IOException ioe) {
             ioe.printStackTrace();
             Ui.printIndent("Error when reading current data file");
+        } catch (DanException de) {
+            Ui.printIndent(de.getMessage());
         }
     }
 

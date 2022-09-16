@@ -29,6 +29,7 @@ public class Parser {
      */
     public String parse(String input) {
         String action = input.split(" ")[0];
+        assert !isExit : "The program should have exited already";
         try {
             switch (action) {
             case "bye":
