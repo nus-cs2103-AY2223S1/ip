@@ -1,3 +1,4 @@
-E | 1 | test      | Dec 12 2000
-T | 0 | this
-T | 0 | that
+T | 0 | borrow book
+D | 0 | finish homework    | Dec 12 2022
+E | 0 | toms birthday party   | Dec 12 2022
+T | 0 | borrow book
