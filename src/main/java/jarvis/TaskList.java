@@ -9,9 +9,15 @@ import jarvis.task.Todo;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Stores the task list when the program is running
+ */
 public class TaskList {
     Task[] taskList = new Task[100];
-    // The first index that is empty
+
+    /**
+     * The first index that is empty
+     */
     private int firstEmptyIndex = 0;
     private Storage storage;
 
@@ -23,6 +29,13 @@ public class TaskList {
         super();
     }
 
+    /**
+     * Add a task to the task list and write to the database
+     * @param input Include the description (or with time) of the task
+     * @param taskType Type of the task to add
+     * @param isDone Whether the task is done initially
+     * @throws IOException If something went wrong when storing task to database
+     */
     public void addTask(String input, Task.TaskType taskType, boolean isDone) throws IOException {
         Task task;
         try {
@@ -45,8 +58,12 @@ public class TaskList {
         ++firstEmptyIndex;
     }
 
-    public void appendLoadedTask(Task task) throws IOException {
 
+    /**
+     * Append the loaded task from database to task list, used when initializing each run
+     * @param task The task to append
+     */
+    public void appendLoadedTask(Task task) {
         taskList[firstEmptyIndex] = task;
         ++firstEmptyIndex;
     }
@@ -71,6 +88,10 @@ public class TaskList {
         System.out.println(taskList[taskNum].toString());
     }
 
+    /**
+     * Delete(remove) a task from the task list
+     * @param index The position of the task to delete, 0-based
+     */
     public void deleteTask(int index) {
         if (index >= firstEmptyIndex) {
             System.out.println("There is no task with index " + (index + 1));
@@ -86,6 +107,9 @@ public class TaskList {
         --firstEmptyIndex;
     }
 
+    /**
+     * Print all the task in the task list
+     */
     public void printTasks() {
         if (firstEmptyIndex == 0) {
             System.out.println("There's nothing in the list.");
@@ -101,6 +125,10 @@ public class TaskList {
         return taskList[i];
     }
 
+    /**
+     * Get the number of task in the current list
+     * @return The number of task
+     */
     public int getTaskCount() {
         return firstEmptyIndex;
     }

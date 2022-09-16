@@ -16,6 +16,10 @@ public class Jarvis {
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructor for a Jarvis Chatbot. Initialize the needed objects
+     * @param filePath The file to load data from and store data to
+     */
     public Jarvis(String filePath) {
 
         storage = new Storage(filePath);

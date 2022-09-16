@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Wraps the methods and information for Jarvis to interact
+ * with database
+ */
 public class Storage {
     static File dir = new File("data");
     static File taskListFile = new File(dir, "task_list.txt");
@@ -34,12 +38,23 @@ public class Storage {
         }
     }
 
+    /**
+     * Save the added task to database
+     * @param task The task to store
+     * @throws IOException If something went wrong when writing file
+     */
     public void saveAddedTask(Task task) throws IOException {
         FileWriter fw = new FileWriter(dataFile, true);
         fw.write(task.toDataForm());
         fw.close();
     }
 
+    /**
+     * Rewrite the whole datalist to data file again,
+     * this is needed when a task is modified or deleted
+     * @param taskList The whole task list to store
+     * @throws IOException If something went wrong when writing file
+     */
     public void saveTaskList(TaskList taskList) throws IOException {
         FileWriter fw = new FileWriter(dataFile);
         for (int i = 0; i < taskList.getTaskCount(); ++i) {
@@ -48,6 +63,11 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Load the task list from database
+     * @return The task list stored in the database
+     * @throws JarvisException If something went wrong when loading
+     */
     public TaskList loadTaskList() throws JarvisException {
         TaskList taskList = new TaskList(this);
         try {

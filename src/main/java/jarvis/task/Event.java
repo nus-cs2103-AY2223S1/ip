@@ -6,9 +6,19 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A class that represent an event, have a event date "at"
+ */
 public class Event extends Task {
 
     private LocalDateTime at;
+
+    /**
+     * Construct a event from users' input
+     * @param input Include both description and specified time
+     * @param isDone Whether the event is done when constructed
+     * @throws DateTimeParseException Possible wrong time format when parsing the time
+     */
     public Event(String input, boolean isDone) throws DateTimeParseException {
         super(isDone);
         String[] strArr = input.split("/at");
@@ -39,6 +49,10 @@ public class Event extends Task {
         return TaskType.Event;
     }
 
+    /**
+     * For storing event to data file
+     * @return The string representation of this event in data file
+     */
     @Override
     public String toDataForm() {
         String done = this.isDone ? "1" : "0";

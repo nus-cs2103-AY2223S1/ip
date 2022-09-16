@@ -31,7 +31,7 @@ public class Ui {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             }
-            parser.Parse(input);
+            parser.parse(input);
         }
     }
 }

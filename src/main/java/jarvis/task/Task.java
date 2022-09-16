@@ -1,5 +1,8 @@
 package jarvis.task;
 
+/**
+ * Contains the information that todo, event, deadline have in common
+ */
 public abstract class Task {
     public static enum TaskType {
         ToDo,
@@ -14,6 +17,10 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Get icon of whether the task is done
+     * @return "X" if done and " " if not done
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }

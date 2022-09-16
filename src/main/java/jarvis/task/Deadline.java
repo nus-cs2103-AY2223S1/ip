@@ -4,8 +4,18 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A class that represents a deadline, have a due date "by"
+ */
 public class Deadline extends Task {
     private LocalDateTime by;
+
+    /**
+     * Construct a deadline from users' input
+     * @param input Include both description and specified time
+     * @param isDone Whether the deadline is done when constructed
+     * @throws DateTimeParseException Possible wrong time format when parsing the time
+     */
     public Deadline(String input, boolean isDone) throws DateTimeParseException {
         super(isDone);
         String[] strArr = input.split("/by");
@@ -19,6 +29,12 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Construct a deadline from the data, used for loading stored data
+     * @param input Description of the deadline
+     * @param by Due date of the task, in string form
+     * @param isDone Whether the deadline is marked as done in the data
+     */
     public Deadline(String input, String by, boolean isDone) {
         super(isDone);
         this.description = input;
@@ -36,6 +52,10 @@ public class Deadline extends Task {
         return Task.TaskType.Deadline;
     }
 
+    /**
+     * For storing deadline to data file
+     * @return The string representation of this deadline in data file
+     */
     @Override
     public String toDataForm() {
         String done = this.isDone ? "1" : "0";

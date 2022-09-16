@@ -4,6 +4,10 @@ import jarvis.task.Task;
 
 import java.io.IOException;
 
+/**
+ * Parser parse the users' input from CMI
+ * and do run corresponding code
+ */
 public class Parser {
     private TaskList taskList;
     private Storage storage;
@@ -12,7 +16,12 @@ public class Parser {
         this.taskList = taskList;
         this.storage = storage;
     }
-    public void Parse(String input) {
+
+    /**
+     * Parse the user input as different actions
+     * @param input The whole line of users' input
+     */
+    public void parse(String input) {
         try {
             if (input.equals("list")) {
                 taskList.printTasks();
