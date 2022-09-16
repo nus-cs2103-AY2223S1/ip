@@ -26,7 +26,7 @@ public class UserInterface {
             + " unmark <index of task in the list> -- to mark as not done \n"
             + " delete <index of task in the list> -- to delete that particular task \n"
             + " find <query> -- Find all tasks with description containing query \n"
-            + " end -- leaves the chatbot and closes the programme \n"
+            + " bye -- leaves the chatbot and closes the programme \n \n"
             + "   Your input: ");
 
     public static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";

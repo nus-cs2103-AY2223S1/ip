@@ -49,8 +49,8 @@ public class Parser { // inner class
 
         try {
             if (userInput.strip().startsWith("bye")) {
-                return UserInterface.GOODBYE_MESSAGE;
-                // System.exit(0);
+                // return UserInterface.GOODBYE_MESSAGE;
+                System.exit(0);
 
             } else if (userInput.strip().startsWith("todo ")) {
                 return taskList.handleNewTask(userInput, "T");
@@ -148,6 +148,7 @@ public class Parser { // inner class
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
         }
+        throw new IncorrectFormatException("Oops! Make sure your code is in a valid format");
     }
 
 }
