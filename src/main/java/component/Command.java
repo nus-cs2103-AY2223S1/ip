@@ -11,8 +11,9 @@ public enum Command {
     MARK,
     UNMARK,
     LIST,
-    EXIT,
     FIND,
     EDIT,
+    HELP,
+    EXIT,
     UNKNOWN
 }

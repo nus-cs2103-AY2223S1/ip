@@ -46,6 +46,8 @@ public class Parser {
             return Command.FIND;
         case "edit":
             return Command.EDIT;
+        case "help":
+            return Command.HELP;
         case "bye":
             return Command.EXIT;
         default:
