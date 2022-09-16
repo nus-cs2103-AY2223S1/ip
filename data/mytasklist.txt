@@ -1,0 +1,4 @@
+E,1,fyp meeting ,2022-09-13,14:00
+D,0,cs2103 iP due ,2022-09-16,23:59
+T,1,drink more water 
+T,0,just be happy :) ,2023-05-04,23:45
