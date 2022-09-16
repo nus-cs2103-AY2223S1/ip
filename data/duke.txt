@@ -1,1 +1,5 @@
-T | 0 | sleep 
+T | 0 | sleep
+T | 0 | sleep
+T | 0 | sleep
+T | 0 | eat
+T | 0 | cry
