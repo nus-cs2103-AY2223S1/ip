@@ -95,7 +95,6 @@ public class Storage {
 
         else if (isEvent(task)) {
             int pos = str.indexOf("(") - 1;
-            System.out.println(pos);
             String at = str.substring(pos + 6, str.length() - 1);
             if (isDone) {
                 addTaskWithMark(new Event(str.substring(7, pos), at), arr);
