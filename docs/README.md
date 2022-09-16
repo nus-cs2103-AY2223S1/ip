@@ -207,3 +207,7 @@ Example usage:
 U: bye
 B: Glad to be of help! I have saved all your task progress and the new commands you taught me :) See you later~
 ```
+
+## Troubleshooting
+If you encounter issues regarding characters not being displayed correctly, 
+you may the following command in your preferred terminal: java -Dfile.encoding=UTF-8 -jar duke.jar.
