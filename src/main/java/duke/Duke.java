@@ -1,11 +1,17 @@
 package duke;
 
+/**
+ * Represents Duke, a Personal Assistant Chatterbot that helps a person to keep track of various things.
+ */
 public class Duke {
     private final Storage storage = new Storage("./duke.txt");
     private final TaskList tasks = storage.load();
     private final Ui ui = new Ui();
     private boolean isActive = true;
 
+    /**
+     * Start the Duke Chatterbot.
+     */
     public void start() {
         ui.greet();
         while (isActive) {
@@ -17,16 +23,30 @@ public class Duke {
         ui.close();
     }
 
+    /**
+     * Add a Task to Duke.
+     *
+     * @param task Task to add.
+     */
     public void add(Task task) { // error if description is empty
         tasks.add(task);
         ui.addTask(task);
         ui.infoCount(tasks.size());
     }
 
+    /**
+     * Print all current tasks to the UI.
+     */
     public void printTasks() {
         ui.printTasks(tasks);
     }
 
+    /**
+     * Mark a Task as done or not done.
+     *
+     * @param index Index of Task to mark.
+     * @param isDone Boolean to mark the Task as done or not done.
+     */
     public void markTask(int index, boolean isDone) {
         if (index < 0 || index >= tasks.size()) {
             return; // throw new duke.DukeException("Index out of bound!");
@@ -41,6 +61,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Delete a Task.
+     *
+     * @param index Index of Task to delete.
+     */
     public void deleteTask(int index) {
         if (index < 0 || index >= tasks.size()) {
             return; // throw new duke.DukeException("Index out of bound!");
@@ -50,6 +75,9 @@ public class Duke {
         ui.infoCount(tasks.size());
     }
 
+    /**
+     * Exit the Duke Chatterbot.
+     */
     public void exit() {
         isActive = false;
     }
