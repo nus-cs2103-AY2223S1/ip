@@ -13,7 +13,7 @@
 }
 
 .scroll-pane .viewport {
-  -fx-background-image: url("doemon_background.png");
+  -fx-background-image: url("../images/doemon_background.png");
   -fx-background-position: center;
   -fx-background-size: cover;
 }
