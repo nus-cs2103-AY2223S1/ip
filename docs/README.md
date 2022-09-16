@@ -1,32 +1,38 @@
 # <a name = "top"></a>User Guide
-Are you missing deadlines because you can't remember all the work you have? Do not worry!! We have **The Bro**, your personal task manager to the rescue.
+Are you missing deadlines because you can't remember all the work you have?<br> Do not worry!! We have **The Bro**, your personal task manager to the rescue.
 
-<p align="center">
-<img src= "Ui.png" width = "375">
+<p align = "left">
+<img src= "Ui.png" width = "300">
 </p>
 
-## Quick Start
+## Table of Content
+* <a href = "#start">Quick Start</a>
+* <a href = "#feature">Features</a>
+* <a href = "#usage">Usage</a>
+* <a href = "#summary">Command Summary</a>
+
+## <a name = "start"></a>Quick Start
 * Please ensure that you have Java 11 or above installed in your computer.
 * Download the latest Bro.jar from [here](https://github.com/anuanas2007/ip/releases/download/A-Release/bro.jar).
 * Copy the file to the directory you want to use.
 * Please run the application.
 * A GUI similar to the above one appears.
-* If the previous step doesn't work, open the terminal and try running java -jar bro.jar.
-* Type in the command and press Enter or click on the Send button to execute it.
+* If the previous step doesn't work, open the terminal and try running `java -jar bro.jar`.
+* Type in the command and press *Enter* or click on the *Send* button to execute it.
 
-## Features
-<a href = "#todo">1. Add your ToDo task</a><br>
-<a href = "#deadline">2. Add your task with Deadline<br>
-<a href = "#event">3. Add your Event task</a><br>
-<a href = "#list">4. View all your tasks</a><br>
-<a href = "#mark">5. Mark your task as done</a><br>
-<a href = "#unmark">6. Mark your task as undone</a><br>
-<a href = "#delete">7. Delete your task</a><br>
-<a href = "#find">8. Find your task by keyword</a><br>
-<a href = "#help">9. Display help message</a><br>
-<a href = "#bye">10. Exit chatbot</a>
+## <a name = "feature"></a>Features
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#todo"> &nbsp;Add your ToDo task</a><br>
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#deadline"> &nbsp;Add your task with Deadline</a><br>
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#event"> &nbsp;Add your Event task</a><br>
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#list"> &nbsp;View all your tasks</a><br>
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#mark"> &nbsp;Mark your task as done</a><br>
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#unmark"> &nbsp;Mark your task as undone</a><br>
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#delete"> &nbsp;Delete your task</a><br>
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#find"> &nbsp;Find your task by keyword</a><br>
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#help"> &nbsp;Display help message</a><br>
+<input type="checkbox" checked="checked" disabled="disabled"> <a href = "#bye"> &nbsp;Exit chatbot</a>
 
-## Usage
+## <a name = "usage"></a>Usage
 
 ### <a name = "todo"></a>To add your ToDo task - `todo`
 
@@ -189,4 +195,25 @@ Closes the program.
 bye
 > See you later broo!
 ```
+----
+<p align = "right">
 <a href = "#top">Back to top</a>
+</p>
+
+## <a name = "summary"></a>Command Summary
+| COMMAND                    | FORMAT, EXAMPLES                                                                         |
+|----------------------------|------------------------------------------------------------------------------------------|
+| Help                       | `help`                                                                                   |
+| Add ToDo Task              | todo [descr] <br> e.g., `todo buy grocery`                                               |
+| Add Deadline Task          | deadline [descr] /by [dd/mm/yyyy hhmm]<br> e.g., `deadline CS2109S HW /by 10/10/2022 2359` |
+| Add Event Task             | event [descr] /at [dd/mm/yyyy hhmm]<br> e.g., `event Neon Party /at 18/09/2022 2110`     |
+| Mark Task                  | mark [index] <br> e.g., `mark 2`                                                         |
+| Unmark Task                | unmark [index] <br> e.g., `unmark 2`                                                     |
+| Find Task with the keyword | find [keyword] <br> e.g., `find party`                                                   |
+| Delete Task                | delete [index] <br> e.g., `delete 1`                                                      |
+| View all Tasks             | `list`                                                                                     |
+| Exit                       | `bye`                                                                                      |
+
+<p align = "right">
+<a href = "#top">Back to top</a>
+</p>
