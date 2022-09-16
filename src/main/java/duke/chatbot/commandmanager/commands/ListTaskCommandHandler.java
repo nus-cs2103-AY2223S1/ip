@@ -1,27 +1,22 @@
 package duke.chatbot.commandmanager.commands;
 
+import duke.chatbot.ChatBot;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
-import duke.chatbot.personality.Personality;
-import duke.chatbot.taskmanager.TaskManager;
 
 /**
  * List Task Command Handler that invokes the list task method of the task manager.
  * Responds with the list of tasks returned by the task manager.
  */
 public class ListTaskCommandHandler implements Command {
-    private final Personality personality;
-    private final TaskManager taskManager;
+    private final ChatBot chatBot;
 
     /**
-     * Creates a new handler for the list task command with a reference to the task manager
-     * and the chatbot's personality
+     * Creates a new handler for the list task command with a reference to the chatbot.
      *
-     * @param personality a reference to the chatbot's personality
-     * @param taskManager a reference to the task manager
+     * @param chatBot a reference to the chatbot
      */
-    public ListTaskCommandHandler(Personality personality, TaskManager taskManager) {
-        this.personality = personality;
-        this.taskManager = taskManager;
+    public ListTaskCommandHandler(ChatBot chatBot) {
+        this.chatBot = chatBot;
     }
 
     /**
@@ -34,14 +29,19 @@ public class ListTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException {
         if (arguments.length() > 0) {
-            throw new InvalidCommandException(this.personality);
+            throw new InvalidCommandException(this.chatBot.getPersonality());
         }
 
-        String taskListString = this.taskManager.listTask();
+        String taskListString = this.chatBot.getTaskManager().listTask();
         if (taskListString.length() == 0) {
-            return personality.formulateResponse("list_task_empty");
+            return this.chatBot.getPersonality().formulateResponse("list_task_empty");
         } else {
-            return personality.formulateResponse("list_task", taskListString);
+            return this.chatBot.getPersonality().formulateResponse("list_task", taskListString);
         }
+    }
+
+    @Override
+    public boolean isValid() {
+        return true;
     }
 }

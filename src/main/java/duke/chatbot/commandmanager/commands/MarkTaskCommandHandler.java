@@ -1,28 +1,23 @@
 package duke.chatbot.commandmanager.commands;
 
+import duke.chatbot.ChatBot;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidIndexException;
 import duke.chatbot.commandmanager.commands.exceptions.NoSuchIndexException;
-import duke.chatbot.personality.Personality;
-import duke.chatbot.taskmanager.TaskManager;
 
 /**
  * Mark Task Command Handler that marks a task in the list of task as completed.
  * Responds with the confirmation message stating that the task has been successfully marked.
  */
 public class MarkTaskCommandHandler implements Command {
-    private final Personality personality;
-    private final TaskManager taskManager;
+    private final ChatBot chatBot;
     /**
-     * Creates a new handler for the mark task command with a reference to the task manager
-     * and the chatbot's personality.
+     * Creates a new handler for the mark task command with a reference to the chatbot.
      *
-     * @param personality a reference to the chatbot's personality
-     * @param taskManager a reference to the task manager
+     * @param chatBot a reference to the chatbot
      */
-    public MarkTaskCommandHandler(Personality personality, TaskManager taskManager) {
-        this.personality = personality;
-        this.taskManager = taskManager;
+    public MarkTaskCommandHandler(ChatBot chatBot) {
+        this.chatBot = chatBot;
     }
 
     /**
@@ -35,25 +30,30 @@ public class MarkTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidIndexException(this.personality);
+            throw new InvalidIndexException(this.chatBot.getPersonality());
         }
 
         int itemNumber = 0;
         try {
             itemNumber = Integer.parseInt(arguments);
         } catch (NumberFormatException exception) {
-            throw new InvalidIndexException(this.personality);
+            throw new InvalidIndexException(this.chatBot.getPersonality());
         }
-        if (itemNumber <= 0 || itemNumber > this.taskManager.getListSize()) {
-            throw new NoSuchIndexException(this.personality);
+        if (itemNumber <= 0 || itemNumber > this.chatBot.getTaskManager().getListSize()) {
+            throw new NoSuchIndexException(this.chatBot.getPersonality());
         }
 
-        boolean isMarkedSuccessfully = this.taskManager.markTask(itemNumber);
+        boolean isMarkedSuccessfully = this.chatBot.getTaskManager().markTask(itemNumber);
         if (isMarkedSuccessfully) {
-            return personality.formulateResponse("mark_task_success");
+            return this.chatBot.getPersonality().formulateResponse("mark_task_success");
         } else {
-            return personality.formulateResponse("mark_task_fail");
+            return this.chatBot.getPersonality().formulateResponse("mark_task_fail");
         }
+    }
+
+    @Override
+    public boolean isValid() {
+        return true;
     }
 }
 

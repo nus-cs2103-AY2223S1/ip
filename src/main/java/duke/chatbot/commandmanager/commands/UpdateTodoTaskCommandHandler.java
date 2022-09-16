@@ -1,27 +1,22 @@
 package duke.chatbot.commandmanager.commands;
 
+import duke.chatbot.ChatBot;
 import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
-import duke.chatbot.personality.Personality;
-import duke.chatbot.taskmanager.TaskManager;
 
 /**
  * Update To Do Task Command handler that handles the updating of to do tasks in the
  * list of task managed by the task manager.
  */
 public class UpdateTodoTaskCommandHandler implements UpdateCommand {
-    private final Personality personality;
-    private final TaskManager taskManager;
+    private final ChatBot chatBot;
     /**
-     * Creates a new handler for the update task command with a reference to the task manager
-     * and the chatbot's personality
+     * Creates a new handler for the update task command with a reference to the chatbot.
      *
-     * @param taskManager a reference to the chatbot's personality
-     * @param taskManager a reference to the task manager
+     * @param chatBot a reference to the chatbot
      */
-    public UpdateTodoTaskCommandHandler(Personality personality, TaskManager taskManager) {
-        this.personality = personality;
-        this.taskManager = taskManager;
+    public UpdateTodoTaskCommandHandler(ChatBot chatBot) {
+        this.chatBot = chatBot;
     }
 
     /**
@@ -35,8 +30,8 @@ public class UpdateTodoTaskCommandHandler implements UpdateCommand {
     @Override
     public String execute(int itemNumber, String updatedTodoTaskName) throws InvalidArgumentsException {
         if (updatedTodoTaskName.length() == 0) {
-            throw new EmptyTaskException(this.personality);
+            throw new EmptyTaskException(this.chatBot.getPersonality());
         }
-        return this.taskManager.updateTask(itemNumber, updatedTodoTaskName);
+        return this.chatBot.getTaskManager().updateTask(itemNumber, updatedTodoTaskName);
     }
 }

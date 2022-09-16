@@ -3,7 +3,9 @@ package duke.chatbot;
 import java.util.Scanner;
 
 import duke.chatbot.commandmanager.CommandManager;
+import duke.chatbot.commandmanager.commands.Command;
 import duke.chatbot.commandmanager.commands.exceptions.EmptyCommandException;
+import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
 import duke.chatbot.personality.Personality;
 import duke.chatbot.personality.exceptions.LoadPersonalityException;
 import duke.chatbot.taskmanager.TaskManager;
@@ -86,13 +88,31 @@ public class ChatBot {
     }
 
     /**
+     * Returns a reference to the chatbot's task manager.
+     *
+     * @return a reference to the chatbot's task manager.
+     */
+    public TaskManager getTaskManager() {
+        return this.taskManager;
+    }
+
+    /**
+     * Returns a reference to the chatbot's personality.
+     *
+     * @return a reference to the chatbot's personality.
+     */
+    public Personality getPersonality() {
+        return this.personality;
+    }
+
+    /**
      * Initializes the chatbot by setting its running state to true and responds
      * with a greeting message. The task manager is also initialized by loading
      * any pre-existing data.
      */
     public void initialize() {
         this.isRunning = true;
-        this.commandManager.initialize(this, this.personality, this.taskManager);
+        this.commandManager.initialize(this);
 
         try {
             this.personality.loadPersonality();
@@ -138,15 +158,21 @@ public class ChatBot {
 
             // Get command and arguments
             Scanner inputScanner = new Scanner(input);
-            String command = inputScanner.next();
+            String commandKey = inputScanner.next();
             String arguments = "";
             if (inputScanner.hasNext()) {
                 arguments = inputScanner.nextLine().strip();
             }
             inputScanner.close();
 
-            response = this.commandManager.getCommand(this.personality, command).execute(arguments);
-            this.taskManager.saveData(personality);
+            Command command = this.commandManager.getCommand(commandKey);
+            if (command.isValid()) {
+                response = command.execute(arguments);
+            } else {
+                throw new InvalidCommandException(this.personality);
+            }
+
+            this.taskManager.saveData(this.personality);
             System.out.println(wrapMessage(response));
         } catch (Exception exception) {
             this.isAnnoyed = true;

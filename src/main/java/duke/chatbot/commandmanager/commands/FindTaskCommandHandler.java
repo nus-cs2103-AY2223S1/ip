@@ -1,26 +1,21 @@
 package duke.chatbot.commandmanager.commands;
 
+import duke.chatbot.ChatBot;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
-import duke.chatbot.personality.Personality;
-import duke.chatbot.taskmanager.TaskManager;
 
 /**
  * Find Task Command Handler that finds all tasks in the list of tasks containing the given keyword.
  * Responds with the list of tasks that contains the given keyword.
  */
 public class FindTaskCommandHandler implements Command {
-    private final Personality personality;
-    private final TaskManager taskManager;
+    private final ChatBot chatBot;
     /**
-     * Creates a new handler for the find task command with a reference to the task manager
-     * and the chatbot's personality
+     * Creates a new handler for the find task command with a reference to the chatbot.
      *
-     * @param personality a reference to the chatbot's personality
-     * @param taskManager a reference to the task manager
+     * @param chatBot a reference to the chatbot
      */
-    public FindTaskCommandHandler(Personality personality, TaskManager taskManager) {
-        this.personality = personality;
-        this.taskManager = taskManager;
+    public FindTaskCommandHandler(ChatBot chatBot) {
+        this.chatBot = chatBot;
     }
 
     /**
@@ -33,14 +28,19 @@ public class FindTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException {
         if (arguments.length() == 0) {
-            throw new InvalidCommandException(this.personality);
+            throw new InvalidCommandException(this.chatBot.getPersonality());
         }
 
-        String matchedTaskList = this.taskManager.findTask(arguments);
+        String matchedTaskList = this.chatBot.getTaskManager().findTask(arguments);
         if (matchedTaskList.length() == 0) {
-            return personality.formulateResponse("find_task_empty", arguments);
+            return this.chatBot.getPersonality().formulateResponse("find_task_empty", arguments);
         }
-        return personality.formulateResponse("find_task", matchedTaskList);
+        return this.chatBot.getPersonality().formulateResponse("find_task", matchedTaskList);
+    }
+
+    @Override
+    public boolean isValid() {
+        return true;
     }
 }
 

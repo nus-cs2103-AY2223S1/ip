@@ -1,28 +1,23 @@
 package duke.chatbot.commandmanager.commands;
 
+import duke.chatbot.ChatBot;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidIndexException;
 import duke.chatbot.commandmanager.commands.exceptions.NoSuchIndexException;
-import duke.chatbot.personality.Personality;
-import duke.chatbot.taskmanager.TaskManager;
 
 /**
  * Delete Task Command Handler that deletes a task in the list of task
  * Responds with the confirmation message stating that the task has been deleted.
  */
 public class DeleteTaskCommandHandler implements Command {
-    private final Personality personality;
-    private final TaskManager taskManager;
+    private final ChatBot chatBot;
     /**
-     * Creates a new handler for the delete command with a reference to the task manager
-     * and the chatbot's personality.
+     * Creates a new handler for the delete command with a reference to the chatbot.
      *
-     * @param personality a reference to the task manager
-     * @param taskManager a reference to the task manager
+     * @param chatBot a reference to the chatbot
      */
-    public DeleteTaskCommandHandler(Personality personality, TaskManager taskManager) {
-        this.personality = personality;
-        this.taskManager = taskManager;
+    public DeleteTaskCommandHandler(ChatBot chatBot) {
+        this.chatBot = chatBot;
     }
 
     /**
@@ -35,22 +30,27 @@ public class DeleteTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidIndexException(this.personality);
+            throw new InvalidIndexException(this.chatBot.getPersonality());
         }
 
         int itemNumber = 0;
         try {
             itemNumber = Integer.parseInt(arguments);
         } catch (NumberFormatException exception) {
-            throw new InvalidIndexException(this.personality);
+            throw new InvalidIndexException(this.chatBot.getPersonality());
         }
-        if (itemNumber <= 0 || itemNumber > this.taskManager.getListSize()) {
-            throw new NoSuchIndexException(this.personality);
+        if (itemNumber <= 0 || itemNumber > this.chatBot.getTaskManager().getListSize()) {
+            throw new NoSuchIndexException(this.chatBot.getPersonality());
         }
 
-        String deletedTask = this.taskManager.deleteTask(itemNumber);
-        String tasksRemaining = String.valueOf(this.taskManager.getListSize());
-        return personality.formulateResponse("delete_task", deletedTask, tasksRemaining);
+        String deletedTask = this.chatBot.getTaskManager().deleteTask(itemNumber);
+        String tasksRemaining = String.valueOf(this.chatBot.getTaskManager().getListSize());
+        return this.chatBot.getPersonality().formulateResponse("delete_task", deletedTask, tasksRemaining);
+    }
+
+    @Override
+    public boolean isValid() {
+        return true;
     }
 }
 

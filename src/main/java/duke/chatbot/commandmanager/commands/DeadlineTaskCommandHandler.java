@@ -4,12 +4,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.chatbot.ChatBot;
 import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidArgumentsException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
 import duke.chatbot.commandmanager.commands.exceptions.InvalidDeadlineException;
-import duke.chatbot.personality.Personality;
-import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.DeadlineTask;
 
 /**
@@ -18,18 +17,14 @@ import duke.chatbot.taskmanager.task.DeadlineTask;
  * Responds with the confirmation message stating that a new task is added.
  */
 public class DeadlineTaskCommandHandler implements Command {
-    private final Personality personality;
-    private final TaskManager taskManager;
+    private final ChatBot chatBot;
     /**
-     * Creates a new handler for the deadline task command with a reference to the task manager
-     * and the chatbot's personality.
+     * Creates a new handler for the deadline task command with a reference to the chatbot.
      *
-     * @param taskManager a reference to the chatbot's personality
-     * @param taskManager a reference to the task manager
+     * @param chatBot a reference to the chatbot
      */
-    public DeadlineTaskCommandHandler(Personality personality, TaskManager taskManager) {
-        this.personality = personality;
-        this.taskManager = taskManager;
+    public DeadlineTaskCommandHandler(ChatBot chatBot) {
+        this.chatBot = chatBot;
     }
 
     /**
@@ -43,12 +38,12 @@ public class DeadlineTaskCommandHandler implements Command {
     @Override
     public String execute(String arguments) throws InvalidCommandException, InvalidArgumentsException {
         if (arguments.length() == 0) {
-            throw new InvalidCommandException(this.personality);
+            throw new InvalidCommandException(this.chatBot.getPersonality());
         }
 
         String[] argumentList = arguments.split(DeadlineTask.TASK_DELIMITER);
         if (argumentList.length != 2) {
-            throw new InvalidArgumentsException(this.personality);
+            throw new InvalidArgumentsException(this.chatBot.getPersonality());
         }
 
         String deadlineTaskName = argumentList[0].strip();
@@ -56,16 +51,23 @@ public class DeadlineTaskCommandHandler implements Command {
         LocalDateTime deadline;
 
         if (deadlineTaskName.length() == 0) {
-            throw new EmptyTaskException(this.personality);
+            throw new EmptyTaskException(this.chatBot.getPersonality());
         }
 
         try {
-            deadline = LocalDateTime.parse(deadlineString, DateTimeFormatter.ofPattern(taskManager.getDateFormat()));
+            deadline = LocalDateTime.parse(deadlineString, DateTimeFormatter.ofPattern(
+                    this.chatBot.getTaskManager().getDateFormat()));
         } catch (DateTimeParseException exception) {
-            throw new InvalidDeadlineException(this.personality, taskManager.getDateFormat());
+            throw new InvalidDeadlineException(this.chatBot.getPersonality(),
+                    this.chatBot.getTaskManager().getDateFormat());
         }
 
-        String taskAdded = taskManager.addTask(new DeadlineTask(deadlineTaskName, deadline));
-        return personality.formulateResponse("add_task", taskAdded);
+        String taskAdded = this.chatBot.getTaskManager().addTask(new DeadlineTask(deadlineTaskName, deadline));
+        return this.chatBot.getPersonality().formulateResponse("add_task", taskAdded);
+    }
+
+    @Override
+    public boolean isValid() {
+        return true;
     }
 }

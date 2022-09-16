@@ -10,14 +10,12 @@ import duke.chatbot.commandmanager.commands.DeadlineTaskCommandHandler;
 import duke.chatbot.commandmanager.commands.DeleteTaskCommandHandler;
 import duke.chatbot.commandmanager.commands.EventTaskCommandHandler;
 import duke.chatbot.commandmanager.commands.FindTaskCommandHandler;
+import duke.chatbot.commandmanager.commands.InvalidCommand;
 import duke.chatbot.commandmanager.commands.ListTaskCommandHandler;
 import duke.chatbot.commandmanager.commands.MarkTaskCommandHandler;
 import duke.chatbot.commandmanager.commands.TodoTaskCommandHandler;
 import duke.chatbot.commandmanager.commands.UnmarkTaskCommandHandler;
 import duke.chatbot.commandmanager.commands.UpdateTaskCommandHandler;
-import duke.chatbot.commandmanager.commands.exceptions.InvalidCommandException;
-import duke.chatbot.personality.Personality;
-import duke.chatbot.taskmanager.TaskManager;
 
 /**
  * CommandManager class manages a list of commands that can be executed.
@@ -32,24 +30,23 @@ public class CommandManager {
      * Initializes the command table with all commands that can be executed.
      *
      * @param chatBot a reference to the chatbot
-     * @param taskManager a reference to the task manager
      */
-    public void initialize(ChatBot chatBot, Personality personality, TaskManager taskManager) {
-        this.commandTable.put("bye", new ByeCommandHandler(personality, chatBot));
-        this.commandTable.put("list", new ListTaskCommandHandler(personality, taskManager));
-        this.commandTable.put("todo", new TodoTaskCommandHandler(personality, taskManager));
-        this.commandTable.put("deadline", new DeadlineTaskCommandHandler(personality, taskManager));
-        this.commandTable.put("event", new EventTaskCommandHandler(personality, taskManager));
-        this.commandTable.put("mark", new MarkTaskCommandHandler(personality, taskManager));
-        this.commandTable.put("unmark", new UnmarkTaskCommandHandler(personality, taskManager));
-        this.commandTable.put("delete", new DeleteTaskCommandHandler(personality, taskManager));
-        this.commandTable.put("find", new FindTaskCommandHandler(personality, taskManager));
-        this.commandTable.put("update", new UpdateTaskCommandHandler(personality, taskManager));
+    public void initialize(ChatBot chatBot) {
+        this.commandTable.put("bye", new ByeCommandHandler(chatBot));
+        this.commandTable.put("list", new ListTaskCommandHandler(chatBot));
+        this.commandTable.put("todo", new TodoTaskCommandHandler(chatBot));
+        this.commandTable.put("deadline", new DeadlineTaskCommandHandler(chatBot));
+        this.commandTable.put("event", new EventTaskCommandHandler(chatBot));
+        this.commandTable.put("mark", new MarkTaskCommandHandler(chatBot));
+        this.commandTable.put("unmark", new UnmarkTaskCommandHandler(chatBot));
+        this.commandTable.put("delete", new DeleteTaskCommandHandler(chatBot));
+        this.commandTable.put("find", new FindTaskCommandHandler(chatBot));
+        this.commandTable.put("update", new UpdateTaskCommandHandler(chatBot));
     }
 
-    public Command getCommand(Personality personality, String command) throws InvalidCommandException {
+    public Command getCommand(String command) {
         if (!(this.commandTable.containsKey(command))) {
-            throw new InvalidCommandException(personality);
+            return new InvalidCommand();
         }
         return this.commandTable.get(command);
     }

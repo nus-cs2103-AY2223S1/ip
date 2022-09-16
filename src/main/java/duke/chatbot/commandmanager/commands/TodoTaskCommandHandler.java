@@ -1,8 +1,7 @@
 package duke.chatbot.commandmanager.commands;
 
+import duke.chatbot.ChatBot;
 import duke.chatbot.commandmanager.commands.exceptions.EmptyTaskException;
-import duke.chatbot.personality.Personality;
-import duke.chatbot.taskmanager.TaskManager;
 import duke.chatbot.taskmanager.task.ToDoTask;
 
 /**
@@ -11,18 +10,14 @@ import duke.chatbot.taskmanager.task.ToDoTask;
  * Responds with the confirmation message stating that a new task is added.
  */
 public class TodoTaskCommandHandler implements Command {
-    private final Personality personality;
-    private final TaskManager taskManager;
+    private final ChatBot chatBot;
     /**
-     * Creates a new handler for the to do task command with a reference to the task manager
-     * and the chatbot's personality
+     * Creates a new handler for the to do task command with a reference to the chatbot.
      *
-     * @param personality a reference to the chatbot's personality
-     * @param taskManager a reference to the task manager
+     * @param chatBot a reference to the chatbot
      */
-    public TodoTaskCommandHandler(Personality personality, TaskManager taskManager) {
-        this.personality = personality;
-        this.taskManager = taskManager;
+    public TodoTaskCommandHandler(ChatBot chatBot) {
+        this.chatBot = chatBot;
     }
 
     /**
@@ -36,10 +31,15 @@ public class TodoTaskCommandHandler implements Command {
     public String execute(String arguments) throws EmptyTaskException {
         String todoTaskName = arguments.strip();
         if (todoTaskName.length() == 0) {
-            throw new EmptyTaskException(this.personality);
+            throw new EmptyTaskException(this.chatBot.getPersonality());
         }
 
-        String taskAdded = taskManager.addTask(new ToDoTask(todoTaskName));
-        return personality.formulateResponse("add_task", taskAdded);
+        String taskAdded = this.chatBot.getTaskManager().addTask(new ToDoTask(todoTaskName));
+        return this.chatBot.getPersonality().formulateResponse("add_task", taskAdded);
+    }
+
+    @Override
+    public boolean isValid() {
+        return true;
     }
 }
