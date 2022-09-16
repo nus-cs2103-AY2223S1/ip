@@ -125,6 +125,12 @@ public class Parser {
                 throw new IncorrectInputFormatException("Make sure your input is in the format <priority> "
                         + "<task number> <high, medium, low>");
             }
+
+            int index = Integer.parseInt(splitStr[1]);
+
+            if (index < 1 || index > storage.getTaskList().size()) {
+                throw new DukeException("Your given index is out of bounds...");
+            }
         }
 
         if (commandString.equals("event")) {

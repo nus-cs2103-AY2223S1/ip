@@ -113,7 +113,11 @@ public class SavedTaskHandler {
                     }
                     taskList.add(deadline);
                 } else {
-                    Events events = new Events(" " + task, date);
+                    SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy");
+                    SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date1 = format1.parse(date);
+                    String formattedDate = format2.format(date1);
+                    Events events = new Events(" " + task, formattedDate);
                     if (nextTaskStr.contains("[X]")) {
                         events.mark();
                     }
