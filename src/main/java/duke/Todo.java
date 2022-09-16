@@ -11,8 +11,8 @@ public class Todo extends Task {
      * @param description The description of the Todo object.
      * @param isDone Boolean value of the status of Todo.
      */
-    public Todo(String description, boolean isDone) {
-        super(description, isDone);
+    public Todo(String description, boolean isDone, PriorityLevel.Priority level) {
+        super(description, isDone, level);
     }
 
     /**
@@ -22,7 +22,7 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[T][%s] %s", super.getStatusIcon(), super.toString());
+        return String.format("[T][%s] %s (Priority: %s)", super.getStatusIcon(), super.toString(), super.getPriorityLevel());
     }
 
     /**
@@ -31,6 +31,7 @@ public class Todo extends Task {
      */
     @Override
     public String toFileString() {
-        return String.format("T | %s | %s", super.getFileIcon(), super.toString());
+        return String.format("T | %s | %s | %d", super.getFileIcon(),
+                super.toString(), super.getPriorityInteger());
     }
 }

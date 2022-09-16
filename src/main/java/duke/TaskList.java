@@ -59,7 +59,7 @@ public class TaskList {
 
         for (int i = 0; i < this.arrayList.size(); i++) {
             Task currTask = this.arrayList.get(i);
-            sb.append(String.format("    %d. %s", i + 1, currTask));
+            sb.append(String.format("\n\t%d. %s", i + 1, currTask));
         }
         return sb.toString();
     }
