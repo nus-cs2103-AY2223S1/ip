@@ -3,20 +3,21 @@
 Koba is a desktop app for managing tasks and deadlines via a Graphical User Interface (GUI) in the form of a chat bot.
 
 ## Summary of Commands.
-|Function                 |Command to do it                                           |
+|Function                 |Command                                                    |
 |:------------------------|:----------------------------------------------------------|
-|add a todo               |**todo** DESCRIPTION                                       |
+|add a todo               |**todo**     DESCRIPTION                                   |
 |add a deadline           |**deadline** DESCRIPTION */by* DATE_AND_TIME_IN_ISO_FORMAT |
-|add a event              |**event** DESCRIPTION */at* DATE_TIME                      |
-|mark a task as completed |**mark** INDEX                                             |
-|mark a task as incomplete|**unmark** INDEX                                           |
-|deletes a task           |**delete** INDEX                                           |
+|add a event              |**event**    DESCRIPTION */at* DATE_TIME                   |
+|mark a task as completed |**mark**     INDEX                                         |
+|mark a task as incomplete|**unmark**   INDEX                                         |
+|deletes a task           |**delete**   INDEX                                         |
 |list all tasks           |**list**                                                   |
-|find tasks with a keyword|**find** KEYWORD                                           |
+|find tasks with a keyword|**find**     KEYWORD                                       |
 |display help page        |**help**                                                   |
 |exit the app             |**bye**                                                    |
 
-### Feature-ABC
+### Add a todo: **todo**
+
 
 Description of the feature.
 
