@@ -26,12 +26,8 @@ public class Event extends Task {
      * @param date the date being queried
      * @return Whether the event is on the date
      */
-<<<<<<< HEAD
     public boolean onThisDate(LocalDate date){
         assert date != null;
-=======
-    public boolean onThisDate(LocalDate date) {
->>>>>>> branch-A-CheckStyle
         return this.date.equals(date);
     }
 

@@ -24,12 +24,8 @@ public class Deadline extends Task {
      * @param date the date being queried
      * @return Whether the deadline has passed
      */
-<<<<<<< HEAD
     public boolean byThisDate(LocalDate date){
         assert date != null;
-=======
-    public boolean byThisDate(LocalDate date) {
->>>>>>> branch-A-CheckStyle
         return this.date.isBefore(date);
     }
 

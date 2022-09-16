@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-DNExcercise/2000-01-01
-TNExcercise
-=======
 TY1
 TY2
 TN3
@@ -13,4 +9,5 @@ EN1/1111-11-11
 DN1/1111-11-11
 EN1/1111-11-11
 DN1/1111-11-11
->>>>>>> branch-A-CheckStyle
+TN2
+ENasdfs/2000-01-01
