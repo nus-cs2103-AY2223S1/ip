@@ -65,7 +65,7 @@ public class Ui {
      * @param taskAndContactList The list of tasks
      */
     public String showDeleteTask(Task task, TaskAndContactList taskAndContactList) {
-        return "Done! " + task.toString()
+        return "Done!\n" + task.toString()
                 + " has been deleted :(" + "\nNow you have " + taskAndContactList.tasksSize()
                 + showTaskTense(taskAndContactList) + " left.";
     }
