@@ -179,3 +179,6 @@ Format: `help`
 Exits the app.
 
 Format: `bye`
+
+### Saving the data:
+The program saves the data to file on every operation, manual saving is **not** required.
