@@ -4,8 +4,8 @@ Byu is a desktop app for managing your tasks, optimized for use via a Command Li
 
 ## Notes about the command format
 
-- Words in UPPER_CASE are the parameters to be supplied by the user.
-  e.g. in todo NAME, NAME is a parameter which can be used as todo cycle.
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
+  e.g. in `todo NAME`, `NAME` is a parameter which can be used as `todo cycle`.
 
 ## Features
 
