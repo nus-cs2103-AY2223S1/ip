@@ -25,6 +25,7 @@ public class Storage {
     private final String FILE_PATH;
     private final ArrayList<Task> taskLs = new ArrayList<>(100);
     private final ArrayList<Note> noteLs = new ArrayList<>(100);
+
     /**
      * Creates a storage object to load and save all tasks.
      *
@@ -49,6 +50,9 @@ public class Storage {
         return new TaskList(taskLs, noteLs);
     }
 
+    /**
+     * Loads all tasks and notes from the file.
+     */
     public void loadFile() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(FILE));
         try {

@@ -43,29 +43,33 @@ public class Parser {
                 || myTask == Commands.UNMARK || myTask == Commands.DEADLINE || myTask == Commands.TODO
                 || myTask == Commands.EVENT || myTask == Commands.DELETE || myTask == Commands.FIND
                 || myTask == Commands.NOTE;
+        return parseCommand(myTask, str);
+    }
+
+    private static Command parseCommand(Commands myTask, String[] str) throws DukeException {
         switch (myTask) {
-        case BYE:
-            return new ExitCommand();
-        case LIST:
-            return new ListCommand();
-        case MARK:
-            return new MarkCommand(str, true);
-        case UNMARK:
-            return new MarkCommand(str, false);
-        case DEADLINE:
-            return new AddCommand(str, 0);
-        case TODO:
-            return new AddCommand(str, 1);
-        case EVENT:
-            return new AddCommand(str, 2);
-        case DELETE:
-            return new DeleteCommand(str);
-        case FIND:
-            return new FindCommand(str);
-        case NOTE:
-            return new NoteCommand(str);
-        default:
-            Ui.invalidTask();
+            case BYE:
+                return new ExitCommand();
+            case LIST:
+                return new ListCommand();
+            case MARK:
+                return new MarkCommand(str, true);
+            case UNMARK:
+                return new MarkCommand(str, false);
+            case DEADLINE:
+                return new AddCommand(str, 0);
+            case TODO:
+                return new AddCommand(str, 1);
+            case EVENT:
+                return new AddCommand(str, 2);
+            case DELETE:
+                return new DeleteCommand(str);
+            case FIND:
+                return new FindCommand(str);
+            case NOTE:
+                return new NoteCommand(str);
+            default:
+                Ui.invalidTask();
         }
         return new ExitCommand();
     }

@@ -10,7 +10,7 @@ import duke.task.Task;
 import java.util.ArrayList;
 
 /**
- * Executes the command to find a task.
+ * Executes the command to find a task or note.
  *
  * @author Lim Ai Lin
  */
@@ -25,7 +25,7 @@ public class FindCommand extends Command {
     /**
      * Executes the find command the user inputs.
      *
-     * @param tasks The list containing all the  tasks and notes.
+     * @param tasks The list containing all the tasks and notes.
      * @param ui The ui to deal with user interactions.
      * @param storage The storage containing all tasks and notes the user has previously input.
      * @throws DukeException

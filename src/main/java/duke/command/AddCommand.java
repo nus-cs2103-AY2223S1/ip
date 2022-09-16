@@ -42,7 +42,7 @@ public class AddCommand extends Command {
      * @param ui The ui to deal with user interactions.
      * @param storage The storage to be updated with the newly added task.
      * @throws DukeException
-     *          Thrown when the task has no name or no date and time is given when necessary.
+     *          Thrown when the task has no description or no date and time is given when necessary.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
@@ -67,6 +67,13 @@ public class AddCommand extends Command {
         return ui.add(tasks, myTask);
     }
 
+    /**
+     * Executes the deadline command the user inputs.
+     *
+     * @param ui The ui to deal with user interactions.
+     * @throws DukeException
+     *          Thrown when the task has no description or no date is given.
+     */
     private Deadline executeDl(Ui ui) throws DukeException {
         String[] dl = new String[2];
         try {
@@ -83,6 +90,13 @@ public class AddCommand extends Command {
         return null;
     }
 
+    /**
+     * Executes the to do command the user inputs.
+     *
+     * @param ui The ui to deal with user interactions.
+     * @throws DukeException
+     *          Thrown when the task has no description.
+     */
     private ToDo executeTd(Ui ui) throws DukeException {
         try {
             return new ToDo(STR[1]);
@@ -92,6 +106,13 @@ public class AddCommand extends Command {
         return null;
     }
 
+    /**
+     * Executes the event command the user inputs.
+     *
+     * @param ui The ui to deal with user interactions.
+     * @throws DukeException
+     *          Thrown when the task has no description or no date and time is given.
+     */
     private Event executeEvnt(Ui ui) throws DukeException {
         String[] evnt = new String[0];
         try {
