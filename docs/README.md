@@ -169,3 +169,7 @@ Click on the help button in the GUI to display a list of commands.
 ### `clear` - Clear chat box
 
 Click on the clear button to clear and refresh the chat box.
+
+### `bye` - Exit
+
+Type 'bye' to exit and then type any key to terminate the programme. 

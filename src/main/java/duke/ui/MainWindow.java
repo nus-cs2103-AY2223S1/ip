@@ -91,7 +91,8 @@ public class MainWindow extends AnchorPane {
                 + "\n • todo [description]"
                 + "\n • deadline [description] [d/mm/yyyy]"
                 + "\n • event [description] [d/mm/yyyy]"
-                + "\n • joke";
+                + "\n • joke"
+                + "\n • bye";
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(commands, dukeImage)
         );
