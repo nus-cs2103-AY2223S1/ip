@@ -9,6 +9,10 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+checkstyleMain {
+    source = 'CS2103T/src/config/checkstyle'
+}
+
 repositories {
     mavenCentral()
 }
