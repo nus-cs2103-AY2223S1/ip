@@ -13,7 +13,7 @@
 ## GettingStarted
 All you need to do is,
 
-1. download it from [here](https://github.com/richavm14/ip/releases/tag/A-Jar).
+1. download it from [here](https://github.com/richavm14/ip/releases/download/A-Release/neo.jar).
 2. download neo.jar
 3. clock it to add your tasks
 4. let it manage your tasks for you 😉
@@ -97,7 +97,7 @@ Expected outcome:
 ### todo
 Add todo task to list of tasks. It will be represented by T.
 
-Format: `todo <description>`
+Format: `todo <description>` 
 
 Example Usage: `todo sort library`
 
