@@ -13,23 +13,7 @@ public class Ui {
     public String greet() {
         return "woof! I'm scruffles the task tracking doggo\n" + "what can I woof for you today?";
     }
-
-    /**
-     * A message that's displayed when there is no file found in the given filePath
-     */
-    public void showLoadingError() {
-        System.out.println("woof file not found woof!");
-    }
-
-    /**
-     * Prints a message that is given
-     *
-     * @param msg the message to be printed
-     */
-    public void printMessage(String msg) {
-        System.out.println(msg);
-    }
-
+    
     /**
      * Greets the user when they exit the program
      *
