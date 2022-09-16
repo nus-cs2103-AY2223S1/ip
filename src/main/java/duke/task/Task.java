@@ -24,7 +24,7 @@ public abstract class Task {
 
     /**
      * Construct a Task object.
-     * 
+     *
      * @param description description for Task.
      */
     public Task(String description) {
