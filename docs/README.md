@@ -1,6 +1,9 @@
-# User Guide
+# User Guide(Koba)
 
-## Features 
+Koba is a desktop app for managing tasks and deadlines via a Graphical User Interface (GUI) in the form of a chat bot.
+
+## Commands Summary
+
 
 ### Feature-ABC
 
