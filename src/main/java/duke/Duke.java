@@ -2,8 +2,6 @@ package duke;
 
 import javafx.application.Application;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -179,6 +177,7 @@ public class Duke extends Application {
                 text = text + ("Duke could not identify the index");
             }
 
+            assert text != "";
             return text;
 
         } catch (DukeException e) {
@@ -246,6 +245,7 @@ public class Duke extends Application {
             if (s.equals("all")) {
                 tasklist.deleteAll();
                 storage.save(tasklist);
+                assert tasklist.size() == 0;
                 return ("All tasks have been deleted! :D");
             } else {
                 Task deleted = tasklist.delete(Integer.parseInt(s) - 1);

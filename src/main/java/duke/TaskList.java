@@ -80,6 +80,8 @@ public class TaskList {
 
     /**
      * Prints out the contents of the task list.
+     *
+     * @return String containing tasks in task list.
      */
     public String list() {
         wasFinding = false;
@@ -98,23 +100,45 @@ public class TaskList {
                 text = text + (count + ". " + item.toString() + "\n");
                 count++;
             }
+            assert count > 1;
             return text;
         }
     }
 
     /**
      * Marks and returns task marked.
+     *
+     * @return Task that was marked.
+     * @throws DukeException  If index given is out of bounds.
      */
-    public Task mark(int n) {
+    public Task mark(int n) throws DukeException {
+        if (n > findCurrentList().size() || n < 1) {
+            throw new DukeException("I can't mark an index beyond the list");
+        }
         Task temp = findCurrentList().get(n);
         temp.mark();
         return temp;
     }
 
     /**
-     * Unmarks and returns task unmarked.
+     * Returns size of task list as an integer.
+     *
+     * @return int Length of task list.
      */
-    public Task unmark(int n) {
+    public int size() {
+        return findCurrentList().size();
+    }
+
+    /**
+     * Unmarks and returns task unmarked.
+     *
+     * @return Task that was unmarked.
+     * @throws DukeException  If index given is out of bounds.
+     */
+    public Task unmark(int n) throws DukeException {
+        if (n > findCurrentList().size() || n < 1) {
+            throw new DukeException("I can't unmark an index beyond the list");
+        }
         Task temp = findCurrentList().get(n);
         temp.unmark();
         return temp;
@@ -132,8 +156,12 @@ public class TaskList {
      * Deletes task in the given position.
      *
      * @param n Position (integer) of task to be deleted.
+     * @throws DukeException  If index given is out of bounds.
      */
-    public Task delete(int n) {
+    public Task delete(int n) throws DukeException {
+        if (n > findCurrentList().size() || n < 0) {
+            throw new DukeException("I can't delete an index beyond the list");
+        }
         Task temp = findCurrentList().get(n);
         findCurrentList().remove(n);
         if (wasFinding) {
