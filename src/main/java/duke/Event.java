@@ -31,6 +31,21 @@ public class Event extends Task {
     }
 
     /**
+     * Constructor for Event class
+     *
+     * @param description Description of task
+     * @param date Date of deadline
+     * @param from Starting time of deadline
+     * @param to Starting time of deadline
+     */
+    Event(String description, LocalDate date, LocalTime from, LocalTime to) {
+        super(description);
+        this.date = date;
+        this.from = from;
+        this.to = to;
+    }
+
+    /**
      * Returns string representation of Event task for display in TaskList
      *
      * @return Event task string

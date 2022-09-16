@@ -1,5 +1,10 @@
 package duke;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+
 /**
  * Parser is used to parse the user's input and return specific phrases.
  *
@@ -7,6 +12,8 @@ package duke;
  */
 public class Parser {
     //example input to parse: deadline taskToDo /by 2022-02-03 18:00-19:00
+    protected static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yy");
+    protected static final DateTimeFormatter INPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
 
     /**
      * Returns command to execute.
@@ -37,10 +44,10 @@ public class Parser {
      * @param userInput user input
      * @return date
      */
-    public static String getDate(String userInput) {
+    public static LocalDate getDate(String userInput) {
         String[] words = userInput.split(" /");
         String[] dateTime = words[1].split(" ");
-        return dateTime[1];
+        return LocalDate.parse(dateTime[1], INPUT_DATE_FORMAT);
     }
 
     /**
@@ -49,11 +56,11 @@ public class Parser {
      * @param userInput user input
      * @return start time
      */
-    public static String getFrom(String userInput) {
+    public static LocalTime getFrom(String userInput) {
         String[] words = userInput.split(" /");
         String[] dateTime = words[1].split(" ");
         String[] times = dateTime[2].split("-");
-        return times[0];
+        return LocalTime.parse(times[0], INPUT_TIME_FORMAT);
     }
 
     /**
@@ -62,11 +69,16 @@ public class Parser {
      * @param userInput user input
      * @return end time
      */
-    public static String getTo(String userInput) {
+    public static LocalTime getTo(String userInput) throws DukeException{
         String[] words = userInput.split(" /");
         String[] dateTime = words[1].split(" ");
         String[] times = dateTime[2].split("-");
-        return times[1];
+
+        if (times.length == 1) {
+            throw new DukeException("Invalid input detected. Required input format: " +
+                    "event {description} /at dd-MM-yy HH:mm-HH:mm");
+        }
+        return LocalTime.parse(times[1], INPUT_TIME_FORMAT);
     }
 
     /**
@@ -103,9 +115,9 @@ public class Parser {
 
     public static void isInvalidInput(String input) throws DukeException {
         if (isInvalidDescription(input)) {
-            throw new DukeException("OOPS!!! The description of a duke.Event cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a task cannot be empty.");
         } else if (Parser.isInvalidDateTime(input)) {
-            throw new DukeException("OOPS!!! The time and date of the duke.Event cannot be empty.");
+            throw new DukeException("OOPS!!! The time and date of the task cannot be empty.");
         }
     }
 }

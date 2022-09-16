@@ -1,14 +1,13 @@
 package duke;
 
-import java.util.Scanner;
-
+import java.time.format.DateTimeParseException;
 /**
  * Continuously asks the user for input and handles the inputs
  *
  * @author Sean Lam
  */
 public class Ui {
-    TaskList itemList;
+    protected TaskList itemList;
 
     public Ui(TaskList itemList) {
         this.itemList = itemList;
@@ -23,7 +22,7 @@ public class Ui {
             return "Bye. Hope to see you again soon!";
         // List out items
         case "list":
-            return "Here are the tasks in your list:" + itemList;
+            return "Here are the tasks in your list:\n" + itemList;
         case "delete":
             return itemList.deleteTask(Parser.getDescription(input));
         // mark items
@@ -66,14 +65,14 @@ public class Ui {
                 "\n5. unmark TASK_INDEX" +
                 "\n6. find TASK_INDEX" +
                 "\n7. delete TASK_INDEX" +
-                "\n7. list" +
-                "\n7. bye";
+                "\n8. list" +
+                "\n9. bye";
         return commands + addTaskCommands + others;
     }
 
     private String addTodo(String input) throws DukeException {
         if (Parser.isInvalidDescription(input)) {
-            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a task cannot be empty.");
         } else {
             Task toAdd = new ToDo(Parser.getDescription(input));
             return itemList.addTask(toAdd);
@@ -83,21 +82,30 @@ public class Ui {
     private String addDeadline(String input) throws DukeException {
         Parser.isInvalidInput(input);
         //eg. by 2019-10-03 18:00
-        Task toAdd = new Deadline(Parser.getDescription(input),
-                Parser.getDate(input),
-                Parser.getFrom(input));
-        return itemList.addTask(toAdd);
+        try {
+            Task toAdd = new Deadline(Parser.getDescription(input),
+                    Parser.getDate(input),
+                    Parser.getFrom(input));
+            return itemList.addTask(toAdd);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid input detected. Required input format: " +
+                    "deadline {description} /by dd-MM-yy HH:mm");
+        }
     }
 
     private String addEvent(String input) throws DukeException {
-        Parser.isInvalidInput(input);
-        //eg. at 2019-10-03 18:00-19:00
-        Task toAdd = new Event(Parser.getDescription(input),
-                Parser.getDate(input),
-                Parser.getFrom(input),
-                Parser.getTo(input));
-        return itemList.addTask(toAdd);
-
+        try {
+            Parser.isInvalidInput(input);
+            //eg. at 2019-10-03 18:00-19:00
+            Task toAdd = new Event(Parser.getDescription(input),
+                    Parser.getDate(input),
+                    Parser.getFrom(input),
+                    Parser.getTo(input));
+            return itemList.addTask(toAdd);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid input detected. Required input format: " +
+                    "event {description} /at dd-MM-yy HH:mm-HH:mm");
+        }
     }
 
     public void showLoadingError() {

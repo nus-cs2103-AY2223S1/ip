@@ -37,9 +37,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        Label greeting = new Label(Ui.greetUser());
         dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(greeting, new ImageView(dukeImage))
+                DialogBox.getDukeDialog(Ui.greetUser(), dukeImage)
         );
     }
 
@@ -58,8 +57,8 @@ public class MainWindow extends AnchorPane {
         assert !response.isEmpty() : "Duke is supposed to reply the user";
 
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(new Label(input), new ImageView(userImage)),
-                DialogBox.getDukeDialog(new Label(response), new ImageView(dukeImage))
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getDukeDialog(response, dukeImage)
         );
 
         if (input.equalsIgnoreCase("bye")) {

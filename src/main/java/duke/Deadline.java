@@ -21,12 +21,24 @@ public class Deadline extends Task {
      * @param date Date of deadline
      * @param time Time of deadline
      */
+    public Deadline(String description, LocalDate date, LocalTime time) {
+        super(description);
+        this.date = date;
+        this.time = time;
+    }
+
+    /**
+     * Constructor of Deadline
+     *
+     * @param description Description of task
+     * @param date Date of deadline
+     * @param time Time of deadline
+     */
     public Deadline(String description, String date, String time) {
         super(description);
         this.date = LocalDate.parse(date);
         this.time = LocalTime.parse(time);
     }
-
     /**
      * Returns string representation of Deadline task for display in TaskList
      *

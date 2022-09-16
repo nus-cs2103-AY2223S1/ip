@@ -81,7 +81,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < itemList.size(); i++) {
             int index = i + 1;
             String add = index + "." + itemList.get(i) + "\n";
