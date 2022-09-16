@@ -10,6 +10,7 @@ public class Parser {
     private static void assertValidInput(String input) {
         assert input.length() > 0: ASSERTION_INPUT_TOO_SHORT;
     }
+
     /**
      * Returns a ToDo object based on parsed input
      *

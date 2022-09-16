@@ -27,9 +27,12 @@ public class Storage {
     }
 
     /**
-     * Reads list of tasks from saved data and updates inputted TaskList object accordingly
+     * Reads list of task and memorized commands from save data
+     * and update in-memory task list and memory list accordingly
      *
      * @param taskList
+     * @param memory
+     * @throws DukeException
      */
     public void readTaskAndMemoryData(TaskList taskList, HashMap<String, String> memory) throws DukeException {
         try {
@@ -60,7 +63,7 @@ public class Storage {
         }
     }
 
-    public void readTaskDataLineByLine(TaskList taskList, File file) throws FileNotFoundException {
+    private void readTaskDataLineByLine(TaskList taskList, File file) throws FileNotFoundException {
         Scanner s = new Scanner(file);
         while (s.hasNext()) {
             String line = s.nextLine();
@@ -83,7 +86,7 @@ public class Storage {
         }
     }
 
-    public void readMemoryLineByLine(HashMap<String, String> memory, File file) throws FileNotFoundException {
+    private void readMemoryLineByLine(HashMap<String, String> memory, File file) throws FileNotFoundException {
         Scanner s = new Scanner(file);
         while (s.hasNext()) {
             String line = s.nextLine();
@@ -93,15 +96,17 @@ public class Storage {
         }
     }
 
+
     public void updateTaskAndMemoryData(TaskList taskList, HashMap<String, String> memory) throws DukeException {
         updateTaskData(taskList);
         updateMemoryData(memory);
     }
 
     /**
-     * Saves task list data based on inputted TaskList object
+     * Saves in-memory task list data into saved data
      *
      * @param taskList
+     * @throws DukeException
      */
     public void updateTaskData(TaskList taskList) throws DukeException {
         try {
@@ -114,6 +119,13 @@ public class Storage {
             throw new DukeException("Something went wrong: " + e.getMessage() + "\n");
         }
     }
+
+    /**
+     * Saves in-memory list of memorized commands into saved data
+     *
+     * @param memory
+     * @throws DukeException
+     */
 
     public void updateMemoryData(HashMap<String, String> memory) throws DukeException {
         try {

@@ -51,6 +51,11 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
+    /**
+     * Adds a Duke dialog into dialog container with the inputted text
+     *
+     * @param text
+     */
     @FXML
     private void makeDukeSay(String text) {
         dialogContainer.getChildren().addAll(

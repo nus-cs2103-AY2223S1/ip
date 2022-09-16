@@ -17,7 +17,7 @@ public class Task {
     }
 
     /**
-     * Sets task as !done
+     * Sets task as not done
      */
     public void markAsNotDone() {
         isDone = false;

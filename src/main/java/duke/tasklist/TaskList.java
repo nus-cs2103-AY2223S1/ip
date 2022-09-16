@@ -23,6 +23,7 @@ public class TaskList {
      * Prints list of tasks related to description
      *
      * @param description
+     * @return
      */
     public String find(String description) {
         ArrayList<Task> relatedTaskList = new ArrayList<Task>();
@@ -51,6 +52,7 @@ public class TaskList {
      * Adds task to an array list of task
      *
      * @param task
+     * @return
      */
     public String add(Task task) {
         taskList.add(task);
@@ -59,6 +61,8 @@ public class TaskList {
 
     /**
      * Prints each task in the array list of tasks
+     *
+     * @return
      */
     public String printTaskList() {
         String response = UIText.TASK_LIST_OPENING;
@@ -78,6 +82,7 @@ public class TaskList {
      * Sets a task in the array list of tasks as done
      *
      * @param index
+     * @return
      * @throws DukeException
      */
     public String markTaskAsDone(int index) throws DukeException {
@@ -95,6 +100,7 @@ public class TaskList {
      * Sets a task in the array list of tasks as !done
      *
      * @param index
+     * @return
      * @throws DukeException
      */
     public String markTaskAsNotDone(int index) throws DukeException{
@@ -110,7 +116,9 @@ public class TaskList {
 
     /**
      * Removes a task in the array list of tasks
+     *
      * @param index
+     * @return
      * @throws DukeException
      */
     public String deleteTask(int index) throws DukeException {

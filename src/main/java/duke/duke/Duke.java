@@ -14,12 +14,12 @@ import java.util.TimerTask;
 public class Duke {
     private static final String LOAD_STORAGE_SUCCESSFUL = "Load Storage is Successful";
     private static final String LOAD_STORAGE_UNSUCCESSFUL = "Load Storage is NOT Successful";
-    private static final String taskDataPath = "data";
-    private static final String taskDataFileName = "duke.txt";
-    private static final String memoryDataFileName = "memory.txt";
+    private static final String TASK_DATA_PATH = "data";
+    private static final String TASK_DATA_FILE_NAME = "duke.txt";
+    private static final String MEMORY_DATA_FILE_NAME = "memory.txt";
     private static UIText UIText = new UIText();
     private static Parser parser = new Parser();
-    private static Storage storage = new Storage(taskDataPath, taskDataFileName, memoryDataFileName);
+    private static Storage storage = new Storage(TASK_DATA_PATH, TASK_DATA_FILE_NAME, MEMORY_DATA_FILE_NAME);
     private TaskList taskList;
 
     private HashMap<String, String> memory;
@@ -46,8 +46,10 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns LishBot's response to user input
+     *
+     * @param input
+     * @return
      */
     public String getResponse(String input) {
         String response = "";
