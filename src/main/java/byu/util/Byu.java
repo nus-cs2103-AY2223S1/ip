@@ -6,6 +6,7 @@ import byu.commands.Command;
 import byu.exceptions.ByuException;
 import byu.exceptions.DuplicateException;
 import byu.exceptions.IncorrectFileInputException;
+import javafx.application.Platform;
 
 /**
  * Byu is a chatbot that helps to organize tasks.
@@ -42,6 +43,9 @@ public class Byu {
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);
+            if (command.isExit()) {
+                Platform.exit();
+            }
             command.execute(this.tasks, this.ui);
             this.storage.save();
             return this.ui.getValidOutput();

@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "byu.Byu"
+    mainClassName = "byu.util.Launcher"
 }
 
 shadowJar {
