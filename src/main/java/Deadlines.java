@@ -45,10 +45,6 @@ public class Deadlines extends Task {
         return newDateString = sdf.format(d);
     }
 
-
-
-
-
     public String getDeadLine() {
         return this.deadlineby;
     }
