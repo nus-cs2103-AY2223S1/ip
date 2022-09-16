@@ -63,17 +63,7 @@ public class Task {
     }
 
     /**
-     * Indicates that a task is undone.
-     */
-    public void markAsUnDone() {
-        this.isDone = false;
-        System.out.println("     Task has been marked as NOT done!: \n"
-                + "       "
-                + this.toString());
-    }
-
-    /**
-     * Overloaded method for markAsUnDone(), meant for JavaFX.
+     * Indicates that a task is undone, meant for JavaFX.
      *
      * @param dialogContainer The VBox object that contains the chat messages and images.
      * @param dukeImage The image of Duke.
@@ -96,9 +86,22 @@ public class Task {
         return this.description.contains(keyword);
     }
 
+    /**
+     * Updates the task with new details contained in the string 'input'.
+     *
+     * @param input The string containing the new updated information.
+     * @param dialogContainer The VBox object that contains the chat messages and images.
+     * @param dukeImage The image of Duke.
+     */
     public void update(String input, VBox dialogContainer, Image dukeImage) {
     }
 
+    /**
+     * Displays a message sent by Duke to tell user that the task has been updated.
+     *
+     * @param dialogContainer The VBox object that contains the chat messages and images.
+     * @param dukeImage The image of Duke.
+     */
     public void sendTaskUpdatedMessage(VBox dialogContainer, Image dukeImage) {
         String updatedTask = "Task has been updated!: \n"
                 + "       "
@@ -113,12 +116,5 @@ public class Task {
      */
     public String toString() {
         return (this.getStatusIcon() + " | " + this.description);
-    }
-
-    public static void main(String[] args) {
-        Task t = new Task("return books");
-        t.hasKeyword("return");
-
-        t.markAsDone();
     }
 }

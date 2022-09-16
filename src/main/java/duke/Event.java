@@ -17,6 +17,7 @@ public class Event extends Task {
 
     /**
      * Constructor for the Event class.
+     *
      * @param description A string that provides information for the event.
      * @param at A string that provides information about when the event is.
      */
@@ -28,6 +29,7 @@ public class Event extends Task {
 
     /**
      * Another constructor for the Event class.
+     *
      * @param description A string that provides information for the event.
      * @param atDate A LocalDate object that provides information about the date of the event.
      * @param atTime A LocalTime object that provides information about the time of the event.
@@ -38,6 +40,12 @@ public class Event extends Task {
         this.atTime = atTime;
     }
 
+    /**
+     * Converts a string containing date and/or time into a LocalDate and/or LocalTime object,
+     * and updates the object's field.
+     *
+     * @param at The string containing the date and/or time for the event task.
+     */
     private void convertToDateTime(String at) {
         assert at.length() != 0 : "length of 'at' should not be 0";
 
@@ -54,6 +62,13 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Updates the event task with new details contained in the string 'input'.
+     *
+     * @param input The string containing the new updated information.
+     * @param dialogContainer The VBox object that contains the chat messages and images.
+     * @param dukeImage The image of Duke.
+     */
     @Override
     public void update(String input, VBox dialogContainer, Image dukeImage) {
         assert input.length() != 0 : "Length of input should not be 0";
@@ -73,10 +88,20 @@ public class Event extends Task {
         this.sendTaskUpdatedMessage(dialogContainer, dukeImage);
     }
 
+    /**
+     * Updates the description field of the task with the new description.
+     *
+     * @param description The string containing the new description.
+     */
     private void updateDescription(String description) {
         super.description = description;
     }
 
+    /**
+     * Updates the date and/or time field(s) of the task with the new date and/or time.
+     *
+     * @param dateTime The string containing the new date and/or time.
+     */
     private void updateDateTime(String dateTime) {
         convertToDateTime(dateTime);
     }
