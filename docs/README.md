@@ -1,14 +1,13 @@
-# User Guide
+# User Guide for UNC
 
 ## Features 
 
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
+- List out all the tasks you have
+- Add todo, deadline, or event tasks
+- Mark and mark tasks as done
+- Delete tasks
+- Find tasks with a keyword
+- Sort the list of tasks by time
 
 ## Usage
 
