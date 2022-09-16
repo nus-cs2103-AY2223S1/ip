@@ -68,8 +68,8 @@ public class TaskList {
      */
     public String deleteGui(TaskList list, Task task, int index) {
         list.getList().remove(index);
-        return Ui.DELETE_HEADER + task.toString()
-                + "Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE;
+        return Ui.DELETE_HEADER_GUI + task.toString()
+                + "Now you have " + duke.getCount() + " tasks in the list." + "\n";
     }
     /**
      * Lists out all the task in the task list.
@@ -89,12 +89,12 @@ public class TaskList {
      * @return the task in the task list.
      */
     public String listGui() {
-        String printString = Ui.TASK_LIST_HEADER + "\n";
+        String printString = Ui.TASK_LIST_HEADER_GUI + "\n";
         for (int i = 0, j = 1; i < duke.getCount(); i++, j++) {
             printString = printString + Integer.toString(j) + ". ";
             printString += list.get(i).listGui() + "\n";
         }
-        printString += Duke.LINE + "\n";
+        printString += "\n";
         return printString;
     }
 
@@ -118,7 +118,7 @@ public class TaskList {
      */
     public String markGui(TaskList list, int index) {
         list.getList().get(index - 1).setStatus("[X]");
-        return Ui.MARK_HEADER + "[X] " + list.getList().get(index - 1).printDescription();
+        return Ui.MARK_HEADER_GUI + "[X] " + list.getList().get(index - 1).printDescription();
     }
 
     /**
@@ -141,7 +141,7 @@ public class TaskList {
      */
     public String unmarkGui(TaskList list, int index) {
         list.getList().get(index - 1).setStatus("[ ]");
-        return Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index - 1).printDescription();
+        return Ui.UNMARK_HEADER_GUI + "[ ] " + list.getList().get(index - 1).printDescription();
     }
 
     public String setPriority(TaskList list, int index, char priority) {
@@ -178,7 +178,7 @@ public class TaskList {
      * @return the found tasks.
      */
     public String findGui(TaskList list, String keyword) {
-        String printString = Ui.FIND_HEADER;
+        String printString = Ui.FIND_HEADER_GUI;
         Task task = null;
         int find = 1;
         for (int i = 0; i < duke.getCount(); i++) {
@@ -198,8 +198,8 @@ public class TaskList {
      * @return the task given the priority.
      */
     public String findPriority(TaskList list, String priority) {
-        String printString = Ui.FIND_PRIORITY_HEADER + priority + ": \n";
-        System.out.println(printString);
+        String printString = Ui.FIND_PRIORITY_HEADER_GUI + priority + ": \n";
+        System.out.println(Ui.FIND_PRIORITY_HEADER + priority + ": \n");
         Task task = null;
         int find = 1;
         for (int i = 0; i < duke.getCount(); i++) {
@@ -211,7 +211,6 @@ public class TaskList {
                 find++;
             }
         }
-        printString += Duke.LINE;
         System.out.println(Duke.LINE);
         return printString;
     }

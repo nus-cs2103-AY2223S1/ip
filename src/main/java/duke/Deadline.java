@@ -68,8 +68,8 @@ public class Deadline extends Task {
      */
     @Override
     public String printGui() {
-        return (Ui.ADD_TASK_HEADER + this.toString() + " Now you have "
-                + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n");
+        return (Ui.ADD_TASK_HEADER_GUI + this.toString() + " Now you have "
+                + duke.getCount() + " tasks in the list." + "\n");
     }
 
     /**
@@ -85,7 +85,7 @@ public class Deadline extends Task {
      * @return the description of the deadline task.
      */
     public String listGui() {
-        return this.type + this.status + " " + this.priority
+        return this.type + this.status + " " + this.priority + " "
                 + this.name + "(by: " + formatDateString(this.time) + ")";
     }
 
@@ -124,7 +124,7 @@ public class Deadline extends Task {
      * @return the complete string representation of the deadline task.
      */
     public String toString() {
-        return this.getType() + this.getStatus() + this.getPriority() + this.getName()
+        return this.getType() + this.getStatus() + " " + this.getPriority() + " " + this.getName()
                 + " (by: " + formatDateString(this.time) + ")" + "\n";
     }
 

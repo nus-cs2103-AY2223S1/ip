@@ -19,15 +19,16 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/pat.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/spongebob.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
     }
 
     /**
@@ -36,6 +37,15 @@ public class MainWindow extends AnchorPane {
      */
     public void setDuke(Duke d) {
         duke = d;
+    }
+
+    /**
+     * Prints welcoming message.
+     */
+    public void printHello() {
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog("Hello! I am Duke. How can I help you?", dukeImage)
+        );
     }
 
     /**

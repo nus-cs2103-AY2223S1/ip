@@ -68,8 +68,8 @@ public class Event extends Task {
      */
     @Override
     public String printGui() {
-        return (Ui.ADD_TASK_HEADER + this.toString() + " Now you have "
-                + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n");
+        return (Ui.ADD_TASK_HEADER_GUI + this.toString() + " Now you have "
+                + duke.getCount() + " tasks in the list." + "\n");
     }
 
     /**
@@ -85,7 +85,7 @@ public class Event extends Task {
      * @return the description of the event.
      */
     public String listGui() {
-        return this.type + this.status + " " + this.priority + this.name
+        return this.type + this.status + " " + this.priority + " " + this.name
                 + "(at: " + formatDateString(this.time) + ")";
     }
 
@@ -133,7 +133,7 @@ public class Event extends Task {
      * @return the complete string representation of the event.
      */
     public String toString() {
-        return this.getType() + this.getStatus() + this.getPriority() + this.getName()
+        return this.getType() + this.getStatus() + " " + this.getPriority() + " " +this.getName()
                 + " (at: " + formatDateString(this.time) + ")" + "\n";
     }
 

@@ -49,61 +49,50 @@ public class Storage {
     }
 
     private String loadInitialGui(File file) {
-        TaskList tl = new TaskList();
-        BufferedReader br = null;
-        String st;
         try {
+            TaskList tl = new TaskList();
+            BufferedReader br = null;
+            String st;
             if (!file.exists()) {
                 file.createNewFile();
             }
             br = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            return e.getMessage();
-        }
-
         while (true) {
-            try {
-                if (!((st = br.readLine()) != null)) {
-                    break;
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if (!((st = br.readLine()) != null)) {
+                break;
             }
             tl.getList().add(convertStringToTask(st));
             duke.addCount();
             st += st;
+        } return st;
+        } catch (Exception e) {
+        if (e instanceof FileNotFoundException) {
+            throw new RuntimeException(e);
+        } else if (e instanceof IOException) {
+            return e.getMessage();
+        } return e.getMessage();
         }
-        return st;
     }
 
     private void loadInitial(File file) {
-        TaskList tl = new TaskList();
-        BufferedReader br = null;
-        String st;
         try {
+            TaskList tl = new TaskList();
+            BufferedReader br = null;
+            String st;
             if (!file.exists()) {
                 file.createNewFile();
             }
             br = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-        while (true) {
-            try {
+            while (true) {
                 if (!((st = br.readLine()) != null)) {
                     break;
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                tl.getList().add(convertStringToTask(st));
+                duke.addCount();
+                System.out.println(st);
             }
-            tl.getList().add(convertStringToTask(st));
-            duke.addCount();
-            System.out.println(st);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -114,27 +103,24 @@ public class Storage {
      * @return the task list in the specified file.
      */
     public TaskList load(File file) {
-        TaskList tl = new TaskList();
-        duke.setCount(0);
-        BufferedReader br = null;
         try {
+            TaskList tl = new TaskList();
+            duke.setCount(0);
+            BufferedReader br = null;
             br = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        String st;
-        while (true) {
-            try {
+            String st;
+            while (true) {
                 if (!((st = br.readLine()) != null)) {
-                    break;
+                        break;
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                tl.getList().add(convertStringToTask(st));
+                duke.addCount();
             }
-            tl.getList().add(convertStringToTask(st));
-            duke.addCount();
+            return tl;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
-        return tl;
     }
 
     /**
@@ -185,23 +171,23 @@ public class Storage {
         }
         char taskType = s.charAt(1);
         char done = s.charAt(4);
-        char priority = Character.toUpperCase(s.charAt(6));
+        char priority = Character.toUpperCase(s.charAt(7));
         Task task = null;
         if (taskType == 'T') {
-            task = new Todo(s.substring(7));
-        } else if (taskType == 'E') {
+            task = new Todo(s.substring(9));
+        }
+        Parser p = new Parser();
+        if (taskType == 'E') {
             int firstDateIndex = s.indexOf('(');
             int lastDateIndex = s.indexOf(')');
-            String name = s.substring(7, firstDateIndex);
+            String name = s.substring(9, firstDateIndex - 1);
             String date = s.substring(firstDateIndex + 5, lastDateIndex);
-            Parser p = new Parser();
             task = new Event(name, p.parseFileString(date));
         } else if (taskType == 'D') {
             int firstDateIndex = s.indexOf('(');
             int lastDateIndex = s.indexOf(')');
-            String name = s.substring(7, firstDateIndex);
+            String name = s.substring(9, firstDateIndex - 1);
             String date = s.substring(firstDateIndex + 5, lastDateIndex);
-            Parser p = new Parser();
             task = new Deadline(name, p.parseFileString(date));
         }
         if (done == 'X') {

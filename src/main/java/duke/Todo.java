@@ -91,8 +91,8 @@ public class Todo extends Task {
      * @return the description of the todo task that is being added to the task list.
      */
     public String printGui() {
-        return Ui.ADD_TASK_HEADER + this.toString()
-                + " Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n";
+        return Ui.ADD_TASK_HEADER_GUI + this.toString()
+                + " Now you have " + duke.getCount() + " tasks in the list." + "\n";
     }
 
     /**
@@ -107,7 +107,7 @@ public class Todo extends Task {
      * @return the description of the todo task.
      */
     public String listGui() {
-        return this.type + this.status + this.priority + " " + this.name;
+        return this.type + this.status + " " + this.priority + " " + this.name;
     }
 
     /**
@@ -125,6 +125,6 @@ public class Todo extends Task {
      * @return the full string representation the todo task.
      */
     public String toString() {
-        return this.getType() + this.getStatus() + this.getPriority() + " " + this.getName() + "\n";
+        return this.getType() + this.getStatus() + " " + this.getPriority() + " " + this.getName() + " " + "\n";
     }
 }

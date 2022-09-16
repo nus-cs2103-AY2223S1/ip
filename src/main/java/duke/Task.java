@@ -116,7 +116,7 @@ public class Task {
         for (int i = 0, j = 1; i < duke.getCount(); i++, j++) {
             output += j + ". " + t.getList().get(i).status + t.getList().get(i).name + "\n";
         }
-        output += Duke.LINE + "\n";
+        output += "\n";
         return output;
     }
 
