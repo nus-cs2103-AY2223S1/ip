@@ -29,6 +29,9 @@ public class DeleteHandler implements IHandler {
         try {
             Tasklist list = s.getList();
             int number = Integer.parseInt(this.taskIndex);
+            if (number <= 0 || number > list.size()) {
+                throw new DukeException(String.format("List index out of range!\nUsage: `delete %d`", list.size()));
+            }
             s.saveTasks();
             Task item = list.remove(number - 1);
             int size = list.size();
