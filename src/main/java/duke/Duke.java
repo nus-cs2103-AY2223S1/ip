@@ -61,9 +61,8 @@ public class Duke  {
      */
     public String getResponse(String input) {
         assert input != null : "user input cannot be null";
-        ui.showWelcome();
         boolean isExit = false;
-        while (!isExit) {
+        if (!isExit) {
             try {
                 Command c = Parser.parse(input);
                 String output = c.execute(tasks, ui, storage);

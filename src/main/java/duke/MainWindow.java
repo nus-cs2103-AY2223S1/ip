@@ -50,4 +50,10 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
     }
+
+    public void greetings() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog("Hello user!!! Type help for a quick guide\n", dukeImage)
+        );
+    }
 }

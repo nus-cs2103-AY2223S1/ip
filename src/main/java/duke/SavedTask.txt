@@ -1,14 +1,8 @@
-[T][X]           1
-[E][ ] fjdksalf fjdkasl hello (at: 2020-12-19 20:00)
-[E][ ] Hello hello (at: 2020-12-19 20:00)
-[E][ ] hello     (at: 2020-12-19 20:00)
-[E][ ] fdafdashello      (at: 2020-12-19 20:00)
-[D][ ] hello (by: 2020-12-19 20:00)
-[D][ ] Hhello hello (by: 2020-12-19 20:00)
-[D][ ] hello (by: 2020-12-19 20:00)
+[T][X] dfsajkfjdasklf
+[T][X] 1
 [T][ ] hello
-[T][ ] h
-[D][ ] hello (by: 2020-10-20 20:11)
-[D][ ] hello (by: 2020-10-20 20:12)
-[D][ ] hello (by: 2020-10-20 20:13)
-[D][ ] hello (by: 2020-10-20 20:14)
+[T][ ] fdksalfjd
+[E][ ] hello (at: 2020-11-12 20:00)
+[E][ ] hello (at: 2020-11-11 20:00)
+[E][ ] hello (at: 2020-11-12 20:01)
+[D][ ] hello (by: 2020-11-12 20:00)

@@ -3,15 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.TimeTaskCommand;
-import duke.command.TodoCommand;
-import duke.command.UnmarkCommand;
-import duke.command.FindCommand;
+import duke.command.*;
 import duke.exception.DukeException;
 
 /**
@@ -52,14 +44,14 @@ public class Parser {
             return parseEvent(split);
         case "find":
             return parseFind(split);
+        case "help":
+            return parseHelp(split);
         default:
             throw new DukeException(invalidAction(""));
         }
     }
 
 
-
-    //newwwwwwwwwww
     public static String emptyMessage(String message) {
         if (message.equals("")) {
             return "The description cannot be empty";
@@ -75,7 +67,7 @@ public class Parser {
     }
 
     public static String invalidTaskAction(String message, String type) {
-        return String.format("It must be in the format of: %s <desciption> /%s <yyyy-mm-dd HH:MM>", message, type);
+        return String.format("It must be in the format of: %s <description> /%s <yyyy-mm-dd HH:MM>", message, type);
     }
 
     public static String checkEmptyString(String[] split) throws DukeException {
@@ -91,6 +83,13 @@ public class Parser {
             throw new DukeException(invalidAction(""));
         }
         return new ByeCommand();
+    }
+
+    public static Command parseHelp(String[] split) throws DukeException {
+        if (split.length > 1) {
+            throw new DukeException(invalidAction(""));
+        }
+        return new HelpCommand();
     }
 
     public static Command parseList(String[] split) throws DukeException {
@@ -196,7 +195,6 @@ public class Parser {
             throw new DukeException(emptyMessage("event"));
         }
         String input = split[1];
-        System.out.println(input);
         int index = input.lastIndexOf("/at");
         if (index > -1) {
             String at = input.substring(index + 4);
@@ -229,11 +227,6 @@ public class Parser {
         return new FindCommand(split[1]);
     }
 
-
-
-
-
-    //end
     /**
      * Checks if the string representation of time is
      * in the correct format
