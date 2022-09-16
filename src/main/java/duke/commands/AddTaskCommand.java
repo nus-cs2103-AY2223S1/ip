@@ -15,6 +15,14 @@ public class AddTaskCommand extends Command {
     private String taskString;
     private boolean hasExecutedSuccessfully;
 
+    /**
+     * Constructs a command that adds a task corresponding to the specified
+     * task string and type to the list of tasks.
+     * @param storage Storage object for storing the task list.
+     * @param tasks TaskList object in use by the app.
+     * @param type The type of the task to be added.
+     * @param taskString The string representing the task to be added.
+     */
     public AddTaskCommand(Storage storage, TaskList tasks, TaskType type, String taskString) {
         this.storage = storage;
         this.tasks = tasks;

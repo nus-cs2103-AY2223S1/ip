@@ -13,6 +13,13 @@ public class DeleteTaskCommand extends Command {
     private boolean hasExecutedSuccessfully;
     private Task deletedTask;
 
+    /**
+     * Constructs a new command that deletes the task corresponding to the
+     * specified index.
+     * @param storage Storage object for storing the task list.
+     * @param tasks TaskList object in use by the app.
+     * @param index The index of the task to be deleted.
+     */
     public DeleteTaskCommand(Storage storage, TaskList tasks, String index) {
         this.storage = storage;
         this.tasks = tasks;

@@ -4,6 +4,10 @@ public class UnrecognisedCommand extends Command {
 
     String cmdString;
 
+    /**
+     * Constructs a new unrecognised command.
+     * @param cmdString The string of the unrecognised command.
+     */
     public UnrecognisedCommand(String cmdString) {
         this.cmdString = cmdString;
     }

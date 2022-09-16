@@ -12,7 +12,12 @@ public class UnmarkTaskCommand extends Command {
     private String index;
     private boolean hasExecutedSuccessfully;
 
-
+    /**
+     * Constructs a new command to unmark the task corresponding to the specified index.
+     * @param storage Storage object for storing the list of tasks.
+     * @param tasks TaskList object in use by the app.
+     * @param index Index of the task to be unmarked.
+     */
     public UnmarkTaskCommand(Storage storage, TaskList tasks, String index) {
         this.storage = storage;
         this.tasks = tasks;

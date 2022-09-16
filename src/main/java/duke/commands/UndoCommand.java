@@ -8,6 +8,10 @@ public class UndoCommand extends Command {
     private Deque<Command> commandHistory;
     private Command prevCommand;
 
+    /**
+     * Constructs a new command to undo the previous command.
+     * @param commandHistory Deque storing the history of executed commands.
+     */
     public UndoCommand(Deque<Command> commandHistory) {
         this.commandHistory = commandHistory;
     }

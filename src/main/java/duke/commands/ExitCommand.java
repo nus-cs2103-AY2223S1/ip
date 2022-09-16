@@ -2,6 +2,9 @@ package duke.commands;
 
 public class ExitCommand extends Command {
 
+    /**
+     * Constructs a new command to exit the app.
+     */
     public ExitCommand() {
     }
 

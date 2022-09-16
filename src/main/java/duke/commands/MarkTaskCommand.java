@@ -12,6 +12,13 @@ public class MarkTaskCommand extends Command {
     private String index;
     private boolean hasExecutedSuccessfully;
 
+    /**
+     * Constructs a new command to mark the task corresponding to the specified
+     * index.
+     * @param storage Storage object for storing the list of tasks.
+     * @param tasks TaskList object in use by the app.
+     * @param index The index of the task to be marked.
+     */
     public MarkTaskCommand(Storage storage, TaskList tasks, String index) {
         this.storage = storage;
         this.tasks = tasks;

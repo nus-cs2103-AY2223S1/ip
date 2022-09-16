@@ -6,6 +6,10 @@ public class PrintTasksCommand extends Command {
 
     private TaskList tasks;
 
+    /**
+     * Constructs a new command that displays the list of tasks.
+     * @param tasks TaskList object to display tasks from.
+     */
     public PrintTasksCommand(TaskList tasks) {
         this.tasks = tasks;
     }

@@ -10,6 +10,12 @@ public class FindTaskCommand extends Command {
     private TaskList tasks;
     private String searchTerm;
 
+    /**
+     * Constructs a new command to find tasks with descriptions containing
+     * the specified search string.
+     * @param tasks TaskList object in use by the app.
+     * @param searchTerm The search string.
+     */
     public FindTaskCommand(TaskList tasks, String searchTerm) {
         this.tasks = tasks;
         this.searchTerm = searchTerm;
