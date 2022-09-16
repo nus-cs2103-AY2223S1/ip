@@ -67,6 +67,8 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
         String zeusResponseToBye = "Zeus says:\n" + "Bye. Hope to see you again soon!";
+        //@@author leongdl135-reused
+        //Reused creation of Timer object to schedule an exit task after 2 seconds
         if (response.equals(zeusResponseToBye)) {
             new Timer().schedule(new TimerTask() {
                 @Override
