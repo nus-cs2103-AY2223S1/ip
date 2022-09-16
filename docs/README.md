@@ -17,7 +17,7 @@ of a Graphical User Interface(GUI).
 
 ![](Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+6. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
    Some example commands you can try:
 
 - **/help** : Displays all commands
@@ -26,7 +26,7 @@ of a Graphical User Interface(GUI).
 - **delete 1** : Deletes the 1st task shown in the task list.
 - **bye** : Exits the app.
 
-6. Refer to the [Features](#Features) below for details of each command.
+7. Refer to the [Features](#Features) below for details of each command.
 
 ## Features
 ### Notes about the command format:
