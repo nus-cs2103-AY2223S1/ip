@@ -1,12 +1,10 @@
 package duke.util;
 
-import duke.DukeException;
-import duke.task.Deadline;
+import duke.exceptions.DukeException;
 
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Represents class that makes sense of the user input so that Duke can understand the command

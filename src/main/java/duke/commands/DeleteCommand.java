@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.exceptions.TaskNotFoundException;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.TaskStorage;
@@ -13,9 +14,13 @@ public class DeleteCommand extends Command {
         super(storage, taskList, ui);
     }
 
-    public String deleteTask(ArrayList<String> parsedInput) {
-        Task task = taskList.delete(Integer.parseInt(parsedInput.get(1)));
-        storage.saveTask(taskList);
-        return ui.printDeletedTask(task, taskList);
+    public String deleteTask(ArrayList<String> parsedInput) throws TaskNotFoundException {
+        try {
+            Task task = taskList.delete(Integer.parseInt(parsedInput.get(1)));
+            storage.saveTask(taskList);
+            return ui.printDeletedTask(task, taskList);
+        } catch (TaskNotFoundException e) {
+            throw e;
+        }
     }
 }

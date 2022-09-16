@@ -3,7 +3,7 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import duke.DukeException;
+import duke.exceptions.DukeException;
 import duke.util.DukeDate;
 /**
  * Deadline class inherits from Task

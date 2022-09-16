@@ -1,6 +1,7 @@
 package duke.commands;
 
-import duke.DukeException;
+import duke.exceptions.DukeException;
+import duke.exceptions.TaskNotFoundException;
 import duke.task.TaskList;
 import duke.task.TaskStorage;
 import duke.util.Ui;
@@ -55,6 +56,8 @@ public class Command {
                     throw new DukeException("Invalid input");
             }
         } catch (DukeException e) {
+            return e.getMessage();
+        } catch (TaskNotFoundException e) {
             return e.getMessage();
         }
     }

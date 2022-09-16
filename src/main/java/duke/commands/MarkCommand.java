@@ -1,6 +1,7 @@
 package duke.commands;
 
-import duke.DukeException;
+import duke.exceptions.DukeException;
+import duke.exceptions.TaskNotFoundException;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.TaskStorage;
@@ -14,13 +15,15 @@ public class MarkCommand extends Command {
         super(storage, taskList, ui);
     }
 
-    protected String mark(ArrayList<String> parsedInput) throws  DukeException {
+    protected String mark(ArrayList<String> parsedInput) throws  DukeException, TaskNotFoundException {
         try {
             Task task = taskList.mark(Integer.parseInt(parsedInput.get(1)));
             storage.saveTask(taskList);
             return ui.printMarked(task);
         } catch  (NumberFormatException e) {
             throw new DukeException("I can't find the task you want to mark!");
+        } catch (TaskNotFoundException e) {
+            throw e;
         }
     }
 }

@@ -1,5 +1,5 @@
 T|0|eat
 T|1|gym
 D|0|do homework|2022-02-26 00:00
-T|0|sleep
+T|1|sleep
 D|0|IFG Training|2022-02-28 16:00

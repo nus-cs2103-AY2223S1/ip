@@ -10,32 +10,10 @@ import duke.task.TaskList;
  */
 public class Ui {
     /**
-     * Displays the Duke Logo and asks user for their input
-     */
-    public String displayWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        String reply = "Hello from\n" + logo + "\n" + ("Hello! I'm Duke\n" + "What can I do for you?");
-        return reply;
-    }
-
-    /**
      * Displays goodbye message
      */
     public String sayGoodbye() {
         return "Bye. Hope to see you again soon!";
-    }
-
-    /**
-     * Prints the error message
-     *
-     * @param error the error message to be printed
-     */
-    public String showError(String error) {
-        return error;
     }
 
     /**
@@ -116,11 +94,12 @@ public class Ui {
      */
     public String printFoundTask(ArrayList<Task> tasks) {
         String reply = "Here are the matching tasks in your list:\n";
+        String content = "";
         for (Task task : tasks) {
             int index = tasks.indexOf(task) + 1;
-            reply += index + ". " + task.toString() + "\n";
+            content += index + ". " + task.toString() + "\n";
         }
-        return reply;
+        return content.isEmpty() ? "We couldnt find any task matching your search keyword :((" : reply + content;
     }
 
     /**

@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.DukeException;
+import duke.exceptions.DukeException;
 import duke.task.TaskList;
 import duke.task.TaskStorage;
 import duke.task.Todo;

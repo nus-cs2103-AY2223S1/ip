@@ -1,8 +1,7 @@
 package duke.controllers;
 
 import duke.Duke;
-import duke.DukeException;
-import duke.controllers.DialogBox;
+import duke.exceptions.DukeException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.DukeException;
+import duke.exceptions.DukeException;
 
 /**
  * {@inheritDoc}

@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.exceptions.TaskNotFoundException;
+
 import java.util.ArrayList;
 
 /**
@@ -47,10 +49,14 @@ public class TaskList {
      * @param index index of the Duke task to be marked as done
      * @return the task marked
      */
-    public Task mark(int index) {
-        Task temp = tasks.get(index - 1);
-        temp.mark();
-        return temp;
+    public Task mark(int index) throws TaskNotFoundException {
+        try {
+            Task temp = tasks.get(index - 1);
+            temp.mark();
+            return temp;
+        } catch (IndexOutOfBoundsException e) {
+            throw new TaskNotFoundException("This task cannot be found in our list! Check your index!");
+        }
     }
     /**
      * Marks a Duke task in the list as not done
@@ -58,10 +64,14 @@ public class TaskList {
      * @param index index of the Duke task to be unmarked
      * @return the task unmarked
      */
-    public Task unmark(int index) {
-        Task temp = tasks.get(index - 1);
-        temp.unmark();
-        return temp;
+    public Task unmark(int index) throws TaskNotFoundException {
+        try {
+            Task temp = tasks.get(index - 1);
+            temp.unmark();
+            return temp;
+        } catch (IndexOutOfBoundsException e) {
+            throw new TaskNotFoundException("This task cannot be found in our list! Check your index!");
+        }
     }
 
     /**
@@ -70,10 +80,14 @@ public class TaskList {
      * @param index index of the Duke.Duke.task to be deleted
      * @return the task deleted
      */
-    public Task delete(int index) {
-        Task temp = tasks.get(index - 1);
-        tasks.remove(index - 1);
-        return temp;
+    public Task delete(int index) throws TaskNotFoundException {
+        try {
+            Task temp = tasks.get(index - 1);
+            tasks.remove(index - 1);
+            return temp;
+        } catch (IndexOutOfBoundsException e) {
+            throw new TaskNotFoundException("This task cannot be found in our list! Check your index!");
+        }
     }
 
     /**

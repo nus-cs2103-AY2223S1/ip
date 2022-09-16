@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.DukeException;
+import duke.exceptions.DukeException;
 
 /**
  * Represents the class responsible for saving and
