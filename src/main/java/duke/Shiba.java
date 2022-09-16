@@ -11,7 +11,7 @@ import duke.ui.Ui;
  * Entry point of the Duke application.
  * Initializes the application and starts the interaction with the user.
  */
-public class Duke {
+public class Shiba {
 
     private static final String LINE = "    __________________________________________________________________________";
     private static final String INDENT = "     ";
@@ -28,7 +28,7 @@ public class Duke {
     /**
      * Initialises the Duke object. Initialises the fields ui, storage and parser.
      */
-    public Duke() {
+    public Shiba() {
         ui = new Ui();
         storage = new Storage();
         parser = new Parser();
@@ -46,7 +46,7 @@ public class Duke {
      * @param args arguments supplied by the user at program launch
      */
     public static void main(String[] args) {
-        Duke duke = new Duke();
+        Shiba duke = new Shiba();
         duke.run();
     }
 

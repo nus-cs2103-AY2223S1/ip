@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-import duke.Duke;
+import duke.Shiba;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Duke duke = new Duke();
+    private Shiba shiba = new Shiba();
 
     @Override
     public void start(Stage stage) {
@@ -23,7 +23,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("Shiba");
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().setDuke(shiba);
             fxmlLoader.<MainWindow>getController().greetUser();
             stage.show();
         } catch (IOException e) {

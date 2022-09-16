@@ -1,3 +1,3 @@
 N|todo task A
-N|todo task B
 N|todo task C
+N|todo say hello
