@@ -13,7 +13,7 @@ Note about command format: words in ```UPPER_CASE``` are the parameters to be su
 
 ### Add tasks
 Adds either a todo item, deadline, or event to the to-do list.
-####TODO Task
+##### TODO Task
 Adds a todo item to the list.
 Format: ```todo TASK```
 
@@ -21,7 +21,7 @@ Examples:
 - ```todo clean room```
 - ```todo shower```
 
-####DEADLINE Task
+##### DEADLINE Task
 Adds a deadline item to the list.
 Format: ```deadline TASK /by YYYY-MM-DD```
 
@@ -29,7 +29,7 @@ Examples:
 - ```deadline clean room /by 2022-09-16```
 - ```deadline shower /by 2022-09-16```
 
-####EVENT Task
+##### EVENT Task
 Adds a event item to the list.
 Format: ```event TASK /at YYYY-MM-DD```
 
