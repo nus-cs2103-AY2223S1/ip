@@ -31,7 +31,7 @@ Closes chatbot window and saves the current tasks.
 
 Format: `bye`
 
-##
+
 
 ### `list` - Listing all tasks
 
@@ -39,7 +39,7 @@ Lists all current tasks with the respective descriptions and time.
 
 Format: `list`
 
-##
+
 
 ### `mark` - Marking a task
 
@@ -51,7 +51,7 @@ Example of usage:
 
 `list` followed by `mark 1` to mark the first task as done.
 
-##
+
 
 ### `unmark` - Unmarking a task
 
@@ -63,7 +63,7 @@ Example of usage:
 
 after `mark 1` , `unmark 1` can be used to unmark the task 1.
 
-##
+
 
 ### `delete` - Delete a task
 
@@ -75,7 +75,7 @@ Example of usage:
 
 after `mark 1`, `delete 1` can be used to no longer track a finished task.
 
-##
+
 
 ### `find` - Find a task
 
@@ -87,7 +87,7 @@ Example of usage:
 
 `find book` can be used to find all tasks related to books.
 
-##
+
 
 ### `todo` - Add a "todo" task
 
@@ -99,7 +99,7 @@ Example of usage:
 
 `todo buy food` can be used to add a task with unspecified deadlines/timelines
 
-##
+
 
 ### `deadline` -  Add a "deadline" task
 
@@ -111,7 +111,7 @@ Example of usage:
 
 `deadline Finish homework /by 2020-10-10 12:00` to add a task with a deadline of specified dead and time
 
-##
+
 
 ### `event` -  Add a "event" task
 
