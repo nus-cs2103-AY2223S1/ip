@@ -1,0 +1,15 @@
+add task
+todo complete CS2103T deadline
+deadline complete CS2103T project /by friday
+todo complete CS2100 lectures
+list
+event attend Welcome Tea /at 20th August
+mark 1
+list
+unmark 1
+mark 3
+list
+event attend Career Fair /at 25th August
+mark 2
+list
+bye
