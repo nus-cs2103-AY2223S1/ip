@@ -2,7 +2,7 @@
 
 Here are the features of the Duke, follow the given command formats to use them!
 
-## List all tasks
+## **List all tasks**
 
 ### Format: `list` 
 
@@ -20,7 +20,7 @@ Here are the duties in your list:
 2.[D][ ] homework (by: Friday 2359)
 ```
 
-## Add a Todo task
+## **Add a Todo task**
 
 ### Format: `todo <description>` 
 
@@ -37,7 +37,7 @@ Understood, my Lord. I have added this duty:
 [T][ ] return book
 ```
 
-## Add a Deadline task
+## **Add a Deadline task**
 
 ### Format: `deadline <description> /by <time>` 
 
@@ -54,7 +54,7 @@ Understood, my Lord. I have added this duty:
 [D][ ] homework (by: Friday 2359)
 ```
 
-## Add an Event task
+## **Add an Event task**
 
 ### Format: `event <description> /at <time>` 
 
@@ -71,7 +71,7 @@ Understood, my Lord. I have added this duty:
 [E][ ] party (at: Sunday night)
 ```
 
-## Mark a task as done
+## **Mark a task as done**
 
 ### Format: `mark <task ID>` 
 
@@ -88,7 +88,7 @@ Excellent work, my Lord. You have completed the following duty:
 [D][X] homework (by: Friday 2359)
 ```
 
-## Label a task as not done yet
+## **Mark a task as not done yet**
 
 ### Format: `unmark <task ID>` 
 
@@ -105,7 +105,7 @@ Alas, there seems to be more work to be done for this duty:
 [D][ ] homework (by: Friday 2359)
 ```
 
-## Delete a task
+## **Delete a task**
 
 ### Format: `delete <task ID>` 
 
@@ -122,7 +122,7 @@ As you wish my Lord, I have removed this duty:
 [D][ ] homework (by: Friday 2359)
 ```
 
-## Clear the task list
+## **Clear the task list**
 
 ### Format: `clear` 
 
@@ -138,7 +138,7 @@ Removes all tasks from the task list.
 Your duty list has been erased.
 ```
 
-## Find tasks
+## **Find tasks**
 
 ### Format: `find <keywords>` 
 
@@ -155,7 +155,7 @@ Here are the duties in your list that matched:
 [T][ ] return book
 ```
 
-## Edit task description
+## **Edit task description**
 
 ### Format: `changedesc <task ID> <new description>` 
 
@@ -172,7 +172,7 @@ Right away my Lord, here is the amended duty:
 [T][ ] buy book
 ```
 
-## Edit task time
+## **Edit task time**
 
 ### Format: `changetime <task ID> <new time>` 
 
