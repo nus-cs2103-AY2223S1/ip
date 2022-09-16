@@ -14,7 +14,7 @@ public class TaskList {
     private ArrayList<Task> taskList;
 
     /**
-     * Overloaded Constructor to create an instance of TaskList when provided with
+     * Creates an instance of TaskList when provided with
      * a list of tasks (there are existing data stored in a local txt file).
      *
      * @param taskInStorage ArrayList of tasks retrieved from a local txt file
@@ -24,7 +24,7 @@ public class TaskList {
     }
 
     /**
-     * Constructor to create an instance of TaskList when there are no data stored
+     * Creates an instance of TaskList when there are no data stored
      * locally.
      */
     public TaskList() {

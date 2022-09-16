@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Todo extends Task {
 
     /**
-     * Constructor method for an instance of Todo and it also utilises
+     * Creates an instance of Todo and it also utilises
      * the constructor of it's parent class.
      *
      * @param description String that contains the details about the task
@@ -33,7 +33,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Overridden equals method to check if two Todo Task are the same.
+     * Checks if two Todo Task are the same.
      *
      * @param o Object to be compared against an instance of Todo
      * @return true if the Object is an instance of Todo and both have the same task

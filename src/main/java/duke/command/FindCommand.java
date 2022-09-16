@@ -14,7 +14,7 @@ public class FindCommand extends Command {
     private String[] keyWord;
 
     /**
-     * Constructor to create an instance of FindCommand.
+     * Creates an instance of FindCommand.
      *
      * @param keyWord Array of String keywords to search for in the list of tasks
      */
@@ -41,7 +41,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * String representation to indicate that FindCommand has been successfully executed.
+     * Gives a String representation to indicate that FindCommand has been successfully executed.
      *
      * @return String to notify user of the following tasks
      */

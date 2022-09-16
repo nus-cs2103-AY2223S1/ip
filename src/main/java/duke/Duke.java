@@ -24,7 +24,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor to create an instance of Duke.
+     * Creates an instance of Duke.
      *
      * @param filePath String representation of the relative file path to store the data
      */

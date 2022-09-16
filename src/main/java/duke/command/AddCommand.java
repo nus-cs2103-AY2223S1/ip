@@ -25,7 +25,7 @@ public class AddCommand extends Command {
     private String taskDetails;
 
     /**
-     * Constructor to create an instance of AddCommand.
+     * Creates an instance of AddCommand.
      *
      * @param taskType Integer value representing the type of task, 0-TODO Task,
      *                 1-DEADLINE Task, 2-EVENT Task
@@ -91,7 +91,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * String representation of successfully executing the AddCommand.
+     * Gives a String representation of successfully executing the AddCommand.
      *
      * @return String to notify user that task has been successfully added
      */
@@ -102,7 +102,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Overridden equals method to check if 2 instances of AddCommand are the same
+     * Checks if 2 instances of AddCommand are the same.
      *
      * @param o Object to be tested against an instance of AddCommand
      * @return true if the Object is an instance of AddCommand, contains the same

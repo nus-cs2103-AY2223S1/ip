@@ -12,7 +12,7 @@ public class Deadline extends Task {
     protected String by;
 
     /**
-     * Constructor method for an instance of Deadline and it also utilises
+     * Creates an instance of Deadline and it also utilises
      * the constructor of its parent class (Task)
      *
      * @param description String that contains the details about the task

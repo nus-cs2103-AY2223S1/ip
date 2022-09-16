@@ -18,7 +18,7 @@ public class MarkCommand extends Command {
     private int taskNumber;
 
     /**
-     * Constructor to create an instance of MarkCommand.
+     * Creates an instance of MarkCommand.
      *
      * @param taskNumber Integer representing the task number to mark
      */
@@ -55,7 +55,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * String representation of successfully executing the MarkCommand.
+     * Gives a String representation of successfully executing the MarkCommand.
      *
      * @return String to notify the user that the specified task has been marked
      */
@@ -66,7 +66,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Overridden equals method to check if the Object o is the same as an instance of MarkCommand.
+     * Checks if the Object o is the same as an instance of MarkCommand.
      *
      * @param o Object to be compared against an instance of MarkCommand
      * @return true if the Object is an instance of MarkCommand and both have the same task number, else

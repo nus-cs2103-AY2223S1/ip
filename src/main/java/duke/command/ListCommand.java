@@ -28,7 +28,7 @@ public class ListCommand extends Command {
     }
 
     /**
-     * String representation of successfully executing the ListCommand.
+     * Gives a String representation of successfully executing the ListCommand.
      *
      * @return String to notify the user of the tasks he has in his to-do list
      */

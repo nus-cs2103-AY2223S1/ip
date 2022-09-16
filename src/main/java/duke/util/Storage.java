@@ -22,7 +22,7 @@ public class Storage {
     private String filePath;
 
     /**
-     * Constructor to create an instance of Storage.
+     * Creates an instance of Storage.
      *
      * @param filePath String representation of the relative file path
      */

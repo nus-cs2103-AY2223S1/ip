@@ -17,7 +17,7 @@ public class Ui {
     private Stage stage;
 
     /**
-     * Constructor to create an instance of Ui.
+     * Creates an instance of Ui.
      */
     public Ui(Stage stage) {
         this.scanner = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class Ui {
     }
 
     /**
-     * A welcome message for the user.
+     * Crafts a welcome message for the user.
      *
      * @return String representation of a Welcome Message
      */

@@ -15,7 +15,7 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Constructor to create an instance of Task.
+     * Creates an instance of Task.
      *
      * @param description String describing the task to be done.
      * @param isDone Boolean to keep track if the task has been marked before

@@ -44,7 +44,7 @@ public class UndoCommand extends Command {
             + "________________________________________";
 
     /**
-     * Constructor to create an instance of UndoCommand.
+     * Creates an instance of UndoCommand.
      * @param commandToUndo Command type that the user wishes to undo
      * @param taskDescription Description of the task (Add Commands)
      * @param taskNumber Task number that the user indicated (Mark, Unmark commands)

@@ -12,7 +12,7 @@ import duke.util.Ui;
 public class ExitCommand extends Command {
 
     /**
-     * Default constructor method to create an instance of ExitCommand.
+     * Creates an instance of ExitCommand.
      */
     public ExitCommand() {
     }
@@ -32,7 +32,7 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * Farewell message to the user when the ExitCommand is executed.
+     * Crafts a farewell message to the user when the ExitCommand is executed.
      *
      * @return String representation of the farewell message
      */

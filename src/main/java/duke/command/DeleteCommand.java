@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
     private int taskNumber;
 
     /**
-     * Constructor to create an instance of DeleteCommand.
+     * Creates an instance of DeleteCommand.
      *
      * @param taskNumber Integer representing the task number to delete
      */
@@ -69,7 +69,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * String representation of successfully executing the DeleteCommand.
+     * Gives a String representation of successfully executing the DeleteCommand.
      *
      * @return String to notify the user that a task has been removed
      */
@@ -80,7 +80,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Overridden equals method to check if 2 instances of DeleteCommand are the same.
+     * Checks if 2 instances of DeleteCommand are the same.
      *
      * @param o Object to be compared against an instance of DeleteCommand
      * @return true if both are instances of DeleteCommand and they contain the same task number else false

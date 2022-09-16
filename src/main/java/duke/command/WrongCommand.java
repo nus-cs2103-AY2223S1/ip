@@ -27,7 +27,7 @@ public class WrongCommand extends Command {
     }
 
     /**
-     * String representation of successfully executing the WrongCommand.
+     * Gives a String representation of successfully executing the WrongCommand.
      *
      * @return String to notify the user that the input command is not recognised
      */

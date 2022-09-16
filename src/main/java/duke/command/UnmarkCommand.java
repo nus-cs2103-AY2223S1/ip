@@ -18,7 +18,7 @@ public class UnmarkCommand extends Command {
     private int taskNumber;
 
     /**
-     * Constructor to create an instance of UnmarkCommand.
+     * Creates an instance of UnmarkCommand.
      *
      * @param taskNumber Integer representing the task number to delete
      */
@@ -55,7 +55,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * String representation of successfully executing the UnmarkCommand.
+     * Gives a String representation of successfully executing the UnmarkCommand.
      *
      * @return String to notify the user that the specified task has been unmarked
      */
@@ -66,7 +66,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Overridden equals method to check if the Object o is the same as an instance of UnmarkCommand.
+     * Checks if the Object o is the same as an instance of UnmarkCommand.
      *
      * @param o Object to be compared against an instance of UnmarkCommand
      * @return true if the Object is an instance of UnmarkCommand and both have the same task number, else

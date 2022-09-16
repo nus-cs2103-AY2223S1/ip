@@ -13,7 +13,7 @@ public class Event extends Task {
     private String at;
 
     /**
-     * Constructor method for an instance of Event and it also utilises
+     * Creates an instance of Event and it also utilises
      * the constructor of the parent class.
      *
      * @param description String that contains the details about the task
