@@ -13,9 +13,10 @@ tasks done faster than traditional GUI apps.
   * [Viewing the task list : `list`](#2-viewing-the-task-list-list)
   * [Finding a task : `find`](#3-finding-a-task-find)
   * [Deleting a task : `delete`](#4-deleting-a-task-delete)
-  * [Marking a task : `mark`/`undone`](#5-marking-a-task)
-  * [Exiting the program : `exit`](#6-exiting-the-program)
+  * [Marking a task : `mark`/`undone`](#5-marking-a-task-markunmark)
+  * [Exiting the program : `exit`](#6-exiting-the-program-bye)
   * [Prompting the reminder](#7-reminder)
+  * [Getting help: `help`](#8-getting-help-help)
 * [FAQ](#faq)
 
 ---
@@ -144,7 +145,7 @@ in the task list.
 
 <br>
 
-### 5. Marking A Task
+### 5. Marking A Task: `mark`/`unmark`
 
 Marks/un-marks task from the task list
 by using the following keywords (`MARK_TYPE`):
@@ -167,7 +168,7 @@ Examples:
 
 <br>
 
-### 6. Exiting The Program
+### 6. Exiting The Program: `bye`
 
 Exits the program.
 
@@ -183,13 +184,26 @@ Prompts reminder on the next coming and undone task.
 
 Reminder is auto-displayed everytime you launch the app.
 
+<br>
+
+
+### 8. Getting Help: `help`
+
+Launch this user guide on [website](https://jhchee18.github.io/ip/) 
+in a browser.
+
+Enter your command by following the format below:
+<br>
+`help`
+
+
 ---
 
 ## FAQ
 
 **Q**: Where can I find my task list stored in my file explorer?
 <br>
-**A**: Task list is stored in the `data/duke.txt` file.
+**A**: Task list is stored in the `data/mytasklist.txt` file.
 It is located at the root directory of the RatatouilleBot.
 
 **Q**: How do I transfer my data to another Computer?
