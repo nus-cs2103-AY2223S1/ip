@@ -136,6 +136,7 @@ public class Duke extends Application {
 
         System.out.println("Duke starting");
         Duke duke = new Duke("./data/duke.txt");
+        assert duke.tasks != null : "TaskList should exist!";
         duke.storage.readData(duke.tasks);
         System.out.println("Duke started");
 
