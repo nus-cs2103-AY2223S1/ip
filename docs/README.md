@@ -125,3 +125,8 @@ Lists all tasks in the Todo List.
 
 **Usage**: `list`\
 **Output**: List of all Tasks in the Todo List.
+
+## Acknowledgements
+
+Driver code for JavaFX was adopted from
+the [javaFx tutorials](https://se-education.org/guides/tutorials/javaFxPart4.html) from se-education.

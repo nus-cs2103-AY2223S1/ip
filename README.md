@@ -1,6 +1,6 @@
 # SotongBoi Chatbot
 
-### Introduction
+## Introduction
 
 Welcome to SotongBoi chatbot! This is a Java CLI project created for the Individual Project section
 of [CS2103T - Software Engineering](https://nusmods.com/modules/CS2103T/software-engineering).
@@ -21,3 +21,8 @@ Try it!
 * With command prompt, navigate to the same folder as SotongBoi.jar and enter java -jar SotongBoi.jar. This runs
   SotongBoi!
 * Refer to the [User Guide](/docs/README.md) on what commands are available. Have fun!
+
+## Acknowledgements
+
+Driver code for JavaFX was adopted from
+the [javaFx tutorials](https://se-education.org/guides/tutorials/javaFxPart4.html) from se-education.

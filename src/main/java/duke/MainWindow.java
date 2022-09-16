@@ -10,6 +10,8 @@ import javafx.scene.layout.VBox;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
+ * //@@author Jeffery Lum-reused
+ * //Reused from https://se-education.org/guides/tutorials/javaFxPart3.html
  */
 public class MainWindow extends AnchorPane {
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
@@ -40,6 +42,8 @@ public class MainWindow extends AnchorPane {
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
+     * //@@author Jeffery Lum-reused
+     * //Reused from https://se-education.org/guides/tutorials/javaFxPart3.html
      */
     @FXML
     private void handleUserInput() {
