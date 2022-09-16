@@ -94,7 +94,7 @@ public class Parser {
             if (input.length == 2 && input[1].matches("^[0-9-]*$")) {
                 return LocalDate.parse(input[1]);
             }
-            throw new DukeException("OOPS!!! I didn't understand that");
+            throw new DukeException("OOPS!!! Please enter \"date\" followed by yyyy-mm-dd"  );
         } catch (DateTimeParseException e){
             throw new DukeException("OOPS!!! Please format your date as yyyy-mm-dd format (e.g., 2019-10-15)");
         }

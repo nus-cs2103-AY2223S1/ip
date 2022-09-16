@@ -26,7 +26,7 @@ public class Main extends Application {
 
             scene.getRoot().setStyle("-fx-font-family: 'Arial'");
             stage.setScene(scene);
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.setTitle("Duke");
 
             fxmlLoader.<MainWindow>getController().setDuke(duke);
