@@ -17,6 +17,7 @@ public class Storage {
 
     /**
      * Constructor that creates Storage object
+     *
      * @param filePath Location where file is stored
      */
     public Storage(String filePath) {
@@ -25,6 +26,7 @@ public class Storage {
 
     /**
      * Loads file at the beginning of the program
+     *
      * @return ArrayList<Task> that will return when method runs
      */
     public ArrayList<Task> loadFile() {
@@ -51,6 +53,7 @@ public class Storage {
 
     /**
      * Method that parses strings and converts them to Tasks to be added to storeList
+     *
      * @param taskStr String that will be passed into method to convert
      */
     private void renderStringAsTask(String taskStr) {
@@ -76,6 +79,7 @@ public class Storage {
 
     /**
      * Writes any additions, removals or changes to tasks to file
+     *
      * @param textToAlter text that needs to be added or removed or changed
      */
     public void writeToFile(ArrayList<Task> textToAlter) {

@@ -13,6 +13,7 @@ public class Parser {
 
     /**
      * Constructor for Parser Class to create Parse object
+     *
      * @param tasks TaskList object
      */
     public Parser(TaskList tasks, Ui ui) {

@@ -10,6 +10,7 @@ public class Task {
 
     /**
      * Constructor that initializes Task object
+     *
      * @param description Description of task
      */
     public Task(String description) {
@@ -19,6 +20,7 @@ public class Task {
 
     /**
      * Return icon to state whether task is completed
+     *
      * @return Return string to signify marked or not marked
      */
     public String getStatusIcon() {
@@ -27,6 +29,7 @@ public class Task {
 
     /**
      * Alters isDone field to signify marked
+     *
      * @return Return string to show it is done
      */
     public String markAsDone() {
@@ -36,6 +39,7 @@ public class Task {
 
     /**
      * Alters isDone field to signify unmarked
+     *
      * @return Return string to show it is not done
      */
     public String markAsNotDone() {

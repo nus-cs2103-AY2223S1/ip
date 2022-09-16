@@ -18,6 +18,7 @@ public class Deadline extends Task {
 
     /**
      * Method to convert deadline String to LocalDate format
+     *
      * @return boolean true value if converted
      */
     public boolean convertToDate() {
@@ -34,9 +35,6 @@ public class Deadline extends Task {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == this) {
-            return true;
-        }
         if (obj instanceof Deadline) {
             Deadline deadline = (Deadline) obj;
             return super.equals(deadline) && this.by.equals(deadline.by);

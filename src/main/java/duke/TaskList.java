@@ -34,6 +34,7 @@ public class TaskList {
 
     /**
      * Method to add task to list
+     *
      * @param userInput User's Input that will be added to storeList
      */
     public String addTask(String userInput) {
@@ -46,6 +47,7 @@ public class TaskList {
 
     /**
      * Method to remove task from list
+     *
      * @param taskIndex Index of task that is required to be removed
      */
     public String deleteTask(int taskIndex) {
@@ -61,6 +63,7 @@ public class TaskList {
 
     /**
      * Method to list all the tasks in storeList
+     *
      * @return Print Statement String
      */
     public String list() {
@@ -73,6 +76,7 @@ public class TaskList {
 
     /**
      * To find tasks that match Search string
+     *
      * @param search String that needs to be searched
      * @return String containing searchResults formatted for printing
      */
@@ -94,6 +98,7 @@ public class TaskList {
     }
     /**
      * To mark tasks
+     *
      * @param taskIndex Index of tasks to be changed to unmark
      * @return PrintStatement String
      */
@@ -108,6 +113,7 @@ public class TaskList {
 
     /**
      * To unmark tasks
+     *
      * @param taskIndex Index of tasks to be changed to unmark
      * @return PrintStatement String
      */
@@ -122,6 +128,7 @@ public class TaskList {
 
     /**
      * To allow user to create a Todo task
+     *
      * @param userInput Input given by user
      * @return printStatement
      * @throws DukeException Throws an Exception specific to the program
@@ -146,6 +153,7 @@ public class TaskList {
 
     /**
      * To allow user to create a Deadline Task
+     *
      * @param userInput Input given by user
      * @param by Due date for the deadline
      * @return printStatement
@@ -167,6 +175,7 @@ public class TaskList {
 
     /**
      * To allow user to create an Event task
+     *
      * @param userInput Input given by user
      * @param duration Duration given to the user to complete within
      * @return printStatement
@@ -187,6 +196,7 @@ public class TaskList {
 
     /**
      * Method to check for errors for the input that is given
+     *
      * @param userInput Input given by the user
      * @throws DukeException Error thrown that is specific to Duke
      */
@@ -203,6 +213,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Check that task is not duplicate task
+     *
+     * @param task Task that needs to be checked
+     * @return whether task is duplicate
+     */
     public boolean duplicateCheck(Task task) {
         System.out.println("check");
         for (Task storeTask : storeTasks) {
@@ -215,6 +231,7 @@ public class TaskList {
 
     /**
      * Method that activates convertToDate method
+     *
      * @param d Deadline object passed in as parameter
      */
     public static void dateProcessor(Deadline d) {
