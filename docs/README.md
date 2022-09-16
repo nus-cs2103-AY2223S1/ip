@@ -4,12 +4,12 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 
 * [Summary of commands](https://github.com/therealdaofu/ip/blob/master/docs/README.md#summary-of-commands)
 * Features:
-  * [adding a todo](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-todo-todo)
-  * [adding a deadline](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-deadline-deadline)
-  * [adding a event](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-event-event)
+  * [add a todo](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-todo-todo)
+  * [add a deadline](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-deadline-deadline)
+  * [add a event](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-event-event)
   * [mark a task as complete](https://github.com/therealdaofu/ip/blob/master/docs/README.md#mark-a-task-mark)
   * [mark a task as incomplete](https://github.com/therealdaofu/ip/blob/master/docs/README.md#unmark-a-task-unmark)
-  * [deletes a task](https://github.com/therealdaofu/ip/blob/master/docs/README.md#delete-a-task-delete)
+  * [delete a task](https://github.com/therealdaofu/ip/blob/master/docs/README.md#delete-a-task-delete)
   * [list all stored tasks](https://github.com/therealdaofu/ip/blob/master/docs/README.md#list-all-stored-tasks-list)
   * [find tasks with a keyword](https://github.com/therealdaofu/ip/blob/master/docs/README.md#find-task-by-a-keyword-find)
   * [display help page](https://github.com/therealdaofu/ip/blob/master/docs/README.md#get-help-page-help)
