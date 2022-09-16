@@ -1,5 +1,15 @@
 # User Guide
 
+## Quick Start 
+1. Ensure you have Java `11` or above installed in your Computer
+2. Download the latest `duke.jar` from here
+3. Copy the file to the folder you want to use as the home folder for your AddressBook
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+   ![UI](Ui.png)
+5. Type the command in the command box and press Enter to execute it.
+
+
+
 ## Features 
 
 ### Adding to-do task: `todo`
@@ -127,3 +137,18 @@ Format: `bye`
 ### Saving the data
 Task list data are saved in the hard disk after the `bye` command and the program ends
 <br><br><br>
+
+## Command summary
+
+| Action       | Format               | Example                                         |
+|--------------|----------------------|-------------------------------------------------|
+| **ToDo**     | `todo TASK_DESCRIPTION`   | `todo CS2103T iP`                               |
+| **Event**    | `event TASK_DESCRIPTION /at EVENT_TIME` | `event CS2103T Finals /at 2022-11-25`           |
+| **Deadline** | `deadline TASK_DESCRIPTION /by DEADLINE` | `deadline CS2103T iP Submission /by 2022-09-17` |
+| **List**     | `list`               | `list`                                          |
+| **Delete**   | `delete INDEX`       | `delete 1`                                      |
+| **Mark**     | `mark INDEX`         | `mark 1`                                        |
+| **Unmark**   | `unmark INDEX`       | `unmark 1`                                      |
+| **Tag**      | `tag INDEX TAG_NAME [MORE_TAG_NAMES]` | `tag 2 fun noHurry`                             |
+| **Find**     | `find KEYWORD`       | `find Sep`                                      |
+| **End**      | `bye`                | `bye`                                           |
