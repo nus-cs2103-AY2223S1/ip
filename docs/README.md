@@ -2,6 +2,10 @@
 
 ## Features 
 - Create tasks
+- Mark task
+- Unmark task
+- List all tasks
+- Help
 ### Create tasks
 
 Create 3 different types of tasks - todo, deadline and event
