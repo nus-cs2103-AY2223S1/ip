@@ -9,8 +9,8 @@ import duke.util.Ui;
  * A class to represent a command to change the status of task in the task list.
  */
 public class ChangeStatusCommand extends Command {
-    int taskIndex;
-    boolean isDone;
+    private int taskIndex;
+    private boolean isDone;
 
     /**
      * Constructs a ChangeStatusCommand object.

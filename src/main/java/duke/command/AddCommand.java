@@ -10,7 +10,7 @@ import duke.util.Ui;
  * A class to represent a command to add a task to the task list.
  */
 public class AddCommand extends Command {
-    String input;
+    private String input;
 
     /**
      * Constructs an AddCommand object.

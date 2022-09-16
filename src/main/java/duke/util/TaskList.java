@@ -9,7 +9,7 @@ import duke.task.Task;
  * A class to represent a list of tasks.
  */
 public class TaskList {
-    ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     /**
      * Constructor for TaskList class.

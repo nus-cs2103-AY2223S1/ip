@@ -9,7 +9,7 @@ import duke.util.Ui;
  * A class to represent command to find tasks matching a search text.
  */
 public class FindCommand extends Command {
-    String searchText;
+    private String searchText;
 
     /**
      * Constructs a new FindCommand.

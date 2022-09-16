@@ -10,9 +10,9 @@ import duke.util.Ui;
  */
 public abstract class Command {
 
-    Storage storage;
-    Ui ui;
-    TaskList taskList;
+    protected Storage storage;
+    protected Ui ui;
+    protected TaskList taskList;
 
     /**
      * Constructs a Command object.
