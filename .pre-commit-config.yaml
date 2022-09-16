@@ -1,0 +1,9 @@
+repos:
+  - repo: https://github.com/RichDom2185/nus-cs2103t-tp-git-hooks
+    rev: v0.2.1
+    hooks:
+      - id: cpd
+      - id: check-no-tabs
+      - id: check-eof-newline
+        exclude: ^text-ui-test/EXPECTED.TXT$
+      - id: check-trailing-whitespace
