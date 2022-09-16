@@ -1,8 +1,5 @@
 package duke;
 
-import duke.Command;
-import duke.Duke;
-
 public class DeleteCommand extends Command {
     int index;
 

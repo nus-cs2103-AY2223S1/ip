@@ -1,11 +1,9 @@
 package duke;
 
-import duke.Duke;
-
 public class AddCommand extends Command {
-    private char type;
-    private String description;
-    private String detail;
+    protected char type;
+    protected String description;
+    protected String detail;
 
     public AddCommand(char type, String description) {
         this.type = type;
