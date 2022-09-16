@@ -58,7 +58,12 @@ public class UiHandler {
                 "    ls\n" +
                 "    mark {entry index}\n" +
                 "    unmark {entry index}\n" +
-                "    help\n";
+                "    find {keyword}\n" +
+                "    help\n\n\n" +
+                "Please use either of the following three formats for time:\n" +
+                "    DD/MM/YYYY hh:mm\n" +
+                "    DD/MM/YYYY\n" +
+                "    hh:mm";
     }
 
     public String getGreeting() {
