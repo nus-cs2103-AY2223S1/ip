@@ -1,0 +1,21 @@
+list
+todo borrow book
+todo read book
+buy bread
+deadline return book /by 2022-08-22 1000
+event project meeting /at 2022-08-22 1800
+mark 1
+mark 1
+unmark 1
+unmark 2
+list
+mark 5
+mark 10
+unmark 25
+mark
+unmark
+delete
+TODO cycle
+DEADLINE math assignment /by 2022-08-22 2200
+EVENT concert /at 2022-12-10 1800
+bye

@@ -4,4 +4,40 @@ Hello from
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
-
+What can I do for you?
+List is currently empty
+added [T][ ] borrow book
+Now you have 1 tasks in the list
+added [T][ ] read book
+Now you have 2 tasks in the list
+Invalid command
+added [D][ ] return book (by: Aug 22 2022 10:00)
+Now you have 3 tasks in the list
+added [E][ ] project meeting (at: Aug 22 2022 18:00)
+Now you have 4 tasks in the list
+Nice! I've marked this task as done
+[T][X] borrow book
+Task already marked as done
+[T][X] borrow book
+Ok! I've unmarked this task
+[T][ ] borrow book
+Task already marked as not done
+[T][ ] read book
+Here are your tasks:
+1.[T][ ] borrow book
+2.[T][ ] read book
+3.[D][ ] return book (by: Aug 22 2022 10:00)
+4.[E][ ] project meeting (at: Aug 22 2022 18:00)
+Invalid selection for marking
+Invalid selection for marking
+Invalid selection for unmarking
+No input provided for marking
+No input provided for unmarking
+No input provided for deletion
+added [T][ ] cycle
+Now you have 5 tasks in the list
+added [D][ ] math assignment (by: Aug 22 2022 22:00)
+Now you have 6 tasks in the list
+added [E][ ] concert (at: Dec 10 2022 18:00)
+Now you have 7 tasks in the list
+Bye. Hope to see you again soon!
