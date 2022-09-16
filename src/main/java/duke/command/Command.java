@@ -1,8 +1,8 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.util.TaskList;
 import duke.util.Storage;
+import duke.util.TaskList;
 import duke.util.Ui;
 
 /**
@@ -16,9 +16,9 @@ public abstract class Command {
 
     /**
      * Constructs a Command object.
-     * 
-     * @param storage Storage class to be used
-     * @param ui Ui class to be used
+     *
+     * @param storage  Storage class to be used
+     * @param ui       Ui class to be used
      * @param taskList TaskList to be used
      */
     public Command(Storage storage, Ui ui, TaskList taskList) {
@@ -29,7 +29,7 @@ public abstract class Command {
 
     /**
      * Returns true if program is supposed to exit after this command is executed.
-     * 
+     *
      * @return whether program is supposed to exit after this command is executed
      */
     public boolean isExit() {

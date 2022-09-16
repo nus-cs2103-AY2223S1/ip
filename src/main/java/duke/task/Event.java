@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.util.Date;
+
 import duke.DukeException;
 
 /**
@@ -11,7 +12,7 @@ public class Event extends Task {
 
     /**
      * Constructor to create new Event.
-     * 
+     *
      * @param description Task description.
      * @param timing      Timing of Event.
      */
@@ -22,7 +23,7 @@ public class Event extends Task {
 
     /**
      * Constructor to create new Event with isDone.
-     * 
+     *
      * @param description Task description.
      * @param timing      Timing of Event.
      * @param isDone      Whether the task is done or not.
@@ -34,7 +35,7 @@ public class Event extends Task {
 
     /**
      * Factory method to create new Event.
-     * 
+     *
      * @param input String including task description and event timing specified
      *              after /at.
      * @return new Event.

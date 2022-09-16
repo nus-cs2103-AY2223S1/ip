@@ -7,8 +7,8 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
-import duke.command.ListCommand;
 import duke.command.HelpCommand;
+import duke.command.ListCommand;
 
 /**
  * Parser to make sense of user input.
@@ -21,7 +21,7 @@ public class Parser {
 
     /**
      * Constructs a Parser object.
-     * 
+     *
      * @param storage  Storage class to be used
      * @param ui       Ui class to be used
      * @param taskList TaskList to be used
@@ -32,13 +32,16 @@ public class Parser {
         this.taskList = taskList;
     }
 
+    /**
+     * Enum representing the different types of commands.
+     */
     public static enum CommandName {
         bye, list, mark, unmark, delete, todo, deadline, event, find, help
     }
 
     /**
      * Parses the user input and returns a Command object.
-     * 
+     *
      * @param input User input
      * @return Command object after parsing input
      * @throws DukeException if user input is invalid
@@ -46,7 +49,8 @@ public class Parser {
     public Command parse(String input) throws DukeException {
         String[] tokens = input.split(" ");
         if (tokens.length == 0) {
-            throw new DukeException("I'm sorry but I don't know what that means. Enter `help` to view list of available commands.");
+            throw new DukeException(
+                    "I'm sorry but I don't know what that means. Enter `help` to view list of available commands.");
         }
         int taskIndex;
         switch (CommandName.valueOf(tokens[0])) {

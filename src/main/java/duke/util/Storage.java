@@ -1,13 +1,12 @@
 package duke.util;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 import duke.DukeException;
 import duke.task.Task;
-
-import java.io.FileWriter;
 
 /**
  * Storage class for storing and retrieving tasks from local file.
@@ -17,7 +16,7 @@ public class Storage {
 
     /**
      * Constructor for Storage class.
-     * 
+     *
      * @param filePath Path to local file to store tasks.
      */
     public Storage(String filePath) {

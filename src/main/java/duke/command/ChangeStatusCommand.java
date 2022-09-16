@@ -1,8 +1,8 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.util.TaskList;
 import duke.util.Storage;
+import duke.util.TaskList;
 import duke.util.Ui;
 
 /**
@@ -14,15 +14,15 @@ public class ChangeStatusCommand extends Command {
 
     /**
      * Constructs a ChangeStatusCommand object.
-     * 
-     * @param storage Storage class to be used
-     * @param ui Ui class to be used
-     * @param taskList TaskList that specified task is in
+     *
+     * @param storage   Storage class to be used
+     * @param ui        Ui class to be used
+     * @param taskList  TaskList that specified task is in
      * @param taskIndex Index of task in taskList
-     * @param isDone Whether the task is done or not
+     * @param isDone    Whether the task is done or not
      */
-    public ChangeStatusCommand(Storage storage, Ui ui, TaskList taskList, String input,
-            boolean isDone) throws DukeException {
+    public ChangeStatusCommand(Storage storage, Ui ui, TaskList taskList, String input, boolean isDone)
+            throws DukeException {
         super(storage, ui, taskList);
         if (input.split(" ").length == 1) {
             throw new DukeException("Please enter a valid task number!");
@@ -33,7 +33,7 @@ public class ChangeStatusCommand extends Command {
 
     /**
      * Changes the status of the specified task.
-     * 
+     *
      * @return String representation of the task whose status has been changed
      * @throws DukeException if taskindex is invalid
      */

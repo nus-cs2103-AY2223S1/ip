@@ -1,19 +1,19 @@
 package duke.command;
 
-import duke.util.TaskList;
 import duke.util.Storage;
+import duke.util.TaskList;
 import duke.util.Ui;
 
 /**
  * A class to represent a help command.
  */
-public class HelpCommand extends Command{
-    
+public class HelpCommand extends Command {
+
     /**
      * Constructs a HelpCommand object.
-     * 
-     * @param storage Storage class to be used
-     * @param ui Ui class to be used
+     *
+     * @param storage  Storage class to be used
+     * @param ui       Ui class to be used
      * @param taskList TaskList to be used
      */
     public HelpCommand(Storage storage, Ui ui, TaskList taskList) {
@@ -22,7 +22,7 @@ public class HelpCommand extends Command{
 
     /**
      * Prints a help message.
-     * 
+     *
      * @return help message
      */
     @Override
@@ -31,8 +31,9 @@ public class HelpCommand extends Command{
     }
 
     /**
-     * Returns false as program is not supposed to exit after this command is executed.
-     * 
+     * Returns false as program is not supposed to exit after this command is
+     * executed.
+     *
      * @return whether program is supposed to exit after this command is executed
      */
     @Override

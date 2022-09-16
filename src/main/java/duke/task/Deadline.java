@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.util.Date;
+
 import duke.DukeException;
 
 /**
@@ -11,7 +12,7 @@ public class Deadline extends Task {
 
     /**
      * Creates new Deadline.
-     * 
+     *
      * @param description Description of deadline you want to create.
      * @param deadline    Deadline of the task.
      */
@@ -22,7 +23,7 @@ public class Deadline extends Task {
 
     /**
      * Creates new Deadline with isDone.
-     * 
+     *
      * @param description Description of deadline you want to create.
      * @param deadline    Deadline of the task.
      * @param isDone      Whether the task is done or not.
@@ -34,7 +35,7 @@ public class Deadline extends Task {
 
     /**
      * Factory method to create new Deadline.
-     * 
+     *
      * @param input String including task description and deadline specified after
      *              /by.
      * @return New Deadline.

@@ -30,6 +30,7 @@ public class Duke {
 
     /**
      * Returns string message to greet user.
+     *
      * @return Greeting string.
      */
     public String greet() {
@@ -38,6 +39,7 @@ public class Duke {
 
     /**
      * Returns message output from executing user input.
+     *
      * @param input User input.
      * @return Message output from executing user input.
      */
@@ -48,7 +50,8 @@ public class Duke {
         } catch (NumberFormatException e) {
             return ui.showError("Please Enter a valid task number!");
         } catch (IllegalArgumentException e) {
-            return ui.showError("I'm sorry but I don't know what that means. Enter `help` to view list of available commands.");
+            return ui.showError(
+                    "I'm sorry but I don't know what that means." + "Enter `help` to view list of available commands.");
         } catch (DukeException e) {
             return ui.showError(e);
         }

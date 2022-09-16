@@ -20,7 +20,7 @@ public class TaskList {
 
     /**
      * Displays all stored tasks.
-     * 
+     *
      * @return String representation of all tasks in the task list.
      */
     public String displayList() {
@@ -33,7 +33,7 @@ public class TaskList {
 
     /**
      * Adds task to tasks list.
-     * 
+     *
      * @param task Task to be stored in task list.
      * @return String representation of task added.
      */
@@ -47,8 +47,9 @@ public class TaskList {
     }
 
     /**
-     * Adds task to task list without any user messages (Used when loading data from file).
-     * 
+     * Adds task to task list without any user messages (Used when loading data from
+     * file).
+     *
      * @param task Task to be pushed into task list.
      */
     public void pushTask(Task task) {
@@ -57,7 +58,7 @@ public class TaskList {
 
     /**
      * Removes specified task from tasks list.
-     * 
+     *
      * @param taskIndex Index of task to be removed.
      * @return String representation of task removed.
      * @throws DukeException if given index is out of bounds.
@@ -75,9 +76,9 @@ public class TaskList {
 
     /**
      * Changes the completed status of specified task.
-     * 
+     *
      * @param taskIndex Index of task to be changed.
-     * @param isDone true if task is completed, false otherwise.
+     * @param isDone    true if task is completed, false otherwise.
      * @return String representation of task whose status has been changed.
      * @throws DukeException if given index is out of bounds.
      */
@@ -93,8 +94,9 @@ public class TaskList {
     }
 
     /**
-     * Returns the string representation of all tasks in list to be stored in local file.
-     * 
+     * Returns the string representation of all tasks in list to be stored in local
+     * file.
+     *
      * @return String representation of all tasks in list.
      */
     public String getFileText() {
@@ -107,7 +109,7 @@ public class TaskList {
 
     /**
      * Finds the tasks matching the search text and displays them.
-     * 
+     *
      * @param searchText Search text to be searched for
      * @return String representation of all tasks matching the search text.
      */

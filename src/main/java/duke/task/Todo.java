@@ -7,7 +7,7 @@ public class Todo extends Task {
 
     /**
      * Constructor to create new Todo.
-     * 
+     *
      * @param description Description of the todo you want to create.
      */
     public Todo(String description) {
@@ -16,7 +16,7 @@ public class Todo extends Task {
 
     /**
      * Constructor to create new Todo with isDone.
-     * 
+     *
      * @param description Description of the todo you want to create.
      * @param isDone      Whether the task is done or not.
      */
@@ -26,7 +26,7 @@ public class Todo extends Task {
 
     /**
      * Factory method to create new Todo.
-     * 
+     *
      * @param input Task description.
      * @return new Todo.
      */

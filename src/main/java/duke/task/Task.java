@@ -1,12 +1,11 @@
 package duke.task;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import duke.DukeException;
 import duke.util.Parser.CommandName;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 /**
  * A class to represent a task.
@@ -17,7 +16,7 @@ public abstract class Task {
 
     /**
      * Constructor to create new Task.
-     * 
+     *
      * @param description Task Description.
      */
     public Task(String description) {
@@ -27,9 +26,9 @@ public abstract class Task {
 
     /**
      * Constructor to create new Task with isDone.
-     * 
+     *
      * @param description Task Description.
-     * @param isDone Whether the task is done or not.
+     * @param isDone      Whether the task is done or not.
      */
     public Task(String description, boolean isDone) {
         this.description = description.trim();
@@ -38,7 +37,7 @@ public abstract class Task {
 
     /**
      * Checks if the input string contains a description.
-     * 
+     *
      * @param splitInput String split by " " and limited to 2.
      * @throws DukeException if no description is present.
      */
@@ -50,8 +49,9 @@ public abstract class Task {
 
     /**
      * Factory method to create new Task.
-     * 
-     * @param input String containing task type, description and deadline/timing if needed.
+     *
+     * @param input String containing task type, description and deadline/timing if
+     *              needed.
      * @return new Task.
      * @throws DukeException if invalid task type or wrong parameters.
      */
@@ -59,23 +59,24 @@ public abstract class Task {
         String[] splitInput = input.split(" ", 2);
 
         switch (CommandName.valueOf(splitInput[0])) {
-            case todo:
-                checkDescription(splitInput);
-                return Todo.createTodo(splitInput[1]);
-            case deadline:
-                checkDescription(splitInput);
-                return Deadline.createDeadline(splitInput[1]);
-            case event:
-                checkDescription(splitInput);
-                return Event.createEvent(splitInput[1]);
-            default:
-                throw new DukeException("I'm sorry but I don't know what that means. Enter `help` to view list of available commands.");
+        case todo:
+            checkDescription(splitInput);
+            return Todo.createTodo(splitInput[1]);
+        case deadline:
+            checkDescription(splitInput);
+            return Deadline.createDeadline(splitInput[1]);
+        case event:
+            checkDescription(splitInput);
+            return Event.createEvent(splitInput[1]);
+        default:
+            throw new DukeException(
+                    "I'm sorry but I don't know what that means. Enter `help` to view list of available commands.");
         }
     }
 
     /**
      * Returns a string representation of whether task is done or not.
-     * 
+     *
      * @return "X" if task is done, " " if not done
      */
     public String getStatusIcon() {
@@ -104,7 +105,7 @@ public abstract class Task {
 
     /**
      * Parses a date string and returns a Date object.
-     * 
+     *
      * @param input Date string
      * @return Date object
      * @throws DukeException if date string has invalid format
@@ -131,6 +132,7 @@ public abstract class Task {
 
     /**
      * Returns a string representation of the date
+     *
      * @param date Date object
      * @return String representation of the date
      */
@@ -141,7 +143,7 @@ public abstract class Task {
 
     /**
      * Checks if the task description contains the given search text
-     * 
+     *
      * @param searchText Search text to be searched for
      * @return true if the task description contains the search text
      */
@@ -156,7 +158,7 @@ public abstract class Task {
 
     /**
      * Returns the string represetation of task when saving to file.
-     * 
+     *
      * @return String representation of task when saving to file.
      */
     public abstract String getFileString();
