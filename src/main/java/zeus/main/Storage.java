@@ -13,7 +13,6 @@ import zeus.task.Event;
 import zeus.task.Task;
 import zeus.task.Todo;
 
-
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
  */

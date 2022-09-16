@@ -1,6 +1,5 @@
 package zeus.task;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -52,6 +51,10 @@ public class Deadline extends Task {
      */
     @Override
     public String getFileFormat() {
+        if (this.by == null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            return String.format("D | %d | %s | %s", isDone ? 1 : 0, description, this.datetime.format(formatter));
+        }
         return String.format("D | %d | %s | %s", isDone ? 1 : 0, description, this.by);
     }
 
