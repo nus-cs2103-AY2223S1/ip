@@ -37,8 +37,6 @@ Users can customize their own preferred command for each function.
 
 Tasks can be listed out, both done and not-done for the user to refer to. The status of tasks will be shown as well.
 
-###                                                                                                 
-
 ## Usage
 
 ### `Todo` - Add a todo
@@ -64,8 +62,6 @@ Yes master, Dobby will add the following task to the list:
 Master has 1 task(s) left.
 ```
 
-###    
-
 ### `Deadline` - Add a deadline
 
 Adds a deadline task into the task list. A deadline is a task with a due date.
@@ -89,8 +85,6 @@ Yes master, Dobby will add the following task to the list:
         
 Master has 1 task(s) left.
 ```
-
-###    
 
 ### `Event` - Add an event
 
@@ -116,8 +110,6 @@ Yes master, Dobby will add the following task to the list:
 Master has 1 task(s) left.
 ```
 
-###    
-
 ### `list` - Lists all tasks
 
 Lists out all tasks, both done and not-done for the user to refer to. The status of tasks will be shown as well.
@@ -135,8 +127,6 @@ Expected outcome:
     2. [D][X] TestDeadline (by: Feb 02 2022 02:02)
     3. [E][ ] TestEvent (by: Feb 02 2022 02:02)
 ```
-
-###    
 
 ### `mark` - Mark a task as done
 
@@ -164,8 +154,6 @@ Expected outcome for tasks that were marked as done:
 Dobby has already marked this task done!
 ```
 
-###    
-
 ### `unmark` - Mark a task as not done
 
 Updates the status of a task to not done.
@@ -192,8 +180,6 @@ Expected outcome for tasks that were not marked as done:
 Master has never marked this task done before...
 ```
 
-###    
-
 ### `delete` - Delete a task
 
 Removes a task from the task list permanently.
@@ -217,8 +203,6 @@ Dobby has removed this task:
 Master has only 1 task(s) left.
 ```
 
-###   
-
 ### `find` - Find tasks by keyword
 
 Lists out tasks whose description contain the given keyword or phrase.
@@ -240,8 +224,6 @@ Dobby has found the following relevant tasks:
         2.[T][ ] find dobby's sock
 ```
 
-###   
-
 ### `simplify` - Customizes commands for a function
 
 Customizes the command to call each function.
@@ -259,8 +241,6 @@ Expected outcome:
 ```
 Yes master, from now on dobby will do [todo] when dobby sees [dobbyTodo].
 ```
-
-###   
 
 ### `bye` - Exit the program
 
