@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Locale;
 import java.util.Set;
 
 import duke.task.Deadline;
@@ -31,7 +30,7 @@ public class TaskList {
      * @param storage storage object used to store tasks
      */
     public TaskList(Storage storage) {
-        assert storage != null: "storage object is null";
+        assert storage != null : "storage object is null";
         this.list = storage.getList();
         this.storage = storage;
         this.count = storage.getCount();
@@ -108,7 +107,7 @@ public class TaskList {
      * @param item the input of the user
      */
     public String createDeadline(String item) {
-        assert item.length() != 0: "invalid string as argument";
+        assert item.length() != 0 : "invalid string as argument";
         try {
             String string = "";
             int slash = findSlash(item);
@@ -133,7 +132,7 @@ public class TaskList {
      * @param item the user's input
      */
     public String createEvent(String item) {
-        assert item.length() != 0: "invalid string as argument";
+        assert item.length() != 0 : "invalid string as argument";
         try {
             String string = "";
             int slash = findSlash(item);
@@ -173,7 +172,7 @@ public class TaskList {
      * @param item The user's input
      */
     public String createTask(String item) {
-        assert item.length() != 0: "invalid string as argument";
+        assert item.length() != 0 : "invalid string as argument";
         try {
             String string = "";
             list.add(new Todo(item.substring(5)));
@@ -218,12 +217,12 @@ public class TaskList {
         setUpDictionary(dict);
         Set<LocalDate> keys = dict.keySet();
         String output = "";
-        for(LocalDate key: keys){
+        for (LocalDate key: keys) {
             String dateString = key.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
             output += "Tasks for " + dateString + " :\n";
             ArrayList list = dict.get(key);
             for (int i = 0; i < list.size(); i++) {
-                output += list.get(i) +"\n";
+                output += list.get(i) + "\n";
             }
         }
         return output;
@@ -235,9 +234,9 @@ public class TaskList {
      */
     public void setUpDictionary(Hashtable<LocalDate, ArrayList<String>> dict) {
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i) instanceof Deadline) {
+            if (list.get(i) instanceof Deadline) {
                 Deadline deadline = (Deadline) list.get(i);
-                LocalDate date =  deadline.getDate();
+                LocalDate date = deadline.getDate();
                 if (dict.get(date) == null) {
                     dict.put(date, new ArrayList<>());
                 }

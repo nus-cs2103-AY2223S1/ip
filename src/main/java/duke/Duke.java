@@ -10,7 +10,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -74,12 +73,7 @@ public class Duke extends Application {
         return Parser.parse(input, tasks);
     }
 
-
     @Override
-    /**
-     * initializes javafx UI
-     * @param stage the stage object in which the UI is being built
-     */
     public void start(Stage stage) {
         setUpComponents(stage);
         setAlignment(stage);

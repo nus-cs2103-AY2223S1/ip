@@ -11,8 +11,8 @@ public class Parser {
      * @param taskList the object used to store the tasks
      */
     public static String parse(String item, TaskList taskList) {
-        assert taskList != null: "taskList is null";
-        assert item != null: "entered string is null";
+        assert taskList != null : "taskList is null";
+        assert item != null : "entered string is null";
         if (item.equals("list")) {
             return taskList.printTaskList();
         } else if (item.length() == 6 && item.substring(0, 4).equals("mark")) {

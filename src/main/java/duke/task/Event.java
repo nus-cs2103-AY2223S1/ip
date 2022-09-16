@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.Task;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import duke.Task;
 
 /**
  * Represents an Event task

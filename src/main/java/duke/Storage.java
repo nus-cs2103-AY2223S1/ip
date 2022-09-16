@@ -67,7 +67,7 @@ public class Storage {
      */
     private void addToList(String line) {
         String[] parts = line.split("##");
-        assert parts.length != 0: "line incompatible i storage file";
+        assert parts.length != 0 : "line incompatible i storage file";
         switch(parts[0]) {
         case("[T]"):
             addTodoToList(parts);

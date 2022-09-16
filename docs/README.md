@@ -98,7 +98,7 @@ This command allows you to mark a task as undone once it is completed.
 
 ### Usage
 
-### `unmark` - Creates an event task
+### `unmark` - Marking a task as undone
 
 Example of usage:
 
