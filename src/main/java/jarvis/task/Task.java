@@ -33,6 +33,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public boolean match(String keyword) {
+        return this.description.contains(keyword);
+    }
+
     public abstract TaskType getTaskType();
 
     public abstract String toDataForm();

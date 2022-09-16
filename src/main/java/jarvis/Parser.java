@@ -75,6 +75,12 @@ public class Parser {
                 }
                 taskList.deleteTask(Integer.parseInt(input.substring(7)) - 1);
 
+            } else if (input.startsWith("find")) {
+                if (input.length() <= 5) {
+                    System.out.println("☹ OOPS!!! Please enter a keyword for searching.");
+                    return;
+                }
+                taskList.find(input.substring(5));
             } else {
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }

@@ -1,6 +1,5 @@
 package jarvis;
 
-import jarvis.Storage;
 import jarvis.task.Deadline;
 import jarvis.task.Event;
 import jarvis.task.Task;
@@ -8,17 +7,15 @@ import jarvis.task.Todo;
 
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 /**
  * Stores the task list when the program is running
  */
 public class TaskList {
-    Task[] taskList = new Task[100];
 
-    /**
-     * The first index that is empty
-     */
-    private int firstEmptyIndex = 0;
+    ArrayList<Task> taskList = new ArrayList<>();
+
     private Storage storage;
 
     public TaskList(Storage storage) {
@@ -48,14 +45,14 @@ public class TaskList {
             return;
         }
 
-        taskList[firstEmptyIndex] = task;
+        taskList.add(task);
         storage.saveAddedTask(task);
 
         String msg = "Got it. I've added this task:\n" + "  "
-                + taskList[firstEmptyIndex].toString()
-                + "\n" + "Now you have " + (firstEmptyIndex + 1) + " tasks in the list";
+                + task
+                + "\n" + "Now you have " + taskList.size() + " tasks in the list";
         System.out.println(msg);
-        ++firstEmptyIndex;
+        //++firstEmptyIndex;
     }
 
     /**
@@ -63,28 +60,29 @@ public class TaskList {
      * @param task The task to append
      */
     public void appendLoadedTask(Task task) {
-        taskList[firstEmptyIndex] = task;
-        ++firstEmptyIndex;
+
+
+        taskList.add(task);
     }
 
     public void markTaskAsDone(int taskNum) {
-        if (taskNum >= firstEmptyIndex) {
+        if (taskNum >= taskList.size()) {
             System.out.println("There is no task with index " + (taskNum + 1));
             return;
         }
-        taskList[taskNum].markAsDone();
+        taskList.get(taskNum).markAsDone();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskList[taskNum].toString());
+        System.out.println(taskList.get(taskNum));
     }
 
     public void markTaskAsUnDone(int taskNum) {
-        if (taskNum >= firstEmptyIndex) {
+        if (taskNum >= taskList.size()) {
             System.out.println("There is no task with index " + (taskNum + 1));
             return;
         }
-        taskList[taskNum].markAsUnDone();
+        taskList.get(taskNum).markAsUnDone();
         System.out.println("I've marked this task as not done:");
-        System.out.println(taskList[taskNum].toString());
+        System.out.println(taskList.get(taskNum));
     }
 
     /**
@@ -92,36 +90,34 @@ public class TaskList {
      * @param index The position of the task to delete, 0-based
      */
     public void deleteTask(int index) {
-        if (index >= firstEmptyIndex) {
+        if (index >= taskList.size()) {
             System.out.println("There is no task with index " + (index + 1));
             return;
         }
+
         System.out.println("Noted. I've removed this task:\n"
-                + taskList[index].toString() + "\n"
-                + "Now you have " + (firstEmptyIndex - 1) + " tasks in the list");
-        taskList[index] = null;
-        for (int i = index; i < firstEmptyIndex; i++) {
-            taskList[index] = taskList[index + 1];
-        }
-        --firstEmptyIndex;
+                + taskList.get(index) + "\n"
+                + "Now you have " + (taskList.size() - 1) + " tasks in the list");
+        taskList.remove(index);
+
     }
 
     /**
      * Print all the task in the task list
      */
     public void printTasks() {
-        if (firstEmptyIndex == 0) {
+        if (taskList.size() == 0) {
             System.out.println("There's nothing in the list.");
             return;
         }
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < firstEmptyIndex; i++) {
-            System.out.println((i + 1) + ". " + taskList[i].toString());
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println((i + 1) + ". " + taskList.get(i));
         }
     }
 
     public Task getTask(int i) {
-        return taskList[i];
+        return taskList.get(i);
     }
 
     /**
@@ -129,6 +125,19 @@ public class TaskList {
      * @return The number of task
      */
     public int getTaskCount() {
-        return firstEmptyIndex;
+        return taskList.size();
+    }
+
+    public void find(String keyword) {
+        Task[] searchResult = taskList.stream().filter(task -> task.match(keyword)).toArray(Task[]::new);
+        if (searchResult.length == 0) {
+            System.out.println("There's no matching task");
+            return;
+        }
+        String msg = "Here are the matching tasks in your list:";
+        for (int i = 0; i < searchResult.length; i++) {
+            msg += "\n" + (i + 1) + ". " + searchResult[i];
+        }
+        System.out.println(msg);
     }
 }
