@@ -27,7 +27,8 @@ public class TagCommand extends Command {
             tasks.tagInTaskList(taskIndex, tagDesc);
             storage.rebuildFile(tasks.getIterator());
             ui.nextOutput("Alright, this task is tagged:\n"
-                    + tasks.getTask(taskIndex).toString());
+                    + tasks.getTask(taskIndex).toString() + "\n"
+                    + super.nextAction);
         } catch (IOException ioe) {
             ui.nextOutput("Something went wrong: " + ioe.getMessage());
         }

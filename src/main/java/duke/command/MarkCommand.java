@@ -22,7 +22,8 @@ public class MarkCommand extends Command {
             tasks.markTask(taskIndex);
             storage.rebuildFile(tasks.getIterator());
             ui.nextOutput("Alright, this task is marked as done:\n"
-                    + tasks.getTask(taskIndex).toString());
+                    + tasks.getTask(taskIndex).toString() + "\n"
+                    + super.nextAction);
         } catch (IOException ioe) {
             ui.nextOutput("Something went wrong: " + ioe.getMessage());
         }

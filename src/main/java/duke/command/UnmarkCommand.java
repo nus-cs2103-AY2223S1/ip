@@ -22,7 +22,8 @@ public class UnmarkCommand extends Command {
             tasks.unmarkTask(taskIndex);
             storage.rebuildFile(tasks.getIterator());
             ui.nextOutput("Alright, this task is marked as not done yet:\n"
-                    + tasks.getTask(taskIndex).toString());
+                    + tasks.getTask(taskIndex).toString() + "\n"
+                    + super.nextAction);
         } catch (IOException ioe) {
             ui.nextOutput("Something went wrong: " + ioe.getMessage());
         }

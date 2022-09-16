@@ -19,6 +19,7 @@ public class ListCommand extends Command {
             qty++;
             output += qty + "." + iterate.next().toString() + "\n";
         }
+        output += super.nextAction;
         ui.nextOutput(output);
     }
 }

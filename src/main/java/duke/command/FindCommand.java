@@ -35,6 +35,7 @@ public class FindCommand extends Command {
                 output += qty + "." + currentTask + "\n";
             }
         }
+        output += "\n" + super.nextAction;
         ui.nextOutput(output);
     }
 }

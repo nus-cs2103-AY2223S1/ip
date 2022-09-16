@@ -6,6 +6,8 @@ import duke.Ui;
 
 public abstract class Command {
 
+    protected String nextAction = "What else can I help you with?";
+
     /**
      * Tells the main class whether to terminate or not.
      * @return

@@ -29,7 +29,8 @@ public class ToDoCommand extends Command {
             storage.appendToFile(task.toSave() + System.lineSeparator());
             ui.nextOutput("Got it. I've added this task:\n"
                     + task + "\n"
-                    + "Now you have " + tasks.listSize() + " tasks in the list.");
+                    + "Now you have " + tasks.listSize() + " tasks in the list.\n"
+                    + super.nextAction);
         } catch (EmptyDescException e) {
             ui.nextOutput(e.getMessage());
         } catch (IOException ioe) {

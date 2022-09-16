@@ -25,7 +25,8 @@ public class DeleteCommand extends Command {
             storage.rebuildFile(tasks.getIterator());
             ui.nextOutput("Noted. I've removed this task:\n"
                     + task.toString() + "\n"
-                    + "Now you have " + tasks.listSize() + " tasks in the list");
+                    + "Now you have " + tasks.listSize() + " tasks in the list\n"
+                    + super.nextAction);
         } catch (IOException ioe) {
             ui.nextOutput("Something went wrong: " + ioe.getMessage());
         }
