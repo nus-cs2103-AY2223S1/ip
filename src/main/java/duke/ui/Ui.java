@@ -10,7 +10,7 @@ import duke.task.TaskList;
  * The Ui class handles the interactions with the user.
  */
 public class Ui {
-    private static final String LINE = "    ____________________________________________________________";
+    private static final String LINE = "    _________________________________";
     private static final String INDENTATION = "     ";
     private Scanner sc = new Scanner(System.in);
 
@@ -114,13 +114,13 @@ public class Ui {
      * @param matchedTasks The matched task.
      * @return String representation of the matched task.
      */
-    public String displayMatch(TaskList matchedTasks) {
-        int size = matchedTasks.getSize();
+    public String displayMatch(ArrayList<Task> matchedTasks) {
+        int size = matchedTasks.size();
 
         String list = "These tasks matches your keyword: \n";
 
         for (int i = 0; i < size; i++) {
-            list = list + makeIndent((i + 1) + ". " + matchedTasks.getTask(i).toString() + "\n");
+            list = list + makeIndent((i + 1) + ". " + matchedTasks.get(i).toString() + "\n");
         }
 
         return printMessage(list);

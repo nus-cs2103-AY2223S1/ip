@@ -1,5 +1,6 @@
 package duke.command;
 
+import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
@@ -39,7 +40,7 @@ public class EventCommand extends Command {
      * @throws DukeException
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         String[] splitDescription = description.split(" /at ", 2);
         if (splitDescription[0].equals(description)) {
             throw new DukeMissingSpecifierException("event", " /at ");
@@ -49,6 +50,7 @@ public class EventCommand extends Command {
             String at = splitDescription[1];
             this.at = at;
             Task event = tasks.addEvent(instruction, at);
+            storage.save(tasks);
             return ui.displayAdd(event, tasks.getSize());
         } catch (DateTimeParseException dtp) {
             throw new DukeInvalidDateException();

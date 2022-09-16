@@ -1,5 +1,6 @@
 package duke.command;
 
+import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
@@ -39,7 +40,7 @@ public class DeadlineCommand extends Command {
      * @throws DukeException
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         String[] splitDescription = description.split(" /by ", 2);
         if (splitDescription[0].equals(description)) {
             throw new DukeMissingSpecifierException("deadline", " /by ");
@@ -49,6 +50,7 @@ public class DeadlineCommand extends Command {
             String by = splitDescription[1];
             this.by = by;
             Task deadline = tasks.addDeadline(instruction, by);
+            storage.save(tasks);
             return ui.displayAdd(deadline, tasks.getSize());
         } catch (DateTimeParseException dtp) {
             throw new DukeInvalidDateException();

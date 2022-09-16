@@ -7,6 +7,8 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+import java.util.ArrayList;
+
 /**
  * FindCommand is a Command that handles finding a task with a specific keyword.
  *
@@ -34,17 +36,9 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        TaskList matchedTasks = new TaskList();
-        int size = tasks.getSize();
+        ArrayList<Task> matchedTasks = tasks.findTasks(keyword);
 
-        for (int i = 0; i < size; i++) {
-            Task task = tasks.getTask(i);
-            if (task.getDescription().contains(keyword)) {
-                matchedTasks.addTask(task);
-            }
-        }
-
-        if (matchedTasks.getSize() < 1) {
+        if (matchedTasks.size() < 1) {
             throw new DukeNoMatchFoundException(keyword);
         }
 

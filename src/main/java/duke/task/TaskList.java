@@ -150,6 +150,17 @@ public class TaskList {
         return deletedTask;
     }
 
+    public ArrayList<Task> findTasks(String keyword) {
+        ArrayList<Task> matchedTasks = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            Task task = tasks.get(i);
+            if (task.getDescription().contains(keyword)) {
+                matchedTasks.add(task);
+            }
+        }
+        return matchedTasks;
+    }
+
     /**
      * Reminds tasks that are within 7 days to expiring.
      *
