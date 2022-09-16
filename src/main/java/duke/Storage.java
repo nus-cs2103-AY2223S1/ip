@@ -6,12 +6,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import duke.task.Activity;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -82,15 +84,22 @@ public class Storage {
                 String taskDescription = dataArr[2];
                 Task newTask;
 
-                if (taskType == 'D') {
+                switch (taskType) {
+                case 'A':
+                    newTask = new Activity(taskDescription, Duration.parse(dataArr[3]));
+                    break;
+                case 'D':
                     newTask = new Deadline(taskDescription,
                             ZonedDateTime.parse(dataArr[3]).withZoneSameInstant(timeZone));
-                } else if (taskType == 'E') {
+                    break;
+                case 'E':
                     newTask = new Event(taskDescription,
                             ZonedDateTime.parse(dataArr[3]).withZoneSameInstant(timeZone));
-                } else if (taskType == 'T') {
+                    break;
+                case 'T':
                     newTask = new Todo(taskDescription);
-                } else {
+                    break;
+                default:
                     System.out.println("The following task could not be loaded from memory:\n"
                             + Arrays.toString(dataArr));
                     continue;
@@ -118,14 +127,17 @@ public class Storage {
      */
     protected String updateSaveFile(ArrayList<Task> tasks) {
         try {
-            System.out.println(saveFilePath);
             FileWriter saveFileWriter = new FileWriter(saveFilePath);
             for (Task task : tasks) {
+                System.out.println(task);
                 String saveMsg = String.format("%c | %s | %s", task.getType(), task.getIsDone(), task.getDescription());
                 if (task instanceof Deadline) {
                     saveMsg += " | " + ((Deadline) task).getBy();
                 } else if (task instanceof Event) {
                     saveMsg += " | " + ((Event) task).getAt();
+                } else if (task instanceof Activity) {
+                    System.out.println("activity");
+                    saveMsg += " | " + ((Activity) task).getDuration();
                 }
                 saveFileWriter.write(saveMsg + "\n");
             }

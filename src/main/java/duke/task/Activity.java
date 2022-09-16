@@ -33,13 +33,13 @@ public class Activity extends Task {
      */
     @Override
     public char getType() {
-        return 'D';
+        return 'A';
     }
 
     @Override
     public String toString() {
         return String.format(
-                "[D]%s (for: %d hours)",
+                "[A]%s (for: %d hours)",
                 super.toString(),
                 this.duration.toHoursPart()
         );
