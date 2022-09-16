@@ -9,13 +9,6 @@ Deadlines and Events have a time indicating the due date and event date respecti
 Usage of the marker is up to you!
 Possible uses are to mark completed tasks or important tasks.
 
-### Storage
-All tasks are automatically saved at `/data/duke.txt` and loaded from the same file on startup.
-
-Advanced users may directly edit the savefile.
-
-**Caution!** If the edited data is of a different format, the file will be **overwritten** and data lost.
-
 ## Usage
 
 ### `todo <description>` Adds a Todo task
@@ -67,10 +60,10 @@ Usage:
 5.[E][ ] AI Test (at: Friday 2pm)
 ```
 
-### `mark <index>`, `unmark <index>` Marks or Unmarks the task specified by the index
+### `mark <index>`, `unmark <index>` Marks or Unmarks respectively the task specified by the index
 
 Usage:
-`mark 1` : Marks the first task in the list as completed
+`mark 1`
 
 ```
 1.[T][X] practice piano
@@ -101,10 +94,31 @@ Usage:
 ### `remove <indices...>` Removes the tasks specified by one or more indices
 
 Usage:
-`remove 1 2 4`
+`remove 1 2 3`
 `list`
 
 ```
 1.[E][ ] AI Seminar (at: Oct 13 2022 1900)
 2.[E][ ] AI Test (at: Friday 2pm)
 ```
+
+## Storage
+All tasks are automatically saved at `/data/duke.txt` and loaded from the same file on startup.
+
+Advanced users may directly edit the savefile.
+
+**Caution!** If the edited data is of a different format, the file will be **overwritten** and data lost.
+
+### Storage File Format
+Tasks are saved line by line in the following structure
+
+`<type>|<mark>|<description[|<time>]`
+
+`<type>` is `T` for Todo, `D` for Deadline, `E` for Event
+
+`<mark>` is `0` if the task is unmarked and `1` if it is marked
+
+`<time>` is only present for Deadlines and Events
+
+Example: `E|0|AI Seminar|2022-10-13 1900`
+corresponds to the input `event AI Seminar /at 2022-10-13 1900`
