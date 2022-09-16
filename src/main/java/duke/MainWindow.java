@@ -26,8 +26,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/brownie.jpg"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/maki.jpg"));
 
     @FXML
     public void initialize() {
@@ -45,11 +45,14 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+
+        // Solution below adapted from https://stackoverflow.com/a/27334614
         if (input.equals("bye")) {
             PauseTransition delay = new PauseTransition(Duration.seconds(1));
-            delay.setOnFinished( event -> Platform.exit() );
+            delay.setOnFinished(event -> Platform.exit());
             delay.play();
         }
+
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
