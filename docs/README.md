@@ -201,18 +201,20 @@ bye
 </p>
 
 ## <a name = "summary"></a>Command Summary
+
+
 | COMMAND                    | FORMAT, EXAMPLES                                                                         |
 |----------------------------|------------------------------------------------------------------------------------------|
 | Help                       | `help`                                                                                   |
 | Add ToDo Task              | todo [descr] <br> e.g., `todo buy grocery`                                               |
-| Add Deadline Task          | deadline [descr] /by [dd/mm/yyyy hhmm]<br> e.g., `deadline CS2109S HW /by 10/10/2022 2359` |
+| Add Deadline Task          | deadline [descr] /by [dd/mm/yyyy hhmm]<br> e.g., `deadline CS2109S HW /by 10/10/2022 2359|
 | Add Event Task             | event [descr] /at [dd/mm/yyyy hhmm]<br> e.g., `event Neon Party /at 18/09/2022 2110`     |
 | Mark Task                  | mark [index] <br> e.g., `mark 2`                                                         |
 | Unmark Task                | unmark [index] <br> e.g., `unmark 2`                                                     |
 | Find Task with the keyword | find [keyword] <br> e.g., `find party`                                                   |
-| Delete Task                | delete [index] <br> e.g., `delete 1`                                                      |
-| View all Tasks             | `list`                                                                                     |
-| Exit                       | `bye`                                                                                      |
+| Delete Task                | delete [index] <br> e.g., `delete 1`                                                     |
+| View all Tasks             | `list`                                                                                   |
+| Exit                       | `bye`                                                                                    |
 
 <p align = "right">
 <a href = "#top">Back to top</a>
