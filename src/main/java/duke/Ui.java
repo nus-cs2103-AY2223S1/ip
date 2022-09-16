@@ -60,7 +60,7 @@ public class Ui {
                 preposition = "(by: ";
             }
         }
-        return "[" + task.getTaskType() + "][" + (task.isMarked() ? "X" : " ") + "] "
+        return "[" + task.getTaskType() + "][" + (task.isMarked() ? "X" : "  ") + "] "
                 + task.getTaskName() + preposition + task.getOutputDateAndTime();
     }
 
