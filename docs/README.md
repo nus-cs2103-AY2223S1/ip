@@ -156,6 +156,13 @@ Your previous command is undone.
 **Expected outcome:** 
 The application exits.
 
+### Notes
+
+- Dates can be given in the following formats: 
+`yyyy-mm-dd`, `dd-MMM-yyyy`, `dd/MM/yyyy`
+- Additional words after valid full commands will be ignored.
+  (e.g. `list tasks` will be parsed as just `list`)
+
 ## Command Summary
 
 | Command  | Format                          |
