@@ -1,4 +1,8 @@
-package duke;
+package command;
+
+import duke.Storage;
+import task.TaskList;
+import duke.Ui;
 
 /**
  * This class handles unrecognised commands.

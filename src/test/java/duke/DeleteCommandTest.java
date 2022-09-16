@@ -1,6 +1,12 @@
 package duke;
 
+import command.Command;
+import command.DeleteCommand;
 import org.junit.jupiter.api.Test;
+import task.Task;
+import task.TaskList;
+import task.Todo;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;

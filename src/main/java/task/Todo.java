@@ -1,4 +1,4 @@
-package duke;
+package task;
 
 import static duke.DukeConstants.KEY_SEPARATOR;
 
@@ -22,7 +22,7 @@ public class Todo extends Task {
     @Override
     public String formatToSave() {
         int value;
-        if (isDone) {
+        if (getMarked()) {
             value = 1;
         } else {
             value = 0;

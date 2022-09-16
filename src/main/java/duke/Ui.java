@@ -1,15 +1,18 @@
 package duke;
 
+import task.Task;
+import task.TaskList;
+
 /**
  * This class handles the display for user interaction.
  */
 public class Ui {
 
-    protected final String ADDED = "oke i added this:";
-    protected final String DELETED = "oke i deleted this:";
-    protected final String MARKED = "oke this is done now:";
-    protected final String UNMARKED = "oke this is undone now:";
-    protected final String ARCHIVED_TASK = "this has been archived:";
+    public final String ADDED = "oke i added this:";
+    public final String DELETED = "oke i deleted this:";
+    public final String MARKED = "oke this is done now:";
+    public final String UNMARKED = "oke this is undone now:";
+    public final String ARCHIVED_TASK = "this has been archived:";
 
 
     /**

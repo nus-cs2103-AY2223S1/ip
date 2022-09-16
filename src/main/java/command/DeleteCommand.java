@@ -1,4 +1,9 @@
-package duke;
+package command;
+
+import duke.Storage;
+import task.Task;
+import task.TaskList;
+import duke.Ui;
 
 /**
  * This class handles all commands related to deleting tasks

@@ -1,4 +1,9 @@
-package duke;
+package command;
+
+import duke.Storage;
+import task.Task;
+import task.TaskList;
+import duke.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -6,7 +11,7 @@ import java.util.List;
 
 public class ArchiveCommand extends Command {
 
-    enum ArchiveType {
+    public enum ArchiveType {
         LOAD, INDEX, ARCHIVE
     }
 

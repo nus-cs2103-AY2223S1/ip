@@ -1,4 +1,4 @@
-package duke;
+package task;
 
 /**
  * This class is used to construct a task.
@@ -8,7 +8,7 @@ public class Task {
     protected String description;
 
     /** Status of the task */
-    protected boolean isDone;
+    private boolean isDone;
 
     /**
      * Constructor for the Task class.
@@ -43,6 +43,9 @@ public class Task {
         this.isDone = false;
     }
 
+    public boolean getMarked () {
+        return this.isDone;
+    }
     /**
      * Formats the task for writing to file.
      *

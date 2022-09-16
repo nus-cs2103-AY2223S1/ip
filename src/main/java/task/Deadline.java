@@ -1,4 +1,4 @@
-package duke;
+package task;
 
 /**
  * This class is used to construct a deadline task.
@@ -29,7 +29,7 @@ public class Deadline extends Task {
     @Override
     public String formatToSave() {
         int value;
-        if (isDone) {
+        if (getMarked()) {
             value = 1;
         } else {
             value = 0;

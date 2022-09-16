@@ -1,4 +1,4 @@
-package duke;
+package task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +43,7 @@ public class Event extends Task {
     @Override
     public String formatToSave() {
         int value;
-        if (isDone) {
+        if (getMarked()) {
             value = 1;
         } else {
             value = 0;
