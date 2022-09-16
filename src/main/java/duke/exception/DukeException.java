@@ -1,4 +1,4 @@
-package duke;
+package duke.exception;
 
 /**
  * Representation of user-related errors for Duke.

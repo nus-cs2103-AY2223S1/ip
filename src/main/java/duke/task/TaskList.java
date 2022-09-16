@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 import static java.util.stream.Collectors.toCollection;
 
@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.function.Predicate;
+
+import duke.exception.DukeException;
 
 /**
  * Represents a list of Tasks.

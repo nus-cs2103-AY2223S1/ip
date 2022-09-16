@@ -1,4 +1,4 @@
-package duke;
+package duke.ui;
 
 /**
  * Represents the message with appropriate flags needed by the display.

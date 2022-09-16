@@ -5,9 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import duke.Storage;
-import duke.Task;
-import duke.TaskList;
-import duke.Ui;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Represents command to filter tasks for a specified date.

@@ -2,11 +2,11 @@ package duke.command;
 
 import java.util.ArrayList;
 
-import duke.DukeException;
 import duke.Storage;
-import duke.Task;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Represents the list command to list all the user's tasks.
