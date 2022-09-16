@@ -38,24 +38,15 @@ public class Storage {
      * @throws IOException when createNewFile fails to create the file.
      */
     public Storage(TaskList tasks, Ui ui) throws IOException {
+
         if (!FILE.exists()) {
-           FILE.createNewFile();
+            FILE.createNewFile();
         }
         assert(FILE.exists());
         this.tasks = tasks;
         this.ui = ui;
-        if (FILE.exists()) {
-            this.br = new BufferedReader(new FileReader(FILE));
-            this.load();
-        } else {
-            if (FILE.createNewFile()) {
-                assert(FILE.exists());
-                this.br = new BufferedReader(new FileReader(FILE));
-                this.load();
-            } else {
-                throw new IOException("File failed creation!");
-            }
-        }
+        this.br = new BufferedReader(new FileReader(FILE));
+        this.load();
     }
 
     /**
