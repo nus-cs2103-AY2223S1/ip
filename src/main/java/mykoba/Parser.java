@@ -31,7 +31,7 @@ public class Parser {
      * @throws KobaException If input is invalid.
      */
     public static Command parse(String input) throws KobaException {
-        String[] words = input.split(" ", 2);
+        String[] words = input.trim().split(" ", 2);
         String command = words[0].trim();
         String description = words.length > 1 ? words[1].trim() : "";
 

@@ -1,3 +1,3 @@
 T | T | homework
 E | F | party | sunday 2-5pm
-D | F | ps2 | 2022-09-10T23:59
+D | T | ps2 | 2022-09-10T23:59
