@@ -12,22 +12,9 @@ import javafx.stage.Stage;
 /**
  * Driver class for the GUI.
  */
-public class Main extends Application {
-    private Duke duke = new Duke();
-
-    @Override
-    public void start(Stage stage) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
-            AnchorPane ap = fxmlLoader.load();
-            Scene scene = new Scene(ap);
-            stage.setScene(scene);
-            stage.setTitle("Ditto!");
-            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/Icon.png")));
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+public class Main {
+    public static void main(String[] args) {
+        Application.launch(Launcher.class, args);
     }
+
 }
