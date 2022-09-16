@@ -213,8 +213,8 @@ You have 2 tasks in the list.
  | [Listing tasks](#listing-tasks--list)                      | `list` | `list`                          | Aight. Here is your complete tasks. <br> 1. [T][ ] Run in the morning <br> 2. [D][ ] iP (by: 2022-09-16) <br> 3. [E][ ] Concert (at: Buona Vista) |
 | [Deleting your tasks](#deleting-your-tasks--delete)       | `delete <TASK_INDEX>` | `delete 2`                      | Yay, successfully removed this unwanted task :p <br>[D][ ] iP (by: 2022-09-16) <br>Now you have 2 tasks in the list.                                            |
 | [Finding your tasks](#finding-your-tasks--find)           | `find <KEYWORD>` | `find morning`                  |  1. [T][ ] Run in the morning                                                                     |
-| [Marking your tasks as done](#marking-your-tasks-as-done-mark) | `mark <TASK_INDEX>` | `mark 2` | Nice! I've marked this task as done: <br> [D][X] iP (by: 2022-09-16)                                                                           |
-| [Unmark your tasks](#unmark-your-tasks-unmark)            | `unmark <TASK_INDEX>` | `unmark 2` | OK, I've marked this task as not done yet: <br> [D][ ] iP (by: 2022-09-16)                                                                     |
+| [Marking your tasks as done](#marking-your-tasks-as-done-mark) | `mark <TASK_INDEX>` | `mark 2` | Congrats on completing this task! <br> [D][X] iP (by: 2022-09-16)                                                                           |
+| [Unmark your tasks](#unmark-your-tasks-unmark)            | `unmark <TASK_INDEX>` | `unmark 2` | Got it. I've unmarked this task for you ;) <br> [D][ ] iP (by: 2022-09-16)                                                                     |
                                                                 |
 
 ## Uncovered Issues?
