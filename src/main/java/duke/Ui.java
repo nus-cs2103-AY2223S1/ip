@@ -17,8 +17,6 @@ public class Ui {
 
     /**
      * Prints loading error message.
-     *
-     * @return the loading error message
      */
     public void showLoadingError() {
         System.err.println("☹ OOPS!!! I'm sorry, but I can't load your tasks :-(");
@@ -31,8 +29,8 @@ public class Ui {
      * @param size the size of the TaskList after adding the task
      */
     public String showAddTask(Task task, int size) {
-        String output = size == 1 ? " task in the list." : " tasks in the list.";
-        return "Got it. I've added this task:\n"
+        String output = size == 1 ? " task in your list." : " tasks in your list.";
+        return "Okay! I've added this task:\n"
                 + task
                 + "\nNow you have "
                 + size
@@ -46,8 +44,8 @@ public class Ui {
      * @param size the size of the TaskList after deleting the task
      */
     public String showDeleteTask(Task task, int size) {
-        String output = size == 1 ? " task in the list." : " tasks in the list.";
-        return "Got it. I've deleted this task:\n"
+        String output = size == 1 ? " task in your list." : " tasks in your list.";
+        return "Okay! I've deleted this task:\n"
                 + task
                 + "\nNow you have "
                 + size
@@ -57,11 +55,11 @@ public class Ui {
     /**
      * Returns string representation of the TaskList.
      *
-     * @param tasks
-     * @return
+     * @param tasks the TaskList
+     * @return the string representation of the TaskList
      */
     public String showList(TaskList tasks) {
-        return tasks.toString();
+        return "Here's what you have:\n" + tasks;
     }
 
     /**
@@ -70,7 +68,7 @@ public class Ui {
      * @return exit message
      */
     public String showBye() {
-        return "Bye. Hope to see you again soon!";
+        return "Bye! Hope to see you again soon! ☺";
     }
 
 
@@ -78,8 +76,9 @@ public class Ui {
      * Prints welcome message.
      */
     public static String showWelcome() {
-        String logo = "TASKY\n";
-        return "Hello! I'm " + logo
-                + "What can I do for you?";
+        String logo = "TASKY,\n";
+        return "☺ Hey there! I'm " + logo
+                + "your personal task manager!\n\n"
+                + "What can I do for you today?";
     }
 }

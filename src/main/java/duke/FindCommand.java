@@ -31,7 +31,8 @@ public class FindCommand extends Command {
         if (foundTasks.size() == 0) {
             return ui.showError("No tasks found.");
         } else {
-            return ui.showList(foundTasks);
+            return "Searching based on \"" + searchTerm
+                    + "\"... \n\n" + ui.showList(foundTasks);
         }
     }
 }

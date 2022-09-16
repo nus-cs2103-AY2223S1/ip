@@ -8,6 +8,8 @@ public class UiTest {
     @Test
     public void welcomeMessageTest() {
         Ui ui = new Ui();
-        assertEquals("Hello! I'm TASKY\nWhat can I do for you?", ui.showWelcome());
+        assertEquals("☺ Hey there! I'm TASKY,\n"
+                + "your personal task manager!\n\n"
+                + "What can I do for you today?", ui.showWelcome());
     }
 }
