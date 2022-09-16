@@ -2,6 +2,7 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.internal.DukeException;
 import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
@@ -24,11 +25,11 @@ public class DeadlineCommand extends Command {
      *
      * @param description the description of the deadline task
      * @param deadline    the deadline of the task
-     * @throws IllegalArgumentException if the description contains a pipe character `|`
+     * @throws DukeException if the description contains a pipe character `|`
      */
     public DeadlineCommand(String description, String deadline) {
         if (description.contains("|")) {
-            throw new IllegalArgumentException("Description cannot contain the character '|'.");
+            throw new DukeException("Description cannot contain the character '|'.");
         }
         this.description = description;
         this.deadline = deadline;
