@@ -5,11 +5,11 @@
 ## Table of Contents
 
 <!--ts-->
-- [About](https://github.com/albertarielw/ip/edit/master/docs/README.md#about)
-- [Quick Start](https://github.com/albertarielw/ip/edit/master/docs/README.md#quick-start)
-- [Features](https://github.com/albertarielw/ip/edit/master/docs/README.md#features)
-- [Command Summary](https://github.com/albertarielw/ip/edit/master/docs/README.md#command-summary)
-- [Troubleshooting](https://github.com/albertarielw/ip/edit/master/docs/README.md#troubleshooting)
+- [About](#table-of-contents)
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Command Summary](#command-summary)
+- [Troubleshooting](#troubleshooting)
 
 <!--te-->
 
