@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.exceptions.DukeDateException;
 import duke.exceptions.DukeException;
 import duke.task.Deadline;
 import duke.task.TaskList;
@@ -15,10 +16,14 @@ public class DeadlineCommand extends Command {
     }
 
     public String addDeadline(ArrayList<String> parsedInput) throws DukeException {
-        Deadline deadlineTask = new Deadline(parsedInput.get(1), parsedInput.get(2), false);
-        assert deadlineTask.isDeadline() : "Task should be a Deadline!";
-        taskList.addTask(deadlineTask);
-        storage.saveTask(taskList);
-        return ui.printAddedTask(deadlineTask, taskList);
+        try {
+            Deadline deadlineTask = new Deadline(parsedInput.get(1), parsedInput.get(2), false);
+            assert deadlineTask.isDeadline() : "Task should be a Deadline!";
+            taskList.addTask(deadlineTask);
+            storage.saveTask(taskList);
+            return ui.printAddedTask(deadlineTask, taskList);
+        } catch (DukeDateException e) {
+            return e.getMessage();
+        }
     }
 }

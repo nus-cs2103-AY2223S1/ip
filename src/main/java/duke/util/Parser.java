@@ -45,7 +45,7 @@ public class Parser {
     private String[] parseDetails(String[] details) throws DukeException {
         if (details.length < 2) {
             throw new DukeException("The description or date for this task is missing!"
-            + " Make sure you include /by or /at and the correct Date format!");
+            + " Make sure you include /by or /at after the description and the correct date format!");
         }
         String[] timeDetails = details[1].split(" ", 2);
         details[1] = timeDetails.length < 2 ? timeDetails[0] + " 00:00" :  details[1];

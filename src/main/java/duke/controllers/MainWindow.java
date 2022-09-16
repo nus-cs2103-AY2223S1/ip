@@ -71,6 +71,7 @@ public class MainWindow extends AnchorPane {
         TimerTask task = new TimerTask() {
             public void run() {
                 Platform.exit();
+                System.exit(0);
             }
         };
         Timer timer = new Timer("exitTime");

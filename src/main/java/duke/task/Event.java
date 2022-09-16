@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import duke.exceptions.DukeDateException;
 import duke.exceptions.DukeException;
 import duke.util.DukeDate;
 
@@ -15,7 +16,7 @@ import duke.util.DukeDate;
 public class Event extends Task {
     private LocalDateTime time;
 
-    public Event(String description, String time, boolean isDone) throws DukeException {
+    public Event(String description, String time, boolean isDone) throws DukeException, DukeDateException {
         super(description, isDone);
         if (description.equals("")) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -34,7 +35,7 @@ public class Event extends Task {
      * Sets a new start and end time
      * @param newTime new time for Duke.Duke.task.task.Event
      */
-    public void setTime(String newTime) {
+    public void setTime(String newTime) throws DukeDateException {
         this.time = new DukeDate(newTime).getDateTime();
     }
 

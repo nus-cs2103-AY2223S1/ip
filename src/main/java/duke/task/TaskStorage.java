@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.exceptions.DukeDateException;
 import duke.exceptions.DukeException;
 
 /**
@@ -104,6 +105,8 @@ public class TaskStorage {
         }
         catch (DukeException e) {
             System.out.println("An error occurred while loading Tasks from the Task Storage file");
+        } catch (DukeDateException e) {
+            System.out.println("An error occurred while reading dates from Task Storage file");
         }
         TaskList result = new TaskList(tempList);
         return result;
