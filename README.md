@@ -1,24 +1,90 @@
-# duke.Duke project template
+# Commands
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+## Add a todo task: `todo DESCRIPTION`
+Adds a task with the given `DESCRIPTION`.
 
-## Setting up in Intellij
+**Example of usage:**
+ ```
+ todo return book
+ ```
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+## Add a deadline task: `deadline DESCRIPTION /by yyyy-MM-dd`
+Adds a task with the given `DESCRIPTION` and a specified deadline.
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/duke.Duke.java` file, right-click it, and choose `Run duke.Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+**Example of usage:**
+```
+deadline read book /by 17-09-2022
+```
+
+ ## Add an event: `event DESCRIPTION /at yyyy-MM-dd`
+ Adds an event with the given `DESCRIPTION` and a specified date.
+
+ Date and time format is the same as the deadline command.
+
+**Example of usage:**
+```
+event CS2103T lecture /at 17-09-2022
+```
+
+## List all tasks: `list`
+Lists all tasks in the task list.
+
+
+ ## Marking a task as done: `mark INDEX` —
+ Marks the task at the given `INDEX` as done.
+
+You may want to use the `list` command to find the index of the task you want to mark as done.
+
+**Example of usage:**
+```
+mark 1
+ ```
+
+## Marking a task as not done: `unmark INDEX` —
+Marks the task at the given `INDEX` as not done.
+
+**Example of usage:**
+ ```
+ unmark 1
+ ```
+
+## Delete a task - `delete INDEX` —
+Deletes the task at the given `INDEX`.
+
+**Example of usage:**
+ ```
+delete 1
+ ```
+
+## Find tasks by keyword: `find KEYWORD` —
+Finds all tasks whose description contains the given `KEYWORD`.
+The search is case-insensitive.
+
+**Example of usage:**
+
+```
+find book 
+```
+
+ ## Exit the program: `exit`
+ Exits the program with a goodbye message.
+
+ # Advanced
+ ## Data Storage
+ All the data is saved in the file `./data/duke.txt`. You can modify task list by directly editing
+ this file. Each line of the file describes one task. The format is the following:
+ ```
+<TASK TYPE>,<COMPLETION STATUS>,<DESCRIPTION>,<ARGS...>
+ ```
+ - `TASK Type` is `T` for todo task, `D` for deadline, and `E` for event tasks.
+ - `COMPLETION STATUS` is 0 or 1 depending on whether the task is completed or not.
+ - `DESCRIPTION` is the description of the task.
+ - Currently, `ARGS...` only take in a date for deadline and events. The date must be in the
+ format `yyyy-MM-dd`. Specifically, day and month number should not have leading zeros.
+
+ Example data file:
+ ```
+T,1,return book  
+E,0,project meeting ,2022-10-11
+D,0,finish project,2022-09-15
+ ```
