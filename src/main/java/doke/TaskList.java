@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javafx.util.Pair;
+
+
 /**
  * A class to represent a TaskList.
  *
@@ -73,27 +76,29 @@ public class TaskList {
         }
     }
 
-    private int taskSearcher(Ui ui, int num, int i, String str) {
+    private Pair<Integer, String> taskSearcher(Ui ui, int num, int i, String str) {
         Task task = taskList.get(i);
         String desc = task.getDesc().toLowerCase();
         if (desc.indexOf(str.toLowerCase()) == -1) {
-            return 0;
+            return new Pair<>(0, "");
         } else if (num == 0) {
             ui.printOut("Here's what we found: ");
         }
         ui.printOut((i + 1) + "." + taskList.get(i).toString());
-        return 1;
+        return new Pair<>(1, "\n" + (i + 1) + "." + taskList.get(i).toString());
     }
 
-    private int taskSearchIterator(String str, String message, Ui ui) {
+    private Pair<Integer, String> taskSearchIterator(String str, String message, Ui ui) {
         int i = 0;
         int num = 0;
         int len = taskList.size();
         while (i < len) {
-            num += taskSearcher(ui, num, i, str);
+            Pair<Integer, String> temp = taskSearcher(ui, num, i, str);
+            num += temp.getKey();
+            message += temp.getValue();
             i++;
         }
-        return num;
+        return new Pair<>(num, message + "\n");
     }
 
     /**
@@ -102,15 +107,19 @@ public class TaskList {
      * @param str
      * @param ui
      */
-    public void searchString(String str, Ui ui) {
+    public String searchString(String str, Ui ui) {
         int num = 0;
         String message = "_________________________ ";
         ui.printOut(message);
-        num = taskSearchIterator(str, message, ui);
+        Pair<Integer, String> temp = taskSearchIterator(str, message, ui);
+        num = temp.getKey();
         if (num == 0) {
             ui.printOut("Sorry, we found nothing.");
+            return "Sorry, we found nothing.";
         }
         ui.printOut("_________________________ ");
+        message += temp.getValue() + "\n";
+        return message;
     }
 
     /**
@@ -185,4 +194,21 @@ public class TaskList {
         return taskList.size();
     }
 
+    @Override
+    public String toString() {
+        String message;
+        if (this.taskList.isEmpty()) {
+            message = "You have no task! \n";
+            return message;
+        }
+        int len = this.taskList.size();
+        int i = 0;
+        message = "_________________________ \n";
+        while (i < len) {
+            message += (i + 1) + "." + this.taskList.get(i).toString() + "\n";
+            i++;
+        }
+        message += "_________________________ \n";
+        return message;
+    }
 }

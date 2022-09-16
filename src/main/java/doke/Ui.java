@@ -48,7 +48,7 @@ public class Ui {
                 + " tasks!! " + "\n _________________________ \n");
     }
     /**
-     * A method to print out the message to the terminal
+     * Prints out the message to the terminal
      *
      * @param message
      */

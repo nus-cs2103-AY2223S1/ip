@@ -2,8 +2,6 @@ package doke;
 
 import javafx.util.Pair;
 
-import java.util.Collections;
-
 /**
  * A class to represent the making sense of the inputted text.
  *
@@ -46,9 +44,8 @@ public class Parser {
     }
 
     /**
-     * Return a boolean to signify whether the doke program should end or not.
-     * It processes the string to see if it is a valid create and add,
-     * delete, mark, unmark, bye, list or otherwise, invalid command.
+     * Processes the String to execute the relevant command
+     * returns a boolean to signify whether the program should continue or not.
      *
      * @param taskList the taskList to be modified when needed.
      * @param storage the storage to be modified when needed.
@@ -56,7 +53,7 @@ public class Parser {
      * @param ui to print out messages
      * @return boolean to signify whether the doke program should end or not.
      */
-    public boolean processString(TaskList taskList, Storage storage, String input, Ui ui) {
+    public Pair<Boolean, String> processString(TaskList taskList, Storage storage, String input, Ui ui) {
         String[] strings = input.split(" ");
         String action = strings[0];
         if (input.equals("bye")) {
@@ -80,12 +77,14 @@ public class Parser {
         } else if (input.equals("sort")) {
             return Command.sortCommand(storage, ui, taskList);
         } else {
+            String message;
             try {
                 throw new DokeException();
             } catch (DokeException d) {
+                message = d.toString();
                 ui.printOut(d.toString());
             }
-            return true;
+            return new Pair<>(true, message);
         }
     }
 }

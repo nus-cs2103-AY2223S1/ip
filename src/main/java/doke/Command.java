@@ -13,24 +13,25 @@ import javafx.util.Pair;
  */
 public class Command {
 
-    static boolean byeCommand() {
-        return false;
+    static Pair<Boolean, String> byeCommand() {
+        return new Pair<>(false, "bye");
     }
 
-    static boolean listCommand(TaskList taskList, Ui ui) {
+    static Pair<Boolean, String> listCommand(TaskList taskList, Ui ui) {
         taskList.listOut(ui);
-        return true;
+        return new Pair<>(true, taskList.toString());
     }
 
-    static boolean sortCommand(Storage storage, Ui ui, TaskList taskList) {
+    static Pair<Boolean, String> sortCommand(Storage storage, Ui ui, TaskList taskList) {
         Collections.sort(taskList.getList());
         ui.printOut("Here's the sorted task");
         taskList.listOut(ui);
+        String message = "Here's the sorted task : " + taskList.toString();
         storage.updateFile(taskList.getList(), ui);
-        return true;
+        return new Pair<>(true, message);
     }
 
-    static boolean addToDoCommand(TaskList taskList, Ui ui, Storage storage, String string) {
+    static Pair<Boolean, String> addToDoCommand(TaskList taskList, Ui ui, Storage storage, String string) {
         if (string.equals(null)) {
             throw new DokeException("todo");
         }
@@ -40,15 +41,16 @@ public class Command {
             storage.writeToFile(Storage.createWordForFile(newTask));
         } catch (IOException e) {
             ui.printMiscErrorMessage();
-            return true;
+            return new Pair<>(true, "Something went wrong, try again");
         }
 
         taskList.addTask(newTask);
         ui.printAddMessage(newTask, taskList.getSize());
-        return true;
+        return new Pair<>(true, "I've added the To Do!");
     }
 
-    static boolean addDeadlineCommand(TaskList taskList, Ui ui, Storage storage, Pair<String, String> descTimePair) {
+    static Pair<Boolean, String> addDeadlineCommand(
+            TaskList taskList, Ui ui, Storage storage, Pair<String, String> descTimePair) {
         String desc = descTimePair.getKey();
         String time = descTimePair.getValue();
         if (desc.equals(null) || time.equals(null)) {
@@ -60,15 +62,16 @@ public class Command {
             storage.writeToFile(Storage.createWordForFile(newTask));
         } catch (IOException e) {
             ui.printMiscErrorMessage();
-            return true;
+            return new Pair<>(true, "Something went wrong, try again");
         }
 
         taskList.addTask(newTask);
         ui.printAddMessage(newTask, taskList.getSize());
-        return true;
+        return new Pair<>(true, "I've added the Deadline!");
     }
 
-    static boolean addEventCommand(TaskList taskList, Ui ui, Storage storage, Pair<String, String> descTimePair) {
+    static Pair<Boolean, String> addEventCommand(
+            TaskList taskList, Ui ui, Storage storage, Pair<String, String> descTimePair) {
         String desc = descTimePair.getKey();
         String time = descTimePair.getValue();
         if (desc.equals(null)) {
@@ -80,50 +83,50 @@ public class Command {
             storage.writeToFile(Storage.createWordForFile(newTask));
         } catch (IOException e) {
             ui.printMiscErrorMessage();
-            return true;
+            return new Pair<>(true, "Something went wrong, try again");
         }
         taskList.addTask(newTask);
         ui.printAddMessage(newTask, taskList.getSize());
-        return true;
+        return new Pair<>(true, "I've added the Event!");
     }
 
-    static boolean markCommand(TaskList taskList, Ui ui, Storage storage, int i) {
+    static Pair<Boolean, String> markCommand(TaskList taskList, Ui ui, Storage storage, int i) {
         Task current = taskList.getTask(i);
-        String message;
         try {
             current.markDone();
             storage.updateFile(taskList.getList(), ui);
             ui.printMarkMessage(false, current);
+            return new Pair<>(true, "I've marked the task!");
         } catch (DokeException a) {
             ui.printMarkMessage(true, current);
+            return new Pair<>(true, "The task is already marked as so");
         }
-        return true;
     }
 
-    static boolean unmarkCommand(TaskList taskList, Ui ui, Storage storage, int i) {
+    static Pair<Boolean, String> unmarkCommand(TaskList taskList, Ui ui, Storage storage, int i) {
         Task current = taskList.getTask(i);
-        String message;
         try {
             current.markNotDone();
             storage.updateFile(taskList.getList(), ui);
             ui.printMarkMessage(false, current);
+            return new Pair<>(true, "I've unmarked the task!");
         } catch (DokeException a) {
             ui.printMarkMessage(true, current);
+            return new Pair<>(true, "The task is not marked yet");
         }
-        return true;
     }
 
-    static boolean deleteCommand(TaskList taskList, Ui ui, Storage storage, int num) {
+    static Pair<Boolean, String> deleteCommand(TaskList taskList, Ui ui, Storage storage, int num) {
         Task toDelete = taskList.getTask(num);
         taskList.deleteTask(num);
         storage.updateFile(taskList.getList(), ui);
         ui.printDeleteMessage(toDelete, taskList.getSize());
-        return true;
+        return new Pair<>(true, "I've deleted that task");
     }
 
-    static boolean findCommand(TaskList taskList, Ui ui, String string) {
+    static Pair<Boolean, String> findCommand(TaskList taskList, Ui ui, String string) {
         String search = string.substring(5);
-        taskList.searchString(search, ui);
-        return true;
+        String temp = taskList.searchString(search, ui);
+        return new Pair<>(true, "temp");
     }
 }

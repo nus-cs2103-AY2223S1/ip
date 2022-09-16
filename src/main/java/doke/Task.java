@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represent the abstract class Task
  */
-public abstract class Task implements Comparable<Task>{
+public abstract class Task implements Comparable<Task> {
 
     protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
     private String desc;

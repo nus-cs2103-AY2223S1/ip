@@ -3,7 +3,7 @@ package doke;
 /**
  * An Exception to handle the Exception specific to the Doke program.
  */
-public class DokeException extends RuntimeException{
+public class DokeException extends RuntimeException {
     private String text = null;
 
     /**
