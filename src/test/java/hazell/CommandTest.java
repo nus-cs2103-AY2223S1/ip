@@ -9,7 +9,7 @@ public class CommandTest {
     @Test
     public void test1() {
         Command parsed = Command.parse("todo borrow book");
-        assertTrue(parsed.startsWith("todo"));
+        assertEquals("todo", parsed.getFirstArg());
         assertEquals(parsed.getTrailingArgs(), List.of("borrow", "book"));
     }
 
