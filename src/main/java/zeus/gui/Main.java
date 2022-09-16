@@ -31,6 +31,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setZeus(zeus);
             fxmlLoader.<MainWindow>getController().sendGreetings();
             stage.show();
