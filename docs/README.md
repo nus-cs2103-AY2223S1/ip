@@ -2,7 +2,7 @@
 
 Shiro Task Manager is a desktop app that remembers the tasks you need to do. It is friendly and definitely remembers your tasks clearly!
 
-![Ui](D:\Files\NUS\03_Year2Sem1\02_CS2103T\03_Individual_Project\Duke\docs\Ui.png)
+![Ui](./Ui.png)
 
 ## Features 
 
