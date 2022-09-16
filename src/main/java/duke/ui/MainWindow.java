@@ -29,6 +29,8 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/image.png"));
+    //Image from
+    //https://www.freepik.com/free-vector/yellow-rubber-duck-flat-design_5336906.htm#query=duck&position=37&from_view=search
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/image2.png"));
 
     /**
