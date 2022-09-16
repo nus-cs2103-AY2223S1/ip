@@ -28,7 +28,7 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 ### Add a todo: `todo`
 Adds a new todo to the app.
 
-Format: `todo DESCRIPTION`
+Format: `todo <DESCRIPTION>`
 
 Example of usage:
 ```
@@ -42,10 +42,11 @@ todo Sign up for gym
 Adds a new todo, 'Sign up for gym' to the app.
 
 
+
 ### Add a deadline: `deadline`
 Adds a new deadline to the app.
 
-Format: `deadline DESCRIPTION /by DATE_AND_TIME`
+Format: `deadline <DESCRIPTION> /by <DATE_AND_TIME>`
 <Note: DATE_AND_TIME should be in ISO 8601 format>
 
 Example of usage:
@@ -60,10 +61,11 @@ deadline critical reflection 1A /by 2022-09-01T08:00
 Adds a new deadline, critical reflection 1A, due on Sep 1th, 2022, at 08:00hrs.
 
 
+
 ### Add a event: `event`
 Adds a new event to the app.
 
-Format: `event DESCRIPTION /at DURATION`
+Format: `event <DESCRIPTION> /at <DURATION>`
 
 Example of usage:
 ```
@@ -77,13 +79,82 @@ event team meeting /at 27/8/22 at 8-10am
 Adds a new event, team meeting on 27th Aug 2022, at 8-10am.
 
 
+
 ### Mark a task: `mark`
 Marks the task at given index as complete.
 
-Format: `mark INDEX`
-<sub>
- Note: 
- - The index refers to the index number shown in the displayed list.
- - The index **must be a positive integer**, 1, 2, 3...
-</sub>
+Format: `mark <INDEX>`
 
+Note: 
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer**, 1, 2, 3...
+- The index **must be a valid index**, ie. calling mark 4 on a list with only 3 tasks will return an error.
+- The task should not be already marked as complete.
+
+Example of usage:
+```
+mark 2
+```
+Mark the task at index 2 as complete.
+
+
+
+### Unmark a task: `unmark`
+Marks the task at given index as incomplete.
+
+Format: `unmark <INDEX>`
+
+Note: 
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer**, 1, 2, 3...
+- The index **must be a valid index**, ie. calling unmark 4 on a list with only 3 tasks will return an error.
+- The task should not be already marked as incomplete
+
+Example of usage:
+```
+unmark 1
+```
+Marks the task at index 1 as incomplete.
+
+
+
+### Delete a task: `delete`
+Deletes the task at given index.
+
+Format: `delete <INDEX>`
+
+Note: 
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer**, 1, 2, 3...
+- The index **must be a valid index**, ie. calling delete 4 on a list with only 3 tasks will return an error.
+
+Example of usage:
+```
+delete 3
+```
+Deletes the task at index 3.
+
+
+
+### List all stored task: `list`
+Shows a list of all stored tasks in the app.
+
+Format: `list`
+
+
+
+### Find tasks by a keyword: `find`
+Returns a list of all tasks that contains the given keyword.
+
+Format: `find <KEYWORD>`
+
+Note: 
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer**, 1, 2, 3...
+- The index **must be a valid index**, ie. calling delete 4 on a list with only 3 tasks will return an error.
+
+Example of usage:
+```
+delete 3
+```
+Deletes the task at index 3.
