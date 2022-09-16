@@ -1,7 +1,9 @@
 package duke.utils;
 
+import duke.commands.AddTaskCommand;
 import duke.commands.Command;
 import duke.commands.ExitCommand;
+import duke.commands.UnrecognisedCommand;
 import duke.tasks.TaskList;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,6 +14,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InputParserTest {
 
@@ -34,9 +37,24 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseTest() {
-        String bye = "bye";
-        assertEquals(inputParser.parse(bye, taskList, storage, commandHistory).getClass(), ExitCommand.class);
+    public void parseByeTest() {
+        String in = "bye";
+        Command cmd = inputParser.parse(in, taskList, storage, commandHistory);
+        assertTrue(inputParser.parse(in, taskList, storage, commandHistory) instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseTodoTest() {
+        String in = "todo new todo 1";
+        Command cmd = inputParser.parse(in, taskList, storage, commandHistory);
+        assertTrue(inputParser.parse(in, taskList, storage, commandHistory) instanceof AddTaskCommand);
+    }
+
+    @Test
+    public void parseUnrecognisedTest() {
+        String in = "12blabla$12";
+        Command cmd = inputParser.parse(in, taskList, storage, commandHistory);
+        assertTrue(inputParser.parse(in, taskList, storage, commandHistory) instanceof UnrecognisedCommand);
     }
 
 }
