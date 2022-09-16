@@ -39,7 +39,7 @@ It provides a range of features to help you organize your tasks in a better way.
 <a href="#top"> [Back to Top] </a>
 </p>
 
-## Features <a name="feature"></a>
+## Features <a name="features"></a>
 - [x] [Get help](#get_help)
 
 - [x] [Add tasks](#add_todo)
