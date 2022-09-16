@@ -31,6 +31,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+            this.setSpacing(10);
         } catch (IOException e) {
             e.printStackTrace();
         }
