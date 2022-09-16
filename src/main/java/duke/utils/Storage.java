@@ -18,8 +18,11 @@ import duke.tasks.Todo;
  * @author sikai00
  */
 public class Storage {
+    private static final String CORRUPT_POSTFIX = "-corrupt";
+
     private final String folderDirectory;
     private final String fileDirectory;
+    private final String fileName;
 
     /**
      * Initializes a new Storage instance.
@@ -28,6 +31,8 @@ public class Storage {
      */
     public Storage(String folderDirectory, String fileName) {
         this.folderDirectory = folderDirectory;
+        this.fileName = fileName;
+        // All persistent storage files are in '.txt' format
         this.fileDirectory = folderDirectory + "/" + fileName + ".txt";
     }
 
@@ -66,15 +71,35 @@ public class Storage {
                     taskList.addTask(currEvent);
                     break;
                 default:
-                    // TODO: Alert user data is corrupted, don't immediately replace with empty task list
-                    assert false;
+                    duplicateCorruptFile();
                     break;
                 }
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            duplicateCorruptFile();
+            return taskList;
         } catch (FileNotFoundException e) {
             return taskList;
         }
         return taskList;
+    }
+
+    /**
+     * Makes a copy of the storage file and rename it as corrupt.
+     * This is to allow the user to fix the storage file manually in the case of corruption,
+     * while allowing functionality of KarenBot on a clean state upon file corruption.
+     */
+    private void duplicateCorruptFile() {
+        File originalFile = new File(fileDirectory);
+        int counter = 0;
+        String corruptFileDirectory = folderDirectory + "/" + this.fileName + CORRUPT_POSTFIX + counter + ".txt";
+        File corruptFile = new File(corruptFileDirectory);
+        while (corruptFile.exists()) {
+            counter++;
+            corruptFileDirectory = folderDirectory + "/" + this.fileName + CORRUPT_POSTFIX + counter + ".txt";
+            corruptFile = new File(corruptFileDirectory);
+        }
+        originalFile.renameTo(corruptFile);
     }
 
     /**
