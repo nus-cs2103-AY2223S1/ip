@@ -52,15 +52,15 @@ public class MarkCommand extends Command {
         String indexStr = userCommand.substring(COMMAND_WORD.length()).trim();
         int index = Integer.parseInt(indexStr) - 1;
         boolean isInvalidTask = index >= tasks.size() || index < 0;
-        boolean hasBeenMarked = tasks.get(index).getIsDone();
 
         if (isInvalidTask) {
             throw new NullTaskException("hm...it seems that task " + String.valueOf(index + 1) + " does not exist ><"
                     + "\nplease check that you have keyed in the right task index~ <:");
         }
 
+        boolean hasBeenMarked = tasks.get(index).getIsDone();
         if (hasBeenMarked) {
-            throw new NullTaskException("hm...it seems that task " + String.valueOf(index + 1) + "has been marked ><"
+            throw new NullTaskException("hm...it seems that task " + String.valueOf(index + 1) + " has been marked ><"
                     + "\nplease try marking another task~ <:");
         }
 

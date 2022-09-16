@@ -52,14 +52,15 @@ public class UnmarkCommand extends Command {
         String indexStr = userCommand.substring(COMMAND_WORD.length()).trim();
         int index = Integer.parseInt(indexStr) - 1;
         boolean isInvalidTask = index >= tasks.size() || index < 0;
-        boolean hasBeenUnmarked = !tasks.get(index).getIsDone();
+
         if (isInvalidTask) {
             throw new NullTaskException("hm...it seems that task " + String.valueOf(index + 1) + " does not exist ><"
                     + "\nplease check that you have keyed in the right task index~ <:");
         }
 
+        boolean hasBeenUnmarked = !tasks.get(index).getIsDone();
         if (hasBeenUnmarked) {
-            throw new NullTaskException("hm...it seems that task " + String.valueOf(index + 1) + "has been unmarked ><"
+            throw new NullTaskException("hm...it seems that task " + String.valueOf(index + 1) + " has been unmarked ><"
                     + "\nplease try unmarking another task~ <:");
         }
 
