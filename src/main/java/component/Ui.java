@@ -4,18 +4,18 @@ package component;
  * Public user interface class.
  */
 public class Ui {
-    protected static final String OPENING_STATEMENT = "Mew Mew.\n"
-            + "What can I do for you?";
-    protected static final String EXIT_STATEMENT = "Bye. Hope to see you again soon! :)";
+    protected static final String OPENING_STATEMENT = "Meow~\n"
+            + "Mew here. How can I help you? :3";
+    protected static final String EXIT_STATEMENT = "Bye! Good luck and have fun ><";
     protected static final String LOADING_ERROR_STATEMENT = "Oops, there is a loading error!";
-    protected static final String TASK_LIST_STATEMENT = "Here are the tasks in your list:\n";
-    protected static final String MARK_AS_DONE_STATEMENT = "Nice! I've marked this task as done:\n";
-    protected static final String UNMARK_AS_DONE_STATEMENT = "Okay, I've marked this task as not done yet:\n";
-    protected static final String EDIT_TASK_DONE_STATEMENT = "Okay, I've edited this task:\n";
-    protected static final String ADD_TASK_STATEMENT = "Got it. I've added this task:\n";
+    protected static final String TASK_LIST_STATEMENT = "Here's what I have:\n";
+    protected static final String MARK_AS_DONE_STATEMENT = "Noice! I've marked this task as done:\n";
+    protected static final String UNMARK_AS_DONE_STATEMENT = "Alright, I've marked this task as not done:\n";
+    protected static final String EDIT_TASK_DONE_STATEMENT = "Gotcha, I've edited this task:\n";
+    protected static final String ADD_TASK_STATEMENT = "Okay. I've added this task:\n";
     protected static final String DELETE_TASK_STATEMENT = "Noted, I've removed this task:\n";
     protected static final String ASK_WHICH_TASK_STATEMENT = "Wait, which task are you referring to?";
-    protected static final String FIND_MATCHING_TASK_STATEMENT = "Here are the matching tasks in your list:\n";
+    protected static final String FIND_MATCHING_TASK_STATEMENT = "Here's what you searched for:\n";
     protected static final String EMPTY_EVENT_DESCRIPTION_STATEMENT = "Oops, description and time of an Event cannot "
             + "be empty.";
     protected static final String EMPTY_DEADLINE_DESCRIPTION_STATEMENT = "Oops, description and time of a Deadline "
@@ -24,7 +24,7 @@ public class Ui {
             + "cannot be empty.";
     protected static final String INVALID_DATETIME_FORMAT_STATEMENT = "Please enter date and time in YYYYMMDD HHMM "
             + "format";
-    protected static final String UNKNOWN_STATEMENT = "Oops, sorry! I don't know what that means :(";
+    protected static final String UNKNOWN_STATEMENT = "Oops, I don't know what that means T_T";
 
     /**
      * Shows the opening statement.
