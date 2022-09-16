@@ -28,6 +28,7 @@ for your RatatouilleBot.
 4. Double-click the file to start the app. The GUI similar to the 
 below should appear in a few seconds. Note how the app contains some 
 sample data.
+   ![This is an image](./Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
    Some example commands you can try:
 
@@ -46,7 +47,8 @@ sample data.
 
 ## Features 
 
-:closed_book: _Notes about the command format:_
+<details>
+  <summary><i>Notes about the command format:</i></summary>
 
 - Words in UPPER_CASE are the parameters to be supplied by the user. 
 <br>
@@ -64,6 +66,7 @@ as `study midterm /by 2020-12-12 1234`.
 parameters (such as `list` and `exit`) will be ignored.
 e.g. if the command specifies `list 123`, it will be interpreted as `help`.
 
+</details>
 <br>
 
 ### 1. Adding A Task: `todo`, `deadline`, `event`
@@ -78,7 +81,11 @@ Enter your command by following the format below:
 <br>
 `TASK_TYPE TASK_DESCRIPTION [/by DATE TIME]`
 
-_Note: `DATE TIME` must follow the format of `YYYY-MM-DD HHMM`_
+<details>
+  <summary><i>Notes!</i></summary>
+
+_`DATE TIME` must follow the format of `YYYY-MM-DD HHMM`_
+</details>
 
 Examples:
 <br>
@@ -105,10 +112,14 @@ Enter your command by following the format below:
 <br>
 `find KEYWORD`
 
-_Note:_
+<details>
+  <summary><i>Notes!</i></summary>
+
 - _`KEYWORD` is perceived as one whole phrase._
 - _e.g. `cs2103 assignment` will match `complete cs2103 assignment`
 instead of `cs2103 iP assignment`._
+
+</details>
 
 Examples:
 <br>
@@ -125,9 +136,13 @@ Enter your command by following the format below:
 <br>
 `delete TASK_INDEX`
 
-_Note:_
+<details>
+  <summary><i>Notes!</i></summary>
+
 - _`TASK_INDEX` must not exceed the size of the task list._
 - _`TASK_INDEX` must be positive integer e.g. 1,2,3..._
+
+</details>
 
 Examples:
 <br> 
@@ -147,9 +162,13 @@ Enter your command by following the format below:
 <br>
 `MARK_TYPE TASK_NUMBER`
 
-_Note:_
+<details>
+  <summary><i>Notes!</i></summary>
+
 - _`TASK_INDEX` must not exceed the size of the task list._
 - _`TASK_INDEX` must be positive integer e.g. 1,2,3..._
+
+</details>
 
 Examples:
 - `mark 3`
@@ -164,6 +183,14 @@ Exits the program.
 Enter your command by following the format below:
 <br>
 `bye`
+
+<br>
+
+### 6. Reminder
+
+Prompts reminder on the next coming and undone task.
+
+Reminder is auto-displayed everytime you launch the app.
 
 ---
 
