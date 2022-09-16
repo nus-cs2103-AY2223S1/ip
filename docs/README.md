@@ -3,7 +3,7 @@
 This is the user guide for Duke.
 Duke is a program designed for keyboard users. While it is designed with a graphical user interface, most of the user interactions happening on the CLI (Command Line Interface).
 
-![image](https://user-images.githubusercontent.com/15359033/190663337-b55abb6a-11a2-4fa7-9e74-4935e45cce2d.png)
+![image](https://user-images.githubusercontent.com/15359033/190663337-b55abb6a-11a2-4fa7-9e74-4935e45cce2d.png | width="500")
 
 **Acknowledgements**
 
