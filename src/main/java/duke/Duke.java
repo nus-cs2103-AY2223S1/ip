@@ -78,6 +78,7 @@ public class Duke {
             ToDo task = new ToDo(input[1]);
             tasks.addTask(task);
             storage.saveToDisk(tasks.getTaskList());
+            setFullTaskHistory("todo", task, input);
             return ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
@@ -94,6 +95,7 @@ public class Duke {
             Deadline task = new Deadline(tasking, dateTime);
             tasks.addTask(task);
             storage.saveToDisk(tasks.getTaskList());
+            setFullTaskHistory("deadline", task, input);
             return ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
@@ -112,6 +114,7 @@ public class Duke {
             Event task = new Event(tasking, dateTime);
             tasks.addTask(task);
             storage.saveToDisk(tasks.getTaskList());
+            setFullTaskHistory("event", task, input);
             return ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());

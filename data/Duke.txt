@@ -1,6 +1,4 @@
 T|0|borrow book
 D|0|return book|02/12/2019 18:30
 T|1|
-T|0|girlsgirls
-D|0|return book|02/12/2019 18:31
-T|0|boys
+T|1|

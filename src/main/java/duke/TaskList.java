@@ -63,6 +63,13 @@ public class TaskList {
     protected Task deleteTask(int taskIndex) {
         return tasks.remove(taskIndex);
     }
+
+    /**
+     * Finds the task in the task list that corresponds to the given search term.
+     *
+     * @param input the search term
+     * @return the task list that with the tasks that matches the search term
+     */
     protected ArrayList<Task> find(String input) {
         ArrayList<Task> result = new ArrayList<>();
         for (Task task : tasks) {

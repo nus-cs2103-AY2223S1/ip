@@ -6,7 +6,6 @@ public class History {
     private String lastCommand;
     private Task lastTask;
     private String[] lastTaskDescription;
-    private boolean isDeleteLastCommand;
     
     protected String getLastCommand() {
         return lastCommand;
@@ -14,7 +13,6 @@ public class History {
 
     protected void setLastCommand(String lastCommand) {
         this.lastCommand = lastCommand;
-        this.isDeleteLastCommand = lastCommand.equals("delete");
     }
 
     protected Task getLastTask() {
@@ -33,7 +31,5 @@ public class History {
     protected void setLastTaskDescription(String[] lastTaskDescription) {
         this.lastTaskDescription = lastTaskDescription;
     }
-    
-    protected 
-    
+
 }
