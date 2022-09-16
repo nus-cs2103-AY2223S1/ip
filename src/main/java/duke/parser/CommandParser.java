@@ -1,8 +1,10 @@
 package duke.parser;
 
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.Random;
@@ -125,12 +127,41 @@ public class CommandParser {
             }
         } catch (FileNotFoundException e) {
             System.out.println("Joke file not found...");
+            createJokeFile();
         } catch (IllegalStateException e) {
             System.out.println("Joke is invalid...");
         } catch (IOException e) {
             System.out.println("Joke cannot be read...");
         }
         return result;
+    }
+
+    private void createJokeFile() {
+        try {
+            FileWriter myWriter = new FileWriter("joke.txt");
+            myWriter.write("They laughed at my crayon drawing. I laughed at their chalk outline.\n"
+                    + "I have many jokes about unemployed people, sadly none of them work.\n"
+                    + "I made a website for orphans. It does not have a home page.\n"
+                    + "“I’m sorry” and “I apologize” mean the same thing. Except at a funeral.\n"
+                    + "What’s the difference between a Lamborghini and a dead body? I don’t have a Lamborghini in my garage.\n"
+                    + "The cemetery is so crowded. People are just dying to get in.\n"
+                    + "The guy who stole my diary just died. My thoughts are with his family.\n"
+                    + "Why do they actually prefer non-swimmers in the Navy? They defend their ship with a lot more enthusiasm.\n"
+                    + "I know a fish that can break-dance! Only for 20 seconds though, and only once.\n"
+                    + "People with Covid have no taste!\n"
+                    + "My boss told me to have a good day. So I went home.\n"
+                    + "If doctors were like software engineers, they would say things"
+                    + "like “Have you tried killing yourself and being reborn?”\n"
+                    + "You.\n"
+                    + "What did the router say to the doctor? “It hurts when IP”\n"
+                    + "Why do programmers always mix up Christmas and Halloween? Because Dec 25 is Oct 31.\n"
+                    + "//be nice to the CPU Thread_sleep(1);\n"
+                    + "The best thing about a Boolean is that even if you are wrong, you are only off by a bit.");
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }
 
