@@ -11,9 +11,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import duke.TaskList;
-import duke.models.*;
+import duke.models.Deadline;
+import duke.models.Event;
+import duke.models.Note;
+import duke.models.Task;
+import duke.models.Todo;
 
 /**
  * Storage class to handle file operations
@@ -63,9 +69,10 @@ public class Storage {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] split = data.split("\\|");
-                System.out.println(data.substring(0, 1));
-
-                switch (data.substring(0, 1)) {
+                Pattern pattern = Pattern.compile("^[^|]*");
+                Matcher matcher = pattern.matcher(data);
+                matcher.find();
+                switch (matcher.group(0)) {
                 case "T":
                     System.out.println(split[2]);
                     result.add(new Todo(split[2], split[1].equals("1")));

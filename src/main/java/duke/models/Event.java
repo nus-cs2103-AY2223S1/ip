@@ -47,9 +47,7 @@ public class Event extends Task {
         return this.getSymbol() + "|" + (super.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.at;
     }
 
-    /**
-     * Postpone the {@code Task} object
-     */
+    @Override
     public void postponeTask() {
         this.at = this.at.plusDays(1);
     }

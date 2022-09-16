@@ -27,7 +27,6 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui) {
         List<Task> result = tasks.findTask(this.query);
-        System.out.println(Arrays.toString(result.toArray()));
         return ui.listQueryResult(result);
     }
 }

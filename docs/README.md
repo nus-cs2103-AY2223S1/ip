@@ -13,6 +13,10 @@ Types of tasks:
 * Events : tasks that are scheduled to happen at a certain date
 * Notes : notes that you can add to keep track of your thoughts
 
+## Features
+
+* Add Tasks such as Todo, Events and Deadlines
+
 ## Usage
 
 ### Adding a new Todo Task: `todo`
@@ -23,7 +27,7 @@ Format: `todo <TASK_DESCRIPTION>`
 
 ### Adding a new Event Task: `event`
 
-Adds a new `todo` task to the task list.
+Adds a new `event` task to the task list.
 
 Format: `event <TASK_DESCRIPTION> /at <YYYY-MM-DD>`
 
@@ -33,11 +37,23 @@ Adds a new `todo` task to the task list.
 
 Format: `deadline <TASK_DESCRIPTION> /by <YYYY-MM-DD>`
 
+### Create a new Note: `note`
+
+Creates a new note
+
+Format: `note <NOTE_DESCRIPTION>`
+
 ### List out all Tasks and Notes: `list`
 
 Lists out all your tasks
 
 Format: `list`
+
+### Search for task with a keyword: `find`
+
+Finds all task with the matching description
+
+Format: `find <QUERY>`
 
 ### Postpones a task: `postpone`
 
@@ -69,37 +85,14 @@ Watch **DeadlineDuck** quack back at you
 
 Format: `quack`
 
+### Quack back at you: `help`
+
+Shows the list of supported commands
+
+Format: `help`
+
 ### Exit the application: `bye`
 
 Exits the application
 
 Format: `bye`
-
-
-[//]: # (Describe the action and its outcome.)
-
-[//]: # ()
-[//]: # ()
-[//]: # (Example of usage: )
-
-[//]: # ()
-[//]: # ()
-[//]: # (`keyword &#40;optional arguments&#41;`)
-
-[//]: # ()
-[//]: # ()
-[//]: # (Expected outcome:)
-
-[//]: # ()
-[//]: # ()
-[//]: # (Description of the outcome.)
-
-[//]: # ()
-[//]: # ()
-[//]: # (```)
-
-[//]: # ()
-[//]: # (expected output)
-
-[//]: # ()
-[//]: # (```)

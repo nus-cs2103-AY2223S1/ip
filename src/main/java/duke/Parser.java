@@ -115,8 +115,12 @@ public class Parser {
                 throw new DukeException(e.getMessage());
             }
         case Constants.FIND_STRING:
-            String query = command.split(Constants.EMPTY_SPACE)[0];
-            return new FindCommand(query);
+            try {
+                String query = command.split(Constants.EMPTY_SPACE)[1];
+                return new FindCommand(query);
+            } catch (Exception e) {
+                throw new DukeException(e.getMessage());
+            }
         case Constants.QUACK_STRING:
             return new QuackCommand();
         case Constants.POSTPONE:

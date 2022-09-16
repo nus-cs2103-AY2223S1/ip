@@ -1,5 +1,6 @@
 package duke.ui;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -108,12 +109,11 @@ public class Ui {
      * @return String of all tasks in the list
      */
     public String listQueryResult(List<Task> taskList) {
-        String result = "";
-        Iterator<Task> iterator = taskList.iterator();
-        while (iterator.hasNext()) {
-            result += iterator;
-        }
-        return result;
+        System.out.println(Arrays.toString(taskList.toArray()));
+        StringBuilder result = new StringBuilder();
+        result.append("Here are the matching tasks in your list:\n");
+        taskList.forEach(task -> result.append(task).append("\n"));
+        return result.toString();
     }
 
     /**

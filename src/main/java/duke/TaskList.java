@@ -1,7 +1,9 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -73,11 +75,11 @@ public class TaskList {
      * @return a list of tasks that match the query
      */
     public List<Task> findTask(String query) {
-        List<Task> resultList = tasks
-                                    .stream()
-                                    .filter(e -> e.getDescription().contains(query))
-                                    .collect(Collectors.toList());
-        return resultList;
+        Predicate<Task> p1 = s -> s.getDescription().contains(query);
+
+        return tasks
+                .stream()
+                .anyMatch(p1) ? tasks.stream().filter(p1).collect(Collectors.toList()) : new ArrayList<>();
     }
 
     /**
