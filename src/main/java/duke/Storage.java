@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Storage {
+    /**
+     *Read the files into the computer
+     * @param readfile
+     * @param storage
+     */
     public static void readfilez(Scanner readfile, List<Task> storage) {
         while(readfile.hasNextLine()) {
             String firsttask = readfile.next();
@@ -68,6 +73,13 @@ public class Storage {
             }
         }
     }
+
+    /**
+     *Update the file when requested. E.g When just add an item to the list
+     * @param thefile
+     * @param storage
+     * @throws IOException
+     */
     public static void UpdateFile (File thefile,List<Task> storage) throws IOException {
 
         FileWriter fw = new FileWriter(thefile);
@@ -96,6 +108,11 @@ public class Storage {
 
         pw.close();
     }
+
+    /**
+     *Its the same as list comment.Everything will be displayed
+     * @param ListofMessages
+     */
     public static void DisplayListOfMessages(List<Task> ListofMessages) {
         int LengthOfArrayList;
         LengthOfArrayList = ListofMessages.size();

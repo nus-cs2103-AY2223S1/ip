@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 public class Parser {
 
+    /**
+     *Runs the main code
+     * @param ListofMessages
+     * @throws IOException
+     * @throws DukeException
+     */
     public static void Parser (List<Task> ListofMessages) throws IOException, DukeException {
         Scanner input = new Scanner(System.in);
 

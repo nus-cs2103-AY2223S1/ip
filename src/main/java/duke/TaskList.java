@@ -2,6 +2,13 @@ package duke;
 import java.util.List;
 
 public class TaskList {
+    /**
+     * creation of todos object
+     * @param storage
+     * @param toadd
+     * @param remainingmessage
+     * @throws DukeException
+     */
     public static void todo(List<Task> storage,ToDos toadd,String remainingmessage) throws DukeException {
 
         //Fix this to try and catch blocks?
@@ -19,6 +26,14 @@ public class TaskList {
         System.out.println(NumberOfItemsInList(storage));
     }
 
+    /**
+     * deadline object when creating
+     * @param storage
+     * @param toadd
+     * @param firsthalf
+     * @param secondhalf
+     */
+
     public static void deadline(List<Task> storage,Deadlines toadd,String firsthalf,String secondhalf) {
         storage.add(toadd);
         String GotIt = "Got it. I've added this task: ";
@@ -32,6 +47,13 @@ public class TaskList {
         System.out.println(NumberOfItemsInList(storage));
     }
 
+    /**
+     * Creation of events object
+     * @param storage
+     * @param toadd
+     * @param firsthalf
+     * @param secondhalf
+     */
     public static void event(List<Task> storage,Events toadd,String firsthalf,String secondhalf) {
         storage.add(toadd);
         String GotIt = "Got it. I've added this task: ";
@@ -45,6 +67,13 @@ public class TaskList {
         System.out.println(NumberOfItemsInList(storage));
     }
 
+    /**
+     * When deleting todos object
+     * @param nextvalue
+     * @param task
+     * @param item
+     * @param storage
+     */
     public static void deletetodo(int nextvalue,String task,String item,List<Task> storage) {
         System.out.println("Noted. I've removed this task:");
         String Tobedisplayed = "  " + task + "[ ]" + item;
@@ -54,6 +83,14 @@ public class TaskList {
 
     }
 
+    /**
+     * deletion of deadline object
+     * @param nextvalue
+     * @param item
+     * @param deadlinetask
+     * @param deadline
+     * @param storage
+     */
     public static void deletedeadline(int nextvalue,String item,String deadlinetask,String deadline,List<Task> storage) {
         System.out.println("Noted. I've removed this task:");
         String Tobedisplayed = "  " + item + "[ ]" + " " + deadlinetask + " (by: "+ deadline + ")";
@@ -63,6 +100,14 @@ public class TaskList {
 
     }
 
+    /**
+     * Deletion of deleteevents object
+     * @param nextvalue
+     * @param symbol
+     * @param eventdescription
+     * @param item
+     * @param storage
+     */
     public static void deleteevents (int nextvalue,String symbol, String eventdescription,String item,List<Task> storage) {
         System.out.println("Noted. I've removed this task:");
         String Tobedisplayed = "  " + symbol + "[ ]" + " " + eventdescription + "(at: "+ item + ")";
@@ -75,8 +120,11 @@ public class TaskList {
     public static void mark () {}
 
 
-
-
+    /**
+     * Check number of items in the list
+     * @param storage
+     * @return String
+     */
     public static String NumberOfItemsInList(List<Task> storage) {
         int numberOfItems = storage.size();
         String NumberOfItems = "Now you have " + numberOfItems + " tasks in the list.";

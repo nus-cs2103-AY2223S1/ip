@@ -11,6 +11,10 @@ public class Events extends Task {
 
     protected String Eventsdeadlineby;
 
+    /**
+     *Constructor for events
+     * @param description
+     */
     public Events(String description) {
         super(description);
     }
@@ -19,6 +23,11 @@ public class Events extends Task {
         super(description);
         this.Eventsdeadlineby = Eventsdeadlineby;
     }
+
+    /**
+     *Helps in the creation of date
+     * @return
+     */
     public LocalDate getDateonlyE() {
         String str = this.Eventsdeadlineby;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -26,6 +35,11 @@ public class Events extends Task {
         return dateTime;
     }
 
+    /**
+     *Give the date in a different format
+     * @return the date in a different format
+     * @throws ParseException
+     */
     public String getDateonlyEnewformat() throws ParseException {
         final String OLD_FORMAT = "dd/MM/yyyy";
         final String NEW_FORMAT = "yyyy/MM/dd";
@@ -38,7 +52,10 @@ public class Events extends Task {
         return newDateString = sdf.format(d);
     }
 
-
+    /**
+     *Date time for event
+     * @return local date time for event
+     */
 
     public LocalDateTime getDateTimeE() {
         String str = this.Eventsdeadlineby;
@@ -47,20 +64,34 @@ public class Events extends Task {
         return dateTime;
     }
 
+    /**
+     *Gives the deadline as a string
+     * @return string
+     */
     public String getEventDeadlineString() {
         return this.Eventsdeadlineby;
     }
 
-
-
+    /**
+     *The name of the event
+     * @return
+     */
     public String getEventsDescription() {
         return description;
     }
 
+    /**
+     * Same as getEventDeadlineString
+     * @return
+     */
     public String getEvent() {
         return this.Eventsdeadlineby;
     }
 
+    /**
+     * Gives u the symbol to store in text file
+     * @return String
+     */
     public String getItem() {
         return "[E]";
     }
