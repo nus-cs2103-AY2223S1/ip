@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import yilia.DialogBox;
+import yilia.Main;
 import yilia.Yilia;
 
 
@@ -56,5 +57,8 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getYiliaDialog(response, yiliaImage)
         );
         userInput.clear();
+        if (input.trim().equals("bye")) {
+            Main.exit();
+        }
     }
 }

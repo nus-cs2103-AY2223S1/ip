@@ -12,7 +12,7 @@ import yilia.util.Ui;
  * Represents a chat box to complete given commands.
  */
 public class Yilia {
-    private final Storage storage;
+    private Storage storage;
     private TaskList tasks;
     private final Ui ui;
     /**
@@ -21,7 +21,10 @@ public class Yilia {
      */
     public Yilia() {
         ui = new Ui();
-        storage = new Storage("data/yilia.txt");
+        String filePath = System.getProperty("os.name").startsWith("Windows")
+                          ? "data\\yilia.txt"
+                          : "data/yilia.txt";
+        storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
         } catch (IOException e) {
