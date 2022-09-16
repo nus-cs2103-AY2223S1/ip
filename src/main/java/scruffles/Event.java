@@ -13,6 +13,13 @@ public class Event extends Task {
     protected LocalTime startTime;
     protected LocalTime endTime;
 
+    /**
+     * Constructor for Event
+     *
+     * @param description the name of the Event task
+     * @param dateAndTime the associated date and timings of the event as a string
+     * @throws TimeErrorException when the end time is before the start time
+     */
     public Event(String description, String dateAndTime) throws TimeErrorException {
         super(description);
         String[] array1 = dateAndTime.split(" from ");
@@ -25,12 +32,22 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Constructor for Event
+     *
+     * @param description the name of the Event task
+     * @param at the date of the Event
+     * @param startTime the starting time of the Event
+     * @param endTime the ending time of the Event
+     * @param isDone whether the task has been done
+     */
     public Event(String description, LocalDate at, LocalTime startTime, LocalTime endTime, boolean isDone) {
         super(description);
         this.at = at;
         this.startTime = startTime;
         this.endTime = endTime;
         this.isDone = isDone;
+        assert startTime.isBefore(endTime) : "start time should be before end time";
     }
 
     @Override

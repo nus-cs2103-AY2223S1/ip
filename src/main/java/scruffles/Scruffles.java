@@ -22,6 +22,7 @@ public class Scruffles extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+    private Parser parser = new Parser();
 
     enum Type {
         TODO,
@@ -31,8 +32,6 @@ public class Scruffles extends Application {
     }
 
     public Scruffles() {}
-
-    Parser parser = new Parser();
 
     @Override
     public void start(Stage stage) {
@@ -63,5 +62,4 @@ public class Scruffles extends Application {
     String getResponse(String input) {
         return parser.parse(input);
     }
-
 }

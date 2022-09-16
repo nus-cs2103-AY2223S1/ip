@@ -50,6 +50,7 @@ public class Storage {
                 case "P":
                     task = new DoWithinPeriod(inputs[2], LocalDate.parse(inputs[3]), LocalDate.parse(inputs[4]),
                             isDone);
+                    break;
                 default:
                     continue;
                 }

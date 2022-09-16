@@ -50,7 +50,7 @@ test {
 }
 
 application {
-    mainClassName = "scruffles.Scruffles"
+    mainClassName = "scruffles.Launcher"
 }
 
 shadowJar {

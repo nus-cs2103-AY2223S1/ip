@@ -12,11 +12,19 @@ public class TaskList {
     private ArrayList<Task> tasks;
     private int taskCount;
 
+    /**
+     * Constructor for TaskList
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
         this.taskCount = 0;
     }
 
+    /**
+     * Constructor for TaskList
+     *
+     * @param tasks the ArrayList that contains all saved Tasks
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
         this.taskCount = tasks.size();
@@ -40,7 +48,7 @@ public class TaskList {
         case DOWITHINPERIOD:
             return doWithinPeriod(str);
         default:
-            assert false: "is not a correct type";
+            assert false : "is not a correct type";
             return "";
         }
     }
@@ -57,9 +65,9 @@ public class TaskList {
         }
         tasks.add(new Todo(str.replace("todo ", "")));
         taskCount++;
-        return String.format("woof! the task is added woof!\n" +
-                        "%s\n" +
-                        "you now have %d tasks in the list woof!",
+        return String.format("woof! the task is added woof!\n"
+                        + "%s\n"
+                        + "you now have %d tasks in the list woof!",
                 tasks.get(taskCount - 1).toString(), taskCount);
     }
 
@@ -79,9 +87,9 @@ public class TaskList {
             LocalDate date = LocalDate.parse(input[1]);
             tasks.add(new Deadline(name, date));
             taskCount++;
-            return String.format("woof! the task is added woof!\n" +
-                            "%s\n" +
-                            "you now have %d tasks in the list woof!",
+            return String.format("woof! the task is added woof!\n"
+                            + "%s\n"
+                            + "you now have %d tasks in the list woof!",
                     tasks.get(taskCount - 1).toString(),
                     taskCount);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -106,9 +114,9 @@ public class TaskList {
             String name = input[0].replace("event ", "");
             tasks.add(new Event(name, input[1]));
             taskCount++;
-            return String.format("Got it. I've added this task:\n" +
-                            "%s\n" +
-                            "you now have %d tasks in the list woof!",
+            return String.format("Got it. I've added this task:\n"
+                            + "%s\n"
+                            + "you now have %d tasks in the list woof!",
                     tasks.get(taskCount - 1).toString(),
                     taskCount);
         } catch (TimeErrorException e) {
@@ -116,8 +124,7 @@ public class TaskList {
         } catch (ArrayIndexOutOfBoundsException e) {
             return "grrrr >:( when is your event?? woof woof!";
         } catch (DateTimeParseException e) {
-            return "grrrr >:( please input event date as 'yyyy-mm-dd from hh:mm to hh:mm' format" +
-                    " woof woof!";
+            return "grrrr >:( please input event date as 'yyyy-mm-dd from hh:mm to hh:mm' format woof woof!";
         }
     }
 
@@ -142,9 +149,9 @@ public class TaskList {
             }
             tasks.add(new DoWithinPeriod(name, startDate, endDate));
             taskCount++;
-            return String.format("woof! the task is added woof!\n" +
-                            "%s\n" +
-                            "you now have %d tasks in the list woof!",
+            return String.format("woof! the task is added woof!\n"
+                            + "%s\n"
+                            + "you now have %d tasks in the list woof!",
                     tasks.get(taskCount - 1).toString(),
                     taskCount);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -197,9 +204,9 @@ public class TaskList {
 
             Task t = tasks.remove(i - 1);
             taskCount--;
-            return String.format("woof! the task is now deleted woof!\n" +
-                            "%s\n" +
-                            "you now have %d tasks in the list woof!",
+            return String.format("woof! the task is now deleted woof!\n"
+                            + "%s\n"
+                            + "you now have %d tasks in the list woof!",
                     t.toString(),
                     taskCount);
 

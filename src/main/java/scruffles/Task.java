@@ -9,6 +9,11 @@ public class Task {
     protected String taskName;
     protected boolean isDone;
 
+    /**
+     * Constructor for Task
+     *
+     * @param taskName the name of the Task
+     */
     public Task(String taskName) {
         this.taskName = taskName;
         this.isDone = false;
