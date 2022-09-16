@@ -77,7 +77,6 @@ public class Storage {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             duplicateCorruptFile();
-            return taskList;
         } catch (FileNotFoundException e) {
             return taskList;
         }
