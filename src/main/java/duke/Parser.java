@@ -52,6 +52,8 @@ public class Parser {
             return this.parseDelete(subCmd);
         case "find":
             return this.parseFind(subCmd);
+        case "bye":
+            return this.parseBye();
         default:
             throw new InvalidDescriptionException();
         }
@@ -211,6 +213,10 @@ public class Parser {
         } else {
             return this.taskList.findKeyword(findString);
         }
+    }
+
+    public String parseBye() throws DukeException {
+        return Ui.end();
     }
 
     public boolean isEmptyString(String command) {

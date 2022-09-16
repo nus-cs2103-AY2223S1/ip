@@ -2,8 +2,3 @@ T | 0 | play read | URGENT
 E | 0 | shit | today | HIGH
 T | 0 | play book | MEDIUM
 T | 0 | read book | LOW
-E | 0 | todo | time | LOW
-E | 0 | play | today | LOW
-T | 0 | play | LOW
-E | 0 | play | todaas | LOW
-D | 0 | tasd | Apr 22 2000 | LOW
