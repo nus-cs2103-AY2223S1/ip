@@ -6,10 +6,19 @@ import duke.task.TaskList;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * The class for a Duke, which also contains the main method which the program is run from.
+ *
+ * @author kaij77
+ * @version 0.1
+ */
 public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Public constructor for a Duke.
+     */
     public Duke() {
         ui = new Ui();
         tasks = new TaskList();
@@ -28,6 +37,9 @@ public class Duke {
         new Duke().run();
     }
 
+    /**
+     * Runs Duke by scanning and reading the input from the user and executing the Command.
+     */
     public void run() {
         System.out.println(LOGO);
         System.out.println(GREETING);
@@ -44,14 +56,5 @@ public class Duke {
                 System.out.println("Please format date in YYYY-MM-DD");
             }
         }
-    }
-
-    private static boolean isNumeric(String input) {
-        for (char c : input.toCharArray()) {
-            if (c < 48 || c > 57) {
-                return false;
-            }
-        }
-        return true;
     }
 }

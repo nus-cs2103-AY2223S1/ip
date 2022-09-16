@@ -1,7 +1,10 @@
 package duke.task;
 
 /**
- * The duke.task.ToDo class extends the duke.task.Task class as it is a more specific type of task.
+ * Class which inherits the Task class for a ToDo
+ *
+ * @author kaij77
+ * @version 0.1
  */
 public class ToDo extends Task {
 
@@ -10,15 +13,15 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String getTaskType() {
-        return "T";
-    }
-
-    @Override
     public String stringifyTask() {
         return String.format("%s | %s", "T", super.stringifyTask());
     }
 
+    /**
+     * Returns the String representation of the ToDo.
+     *
+     * @return the String representation of the ToDo
+     */
     @Override
     public String toString() {
         return String.format("[T]%s", super.toString());

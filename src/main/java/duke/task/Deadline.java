@@ -1,11 +1,22 @@
-package duke.task; /**
- * The duke.task.Deadline class extends the duke.task.Task class as it is a more specific type of task.
- */
+package duke.task;
+
 import java.time.LocalDate;
 
+/**
+ * Class which inherits the Task class for a Deadline
+ *
+ * @author kaij77
+ * @version 0.1
+ */
 public class Deadline extends Task {
     private LocalDate by;
 
+    /**
+     * Public constructor for a Deadline
+     *
+     * @param description The description of the Deadline
+     * @param by When the Deadline is due
+     */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
@@ -19,15 +30,15 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String getTaskType() {
-        return "D";
-    }
-
-    @Override
     public String stringifyTask() {
         return String.format("%s | %s | %s", "D", super.stringifyTask(), this.by);
     }
 
+    /**
+     * Returns the String representation of the Deadline.
+     *
+     * @return the String representation of the Deadline
+     */
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), this.printDate());

@@ -5,14 +5,32 @@ import duke.exception.DukeException;
 
 import java.time.LocalDate;
 
+/**
+ * The class for a Parser, which is used to parse the String input into a Command.
+ *
+ * @author kaij77
+ * @version 0.1
+ */
 public class Parser {
     private String input;
     private Command result;
 
+    /**
+     * Public constructor for a Parser.
+     *
+     * @param input The String input given by the user
+     */
     public Parser(String input) {
         this.input = input;
     }
 
+    /**
+     * Parses the String input into a Command.
+     *
+     * @param userInput The String input given by the user
+     * @return The Command resulting from the input
+     * @throws DukeException
+     */
     public static Command parseInput(String userInput) throws DukeException {
         String[] split = userInput.split(" ");
         if (userInput.equals("bye") && split.length == 1) {
