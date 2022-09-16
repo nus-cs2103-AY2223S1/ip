@@ -96,13 +96,13 @@ Format: ```find {keyword}```
 Example: ```find TASK```  
 ![find image](./images/find.png)
 
-### Listing all tasks: list
+### Listing all tasks: ```list```
 Lists all the tasks in the task list.  
-Format: list
+Format: ```list```
 
-### Exiting the program: bye
+### Exiting the program: ```bye```
 Exits the program immediately.  
-Format: bye
+Format: ```bye```
 
 ### Saving the data
 Dukey saves data automatically in the hard disk after any valid command that changes the data. There is no need to save manually.
