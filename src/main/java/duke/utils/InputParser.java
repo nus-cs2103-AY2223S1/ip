@@ -1,7 +1,6 @@
 package duke.utils;
 
 import duke.commands.*;
-import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.tasks.TaskType;
 

@@ -1,7 +1,9 @@
 package duke.commands;
 
 import duke.exceptions.*;
-import duke.tasks.*;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+import duke.tasks.TaskType;
 import duke.utils.Storage;
 import duke.utils.TaskParser;
 

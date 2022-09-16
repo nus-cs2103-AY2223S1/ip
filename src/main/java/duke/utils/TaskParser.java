@@ -1,7 +1,7 @@
 package duke.utils;
 
-import duke.exceptions.EmptyTaskDescException;
 import duke.exceptions.EmptyTaskDateException;
+import duke.exceptions.EmptyTaskDescException;
 import duke.exceptions.NoSuchTaskTypeException;
 import duke.exceptions.UnrecognisedDateException;
 import duke.tasks.*;

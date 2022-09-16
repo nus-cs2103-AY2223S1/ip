@@ -3,7 +3,7 @@ package duke;
 import duke.commands.Command;
 import duke.commands.UndoCommand;
 import duke.controllers.MainWindow;
-import duke.tasks.*;
+import duke.tasks.TaskList;
 import duke.utils.InputParser;
 import duke.utils.Storage;
 import javafx.application.Application;
@@ -17,8 +17,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
 
 public class Duke extends Application {
 
