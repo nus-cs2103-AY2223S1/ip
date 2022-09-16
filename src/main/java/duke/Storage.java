@@ -81,7 +81,7 @@ public class Storage {
             File file = new File(FILEPATH);
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             for (Task task : tasks) {
-                String appendToEnd = task.getStatus() ? "1|" : "0|" + task.getDescription();
+                String appendToEnd = (task.getStatus() ? "1|" : "0|") + task.getDescription();
                 if (task instanceof ToDo) {
                     writer.write("T|");
                     writer.append(appendToEnd);

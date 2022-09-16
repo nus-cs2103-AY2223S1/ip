@@ -51,23 +51,17 @@ public class Task {
     }
 
     /**
-     * Returns a string that states the given task is marked as done.
-     *
-     * @return a string that indicates the given task is marked as done.
+     * Marks the given task as done.
      */
-    public String markAsDone() {
+    public void markAsDone() {
         this.isDone = true;
-        return "Nice! I've marked this task as done: \n" + this;
     }
 
     /**
-     * Returns a string that states the given task is unmarked and not done.
-     *
-     * @return a string that indicates the given task is unmarked and not done.
+     * Unmarks the given task as not done.
      */
-    public String unmarkAsNotDone() {
+    public void unmarkAsNotDone() {
         this.isDone = false;
-        return "Ok! I've marked this task as not done yet: \n" + this;
     }
 
     /**
