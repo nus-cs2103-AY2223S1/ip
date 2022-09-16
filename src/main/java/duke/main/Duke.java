@@ -10,11 +10,9 @@ import duke.tasks.TaskList;
 public class Duke {
 
     protected final Storage storage;
-    public boolean isExit = false;
-    /**
-     * The tasklist keeps track of all the tasks added
-     */
+    /* The tasklist keeps track of all the tasks added */
     protected TaskList tasks;
+    private boolean isExit = false;
 
     /**
      * Initialises TaskList based on whether data file specified in filePath is valid
@@ -28,6 +26,15 @@ public class Duke {
         } catch (DukeException e) {
             tasks = new TaskList();
         }
+    }
+
+    /**
+     * Returns exit field of Duke
+     *
+     * @return exit field of Duke
+     */
+    public boolean getExit() {
+        return this.isExit;
     }
 
     public String getResponse(String input) {

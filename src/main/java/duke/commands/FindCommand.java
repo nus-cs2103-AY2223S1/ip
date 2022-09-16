@@ -30,6 +30,7 @@ public class FindCommand extends Command {
         if (lst.length < 2) { // Guard clause
             throw new DukeException("Keyword missing!");
         }
+
         this.keyword = lst[1];
     }
 

@@ -6,7 +6,7 @@ package duke.exception;
 public class DukeException extends Exception {
 
     /**
-     * Constructor for DukeException
+     * Constructs DukeException
      *
      * @param message message to be displayed to user when caught
      */

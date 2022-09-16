@@ -47,7 +47,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String fullCommand = userInput.getText();
 
-        if (duke.isExit) {
+        if (duke.getExit()) {
             Platform.exit();
             return;
         }

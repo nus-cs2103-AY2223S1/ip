@@ -16,6 +16,6 @@ public class DeadlineTaskTest {
     @Test
     public void toSaveStringTest() {
         Task deadlineTask = new DeadlineTask("read book", LocalDate.parse("2019-08-22"));
-        assertEquals("D | 0 | read book | 2019-08-22", deadlineTask.toSaveString());
+        assertEquals("D | 0 | read book |  | 2019-08-22", deadlineTask.toSaveString());
     }
 }

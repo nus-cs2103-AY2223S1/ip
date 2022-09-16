@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 
-
 public class EventTaskTest {
     @Test
     public void toStringTest() {
@@ -18,6 +17,6 @@ public class EventTaskTest {
     @Test
     public void toSaveStringTest() {
         Task eventTask = new EventTask("read book", LocalDate.parse("2019-08-22"));
-        assertEquals("E | 0 | read book | 2019-08-22", eventTask.toSaveString());
+        assertEquals("E | 0 | read book |  | 2019-08-22", eventTask.toSaveString());
     }
 }

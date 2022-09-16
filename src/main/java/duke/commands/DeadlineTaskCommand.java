@@ -3,6 +3,7 @@ package duke.commands;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import duke.exception.DateDukeException;
 import duke.exception.DukeException;
 import duke.main.Storage;
 import duke.tasks.DeadlineTask;
@@ -26,7 +27,7 @@ public class DeadlineTaskCommand extends TaskCommand {
         super(description);
         assert description.split(" ")[0].equals("deadline") : "Keyword should be delete for DeleteCommand";
 
-        String[] deadlineList = description.split("/by ", 2);
+        String[] deadlineList = this.description.split("/by ", 2);
 
         if (deadlineList.length < 2 || deadlineList[1].equals("")) {
             throw new DukeException("Alamak! Fill in when the deadline is by...");
@@ -35,7 +36,7 @@ public class DeadlineTaskCommand extends TaskCommand {
         try {
             this.by = LocalDate.parse(deadlineList[1]);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
+            throw new DateDukeException();
         }
     }
 

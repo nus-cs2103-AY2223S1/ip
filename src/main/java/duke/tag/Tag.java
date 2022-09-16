@@ -54,8 +54,9 @@ public class Tag {
     public String toString() {
         if (this == null) {
             return "";
+        } else {
+            return tagName;
         }
-        return '[' + tagName + ']';
     }
 
 }

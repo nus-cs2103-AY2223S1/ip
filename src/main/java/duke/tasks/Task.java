@@ -17,7 +17,7 @@ public abstract class Task {
      */
     private boolean isDone;
 
-    private Tag tag;
+    private Tag tag = null;
 
     /**
      * Constructor of task, and initialise it as unmarked
@@ -79,7 +79,11 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return this.getStatusIcon() + this.tag.toString() + " " + this.description;
+        if (this.tag == null) {
+            return this.getStatusIcon() + " " + this.description;
+        } else {
+            return this.getStatusIcon() + "[" + this.tag.toString() + "]" + " " + this.description;
+        }
     }
 
     /**
@@ -89,7 +93,7 @@ public abstract class Task {
      */
     public String toSaveString() {
         String mark = isDone ? "1" : "0";
-        String str = "| " + mark + " | " + this.description + " | " + this.tag.toString();
+        String str = "| " + mark + " | " + this.description + " | ";
         if (this.tag != null) {
             return str + this.tag;
         } else {
@@ -97,6 +101,12 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Adds tag to task
+     *
+     * @param tag Tag to be added
+     * @throws DukeException If there is already tag attached to task
+     */
     public void addTag(Tag tag) throws DukeException {
         if (this.tag != null) {
             throw new DukeException("There is already a tag! Consider untagging and adding a new one");
@@ -105,6 +115,11 @@ public abstract class Task {
 
     }
 
+    /**
+     * Removes tag from task
+     *
+     * @throws DukeException If there is already no tag attached to task
+     */
     public void unTag() throws DukeException {
         if (this.tag == null) {
             throw new DukeException("There is no tag!");

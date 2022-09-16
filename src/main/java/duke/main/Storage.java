@@ -44,11 +44,11 @@ public class Storage {
     public void save(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath, false);
-            String taskString = "";
+            StringBuilder taskString = new StringBuilder();
             for (Task task : tasks.getTasks()) {
-                taskString += task.toSaveString() + "\n";
+                taskString.append(taskString + task.toSaveString() + "\n");
             }
-            fw.write(taskString);
+            fw.write(taskString.toString());
             fw.close();
         } catch (IOException e) {
             throw new DukeException(OH_MAN + e.getMessage());
@@ -82,23 +82,12 @@ public class Storage {
                         throw new DukeException(EVIL_FILE);
                     }
 
+                    boolean isDone = loadIsDone(line[1]);
                     String description = line[2];
-                    boolean isDone;
-
-                    if (line[1].equals("1")) {
-                        isDone = true;
-                    } else if (line[1].equals("0")) {
-                        isDone = false;
-                    } else {
-                        throw new DukeException(EVIL_FILE + '\n' + line.length);
-                    }
-
-                    Task t = loadTask(line, description, isDone, tasks);
+                    Task t = loadTask(line, description, isDone);
                     tasks.add(t);
 
-
                 }
-                sc.close();
             }
 
             return tasks;
@@ -107,36 +96,60 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads whether task has been done or not
+     *
+     * @param isDone String representation of whether task has been done
+     * @return Boolean value representing isDone status of task
+     * @throws DukeException If file is corrupted
+     */
+    public boolean loadIsDone(String isDone) throws DukeException {
+        if (isDone.equals("1")) {
+            return true;
+        } else if (isDone.equals("0")) {
+            return false;
+        } else {
+            throw new DukeException(EVIL_FILE);
+        }
+    }
 
-    public Task loadTask(String[] line, String description, boolean isDone, ArrayList<Task> tasks)
-            throws DukeException {
+    /**
+     * Loads task from storage
+     *
+     * @param line        Input by user
+     * @param description Task description
+     * @param isDone      Boolean value representing if task is completed
+     * @return Task to be added
+     * @throws DukeException @inheritDoc
+     */
+    public Task loadTask(String[] line, String description, boolean isDone) throws DukeException {
         switch (line[0]) {
         case "T":
             Task t0 = new ToDoTask(description, isDone);
-            loadTag(line, t0, 4);
+            loadTag(line, t0);
             return t0;
 
         case "D":
-            if (line.length < 4) {
+            if (line.length < 5) {
                 throw new DukeException(EVIL_FILE);
             }
             try {
-                LocalDate by = LocalDate.parse(line[3]);
+                LocalDate by = LocalDate.parse(line[4]);
                 Task t1 = new DeadlineTask(description, by, isDone);
-                loadTag(line, t1, 5);
+                loadTag(line, t1);
                 return t1;
             } catch (DateTimeParseException e) {
                 throw new DukeException(EVIL_FILE);
             }
 
         case "E":
-            if (line.length < 4) {
+            if (line.length < 5) {
                 throw new DukeException(EVIL_FILE);
             }
             try {
-                LocalDate at = LocalDate.parse(line[3]);
+                LocalDate at = LocalDate.parse(line[4]);
                 Task t2 = new EventTask(description, at, isDone);
-                loadTag(line, t2, 5);
+                loadTag(line, t2);
                 return t2;
             } catch (DateTimeParseException e) {
                 throw new DukeException(EVIL_FILE);
@@ -146,9 +159,16 @@ public class Storage {
         }
     }
 
-    public void loadTag(String[] line, Task t, int len) throws DukeException {
-        if (line.length == len && line[len - 1] != null) {
-            t.addTag(new Tag(line[len - 1]));
+    /**
+     * Loads tag of Task
+     *
+     * @param line Input by user
+     * @param t    Task to add tag
+     * @throws DukeException @inheritdoc
+     */
+    public void loadTag(String[] line, Task t) throws DukeException {
+        if (!line[3].equals("")) {
+            t.addTag(new Tag(line[3]));
         }
     }
 }

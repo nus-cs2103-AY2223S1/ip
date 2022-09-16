@@ -49,7 +49,7 @@ public class UntagCommand extends Command {
     }
 
     public String getMessage(Task task) {
-        String str = "Tag removed successfully";
+        String str = "Tag removed successfully ";
         str += task;
         return str;
     }

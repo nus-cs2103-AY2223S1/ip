@@ -40,11 +40,12 @@ public class DeleteCommand extends Command {
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
             throw new DukeException("No such task found");
-        } else {
-            Task task = tasks.remove(index - 1);
-            storage.save(tasks);
-            return getMessage(tasks, task);
         }
+
+        Task task = tasks.remove(index - 1);
+        storage.save(tasks);
+        return getMessage(tasks, task);
+
     }
 
     public String getMessage(TaskList tasks, Task task) {

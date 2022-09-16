@@ -3,6 +3,7 @@ package duke.commands;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import duke.exception.DateDukeException;
 import duke.exception.DukeException;
 import duke.main.Storage;
 import duke.tasks.EventTask;
@@ -24,7 +25,8 @@ public class EventTaskCommand extends TaskCommand {
     public EventTaskCommand(String description) throws DukeException {
         super(description);
         assert description.split(" ")[0].equals("event") : "Keyword should be event for EventTaskCommand";
-        String[] eventList = description.split("/at ", 2);
+
+        String[] eventList = this.description.split("/at ", 2);
 
         if (eventList.length < 2 || eventList[1].equals("")) {
             throw new DukeException("Alamak! Fill in when the event is at...");
@@ -35,7 +37,7 @@ public class EventTaskCommand extends TaskCommand {
         try {
             this.at = LocalDate.parse(eventList[1]);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
+            throw new DateDukeException();
         }
     }
 

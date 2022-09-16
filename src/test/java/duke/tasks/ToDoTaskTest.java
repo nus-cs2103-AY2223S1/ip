@@ -15,6 +15,6 @@ public class ToDoTaskTest {
     @Test
     public void toSaveStringTest() {
         Task todoTask = new ToDoTask("read book");
-        assertEquals("T | 0 | read book", todoTask.toSaveString());
+        assertEquals("T | 0 | read book | ", todoTask.toSaveString());
     }
 }

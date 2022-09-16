@@ -20,7 +20,7 @@ public abstract class TaskCommand extends Command {
      */
     public TaskCommand(String description) throws DukeException {
         String[] addlst = description.split(" ", 2);
-        if (addlst.length < 2) {
+        if (addlst.length < 2 || addlst[1].equals("")) {
             throw new DukeException("Task description missing!");
         }
         this.description = addlst[1];
