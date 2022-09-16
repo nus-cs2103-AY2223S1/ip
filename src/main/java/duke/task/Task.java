@@ -43,7 +43,7 @@ public class Task {
     }
 
     /**
-     * Mark the field isDone for each task as undone (false).
+     * Marks the field isDone for each task as undone (false).
      */
     public void markTaskUndone() {
         isDone = false;

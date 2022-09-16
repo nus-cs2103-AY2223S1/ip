@@ -42,8 +42,9 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets a response from the Chat Bot after user inputs a command.
+     * @param fullCommand String command that user inputs
+     * @return String representing the response of the Chat Bot
      */
     public String getResponse(String fullCommand) {
         try {

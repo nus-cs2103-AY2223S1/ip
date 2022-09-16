@@ -20,6 +20,29 @@ public class UndoCommand extends Command {
     private String taskDescription;
     private int taskNumber;
 
+    // Messages to return for the various Commands
+    private final String undoMarkMessage = "________________________________________\n"
+            + "Undo Complete! I unmarked the task\n"
+            + "________________________________________";;
+    private final String undoUnmarkMessage = "________________________________________\n"
+            + "Undo Complete! I marked the task\n"
+            + "________________________________________";;
+    private final String undoTodoMessage = "________________________________________\n"
+            + "Undo Complete! I deleted the todo task\n"
+            + "________________________________________";;
+    private final String undoDeadlineMessage = "________________________________________\n"
+            + "Undo Complete! I deleted the deadline task\n"
+            + "________________________________________";;
+    private final String undoEventMessage = "________________________________________\n"
+            + "Undo Complete! I deleted the event task\n"
+            + "________________________________________";
+    private final String undoDeleteMessage = "________________________________________\n"
+            + "Undo Complete! I added back the deleted task\n"
+            + "________________________________________";
+    private final String undoDefaultMessage = "________________________________________\n"
+            + "Error! Cannot undo the previous command >.<\n"
+            + "________________________________________";
+
     /**
      * Constructor to create an instance of UndoCommand.
      * @param commandToUndo Command type that the user wishes to undo
@@ -51,43 +74,61 @@ public class UndoCommand extends Command {
         case "mark":
             c = new UnmarkCommand(this.taskNumber);
             c.execute(tasks, ui, storage);
-            return "________________________________________\n"
-                    + "Undo Complete! I unmarked the task\n"
-                    + "________________________________________";
+            return undoMarkMessage;
         case "unmark":
             c = new MarkCommand(this.taskNumber);
             c.execute(tasks, ui, storage);
-            return "________________________________________\n"
-                    + "Undo Complete! I marked the task\n"
-                    + "________________________________________";
+            return undoUnmarkMessage;
         case "todo":
             c = new DeleteCommand(tasks.size());
             c.execute(tasks, ui, storage);
-            return "________________________________________\n"
-                    + "Undo Complete! I deleted the todo task\n"
-                    + "________________________________________";
+            return undoTodoMessage;
         case "deadline":
             c = new DeleteCommand(tasks.size());
             c.execute(tasks, ui, storage);
-            return "________________________________________\n"
-                    + "Undo Complete! I deleted the deadline task\n"
-                    + "________________________________________";
+            return undoDeadlineMessage;
         case "event":
             c = new DeleteCommand(tasks.size());
             c.execute(tasks, ui, storage);
-            return "________________________________________\n"
-                    + "Undo Complete! I deleted the event task\n"
-                    + "________________________________________";
+            return undoEventMessage;
         case "delete":
             Task taskToUndo = storage.formatString(this.taskDescription);
             tasks.add(taskToUndo);
-            return "________________________________________\n"
-                        + "Undo Complete! I added back the deleted task\n"
-                        + "________________________________________";
+            return undoDeleteMessage;
         default:
-            return "________________________________________\n"
-                        + "Error! Cannot undo the previous command >.<\n"
-                        + "________________________________________";
+            return undoDefaultMessage;
         }
+    }
+
+    /**
+     * Checks if two UndoCommands are the same.
+     *
+     * @param o Object to be compared against an instance of UndoCommand
+     * @return true if the Object is an instance of UndoCommand with the same parameters
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof UndoCommand) {
+            UndoCommand u = (UndoCommand) o;
+            if (!this.commandToUndo.equals(u.commandToUndo)) {
+                return false;
+            }
+
+            if (this.taskNumber != u.taskNumber) {
+                return false;
+            }
+
+            if (this.taskDescription != null) {
+                return this.taskDescription.equals(u.taskDescription);
+            } else {
+                return u.taskDescription == null;
+            }
+
+        }
+        return false;
     }
 }

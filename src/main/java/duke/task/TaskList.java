@@ -78,7 +78,7 @@ public class TaskList {
     }
 
     /**
-     * Iterate through the TaskList to find tasks with matching keywords.
+     * Iterates through the TaskList to find tasks with matching keywords.
      *
      * @param keyWord String representing the keyWord to search
      * @return String representation of the compiled tasks
