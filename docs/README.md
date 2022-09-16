@@ -7,6 +7,8 @@ maximising your productivity by spending less time on handling your tasks!
 1. [Quick start](#quick-start)
 2. [Features](#features)
 3. [Usage](#usage)
+4. [Command summary](#command-summary)
+5. [Product screenshots](#product-screenshots)
 
 ## Quick start
 1. Ensure you have Java 11 or above installed in your Computer.
@@ -72,7 +74,7 @@ Example:
 Note: `time` is formatted as `yyyy-mm-dd HH:MM`. Allowed delimiter characters are: `-:.|/`.
 
 ### `add event`: Adds an Event
-Adds a Event to the list of tasks. An Event is used to create tasks happening at a specific time.
+Adds an Event to the list of tasks. An Event is used to create tasks happening at a specific time.
 
 Format: `add event <description> /at <time>`  
 Example:
@@ -134,3 +136,22 @@ Note: There are 3 different types of period specifiable, namely:
 ### `exit`: Exits the program 
 Exits _KarenBot_.  
 Format: `exit`
+
+## Command summary
+| Command                                 | Description                                                   |
+|-----------------------------------------|---------------------------------------------------------------|
+| `help`                                  | Displays a list of all possible commands.                     |
+| `add todo <description>`                | Adds a Todo with the given description.                       |
+| `add deadline <description> /by <time>` | Adds a Deadline with the given description and time.          |
+| `add event <description> /at <time>`    | Adds an Event with the given description and time.            |
+| `list`                                  | Displays a list of all tasks.                                 |
+| `mark <task index>`                     | Marks the task with the given task index as done.             |
+| `unmark <task index>`                   | Marks the task with the given task index as not done.         |
+| `delete <task index>`                   | Deletes the task with the given task index.                   |
+| `find <keyword>`                        | Finds all tasks whose description matches the keyword.        |
+| `view <period>`                         | Displays a lists of tasks happening within a specific period. |
+| `exit`                                  | Exits _KarenBot_.                                             |
+
+
+## Product screenshots
+![Main window](Ui.png)
