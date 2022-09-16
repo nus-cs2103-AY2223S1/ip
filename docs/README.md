@@ -88,7 +88,6 @@ Examples
 
 ### Goodbye message
 **Bye/BYE/bye**
-![](guideimg/byeImg.jpg)
 
 ## Command Summary
 - Deadlines: d/ddl/DEADLINE/D/Deadline/deadline DESCIPTION by TIME
