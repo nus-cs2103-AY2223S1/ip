@@ -14,17 +14,17 @@ public class DeadlineTest {
 
         LocalDate tempDate = LocalDate.parse("24/01/2022", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        Deadline temp1 = new Deadline("", false, tempDate);
+        Deadline temp1 = new Deadline("", false, tempDate, PriorityLevel.Priority.LOW);
 
-        assertEquals("[D][ ]  (by: Jan 24 2022)", temp1.toString());
+        assertEquals("[D][ ]  (by: Jan 24 2022) (Priority: LOW)", temp1.toString());
 
-        Deadline temp2 = new Deadline("read book", false, tempDate);
+        Deadline temp2 = new Deadline("read book", false, tempDate, PriorityLevel.Priority.LOW);
 
-        assertEquals("[D][ ] read book (by: Jan 24 2022)", temp2.toString());
+        assertEquals("[D][ ] read book (by: Jan 24 2022) (Priority: LOW)", temp2.toString());
 
         temp2.mark();
 
-        assertEquals("[D][X] read book (by: Jan 24 2022)", temp2.toString());
+        assertEquals("[D][X] read book (by: Jan 24 2022) (Priority: LOW)", temp2.toString());
     }
 
 
