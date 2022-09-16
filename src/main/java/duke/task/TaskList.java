@@ -60,7 +60,7 @@ public class TaskList extends ArrayList<Task> implements Serializable {
     public String toString() {
         AtomicInteger i = new AtomicInteger(1);
         return stream().map(task -> WordUtils.wrap(String.format("%d. %s\n", i.getAndIncrement(), task),
-                        45, "\n   ", false))
+                        65, "\n   ", false))
                 .reduce("", String::concat);
     }
 }
