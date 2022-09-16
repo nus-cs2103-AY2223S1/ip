@@ -18,7 +18,7 @@ Interface.
 
 Adds a todo task to to-do list.
 
-Format: `todo TODO_TO_ADD`
+Format: `todo TODO`
 
 Example of usage:
 
@@ -36,7 +36,7 @@ You have 1 tasks in your list.
 
 Adds deadlines that have due dates.
 
-Format: `deadline DEADLINE_TASK /by YYYY-MM-DDTHH:MM`
+Format: `deadline DEADLINE /by YYYY-MM-DDTHH:MM`
 
 Example of usage:
 `deadline tutorial 1 /by 2022-10-02T23:59`
@@ -53,7 +53,7 @@ You have 1 tasks in your list.
 
 Adds events that have a date and time.
 
-Format: `event EVENT_TASK /at YYYY-MM-DDTHH:MM`
+Format: `event EVENT /at YYYY-MM-DDTHH:MM`
 
 Example of usage:
 `event party /at 2022-12-20T22:00`
@@ -70,7 +70,7 @@ You have 1 tasks in your list.
 
 Marks specified task as done.
 
-Format: `mark NUMBER`
+Format: `mark INDEX`
 
 Example of usage: \
 To mark task 1 as done: 
@@ -87,7 +87,7 @@ Nice! I've marked this task as done:
 
 Unmarks specified task as not done.
 
-Format: `unmark NUMBER`
+Format: `unmark INDEX`
 
 Example of usage: \
 To mark task 1 as not done:
@@ -104,7 +104,7 @@ Hmm...I've marked this task as undone:
 
 Deletes a completed task from to-do list.
 
-Format: `delete NUMBER`
+Format: `delete INDEX`
 
 Example of usage: \
 To delete task 1 from to-do list:
@@ -200,3 +200,20 @@ Expected outcome:
 ```
 You have 2 events. ;)
 ```
+
+
+## Command Summary
+| Action          | Format, Example                          |
+|-----------------|------------------------------------------|
+| Add Todo        | `todo TODO`                              |
+| Add Deadline    | `deadline DEADLINE /by YYYY-MM-DDTHH:MM` |
+| Add Event       | `event EVENT /at YYYY-MM-DDTHH:MM`       |
+| Mark            | `mark INDEX`                             |
+| Unmark          | `unmark INDEX`                           |
+| Delete          | `delete INDEX`                           |
+| List            | `list`                                   |
+| Find            | `find KEYWORD`                           |
+| Count Todos     | `count todo`                             |
+| Count Deadlines | `count deadline`                         |
+| Count Events    | `count event`                            |
+
