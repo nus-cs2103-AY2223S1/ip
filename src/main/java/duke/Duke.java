@@ -1,12 +1,9 @@
 package duke;
 
+import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-import java.time.format.TextStyle;
-import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +12,7 @@ import duke.exception.DukeException;
 import duke.exception.DukeFormatCommandException;
 import duke.exception.DukeIndexErrorException;
 import duke.exception.DukeInvalidCommandException;
+import duke.task.Activity;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -26,20 +24,9 @@ import duke.task.Todo;
  * @author Justin Peng
  */
 public class Duke {
-    /** Datetime formatter for user input which accepts dd/MM/yyyy or dd/MM/yyyy HH:mm */
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
-            .appendPattern("dd/MM/yyyy ")
-            .optionalStart()
-            .appendPattern("HH:mm ")
-            .optionalEnd()
-            .appendZoneText(TextStyle.SHORT)
-            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
-            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
-            .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
-            .toFormatter();
     /** Commands accepted by Duke */
     public enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE, FIND;
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, ACTIVITY, EVENT, DELETE, SAVE, FIND;
 
         private static final Set<String> values = new HashSet<>(Command.values().length);
 
@@ -54,12 +41,12 @@ public class Duke {
         }
     }
     /** User timezone */
-    private ZoneId timeZone = ZoneId.of("GMT+00:00");
+    private final ZoneId timeZone = ZoneId.of("GMT+00:00");
 
     private final Storage storage;
     private final Ui ui;
     private final Parser parser;
-    private TaskList tasks;
+    private final TaskList tasks;
 
     /**
      * Creates a new {@code Duke} object.
@@ -120,6 +107,8 @@ public class Duke {
                 return newDeadline(fullCommand);
             case EVENT:
                 return newEvent(fullCommand);
+            case ACTIVITY:
+                return newActivity(fullCommand);
             default:
                 throw new DukeInvalidCommandException();
             }
@@ -263,14 +252,13 @@ public class Duke {
 
         try {
             String[] newDeadline = fullCommand[1].split(" /by ", 2);
-            System.out.println(newDeadline[1]);
-            ZonedDateTime by = ZonedDateTime.parse(newDeadline[1] + " " + timeZone, DATE_TIME_FORMATTER);
-            Deadline dl = new Deadline(newDeadline[0], by);
-            tasks.add(dl);
-            return ui.getNewTaskMessage(dl, tasks.size());
+            ZonedDateTime by = parser.parseDateTime(newDeadline[1], timeZone);
+            Deadline deadline = new Deadline(newDeadline[0], by);
+            tasks.add(deadline);
+            return ui.getNewTaskMessage(deadline, tasks.size());
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
             e.printStackTrace();
-            throw new DukeFormatCommandException("deadline", "/by");
+            throw new DukeFormatCommandException("deadline", "/by", "\"dd/MM/yyyy\" or \"dd/MM/yyyy HH:mm\"");
         }
     }
 
@@ -289,12 +277,36 @@ public class Duke {
 
         try {
             String[] newEvent = fullCommand[1].split(" /at ", 2);
-            ZonedDateTime at = ZonedDateTime.parse(newEvent[1] + " " + timeZone, DATE_TIME_FORMATTER);
-            Event ev = new Event(newEvent[0], at);
-            tasks.add(ev);
-            return ui.getNewTaskMessage(ev, tasks.size());
+            ZonedDateTime at = parser.parseDateTime(newEvent[1], timeZone);
+            Event event = new Event(newEvent[0], at);
+            tasks.add(event);
+            return ui.getNewTaskMessage(event, tasks.size());
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
-            throw new DukeFormatCommandException("event", "/at");
+            throw new DukeFormatCommandException("event", "/at", "\"dd/MM/yyyy\" or \"dd/MM/yyyy HH:mm\"");
+        }
+    }
+
+    /**
+     * Adds a new {@code Activity} task to the task list.
+     *
+     * @param fullCommand The full input from the user containing the task's description and duration.
+     * @throws DukeException If the input is invalid.
+     */
+    protected String newActivity(String[] fullCommand) throws DukeException {
+        if (fullCommand.length < 2 || fullCommand[1].equals("")) {
+            throw new DukeFormatCommandException("activity");
+        }
+
+        assert tasks != null;
+
+        try {
+            String[] newActivity = fullCommand[1].split(" /for ", 2);
+            Duration duration = parser.parseDuration(newActivity[1]);
+            Activity activity = new Activity(newActivity[0], duration);
+            tasks.add(activity);
+            return ui.getNewTaskMessage(activity, tasks.size());
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            throw new DukeFormatCommandException("activity", "/for", "\"n\" hours where n is an integer");
         }
     }
 }

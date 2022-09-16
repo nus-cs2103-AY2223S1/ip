@@ -23,8 +23,8 @@ public class DukeFormatCommandException extends DukeException {
      * @param taskType The task type that the user is trying to create.
      * @param separator The parameter that is missing or invalid.
      */
-    public DukeFormatCommandException(String taskType, String separator) {
-        super(String.format("☹ OOPS!!! The description of %s requires %s value in the format "
-                + "\"dd/MM/yyyy\" or \"dd/MM/yyyy HH:mm\".", taskType, separator));
+    public DukeFormatCommandException(String taskType, String separator, String format) {
+        super(String.format("☹ OOPS!!! The description of %s requires %s value in the format %s.", taskType, separator,
+                format));
     }
 }
