@@ -12,6 +12,7 @@ public class FindCommand extends Command {
      * @param keyword The {@code String} to search the {@code TaskList} with.
      */
     public FindCommand(String keyword) {
+        assert !keyword.isBlank();
         this.keyword = keyword;
     }
 

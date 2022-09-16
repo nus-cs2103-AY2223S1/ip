@@ -16,6 +16,7 @@ public class SetDoneCommand extends Command {
      * @param isDone Whether the {@code Task} is to be marked as done or undone.
      */
     public SetDoneCommand(int index, boolean isDone) {
+        assert index >= 0;
         this.index = index;
         this.isDone = isDone;
     }
