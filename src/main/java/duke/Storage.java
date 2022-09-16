@@ -54,14 +54,6 @@ public class Storage {
         String st = "";
         try {
             file = new File("dukes.txt");
-            /*
-            File parentFolder = file.getParentFile();
-            if (!parentFolder.exists()) {
-                parentFolder.mkdirs();
-            }
-            assert parentFolder.exists() : "Parent folder should exist";
-
-             */
             if (!file.exists()) {
                 file.createNewFile();
                 return st;
