@@ -39,6 +39,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        scrollPane.setFitToWidth(true);
         // Greet User
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(UI.greet(), dukeImage));
     }
@@ -64,6 +65,8 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+        double height = userInput.getMaxHeight();
+        dialogContainer.setPrefHeight(height);
         userInput.clear();
         if (input.equals(END_PROGRAM)) {
             Platform.exit();
