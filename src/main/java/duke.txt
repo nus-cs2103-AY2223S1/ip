@@ -1,0 +1,4 @@
+T | 0 | borrow book
+D | 0 | finish homework    | Dec 12 2022
+E | 0 | toms birthday party   | Dec 12 2022
+T | 0 | borrow book
