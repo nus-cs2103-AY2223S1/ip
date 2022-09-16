@@ -22,6 +22,8 @@ public class TimeTaskCommand extends Command {
     private final String keyword;
     public TimeTaskCommand(String input, String keyword, LocalDateTime time) {
         super(input);
+        assert keyword != null : "keyword for a TimeTask cannot be null";
+        assert time != null : "time for a TimeTask cannot be null";
         this.time = time;
         this.keyword = keyword;
     }

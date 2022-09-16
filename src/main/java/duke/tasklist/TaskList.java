@@ -25,6 +25,7 @@ public class TaskList {
      * @param tasks List of tasks
      */
     public TaskList(List<Task> tasks) {
+        assert tasks != null : "tasks given cannot be null";
         this.tasks = tasks;
     }
 
@@ -69,6 +70,7 @@ public class TaskList {
      * @return string output of what task is added to the list
      */
     public String addTask(Task task) {
+        assert task != null : "task to add to task list cannot be null";
         tasks.add(task);
         String output = String.format("%s\n", task);
         return output;
@@ -84,11 +86,13 @@ public class TaskList {
      */
     public String deleteTask(int index) throws DukeException {
         if (tasks.size() == 0) {
-            throw new DukeException("Tasklist is empty\n");
+            throw new DukeException("Tasklist is empty");
         }
         if (index < 0 || index >= tasks.size()) {
             throw new DukeException(invalidAction("delete"));
         }
+        assert index >=0 && index < tasks.size(): "index of element to be removed must be non-negative " +
+                "and smaller than size of list";
         Task currTask = tasks.remove(index);
         String output = String.format("%s\n", currTask);
         return output;
@@ -104,6 +108,8 @@ public class TaskList {
      * @throws DukeException  If index < 0 || index >= tasks.size().
      */
     public String mark(int index) throws DukeException {
+        assert index >=0 && index < tasks.size(): "index of element to be marked must be non-negative " +
+                "and smaller than size of list";
         if (index < 0 || index >= tasks.size()) {
             throw new DukeException(invalidAction("mark"));
         }
@@ -122,6 +128,8 @@ public class TaskList {
      * @throws DukeException  If index < 0 || index >= tasks.size().
      */
     public String unmark(int index) throws DukeException {
+        assert index >=0 && index < tasks.size(): "index of element to be unmarked must be non-negative " +
+                "and smaller than size of list";
         if (index < 0 || index >= tasks.size()) {
             throw new DukeException(invalidAction("unmark"));
         }
@@ -139,6 +147,7 @@ public class TaskList {
      * contain they keyword
      */
     public String find(String keyword) {
+        assert keyword != null: "keyword used for searching cannot be null";
         int index = 1;
         String output = "";
         for (int i = 0; i < tasks.size(); i++) {
