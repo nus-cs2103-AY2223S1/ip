@@ -1,5 +1,9 @@
 package task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * The Events class which is a subclass of Task,
  * encapsulates Events objects
@@ -10,17 +14,22 @@ package task;
  */
 public class Events extends Task {
 
-    private final String date;
+    private LocalDate localDate;
 
     /**
      * Constructor for Events Object
      * @param event the string representation of event to be done
-     * @param date the string representation of the date of the event
+     * @param dateStr the string representation of the date of the event
      */
-    public Events(String event, String date) {
+    public Events(String event, String dateStr) {
         super(event);
         assert event != null : "Please input an Event task!";
-        this.date = date;
+        try {
+            this.localDate = LocalDate.parse(dateStr);
+        } catch (DateTimeParseException e) {
+            System.out.println(dateStr);
+
+        }
     }
 
     /**
@@ -31,6 +40,6 @@ public class Events extends Task {
     @Override
     public String toString() {
 
-        return "[E]" + super.toString() + " (at:" + date + ")";
+        return "[E]" + super.toString() + " (by:" + localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

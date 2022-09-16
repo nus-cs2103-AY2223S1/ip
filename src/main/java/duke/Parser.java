@@ -100,10 +100,17 @@ public class Parser {
             if (!isNumeric(splitStr[1])) {
                 throw new IncorrectInputFormatException("What you typed following the command is not a number...");
             }
+
+            int index = Integer.parseInt(splitStr[1]);
+
+            if (index < 1 || index > storage.getTaskList().size()) {
+                throw new DukeException("Your given index is out of bounds...");
+            }
+
         }
 
         if (commandString.equals("todo") || commandString.equals("find")) {
-            if (splitStr.length != 2) {
+            if (splitStr.length < 2) {
                 throw new IncorrectInputException("Please input a task name after the command...");
             }
         }
@@ -126,12 +133,14 @@ public class Parser {
                         + "</at> <date>");
             }
 
-            String[] splitEventStr = input.split("/at");
+            String[] splitEventStr = input.split("/at ");
 
             if (splitEventStr.length != 2 || splitStr[1].equals("/at")) {
                 throw new IncorrectInputFormatException("Make sure your input is in the format <event> <event name> "
                         + "</at> <date>");
             }
+
+            LocalDate.parse(splitEventStr[1]);
         }
 
         if (commandString.equals("deadline")) {
@@ -199,7 +208,6 @@ public class Parser {
                 String priority = splitStr[2];
                 return new PriorityCommand(taskList, index3, priority);
             default:
-                assert false; //should not reach here
                 return null;
         }
     }

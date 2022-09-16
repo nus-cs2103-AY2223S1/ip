@@ -34,7 +34,7 @@ public class TodoCommand extends Command {
      */
     @Override
     public String execute() throws ParseException {
-        String[] findTask = input.split(" ");
+        String[] findTask = input.split("todo ");
         String theTask = findTask[1];
         String actualTask = theTask;
         ToDos todo = new ToDos(actualTask);

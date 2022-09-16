@@ -23,10 +23,10 @@ Example:
 
 ### Adding a Event task: `event`
 Adds a Event task.\
-Format: `event TASK /at ANYDATE`\
+Format: `event TASK /at YYYY-MM-DD`\
 Example:
-- `event Dad's Birthday dinner /at Next Monday, 7pm`
-- `event Career Fair /at Noon Tomorrow`
+- `event Dad's Birthday dinner /at 2022-08-29`
+- `event Career Fair /at 2022-08-15`
 
 
 ### Adding a Deadline task: `deadline`

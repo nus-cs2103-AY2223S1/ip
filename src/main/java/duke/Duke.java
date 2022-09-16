@@ -38,13 +38,13 @@ public class Duke {
             Command c = parser.parse(input);
             return c.execute();
         } catch (DukeException e) {
-            return "exception bro";
+            return e.toString();
         } catch (IncorrectInputException e) {
             return e.toString();
         } catch (IncorrectInputFormatException e) {
             return e.toString();
         } catch (DateTimeParseException e) {
-            return "Ensure your date is in the format YYYY-MM-DD (2019-12-25)";
+            return e.toString();
         }
     }
 }
