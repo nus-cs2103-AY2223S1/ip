@@ -9,6 +9,8 @@ import duke.utils.TaskList;
 /**
  * Main class of Duke.
  * This class also serves as the main entry point of application.
+ *
+ * @author sikai00
  */
 public class Duke {
     private final TaskList taskList;
