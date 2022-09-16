@@ -2,28 +2,28 @@
 
 ## Features 
 
-### Feature-ABC
+### Todos
+Todos are basic tasks that the user wishes to complete.
 
-Description of the feature.
+### Deadlines
+Deadlines are tasks which are to be done before a certain time.
 
-### Feature-XYZ
+### Events
+Events are tasks which occur at a certain time.
 
-Description of the feature.
+### Activities
+Activities are tasks which have a fixed duration.
 
 ## Usage
 
-### `Keyword` - Describe action
+### `mark` - Marks a task as done
 
-Describe the action and its outcome.
+When a task is marked, an 'X' will be displayed beside it.
 
-Example of usage: 
-
-`keyword (optional arguments)`
+Example of usage:
+`mark (index of task)`
 
 Expected outcome:
-
-Description of the outcome.
-
 ```
-expected output
+[T][X] task description
 ```
