@@ -4,7 +4,7 @@ package duke;
  * Prints messages for user.
  */
 public abstract class Ui {
-    protected String welcomeMessage = "Hello! I'm duke.Duke\nWhat can I do for you?";
+    protected String welcomeMessage = "Hello! I'm Duke.\nWhat can I do for you?";
     protected String loadingErrorMessage =
             "There was a problem loading the tasks from the output file. Starting with empty list.";
 
