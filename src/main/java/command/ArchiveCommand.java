@@ -72,9 +72,8 @@ public class ArchiveCommand extends Command {
         if (!wasSaved) {
             return ui.showError("Problem saving to archive!");
         }
-        String response = new DeleteCommand(index).execute(taskList, ui, storage);
-        response += "\n" + ui.displayTask(ui.ARCHIVED_TASK, task);
-        return  response;
+        new DeleteCommand(index).execute(taskList, ui, storage);
+        return "\n" + ui.displayTask(ui.ARCHIVED_TASK, task);
     }
 
 }
