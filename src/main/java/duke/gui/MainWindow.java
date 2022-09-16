@@ -6,6 +6,7 @@ import duke.Duke;
 import duke.task.Task;
 import duke.task.TaskList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -85,13 +86,13 @@ public class MainWindow extends AnchorPane {
             tasklistItemDialogs.push(DialogBox.getDukeDialog(replyMessage, studiousDukeImage));
             tasklistItemDialogs.push(DialogBox.getUserDialog(input, userImage));
             dialogContainer.getChildren().addAll(tasklistItemDialogs);
-        } else if (responseType.equals(ResponseType.PIE_CHART)) {
+        } else if (responseType.equals(ResponseType.STAT)) {
             String replyMessage = response.getResponseMessage();
-            PieChart pieChart = (PieChart) response.getResponseObject();
+            Node stat = (Node) response.getResponseObject();
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
                     DialogBox.getDukeDialog(replyMessage, dukeStarImage),
-                    pieChart
+                    stat
             );
         } else if (responseType.equals(ResponseType.ERROR)) {
             String replyMessage = response.getResponseMessage();

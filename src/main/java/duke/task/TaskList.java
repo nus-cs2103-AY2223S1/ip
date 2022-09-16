@@ -3,6 +3,8 @@ package duke.task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.function.BiFunction;
@@ -23,6 +25,15 @@ public class TaskList {
      */
     public TaskList() {
         tasks = new LinkedList<>();
+    }
+
+    /**
+     * Constructs a task list from a linked list of tasks.
+     *
+     * @param tasks A linked list of task to create a task list from.
+     */
+    public TaskList(LinkedList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     /**
@@ -214,6 +225,19 @@ public class TaskList {
             taskNumber++;
         }
         return transformed;
+    }
+
+    /**
+     * Returns a new task list from sorting this task list with the given Comparator.
+     * The current task list will not be modified.
+     *
+     * @param taskListComparator The Comparator to sort the task list with.
+     * @return A copy of the task list, with tasks sorted using the Comparator.
+     */
+    public TaskList sort(Comparator<Task> taskListComparator) {
+        LinkedList<Task> tasksCopy = (LinkedList<Task>) tasks.clone();
+        Collections.sort(tasksCopy, taskListComparator);
+        return new TaskList(tasksCopy);
     }
 
     /**

@@ -1,7 +1,8 @@
-package duke.gui;
+package duke.gui.statistics;
 
 import java.io.IOException;
 
+import duke.gui.MainWindow;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
