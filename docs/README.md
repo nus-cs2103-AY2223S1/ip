@@ -69,3 +69,6 @@ Exits the application.
 Usage:
 ```bye```
 
+### Acknowledgements
+[duke image](https://wiki.openjdk.org/display/duke/Gallery) <br>
+[tinee dino](https://www.instagram.com/tineedino/)
