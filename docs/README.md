@@ -11,6 +11,7 @@ The GUI would not have been possible without the help of these borrowed code pie
 - The ability to resize chat bubbles based on text font, size and length is handled by a function adapted from a code piece from StackOverflow, [computeTextWidth()](https://stackoverflow.com/questions/12737829/javafx-textfield-resize-to-text-length)
 
 I would like to thank [Seerlight](https://www.deviantart.com/seerlight) from DeviantArt for creating this beautiful wallpaper [Let's Go Home](https://www.deviantart.com/seerlight/art/Let-s-Go-Home-743542427) which is used as the background of the application. It is free for personal use.
+
 ---
 ## Features
 
@@ -36,7 +37,7 @@ The following features are available in Duke:
   - Serialising the file to disk at fixed time intervals
   
 ---
-### Tasks
+## Tasks
 
 ### Adding Tasks
 
@@ -98,7 +99,7 @@ Format: `tasks list`
 
 ### Annotating a task
 
-Tasks may be marked as finished. To mark a task, specify the mark command, followed by the index.
+Tasks may be marked as finished. To mark a task, specify the `mark` command, followed by the index.
 
 General Format: `task mark <index>`
 
@@ -157,10 +158,10 @@ tasks find read b
 Spaces are also valid, and the above command will return the first task.
 
 ---
-### Loans
+## Loans
 
 ### Adding Loans
-Loans can be added by specifying the loans command, followed by the add argument, then the name of the creditor, followed by the delimiter `-amount` and the amount owed.
+Loans can be added by specifying the `loans` command, followed by the add argument, then the name of the creditor, followed by the delimiter `-amount` and the amount owed.
 
 General format: `loans add <creditor_name> -amount <amount_owed>` 
 
@@ -191,7 +192,7 @@ The above command will record that Adam is due to pay $15, as Adam is currently 
 
 
 ### Deleting Loans
-Loans can be completely removed by specifying the loans, followed by the delete argument, then the name of the creditor.
+Loans can be completely removed by specifying the `loans` command, followed by the delete argument, then the name of the creditor.
 
 General format: `loans delete <creditor_name> ` 
 
@@ -237,7 +238,7 @@ General format: `set name <alias>`
 set name Lain
 ``
 
-This command will prompt Duke to address the user as Lain from now on. There is no limit to how many times the alias may be changed. This command does not affect any bound data to the user.
+This command will prompt Duke to address the user as `Lain` from now on. There is no limit to how many times the alias may be changed. This command does not affect any bound data to the user.
 
 ---
 ## Saving
