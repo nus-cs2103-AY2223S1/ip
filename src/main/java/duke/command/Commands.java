@@ -14,6 +14,5 @@ public enum Commands {
     Delete,
     Date,
     Find,
-    All,
-    Completed
+    Mass,
 }

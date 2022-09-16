@@ -89,7 +89,7 @@ public class Parser {
      */
     public static Commands massCommandHandler(String input) throws DukeException {
         if (input.isBlank()) {
-            throw new EmptyArgumentException(Commands.All);
+            throw new EmptyArgumentException(Commands.Mass);
         }
         switch(input) {
         case "deadline":
@@ -99,9 +99,9 @@ public class Parser {
         case "todo":
             return Commands.ToDo;
         case "all":
-            return Commands.All;
+            return Commands.Mass;
         default:
-            throw new InvalidArgumentException(Commands.All);
+            throw new InvalidArgumentException(Commands.Mass);
         }
     }
 

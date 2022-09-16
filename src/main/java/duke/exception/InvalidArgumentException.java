@@ -42,18 +42,18 @@ public class InvalidArgumentException extends DukeException {
         case Unmark:
             //Fallthrough
         case Delete:
-            message += "\nPlease input a integer within the range of the tasks.";
+            message += "\nPlease input a integer within the range of the tasks or completed.";
             break;
         case Date:
             message += "\nPlease input the date in d/MM/yyyy format e.g. 2/12/2019 1800.";
             break;
-        case All:
+        case Mass:
             message += "\nPlease input all, event, deadline or todo!";
             break;
         default:
             break;
         }
         return "OOPS!!! The description of the " + this.command
-                + " is invalid!" + message;
+                + " command is invalid!" + message;
     }
 }
