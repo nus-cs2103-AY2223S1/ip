@@ -22,6 +22,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.setTitle("Deku!");
             fxmlLoader.<MainWindow>getController().setDuke(deku);
             stage.show();
