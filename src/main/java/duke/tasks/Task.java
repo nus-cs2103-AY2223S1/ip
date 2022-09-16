@@ -1,6 +1,7 @@
 package duke.tasks;
 
 import duke.functions.Ui;
+import duke.support.DukeException;
 
 /**
  * Task class for tasks that users input into the Duke bot.
@@ -80,11 +81,17 @@ public class Task {
      *
      * @param time The new deadline of the task.
      */
-    public void snoozeTask(String time) {
+    public String snoozeTask(String time) {
         if (this instanceof Event) {
+            //Safe to typecast this to Event as this block will only run if this is an Event instance.
             ((Event) this).snoozeDeadline(time);
-        } else {
+            return Ui.printSnoozeEvent(this);
+        } else if (this instanceof Deadline) {
+            //Safe to typecast this to Deadline as this block will only run if this is a Deadline instance.
             ((Deadline) this).snoozeDeadline(time);
+            return Ui.printSnoozeDeadline(this);
+        } else {
+            return DukeException.snoozeException();
         }
     }
 

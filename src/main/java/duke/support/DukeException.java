@@ -44,4 +44,12 @@ public class DukeException extends Exception {
         return "☹ OOPS!!! This word cannot be found in any of the tasks in your task list.";
     }
 
+    /**
+     * Snooze exception handler.
+     *
+     * @return The description shown when a snooze exception is detected.
+     */
+    public static String snoozeException() {
+        return "☹ OOPS!!! This task cannot be snoozed.";
+    }
 }

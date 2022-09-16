@@ -2,6 +2,7 @@ package duke.instruction;
 
 import duke.functions.TaskList;
 import duke.functions.Ui;
+import duke.support.DukeException;
 import duke.tasks.Event;
 import duke.tasks.Task;
 
@@ -13,7 +14,7 @@ import duke.tasks.Task;
 public class SnoozeInstruction implements Instruction {
 
     private TaskList taskList;
-    private String userInput;
+    private String newTime;
     private int taskPos;
     private Task snoozedTask;
 
@@ -26,21 +27,16 @@ public class SnoozeInstruction implements Instruction {
      */
     public SnoozeInstruction(TaskList taskList, String userInput) {
         this.taskList = taskList;
-        this.userInput = userInput;
         char b = userInput.charAt(7);
         this.taskPos = Character.getNumericValue(b);
-        String newTime = userInput.substring(userInput.lastIndexOf("/to") + 4);
+        this.newTime = userInput.substring(userInput.lastIndexOf("/to") + 4);
         this.snoozedTask = this.taskList.getTaskArr()[this.taskPos];
-        this.snoozedTask.snoozeTask(newTime);
     }
 
     @Override
     public String execute() {
+        this.snoozedTask.snoozeTask(newTime);
         this.taskList.getTaskArr()[this.taskPos] = this.snoozedTask;
-        if (this.snoozedTask instanceof Event) {
-            return Ui.printSnoozeEvent(this.snoozedTask);
-        } else {
-            return Ui.printSnoozeDeadline(this.snoozedTask);
-        }
+        return this.snoozedTask.snoozeTask(newTime);
     }
 }
