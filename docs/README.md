@@ -1,4 +1,25 @@
-# User Guide
+# LishBot User Guide
+
+LishBot is a personal assistant Chatbot that helps you manage your tasks~
+
+NEW FEATURE: You can even teach LishBot to memorize new commands and responses!
+
+![photo](https://github.com/albertarielw/ip/blob/master/docs/Ui.png)
+
+## Command Summary
+
+| Commands | Format                                                  |
+|----------|---------------------------------------------------------|
+| todo     | todo {task description}                                 |
+| deadline | deadline {task description} /{time modifier} YYYY-MM-DD |
+| event    | event {task description} /{time modifier} YYYY-MM-DD    |
+| delete   | delete {task number (1-based indexing)}                 |
+| mark     | mark {task number (1-based indexing)}                   |
+| unmark   | unmark {task number (1-based indexing)}                 |
+| list     | list                                                    |
+| find     | find {keyword}                                          |
+| teach    | teach {command}/{response}                              |
+| bye      | bye                                                     |
 
 ## Features 
 
