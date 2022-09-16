@@ -15,4 +15,4 @@ bin/
 
 /text-duke.ui-test/ACTUAL.txt
 text-duke.ui-test/EXPECTED-UNIX.TXT
-data/super duke.txt
+data/duke.txt

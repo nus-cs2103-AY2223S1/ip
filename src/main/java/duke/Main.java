@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Duke duke = new Duke("data/super duke.txt");
+    private Duke duke = new Duke("data/duke.txt");
 
     private final Image iconImage = new Image(this.getClass().getResourceAsStream("/images/Icon.png"));
 
