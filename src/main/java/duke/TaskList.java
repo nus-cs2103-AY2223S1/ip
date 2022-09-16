@@ -26,26 +26,51 @@ public class TaskList {
         ArrayList<Task> result = new ArrayList<>();
         for (String str : taskList) {
             char type = str.charAt(1);
+            char markStatus = str.charAt(4);
             if (type == 'T') {
                 String description = str.substring(7);
-                result.add(new Todo(description));
+                Todo t = new Todo(description);
+                this.displayMark(markStatus, t);
+                result.add(t);
             } else if (type == 'D') {
                 String temp = str.substring(7);
                 String description = temp.split(" \\(by: ")[0];
                 String temp2 = temp.split(" \\(by: ")[1];
                 String by = temp2.substring(0, temp2.length() - 1);
                 LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("MMM dd yyyy"));
-                result.add(new Deadline(description, date.toString()));
+                Deadline d = new Deadline(description, date.toString());
+                this.displayMark(markStatus, d);
+                result.add(d);
+
             } else {
                 String temp = str.substring(7);
                 String description = temp.split(" \\(at: ")[0];
                 String temp2 = temp.split(" \\(at: ")[1];
                 String at = temp2.substring(0, temp2.length() - 1);
                 LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("MMM dd yyyy"));
-                result.add(new Event(description, date.toString()));
+                Event e = new Event(description, date.toString());
+                this.displayMark(markStatus, e);
+                result.add(e);
             }
         }
         this.tasks = result;
+    }
+
+    /**
+     * Changes the Mark status of the task in the event that it has been marked.
+     *
+     * @param c The Mark status of the task.
+     * @param task The task to mark.
+     */
+    private void displayMark(char c, Task task) {
+        if (c == 'X') {
+            task.doTask();
+            return;
+        } else if (c == ' ') {
+            return;
+        } else {
+            assert false : "unexpected character detected";
+        }
     }
 
     /**
