@@ -1,0 +1,3 @@
+todo something
+deadline eat /by tmr
+event picnic /at 9 Aug

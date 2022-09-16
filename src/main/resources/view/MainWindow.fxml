@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" scaleShape="false" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.MainWindow">
+    <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0">
+         <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+               <children>
+                    <TextField fx:id="userInput" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" onAction="#handleUserInput" prefHeight="42.0" prefWidth="550.0" promptText="Type your message here" />
+                    <Button fx:id="sendButton" alignment="CENTER" contentDisplay="TEXT_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#handleUserInput" prefHeight="42.0" prefWidth="76.0" text="Send">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+              <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="556.0" prefWidth="450.0" vvalue="1.0" BorderPane.alignment="CENTER">
+                  <content>
+                      <VBox fx:id="dialogContainer" prefHeight="557.0" prefWidth="440.0" style="-fx-background-image: url('./images/wallpaper.png
+                  ')"/>
+                  </content>
+              </ScrollPane>
+         </center>
+      </BorderPane>
+    </children>
+</AnchorPane>
