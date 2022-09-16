@@ -34,9 +34,13 @@ The user can see the list of tasks that he/she has.
 
 ## Usage
 
-### `todo <description>` - Add a ToDo task
+### `todo` - Add a ToDo task
 
 Typing "todo" with the description of the task will add a ToDo task to the list.
+
+Command format:
+
+`todo <description>`
 
 Example of usage:
 
@@ -56,13 +60,17 @@ A ToDo task has been created and added to the list.
 ```
 
 
-### `deadline <description> /by <date> <time>` - Add a Deadline task
+### `deadline` - Add a Deadline task
 
 Typing "deadline" with the description, followed by "/by", and then the due date and time of the
 task will create the deadline task.
 
 The due date must be typed in "YYYY-MM-DD" format or "DD/MM/YYYY" format whereas the time must be typed
 24-hour format.
+
+Command format:
+
+`deadline <description> /by <date> <time>`
 
 Example of usage:
 
@@ -82,13 +90,17 @@ Description of the outcome.
 A Deadline task has been created and added to the list.
 ```
 
-### `event <description> /at <date> <time>` - Add a Event task
+### `event` - Add a Event task
 
 Typing "event" with the description, followed by "/at", and then the start date and time of the
 task will create the event task.
 
 The start date must be typed in "YYYY-MM-DD" format or "DD/MM/YYYY" format whereas the time must be typed
 24-hour format.
+
+Command format:
+
+`event <description> /at <date> <time>`
 
 Example of usage:
 
@@ -151,10 +163,14 @@ by: - due date and time (Deadline tasks)
 at: - start date and time (Event tasks)
 ```
 
-### `mark <task number>` - Marks the task as done
+### `mark` - Marks the task as done
 
 Typing "mark" and the task number into the text field commands the Duke bot
 to mark the task as done.
+
+Command format:
+
+`mark <task number>`
 
 Example of usage:
 
@@ -172,10 +188,14 @@ Description of the outcome.
 ```
 Task number 3's status is marked as done, as can be seen from [X].
 ```
-### `unmark <task number>` - Unmarks the task as not done
+### `unmark` - Unmarks the task as not done
 
 Typing "unmark" and the task number into the text field commands the Duke bot
 to unmark the task as not done.
+
+Command format:
+
+`unmark <task number>`
 
 Example of usage:
 
@@ -194,10 +214,14 @@ Description of the outcome.
 Task number 3's status is unmarked as not done, as can be seen from [ ].
 ```
 
-### `high <task number>` - Marks the task as "High" priority
+### `high` - Marks the task as "High" priority
 
 Typing "high" and the task number into the text field commands the Duke bot
 to mark the task's priority as "high".
+
+Command format:
+
+`high <task number>`
 
 Example of usage:
 
@@ -215,10 +239,14 @@ Description of the outcome.
 ```
 Task number 3's priority is marked as high, as can be seen from [H].
 ```
-### `medium <task number>` - Marks the task as "Medium" priority
+### `medium` - Marks the task as "Medium" priority
 
 Typing "medium" and the task number into the text field commands the Duke bot
 to mark the task's priority as "medium".
+
+Command format:
+
+`medium <task number>`
 
 Example of usage:
 
@@ -237,10 +265,14 @@ Description of the outcome.
 Task number 1's priority is marked as medium, as can be seen from [M].
 ```
 
-### `low <task number>` - Marks the task as "Low" priority
+### `low` - Marks the task as "Low" priority
 
 Typing "low" and the task number into the text field commands the Duke bot
 to mark the task's priority as "low".
+
+Command format:
+
+`low <task number>`
 
 Example of usage:
 
@@ -259,10 +291,14 @@ Description of the outcome.
 Task number 2's priority is marked as low, as can be seen from [L].
 ```
 
-### `delete <task number>` - Deletes the task
+### `delete` - Deletes the task
 
 Typing "delete" and the task number into the text field commands the Duke bot
 to delete that particular task.
+
+Command format:
+
+`delete <task number>`
 
 Example of usage:
 
@@ -282,9 +318,13 @@ Description of the outcome.
 Task number 2 is deleted from the list of tasks.
 ```
 
-### `find <keyword>` - Find tasks with the keyword
+### `find` - Find tasks with the keyword
 
 Typing "find" and the keyword commands the Duke bot to show the list of tasks containing that keyword.
+
+Command format:
+
+`find <keyword>`
 
 Example of usage:
 
