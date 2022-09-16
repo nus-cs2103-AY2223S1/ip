@@ -15,20 +15,6 @@ public class Ui {
         this.sc = new Scanner(System.in);
     }
 
-    /**
-     * Prints welcome text
-     */
-    public void showWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("\tHello! I'm Duke");
-        System.out.println("\tWhat can I do for you?");
-        System.out.println(DIVIDER);
-    }
 
     /**
      * Reads next line from the scanner
@@ -42,16 +28,6 @@ public class Ui {
         return "";
     }
 
-    /**
-     * Prints text with DIVIDER
-     *
-     * @param output message to be printed
-     */
-    public void printWithDivider(String output) {
-        System.out.println(DIVIDER);
-        System.out.print(output);
-        System.out.println(DIVIDER);
-    }
 
     /**
      * Represents the bye text in String format
@@ -156,5 +132,23 @@ public class Ui {
      */
     public String showLoadingError(String message) {
         return "OOPS!!! " + message + ".\n";
+    }
+
+    public String help() {
+        String output = "Here are the commands\n";
+        String tasks = "To add tasks:\n";
+        String todo_message = "1.todo <description>\n";
+        String deadline_message = "2.deadline <description> /by YYYY-MM-DD HH:mm\n";
+        String event_message = "3.event <description> /at YYYY-MM-DD HH:mm\n";
+        String actions = "List of actions:\n";
+        String mark = "4.mark <index>\n";
+        String delete = "5.delete <index>\n";
+        String unmark = "6.unmark <index>\n";
+        String find = "7.find <keyword>\n";
+        String list = "8.list\n";
+        output = output + tasks + todo_message + deadline_message
+                + event_message + actions + mark + delete + unmark
+                + find + list;
+        return output;
     }
 }
