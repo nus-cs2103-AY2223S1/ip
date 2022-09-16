@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public abstract class Task {
     private String description;
-    private boolean done;
+    private boolean isDone;
 
     /**
      * Creates a task.
@@ -16,21 +16,21 @@ public abstract class Task {
      */
     public Task(String description) {
         this.description = description;
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
      * Marks task as done.
      */
     public void markDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     /**
      * Marks task as not done.
      */
     public void unmarkDone() {
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
@@ -39,7 +39,7 @@ public abstract class Task {
      * @return whether the task is done.
      */
     public boolean isDone() {
-        return this.done;
+        return this.isDone;
     }
 
     /**
@@ -48,7 +48,7 @@ public abstract class Task {
      * @return "{1 if done else 0} | {description}".
      */
     public String toFileRepresentation() {
-        return String.format("%d | %s", this.done ? 1 : 0, this.description);
+        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
     }
 
     /**
@@ -89,7 +89,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        char doneFlag = done ? 'X' : ' ';
+        char doneFlag = isDone ? 'X' : ' ';
         return String.format("[%c] %s", doneFlag, description);
     }
 }
