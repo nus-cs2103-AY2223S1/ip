@@ -10,6 +10,7 @@ import duke.task.Task;
  */
 public class TaskList {
     private List<Task> tasks;
+    private final String DUPLICATE_MESSAGE = "This task is a duplicate";
 
     /**
      * Instantiates a new TaskList with empty list
@@ -69,8 +70,14 @@ public class TaskList {
      * @param task the task that we want to add to the list
      * @return string output of what task is added to the list
      */
-    public String addTask(Task task) {
+    public String addTask(Task task) throws DukeException {
         assert task != null : "task to add to task list cannot be null";
+        //check for duplicates
+        for (int i = 0; i < tasks.size(); i++) {
+            if (task.equals(tasks.get(i))) {
+                throw new DukeException(DUPLICATE_MESSAGE);
+            }
+        }
         tasks.add(task);
         String output = String.format("%s\n", task);
         return output;
