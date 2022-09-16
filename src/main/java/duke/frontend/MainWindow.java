@@ -59,7 +59,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() {
+    private void handleUserInput() throws DukeException {
         try {
             String input = userInput.getText();
             assert !input.equals("") : "Input cannot be empty.";
@@ -73,8 +73,8 @@ public class MainWindow extends AnchorPane {
                 this.handleExit();
             }
             userInput.clear();
-        } catch (DukeException e) {
-            System.out.println("ok");
+        } catch (DukeException | AssertionError e) {
+            System.out.println("Input cannot be empty.");
         }
     }
 
