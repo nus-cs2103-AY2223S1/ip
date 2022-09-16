@@ -8,6 +8,7 @@ import duke.task.Event;
 import duke.task.ToDo;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Parser {
 
@@ -114,10 +115,16 @@ public class Parser {
     }
 
     private static FindCommand findTask(String command) throws DukeException {
-        String[] commandList = command.strip().split(" ");
+        String[] commandList = command.strip().split(" ", 2);
         try {
-            return new FindCommand(commandList[1]);
+            String keyword = commandList[1].strip();
+            if (keyword.equals("")) {
+                throw new DukeException(Message.INVALID_FIND_TASK_FORMAT);
+            }
+            assert !keyword.equals("") : "keyword cannot be empty";
+            return new FindCommand(keyword);
         } catch (IndexOutOfBoundsException e) {
+            assert commandList.length < 2 : "Command list should contain at most 1 element";
             throw new DukeException(Message.INVALID_FIND_TASK_FORMAT);
         }
     }

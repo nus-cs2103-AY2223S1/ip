@@ -46,12 +46,15 @@ public class UnmarkCommand extends Command {
         try {
             tasks.unmarkTaskAtPos(this.index);
             Task currentTask = tasks.getTask(this.index);
+            assert this.index <= tasks.getCount() && this.index > 0 :
+                    "Position argument should be more than 0 and less than or equal to the task list size";
             storage.save(tasks);
             return ui.showUnmarked(currentTask);
         } catch (IndexOutOfBoundsException e) {
             if (tasks.getCount() == 0) {
                 throw new DukeException(Message.INVALID_ACCESS_EMPTY_TASKLIST);
             } else {
+                assert tasks.getCount() > 0 : "task list should have 1 or more tasks";
                 throw new DukeException(Message.returnTaskNotFound(tasks));
             }
         }
