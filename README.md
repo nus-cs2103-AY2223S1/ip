@@ -15,8 +15,8 @@
 
 ### Features:
 - [x] Manage (add, delete, mark) tasks
-- [] Manage deadlines (coming soon)
-- [] Reminders (coming soon)
+- [ ] Manage deadlines (coming soon)
+- [ ] Reminders (coming soon)
 
 
 ### For java programmers, this is the `main` method:
