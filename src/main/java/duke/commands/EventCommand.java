@@ -4,6 +4,7 @@ import duke.exceptions.DukeException;
 import duke.exceptions.DukeInvalidDateException;
 import duke.storage.Storage;
 import duke.tasks.Event;
+import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
 
@@ -54,8 +55,19 @@ public class EventCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(event);
-        String result = MESSAGE_SUCCESS + event + " " + tasks.showNumberOfTasks();
+        String result = getResultString(tasks, event);
         ui.showMessage(result);
         return result;
+    }
+
+    /**
+     * Gets the string representation of the result to be returned to the user
+     *
+     * @param tasks An ArrayList of tasks
+     * @param task The event to be printed
+     * @return A string presentation of the arraylist and the tasks
+     */
+    public String getResultString(TaskList tasks, Task task) {
+        return MESSAGE_SUCCESS + event + System.lineSeparator() + tasks.showNumberOfTasks();
     }
 }

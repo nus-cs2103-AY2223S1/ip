@@ -1,2 +1,1 @@
-M|deadline do something /by 2022-02-02 2000
-M|deadline submit homework /by 2022-09-15 1900
+N|deadline say hello /by 2022-09-09 1900

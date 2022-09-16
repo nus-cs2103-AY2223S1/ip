@@ -49,8 +49,8 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            String t = tasks.getTask(taskIndex);
-            String result = MESSAGE_SUCCESS + t + System.lineSeparator() + tasks.showNumberOfTasks();
+            Task t = tasks.getTask(taskIndex);
+            String result = getResultString(tasks, t);
             tasks.deleteTask(taskIndex);
             ui.showMessage(result);
             return result;
@@ -58,5 +58,16 @@ public class DeleteCommand extends Command {
             ui.showErrorMessage(e.getMessage());
             return e.getMessage();
         }
+    }
+
+    /**
+     * Gets the string representation of the result to be returned to the user
+     *
+     * @param tasks An ArrayList of tasks
+     * @param task The task to be printed
+     * @return A string presentation of the arraylist and the tasks
+     */
+    public String getResultString(TaskList tasks, Task task) {
+        return MESSAGE_SUCCESS + task + System.lineSeparator() + tasks.showNumberOfTasks();
     }
 }
