@@ -2,6 +2,8 @@
 
 Duke is a Command Line Application to help you manage your tasks.
 
+![Ui][Ui.png]
+
 ## Start Guide
 
 1. Ensure you have `Java 11` on your local machine (computer).
