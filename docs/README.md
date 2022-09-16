@@ -145,6 +145,17 @@ be indicated as not done in the list view.
 **Expected outcome:** 
 Your previous command is undone.
 
+### `bye` - Exit the app
+
+**Format:** 
+`bye`
+
+**Example of usage:** 
+`bye`
+
+**Expected outcome:** 
+The application exits.
+
 ## Command Summary
 
 | Command  | Format                          |
@@ -158,3 +169,4 @@ Your previous command is undone.
 | Mark     | `mark INDEX`                    |
 | Unmark   | `unmark INDEX`                  |
 | Undo     | `undo`                          |
+| Bye      | `bye`                           |
