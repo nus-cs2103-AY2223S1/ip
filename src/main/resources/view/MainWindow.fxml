@@ -27,7 +27,8 @@
          <center>
               <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="556.0" prefWidth="450.0" vvalue="1.0" BorderPane.alignment="CENTER">
                   <content>
-                      <VBox fx:id="dialogContainer" prefHeight="557.0" prefWidth="440.0" style="-fx-background-image: url('./images/wallpaper.jpg')"/>
+                      <VBox fx:id="dialogContainer" prefHeight="557.0" prefWidth="440.0" style="-fx-background-image: url('./images/wallpaper.png
+                  ')"/>
                   </content>
               </ScrollPane>
          </center>
