@@ -1,5 +1,6 @@
 package duke;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,14 +12,16 @@ import java.io.FileWriter;
  * @author Shaune Ang
  */
 public class  FileLoaderSaver {
-    private Path filePath;
+    private File filePath;
+    private Path path;
 
     /**
      * Constructs duke.FileLoaderSaver object
      * @param filePath path to saving and loading location
      */
     public FileLoaderSaver(String filePath) {
-        this.filePath = Path.of(filePath);
+        this.filePath = new File(filePath);
+        path = Path.of(filePath);
     }
 
     /**
@@ -28,11 +31,22 @@ public class  FileLoaderSaver {
      */
     public List<String> loadFile() throws IOException {
         //Find existing toDoList
-        if (!Files.exists(filePath)) {
-            Files.createFile(filePath);
-        }
-        List<String> txtFile = Files.readAllLines(filePath);
+        checkFileExists();
+
+        List<String> txtFile = Files.readAllLines(path);
         return txtFile;
+    }
+
+    /**
+     * Checks if file at end of filepath exists, else creates a new file
+     * @throws IOException
+     */
+    private void checkFileExists() throws IOException{
+        if (new File("data").mkdir()) {
+            new File("data/duke.txt").createNewFile();
+        } else if (!filePath.exists()) {
+            filePath.createNewFile();
+        }
     }
 
     /**
