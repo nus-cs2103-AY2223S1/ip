@@ -8,6 +8,7 @@ import jarvis.task.Todo;
 
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 public class TaskList {
     Task[] taskList = new Task[100];
@@ -103,5 +104,14 @@ public class TaskList {
 
     public int getTaskCount() {
         return firstEmptyIndex;
+    }
+
+    public void find(String keyword) {
+        Task[] searchResult = Arrays.stream(this.taskList).filter(task -> task.match(keyword)).toArray(Task[]::new);
+        String msg = "Here are the matching tasks in your list:\n";
+        for (int i = 0; i < searchResult.length; i++) {
+            msg += (i + 1) + ". " + searchResult[i] + "\n";
+        }
+        System.out.println(msg);
     }
 }
