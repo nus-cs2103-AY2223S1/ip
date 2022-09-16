@@ -7,13 +7,13 @@ import java.io.IOException;
  */
 public class Duke  {
     
-    /*Storage object to handle reading and writing to hard disk */
+    /**Storage object to handle reading and writing to hard disk */
     private Storage storage;
-    /*Tasklist containing an arraylist of tasks */
+    /**Tasklist containing an arraylist of tasks */
     private TaskList tasks;
-    /*Ui component to handle the user interface of the program */
+    /**Ui component to handle the user interface of the program */
     private Ui ui;
-    /*Parser object to parse user input into recognised Commands */
+    /**Parser object to parse user input into recognised Commands */
     private Parser parser;
 
     /**
@@ -41,6 +41,12 @@ public class Duke  {
     }
     
 
+    /**
+     * Returns a string to be displayed in the GUI depending on the user input.
+     * 
+     * @param input user input in the program.
+     * @return a string to be displayed in the GUI.
+     */
     public String getResponse(String input) {
         try {
             input = input.strip();

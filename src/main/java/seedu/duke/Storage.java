@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Represents the path of the file in the hard disk where the output of the program is stored.
  */
 public class Storage {
-    /* The path of the output file */
+    /** The path of the output file */
     private String filepath;
 
     /**

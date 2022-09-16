@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
  * Represents a task with description and the date and time of the task.
  */
 public class Event extends Task {
-    /* The date of the task */
+    /** The date of the task */
     protected LocalDateTime at;
 
     /**
@@ -14,6 +14,7 @@ public class Event extends Task {
      *
      * @param description The name of the event.
      * @param at The date and time of the event.
+     * @throws DukeException if the date is of the wrong format.
      */
     public Event(String description, String at) throws DukeException{
         super(description);

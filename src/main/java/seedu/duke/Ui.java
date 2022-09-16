@@ -5,13 +5,13 @@ package seedu.duke;
  */
 public class Ui {
 
-    /* Greeting message */
+    /** Greeting message */
     private final static String WELCOME = "Hello! I'm Luke\nWhat can I do for you?";
-    /* Message to be displayed when a task is added */
+    /** Message to be displayed when a task is added */
     private final String ADDED_TASK = "Got it. I've added this task:";
-    /* Message to be displayed when a task is removed */
+    /** Message to be displayed when a task is removed */
     private final String REMOVED_TASK = "Noted. I've removed this task:";
-    /* Message to be displayed when user exit the program */
+    /** Message to be displayed when user exit the program */
     private final String GOODBYE = "Bye! Thanks for using Luke!";
    
     

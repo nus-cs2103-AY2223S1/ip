@@ -4,9 +4,9 @@ package seedu.duke;
  * Represents a description and if the task is completed.
  */
 public class Task {
-    /* The name of the task */
+    /** The name of the task */
     protected String description;
-    /* Represents whether the task is completed */
+    /** Represents whether the task is completed */
     protected boolean isDone;
     protected String tag;
 
@@ -40,7 +40,7 @@ public class Task {
     }
 
     /**
-     * Set the task to be completed.
+     * Sets the task to be completed.
      */
     public String setDone() {
         this.isDone = true;
@@ -48,13 +48,17 @@ public class Task {
     }
 
     /**
-     * Set the task to be uncompleted.
+     * Sets the task to be uncompleted.
      */
     public String setUndone() {
         this.isDone = false;
         return "OK, I've marked this task as not done yet:\n[ ] " + this.description + this.tag;
     }
 
+    /**
+     * @param tag a tag for the task.
+     * @return a string when the tag is successfully set.
+     */
     public String setTag(String tag) {
         this.tag = String.format("# %s ", tag);
         return "Got it! I have set the tag of this task:\n" + this.description + this.tag;

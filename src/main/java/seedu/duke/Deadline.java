@@ -15,6 +15,7 @@ public class Deadline extends Task {
      *
      * @param description the name of the task.
      * @param by the due date of the task.
+     * @throws DukeException if the format of the date is wrong.
      */
     public Deadline(String description, String by) throws DukeException{
         super(description);

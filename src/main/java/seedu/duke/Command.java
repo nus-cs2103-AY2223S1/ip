@@ -25,6 +25,7 @@ public enum Command {
      * @param ui Ui of the application.
      * @param storage Storage which handles the reading and saving of tasks to hard disk.
      * @param input The user's input in the command line
+     * @return a string to be displayed in the GUI when the command is executed.
      * @throws DukeException if command is not found or cannot be executed.
      */
     public String execute(TaskList tasklist, Ui ui, Storage storage, String input) throws DukeException {
@@ -184,6 +185,15 @@ public enum Command {
         }
     }
 
+    /**
+     * Returns a String about the number of tasks in the list.
+     * 
+     * @param tasks ArrayList of tasks.
+     * @param task An object containing its description and tag and whether it is done. 
+     * @param ui Ui of the application.
+     * @param output An intermediate string to be returned.
+     * @return a string to be displayed in GUI when task is added.
+     */
     private String addTask(ArrayList<Task> tasks, Task task, Ui ui, String output) {
         tasks.add(task);
         ui.add(task);

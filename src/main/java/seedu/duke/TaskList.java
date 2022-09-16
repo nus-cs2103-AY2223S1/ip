@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * A wrapper containing an arraylist of tasks.
  */
 public class TaskList {
-    /* The list of tasks */
+    /** The list of tasks */
     private ArrayList<Task> tasks;
 
     /**

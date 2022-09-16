@@ -7,7 +7,7 @@ import java.util.Arrays;
  * Converts a string of input from user to recognised Commands.
  */
 public class Parser {
-    /* possible commands in strings */
+    /** possible commands in strings */
     private final ArrayList<String> stringOfCommands;
     /**
      * Constructor for Parser.

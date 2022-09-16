@@ -1,7 +1,6 @@
 package seedu.duke;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +12,9 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+    /**
+     * A Duke object loaded from hard disk.
+     */
     private Duke duke = new Duke("data/Duke.txt");
 
     @Override
