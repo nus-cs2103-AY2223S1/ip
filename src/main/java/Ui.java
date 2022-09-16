@@ -129,18 +129,18 @@ public class Ui {
      * @return a list of available commands.
      */
     String getHelp() {
-        return "The available commands:\n" + "- todo DESCRIPTION\n" + "- deadline DESCRIPTION /by YYYY-MM-DD\n" +
-                "- event DESCRIPTION /at YYYY-MM-DD\n" + "- list\n" + "- mark TASK_NO\n" +
-                "- unmark TASK_NO\n" + "- delete TASK_NO\n" + "- find KEYWORD\n" +
-                "- sortdeadlines\n" + "- bye\n";
+        return "The available commands:\n" + "- todo DESCRIPTION\n" + "- deadline DESCRIPTION /by YYYY-MM-DD\n"
+                + "- event DESCRIPTION /at YYYY-MM-DD\n" + "- list\n" + "- mark TASK_NO\n"
+                + "- unmark TASK_NO\n" + "- delete TASK_NO\n" + "- find KEYWORD\n"
+                + "- sortdeadlines\n" + "- bye\n";
     }
 
     /**
      * Reply the users when there is a mismatch in the user's input.
      */
     String printMisMatchInputError() {
-        return "Anya do not understand what you means.\n" +
-                "Please type help if you need the available commands info.\n";
+        return "Anya do not understand what you means.\n"
+                + "Please type help if you need the available commands info.\n";
     }
 
     /**

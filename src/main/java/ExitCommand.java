@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
      * Execute the exit command.
      * @param tasks current tasklist.
      * @param ui interaction class.
-     * @return the response of the anya.
+     * @return the response of Anya.
      */
     String execute(TaskList tasks, Ui ui) {
         String response = ui.exit();

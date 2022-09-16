@@ -15,7 +15,7 @@ public class ListCommand extends Command {
      * Execute the list command.
      * @param tasks current tasklist.
      * @param ui interaction class.
-     * @return the response of the anya.
+     * @return the response of Anya.
      */
     String execute(TaskList tasks, Ui ui) {
         List<Task> fullTasks = tasks.getList();
