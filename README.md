@@ -177,7 +177,7 @@ Displays all tasks whose name has "assignment" in it.
 ##  `priority` - Set task priority
 Sets the specified task's priority to high or none.
 
-Format: `priority <task number> <priority to set to>
+Format: `priority <task number> <priority to set to>`
 
 Notes:
 - use "high" for high priority and "none" to remove priority
@@ -203,8 +203,4 @@ Exits the program
 
 Format: `bye`
 
-Expected Outcome:
-
-```
-Okay then, see ya later :)
-```
+Expected Outcome: Program closes
