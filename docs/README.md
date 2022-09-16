@@ -200,19 +200,3 @@ Expected outcome:
 ```
 You have 2 events. ;)
 ```
-
-## Command Summary
-| Action          | Format, Example                          |
-|-----------------|------------------------------------------|
-| Add Todo        | `todo TODO`                              |
-| Add Deadline    | `deadline DEADLINE /by YYYY-MM-DDTHH:MM` |
-| Add Event       | `event EVENT /at YYYY-MM-DDTHH:MM`       |
-| Mark            | `mark INDEX`                             |
-| Unmark          | `unmark INDEX`                           |
-| Delete          | `delete INDEX`                           |
-| List            | `list`                                   |
-| Find            | `find KEYWORD`                           |
-| Count Todos     | `count todo`                             |
-| Count Deadlines | `count deadline`                         |
-| Count Events    | `count event`                            |
-
