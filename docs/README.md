@@ -3,18 +3,18 @@
 Duke is a desktop app that that lets you add in new tasks and manage them. It makes 
 use of Command Line Interface (CLI) with Graphical User Interface (GUI). If you want to easily
 manage and keep track of what you need to do, Duke is the program for you!!
-- [Quick start]() 
-- [Features]()
-   - [View help: `help`]()
-   - [Create a new task: `todo`]()
-   - [Create a new deadline: `deadline`]()
-   - [Create a new event: `event`]()
-   - [View tasks: `list`]()
-   - [Find a task: `find`]()
-   - [Mark a task: `mark`]()
-   - [Unmark a task: `unmark`]()
-   - [Exit Duke: `bye`]()
-- [FAQ]()
+- [Quick start](#quick-start) 
+- [Features](#features)
+   - [View help: `help`](#view-help-help)
+   - [Create a new task: `todo`](#create-a-new-task-todo)
+   - [Create a new deadline: `deadline`](#create-a-new-deadline-deadline)
+   - [Create a new event: `event`](#create-a-new-event-event)
+   - [View tasks: `list`](#view-tasks-list)
+   - [Find a task: `find`](#find-a-task-find)
+   - [Mark a task: `mark`](#mark-a-task-mark)
+   - [Unmark a task: `unmark`](#unmark-a-task-unmark)
+   - [Exit Duke: `bye`](#exit-duke-bye)
+- [FAQ](#faq)
 
 -------------------------------------------
 
