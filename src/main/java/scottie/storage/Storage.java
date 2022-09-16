@@ -1,50 +1,23 @@
 package scottie.storage;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 
 /**
- * Handles storing and retrieving data in a data file.
+ * API of a component for storing and retrieving data.
  */
-public class Storage {
-    private final Path filePath;
-
-    public Storage(Path filePath) {
-        this.filePath = filePath;
-    }
+public interface Storage {
+    /**
+     * Returns a list containing the lines of data stored in this Storage.
+     *
+     * @return A List of lines of data.
+     */
+    List<String> loadData();
 
     /**
-     * Loads the data lines from the data file.
+     * Saves the given lines into this Storage.
+     * The data currently stored is overwritten every time.
      *
-     * @return A List of lines from the data file.
+     * @param lines The lines of data to store.
      */
-    public List<String> loadData() {
-        try {
-            if (Files.exists(this.filePath)) {
-                return Files.readAllLines(this.filePath);
-            }
-            Files.createDirectories(this.filePath.getParent());
-            Files.createFile(this.filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return List.of();
-    }
-
-    /**
-     * Writes the given list of lines to the data file.
-     * The file is overwritten every time.
-     *
-     * @param lines The lines to write to the file.
-     */
-    public void saveData(Iterable<String> lines) {
-        try {
-            Files.createDirectories(this.filePath.getParent());
-            Files.write(this.filePath, lines);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    void saveData(Iterable<String> lines);
 }
