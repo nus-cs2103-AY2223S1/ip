@@ -1,7 +1,7 @@
 package luffy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * TodoTest class to test the Test class.

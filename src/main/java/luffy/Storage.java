@@ -66,6 +66,8 @@ public class Storage {
                         currentTask = new Deadline(taskDescription, by);
                         tasks.add(currentTask);
                         break;
+                    default:
+                        break;
                     }
                     if (isTaskDone) {
                         currentTask.markCompleted();

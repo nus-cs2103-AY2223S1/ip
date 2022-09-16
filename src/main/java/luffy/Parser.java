@@ -5,7 +5,6 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
 
 /**
  * Parser class to handle user inputs.
@@ -13,8 +12,8 @@ import java.util.Scanner;
  * @author Silas Tay (A0233425M)
  */
 public class Parser {
-    private Ui ui;
     private static final String ERROR_PREFIX = "☹ OOPS!!! ";
+    private Ui ui;
 
     /**
      * Constructor for Parser class.
@@ -35,7 +34,7 @@ public class Parser {
             int taskIndex = Integer.parseInt(s.substring(5, 6)) - 1;
             if (taskIndex >= 0 && taskIndex < tasks.getSize()) {
                 tasks.markCompleted(taskIndex);
-                return "Marked task " +  (taskIndex + 1) + " as completed: \n" + tasks.getTask(taskIndex);
+                return "Marked task " + (taskIndex + 1) + " as completed:\n" + tasks.getTask(taskIndex);
             } else {
                 return ERROR_PREFIX + "Task index out of bounds!";
             }
@@ -56,7 +55,7 @@ public class Parser {
             int taskIndex = Integer.parseInt(s.substring(7, 8)) - 1;
             if (taskIndex >= 0 && taskIndex < tasks.getSize()) {
                 tasks.markUncompleted(taskIndex);
-                return "Marked task " +  (taskIndex + 1) + " as uncompleted: \n" + tasks.getTask(taskIndex);
+                return "Marked task " + (taskIndex + 1) + " as uncompleted:\n" + tasks.getTask(taskIndex);
             } else {
                 return ERROR_PREFIX + "Task index out of bounds!";
             }
@@ -165,6 +164,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Lists deadlines in order
+     *
+     * @param s Full command String
+     * @param tasks TaskList
+     * @return
+     */
     public String listDeadlines(String s, TaskList tasks) {
         ArrayList<Deadline> deadlines = tasks.getDeadlines();
         String responseString = "";

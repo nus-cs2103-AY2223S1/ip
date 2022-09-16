@@ -5,22 +5,24 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.layout.Region;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * Luffy is a todolist program. Built for CS2103T Individual Project 2022 S1.
  *
  * @author Silas Tay A0233425M
  */
-public class Luffy extends Application{
+public class Luffy extends Application {
+    private static final String FILE_PATH = "./data/data.txt";
+
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -35,7 +37,6 @@ public class Luffy extends Application{
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/luffy.jpeg"));
 
-    private static final String FILE_PATH = "./data/data.txt";
 
     /**
      * Construtor for Luffy object.

@@ -7,7 +7,7 @@ import java.time.LocalDate;
  *
  * @author Silas Tay A0233425M
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     /**
      * Constructor for Deadline task.
