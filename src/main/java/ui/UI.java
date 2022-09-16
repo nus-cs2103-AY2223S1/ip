@@ -32,6 +32,25 @@ public class UI {
         return out;
     }
 
+    public String wrongDateTimeFormat() {
+        String out = "----------------------\nHi please put in the proper date and time format: DD/MM/YYYY.\n" +
+        "----------------------\n";
+        return out;
+    }
+
+    public String indexOutOfBounds(int i) {
+        String out = "----------------------\nThe number" + i + " is out of bounds please choose a smaller index.\n" +
+                "----------------------\n";
+        return out;
+    }
+
+    public String notNumber() {
+        String out = "----------------------\nThe index u input is not a number, please input a number.\n" +
+                "----------------------\n";
+        return out;
+    }
+
+
 
 
 }

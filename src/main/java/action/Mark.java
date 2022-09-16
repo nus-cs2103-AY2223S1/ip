@@ -3,11 +3,14 @@ package action;
 import duke.DukeException;
 
 import task.TaskList;
+import ui.UI;
 
 /**
  * A class that marks a Task done.
  */
 public class Mark {
+
+    private static UI ui = new UI();
 
     /**
      * Marks a Task done specified by user input.
@@ -21,7 +24,7 @@ public class Mark {
             return "----------------------\n" + "Congrats on completing :)\n" +
                     taskList.getTaskList().get(Integer.parseInt(str[1]) - 1) + "\n----------------------\n";
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("");
+            throw new DukeException(ui.indexOutOfBounds(Integer.parseInt(str[1]) - 1));
         }
     }
 }

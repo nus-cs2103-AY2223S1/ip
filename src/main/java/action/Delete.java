@@ -3,11 +3,14 @@ package action;
 import duke.DukeException;
 
 import task.TaskList;
+import ui.UI;
 
 /**
  * Delete is a class that removes a task from the TaskList.
  */
 public class Delete {
+
+    private static UI ui = new UI();
 
     /**
      * Deletes the specified index of task from TaskList.
@@ -18,11 +21,14 @@ public class Delete {
 
     public static String delete(String[] str, TaskList taskList) {
         assert taskList.getTaskList().size() > 0 : "TaskList should not be empty";
+        int pos = 0;
         try {
-            int pos = Integer.parseInt(str[1]) - 1;
+            pos = Integer.parseInt(str[1]) - 1;
             return taskList.delete(pos);
-        } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            throw new DukeException("");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(ui.indexOutOfBounds(pos));
+        } catch (NumberFormatException e) {
+            throw new DukeException(ui.notNumber());
         }
     }
 

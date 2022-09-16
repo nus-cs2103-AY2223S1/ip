@@ -4,12 +4,15 @@ package action;
 import duke.DukeException;
 
 import task.TaskList;
+import ui.UI;
 
 
 /**
  * A class that marks a Task done.
  */
 public class Unmark {
+
+    private static UI ui = new UI();
 
     /**
      * UnMarks a Task done specified by user input.
@@ -23,7 +26,7 @@ public class Unmark {
             return "----------------------\n" + "One more mission ;)\n" +
                     taskList.getTaskList().get(Integer.parseInt(str[1]) - 1) + "\n----------------------\n";
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(" ");
+            throw new DukeException(ui.indexOutOfBounds(Integer.parseInt(str[1]) - 1));
         }
     }
 

@@ -16,9 +16,12 @@ import task.Deadline;
 import task.Event;
 import task.Todo;
 import task.TaskList;
+import ui.UI;
 
 
 public class Parser {
+
+    protected static UI ui = new UI();
 
 
     protected Command command = Command.UNKNOWN;
@@ -41,7 +44,7 @@ public class Parser {
      */
     public String parse(TaskList taskList, String str) throws DukeException {
         String[] input = str.split(" ");
-        Command c = Command.read(input[0]);
+        Command c = Command.read(str);
         switch (c) {
             case BYE:
                 command = Command.BYE;
@@ -51,9 +54,17 @@ public class Parser {
             case FIND:
                 return Find.findTasks(input, taskList);
             case MARK:
-                return Mark.mark(input, taskList);
+                try {
+                    return Mark.mark(input, taskList);
+                } catch (DukeException e) {
+                    return e.getMessage();
+                }
             case UNMARK:
-                return Unmark.unMark(input, taskList);
+                try {
+                    return Unmark.unMark(input, taskList);
+                } catch (DukeException e) {
+                    return e.getMessage();
+                }
             case TODO:
                 return taskList.add(new Todo(str.substring(5)));
             case EVENT:
@@ -63,11 +74,20 @@ public class Parser {
             case DEADLINE:
                 int posD = str.indexOf("/by") + 1;
                 assert posD < str.length() : "String position cannot be longer than string";
-                return taskList.add(new Deadline(str.substring(9, posD - 1), str.substring(posD + 3)));
+                try {
+                    Deadline dl = new Deadline(str.substring(9, posD - 1), str.substring(posD + 3));
+                    return taskList.add(dl);
+                } catch (DukeException e) {
+                    return e.getMessage();
+                }
             case DELETE:
-                return Delete.delete(input, taskList);
+                try {
+                    return Delete.delete(input, taskList);
+                } catch (DukeException e) {
+                    return e.getMessage();
+                }
             default:
-                throw new DukeException("???? What are you saying\n");
+                throw new DukeException(ui.showInaccurateInput());
         }
     }
 

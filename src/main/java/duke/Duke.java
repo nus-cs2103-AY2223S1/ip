@@ -2,6 +2,7 @@ package duke;
 
 import java.io.FileNotFoundException;
 
+import gui.MainWindow;
 import javafx.application.Platform;
 
 import parser.Parser;
@@ -56,20 +57,13 @@ public class Duke {
      * @return The appropriate system response to the user input.
      */
     public String getResponse(String input) {
-        try {
-            Parser parser = new Parser();
-            String out = parser.parse(tasks, input);
-            if (parser.isBye()) {
-                Thread.sleep(500);
-                Platform.exit();
-            }
-            return out;
-        } catch (DukeException e) {
-            return ui.showInaccurateInput();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-
+        Parser parser = new Parser();
+        System.out.println(input);
+        String out = parser.parse(tasks, input);
+        if (parser.isBye()) {
+            MainWindow.exit();
         }
+        return out;
     }
 }
 

@@ -1,12 +1,19 @@
 package task;
 
+import duke.DukeException;
+import ui.UI;
+
+import java.lang.reflect.InvocationTargetException;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Deadline task is a type of Task with a deadline.
  */
 public class Deadline extends Task {
+
+    protected static UI ui = new UI();
     protected String by;
 
     protected String string_Date;
@@ -25,11 +32,24 @@ public class Deadline extends Task {
 
         super(description);
         this.by = by;
-        String[] dateAndTime = by.split(" ", 4);
-        this.string_Date = dateAndTime[1] + "/" + dateAndTime[0] + "/" + dateAndTime[2];
-        this.string_Time = dateAndTime[3];
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
-        this.date = LocalDate.parse(string_Date, formatter);
+        System.out.println(by);
+        String[] dateAndTime = by.split(" ");
+        DateTimeFormatter formatter;
+
+            if (dateAndTime.length == 4) {
+                this.string_Date = dateAndTime[1] + "/" + dateAndTime[0] + "/" + dateAndTime[2];
+                this.string_Time = dateAndTime[3];
+                formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+            } else {
+                this.string_Date = dateAndTime[0];
+                this.string_Time = dateAndTime[1];
+                formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            }
+        try {
+            this.date = LocalDate.parse(string_Date, formatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(ui.wrongDateTimeFormat());
+        }
 
     }
 

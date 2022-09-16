@@ -38,17 +38,21 @@ public enum Command {
      * @return The Command that matches the user input.
      */
     public static Command read(String input) {
+        System.out.println(input);
         String[] strArr = input.split(" ");
         if (strArr.length == 1) {
+            System.out.println("or here");
             return singleWord(input);
             }
         if (strArr.length == 2) {
+            System.out.println("2 words");
             return twoWords(strArr);
         }
 
         if (strArr.length > 2) {
             return moreThanTwoWords(input);
         }
+        System.out.println("unknown");
         return UNKNOWN;
     }
 
@@ -74,33 +78,35 @@ public enum Command {
      * @return The corresponding Command for the input.
      */
     private static Command twoWords(String[] input) {
-        if (input[0].equals("todo")) {
-            return TODO;
-        } else if (input[0].equals("mark")) {
-            try {
-                int i = Integer.parseInt(input[1]);
-                return MARK;
-            } catch (NumberFormatException e) {
+        System.out.println(input[0] + input[1]);
+        switch (input[0]) {
+            case "todo":
+                return TODO;
+            case "mark":
+                try {
+                    int i = Integer.parseInt(input[1]);
+                    return MARK;
+                } catch (NumberFormatException e) {
+                    return UNKNOWN;
+                }
+            case "unmark":
+                try {
+                    int i = Integer.parseInt(input[1]);
+                    return UNMARK;
+                } catch (NumberFormatException e) {
+                    return UNKNOWN;
+                }
+            case "find":
+                return FIND;
+            case "delete":
+                try {
+                    int i = Integer.parseInt(input[1]);
+                    return DELETE;
+                } catch (NumberFormatException e) {
+                    return UNKNOWN;
+                }
+            default:
                 return UNKNOWN;
-            }
-        } else if (input[0].equals("unmark")) {
-            try {
-                int i = Integer.parseInt(input[1]);
-                return UNMARK;
-            } catch (NumberFormatException e) {
-                return UNKNOWN;
-            }
-        } else if (input[0].equals("find")) {
-            return FIND;
-        } else if (input[0].equals("delete")) {
-            try {
-                int i = Integer.parseInt(input[1]);
-                return DELETE;
-            } catch (NumberFormatException e) {
-                return UNKNOWN;
-            }
-        } else {
-            return UNKNOWN;
         }
     }
 
