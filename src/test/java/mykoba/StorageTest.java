@@ -1,6 +1,4 @@
-package myduke;
-
-import org.junit.jupiter.api.Test;
+package mykoba;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

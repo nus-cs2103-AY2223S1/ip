@@ -1,10 +1,13 @@
 package command;
 
-import exception.DukeException;
-import myduke.Storage;
-import myduke.TaskList;
-import myduke.Ui;
+import exception.KobaException;
+import mykoba.Storage;
+import mykoba.TaskList;
+import mykoba.Ui;
 
+/**
+ * This class encapsulates the idea of a command.
+ */
 public abstract class Command {
 
     /**
@@ -14,5 +17,5 @@ public abstract class Command {
      * @param ui      The Ui instance for the task manager.
      * @param storage The Storage instance for the task manager.
      */
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws KobaException;
 }

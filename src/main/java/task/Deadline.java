@@ -10,7 +10,7 @@ public class Deadline extends Task {
     private final LocalDateTime date;
 
     /**
-     * Creates a deadline.
+     * Constructs a deadline.
      *
      * @param description what is the task.
      * @param status      whether it has been completed.

@@ -1,6 +1,5 @@
 package gui;
 
-import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -8,14 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import myduke.Duke;
+import mykoba.Koba;
 
 /**
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
 
-    private Duke duke = new Duke("./src/main/data/storage.txt");
+    private Koba duke = new Koba("./src/main/data/storage.txt");
 
     @Override
     public void start(Stage stage) {

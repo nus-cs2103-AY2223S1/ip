@@ -7,7 +7,7 @@ public class Event extends Task {
     private final String duration;
 
     /**
-     * Creates an event.
+     * Constructs an event.
      *
      * @param description what the event is.
      * @param status      whether it has been done.

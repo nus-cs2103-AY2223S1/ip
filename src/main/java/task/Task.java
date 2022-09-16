@@ -8,7 +8,7 @@ public class Task {
     private boolean isDone;
 
     /**
-     * Constructor for a task.
+     * Constructs a task.
      *
      * @param description what the task is.
      * @param status      whether the task is completed.
@@ -30,14 +30,14 @@ public class Task {
     /**
      * Returns a string representation to be stored in text file.
      *
-     * @return a string.
+     * @return a string detailing the task description.
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * String representation of the task.
+     * Returns a string representation of the task for the user.
      *
      * @return task description.
      */

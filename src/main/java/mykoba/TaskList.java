@@ -1,19 +1,19 @@
-package myduke;
+package mykoba;
 
 import java.util.ArrayList;
 
-import exception.DukeException;
+import exception.KobaException;
 import task.Task;
 
 /**
- * This class contains a list of tasks and manages it.
+ * This class contains a list of tasks and manages them.
  */
 public class TaskList {
     //this is where the tasks are stored
     private final ArrayList<Task> taskLists;
 
     /**
-     * Constructor for tasklist.
+     * Constructs a taskList object.
      */
     public TaskList() {
         this.taskLists = new ArrayList<>();
@@ -43,7 +43,7 @@ public class TaskList {
     }
 
     /**
-     * Saves the given task.
+     * Saves the given task into taskList.
      *
      * @param task given task.
      */
@@ -55,15 +55,15 @@ public class TaskList {
      * Marks the task as completed.
      *
      * @param index given index of the task.
-     * @throws DukeException thrown when index is out of bound or task is already marked.
+     * @throws KobaException thrown when index is out of bound or task is already marked.
      */
-    public void markTask(int index) throws DukeException {
+    public void markTask(int index) throws KobaException {
         if (!checkValidIndex(index)) {
-            throw new DukeException("Index given is out of bounds!");
+            throw new KobaException("Index given is out of bounds!");
         }
         Task current = taskLists.get(index);
         if (current.getStatus()) {
-            throw new DukeException("Task is already marked!");
+            throw new KobaException("Task is already marked!");
         }
         current.markAsDone();
     }
@@ -72,29 +72,29 @@ public class TaskList {
      * Marks the task as incomplete.
      *
      * @param index given index of the task.
-     * @throws DukeException thrown when task is already unmarked or index is out of bounds.
+     * @throws KobaException thrown when task is already unmarked or index is out of bounds.
      */
-    public void unMarkTask(int index) throws DukeException {
+    public void unMarkTask(int index) throws KobaException {
         if (!checkValidIndex(index)) {
-            throw new DukeException("Index given is out of bounds!");
+            throw new KobaException("Index given is out of bounds!");
         }
         Task current = taskLists.get(index);
         if (!current.getStatus()) {
-            throw new DukeException("Task is already not marked!");
+            throw new KobaException("Task is already not marked!");
         }
         current.markAsNotDone();
     }
 
     /**
-     * Deletes the tasks with the given index and returns it.
+     * Deletes the task with the given index from the taskList and returns it.
      *
      * @param index given index.
      * @return the deleted task.
-     * @throws DukeException thrown when index is out of bound.
+     * @throws KobaException thrown when given index is out of bound.
      */
-    public Task deleteTask(int index) throws DukeException {
+    public Task deleteTask(int index) throws KobaException {
         if (!checkValidIndex(index)) {
-            throw new DukeException("Index given is out of bounds!");
+            throw new KobaException("Index given is out of bounds!");
         }
         Task task = taskLists.get(index);
         taskLists.remove(index);

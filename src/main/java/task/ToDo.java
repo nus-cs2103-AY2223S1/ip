@@ -6,7 +6,7 @@ package task;
 public class ToDo extends Task {
 
     /**
-     * Constructor for To-Do.
+     * Constructs a To-Do.
      *
      * @param description what the to-do is.
      * @param status      whether it has been completed.

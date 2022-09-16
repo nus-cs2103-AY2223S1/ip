@@ -1,15 +1,18 @@
 package command;
 
-import exception.DukeException;
-import myduke.Storage;
-import myduke.TaskList;
-import myduke.Ui;
+import exception.KobaException;
+import mykoba.Storage;
+import mykoba.TaskList;
+import mykoba.Ui;
 
+/**
+ * This class encapsulates a command asking Koba to unmark a task.
+ */
 public class UnMarkCommand extends Command {
     private int index;
 
     /**
-     * Constructor for a UnMarkCommand instance, given a Task.
+     * Constructs a UnMarkCommand, given a Task.
      *
      * @param index The index of the Task in the TaskList to be marked
      *              as done.
@@ -19,11 +22,12 @@ public class UnMarkCommand extends Command {
     }
 
     /**
-     * Method that marks the Task in the TaskList as not done.
+     * Unmarks the Task in the TaskList and returns a confirmation message.
      *
      * @param tasklist The TaskList instance for the task manager.
      * @param ui       The Ui instance for the task manager.
      * @param storage  The Storage instance for the task manager.
+     * @return a String confirming that the task has been unmarked.
      */
     @Override
     public String execute(TaskList tasklist, Ui ui, Storage storage) {
@@ -31,7 +35,7 @@ public class UnMarkCommand extends Command {
             tasklist.unMarkTask(index);
             storage.saveToFile(tasklist);
             return ui.unMarkCommandtoString(tasklist.getTask(index));
-        } catch (DukeException e) {
+        } catch (KobaException e) {
             return e.getMessage();
         }
     }

@@ -1,37 +1,43 @@
-package myduke;
+package mykoba;
 
 import java.io.File;
 
 import gui.Launcher;
 
 import command.Command;
-import exception.DukeException;
+import exception.KobaException;
 
 /**
  * This class represents a chat bot.
  */
-public class Duke {
+public class Koba {
     private Ui ui;
     private Storage storage;
     private TaskList tasklist;
 
     /**
-     * Constructor for duke.
+     * Constructs a Koba chat bot.
      *
      * @param filePath file path of the storage file.
      */
-    public Duke(String filePath) {
+    public Koba(String filePath) {
         try {
             File file = new File(filePath);
             storage = new Storage(file);
             tasklist = new TaskList();
             storage.loadFromFile(tasklist);
             ui = new Ui(tasklist, storage);
-        } catch (DukeException e) {
+        } catch (KobaException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    /**
+     * Returns a String as a response to user input.
+     *
+     * @param input user input parsed as a String.
+     * @return a response.
+     */
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
@@ -39,11 +45,16 @@ public class Duke {
             String response = c.execute(tasklist, ui, storage);
             assert !response.equals("");
             return response;
-        } catch (DukeException e) {
+        } catch (KobaException e) {
             return e.getMessage();
         }
     }
 
+    /**
+     * Returns intro message.
+     *
+     * @return Introduction message.
+     */
     public String getIntro() {
         return ui.welcome();
     }
