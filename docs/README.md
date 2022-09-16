@@ -4,20 +4,29 @@ Duke is a Personal Assistant Chatbot that helps a person to keep track of variou
 
 ## Features 
 
-***Notes about command format***
+
+>***Notes about command format***
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `todo /TASK`, `TASK` is a parameter which can be used as `todo Homework`.
   
 * Date formats must be ***exactly*** as stated.
 
 
-### Feature - bye
+### Closing chatbot - `bye`
 
-Description of the feature.
+Closes chatbot window and saves the current tasks.
 
-### Feature-XYZ
+### Listing all tasks - `list`
 
-Description of the feature.
+Lists all current tasks with the respective descriptions and time.
+
+### Marking a task - `mark`
+
+Marks a specified task as done.
+
+### Unmarking a task - `unmark`
+
+Unmarks a specified task as undone.
 
 ## Usage
 
