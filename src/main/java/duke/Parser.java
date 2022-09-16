@@ -111,8 +111,8 @@ public final class Parser {
             throw new DukeException("Wrong number of arguments.");
         }
         String description = args[1];
-        if (description.length() == 0) {
-            throw new DukeException("Invalid argument: Description cannot be empty.");
+        if (description.isBlank()) {
+            throw new DukeException("Invalid argument: Description cannot be blank.");
         }
         return new AddTaskCommand(new TodoTask(description, false));
     }
@@ -123,8 +123,8 @@ public final class Parser {
         }
         try {
             String description = args[1].substring(0, args[1].indexOf(" /by "));
-            if (description.length() == 0) {
-                throw new DukeException("Invalid argument: Description cannot be empty.");
+            if (description.isBlank()) {
+                throw new DukeException("Invalid argument: Description cannot be blank.");
             }
             String deadline = args[1].substring(args[1].indexOf(" /by ") + 5);
             if (deadline.length() == 0) {
@@ -142,8 +142,8 @@ public final class Parser {
         }
         try {
             String description = args[1].substring(0, args[1].indexOf(" /at "));
-            if (description.length() == 0) {
-                throw new DukeException("Invalid argument: Description cannot be empty.");
+            if (description.isBlank()) {
+                throw new DukeException("Invalid argument: Description cannot be blank.");
             }
             String time = args[1].substring(args[1].indexOf(" /at ") + 5);
             if (time.length() == 0) {
@@ -174,8 +174,8 @@ public final class Parser {
             throw new DukeException("Wrong number of arguments.");
         }
         String keyword = args[1];
-        if (keyword.length() == 0) {
-            throw new DukeException("Invalid argument: Description cannot be empty.");
+        if (keyword.isBlank()) {
+            throw new DukeException("Invalid argument: Keyword cannot be blank.");
         }
         try {
             return new FindCommand(keyword);

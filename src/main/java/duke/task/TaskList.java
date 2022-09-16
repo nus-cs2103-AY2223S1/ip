@@ -19,6 +19,7 @@ public class TaskList extends ArrayList<Task> implements Serializable {
      * @param isDone Whether the {@code Task} is to be marked as done or undone.
      */
     public void setDone(int index, boolean isDone) {
+        assert !(index < 0 || index >= size());
         get(index).setDone(isDone);
     }
 
@@ -42,6 +43,7 @@ public class TaskList extends ArrayList<Task> implements Serializable {
      *         containing the specified keyword.
      */
     public TaskList findByKeyword(String keyword) {
+        assert !keyword.isBlank();
         TaskList matchingList = new TaskList();
         for (Task task : this) {
             if (task.contains(keyword)) {

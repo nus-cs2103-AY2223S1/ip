@@ -5,22 +5,24 @@ import java.time.LocalDateTime;
 import duke.Parser;
 
 public class EventTask extends Task {
-    private final LocalDateTime time;
+    private final LocalDateTime timeAt;
 
-    public EventTask(String description, LocalDateTime time, boolean isDone) {
+    public EventTask(String description, LocalDateTime timeAt, boolean isDone) {
         super('E', description, isDone);
-        this.time = time;
+        this.timeAt = timeAt;
+        assert !description.isBlank();
+        assert timeAt != null;
     }
 
     @Override
     public String toString() {
         return String.format("%s (at: %s)", super.toString(),
-                time.format(Parser.DATETIME_OUTPUT_FORMAT));
+                timeAt.format(Parser.DATETIME_OUTPUT_FORMAT));
     }
 
     @Override
     public String toData() {
         return String.format("%s | %s", super.toData(),
-                time.format(Parser.DATETIME_INPUT_FORMAT));
+                timeAt.format(Parser.DATETIME_INPUT_FORMAT));
     }
 }
