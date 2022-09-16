@@ -15,17 +15,17 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    //private Duke duke = new Duke("data/duke.txt");
-
     public Main() {
     }
 
     @Override
     public void start(Stage stage) {
         try {
+
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            stage.setTitle("Dookie");
             stage.setScene(scene);
             Duke duke = new Duke("data/duke.txt");
             fxmlLoader.<MainWindow>getController().setDuke(duke);

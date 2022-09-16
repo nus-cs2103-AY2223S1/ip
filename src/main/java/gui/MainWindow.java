@@ -4,12 +4,17 @@ import duke.Duke;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import storage.Storage;
 
 import javax.imageio.ImageIO;
@@ -38,9 +43,9 @@ public class MainWindow extends AnchorPane {
 
     private final UI ui = new UI();
 
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-    private final Image reminderImage = new Image(this.getClass().getResourceAsStream("/images/DaReminder.jpg"));
+    private  Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private  Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private  Image reminderImage = new Image(this.getClass().getResourceAsStream("/images/DaReminder.jpg"));
 
     public MainWindow() throws FileNotFoundException {
     }
@@ -66,6 +71,8 @@ public class MainWindow extends AnchorPane {
         } else {
             ui.showNoTask();
         }
+
+        dialogContainer.setPrefSize(380, 600);
 
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(welcomeMessage, dukeImage));
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -102,4 +109,5 @@ public class MainWindow extends AnchorPane {
         }
 
     }
+
 }
