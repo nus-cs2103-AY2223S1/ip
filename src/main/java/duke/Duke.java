@@ -39,11 +39,14 @@ public class Duke {
     }
 
 
+    public void end() {
+        ui.farewell();
+        System.exit(0);
+    }
     public String getResponse(String input) {
         if (input.equals("bye")) {
-            return ui.farewell();
-        } else {
-            return parser.guiParseFunc(input);
+            end();
         }
+        return parser.guiParseFunc(input);
     }
 }
