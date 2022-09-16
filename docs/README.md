@@ -2,7 +2,7 @@
 
 Shiro Task Manager is a desktop app that remembers the tasks you need to do. It is friendly and definitely remembers your tasks clearly!
 
-![Ui](/Users/Zechen/Desktop/tP/02_CS2103T/ip/docs/Ui.png)
+![Ui](D:\Files\NUS\03_Year2Sem1\02_CS2103T\03_Individual_Project\Duke\docs\Ui.png)
 
 ## Features 
 
@@ -48,19 +48,19 @@ You can find a task by search for a keyword, or by specifying the date range of 
 > * `H` stands for hour
 > * `m` stands for minute
 
-| Command    | Format                                            |
-| ---------- | ------------------------------------------------- |
-| `todo`     | `todo <DESCRIPTION>`                              |
-| `deadline` | `deadline <DESCRIPTION> /by <DATE_TIME>`          |
-| `event`    | `event <DESCRIPTION> /at <DATE_TIME>`             |
-| `list`     | `list`                                            |
-| `mark`     | `mark <INDEX>`                                    |
-| `unmark`   | `unmark <INDEX>`                                  |
-| `delete`   | `delete <INDEX>`                                  |
-| `snooze`   | `snooze <INDEX>`                                  |
-| `find`     | `find <KEYWORD>`                                  |
+| Command    | Format                                   |
+| ---------- | ---------------------------------------- |
+| `todo`     | `todo <DESCRIPTION>`                     |
+| `deadline` | `deadline <DESCRIPTION> /by <DATE_TIME>` |
+| `event`    | `event <DESCRIPTION> /at <DATE_TIME>`    |
+| `list`     | `list`                                   |
+| `mark`     | `mark <INDEX>`                           |
+| `unmark`   | `unmark <INDEX>`                         |
+| `delete`   | `delete <INDEX>`                         |
+| `snooze`   | `snooze <INDEX>`                         |
+| `find`     | `find <KEYWORD>`                         |
 | `between`  | `between <STARTING_DATE_TIME> <ENDING_DATE_TIME>` |
-| `bye`      | `bye`                                             |
+| `bye`      | `bye`                                    |
 
 
 
