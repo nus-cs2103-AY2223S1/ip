@@ -1,4 +1,4 @@
-#Duke User Guide
+# Duke User Guide
 
 ## Features 
 1. Track various types of tasks
