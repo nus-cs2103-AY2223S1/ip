@@ -39,6 +39,7 @@ public class TaskStorage {
         }
     }
 
+
     public void encodeTask(Task task, FileWriter writer) throws IOException {
         String completed = task.getDone();
         if (task.isTodo()) {

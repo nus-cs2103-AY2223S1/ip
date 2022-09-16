@@ -2,3 +2,7 @@ T|1|gym
 D|0|do homework|2022-02-26 00:00
 T|1|sleep
 D|0|IFG Training|2022-02-28 16:00
+T|0|go home
+T|0|swim
+D|0|do IP|2022-09-01 00:00
+D|0|IFG|2022-08-26 09:00

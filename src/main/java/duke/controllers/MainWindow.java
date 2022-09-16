@@ -28,6 +28,7 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Duke duke;
+    private Image background = new Image(this.getClass().getResourceAsStream("/images/background.png"));
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.jpg"));
@@ -37,6 +38,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(DialogBox.getDukeDialog("Welcome!\nI am Duke! How can I help you today?"
                 + " To receive help, please type help in the chat box and press enter.", dukeImage));
+        dialogContainer.setStyle("-fx-background-image: url('/images/background.png')");
     }
 
     public void setDuke(Duke d) {
@@ -61,6 +63,9 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    /**
+     * Exits the program after waiting for a certain amount of time
+     */
     //Solution below adapted from https://www.baeldung.com/java-timer-and-timertask
     private void exitProgram() {
         TimerTask task = new TimerTask() {
