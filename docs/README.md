@@ -34,11 +34,32 @@ Shows a message to help users what command they can use with Duke, as well as th
 
 Format: `help`
 
+Expected response:
+```
+Welcome to Duke! Here are the commands you can type:
+                Note the date should be in format yyyy-mm-dd HH:mm
+                ** To add new Tasks to your list, you can type: 
+                todo [description of your task]
+                deadline [description of your task] /by [date]
+                event [description of your task] /at [date]
+                ** To see all the tasks you added type: list
+                ** To see mark or unmark a task type: mark [index] or unmark [index]
+                ** To delete a task type: delete [index]
+                ** To find tasks containing certain words type: find [keywords]
+                ** To exit the program type: bye
+```
 ## Create a new task: `todo`
 
 Add a new Todo type task with its description. The task is automatically marked as not done
 
 Format: `todo [DESCRIPTION]`
+
+Expected response:
+```
+Got it! I've added this task:
+[T][] eat
+Now you have 1 tasks in the list
+```
 
 ## Create a new deadline: `deadline`
 
@@ -46,6 +67,13 @@ Add a new Deadline type task with its description and deadline date and time.
 - Date and time must be in the format yyyy-MM-dd HH:mm
 
 Format: `deadline [DESCRIPTION] /by [DATE]`
+
+Expected response: 
+```
+Got it! I've added this task:
+[D][] do homework (by: 2022-09-16 00:00)
+Now you have 2 tasks in the list
+```
 ## Create a new event: `event`
 
 Add a new Event type task with its description and event date and time it will occur.
@@ -53,11 +81,27 @@ Add a new Event type task with its description and event date and time it will o
 
 Format: `event [DESCRIPTION] /at [DATE]`
 
+Expected response:
+```
+Got it! I've added this task:
+[E][] Attend lecture (at: 2022-09-07 21:00)
+Now you have 3 tasks in the list
+```
+
 ## View tasks: `list`
 
 Displays all the tasks stored in the program at the time
 
 Format: `list`
+
+Expected response:
+```
+Here are the tasks in your list:
+1. [T][] eat
+2. [D][] do homework (by: 2022-09-16 00:00)
+3. [E][] Attend lecture (at: 2022-09-07 21:00)
+
+```
 
 ## Find a task: `find`
 
@@ -65,12 +109,24 @@ Search in the task list and return tasks containing the keyword being searched
 
 Format: `find [KEYWORD]`
 
+Expected response:
+```
+Here are the matching tasks in your list:
+1. [D][] do homework (by: 2022-09-16 00:00)
+```
+ 
 ## Mark a task: `mark`
 
 Marks a task as finished or done
 - Index must be an integer and should not exceed the total number of tasks
 
 Format: `mark [INDEX OF TASK]`
+
+Expected response:
+```
+Nice! I've marked this task as done:
+[D][X] do homework (by: 2022-09-16 00:00)
+```
 
 ## Unmark a task: `unmark`
 
@@ -79,11 +135,22 @@ Marks a task as not finished/undone
 
 Format: `Unmark [INDEX OF TASK]`
 
+Expected response:
+```
+Nice! I've marked this task as not done:
+[D][] do homework (by: 2022-09-16 00:00)
+```
+
 ## Exit Duke: `bye`
 
 Closes the program
 
 Format: `bye`
+
+Expected response:
+```
+Bye. Hope to see you again soon!
+```
 
 ## FAQ
 **Q:** Can I extract the list of tasks to a text file
