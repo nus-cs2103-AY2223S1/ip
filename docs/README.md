@@ -1,10 +1,10 @@
 # LishBot User Guide
 
-![photo](https://github.com/albertarielw/ip/blob/master/docs/Ui.png)
-
 LishBot is a personal assistant Chatbot that helps you manage your tasks~
 
 NEW FEATURE: You can even teach LishBot to memorize new commands and responses!
+
+![photo](https://github.com/albertarielw/ip/blob/master/docs/Ui.png)
 
 ## Command Summary
 
