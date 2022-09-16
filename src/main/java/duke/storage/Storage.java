@@ -151,25 +151,24 @@ public class Storage {
 
         Task task;
         boolean isFormatWithDate = str.matches(
-                "^\\[[DET]]+\\[[X| ]]+ +(\\w+ )+\\([by|at]+: +[A-Z]+[a-z]{2}+ \\d{2}+ \\d{4}+\\)");
-        boolean isFormatWithoutDate = str.matches("^\\[[DET]]+\\[[X| ]]+( \\w+)+");
+                "(\\[[DE]]\\[[X| ]] )(.*?)(\\([by|at]+: +[A-Z]+[a-z]{2}+ \\d{2}+ \\d{4}+\\))");
+
+        boolean isFormatWithoutDate = str.matches("(\\[T]\\[[X| ]] )(.*)");
 
         if (isFormatWithDate) {
-            String message = str.substring(str.indexOf("]", str.indexOf("]") + 1) + 2,
-                    str.indexOf(" ("));
-            String dateString = str.substring(str.indexOf(":") + 2, str.indexOf(")"));
+            String message = str.substring(str.lastIndexOf("]") + 2, str.lastIndexOf(" ("));
+            String dateString = str.substring(str.lastIndexOf(":") + 2, str.lastIndexOf(")"));
             LocalDate localDate = Parser.parseDateFormats(dateString);
             if (str.contains("[D]")) {
                 task = new Deadline(message, localDate);
             } else {
                 task = new Event(message, localDate);
             }
-        } else if (isFormatWithoutDate && str.contains("[T]")) {
+        } else if (isFormatWithoutDate) {
             String description = str.split("] ", 2)[1];
             task = new ToDo(description);
         } else {
-            throw new StorageException("File corrupted! What's wrong with you?"
-                    + System.lineSeparator() + "Delete the data/duke.txt file!");
+            throw new StorageException("Delete the problematic line in data/duke.txt file!");
         }
 
         if (str.contains("[X]")) {
