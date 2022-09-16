@@ -77,7 +77,7 @@ abstract class Command {
     }
 
     /**
-     * Determine whether the {@code Command} intends for the calling context to be exited subsequently.
+     * Determines whether the {@code Command} intends for the calling context to be exited subsequently.
      *
      * @return {@code true} if the {@code Command} intends for an exit, {@code false} otherwise
      */
