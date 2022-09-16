@@ -1,10 +1,11 @@
-import mia.Event;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+import mia.Event;
+
 public class EventTest {
-    private final String DUMMY_EVENT = "23 January 2022 08:00;;23 January 2022 08:00;;0;;Title;;";
+    private static final String DUMMY_EVENT = "23 January 2022 08:00;;23 January 2022 08:00;;0;;Title;;";
 
     @Test
     public void saveFormatTest() {

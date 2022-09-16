@@ -1,11 +1,11 @@
 package mia;
 
-import general.utils.RegexHelper;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+
+import general.utils.RegexHelper;
 
 /**
  * An {@code Event} is a {@code Task} that has a start and end time.
@@ -18,15 +18,15 @@ public class Event extends Task {
     private LocalDate endDate;
     private LocalTime endTime;
 
-    Event(String title, boolean isCompleted, String time) {
+    public Event(String title, boolean isCompleted, String time) {
         this(title, isCompleted, time, time);
     }
 
-    Event(String title, String time) {
-        this(title, false, time, time);
+    public Event(String title, String time) {
+        this(title, false, time);
     }
 
-    Event(String title, boolean isCompleted, String start, String end) throws IllegalArgumentException {
+    public Event(String title, boolean isCompleted, String start, String end) throws IllegalArgumentException {
         super(title, isCompleted);
         startDate = RegexHelper.extractAndParseDate(start)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid event start date: " + start));

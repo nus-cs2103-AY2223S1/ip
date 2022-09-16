@@ -1,10 +1,11 @@
-import mia.Deadline;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+import mia.Deadline;
+
 public class DeadlineTest {
-    private final String DUMMY_DEADLINE = "23 January 2022 08:00;;0;;Title;;";
+    private static final String DUMMY_DEADLINE = "23 January 2022 08:00;;0;;Title;;";
 
     @Test
     public void saveFormatTest() {

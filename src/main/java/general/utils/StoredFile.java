@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Richard Dominick
  */
-abstract public class StoredFile {
+public abstract class StoredFile {
     public static StoredFile from(String filePath) {
         final File file = new File(filePath);
         if (file.exists()) {
@@ -39,7 +39,7 @@ abstract public class StoredFile {
      *
      * @return {@code true} if the {@code StoredFile} points to an existing file, {@code false} otherwise
      */
-    abstract public boolean fileExists();
+    public abstract boolean fileExists();
 
     /**
      * Returns the content of the {@code StoredFile} as a string.
@@ -47,7 +47,7 @@ abstract public class StoredFile {
      * @return The content of the {@code StoredFile}, interpreted as a string
      * @throws FileNotFoundException When the {@code StoredFile} points to a non-existent file
      */
-    abstract public String getTextContent() throws FileNotFoundException;
+    public abstract String getTextContent() throws FileNotFoundException;
 
     /**
      * Overwrites the contents of the {@code StoredFile} with the text specified by the {@code text} parameter.
@@ -55,7 +55,7 @@ abstract public class StoredFile {
      *
      * @param text The text to be written to the file
      */
-    abstract public void writeText(String text);
+    public abstract void writeText(String text);
 
     private static class ExistentFile extends StoredFile {
         private final String filePath;

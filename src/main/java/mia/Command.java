@@ -144,7 +144,8 @@ abstract class Command {
         public void run() {
             final Task deadline = new Deadline(args[0], args[1]);
             super.context.getTasks().addTask(deadline);
-            super.context.respond(String.format("Added \"%s\" (task with deadline) to tasks list!", deadline.getTitle()));
+            super.context.respond(String.format(
+                "Added \"%s\" (task with deadline) to tasks list!", deadline.getTitle()));
         }
     }
 
@@ -192,7 +193,8 @@ abstract class Command {
                     super.context.respond("Task has been marked as done!");
                 } else {
                     super.context.respond(String.format(
-                            "Task not modified! Either the task is already done, or you specified an invalid task number %d.",
+                            "Task not modified! Either the task is already done,"
+                                    + " or you specified an invalid task number %d.",
                             number));
                 }
             } else {
@@ -200,7 +202,8 @@ abstract class Command {
                     super.context.respond("Task has been marked as not done!");
                 } else {
                     super.context.respond(String.format(
-                            "Task not modified! Either the task is still not done, or you specified an invalid task number %d.",
+                            "Task not modified! Either the task is still not done,"
+                                    + " or you specified an invalid task number %d.",
                             number));
                 }
             }
@@ -230,7 +233,8 @@ abstract class Command {
                 super.context.respond("Task has been deleted successfully!");
             } else {
                 super.context.respond(String.format(
-                        "Something went wrong when deleting task %d! Likely, you specified a task number that is out of range.",
+                        "Something went wrong when deleting task %d!"
+                                + " Likely, you specified a task number that is out of range.",
                         number));
             }
         }
