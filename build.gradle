@@ -1,0 +1,81 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'checkstyle'
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JUnit
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+
+    // JavaFX
+
+    String javaFxVersion = '18.0.2'
+
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
+
+    // JChronic date parser
+
+    implementation 'com.rubiconproject.oss:jchronic:0.2.8'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+        showStandardStreams = false
+    }
+}
+
+
+java {
+    sourceCompatibility = "VERSION_11"
+}
+
+application {
+    mainClassName = "duke.gui.Entrypoint"
+}
+
+shadowJar {
+    archiveBaseName = "duke"
+    archiveClassifier = null
+}
+
+run {
+    standardInput = System.in
+    enableAssertions = true
+}
+
+//@@author parnikkapore-reused
+// Adapted from https://stackoverflow.com/questions/43937169/ and https://stackoverflow.com/questions/59245134/
+task runcli(type: JavaExec, group: 'application') {
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    enableAssertions = true
+    workingDir = new File("./text-ui-test/")
+    main = "duke.Duke"
+}

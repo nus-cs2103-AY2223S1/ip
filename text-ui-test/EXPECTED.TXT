@@ -1,7 +1,106 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+💬 Hello, Duke here! What can I do for you?
+─────
+🟡 I have gotten you started with an empty task list. Welcome!
+─────
+🟡 Sorry, I didn't understand what you said :(
+─────
+🟡 Sorry, I didn't catch that?
+─────
+💬 Here are the tasks in your list:
+─────
+🟡 Please give your todo a name.
+─────
+💬 Got it. I've added this task:
+   [T][ ]  borrow book
+   Now you have 1 task in the list.
+─────
+🟡 Deadlines are added like this: deadline return book /by Sunday
+─────
+💬 Got it. I've added this task:
+   [D][ ]  return book (by: 30 Aug 2022)
+   Now you have 2 tasks in the list.
+─────
+💬 Got it. I've added this task:
+   [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006)
+   Now you have 3 tasks in the list.
+─────
+🟡 nussu doesn't look like a date and time to me...
+─────
+🟡 Events are added like this: event project meeting /at Mon 2-4pm
+─────
+💬 Got it. I've added this task:
+   [E][ ]  returning interns meeting (at: Mon 2-4pm)
+   Now you have 4 tasks in the list.
+─────
+💬 Here are the tasks in your list:
+   1. [T][ ]  borrow book
+   2. [D][ ]  return book (by: 30 Aug 2022)
+   3. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006)
+   4. [E][ ]  returning interns meeting (at: Mon 2-4pm)
+─────
+🟡 Please give me a task number to mark!
+─────
+💬 Nice! I've marked this task as done:
+   [T][X]  borrow book
+─────
+💬 Nice! I've marked this task as done:
+   [E][X]  returning interns meeting (at: Mon 2-4pm)
+─────
+💬 Here are the tasks in your list:
+   1. [T][X]  borrow book
+   2. [D][ ]  return book (by: 30 Aug 2022)
+   3. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006)
+   4. [E][X]  returning interns meeting (at: Mon 2-4pm)
+─────
+🟡 Please give me a task number to unmark!
+─────
+💬 Alright, I've marked this task as not done yet:
+   [T][ ]  borrow book
+─────
+💬 Here are the tasks in your list:
+   1. [T][ ]  borrow book
+   2. [D][ ]  return book (by: 30 Aug 2022)
+   3. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006)
+   4. [E][X]  returning interns meeting (at: Mon 2-4pm)
+─────
+🟡 Hmm... a task with that number doesn't seem to exist. You can see a list of all tasks by saying "list".
+─────
+🟡 Hmm... a task with that number doesn't seem to exist. You can see a list of all tasks by saying "list".
+─────
+🟡 Hmm... a task with that number doesn't seem to exist. You can see a list of all tasks by saying "list".
+─────
+🟡 Hmm... a task with that number doesn't seem to exist. You can see a list of all tasks by saying "list".
+─────
+💬 Here are the tasks in your list:
+   1. [T][ ]  borrow book
+   2. [D][ ]  return book (by: 30 Aug 2022)
+   3. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006)
+   4. [E][X]  returning interns meeting (at: Mon 2-4pm)
+─────
+🟡 Please give me some words to find!
+─────
+💬 Here are the tasks that match "return":
+   1. [D][ ]  return book (by: 30 Aug 2022)
+   2. [E][X]  returning interns meeting (at: Mon 2-4pm)
+─────
+💬 Here are the tasks that match "book", "return":
+   1. [D][ ]  return book (by: 30 Aug 2022)
+─────
+💬 Here are the tasks that match "date", "an":
+   1. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006)
+─────
+🟡 Please give me a task number to delete!
+─────
+💬 OK, I've deleted this task:
+   [D][ ]  return book (by: 30 Aug 2022)
+   Now you have 3 tasks in the list.
+─────
+🟡 Hmm... a task with that number doesn't seem to exist. You can see a list of all tasks by saying "list".
+─────
+💬 Here are the tasks in your list:
+   1. [T][ ]  borrow book
+   2. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006)
+   3. [E][X]  returning interns meeting (at: Mon 2-4pm)
+─────
+💬 OK. See you next time! *boings away*
+─────

@@ -1,0 +1,33 @@
+hello
+
+list
+todo
+todo borrow book
+deadline return book
+deadline return book /by 30 Aug 2022
+deadline The significance of this date is left as an exercise for the reader /by 2006-01-02
+deadline This deadline has an invalid date /by nussu
+event returning interns meeting
+event returning interns meeting /at Mon 2-4pm
+list
+mark 
+mark 1
+mark 4
+list
+unmark
+unmark 1
+list
+mark 0
+mark 55
+unmark 0
+unmark 55
+list
+find
+find return
+find book return
+find    date      an        
+delete
+delete 2
+delete 0
+list
+bye
