@@ -58,7 +58,7 @@ Add an event with description 'project meeting' and date '2022-09-17' into the t
 
 Update the total number of tasks in the task list.
 
-![This is an image](./UserGuide_png/event.png)
+![This is an image](./UserGuide_png/Event.png)
 
 ### `list` - List all tasks in the task list
 
@@ -84,7 +84,7 @@ Expected outcome:
 
 Mark task with task.no 2 as done. 
 
-![This is an image](./UserGuide_png/mark.png)
+![This is an image](./UserGuide_png/Mark.png)
 
 ### `unmark TASK_NO` - Unmark the task 
 
@@ -98,7 +98,7 @@ Expected outcome:
 
 Unmark task with task.no 2. This task is not done yet. 
 
-![This is an image](./UserGuide_png/unmark.png)
+![This is an image](./UserGuide_png/Unmark.png)
 
 ### `delete TASK_NO` - Delete the task
 
@@ -114,7 +114,7 @@ Delete task with task.no 2 from the task list.
 
 Update the total number of tasks in the task list. 
 
-![This is an image](./UserGuide_png/delete.png)
+![This is an image](./UserGuide_png/Delete.png)
 
 ### `find KEYWORD` - Find the tasks that contain keyword
 
@@ -128,7 +128,7 @@ Expected outcome:
 
 List out all the tasks that contain 'assignment'. 
 
-![This is an image](./UserGuide_png/find.png)
+![This is an image](./UserGuide_png/Find.png)
 
 ### `sortdeadlines` - List out the sorted deadlines in the task list. 
 
