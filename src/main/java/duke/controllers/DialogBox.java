@@ -44,7 +44,7 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
-        displayPicture.setClip(new Circle(50, 50, 45));
+        displayPicture.setClip(new Circle(33, 33, 30));
     }
 
     /**
@@ -65,7 +65,6 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-//        Color col = Color.rgb(241,255,255);
         Color col = Color.rgb(25,130,252);
         CornerRadii radii = new CornerRadii(15, 0, 15 ,15, false);
         Background background = new Background(new BackgroundFill(col, radii, Insets.EMPTY));
@@ -81,7 +80,6 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-//        Color col = Color.rgb(255,235,205);
         Color col = Color.rgb(67,204,71);
         CornerRadii radii = new CornerRadii(0, 15, 15 ,15, false);
         Background background = new Background(new BackgroundFill(col, radii, Insets.EMPTY));
