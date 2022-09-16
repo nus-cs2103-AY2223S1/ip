@@ -18,7 +18,7 @@ traditional GUI applications.
 - [Showing loanbook: loanbook list](#lb-list)
 - [Creating Contact: loanbook add](#lb-add)
 - [Deleting Contact: loanbook delete](#lb-delete)
-
+- [Exiting Program: bye](#bye)
 
 ## Usage
 
