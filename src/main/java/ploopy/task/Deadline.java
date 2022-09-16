@@ -13,9 +13,9 @@ public class Deadline extends Task {
     /** Date to output String formatter */
     private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy kkmm");
     /** Date of task (If applicable) */
-    private LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
     /** String format of date */
-    private String dateStringForm;
+    private final String dateStringForm;
     /**
      * {@inheritDoc}
      */

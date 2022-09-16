@@ -24,8 +24,8 @@ public class MainWindow extends AnchorPane {
 
     private Ploopy ploopy;
 
-    private final Image USER_IMAGE = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private final Image PLOOPY_IMAGE = new Image(this.getClass().getResourceAsStream("/images/Ploopy.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    private Image ploopyImage = new Image(this.getClass().getResourceAsStream("/images/Ploopy.png"));
 
     @FXML
     public void initialize() {
@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
     public void setPloopy(Ploopy p) {
         ploopy = p;
         dialogContainer.getChildren().addAll(
-                DialogBox.getPloopyDialog(p.start(), PLOOPY_IMAGE)
+                DialogBox.getPloopyDialog(p.start(), ploopyImage)
         );
     }
 
@@ -49,8 +49,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = ploopy.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, USER_IMAGE),
-                DialogBox.getPloopyDialog(response, PLOOPY_IMAGE)
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getPloopyDialog(response, ploopyImage)
         );
         userInput.clear();
     }

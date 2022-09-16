@@ -6,16 +6,16 @@ import ploopy.PloopyException;
 import ploopy.Storage;
 import ploopy.ui.TextUI;
 
-
-
 /**
  * Stores the list of tasks and operates on them based on
  * user input
  *
  */
 public class TaskList {
-    private ArrayList<Task> taskList;
-    private Storage storage;
+    /** List of tasks */
+    private final ArrayList<Task> taskList;
+    /** Storage object for file storage*/
+    private final Storage storage;
 
     /**
      * Constructor that takes a UI and Storage objects
@@ -53,7 +53,6 @@ public class TaskList {
         Task current = taskList.get(taskIndex - 1);
         current.markDone();
         storage.rewriteFile(taskList);
-        System.out.println(TextUI.markTaskMessage(current));
         return TextUI.markTaskMessage(current);
     }
 
@@ -118,7 +117,7 @@ public class TaskList {
         }
 
         if (matchedTasks.size() > 0) {
-            list += TextUI.foundTasks();
+            list += TextUI.foundTasksMessage();
             int index = 1;
             for (Task matched : matchedTasks) {
                 list += "\n" + index + "." + matched;
@@ -126,7 +125,7 @@ public class TaskList {
             }
             return list;
         } else {
-            return TextUI.noTasksFound();
+            return TextUI.noTasksFoundMessage();
         }
 
     }
@@ -152,10 +151,18 @@ public class TaskList {
         taskList.add(createdTask);
     }
 
+    /**
+     * Sets the priority of the specified task.
+     * @param taskNumber the task whose priority is to be changed
+     * @param priority the priority to change to
+     * @return An acknowledgement from the UI to indicate the
+     *          task's priority was successfully changed.
+     * @throws PloopyException if a storage error occurs
+     */
     public String setTaskPriority(int taskNumber, String priority) throws PloopyException {
         Task task = taskList.get(taskNumber - 1);
         task.setPriority(priority);
         storage.rewriteFile(taskList);
-        return TextUI.changeTaskPriority(task);
+        return TextUI.changeTaskPriorityMessage(task);
     }
 }

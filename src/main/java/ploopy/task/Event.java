@@ -13,9 +13,9 @@ public class Event extends Task {
     /** Date to output String formatter */
     private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy kkmm");
     /** Date of task (If applicable) */
-    private LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
     /** String format of date */
-    private String dateStringForm;
+    private final String dateStringForm;
 
     /**
      * {@inheritDoc}
@@ -27,6 +27,9 @@ public class Event extends Task {
         this.dateTime = LocalDateTime.parse(date, INPUT_FORMATTER);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return String.format("%s %s%s", super.toString(), getDate(), getPriorityForString());
@@ -40,6 +43,9 @@ public class Event extends Task {
         return String.format("(at: %s)", OUTPUT_FORMATTER.format(dateTime));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDateForFileWrite() {
         return dateStringForm;

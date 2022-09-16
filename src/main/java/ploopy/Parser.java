@@ -1,7 +1,7 @@
 package ploopy;
 
 import ploopy.task.TaskList;
-import ploopy.ui.TextUI;
+
 
 /**
  * Understands the user's input.
@@ -65,14 +65,24 @@ public class Parser {
             }
             break;
         case "bye":
-            return TextUI.bye();
+            System.exit(0);
+            break;
         default:
             throw new PloopyException("nonsense");
-
         }
         return null;
     }
 
+    /**
+     * Parses create task command and creates the
+     * appropriate task.
+     * @param taskType The type of the task to make.
+     * @param fullInput The entire input
+     * @param inputSequence The input split into an array
+     * @param taskList The list of tasks
+     * @return Acknowledging the creation of the task.
+     * @throws PloopyException if an input error has occurred.
+     */
     private static String parseTask(String taskType, String fullInput,
                                     String[] inputSequence, TaskList taskList) throws PloopyException {
 
@@ -88,27 +98,55 @@ public class Parser {
         }
     }
 
-    private static String getDate(String input, String taskType) {
+    /**
+     * Extracts the date from the input.
+     * @param input The entire input
+     * @param taskType The type of the task to make.
+     * @return the extracted date.
+     * @throws PloopyException if an input error has occurred.
+     */
+    private static String getDate(String input, String taskType) throws PloopyException {
         if (!taskType.equals("todo")) {
-            String dateString = input.split(" /")[1];
-            String[] separate = dateString.split(" ");
-            String result = separate[1] + " " + separate[2];
-            assert result.split("/").length == 3 : "Date not correctly extracted";
-            return result;
+            try {
+                String dateString = input.split(" /")[1];
+                String[] separate = dateString.split(" ");
+                String result = separate[1] + " " + separate[2];
+                assert result.split("/").length == 3 : "Date not correctly extracted";
+                return result;
+            } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+                throw new PloopyException("Wrong Format");
+            }
         } else {
             return "";
         }
     }
 
-
-    private static String getName(String input, String taskType) {
-        if (!taskType.equals("todo")) {
-            return input.split(taskType + " ")[1].split(" /")[0];
-        } else {
-            return input.split("todo ")[1];
+    /**
+     * Extracts the name form the input/
+     * @param input The entire input from the user.
+     * @param taskType The type of the task.
+     * @return The name of the task.
+     * @throws PloopyException if an input mistake has occurred.
+     */
+    private static String getName(String input, String taskType) throws PloopyException {
+        try {
+            if (!taskType.equals("todo")) {
+                return input.split(taskType + " ")[1].split(" /")[0];
+            } else {
+                return input.split("todo ")[1];
+            }
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+            throw new PloopyException("Wrong Format");
         }
     }
 
+    /**
+     * Checks if input has an empty command.
+     * @param command input from the user.
+     * @param size length of the command string.
+     * @return true if input is incomplete.
+     * @throws PloopyException if input has an empty command
+     */
     private static boolean isIncompleteCommand(String command, int size) throws PloopyException {
         assert !(command.isEmpty() || command.isBlank()) : "Input is empty";
         if (command.trim().length() == size) {

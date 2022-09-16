@@ -28,7 +28,6 @@ public class Storage {
     public Storage() throws PloopyException {
         folder = new File(FOLDER_PATH);
         file = new File(FILE_PATH);
-        //this.taskList = taskList;
         if (!folder.exists()) {
             try {
                 folder.mkdir();
@@ -38,7 +37,7 @@ public class Storage {
         }
 
         try {
-            boolean successful = !file.createNewFile();
+            boolean isSuccessful = !file.createNewFile();
         } catch (IOException e) {
             throw new PloopyException("IO");
         }

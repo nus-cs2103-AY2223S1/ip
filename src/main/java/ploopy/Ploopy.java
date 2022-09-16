@@ -53,6 +53,5 @@ public class Ploopy {
 
     public static void main(String[] args) {
         Application.launch(Main.class, args);
-
     }
 }

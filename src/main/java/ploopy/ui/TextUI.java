@@ -9,22 +9,18 @@ import ploopy.task.Task;
 public class TextUI {
     /** Greeting message */
     private static final String GREETING = "Hi, I'm Ploopy! Nice to meet you! Whats up?";
-    /** Farewell message */
-    private static final String FAREWELL = "Okay then, see ya later :)";
-
     /** Completed task message */
     private static final String COMPLETED_TASK = "Nice! You've completed this task. I'll mark it as done.";
     /** Incomplete task message */
     private static final String INCOMPLETE_TASK = "Alright this task has been marked as undone.";
     /* Added task message */
     private static final String ADDED_TASK = "I've added this task to your list. Here you go: ";
-
     /** No input message */
-    private static final String NO_INPUT_MESSAGE = "You didn't say what I should do!";
+    private static final String NO_INPUT = "You didn't say what I should do!";
     /** Empty command message */
-    private static final String EMPTY_COMMAND_MESSAGE = "What should I do with the ";
+    private static final String EMPTY_COMMAND = "What should I do with the ";
     /** Nonsense input message */
-    private static final String NONSENSE_INPUT_MESSAGE = "I can't do that right now, sorry";
+    private static final String NONSENSE_INPUT = "I can't do that right now, sorry";
     /** Storage file error message */
     private static final String IO_ERROR = "Something went wrong creating your files!";
 
@@ -39,29 +35,12 @@ public class TextUI {
 
     /**
      * Tells the user the necessary input format
-     * to prevent exceptions.
+     * to prevent input mistakes.
      */
-    public static String correctFormatForUser() {
-        return "Please use the following format" + "\n"
-                + "[task type] [task name] / [at or by] [task date]" + "\n"
+    public static String correctFormatMessage() {
+        return "Please use the following format:" + "\n"
+                + "<task type> <task name> /<at or by> <date and time>" + "\n"
                 + "e.g: event concert /at 12/12/2020 1800";
-    }
-
-
-    /**
-     * Prints a bye message to the user
-     *
-     */
-    public static String bye() {
-        return FAREWELL;
-    }
-
-    /**
-     * Asks the user for a command.
-     *
-     */
-    public static String promptUser() {
-        return "What do you wanna do to your list?";
     }
 
     /**
@@ -105,6 +84,10 @@ public class TextUI {
         return String.format("Deleted %s\nYou have %d task(s) remaining.", task, index);
     }
 
+    /**
+     * Tells the user the database file is being created.
+     * @return the message
+     */
     public static String createFilesMessage() {
         return "Creating necessary files...";
     }
@@ -122,25 +105,27 @@ public class TextUI {
     public static String exceptionMessage(String type) {
         switch (type) {
         case "nonsense":
-            return NONSENSE_INPUT_MESSAGE;
+            return NONSENSE_INPUT;
         case "blank":
-            return NO_INPUT_MESSAGE;
+            return NO_INPUT;
         case "IO":
             return IO_ERROR;
+        case "Wrong Format":
+            return correctFormatMessage();
         default:
-            return EMPTY_COMMAND_MESSAGE + type;
+            return EMPTY_COMMAND + type;
         }
     }
 
-    public static String foundTasks() {
+    public static String foundTasksMessage() {
         return "Found these tasks";
     }
 
-    public static String noTasksFound() {
+    public static String noTasksFoundMessage() {
         return "No tasks found";
     }
 
-    public static String changeTaskPriority(Task task) {
+    public static String changeTaskPriorityMessage(Task task) {
         return "Changed this task's priority: " + task;
     }
 

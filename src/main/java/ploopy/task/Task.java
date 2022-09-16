@@ -12,7 +12,6 @@ public abstract class Task {
     protected final String name;
     /** Boolean for task being done or not */
     private boolean isDone;
-
     /** Priority level of task*/
     private String priority;
 
