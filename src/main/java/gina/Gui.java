@@ -1,8 +1,10 @@
 package gina;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -14,12 +16,17 @@ import javafx.scene.layout.Region;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class Gui extends Application {
     private Gina gina = new Gina("./data2/tasks.txt");
+    @FXML
     private ScrollPane scrollPane;
+    @FXML
     private VBox dialogContainer;
+    @FXML
     private TextField userInput;
+    @FXML
     private Button sendButton;
     private Scene scene;
     private Image userImg = new Image(this.getClass().getResourceAsStream("/images/user.png"));
@@ -101,7 +108,13 @@ public class Gui extends Application {
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
+    @FXML
     private void handleUserInput() {
+        if (userInput.getText().equals("bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
+            delay.setOnFinished( event -> Platform.exit() );
+            delay.play();
+        }
         Label userText = new Label(userInput.getText());
         Label ginaText = new Label(getResponse(userInput.getText()));
         userText.setPadding(new Insets(10));

@@ -24,7 +24,7 @@ public class ContactCommand extends Command {
      */
     public String execute(TaskAndContactList taskAndContactList, Ui ui, Storage storage) throws GinaException {
         if (input.isBlank()) {
-            throw new GinaException("Gina knows better but she can't read minds...");
+            throw new GinaException("Gina knows best but she can't read minds...");
         }
         Contact newContact;
         String[] str = input.split(" /info ", 2);
