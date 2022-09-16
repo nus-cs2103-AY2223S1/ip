@@ -22,8 +22,9 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private File f;
+    private final File f;
     private static final String PATH = "src/main/data/userTasks.txt";
+    private ArrayList<String> stringArray;
 
     /**
      * Initialises the Storage class with a specified PATH constant
@@ -36,20 +37,36 @@ public class Storage {
      * Retrieves the tasks read from the userTasks.txt file
      *
      * @return an ArrayList of Strings containing the tasks from userTasks.txt
-     * @throws DukeException
+     * @throws DukeException if the file to read from is not found
      */
     public ArrayList<String> retrieveTasks() throws DukeException {
-        ArrayList<String> strArr = new ArrayList<>();
+        initialiseStringArray();
+        addElementsToArray();
+        return stringArray;
+    }
+
+    /**
+     * Initialises the stringArray instance as an empty ArrayList of String objects
+     */
+    private void initialiseStringArray() {
+        stringArray = new ArrayList<>();
+    }
+
+    /**
+     * Adds the elements read from the file to the array
+     *
+     * @throws DukeException if the file to read from is not found
+     */
+    private void addElementsToArray() throws DukeException {
         try {
             Scanner sc = new Scanner(f);
             while (sc.hasNext()) {
                 String sentence = sc.nextLine().trim();
-                strArr.add(sentence);
+                stringArray.add(sentence);
             }
-         } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new DukeException(e.getMessage());
         }
-        return strArr;
     }
 
     /**
@@ -59,11 +76,31 @@ public class Storage {
      */
     public void writeToFile(ArrayList<? extends Task> tasks) {
         assert(tasks != null);
+        String str = getStringFromTasks(tasks);
+        writeStringToPath(str);
+    }
+
+    /**
+     * Gets the string representation of the tasks to be written to the file
+     *
+     * @param tasks an ArrayList of tasks to be stored in the local file
+     * @return the string representation of the tasks to be written to the file
+     */
+    private String getStringFromTasks(ArrayList<? extends Task> tasks) {
         String str = "";
-        for (int i = 0; i < tasks.size(); i++) {
-            String s = tasks.get(i).toStringForFile();
+        for (Task task : tasks) {
+            String s = task.toStringForFile();
             str += s + System.lineSeparator();
         }
+        return str;
+    }
+
+    /**
+     * Writes the string to a file of a specified path
+     *
+     * @param str the string representation of the tasks to be written to the file
+     */
+    private void writeStringToPath(String str) {
         try (BufferedWriter bf = Files.newBufferedWriter(Path.of(PATH),
                 StandardOpenOption.TRUNCATE_EXISTING)) {
         } catch (IOException e) {

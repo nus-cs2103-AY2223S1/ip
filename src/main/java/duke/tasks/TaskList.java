@@ -32,11 +32,21 @@ public class TaskList {
         assert(data != null);
         this.tasks = new ArrayList<>();
         try {
-            for (String sentence : data) {
-                this.tasks.add(Parser.parseTask(sentence));
-            }
+            parseEachSentenceToTask(data);
         } catch (DukeException e) {
             this.tasks = new ArrayList<>();
+        }
+    }
+
+    /**
+     * Parses each sentence in the Arraylist of strings to their own tasks
+     *
+     * @param data an ArrayList of Strings
+     * @throws DukeException if there is an exception encountered during parsing
+     */
+    public void parseEachSentenceToTask(ArrayList<? extends String> data) throws DukeException {
+        for (String sentence : data) {
+            this.tasks.add(Parser.parseTask(sentence));
         }
     }
 
@@ -47,15 +57,8 @@ public class TaskList {
      *     by a newline character
      */
     public String showList() {
-        String str = "";
         assert(tasks != null);
-        for (int i = 0; i < tasks.size() - 1; i++) {
-            str += ((i + 1) + "." + tasks.get(i) + "\n");
-        }
-        if (tasks.size() != 0) {
-            str += (tasks.size() + "." + tasks.get(tasks.size() - 1));
-        }
-        return str;
+        return changeListToString(tasks);
     }
 
     /**
@@ -135,13 +138,13 @@ public class TaskList {
      * @throws DukeException if index exceeds the size of the tasks array
      *      or if index is less than or equal to 0
      */
-    public String getTask(int index) throws DukeException {
+    public Task getTask(int index) throws DukeException {
         if (index < 1 || index > this.tasks.size()) {
             throw new DukeOutOfRangeException(this.tasks.size());
         }
         assert(index > 1 && index <= this.tasks.size());
         assert(tasks.get(index - 1) != null);
-        return this.tasks.get(index - 1).toString();
+        return this.tasks.get(index - 1);
     }
 
     /**
@@ -166,6 +169,12 @@ public class TaskList {
         return result;
     }
 
+    /**
+     * Filters a list based on a keyword
+     *
+     * @param keyword the keyword to filter the list with
+     * @return an ArrayList of tasks that contains the keyword
+     */
     private ArrayList<Task> filterList(String keyword) {
         ArrayList<Task> filteredTasks = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
@@ -176,6 +185,12 @@ public class TaskList {
         return filteredTasks;
     }
 
+    /**
+     * Provides the string representation of the list
+     *
+     * @param tasks an ArrayList of tasks to be converted to String
+     * @return the String representation of the ArrayList
+     */
     private String changeListToString(ArrayList<? extends Task> tasks) {
         String str = "";
         for (int i = 0; i < tasks.size() - 1; i++) {

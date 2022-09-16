@@ -2,6 +2,7 @@ package duke.commands;
 
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
+import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
 
@@ -47,8 +48,18 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String result = String.format(MESSAGE_SUCCESS, keyword) + System.lineSeparator() + tasks.showFilteredList(keyword);
+        String result = getResultString(tasks);
         ui.showMessage(result);
         return result;
+    }
+
+    /**
+     * Gets the string representation of the result to be returned to the user
+     *
+     * @param tasks An ArrayList of tasks
+     * @return A string presentation of the arraylist and the tasks
+     */
+    public String getResultString(TaskList tasks) {
+        return String.format(MESSAGE_SUCCESS, keyword) + System.lineSeparator() + tasks.showFilteredList(keyword);
     }
 }
