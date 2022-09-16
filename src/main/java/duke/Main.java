@@ -22,6 +22,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Zuke");
             this.duke = Duke.initialiseForGui(
                     fxmlLoader.<MainWindow>getController().getDialogContainer(),
                     new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"))
