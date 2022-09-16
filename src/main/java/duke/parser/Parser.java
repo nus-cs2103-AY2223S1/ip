@@ -105,9 +105,15 @@ public class Parser {
             return new EventCommand(splitCommand[1]).read(taskList, ui, storage);
         }
         case "find": {
+            if (splitCommand.length == 1) {
+                throw new InvalidDescriptionException("Please add a number.");
+            }
             return new FindCommand(splitCommand[1]).read(taskList, ui, storage);
         }
         case "findtag": {
+            if (splitCommand.length == 1) {
+                throw new InvalidDescriptionException("Please add a number.");
+            }
             return new FindTagCommand(splitCommand[1]).read(taskList, ui, storage);
         }
         case "cdf": {
