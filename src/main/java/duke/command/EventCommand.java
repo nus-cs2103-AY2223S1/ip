@@ -24,8 +24,12 @@ public class EventCommand extends Command {
      *
      * @param description the description of the event task
      * @param datetime    the date and time of the event
+     * @throws IllegalArgumentException if the description contains a pipe character `|`
      */
     public EventCommand(String description, String datetime) {
+        if (description.contains("|")) {
+            throw new IllegalArgumentException("Description cannot contain the character '|'.");
+        }
         this.description = description;
         this.datetime = datetime;
     }

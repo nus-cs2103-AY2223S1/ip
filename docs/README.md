@@ -39,6 +39,7 @@ Adds a todo to the task list.
 Format: `todo <description>`
 
 - `<description>` may contain spaces for multi-word descriptions.
+- `<description>` must not contain the pipe character `|` as it is used as a delimiter internally.
 
 Examples:
 - `todo read book`
@@ -51,6 +52,7 @@ Adds a deadline to the task list.
 Format: `deadline <description> /by <date> <time>`
 
 - `<description>` may contain spaces for multi-word descriptions.
+- `<description>` must not contain the pipe character `|` as it is used as a delimiter internally.
 - `<date>` must be in the format `dd/mm/yyyy`.
 - `<time>` must be in the format `hh:mm`.
 
@@ -65,6 +67,7 @@ Adds an event to the task list.
 Format: `event <description> /at <date> <time>`
 
 - `<description>` may contain spaces for multi-word descriptions.
+- `<description>` must not contain the pipe character `|` as it is used as a delimiter internally.
 - `<date>` must be in the format `dd/mm/yyyy`.
 - `<time>` must be in the format `hh:mm`.
 

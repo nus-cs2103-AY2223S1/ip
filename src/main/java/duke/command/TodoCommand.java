@@ -17,7 +17,16 @@ import duke.task.Todo;
 public class TodoCommand extends Command {
     private final String description;
 
+    /**
+     * Constructs a command to add a to-do task to the task list.
+     *
+     * @param description the description of the to-do task
+     * @throws IllegalArgumentException if the description contains a pipe character `|`
+     */
     public TodoCommand(String description) {
+        if (description.contains("|")) {
+            throw new IllegalArgumentException("Description cannot contain the character '|'.");
+        }
         this.description = description;
     }
 
