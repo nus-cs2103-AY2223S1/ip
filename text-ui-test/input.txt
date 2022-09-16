@@ -1,0 +1,16 @@
+todo read book
+list
+deadline return book /by 2022-09-08 11:11
+event project meeting /at 2022-09-10 11:11
+deadline
+event cca meeting
+event cca meeting /at 2022-09-10
+testing
+mark 1
+mark 2
+list
+unmark 1
+list
+delete 1
+list
+bye
