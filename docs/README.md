@@ -28,11 +28,11 @@
 # <a name="start" style = "color: inherit;"></a>Quick start
 
 * Ensure that you have Java 11 or above installed in your computer.
-* Download the latest `Pluto.jar` from [here](https://github.com/pratham31012002/ip/releases/download/A-Release/pluto.jar).
+* Download the latest `pluto.jar` from [here](https://github.com/pratham31012002/ip/releases/download/A-Release/pluto.jar).
 * Copy the file to the directory you want to use as the home folder for your assistant.
 * Make sure the directory has read and write permissions.
 * Double-click the file to start the application. A GUI similar to the one above should appear in a few seconds.
-* If the previous step doesn't work, open the terminal, go to the application directory and try running `java -jar Pluto.jar`.
+* If the previous step doesn't work, open the terminal, go to the application directory and try running `java -jar pluto.jar`.
 * Type in the command and press Enter or click on the Send button to execute it. Enter `help` to know about all commands.
 
 <p align="right">
@@ -43,16 +43,18 @@
 
 # <a name="features" style = "color: inherit;"></a>Features
 
-- [X] Add a ToDo task
-- [X] Add a Deadline task
-- [X] Add an Event task
-- [X] List all tasks
-- [X] Mark a task as Done
-- [X] Unmark a task
-- [X] Delete a task
-- [X] Find a task by keyword(s)
-- [X] Find a task by date
-- [X] Reschedule a task
+<ul>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;Add a ToDo task </li>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;Add a Deadline task </li>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;Add an Event task </li>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;List all tasks </li>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;Mark a task as Done </li>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;Unmark a task </li>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;Delete a task </li>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;Find a task by keyword(s) </li>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;Find a task by date </li>
+<li><input type="checkbox" checked="checked" disabled="disabled"> &nbsp;Reschedule a task </li>
+</ul>
 
 <p align="right">
 <a href="#top">Back To Top</a>
