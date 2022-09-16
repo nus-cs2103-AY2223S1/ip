@@ -23,7 +23,7 @@ to save and keep track of their tasks.
 1. Ensure you have Java `11` or above installed in your Computer. 
 2. Download the latest duke.jar from [here](https://github.com/LianGuoYang/ip)
 3. Copy the file to the folder you want to use as the *home folder* for Smart.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+4. Double click the file to start the app. The GUI similar to the below should appear in a few seconds.
 ![Smart Example](Screen.png)
 5. Type the command in the command box and press Enter to execute it. 
 e.g. typing `list` and pressing Enter will show the list of tasks.
@@ -188,15 +188,15 @@ Format :  `bye`
 
 ## Command Summary
 
-| Action       | Format, Examples                                                                     |
-|--------------|--------------------------------------------------------------------------------------|
-| Add todo     | `todo n/NAME<br/>`<br/>e.g. `todo markdown`                                          |
+| Action       | Format, Examples                                                                    |
+|--------------|-------------------------------------------------------------------------------------|
+| Add todo     | `todo n/NAME`<br/>e.g. `todo markdown`                                              |
 | Add deadline | `deadline n/NAME /by d/DATETIME`<br/>e.g. `deadline assignment /by 1200, 12/10/2022` |
-| Add event    | `event n/NAME /at d/DATETIME`<br/>e.g. `event night /at 1200, 12/10/2022`            |
-| List         | `list`                                                                               |
-| Delete       | `delete i/INDEX`<br/>e.g. ``delete 2``                                               |
-| Mark         | `mark i/INDEX`<br/>e.g. `mark 2`                                                     |
-| Unmark       | `unmark i/INDEX`<br/>e.g. `unmark 2`                                                 |
-| Find         | `find k/KEYWORD`<br/>e.g. `find assign`                                              |
-| Snooze       | `snooze i/INDEX d/DATETIME`<br/>e.g. `snooze 2 0000, 24/03/2025`                     |
-| Exit         | `bye`                                                                                |
+| Add event    | `event n/NAME /at d/DATETIME`<br/>e.g. `event night /at 1200, 12/10/2022`           |
+| List         | `list`                                                                              |
+| Delete       | `delete i/INDEX`<br/>e.g. ``delete 2``                                              |
+| Mark         | `mark i/INDEX`<br/>e.g. `mark 2`                                                    |
+| Unmark       | `unmark i/INDEX`<br/>e.g. `unmark 2`                                                |
+| Find         | `find k/KEYWORD`<br/>e.g. `find assign`                                             |
+| Snooze       | `snooze i/INDEX d/DATETIME`<br/>e.g. `snooze 2 0000, 24/03/2025`                    |
+| Exit         | `bye`                                                                               |
