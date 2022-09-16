@@ -22,8 +22,8 @@ public class InvalidTaskNumberException extends DoemonException {
      */
     @Override
     public String toString() {
-        return String.format("%s Looks like you want to %s a task that doesn't"
-                + "\n\texist! Try again with a valid number.",
+        return String.format("%s Looks like you want to %s a task that doesn'texist!"
+                + "\nTry again with a valid number.",
                 super.toString(), this.action);
     }
 }

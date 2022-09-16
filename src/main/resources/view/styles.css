@@ -1,0 +1,19 @@
+#dialog {
+  -fx-background-color: pink;
+  -fx-background-radius: 30;
+
+  -fx-padding: 20;
+  -fx-border-color: black;
+  -fx-border-radius: 30;
+
+  -fx-text-overrun: clip;
+  -fx-text-fill: black;
+  -fx-font-family: "Garamond", serif;
+  -fx-font-size: 15;
+}
+
+.scroll-pane .viewport {
+  -fx-background-image: url("doemon_background.png");
+  -fx-background-position: center;
+  -fx-background-size: cover;
+}

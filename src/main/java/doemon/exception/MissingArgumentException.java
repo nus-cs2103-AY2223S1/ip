@@ -27,8 +27,8 @@ public class MissingArgumentException extends DoemonException {
      */
     @Override
     public String toString() {
-        return String.format("%s Looks like you may be missing a date/time for"
-                + "\n\tthis %s...Remember to use the %s flag!",
+        return String.format("%s Looks like you may be missing a date/time forthis %s..."
+                + "\nRemember to use the %s flag!",
                 super.toString(), this.task, this.flag);
     }
 }

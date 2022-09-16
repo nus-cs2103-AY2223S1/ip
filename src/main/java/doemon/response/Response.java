@@ -24,7 +24,7 @@ public class Response {
     /**
      * Introduction string that is printed when Doemon is started.
      */
-    private static final String introStr = "Hello I'm\n" + logo + "\t\t\tDoemon!";
+    private static final String introStr = "Hello I'm Doemon! How can I help you?";
     /** String that is printed when Doemon is exited. */
     private static final String exitStr = "I'm going to sleep now...See you again soon!";
     /** Help string. */
@@ -58,13 +58,13 @@ public class Response {
         if (tasks.getSize() == 0) {
             return "You have no tasks!";
         }
-        StringBuilder listStringBuilder = new StringBuilder("Here is what's on my bread:\n\t");
+        StringBuilder listStringBuilder = new StringBuilder("Here is what's on my bread:\n");
         for (int i = 1; i <= tasks.getSize(); i++) {
             assert tasks.getTask(i - 1) != null : "Task in task list should not be null";
             listStringBuilder.append(i)
                     .append(".")
                     .append(tasks.getTask(i - 1))
-                    .append("\n\t");
+                    .append("\n");
         }
         return listStringBuilder.toString().trim();
     }
@@ -79,8 +79,8 @@ public class Response {
     public String addTaskString(Task task, int numTasks) {
         assert task != null : "Task should not be null";
         return String.format(
-                "Alright! I have recorded this task on my bread:\n\t"
-                + "  %s\n\tYou now have %d task(s) recorded on my bread.",
+                "Alright! I have recorded this task on my bread:\n"
+                + "  %s\nYou now have %d task(s) recorded on my bread.",
                 task.toString(),
                 numTasks);
     }
@@ -93,7 +93,7 @@ public class Response {
      */
     public String markTaskString(Task task) {
         assert task != null : "Task should not be null";
-        return String.format("Yay! This task is now marked as done:\n\t  %s", task);
+        return String.format("Yay! This task is now marked as done:\n %s", task);
     }
 
     /**
@@ -104,7 +104,7 @@ public class Response {
      */
     public String unmarkTaskString(Task task) {
         assert task != null : "Task should not be null";
-        return String.format("I guess you weren't done with that one:\n\t  %s", task);
+        return String.format("I guess you weren't done with that one:\n  %s", task);
     }
 
     /**
@@ -117,8 +117,8 @@ public class Response {
     public String deleteTaskString(Task task, int numTasks) {
         assert task != null : "Task should not be null";
         assert numTasks >= 0 : "Number of tasks should be non-negative";
-        return String.format("I used a knife to slice off this task from my bread:\n\t  %s"
-                + "\n\tThere are %d items left on my bread.", task, numTasks);
+        return String.format("I used a knife to slice off this task from my bread:\n  %s"
+                + "\nThere are %d items left on my bread.", task, numTasks);
     }
 
     /**
@@ -135,7 +135,7 @@ public class Response {
         StringBuilder sb = new StringBuilder("Here are the matches I found on my bread: ");
         for (Task task : tasks) {
             assert task != null : "Task in task list should not be null";
-            sb.append("\n\t").append(taskNum++).append(".").append(task.toString());
+            sb.append("\n").append(taskNum++).append(".").append(task.toString());
         }
         return sb.toString();
     }
