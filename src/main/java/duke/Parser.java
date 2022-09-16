@@ -180,6 +180,7 @@ public class Parser {
      */
     public String parseDelete(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
+
             throw new InvalidDescriptionException();
         } else {
             String deleteMessage = this.taskList.deleteTask(Integer.parseInt(subCmd[0]));
