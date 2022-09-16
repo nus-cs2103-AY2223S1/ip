@@ -1,5 +1,5 @@
 1:D:X:return book:2022-06-13
-2:E:X:wedding:2022-07-18
+2:E: :wedding:2022-07-18
 3:D:X:book review:2022-11-24
 4:T: :go USS
 5:D: :finish assignment 2:2022-11-04
@@ -9,3 +9,4 @@
 9:T: :learn how to make cake
 10:D: :finish hw 3:2022-09-16
 11:E: :project meeting:2022-09-17
+12:D: :assignment 5:2022-12-13

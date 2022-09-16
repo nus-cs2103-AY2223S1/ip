@@ -54,6 +54,9 @@ public class Parser {
         } else if (command.equals("sortdeadlines")) {
             return new SortDeadlineCommand();
 
+        } else if (command.equals("help")) {
+            return new HelpCommand();
+
         } else {
             throw new AnyaException(ui.printMisMatchInputError());
         }
@@ -74,8 +77,10 @@ public class Parser {
 
         } else if (typeOfTask.equals("event")) {
             return new Event(taskDescription[0], taskDescription[1]);
+
+        } else {
+            return null;
         }
-        return null;
     }
 
     private String[] splitDescriptionAndDate(String[] ar) throws AnyaException {

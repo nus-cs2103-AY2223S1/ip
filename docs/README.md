@@ -146,6 +146,20 @@ List out the sorted deadlines.
 
 ![This is an image](./UserGuide_png/sortdeadlines.png)
 
+### `help` - List out the available commands.
+
+List out available commands in Anya chatbot.
+
+Example of usage:
+
+`help`
+
+Expected outcome:
+
+List out the available commands.
+
+![This is an image](./UserGuide_png/Help.png)
+
 ### `bye` - Exit the application
 
 Example of usage:
