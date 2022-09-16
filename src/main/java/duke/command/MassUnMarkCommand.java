@@ -58,8 +58,10 @@ public class MassUnMarkCommand extends Command {
         String tasks = "";
         for (Integer i : indexes) {
             Task tempTask = taskList.getTask(i);
-            tempTask.markAsIncomplete();
-            tasks += tempTask + "\n";
+            if (tempTask.getStatusIcon().equals("X")) {
+                tempTask.markAsIncomplete();
+                tasks += tempTask + "\n";
+            }
         }
         storage.saveFile(taskList);
         return ui.formatMessage("Nice! I've unmarked the following tasks:\n" + tasks);
