@@ -121,7 +121,7 @@ public class Storage {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.toString());
         }
         return taskList;
     }

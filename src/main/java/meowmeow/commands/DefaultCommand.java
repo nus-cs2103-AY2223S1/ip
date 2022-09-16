@@ -10,6 +10,12 @@ import meowmeow.Ui;
  */
 public class DefaultCommand extends Command {
 
+    private String message;
+
+    public DefaultCommand(String message) {
+        this.message = message;
+    }
+
     /**
      * Method that executes the DefaultCommand.
      *
@@ -24,8 +30,7 @@ public class DefaultCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return "Sowwie meowmeow doesn't understand what you said uwu ♥ \n"
-                + "Try typing something else! owo";
+        return this.message;
     }
 
     /**

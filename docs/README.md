@@ -99,7 +99,7 @@ Example of usage:
 Expected outcome:
 
 ```
-Good job(=OwO=) You finished this task! 
+Good job (=OwO=) You finished this task! 
 [T] [X] Buy fish for Meowmeow
 ```
 

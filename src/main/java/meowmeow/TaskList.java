@@ -41,7 +41,7 @@ public class TaskList {
 
     public String deleteTask(int taskNum) {
         try {
-            if (taskNum >= numOfInputs) {
+            if (taskNum >= numOfInputs || taskNum < 0) {
                 throw new MeowmeowException("Meowmeow can't throw away a task that doesn't exist =owo=");
             } else {
                 String task = taskList.get(taskNum).toString();
@@ -55,7 +55,7 @@ public class TaskList {
                         + "You have " + numOfInputs + " tasks left now Owo";
             }
         } catch (MeowmeowException e) {
-            return e.getMessage();
+            return e.toString();
         }
     }
 

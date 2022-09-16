@@ -18,71 +18,92 @@ public class Parser {
 
     public static Command parse(String userInput) {
 
-        try {
-            String[] splitUI = userInput.split(" ");
-            assert splitUI.length > 0 : "splitUI should not be empty";
-            switch (splitUI[0]) {
+        userInput = userInput.trim();
+        String[] splitUI = userInput.split(" ");
+        assert splitUI.length > 0 : "splitUI should not be empty";
+        switch (splitUI[0]) {
 
-            case "hi":
-                return new HiCommand();
+        case "hi":
+            return new HiCommand();
 
-            case "list":
-                return new ListCommand();
+        case "list":
+            return new ListCommand();
 
-            case "bye":
-                return new ExitCommand();
+        case "bye":
+            return new ExitCommand();
 
-            case "undo":
-                return new UndoCommand();
+        case "undo":
+            return new UndoCommand();
 
-            default:
-                break;
-            }
+        default:
+            break;
+        }
 
-            String[] splitUserInput = userInput.split(" ", 2);
+        String[] splitUserInput = userInput.split(" ", 2);
 
-            if (splitUserInput.length <= 1) {
-                throw new MeowmeowException("Sowwie meowmeow doesn't understand what you said uwu");
-            } else {
-                String cmdWord = splitUserInput[0];
+        String cmdWord = splitUserInput[0];
 
-                switch (cmdWord) {
-                case "mark":
+        switch (cmdWord) {
+            case "mark":
+                try {
                     int taskNum = Integer.parseInt(splitUserInput[1]);
                     return new MarkCommand(true, taskNum);
-
-                case "unmark":
-                    taskNum = Integer.parseInt(splitUserInput[1]);
-                    return new MarkCommand(false, taskNum);
-
-                case "todo":
-                    String taskName = splitUserInput[1];
-                    return new AddCommand('T', taskName);
-
-                case "deadline":
-                    String nameAndLocalDateTime = splitUserInput[1];
-                    return new AddCommand('D', nameAndLocalDateTime);
-
-                case "event":
-                    String nameAndTime = splitUserInput[1];
-                    return new AddCommand('E', nameAndTime);
-
-                case "delete":
-                    int taskToDelete = Integer.parseInt(splitUserInput[1]);
-                    return new DeleteCommand(taskToDelete);
-
-                case "find":
-                    String taskToFind = splitUserInput[1];
-                    return new FindCommand(taskToFind);
-
-                default:
-                    return new DefaultCommand();
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                    return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to mark!");
                 }
+
+        case "unmark":
+            try {
+                int taskNum = Integer.parseInt(splitUserInput[1]);
+                return new MarkCommand(false, taskNum);
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to unmark!");
             }
 
-        } catch (MeowmeowException e) {
-            System.out.println(e);
+        case "todo":
+            try {
+                String taskName = splitUserInput[1];
+                return new AddCommand('T', taskName);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                return new DefaultCommand("=0w0= Meowmeow needs a name for the todo you want to add!");
+            }
+
+        case "deadline":
+            try {
+                String nameAndLocalDateTime = splitUserInput[1];
+                return new AddCommand('D', nameAndLocalDateTime);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                return new DefaultCommand("=0w0= To add a deadline type it in in this format: "
+                        + "deadline (name) /by (YYYY-MM-DDTHH:MM:SS)");
+            }
+
+        case "event":
+            try {
+                String nameAndTime = splitUserInput[1];
+                return new AddCommand('E', nameAndTime);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                return new DefaultCommand("=0w0= To add an event type it in in this format: event (name) /at (time)");
+            }
+
+        case "delete":
+            try {
+                int taskToDelete = Integer.parseInt(splitUserInput[1]);
+                return new DeleteCommand(taskToDelete);
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to delete!");
+            }
+
+        case "find":
+            try {
+                String taskToFind = splitUserInput[1];
+                return new FindCommand(taskToFind);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                return new DefaultCommand("=0w0= Meowmeow needs a name for the task you want to find!");
+            }
+
+        default:
+            return new DefaultCommand("Sowwie meowmeow doesn't understand what you said uwu ♥ \n"
+                    + "Try typing something else! owo");
         }
-        return new DefaultCommand();
     }
 }
