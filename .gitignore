@@ -15,6 +15,7 @@
 /text-ui-test/ACTUAL.TXT
 /text-ui-test/EXPECTED-UNIX.TXT
 /data/
+/text-ui-test/runtest1.sh
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
