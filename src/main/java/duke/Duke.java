@@ -52,6 +52,8 @@ public class Duke extends Application {
     }
 
     /**
+
+    /**
      * Starts the Duke Application.
      *
      * @param stage Javafx stage.
@@ -168,6 +170,7 @@ public class Duke extends Application {
                 text = text + ("Duke could not identify the index");
             }
 
+            assert text != "";
             return text;
 
         } catch (DukeException e) {
@@ -234,6 +237,7 @@ public class Duke extends Application {
             if (s.equals("all")) {
                 tasklist.deleteAll();
                 storage.save(tasklist);
+                assert tasklist.size() == 0;
                 return ("All tasks have been deleted! :D");
             } else {
                 Task deleted = tasklist.delete(Integer.parseInt(s) - 1);
