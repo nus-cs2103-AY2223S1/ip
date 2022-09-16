@@ -3,6 +3,7 @@
 ## How to Use
 For each command format, **bold** words are fixed, which means you cannot change them and their relative position. However, you can replace \[square brackets\] with real arguments. Command word and arguments should be separated by at least one whitespace, but no end-of-line characters.
 ## Command List
+
 | Command                 | Format                                                       | Description                                                                                                                                                                                                                                                                                           |
 |-------------------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Add an event task       | **event** \[description\] **/at** \[yyyy-MM-dd HH:mm:ss\]    | Add an event that takes place at year **_yyyy_**, month **_MM_**, day **_dd_**, hour **_HH_**, minute **_mm_**, and second **_ss_**. \[description\] is a paragraph that describes what to do, and can have any length and any number of whitespace characters. However, it cannot be empty or blank. |
