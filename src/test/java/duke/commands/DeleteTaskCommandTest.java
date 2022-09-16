@@ -1,31 +1,30 @@
-package duke.utils;
+package duke.commands;
 
-import duke.commands.Command;
-import duke.commands.ExitCommand;
+import duke.tasks.Event;
 import duke.tasks.TaskList;
+import duke.tasks.TaskType;
+import duke.utils.InputParser;
+import duke.utils.Storage;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.Deque;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InputParserTest {
+public class DeleteTaskCommandTest {
 
-    private static InputParser inputParser;
     private static Storage storage;
     private static TaskList taskList;
-    private static Deque<Command> commandHistory;
 
     @BeforeAll
     public static void setup() {
-        inputParser = new InputParser();
         storage = new Storage(new File("testdata.txt"));
         taskList = new TaskList(storage.loadFromFile());
-        commandHistory = new LinkedList<>();
     }
 
     @AfterAll
@@ -34,9 +33,13 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseTest() {
-        String bye = "bye";
-        assertEquals(inputParser.parse(bye, taskList, storage, commandHistory).getClass(), ExitCommand.class);
+    public void deleteTaskAndUndoTest() {
+        taskList.addTask(new Event("Sample event", LocalDate.parse("2022-02-02")));
+        DeleteTaskCommand cmd = new DeleteTaskCommand(storage, taskList, "1");
+        cmd.execute();
+        assertEquals(taskList.getSize(), 0);
+        cmd.undo();
+        assertEquals(taskList.getSize(), 1);
     }
 
 }

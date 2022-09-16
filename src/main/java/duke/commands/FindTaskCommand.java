@@ -26,6 +26,7 @@ public class FindTaskCommand extends Command {
             sb.append(String.format("%d.%s\n", i, task.toString()));
             ++i;
         }
+        sb.setLength(Math.max(sb.length() - 1, 0));
         return sb.toString();
     }
 

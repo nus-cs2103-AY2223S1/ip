@@ -57,20 +57,32 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Constructs a user dialog with the given text and image.
+     * @param text The text to display in the dialog.
+     * @param img The user image to display.
+     * @return The constructed DialogBox.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         Color col = Color.rgb(241,255,255);
-        CornerRadii corn = new CornerRadii(10);
-        Background background = new Background(new BackgroundFill(col, corn, Insets.EMPTY));
+        CornerRadii radii = new CornerRadii(15, 0, 15 ,15, false);
+        Background background = new Background(new BackgroundFill(col, radii, Insets.EMPTY));
         db.dialog.setBackground(background);
         return db;
     }
 
+    /**
+     * Constructs a Duke dialog with the given text and image.
+     * @param text The text to display in the dialog.
+     * @param img The Duke image to display.
+     * @return The constructed DialogBox.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         Color col = Color.rgb(255,235,205);
-        CornerRadii corn = new CornerRadii(10);
-        Background background = new Background(new BackgroundFill(col, corn, Insets.EMPTY));
+        CornerRadii radii = new CornerRadii(0, 15, 15 ,15, false);
+        Background background = new Background(new BackgroundFill(col, radii, Insets.EMPTY));
         db.dialog.setBackground(background);
         db.flip();
         return db;

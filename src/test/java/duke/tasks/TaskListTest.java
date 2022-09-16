@@ -1,31 +1,24 @@
-package duke.utils;
+package duke.tasks;
 
-import duke.commands.Command;
-import duke.commands.ExitCommand;
-import duke.tasks.TaskList;
+import duke.utils.Storage;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InputParserTest {
+public class TaskListTest {
 
-    private static InputParser inputParser;
     private static Storage storage;
     private static TaskList taskList;
-    private static Deque<Command> commandHistory;
 
     @BeforeAll
     public static void setup() {
-        inputParser = new InputParser();
         storage = new Storage(new File("testdata.txt"));
         taskList = new TaskList(storage.loadFromFile());
-        commandHistory = new LinkedList<>();
     }
 
     @AfterAll
@@ -34,9 +27,13 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseTest() {
-        String bye = "bye";
-        assertEquals(inputParser.parse(bye, taskList, storage, commandHistory).getClass(), ExitCommand.class);
+    public void findTest() {
+        taskList.addTask(new Todo("blablabla"));
+        taskList.addTask(new Todo("albalbalb"));
+        taskList.addTask(new Todo("blankblank"));
+
+        List<Task> res = taskList.find("bla");
+        assertEquals(res.size(), 2);
     }
 
 }
