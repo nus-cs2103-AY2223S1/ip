@@ -264,6 +264,7 @@ Press Enter to close the application...
 ```
 
 ## Command Summary
+
 |Action|Format|Example|
 |:-|:-|:-|
 |ToDo|`todo <DESCRIPTION>`|`todo Finish Mission 3`|
