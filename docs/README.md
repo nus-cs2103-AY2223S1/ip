@@ -9,22 +9,20 @@ Tutter is **not** your average chat bot! Modelled after our favourite loveable r
 ## Quick start
 1. Ensure you have `Java 11` or above installed in your Computer.
 
-2. Download the latest `Duke.jar` from [here](https://github.com/EiffelLKF/ip/releases/tag/v0.1).
+2. Download the latest `Duke.jar` from [here](https://github.com/EiffelLKF/ip/releases/tag/A-Release).
 
 3. Copy the file to the folder you want to use as the home folder for Tutter's chatbot.
 
-4. Right click anywhere in the folder to `Open in Terminal`.
+4. Double click the application to launch.
 
-5. Within your terminal, execute `java -jar Duke.jar` to launch the chatbot. 
-
-6. The interface should look like this: 
+5. The interface should look like this: 
 
    ![image](https://user-images.githubusercontent.com/97384776/190425169-636a29e1-dd0b-4cb2-8780-760fb81f8cc6.png)
   
-7. Now you're ready to begin your journey with Tutter! Type any command in the command box and press Enter to execute it. 
+6. Now you're ready to begin your journey with Tutter! Type any command in the command box and press Enter to execute it. 
    e.g. typing list and pressing Enter will show you all your current tasks.  
    
-8. You can refer to [Features](#features) for the types of commands available and [Usage](#usage) for how to use each one!
+7. You can refer to [Features](#features) for the types of commands available and [Usage](#usage) for how to use each one!
 
 ## Features 
 
