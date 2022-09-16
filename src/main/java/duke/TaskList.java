@@ -1,6 +1,8 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a task list.
@@ -144,10 +146,30 @@ public class TaskList {
         return Ui.UNMARK_HEADER_GUI + "[ ] " + list.getList().get(index - 1).printDescription();
     }
 
+    /**
+     * Sets priority of a task.
+     * @param list the task list.
+     * @param index the index of the task.
+     * @param priority the priority to be set.
+     * @return a confirmation that the command has been executed.
+     */
     public String setPriority(TaskList list, int index, char priority) {
-        System.out.println("I have set" + list.getList().get(index - 1).printDescription() + " to " + priority);
+        String output = determinePriority(priority);
+        System.out.println("I have set" + list.getList().get(index - 1).printDescription() + " to "
+                + output + " priority" );
         list.getList().get(index - 1).setPriority(priority);
-        return ("I have set" + list.getList().get(index - 1).printDescription() + " to " + priority);
+        return ("I have set " + list.getList().get(index - 1).printDescription() + "to " + output
+                + " priority");
+    }
+
+    private String determinePriority(char priority) {
+        if (priority == 'L') {
+            return "LOW";
+        } else if (priority == 'M') {
+            return "MEDIUM";
+        } else {
+            return "HIGH";
+        }
     }
 
     /**

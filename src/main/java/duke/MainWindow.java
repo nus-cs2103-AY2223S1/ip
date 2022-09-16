@@ -23,6 +23,8 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/pat.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/spongebob.png"));
+    private Image welcomeImage = new Image(this.getClass().getResourceAsStream("/images/welcome.png"));
+    private Image unmarkImage = new Image(this.getClass().getResourceAsStream("/images/unmark.png"));
 
     @FXML
     public void initialize() {
@@ -43,9 +45,8 @@ public class MainWindow extends AnchorPane {
      * Prints welcoming message.
      */
     public void printHello() {
-        dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog("Hello! I am Duke. How can I help you?", dukeImage)
-        );
+        String welcomeMessage = "Hello! I'm Duke. \n What can I do for you?";
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(welcomeMessage, welcomeImage));
     }
 
     /**
@@ -56,6 +57,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        Image dukeImage = determineImage(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
@@ -63,4 +65,10 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
+    private Image determineImage(String input) {
+        String[] outputs = input.split(" ");
+        if (outputs.length == 2 && outputs[0].equals("unmark")) {
+            return unmarkImage;
+        } return dukeImage;
+    }
 }

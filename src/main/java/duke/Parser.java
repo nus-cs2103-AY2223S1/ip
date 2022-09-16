@@ -132,7 +132,10 @@ public class Parser {
             storage.overwriteFile(file, list);
             return st;
         } catch (Exception e) {
-            return e.getMessage();
+            if (e instanceof MarkException) {
+                return e.getMessage();
+            }
+            return "Hey!! Please input a number";
         }
     }
 
@@ -154,7 +157,11 @@ public class Parser {
             storage.overwriteFile(file, list);
             return st;
         } catch (Exception e) {
-            return "Try a smaller number";
+            if (e instanceof MarkException) {
+                return e.getMessage();
+            } else if (e instanceof ArrayIndexOutOfBoundsException) {
+                return "Please try a smaller number";
+            } return "Hey!! Please input a number";
         }
     }
 
