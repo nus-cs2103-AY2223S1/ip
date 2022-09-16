@@ -30,14 +30,14 @@ public class Response {
     /** Help string. */
     private static final String helpStr =
             "These are the commands my bread can understand:\n"
-            + "* list - Lists all your recorded tasks\n"
-            + "* todo [desc] - Adds a todo with a specified description\n"
-            + "* deadline [desc] /by [date/time] - Adds a deadline with specified description and date/time\n"
-            + "* event [desc] /at [date/time] - Adds an event with specified description and date/time\n"
-            + "* mark [num] - Marks the task at the specified number\n"
-            + "* unmark [num] - Unmarks the task at the specified number\n"
-            + "* delete [num] - Deletes the task at the specified number\n"
-            + "* bye - Exits the chat bot";
+            + "* list/l - Lists all your recorded tasks\n"
+            + "* todo/t [desc] - Adds a todo with a specified description\n"
+            + "* deadline/d [desc] /by [date/time] - Adds a deadline with specified description and date/time\n"
+            + "* event/e [desc] /at [date/time] - Adds an event with specified description and date/time\n"
+            + "* mark/m [num] - Marks the task at the specified number\n"
+            + "* unmark/u [num] - Unmarks the task at the specified number\n"
+            + "* delete/del [num] - Deletes the task at the specified number\n"
+            + "* bye/b - Exits the chat bot";
 
     /**
      * Returns welcome message.
