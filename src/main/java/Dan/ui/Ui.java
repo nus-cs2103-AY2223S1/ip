@@ -9,35 +9,29 @@ public class Ui {
      * Adds indent of 4 spaces to the lines to be printed
      *
      * @param obj The object to be printed
+     * @return A string of lines that are indented
      */
     public static String printIndent(Object obj) {
-        System.out.println("    " + obj.toString().replace("\n", "\n    "));
+        return ("    " + obj.toString().replace("\n", "\n    "));
     }
 
     /**
      * Prints a horizontal line
+     *
+     * @return a horizontal line
      */
     public static String printLine() {
-        printIndent("____________________________________________________________");
+        return printIndent("____________________________________________________________");
     }
 
     /**
-     * Adds an indent to the lines to be printed, and encapsulates it with lines, forming a block
+     * Prints the welcome message.
      *
-     * @param s String to be printed
-     */
-    public static String printBlock(String s) {
-        printLine();
-        printIndent(s);
-        printLine();
-    }
-
-    /**
-     * Prints the welcome message
+     * @return a string of lines containing the welcome message
      */
     public static String greet() {
-        printLine();
-        printIndent("Hello from\n");
+        StringBuilder result = new StringBuilder();
+        result.append(printIndent("Hello from\n"));
         String logo = "\n"
                 + "_ .-') _     ('-.         .-') _  \n"
                 + "( (  OO) )   ( OO ).-.    ( OO ) ) \n"
@@ -49,15 +43,17 @@ public class Ui {
                 + " |  '--'  /  |  | |  ||  | \\   |   \n"
                 + " `-------'   `--' `--'`--'  `--'   \n";
 
-        printIndent(logo + "Ouuuuuuuuuhhhhhh Spo0ky");
-        printIndent("What can I do for you?");
-        printLine();
+        result.append(printIndent(logo + "Ouuuuuuuuuhhhhhh Spo0ky"));
+        result.append(printIndent("What can I do for you?"));
+        return result.toString();
     }
 
     /**
      * Prints the goodbye message
+     *
+     * @return A string of lines containing the goodbye message
      */
     public static String bye() {
-        printBlock("Boo! Bye bye... :(");
+        return printIndent("Boo! Bye bye... :(");
     }
 }

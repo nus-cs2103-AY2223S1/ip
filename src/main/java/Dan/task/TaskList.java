@@ -56,8 +56,8 @@ public class TaskList {
             tasks.add(new Event(description, dateString));
         }
         StringBuilder result = new StringBuilder();
-        result.append(Ui.printIndent("Okay okay, I'll add this task then:\n"));
-        result.append(Ui.printIndent(tasks.get(tasks.size() - 1).toString())).append("\n");
+        result.append(Ui.printIndent("Okay okay, I'll add this task then:"));
+        result.append(Ui.printIndent(tasks.get(tasks.size() - 1).toString()));
         result.append(Ui.printIndent(String.format("You now have %d many tasks in your list", tasks.size())))
                 .append("\n");
         return result.toString();
@@ -73,7 +73,7 @@ public class TaskList {
             throw new DanException("Your list is empty!");
         }
         StringBuilder result = new StringBuilder();
-        result.append(Ui.printIndent("Here are the tasks in your list:")).append("\n");
+        result.append(Ui.printIndent("Here are the tasks in your list:"));
         result.append(Ui.printIndent(this));
         return result.toString();
     }
@@ -86,13 +86,14 @@ public class TaskList {
      */
     public String markTask(int index) throws DanException {
         if (index > tasks.size()) {
-            Ui.printIndent("tasks.size(): " + tasks.size());
             throw new DanException("This task number doesn't exist!");
         }
         Task task = tasks.get(index - 1);
         task.setDone(true);
-        Ui.printBlock(String.format("Hehe okay guess this is now done\n"
-                + "  %s", task));
+        StringBuilder result = new StringBuilder();
+        result.append(Ui.printIndent(String.format("Hehe okay guess this is now done"
+                + "  %s", task)));
+        return result.toString();
     }
 
     /**
@@ -101,14 +102,16 @@ public class TaskList {
      * @param index Task number (as displayed in `showTasks()`) of the task that is completed
      * @throws DanException if the given task number does not exist in the list
      */
-    public void unmarkTask(int index) throws DanException {
+    public String unmarkTask(int index) throws DanException {
+        StringBuilder result = new StringBuilder();
         if (index > tasks.size()) {
             throw new DanException("This task number doesn't exist!");
         }
         Task task = tasks.get(index - 1);
         task.setDone(false);
-        Ui.printBlock(String.format("Ooops, you haven't done this yet? Here ya go:\n"
-                + "  %s", task));
+        result.append(Ui.printIndent(String.format("Ooops, you haven't done this yet? Here ya go:"
+                + "  %s", task)));
+        return result.toString();
     }
 
     /**
@@ -117,16 +120,16 @@ public class TaskList {
      * @param index Task number (as displayed in `showTasks()`) of the task that is completed
      * @throws DanException if the given task number does not exist in the list
      */
-    public void deleteTask(int index) throws DanException {
+    public String deleteTask(int index) throws DanException {
         if (index > tasks.size()) {
             throw new DanException("This task number doesn't exist!");
         }
-        Ui.printLine();
-        Ui.printIndent("Alright then, I'll remove this task from your list:");
-        Ui.printIndent(tasks.get(index - 1).toString());
+        StringBuilder result = new StringBuilder();
+        result.append(Ui.printIndent("Alright then, I'll remove this task from your list:"));
+        result.append(Ui.printIndent(tasks.get(index - 1).toString()));
         tasks.remove(index - 1);
-        Ui.printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
-        Ui.printLine();
+        result.append(Ui.printIndent(String.format("You now have %d many tasks in your list", tasks.size())));
+        return result.toString();
     }
 
     /**
@@ -134,7 +137,7 @@ public class TaskList {
      *
      * @param keyword String to be searched for among the tasks in the list
      */
-    public void findTask(String keyword) {
+    public String findTask(String keyword) {
         StringBuilder result = new StringBuilder();
         for (int i = 1; i <= tasks.size(); i++) {
             Task task = tasks.get(i - 1);
@@ -142,13 +145,12 @@ public class TaskList {
                 result.append(i + "." + task + "\n");
             }
         }
-        Ui.printLine();
-        Ui.printIndent("Alright! Here are the matching tasks in your list");
-        Ui.printIndent(
+        result.append(Ui.printIndent("Alright! Here are the matching tasks in your list"));
+        result.append(Ui.printIndent(
                 result.toString().length() == 0
                 ? "I couldn't find any task that matches your description"
-                : result.toString());
-        Ui.printLine();
+                : result.toString()));
+        return result.toString();
     }
 
     public List<Task> getTasks() {
@@ -163,7 +165,7 @@ public class TaskList {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (int i =1; i <= tasks.size(); i++) {
+        for (int i = 1; i <= tasks.size(); i++) {
             result.append(i + "." + tasks.get(i - 1) + "\n");
         }
         return result.toString();
