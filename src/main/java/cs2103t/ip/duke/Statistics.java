@@ -5,7 +5,6 @@ public class Statistics {
     private int todoCount;
     private int eventCount;
     private int deadlineCount;
-    private int taskCount;
 
     public Statistics(int doneCount, int todoCount, int eventCount, int deadlineCount) {
         this.doneCount = doneCount;
@@ -30,28 +29,8 @@ public class Statistics {
         deadlineCount ++;
     }
 
-    public void addTask() {
-        taskCount ++;
-    }
-
     public void delDone() {
         doneCount --;
-    }
-
-    public void delTodo() {
-        todoCount --;
-    }
-
-    public void delEvent() {
-        eventCount --;
-    }
-
-    public void delDeadline() {
-        deadlineCount --;
-    }
-
-    public void delTask() {
-        taskCount --;
     }
 
     public int getDoneCount() {
@@ -68,10 +47,6 @@ public class Statistics {
 
     public int getDeadlineCount() {
         return deadlineCount;
-    }
-
-    public int getTaskCount() {
-        return taskCount;
     }
 
     public String toString() {
