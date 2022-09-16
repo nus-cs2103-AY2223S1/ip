@@ -2,26 +2,29 @@
 
 ![photo](https://github.com/albertarielw/ip/blob/master/docs/Ui.png)
 
+## Table of Contents
+
+<!--ts-->
+- [About](https://github.com/albertarielw/ip/edit/master/docs/README.md#about)
+- [Quick Start](https://github.com/albertarielw/ip/edit/master/docs/README.md#quick-start)
+- [Features](https://github.com/albertarielw/ip/edit/master/docs/README.md#features)
+- [Command Summary](https://github.com/albertarielw/ip/edit/master/docs/README.md#command-summary)
+- [Troubleshooting](https://github.com/albertarielw/ip/edit/master/docs/README.md#troubleshooting)
+
+<!--te-->
+
 ## About
 
 LishBot is a personal assistant Chatbot that helps you manage your tasks~
 
 NEW FEATURE: You can even teach LishBot to memorize new commands and responses!
 
-## Command Summary
+## Quick Start
 
-| Commands | Format                                                  |
-|----------|---------------------------------------------------------|
-| todo     | todo {task description}                                 |
-| deadline | deadline {task description} /{time modifier} YYYY-MM-DD |
-| event    | event {task description} /{time modifier} YYYY-MM-DD    |
-| delete   | delete {task number (1-based indexing)}                 |
-| mark     | mark {task number (1-based indexing)}                   |
-| unmark   | unmark {task number (1-based indexing)}                 |
-| list     | list                                                    |
-| find     | find {keyword}                                          |
-| teach    | teach {command}/{response}                              |
-| bye      | bye                                                     |
+1. Ensure you have Java 11 or above installed in your Computer.
+2. Download the latest LishBot.jar from [here](https://github.com/albertarielw/ip/releases/tag/v0.2).
+3. Copy the file to the folder you want to use as home folder for your LishBot.
+4. Double-click the file to start the app.
 
 ## Features 
 
@@ -209,6 +212,21 @@ Example usage:
 U: bye
 B: Glad to be of help! I have saved all your task progress and the new commands you taught me :) See you later~
 ```
+
+## Command Summary
+
+| Commands | Format                                                  |
+|----------|---------------------------------------------------------|
+| todo     | todo {task description}                                 |
+| deadline | deadline {task description} /{time modifier} YYYY-MM-DD |
+| event    | event {task description} /{time modifier} YYYY-MM-DD    |
+| delete   | delete {task number (1-based indexing)}                 |
+| mark     | mark {task number (1-based indexing)}                   |
+| unmark   | unmark {task number (1-based indexing)}                 |
+| list     | list                                                    |
+| find     | find {keyword}                                          |
+| teach    | teach {command}/{response}                              |
+| bye      | bye                                                     |
 
 ## Troubleshooting
 If you encounter issues regarding characters not being displayed correctly, 
