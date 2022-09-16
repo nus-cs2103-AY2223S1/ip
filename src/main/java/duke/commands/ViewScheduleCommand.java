@@ -14,7 +14,8 @@ public class ViewScheduleCommand extends Command {
     /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "view";
     public static final String MESSAGE_USAGE = "View a task for a time period:\n"
-            + "    view <today|tomorrow|week>\n";
+            + "Periods specifiable are 'today', 'tomorrow' and 'week'.\n"
+            + "    view <period>\n";
     private final LocalDateTime startDateRange;
     private final LocalDateTime endDateRange;
 

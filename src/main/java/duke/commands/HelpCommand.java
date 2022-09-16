@@ -13,7 +13,7 @@ public class HelpCommand extends Command {
     /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "help";
     public static final String INTRO = "'Where are you from? How do you not already know this?'\n";
-    public static final String DESCRIPTION = "KarenBot is a rude, self entitled chat bot that will help you "
+    public static final String DESCRIPTION = "KarenBot is a rude, self entitled chatbot that will help you "
             + "remember your tasks, all for the low cost of having to deal with her attitude. "
             + "KarenBot is best suited for the quick typist, maximising "
             + "your productivity by spending less time on handling your tasks!\n";

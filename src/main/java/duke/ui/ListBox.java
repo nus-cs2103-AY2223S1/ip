@@ -55,8 +55,11 @@ public class ListBox extends VBox {
     }
 
     public static ListBox getListBox(Task task) {
-        TaskList tl = new TaskList();
-        tl.addTask(task);
-        return ListBox.getListBox(tl);
+        ListBox lb = new ListBox();
+        lb.setEffect(SHADOW);
+        TaskItem ti = TaskItem.getTaskItem(task);
+        ti.setBackground(new Background(new BackgroundFill(ODD_COLOR, CORNER_RADII, Insets.EMPTY)));
+        lb.getChildren().add(ti);
+        return lb;
     }
 }

@@ -222,7 +222,8 @@ public class Parser {
     private Command prepareViewSchedule(String userInput) {
         String[] tokens = userInput.split(USER_INPUT_DELIMITER, 2);
         if (tokens.length < 2) {
-            return new InvalidCommand("You're being cheeky now, aren't you? It's 'view <today|tomorrow|week>'.");
+            return new InvalidCommand("You're being cheeky now, aren't you? It's 'view <period>'. You can use "
+                    + "'today', 'tomorrow' or 'week' for period.");
         }
         String keyword = tokens[1].toLowerCase();
         switch (keyword) {
@@ -241,7 +242,8 @@ public class Parser {
             LocalDateTime endWeek = LocalDateTime.of(endOfWeek, LocalTime.MAX);
             return new ViewScheduleCommand(startWeek, endWeek);
         default:
-            return new InvalidCommand("You're being cheeky now, aren't you? It's 'view <today|tomorrow|week>'.");
+            return new InvalidCommand("You're being cheeky now, aren't you? It's 'view <period>'. You can use "
+                    + "'today', 'tomorrow' or 'week' for period.");
         }
     }
 

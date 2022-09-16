@@ -90,7 +90,7 @@ public class Storage {
      */
     private void duplicateCorruptFile() {
         File originalFile = new File(fileDirectory);
-        int counter = 0;
+        int counter = 1;
         String corruptFileDirectory = folderDirectory + "/" + this.fileName + CORRUPT_POSTFIX + counter + ".txt";
         File corruptFile = new File(corruptFileDirectory);
         while (corruptFile.exists()) {
