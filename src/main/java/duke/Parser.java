@@ -10,8 +10,8 @@ import java.util.Arrays;
  */
 public class Parser {
 
-    private TaskList taskList;
-    private Storage storage;
+    private final TaskList taskList;
+    private final Storage storage;
 
     /**
      * Creates a Parser object.
@@ -77,7 +77,7 @@ public class Parser {
      * @throws DukeException Throws a DukeException.
      */
     public String parseMark(String[] subCmd) throws DukeException {
-        if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
+        if (isInValidIndex(subCmd[0])) {
             throw new InvalidDescriptionException();
         } else {
             String markMessage = this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).mark();
@@ -94,7 +94,7 @@ public class Parser {
      * @throws DukeException Throws a DukeException.
      */
     public String parseUnmark(String[] subCmd) throws DukeException {
-        if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
+        if (isInValidIndex(subCmd[0])) {
             throw new InvalidDescriptionException();
         } else {
             String unMarkMessage = this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).unmark();
@@ -111,13 +111,14 @@ public class Parser {
      */
     public String parseTodo(String[] subCmd) throws DukeException {
 
-        String tmp = String.join(" ", subCmd);
-        if (tmp.equals("")) {
+        String todoString = String.join(" ", subCmd);
+        if (isEmptyString(todoString)) {
             throw new EmptyDescriptionException();
         } else {
-            String[] tempSplit = tmp.split(" /p ");
+            String[] tempSplit = todoString.split(" /p ");
 
             Todo tmpTask = new Todo(tempSplit[0], false, PriorityLevel.getPriorityString(tempSplit[1]));
+
             String toDoMessage = this.taskList.addTask(tmpTask);
             this.storage.save(this.taskList);
             return toDoMessage;
@@ -131,17 +132,18 @@ public class Parser {
      * @throws DukeException Throws a DukeException.
      */
     public String parseDeadline(String[] subCmd) throws DukeException {
-        String tmp = String.join(" ", subCmd);
-        if (tmp.equals("")) {
+        String deadlineString = String.join(" ", subCmd);
+        if (isEmptyString(deadlineString)) {
             throw new EmptyDescriptionException();
         } else if (!Arrays.asList(subCmd).contains("/by")) {
             throw new InvalidDescriptionException();
         } else {
             try {
-                String[] tempSplit = tmp.split(" /by ");
+                String[] tempSplit = deadlineString.split(" /by ");
                 String[] prioritySplit = tempSplit[1].split(" /p ");
                 LocalDate tempDate = LocalDate.parse(prioritySplit[0], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate, PriorityLevel.getPriorityString(prioritySplit[1]));
+
                 String DeadlineMessage = this.taskList.addTask(tmpTask);
                 this.storage.save(this.taskList);
                 return DeadlineMessage;
@@ -159,11 +161,11 @@ public class Parser {
      * @throws DukeException Throws a DukeException.
      */
     public String parseEvent(String[] subCmd) throws DukeException {
-        String tmp = String.join(" ", subCmd);
-        if (tmp.equals("")) {
+        String eventString = String.join(" ", subCmd);
+        if (isEmptyString(eventString)) {
             throw new EmptyDescriptionException();
         } else {
-            String[] tempSplit = tmp.split(" /at ");
+            String[] tempSplit = eventString.split(" /at ");
             String[] prioritySplit = tempSplit[1].split(" /p ");
             Event tmpTask = new Event(tempSplit[0], false, prioritySplit[0], PriorityLevel.getPriorityString(prioritySplit[1]));
             String EventMessage = this.taskList.addTask(tmpTask);
@@ -172,6 +174,7 @@ public class Parser {
         }
     }
 
+
     /**
      * Parses the delete command.
      * @param subCmd An Array of Strings containing the remaining command arguments.
@@ -179,14 +182,12 @@ public class Parser {
      * @throws DukeException Throws a DukeException.
      */
     public String parseDelete(String[] subCmd) throws DukeException {
-        if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
-
+        if (isInValidIndex(subCmd[0])) {
             throw new InvalidDescriptionException();
-        } else {
-            String deleteMessage = this.taskList.deleteTask(Integer.parseInt(subCmd[0]));
-            this.storage.save(this.taskList);
-            return deleteMessage;
         }
+        String deleteMessage = this.taskList.deleteTask(Integer.parseInt(subCmd[0]));
+        this.storage.save(this.taskList);
+        return deleteMessage;
     }
 
     /**
@@ -196,11 +197,22 @@ public class Parser {
      * @throws DukeException Throws DukeException.
      */
     public String parseFind(String[] subCmd) throws DukeException {
-        String temp = String.join(" ", subCmd);
-        if (temp.equals("")) {
+        String findString = String.join(" ", subCmd);
+        if (isEmptyString(findString)) {
             throw new EmptyDescriptionException();
         } else {
-            return this.taskList.findKeyword(temp);
+            return this.taskList.findKeyword(findString);
         }
+    }
+
+    public boolean isEmptyString(String command) {
+        return (command.isBlank() || command.isEmpty());
+    }
+
+    public boolean isInValidIndex(String index) {
+        if(!isEmptyString(index)) {
+            return Integer.parseInt(index) <= 0 || Integer.parseInt(index) > this.taskList.size();
+        }
+        return true;
     }
 }
