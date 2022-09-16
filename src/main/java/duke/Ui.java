@@ -50,10 +50,11 @@ public class Ui {
      * @return String containing all the tasks.
      */
     public String printTasks(TaskList taskList) {
-        if (taskList.getSize() == 0) {
+        int size = taskList.getSize();
+        if (size == 0) {
             return "u currently have no tasks!";
         }
-        return "here! ur tasks:\n" + taskList + "\n";
+        return "here! u have " + size + " task(s):\n" + taskList + "\n";
     }
 
     /**

@@ -136,7 +136,7 @@ public class TaskList {
         String str = "";
         for(int i = 1; i <= this.getSize(); i++) {
             Task task = this.getTask(i - 1);
-            str += i + "." + task.toString() + "\n";
+            str += i + ". " + task.toString() + "\n";
         }
         return str;
     }
