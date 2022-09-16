@@ -109,9 +109,13 @@ public class TaskList {
 
     public void find(String keyword) {
         Task[] searchResult = taskList.stream().filter(task -> task.match(keyword)).toArray(Task[]::new);
-        String msg = "Here are the matching tasks in your list:\n";
+        if (searchResult.length == 0) {
+            System.out.println("There's no matching task");
+            return;
+        }
+        String msg = "Here are the matching tasks in your list:";
         for (int i = 0; i < searchResult.length; i++) {
-            msg += (i + 1) + ". " + searchResult[i] + "\n";
+            msg += "\n" + (i + 1) + ". " + searchResult[i];
         }
         System.out.println(msg);
     }
