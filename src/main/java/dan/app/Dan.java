@@ -18,7 +18,6 @@ import javafx.fxml.FXML;
  * @author Daniel Lee
  * @version 0.1
  */
-@SuppressWarnings("checkstyle:Regexp")
 public class Dan {
     private TaskListReader tlr;
     private TaskList tasks;
