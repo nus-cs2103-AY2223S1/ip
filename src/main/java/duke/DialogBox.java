@@ -62,11 +62,10 @@ public class DialogBox extends HBox {
      * @return Dialogbox with user input and uesr icon
      */
     public static DialogBox getUserDialog(String text, Image img) {
-         var db = new DialogBox(text, img);
-         db.displayPicture.setClip(new Circle(50, 50, 43));
-         db.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-         return db;
-//        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.displayPicture.setClip(new Circle(50, 50, 43));
+        db.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        return db;
     }
 
     /**

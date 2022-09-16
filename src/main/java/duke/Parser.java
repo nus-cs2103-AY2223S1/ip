@@ -16,8 +16,6 @@ import java.util.List;
  */
 public class Parser {
     private Parser() {}
-    private static final DukeException invalidCommandException = new DukeException("OOPS!!! I'm sorry, but "
-                + "I don't know what that means :-(\n");
 
     /**
      * Converts user date input in YYYY-MM-DD format
@@ -49,7 +47,7 @@ public class Parser {
             String commandAction = splitStr[0];
 
             if (splitStr.length == 1) {
-               return parseCommandWithoutCommandBody(commandAction, taskList, ui);
+                return parseCommandWithoutCommandBody(commandAction, taskList, ui);
             }
 
             String commandBody = trimmedInput.substring(commandAction.length() + 1);
@@ -74,17 +72,19 @@ public class Parser {
      * @return String that is either printed out by Ui or is an error message
      * @throws DukeException if user enters invalid input
      */
-    private static String parseCommandWithoutCommandBody(String commandAction, TaskList taskList, Ui ui) throws DukeException {
+    private static String parseCommandWithoutCommandBody(String commandAction,
+                                                         TaskList taskList, Ui ui) throws DukeException {
         switch (commandAction) {
-            case "bye":
-            case "exit":
-            case "quit":
-                return ui.quit();
-            case "list":
-                return ui.listAllTasks(taskList);
-            default:
-                throw invalidCommandException;
-            }
+        case "bye":
+        case "exit":
+        case "quit":
+            return ui.quit();
+        case "list":
+            return ui.listAllTasks(taskList);
+        default:
+            throw new DukeException("OOPS!!! I'm sorry, but "
+                + "I don't know what that means :-(\n");
+        }
     }
 
     /**
@@ -98,43 +98,45 @@ public class Parser {
      * @return String that is either printed out by Ui or is an error message
      * @throws DukeException if user enters invalid input
      */
-    private static String parseCommandWithCommandBody(String commandAction, String commandBody,  TaskList taskList, Ui ui) throws DukeException {
+    private static String parseCommandWithCommandBody(String commandAction, String commandBody,
+                                                      TaskList taskList, Ui ui) throws DukeException {
         int commandBodyWordCount = commandBody.split(" ").length;
         switch (commandAction) {
-            case "mark":
-                Task taskToMark = getTaskToEdit(commandBody, commandBodyWordCount, taskList);
-                taskToMark.mark();
-                return ui.markTask(taskToMark);
-            case "unmark":
-                Task taskToUnmark = getTaskToEdit(commandBody, commandBodyWordCount, taskList);
-                taskToUnmark.unmark();
-                return ui.printUnmarkTaskMessage(taskToUnmark);
-            case "delete":
-            case "rm":
-                Task taskToDelete = getTaskToEdit(commandBody, commandBodyWordCount, taskList);
-                taskList.deleteTask(taskToDelete);
-                return ui.printDeleteTaskMessage(taskList,taskToDelete);
-            case "find":
-            case "f":
-                List<Task> taskListWithKeyWord = getTaskListWithKeyword(commandBody, taskList);
-                return ui.printTasksWithKeyword(taskListWithKeyWord);
-            case "todo":
-            case "t":
-                Task toDoToAdd = getToDoToAdd(commandBody, commandBodyWordCount);
-                taskList.addTask(toDoToAdd);
-                return ui.printAddTaskMessage(taskList, toDoToAdd);
-            case "deadline":
-            case "d":
-                Task deadlineToAdd = getDeadlineToAdd(commandBody, commandBodyWordCount);
-                taskList.addTask(deadlineToAdd);
-                return ui.printAddTaskMessage(taskList, deadlineToAdd);
-            case "event":
-            case "e":
-                Task eventToAdd = getEventToAdd(commandBody, commandBodyWordCount);
-                taskList.addTask(eventToAdd);
-                return ui.printAddTaskMessage(taskList, eventToAdd);
-            default:
-                throw invalidCommandException;
+        case "mark":
+            Task taskToMark = getTaskToEdit(commandBody, commandBodyWordCount, taskList);
+            taskToMark.mark();
+            return ui.markTask(taskToMark);
+        case "unmark":
+            Task taskToUnmark = getTaskToEdit(commandBody, commandBodyWordCount, taskList);
+            taskToUnmark.unmark();
+            return ui.printUnmarkTaskMessage(taskToUnmark);
+        case "delete":
+        case "rm":
+            Task taskToDelete = getTaskToEdit(commandBody, commandBodyWordCount, taskList);
+            taskList.deleteTask(taskToDelete);
+            return ui.printDeleteTaskMessage(taskList, taskToDelete);
+        case "find":
+        case "f":
+            List<Task> taskListWithKeyWord = getTaskListWithKeyword(commandBody, taskList);
+            return ui.printTasksWithKeyword(taskListWithKeyWord);
+        case "todo":
+        case "t":
+            Task toDoToAdd = getToDoToAdd(commandBody, commandBodyWordCount);
+            taskList.addTask(toDoToAdd);
+            return ui.printAddTaskMessage(taskList, toDoToAdd);
+        case "deadline":
+        case "d":
+            Task deadlineToAdd = getDeadlineToAdd(commandBody, commandBodyWordCount);
+            taskList.addTask(deadlineToAdd);
+            return ui.printAddTaskMessage(taskList, deadlineToAdd);
+        case "event":
+        case "e":
+            Task eventToAdd = getEventToAdd(commandBody, commandBodyWordCount);
+            taskList.addTask(eventToAdd);
+            return ui.printAddTaskMessage(taskList, eventToAdd);
+        default:
+            throw new DukeException("OOPS!!! I'm sorry, but "
+                + "I don't know what that means :-(\n");
         }
     }
 
