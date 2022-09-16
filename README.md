@@ -1,13 +1,13 @@
 # IANA
 > “Your mind is for having ideas, not holding them.” – David Allen ([source](https://dansilvestre.com/productivity-quotes/))
 
-### Iana is a simple task tracker that remembers your tasks for you. It's\n
+### Iana is a simple task tracker that remembers your tasks for you. It's
 * GUI-based
 * Easy to learn
 * *SUPER* fast to use
 * Completely **FREE**
 
-### Try it right **now** by \n
+### Try it right **now** by
 1. Downloading from here
 2. Double-click it
 3. Add your tasks
