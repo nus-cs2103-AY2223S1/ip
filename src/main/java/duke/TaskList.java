@@ -11,10 +11,10 @@ public class TaskList extends ArrayList<Task> {
      *
      * @return String representation of the TaskList for Storage.
      */
-    public String data() {
+    public String toData() {
         String acc = "";
         for (Task task : this) {
-            acc += task.data() + "\n";
+            acc += task.toData() + "\n";
         }
         return acc;
     }

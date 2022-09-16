@@ -49,7 +49,7 @@ public class Event extends Task {
      * @return String representation of the Event for Storage.
      */
     @Override
-    public String data() {
-        return super.data() + ", " + time;
+    public String toData() {
+        return super.toData() + ", " + time;
     }
 }

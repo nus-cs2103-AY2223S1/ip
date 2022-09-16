@@ -1,7 +1,8 @@
 package duke;
 
 /**
- * Represents a Task with description, boolean to set the Task as done or not done, and type (ToDo = 'T', Deadline = 'D', Event = 'E').
+ * Represents a Task with description, boolean to set the Task as done or not done, and type (ToDo = 'T',
+ * Deadline = 'D', Event = 'E').
  */
 public class Task {
     protected String description;
@@ -67,7 +68,7 @@ public class Task {
      *
      * @return String representation of the Task for Storage.
      */
-    public String data() {
+    public String toData() {
         return String.format("%c, %c, %s", type,  getStatusIcon(), description);
     }
 }

@@ -49,7 +49,7 @@ public class Deadline extends Task {
      * @return String representation of the Deadline for Storage.
      */
     @Override
-    public String data() {
-        return super.data() + ", " + deadline;
+    public String toData() {
+        return super.toData() + ", " + deadline;
     }
 }
