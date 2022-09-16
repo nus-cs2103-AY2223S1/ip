@@ -1,27 +1,21 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.10'
-    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'checkstyle'
 }
-
 checkstyle {
-    toolVersion = '10.2'
+    toolVersion = '10.2';
 }
-
 repositories {
     mavenCentral()
-    maven {
-        url 'https://repo.clojars.org'
-        name 'Clojars'
-    }
 }
 
 dependencies {
-    implementation 'ru.noties.todo:annotations:1.0.0'
-    implementation 'odo:odo:0.1.0'
-    String javaFxVersion = '18.0.2'
+    implementation 'org.testng:testng:7.1.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+    String javaFxVersion = '11'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -35,10 +29,6 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
-
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.0'
 }
 
 test {
@@ -56,24 +46,14 @@ test {
 }
 
 application {
-    mainClassName = "seedu.yilia.Yilia"
-}
-
-javafx {
-    version = "18.0.2"
-    modules = [ 'javafx.controls', 'javafx.fxml']
+    mainClassName = "yilia.Launcher"
 }
 
 shadowJar {
     archiveBaseName = "yilia"
-    archiveVersion = "0.1.3"
     archiveClassifier = null
 }
 
 run{
     standardInput = System.in
 }
-
-mainClassName = 'Yilia'
-
-
