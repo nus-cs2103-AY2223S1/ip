@@ -39,12 +39,11 @@ public class ParserDuke {
     /**
      * Prints response for empty user command
      */
-    public String respondToEmptyString() {
+    public String parseEmptyString() {
         String reply = "The folly of youth to speak with no words! Speak again, my friend!";
         System.out.println(reply);
         return reply;
     }
-
 
     /**
      * Reads the user command, initiates completion of the appropriate action and prints response
@@ -52,7 +51,7 @@ public class ParserDuke {
     public String parseCommand() {
 
         if (command.isEmpty()) {
-            String reply = respondToEmptyString();
+            String reply = parseEmptyString();
             return reply;
 
         } else {
@@ -71,6 +70,7 @@ public class ParserDuke {
                 comment = "These are the tasks on your list!";
                 String list = listOfItems.toString();
                 reply = comment + list + BREAK_LINE;
+                return reply;
             }
 
             else if(instruction.equals(MARK_CMD)) {

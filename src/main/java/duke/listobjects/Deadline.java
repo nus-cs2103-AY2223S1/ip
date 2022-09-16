@@ -5,7 +5,6 @@ package duke.listobjects;
  */
 public class Deadline extends ListObject{
 
-    String doBy;
 
     /**
      * Constructs a Deadline object with given task description and status, with unspecified deadline
@@ -13,8 +12,7 @@ public class Deadline extends ListObject{
      * @param status int representing completion status as 1 if finished and 0 otherwise
      */
     public Deadline(String task, int status) {
-        super(task, status);
-        this.doBy= "not specified";
+        super(task, "unspecified", status);
     }
 
     /**
@@ -24,8 +22,7 @@ public class Deadline extends ListObject{
      * @param doBy String representing deadline (date and time) for task
      */
     public Deadline (String task, int status, String doBy) {
-        super(task, status);
-        this.doBy = doBy;
+        super(task, doBy, status);
     }
 
     /**
@@ -34,7 +31,7 @@ public class Deadline extends ListObject{
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + formatDateTime(1) + ")";
+        return "[D]" + super.toString() + " (by: " + super.formatDateTime("d") + ")";
     }
 
 

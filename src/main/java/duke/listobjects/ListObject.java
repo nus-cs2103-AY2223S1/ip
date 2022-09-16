@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class ListObject implements Serializable, Comparable<ListObject> {
     private String task;
-    private String time;
+    String time;
     private int status;
 
     /**
@@ -90,11 +90,11 @@ public class ListObject implements Serializable, Comparable<ListObject> {
      * @return String representing event time in format MMM dd yyyy HH:mm HH:mm as date, start and end times
      */
 
-    public String formatDateTime(int i) {
+    public String formatDateTime(String type) {
 
         String txt = this.time;
 
-        if(i==0) {
+        if(type.equals("e")) {
             String[] words = txt.split(" ");
             String date = words[0];
             String start = words[1];
@@ -115,7 +115,7 @@ public class ListObject implements Serializable, Comparable<ListObject> {
             return dateNew + " from: " + timeStart + " to: " + timeEnd;
         }
 
-        if(i==1){
+        if(type.equals("d")){
             String[] words = txt.split(" ");
             String date = words[0];
             String time = words[1];

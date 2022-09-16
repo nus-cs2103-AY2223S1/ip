@@ -19,8 +19,13 @@ public class Storage {
      */
 
     public Storage(String filePath) {
-        this.tasksStored = readFromFile(filePath);
-        File listFile = new File(filePath);
+        try {
+            this.tasksStored = readFromFile(filePath);
+            File listFile = new File(filePath);
+        }
+        catch (Exception e) {
+            System.out.println("OH NO");
+        }
     }
 
 
