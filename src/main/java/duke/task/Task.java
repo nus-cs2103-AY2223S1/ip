@@ -29,6 +29,10 @@ public class Task {
         return false;
     }
 
+    public String getOutput() {
+        return String.format("O | %d | %s ", isDone ? 1 : 0, name );
+    }
+
     @Override
     public String toString() {
         if (this.isDone) {

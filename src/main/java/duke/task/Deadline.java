@@ -32,6 +32,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getOutput() {
+        return String.format("D | %d | %s | %s", isDone ? 1 : 0, name, dl);
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + "(" + exactTime.getMonth() + " "
                 + exactTime.getDayOfMonth() + " " + exactTime.getYear() + ")";

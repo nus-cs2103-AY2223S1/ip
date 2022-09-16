@@ -14,6 +14,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public String getOutput() {
+        return String.format("T | %d | %s", isDone ? 1 : 0, name);
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

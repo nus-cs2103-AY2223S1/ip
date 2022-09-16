@@ -82,12 +82,19 @@ public class Storage {
 
     /**
      * Updates the file
-     * @param str The strings to be written in the file
+     * @param tasks The tasks to be written in the file
      */
-    public void update(String str) {
+    public void update(ArrayList<Task> tasks) {
         try {
+//            FileWriter fw = new FileWriter(filePath);
+//            fw.write(str);
+//            fw.close();
+            File file = new File(filePath);
+
             FileWriter fw = new FileWriter(filePath);
-            fw.write(str);
+            for (Task task : tasks) {
+                fw.write(task.getOutput()+ "\n");
+            }
             fw.close();
         }
         // Catch block to handle the exception

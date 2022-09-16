@@ -19,7 +19,7 @@ public class AddEventCommand extends Command{
     public String execute(TaskList taskList, Storage storage, Ui ui) {
         Event newEvent = new Event(eventTask, eventTime);
         taskList.getTasks().add(newEvent);
-        storage.update(ui.listAllItems(taskList.getTasks()));
+        storage.update((taskList.getTasks()));
         return "Got it. I've added this task:\n" + newEvent.toString()
                 + "\nNow you have" + taskList.getTasks().size() + " tasks in the list.";
     }

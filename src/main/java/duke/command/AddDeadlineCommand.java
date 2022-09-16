@@ -18,7 +18,7 @@ public class AddDeadlineCommand extends Command{
     public String execute(TaskList taskList, Storage storage, Ui ui) {
         Deadline newDeadline = new Deadline(deadlineTask, deadline);
         taskList.getTasks().add(newDeadline);
-        storage.update(ui.listAllItems(taskList.getTasks()));
+        storage.update((taskList.getTasks()));
         return "Got it. I've added this task:\n" + newDeadline.toString()
                 + "\nNow you have" + taskList.getTasks().size() + " tasks in the list.";
     }

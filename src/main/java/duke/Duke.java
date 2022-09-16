@@ -22,9 +22,20 @@ public class Duke {
         ui = new Ui();
         tasks = new TaskList();
         storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public String getResponse(String input) {
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
         try {
             Command command = Parser.parse(input);
             return command.execute(tasks, storage, ui);
@@ -40,11 +51,6 @@ public class Duke {
         ui.greetings();
         boolean isExit = false;
         assert this.storage != null && this.tasks != null && this.ui != null : "The Duke object is not initialized!";
-        try {
-             tasks = new TaskList(storage.load());
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
-        }
 
         while (!isExit) {
             try {
