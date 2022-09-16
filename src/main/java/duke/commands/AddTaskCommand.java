@@ -21,6 +21,10 @@ public class AddTaskCommand extends Command {
         hasExecutedSuccessfully = false;
     }
 
+    /**
+     * Adds the Task to the list of Tasks.
+     * @return Response message.
+     */
     @Override
     public String execute() {
         try {
@@ -40,6 +44,10 @@ public class AddTaskCommand extends Command {
         }
     }
 
+    /**
+     * Removes the Task from the list of Tasks.
+     * @return Response message.
+     */
     @Override
     public String undo() {
         if (!hasExecutedSuccessfully) {

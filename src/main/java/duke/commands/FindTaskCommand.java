@@ -15,6 +15,10 @@ public class FindTaskCommand extends Command {
         this.searchTerm = searchTerm;
     }
 
+    /**
+     * Finds the matching list of Tasks.
+     * @return Response message.
+     */
     @Override
     public String execute() {
         List<Task> matchingTasks = tasks.find(searchTerm);

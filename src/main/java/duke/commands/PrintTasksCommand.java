@@ -10,6 +10,10 @@ public class PrintTasksCommand extends Command {
         this.tasks = tasks;
     }
 
+    /**
+     * Obtains the list of Tasks.
+     * @return Response message.
+     */
     @Override
     public String execute() {
         StringBuilder sb = new StringBuilder();

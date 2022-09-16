@@ -12,6 +12,7 @@ public class UnmarkTaskCommand extends Command {
     private String index;
     private boolean hasExecutedSuccessfully;
 
+
     public UnmarkTaskCommand(Storage storage, TaskList tasks, String index) {
         this.storage = storage;
         this.tasks = tasks;
@@ -19,6 +20,10 @@ public class UnmarkTaskCommand extends Command {
         hasExecutedSuccessfully = false;
     }
 
+    /**
+     * Un-marks the Task.
+     * @return
+     */
     @Override
     public String execute() {
         try {
@@ -39,6 +44,10 @@ public class UnmarkTaskCommand extends Command {
         }
     }
 
+    /**
+     * Marks the previously un-marked Task.
+     * @return
+     */
     @Override
     public String undo() {
         if (!hasExecutedSuccessfully) {

@@ -19,6 +19,10 @@ public class MarkTaskCommand extends Command {
         hasExecutedSuccessfully = false;
     }
 
+    /**
+     * Marks the Task.
+     * @return Response message.
+     */
     @Override
     public String execute() {
         try {
@@ -39,6 +43,10 @@ public class MarkTaskCommand extends Command {
         }
     }
 
+    /**
+     * Un-marks the marked task.
+     * @return Response message.
+     */
     @Override
     public String undo() {
         if (!hasExecutedSuccessfully) {

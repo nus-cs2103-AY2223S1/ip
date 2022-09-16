@@ -30,6 +30,11 @@ public abstract class Task {
         return "[" + (isMarked ? "X" : " ") + "] " + name;
     }
 
+    /**
+     * Generates the string representing this task, to be used for storing
+     * in the save file.
+     * @return The data string representing this task.
+     */
     public abstract String toDataString();
 
 }

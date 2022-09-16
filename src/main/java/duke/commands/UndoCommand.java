@@ -12,6 +12,10 @@ public class UndoCommand extends Command {
         this.commandHistory = commandHistory;
     }
 
+    /**
+     * Undoes the previous command.
+     * @return Response message.
+     */
     @Override
     public String execute() {
         try {

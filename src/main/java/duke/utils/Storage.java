@@ -36,45 +36,6 @@ public class Storage {
         writeSaveFile(taskList);
     }
 
-    private Task stringToTask(String dataString) {
-        String[] arr = splitDataString(dataString);
-        return parseSplitString(arr);
-    }
-
-    private String[] splitDataString(String dataString) {
-        String[] arr = dataString.split("\\|");
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = arr[i].trim();
-        }
-        return arr;
-    }
-
-    private Task parseSplitString(String[] arr) {Task ret;
-        try {
-            switch(arr[0]) {
-                case "[T]":
-                    ret = new Todo(arr[2]);
-                    break;
-                case "[D]":
-                    ret = new Deadline(arr[2], DateParser.stringToDate(arr[3]));
-                    break;
-                case "[E]":
-                    ret = new Event(arr[2], DateParser.stringToDate(arr[3]));
-                    break;
-                default:
-                    return null;
-            }
-        } catch (UnrecognisedDateException e) {
-            return null;
-        }
-
-        if ("1".equals(arr[1])) {
-            ret.mark();
-        }
-
-        return ret;
-    }
-
     private void checkFileExists() {
         boolean isSaveFileCreated = saveFile.exists();
         if (!isSaveFileCreated) {
@@ -121,6 +82,45 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("Error while saving file: " + e);
         }
+    }
+
+    private Task stringToTask(String dataString) {
+        String[] arr = splitDataString(dataString);
+        return parseSplitString(arr);
+    }
+
+    private String[] splitDataString(String dataString) {
+        String[] arr = dataString.split("\\|");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].trim();
+        }
+        return arr;
+    }
+
+    private Task parseSplitString(String[] arr) {Task ret;
+        try {
+            switch(arr[0]) {
+                case "[T]":
+                    ret = new Todo(arr[2]);
+                    break;
+                case "[D]":
+                    ret = new Deadline(arr[2], DateParser.stringToDate(arr[3]));
+                    break;
+                case "[E]":
+                    ret = new Event(arr[2], DateParser.stringToDate(arr[3]));
+                    break;
+                default:
+                    return null;
+            }
+        } catch (UnrecognisedDateException e) {
+            return null;
+        }
+
+        if ("1".equals(arr[1])) {
+            ret.mark();
+        }
+
+        return ret;
     }
 
 }

@@ -20,6 +20,10 @@ public class DeleteTaskCommand extends Command {
         hasExecutedSuccessfully = false;
     }
 
+    /**
+     * Deletes the Task from the list of Tasks.
+     * @return Response message.
+     */
     @Override
     public String execute() {
         try {
@@ -40,6 +44,10 @@ public class DeleteTaskCommand extends Command {
         }
     }
 
+    /**
+     * Adds the Task back to the list of Tasks.
+     * @return Response message.
+     */
     @Override
     public String undo() {
         if (!hasExecutedSuccessfully) {

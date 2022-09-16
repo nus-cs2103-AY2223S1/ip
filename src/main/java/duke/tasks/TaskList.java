@@ -13,18 +13,36 @@ public class TaskList {
         list = initList;
     }
 
+    /**
+     * Returns the list of Tasks.
+     * @return The list of Tasks.
+     */
     public List<Task> getList() {
         return list;
     }
 
+    /**
+     * Returns the size of the list of Tasks.
+     * @return The number of Tasks.
+     */
     public int getSize() {
         return list.size();
     }
 
+    /**
+     * Adds a given Task to the list.
+     * @param newTask The Task to be added.
+     */
     public void addTask(Task newTask) {
         list.add(newTask);
     }
 
+    /**
+     * Deletes the Task at the given index.
+     * @param index The index of the Task to be deleted.
+     * @return The deleted Task.
+     * @throws TaskNotFoundException
+     */
     public Task deleteTask(int index) throws TaskNotFoundException {
         if (index < 0 || index >= list.size()) {
             throw new TaskNotFoundException();
@@ -32,6 +50,12 @@ public class TaskList {
         return list.remove(index);
     }
 
+    /**
+     * Marks the Task at the given index.
+     * @param index The index of the Task to be marked.
+     * @return The marked Task.
+     * @throws TaskNotFoundException if there is no task corresponding to the index.
+     */
     public Task markTask(int index) throws TaskNotFoundException {
         if (index < 0 || index >= list.size()) {
             throw new TaskNotFoundException();
@@ -42,12 +66,12 @@ public class TaskList {
         return taskToMark;
     }
 
-    public List<Task> find(String s) {
-        return list.stream()
-                .filter(task -> task.getName().contains(s))
-                .collect(Collectors.toList());
-    }
-
+    /**
+     * Unmarks the Task at the given index.
+     * @param index The index of the Task to be unmarked.
+     * @return The unmarked Task.
+     * @throws TaskNotFoundException if there is no task corresponding to the index.
+     */
     public Task unmarkTask(int index) throws TaskNotFoundException {
         if (index < 0 || index >= list.size()) {
             throw new TaskNotFoundException();
@@ -56,6 +80,17 @@ public class TaskList {
         assert taskToUnmark != null;
         taskToUnmark.unmark();
         return taskToUnmark;
+    }
+
+    /**
+     * Finds the list of Tasks whose description matches the given string.
+     * @param s The search string.
+     * @return The list of matching Tasks.
+     */
+    public List<Task> find(String s) {
+        return list.stream()
+                .filter(task -> task.getName().contains(s))
+                .collect(Collectors.toList());
     }
 
     @Override
