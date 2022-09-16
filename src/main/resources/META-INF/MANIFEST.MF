@@ -1,3 +1,7 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Main-Class: duke.Duke
+=======
+Main-Class: duke.Main
+>>>>>>> branch-Level-8
 
