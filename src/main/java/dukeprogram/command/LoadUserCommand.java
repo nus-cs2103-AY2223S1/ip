@@ -31,15 +31,17 @@ public class LoadUserCommand extends Command {
         if (SaveManager.deserialize("saveFile")) {
             try {
                 user = SaveManager.load("user");
-                duke.sendMessage("Welcome back " + user.getName());
+                duke.sendMessage(String.format("Welcome back %s!", user.getName()));
             } catch (KeyNotFoundException e) {
                 return Optional.empty();
             }
         } else {
             user = new User(System.getProperty("user.name"), User.USER_IMAGE);
             SaveManager.save("user", user);
-            duke.sendMessage("Nice to meet you " + user.getName());
+            duke.sendMessage(String.format("Nice to meet you %s!", user.getName()));
         }
+
+        duke.sendMessage("Don't forget, you can input \"help\" to review valid commands.");
 
         taskList = TaskList.loadTaskList();
         loanCollection = LoanCollection.loadLoanCollection();

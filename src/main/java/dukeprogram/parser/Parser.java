@@ -76,7 +76,7 @@ public class Parser {
 
         userGuideButton.setMinHeight(40);
         userGuideButton.setOnAction(
-                e -> Main.getPrimaryHostService().showDocument("www.google.com")
+                e -> Main.getPrimaryHostService().showDocument("https://rui-han-crh.github.io/ip/")
         );
 
         duke.sendMessage("I am able to record tasks or loans.");
