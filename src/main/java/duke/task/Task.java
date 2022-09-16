@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Task {
     private final String taskName;
-    private final boolean markDone;
+    private final boolean isMarked;
     private final LocalDate date;
     private final LocalTime time;
 
@@ -22,7 +22,7 @@ public class Task {
      */
     public Task(String taskName, LocalDate date, LocalTime time) {
         this.taskName = taskName;
-        this.markDone = false;
+        this.isMarked = false;
         this.date = date;
         this.time = time;
     }
@@ -31,13 +31,13 @@ public class Task {
      * Constructs a Task instance to replace the old Task when it is marked/ unmarked.
      *
      * @param taskName description of the Task.
-     * @param markDone status of the Task to determine whether it is done.
+     * @param isMarked status of the Task to determine whether it is done.
      * @param date date in LocalDate format.
      * @param time time in LocalTime format.
      */
-    public Task(String taskName, boolean markDone, LocalDate date, LocalTime time) {
+    public Task(String taskName, boolean isMarked, LocalDate date, LocalTime time) {
         this.taskName = taskName;
-        this.markDone = markDone;
+        this.isMarked = isMarked;
         this.date = date;
         this.time = time;
     }
@@ -66,7 +66,7 @@ public class Task {
      * @return true if and only if the Task is ticked as done.
      */
     public boolean isMarked() {
-        return this.markDone;
+        return this.isMarked;
     }
 
     /**
@@ -86,7 +86,7 @@ public class Task {
     public String getOutputDateAndTime() {
         if (this.time != null && this.date != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-            return this.date.format(formatter) + ", " + this.time.toString() + ")";
+            return this.date.format(formatter) + ", " + this.time + ")";
         } else {
             return "";
         }

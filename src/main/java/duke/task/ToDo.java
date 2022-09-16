@@ -13,8 +13,8 @@ public class ToDo extends Task {
         super(taskName, date, time);
     }
 
-    public ToDo(String taskName, boolean markDone, LocalDate date, LocalTime time) {
-        super(taskName, markDone, date, time);
+    public ToDo(String taskName, boolean isMarked, LocalDate date, LocalTime time) {
+        super(taskName, isMarked, date, time);
     }
 
     public String getTaskType() {
