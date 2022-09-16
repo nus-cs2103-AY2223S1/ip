@@ -22,7 +22,7 @@ public class DateUtils {
         // with minor modifications.
         ZoneId zoneId = ZoneId.systemDefault();
         return time.atZone(zoneId).toEpochSecond();
-        //@author
+        //@@author
     }
 
     /**

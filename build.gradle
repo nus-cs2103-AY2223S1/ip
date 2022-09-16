@@ -9,7 +9,7 @@ plugins {
     //@@author
 
     //@@author cheeheng-reused
-    // Reused from https://openjfx.io/openjfx-docs/#gradle
+    //Reused from https://openjfx.io/openjfx-docs/#gradle
     id 'org.openjfx.javafxplugin' version '0.0.10'
     //@@author
 }
@@ -18,8 +18,8 @@ repositories {
     mavenCentral()
 }
 
-// @@author cheeheng-reused
-// Reused from https://openjfx.io/openjfx-docs/#gradle
+//@@author cheeheng-reused
+//Reused from https://openjfx.io/openjfx-docs/#gradle
 javafx {
     version = "11.0.2"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
@@ -58,14 +58,14 @@ shadowJar {
 run {
     standardInput = System.in
 
-    // @@author cheeheng-reused
-    // Reused from https://se-education.org/guides/tutorials/gradle.html#creating-a-jar-file
+    //@@author cheeheng-reused
+    //Reused from https://se-education.org/guides/tutorials/gradle.html#creating-a-jar-file
     enableAssertions = true
     //@@author
 }
 
-// @@author cheeheng-reused
-// Reused from https://se-education.org/guides/tutorials/checkstyle.html with minor modifications
+//@@author cheeheng-reused
+//Reused from https://se-education.org/guides/tutorials/checkstyle.html with minor modifications
 checkstyle {
     toolVersion = '10.3.2'
 }

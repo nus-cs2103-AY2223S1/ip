@@ -1,5 +1,5 @@
-# @@author cheeheng-reused
-# Reused from https://github.com/se-edu/duke/blob/full-template/.github/workflows/gradle.yml
+#@@author cheeheng-reused
+#Reused from https://github.com/se-edu/duke/blob/full-template/.github/workflows/gradle.yml
 
 name: Java CI
 
@@ -52,4 +52,4 @@ jobs:
         shell: cmd
         run: runtest.bat
 
-# @@author
+#@@author
