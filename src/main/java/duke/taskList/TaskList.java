@@ -20,6 +20,7 @@ public class TaskList {
     private final int curr;//no of elements in list
 
     private final String toStage;
+
     public TaskList() {
         this.tasks = new ArrayList<>(); //should be list as compile time type
         this.tasks.add(new Task("", "", ""));
@@ -34,9 +35,8 @@ public class TaskList {
     }
 
     /**
-     *
      * @param tasks arraylist of tasks
-     * @param curr no of tasks
+     * @param curr  no of tasks
      */
     public TaskList(List<Task> tasks, int curr, String toStage) {
         this.tasks = tasks;
@@ -52,12 +52,13 @@ public class TaskList {
 
     /**
      * programme prints out all the tasks currently at hand
+     *
      * @param ui User Interface object
      * @return this task list
      */
     public TaskList listTasks(Ui ui) {
-        if(this.curr == 0) {
-            return new TaskList(this.tasks, this. curr, ui.emptyListPrint());
+        if (this.curr == 0) {
+            return new TaskList(this.tasks, this.curr, ui.emptyListPrint());
         }
         StringBuilder sb = new StringBuilder();
         sb.append("Here are you tasks: \n");
@@ -71,12 +72,13 @@ public class TaskList {
 
     /**
      * programme marks the specified task as done
+     *
      * @param atMark Command string read from UI
-     * @param ui User Interface
+     * @param ui     User Interface
      * @return this task list
      */
     public TaskList markTask(String[] atMark, Ui ui) {
-        assert(checkInt(atMark[1]));
+        assert (checkInt(atMark[1]));
         int index = Integer.parseInt(atMark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markDone());
         String output = ui.markTaskPrint(tasks.get(index - 1));
@@ -85,12 +87,13 @@ public class TaskList {
 
     /**
      * programme marks the specified task as undone
+     *
      * @param atUnmark Command string read from UI
-     * @param ui User Interface
+     * @param ui       User Interface
      * @return this task list
      */
     public TaskList unmarkTask(String[] atUnmark, Ui ui) {
-        assert(checkInt(atUnmark[1]));
+        assert (checkInt(atUnmark[1]));
         int index = Integer.parseInt(atUnmark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markUndone());
         String output = ui.unmarkTaskPrint(tasks.get(index - 1));
@@ -100,12 +103,13 @@ public class TaskList {
     /**
      * programme takes in tasks to be deleted at specified index
      * removes the task and returns a new TaskList object
+     *
      * @param atDel Commmand string from UI
-     * @param ui User Interface
+     * @param ui    User Interface
      * @return new TaskList object, with specified task removed
      */
-    public TaskList deleteTask (String[] atDel, Ui ui) {
-        assert(checkInt(atDel[1]));
+    public TaskList deleteTask(String[] atDel, Ui ui) {
+        assert (checkInt(atDel[1]));
         int index = Integer.parseInt(atDel[1]);
         index--;
         Task del = tasks.get(index);
@@ -113,14 +117,15 @@ public class TaskList {
             tasks.set(i, tasks.get(i + 1));
         }
         String output = ui.deletePrint(del, curr - 1);
-        return(this.removeCurr(output));
+        return (this.removeCurr(output));
     }
 
     /**
      * programme takes in ToDo tasks to be added and
      * adds the task and returns a new TaskList object
+     *
      * @param command Commmand string from UI
-     * @param ui User Interface
+     * @param ui      User Interface
      * @return new TaskList object, with specified task added
      */
     public TaskList toDoTask(String command, Ui ui) {
@@ -128,14 +133,15 @@ public class TaskList {
         Task toDoTask = new ToDo(todo);
         tasks.add(curr, toDoTask);
         String output = ui.addTaskPrint(toDoTask, curr + 1);
-        return(this.addCurr(output));
+        return (this.addCurr(output));
     }
 
     /**
      * returns a new deadline TaskList object, with the specified
      * deadline task added
+     *
      * @param command Command string from UI
-     * @param ui User Interface
+     * @param ui      User Interface
      * @return new TaskList object, with deadline task added
      */
     public TaskList deadlineTask(String command, Ui ui) {
@@ -148,14 +154,15 @@ public class TaskList {
         Task deadlineTask = new Deadline(atDead[0], dateDead);
         tasks.add(curr, deadlineTask);
         String output = ui.addTaskPrint(deadlineTask, curr + 1);
-        return(this.addCurr(output));
+        return (this.addCurr(output));
     }
 
     /**
      * returns a new event TaskList object, with the specified
      * deadline task added
+     *
      * @param command Command string from UI
-     * @param ui User Interface
+     * @param ui      User Interface
      * @return new TaskList object, with event task added
      */
     public TaskList eventTask(String command, Ui ui) {
@@ -168,12 +175,13 @@ public class TaskList {
         Task eventTask = new Event(atEvent[0], dateEvent);
         tasks.add(curr, eventTask);
         String output = ui.addTaskPrint(eventTask, curr + 1);
-        return(this.addCurr(output));
+        return (this.addCurr(output));
     }
 
     /**
      * prints out list of task happening at specified date
      * deadline task added
+     *
      * @param command Command string from UI
      * @return this task object
      */
@@ -248,7 +256,6 @@ public class TaskList {
     }
 
     /**
-     *
      * @return the arrayList containing the tasks
      */
     public List<Task> getTasks() {
@@ -256,7 +263,6 @@ public class TaskList {
     }
 
     /**
-     *
      * @return the current no of tasks in list
      */
     public int getCurr() {
@@ -264,7 +270,6 @@ public class TaskList {
     }
 
     /**
-     *
      * @return the values to be printed
      */
     public String getToStage() {
@@ -276,14 +281,14 @@ public class TaskList {
         String output;
         List<Task> foundTasks = new ArrayList<Task>();
         boolean hasTasks = false;
-        for(int i = 0; i < curr; i++) {
+        for (int i = 0; i < curr; i++) {
             Task task = tasks.get(i);
-            if(task.getVal().contains(subWord)) {
+            if (task.getVal().contains(subWord)) {
                 hasTasks = true;
                 foundTasks.add(task);
             }
         }
-        if(!hasTasks) {
+        if (!hasTasks) {
             output = ui.findNothingPrint();
         } else {
             output = ui.findPrint(foundTasks);

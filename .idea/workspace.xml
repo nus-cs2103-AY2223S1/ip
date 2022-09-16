@@ -27,28 +27,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b344e79-5df9-422b-9756-bbe582de24bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/DialogBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/DialogBox.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/Duke.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/Duke.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/Launcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/MainWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/MainWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/parser/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/storage/Storage.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/storage/Storage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/taskList/TaskList.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/taskList/TaskList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/tasks/Deadline.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/tasks/Deadline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/tasks/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/tasks/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/tasks/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/tasks/Task.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/tasks/ToDo.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/tasks/ToDo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/duke/ui/Ui.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/duke/ui/Ui.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/main.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/main.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/duke/taskList/TaskList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/taskList/TaskList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
