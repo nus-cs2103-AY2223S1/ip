@@ -17,6 +17,9 @@ import utils.Ui;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    // @@author nseah21-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html.
+    // The below code was referenced from one of their JavaFX tutorials with minor modifications.
     @FXML
     private ScrollPane scrollPane;
     @FXML

@@ -21,6 +21,9 @@ import javafx.scene.paint.Color;
  * The DialogBox for the GUI.
  */
 public class DialogBox extends HBox {
+    // @@author nseah21-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html.
+    // The below code was referenced from one of their JavaFX tutorials with minor modifications.
     @FXML
     private Label dialog;
     @FXML

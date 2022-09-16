@@ -20,6 +20,9 @@ import utils.Ui;
  * A basic CLI application for managing tasks.
  */
 public class Duke extends Application {
+    // @@author j-lum-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html.
+    // The below code was referenced from one of their JavaFX tutorials with minor modifications.
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
