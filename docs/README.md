@@ -12,7 +12,7 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 |-------------------------|-----------------------------------------------------------|
 |add a todo               |**todo**     DESCRIPTION                                   |
 |add a deadline           |**deadline** DESCRIPTION **/by** DATE_AND_TIME_IN_ISO_FORMAT|
-|add a event              |**event**    DESCRIPTION **/at** DATE_TIME                 |
+|add a event              |**event**    DESCRIPTION **/at** DURATION                  |
 |mark a task as completed |**mark**     INDEX                                         |
 |mark a task as incomplete|**unmark**   INDEX                                         |
 |deletes a task           |**delete**   INDEX                                         |
@@ -26,18 +26,38 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 
 
 ### Add a todo: `todo`
-Adds a todo to the app.
+Adds a new todo to the app.
 
 Format: `todo **DESCRIPTION**`
 
-Examples:
-- todo Read the Hobbit
-- todo Sign up for gym
+Example of usage:
+'''
+todo Read the Hobbit
+'''
+Adds a new todo, 'read the hobbit' to the app.
 
-### Feature-XYZ
+'''
+todo Sign up for gym
+'''
+Adds a new todo, 'Sign up for gym' to the app.
 
-Description of the feature.
+### Add a deadline: `deadline DESCRIPTION /by DATE_AND_TIME`
+Adds a new deadline to the app.
 
+Format: `deadline **DESCRIPTION** /by **DATE_AND_TIME`
+<Note: DATE_AND_TIME should be in ISO 8601 format>
+
+Example of usage:
+- deadline assignment 1 /by 2022-08-15T23:59
+- deadline critical reflection 1A /by 2022-09-01T08:00
+
+### Add a event: `event DESCRIPTION /at DURATION`
+Adds a new event to the app.
+
+Format: `event **DESCRIPTION** /at **DURATION**`
+
+Example of usage:
+-
 ## Usage
 
 ### `Keyword` - Describe action
