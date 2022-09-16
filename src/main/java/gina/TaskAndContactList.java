@@ -4,7 +4,7 @@ import gina.task.Task;
 import java.util.ArrayList;
 
 /**
- * Contains and manages the list of tasks
+ * Contains and manages the list of tasks and contacts.
  */
 public class TaskAndContactList {
     private ArrayList<Task> tasks;
@@ -19,9 +19,10 @@ public class TaskAndContactList {
     }
 
     /**
-     * Constructs a task list containing the specified tasks
+     * Constructs a list containing the specified tasks and contacts.
      *
-     * @param tasks The specified tasks
+     * @param tasks The specified tasks.
+     * @param contacts The specified contacts.
      */
     public TaskAndContactList(ArrayList<Task> tasks, ArrayList<Contact> contacts) {
         this.tasks = tasks;
@@ -44,6 +45,13 @@ public class TaskAndContactList {
         }
     }
 
+    /**
+     * Returns the contact at the specified index.
+     *
+     * @param i Index of the task in the contact list.
+     * @return Contact at the specified index.
+     * @throws GinaException If index is out of bounds.
+     */
     public Contact getContact(int i) throws GinaException {
         try {
             return contacts.get(i);
@@ -61,6 +69,11 @@ public class TaskAndContactList {
         return tasks.size();
     }
 
+    /**
+     * Returns the size of the contacts list.
+     *
+     * @return Size of the contacts list.
+     */
     public int contactsSize() {
         return contacts.size();
     }
@@ -81,6 +94,12 @@ public class TaskAndContactList {
         return list.toString();
     }
 
+    /**
+     * Converts an ArrayList of contacts to a string.
+     *
+     * @param contacts The list of contacts.
+     * @return The list of tasks as a string.
+     */
     public static String convertContactsToListString(ArrayList<Contact> contacts) {
         assert(contacts != null);
         StringBuilder list = new StringBuilder();
@@ -94,13 +113,18 @@ public class TaskAndContactList {
     /**
      * Adds task to task list.
      *
-     * @param task The specified task.
+     * @param task The task to be added.
      */
     public void addTask(Task task) {
         assert(task != null);
         tasks.add(task);
     }
 
+    /**
+     * Adds contact to contact list.
+     *
+     * @param contact The contact to be added.
+     */
     public void addContact(Contact contact) {
         assert(contact != null);
         contacts.add(contact);
@@ -121,6 +145,13 @@ public class TaskAndContactList {
         }
     }
 
+    /**
+     * Deletes the specified contact from the contact list.
+     *
+     * @param index The index of the specified contact in the list.
+     * @return The deleted contact.
+     * @throws GinaException If the index is out of bounds.
+     */
     public Contact deleteContact(int index) throws GinaException {
         try {
             return contacts.remove(index);
@@ -130,10 +161,10 @@ public class TaskAndContactList {
     }
 
     /**
-     * Returns a task list with tasks on the specified date.
+     * Returns a task and contacts list with tasks on the specified date.
      *
      * @param dateStr The specified date.
-     * @return List of tasks with specified date.
+     * @return Task and contacts list with specified date.
      * @throws GinaException If date is blank or in the wrong format.
      */
     public TaskAndContactList getTasksOnDate(String dateStr) throws GinaException {
@@ -146,6 +177,13 @@ public class TaskAndContactList {
         return new TaskAndContactList(tasksOnDate, new ArrayList<>());
     }
 
+    /**
+     * Returns a task and contacts list containing tasks with a specified keyword.
+     *
+     * @param input The specified keyword.
+     * @return The list of tasks containing the keyword.
+     * @throws GinaException If the input is incorrect.
+     */
     public TaskAndContactList getTasksWithWord(String input) throws GinaException {
         ArrayList<Task> tasksWithWord = new ArrayList<>();
         for (Task t : tasks) {
@@ -156,10 +194,20 @@ public class TaskAndContactList {
         return new TaskAndContactList(tasksWithWord, new ArrayList<>());
     }
 
+    /**
+     * Gets the list of tasks as a string.
+     *
+     * @return The list of tasks.
+     */
     protected String getTaskList() {
         return convertTasksToListString(tasks);
     }
 
+    /**
+     * Gets the list of contacts as a string.
+     *
+     * @return The list of contacts.
+     */
     protected String getContactsList() {
         return convertContactsToListString(contacts);
     }

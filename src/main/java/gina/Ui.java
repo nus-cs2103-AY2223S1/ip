@@ -3,21 +3,23 @@ package gina;
 import gina.task.Task;
 
 /**
- * Deals with interactions with the user
+ * Deals with interactions with the user.
  */
 public class Ui {
     /**
-     * Returns the word with the correct plural or singular form
+     * Returns the word with the correct plural or singular form.
      *
-     * @param taskAndContactList The list of tasks
-     * @return The word with the correct plural or singular form
+     * @param taskAndContactList The list of tasks.
+     * @return The word with the correct plural or singular form.
      */
     private static String showTaskTense(TaskAndContactList taskAndContactList) {
         return taskAndContactList.tasksSize() == 1 ? " task" : " tasks";
     }
 
     /**
-     * Displays greeting
+     * Returns the greeting.
+     * 
+     * @return The greeting message.
      */
     public String showGreeting() {
         return "Hi. I'm Gina Linetti, the human form of the 100 emoji.\n"
@@ -25,26 +27,20 @@ public class Ui {
     }
 
     /**
-     * Displays exit message
+     * Returns exit message.
+     * 
+     * @return Returns exit message.
      */
     public String showExit() {
         return "Bye. Gina Linetti out.";
     }
 
     /**
-     * Displays error message
+     * Returns added task message for the specified task.
      *
-     * @param message The error message
-     */
-    public String showError(String message) {
-        return message;
-    }
-
-    /**
-     * Displays added task message for the specified task
-     *
-     * @param task The specified task
-     * @param taskAndContactList The list of tasks
+     * @param task The specified task.
+     * @param taskAndContactList The list of tasks.
+     * @return The add task message.
      */
     public String showAddTask(Task task, TaskAndContactList taskAndContactList) {
         return "Got it. I've added this task:\n"
@@ -53,16 +49,23 @@ public class Ui {
                 + showTaskTense(taskAndContactList) + " in the list.";
     }
 
+    /**
+     * Returns the add contact message.
+     *
+     * @param contact The contact to be added.
+     * @return The add contact message.
+     */
     public String showAddContact(Contact contact) {
         return "Wow you actually have friends. Good for you!\n"
                 + "I've added this contact: \n" + contact.toString();
     }
 
     /**
-     * Displays the deleted task message for the specified task
+     * Returns the deleted task message for the specified task.
      *
-     * @param task The specified task
-     * @param taskAndContactList The list of tasks
+     * @param task The specified task.
+     * @param taskAndContactList The list of tasks.
+     * @return The delete task message.
      */
     public String showDeleteTask(Task task, TaskAndContactList taskAndContactList) {
         return "Done!\n" + task.toString()
@@ -70,15 +73,22 @@ public class Ui {
                 + showTaskTense(taskAndContactList) + " left.";
     }
 
+    /**
+     * Returns the 'delete contact' message.
+     *
+     * @param contact
+     * @return The 'delete contact' message.
+     */
     public String showDeleteContact(Contact contact) {
         return "Aw, what did they do to offend you?\n" + contact.toString()
                 + " has been deleted from your contacts.";
     }
 
     /**
-     * Displays the marked task message for the specified task
+     * Returns the marked task message for the specified task.
      *
-     * @param task The specified task
+     * @param task The specified task.
+     * @return The marked task message.
      */
     public String showMarkedTask(Task task) {
         return "Finally, you did something useful!\n "
@@ -86,18 +96,20 @@ public class Ui {
     }
 
     /**
-     * Displays the unmarked task message for the specified task
+     * Returns the unmarked task message for the specified task.
      *
-     * @param task The specified task
+     * @param task The specified task.
+     * @return The unmark task message.
      */
     public String showUnmarkedTask(Task task) {
         return "OK, I've marked this task as not done yet:\n" + task.toString();
     }
 
     /**
-     * Displays the specified task list
+     * Returns the specified task and contact list.
      *
-     * @param taskAndContactList The specified task list
+     * @param taskAndContactList The specified task list.
+     * @return The task and contact list.
      */
     public String showList(TaskAndContactList taskAndContactList) {
         String list = "Tasks: \n";
@@ -119,10 +131,11 @@ public class Ui {
     }
 
     /**
-     * Displays the list of tasks on a specified date
+     * Returns the list of tasks on a specified date.
      *
-     * @param taskAndContactList The list of tasks on a specified date
-     * @param dateStr The specified date
+     * @param taskAndContactList The list of tasks on a specified date.
+     * @param dateStr The specified date.
+     * @return The list of tasks on the specified date.
      */
     public String showTasksOnDate(TaskAndContactList taskAndContactList, String dateStr) {
         if (taskAndContactList.tasksSize() != 0) {
@@ -136,10 +149,11 @@ public class Ui {
     }
 
     /**
-     * Displays the list of tasks with the relevant keyword if there are matches.
+     * Returns the list of tasks with the relevant keyword if there are matches.
      *
      * @param taskAndContactList The list of tasks with the keyword.
      * @param input The keyword.
+     * @return The list of tasks with the relevant keyword.
      */
     public String showFindings(TaskAndContactList taskAndContactList, String input) {
         if (taskAndContactList.tasksSize() != 0) {

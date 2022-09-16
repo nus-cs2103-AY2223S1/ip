@@ -29,10 +29,10 @@ public class Storage {
     }
 
     /**
-     * Loads tasks from file.
+     * Loads tasks and contacts from file.
      *
-     * @return List of tasks from file.
-     * @throws GinaException If there is an error in loading the tasks from file.
+     * @return List of tasks and contacts from file.
+     * @throws GinaException If there is an error in loading the tasks and contacts from file.
      */
     public TaskAndContactList load() throws GinaException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -89,9 +89,9 @@ public class Storage {
     }
 
     /**
-     * Saves the specified list of tasks.
+     * Saves the specified list of tasks and contacts.
      *
-     * @param taskAndContactList The specified list of tasks.
+     * @param taskAndContactList The specified list of tasks and contacts.
      */
     public void save(TaskAndContactList taskAndContactList) {
         try {

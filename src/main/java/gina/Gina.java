@@ -22,21 +22,31 @@ public class Gina {
         try {
             currTasks = storage.load();
         } catch (GinaException e) {
-            ui.showError(e.getMessage());
             currTasks = new TaskAndContactList();
         }
         tasks = currTasks;
     }
 
+    /**
+     * Gets response for a given user input.
+     *
+     * @param input The given user input.
+     * @return The response from the chatbot.
+     */
     protected String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
             return c.execute(tasks, ui, storage);
         } catch (GinaException e) {
-            return ui.showError(e.getMessage());
+            return e.getMessage();
         }
     }
 
+    /**
+     * Gets the greeting from the chatbot.
+     *
+     * @return The greeting.
+     */
     protected String getGreeting() {
         return ui.showGreeting();
     }
