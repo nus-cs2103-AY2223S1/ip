@@ -26,7 +26,7 @@ public class Storage {
     }
 
     /**
-     * Retrieves the list of tasks that are saved in the disk. If specified file does not exist, it will create a new 
+     * Retrieves the list of tasks that are saved in the disk. If specified file does not exist, it will create a new
      * one.
      *
      * @return An ArrayList of type Task that consists of all the given tasks that were previously saved.
@@ -60,7 +60,9 @@ public class Storage {
                     }
                 }
                 if (task != null) {
-                    if (isDone) task.markAsDone();
+                    if (isDone) {
+                        task.markAsDone();
+                    }
                     tasks.add(task);
                 }
             }

@@ -144,18 +144,15 @@ public class Duke {
         history.setLastCommand("history");
         return ui.printMatchingTasks(results);
     }
-    
     private void setTaskHistory(String command, String[] taskDescription) {
         history.setLastCommand(command);
         history.setLastTaskDescription(taskDescription);
     }
-    
     private void setTaskHistory(String command, Task task, int index) {
         history.setLastCommand(command);
         history.setLastTask(task);
         history.setLastTaskIndex(index);
     }
-    
     private String undoTask() throws DukeException {
         String mostRecentCommand = history.getLastCommand();
         String[] taskDescription = history.getLastTaskDescription();
@@ -181,7 +178,6 @@ public class Duke {
                 return "You have nothing to undo\n" + Ui.promptUserInput();
         }
     }
-    
     /**
      * Returns SoCCat's response to the user's input.
      *

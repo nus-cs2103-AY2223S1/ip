@@ -13,10 +13,9 @@ public class Ui {
      */
     public Ui() {
     }
-    
     /**
      * Prompts the user to enter a command and displays all available commands.
-     * 
+     *
      * @return The user prompt and the list of commands available
      */
     public static String promptUserInput() {
