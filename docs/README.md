@@ -14,6 +14,7 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
   * [find tasks with a keyword](https://github.com/therealdaofu/ip/blob/master/docs/README.md#find-task-by-a-keyword-find)
   * [display help page](https://github.com/therealdaofu/ip/blob/master/docs/README.md#get-help-page-help)
   * [exit the app](https://github.com/therealdaofu/ip/blob/master/docs/README.md#exit-from-the-app-bye)
+  * [saving](https://github.com/therealdaofu/ip/blob/master/docs/README.md#saving-the-data)
 
 ## Summary of Commands.
 |Function                 |Command                                                    |
