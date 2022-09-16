@@ -1,7 +1,7 @@
 # Doomba Task Manager
-🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧  
+🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧  
  **Doomba** hasn't reached it's _final form yet_!!!  
-🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧  
+🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧  
 What it can do
 * add tasks
 * delete tasks
@@ -34,5 +34,5 @@ Things to do:
 >>me too :(
 >> count me in
 
-You can see more of my projects [here](github.com/nopehax)!
+You can see more of my projects [here](github.com/nopehax)!  
 `System.out.print("Hello, World!")`
