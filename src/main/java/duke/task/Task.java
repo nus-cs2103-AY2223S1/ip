@@ -15,6 +15,7 @@ public abstract class Task implements Serializable {
      * @param isDone The boolean representing whether the {@code Task} is done.
      */
     protected Task(char symbol, String description, boolean isDone) {
+        assert !description.isBlank();
         this.symbol = symbol;
         this.description = description;
         this.isDone = isDone;

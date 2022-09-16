@@ -10,6 +10,8 @@ public class DeadlineTask extends Task {
     public DeadlineTask(String description, LocalDateTime deadline, boolean isDone) {
         super('D', description, isDone);
         this.deadline = deadline;
+        assert !description.isBlank();
+        assert deadline != null;
     }
 
     @Override

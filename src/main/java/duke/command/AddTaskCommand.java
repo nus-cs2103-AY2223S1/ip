@@ -15,6 +15,7 @@ public class AddTaskCommand extends Command {
      * @param task The {@code task} to be added.
      */
     public AddTaskCommand(Task task) {
+        assert task != null;
         this.task = task;
     }
 

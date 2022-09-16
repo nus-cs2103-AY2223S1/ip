@@ -15,6 +15,7 @@ public class DeleteTaskCommand extends Command {
      * @param index The index of the {@code Task} to be deleted.
      */
     public DeleteTaskCommand(int index) {
+        assert index >= 0;
         this.index = index;
     }
 
