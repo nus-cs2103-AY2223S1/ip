@@ -1,4 +1,5 @@
 # User Guide - Duke Task Manager
+![Screenshot](Ui.png)
 
 LUNA is a **desktop app made for students to organise their daily tasks**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 ## Features:
