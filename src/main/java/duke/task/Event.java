@@ -7,14 +7,12 @@ public class Event extends Task {
     protected String timeQualifier;
     protected LocalDate timeDescription;
     protected String timeDescriptionInput;
-
     public Event(String description, String timeQualifier, String timeDescription) {
         super(description);
         this.timeQualifier = timeQualifier;
         this.timeDescription = LocalDate.parse(timeDescription);
         this.timeDescriptionInput = timeDescription;
     }
-
     @Override
     public String getTaskTypeIcon() {
         return "E";

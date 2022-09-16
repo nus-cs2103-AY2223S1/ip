@@ -126,7 +126,6 @@ public class Storage {
      * @param memory
      * @throws DukeException
      */
-
     public void updateMemoryData(HashMap<String, String> memory) throws DukeException {
         try {
             FileWriter fw = new FileWriter(dataPath + "/" + memoryDataFileName);
