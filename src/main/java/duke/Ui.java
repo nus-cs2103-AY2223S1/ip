@@ -57,7 +57,7 @@ public class Ui {
     }
 
     /**
-     * Returns a message when the user has marked a task.
+     * Returns a String when the user has marked a task.
      *
      * @param myTask The task that the user has marked.
      */
@@ -66,7 +66,7 @@ public class Ui {
     }
 
     /**
-     * Returns a message when the user has unmarked a task.
+     * Returns a String when the user has unmarked a task.
      *
      * @param myTask The task that the user has unmarked.
      */
@@ -75,7 +75,7 @@ public class Ui {
     }
 
     /**
-     * Prints a message when the user has added a new task to the list.
+     * Returns a String when the user has added a new task to the list.
      *
      * @param taskList The tasklist the user has added to.
      * @param task The task the user has added.
@@ -85,9 +85,14 @@ public class Ui {
         + "\nYou have " + taskList.getTaskSize() + " task" + (taskList.getTaskSize() > 1 ? "s!" : "!");
     }
 
-    public String match(ArrayList<Task> matching) {
+    /**
+     * Returns a String containing all tasks with the matching keyword.
+     *
+     * @param matching The tasklist containing all tasks with the matching keyword.
+     */
+    public String matchTask(ArrayList<Task> matching) {
         StringBuilder builder = new StringBuilder();
-        builder.append("Here are the matching tasks Dino found:\n");
+        builder.append("RAWR! Here are the matching tasks Dino found:\n");
 
         for (int i = 0; i < matching.size(); i++) {
             builder.append(i + 1).append(". ").append(matching.get(i).toString()).append("\n");
@@ -96,7 +101,22 @@ public class Ui {
     }
 
     /**
-     * Returns the message when the user has removed a new task from the list.
+     * Returns a String containing all notes with the matching keyword.
+     *
+     * @param matching The notelist containing all notes with the matching keyword.
+     */
+    public String matchNote(ArrayList<Note> matching) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("RAWR! Here are the matching notes Dino found:\n");
+
+        for (Note note : matching) {
+            builder.append("> ").append(note.toString()).append("\n");
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Returns a String when the user has removed a new task from the list.
      *
      * @param taskList The tasklist the user has removed from.
      * @param task The task the user has removed.
@@ -107,11 +127,10 @@ public class Ui {
     }
 
     /**
-     * Prints a message when the user has added a new task to the list.
+     * Returns a String when the user has added a new task to the list.
      *
      * @param note The note the user has added.
      */
-
     public String add(Note note) {
         return "Dino added: " + note;
     }

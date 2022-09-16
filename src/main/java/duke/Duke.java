@@ -5,7 +5,7 @@ import java.util.Objects;
 import duke.command.Command;
 
 /**
- * Main class of Duke.
+ * Tracks all objects.
  *
  * @author Lim Ai Lin
  */
@@ -30,6 +30,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the main program to understand the user input and form a response.
+     *
+     * @param input The string the user inputs to the chatbot.
+     * @return The string to be displayed.
+     */
     protected String run(String input) throws DukeException {
         if (!Objects.equals(input, "bye")) {
             Command c = Parser.parse(input);
@@ -40,6 +46,12 @@ public class Duke {
 
     }
 
+    /**
+     * Gets the response for the user input.
+     *
+     * @param input The string the user inputs to the chatbot.
+     * @return The string to be displayed.
+     */
     public String getResponse(String input) throws DukeException {
         assert !Objects.equals(input, "");
         return run(input);

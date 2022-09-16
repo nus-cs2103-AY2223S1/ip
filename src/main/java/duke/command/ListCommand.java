@@ -13,9 +13,9 @@ public class ListCommand extends Command {
 
     /**
      * Executes the list command the user inputs.
-     *  @param tasks The list containing all the tasks to be printed.
+     *  @param tasks The list containing all the tasks and notes to be printed.
      * @param ui The ui to deal with user interactions.
-     * @param storage The storage containing all tasks the user has previously input.
+     * @param storage The storage containing all tasks and notes the user has previously input.
      * @return List of tasks.
      */
     @Override

@@ -22,6 +22,7 @@ public class Note {
         return DESCRIPTION;
     }
 
+    @Override
     public String toString() {
         return DESCRIPTION;
     }

@@ -19,13 +19,13 @@ public class NoteCommand extends Command {
     }
 
     /**
-     * Executes the add command the user inputs.
+     * Executes the note command the user inputs.
      *
-     * @param tasks The list in which the task is to be added.
+     * @param tasks The list in which the note is to be added.
      * @param ui The ui to deal with user interactions.
-     * @param storage The storage to be updated with the newly added task.
+     * @param storage The storage to be updated with the newly added note.
      * @throws DukeException
-     *          Thrown when the task has no name or no date and time is given when necessary.
+     *          Thrown when the description is not given.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Note myNote = null;

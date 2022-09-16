@@ -4,6 +4,7 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Note;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -21,6 +22,15 @@ public class FindCommand extends Command {
         this.FIND_MATCH = str;
     }
 
+    /**
+     * Executes the find command the user inputs.
+     *
+     * @param tasks The list containing all the  tasks and notes.
+     * @param ui The ui to deal with user interactions.
+     * @param storage The storage containing all tasks and notes the user has previously input.
+     * @throws DukeException
+     *          Thrown when description is not given.
+     */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String match = null;
@@ -29,7 +39,9 @@ public class FindCommand extends Command {
         } catch (Exception e) {
             ui.emptyDescription();
         }
-        ArrayList<Task> matching = tasks.find(match);
-        return ui.match(matching);
+        ArrayList<Task> matchT = tasks.findTask(match);
+        ArrayList<Note> matchN = tasks.findNote(match);
+
+        return ui.matchTask(matchT) + "\n" + ui.matchNote(matchN);
     }
 }

@@ -96,13 +96,37 @@ public class TaskList {
         return MY_NOTES.size();
     }
 
-    public ArrayList<Task> find(String match) {
+    /**
+     * Gets tasks containing given keyword.
+     *
+     * @param match The given keyword.
+     * @return The tasks with the given keyword in the description.
+     */
+    public ArrayList<Task> findTask(String match) {
         ArrayList<Task> matches = new ArrayList<>();
         String matching = match.toUpperCase(Locale.ROOT);
         for (Task task : MY_TASKS) {
             String description = task.getDescription().toUpperCase(Locale.ROOT);
             if (description.contains(matching)) {
                 matches.add(task);
+            }
+        }
+        return matches;
+    }
+
+    /**
+     * Gets notes containing given keyword.
+     *
+     * @param match The given keyword.
+     * @return The notes with the given keyword in the description.
+     */
+    public ArrayList<Note> findNote(String match) {
+        ArrayList<Note> matches = new ArrayList<>();
+        String matching = match.toUpperCase(Locale.ROOT);
+        for (Note note : MY_NOTES) {
+            String description = note.getDescription().toUpperCase(Locale.ROOT);
+            if (description.contains(matching)) {
+                matches.add(note);
             }
         }
         return matches;
