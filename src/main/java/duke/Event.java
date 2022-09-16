@@ -24,6 +24,7 @@ public class Event extends Task {
      */
     @Override
     public String toFileRepresentation() {
-        return String.format("E|%d|%s|%s", this.isComplete() ? 1 : 0, this.getName(), this.startTime.toString());
+        return String.format("E|%d|%s|%s",
+                this.isComplete() ? 1 : 0, this.getName(), this.startTime.toString());
     }
 }
