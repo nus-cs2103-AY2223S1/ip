@@ -18,7 +18,8 @@ import duke.task.ToDo;
  * @author Elbert Benedict
  */
 public class Storage {
-    private static final String SAVE_FILE_PATH = "./data/duke.txt";
+    private static final String SAVE_DIRECTORY = "./data";
+    private static final String SAVE_FILE_PATH = SAVE_DIRECTORY + "/duke.txt";
 
     /**
      * Stores the list of tasks to the save file.
@@ -46,9 +47,14 @@ public class Storage {
      */
     public static TaskList getSavedTasks() throws DukeException {
         try {
+            File directory = new File(SAVE_DIRECTORY);
+            //Create directory if it does not exist;
+            directory.mkdir();
+
             File saveFile = new File(SAVE_FILE_PATH);
             //Create file if it does not exist
             saveFile.createNewFile();
+
             Scanner reader = new Scanner(saveFile);
             TaskList savedTasks = new TaskList();
 
