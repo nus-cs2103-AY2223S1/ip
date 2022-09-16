@@ -6,9 +6,9 @@ View the project on [GitHub](https://github.com/april-anh/ip).
 **This project is maintained by [april-anh](https://github.com/april-anh)**
 
 ## Feature
-:rotating_light: Fields in *[square bracket]* are parameters supplied by the user.
+&#10004; Fields in *[square bracket]* are parameters supplied by the user.
 
-:rotating_light: Fields in *[date]* are in format of `yyyy-mm-dd`.
+&#10004; Fields in *[date]* are in format of `yyyy-mm-dd`.
 
 | Command                                  | Description                                                      |
 |------------------------------------------|------------------------------------------------------------------|
@@ -22,7 +22,7 @@ View the project on [GitHub](https://github.com/april-anh/ip).
 | `find [keyword]`                         | Find tasks that have the description matching the keyword        |
 | `bye`                                    | Exit chat bot                                                    |
 
-:star2: :star2: :star2: **Flexible search!**
+### Flexible search!
 - The search is case-insensitive and matches partial words.
 - The `find` command will show all task that match at least 3 characters of your keyword, i.e. finding CON will return conan.
 
