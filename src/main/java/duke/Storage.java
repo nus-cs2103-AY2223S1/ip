@@ -25,13 +25,15 @@ public class Storage {
 
     Storage(String filePath) throws IOException {
         this.filePath = filePath;
-        this.file = new File(filePath);
         this.folder = new File("data");
+        this.file = new File(filePath);
+
         if(!folder.exists()) {
             folder.mkdir();
         } if(!file.exists()) {
             file.createNewFile();
         }
+
         this.tasks = new ArrayList<>();
     }
 
@@ -47,20 +49,31 @@ public class Storage {
                 while (reader.hasNextLine()) {
                     String task = reader.nextLine();
                     String type = task.split("")[3];
+                    String mark = task.split("")[6];
                     if (type.equals("E")) {
                         String currentTask = task.substring(9, task.indexOf(" (at: "));
                         String eventTime = task.substring(task.indexOf(" (at: ") + 6, task.indexOf(")"));
                         Task curr = new Events(currentTask, eventTime);
                         tasks.add(curr);
+                        if (mark.equals("X")) {
+                            curr.mark();
+                        }
                     } else if (type.equals("T")) {
                         String currentTask = task.substring(9);
                         Task curr = new ToDos(currentTask);
                         tasks.add(curr);
+                        if (mark.equals("X")) {
+                            curr.mark();
+                        }
                     } else if (type.equals("D")) {
                         String currentTask = task.substring(9, task.indexOf(" (by: "));
                         String eventTime = task.substring(task.indexOf(" (by: "));
                         Task curr = new Deadline(currentTask, eventTime);
                         tasks.add(curr);
+                        System.out.println(mark);
+                        if (mark.equals("X")) {
+                            curr.mark();
+                        }
                     } else {
                         break;
                     }

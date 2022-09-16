@@ -4,7 +4,6 @@ import java.util.Collections;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.css.Size;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -18,7 +17,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import org.w3c.dom.css.RGBColor;
+
 
 /**
  * An example of a custom control using FXML.

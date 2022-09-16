@@ -36,7 +36,7 @@ public class Duke {
     }
 
     String helpResponse() {
-        return "Refer to the user guide below for more details:https://bahamas20.github.io/ip/";
+        return "Refer to the user guide below for more details:https://Bahamas20.github.io/ip/";
     }
 
     String hiResponse() {

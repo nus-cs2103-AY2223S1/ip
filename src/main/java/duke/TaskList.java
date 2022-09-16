@@ -32,7 +32,6 @@ public class TaskList {
      * @return ArrayList of tasks
      */
     public ArrayList<Task> getTasks() {
-
         return this.lst;
     }
 
@@ -66,8 +65,6 @@ public class TaskList {
     public String mark(Task task) {
         task.mark();
         return "Nice I marked this as done, SIUUUU:\n" + " " + task;
-
-
     }
 
     /**
@@ -86,7 +83,6 @@ public class TaskList {
      * and lists them in order
      */
     public String list() {
-
         String lists = "This what u gotta do:\n";
         for (Task item : lst) {
             if (item != null)
