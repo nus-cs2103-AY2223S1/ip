@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import gui.MainWindow;
 import javafx.application.Platform;
 
+import javafx.fxml.FXMLLoader;
 import parser.Parser;
 
 import storage.Storage;
@@ -58,11 +59,22 @@ public class Duke {
      */
     public String getResponse(String input) {
         Parser parser = new Parser();
-        System.out.println(input);
         String out = parser.parse(tasks, input);
         if (parser.isBye()) {
-            MainWindow.exit();
+            return execute(out);
         }
+        return out;
+    }
+
+    public String execute(String out) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(4000);
+                Platform.exit();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }).start();
         return out;
     }
 }

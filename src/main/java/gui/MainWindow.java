@@ -90,12 +90,10 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
-    public static void exit() {
-        /*dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog("bye", image)
+    public void exit() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog("bye", dukeImage)
         );
-
-         */
         try {
             Thread.sleep(1000);
             Platform.exit();

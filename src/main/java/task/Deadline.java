@@ -32,10 +32,8 @@ public class Deadline extends Task {
 
         super(description);
         this.by = by;
-        System.out.println(by);
         String[] dateAndTime = by.split(" ");
         DateTimeFormatter formatter;
-
             if (dateAndTime.length == 4) {
                 this.string_Date = dateAndTime[1] + "/" + dateAndTime[0] + "/" + dateAndTime[2];
                 this.string_Time = dateAndTime[3];

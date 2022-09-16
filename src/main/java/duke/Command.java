@@ -38,21 +38,17 @@ public enum Command {
      * @return The Command that matches the user input.
      */
     public static Command read(String input) {
-        System.out.println(input);
         String[] strArr = input.split(" ");
         if (strArr.length == 1) {
-            System.out.println("or here");
             return singleWord(input);
             }
         if (strArr.length == 2) {
-            System.out.println("2 words");
             return twoWords(strArr);
         }
 
         if (strArr.length > 2) {
             return moreThanTwoWords(input);
         }
-        System.out.println("unknown");
         return UNKNOWN;
     }
 
