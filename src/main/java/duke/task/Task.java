@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.tools.DateTime;
+
 /**
  * Task in the task management.
  */
@@ -40,10 +42,10 @@ public class Task {
      */
     @Override
     public String toString() {
-        if (isDone) {
-            return " | X | " + task;
+        if (isDone()) {
+            return " | X | " + getTask();
         } else {
-            return " |   |  " + task;
+            return " |   |  " + getTask();
         }
     }
 
@@ -53,6 +55,18 @@ public class Task {
      * @return True if desc can be found, false otherwise.
      */
     public boolean contains(String desc) {
-        return task.contains(desc);
+        return getTask().contains(desc);
+    }
+
+    public DateTime getParsedDate() {
+        return new DateTime("9999-12-31");
+    }
+
+    public String getTask() {
+        return task;
+    }
+
+    public boolean isDone() {
+        return isDone;
     }
 }

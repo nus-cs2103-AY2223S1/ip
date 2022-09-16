@@ -6,11 +6,11 @@ import duke.exception.DateNotFoundException;
 import duke.tools.DateTime;
 
 public class Event extends Task {
-    private String dateTime;
+    private DateTime dateTime;
 
     private Event(String taskText, DateTime dateTime) {
         super(taskText.trim());
-        this.dateTime = dateTime.getDate();
+        this.dateTime = dateTime;
     }
 
     public static Event of(String taskText, String source) throws DateNotFoundException, DateTimeParseException {
@@ -37,6 +37,16 @@ public class Event extends Task {
     @Override
     public String toString() {
         //ui: (at: date)
-        return "E" + super.toString() + " | " + dateTime;
+        return "E" + super.toString() + " | " + getDateTime();
+    }
+
+    public String getDateTime() {
+
+        return dateTime.getDate();
+    }
+
+    public DateTime getParsedDate() {
+
+        return this.dateTime;
     }
 }

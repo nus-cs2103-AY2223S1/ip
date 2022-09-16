@@ -28,6 +28,10 @@ public class DateTime {
         return this.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
 
+    public LocalDate getDateTime() {
+        return this.date;
+    }
+
     public static String convertDate(String date) {
         LocalDate newDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd MMM yyyy"));
         return newDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
