@@ -10,12 +10,20 @@ import javafx.stage.Stage;
 import zeus.Zeus;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Zeus using FXML.
+ *
+ * @author Derrick Khoo
  */
 public class Main extends Application {
 
     private Zeus zeus = new Zeus("data/zeus.txt");
 
+    /**
+     * Sets the start point for the GUI.
+     *
+     * @param stage the primary stage for this application, onto which
+     *      the application scene can be set.
+     */
     @Override
     public void start(Stage stage) {
         try {

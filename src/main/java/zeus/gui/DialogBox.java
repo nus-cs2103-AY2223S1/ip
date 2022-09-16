@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 /**
  * An example of a custom control using FXML.
@@ -36,7 +37,9 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
+        Circle circle = new Circle(50, 50, 45);
         displayPicture.setImage(img);
+        displayPicture.setClip(circle);
     }
 
     /**
@@ -49,10 +52,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns the dialog box from user.
+     *
+     * @param text the input from the user
+     * @param img the profile picture of the user
+     * @return the dialog box containing user input
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns the dialog box from Zeus.
+     *
+     * @param text the response from Zeus
+     * @param img the profile picture of Zeus
+     * @return the dialog box containing response from Zeus
+     */
     public static DialogBox getZeusDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

@@ -15,6 +15,8 @@ import zeus.Zeus;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
+ *
+ * @author Derrick Khoo
  */
 public class MainWindow extends AnchorPane {
     @FXML
@@ -30,16 +32,22 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/sheldoncooper.jpeg"));
     private Image zeusImage = new Image(this.getClass().getResourceAsStream("/images/chatbot.jpeg"));
-
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Sets the instance of Zeus.
+     * @param z the instance of zeus to be set
+     */
     public void setZeus(Zeus z) {
         zeus = z;
     }
 
+    /**
+     * Greets user with a welcome message.
+     */
     public void sendGreetings() {
         dialogContainer.getChildren().add(DialogBox.getZeusDialog(zeus.getGreeting(), zeusImage));
     }
