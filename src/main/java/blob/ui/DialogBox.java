@@ -13,6 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  * The DialogBox class represents the container in which messages are displayed in the GUI.
@@ -41,6 +44,7 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        dialog.setFont(Font.font("Georgia", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 14));
         dialog.setText(Arrays.stream(text).reduce("", (res, line) -> res + line + "\n"));
         displayPicture.setImage(img);
     }
