@@ -22,26 +22,29 @@ Refer to the command list [here](#command-list). You can use commands `todo`, `e
 * A to-do task is a task without specific due date.
 * An event task is a task that takes place exactly at the date and time you indicate.
 * A deadline task is a task that must be done some time before the stipulated deadline.
+
 #### Example of usage
-```  
+```
 todo read a book
-event orbital splashdown /at 2022-08-22 13:00:00 
-deadline CS2103T iP Week 4 /by 2022-08-27 18:00:00 
-```  
+event orbital splashdown /at 2022-08-22 13:00:00
+deadline CS2103T iP Week 4 /by 2022-08-27 18:00:00
+```
+
 #### Expected outcome
-```  
+```
 -------------------------
-	Added: [ ] [T] read a book 
--------------------------
-
--------------------------
-	Added: [ ] [E] orbital splashdown at 2022/08/22 13:00:00 
+	Added: [ ] [T] read a book
 -------------------------
 
 -------------------------
-	Added: [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00 
+	Added: [ ] [E] orbital splashdown at 2022/08/22 13:00:00
+-------------------------
+
+-------------------------
+	Added: [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
 -------------------------
 ```
+
 ### 2. Auto-save
 The app will save the list to `.\saved_list.txt` every time there is a change to the list.
 #### Example of usage
@@ -54,6 +57,7 @@ In `saved_list.txt`  that locates at the same folder as `duke.jar` file.
 ```
 E | 0 | NUS Internship Day | 2022/09/14 16:00:00 D | 0 | CS2103T iP Submission | 2022/09/16 23:59:59  
 ```
+
 ### 3. List all tasks
 Refer to the command list [here](#command-list). You can use command `list` to see all tasks you saved.
 #### Example of usage
@@ -73,6 +77,7 @@ list
     3. [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00  
 ------------------------- 
 ```
+
 ### 4. Delete a task
 Refer to the command list [here](#command-list). Use `delete` to remove any unwanted task.
 #### Example of usage
