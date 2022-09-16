@@ -66,7 +66,7 @@ public class Parser {
             return new ExitCommand();
         default:
             return new InvalidCommand("Is this some new magic word? Why don't I understand "
-                    + "anything you're saying?\n (psst! Try inputting 'help' for help with commands.)");
+                    + "anything you're saying?\n(psst! Try inputting 'help' for help with commands.)");
         }
     }
 
