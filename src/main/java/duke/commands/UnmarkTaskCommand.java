@@ -5,6 +5,9 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.utils.Storage;
 
+/**
+ * A command that un-marks a specified task.
+ */
 public class UnmarkTaskCommand extends Command {
 
     private Storage storage;

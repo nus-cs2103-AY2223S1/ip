@@ -7,6 +7,9 @@ import duke.tasks.TaskType;
 import duke.utils.Storage;
 import duke.utils.TaskParser;
 
+/**
+ * A command that adds a task to the list of tasks.
+ */
 public class AddTaskCommand extends Command {
 
     private Storage storage;

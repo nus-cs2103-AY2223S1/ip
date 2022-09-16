@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * This class is responsible for parsing strings representing dates.
+ */
 public class DateParser {
 
     private static DateTimeFormatter[] formatterList = new DateTimeFormatter[] {

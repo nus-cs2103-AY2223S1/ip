@@ -5,6 +5,9 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.utils.Storage;
 
+/**
+ * A command that deletes the specified task.
+ */
 public class DeleteTaskCommand extends Command {
 
     private Storage storage;

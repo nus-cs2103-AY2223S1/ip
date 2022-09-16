@@ -2,6 +2,9 @@ package duke.commands;
 
 import duke.tasks.TaskList;
 
+/**
+ * A command that displays the list of tasks.
+ */
 public class PrintTasksCommand extends Command {
 
     private TaskList tasks;

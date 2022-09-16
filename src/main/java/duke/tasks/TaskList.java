@@ -5,6 +5,12 @@ import duke.exceptions.TaskNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class represents a list of tasks. It supports
+ * adding, deleting, marking, and finding tasks. The toString
+ * method returns a neatly printed representation of all the tasks
+ * in the list.
+ */
 public class TaskList {
 
     private List<Task> list;

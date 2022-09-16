@@ -1,5 +1,9 @@
 package duke.exceptions;
 
+/**
+ * This exception indicates that the supplied string does not match a recognised
+ * format for a date.
+ */
 public class UnrecognisedDateException extends Exception {
 
     public UnrecognisedDateException() {

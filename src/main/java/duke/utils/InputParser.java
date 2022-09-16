@@ -6,6 +6,9 @@ import duke.tasks.TaskType;
 
 import java.util.Deque;
 
+/**
+ * This class is responsible for parsing the user input.
+ */
 public class InputParser {
 
     /**

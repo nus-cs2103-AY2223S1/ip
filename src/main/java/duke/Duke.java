@@ -18,6 +18,9 @@ import java.net.URL;
 import java.util.Deque;
 import java.util.LinkedList;
 
+/**
+ * This is the entry point into the JavaFX Application.
+ */
 public class Duke extends Application {
 
     private static final File SAVE_FILE = new File("savedata.txt");

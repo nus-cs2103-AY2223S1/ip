@@ -5,6 +5,9 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.utils.Storage;
 
+/**
+ * A command that marks a specified task.
+ */
 public class MarkTaskCommand extends Command {
 
     private Storage storage;

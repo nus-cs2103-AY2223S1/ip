@@ -1,5 +1,9 @@
 package duke.tasks;
 
+/**
+ * This abstract class represents a generic task. A task contains
+ * information about whether it is completed and its description.
+ */
 public abstract class Task {
 
     private final String name;

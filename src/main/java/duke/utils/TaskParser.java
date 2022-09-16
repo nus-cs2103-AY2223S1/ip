@@ -6,6 +6,9 @@ import duke.exceptions.NoSuchTaskTypeException;
 import duke.exceptions.UnrecognisedDateException;
 import duke.tasks.*;
 
+/**
+ * This class is responsible for parsing strings representing tasks
+ */
 public class TaskParser {
 
     /**

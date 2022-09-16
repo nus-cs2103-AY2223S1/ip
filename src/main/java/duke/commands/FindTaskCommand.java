@@ -5,6 +5,9 @@ import duke.tasks.TaskList;
 
 import java.util.List;
 
+/**
+ * A command that finds tasks that match a specified search string.
+ */
 public class FindTaskCommand extends Command {
 
     private TaskList tasks;

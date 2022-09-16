@@ -1,5 +1,8 @@
 package duke.commands;
 
+/**
+ * A command that represents an unrecognised command.
+ */
 public class UnrecognisedCommand extends Command {
 
     String cmdString;

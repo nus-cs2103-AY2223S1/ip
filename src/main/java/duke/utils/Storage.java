@@ -10,6 +10,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is responsible for persisting the list of tasks
+ * to the disk.
+ */
 public class Storage {
 
     private File saveFile;

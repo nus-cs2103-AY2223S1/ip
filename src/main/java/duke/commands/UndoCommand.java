@@ -3,6 +3,9 @@ package duke.commands;
 import java.util.Deque;
 import java.util.NoSuchElementException;
 
+/**
+ * A command that undoes the previously executed command.
+ */
 public class UndoCommand extends Command {
 
     private Deque<Command> commandHistory;
