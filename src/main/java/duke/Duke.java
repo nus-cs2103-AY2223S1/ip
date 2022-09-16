@@ -43,20 +43,9 @@ public class Duke {
         storage = new Storage();
         tasklist = new ArrayList<DukeTask>();
         Storage.setOnce(tasklist, "data/list.txt");
-        run();
+        storage.read();
     }
 
-    public Duke(String filePath) {
-        ui = new Ui();
-        storage = new Storage();
-        tasklist = new ArrayList<DukeTask>();
-        Storage.setOnce(tasklist, filePath);
-    }
-
-
-    /**
-     * 
-     */
     protected String getResponse(String input) {
         while(!isterminated){
             try {
@@ -68,37 +57,4 @@ public class Duke {
         System.exit(0);
         return null;
     }
-
-
-    /**
-     * Run the program
-     */
-    public void run() {
-        storage.read();
-        Scanner input = new Scanner(System.in);
-//        Ui.printIntro();
-        boolean isRunning = true;
-        while(isRunning) {
-            if (input.hasNext()) {
-                String str = input.nextLine();
-                Command cmd = Parser.parse(str);
-                if (cmd instanceof ByeCommand) {
-//                    Ui.printExit();
-                    isRunning = false;
-                    input.close();
-                    break;
-                }
-                try {
-                    cmd.deconstruct(tasklist, ui, storage);
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
-                
-            }
-        }
-    }
-
-    // public static void main(String[] args) {
-    //     new Duke("data/list.txt").run();
-    // }
 }
