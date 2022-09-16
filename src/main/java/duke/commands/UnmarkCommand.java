@@ -12,7 +12,7 @@ import duke.ui.Ui;
 public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
-    private static final String MESSAGE_SUCCESS = "Yo, I managed to unmark this task: ";
+    private static final String MESSAGE_SUCCESS = "Woof! I managed to mark the following task(s) as not done:";
 
     private MassOperation massOperation;
 

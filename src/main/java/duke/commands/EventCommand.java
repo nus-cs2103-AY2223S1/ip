@@ -14,7 +14,7 @@ import duke.ui.Ui;
 public class EventCommand extends Command {
 
     public static final String COMMAND_WORD = "event";
-    private static final String MESSAGE_SUCCESS = "Yo, I managed to add this event: \n";
+    private static final String MESSAGE_SUCCESS = "Woof! I managed to add this event: \n";
 
     private Event event;
 

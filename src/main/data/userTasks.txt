@@ -1,2 +1,5 @@
+M|todo say hello
+M|todo say hello to ariq
+M|event say hello /at 2022-09-08 1700
 N|todo say hello
-N|todo say hello
+N|todo say something

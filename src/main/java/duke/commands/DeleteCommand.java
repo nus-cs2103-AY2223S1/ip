@@ -13,7 +13,7 @@ import duke.ui.Ui;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
-    private static final String MESSAGE_SUCCESS = "Yo, I managed to delete this task: \n";
+    private static final String MESSAGE_SUCCESS = "Woof! I managed to delete the following task(s):";
 
     private MassOperation massOperation;
 

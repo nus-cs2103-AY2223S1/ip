@@ -12,7 +12,7 @@ import duke.ui.Ui;
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
-    private static final String MESSAGE_SUCCESS = "Yo, I managed to mark this task done: ";
+    private static final String MESSAGE_SUCCESS = "Woof! I managed to mark the following task(s) as done:";
 
     private MassOperation massOp;
 

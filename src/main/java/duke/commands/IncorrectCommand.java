@@ -44,7 +44,17 @@ public class IncorrectCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showErrorMessage(message);
-        return message;
+        String result = getResultString();
+        ui.showErrorMessage(result);
+        return result;
+    }
+
+    /**
+     * Gets the string representation of the incorrect command message
+     *
+     * @return A string presentation of the incorrect command message
+     */
+    private String getResultString() {
+        return "Woof! " + message;
     }
 }

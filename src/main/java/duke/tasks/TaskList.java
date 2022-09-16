@@ -349,7 +349,7 @@ public class TaskList {
      */
     private String unmarkSingle(SingleOperation op) throws DukeException {
         int index = op.getIndex();
-        markAsDone(index);
+        markAsNotDone(index);
         return getTask(index).toString();
     }
 
