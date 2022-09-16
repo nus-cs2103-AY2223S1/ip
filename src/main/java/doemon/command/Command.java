@@ -12,7 +12,7 @@ public abstract class Command {
      * Executes the command.
      *
      * @param tasks The list of tasks.
-     * @param ui The ui helper class.
+     * @param response The ui helper class.
      * @param storage The storage class for updating task data.
      */
     public abstract String execute(TaskList tasks, Response response, Storage storage);

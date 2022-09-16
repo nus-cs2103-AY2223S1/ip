@@ -99,7 +99,7 @@ public class Parser {
      * @return A boolean indicating if the string is a bye.
      */
     private static boolean isByeCommand(String command) {
-        return command.equals("bye");
+        return command.equals("bye") || command.equals("b");
     }
 
     /**
@@ -109,7 +109,7 @@ public class Parser {
      * @return A boolean indicating if the string is a list.
      */
     private static boolean isListCommand(String command) {
-        return command.equals("list");
+        return command.equals("list") || command.equals("l");
     }
 
     /**
@@ -119,7 +119,7 @@ public class Parser {
      * @return A boolean indicating if the string is a help.
      */
     private static boolean isHelpCommand(String command) {
-        return command.equals("help");
+        return command.equals("help") || command.equals("h");
     }
 
     /**
@@ -132,10 +132,11 @@ public class Parser {
      */
     private static boolean isMarkCommand(String command, String description)
             throws InvalidTaskNumberException {
-        if (command.equals("mark") && !isInteger(description)) {
+        boolean isMark = command.equals("mark") || command.equals("m");
+        if (isMark && !isInteger(description)) {
             throw new InvalidTaskNumberException("mark");
         }
-        return command.equals("mark") && isInteger(description);
+        return isMark && isInteger(description);
     }
 
     /**
@@ -148,10 +149,11 @@ public class Parser {
      */
     private static boolean isUnmarkCommand(String command, String description)
             throws InvalidTaskNumberException {
-        if (command.equals("unmark") && !isInteger(description)) {
+        boolean isUnmark = command.equals("unmark") || command.equals("u");
+        if (isUnmark && !isInteger(description)) {
             throw new InvalidTaskNumberException("unmark");
         }
-        return command.equals("unmark") && isInteger(description);
+        return isUnmark && isInteger(description);
     }
 
     /**
@@ -164,10 +166,11 @@ public class Parser {
      */
     private static boolean isDeleteCommand(String command, String description)
             throws InvalidTaskNumberException {
-        if (command.equals("delete") && !isInteger(description)) {
+        boolean isDelete = command.equals("delete") || command.equals("del");
+        if (isDelete && !isInteger(description)) {
             throw new InvalidTaskNumberException("delete");
         }
-        return command.equals("delete") && isInteger(description);
+        return isDelete && isInteger(description);
     }
 
     /**
@@ -190,10 +193,11 @@ public class Parser {
      */
     private static boolean isTodoCommand(String command, String description)
             throws EmptyTaskException {
-        if (command.equals("todo") && description.equals("")) {
+        boolean isTodo = command.equals("todo") || command.equals("t");
+        if (isTodo && description.equals("")) {
             throw new EmptyTaskException("todo");
         }
-        return command.equals("todo");
+        return isTodo;
     }
 
     /**
@@ -207,14 +211,15 @@ public class Parser {
      */
     private static boolean isDeadlineCommand(String command, String description)
             throws EmptyTaskException, MissingArgumentException {
+        boolean isDeadline = command.equals("deadline") || command.equals("d");
         String[] details = description.split("/by", 1);
-        if (command.equals("deadline") && details[0].trim().equals("")) {
+        if (isDeadline && details[0].trim().equals("")) {
             throw new EmptyTaskException("deadline");
         }
-        if (command.equals("deadline") && details.length == 1) {
+        if (isDeadline && details.length == 1) {
             throw new MissingArgumentException("deadline", "/by");
         }
-        return command.equals("deadline");
+        return isDeadline;
     }
 
     /**
@@ -228,14 +233,15 @@ public class Parser {
      */
     private static boolean isEventCommand(String command, String description)
             throws EmptyTaskException, MissingArgumentException {
-        if (command.equals("event") && description.equals("")) {
-            throw new EmptyTaskException("deadline");
+        boolean isEvent = command.equals("event") || command.equals("e");
+        if (isEvent && description.equals("")) {
+            throw new EmptyTaskException("event");
         }
         String[] details = description.split("/at", 1);
-        if (command.equals("event") && details.length == 1) {
+        if (isEvent && details.length == 1) {
             throw new MissingArgumentException("event", "/at");
         }
-        return command.equals("event");
+        return isEvent;
     }
 
     /**
