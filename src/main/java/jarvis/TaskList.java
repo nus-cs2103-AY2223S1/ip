@@ -46,7 +46,6 @@ public class TaskList {
     }
 
     public void appendLoadedTask(Task task) throws IOException {
-
         taskList[firstEmptyIndex] = task;
         ++firstEmptyIndex;
     }
@@ -76,9 +75,9 @@ public class TaskList {
             System.out.println("There is no task with index " + (index + 1));
             return;
         }
-        System.out.println("Noted. I've removed this task:\n" +
-                taskList[index].toString() + "\n" +
-                "Now you have " + (firstEmptyIndex - 1) + " tasks in the list");
+        System.out.println("Noted. I've removed this task:\n"
+                + taskList[index].toString() + "\n"
+                + "Now you have " + (firstEmptyIndex - 1) + " tasks in the list");
         taskList[index] = null;
         for (int i = index; i < firstEmptyIndex; i++) {
             taskList[index] = taskList[index + 1];

@@ -1,6 +1,9 @@
 package jarvis;
 
-import jarvis.task.*;
+import jarvis.task.Deadline;
+import jarvis.task.Event;
+import jarvis.task.Task;
+import jarvis.task.Todo;
 
 import java.io.File;
 import java.io.FileWriter;
