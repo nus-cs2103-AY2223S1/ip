@@ -2,6 +2,9 @@
 
 Koba is a desktop app for managing tasks and deadlines via a Graphical User Interface (GUI) in the form of a chat bot.
 
+Features
+-[adding a todo](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-todo-todo)
+
 ## Summary of Commands.
 |Function                 |Command                                                    |
 |-------------------------|-----------------------------------------------------------|
