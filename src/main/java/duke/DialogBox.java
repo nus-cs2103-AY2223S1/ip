@@ -8,6 +8,12 @@ import javafx.scene.layout.HBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Implements a custom DialogBox
+ *
+ * @author Alvin Jiang Min Jun
+ * @version v0.2
+ */
 public class DialogBox extends HBox {
 
     private Label text;
@@ -35,10 +41,24 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
+    /**
+     * Produces the dialog box which corresponds to the user.
+     *
+     * @param l The label to be given to the box.
+     * @param iv The image to be displayed.
+     * @return The DialogBox created.
+     */
     public static DialogBox getUserDialog(Label l, ImageView iv) {
         return new DialogBox(l, iv);
     }
 
+    /**
+     * Produces the dialog box which corresponds to duke.
+     *
+     * @param l The label to be given to the box.
+     * @param iv The image to be displayed.
+     * @return The DialogBox created.
+     */
     public static DialogBox getDukeDialog(Label l, ImageView iv) {
         var db = new DialogBox(l, iv);
         assert db != null : "DialogBox cannot be null";

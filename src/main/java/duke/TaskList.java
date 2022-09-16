@@ -9,14 +9,14 @@ import java.util.ArrayList;
  * as the behaviours that can change the Tasks within the ArrayList.
  *
  * @author Alvin Jiang Min Jun
- * @version v0.1
+ * @version v0.2
  */
 public class TaskList {
 
     private ArrayList<Task> tasks;
 
     /**
-     * TaskList constructor that creates an instance of a TaskList Object.
+     * Creates an instance of a TaskList Object.
      *
      * @param taskList The ArrayList output by the Storage, to be converted into
      *                 an ArrayList of type Task, and stored as a field.
@@ -49,7 +49,7 @@ public class TaskList {
     }
 
     /**
-     * A method to output a Numbered List, to be printed when the list command is given.
+     * Outputs a Numbered List, to be printed when the list command is given.
      *
      * @return String The output List, which contains a numbering system.
      */
@@ -63,7 +63,7 @@ public class TaskList {
     }
 
     /**
-     * A method to a List represented as a String, which can then be stored in the File
+     * Obtains a List represented as a String, which can then be stored in the File
      *
      * @return String The output List, which does not contain a numbering system.
      */
@@ -77,7 +77,7 @@ public class TaskList {
     }
 
     /**
-     * A method to mark a specific task in the TaskList.
+     * Marks a specific task in the TaskList.
      *
      * @param i The index of the Task to be marked.
      * @return String the resulting String after the Task has been marked.
@@ -91,7 +91,7 @@ public class TaskList {
     }
 
     /**
-     * A method to unmark a specific task in the TaskList.
+     * Umarks a specific task in the TaskList.
      *
      * @param i The index of the Task to be unmarked.
      * @return String the resulting String after the Task has been unmarked.
@@ -105,7 +105,7 @@ public class TaskList {
     }
 
     /**
-     * A method to delete a specific task in the TaskList.
+     * Deletes a specific task in the TaskList.
      *
      * @param i The index of the Task to be deleted.
      * @return String the resulting String after the Task has been deleted.
@@ -121,7 +121,7 @@ public class TaskList {
     }
 
     /**
-     * A method to add Tasks into the TaskList.
+     * Adds a Task into the TaskList.
      *
      * @param t The Task to be added into the TaskList.
      * @return String the resulting String after the Task has been added.
@@ -131,7 +131,7 @@ public class TaskList {
     }
 
     /**
-     * A method to find Tasks from within the TaskList.
+     * Find Tasks from within the TaskList.
      *
      * @param keyword The keyword to search for.
      * @return String the resulting String displayed when the Task is found,
@@ -154,7 +154,7 @@ public class TaskList {
     }
 
     /**
-     * A method to check if the timing of an event clashes with that of another.
+     * Checks if the timing of an event clashes with that of another.
      *
      * @param dateTime The String containing the date and time that an event is at.
      * @throws DukeException Thrown when there is a clash between the dates of the Events.

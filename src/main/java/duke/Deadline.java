@@ -5,11 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
- * Deadline implements the type of Task that contains a
+ * Implements the type of Task that contains a
  * deadline for the task to be completed by.
  *
  * @author Alvin Jiang Min Jun
- * @version v0.1
+ * @version v0.2
  */
 public class Deadline extends Task {
 
@@ -17,7 +17,7 @@ public class Deadline extends Task {
     protected LocalDate date;
 
     /**
-     * Deadline constructor that creates an instance of a Deadline object.
+     * Creates an instance of a Deadline object.
      *
      * @param description The description for the task that needs to be completed.
      * @param by The deadline for the task to be completed by.
@@ -29,7 +29,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * A method to check if the given dateTime is equal to that of the Deadline object.
+     * Check if the given dateTime is equal to that of the Deadline object.
      *
      * @param at The dateTime to check against.
      * @return boolean Whether the dateTimes are equal.
@@ -39,7 +39,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * A method which adds a task to the given taskList input.
+     * Adds a task to the given taskList input.
      *
      * @param taskList The taskList before a Deadline Task is added.
      * @return String The String displayed when after the Deadline Task is added.
@@ -53,7 +53,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * The toString method for the Deadline class.
+     * Gives the String representation of the Deadline Object.
      *
      * @return String The String format of the Deadline Object.
      */

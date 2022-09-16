@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Storage handles the reading and writing of the TaskList to an output file.
  *
  * @author Alvin Jiang Min Jun
- * @version v0.1
+ * @version v0.2
  */
 public class Storage {
 
@@ -18,7 +18,7 @@ public class Storage {
     final static String PATH = "./data";
 
     /**
-     * Storage constructor that creates an instance of a Storage object.
+     * Creates an instance of a Storage object.
      *
      * @param filePath The file path to which the storage can read and write files.
      */
@@ -27,7 +27,7 @@ public class Storage {
     }
 
     /**
-     * A method to create the output file if it does not exist,
+     * Create the output file if it does not exist,
      * and if it does, read the file and generate an ArraryList that
      * corresponds to its current contents.
      *
@@ -58,7 +58,7 @@ public class Storage {
     }
 
     /**
-     * A method to write an input String to the file.
+     * Write an input String to the file.
      *
      * @param str The input String to be added to the file.
      */

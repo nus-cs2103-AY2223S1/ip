@@ -1,6 +1,5 @@
 package duke;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -8,12 +7,12 @@ import java.util.ArrayList;
  * the description of a certain Task to be completed.
  *
  * @author Alvin Jiang Min Jun
- * @version v0.1
+ * @version v0.2
  */
 public class Todo extends Task {
 
     /**
-     * Todo constructor that creates an instance of a Todo object.
+     * Creates an instance of a Todo object.
      *
      * @param description The description for the task that needs to be completed.
      */
@@ -22,7 +21,7 @@ public class Todo extends Task {
     }
 
     /**
-     * A method to check if the given dateTime is equal to that of the Todo object.
+     * Checks if the given dateTime is equal to that of the Todo object.
      *
      * @param at The dateTime to check against.
      * @return boolean Whether the dateTimes are equal.
@@ -32,7 +31,7 @@ public class Todo extends Task {
     }
 
     /**
-     * A method which adds a task to the given taskList input.
+     * Adds a task to the given taskList input.
      *
      * @param taskList The taskList before a Todo Task is added.
      * @return String The String displayed when after the Todo Task is added.
@@ -46,7 +45,7 @@ public class Todo extends Task {
     }
 
     /**
-     * The toString method for the Todo class.
+     * Gives the String representation of the Todo Object.
      *
      * @return String The String format of the Todo Object.
      */

@@ -5,11 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
- * Event implements the type of Task that contains a
+ * Implements the type of Task that contains a
  * date for the task to be completed at.
  *
  * @author Alvin Jiang Min Jun
- * @version v0.1
+ * @version v0.2
  */
 public class Event extends Task {
 
@@ -17,7 +17,7 @@ public class Event extends Task {
     protected LocalDate date;
 
     /**
-     * Event constructor that creates an instance of a Event object.
+     * Creates an instance of an Event object.
      *
      * @param description The description for the task that needs to be completed.
      * @param at The date for the task to be completed at.
@@ -29,7 +29,7 @@ public class Event extends Task {
     }
 
     /**
-     * A method to check if the given dateTime is equal to that of the Event object.
+     * Check if the given dateTime is equal to that of the Event object.
      *
      * @param at The dateTime to check against.
      * @return boolean Whether the dateTimes are equal.
@@ -40,7 +40,7 @@ public class Event extends Task {
     }
 
     /**
-     * A method which adds a task to the given taskList input.
+     * Adds a task to the given taskList input.
      *
      * @param taskList The taskList before a Event Task is added.
      * @return String The String displayed when after the Event Task is added.
@@ -54,7 +54,7 @@ public class Event extends Task {
     }
 
     /**
-     * The toString method for the Event class.
+     * Gives the String representation of the Event Object.
      *
      * @return String The String format of the Event Object.
      */

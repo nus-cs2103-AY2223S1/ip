@@ -14,11 +14,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * Duke implements the To-do List bot, and allows users
+ * Implements the To-do List bot, and allows users
  * to input commands to create a To-do List.
  *
  * @author Alvin Jiang Min Jun
- * @version v0.1
+ * @version v0.2
  */
 public class Duke extends Application {
 
@@ -38,7 +38,7 @@ public class Duke extends Application {
     }
 
     /**
-     * A method to initialise the instance variables in Duke.
+     * Initialises the instance variables in Duke.
      *
      * @param stage The stage required to set up the other components.
      */
@@ -65,7 +65,7 @@ public class Duke extends Application {
     }
 
     /**
-     * A method to format different components of the GUI.
+     * Formats different components of the GUI.
      *
      * @param stage The stage required to format the other components.
      */
@@ -103,7 +103,7 @@ public class Duke extends Application {
     }
 
     /**
-     * A method to handle user input by reacting to mouseclick and
+     * Handles user input by reacting to mouseclick and
      * scrolling of scrollpane.
      */
     private void setInputFunctionality() {
@@ -128,7 +128,6 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
@@ -143,8 +142,9 @@ public class Duke extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets the appropriate response to user input after parsing.
+     *
+     * @return The String to be displayed by the duke dialog box.
      */
     private String getResponse(String input) {
         try {

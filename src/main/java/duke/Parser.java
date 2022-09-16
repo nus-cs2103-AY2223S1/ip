@@ -7,7 +7,7 @@ import java.util.List;
  * Parser makes sense of the user inputs.
  *
  * @author Alvin Jiang Min Jun
- * @version v0.1
+ * @version v0.2
  */
 public class Parser {
 
@@ -15,7 +15,7 @@ public class Parser {
     final static ArrayList<String> validCommands = new ArrayList<>(List.of("list", "mark", "unmark", "todo", "deadline", "event", "delete", "bye", "find"));
 
     /**
-     * Parser constructor that creates an instance of a Parser object.
+     * Creates an instance of a Parser object.
      *
      * @param tasks The tasks that will be operated on after parsing user inputs.
      */
@@ -24,14 +24,14 @@ public class Parser {
     }
 
     /**
-     * A method which evaluates if the command given by user is bye
+     * Evaluates if the command given by user is bye
      */
     public boolean isBye(String str) {
         return str.equals("bye");
     }
 
     /**
-     * A method which analyses the user input and returns the command word used.
+     * Analyses the user input and returns the command word used.
      *
      * @param str The entire user input.
      * @return String the command that is called by the user.
@@ -47,7 +47,7 @@ public class Parser {
     }
 
     /**
-     * A method which analyses the user input, as well as the command and modifies the taskList
+     * Analyses the user input, as well as the command and modifies the taskList
      * as necessary.
      *
      * @param command The command word given by the user.
@@ -94,7 +94,7 @@ public class Parser {
         return null;
     }
     /**
-     * A method which analyses the user input, as well as the command and returns
+     * Analyses the user input, as well as the command and returns
      * the index of the task in question
      *
      * @param command The command word given by the user.
@@ -118,7 +118,7 @@ public class Parser {
     }
 
     /**
-     * A method which analyses the user input, as well as the command and throws
+     * Analyses the user input, as well as the command and throws
      * an Exception if the description of the input is empty.
      *
      * @param command The command word given by the user.

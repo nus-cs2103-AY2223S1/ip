@@ -1,16 +1,16 @@
 package duke;
 
 /**
- * DukeException implements the Exception that is thrown
+ * Implements the Exception that is thrown
  * in the Duke program.
  *
  * @author Alvin Jiang Min Jun
- * @version v0.1
+ * @version v0.2
  */
 public class DukeException extends Exception{
 
     /**
-     * DukeException constructor that creates an instance of a DukeException object.
+     * Creates an instance of a DukeException object.
      *
      * @param message The message that is contained by the DukeException object.
      */
@@ -19,7 +19,7 @@ public class DukeException extends Exception{
     }
 
     /**
-     * The toString method for the DukeException class.
+     * Gives the String representation of the DukeException Object.
      *
      * @return String The String format of the DukeException Object.
      */

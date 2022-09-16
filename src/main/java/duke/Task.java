@@ -7,14 +7,14 @@ import java.util.ArrayList;
  * as well as a boolean that tracks the completion of the Task.
  *
  * @author Alvin Jiang Min Jun
- * @version v0.1
+ * @version v0.2
  */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
 
     /**
-     * Task constructor that creates an instance of a Task object.
+     * Creates an instance of a Task object.
      *
      * @param description The description of the Task that needs to be completed.
      */
@@ -24,7 +24,7 @@ public abstract class Task {
     }
 
     /**
-     * The toString method for the Task class.
+     * Gives the String representation of the Task Object.
      *
      * @return String The String format of the Task Object.
      */
@@ -34,7 +34,7 @@ public abstract class Task {
     }
 
     /**
-     * A method to mark whether the Task has been completed.
+     * Marks whether the Task has been completed.
      *
      * @return String that corresponds to whether the Task has been done.
      */
@@ -43,7 +43,7 @@ public abstract class Task {
     }
 
     /**
-     * A method to add a task to a given taskList input. This method
+     * Adds a task to a given taskList input. This method
      * should be overridden by all child classes.
      *
      * @param taskList The taskList before a Task is added.
@@ -52,7 +52,7 @@ public abstract class Task {
     public abstract String printAndStoreTask(ArrayList<Task> taskList);
 
     /**
-     * A method to check if there is a clash in dates between the tasks.
+     * Checks if there is a clash in dates between the tasks.
      *
      * @param dateTime dateTime of the given Task.
      * @return boolean Whether there is a clash.
@@ -60,19 +60,25 @@ public abstract class Task {
     public abstract boolean sameTime(String dateTime);
 
     /**
-     * A method to toggle the status of the task to Done.
+     * Toggles the status of the task to Done.
      */
     public void doTask() {
         this.isDone = true;
     }
 
     /**
-     * A method to toggle the status of the task to Not Done.
+     * Toggles the status of the task to Not Done.
      */
     public void undoTask() {
         this.isDone = false;
     }
 
+    /**
+     * Checks if a given keyword matches the Task description.
+     *
+     * @param keyword keyword to check against.
+     * @return Whether there match between the given keyword and the description.
+     */
     public boolean match(String keyword) {
         return this.description.contains(keyword);
     }
