@@ -83,4 +83,26 @@ The attributes for a task are separated by `/`. From left to right:
 |   find   |           `find <regex>`            |              `find book`               |                                 Lists the tasks whose contents match the provided regex.                                 |
 |  remind  |              `remind`               |                `remind`                |                       Lists the tasks whose due dates are within a fortnight of the current date.                        |
 |   bye    |                `bye`                |                 `bye`                  |                                                     Closes the app.                                                      |
+## Acknowledgements
 
+Many thanks to @cowlinn for his assistance on many aspects of this project. In particular, two fragments of code are referenced from his project:
+- DialogBox.java
+  - Reused code for fitting user and duke portraits in a circle. Namely, the sections below:
+    ~~~java
+      private DialogBox(String text, Image img) {
+        ...
+
+        double circleRadius = 50.0;
+        double circleX = displayPicture.getX() + circleRadius;
+        double circleY = displayPicture.getY() + circleRadius;
+
+        Circle border = new Circle(circleX, circleY, circleRadius);
+
+        ...
+
+        displayPicture.setImage(img);
+        displayPicture.setClip(border);
+    }
+    ~~~
+- Storage.java
+  - Referenced logic for reading to and writing from file.
