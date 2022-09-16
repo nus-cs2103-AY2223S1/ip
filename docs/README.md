@@ -12,15 +12,15 @@ Duke is a Command Line Application to help you manage your tasks.
 
 ## Features 
 
-* [Add Task]
-  * [Add ToDo]
-  * [Add Event]
-  * [Add Deadline]
-* [Mark Task as Done]
-* [Unmark Task as Done]
-* [List All Tasks]
-* [Find Task]
-* [Delete Task]
+* Add Task
+  * Add ToDo
+  * Add Event
+  * Add Deadline
+* Mark Task as Done
+* Unmark Task as Done
+* List All Tasks
+* Find Task
+* Delete Task
 
 ## Usage
 
