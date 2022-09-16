@@ -6,21 +6,18 @@ package duke;
 public class EventHandler {
 
     private TaskList taskList;
-    private UserInterface userInterface;
     private GuiUserInterface guiUserInterface;
     private Storage storage;
 
     /**
-     * Contructor for EventHandler.
+     * Constructor for EventHandler.
      *
-     * @param taskList      TaskList for EventHandler to handle.
-     * @param userInterface UserInterface that EventHandler uses.
-     * @return The response from the Duke bot
+     * @param taskList TaskList that Event Handler uses.
+     * @param guiUserInterface GuiUserInterface that Event Handler uses.
+     * @param storage Storage that Event Handler uses.
      */
-    public EventHandler(TaskList taskList, UserInterface userInterface,
-                        GuiUserInterface guiUserInterface, Storage storage) {
+    public EventHandler(TaskList taskList, GuiUserInterface guiUserInterface, Storage storage) {
         this.taskList = taskList;
-        this.userInterface = userInterface;
         this.guiUserInterface = guiUserInterface;
         this.storage = storage;
     }
@@ -39,7 +36,6 @@ public class EventHandler {
         String description = input.substring(5);
         ToDo tempTask = new ToDo(description);
         this.taskList.add(tempTask);
-//        userInterface.addTaskMessage(tempTask);
         storage.save();
         assert description.length() > 0 : "description should not be empty";
         return guiUserInterface.addTaskMessage(tempTask);
@@ -64,7 +60,6 @@ public class EventHandler {
         Deadline tempTask = new Deadline(description, by);
 
         this.taskList.add(tempTask);
-//        userInterface.addTaskMessage(tempTask);
         storage.save();
         assert description.length() > 0 : "description should not be empty";
         return guiUserInterface.addTaskMessage(tempTask);
@@ -89,7 +84,6 @@ public class EventHandler {
         Event tempTask = new Event(description, at);
 
         this.taskList.add(tempTask);
-//        userInterface.addTaskMessage(tempTask);
         storage.save();
         assert description.length() > 0 : "description should not be empty";
         return guiUserInterface.addTaskMessage(tempTask);
@@ -104,7 +98,6 @@ public class EventHandler {
     public String markTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(5)) - 1;
         taskList.get(taskIndex).markAsDone();
-//        userInterface.markTaskMessage(taskIndex);
         storage.save();
         assert taskIndex >= 0 : "taskIndex should be >= 0";
         return guiUserInterface.markTaskMessage(taskIndex);
@@ -119,7 +112,6 @@ public class EventHandler {
     public String unmarkTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(7)) - 1;
         taskList.get(taskIndex).markAsUndone();
-//        userInterface.unmarkTaskMessage(taskIndex);
         storage.save();
         assert taskIndex >= 0 : "taskIndex should be >= 0";
         return guiUserInterface.unmarkTaskMessage(taskIndex);
@@ -134,7 +126,6 @@ public class EventHandler {
      */
     public String deleteTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(7)) - 1;
-//        UserInterface.taskDeletedMessage(taskIndex);
         String temp = guiUserInterface.taskDeletedMessage(taskIndex);
         this.taskList.remove(taskIndex);
         storage.save();

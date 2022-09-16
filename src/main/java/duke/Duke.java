@@ -6,7 +6,6 @@ public class Duke  {
 
     private Storage storage;
     private TaskList taskList;
-    private UserInterface userInterface;
     private GuiUserInterface guiUserInterface;
 
     /**
@@ -19,11 +18,9 @@ public class Duke  {
             this.taskList = new TaskList();
             storage = new Storage(path, taskList);
             storage.load();
-            userInterface = new UserInterface(taskList);
             guiUserInterface = new GuiUserInterface(taskList);
         } catch (IOException e) {
             e.printStackTrace();
-            UserInterface.showLoadingError();
             this.taskList = new TaskList();
         }
     }
@@ -38,11 +35,14 @@ public class Duke  {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates the response to user input.
+     *
+     * @param input User input.
+     * @return Response from Duke.
+     * @throws DukeException Thrown when unknown command given.
      */
     String getResponse(String input) throws DukeException {
-        EventHandler handler = new EventHandler(this.taskList, this.userInterface, this.guiUserInterface, this.storage);
+        EventHandler handler = new EventHandler(this.taskList, this.guiUserInterface, this.storage);
         if (input.equals("bye")) {
             return guiUserInterface.sayBye();
         } else if (input.equals("list")) {

@@ -82,7 +82,7 @@ public class GuiUserInterface {
      * Given a TaskList of query matches, returns the results.
      *
      * @param matches TaskList of query matches.
-     * @return The output of Duke
+     * @return The output of Duke.
      */
     public String printMatches(TaskList matches) {
         String output = "";
