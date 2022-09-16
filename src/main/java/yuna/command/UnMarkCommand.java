@@ -36,6 +36,7 @@ public class UnMarkCommand extends Command {
     public String execute(Ui ui, Storage storage, TaskList taskList) throws YunaException {
         Task task = taskList.getTask(index);
         task.markAsNotDone();
+        storage.writeFile(taskList.getTasks());
         String output = "Unmarked!! You should finish this soon! >:(\n";
         output += task;
         assert output.length() > 0 : "The output of execute should always return a message.";

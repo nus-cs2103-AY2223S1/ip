@@ -35,6 +35,7 @@ public class AddCommand extends Command {
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) throws YunaException {
         taskList.loadTask(task);
+        storage.writeFile(taskList.getTasks());
         String output = ui.formatMessage("I've added this to your schedule!\n" + task + "\n");
         if (taskList.size() == 1) {
             return output + ui.formatMessage(String.format("You got %d task to do :)", taskList.size()));

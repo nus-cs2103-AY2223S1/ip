@@ -50,7 +50,6 @@ public class Yuna {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            storage.writeFile(taskList.getTasks());
             return c.execute(ui, storage, taskList);
         } catch (YunaException e) {
             return ui.formatMessage(String.valueOf(e));

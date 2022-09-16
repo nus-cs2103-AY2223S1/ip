@@ -36,6 +36,7 @@ public class MarkCommand extends Command {
     public String execute(Ui ui, Storage storage, TaskList taskList) throws YunaException {
         Task task = taskList.getTask(index);
         task.markAsDone();
+        storage.writeFile(taskList.getTasks());
         String output = "Good job for finishing this! ^^\n";
         output += task;
         assert output.length() > 0 : "The output of execute should always return a message.";

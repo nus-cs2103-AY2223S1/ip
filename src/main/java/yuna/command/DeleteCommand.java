@@ -36,6 +36,7 @@ public class DeleteCommand extends Command {
     public String execute(Ui ui, Storage storage, TaskList taskList) throws YunaException {
         Task task = taskList.getTask(this.index);
         taskList.remove(this.index - 1);
+        storage.writeFile(taskList.getTasks());
         int numTasks = taskList.size();
         String output = ui.formatMessage("I've taken this out from your schedule!\n");
         output += ui.formatMessage(task.toString()) + "\n";
