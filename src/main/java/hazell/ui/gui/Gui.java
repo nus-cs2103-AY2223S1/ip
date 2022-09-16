@@ -31,6 +31,11 @@ public class Gui implements UiInterface {
         return userInput != null;
     }
 
+    /**
+     * Sets the internal buffer to a new user input.
+     *
+     * @param input User input to store
+     */
     public void setUserInput(String input) {
         System.out.println("Setting userinput");
         userInput = input;
@@ -54,6 +59,7 @@ public class Gui implements UiInterface {
     }
 
 
+    @Override
     public void start() {
 
     }

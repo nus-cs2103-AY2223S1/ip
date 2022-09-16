@@ -13,6 +13,14 @@ import hazell.exceptions.UnknownCommand;
 public class Dispatcher {
     public Dispatcher() { }
 
+    /**
+     * Applies the correct action depending on user input.
+     *
+     * @param command Command object parsed from user input
+     * @param taskList List of tasks currently in use
+     * @return Bot response
+     * @throws HazellException If an exception occurs
+     */
     public String handle(Command command, TaskList taskList) throws HazellException {
         String description;
         String time;

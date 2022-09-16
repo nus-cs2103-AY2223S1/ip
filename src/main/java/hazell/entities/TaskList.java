@@ -11,7 +11,7 @@ import hazell.Storage;
 import hazell.exceptions.NoSuchTask;
 
 /**
- * Class that stores Tasks.
+ * A class that stores Tasks.
  */
 public class TaskList {
     private final List<Task> store;
@@ -49,6 +49,12 @@ public class TaskList {
         return String.format("Now you have %d tasks in the list.", this.store.size());
     }
 
+    /**
+     * Puts a new task into the store.
+     *
+     * @param task The task to be added
+     * @return The response to be shown by the bot
+     */
     public String addTask(Task task) {
         this.store.add(task);
         try {
@@ -121,6 +127,14 @@ public class TaskList {
         return String.format("OK, I've marked this task as not done yet:\n\t%s", task);
     }
 
+    /**
+     * Postpones or changes the time associated with this task.
+     *
+     * @param index The index of the task, in the order of this store
+     * @param time The new time to be changed to
+     * @return The bot response
+     * @throws NoSuchTask If there is no task corresponding to this index
+     */
     public String postponeTimeSensitiveTask(int index, String time) throws NoSuchTask {
         Task task = getTask(index);
         if (!(task instanceof TimeSensitiveTask)) {
@@ -158,7 +172,7 @@ public class TaskList {
     }
 
     /**
-     * Find tasks with descriptions matching `keyword`.
+     * Finds tasks with descriptions matching `keyword`.
      *
      * @param keyword The search string
      * @return Response string
@@ -180,7 +194,7 @@ public class TaskList {
     }
 
     /**
-     * List detailed information about all tasks in this store.
+     * Lists detailed information about all tasks in this store.
      *
      * @return String Details
      */

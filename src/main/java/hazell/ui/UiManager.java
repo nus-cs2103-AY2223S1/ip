@@ -6,7 +6,7 @@ import java.util.List;
 import hazell.Hazell;
 
 /**
- * Manages multiple Ui objects.
+ * A manager of multiple Ui objects.
  * Allows the bot to interface with the UiManager directly instead of handling each Ui object separately.
  */
 public class UiManager implements UiInterface {
@@ -14,10 +14,17 @@ public class UiManager implements UiInterface {
     private List<UiInterface> uiList;
     private Hazell hazell;
 
+    /**
+     * Creates a new UiManager object.
+     */
     public UiManager() {
         uiList = new ArrayList<>();
     }
 
+    /**
+     * Gives a place for specifying an Ui object.
+     * @param ui The Ui object
+     */
     public void attachUiInstance(UiInterface ui) {
         uiList.add(ui);
     }
@@ -59,6 +66,9 @@ public class UiManager implements UiInterface {
     }
 
 
+    /**
+     * Does some actions when control is given.
+     */
     public void step() {
         String userinput = null;
         for (UiInterface ui : uiList) {

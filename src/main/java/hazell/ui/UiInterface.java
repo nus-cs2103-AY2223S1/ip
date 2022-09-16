@@ -2,18 +2,27 @@ package hazell.ui;
 
 import hazell.Hazell;
 
+/**
+ * An interface for Ui objects, e.g. GUI, CLI.
+ */
 public interface UiInterface {
 
     /**
-     * Attach a reference to the bot object.
+     * Attaches a reference to the bot object.
+     *
      * @param hazell Bot
      */
     void attachBotInstance(Hazell hazell);
 
+    /**
+     * Returns whether this Ui object contains user input that can be read from.
+     *
+     * @return boolean, as specified above
+     */
     boolean hasNextUserInput();
 
     /**
-     * Get the next user input from the object's internal buffer.
+     * Gets the next user input from the object's internal buffer.
      *
      * @return The user input
      */
@@ -34,13 +43,13 @@ public interface UiInterface {
     void displayBotResponse(String response);
 
     /**
-     * Make this Ui object take control of the entire program execution.
+     * Makes this Ui object take control of the entire program execution.
      */
     void run();
 
 
     /**
-     * Do initial tasks, e.g. print welcome messages.
+     * Does initial tasks, e.g. print welcome messages.
      */
     void start();
 }

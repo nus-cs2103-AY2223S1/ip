@@ -29,12 +29,19 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image botImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    /**
+     * Initialises the Main Window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         gui = new Gui(this);
     }
 
+    /**
+     * Provides a method for specifying the bot instance.
+     * @param bot The bot
+     */
     public void setBot(Hazell bot) {
         this.bot = bot;
         bot.attachUiInstance(gui);
@@ -42,11 +49,22 @@ public class MainWindow extends AnchorPane {
         bot.start();
     }
 
+    /**
+     * Displays user input.
+     *
+     * @param input User input
+     */
     public void displayUserInput(String input) {
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage)
         );
     }
+
+    /**
+     * Displays bot response.
+     *
+     * @param response Bot response
+     */
     public void displayBotResponse(String response) {
         dialogContainer.getChildren().addAll(
                 DialogBox.getBotDialog(response, botImage)

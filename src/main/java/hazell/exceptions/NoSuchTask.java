@@ -1,5 +1,8 @@
 package hazell.exceptions;
 
+/**
+ * Exception when the user chooses an index that does not correspond to any task.
+ */
 public class NoSuchTask extends HazellException {
 
     private final int maxNumberOfTasks;

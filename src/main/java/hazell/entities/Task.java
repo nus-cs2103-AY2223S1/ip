@@ -21,7 +21,7 @@ public abstract class Task {
     /**
      * Checks whether fields are valid. To be called when creating Task via factory methods.
      *
-     * @throws TaskDescriptionEmpty
+     * @throws TaskDescriptionEmpty If the user did not specify a description
      */
     protected void validate() throws TaskDescriptionEmpty {
         if (description.equals("")) {

@@ -12,6 +12,13 @@ public class ToDo extends Task {
         super(isDone, description);
     }
 
+    /**
+     * Creates a Todo task object.
+     *
+     * @param description The description of the Todo
+     * @return A new Todo
+     * @throws TaskDescriptionEmpty If the description is empty
+     */
     public static ToDo create(String description) throws TaskDescriptionEmpty {
         ToDo todo = new ToDo(false, description);
         todo.validate();
@@ -19,6 +26,7 @@ public class ToDo extends Task {
     }
 
 
+    @Override
     public String serialise() {
         return String.format("%s | %s | %s",
                 typeIcon,
@@ -26,6 +34,12 @@ public class ToDo extends Task {
                 this.getDescription());
     }
 
+    /**
+     * Recreates a Todo object from a string.
+     *
+     * @param words An array of words in which the original Todo was serialised into
+     * @return The unserialised Todo object
+     */
     public static ToDo unserialise(String[] words) {
         return new ToDo(
                 words[1].equals("1"),

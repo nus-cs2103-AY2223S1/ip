@@ -8,7 +8,7 @@ import java.util.Map;
 import hazell.exceptions.KwargNotFound;
 
 /**
- * Represents userinput from user, parsed into arguments (args) and keyword arguments (kwargs).
+ * An encapsulation of userinput from user, parsed into arguments (args) and keyword arguments (kwargs).
  *
  * PARSING
  * Format: [ARGS]... [/OPTION VALUE]...
@@ -28,7 +28,7 @@ public class Command {
     }
 
     /**
-     * Factory method for creating instances of the Command object.
+     * Creates instances of the Command object, via this factory method.
      *
      * @param str Userinput
      * @return A Command object

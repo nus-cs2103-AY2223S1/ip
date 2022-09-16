@@ -11,6 +11,9 @@ import java.util.Scanner;
 
 import hazell.entities.Task;
 
+/**
+ * Object that handles storage-related logic.
+ */
 public class Storage {
     private Path path;
 
@@ -33,7 +36,7 @@ public class Storage {
     }
 
     /**
-     * Load from local storage.
+     * Loads from local storage.
      *
      * @return List of tasks, unserialised
      * @throws IOException If error occurs while accessing file

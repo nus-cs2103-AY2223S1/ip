@@ -22,7 +22,7 @@ public class Cli implements UiInterface {
     private Hazell hazell;
 
     /**
-     * Create a new Ui instance.
+     * Creates a new Ui instance.
      */
     public Cli() {
         scanner = new Scanner(System.in);
@@ -44,7 +44,7 @@ public class Cli implements UiInterface {
     }
 
     /**
-     * Get the next command from user.
+     * Gets the next command from user.
      *
      * @return A parsed Command object
      */

@@ -14,6 +14,14 @@ public class Event extends TimeSensitiveTask {
         this.time = time;
     }
 
+    /**
+     * Creates a new Event task via factory method.
+     *
+     * @param description Description of the Event
+     * @param time The time by which the event should be done at
+     * @return An Event object
+     * @throws TaskDescriptionEmpty If the description is empty
+     */
     public static Event create(String description, String time) throws TaskDescriptionEmpty {
         Event event = new Event(false, description, time);
         event.validate();
@@ -25,6 +33,7 @@ public class Event extends TimeSensitiveTask {
         this.time = time;
     }
 
+    @Override
     public String serialise() {
         return String.format("%s | %s | %s | %s",
                 typeIcon,
@@ -33,6 +42,13 @@ public class Event extends TimeSensitiveTask {
                 this.time);
     }
 
+
+    /**
+     * Recreates an Event object from a string.
+     *
+     * @param words An array of words in which the original Event was serialised into
+     * @return The unserialised Event object
+     */
     public static Event unserialise(String[] words) {
         return new Event(
                 words[1].equals("1"),

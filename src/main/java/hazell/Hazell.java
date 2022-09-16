@@ -83,7 +83,7 @@ public class Hazell {
     }
 
     /**
-     * Entry point to CLI-only experience of the Hazell chatbot.
+     * Starts the bot - entry point to CLI-only experience of the Hazell chatbot.
      *
      * @param args Path to file
      */
