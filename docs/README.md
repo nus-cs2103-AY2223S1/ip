@@ -23,23 +23,23 @@ Refer to the command list [here](#command-list). You can use commands `todo`, `e
 * An event task is a task that takes place exactly at the date and time you indicate.
 * A deadline task is a task that must be done some time before the stipulated deadline.
 #### Example of usage
-```  
+```
 todo read a book
-event orbital splashdown /at 2022-08-22 13:00:00 
-deadline CS2103T iP Week 4 /by 2022-08-27 18:00:00 
-```  
+event orbital splashdown /at 2022-08-22 13:00:00
+deadline CS2103T iP Week 4 /by 2022-08-27 18:00:00
+```
 #### Expected outcome
-```  
+```
 -------------------------
-	Added: [ ] [T] read a book 
--------------------------
-
--------------------------
-	Added: [ ] [E] orbital splashdown at 2022/08/22 13:00:00 
+	Added: [ ] [T] read a book
 -------------------------
 
 -------------------------
-	Added: [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00 
+	Added: [ ] [E] orbital splashdown at 2022/08/22 13:00:00
+-------------------------
+
+-------------------------
+	Added: [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
 -------------------------
 ```
 ### 2. Auto-save
