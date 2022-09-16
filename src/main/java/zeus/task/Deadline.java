@@ -1,6 +1,7 @@
 package zeus.task;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -9,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
 
     protected String by;
-    protected LocalDate date;
+    protected LocalDateTime datetime;
 
     /**
      * Constructs a Deadline.
@@ -26,11 +27,11 @@ public class Deadline extends Task {
      * Constructs a Deadline with datetime.
      *
      * @param description The description of the deadline task.
-     * @param date A LocalDate that represents date of deadline.
+     * @param datetime A LocalDateTime that represents date of deadline.
      */
-    public Deadline(String description, LocalDate date) {
+    public Deadline(String description, LocalDateTime datetime) {
         super(description);
-        this.date = date;
+        this.datetime = datetime;
     }
 
     /**
@@ -41,7 +42,7 @@ public class Deadline extends Task {
     public Deadline(Deadline deadline) {
         super(deadline.getDescription(), deadline.isDone);
         this.by = deadline.by;
-        this.date = deadline.date;
+        this.datetime = deadline.datetime;
     }
 
     /**
@@ -71,11 +72,11 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        if (this.date == null) {
+        if (this.datetime == null) {
             return "[D]" + super.toString() + " (by: " + by + ")";
         } else {
-            String d = this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-            return "[D]" + super.toString() + " (by: " + d + ")";
+            String dateAndTime = this.datetime.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
+            return "[D]" + super.toString() + " (by: " + dateAndTime + ")";
         }
     }
 }

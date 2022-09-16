@@ -1,6 +1,7 @@
 package zeus.command;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import zeus.exception.ZeusException;
 import zeus.main.Storage;
@@ -16,7 +17,7 @@ public class AddDeadlineCommand extends Command {
 
     private String description;
     private String by;
-    private LocalDate localDate;
+    private LocalDateTime localDateTime;
 
     /**
      * Constructor of AddDeadlineCommand class.
@@ -33,11 +34,11 @@ public class AddDeadlineCommand extends Command {
      * Constructor of AddDeadlineCommand class.
      *
      * @param description Description of Deadline task.
-     * @param localDate LocalDate that represents due date.
+     * @param localDateTime LocalDateTime that represents due date.
      */
-    public AddDeadlineCommand(String description, LocalDate localDate) {
+    public AddDeadlineCommand(String description, LocalDateTime localDateTime) {
         this.description = description;
-        this.localDate = localDate;
+        this.localDateTime = localDateTime;
     }
 
     /**
@@ -53,10 +54,10 @@ public class AddDeadlineCommand extends Command {
         taskList.saveCurrentTaskListVersion();
 
         Deadline deadline;
-        if (this.localDate == null) {
+        if (this.localDateTime == null) {
             deadline = new Deadline(description, this.by);
         } else {
-            deadline = new Deadline(description, this.localDate);
+            deadline = new Deadline(description, this.localDateTime);
         }
         taskList.addTask(deadline);
         ui.printAddTask(deadline, taskList.getSize());

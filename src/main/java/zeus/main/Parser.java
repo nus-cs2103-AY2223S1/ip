@@ -1,6 +1,11 @@
 package zeus.main;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import zeus.command.AddDeadlineCommand;
 import zeus.command.AddEventCommand;
@@ -47,21 +52,20 @@ public class Parser {
             }
             return new AddTodoCommand(todoDescription);
         } else if (fullCommand.startsWith("deadline")) {
-            // sample input: deadline return book /by 2/12/2019 1800
             String[] deadlineInfo = fullCommand.replaceFirst("deadline ", "").split(" /by ");
             String dateAndTime = deadlineInfo[1];
-            if (isSpecificDateFormat(dateAndTime)) {
-                LocalDate localDate = convertFormattedStringToDate(dateAndTime);
-                return new AddDeadlineCommand(deadlineInfo[0], localDate);
+            if (isValidDate(dateAndTime)) {
+                LocalDateTime deadline = convertStringToDateTime(dateAndTime);
+                return new AddDeadlineCommand(deadlineInfo[0], deadline);
             } else {
                 return new AddDeadlineCommand(deadlineInfo[0], dateAndTime);
             }
         } else if (fullCommand.startsWith("event")) {
             String[] eventInfo = fullCommand.replaceFirst("event ", "").split(" /at ");
             String dateAndTime = eventInfo[1];
-            if (isSpecificDateFormat(dateAndTime)) {
-                LocalDate localDate = convertFormattedStringToDate(dateAndTime);
-                return new AddEventCommand(eventInfo[0], localDate);
+            if (isValidDate(dateAndTime)) {
+                LocalDateTime eventDate = convertStringToDateTime(dateAndTime);
+                return new AddEventCommand(eventInfo[0], eventDate);
             } else {
                 return new AddEventCommand(eventInfo[0], eventInfo[1]);
             }
@@ -78,25 +82,26 @@ public class Parser {
         }
     }
 
-    private static LocalDate convertFormattedStringToDate(String s) {
-        String date = s.split(" ")[0];
-        return LocalDate.parse(date);
+    private static LocalDateTime convertStringToDateTime(String datetime) {
+        //String date = s.split(" ")[0];
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        return LocalDateTime.parse(datetime, formatter);
     }
 
     /**
-     * Returns true if input is in the required format to be converted to a Date, returns false otherwise.
+     * Returns true if input is valid, returns false otherwise.
      *
-     * @param dateInfo String representing date.
-     * @return A boolean representing whether input string is in a specific format.
+     * @param dateInfo String representing date and time.
+     * @return A boolean representing whether input string is valid.
      */
-    private static boolean isSpecificDateFormat(String dateInfo) {
-        String[] dateAndTime = dateInfo.split(" ");
-        String time = dateAndTime[1];
-        if (!isNumeric(time)) {
+    private static boolean isValidDate(String dateInfo) {
+        // Assume date is in the format 2022-09-08 1800
+        String[] dateAndTime = dateInfo.split("-");
+        if (dateAndTime.length != 3 && !isNumeric(dateAndTime[0]) || !isNumeric(dateAndTime[1])) {
             return false;
         }
-        String[] dayMonthYear = dateAndTime[0].split("-");
-        return isNumeric(dayMonthYear[0]) && isNumeric(dayMonthYear[1]) && isNumeric(dayMonthYear[2]);
+        String[] yearTime = dateAndTime[2].split(" ");
+        return yearTime.length == 2 && isNumeric(yearTime[0]) && isNumeric(yearTime[1]);
     }
 
     private static boolean isNumeric(String strNum) {

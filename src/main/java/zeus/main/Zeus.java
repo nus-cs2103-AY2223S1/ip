@@ -1,5 +1,6 @@
 package zeus.main;
 
+import javafx.application.Platform;
 import zeus.command.Command;
 import zeus.exception.ZeusException;
 
@@ -34,9 +35,10 @@ public class Zeus {
      * @param input A string of input message.
      * @return A string representing the response to the input message.
      */
-    public String getResponse(String input) {
+    public String getResponse(String input) throws InterruptedException {
         if (isExit) {
-            return "You have exited.";
+            Thread.sleep(600);
+            Platform.exit();
         }
         try {
             ui.generateNewResponse();

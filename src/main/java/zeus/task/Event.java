@@ -1,6 +1,7 @@
 package zeus.task;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -9,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
 
     protected String datetime;
-    protected LocalDate datetimeFormatted;
+    protected LocalDateTime datetimeFormatted;
 
     /**
      * Constructs a Event.
@@ -28,7 +29,7 @@ public class Event extends Task {
      * @param description A String that describes the Event.
      * @param datetimeFormatted A LocalDate that represents the datetime of the Event.
      */
-    public Event(String description, LocalDate datetimeFormatted) {
+    public Event(String description, LocalDateTime datetimeFormatted) {
         super(description);
         this.datetimeFormatted = datetimeFormatted;
     }
@@ -74,8 +75,9 @@ public class Event extends Task {
         if (this.datetimeFormatted == null) {
             return "[E]" + super.toString() + " (at: " + this.datetime + ")";
         } else {
-            String d = this.datetimeFormatted.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-            return "[E]" + super.toString() + " (at: " + d + ")";
+            String dateAndTime = this.datetimeFormatted.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
+            return "[E]" + super.toString() + " (at: " + dateAndTime + ")";
+
         }
     }
 }

@@ -1,6 +1,7 @@
 package zeus.command;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import zeus.exception.ZeusException;
 import zeus.main.Storage;
@@ -16,7 +17,7 @@ public class AddEventCommand extends Command {
 
     private String description;
     private String datetimeDescription;
-    private LocalDate datetime;
+    private LocalDateTime datetime;
 
     /**
      * Constructor of AddEventCommand class.
@@ -33,9 +34,9 @@ public class AddEventCommand extends Command {
      * Constructor of AddEventCommand class.
      *
      * @param description Description of Event.
-     * @param datetime LocalDate that represents event date.
+     * @param datetime LocalDateTime that represents event date.
      */
-    public AddEventCommand(String description, LocalDate datetime) {
+    public AddEventCommand(String description, LocalDateTime datetime) {
         this.description = description;
         this.datetime = datetime;
     }
