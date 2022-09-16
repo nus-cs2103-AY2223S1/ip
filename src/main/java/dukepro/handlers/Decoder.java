@@ -152,7 +152,7 @@ public class Decoder {
             throw new BadFormatException("delete", "delete", "<EXPENSE ID>", "");
         }
         int expenseNo = Integer.parseInt(delExpense[1]);
-        if (expenseNo > len) {
+        if (expenseNo > len || expenseNo < 1) {
             throw new BadTaskOperationException("delete");
         }
         return expenseNo;
@@ -176,7 +176,7 @@ public class Decoder {
             throw new BadFormatException("delete", "delete", "<TASK ID>", "");
         }
         int taskNo = Integer.parseInt(deleteTasks[1]);
-        if (taskNo > len) {
+        if (taskNo > len || taskNo < 1) {
             throw new BadTaskOperationException("delete");
         }
         return taskNo;
@@ -204,7 +204,7 @@ public class Decoder {
             throw new BadTaskOperationException(doneTasks[0]);
         }
         int taskNo = Integer.parseInt(doneTasks[1]);
-        if (taskNo > len) {
+        if (taskNo > len || taskNo < 1) {
             throw new BadTaskOperationException(doneTasks[0]);
         }
         return taskNo;
