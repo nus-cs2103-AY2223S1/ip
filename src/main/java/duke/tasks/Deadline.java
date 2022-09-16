@@ -16,6 +16,7 @@ public class Deadline extends Task{
 
     /**
      * Returns string representation of the type and isDone attributes of a Deadline object.
+     *
      * @return String representation of the status of a Deadline object.
      */
     @Override
@@ -29,6 +30,7 @@ public class Deadline extends Task{
 
     /**
      * Returns string representation of a Deadline object.
+     *
      * @return String representation of a Deadline object.
      */
     @Override

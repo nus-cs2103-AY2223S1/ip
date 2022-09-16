@@ -2,15 +2,17 @@ package duke;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
+import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
-import duke.commands.FindCommand;
-import duke.commands.EventCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.DeadlineCommand;
 import duke.tasks.Task;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
@@ -25,6 +27,7 @@ import duke.exception.MissingDescriptionException;
 public class Parser {
     /**
      * Parses the given input to determine the type of command the input contains.
+     *
      * @param input Input to be parsed.
      * @return Command object
      * @throws DukeException
@@ -42,6 +45,8 @@ public class Parser {
         }
 
         switch (command) {
+        case "bye":
+            return new ExitCommand();
         case "list":
             return new ListCommand();
         case "mark":
@@ -65,6 +70,7 @@ public class Parser {
 
     /**
      * Parses text from file when tasks are loaded from the hard disk.
+     *
      * @param line String to be parsed.
      * @return Task parsed from input string.
      */

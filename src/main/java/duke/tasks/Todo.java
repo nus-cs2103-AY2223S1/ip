@@ -10,6 +10,7 @@ public class Todo extends Task{
 
     /**
      * Returns string representation of the type and isDone attributes of a Todo object.
+     *
      * @return String representation of the status of a Todo object.
      */
     @Override
@@ -23,6 +24,7 @@ public class Todo extends Task{
 
     /**
      * Returns string representation of a Todo object.
+     *
      * @return String representation of a Todo object.
      */
     @Override

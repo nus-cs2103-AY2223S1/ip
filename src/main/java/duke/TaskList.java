@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+
 import duke.tasks.Task;
 
 /**
@@ -15,6 +16,7 @@ public class TaskList {
 
     /**
      * Appends a task to the end of the list.
+     *
      * @param t Task to be appended.
      */
     public void append(Task t) {
@@ -23,6 +25,7 @@ public class TaskList {
 
     /**
      * Removes a task from the list at the specified index.
+     *
      * @param i Index of list where a task is to be removed.
      */
     public void remove(int i) {
@@ -31,6 +34,7 @@ public class TaskList {
 
     /**
      * Returns number of tasks in the list.
+     *
      * @return number of tasks in the list.
      */
     public int length() {
@@ -39,6 +43,7 @@ public class TaskList {
 
     /**
      * Returns task at specified index.
+     *
      * @param i Index of list where a task is to be retrieved.
      * @return Task at specified index.
      */

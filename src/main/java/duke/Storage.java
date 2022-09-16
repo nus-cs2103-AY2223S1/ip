@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
 import duke.tasks.Task;
 
 /**
@@ -19,6 +20,7 @@ public class Storage {
 
     /**
      * Retrieves tasks from the hard disk and stores them in a list.
+     *
      * @param taskList List where tasks are to be loaded to.
      * @throws FileNotFoundException
      */
@@ -34,6 +36,7 @@ public class Storage {
 
     /**
      * Saves tasks to the hard disk.
+     *
      * @param taskList List from which tasks are to be saved to the hard disk.
      * @throws IOException
      */

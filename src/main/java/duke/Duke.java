@@ -3,6 +3,7 @@ package duke;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
+
 import duke.commands.Command;
 import duke.exception.DukeException;
 
@@ -33,9 +34,6 @@ public class Duke {
 
     public String getResponse(String input) throws IOException {
         try {
-            if (input.equals("bye")) {
-                return "Bye. Hope to see you again soon!";
-            }
             Command c = Parser.parseInput(input);
             return c.execute(this.taskList, this.ui, this.storage);
         } catch (DukeException d) {

@@ -28,12 +28,14 @@ public abstract class Task {
 
     /**
      * Returns string representation of the type and isDone attributes of a Task object.
+     *
      * @return String representation of the status of a Task object.
      */
     public abstract String getStatus();
 
     /**
      * Returns if a task is done.
+     *
      * @return Whether a task is done.
      */
     public boolean getIsDone() {
@@ -42,6 +44,7 @@ public abstract class Task {
 
     /**
      * Returns description of task.
+     *
      * @return Description of task.
      */
     public String getDescription() {

@@ -16,6 +16,7 @@ public class Event extends Task{
 
     /**
      * Returns string representation of the type and isDone attributes of an Event object.
+     *
      * @return String representation of the status of an Event object.
      */
     @Override
@@ -29,6 +30,7 @@ public class Event extends Task{
 
     /**
      * Returns string representation of an Event object.
+     *
      * @return String representation of an Event object.
      */
     @Override
