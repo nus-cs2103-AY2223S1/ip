@@ -13,6 +13,7 @@ public class ExitCommand extends Command {
      * @param tasks Task list containing the task to be marked.
      * @param ui Ui that will output messages to the user.
      * @param storage Storage on hard disk that stores the task list.
+     * @return String to bid farewell.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {

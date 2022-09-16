@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Storage {
-    private String filePath;
     private File file;
 
     /**
@@ -18,7 +17,6 @@ public class Storage {
      * @param filePath File path specified as a String.
      */
     public Storage(String filePath) {
-        this.filePath = filePath;
         try {
             this.file = new File(filePath);
             if (file.createNewFile()) {
@@ -46,7 +44,8 @@ public class Storage {
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            //todo
+            //readData is only called on duke object that has storage initialised with "createNewFile",
+            // hence file will always exist.
         }
     }
 

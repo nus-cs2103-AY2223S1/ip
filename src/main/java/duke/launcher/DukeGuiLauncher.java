@@ -1,5 +1,6 @@
-package duke;
+package duke.launcher;
 
+import duke.Duke;
 import javafx.application.Application;
 
 public class DukeGuiLauncher {

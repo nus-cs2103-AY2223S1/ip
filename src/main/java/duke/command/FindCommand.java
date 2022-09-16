@@ -12,6 +12,14 @@ public class FindCommand extends Command{
         this.search = search;
     }
 
+    /**
+     * Method that executes the find command to find tasks with descriptions containing the search input.
+     *
+     * @param tasks Task list containing the task to be marked.
+     * @param ui Ui that will output messages to the user.
+     * @param storage Storage on hard disk that stores the task list.
+     * @return String that shows all tasks with matching descriptions.
+     */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.notifyFound();

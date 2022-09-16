@@ -1,3 +1,9 @@
 T|true|your mother|0|
 D|false|your sister|01/01/2025 1900|
 E|false|your father|01/01/2033 1500|
+T|false|your mother|0|
+T|false|your sister|0|
+T|false|your family|0|
+T|false|your granny|0|
+T|false|your grandpa|0|
+T|false|your brother|0|

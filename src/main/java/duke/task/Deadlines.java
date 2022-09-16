@@ -13,8 +13,8 @@ public class Deadlines extends Task {
      * Constructor that creates Deadline object with specified description, deadline, and isDone status.
      *
      * @param description Description of Deadline.
-     * @param deadline Timing of the Deadline.
-     * @param isDone isDone status of the Deadline.
+     * @param deadline    Timing of the Deadline.
+     * @param isDone      isDone status of the Deadline.
      * @throws DateTimeParseException Exception thrown when format of input date is invalid.
      */
     public Deadlines(String description, LocalDateTime deadline, boolean isDone) throws DateTimeParseException {
@@ -27,7 +27,7 @@ public class Deadlines extends Task {
     @Override
     public String processData() {
         String str;
-        if (this.getIsDone()){
+        if (this.getIsDone()) {
             str = String.format("D|true|%s|%s|", this.getDescription(), this.deadline.format(DATE_TIME_INPUT_FORMAT));
         } else {
             str = String.format("D|false|%s|%s|", this.getDescription(), this.deadline.format(DATE_TIME_INPUT_FORMAT));
@@ -38,7 +38,7 @@ public class Deadlines extends Task {
     @Override
     public String toString() {
         String str;
-        if (this.getIsDone()){
+        if (this.getIsDone()) {
             str = String.format("[D] %s [X] (by %s)", this.getDescription(),
                     this.deadline.format(DATE_TIME_OUTPUT_FORMAT));
         } else {
@@ -47,53 +47,4 @@ public class Deadlines extends Task {
         }
         return str;
     }
-
-//    public duke.task.Deadlines(String input)
-//            throws duke.dukeexception.MissingDescriptionException, duke.dukeexception.MissingDeadlineException, DateTimeParseException {
-//        super();
-//        try {
-//            //remove initial command
-//            String sub = input.substring(9);
-//            int timeIndex = sub.lastIndexOf("/by");
-//            //get description part of input string
-//            if (timeIndex == -1) {
-//                throw new duke.dukeexception.MissingDeadlineException();
-//            }
-//            String description = sub.substring(0, timeIndex - 1);
-//            this.description = description;
-//            String deadlineString = sub.substring(timeIndex + 4);
-//            LocalDateTime deadline = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
-//            this.deadline = deadline;
-//        } catch (StringIndexOutOfBoundsException e) {
-//            throw new duke.dukeexception.MissingDescriptionException();
-//        }
-//    }
-//
-//    public duke.task.Deadlines(String input, boolean isDone)
-//            throws duke.dukeexception.MissingDescriptionException, duke.dukeexception.MissingDeadlineException, DateTimeParseException {
-//        super(isDone);
-//        try {
-//            //remove initial command
-//            String sub = input.substring(9);
-//            int timeIndex = sub.lastIndexOf("/by");
-//            //get description part of input string
-//            if (timeIndex == -1) {
-//                throw new duke.dukeexception.MissingDeadlineException();
-//            }
-//            String description = sub.substring(0, timeIndex - 1);
-//            this.description = description;
-//            String deadlineString = sub.substring(timeIndex + 4);
-//            LocalDateTime deadline = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
-//            this.deadline = deadline;
-//        } catch (StringIndexOutOfBoundsException e) {
-//            throw new duke.dukeexception.MissingDescriptionException();
-//        }
-//    }
-//
-//    public duke.task.Deadlines(String description, String deadlineString, boolean isDone) throws DateTimeParseException {
-//        super(isDone);
-//        this.description = description;
-//        LocalDateTime deadline = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
-//        this.deadline = deadline;
-//    }
 }

@@ -1,7 +1,6 @@
 package duke;
 
 import duke.command.*;
-import duke.dukeexception.MissingDeadlineException;
 import duke.dukeexception.MissingTimingException;
 import duke.dukeexception.UnknownCommandException;
 import duke.task.Deadlines;
@@ -17,7 +16,6 @@ import static java.lang.Boolean.parseBoolean;
 
 public class Parser {
     private static DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-    private static DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
 
     /**
      * Method that takes in user input and parses through it to return an executable command.
@@ -57,32 +55,16 @@ public class Parser {
             }
             //logic to create duke.task.Deadlines
             if (input.indexOf("deadline") == 0) {
-                //remove initial command
                 String sub = input.substring(9);
-                int timeIndex = sub.lastIndexOf("/by");
-                if (timeIndex == -1) {
-                    throw new MissingDeadlineException();
-                }
-                //get description part of input string
-                String description = sub.substring(0, timeIndex - 1);
-                String deadlineString = sub.substring(timeIndex + 4);
-                LocalDateTime timing = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
-                Deadlines deadline = new Deadlines(description, timing, false);
+                //parse deadline details
+                Deadlines deadline = parseDeadlineInput(sub);
                 return new AddCommand(deadline);
             }
             //logic to create duke.task.Events
             if (input.indexOf("event") == 0) {
-                //remove initial command
                 String sub = input.substring(6);
-                int timeIndex = sub.lastIndexOf("/at");
-                //get description part of input string
-                if (timeIndex == -1) {
-                    throw new MissingTimingException();
-                }
-                String description = sub.substring(0, timeIndex - 1);
-                String timingString = sub.substring(timeIndex + 4);
-                LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
-                Events event = new Events(description, timing, false);
+                //parse event details
+                Events event = parseEventInput(sub);
                 return new AddCommand(event);
             }
             if (input.indexOf("delete") == 0) {
@@ -102,13 +84,49 @@ public class Parser {
         } catch (IndexOutOfBoundsException e) {
             System.out.println("duke.task.Task with that index does not exist!");
         } catch (MissingTimingException e) {
-            System.out.println("Please specify the timeline!");
+            System.out.println("Please specify the time!");
         } catch (DateTimeParseException e) {
             System.out.println("Please input a valid time in the format DD/MM/YYYY HHMM");
-        } catch (MissingDeadlineException e) {
-            System.out.println("Please specify the deadline!");
         }
         throw new UnknownCommandException();
+    }
+
+    /**
+     * Method that takes in String input to create a deadline and returns a Deadlines object.
+     *
+     * @param input String representation of input command.
+     * @return Deadlines object encapsulating information from input
+     * @throws MissingTimingException When the input is missing a specified time.
+     */
+    public static Deadlines parseDeadlineInput(String input) throws MissingTimingException {
+        int timeIndex = input.lastIndexOf("/by");
+        if (timeIndex == -1) {
+            throw new MissingTimingException();
+        }
+        String description = input.substring(0, timeIndex - 1);
+        String deadlineString = input.substring(timeIndex + 4);
+        LocalDateTime timing = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
+        Deadlines deadline = new Deadlines(description, timing, false);
+        return deadline;
+    }
+
+    /**
+     * Method that takes in String input to create a deadline and returns an Events object.
+     *
+     * @param input String representation of input command.
+     * @return Events object encapsulating information from input
+     * @throws MissingTimingException When the input is missing a specified time.
+     */
+    public static Events parseEventInput(String input) throws MissingTimingException {
+        int timeIndex = input.lastIndexOf("/at");
+        if (timeIndex == -1) {
+            throw new MissingTimingException();
+        }
+        String description = input.substring(0, timeIndex - 1);
+        String timingString = input.substring(timeIndex + 4);
+        LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
+        Events event = new Events(description, timing, false);
+        return event;
     }
 
     /**
