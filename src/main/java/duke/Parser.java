@@ -6,6 +6,7 @@ import duke.command.DeleteCommand;
 import duke.command.EmptyCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.exception.DukeException;
@@ -49,6 +50,8 @@ public class Parser {
                 return new ListCommand();
             case "find":
                 return new FindCommand(fullCommand.substring(5));
+            case "help":
+                return new HelpCommand();
             default:
                 return new EmptyCommand();
             }

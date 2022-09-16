@@ -30,8 +30,10 @@ public class EmptyCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         throw new DukeException("I'm sorry, but I don't know what that means.\n"
-                + "To see what command you can input, please visit https://jhchee18.github.io/ip/");
+                + "To see what command you can input, please visit:\n"
+                + "'https://jhchee18.github.io/ip/' or enter command 'help'");
     }
+
 
     /**
      * Returns false as Empty is not a terminating Command.
