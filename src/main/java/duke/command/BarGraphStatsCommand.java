@@ -45,8 +45,7 @@ public class BarGraphStatsCommand extends StatsCommand {
             String dateQueryString = constructString.substring(5);
             constructWeekBarGraph(dateQueryString);
         } else {
-            throw new DukeException("Hm, bobo doesn't recognise this flag "
-                    + constructString);
+            constructDayBarGraph(constructString);
         }
     }
 
