@@ -2,7 +2,10 @@ package duke.commands;
 
 public class UnrecognisedCommand extends Command {
 
-    public UnrecognisedCommand() {
+    String cmdString;
+
+    public UnrecognisedCommand(String cmdString) {
+        this.cmdString = cmdString;
     }
 
     /**
@@ -11,7 +14,9 @@ public class UnrecognisedCommand extends Command {
      */
     @Override
     public String execute() {
-        String response = "Oops! I'm sorry, but I don't know what that means.";
+        String response = String.format(
+                "Oops! I'm sorry, but I don't know what \"%s\" means.",
+                cmdString);
         return response;
     }
 

@@ -47,7 +47,7 @@ public class InputParser {
         case "event":
             return new AddTaskCommand(storage, tasks, TaskType.EVENT, body);
         default:
-            return new UnrecognisedCommand();
+            return new UnrecognisedCommand(command);
         }
     }
 
