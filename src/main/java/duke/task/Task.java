@@ -7,12 +7,12 @@ package duke.task;
  */
 public abstract class Task {
     protected String content;
-    protected boolean status;
+    protected boolean isDone;
     protected String tag;
 
     protected Task(String content) {
         this.content = content;
-        this.status = false;
+        this.isDone = false;
         this.tag = "";
     }
 
@@ -20,11 +20,11 @@ public abstract class Task {
      * Marks this task as completed.
      */
     public void markComplete() {
-        this.status = true;
+        this.isDone = true;
     }
 
     public void unMarkComplete() {
-        this.status = false;
+        this.isDone = false;
     }
 
     public void addTag(String tag) {
@@ -40,7 +40,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        if (status) {
+        if (isDone) {
             return String.format("[x] %s", content);
         } else {
             return String.format("[ ] %s", content);

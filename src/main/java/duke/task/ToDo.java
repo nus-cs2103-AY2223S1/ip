@@ -19,6 +19,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toFileData() {
-        return String.format("T | %d | %s | %s", this.status ? 1 : 0, this.content, this.tag);
+        return String.format("T | %d | %s | %s", this.isDone ? 1 : 0, this.content, this.tag);
     }
 }

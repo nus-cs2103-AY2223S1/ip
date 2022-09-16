@@ -13,22 +13,22 @@ import duke.tasklist.TaskList;
 public class Parser {
 
     /**
-     * Type of tasks that can be added.
+     * Types of tasks that can be added.
      */
     public enum TaskType {
         TODO, DEADLINE, EVENT;
     }
 
     /**
-     * Type of commands that involve the indexing of the taskList.
+     * Types of commands that involve the indexing of the taskList.
      */
     public enum IndexCommands {
         UNMARK, MARK, DELETE, TAG
     }
 
     /**
-     * Static method to parse string user input and returns the string response or 
-     * calls the requisite functions to return the string response.
+     * Parses string user input and returns the string response.
+     * 
      * 
      * @param input String input from user to parse.
      * @param taskList taskList object to handle the command instructions.
@@ -83,7 +83,7 @@ public class Parser {
     }
 
     /**
-     * Static method to parse commands that deal with changing the taskList contents with respect to an index.
+     * Parses commands that deal with changing the taskList contents with respect to an index.
      * 
      * @param content String representation of index of task in taskList to modify.
      * @param type Enum type of command to perform on taskList.
@@ -116,7 +116,7 @@ public class Parser {
     }
 
     /**
-     * Static method to parse commands that deal with adding tasks into the taskList.
+     * Parses commands that deal with adding tasks into the taskList.
      * 
      * @param content String representing the details of the task to be added.
      * @param type Enum type of task to be added.
@@ -187,6 +187,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses tag and adds tag to specified task.
+     * 
+     * @param content String representing tag and task index.
+     * @param taskList taskList object to add the task into.
+     * @return String representing the response after the tag had been added.
+     * @throws DukeException if formatting of tag or task index is incorrect.
+     */
     public static String parseTag(String content, TaskList taskList) throws DukeException {
         String[] tagSplit = content.split(" ", 2);
         if (tagSplit.length < 2) {

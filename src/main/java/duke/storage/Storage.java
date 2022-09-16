@@ -20,7 +20,7 @@ import duke.tasklist.TaskList;
 public class Storage {
 
     /**
-     * Static Method to load the stored tasks into the taskList for Duke to read.
+     * Loads the stored tasks into the taskList for Duke to read.
      *
      * @param taskList taskList for the tasks in the file to be stored.
      * @param path Text Path to the text file where the tasks are stored.
@@ -79,7 +79,7 @@ public class Storage {
     }
 
     /**
-     * Static method to write the taskList into a file to be stored.
+     * Writes the taskList into a file to be stored.
      *
      * @param taskList taskList containing the tasks to be stored.
      * @param path Path to the file where the tasks will be stored.

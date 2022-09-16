@@ -31,7 +31,7 @@ public class Event extends Task {
      */
     @Override
     public String toFileData() {
-        return String.format("E | %d | %s | %s %s | %s", this.status ? 1 : 0, this.content,
+        return String.format("E | %d | %s | %s %s | %s", this.isDone ? 1 : 0, this.content,
                 this.date.toString(), this.time.toString(), this.tag);
     }
 }
