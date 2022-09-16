@@ -6,14 +6,14 @@ import zeus.storage.Storage;
 import zeus.task.TaskList;
 
 /**
- * Represents a command to exit Duke.
+ * Represents a command to exit Zeus.
  *
  * @author Derrick Khoo
  */
 public class ByeCommand extends Command {
 
     /**
-     * Returns true if command was to exit Duke.
+     * Returns true if command was to exit Zeus.
      *
      * @return true
      */
@@ -23,7 +23,7 @@ public class ByeCommand extends Command {
     }
 
     /**
-     * Handles the command to exit Duke.
+     * Handles the command to exit Zeus.
      *
      * @param storage  the <code>Storage</code> dealing with loading and saving tasks in a file
      * @param ui       the user interfaces that deals with user inputs

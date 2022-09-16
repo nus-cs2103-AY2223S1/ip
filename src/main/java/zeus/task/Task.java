@@ -15,6 +15,19 @@ public class Task {
     protected boolean isDone;
 
     /**
+     * Constructs a <code>Task</code> from preloaded file.
+     *
+     * @param description the description of the task
+     * @param tag the tag assigned to the task
+     */
+    public Task(String description, String tag) {
+        this.description = description;
+        this.tag = tag;
+        this.isDone = false;
+        assert !description.isBlank();
+    }
+
+    /**
      * Constructs a <code>Task</code>.
      *
      * @param description the description of the task
@@ -58,7 +71,7 @@ public class Task {
      */
     public String toFileDescription() {
         return (this.isDone ? "1 " : "0 ") + "| " + this.description
-                + this.tag;
+                + " | " + this.tag;
     }
 
     /**

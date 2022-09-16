@@ -14,7 +14,7 @@ import zeus.task.TaskList;
 public abstract class Command {
 
     /**
-     * Returns a boolean that denotes if Duke should exit or not upon handling this command.
+     * Returns a boolean that denotes if Zeus should exit or not upon handling this command.
      *
      * @return true if and only if this is a bye command
      */
@@ -23,7 +23,7 @@ public abstract class Command {
     }
 
     /**
-     * Handles the command made by user to Duke.
+     * Handles the command made by user to Zeus.
      *
      * @param storage  the <code>Storage</code> dealing with loading and saving tasks in a file
      * @param ui       the user interfaces that deals with user inputs

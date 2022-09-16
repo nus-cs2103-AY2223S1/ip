@@ -1,7 +1,7 @@
 package zeus.command;
 
 /**
- * Enums for duke
+ * Enums for zeus.
  */
 public enum Commands {
     TODO, DEADLINE, EVENT

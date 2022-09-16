@@ -12,6 +12,7 @@ import zeus.command.MarkDoneCommand;
 import zeus.command.MarkUndoneCommand;
 import zeus.command.OnDateCommand;
 import zeus.command.TagCommand;
+import zeus.command.UntagCommand;
 import zeus.task.Deadline;
 import zeus.task.Event;
 import zeus.task.Todo;
@@ -121,7 +122,7 @@ public class Parser {
     }
 
     /**
-     * Method that handles a tagging command.
+     * Handles the case where user inputs a tag command.
      *
      * @param input the given input command from the user
      * @return a formatted array of Strings
@@ -139,10 +140,10 @@ public class Parser {
     }
 
     /**
-     * Method to untag a task.
+     * Handles the case where user inputs a untag command.
      *
      * @param input the input from the user
-     * @return the integer index of the task
+     * @return the integer index of the task user wants to untag
      * @throws ZeusException if input from user is invalid
      */
     public static int handleUntag(String input) throws ZeusException {
@@ -203,6 +204,9 @@ public class Parser {
             int index = Integer.parseInt(args[0]);
             String tag = args[1];
             cmd = new TagCommand(tag, index);
+            break;
+        case "untag":
+            cmd = new UntagCommand(handleUntag(second));
             break;
         default:
             throw new ZeusException("Invalid command entered. I don't recognize it. Sorry!");

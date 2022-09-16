@@ -104,7 +104,6 @@ public class Storage {
                 }
             } else {
                 data.createNewFile();
-                throw new ZeusException("Welcome! This is your first time using Zeus right?");
             }
         } catch (IOException e) {
             throw new ZeusException("Are you a hacker? How on earth did you get to this stage!?");

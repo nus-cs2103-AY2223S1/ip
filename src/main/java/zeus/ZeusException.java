@@ -1,7 +1,7 @@
 package zeus;
 
 /**
- * A <code>RuntimeException</code> thrown by Duke due to invalid input given by user.
+ * A <code>RuntimeException</code> thrown by Zeus due to invalid input given by user.
  *
  * @author Derrick Khoo
  */
@@ -9,7 +9,7 @@ public class ZeusException extends Exception {
     private String message;
 
     /**
-     * Constructs a new exception which is thrown by Duke with the message intended.
+     * Constructs a new exception which is thrown by Zeus with the message intended.
      *
      * @param message the message to be shown to the user
      */

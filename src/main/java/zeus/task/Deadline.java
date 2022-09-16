@@ -12,9 +12,10 @@ import zeus.ZeusException;
  * @author Derrick Khoo
  */
 public class Deadline extends Task {
-    public static final int SPLIT_LIMIT_DEADLINE = 4;
+    public static final int SPLIT_LIMIT_DEADLINE = 5;
     public static final int INDEX_OF_DESCRIPTION = 2;
-    public static final int INDEX_OF_DATE_BY = 3;
+    public static final int INDEX_OF_TAG = 3;
+    public static final int INDEX_OF_DATE_BY = 4;
     protected LocalDate by;
 
     /**
@@ -25,6 +26,19 @@ public class Deadline extends Task {
      */
     public Deadline(String description, LocalDate by) {
         super(description);
+        this.by = by;
+        assert !description.isBlank();
+    }
+    /**
+     * Constructs a deadline-type task from preloaded file.
+     *
+     * @param description the description of the task
+     * @param by          the date of the deadline
+     * @param tag         the tag assigned to this deadline-type task
+     */
+    public Deadline(String description, LocalDate by, String tag) {
+        super(description);
+        this.tag = tag;
         this.by = by;
         assert !description.isBlank();
     }
@@ -50,9 +64,10 @@ public class Deadline extends Task {
         String[] strArray = input.split(" \\| ", SPLIT_LIMIT_DEADLINE);
         String description = strArray[INDEX_OF_DESCRIPTION];
         String by = strArray[INDEX_OF_DATE_BY];
+        String tag = strArray[INDEX_OF_TAG];
         try {
             LocalDate dateBy = LocalDate.parse(by);
-            Deadline deadline = new Deadline(description, dateBy);
+            Deadline deadline = new Deadline(description, dateBy, tag);
             if (strArray[1].equals("1")) {
                 deadline.markDone();
             }
