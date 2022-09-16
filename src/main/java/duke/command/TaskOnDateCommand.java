@@ -16,7 +16,7 @@ public class TaskOnDateCommand extends Command {
     private LocalDate date;
 
     /**
-     * Create TaskOnDateCommand.
+     * Creates TaskOnDateCommand.
      *
      * @param date Specified date to filter for.
      */
