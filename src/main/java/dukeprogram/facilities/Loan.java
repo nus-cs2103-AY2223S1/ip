@@ -47,7 +47,7 @@ public class Loan implements Serializable {
 
     @Override
     public String toString() {
-        String representation = "> " + creditor.getName() + "\t\t| ";
+        String representation = "> " + creditor.getName() + "\n\t\t| ";
 
         if (moneyOwed > 0) {
             representation += "\tOwed $" + moneyOwed;
