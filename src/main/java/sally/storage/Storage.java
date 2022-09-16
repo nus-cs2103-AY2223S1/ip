@@ -20,15 +20,15 @@ import java.util.Scanner;
  */
 
 public class Storage {
-    private final String filePath;
+    private String filePath = "data/Sally.txt";
+    private static final String DIRECTORY = System.getProperty("user.dir");
+
 
     /**
      * Constructor for Storage class
-     *
-     * @param filePath Path to file for storage.
      */
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage() {
+        this.filePath = DIRECTORY + "/" + filePath;
     }
 
     /**
@@ -38,11 +38,13 @@ public class Storage {
      */
     public ArrayList<Task> load() throws SallyException {
         ArrayList<Task> tasks = new ArrayList<>();
-
         try {
             File file = new File(filePath);
+
             if (!file.exists()) {
-                return tasks;
+                File parent = new File(DIRECTORY + "/data");
+                boolean isDirectoryCreated = parent.mkdir();
+                boolean isFileCreated = file.createNewFile();
             }
 
             Scanner sc = new Scanner(file);
@@ -81,7 +83,7 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            throw new SallyException("Oops! An IOException occurred.");
+            throw new SallyException("Oops! An IOException occurred. load()");
         } catch (NumberFormatException e) {
             throw new SallyException("Oops! Please enter 0/1 to mark the tasks.");
         }
@@ -96,7 +98,6 @@ public class Storage {
      */
     public void savesFile(TaskList tasks) throws SallyException {
         try {
-            File file = new File(filePath);
             FileWriter fw = new FileWriter(filePath);
 
             for (Task task : tasks.getAllTasks()) {
@@ -105,7 +106,7 @@ public class Storage {
 
             fw.close();
         } catch (IOException e) {
-            throw new SallyException("Oops! An IOException has occurred.");
+            throw new SallyException("Oops! An IOException has occurred. savesFile");
         }
     }
 

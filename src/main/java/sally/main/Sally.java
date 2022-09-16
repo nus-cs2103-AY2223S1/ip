@@ -32,7 +32,7 @@ public class Sally {
      */
     public Sally(String filePath) {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage();
         try {
             tasks = new TaskList(storage.load());
         } catch (SallyException e) {
@@ -46,7 +46,7 @@ public class Sally {
      */
     public Sally() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage();
         try {
             tasks = new TaskList(storage.load());
         } catch (SallyException e) {
