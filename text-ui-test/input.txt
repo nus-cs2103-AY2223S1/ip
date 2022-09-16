@@ -1,0 +1,9 @@
+deadline CS2103 /by 16-9-2022 2359
+deadline pack /by 8-9-2022
+event cca /at 7-9-2022 1900
+list
+mark 3
+delete 4
+delete 2
+list
+bye

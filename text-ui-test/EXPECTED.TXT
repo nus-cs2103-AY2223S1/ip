@@ -1,7 +1,18 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hi, I'm Duke. What can I do for you?
+Added new deadline task:
+[D][0] CS2103 | 16 Sep 2022 2359
+Added new deadline task:
+[D][0] pack | 8 Sep 2022
+Added new event task:
+[E][0] cca | 7 Sep 2022 1900
+[D][0] CS2103 | 16 Sep 2022 2359
+[D][0] pack | 8 Sep 2022
+[E][0] cca | 7 Sep 2022 1900
+I've marked this task as complete:
+[E][1] cca | 7 Sep 2022 1900
+No such task!
+I've deleted this task:
+[D][0] pack | 8 Sep 2022
+[D][0] CS2103 | 16 Sep 2022 2359
+[E][0] cca | 7 Sep 2022 1900
+Bye!
