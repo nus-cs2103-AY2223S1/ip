@@ -27,7 +27,7 @@ public class ListCommand extends Command {
             CommandHistory commandHistory) {
         MultiLineFormatter mFormatter = new MultiLineFormatter();
         if (taskList.getSize() == 0) {
-            String message = "\t\t\t" + "No items are in the list";
+            String message = "No items are in the list";
             mFormatter.add(message);
         }
         for (int i = 0; i < taskList.getSize(); i++) {
