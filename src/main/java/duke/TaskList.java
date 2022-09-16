@@ -17,11 +17,11 @@ public class TaskList {
         this.storage = storage;
         this.ui = ui;
     }
-    
+
     public TaskList(ArrayList<Task> data) {
         this.data = data;
     }
-    
+
     /**
      * Adds the task to the list and to the data file.
      *

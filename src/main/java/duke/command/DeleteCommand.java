@@ -8,7 +8,7 @@ import duke.TaskList;
  */
 public class DeleteCommand extends Command {
     private final int pos;
-    
+
     public DeleteCommand(int pos) {
         this.pos = pos;
     }

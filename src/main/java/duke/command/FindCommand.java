@@ -7,7 +7,7 @@ import duke.TaskList;
  */
 public class FindCommand extends Command {
     private final String description;
-    
+
     public FindCommand(String description) {
         this.description = description;
     }

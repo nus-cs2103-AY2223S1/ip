@@ -9,7 +9,7 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private UI ui;
-    
+
     public Duke(String filePath, String directory) {
         ui = new UI();
         try {

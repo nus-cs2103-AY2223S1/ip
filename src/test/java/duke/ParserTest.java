@@ -17,7 +17,7 @@ public class ParserTest {
         assertTrue(Parser.parse("todo borrow book") instanceof AddToDoCommand);
         assertEquals(new AddToDoCommand("borrow book"), Parser.parse("todo borrow book"));
     }
-    
+
     @Test
     public void parse_randomCommand_throwsDukeException() {
         try {

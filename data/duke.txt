@@ -5,3 +5,4 @@
 5.[D][ ] group report (by: FEB 03 2022)
 6.[D][ ] hello (by: FEB 02 2022)
 7.[E][ ] hello (at: 2pm)
+8.[T][ ] read book

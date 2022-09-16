@@ -20,7 +20,7 @@ import duke.task.ToDoTask;
  */
 public class Storage {
     private final String filePath;
-    
+
     public Storage(String filePath, String directory) throws DukeException {
         this.filePath = filePath;
         try {
@@ -33,7 +33,7 @@ public class Storage {
             throw new DukeException("Error creating data directory and/or file");
         }
     }
-    
+
     /**
      * Retrieves information from the data file to populate an ArrayList.
      *

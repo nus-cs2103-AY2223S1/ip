@@ -9,7 +9,7 @@ import duke.TaskList;
 public class MarkCommand extends Command {
     private final boolean isDone;
     private final int pos;
-    
+
     public MarkCommand(boolean isDone, int pos) {
         this.isDone = isDone;
         this.pos = pos;
