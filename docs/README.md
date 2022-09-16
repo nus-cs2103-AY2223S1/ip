@@ -10,14 +10,14 @@ of a Graphical User Interface(GUI).
 2. Download the latest Duke.jar from [here](https://github.com/LJXSean/ip/releases/tag/A-Release).
 
 
-4. Copy the file to the folder you want to use as the home folder for your AddressBook.
+3. Copy the file to the folder you want to use as the home folder for your AddressBook.
 
 
-5. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
 
 ![](Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+ 5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
    Some example commands you can try:
 
 - **/help** : Displays all commands
@@ -26,7 +26,7 @@ of a Graphical User Interface(GUI).
 - **delete 1** : Deletes the 1st task shown in the task list.
 - **bye** : Exits the app.
 
-7. Refer to the [Features](#Features) below for details of each command.
+ 6. Refer to the [Features](#Features) below for details of each command.
 
 ## Features
 ### Notes about the command format:
