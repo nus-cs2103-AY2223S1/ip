@@ -35,12 +35,14 @@ public class Storage {
      * @throws FileNotFoundException
      */
     public static String printFileContents(String filePath) throws FileNotFoundException {
-        File f = new File(filePath); // create a File for the given file path
-        Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        File f = new File(filePath);
+        Scanner s = new Scanner(f);
         String str = "";
+        int counter = 1;
         while (s.hasNext()) {
-            //System.out.println(s.nextLine());
-            str += s.nextLine() + "\n";
+            str += counter + ". " + s.nextLine() + "\n";
+            counter++;
+            s.nextLine();
         }
         if (str.equals("")) {
             return "No tasks in task manager";

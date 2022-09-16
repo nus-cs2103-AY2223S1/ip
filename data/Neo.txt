@@ -1,10 +1,4 @@
-[D][ ] read book  (by: Feb 02 2022)
+[D][ ] read book  (by: Feb 02 2022) priority: high
 
-[D][X] return book  (by: Apr 04 2022)
-
-[T][ ] solder wire
-
-[T][ ] buy books
-
-[T][ ] finish assignment
+[D][X] return book  (by: Apr 04 2022) priority: low
 
