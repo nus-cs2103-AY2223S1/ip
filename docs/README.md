@@ -2,6 +2,13 @@
 
 Byu is a desktop app for managing your tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
+## Quick Start
+
+1. Ensure you have Java 11 or above installed in your Computer.
+2. Download the latest byu.jar from [here](https://github.com/tlx02/ip/releases/tag/v2.0).
+3. Copy the file to the folder you want to use as the home folder for Byu.
+4. Double-click the file to start the app.
+
 ## Notes about the command format
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
