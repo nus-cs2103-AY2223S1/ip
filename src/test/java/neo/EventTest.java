@@ -26,6 +26,7 @@ public class EventTest {
         assertEquals("X", arrayLL.getTask(0).getIsDone());
     }
 
+    /*
     @Test
     public void EventUnMark() throws NeoException, IOException {
         Event e = new Event("return book", "2022-05-06");
@@ -36,6 +37,6 @@ public class EventTest {
         UnMarkCommand mc = new UnMarkCommand(ui, stor, arrayLL);
         mc.complete("1");
         assertEquals(" ", arrayLL.getTask(0).getIsDone());
-    }
+    }*/
 }
 

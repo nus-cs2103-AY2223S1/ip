@@ -1,4 +1,2 @@
-[D][ ] read book  (by: Feb 02 2022) priority: high
-
-[D][X] return book  (by: Apr 04 2022) priority: low
+[D][X] return book (by: Feb 02 2022)
 
