@@ -89,6 +89,34 @@ Expected outcome:
 Meowmeow has restored the task you deleted! (=^>w<^=)
 ```
 
+### `mark` - Mark a task as done
+Meowmeow will mark the task with the specified number as done.
+
+Example of usage:
+
+`mark 1`
+
+Expected outcome:
+
+```
+Good job(=OwO=) You finished this task! 
+[T] [X] Buy fish for Meowmeow
+```
+
+### `unmark` - Mark a finished task as undone
+Meowmeow will mark the task with the specified number as undone.
+
+Example of usage:
+
+`unmark 1`
+
+Expected outcome:
+
+```
+uwu this task has been marked as not done...
+[T] [ ] Buy fish for Meowmeow
+```
+
 ### `bye` - Quit the program
 Meowmeow will close the program.
 

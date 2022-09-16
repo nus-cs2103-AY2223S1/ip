@@ -27,7 +27,7 @@ public class Meowmeow {
      * @param input the user input.
      */
     public String getResponse(String input) {
-        assert input != null : "Input cannot be null";
+        assert input != "" : "Input cannot be empty";
         String fullCommand = input;
         Command c = Parser.parse(fullCommand);
         String output = c.execute(tasks, ui, storage);
