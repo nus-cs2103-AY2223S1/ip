@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/" fx:controller="duke.gui.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/" fx:controller="duke.gui.MainWindow">
     <children>
         <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" style="-fx-border-color: #d3b3b3#d3b3b3; -fx-border-radius: 5px; -fx-border-width: 3px;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" />
         <Button fx:id="sendButton" layoutX="324.0" layoutY="558.0" mnemonicParsing="false" onMouseClicked="#handleUserInput" prefHeight="41.0" prefWidth="76.0" style="-fx-background-color: #ebc7c7#ebc7c7; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-width: 3px; -fx-border-color: #d3b3b3#d3b3b3;" text="Send" textAlignment="JUSTIFY" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0">

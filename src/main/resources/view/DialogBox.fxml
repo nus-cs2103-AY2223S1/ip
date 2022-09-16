@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label fx:id="dialog" style="-fx-background-color: #f5f0e2; -fx-background-radius: 25px; -fx-border-radius: 10px; -fx-border-width: 3px; -fx-border-color: #ede2d7#ede2d7#ede2d7#ede2d7; -fx-padding: 10px;" text="Example of tasks: &#10;1. gjeaiogjpegpeog&#10;2. fmispamfpafmpamfpasfsa&#10;3. fjsaipofkoapfas&#10;4. sfaspmop&#10;fasfasfsafs&#10;fasfasfas" wrapText="true">
             <font>
