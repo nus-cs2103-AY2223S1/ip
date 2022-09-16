@@ -1,3 +1,4 @@
-T | 0 | d1
-T | 0 | d2
-T | 0 | d3
+D | 0 | CS2103T iP | 2022-09-16 2359
+E | 0 | CS2103T team meeting | 2022-09-17 2100
+T | 0 | PH2211 slides
+T | 0 | homework

@@ -1,15 +1,15 @@
 # User Guide
-BobTheBot is an application made for **managing tasks**. The application comes with all
+Bestie is a ✨slay bae lit fam✨ application made for **managing tasks**. The application comes with all
 the benefits of a sleek GUI and allows you to stay organised in a hassle-free way!
 
 ## Quick Start
 1. Ensure that you have `java 11` installed on your device.
-2. Download the latest version of BobTheBot
+2. Download the latest version of Bestie.
 
 ---
 
 ## Features
-BobTheBot handles **3 types of tasks** and various **commands** to handle such tasks
+Bestie handles **3 types of tasks** and various **commands** to handle such tasks
 
 ### ToDo
 ToDos are tasks which you can add that do not have a date attached. Can be used for non-urgent tasks.
@@ -51,9 +51,9 @@ Add a todo (an event without specific time and date).
 Todo is added to the list.
 
 ```
-Got it. I've added this task:
+SLAY BESTIE! Your slay✨ is in the list!
 [T][] MA2104 tutorial
-You now have 1 task in the list.
+You now have 1 slay✨ in the list.
 ```
 
 ### `deadline` - Add a deadline
@@ -75,9 +75,9 @@ Adds a deadline (a task that needs to be done by a specified date and time).
 Deadline is added to the list.
 
 ```
-Got it. I've added this task:
+SLAY BESTIE! Your slay✨ is in the list!
 [D][] CS2103T iP (by: Sep 16 2022, 2359)
-You now have 2 tasks in the list.
+You now have 2 slays✨ in the list.
 ```
 ------
 ### `event` - Add an event
@@ -99,9 +99,9 @@ Adds an event (a task that occurs at a specific date and time).
 Event is added to the list.
 
 ```
-Got it. I've added this task:
+SLAY BESTIE! Your slay✨ is in the list!
 [E][] CS2103T team meeting (at: Sep 17 2022, 2100)
-You now have 3 tasks in the list.
+You now have 3 slays✨ in the list.
 ```
 ---
 ### `mark` - Mark a task as done
@@ -120,7 +120,7 @@ Marks a task as done.
 1st item on the list is marked as done.
 
 ```
-GOOD JOB! I'm marking this task as done:
+SLAYYY✨✨ BESTIE!! Keep SLAYING😊
 [T][X] MA2104 tutorial 
 ```
 ----
@@ -141,7 +141,7 @@ Marks a task as undone.
 
 ```
 It's sad that you thought you finished your work but didn't.
-But alright, marking this task as undone:
+ITS OK BESTIE KEEP SLAYING✨✨✨
 [T][] MA2104 tutorial 
 ```
 ---
@@ -161,9 +161,9 @@ Deletes a task.
 1st item on the list deleted.
 
 ```
-Got it. I've removed this task:
+SLAY BESTIE! I've deleted your slay✨!
     [T][] MA2104 tutorial
-You now have 2 tasks.
+You now have 2 slay✨.
 ```
 ---
 
@@ -180,7 +180,7 @@ Lists all the tasks Bob is helping keep track of.
 All items are listed in the order which you added them.
 
 ```
-Here are your tasks:
+Here are your slays✨✨:
 1. [D][X] CS2103T iP (by: Sep 16 2022, 2359)
 2. [E][] CS2103T team meeting (by: Sep 17 2022, 2100)
 3. [T][] MA2104 tutorial
@@ -201,7 +201,7 @@ Find items containing a certain keyword.
 Finds all tasks in list containing keyword _CS2103T_
 
 ```
-Here are the matching items on your list:
+SLAYYYY these slays✨ match:
 1. [D][] CS2103T iP (by: Sep 16 2022, 2359)
 2. [E][] CS2103T team meeting (by: Sep 17 2022, 2100)
 ```
@@ -222,9 +222,9 @@ the number of tasks left in the list.
 Finds all tasks in list containing keyword _CS2103T_
 
 ```
-Watch out! These tasks are due soon!
+Watch out! These slays✨ are due super soon bestie!
 1. [D][] CS2103T iP (by: Sep 16 2022, 2359)
 2. [E][] CS2103T team meeting (by: Sep 17 2022, 2100)
 
-Bye! Hope to see you again soon! You still have 4 tasks to do 😊!
+Bye! COME BACK SOON TO ✨SLAYYYY✨! You still have 4 slays✨  to slay✨ 😊!
 ```

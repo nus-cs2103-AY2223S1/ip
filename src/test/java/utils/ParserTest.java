@@ -1,13 +1,13 @@
 package utils;
 
-import bobthebot.exceptions.BobException;
-import bobthebot.tasks.Deadline;
-import bobthebot.tasks.Event;
-import bobthebot.tasks.Task;
-import bobthebot.tasks.ToDoList;
-import bobthebot.utils.Storage;
-import bobthebot.utils.Parser;
-import bobthebot.utils.Ui;
+import bestie.exceptions.BestieException;
+import bestie.tasks.Deadline;
+import bestie.tasks.Event;
+import bestie.tasks.Task;
+import bestie.tasks.ToDoList;
+import bestie.utils.Storage;
+import bestie.utils.Parser;
+import bestie.utils.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
     @Test
-    public void parseDeadlineTest() throws BobException {
+    public void parseDeadlineTest() throws BestieException {
         Parser parser = new Parser();
         Storage actualStorage = new Storage("./../data/test.txt");
         ArrayList<Task> actualTaskList = new ArrayList<>();
@@ -36,7 +36,7 @@ public class ParserTest {
     }
 
     @Test
-    public void parseEventTest() throws BobException {
+    public void parseEventTest() throws BestieException {
         Parser parser = new Parser();
         Storage actualStorage = new Storage("./");
         ArrayList<Task> actualTaskList = new ArrayList<>();

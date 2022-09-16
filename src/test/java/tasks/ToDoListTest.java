@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import bobthebot.tasks.Task;
-import bobthebot.tasks.ToDoList;
-import bobthebot.tasks.Todo;
-import bobthebot.utils.Storage;
+import bestie.tasks.Task;
+import bestie.tasks.ToDoList;
+import bestie.tasks.Todo;
+import bestie.utils.Storage;
 
 public class ToDoListTest {
     @Test
