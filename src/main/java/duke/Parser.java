@@ -7,7 +7,7 @@ import dukeexceptions.NoSuchCommandException;
 
 public class Parser {
     private enum Commands {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, STATISTICS
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, STATISTICS, HELP
     }
 
     /**
@@ -18,12 +18,16 @@ public class Parser {
      * @throws DukeException If an illegal command is entered or not enough information was given.
      */
     public static Command parse(String input) throws DukeException {
-        String[] inputSplit = input.split(" ", 2);
-        Commands comm = Commands.valueOf(inputSplit[0].strip().toUpperCase());
-        if (inputSplit.length == 1) {
-            return handleSingleWordCommand(comm);
-        } else {
-            return handleMultipleWordCommand(comm, inputSplit[1]);
+        try {
+            String[] inputSplit = input.split(" ", 2);
+            Commands comm = Commands.valueOf(inputSplit[0].strip().toUpperCase());
+            if (inputSplit.length == 1) {
+                return handleSingleWordCommand(comm);
+            } else {
+                return handleMultipleWordCommand(comm, inputSplit[1]);
+            }
+        } catch (IllegalArgumentException e) {
+            throw new NoSuchCommandException();
         }
     }
 
@@ -42,6 +46,8 @@ public class Parser {
             return new ListCommand();
         case STATISTICS:
             return new StatisticsCommand();
+        case HELP:
+            return new HelpCommand();
         case UNMARK:
             throw new NoDescriptionException("unmark");
         case DEADLINE:
@@ -84,14 +90,12 @@ public class Parser {
             String[] descriptTime = description.split("/at", 2);
             return new EventCommand(descriptTime[0], descriptTime[1]);
         case TODO:
-            String des = description;
-            return new TodoCommand(des);
+            return new TodoCommand(description);
         case DELETE:
             int del = Integer.parseInt(description) - 1;
             return new DeleteCommand(del);
         case FIND:
-            String keyword = description;
-            return new FindCommand(keyword);
+            return new FindCommand(description);
         default:
             throw new NoSuchCommandException();
         }

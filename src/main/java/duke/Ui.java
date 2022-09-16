@@ -21,8 +21,20 @@ public class Ui {
     }
 
     public static String printDeleteStatement(String res, int len) {
-        String s = "okie!\n" + res + "\nhas been deleted forever.\n" +
-                "you have " + len + " task" + ((len!=1)?"s ":" ") + "left!\n";
+        String s = "okie!\n" + res + "\nhas been deleted forever.\n"
+                + "you have " + len + " task" + ((len!=1)?"s ":" ") + "left!\n";
+        return s;
+    }
+
+    public String printHelp() {
+        String s = "need help? try these commands!\n" + "todo [description]: adds a new todo\n"
+                + "deadline [description] /by DD/MM/YYYY HH:mm: adds a new task with a deadline\n"
+                + "event [description] /at DD/MM/YYYY HH:mm: adds a new event\n"
+                + "list: lists out all the current tasks\n" + "mark [index]: marks the task at index as completed\n"
+                + "unmark [index]: marks the task at index as incomplete\n"
+                + "delete [index]: deletes task at specified index\n"
+                + "find [keyword]: finds the tasks containing specified keyword\n"
+                + "statistics: shows you your task statistics.\n" + "bye: exits program!\n";
         return s;
     }
 }

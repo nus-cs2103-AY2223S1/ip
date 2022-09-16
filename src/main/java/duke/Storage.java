@@ -54,7 +54,6 @@ public class Storage {
             }
             return taskList;
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
             File f1 = new File(this.filePath);
             try {
                 f1.createNewFile();
@@ -72,6 +71,7 @@ public class Storage {
      */
     public void end(TaskList taskList) {
         try {
+            new File(this.filePath).getParentFile().mkdirs();
             FileWriter fw = new FileWriter(this.filePath);
             for(int i = 0; i < taskList.getSize(); i++) {
                 Task toWrite = taskList.retrieveTask(i);
