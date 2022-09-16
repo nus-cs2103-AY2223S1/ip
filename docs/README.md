@@ -80,7 +80,7 @@ Nice! I've marked this task as done:
 <br><br>
 
 ### Unmark a task: `unmark`
-Marks a task in the list as not done.<br>
+Marks a task in the list as not done.<br><br>
 Format: `unmark {index}` <br>
 Example: `unmark 1` unmark the task at index 1 of the list <br> <br>
 Expected outcome:
@@ -91,7 +91,7 @@ Ok, I've marked this task as not done yet:
 <br><br>
 
 ### Find a task by keyword: `find`
-Finds all tasks matching the keyword.<br>
+Finds all tasks matching the keyword.<br><br>
 Format: `find {keyword}`, `f {keyword}` <br>
 Example: `find book` will find all tasks with keyword "book"
  <br> <br>
@@ -105,7 +105,7 @@ Here are the matching tasks in your list:
 <br><br>
 
 ### Delete a task: `delete`
-Deletes a task from the task list.<br>
+Deletes a task from the task list.<br><br>
 Format: `delete {index}`, `rm  {index}` <br> 
 Example: `delete 1` and `rm 1` deletes the task at index 1 of the list
 <br> <br>
@@ -118,7 +118,7 @@ Now you have 3 tasks in the list
 <br><br>
 
 ### Exiting the program: `bye`
-Exits the program immediately.<br>
+Exits the program immediately.<br><br>
 Format: `bye`, `exit`, `quit`
 <br><br>
 
