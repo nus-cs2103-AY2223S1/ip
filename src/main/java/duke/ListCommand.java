@@ -21,13 +21,4 @@ public class ListCommand extends Command {
         return ui.printTasks(taskList);
     }
 
-    /**
-     * Returns false.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

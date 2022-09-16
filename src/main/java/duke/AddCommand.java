@@ -28,14 +28,4 @@ public class AddCommand extends Command {
         boolean status = storage.saveData(taskList);
         return status ? str : str + "\nError saving";
     }
-
-    /**
-     * Returns false.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

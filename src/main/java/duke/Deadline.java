@@ -4,6 +4,7 @@ package duke;
  * This class is used to construct a deadline task.
  */
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static duke.DukeConstants.KEY_SEPARATOR;
 
@@ -41,6 +42,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + date + ")";
+        return "[D]" + super.toString() + " (by: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

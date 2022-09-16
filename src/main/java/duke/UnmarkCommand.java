@@ -29,13 +29,4 @@ public class UnmarkCommand extends Command {
         return status ? returnString : returnString + "Error saving";
     }
 
-    /**
-     * Returns false.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

@@ -27,12 +27,4 @@ public class FindCommand extends Command {
         return ui.showMatchingTasks(tempList);
     }
 
-    /**
-     * {@inheritDoc}
-     * Returns false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

@@ -21,12 +21,4 @@ public class NullCommand extends Command {
         return ui.showError(this.description);
     }
 
-    /**
-     * {@inheritDoc}
-     * Returns false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

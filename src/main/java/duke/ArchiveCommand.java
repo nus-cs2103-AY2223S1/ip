@@ -72,13 +72,4 @@ public class ArchiveCommand extends Command {
         return  response;
     }
 
-    /**
-     * Returns false.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

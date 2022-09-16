@@ -32,13 +32,4 @@ public class DeleteCommand extends Command {
         return status ? str : str + "\nError saving";
     }
 
-    /**
-     * Returns false.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

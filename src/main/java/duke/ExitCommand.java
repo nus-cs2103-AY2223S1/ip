@@ -25,11 +25,4 @@ public class ExitCommand extends Command {
         return ui.showExit();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isExit() {
-        return this.isExit;
-    }
 }

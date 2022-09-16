@@ -17,7 +17,6 @@ import static duke.DukeConstants.KEY_SEPARATOR;
 public class Storage {
     private String filePath;
     private String archiveFilePath;
-    private boolean isSaved;
 
     /**
      * Constructor for the Storage class.
@@ -36,8 +35,7 @@ public class Storage {
      * @return True if data has saved to file and false otherwise.
      */
     public boolean saveData(TaskList taskList) {
-        isSaved = save(taskList, filePath, false);
-        return isSaved;
+        return save(taskList, filePath, false);
     }
 
     /**
@@ -77,7 +75,7 @@ public class Storage {
      * Loads the tasklist from the main data file.
      *
      * @return list of tasks from the file.
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException when there is an error with the file.
      */
     public List<Task> loadData() throws FileNotFoundException {
         return load(filePath);
@@ -87,7 +85,7 @@ public class Storage {
      * Loads the tasklist from the archive.
      *
      * @return list of tasks from the file.
-     * @throws IOException
+     * @throws IOException when there is an i/o exception.
      */
     public List<Task> loadFromArchive() throws IOException {
         List<Task> tasks = load(archiveFilePath);
@@ -151,14 +149,11 @@ public class Storage {
      * Clears the data in the file.
      *
      * @param fileName File to be cleared.
-     * @throws IOException
+     * @throws IOException when there is an IO Exception.
      */
     public void clearData(String fileName) throws IOException {
         FileWriter fw = new FileWriter(fileName, false);
         fw.close();
     }
 
-    public boolean getSavedStatus() {
-        return isSaved;
-    }
 }

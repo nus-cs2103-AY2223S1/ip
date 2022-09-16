@@ -63,6 +63,8 @@ public class Parser {
                 return parseAddEvent(subStrs);
             case "find":
                 return parseFind(subStrs);
+            case "show":
+                return parseShow(taskList, subStrs);
             case "archive":
                 return parseArchive(taskList, subStrs);
             default:
@@ -72,6 +74,22 @@ public class Parser {
             throw e;
         }
 
+    }
+
+    private Command parseShow(TaskList taskList, String[] subStrs) throws DukeException {
+        int index;
+        if (subStrs.length == 1) {
+            throw new DukeException(DukeException.MISSING_INDEX);
+        }
+        try {
+            index = Integer.parseInt(subStrs[1]) - 1;
+            if (index < 0 || index >= taskList.getSize()) { // check if index is out of range
+                throw new DukeException(DukeException.OUT_OF_RANGE);
+            }
+            return new ShowCommand(index);
+        } catch (NumberFormatException e) {
+            throw new DukeException(DukeException.WRONG_FORMAT);
+        }
     }
     private Command parseMarking(TaskList taskList, String[] subStrs) throws DukeException {
         int index;

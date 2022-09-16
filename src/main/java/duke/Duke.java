@@ -62,8 +62,5 @@ public class Duke {
         return hasFile;
     }
 
-    public boolean getSavedStatus() {
-        return storage.getSavedStatus();
-    }
 
 }
