@@ -12,8 +12,12 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
-
+import javafx.scene.paint.Color;
+// Reused from https://se-education.org/guides/tutorials/javaFx.html.
+// with minor modifications
 /**
  * An example of a custom control using FXML.
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
@@ -51,6 +55,7 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+
     /**
      * Returns a User DialogBox container node for JavaFX.
      * @param text String contained in the DialogBox.
@@ -58,8 +63,14 @@ public class DialogBox extends HBox {
      * @return A User DialogBox node to be rendered into the root node.
      */
     public static DialogBox getUserDialog(String text, Image img) {
+        //@@author nseah21-reused
+        //Reused from https://github.com/nseah21/ip/blob/master/src/main/java/duke/DialogBox.java
+        // with minor modifications
+        var db = new DialogBox(text, img);
+        db.setSpacing(10);
+        //@@author nseah21
 
-        return new DialogBox(text, img);
+        return db;
     }
 
     /**
@@ -69,8 +80,15 @@ public class DialogBox extends HBox {
      * @return A Duke DialogBox node to be rendered into the root node.
      */
     public static DialogBox getDukeDialog(String text, Image img) {
+        //@@author nseah21-reused
+        //Reused from https://github.com/nseah21/ip/blob/master/src/main/java/duke/DialogBox.java
+        //with minor modifications
         var db = new DialogBox(text, img);
         db.flip();
+        db.setSpacing(10);
+        db.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,null,null)));
+        //@@author nseah21
+
         return db;
     }
 }

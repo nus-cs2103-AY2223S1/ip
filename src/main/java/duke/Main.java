@@ -7,7 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+// Reused from https://se-education.org/guides/tutorials/javaFx.html.
+// with minor modifications
 /**
  * Duke GUI with FXML.
  */
