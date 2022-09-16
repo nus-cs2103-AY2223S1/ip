@@ -123,7 +123,7 @@ public class TaskList {
     public String finishTask(int taskNum) {
         Task task;
         try {
-            if (taskNum <= numOfInputs) {
+            if (taskNum <= numOfInputs && taskNum > 0) {
                 task = taskList.get(taskNum - 1);
                 task.markAsDone();
                 lastCmdType = "mark";
@@ -141,7 +141,7 @@ public class TaskList {
     public String unfinishTask(int taskNum) {
         Task task;
         try {
-            if (taskNum <= numOfInputs) {
+            if (taskNum <= numOfInputs && taskNum > 0) {
                 task = taskList.get(taskNum - 1);
                 task.markAsNotDone();
                 lastCmdType = "unmark";
