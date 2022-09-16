@@ -70,7 +70,7 @@ public class TaskList {
     /**
      * Searches the list for a task with matching description
      * @param query string to search for in the TaskList
-     * @return
+     * @return a list of tasks that match the query
      */
     public List<Task> findTask(String query) {
         List<Task> resultList = tasks

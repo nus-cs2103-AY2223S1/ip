@@ -20,6 +20,7 @@ public class Ui {
 
     /**
      * Display welcome message to user
+     * @return String of welcome message
      */
     public String showWelcome() {
         return Constants.WELCOME_MESSAGE + "\n";
@@ -27,6 +28,7 @@ public class Ui {
 
     /**
      * Output bye message
+     * @return bye message
      */
     public String showByeMessage() {
         return "Bye. Hope to see you again soon!";
@@ -35,8 +37,8 @@ public class Ui {
 
     /**
      * Indicates new Task has been added successfully and shows the details of the Task
-     * @param t
-     * @param size
+     * @param t Task that has been added
+     * @param size Size of the TaskList after adding new task
      */
     public String newItemAdded(Task t, int size) {
         String taskType = t.getSymbol() == "NOTE" ? "note" : "task";
@@ -63,8 +65,8 @@ public class Ui {
 
     /**
      * Indicates that Task has been deleted successfully
-     * @param t
-     * @param size
+     * @param t Task that has been deleted
+     * @param size Size of the TaskList after deletion
      */
     public String showTaskDeletedMessage(Task t, int size) {
         String taskType = t.getSymbol() == "NOTE" ? "note" : "task";
@@ -74,6 +76,10 @@ public class Ui {
     }
 
 
+    /**
+     * Show help message to user
+     * @return help message
+     */
     public String showHelpMessage() {
         return HelpMessages.HELP_MESSAGE;
     }
@@ -88,6 +94,7 @@ public class Ui {
     /**
      * Prints a list of all tasks in the list
      * @param tasks
+     * @return a string of all tasks in the TaskList
      */
     public String listAllTasks(TaskList tasks) {
         String listEmptyMessage = "You have no tasks in your list!\n";
@@ -97,7 +104,8 @@ public class Ui {
 
     /**
      * Prints out the list of tasks
-     * @param taskList
+     * @param taskList List of tasks to be printed
+     * @return String of all tasks in the list
      */
     public String listQueryResult(List<Task> taskList) {
         String result = "";

@@ -1,5 +1,6 @@
 package duke.command;
 
+import java.util.Arrays;
 import java.util.List;
 
 import duke.TaskList;
@@ -23,9 +24,17 @@ public class FindCommand extends Command {
         this.query = query;
     }
 
+    /**
+     * Executes the command to search for a {@link Task} in the {@link TaskList}
+     * @param tasks List of tasks
+     * @param storage Storage Instance
+     * @param ui Ui Instance
+     * @return String of the result of the command
+     */
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui) {
         List<Task> result = tasks.findTask(this.query);
+        System.out.println(Arrays.toString(result.toArray()));
         return ui.listQueryResult(result);
     }
 }

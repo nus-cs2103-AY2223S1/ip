@@ -39,6 +39,42 @@ Lists out all your tasks
 
 Format: `list`
 
+### Postpones a task: `postpone`
+
+Postpones a task by 1 day
+
+Format: `postpone <TASK_INDEX>`
+
+### Mark a task as done: `mark`
+
+Marks a task as done (Only for `Events` and `Deadlines`)
+
+Format: `mark <TASK_INDEX>`
+
+### Mark a task as done: `unmark`
+
+Unmarks a task (Only for `Events` and `Deadlines`)
+
+Format: `unmark <TASK_INDEX>`
+
+### Mark a task as done: `delete`
+
+Deletes a task or note
+
+Format: `delete <TASK_INDEX>`
+
+### Quack back at you: `quack`
+
+Watch **DeadlineDuck** quack back at you
+
+Format: `quack`
+
+### Exit the application: `bye`
+
+Exits the application
+
+Format: `bye`
+
 
 [//]: # (Describe the action and its outcome.)
 
