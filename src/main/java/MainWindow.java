@@ -26,11 +26,11 @@ public class MainWindow extends AnchorPane {
 
     private Anya anya;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("../images/User.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
 
-    private Image anyaWelcomeImage = new Image(this.getClass().getResourceAsStream("../images/AnyaWelcome.png"));
-    private Image anyaErrorImage = new Image(this.getClass().getResourceAsStream("../images/AnyaERROR2.png"));
-    private Image anyaRespondImage = new Image(this.getClass().getResourceAsStream("../images/Anya.png"));
+    private Image anyaWelcomeImage = new Image(this.getClass().getResourceAsStream("/images/AnyaWelcome.png"));
+    private Image anyaErrorImage = new Image(this.getClass().getResourceAsStream("/images/AnyaERROR2.png"));
+    private Image anyaRespondImage = new Image(this.getClass().getResourceAsStream("/images/Anya.png"));
 
     @FXML
     public void initialize() {
