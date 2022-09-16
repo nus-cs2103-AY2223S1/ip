@@ -97,7 +97,7 @@ public class Duke {
         } finally {
             storage.saveTasks();
         }
-        return "Done";
+        return "Invalid command";
     }
 
     /**

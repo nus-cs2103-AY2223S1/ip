@@ -84,7 +84,7 @@ public class Ui {
         String outputString = "";
         outputString += "Noted. I've removed this task:\n";
         outputString += currentTask.toString() + "\n";
-        outputString += "Now you have " + String.valueOf(taskArrayList.size()) + " tasks in the list." + "\n";
+        outputString += "Now you have " + String.valueOf(taskArrayList.size() - 1) + " tasks in the list." + "\n";
         taskArrayList.remove(index - 1);
         return outputString;
     }
