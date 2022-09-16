@@ -6,16 +6,16 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: white;
+    -fx-background-color: #a93451;
 }
 
 .userInput {
-    -fx-background-color: white;
-    -fx-border-color: rgb(209, 240, 255);
+    -fx-background-color: pink;
+    -fx-border-color: #800000;
     -fx-border-width: 0;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
-    -fx-text-fill: rgb(113, 60, 255);
+    -fx-text-fill: #800000;
 }
 
 .sendBtn {
@@ -50,5 +50,9 @@
 
 .text-box:focused {
     -fx-background-color: transparent, -fx-box-border, -fx-control-inner-background;
-    -fx-border-color: lightgrey;
+    -fx-border-color: #800000;
+}
+
+.text-field {
+    -fx-prompt-text-fill: #800000;
 }

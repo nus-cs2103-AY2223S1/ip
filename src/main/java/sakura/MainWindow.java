@@ -63,6 +63,8 @@ public class MainWindow extends AnchorPane {
 //    }
     @FXML
     public void initialize() {
+        Background background = new Background(new BackgroundFill(Color.valueOf("b22c4d"), new CornerRadii(0), new Insets(0)));
+        pane.setBackground(background);
         Font font = new Font("Lucida Sans Typewriter Regular", 12);
         String l = Ui.logo();
         logo.setText(l);
