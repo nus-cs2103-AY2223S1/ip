@@ -115,4 +115,14 @@ public class Ui {
     protected String printTaskDeleted(Task task, int size) {
         return "Noted. I've removed this task: \n" + task + "\n" + printNumberOfTasks(size);
     }
+
+    /**
+     * Displays the task that was deleted from the task list.
+     *
+     * @param task the task that was deleted
+     * @param size the total number of tasks in the task list
+     */
+    protected String printTaskUndone(Task task, int size) {
+        return "I have used my magical powers and undid this task: \n" + task + "\n" + printNumberOfTasks(size);
+    }
 }

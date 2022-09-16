@@ -54,6 +54,10 @@ public class TaskList {
         this.tasks.add(task);
     }
 
+    protected void addTask(Task task, int index) {
+        this.tasks.add(index, task);
+    }
+
     /**
      * Deletes the task in the task list that corresponds to the given index.
      *

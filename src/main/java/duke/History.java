@@ -6,6 +6,7 @@ public class History {
     private String lastCommand;
     private Task lastTask;
     private String[] lastTaskDescription;
+    private int lastTaskIndex;
     
     protected String getLastCommand() {
         return lastCommand;
@@ -21,7 +22,6 @@ public class History {
 
     protected void setLastTask(Task lastTask) {
         this.lastTask = lastTask;
-       
     }
 
     protected String[] getLastTaskDescription() {
@@ -32,4 +32,11 @@ public class History {
         this.lastTaskDescription = lastTaskDescription;
     }
 
+    public int getLastTaskIndex() {
+        return lastTaskIndex;
+    }
+
+    public void setLastTaskIndex(int lastTaskIndex) {
+        this.lastTaskIndex = lastTaskIndex;
+    }
 }

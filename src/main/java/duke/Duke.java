@@ -78,7 +78,7 @@ public class Duke {
             ToDo task = new ToDo(input[1]);
             tasks.addTask(task);
             storage.saveToDisk(tasks.getTaskList());
-            setFullTaskHistory("todo", task, input);
+            history.setLastCommand("todo");
             return ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
@@ -95,7 +95,7 @@ public class Duke {
             Deadline task = new Deadline(tasking, dateTime);
             tasks.addTask(task);
             storage.saveToDisk(tasks.getTaskList());
-            setFullTaskHistory("deadline", task, input);
+            history.setLastCommand("deadline");
             return ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
@@ -114,7 +114,7 @@ public class Duke {
             Event task = new Event(tasking, dateTime);
             tasks.addTask(task);
             storage.saveToDisk(tasks.getTaskList());
-            setFullTaskHistory("event", task, input);
+            history.setLastCommand("event");
             return ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
@@ -130,7 +130,7 @@ public class Duke {
             assert taskIndex > 0 && taskIndex <= tasks.getSize() : "taskIndex out of range";
             Task deletedTask = tasks.deleteTask(taskIndex);
             storage.saveToDisk(tasks.getTaskList());
-            history.setLastCommand("history");
+            setTaskHistory("delete", deletedTask, taskIndex);
             return ui.printTaskDeleted(deletedTask, tasks.getSize());
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
@@ -148,12 +148,12 @@ public class Duke {
     private void setTaskHistory(String command, String[] taskDescription) {
         history.setLastCommand(command);
         history.setLastTaskDescription(taskDescription);
-        
     }
     
-    private void setFullTaskHistory(String command, Task task, String[] taskDescription) {
+    private void setTaskHistory(String command, Task task, int index) {
         history.setLastCommand(command);
-        history.setLastTaskDescription(taskDescription);
+        history.setLastTask(task);
+        history.setLastTaskIndex(index);
     }
     
     private String undoTask() throws DukeException {
@@ -174,13 +174,9 @@ public class Duke {
                 return mark(taskDescription);
             case "delete":
                 Task mostRecentTask = history.getLastTask();
-                if (mostRecentTask instanceof ToDo) {
-                    createToDo(taskDescription);
-                } else if (mostRecentTask instanceof Deadline) {
-                    createDeadline(taskDescription);
-                } else if (mostRecentTask instanceof Event) {
-                    createEvent(taskDescription);
-                } 
+                tasks.addTask(mostRecentTask, history.getLastTaskIndex());
+                storage.saveToDisk(tasks.getTaskList());
+                return ui.printTaskUndone(mostRecentTask, tasks.getSize());
             default:
                 return "You have nothing to undo\n" + Ui.promptUserInput();
         }
