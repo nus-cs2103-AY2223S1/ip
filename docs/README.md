@@ -183,3 +183,9 @@ Bye! Hope to see you again soon!
 ```
 
 And there you go! You are ready to use **Ditto!**
+
+### Acknowledgements 
+
+The initial repository for this project was forked from [this repo](https://github.com/nus-cs2103-AY2223S1/ip). Credits go to *damithc* and *j-lum* for the base code.
+
+The GUI for **Ditto!** was also implemented with heavy reference to the JavaFX tutorial on the [SE education website](https://se-education.org/guides/tutorials/javaFx.html).  
