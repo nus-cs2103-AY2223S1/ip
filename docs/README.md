@@ -2,15 +2,15 @@
 Duke Scheduler is a useful tool for keeping track of todos, events and deadlines, making scheduling easy, never get late anymore!
 
 ## Features 
-1. [X] Adding a task
-2. [X] Listing all tasks
-3. [X] Finding task based on keyword
-4. [X] Finding task based on date
-5. [X] Cloning a task
-6. [X] Deleting a task
-7. [X] Marking a task as done
-8. [X] Marking a task as undone
-9. [X] Exiting the program
+1. Adding a task
+2. Listing all tasks
+3. Finding task based on keyword
+4. Finding task based on date
+5. Cloning a task
+6. Marking a task as completed
+7. Marking a task as uncompleted
+8. Deleting a task
+9. Exiting the program
 
 <br/><br/>
 ### 1.Adding a task 
@@ -36,7 +36,7 @@ event open house / at 2022-08-01
 ![picture alt](https://i.postimg.cc/0jyCBxjn/add.png)
 
 <br/><br/>
-### 2.List all tasks
+### 2.Listing all tasks
 Shows all the tasks by completed and uncompleted status.
 #### format:
 ```
@@ -74,7 +74,7 @@ date 2022-09-16
 ![picture alt](https://i.postimg.cc/brc6C4bF/date.png)
 
 <br/><br/>
-### 5.Clone a task
+### 5.Cloning a task
 Clones an existing task using the task index, this provides an easy way to add a new task without having to type all the similar information again.
 #### format:
 ```
@@ -89,7 +89,7 @@ clone 2
 
 
 <br/><br/>
-### 6.Mark a task
+### 6.Marking a task as completed
 Marks a task as completed.
 #### format:
 ```
@@ -105,7 +105,7 @@ mark 2
 
 
 <br/><br/>
-### 7.UnMark a task
+### 7.Marking a task as uncompleted
 Marks a task as uncompleted.
 #### format:*
 ```
@@ -120,7 +120,7 @@ unmark 2
 
 
 <br/><br/>
-### 8.Delete a task
+### 8.Deleting a task
 Deletes a task from the scheduler.
 #### format:
 ```
@@ -143,7 +143,6 @@ bye
 ```
 #### outcome:
 ![picture alt](https://i.postimg.cc/TwF8Rkbr/bye.png)
-
 
 
 <br/><br/>
