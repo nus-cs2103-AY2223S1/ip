@@ -1,5 +1,6 @@
 package sally.main;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.Objects;
 
 
@@ -56,6 +59,9 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
         sally.run(input);
         userInput.clear();
+        if (sally.shouldExit()) {
+            CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS).execute(Platform::exit);
+        }
     }
 
     /**

@@ -19,6 +19,7 @@ public class Sally {
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
+    protected boolean isBye = false;
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image sally = new Image(this.getClass().getResourceAsStream("/images/sally.png"));
@@ -63,6 +64,7 @@ public class Sally {
     public void run(String stringCommand) {
         try {
             Command command = Parser.parseCommand(stringCommand);
+            isBye = command.isBye();
             command.execute(tasks, ui, storage);
         } catch (SallyException e) {
             ui.showError(e.getMessage());
@@ -82,5 +84,14 @@ public class Sally {
      */
     public Ui getUi() {
         return this.ui;
+    }
+
+    /**
+     * Indicates whether Sally should exit
+     *
+     * @return true if should exit, false otherwise
+     */
+    public boolean shouldExit() {
+        return this.isBye;
     }
 }
