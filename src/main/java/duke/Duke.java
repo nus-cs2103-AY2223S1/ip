@@ -4,6 +4,8 @@ import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 
+import java.util.Objects;
+
 /**
  * Represents the main entry point of the Duke application.
  */
@@ -17,6 +19,7 @@ public class Duke {
      * @param filePath Path of file to store created tasks.
      */
     public Duke(String filePath) {
+        assert !filePath.equals("");
         storage = new Storage(filePath);
     }
 
