@@ -17,6 +17,7 @@ import duke.task.Task;
  */
 public class Reminder {
     private static final int MINUTES_IN_AN_HOUR = 60;
+    private static final int MINUTES_IN_A_DAY = 1440;
     private final TaskList taskList;
     private final LocalDate nowDate;
     private final LocalTime nowTime;
@@ -80,8 +81,17 @@ public class Reminder {
         return nearestTask;
     }
 
-    private String getCountDown(Task task) {
-        ArrayList<Integer> yearMonthDay = this.identifyYearMonthDay(task);
+    public String getCountDown(Task task) {
+        long periodMinutes = this.nowTime.until(task.getTime(), MINUTES);
+        boolean isToNegate = false;
+        if (periodMinutes < 0) {
+            periodMinutes = MINUTES_IN_A_DAY + periodMinutes;
+            isToNegate = true;
+        }
+        long hour = periodMinutes / MINUTES_IN_AN_HOUR;
+        long minute = periodMinutes % MINUTES_IN_AN_HOUR;
+
+        ArrayList<Integer> yearMonthDay = this.identifyYearMonthDay(task, isToNegate);
         int year = yearMonthDay.get(0);
         int month = yearMonthDay.get(1);
         int day = yearMonthDay.get(2);
@@ -96,9 +106,7 @@ public class Reminder {
             countdownString += day + " Day, ";
         }
 
-        long periodMinutes = this.nowTime.until(task.getTime(), MINUTES);
-        long hour = periodMinutes / MINUTES_IN_AN_HOUR;
-        long minute = periodMinutes % MINUTES_IN_AN_HOUR;
+
         if (hour != 0) {
             countdownString += hour + " Hour, ";
         }
@@ -109,13 +117,19 @@ public class Reminder {
     }
 
 
-    private ArrayList<Integer> identifyYearMonthDay(Task task) {
+    private ArrayList<Integer> identifyYearMonthDay(Task task, boolean isToNegate) {
         int year = 0;
         int month = 0;
         int day = 0;
-        Period periodDate = this.nowDate.until(task.getDate());
+        Period periodDate;
+        if (isToNegate) {
+            periodDate = this.nowDate.until(task.getDate()).minusDays(1);
+        } else {
+            periodDate = this.nowDate.until(task.getDate());
+        }
         String periodString = periodDate.toString();
         int number = 0;
+        int numberLength = 0;
         for (int i = 0; i < periodString.length(); i++) {
             char c = periodString.charAt(i);
 
@@ -124,15 +138,28 @@ public class Reminder {
                 break;
             case 'Y':
                 year = number;
+                number = 0;
+                numberLength = 0;
                 break;
             case 'M':
                 month = number;
+                number = 0;
+                numberLength = 0;
                 break;
             case 'D':
                 day = number;
+                number = 0;
+                numberLength = 0;
                 break;
             default:
-                number = Character.getNumericValue(c);
+                if (numberLength != 0) {
+                    number *= 10;
+                    number += Character.getNumericValue(c);
+                    numberLength++;
+                } else {
+                    number = Character.getNumericValue(c);
+                    numberLength++;
+                }
                 break;
             }
         }
