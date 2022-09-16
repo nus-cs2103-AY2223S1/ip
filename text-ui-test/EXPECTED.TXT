@@ -5,7 +5,7 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-	Hello! I'm Duke
+	Hello! I'm duke
 	What can I do for you?
 	___________________________
 
