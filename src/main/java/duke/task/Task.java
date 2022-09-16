@@ -62,15 +62,12 @@ public class Task {
         if (o == this) {
             return true;
         }
-
-        if (!(o instanceof Task)) {
-
+        if (o instanceof Task) {
+            Task c = (Task) o;
+            return c.getIcon().equals(icon) && c.getDescription().equals(description);
+        } else {
             return false;
         }
-
-        Task c = (Task) o;
-
-        return this.description.equals(c.description);
     }
 
     /**

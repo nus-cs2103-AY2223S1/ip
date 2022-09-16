@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.DukeException;
 import duke.task.Task;
 import duke.tasklist.TaskList;
 import duke.task.Todo;
@@ -29,12 +30,17 @@ public class TodoCommand extends Command {
      * @return Returns String that contains message to be printed by gui
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        //create new task here
-        Task newTask = new Todo(super.getInput());
-        String message = tasks.addTask(newTask);
-        String output = ui.add(tasks.numOfTasks(), message);
-        storage.save(newTask);
-        return output;
+        try {
+            //create new task here
+            Task newTask = new Todo(super.getInput());
+            String message = tasks.addTask(newTask);
+            String output = ui.add(tasks.numOfTasks(), message);
+            storage.save(newTask);
+            return output;
+        } catch (DukeException e) {
+            return ui.showLoadingError(e.getMessage());
+        }
+
     }
 
 }

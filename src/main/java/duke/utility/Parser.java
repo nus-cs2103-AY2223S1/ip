@@ -166,9 +166,7 @@ public class Parser {
             throw new DukeException(emptyMessage("deadline"));
         }
         String input = split[1];
-
         int index = input.lastIndexOf("/by");
-
         if (index > -1) {
             String by = input.substring(index + 4);
             if (index - 1 <= 0) {
@@ -177,7 +175,6 @@ public class Parser {
             if (input.charAt(index - 1) != ' ') {
                 throw new DukeException(invalidTaskAction("deadline", "by"));
             }
-            //check description is blank
             String check = input.substring(0, index);
             if (check.isBlank()) {
                 throw new DukeException(emptyMessage("deadline"));
@@ -198,12 +195,9 @@ public class Parser {
         if (split.length == 1) {
             throw new DukeException(emptyMessage("event"));
         }
-
         String input = split[1];
         System.out.println(input);
         int index = input.lastIndexOf("/at");
-
-
         if (index > -1) {
             String at = input.substring(index + 4);
             if (index - 1 <= 0) {
@@ -212,7 +206,6 @@ public class Parser {
             if (input.charAt(index - 1) != ' ') {
                 throw new DukeException(invalidTaskAction("event", "at"));
             }
-            //check description is blank
             String check = input.substring(0, index);
             if (check.isBlank()) {
                 throw new DukeException(emptyMessage("event"));

@@ -1,6 +1,7 @@
 package duke.command;
 import java.time.LocalDateTime;
 
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -39,17 +40,22 @@ public class TimeTaskCommand extends Command {
      * @return Returns String that contains message to be printed by gui
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        //create new task here
-        Task newTask;
-        if (keyword.equals("event")) {
-            newTask = new Event(super.getInput(), time);
-        } else {
-            newTask = new Deadline(super.getInput(), time);
+        try {
+            //create new task here
+            Task newTask;
+            if (keyword.equals("event")) {
+                newTask = new Event(super.getInput(), time);
+            } else {
+                newTask = new Deadline(super.getInput(), time);
+            }
+
+            String message = tasks.addTask(newTask);
+            String output = ui.add(tasks.numOfTasks(), message);
+            storage.save(newTask);
+            return output;
+        } catch (DukeException e) {
+            return ui.showLoadingError(e.getMessage());
         }
 
-        String message = tasks.addTask(newTask);
-        String output = ui.add(tasks.numOfTasks(), message);
-        storage.save(newTask);
-        return output;
     }
 }

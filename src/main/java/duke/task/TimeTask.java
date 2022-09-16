@@ -39,4 +39,34 @@ public class TimeTask extends Task {
         return this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
+    /**
+     * Returns LocalTimeDate object of a TimeTask instance
+     *
+     * @return LocalTimeDate object of a TimeTask instance
+     */
+    public LocalDateTime getLocalTimeDate() {
+        return date;
+    }
+
+    /**
+     * Returns a boolean whether two task are equal
+     *
+     * @return Returns true if tasks are equal
+     * else returns False
+     */
+    @Override
+    public boolean equals(Object o) {
+        // If the object is compared with itself then return true
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof TimeTask) {
+            TimeTask c = (TimeTask) o;
+            return c.getIcon().equals(icon) && c.getDescription().equals(description)
+                    && c.getLocalTimeDate().equals(date);
+        } else {
+            return false;
+        }
+    }
+
 }
