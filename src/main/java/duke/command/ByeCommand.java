@@ -22,6 +22,8 @@ public class ByeCommand extends Command {
      * Terminates the program while showing an exit message for 850 milliseconds
      */
     private void terminate() {
+        //@@author {yuehernkang}-reused
+        //Reused from https://github.com/nseah21/ip
         try {
             Thread.sleep(850);
         } catch (InterruptedException e) {

@@ -28,6 +28,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
+    //Image from
+    //https://www.vecteezy.com/vector-art/3607599-baby-duck-cartoon-cute-isolated-illustrations
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/image.png"));
     //Image from
     //https://www.freepik.com/free-vector/yellow-rubber-duck-flat-design_5336906.htm#query=duck&position=37&from_view=search
