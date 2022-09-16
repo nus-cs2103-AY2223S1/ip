@@ -6,22 +6,22 @@ Hello from
 |____/ \__,_|_|\_\___|
 
 todo run
-Got it. I've added this task:
+Got it. I've added this parser:
 [T][ ] run
 Now you have 1 tasks in the list.
 deadline push /by Mon
-Got it. I've added this task:
+Got it. I've added this parser:
 [D][ ] push (by: Mon)
 Now you have 2 tasks in the list.
 event pull /at nine
-Got it. I've added this task:
+Got it. I've added this parser:
 [E][ ] pull (at: nine)
 Now you have 3 tasks in the list.
 mark 1
-Nice! I've marked this task as done:
+Nice! I've marked this parser as done:
 [T][X] run
 unmark 1
-OK, I've marked this task as not done yet:
+OK, I've marked this parser as not done yet:
 [T][ ] run
 list
 1.[T][ ] run
@@ -29,7 +29,7 @@ list
 3.[E][ ] pull /at nine(at: nine)
 
 delete 1
-Noted. I've removed this task:
+Noted. I've removed this parser:
 [T][ ] run
 Now you have 2 tasks in the list.
 list

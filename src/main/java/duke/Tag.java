@@ -1,11 +1,14 @@
 package duke;
 
-public class Tag extends  Task {
+import java.util.ArrayList;
+
+public class Tag extends Parser {
     private String tag;
 
-    public Tag(String tag) {
-        super(tag);
-        this.tag = tag;
+    public Tag(ArrayList<String> arrayList, int num) {
+        super(arrayList.get(num));
+        this.tag = arrayList.get(num);
+        arrayList.set(num, arrayList.get(num) + " #fun");
     }
 
     /**

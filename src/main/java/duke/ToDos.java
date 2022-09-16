@@ -3,7 +3,7 @@ package duke;
 /**
  * Represents the todo command.
  */
-public class ToDos extends Task {
+public class ToDos extends Parser {
     private String command;
     private int num;
 

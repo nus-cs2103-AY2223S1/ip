@@ -1,13 +1,17 @@
 package duke;
 
+import java.util.ArrayList;
+
 /**
  * Represents the unmark command.
  */
-public class Unmark extends Task {
+public class Unmark extends Parser {
     private String command;
-    public Unmark(String description) {
+
+    public Unmark(String description, ArrayList<String> arrayList, int num) {
         super(description);
         this.command = description;
+        arrayList.set(num, arrayList.get(num).substring(0, 3) + "[ ]" + arrayList.get(num).substring(6));
     }
 
     /**

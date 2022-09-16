@@ -2,7 +2,7 @@ package duke;
 
 import java.util.ArrayList;
 
-public class Find extends Task {
+public class Find extends Parser {
     private String target;
     ArrayList<String> list = new ArrayList<>();
 

@@ -1,13 +1,17 @@
 package duke;
 
+import java.util.ArrayList;
+
 /**
  * Represents the Mark command.
  */
-public class Mark extends Task {
+public class Mark extends Parser {
     private String command;
-    public Mark(String description) {
+
+    public Mark(String description, ArrayList<String> arrayList, int num) {
         super(description);
         this.command = description;
+        arrayList.set(num, arrayList.get(num).substring(0, 3) + "[X]" + arrayList.get(num).substring(6));;
     }
 
     /**
