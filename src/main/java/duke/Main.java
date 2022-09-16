@@ -21,9 +21,9 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
-            stage.setTitle("ChadBot");
-            stage.setResizable(false);
             stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("ChadBot");
             stage.getIcons().add(new Image("/images/Chad.png"));
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             fxmlLoader.<MainWindow>getController().showWelcome();
