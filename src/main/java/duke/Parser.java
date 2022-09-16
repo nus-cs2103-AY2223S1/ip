@@ -3,10 +3,7 @@ package duke;
 import duke.command.*;
 import duke.dukeexception.MissingTimingException;
 import duke.dukeexception.UnknownCommandException;
-import duke.task.Deadlines;
-import duke.task.Events;
-import duke.task.Task;
-import duke.task.ToDos;
+import duke.task.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -66,6 +63,13 @@ public class Parser {
                 //parse event details
                 Events event = parseEventInput(sub);
                 return new AddCommand(event);
+            }
+            //logic to create duke.task.DoAfter
+            if (input.indexOf("doafter") == 0) {
+                String sub = input.substring(8);
+                //parse event details
+                DoAfter after = parseDoAfterInput(sub);
+                return new AddCommand(after);
             }
             if (input.indexOf("delete") == 0) {
                 String substring = input.substring(7);
@@ -130,6 +134,25 @@ public class Parser {
     }
 
     /**
+     * Method that takes in String input to create a deadline and returns an Events object.
+     *
+     * @param input String representation of input command.
+     * @return Events object encapsulating information from input
+     * @throws MissingTimingException When the input is missing a specified time.
+     */
+    public static DoAfter parseDoAfterInput(String input) throws MissingTimingException {
+        int timeIndex = input.lastIndexOf("/after");
+        if (timeIndex == -1) {
+            throw new MissingTimingException();
+        }
+        String description = input.substring(0, timeIndex - 1);
+        String timingString = input.substring(timeIndex + 7);
+        LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
+        DoAfter after = new DoAfter(description, timing, false);
+        return after;
+    }
+
+    /**
      * Static method that reads task data stored in hard disk storage and returns the duke.task.Task representation of the task.
      *
      * @param data String data representing a task.
@@ -157,9 +180,12 @@ public class Parser {
         } else if (taskType.equals("D")) {
             LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
             task = new Deadlines(description, timing, isDone);
-        } else { //taskType.equals("E")
+        } else if (taskType.equals("E")) {
             LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
             task = new Events(description, timing, isDone);
+        } else { //taskType.equals("A")
+            LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
+            task = new DoAfter(description, timing, isDone);
         }
         return task;
     }
