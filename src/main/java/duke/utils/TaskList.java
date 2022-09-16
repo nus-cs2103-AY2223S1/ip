@@ -70,7 +70,7 @@ public class TaskList {
     }
 
     /**
-     * Unmark a task if it is done.
+     * Unmarks a task if it is done.
      *
      * @param input The string representation of the index of the task to be unmarked.
      * @throws DukeException if task number is incorrectly provided.

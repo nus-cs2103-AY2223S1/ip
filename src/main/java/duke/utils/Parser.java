@@ -100,7 +100,7 @@ public class Parser {
     }
 
     /**
-     * Parsed a saved string and returns the corresponding Task.
+     * Parses a saved string and returns the corresponding Task.
      *
      * @param save String containing the line in the storage to be parsed.
      * @return the parsed Task.
