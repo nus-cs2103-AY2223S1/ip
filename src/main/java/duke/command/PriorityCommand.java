@@ -1,12 +1,12 @@
 package duke.command;
 
 import duke.duke.DukeException;
-import duke.util.Storage;
-import duke.task.TaskList;
 import duke.task.Task;
+import duke.task.TaskList;
+import duke.util.Storage;
 
 /** Represents the command to change the priority level of Tasks in TaskList that inherits from Command. */
-public class PriorityCommand extends Command{
+public class PriorityCommand extends Command {
     /** Represents the input keyed by the user. */
     private final String userInput;
 
@@ -27,7 +27,8 @@ public class PriorityCommand extends Command{
         String message = "";
 
         if (userInput.split(" ").length < 3) {
-            throw new DukeException("OOPS!!! The priority command cannot have empty parameters. Example command is priority 1 high");
+            throw new DukeException("OOPS!!! The priority command cannot have empty parameters. "
+                    + "Example command is priority 1 high");
         }
         String index = userInput.split(" ")[1];
         String priorityString = userInput.split(" ")[2];

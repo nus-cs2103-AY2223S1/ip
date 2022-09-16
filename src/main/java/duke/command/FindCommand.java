@@ -1,8 +1,8 @@
 package duke.command;
 
 import duke.duke.DukeException;
-import duke.util.Storage;
 import duke.task.TaskList;
+import duke.util.Storage;
 
 /** Represents the command to find tasks with given keyword that inherits from Command. */
 public class FindCommand extends Command {

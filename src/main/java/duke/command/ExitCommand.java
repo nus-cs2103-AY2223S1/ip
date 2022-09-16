@@ -2,8 +2,8 @@ package duke.command;
 
 import duke.duke.Duke;
 import duke.duke.DukeException;
-import duke.util.Storage;
 import duke.task.TaskList;
+import duke.util.Storage;
 
 /** Represents the command to end the Duke program. */
 public class ExitCommand extends Command {

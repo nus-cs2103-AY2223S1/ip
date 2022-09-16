@@ -1,20 +1,21 @@
 package duke.duke;
 
+import duke.command.Command;
+import duke.task.TaskList;
 import duke.util.Parser;
 import duke.util.Storage;
-import duke.task.TaskList;
-import duke.command.Command;
+
 
 /**
  * Represents the main class of the Duke application
  */
 public class Duke {
-    private TaskList taskList;
-    private Storage storage;
-
     public static final String EXIT_MESSAGE = "Bye. Hope to see you again soon! \n\nApplication is now closing.";
     public static final String GREETING_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
     public static final String TITLE = "Duke";
+
+    private TaskList taskList;
+    private Storage storage;
 
     /**
      * Represents a Duke object.
@@ -24,12 +25,15 @@ public class Duke {
      * @param filePath File path of the data text file
      * @throws DukeException from the loadTaskList method
      */
-    public Duke(String filePath) throws DukeException{
+    public Duke(String filePath) throws DukeException {
         assert !filePath.isEmpty() : "Filepath should not be empty";
         storage = new Storage(filePath);
         taskList = new TaskList(storage.loadTaskList());
     }
 
+    /**
+     * Enum that represents the commands keywords Duke can process
+     */
     public enum Keyword {
         EXIT("bye"), LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), DELETE("delete"), MARK("mark"),
         UNMARK("unmark"), FIND("find"), PRIORITY("priority");

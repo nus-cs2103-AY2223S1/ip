@@ -2,8 +2,7 @@ package duke.task;
 
 import duke.duke.DukeException;
 
-import java.util.Locale;
-
+/** Asbstract class that represents Task */
 public abstract class Task {
     private String taskName;
     private boolean isDone;
@@ -21,10 +20,13 @@ public abstract class Task {
         this.priority = Priority.LOW;
     }
 
+    /**
+     * Enum that represents the priority levels of the tasks.
+     */
     public enum Priority {
         HIGH(1), LOW(3), MEDIUM(2);
         private int value;
-        Priority (int value) {
+        Priority(int value) {
             this.value = value;
         }
         public int getValue() {
@@ -41,10 +43,20 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Sets priority level of task with given priority.
+     *
+     * @param priority Priority enum that represents priority level of task.
+     */
     public void setPriority(Priority priority) {
         this.priority = priority;
     }
 
+    /**
+     * Sets priority level of task with given priority number.
+     *
+     * @param priorityNum Priority number that represents priority level of task.
+     */
     public void setPriority(int priorityNum) {
         if (priorityNum == 1) {
             this.priority = Priority.HIGH;
@@ -55,23 +67,42 @@ public abstract class Task {
         }
     }
 
-    public void setPriority(String priorityString) throws DukeException{
+    /**
+     * Sets priority level of task with given priority string.
+     *
+     * @param priorityString Priority String that represents priority level of task.
+     */
+    public void setPriority(String priorityString) throws DukeException {
         String name = priorityString.toLowerCase().replaceAll(" ", "");
-        if(name.equals("high")) {
+        switch (name) {
+        case "high":
             this.priority = Priority.HIGH;
-        } else if (name.equals("medium")) {
+            break;
+        case "medium":
             this.priority = Priority.MEDIUM;
-        } else if (name.equals("low")) {
+            break;
+        case "low":
             this.priority = Priority.LOW;
-        } else {
+            break;
+        default:
             throw new DukeException("OOPS!!! Invalid priority level");
         }
     }
 
+    /**
+     * Gets priority level string representation of task.
+     *
+     * @return String that represents priority level of task.
+     */
     public String getPriorityString() {
         return this.priority.getName();
     }
 
+    /**
+     * Gets priority level number representation of task.
+     *
+     * @return Integer that represents priority level of task.
+     */
     public int getPriorityNumber() {
         return this.priority.value;
     }
@@ -110,7 +141,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return (this.getTaskStatus() ? "[X]" : "[ ]") + "["+ this.getPriorityString() + "] " + this.getTaskName();
+        return (this.getTaskStatus() ? "[X]" : "[ ]") + "[" + this.getPriorityString() + "] " + this.getTaskName();
     }
 
     /**

@@ -1,9 +1,9 @@
 package duke.command;
 
 import duke.duke.DukeException;
-import duke.util.Storage;
-import duke.task.TaskList;
 import duke.task.Task;
+import duke.task.TaskList;
+import duke.util.Storage;
 
 /** Represents the command to delete task that inherits from Command */
 public class DeleteCommand extends Command {

@@ -31,7 +31,7 @@ public class Deadline extends Task {
                 endDate = endDate.substring(0, endDate.length() - 1);
             }
             this.endDate = LocalDateTime.parse(endDate, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
-        } catch (DateTimeParseException dateTimeParseException){
+        } catch (DateTimeParseException dateTimeParseException) {
             throw new DukeException("OOPS!!! Cannot parse date. Enter date according to example, 02-12-2019 1800");
         }
     }

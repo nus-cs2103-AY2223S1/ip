@@ -1,6 +1,13 @@
 package duke.util;
 
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.PriorityCommand;
 import duke.duke.Duke;
 import duke.duke.DukeException;
 
@@ -40,8 +47,7 @@ public class Parser {
             return new FindCommand(userInput);
         } else if (command.equals(Duke.Keyword.PRIORITY.getKeyword())) {
             return new PriorityCommand(userInput);
-        }
-        else {
+        } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }

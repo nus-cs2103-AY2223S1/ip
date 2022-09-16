@@ -2,12 +2,12 @@ package duke.command;
 
 import duke.duke.Duke;
 import duke.duke.DukeException;
-import duke.util.Storage;
-import duke.task.TaskList;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
+import duke.task.TaskList;
 import duke.task.Todo;
+import duke.util.Storage;
 
 /** Represents the command to add task that inherits from Command. */
 public class AddCommand extends Command {

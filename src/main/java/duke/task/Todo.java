@@ -27,6 +27,7 @@ public class Todo extends Task {
      */
     @Override
     public String toFileString() {
-        return "T" + "|" + (this.getTaskStatus() ? "1" : "0") + "|" + this.getPriorityNumber() + "|" + this.getTaskName();
+        return "T" + "|" + (this.getTaskStatus() ? "1" : "0") + "|" + this.getPriorityNumber()
+                + "|" + this.getTaskName();
     }
 }
