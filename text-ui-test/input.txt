@@ -1,0 +1,21 @@
+deadline Complete Week 2 Tasks /by 26/09/2022 18:00
+todo Gym
+list
+event CS2103T Lecture /at 28/09/2022 09:00
+list
+mark 1
+mark 3
+list
+unmark 3
+delete 1
+unmark 2
+list
+unmark 100
+unmark task
+todo
+delete 999
+deadline task with no deadline
+deadline Complete Week 2 Tasks /by 16th June 2PM
+event task with no timing
+hello
+bye
