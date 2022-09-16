@@ -33,6 +33,14 @@ Command format: `deadline <description> /by <yyyy-mm-dd>`
 Example of usage: 
 
 Command format: `list`
+````
+Expected Output : 
+
+    list
+
+1. [T][X] buy pen
+2. [D][] art submission (by: Nov 19 2012)
+````
 
 ### `mark` - indicate a completed Task
 
