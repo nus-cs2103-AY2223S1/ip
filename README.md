@@ -48,3 +48,8 @@ event return book /by 2/12/2019 1800
 ```
 Expected outcome:
 (output here)
+
+
+Expected date time format:
+dd/mm/yyyy hhmm (eg: 25/11/2022 0900)
+
