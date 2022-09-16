@@ -19,8 +19,8 @@ public class Duke {
     private static final String DUKE_INTRODUCTION = "Hello Sheldon, I'm your clone, Sheldon!";
     private static final String DUKE_HELP =
             "I am pleasured to be at your service, although we both know you are smart and don't need any help.";
-
     public static final String FILE_NAME = "shelbot.txt";
+    
     private Storage storage;
     private TaskList tasks;
 
