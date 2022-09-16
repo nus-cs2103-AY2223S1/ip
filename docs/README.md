@@ -1,11 +1,9 @@
 # DukeAce User Guide
 
----
 
 Meet DukeAce, your very own task manager
 ## Features 
 
----
 ### Keep Track of Todos, Events and Deadlines
 
 DukeAce, your task manager is able to record your tasks. 
