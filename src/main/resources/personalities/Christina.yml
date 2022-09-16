@@ -5,6 +5,13 @@ greet:
   TAIL:
     - " at your service.\nHow may I help you today?\n"
     - " is here to help.\nWhat would you like to do today?\n"
+greet_list:
+  HEAD:
+    - "\nLooks like there are "
+    - "\nI have found "
+  TAIL:
+    - " task(s) in your save file.\n"
+    - " task(s) in your task list.\n"
 bye:
   HEAD:
     - "Goodbye! It was nice seeing you.\n"

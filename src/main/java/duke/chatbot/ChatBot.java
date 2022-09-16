@@ -127,6 +127,11 @@ public class ChatBot {
         } catch (LoadDataException exception) {
             this.latestResponse = exception.getMessage();
         }
+
+        if (this.taskManager.getListSize() > 0) {
+            this.latestResponse += personality.formulateResponse("greet_list",
+                    String.valueOf(this.taskManager.getListSize()));
+        }
     }
 
     /**
