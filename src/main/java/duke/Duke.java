@@ -35,9 +35,9 @@ public class Duke extends Application {
     private Button sendButton;
     private Scene scene;
 
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/Malfurion.jpg"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/Malfurion.png"));
 
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/Medivh.jpg"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/Medivh.png"));
     private Storage storage = new Storage("data/duke.txt");
     private TaskList tasks;
 
