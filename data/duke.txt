@@ -1,0 +1,8 @@
+1.[T][ ] borrow book
+2.[T][ ] read book 
+3.[D][X] return book (by: FEB 05 2022)
+4.[E][ ] book session (at: Monday 2pm)
+5.[D][ ] group report (by: FEB 03 2022)
+6.[D][ ] hello (by: FEB 02 2022)
+7.[E][ ] hello (at: 2pm)
+8.[T][ ] read book
