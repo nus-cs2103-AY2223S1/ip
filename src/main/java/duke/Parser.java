@@ -221,7 +221,8 @@ public class Parser {
             if (e instanceof DateTimeParseException) {
                 return "Please use time in dd/MM/yyyy HH:mm format";
             } else if (e instanceof ArrayIndexOutOfBoundsException) {
-                return "Please insert a time in dd/MM/yyyy HH:mm format";
+                return "Please insert a time using /at dd/MM/yyyy HH:mm format "
+                        + "for events and /by dd/MM/yyyy HH:mm format for deadlines";
             }
             return e.getMessage();
         }
