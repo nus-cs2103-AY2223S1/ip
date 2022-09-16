@@ -137,7 +137,8 @@ Note: There are 3 different types of period specifiable, namely:
 Exits _KarenBot_.  
 Format: `exit`
 
-## Command summary
+## Command summary  
+
 | Command                                 | Description                                                   |
 |-----------------------------------------|---------------------------------------------------------------|
 | `help`                                  | Displays a list of all possible commands.                     |
