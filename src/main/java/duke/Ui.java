@@ -6,10 +6,19 @@ package duke;
 public class Ui {
     /** Main logo of the app */
     private String logo = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
+            + "|  _  \\ _   _     _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
+    private String logo2 = "╭━━━╮╱╱╭╮\n"
+            + "╰╮╭╮┃╱╱┃┃\n"
+            + "╱┃┃┃┣╮╭┫┃╭┳━━╮\n"
+            + "╱┃┃┃┃┃┃┃╰╯┫┃━┫\n"
+            + "╭╯╰╯┃╰╯┃╭╮┫┃━┫\n"
+            + "╰━━━┻━━┻╯╰┻━━╯";
+
+
+
 
     /**
      * Prints a text in the specified format
@@ -27,9 +36,9 @@ public class Ui {
      */
     public String initialize() {
         String string = "";
-        string += "Hello from\n" + logo + "\n";
+        string += "Hello from\n" + logo2 + "\n";
 
-        string += "Hello I'm Duke\nWhat can I do for you";
+        string += "Hello I'm Duke, What can I do for you";
         return string;
     }
 

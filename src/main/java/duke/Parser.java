@@ -34,8 +34,7 @@ public class Parser {
             return taskList.printFilteredTaskList(item.substring(5));
         } else if (item.equals("schedule")) {
             return taskList.getSchedule();
-        }
-        else {
+        } else {
             return ("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }

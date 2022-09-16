@@ -53,7 +53,6 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
@@ -68,8 +67,8 @@ public class Duke extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets the response for the user input
+     * @param input the input from the user
      */
     String getResponse(String input) {
         return Parser.parse(input, tasks);
@@ -78,7 +77,8 @@ public class Duke extends Application {
 
     @Override
     /**
-     * initialize javafx UI
+     * initializes javafx UI
+     * @param stage the stage object in which the UI is being built
      */
     public void start(Stage stage) {
         setUpComponents(stage);
@@ -111,7 +111,7 @@ public class Duke extends Application {
     }
 
     /**
-     * sets the alignment properties of the window and the components inside it.
+     * Sets the alignment properties of the window and the components inside it.
      * @param stage the stage object in which the UI is being built
      */
     private void setAlignment(Stage stage) {
@@ -129,8 +129,7 @@ public class Duke extends Application {
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
-        // You will need to import `javafx.scene.layout.Region` for this.
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        dialogContainer.setPrefHeight(0);
 
         userInput.setPrefWidth(325.0);
 
@@ -175,14 +174,12 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
      */
     private Label getDialogLabel(String text) {
         assert text != null;
-        // You will need to import `javafx.scene.control.Label`.
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
 
