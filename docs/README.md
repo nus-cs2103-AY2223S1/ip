@@ -1,6 +1,6 @@
 # User Guide
 
-Byu is a desktop app for managing your tasks, optimized for use via a Graphical User Interface (GUI).
+Byu is a desktop app for managing your tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## Notes about the command format
 
@@ -152,3 +152,13 @@ Format: `delete INDEX`
 Example: 
 
 `delete 2` deletes the second task in the list.
+
+### `bye` - exiting the program
+
+Exits the program and closes the window.
+
+Format: `bye`
+
+Example: 
+
+`bye` closes the program.
