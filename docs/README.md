@@ -69,13 +69,13 @@ Adds an event task to the task manager.
 
 **Usage:** 
 
-`event DESCRIPTION /by DATETIME` 
+`event DESCRIPTION /at DATETIME` 
 
 `event` is the command, `DESCRIPTION` is the description of the event task and `DATETIME` is the time of the task in YYYY-MM-DD HH:MM format.
 
 **Example of usage:** 
 
-`event family dinner /by 2022-09-17 20:00`
+`event family dinner /at 2022-09-17 20:00`
 
 **Expected outcome:**
 
@@ -108,7 +108,7 @@ A list containing the tasks currently stored in the task manager and their corre
 **Expected output:**
 ```
 1. [T][ ] buy dinner
-2. [D][ ] cs2100 lab (by: 10:00 am on 09/09/2022)
+2. [D][ ] CS2100 lab (by: 10:00 am on 09/09/2022)
 3. [E][ ] family dinner (at: 08:00 pm on 17/09/2022)
 ```
 
@@ -168,7 +168,7 @@ Deletes a task from the task manager.
 
 `delete INDEX` 
 
-`delete` is the command and `INDEX` is the index of the task to be delete which can be found using `list`.
+`delete` is the command and `INDEX` is the index of the task to be deleted which can be found using `list`.
 
 **Example of usage:** 
 
