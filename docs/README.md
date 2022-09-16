@@ -10,10 +10,11 @@ John Doe is a **desktop app which helps users keep track of their to-dos, deadli
 
 ## Quick start
 1. Ensure that you have Java `11` installed on your computer. If not, please install it from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
-2. Download the latest `duke.jar` file
+2. Download the latest `duke.jar` 
 3. To start the app, double-click the file. GUI should look similar to image shown below. <br> ![Ui](Ui.png)
 4. Type your command in the text box and hit enter for John Doe to process your command!
 5. To find more details about the [features](#Features), refer below.
+6. Enjoy using John Doe to keep track of your tasks.
 
 ## Features
 
@@ -177,6 +178,11 @@ Noted. I've removed this task:
 [E][][HIGH] party (at: Sep 16 2022)
 ```
 
+### Exiting program
+Exits the program.
+
+Format: `bye`
+
 ### Saving data
 Tasks are saved after each command is ran automatically in the hard disk.
 
@@ -193,3 +199,4 @@ Tasks are saved after each command is ran automatically in the hard disk.
 | **find** | `find KEYWORD(S)` | `find book` |
 | **priority** | `priority INDEX low/medium/high` | `priority 1 high` |
 | **delete** | `delete INDEX` | `delete 1` |
+| **bye** | `bye` | `bye` |
