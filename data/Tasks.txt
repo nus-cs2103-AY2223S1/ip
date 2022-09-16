@@ -6,3 +6,5 @@ T|0|go home
 T|0|swim
 D|0|do IP|2022-09-01 00:00
 D|0|IFG|2022-08-26 09:00
+T|0|Go to class
+D|0|Finish book|2022-09-16 18:00

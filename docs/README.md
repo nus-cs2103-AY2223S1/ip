@@ -51,7 +51,7 @@ Format: `deadline [DESCRIPTION] /by [DATE]`
 Add a new Event type task with its description and event date and time it will occur.
 - Date and time must be in the format yyyy-MM-dd HH:mm
 
-Format: `event [DESCRIPTION] /by [DATE]`
+Format: `event [DESCRIPTION] /at [DATE]`
 
 ## View tasks: `list`
 
@@ -87,6 +87,6 @@ Format: `bye`
 
 ## FAQ
 **Q:** Can I extract the list of tasks to a text file
-**A:** Yes! All of the tasks used in Duke are stored in the `Tasks.txt` file
+**A:** Yes! All the tasks used in Duke are stored in the `Tasks.txt` file
 
 
