@@ -6,6 +6,8 @@ import gina.TaskAndContactList;
 import gina.Ui;
 import gina.Contact;
 
+import java.util.regex.PatternSyntaxException;
+
 public class ContactCommand extends Command {
     private String input;
 
@@ -27,8 +29,13 @@ public class ContactCommand extends Command {
             throw new GinaException("Gina knows best but she can't read minds...");
         }
         Contact newContact;
-        String[] str = input.split(" /info ", 2);
-        newContact = new Contact(str[0], str[1]);
+        try {
+            String[] str = input.split(" /info ", 2);
+            newContact = new Contact(str[0], str[1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            newContact = new Contact(input, "");
+        }
+
         taskAndContactList.addContact(newContact);
         storage.save(taskAndContactList);
         return ui.showAddContact(newContact);

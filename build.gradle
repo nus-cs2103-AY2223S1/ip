@@ -13,7 +13,7 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 
-    String javaFxVersion = '11'
+    String javaFxVersion = '18.0.2'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -28,6 +28,7 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 }
+
 
 test {
     useJUnitPlatform()
@@ -44,7 +45,7 @@ test {
 }
 
 application {
-    mainClassName = "gina.Gina"
+    mainClassName = "gina.Launcher"
 }
 
 shadowJar {
