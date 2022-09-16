@@ -34,15 +34,15 @@ deadline CS2103T iP Week 4 /by 2022-08-27 18:00:00
 #### Expected outcome
 ```
 -------------------------
-	Added: [ ] [T] read a book
+    Added: [ ] [T] read a book
 -------------------------
 
 -------------------------
-	Added: [ ] [E] orbital splashdown at 2022/08/22 13:00:00
+    Added: [ ] [E] orbital splashdown at 2022/08/22 13:00:00
 -------------------------
 
 -------------------------
-	Added: [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
+    Added: [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
 -------------------------
 ```
 
@@ -90,7 +90,7 @@ delete 3
 -------------------------    
     Sure, I have removed this task from the list:    
     [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00    
-	There are 2 tasks in the list. 
+    There are 2 tasks in the list. 
 -------------------------  
 ```
 
@@ -144,10 +144,10 @@ sort
 // ...  
   
 -------------------------
-	Sure! I have sorted the list! 
-	1. [ ] [E] orbital splashdown at 2022/08/22 13:00:00 
-	2. [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00 
-	3. [ ] [T] read a book
+    Sure! I have sorted the list! 
+    1. [ ] [E] orbital splashdown at 2022/08/22 13:00:00 
+    2. [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00 
+    3. [ ] [T] read a book
  -------------------------
 ```  
 
