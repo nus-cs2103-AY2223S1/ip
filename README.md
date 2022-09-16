@@ -1,7 +1,7 @@
 # Doomba Task Manager
-🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧
- **Doomba** hasn't reached it's _final form yet_!!! 
-🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧
+🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧  
+ **Doomba** hasn't reached it's _final form yet_!!!  
+🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧  
 What it can do
 * add tasks
 * delete tasks
