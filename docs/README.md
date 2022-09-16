@@ -17,10 +17,10 @@ DukeAce is also able to categorise your tasks into 3 types
 
 Deadlines are able to record the date of the deadlines as well.
 
----
+
 ## Usage
 
----
+
 ### `hi` - DukeAce responds back hi
 
 DukeAce will show greeting message when received a "hi" input.
@@ -36,7 +36,7 @@ Hello! I'm Darwin :)
 What can I do for you?
 ```
 
----
+
 ### `bye` - DukeAce says back bye
 
 DukeAce will show sending off message when received a "bye" input.
@@ -53,7 +53,7 @@ Hope to see you again soon!
 ```
 
 
----
+
 ### `todo` - DukeAce create todo Task
 
 DukeAce will create todo task.
@@ -71,7 +71,7 @@ Oki, nicee. I've added this task:
 Now you have 3 tasks in the list.
 ```
 
----
+
 ### `event` - To create event Task
 
 DukeAce will create event task.
@@ -89,7 +89,7 @@ Now you have 4 tasks in the list.
 ```
 
 
----
+
 ### `deadline` - To create deadline Task
 
 DukeAce will create deadline task that has a date for deadline.
@@ -110,7 +110,7 @@ Oki, niceee. I've added this task:
 Now you have 5 tasks in the list.
 ```
 
----
+
 ### `mark` - To mark a Task as complete
 
 DukeAce will mark the task as complete.
@@ -128,7 +128,7 @@ Nice! I've marked this task as done:
 [T][X] Project to be completed
 ```
 
----
+
 ### `unmark` - To mark a Task as incomplete
 
 DukeAce will mark the task as complete.
