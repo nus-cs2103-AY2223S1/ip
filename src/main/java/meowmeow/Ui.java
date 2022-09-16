@@ -1,7 +1,5 @@
 package meowmeow;
 
-import java.util.Scanner;
-
 public class Ui {
 
     public String showWelcome() {

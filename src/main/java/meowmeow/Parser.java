@@ -44,13 +44,13 @@ public class Parser {
         String cmdWord = splitUserInput[0];
 
         switch (cmdWord) {
-            case "mark":
-                try {
-                    int taskNum = Integer.parseInt(splitUserInput[1]);
-                    return new MarkCommand(true, taskNum);
-                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to mark!");
-                }
+        case "mark":
+            try {
+                int taskNum = Integer.parseInt(splitUserInput[1]);
+                return new MarkCommand(true, taskNum);
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to mark!");
+            }
 
         case "unmark":
             try {

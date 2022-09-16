@@ -36,7 +36,8 @@ public class MainWindow extends AnchorPane {
     }
 
     public void setMeowmeow(Meowmeow m) {
-        dialogContainer.getChildren().add(DialogBox.getMeowmeowDialog("Hewwo! I'm MeowMeow (=^ↀWↀ^=)" + "\nWhat do you need meow to do for you today?", dukeImage));
+        dialogContainer.getChildren().add(DialogBox.getMeowmeowDialog("Hewwo! I'm MeowMeow (=^ↀWↀ^=)"
+                + "\nWhat do you need meow to do for you today?", dukeImage));
         meowmeow = m;
     }
 
