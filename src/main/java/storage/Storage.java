@@ -95,21 +95,22 @@ public class Storage {
 
         else if (isEvent(task)) {
             int pos = str.indexOf("(") - 1;
-            String substring = str.substring(pos + 5, str.length() - 1);
+            System.out.println(pos);
+            String at = str.substring(pos + 6, str.length() - 1);
             if (isDone) {
-                addTaskWithMark(new Event(str.substring(7, pos), substring), arr);
+                addTaskWithMark(new Event(str.substring(7, pos), at), arr);
             } else {
-                addTaskWithoutMark(new Event(str.substring(7, pos), substring), arr);
+                addTaskWithoutMark(new Event(str.substring(7, pos), at), arr);
             }
         }
 
         else if (isDeadline(task)) {
             int pos = str.indexOf("(") - 1;
-            String substring = str.substring(pos + 6, str.length() - 1);
+            String by = str.substring(pos + 6, str.length() - 1);
             if (isDone) {
-                addTaskWithMark(new Deadline(str.substring(7, pos), substring), arr);
+                addTaskWithMark(new Deadline(str.substring(7, pos), by), arr);
             } else {
-                Deadline dl = new Deadline(str.substring(7, pos), substring);
+                Deadline dl = new Deadline(str.substring(7, pos), by);
                 addTaskWithoutMark(dl, arr);
             }
         }

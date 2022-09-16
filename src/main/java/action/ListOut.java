@@ -1,11 +1,14 @@
 package action;
 
 import task.TaskList;
+import ui.UI;
 
 /**
  * ListOut is a class that lists out all the tasks in a TaskList.
  */
 public class ListOut {
+
+    protected static UI ui = new UI();
 
     /**
      * List lists out all the Tasks in a TaskList.
@@ -23,7 +26,7 @@ public class ListOut {
             out = new StringBuilder("----------------------\n" + out + "----------------------\n");
             return out.toString();
         } else {
-            return "Error";
+            return ui.showInaccurateInput();
         }
     }
 }

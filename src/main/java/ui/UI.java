@@ -50,6 +50,21 @@ public class UI {
         return out;
     }
 
+    public String noDateOrTime() {
+        String out = "----------------------\nI see you may have forgotten to add the date or time to the deadline :)\n" +
+                "----------------------\n";
+        return out;
+    }
+
+    public String goodByeMessage() {
+        String out = "GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOD Bye ";
+        return out;
+    }
+
+    public String threadException() {
+        String out = "Thread exception has occured :(";
+        return out;
+    }
 
 
 

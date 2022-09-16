@@ -61,7 +61,11 @@ public class Duke {
         Parser parser = new Parser();
         String out = parser.parse(tasks, input);
         if (parser.isBye()) {
-            return execute(out);
+            try {
+                return execute(out);
+            } catch (DukeException e) {
+                return e.getMessage();
+            }
         }
         return out;
     }
@@ -72,7 +76,7 @@ public class Duke {
                 Thread.sleep(4000);
                 Platform.exit();
             } catch (Exception e) {
-                System.out.println(e);
+                throw new DukeException(ui.threadException());
             }
         }).start();
         return out;

@@ -9,12 +9,15 @@ import reminder.Reminder;
 
 import task.Task;
 import task.TaskList;
+import ui.UI;
 
 
 /**
  * Bye is a class that writes all the tasks from the TaskList to duke.txt.
  */
 public class Bye {
+
+    protected static UI ui = new UI();
 
     public static String bye(String[] str, TaskList taskList, File file) {
 
@@ -30,15 +33,15 @@ public class Bye {
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println("Oops");
+            return e.getMessage();
         }
         reminder.writeAllReminder();
-        return "Goodbye see u again";
+        return ui.goodByeMessage();
     }
 
     @Override
     public String toString() {
-        return "GoodBye and All the best";
+        return ui.goodByeMessage();
     }
 
 }

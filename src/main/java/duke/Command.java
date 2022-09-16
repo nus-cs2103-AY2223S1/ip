@@ -74,7 +74,6 @@ public enum Command {
      * @return The corresponding Command for the input.
      */
     private static Command twoWords(String[] input) {
-        System.out.println(input[0] + input[1]);
         switch (input[0]) {
             case "todo":
                 return TODO;

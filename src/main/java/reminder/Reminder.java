@@ -5,7 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import duke.DukeException;
 import task.Deadline;
+import task.Event;
 import task.Task;
 import task.TaskList;
 
@@ -38,6 +40,11 @@ public class Reminder {
             if (deadline.isDueSoon()) {
                 this.taskList.add(task);
             }
+        } else if (task.getClass() == Event.class) {
+            Event event = (Event) task;
+            if (event.isDueSoon()) {
+                this.taskList.add(event);
+            }
         }
     }
 
@@ -54,7 +61,7 @@ public class Reminder {
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println("Oops");
+            throw new DukeException("");
         }
     }
 }

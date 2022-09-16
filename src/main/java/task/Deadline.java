@@ -34,6 +34,7 @@ public class Deadline extends Task {
         this.by = by;
         String[] dateAndTime = by.split(" ");
         DateTimeFormatter formatter;
+        try {
             if (dateAndTime.length == 4) {
                 this.string_Date = dateAndTime[1] + "/" + dateAndTime[0] + "/" + dateAndTime[2];
                 this.string_Time = dateAndTime[3];
@@ -43,6 +44,9 @@ public class Deadline extends Task {
                 this.string_Time = dateAndTime[1];
                 formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             }
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(ui.noDateOrTime());
+        }
         try {
             this.date = LocalDate.parse(string_Date, formatter);
         } catch (DateTimeParseException e) {
