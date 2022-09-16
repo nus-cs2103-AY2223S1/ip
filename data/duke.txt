@@ -1,1 +1,4 @@
 deadline,hw /by 2022-09-01
+todo,walk dog
+todo,buy bread
+event,meeting /at 2022-09-10
