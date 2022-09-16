@@ -20,12 +20,23 @@ public class Task {
     }
 
     /**
-     * Returns whether a task is completed
+     * Returns a representation of whether a task is completed
+     * A "X" indicates a task is completed while a " " indicates an incomplete task
      *
      * @return whether task is done
      */
     public String getStatusIcon() {
         return (this.isDone ? "X" : " ");
+    }
+
+    /**
+     * Returns a simple representation of whether a task is completed
+     * A "1" indicates a task is completed while a "0" indicates an incomplete task
+     *
+     * @return whether task is done
+     */
+    public String getSimpleStatus() {
+        return (this.isDone ? "1": "0");
     }
 
     /**
@@ -40,6 +51,17 @@ public class Task {
      */
     public void unmark() {
         this.isDone = false;
+    }
+
+    /**
+     * Marks the task if the simple status index is "1"
+     *
+     * @param statusIndex the simple status index
+     */
+    public void setMarkBasedOnSimpleStatus(String statusIndex) {
+        if (statusIndex.equals("1")) {
+            markAsDone();
+        }
     }
 
     /**
@@ -67,7 +89,7 @@ public class Task {
      * @return simple string representation
      */
     public String toSimpleString() {
-        return (getStatusIcon().equals("X") ? "1" : "0") + " | " + this.description;
+        return getSimpleStatus() + " | " + this.description;
     }
 
 }
