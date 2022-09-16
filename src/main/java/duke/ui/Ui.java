@@ -21,7 +21,7 @@ public class Ui {
     private Scanner scanner;
 
     /**
-     * The constructor for the user interface class.
+     * Constructs the user interface by creating a scanner.
      */
     public Ui() {
         this.scanner = new Scanner(System.in);
@@ -52,7 +52,7 @@ public class Ui {
     }
 
     /**
-     * The scanner that reads input from the terminal.
+     * Returns the string read from the scanner if there is a string.
      *
      * @return The line that has been read from the terminal.
      */

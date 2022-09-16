@@ -21,7 +21,7 @@ public class MassUnMarkCommand extends Command {
     private Commands type;
 
     /**
-     * The constructor for the MarkCommand.
+     * Constructs the mass UnMarkCommand.
      *
      * @param command The type of task to be unmarked.
      */
@@ -29,10 +29,8 @@ public class MassUnMarkCommand extends Command {
         this.type = command;
     }
 
-    public MassUnMarkCommand() {}
-
     /**
-     * Constructs the unmark all command.
+     * Executes the unmark command.
      *
      * @param ui The ui class which handles the user interface.
      * @param storage The storage class which deals with the file.
@@ -66,8 +64,6 @@ public class MassUnMarkCommand extends Command {
         storage.saveFile(taskList);
         return ui.formatMessage("Nice! I've unmarked the following tasks:\n" + tasks);
     }
-
-
 
     /**
      * Returns true if the command is an ExitCommand.

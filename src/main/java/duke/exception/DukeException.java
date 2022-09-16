@@ -9,7 +9,7 @@ package duke.exception;
 public class DukeException extends Exception {
 
     /**
-     * The constructor for the Duke exception.
+     * Constructs the Duke exception.
      *
      * @param message Information about the exception.
      */
@@ -17,6 +17,11 @@ public class DukeException extends Exception {
         super(message);
     }
 
+    /**
+     * Returns the error message.
+     *
+     * @return The error message.
+     */
     @Override
     public String toString() {
         return this.getMessage();

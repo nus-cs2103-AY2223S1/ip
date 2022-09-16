@@ -11,7 +11,7 @@ import duke.command.Commands;
 public class EmptyArgumentException extends DukeException {
 
     /**
-     * The constructor for the EmptyArgumentException.
+     * Constructs the EmptyArgumentException.
      *
      * @param argument The command that throws the exception.
      */
@@ -19,6 +19,11 @@ public class EmptyArgumentException extends DukeException {
         super(argument.name());
     }
 
+    /**
+     * Returns the error message.
+     *
+     * @return The error message.
+     */
     @Override
     public String toString() {
         return "OOPS!!! The description of a " + super.toString() + " cannot be empty.";

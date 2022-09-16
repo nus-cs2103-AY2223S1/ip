@@ -9,8 +9,16 @@ import org.junit.jupiter.api.Test;
 import duke.command.ExitCommand;
 import duke.exception.DukeException;
 
+/**
+ * The ParserTest class tests the methods in the Parser class.
+ *
+ * @author Leong Jia Hao Daniel
+ */
 public class ParserTest {
 
+    /**
+     * Tests the bye command.
+     */
     @Test
     public void byeCommandTest() {
         try {
@@ -22,6 +30,9 @@ public class ParserTest {
         }
     }
 
+    /**
+     * Test the deadline command.
+     */
     @Test
     public void deadlineCommandTest() {
         try {

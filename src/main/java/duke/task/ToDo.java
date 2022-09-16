@@ -1,14 +1,14 @@
 package duke.task;
 
 /**
- * The ToDo class which represents a todo task.
+ * The To Do class which represents a todo task.
  *
  * @author Leong Jia Hao Daniel
  */
 public class ToDo extends Task {
 
     /**
-     * The constructor for the toDo task.
+     * Constructs for the to Do task.
      *
      * @param description
      */
@@ -20,11 +20,11 @@ public class ToDo extends Task {
     public ToDo() {}
 
     /**
-     * Reads from the input file and returns a todo task based
+     * Reads from the input file and returns a to do task based
      * on the data in the file.
      *
      * @param string The string from the input file.
-     * @return A new todo task describing the event.
+     * @return A new to do task describing the event.
      */
     public static ToDo parseFile(String string) {
         String[] details = string.split(" \\| ");
@@ -52,9 +52,9 @@ public class ToDo extends Task {
     }
 
     /**
-     * Override the toString() method to display the task to the user.
+     * Overrides the toString() method to display the task to the user.
      *
-     * @return A String representing the todo task.
+     * @return A String representing the to do task.
      */
     @Override
     public String toString() {

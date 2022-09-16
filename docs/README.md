@@ -1,12 +1,10 @@
 # Duke User Guide
 
----
 Duke is a personalized chat bot that helps you keep track of your tasks, events and deadlines! It comes 
 included with a gui to help you visualize the tasks better.
 
 ## Features
 
----
 
 ### Add
 
@@ -34,7 +32,6 @@ Closes the application.
 
 ## Usage
 
----
 
 ### `list` - displays the task
 

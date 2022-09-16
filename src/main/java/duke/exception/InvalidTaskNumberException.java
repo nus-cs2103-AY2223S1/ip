@@ -9,7 +9,7 @@ package duke.exception;
 public class InvalidTaskNumberException extends DukeException {
 
     /**
-     * The constructor for the InvalidTaskNumberException.
+     * Constructs the InvalidTaskNumberException.
      */
     public InvalidTaskNumberException() {
         super("InvalidTaskNumber exception");

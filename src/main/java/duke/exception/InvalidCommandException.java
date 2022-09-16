@@ -8,7 +8,7 @@ package duke.exception;
 public class InvalidCommandException extends DukeException {
 
     /**
-     * The constructor for the InvalidCommandException.
+     * Constructs the InvalidCommandException.
      *
      * @param message The error message.
      */

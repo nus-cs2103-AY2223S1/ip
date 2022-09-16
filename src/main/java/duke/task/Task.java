@@ -11,7 +11,7 @@ public class Task {
     private boolean isDone;
 
     /**
-     * The constructor for the Task class.
+     * Constructs a task specified by the user.
      *
      * @param description The description of the task.
      */
@@ -52,7 +52,7 @@ public class Task {
     }
 
     /**
-     * Return a String which is stored in the file.
+     * Returns a String which is stored in the file.
      *
      * @return The task but formatted in the way it is meant to
      *         be stored in the file.

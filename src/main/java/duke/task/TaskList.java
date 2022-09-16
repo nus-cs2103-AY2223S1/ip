@@ -13,14 +13,14 @@ public class TaskList {
     private ArrayList<Task> taskList;
 
     /**
-     * Constructor for the TaskList.
+     * Constructs the TaskList.
      */
     public TaskList() {
         this.taskList = new ArrayList<Task>();
     }
 
     /**
-     * Another constructor for the taskList when the input file is
+     * Constructs the taskList when the input file is
      * not empty.
      *
      * @param list The arraylist that stores the tasks.

@@ -17,7 +17,7 @@ public class UnMarkCommand extends Command {
     private int index;
 
     /**
-     * The constructor for the MarkCommand.
+     * Constructs the UnMarkCommand.
      *
      * @param index The index of the task to be unmarked.
      */
@@ -26,7 +26,7 @@ public class UnMarkCommand extends Command {
     }
 
     /**
-     * Constructs the unmark command.
+     * Executes the unmark command.
      *
      * @param ui The ui class which handles the user interface.
      * @param storage The storage class which deals with the file.

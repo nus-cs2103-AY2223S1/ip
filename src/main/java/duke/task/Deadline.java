@@ -16,7 +16,7 @@ public class Deadline extends Task {
     protected String dateTime;
 
     /**
-     * The constructor for a Deadline task.
+     * Constructs a Deadline task.
      *
      * @param description The description of the task.
      * @param dateTime The data and time of the task in the d/MM/yyyy format.
@@ -66,7 +66,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Override the toString() method to display the task to the user.
+     * Overrides the toString() method to display the task to the user.
      *
      * @return A String representing the deadline task.
      */
