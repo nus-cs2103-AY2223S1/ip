@@ -87,7 +87,7 @@ Deletes a task from the task list.
 Format: ```delete {index}```   
 Example: ```delete 2``` deletes the task at index 2 of the list
 
-### Finding a task by description: find
+### Finding a task by description: ```find```
 Finds all tasks matching keyword.  
 Format: ```find {keyword}```
 
