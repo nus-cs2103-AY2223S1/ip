@@ -1,8 +1,10 @@
 package duke.command;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 import duke.Storage;
 import duke.TaskList;
@@ -42,23 +44,12 @@ public class AddCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
-            String[] parts = fullCommand.split(" ", 0);
+            String[] parts = this.fullCommand.split(" ", 0);
             String command = parts[0];
-            if (parts.length == 1) {
-                throw new DukeException("OOPS!!! The description of a task cannot be empty.\n");
-            }
-            String taskName = "";
-            String dateString = "";
-            String timeString = "";
-            for (int i = 1; i < parts.length; i++) {
-                if (parts[i].charAt(0) != '/') {
-                    taskName += parts[i] + " ";
-                } else {
-                    dateString = parts[i + 1];
-                    timeString = parts[i + 2];
-                    break;
-                }
-            }
+            ArrayList<String> taskDateTime = identifyTaskDateTime();
+            String taskName = taskDateTime.get(0);
+            String dateString = taskDateTime.get(1);
+            String timeString = taskDateTime.get(2);
 
             LocalDate date = null;
             if (!dateString.equals("")) {
@@ -70,20 +61,7 @@ public class AddCommand extends Command {
                 time = validateTimeString(timeString);
             }
 
-            Task task = null;
-            switch (command) {
-            case "todo":
-                task = new ToDo(taskName, date, time);
-                break;
-            case "deadline":
-                task = new Deadline(taskName, date, time);
-                break;
-            case "event":
-                task = new Event(taskName, date, time);
-                break;
-            default:
-                task = new Task(taskName, date, time);
-            }
+            Task task = selectTaskTypeAndCreateTask(command, taskName, date, time);
             taskList.addTask(task);
 
             String list = "";
@@ -100,6 +78,49 @@ public class AddCommand extends Command {
             throw new DukeException("Invalid date & time format. Please follow the format of date "
                     + "as \"YYYY-MM-DD\" and time as \"HHMM\".");
         }
+    }
+
+
+    private ArrayList<String> identifyTaskDateTime() throws DukeException {
+        String[] parts = this.fullCommand.split(" ", 0);
+        if (parts.length == 1) {
+            throw new DukeException("OOPS!!! The description of a task cannot be empty.\n");
+        }
+        String taskName = "";
+        String dateString = "";
+        String timeString = "";
+        for (int i = 1; i < parts.length; i++) {
+            if (parts[i].charAt(0) != '/') {
+                taskName += parts[i] + " ";
+            } else {
+                dateString = parts[i + 1];
+                timeString = parts[i + 2];
+                break;
+            }
+        }
+        ArrayList<String> taskDateTime = new ArrayList<String>();
+        taskDateTime.add(taskName);
+        taskDateTime.add(dateString);
+        taskDateTime.add(timeString);
+        return taskDateTime;
+    }
+
+    private Task selectTaskTypeAndCreateTask(String command, String taskName, LocalDate date, LocalTime time) {
+        Task task;
+        switch (command) {
+        case "todo":
+            task = new ToDo(taskName, date, time);
+            break;
+        case "deadline":
+            task = new Deadline(taskName, date, time);
+            break;
+        case "event":
+            task = new Event(taskName, date, time);
+            break;
+        default:
+            task = new Task(taskName, date, time);
+        }
+        return task;
     }
 
     /**
