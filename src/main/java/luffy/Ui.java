@@ -1,7 +1,7 @@
 package luffy;
 
 /**
- * Ui class to handle printing to console.
+ * Ui class to handle print to console.
  *
  * @author Silas Tay (A0233425M)
  */
