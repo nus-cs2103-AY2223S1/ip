@@ -12,6 +12,7 @@ public class Mia {
                                      + "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
     private final TaskManager tasksManager;
     private final ChatWindow window = new ChatWindow(50);
+    private boolean flagShouldExitContext = false;
 
     public Mia(String dataPath) {
         tasksManager = new TaskManager(dataPath);
@@ -50,17 +51,22 @@ public class Mia {
             System.out.print("\u001B[1A\u001B[K");
             window.printCommand(new Span(line));
 
-            try {
-                final Command command = Command.from(this, line);
-                command.run();
-                if (command.shouldExitContext()) {
-                    break;
-                }
-            } catch (IllegalArgumentException e) {
-                respond(e.getMessage());
+            parseAndExecute(line);
+            if (flagShouldExitContext) {
+                break;
             }
         }
         window.dispose();
+    }
+
+    public void parseAndExecute(String line) {
+        try {
+            final Command command = Command.from(this, line);
+            command.run();
+            flagShouldExitContext = command.shouldExitContext();
+        } catch (IllegalArgumentException e) {
+            respond(e.getMessage());
+        }
     }
 
 }
