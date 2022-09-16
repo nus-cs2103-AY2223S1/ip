@@ -8,10 +8,7 @@
 
 <fx:root alignment="TOP_RIGHT" minHeight="-Infinity" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" text="Label" wrapText="true" style="-fx-label-padding: 10; -fx-background-color:#e8ff80; -fx-background-radius:20">
-            <font>
-                <Font name="Ink Free" size="14.0" />
-            </font>
+        <Label fx:id="dialog" text="Label" wrapText="true" style="-fx-label-padding: 10; -fx-background-color:#e8ff80; -fx-background-radius:20; -fx-font-family: 'ink free'; -fx-font-size: 16px">
             <padding>
                 <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </padding></Label>

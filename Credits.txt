@@ -33,6 +33,15 @@ Credits
 
 15.fxml files other credits:
 
-    fix labels not showing full text with help from https://github.com/nus-cs2103-AY2223S1/forum/issues/128
-    modify font, style background, color and padding (adapted from chloeelim's fxml: https://github.com/chloeelim/ip/blob/master/src/main/resources/view/DukeDialogBox.fxml)
-    color hex from https://www.color-hex.com/
+    -fix labels not showing full text with help from https://github.com/nus-cs2103-AY2223S1/forum/issues/128
+    -modify font, style background, color and padding (adapted from chloeelim's fxml: https://github.com/chloeelim/ip/blob/master/src/main/resources/view/DukeDialogBox.fxml)
+    -color hex from https://www.color-hex.com/
+
+16.set custom font - reuse code from https://github.com/TheItachiUchiha/FontLoad/tree/master/src/main and
+                                                      https://github.com/sltsheryl/ip/blob/master/src/main/resources/view/UserDialogBox.fxml
+
+17.ink free font downloaded from https://thefontsmagazine.com/font/ink-free-font/ (Thefontsmagazine.com)
+
+18.arial black font downloaded from https://www.freebestfonts.com/arial-black-font#google_vignette                                                      
+                                        
+
