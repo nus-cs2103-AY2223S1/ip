@@ -24,6 +24,7 @@ Mew is a task manager chatbot application that helps you manage your To-Dos, Eve
 - `delete TASK_INDEX`
 - `edit TASK_INDEX TASK_DESCRIPTION`
 - `find KEYWORD`
+- `help`
 - `bye`
 
 ## Commands
@@ -160,11 +161,14 @@ Example of usage:
 - `find laundry`
 - `find 2103`
 
+### Help - `help`
+
+Lists all available commands.
+
+Format: `help`
+
 ### Exit - `bye`
 
 Sends bye to Mew and exits the application.
 
 Format: `bye`
-
-Note:
-An error will be shown if parameter is given
