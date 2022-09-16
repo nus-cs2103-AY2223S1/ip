@@ -8,15 +8,15 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.93" prefWidth="400.0" spacing="10.0" style="-fx-background-radius: 19; -fx-padding: 4;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" minHeight="-Infinity" maxHeight = "Infinity" style="-fx-background-color: #ffef86; -fx-label-padding: 8; -fx-border-radius: 16; -fx-background-radius: 16;" text="Label" wrapText="true">
+        <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #ffef86;-fx-label-padding: 8; -fx-border-radius: 16; -fx-background-radius: 16;" text="Label" wrapText="true">
             <font>
-                <Font name="Calibri" size="13.0" />
+                <Font name="Monaco" size="12.0" />
             </font>
             <HBox.margin>
                 <Insets right="6.0" />
             </HBox.margin></Label>
         <HBox>
-            <ImageView fx:id="displayPicture" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 23;" />
+            <ImageView fx:id="displayPicture" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 23;" />
         </HBox>
     </children>
     <padding>

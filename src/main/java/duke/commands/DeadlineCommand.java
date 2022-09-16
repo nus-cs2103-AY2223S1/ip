@@ -43,7 +43,7 @@ public class DeadlineCommand extends Command {
             storage.save(tasks.getTaskList());
             ui.showAddTask(deadline, tasks);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Please use /at to specify event time.");
+            throw new DukeException("Please use /by to specify event time.");
         }
     }
 }
