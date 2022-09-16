@@ -20,8 +20,11 @@ public class ListHandler implements IHandler {
     @Override
     public String handle(Service s) throws ZupeyException {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Here are the tasks in your list:\n");
         Tasklist list = s.getList();
+        if (list.size() == 0) {
+            return "You have no tasks in your list!";
+        }
+        stringBuilder.append("Here are the tasks in your list:\n");
         int n = list.size();
         for (int i = 0; i < n; i++) {
             stringBuilder.append(String.format("%d. %s", i + 1, list.get(i)));

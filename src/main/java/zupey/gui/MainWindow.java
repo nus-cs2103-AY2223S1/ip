@@ -33,8 +33,11 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setZupey(Zupey d) {
-        zupey = d;
+    public void setZupey(Zupey z) {
+        zupey = z;
+        DialogBox logoDialog = DialogBox.getzupeyDialog(z.getLogo(), zupeyImage);
+        DialogBox zupeyDialog = DialogBox.getzupeyDialog(z.sayHello(), zupeyImage);
+        dialogContainer.getChildren().addAll(logoDialog, zupeyDialog);
     }
 
     /**

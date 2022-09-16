@@ -23,7 +23,9 @@ public class Gui extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap");
             stage.setScene(scene);
+            stage.setTitle("Zupey");
 
             Ui ui = new Ui();
             File storageDirectory = new File("./data");

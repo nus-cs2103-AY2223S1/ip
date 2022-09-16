@@ -16,7 +16,7 @@ import zupey.entities.Todo;
 
 /** FileStorage saves the user's current Tasks */
 public class FileStorage implements IStorage {
-    private static final Pattern TASK_REGEX = Pattern.compile("^\\[(T|D|E)\\]\\[(x| )\\] (.*)(?: \\(.*: (.*)\\))?$");
+    private static final Pattern TASK_REGEX = Pattern.compile("^\\[(T|D|E)\\]\\[(x| )\\] ([^(]*)(?: \\(.*: (.*)\\))?$");
     private final String filePath;
 
     /**

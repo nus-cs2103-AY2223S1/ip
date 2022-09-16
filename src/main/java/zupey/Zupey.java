@@ -32,14 +32,23 @@ public class Zupey {
     }
 
     /**
-     * Main Entrypoint for CLI tool
-     * @param args arguments passed by user in CLI
+     * Says hello.
+     * @return Welcome Message.
      */
-    public static void main(String[] args) {
+    public String sayHello() {
+        return "Hello! I'm Zupey\nWhat can I do for you?";
     }
 
     /**
-     * Handles the command given to zupey.
+     * Returns LOGO.
+     * @return LOGO.
+     */
+    public String getLogo() {
+        return LOGO;
+    }
+
+    /**
+     * Handles the command given to Zupey.
      * @param str user input.
      * @throws ZupeyException
      */
