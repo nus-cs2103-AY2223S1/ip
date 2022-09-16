@@ -58,6 +58,10 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
 
+        //@@author leongdl135-reused
+        //Reused from
+        //https://github.com/leongdl135/ip/blob/master/src/main/java/duke/gui/MainWindow.java
+        //to find out how to exit the application when user types bye
         if (response.equals("See you later :)")) {
             new Timer().schedule(new TimerTask() {
                 @Override

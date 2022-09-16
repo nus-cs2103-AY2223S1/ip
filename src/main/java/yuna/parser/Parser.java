@@ -121,7 +121,7 @@ public abstract class Parser {
         if (inputArray.length == 2) {
             secondWord = inputArray[1];
         }
-        if (secondWord.length() == 0) {
+        if (secondWord.isBlank()) {
             throw new YunaException(Parser.ERROR_EMPTY_DESCRIPTION);
         }
         Command command = new AddCommand(new ToDo(secondWord));

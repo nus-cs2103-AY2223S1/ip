@@ -56,9 +56,9 @@ public class TaskList {
     public Task getTask(int index) throws YunaException {
         int numTasks = tasks.size();
         if (numTasks == 0) {
-            throw new YunaException("\t You do not have any tasks.");
+            throw new YunaException("You do not have any tasks.");
         } else if (index < 1) {
-            throw new YunaException("\t duke.task.Task number starts from one.");
+            throw new YunaException("Task number starts from one.");
         } else if (index > numTasks) {
             if (numTasks == 1) {
                 throw new YunaException(String.format("You only have %d task.", numTasks));

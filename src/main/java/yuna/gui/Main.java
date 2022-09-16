@@ -26,6 +26,7 @@ public class Main extends Application {
             stage.setTitle("Yuna");
             fxmlLoader.<MainWindow>getController().setYuna(yuna);
             fxmlLoader.<MainWindow>getController().sendGreeting();
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
