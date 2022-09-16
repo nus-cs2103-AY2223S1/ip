@@ -5,12 +5,12 @@
 ### Add tasks
 
 Gina can add a task of one of 3 types:
-####1. To-dos
+#### 1. To-dos
 A task with a description and completion status.
-####2. Events
+#### 2. Events
 A task with a description, completion status 
 and date and time of the event.
-####3. Deadlines
+#### 3. Deadlines
 A task with a description, completion status 
 and date and time to complete the task by.
 
