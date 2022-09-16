@@ -45,7 +45,7 @@ public class Storage {
                 result.add(currentLine);
             }
         } catch (IOException exception) {
-            saveData(new TaskList());
+            exception.printStackTrace();
         } finally {
             try {
                 if (bufferedReader != null) {
