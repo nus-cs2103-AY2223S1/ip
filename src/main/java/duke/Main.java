@@ -26,6 +26,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             primaryStage.setScene(scene);
+            primaryStage.setTitle("Duke the Task Manager");
 
             fxmlLoader.<MainWindow>getController().setDuke(DUKE);
             primaryStage.show();

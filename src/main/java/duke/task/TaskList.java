@@ -135,6 +135,11 @@ public class TaskList {
         return searchResult;
     }
 
+    /**
+     * Sorts the task list by a sorting criteria.
+     * @param criteria Criteria that sort will be done according to.
+     * @return List sorted according to criteria.
+     */
     public ArrayList<Task> sortTasks(CommandParser.Sorting criteria) {
 
         switch (criteria) {

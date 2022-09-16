@@ -6,7 +6,12 @@ import duke.task.Task;
 
 public class CompletionComparator implements Comparator<Task> {
 
-
+    /**
+     * {@inheritdocs}
+     * @param o1 {@inheritdocs}
+     * @param o2 {@inheritdocs}
+     * @return {@inheritdocs}
+     */
     @Override
     public int compare(Task o1, Task o2) {
         if (o1.isDone() && o2.isDone()) {
@@ -20,6 +25,11 @@ public class CompletionComparator implements Comparator<Task> {
         }
     }
 
+    /**
+     * {@inheritdocs}
+     * @param obj {@inheritdocs}
+     * @return {@inheritdocs}
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

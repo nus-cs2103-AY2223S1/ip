@@ -22,7 +22,7 @@ public class Deadline extends Task {
      * @throws DateTimeParseException Exception thrown when date formatting is wrong.
      */
     public static Deadline of(String taskText, String source) throws DateNotFoundException, DateTimeParseException {
-        assert ! source.isEmpty() : "Source is not empty";
+        assert !source.isEmpty() : "Source is not empty";
 
         if (source.contentEquals("FILE")) {
 

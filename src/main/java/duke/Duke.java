@@ -11,6 +11,7 @@ import duke.task.TaskList;
 import duke.tools.CommandParser;
 import duke.tools.Storage;
 import duke.tools.Ui;
+import javafx.application.Platform;
 
 /**
  * Task Master called Duke to manage those pesky tasks.
@@ -21,11 +22,19 @@ public class Duke {
     private Storage storage;
     private String FILE_PATH = "./data/";
 
+    /**
+     * Constructs a duke instance.
+     */
     public Duke() {
         this.storage = new Storage(FILE_PATH);
         this.tasks = storage.load();
     }
 
+    /**
+     * Returns the relevant String for the GUI.
+     * @param input User input.
+     * @return String for display on GUI
+     */
     public String getResponse(String input) {
         CommandParser keywordParser = new CommandParser(input);
         CommandParser.Commands enumCommand;
@@ -36,6 +45,7 @@ public class Duke {
         }
         switch (enumCommand) {
         case BYE:
+            Platform.exit();
             return Ui.goodbye();
         case LIST:
             return tasks.list();
@@ -64,6 +74,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns a String for GUI to display.
+     * @param input User instructions for the system.
+     * @return Returns string response to be displayed on GUI.
+     */
     private String getTaskResponse(String input) {
         try {
             assert tasks != null : "task list is not null";
