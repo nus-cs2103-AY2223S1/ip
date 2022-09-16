@@ -1,21 +1,24 @@
 # Deadline Duck
 
-## Features 
 **Deadline Duck** is a Personal Assistant Chatbot 
 that helps you keep track of your upcoming 
 tasks, deadlines! Sometimes, when adding tasks, you may be some 
 additional thoughts in your mind. Therefore, **Deadline Duck** allows you 
 to pen your thoughts with our Notes feature too!
 
-Types of tasks:
-* Todos : simple tasks to be completed
-* Deadlines : tasks that need to be completed by a certain date
-* Events : tasks that are scheduled to happen at a certain date
-* Notes : notes that you can add to keep track of your thoughts
+## Types of tasks:
+* **Todos** : simple tasks to be completed
+* **Deadlines** : tasks that need to be completed by a certain date
+* **Events** : tasks that are scheduled to happen at a certain date
+* **Notes** : notes that you can add to keep track of your thoughts
 
 ## Features
 
-* Add Tasks such as Todo, Events and Deadlines
+* Keep track Tasks such as **Todo**, **Events** and **Deadlines**
+* Mark tasks as done
+* Search tasks by keywords
+* Record down your thoughts with notes
+* Postpone tasks to a later date
 
 ## Usage
 
