@@ -7,16 +7,20 @@ import java.io.IOException;
  * It can add, delete, mark tasks as done, and list all your tasks.
  * Entry point of the Duke application.
  * Initializes the application and starts the interaction with the user.
+ *
  * @author Marcus Tan
  */
 public class Duke {
 
     private Storage storage;
+
     private TaskList tasks;
+
     private Ui ui;
-    private boolean isExit = false;
+
     /**
      * Initializes the application.
+     *
      * @param filePath the path to the file where the tasks are stored
      */
     public Duke(String filePath) {
@@ -33,19 +37,18 @@ public class Duke {
         }
     }
 
+    /**
+     * Parses the input, executes the command, and returns the result.
+     *
+     * @param input the input from the user
+     * @return the result of the command
+     */
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            if (c.isExit()) {
-                this.isExit = true;
-            }
             return c.execute(tasks, ui, storage);
         } catch (DukeException e) {
             return ui.showError(e.getMessage(), "Please try again :-)");
         }
-    }
-
-    public boolean isExit() {
-        return isExit;
     }
 }

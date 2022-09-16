@@ -12,6 +12,7 @@ public class Deadline extends Task {
 
     /**
      * Creates a new deadline task with a description and a deadline.
+     *
      * @param description the description of the task
      * @param by the deadline of the task
      */
@@ -24,18 +25,35 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Returns the string representation of the deadline task in the file format.
+     *
+     * @return the string representation of the deadline task in the file format
+     */
     @Override
     public String fileFormat() {
         return String.format("D | %d | %s | %s | %s", isDone ? 1 : 0,
         priority == null ? "0" : priority, description, by);
     }
 
+    /**
+     * Returns the string representation of the deadline task.
+     *
+     * @return the string representation of the deadline task
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: "
                 + by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")"
                 + (priority == null ? "" : " - " + priority);
     }
+
+    /**
+     * Compares this deadline task with another object.
+     *
+     * @param obj the object to be compared with
+     * @return true if the other object is a deadline task with the same description and deadline
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Deadline) {

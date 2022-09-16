@@ -11,7 +11,8 @@ public class PriorityCommand extends Command {
 
     /**
      * Creates a new PriorityCommand.
-     * @param index the index of task to mark as done
+     *
+     * @param index    the index of task to mark as done
      * @param priority the priority of the task
      */
     public PriorityCommand(String priority, int index) {
@@ -19,6 +20,15 @@ public class PriorityCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * Marks the task as done and prints the task marked as done.
+     *
+     * @param tasks   the task list
+     * @param ui      the user interface
+     * @param storage the storage
+     * @return the message to be printed
+     * @throws DukeException if there is an error writing to the file
+     */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String msg = tasks.setPriority(priority, index);

@@ -12,8 +12,10 @@ import java.util.Scanner;
 public class Storage {
 
     private String filePath;
+
     /**
      * Creates a new storage that stores the task list in the given file.
+     *
      * @param filePath the path to the file where the task list is stored
      */
     public Storage(String filePath) {
@@ -26,8 +28,9 @@ public class Storage {
 
     /**
      * Loads the task list from the file.
+     *
      * @return the task list as an ArrayList of tasks
-     * @throws IOException if the file cannot be read or opened
+     * @throws IOException   if the file cannot be read or opened
      * @throws DukeException if the file is not in the correct format
      */
     public ArrayList<Task> load() throws IOException, DukeException {
@@ -67,6 +70,7 @@ public class Storage {
 
     /**
      * Creates a new file with the given name in the given directory.
+     *
      * @param fileName the name of the file and path to be created
      */
     public static void newFile(String fileName) {
@@ -80,6 +84,7 @@ public class Storage {
 
     /**
      * Creates a new directory with the given name.
+     *
      * @param dirName the name of the directory to be created
      */
     public static void newDir(String dirName) {
@@ -90,8 +95,10 @@ public class Storage {
             e.printStackTrace();
         }
     }
+
     /**
      * Saves the Tasklist to the file.
+     *
      * @param tasklist the Tasklist to be saved
      * @throws IOException if the file cannot be written to
      */

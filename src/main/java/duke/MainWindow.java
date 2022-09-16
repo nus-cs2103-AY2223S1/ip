@@ -56,7 +56,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
 
-        //Exit the program with an exit message
+        //Exits the program with an exit message
         if (userInput.getText().equals("bye")) {
             PauseTransition delay = new PauseTransition(Duration.seconds(1));
             delay.setOnFinished(event -> Platform.exit());

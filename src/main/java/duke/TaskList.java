@@ -6,22 +6,37 @@ import java.util.ArrayList;
  * Represents a list of tasks.
  */
 public class TaskList {
+
     private ArrayList<Task> tasks;
 
+    /**
+     * Creates a new task list.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Creates a new task list with the given tasks.
+     *
+     * @param tasks the tasks to be added to the task list
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Adds a task to the task list.
+     *
+     * @param task the task to be added
+     */
     public void add(Task task) {
         tasks.add(task);
     }
 
     /**
      * Deletes a task from the TaskList.
+     *
      * @param index the index of task to delete
      */
     public Task delete(int index) {
@@ -41,6 +56,7 @@ public class TaskList {
 
     /**
      * Marks a task as done.
+     *
      * @param index the index of task to mark as done
      */
     public String mark(int index) {
@@ -57,6 +73,7 @@ public class TaskList {
 
     /**
      * Marks a task as not done.
+     *
      * @param index the index of task to mark as not done
      */
     public String unmark(int index) {
@@ -71,6 +88,13 @@ public class TaskList {
         return "☹ OOPS!!! The index is out of bounds.";
     }
 
+    /**
+     * Changes the priority of a task at the given index.
+     *
+     * @param priority the priority of the task
+     * @param index    the index of the task
+     * @return the message to be printed
+     */
     public String setPriority(String priority, int index) {
         try {
             Task t = tasks.get(index - 1);
@@ -88,14 +112,20 @@ public class TaskList {
 
     /**
      * Finds all tasks that contain the given keyword.
+     *
      * @param searchTerm the keyword to search for
      */
     public TaskList find(String searchTerm) {
-        TaskList foundTasks = tasks.stream()
+        return tasks.stream()
                 .filter((t) -> t.getDescription().contains(searchTerm))
                 .collect(TaskList::new, TaskList::add, TaskList::addAll);
-        return foundTasks;
     }
+
+    /**
+     * Adds all tasks from the given task list to this task list.
+     *
+     * @param other the task list to add from
+     */
     public void addAll(TaskList other) {
         tasks.addAll(other.tasks);
     }
@@ -108,6 +138,11 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * Returns string representation of the task list.
+     *
+     * @return string representation of the task list
+     */
     @Override
     public String toString() {
         int i = 1;

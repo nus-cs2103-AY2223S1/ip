@@ -1,42 +1,32 @@
 package duke;
 
-import java.util.Scanner;
-
 /**
  * Deals with interactions with the user.
  */
 public class Ui {
+
+    /**
+     * Returns the error message from a series of strings.
+     *
+     * @param message the error messages
+     * @return the final error message
+     */
     public String showError(String... message) {
         return String.join(" \n\n", message);
     }
 
-    public void showLine() {
-        System.out.println("____________________________________________________________");
-    }
-
     /**
-     * Returns the full command entered by the user.
-     * @return the next full line from the user input
+     * Prints loading error message.
+     *
+     * @return the loading error message
      */
-    public String readCommand() {
-        Scanner in = new Scanner(System.in);
-        return in.nextLine();
-    }
-
     public void showLoadingError() {
         System.err.println("☹ OOPS!!! I'm sorry, but I can't load your tasks :-(");
     }
 
-    public void showSavingError() {
-        System.err.println("☹ OOPS!!! I'm sorry, but I can't save your tasks :-(");
-    }
-
-    public void showNoTasks() {
-        System.out.println("You have no tasks.\n" + "What can I do for you?");
-    }
-
     /**
      * Prints message after adding task with current TaskList size.
+     *
      * @param task the task that was added
      * @param size the size of the TaskList after adding the task
      */
@@ -51,6 +41,7 @@ public class Ui {
 
     /**
      * Prints message after deleting task with current TaskList size.
+     *
      * @param task the task that was deleted
      * @param size the size of the TaskList after deleting the task
      */
@@ -63,17 +54,25 @@ public class Ui {
                 + output;
     }
 
+    /**
+     * Returns string representation of the TaskList.
+     *
+     * @param tasks
+     * @return
+     */
     public String showList(TaskList tasks) {
         return tasks.toString();
     }
 
+    /**
+     * Returns exit message.
+     *
+     * @return exit message
+     */
     public String showBye() {
         return "Bye. Hope to see you again soon!";
     }
 
-    public void showInvalidCommand() {
-        System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-    }
 
     /**
      * Prints welcome message.

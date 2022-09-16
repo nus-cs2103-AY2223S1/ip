@@ -4,6 +4,7 @@ package duke;
  * Handles the parsing of user input.
  */
 public class Parser {
+
     /**
      * Enumerates the different commands that can be parsed.
      */
@@ -24,6 +25,7 @@ public class Parser {
 
     /**
      * Parses a user input and returns the corresponding command.
+     *
      * @param fullCommand the user input
      * @return the corresponding command
      * @throws duke.DukeException if the input is invalid
