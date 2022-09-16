@@ -1,5 +1,15 @@
 # User Guide
 
+![Ui](Ui.png)
+
+## Quickstart
+
+> Note: Run the jar in the terminal instead of double-clicking on the jar file!
+
+1. Copy the jar file into an empty folder
+1. Open a command window in that folder
+1. Run the command java -jar {filename}.jar e.g., java -jar Duke.jar (i.e., run the command in the same folder as the jar file)
+
 ## Features 
 
 ### Add
