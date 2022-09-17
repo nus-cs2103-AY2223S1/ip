@@ -2,10 +2,7 @@ package duke;
 
 import java.time.LocalDateTime;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskList;
+import duke.task.*;
 
 
 /**
@@ -146,7 +143,7 @@ public class Parser {
             tl.remove(index);
             return ui.printDeleteMsg(removed.toString(), tl.size());
         case TODO_COMMAND:
-            if (msgWords.length < 2) {
+            if (msgWords.length < 3) {
                 return ui.printNoTaskInputMsg();
             }
             Todo newTodo = Parser.parseTodoInput(input);

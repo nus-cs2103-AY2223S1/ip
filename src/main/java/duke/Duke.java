@@ -24,11 +24,18 @@ public class Duke {
         this.ui = new Ui();
     }
 
+    /**
+     * Main method that is run.
+     * @param args arguments that is passed in main.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();
     }
 
+    /**
+     * Main run method for Duke.
+     */
     public void run() {
         Parser parser = new Parser(ui, tl);
         System.out.println(Ui.messageWithLine(ui.printIntro()));

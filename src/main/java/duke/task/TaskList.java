@@ -9,13 +9,14 @@ import static duke.Storage.listToFile;
  * A TaskList object containing the tasklist.
  */
 public class TaskList {
-    ArrayList<Task> taskList;
+    private final ArrayList<Task> taskList;
 
     /**
      * Constructor for TaskList
      * @param arr arraylist of tasks.
      */
     public TaskList(ArrayList<Task> arr) {
+        assert arr != null;
         this.taskList = arr;
     }
 
