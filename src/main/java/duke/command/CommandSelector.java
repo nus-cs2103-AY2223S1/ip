@@ -17,6 +17,9 @@ public class CommandSelector {
 
     private CommandSelector() {
         for (CommandsEnum c : CommandsEnum.values()) {
+            if (c == CommandsEnum.INVALID) {
+                continue;
+            }
             commands.put(c.toString(), c);
         }
     }
