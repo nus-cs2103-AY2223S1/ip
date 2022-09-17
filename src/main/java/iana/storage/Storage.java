@@ -19,7 +19,7 @@ import iana.tasks.TaskList;
 public class Storage {
     private static final String FILE_STRING = "data/DataStorage.txt";
 
-    public static void initialise() throws IanaException {
+    private static void initialise() throws IanaException {
         try {
             Path filePath = Paths.get(Storage.FILE_STRING);
             if (!Files.exists(filePath)) {
@@ -44,6 +44,7 @@ public class Storage {
         TaskList taskList = new TaskList();
 
         try {
+            initialise();
             FileInputStream fileIn = new FileInputStream(Storage.FILE_STRING);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             taskList = (TaskList) in.readObject();

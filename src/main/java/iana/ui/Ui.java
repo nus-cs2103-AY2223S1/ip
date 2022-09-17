@@ -34,7 +34,7 @@ public class Ui {
      * @return IANA's response and task list.
      */
     public String list(TaskList tasks) {
-        String listMessage = "> Sure! @-@ These are the tasks you have left: \n" + tasks.toString();
+        String listMessage = "Sure! @-@ These are the tasks you have left: \n" + tasks.toString();
         return listMessage;
     }
 
@@ -44,7 +44,7 @@ public class Ui {
      * @return IANA's goodbye message.
      */
     public String sayBye() {
-        return say("> See you next time, goodbye! :P");
+        return say("See you next time, goodbye! :P");
     }
 
     /**
@@ -53,7 +53,13 @@ public class Ui {
      * @return IANA's welcome message.
      */
     public String sayHi() {
-        return say("> Hello there~ I'm your assistant IANA.\n\t How can I help you today? ^_^");
+        return say("Hello there~ I'm your assistant\n" +
+        // " ___    _    _   _    _    \n" +
+        // "|_ _|  / \\  | \\ | |  / \\   \n" +
+        // " | |  / _ \\ |  \\| | / _ \\  \n" +
+        // " | | / ___ \\| |\\  |/ ___ \\ \n" +
+        // "|___/_/   \\_\\_| \\_/_/   \\_\\\n" +
+        "\n\t How can I help you today? ^_^");
     }
 
     /**
@@ -62,7 +68,7 @@ public class Ui {
      * @return IANA's request for a new input.
      */
     public String askNewCommand() {
-        return say("> Oops, my vocabulary is limited! Try another action >_<");
+        return say("Oops, my vocabulary is limited! Try another action >_<");
     }
 
     /**
@@ -72,7 +78,7 @@ public class Ui {
      * @return IANA's response and added task information. 
      */
     public String sayTaskAdded(Task task) {
-        return say(String.format("> Okay :). Remember to complete the task:\n\t   %s", task.toString()));
+        return say(String.format("Okay :). Remember to complete the task:\n\t   %s", task.toString()));
     }
 
     /**
@@ -83,7 +89,7 @@ public class Ui {
      * @return IANA's response, deleted task information, and number of tasks left.
      */
     public String sayTaskDeleted(Task task, int listSize) {
-        return say(String.format("> Nice! I've removed the task:\n\t%s\n\tNow there's %d tasks left!! Good job! [:", 
+        return say(String.format("Nice! I've removed the task:\n\t%s\n\tNow there's %d tasks left!! Good job! [:", 
         task.toString(), listSize));
     }
 

@@ -18,9 +18,7 @@ public class Iana {
         tasks = new TaskList();
         ui = new Ui();
         try {
-            Storage.initialise();   
             tasks = Storage.load();
-            ui.sayHi();
         } catch (IanaException e) {
             ui.say(e.getMessage());
         }
@@ -39,6 +37,10 @@ public class Iana {
         } catch (IanaException e) {
             return e.getMessage();
         }
+    }
+
+    public String getHi() {
+        return ui.sayHi();
     }
 
     /**

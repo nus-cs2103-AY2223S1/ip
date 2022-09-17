@@ -25,6 +25,7 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setIana(iana);
             stage.show();
+            fxmlLoader.<MainWindow>getController().welcome();
         } catch (IOException e) {
             e.printStackTrace();
         }
