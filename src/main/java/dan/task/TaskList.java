@@ -26,33 +26,29 @@ public class TaskList {
         String description;
         String dateString;
         if (input.startsWith("todo")) {
-            description = input.replace("todo", "").strip();
-            if (description.isEmpty()) {
-                throw new DanException("Please provide me a description for your todo item");
-            }
-            tasks.add(new ToDo(description));
+            addToDoTask(input);
 
         } else if (input.startsWith("deadline")) {
             String[] inputArr = input.replace("deadline", "").strip().split("/by");
             if (inputArr.length != 2) {
-                throw new DanException("Please follow the following format:\n deadline <description> /by <due date>");
+                throw DanException.incorrectFormatError("deadline <description> /by <datetime>");
             }
             description = inputArr[0].strip();
             dateString = inputArr[1].strip();
             if (description.isEmpty()) {
-                throw new DanException("Please provide me a description for your deadline");
+                throw DanException.missingDescriptionError("deadline");
             }
             tasks.add(new Deadline(description, dateString));
 
         } else if (input.startsWith("event")) {
             String[] inputArr = input.replace("event", "").strip().split("/at");
             if (inputArr.length != 2) {
-                throw new DanException("Please follow the following format:\n event <description> /at <time/date>");
+                throw DanException.incorrectFormatError("event <description> /at <datetime>");
             }
             description = inputArr[0].strip();
             dateString = inputArr[1].strip();
             if (description.isEmpty()) {
-                throw new DanException("Please provide me a description for your event");
+                throw DanException.missingDescriptionError("event");
             }
             tasks.add(new Event(description, dateString));
         }
@@ -63,6 +59,16 @@ public class TaskList {
         return result.toString();
     }
 
+    private void addToDoTask(String input) throws DanException {
+        String description;
+        description = input.replace("todo", "").strip();
+        if (description.isEmpty()) {
+            throw DanException.missingDescriptionError("todo task");
+        }
+        tasks.add(new ToDo(description));
+    }
+
+
     /**
      * Displays the the current tasks in the list
      *
@@ -70,7 +76,7 @@ public class TaskList {
      */
     public String showTasks() throws DanException {
         if (tasks.isEmpty()) {
-            throw new DanException("Your list is empty!");
+            throw DanException.emptyTaskListError();
         }
         StringBuilder result = new StringBuilder();
         result.append(Ui.printIndent("Here are the tasks in your list:\n"));
@@ -86,8 +92,8 @@ public class TaskList {
      * @throws DanException if the given task number does not exist in the list
      */
     public String markTask(int index) throws DanException {
-        if (index > tasks.size()) {
-            throw new DanException("This task number doesn't exist!");
+        if (indexIsValid(index)) {
+            throw DanException.taskNotFoundError();
         }
         Task task = tasks.get(index - 1);
         task.setDone(true);
@@ -105,8 +111,8 @@ public class TaskList {
      */
     public String unmarkTask(int index) throws DanException {
         StringBuilder result = new StringBuilder();
-        if (index > tasks.size()) {
-            throw new DanException("This task number doesn't exist!");
+        if (indexIsValid(index)) {
+            throw DanException.taskNotFoundError();
         }
         Task task = tasks.get(index - 1);
         task.setDone(false);
@@ -122,8 +128,8 @@ public class TaskList {
      * @throws DanException if the given task number does not exist in the list
      */
     public String deleteTask(int index) throws DanException {
-        if (index > tasks.size() && index >= 0) {
-            throw new DanException("This task number doesn't exist!");
+        if (indexIsValid(index)) {
+            throw DanException.taskNotFoundError();
         }
         StringBuilder result = new StringBuilder();
         result.append(Ui.printIndent("Alright then, I'll remove this task from your list:"));
@@ -144,7 +150,7 @@ public class TaskList {
         int count = 0;
         for (int i = 1; i <= tasks.size(); i++) {
             Task task = tasks.get(i - 1);
-            if (task.description.contains(keyword)) {
+            if (task.hasKeyword(keyword)) {
                 result.append(Ui.printIndent(i + "." + task + "\n"));
                 count += 1;
             }
@@ -175,4 +181,7 @@ public class TaskList {
         return result.toString();
     }
 
+    private boolean indexIsValid(int index) {
+        return (index > tasks.size() || index < 0);
+    }
 }

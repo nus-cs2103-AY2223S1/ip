@@ -52,7 +52,7 @@ public class Parser {
             case "event":
                 return tasks.addTask(input);
             default:
-                throw new DanException("I don't really understand what do you mean by that...");
+                throw DanException.userInputError();
             }
 
         } catch (DanException e) {
@@ -62,6 +62,10 @@ public class Parser {
         } catch (DateTimeParseException dte) {
             return Ui.printIndent("Please use the format dd/MM/yyyy HHmm for dates");
         }
+    }
+
+    private static prepareAddToDoTask(String description) {
+         
     }
 
     public boolean getIsExit() {

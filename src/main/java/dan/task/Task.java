@@ -39,6 +39,16 @@ public class Task {
     }
 
     /**
+     * Checks the task description contains a substring of the keyword provided.
+     *
+     * @param keyword
+     * @return boolean if the task has the keyword in its description
+     */
+    public boolean hasKeyword(String keyword) {
+        return description.contains(keyword);
+    }
+
+    /**
      * Generates the data string used for saving its data in the storage file.
      *
      * @param separator Regular expression to help the parsing of data
@@ -52,4 +62,6 @@ public class Task {
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), this.description);
     }
+
+
 }
