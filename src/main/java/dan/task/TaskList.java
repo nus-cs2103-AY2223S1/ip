@@ -21,7 +21,7 @@ public class TaskList {
      * @throws DanException if the input format is not expected
      */
     public String addToDoTask(String input) throws DanException {
-        String description = input.replace("event", "").strip();
+        String description = input.replace("todo", "").strip();
         if (input.isEmpty()) {
             throw DanException.missingDescriptionError("todo task");
         }
@@ -130,15 +130,13 @@ public class TaskList {
      */
     public String deleteTask(int... indexes) throws DanException {
         StringBuilder result = new StringBuilder();
-        result.append("Alright then, I'll remove this task from your list:");
+        result.append("Alright then, I'm removing these from your list:\n");
         for (int index : indexes) {
             if (indexIsValid(index)) {
                 throw DanException.taskNotFoundError();
             }
             Task task = tasks.get(index - 1);
-            task.setDone(false);
             result.append(task);
-            result.append(tasks.get(index - 1).toString());
             tasks.remove(index - 1);
         }
         result.append(String.format("\nYou now have %d many tasks in your list", tasks.size()));
