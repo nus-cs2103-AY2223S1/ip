@@ -1,6 +1,7 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'java'
+    id 'application'
 }
 
 group 'org.example'
@@ -28,8 +29,17 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 }
 
+tasks.withType(Test) {
+    standardInput = System.in
+    enableAssertions = true
+}
 
 test {
     useJUnitPlatform()
 }
+shadowJar {
+    archiveBaseName = "duke"
+    archiveClassifier = null
+}
+
 
