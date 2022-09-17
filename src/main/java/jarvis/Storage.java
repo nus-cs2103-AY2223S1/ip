@@ -10,9 +10,20 @@ import java.io.File;
 import java.util.Scanner;
 public class Storage {
     private String filePath;
+
+    /**
+     * Return new Storage Object with the specified filePath of data.
+     * @param filePath Specified file path of data stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
+
+    /**
+     * Loads tasks from data file into a task list.
+     * @return List of tasks.
+     * @throws IOException if error occurs when reading file.
+     */
     public List<Task> load() throws IOException {
         File myFile = new File(filePath);
         List<Task> taskList = new ArrayList<>();
@@ -54,6 +65,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Stores task list in data file in given file path.
+     * @param tasks Task List to be stored.
+     * @throws IOException if error occurs when writing to data file.
+     */
     public void write(TaskList tasks) throws IOException {
         File myFile = new File(filePath);
         myFile.createNewFile();
