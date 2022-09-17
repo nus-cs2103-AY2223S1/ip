@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
- * Class for DialogBox
+ * Class for DialogBox.
  */
 public class DialogBox extends HBox {
 
@@ -43,10 +43,22 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
+    /**
+     * Gets user dialog from label and imageview.
+     * @param l Label with string.
+     * @param iv ImageView for displaying user messages.
+     * @return User DialogBox.
+     */
     public static DialogBox getUserDialog(Label l, ImageView iv) {
         return new DialogBox(l, iv);
     }
 
+    /**
+     * Gets duke DialogBox.
+     * @param l Label with string message.
+     * @param iv ImageView for displaying duke messages.
+     * @return Duke DialogBox.
+     */
     public static DialogBox getDukeDialog(Label l, ImageView iv) {
         var db = new DialogBox(l, iv);
         db.flip();
