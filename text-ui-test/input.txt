@@ -1,0 +1,19 @@
+hello
+todo
+deadline test deadline
+event test event
+list
+todo hi! this is a to-do task!! 12345 \(^^)/
+list
+mark 1
+list
+unmark 1
+list
+deadline complete cs2103t ip /by today 17 Aug 23 59
+list
+mark 3
+event cs2101 lesson /at 18 Aug, Tommorow (12-2PM)
+list
+mark 2
+bye duke
+bye
