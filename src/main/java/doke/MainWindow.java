@@ -31,7 +31,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Doke d) {
+    public void setDoke(Doke d) {
         doke = d;
     }
 

@@ -46,7 +46,8 @@ public class Command {
 
         taskList.addTask(newTask);
         ui.printAddMessage(newTask, taskList.getSize());
-        return new Pair<>(true, "I've added the To Do!");
+        return new Pair<>(true, "I've added the To Do: \n" + taskList.getSize() + ". "
+                + newTask.toString());
     }
 
     static Pair<Boolean, String> addDeadlineCommand(
@@ -67,7 +68,8 @@ public class Command {
 
         taskList.addTask(newTask);
         ui.printAddMessage(newTask, taskList.getSize());
-        return new Pair<>(true, "I've added the Deadline!");
+        return new Pair<>(true, "I've added the Deadline: \n" + taskList.getSize() + ". "
+                + newTask.toString());
     }
 
     static Pair<Boolean, String> addEventCommand(
@@ -87,7 +89,8 @@ public class Command {
         }
         taskList.addTask(newTask);
         ui.printAddMessage(newTask, taskList.getSize());
-        return new Pair<>(true, "I've added the Event!");
+        return new Pair<>(true, "I've added the Event: \n" + taskList.getSize() + ". "
+                + newTask.toString());
     }
 
     static Pair<Boolean, String> markCommand(TaskList taskList, Ui ui, Storage storage, int i) {
@@ -96,7 +99,7 @@ public class Command {
             current.markDone();
             storage.updateFile(taskList.getList(), ui);
             ui.printMarkMessage(false, current);
-            return new Pair<>(true, "I've marked the task!");
+            return new Pair<>(true, "I've marked the task: \n" + current);
         } catch (DokeException a) {
             ui.printMarkMessage(true, current);
             return new Pair<>(true, "The task is already marked as so");
@@ -109,7 +112,7 @@ public class Command {
             current.markNotDone();
             storage.updateFile(taskList.getList(), ui);
             ui.printMarkMessage(false, current);
-            return new Pair<>(true, "I've unmarked the task!");
+            return new Pair<>(true, "I've unmarked the task: \n" + current);
         } catch (DokeException a) {
             ui.printMarkMessage(true, current);
             return new Pair<>(true, "The task is not marked yet");
@@ -117,15 +120,16 @@ public class Command {
     }
 
     static Pair<Boolean, String> deleteCommand(TaskList taskList, Ui ui, Storage storage, int num) {
+        Task toDelete;
         try {
-            Task toDelete = taskList.getTask(num);
+            toDelete = taskList.getTask(num);
             taskList.deleteTask(num);
             storage.updateFile(taskList.getList(), ui);
             ui.printDeleteMessage(toDelete, taskList.getSize());
         } catch (IndexOutOfBoundsException exception) {
             return new Pair<>(true, "Please enter a valid number");
         }
-        return new Pair<>(true, "I've deleted that task");
+        return new Pair<>(true, "I've deleted the task: \n" + toDelete);
     }
 
     static Pair<Boolean, String> findCommand(TaskList taskList, Ui ui, String string) {

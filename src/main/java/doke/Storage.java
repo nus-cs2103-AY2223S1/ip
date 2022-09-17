@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Storage {
     protected static final File DOKE_FILE = new File(Doke.DOKE_FILE_PATH);
+    protected static final String DOKE_DIRECTORY = "src/main/java/data";
 
     /**
      * Updates the storage file using the arrayList as reference.
@@ -30,6 +31,21 @@ public class Storage {
 
         } catch (IOException e) {
             ui.printOut("Sorry, something went wrong");
+        }
+    }
+
+    protected static void createNewDokeFile(Ui ui) {
+        try {
+            File temp = new File(DOKE_DIRECTORY);
+            if (!temp.exists()) {
+                temp.mkdirs();
+            }
+            if (!DOKE_FILE.exists()) {
+                DOKE_FILE.createNewFile();
+                ui.printNewFileCreatedMessage();
+            }
+        } catch (IOException a) {
+            ui.printErrorMessage();
         }
     }
 

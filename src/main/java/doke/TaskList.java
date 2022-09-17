@@ -31,7 +31,7 @@ public class TaskList {
             Scanner s = new Scanner(Storage.DOKE_FILE);
             readStorage(s);
         } catch (FileNotFoundException e) {
-            createNewDokeFile(storage, ui);
+            Storage.createNewDokeFile(ui);
         }
     }
 
@@ -64,15 +64,6 @@ public class TaskList {
             this.taskList.add(task);
 
             setMarking(task, temp);
-        }
-    }
-
-    private void createNewDokeFile(Storage storage, Ui ui) {
-        try {
-            storage.DOKE_FILE.createNewFile();
-            ui.printNewFileCreatedMessage();
-        } catch (IOException a) {
-            ui.printErrorMessage();
         }
     }
 

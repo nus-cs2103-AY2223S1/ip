@@ -46,7 +46,7 @@ test {
 }
 
 application {
-    mainClassName = "doke.Doke"
+    mainClassName = "doke.Launcher"
 }
 
 shadowJar {

@@ -1,6 +1,6 @@
 # User Guide
 
-This User guide is made using [AddressBook Level 3 User Guide](https://se-education.org/addressbook-level3/UserGuide.html) as a reference.
+This User guide is made using [AddressBook Level 3 User Guide](https://se-education.org/addressbook-level3/UserGuide.html) and [Yem chatbot](https://sugiyem.github.io/ip/) as a reference.
 
 Doke is an desktop app which helps manage your tasks. It can be used via both Command Line Interface (CLI) and Graphical User Interface (GUI), however, it is more optimized for CLI use.
 
@@ -23,12 +23,11 @@ Doke is an desktop app which helps manage your tasks. It can be used via both Co
 
 Pre-requisite: Have Java version 11 or later installed on your device.
 
-1. Download the latest doke.jar from [here]().
+1. Download the latest doke.jar from [here](https://github.com/gerardstevan/ip/releases/tag/A-Release).
 
-2. Copy the file to the folder you want to use as the home folder for your Yem Chatbot.
+2. Move the file to the folder you want to use as the home folder for your Doke app.
 
-3. Double-click the file to start the app. The GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.
-
+3. Double left-click the file to start the app. A window similar to the one shown below should appear after a moment. 
 ![](Ui.png)
 
 4. Refer to the Features section below for details of the commands.
