@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
@@ -44,6 +45,10 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClass = 'duke.DukeGuiLauncher'
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }
 
 run.standardInput = System.in
