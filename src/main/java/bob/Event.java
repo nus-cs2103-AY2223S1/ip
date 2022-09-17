@@ -2,6 +2,7 @@ package bob;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents Event object, a task with a specific occurrence date
@@ -20,6 +21,23 @@ public class Event extends Task {
         super(description);
         this.at = at;
     }
+
+    /**
+     * updates either name or date of Event Task with updateInfo
+     *
+     * @param updateInfo info to update for Event Task
+     * @throws DateTimeParseException if date format is incorrect
+     */
+    @Override
+    public void updateTask(String updateInfo) throws DateTimeParseException {
+        if (updateInfo.startsWith("/")) {
+            LocalDate updateDate = LocalDate.parse(updateInfo.substring(1));
+            this.at = updateDate;
+        } else {
+            this.description = updateInfo;
+        }
+    }
+
 
     /**
      * Returns the save format of the Event object

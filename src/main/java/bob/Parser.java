@@ -1,16 +1,6 @@
 package bob;
 
-import bob.commands.ByeCommand;
-import bob.commands.Command;
-import bob.commands.DeadlineCommand;
-import bob.commands.EventCommand;
-import bob.commands.FilterCommand;
-import bob.commands.FindCommand;
-import bob.commands.ListCommand;
-import bob.commands.MarkCommand;
-import bob.commands.RemoveCommand;
-import bob.commands.TodoCommand;
-import bob.commands.UnmarkCommand;
+import bob.commands.*;
 
 /**
  * Represents Parser object, to read and respond to user input
@@ -18,7 +8,7 @@ import bob.commands.UnmarkCommand;
 public class Parser {
 
     private enum PossibleCommands {
-        BYE, LIST, MARK, UNMARK, REMOVE, FILTER, FIND, TODO, DEADLINE, EVENT
+        BYE, LIST, MARK, UNMARK, REMOVE, FILTER, FIND, TODO, DEADLINE, EVENT, UPDATE
     }
 
     /**
@@ -69,6 +59,16 @@ public class Parser {
                 }
                 String date = splitReply[1];
                 return new FilterCommand(date);
+            case UPDATE:
+                if (splitReply.length == 1) {
+                    throw new BobException("what task do you want to update?");
+                }
+                if (splitReply.length == 2) {
+                    throw new BobException("what part of the task do you want to update?");
+                }
+                int index = Integer.valueOf(splitReply[1]);
+                String updateInfo = reply.substring(9);
+                return new UpdateCommand(index, updateInfo);
             case FIND:
                 if (splitReply.length == 1) {
                     throw new BobException("what word do you want to search for?");

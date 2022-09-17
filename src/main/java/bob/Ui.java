@@ -31,18 +31,20 @@ public class Ui {
                 + "2.    ADD A DEADLINE: deadline <task> /by <yyyy-mm-dd>\n"
                 + "3.    ADD AN EVENT: event <task /at <yyyy-mm-dd>\n"
                 + "4.    VIEW LIST OF EVENTS: list\n"
-                + "5.    MARK AS DONE: mark <task number in list>\n"
-                + "6.    UNMARK TASK: unmark <task number in list>\n"
-                + "7.    REMOVE TASK: remove <task number in list>\n"
+                + "5.    MARK AS DONE: mark <task number>\n"
+                + "6.    UNMARK TASK: unmark <task number>\n"
+                + "7.    REMOVE TASK: remove <task number>\n"
                 + "8.    FILTER TASKS OF SPECIFIC DATE: filter <yyyy-mm-dd>\n"
-                + "9.    TO END THE PROGRAM: bye\n";
+                + "9.    EDIT TASK: edit <task number> <name-to-be-edited OR /date-to-be-edited>\n"
+                // HELP/DISPLAY COMMANDS: help\n" (to be added)
+                + "10.   TO END THE PROGRAM: bye\n";
         return response;
     }
 
     /**
      * Displays goodbye message
      *
-     * @return goodbye message
+     * @return string displaying goodbye message
      */
     public String sayGoodbye() {
         String response = "bye\nsee you again!";
@@ -52,7 +54,7 @@ public class Ui {
     /**
      * Prints dashed line
      *
-     * @return a dotted line
+     * @return string displaying a dotted line
      */
     public String printLine() {
 
@@ -64,10 +66,10 @@ public class Ui {
      *
      * @param taskList list of tasks
      * @param outputMessage header to be printed with tasks
-     * @return list of tasks
+     * @return string displaying list of tasks
      */
     public String displayTaskList(TaskList taskList, String outputMessage) {
-        assert taskList.getLength() > 0 : "length of taskList should never be negative";
+        assert taskList.getLength() > 0 : "length of TaskList should never be negative";
         if (taskList.getLength() == 0) {
             return this.displayError("you have no tasks!");
         }
@@ -86,10 +88,10 @@ public class Ui {
      *
      * @param tasks list of tasks
      * @param index index of marked task
-     * @return task marked
+     * @return string displaying task marked
      */
     public String displayMarked(TaskList tasks, int index) {
-        assert tasks.getLength() > 0 : "length of taskList should never be negative";
+        assert tasks.getLength() > 0 : "length of TaskList should never be negative";
         String response = "yay! you've completed a task!\n" + tasks.getTask(index).toString();
         return print(response);
     }
@@ -99,10 +101,10 @@ public class Ui {
      *
      * @param tasks list of tasks
      * @param index index of unmarked task
-     * @return task unmarked
+     * @return string displaying task unmarked
      */
     public String displayUnmarked(TaskList tasks, int index) {
-        assert tasks.getLength() > 0 : "length of taskList should never be negative";
+        assert tasks.getLength() > 0 : "length of TaskList should never be negative";
         String response = "aw...i guess there's another task.\n" + tasks.getTask(index).toString();
         return print(response);
 
@@ -113,10 +115,10 @@ public class Ui {
      *
      * @param tasks list of tasks
      * @param task task removed
-     * @return task removed and number of tasks left
+     * @return string displaying task removed and number of tasks left
      */
     public String displayRemoved(TaskList tasks, Task task) {
-        assert tasks.getLength() > 0 : "length of taskList should never be negative";
+        assert tasks.getLength() > 0 : "length of TaskList should never be negative";
         String response = "that's one less task for you! removed:" + "\n  "
                 + task.toString() + "\njust " + (tasks.getLength()) + " tasks left!";
         return print(response);
@@ -127,12 +129,26 @@ public class Ui {
      *
      * @param tasks list of tasks
      * @param task task added
-     * @return task added and number of tasks
+     * @return string displaying task added and number of tasks
      */
     public String displayAddedTask(TaskList tasks, Task task) {
-        assert tasks.getLength() > 0 : "length of taskList should never be negative";
+        assert tasks.getLength() > 0 : "length of TaskList should never be negative";
         String response = "okay! new task:" + "\n  " + task.toString()
                 + "\njust " + tasks.getLength() + " tasks left!";
+        return print(response);
+    }
+
+    /**
+     * Displays updated task
+     *
+     * @param tasks list of tasks
+     * @param task task updated
+     * @param originalTask string value of original task
+     * @return string displaying initial task and updated task
+     */
+    public String displayUpdateTask(TaskList tasks, Task task, String originalTask) {
+        assert tasks.getLength() > 0 : "length of TaskList should never be negative";
+        String response = "okay! task updated!\n initial: " + originalTask + "\n\nmodified: " + task.toString();
         return print(response);
     }
 

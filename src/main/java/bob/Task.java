@@ -1,5 +1,7 @@
 package bob;
 
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents Task object, something for the user to take note of
  */
@@ -35,6 +37,15 @@ public class Task {
     public void mark(boolean x) {
         this.isDone = x;
     }
+
+    /**
+     * updates either name of Task with updateInfo
+     *
+     * @param updateInfo info to update for Task
+     */
+    public void updateTask(String updateInfo) {
+        this.description = updateInfo;;
+    };
 
     /**
      * Returns the save format of the Task object
