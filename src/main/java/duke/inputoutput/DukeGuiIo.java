@@ -1,41 +1,30 @@
 package duke.inputoutput;
 
-import java.util.function.Function;
-
-import duke.util.StringParser;
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
+import java.util.function.Consumer;
 
 /**
  * Duke IO class to handle interactions with the GUI
  */
 public class DukeGuiIo extends DukeAbstractIo {
 
-    private final Pane container;
-    private final Function<String, Node> makeChild;
+    private final Consumer<String> makeChild;
+    private final Consumer<String> makeWarningChild;
 
     /**
      * Create an instance of the gui interaction object specifying a way to make a
-     * new child
+     * new child and a warning child
      *
-     * @param container the container which contains the spawned child
-     * @param makeChild function to create a new child
+     * @param makeChild        Consumer to add a normal node
+     * @param makeWarningChild Consumer to add a warning node
      */
-    public DukeGuiIo(Pane container, Function<String, Node> makeChild) {
-        this.container = container;
+    public DukeGuiIo(Consumer<String> makeChild, Consumer<String> makeWarningChild) {
         this.makeChild = makeChild;
-    }
-
-    private void addMsgToContainer(String msg) {
-        container.getChildren().add(makeChild.apply(msg));
+        this.makeWarningChild = makeWarningChild;
     }
 
     @Override
     public void printTask(String txt, int features) {
-        if (isBitFlag(features, DukeCliSettings.INDENT)) {
-            txt = StringParser.addIndent(txt);
-        }
-        addMsgToContainer(txt);
+        makeChild.accept(txt);
     }
 
     @Override
@@ -46,5 +35,10 @@ public class DukeGuiIo extends DukeAbstractIo {
     @Override
     public String readLine() {
         return null;
+    }
+
+    @Override
+    public void printError(Exception e) {
+        makeWarningChild.accept(String.format("😠 OOPS!!!%n%s", e.getMessage()));
     }
 }

@@ -15,16 +15,11 @@ import duke.util.TaskList;
  * Main class for cli version of Duke
  */
 public class Duke {
-    private static final String LOGO = "Welcome to\n"
-            + " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n"
+    private static final String LOGO = "Welcome to\n" + " ____        _        \n" + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n" + "| |_| | |_| |   <  __/\n" + "|____/ \\__,_|_|\\_\\___|\n"
             + "      Chatbot!\n";
 
-    private static final String INTRO = "Hello! I'm Duke\n"
-            + "What can I do for you?";
+    private static final String INTRO = "Hello! I'm Duke\n" + "What can I do for you?";
 
     private static final String FATALEXIT = "Fatal Error! The system will exit abnormally!";
 
@@ -121,7 +116,7 @@ public class Duke {
             tasks = new TaskList(dukeData.readFile());
         } catch (IOException e) {
             userIo.printError(e);
-            userIo.printTask("Fatal Error! The system will exit abnormally!");
+            userIo.printTask(FATALEXIT);
             return null;
         }
 

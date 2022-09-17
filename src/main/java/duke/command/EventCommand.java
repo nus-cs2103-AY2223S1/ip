@@ -15,9 +15,11 @@ import duke.util.TaskList;
  */
 public class EventCommand extends DataCommand {
 
-    private static final String ADD_TASK = "Got it. I've added this task:%n"
-            + "  %s%n"
+    private static final String ADD_TASK = "Got it. I've added this task:%n" + "  %s%n"
             + "Now you have %d tasks in the list.";
+
+    private static final String NO_DATETIME_FOUND = "No datetime detected, treating it as string. \n"
+            + "Use formats like:\n MMM d yyyy\n dd/MM/yyyy\n dd-MM-yyyy \nif you need to include a time";
 
     /**
      * Creates a command that makes an Event when execute is called.
@@ -38,6 +40,9 @@ public class EventCommand extends DataCommand {
     public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
             throws DukeException, IOException {
         Task task = Event.createEvent(data);
+        if (!task.containsDatetime()) {
+            io.printTask(NO_DATETIME_FOUND);
+        }
         tasks.addEntry(task);
         io.printTask(String.format(ADD_TASK, task, tasks.getSize()));
         storage.saveTask(task);

@@ -13,7 +13,7 @@ public final class StringParser {
      * @return String
      */
     public static String addIndent(String txt) {
-        return "\t" + txt.replaceAll("\n", "\n\t");
+        return "    " + txt.replaceAll("\n", "\n    ");
     }
 
     /**

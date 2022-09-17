@@ -54,13 +54,22 @@ public abstract class Task implements Comparable<Task> {
      */
     @Override
     public int compareTo(Task task) {
-        if (!task.dateTime.isPresent()) {
+        if (!task.containsDatetime()) {
             return -1;
-        } else if (!dateTime.isPresent()) {
+        } else if (!containsDatetime()) {
             return 1;
         }
 
         return dateTime.get().compareTo(task.dateTime.get());
+    }
+
+    /**
+     * Checks if the task contains a completion time stamp
+     *
+     * @return true if task contains datetime
+     */
+    public boolean containsDatetime() {
+        return dateTime.isPresent();
     }
 
     /**

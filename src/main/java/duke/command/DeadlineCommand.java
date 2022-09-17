@@ -15,9 +15,11 @@ import duke.util.TaskList;
  */
 public class DeadlineCommand extends DataCommand {
 
-    private static final String ADD_TASK = "Got it. I've added this task:%n"
-            + "  %s%n"
+    private static final String ADD_TASK = "Got it. I've added this task:%n" + "  %s%n"
             + "Now you have %d tasks in the list.";
+
+    private static final String NO_DATETIME_FOUND = "No datetime detected, treating it as string. \n"
+            + "Use formats like MMM d yyyy, dd/MM/yyyy, dd-MM-yyyy if you need to include a time";
 
     /**
      * Create a instance of the deadline command.
@@ -38,6 +40,9 @@ public class DeadlineCommand extends DataCommand {
     public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
             throws DukeException, IOException {
         Task task = Deadline.createDeadline(data);
+        if (!task.containsDatetime()) {
+            io.printTask(NO_DATETIME_FOUND);
+        }
         tasks.addEntry(task);
         io.printTask(String.format(ADD_TASK, task, tasks.getSize()));
         storage.saveTask(task);
