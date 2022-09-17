@@ -8,8 +8,11 @@ import duke.TaskList;
 public class DateCommand extends Command {
     private String dateStr;
 
-    public DateCommand(String dateStr) {
+    public DateCommand(String dateStr) throws DukeException {
         super();
+        if (dateStr.length() == 0) {
+            throw new DukeException("Oops, no date given.");
+        }
         this.dateStr = dateStr;
     }
 
