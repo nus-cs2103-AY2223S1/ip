@@ -3,7 +3,8 @@
 ## Contents
 
 - [Features](#features)
-
+- [Command Summary](#command-summary)
+- [Commands](#commands)
   - [Adding a to-do: `todo`](#adding-a-to-do-todo)
   - [Adding a deadline: `deadline`](#adding-a-deadline-deadline)
   - [Adding an event: `event`](#adding-an-event-event)
@@ -14,9 +15,6 @@
   - [Finding tasks: `find`](#finding-tasks-find)
   - [Viewing schedule for a day: `view`](#viewing-schedule-for-a-day-view)
   - [Exiting the program: `bye`](#exiting-the-program-bye)
-
-- [Command Summary](#command-summary)
-- [Usage](#usage)
 
 ## Features
 
@@ -47,7 +45,7 @@ Mort unenthusiastically shows you the tasks you have scheduled for a particular 
 | **View schedule** | `view <date>`                              |
 | **Exit**          | `bye`                                      |
 
-## Usage
+## Commands
 
 ### Adding a to-do: `todo`
 
