@@ -7,6 +7,7 @@ import duke.TaskList;
 public class DeleteCommand extends Command {
     private int index;
 
+
     public DeleteCommand(String indexStr) throws DukeException {
         super();
         if (indexStr.length() == 0) {

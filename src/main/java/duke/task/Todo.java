@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.DukeException;
+
 /**
  * Represents a todo task.
  */
@@ -10,7 +12,7 @@ public class Todo extends Task {
      *
      * @param description description of the task
      */
-    public Todo(String description) {
+    public Todo(String description) throws DukeException {
         super(description);
     }
 

@@ -35,6 +35,7 @@ public class Parser {
         String restInput = "";
         if (input.contains(" ")) {
             inputArr = input.split(" ", 2);
+            assert inputArr.length == 2;
             commandWord = inputArr[0];
             restInput = inputArr[1];
         }
@@ -48,10 +49,7 @@ public class Parser {
             command = new MarkCommand(restInput, true);
             break;
         case "unmark":
-            if (!hasRestInput) {
-                throw new DukeException("Oops, no task given to mark as not done.");
-            }
-            command = new MarkCommand(Integer.parseInt(restInput) - 1, false);
+            command = new MarkCommand(restInput, false);
             break;
         case "todo":
             command = new AddCommand(new Todo(restInput));
@@ -83,6 +81,7 @@ public class Parser {
             throw new DukeException("Oops, I don't know what " + commandWord + " means");
         }
 
+        assert command != null;
         return command;
     }
 }
