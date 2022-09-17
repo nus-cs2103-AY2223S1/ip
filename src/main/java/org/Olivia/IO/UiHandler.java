@@ -51,13 +51,14 @@ public class UiHandler {
 
     public static String generateHelpMsg() {
         return "Currently the following commands are supported:\n" +
-                "    todo {title}\n" +
-                "    deadline {title} /by {time}\n" +
-                "    event {title} /at {time start} - {time end}\n" +
+                "    todo {title} {tags}\n" +
+                "    deadline {title} /by {time} {tags}\n" +
+                "    event {title} /at {time start} - {time end} {tags}\n" +
                 "    list\n" +
                 "    ls\n" +
                 "    mark {entry index}\n" +
                 "    unmark {entry index}\n" +
+                "    delete {entry index}\n" +
                 "    find {keyword}\n" +
                 "    help\n\n\n" +
                 "Please use either of the following three formats for time:\n" +
