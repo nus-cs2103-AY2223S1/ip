@@ -130,8 +130,21 @@ Noted my lord. I've removed this task:
 Now you have 3 tasks in the list.
 ```
 
+### `bye` - Say bye to Michael
+Format: `bye`
+
+Example of usage:
+
+`bye`
+
+Expected outcome:
+```
+Bye my lord, hope to see you again soon!
+```
+App will close 3 seconds after that.
+
 ### Easter Eggs
-Supported commands: `lewis`, `max`, `toto`, `king`
+Supported commands: `lewis`, `max`, `toto` and `king`
 
 Format: `<easter egg>`
 
