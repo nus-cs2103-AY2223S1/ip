@@ -1,6 +1,7 @@
 package duke.main;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import duke.command.Command;
 import duke.command.CommandSelector;
@@ -15,13 +16,13 @@ import duke.util.TaskList;
  * Main class for cli version of Duke
  */
 public class Duke {
-    private static final String LOGO = "Welcome to\n" + " ____        _        \n" + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n" + "| |_| | |_| |   <  __/\n" + "|____/ \\__,_|_|\\_\\___|\n"
-            + "      Chatbot!\n";
+    private static final String LOGO =
+            "Welcome to\n" + " ____        _        \n" + "|  _ \\ _   _| | _____ \n" + "| | | | | | | |/ / _ \\\n"
+                    + "| |_| | |_| |   <  __/\n" + "|____/ \\__,_|_|\\_\\___|\n" + "      Chatbot!\n";
 
     private static final String INTRO = "Hello! I'm Duke\n" + "What can I do for you?";
 
-    private static final String FATALEXIT = "Fatal Error! The system will exit abnormally!";
+    private static final String FATAL_EXIT = "Fatal Error! The system will exit abnormally!";
 
     private DukeIo userInputOutput;
     private TaskList tasks;
@@ -66,7 +67,7 @@ public class Duke {
      */
     public static Duke createApplication(String filepath) {
         DukeIo userIo = new DukeCliIo();
-        return Duke.createApplication(userIo);
+        return Duke.createApplication(userIo, filepath);
     }
 
     /**
@@ -93,7 +94,7 @@ public class Duke {
             tasks = new TaskList(dukeData.readFile());
         } catch (IOException e) {
             userIo.printError(e);
-            userIo.printTask(FATALEXIT);
+            userIo.printTask(FATAL_EXIT);
             return null;
         }
 
@@ -101,10 +102,9 @@ public class Duke {
     }
 
     /**
-     * Creates a standard duke application given an io source while loading from a
-     * save file
+     * Creates a standard duke application given an io source while loading from a save file
      *
-     * @param userIo   io object to communicate
+     * @param userIo io object to communicate
      * @param filePath path to the save file
      * @return
      */
@@ -116,7 +116,7 @@ public class Duke {
             tasks = new TaskList(dukeData.readFile());
         } catch (IOException e) {
             userIo.printError(e);
-            userIo.printTask(FATALEXIT);
+            userIo.printTask(FATAL_EXIT);
             return null;
         }
 
@@ -131,14 +131,67 @@ public class Duke {
     }
 
     /**
-     * Initiates the running loop. Will exit when <code>handleInput</code> returns
-     * false.
+     * Initiates the running loop. Will exit when <code>handleInput</code> returns false.
      */
-    public void run() {
+    private void run() {
         String txt;
         do {
             txt = userInputOutput.readLine();
         } while (handleInput(txt));
+    }
+
+    /**
+     * Launches the duke package. <br>
+     * flags: <br>
+     * --no-gui/-ng => launch without GUI <br>
+     * --save-file/-s [filepath] => specifies save path
+     *
+     * @param args flags if any
+     */
+    public static void main(String[] args) {
+        Optional<Boolean> launchWithGui = Optional.empty();
+        Optional<String> saveFile = Optional.empty();
+        int i = -1;
+        while (++i < args.length) {
+            switch (LaunchFlagEnum.getFlag(args[i])) {
+            case NO_GUI:
+                if (launchWithGui.isPresent()) {
+                    System.out.println(LaunchFlagErrMsg.CONFLICTING_LAUNCH);
+                    return;
+                }
+                launchWithGui = Optional.of(false);
+                break;
+            case GUI:
+                if (launchWithGui.isPresent()) {
+                    System.out.println(LaunchFlagErrMsg.CONFLICTING_LAUNCH);
+                    return;
+                }
+                launchWithGui = Optional.of(true);
+                break;
+            case SAVE_FILE:
+                if (++i == args.length) {
+                    System.out.println(LaunchFlagErrMsg.UNSPECIFIED_SAVE_FILE);
+                    return;
+                }
+                saveFile = Optional.of(args[i]);
+                break;
+            case NULL_FLAG:
+                System.out.printf(LaunchFlagErrMsg.UNRECOGNISED_FLAG.toString(), args[i]);
+                return;
+            case HELP:
+                System.out.println(LaunchFlagEnum.getHelp());
+                return;
+            default:
+                System.out.printf(LaunchFlagErrMsg.UNIMPLEMENTED_FLAG.toString(), args[i]);
+                return;
+            }
+        }
+        if (launchWithGui.orElse(true)) {
+            Launcher.main(saveFile.map(x -> new String[] {x}).orElse(new String[] {}));
+            return;
+        }
+        Duke duke = saveFile.map(x -> createApplication(x)).orElse(createApplication());
+        duke.run();
     }
 
 }

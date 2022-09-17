@@ -64,15 +64,6 @@ public abstract class Task implements Comparable<Task> {
     }
 
     /**
-     * Checks if the task contains a completion time stamp
-     *
-     * @return true if task contains datetime
-     */
-    public boolean containsDatetime() {
-        return dateTime.isPresent();
-    }
-
-    /**
      * Useful comparison with time directly
      *
      * @param o
@@ -85,6 +76,16 @@ public abstract class Task implements Comparable<Task> {
 
         return dateTime.get().compareTo(o);
     }
+
+    /**
+     * Checks if the task contains a completion time stamp
+     *
+     * @return true if task contains datetime
+     */
+    public boolean containsDatetime() {
+        return dateTime.isPresent();
+    }
+
 
     /**
      * Returns the [complete status] description.

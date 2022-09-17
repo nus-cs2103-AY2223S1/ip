@@ -1,6 +1,7 @@
 package duke.main;
 
 import java.io.IOException;
+import java.util.List;
 
 import duke.gui.MainWindow;
 import javafx.application.Application;
@@ -22,7 +23,13 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setTitle("Duke");
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().makeDuke();
+            List<String> params = getParameters().getRaw();
+
+            if (params.size() > 0) {
+                fxmlLoader.<MainWindow>getController().makeDuke(params.get(0));
+            } else {
+                fxmlLoader.<MainWindow>getController().makeDuke();
+            }
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

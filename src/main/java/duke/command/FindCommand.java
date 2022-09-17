@@ -19,7 +19,7 @@ import duke.util.TaskList;
 public class FindCommand extends DataCommand {
 
     private static final String RED_TXT = "\u001B[31m$0\u001B[0m";
-    private static final String MARK_TXT = "<$0>";
+    private static final String MARK_TXT = "*$0*";
     private static final String FIND_TXT = "The search results are below: \n";
     private static final String NO_MATCH_TXT = "No matching result!! \n";
 
@@ -36,7 +36,6 @@ public class FindCommand extends DataCommand {
         }
 
         searchString = String.format("(?i)(%s)", Pattern.quote(searchString));
-        System.out.println(searchString);
 
         List<Task> tasks = taskList.getTasks();
         io.printTask(FIND_TXT);

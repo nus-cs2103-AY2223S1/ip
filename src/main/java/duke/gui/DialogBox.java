@@ -18,16 +18,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 /**
- * An example of a custom control using FXML. This control represents a dialog
- * box consisting of an ImageView to represent the speaker's face and a label
- * containing text from the speaker.
+ * An example of a custom control using FXML. This control represents a dialog box consisting of an
+ * ImageView to represent the speaker's face and a label containing text from the speaker.
  */
 public class DialogBox extends HBox {
 
-    private final Font UBUNTU_MONO_FONT = Font
-            .loadFont(DialogBox.class.getResource("/fonts/UbuntuMono-Regular.ttf").toString(), 15);
+    private static final Font UBUNTU_MONO_FONT =
+            Font.loadFont(DialogBox.class.getResource("/fonts/UbuntuMono-Regular.ttf").toString(), 15);
 
-    private final String WARNING_COLOR = "-fx-background-color: #F18C8E;"
+    private static final String WARNING_COLOR = "-fx-background-color: #F18C8E;"
             + "-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);" + "-fx-background-radius:10";
 
     @FXML
@@ -50,8 +49,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Flips the dialog box such that the ImageView is on the left and text on the
-     * right.
+     * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());

@@ -46,6 +46,9 @@ public class MainWindow extends AnchorPane {
             dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImage, true));
         });
         duke = Duke.createApplication(io);
+        if (duke == null) {
+            exitProgramAfterDelay(2000);
+        }
     }
 
     /**
@@ -60,12 +63,14 @@ public class MainWindow extends AnchorPane {
             dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImage, true));
         });
         duke = Duke.createApplication(io, filepath);
+        if (duke == null) {
+            exitProgramAfterDelay(5000);
+        }
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing
-     * Duke's reply and then appends them to the dialog container. Clears the user
-     * input after processing.
+     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then
+     * appends them to the dialog container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
@@ -75,7 +80,7 @@ public class MainWindow extends AnchorPane {
         }
 
         if (!duke.handleInput(input)) {
-            exitProgramAfterTask(makeDelayTask(2000));
+            exitProgramAfterDelay(2000);
         }
     }
 
@@ -104,12 +109,18 @@ public class MainWindow extends AnchorPane {
         };
     }
 
-    private <T> void exitProgramAfterTask(Task<T> task) {
-        task.setOnSucceeded(e -> {
+    /**
+     * Exits the program after a set period of delay
+     *
+     * @param milisecond count down time before delay
+     */
+    private void exitProgramAfterDelay(int milisecond) {
+        Task<Void> delayTask = makeDelayTask(milisecond);
+        delayTask.setOnSucceeded(e -> {
             exitProgram();
         });
 
-        new Thread(task).start();
+        new Thread(delayTask).start();
     }
 
     private void exitProgram() {

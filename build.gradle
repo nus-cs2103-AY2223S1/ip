@@ -55,7 +55,7 @@ test {
 
 application {
     //mainClassName = "duke.main.Duke"
-    getMainClass().set("duke.main.Launcher")
+    getMainClass().set("duke.main.Duke")
 }
 
 shadowJar {
