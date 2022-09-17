@@ -1,6 +1,10 @@
+import java.time.format.DateTimeFormatter;
 public abstract class Task {
 
     protected static String SEPARATOR = " | ";
+    protected static DateTimeFormatter FORMAT_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    protected static DateTimeFormatter FORMAT_OUTPUT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+
     protected String description;
     protected boolean isDone;
 

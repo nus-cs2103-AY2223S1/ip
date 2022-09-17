@@ -1,26 +1,28 @@
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
+import java.time.format.DateTimeParseException;
 public class Event extends Task {
 
-    protected LocalDateTime time;
+    private String timeInfo;
+    private LocalDateTime time;
 
-    public Event(String description, LocalDateTime time) {
+    public Event(String description, String timeInfo) throws DateTimeParseException {
         super(description);
-        this.time = time;
+        this.timeInfo = timeInfo;
+        this.time = LocalDateTime.parse(timeInfo, Task.FORMAT_INPUT);
     }
-
+    private String formatTime() {
+        return this.time.format((FORMAT_OUTPUT));
+    }
     @Override
     public String toString() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
-        return "[E]" + super.toString() + " (at: " + time.format(format) + ")";
+        return "[E]" + super.toString() + " (at: " + formatTime() + ")";
     }
 
     @Override
     public String saveToDisk() {
         String output = "";
         String taskStatus = (this.isDone) ? "1" : "0";
-        output += "E" + SEPARATOR + taskStatus + SEPARATOR + this.description + SEPARATOR + this.at + "\n";
+        output += "D" + SEPARATOR + taskStatus + SEPARATOR + this.description + SEPARATOR + this.timeInfo + "\n";
         return output;
     }
 }

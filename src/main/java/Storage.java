@@ -32,11 +32,11 @@ public class Storage {
             }
         } else {
             try {
-                System.out.println("i reached here");
+                System.out.println("");
                 Files.createFile(taskListPath);
-                System.out.println("Did I reach here");
+                System.out.println("I created a file!");
             } catch (IOException | SecurityException e) {
-                System.out.println("its error");
+                System.out.println("File creating error");
                 System.out.println(e.getMessage());
             }
         }
@@ -65,9 +65,10 @@ public class Storage {
         }
     }
 
-    public void updateDisk(ArrayList<Task> tasks) {
+    public void updateDisk(TaskList tasks) {
         String data = "";
-        for (Task task : tasks) {
+        ArrayList<Task> taskArr = tasks.getAllTasks();
+        for (Task task : taskArr) {
             data += task.saveToDisk();
         }
         try {
@@ -75,7 +76,7 @@ public class Storage {
             fw.write(data);
             fw.close();
         } catch (IOException e) {
-            System.out.println("Fail to write to file.");
+            System.out.pringittln("Fail to write to file.");
         }
     }
 }

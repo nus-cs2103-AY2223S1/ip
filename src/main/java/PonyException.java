@@ -1,5 +1,14 @@
 import java.lang.RuntimeException;
-public class PonyException {
+public class PonyException extends RuntimeException {
+
+    public PonyException(String message) {
+        super(message);
+    }
+
+    private String one = ":( OOPS!!! I'm sorry, but I don't know what that means...";
+    private String two = ":( OOPS!!! Please provide the details!!";
+    private String three = ":( OOPS!!! Please provide the correct details!!";
+    private String four = ":( OOPS!!! Please provide the details in the following format: ";
 
     //Invalid command
     public static class inputError extends RuntimeException {
