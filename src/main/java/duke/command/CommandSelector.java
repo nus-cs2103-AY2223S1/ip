@@ -81,8 +81,6 @@ public class CommandSelector {
 
     /**
      * Resets the singleton
-     *
-     * @return returns the Enum for the command
      */
     public static void reset() {
         CommandSelector.csSingleton = null;

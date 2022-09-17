@@ -20,6 +20,7 @@ import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.ResetAliasCommand;
 import duke.command.SwapFaceCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
@@ -92,6 +93,9 @@ public class DataParserTest {
                 continue;
             }
             if (command instanceof SwapFaceCommand && c == CommandsEnum.SWAP) {
+                continue;
+            }
+            if (command instanceof ResetAliasCommand && c == CommandsEnum.RESETALIAS) {
                 continue;
             }
             if (command instanceof InvalidCommand && c == CommandsEnum.INVALID) {
