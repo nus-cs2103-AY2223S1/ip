@@ -1,6 +1,14 @@
-<!-- TOC -->
+# User Guide
 
+MakiBot is a desktop app for managing tasks, in the style of a chatbot.<br>
+Instructions are given via CLI-style commands and parameters.
+
+---
+
+## Table of Contents
+<!-- no toc -->
 - [Quick Start](#quick-start)
+- [Command Format:](#command-format)
 - [Command Summary](#command-summary)
 - [Features](#features)
   - [Listing all tasks - `list`](#listing-all-tasks---list)
@@ -17,15 +25,13 @@
   - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
 
-<!-- /TOC -->
-
 ---
 
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest [`duke.jar`](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest [`duke.jar`](https://github.com/JustinPeng13/ip/releases).
 
 3. Copy the file to the folder you want to use as the *home folder* for your AddressBook.
 
@@ -37,15 +43,24 @@
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing **Enter** will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all tasks.
+    * **`list`** - Lists all tasks.
 
-    * **`todo`** `homework` : Adds a `Todo` task with the description *homework*.
+    * **`todo homework`** - Adds a `Todo` task with the description *homework*.
 
-    * **`delete`** `3` : Deletes the 3rd task in the list.
+    * **`delete 3`** - Deletes the 3rd task in the list.
 
-    * **`bye`** : Exits the app.
+    * **`bye`** - Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
+
+---
+
+## Command Format:
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `delete INDEX`, `INDEX` is a parameter which can be used as `delete 3`.
+
+* Items in square brackets are optional.<br>
+  e.g `event DESCRIPTION /at DATE [TIME]` can be used as `event birthday party /at 11/03/2023` or as `event birthday party /at 11/03/2023 20:00`.
 
 ---
 
@@ -68,18 +83,6 @@ Command | Format, Examples
 ---
 
 ## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Command Format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `delete INDEX`, `INDEX` is a parameter which can be used as `delete 3`.
-
-* Items in square brackets are optional.<br>
-  e.g `event DESCRIPTION /at DATE [TIME]` can be used as `event birthday party /at 11/03/2023` or as `event birthday party /at 11/03/2023 20:00`.
-
-</div>
 
 ### Listing all tasks - `list`
 
