@@ -20,6 +20,8 @@ Duke is a **simple** and **easy-to-use** Java app to track your tasks on the go.
 
 ## Usage
 
+### <KeyWord>␣<Body> Commands
+
 ### `todo`
 
 Add a Task of type *todo* to your task list
@@ -39,7 +41,7 @@ Now you have 1 tasks in the list.
 
 Add a Task of type *deadline* to your task list
 
-Due dates can be added to deadline tasks using the [YYYYMMDD] format (no spacing inbetween)
+Due dates can be added to deadline tasks using the [/YYYYMMDD] format (no spacing inbetween)
 
 Example of usage:
 
@@ -83,7 +85,16 @@ Example outcome:
 ```
 1. [D][ ] get good/20220917
 ```
+    
+### <KeyWord> Commands
+    
+### `bye`
+Closes Duke Application
 
+Example of usage:
+
+`bye`
+    
 ### `list`
 
 Display all current tasks
@@ -99,7 +110,16 @@ Example outcome:
 2. [D][ ] get good/20220917
 3. [E][ ] mid autumn /tomorrow night at the moon
 ```
+    
+### `bye`
+Close application window
 
+Example of usage:
+
+`bye`
+    
+### <KeyWord>␣<Numerical Label> Commands — (Numerical Label obtained from 'list' command)
+    
 ### `mark`
 
 Declare a task at a given position on list as complete
@@ -145,12 +165,6 @@ Noted. I've removed this task:
     [T][ ] borrow book on clouds
 Now you have 2 tasks in the list.
 ```
-### `bye`
-Close application window
-
-Example of usage:
-
-`bye`
 
 ## Notes
 - Ensure spacing between keyword and body for your input
