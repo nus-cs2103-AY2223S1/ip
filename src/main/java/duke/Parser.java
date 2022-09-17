@@ -200,16 +200,8 @@ public class Parser {
             Task task = null;
             if (command.equals("todo")) {
                 task = new Todo(descriptions[1]);
-            }
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-            if (command.equals("event")) {
-                String[] deets = descriptions[1].split("/at ", 2);
-                LocalDateTime date = LocalDateTime.parse(deets[1], formatter);
-                task = new Event(deets[0], date);
-            } else if (command.equals("deadline")) {
-                String[] deets = descriptions[1].split("/by ", 2);
-                LocalDateTime date = LocalDateTime.parse(deets[1], formatter);
-                task = new Deadline(deets[0], date);
+            } else if (command.equals("event") || command.equals("deadline")) {
+                task = parseTaskWithDate(command, descriptions);
             }
             list.add(task);
             int number = duke.getCount();
@@ -218,14 +210,31 @@ public class Parser {
             storage.addTaskToFile(file, task);
             return st;
         } catch (Exception e) {
-            if (e instanceof DateTimeParseException) {
-                return "Please use time in dd/MM/yyyy HH:mm format";
-            } else if (e instanceof ArrayIndexOutOfBoundsException) {
-                return "Please insert a time using /at dd/MM/yyyy HH:mm format "
-                        + "for events and /by dd/MM/yyyy HH:mm format for deadlines";
-            }
-            return e.getMessage();
+            return taskRespondGuiException(e);
         }
+    }
+
+    private Task parseTaskWithDate(String command, String[] descriptions) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        if (command.equals("event")) {
+            String[] deets = descriptions[1].split("/at ", 2);
+            LocalDateTime date = LocalDateTime.parse(deets[1], formatter);
+            return new Event(deets[0], date);
+        } else {
+            String[] deets = descriptions[1].split("/by ", 2);
+            LocalDateTime date = LocalDateTime.parse(deets[1], formatter);
+            return new Deadline(deets[0], date);
+        }
+    }
+
+    private String taskRespondGuiException(Exception e) {
+        if (e instanceof DateTimeParseException) {
+            return "Please use time in dd/MM/yyyy HH:mm format";
+        } else if (e instanceof ArrayIndexOutOfBoundsException) {
+            return "Please insert a time using /at dd/MM/yyyy HH:mm format "
+                    + "for events and /by dd/MM/yyyy HH:mm format for deadlines";
+        }
+        return e.getMessage();
     }
 
     /**
@@ -293,9 +302,7 @@ public class Parser {
      */
     public String respond(String input) {
         try {
-            String filepath = this.filepath;
-            Storage storage = new Storage(filepath);
-            TaskList list = storage.load(filepath);
+            TaskList list = new Storage(this.filepath).load(this.filepath);
             String[] descriptions = input.split(" ", 2);
             String command = descriptions[0];
             File file = new File(filepath);

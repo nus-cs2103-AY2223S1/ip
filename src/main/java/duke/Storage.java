@@ -1,10 +1,6 @@
 package duke;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -50,7 +46,6 @@ public class Storage {
 
     private String loadInitialGui(File file) {
         TaskList tl = new TaskList();
-        BufferedReader br = null;
         String st = "";
         try {
             file = new File("dukes.txt");
@@ -74,23 +69,27 @@ public class Storage {
 
     private void loadInitial(File file) {
         try {
-            TaskList tl = new TaskList();
-            BufferedReader br = null;
-            String st;
             if (!file.exists()) {
                 file.createNewFile();
             }
-            br = new BufferedReader(new FileReader(file));
-            while (true) {
-                if (!((st = br.readLine()) != null)) {
-                    break;
-                }
-                tl.getList().add(convertStringToTask(st));
-                duke.addCount();
-                System.out.println(st);
-            }
+            printFileTask();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void printFileTask() throws IOException {
+        BufferedReader br = null;
+        TaskList tl = new TaskList();
+        String st;
+        br = new BufferedReader(new FileReader(file));
+        while (true) {
+            if (!((st = br.readLine()) != null)) {
+                break;
+            }
+            tl.getList().add(convertStringToTask(st));
+            duke.addCount();
+            System.out.println(st);
         }
     }
 
@@ -111,19 +110,23 @@ public class Storage {
             }
             assert file.exists() : "File should exist";
             br = new BufferedReader(new FileReader(file));
-            String st;
-            while (true) {
-                if (!((st = br.readLine()) != null)) {
-                    break;
-                }
-                tl.getList().add(convertStringToTask(st));
-                duke.addCount();
-            }
-            return tl;
+            String st = "";
+            return readFileLine(br, st, tl);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    private TaskList readFileLine(BufferedReader br, String st, TaskList tl) throws IOException {
+        while (true) {
+            if (!((st = br.readLine()) != null)) {
+                break;
+            }
+            tl.getList().add(convertStringToTask(st));
+            duke.addCount();
+        }
+        return tl;
     }
 
     /**
@@ -179,24 +182,27 @@ public class Storage {
         if (taskType == 'T') {
             task = new Todo(s.substring(9));
         }
-        Parser p = new Parser();
-        if (taskType == 'E') {
-            int firstDateIndex = s.indexOf('(');
-            int lastDateIndex = s.indexOf(')');
-            String name = s.substring(9, firstDateIndex - 1);
-            String date = s.substring(firstDateIndex + 5, lastDateIndex);
-            task = new Event(name, p.parseFileString(date));
-        } else if (taskType == 'D') {
-            int firstDateIndex = s.indexOf('(');
-            int lastDateIndex = s.indexOf(')');
-            String name = s.substring(9, firstDateIndex - 1);
-            String date = s.substring(firstDateIndex + 5, lastDateIndex);
-            task = new Deadline(name, p.parseFileString(date));
+        if (taskType == 'E' || taskType == 'D') {
+            task = convertStringToTaskWithDate(s, taskType);
         }
         if (done == 'X') {
             task.setStatus("[X]");
         }
         task.setPriority(priority);
         return task;
+    }
+
+    private Task convertStringToTaskWithDate(String s, char taskType) {
+        Parser p = new Parser();
+        int firstDateIndex = s.indexOf('(');
+        int lastDateIndex = s.indexOf(')');
+        String name = s.substring(9, firstDateIndex - 1);
+        String date = s.substring(firstDateIndex + 5, lastDateIndex);
+        if (taskType == 'E') {
+            return new Event(name, p.parseFileString(date));
+        } else if (taskType == 'D') {
+            return new Deadline(name, p.parseFileString(date));
+        }
+        return null;
     }
 }
