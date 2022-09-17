@@ -28,9 +28,15 @@ import javafx.scene.shape.Circle;
  */
 public class DialogBox extends HBox {
     private static final Background USER_LABEL =
+            new Background(new BackgroundFill(Color.web("b1f2ff"), new CornerRadii(10), Insets.EMPTY));
+
+    private static final Background DUKE_CORRECT_LABEL =
             new Background(new BackgroundFill(Color.web("#cefad0"), new CornerRadii(10), Insets.EMPTY));
-    private static final Background DUKE_LABEL =
-            new Background(new BackgroundFill(Color.WHITE, new CornerRadii(10), Insets.EMPTY));
+
+    private static final Background DUKE_WRONG_LABEL =
+            new Background(new BackgroundFill(Color.web("#ffcccb"), new CornerRadii(10), Insets.EMPTY));
+
+
     private final Circle c = new Circle(25, 25, 25);
     @FXML
     private Label dialog;
@@ -44,6 +50,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+
             this.setPrefHeight(Region.USE_COMPUTED_SIZE);
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,10 +68,23 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        db.flip();
-        db.dialog.setBackground(DUKE_LABEL);
-        return db;
+
+        if (isError(text)) {
+            var db = new DialogBox(text.split(" ", 2)[1], img);
+            db.flip();
+            db.dialog.setBackground(DUKE_WRONG_LABEL);
+            return db;
+        } else {
+            var db = new DialogBox(text, img);
+            db.flip();
+            db.dialog.setBackground(DUKE_CORRECT_LABEL);
+            return db;
+        }
+
+    }
+
+    public static boolean isError(String text) {
+        return text.split(" ")[0].equals("exception");
     }
 
     /**
