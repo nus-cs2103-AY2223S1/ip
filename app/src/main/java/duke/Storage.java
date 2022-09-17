@@ -43,19 +43,21 @@ public class Storage {
      */
     public TaskList load() {
         TaskList tasks = new TaskList();
+        Scanner saved;
         try {
-            Scanner saved = new Scanner(new File(fileName));
-            while (saved.hasNextLine()) {
-                try {
-                    tasks.add(Task.fromEncoded(saved.nextLine()));
-                } catch (DateTimeParseException ignored) {
-                    // ignored
-                }
-            }
-            saved.close();
+            saved = new Scanner(new File(fileName));
         } catch (FileNotFoundException ignored) {
-            // ignored
+            return tasks;
         }
+
+        while (saved.hasNextLine()) {
+            try {
+                tasks.add(Task.fromEncoded(saved.nextLine()));
+            } catch (DateTimeParseException ignored) {
+                // ignored
+            }
+        }
+        saved.close();
 
         return tasks;
     }

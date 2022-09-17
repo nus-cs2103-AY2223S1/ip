@@ -39,31 +39,34 @@ public class GraphicalUi extends Ui {
 
         scene = new Scene(mainLayout);
 
-        stage.setScene(scene);
-        stage.show();
+        setupGui();
+        showGui();
 
+        mainLayout.setPrefSize(400.0, 600.0);
+    }
+
+    private void setupStage() {
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
+    }
 
-        mainLayout.setPrefSize(400.0, 600.0);
+    private void setupDialogContainer() {
+        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+    }
 
+    private void setupScrollPane() {
         scrollPane.setPrefSize(385, 535);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
+    }
 
-        // You will need to import `javafx.scene.layout.Region` for this.
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-
-        userInput.setPrefWidth(325.0);
-
-        sendButton.setPrefWidth(55.0);
-
+    private void setupAnchorPane() {
         AnchorPane.setTopAnchor(scrollPane, 1.0);
 
         AnchorPane.setBottomAnchor(sendButton, 1.0);
@@ -71,6 +74,22 @@ public class GraphicalUi extends Ui {
 
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+    }
+
+    private void setupGui() {
+        setupStage();
+        setupDialogContainer();
+        setupScrollPane();
+        setupAnchorPane();
+
+        userInput.setPrefWidth(325.0);
+
+        sendButton.setPrefWidth(55.0);
+    }
+
+    private void showGui() {
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override
