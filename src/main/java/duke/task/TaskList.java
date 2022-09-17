@@ -1,9 +1,10 @@
 package duke.task;
 
+import static duke.Storage.listToFile;
+
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static duke.Storage.listToFile;
 
 /**
  * A TaskList object containing the tasklist.
@@ -81,6 +82,11 @@ public class TaskList {
         listToFile(this.taskList);
     }
 
+    /**
+     * Finds the matching phrase.
+     * @param phrase to be found.
+     * @return List with matching phrases.
+     */
     public ArrayList<Task> findMatching(String phrase) {
         return taskList
                 .stream()

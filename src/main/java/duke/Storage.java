@@ -101,10 +101,24 @@ public class Storage {
     public ArrayList<Task> createNewFile() {
         try {
             this.file.createNewFile();
+            createSampleTasks();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return new ArrayList<>();
+        return scanExistingFile();
     }
 
+    /**
+     * Populates a file wih sample tasks.
+     */
+    public void createSampleTasks() {
+        try {
+            FileWriter fw = new FileWriter(file);
+            fw.write(" T | 0 | this is a sample task" + System.lineSeparator());
+            fw.write(" D | 1 | this is a sample deadline | 09/10/2022 1000");
+            fw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

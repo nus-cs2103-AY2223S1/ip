@@ -22,6 +22,7 @@ public class Parser {
     static final String DEADLINE_COMMAND = "deadline";
     static final String CLEARALL_COMMAND = "clear";
     static final String FIND_COMMAND = "find";
+    static final String HELP_COMMAND = "help";
     static final int MIN_LENGTH = 6;
     static final int TODO_MIN_LENGTH = 3;
     static final int FIND_WORD_INDEX = 5;
@@ -177,6 +178,8 @@ public class Parser {
             String words = input.substring(FIND_WORD_INDEX).trim();
             TaskList filteredTaskList = new TaskList(tl.findMatching(words));
             return ui.printFilteredList(filteredTaskList);
+        case HELP_COMMAND:
+            return ui.printHelpPage();
         default:
             return ui.printError();
         }
