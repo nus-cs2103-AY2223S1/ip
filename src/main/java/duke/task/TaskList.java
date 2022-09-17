@@ -3,6 +3,7 @@ package duke.task;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import org.apache.commons.text.WordUtils;
 
@@ -44,13 +45,8 @@ public class TaskList extends ArrayList<Task> implements Serializable {
      */
     public TaskList findByKeyword(String keyword) {
         assert !keyword.isBlank();
-        TaskList matchingList = new TaskList();
-        for (Task task : this) {
-            if (task.contains(keyword)) {
-                matchingList.add(task);
-            }
-        }
-        return matchingList;
+        return stream().filter(task -> task.contains(keyword))
+                .collect(Collectors.toCollection(TaskList::new));
     }
 
     /**

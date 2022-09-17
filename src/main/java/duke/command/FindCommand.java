@@ -17,8 +17,7 @@ public class FindCommand extends Command {
 
     @Override
     public String execute(TaskList tasks) {
-        TaskList matchingList = tasks.findByKeyword(keyword);
         return String.format("Here are the matching tasks in your list:\n%s",
-                matchingList);
+                tasks.findByKeyword(keyword));
     }
 }
