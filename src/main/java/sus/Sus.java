@@ -34,7 +34,7 @@ public class Sus {
      */
     private void start() {
         textUi = new TextUi();
-        storage = new StorageFile(System.getProperty("user.home") + "/Desktop");
+        storage = new StorageFile();
         taskList = new TaskList(storage.load());
         textUi.showWelcome();
     }

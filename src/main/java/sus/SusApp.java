@@ -84,7 +84,7 @@ public class SusApp extends Application {
     }
 
     private void load() {
-        storage = new StorageFile(System.getProperty("user.home") + "/Desktop");
+        storage = new StorageFile();
         taskList = new TaskList(storage.load());
         textUi = new TextUi();
 
