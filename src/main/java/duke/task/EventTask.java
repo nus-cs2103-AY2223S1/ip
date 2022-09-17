@@ -19,10 +19,4 @@ public class EventTask extends Task {
         return String.format("%s (at: %s)", super.toString(),
                 timeAt.format(Parser.DATETIME_OUTPUT_FORMAT));
     }
-
-    @Override
-    public String toData() {
-        return String.format("%s | %s", super.toData(),
-                timeAt.format(Parser.DATETIME_INPUT_FORMAT));
-    }
 }

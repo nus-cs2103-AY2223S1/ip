@@ -19,10 +19,4 @@ public class DeadlineTask extends Task {
         return String.format("%s (by: %s)", super.toString(),
                 deadline.format(Parser.DATETIME_OUTPUT_FORMAT));
     }
-
-    @Override
-    public String toData() {
-        return String.format("%s | %s", super.toData(),
-                deadline.format(Parser.DATETIME_INPUT_FORMAT));
-    }
 }

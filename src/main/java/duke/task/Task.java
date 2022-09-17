@@ -58,13 +58,4 @@ public abstract class Task implements Serializable {
     public String toString() {
         return String.format("[%c][%s] %s", symbol, getStatusIcon(), description);
     }
-
-    /**
-     * Returns the string representation of a {@code Task} when stored in a data file.
-     *
-     * @return The string representing the {@code Task} when stored in a data file.
-     */
-    public String toData() {
-        return String.format("%s | %s | %s", symbol, getStatusIcon(), description);
-    }
 }
