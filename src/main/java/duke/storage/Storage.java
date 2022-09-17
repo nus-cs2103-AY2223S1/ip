@@ -41,6 +41,7 @@ public class Storage {
             File listFile = new File(path);
             listFile.createNewFile();
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(listFile));
+            @SuppressWarnings("unchecked")
                 ArrayList<ListObject> allIn = (ArrayList<ListObject>) in.readObject();
                 inList.setTasks(allIn);
                 in.close();

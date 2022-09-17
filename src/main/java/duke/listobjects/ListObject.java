@@ -143,21 +143,18 @@ public class ListObject implements Serializable, Comparable<ListObject> {
      */
     @Override
     public int compareTo(ListObject obj) {
+        int compareDate = this.time.compareTo(obj.time);
+        int compareTask = this.task.compareToIgnoreCase(obj.task);
+        int compareStatus = this.status-obj.status;
 
-        if(this.time.isEmpty() || obj.time.isEmpty()) {
-            System.out.println(this);
-            int res = this.task.compareTo(obj.task);
-            if(res == 0 && this.status >= obj.status){
-                return -1;
-            }
-            if(res==0 && this.status < obj.status){
-                return 1;
-            }
-            else{
-                return res;
-            }
+        if(compareDate != 0){
+            return compareDate;
         } else {
-            return obj.time.compareTo(this.time);
+            if(compareTask != 0){
+                return compareTask;
+            } else {
+                return compareStatus;
+            }
         }
     }
 
