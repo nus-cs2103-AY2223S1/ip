@@ -6,7 +6,6 @@ import duke.Storage;
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Represents the list command to list all the user's tasks.
@@ -16,13 +15,12 @@ public class ListCommand extends Command {
      * Prints out list of tasks individually with index.
      *
      * @param tasks List of tasks.
-     * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @return Duke's response.
      * @throws DukeException
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         ArrayList<String> responseLines = new ArrayList<>();
         responseLines.add("Here are the tasks in your list:");
         for (int i = 1; i <= tasks.taskCount(); i++) {

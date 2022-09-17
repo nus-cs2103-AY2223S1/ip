@@ -13,7 +13,7 @@ public class Ui {
      *
      * @param error String of the error message.
      */
-    public String getError(String error) {
+    public static String getError(String error) {
         return "☹ Oh no! " + error;
     }
 
@@ -22,14 +22,14 @@ public class Ui {
      *
      * @param taskCount Number of tasks.
      */
-    public String getTaskCount(int taskCount) {
+    public static String getTaskCount(int taskCount) {
         return String.format("Now you have %d tasks in the list.", taskCount);
     }
 
     /**
      * Greets the user.
      */
-    public String getGreeting() {
+    public static String getGreeting() {
         return "Hi! I am Duke! :^)";
     }
 }

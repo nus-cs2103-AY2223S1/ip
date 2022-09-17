@@ -23,13 +23,12 @@ public class AddCommand extends Command {
      * Also saves the updated tasks to storage.
      *
      * @param tasks List of tasks.
-     * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @return Duke's response.
      * @throws DukeException
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         tasks.addTask(task);
         storage.saveFile(tasks);
 
@@ -38,7 +37,7 @@ public class AddCommand extends Command {
         ArrayList<String> responseLines = new ArrayList<>();
         responseLines.add("Got it. I've added this task:");
         responseLines.add(" " + task);
-        responseLines.add(ui.getTaskCount(tasks.taskCount()));
+        responseLines.add(Ui.getTaskCount(tasks.taskCount()));
         return String.join("\n", responseLines);
     }
 }

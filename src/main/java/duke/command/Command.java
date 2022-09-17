@@ -3,7 +3,6 @@ package duke.command;
 import duke.Storage;
 import duke.exception.DukeException;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Super class of all Commands.
@@ -22,10 +21,9 @@ public abstract class Command {
      * Runs instructions of command.
      *
      * @param tasks List of tasks.
-     * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @return Duke's response.
      * @throws DukeException
      */
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Storage storage) throws DukeException;
 }

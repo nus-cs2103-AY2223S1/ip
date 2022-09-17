@@ -31,13 +31,12 @@ public class DeleteCommand extends Command {
      * Also saves the updated tasks to storage.
      *
      * @param tasks List of tasks.
-     * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @return Duke's response.
      * @throws DukeException
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (indexes.size() == 0) {
             throw new DukeException(DeleteCommand.ERROR_NO_ARGUMENTS);
         }
@@ -68,7 +67,7 @@ public class DeleteCommand extends Command {
                 "\n",
                 String.format("Noted. I've removed %d tasks.", currCount),
                 String.join("\n", responseLines),
-                ui.getTaskCount(tasks.taskCount())
+                Ui.getTaskCount(tasks.taskCount())
         );
     }
 }

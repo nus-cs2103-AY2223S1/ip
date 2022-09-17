@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import duke.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Represents command to filter tasks for a specified date.
@@ -28,12 +27,11 @@ public class TaskOnDateCommand extends Command {
      * Filters for tasks on a specified date and prints it to the user.
      *
      * @param tasks List of tasks.
-     * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @return Duke's response.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         String formattedDate = date.format(DateTimeFormatter.ofPattern("E, d MMM yyyy"));
         ArrayList<Task> filteredTasks = tasks.getTasksOn(date);
         ArrayList<String> responseLines = new ArrayList<>();

@@ -4,7 +4,6 @@ import duke.Storage;
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Represents command to unmark tasks as done.
@@ -26,13 +25,12 @@ public class UnmarkCommand extends Command {
      * Also saves the updated tasks to storage.
      *
      * @param tasks List of tasks.
-     * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @return Duke's response
      * @throws DukeException
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         Task task = tasks.unmarkTask(index);
         storage.saveFile(tasks);
 
