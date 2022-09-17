@@ -55,7 +55,7 @@ public class Commands {
     }
 
     /**
-     * Add a task to list and print the task out
+     * Adds a task to list and print the task out
      *
      * @param input read name of task
      */
@@ -68,7 +68,7 @@ public class Commands {
     }
 
     /**
-     * Add a deadline task to list and print the task out
+     * Adds a deadline task to list and print the task out
      *
      * @param input read name, time and date of task
      */
@@ -84,7 +84,7 @@ public class Commands {
     }
 
     /**
-     * Add an event task to list and print the task out
+     * Adds an event task to list and print the task out
      *
      * @param input read name, time and date of task
      */
