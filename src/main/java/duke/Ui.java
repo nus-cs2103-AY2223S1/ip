@@ -6,7 +6,7 @@ package duke;
 public class Ui {
 
     /**
-     * Creates the Ui and initialises Scanner.
+     * Creates the Ui
      */
     public Ui() {}
 
