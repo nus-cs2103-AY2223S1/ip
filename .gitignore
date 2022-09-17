@@ -24,6 +24,3 @@ text-ui-test/EXPECTED-UNIX.TXT
 
 # JAR file
 *.jar
-
-# PNG file
-*.png
