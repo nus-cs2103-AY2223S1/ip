@@ -3,12 +3,26 @@
 # User Guide
 Fred is a Chatbot that can help you to manage your ToDos, Events, and Deadlines.
 
-![Fred Screenshot](Ui.png)
+<img src="Ui.png" alt="Fred Screenshot" width="400"/>
 
 <br/>
 
 
 ## Features
+1. [Adding a ToDo : `todo`](#Adding-a-ToDo)
+2. [Adding an Event : `event`](#Adding-an-Event)
+2. [Adding a Deadline : `deadline`](#Adding-a-Deadline)
+3. [List all tasks : `list`](#List-all-tasks)
+4. [Mark task as done : `mark`](#Mark-task-as-done)
+5. [Mark task as undone : `unmark`](#Mark-task-as-undone)
+6. [Delete task : `delete`](#Delete-task)
+7. [Save task list : `save`](#Save-task-list)
+8. [Find task by name : `find`](#Find-task-by-name)
+9. [Reschedule task : `snooze`](#Reschedule-task)
+10. [Exit Fred : `bye`](#Exit-Fred)
+
+
+## Usage
 
 ### Adding a ToDo
 Adds a ToDo to the task list.
