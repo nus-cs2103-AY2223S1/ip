@@ -36,7 +36,6 @@ public class Duke extends Application {
 
     /**
      * Constructor of Duke to initialise ui, storage and scanner
-     *
      */
     public Duke() {
         ui = new Ui();
@@ -53,6 +52,12 @@ public class Duke extends Application {
     }
 
 
+    /**
+     * main methods that allow the project to run
+     *
+     * @param args
+     * @throws DukeException by the parser if the parser parses an invalid output
+     */
     public static void main(String[] args) throws DukeException {
         Duke duke = new Duke();
         Parser parser = new Parser(duke, ui);
@@ -63,8 +68,8 @@ public class Duke extends Application {
     /**
      * run the program
      *
-     * @param parser
-     * @throws DukeException by the parser
+     * @param parser which takes in the system input
+     * @throws DukeException by the parser if the parser parses an invalid output
      */
     public void run(Parser parser) throws DukeException {
         ui.greet();
@@ -113,6 +118,15 @@ public class Duke extends Application {
     }
 
 
+    /**
+     * Formats the application
+     *
+     * @param stage called Duke
+     * @param layout created from start
+     * @param scrollPane from start
+     * @param userInput keyed in
+     * @param button send button
+     */
     public void format(Stage stage, AnchorPane layout, ScrollPane scrollPane, TextField userInput, Button button) {
         stage.setTitle("Duke");
         stage.setResizable(false);
