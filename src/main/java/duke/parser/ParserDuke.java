@@ -1,6 +1,7 @@
 package duke.parser;
 
 import duke.exceptions.EmptyCommandException;
+import duke.exceptions.EmptyTaskException;
 import duke.listobjects.Deadline;
 import duke.listobjects.Event;
 import duke.listobjects.ListObject;
@@ -14,7 +15,6 @@ import duke.tasklist.TaskList;
  */
 public class ParserDuke {
 
-    private static final String BREAK_LINE = "\n";
     private final String HELLO_CMD = "hello";
     private final String LIST_CMD = "list";
     private final String MARK_CMD = "mark";
@@ -45,6 +45,24 @@ public class ParserDuke {
         throw new EmptyCommandException();
     }
 
+    public String parseTask(TaskList listOfItems) throws EmptyTaskException{
+
+        String preTask = this.command.replaceAll(" ", "");
+        String task = this.command.replaceAll("todo", "");
+        if(task.isEmpty()){
+            throw new EmptyTaskException();
+        } else {
+            ListObject newItem = new ToDo(task, 0);
+            listOfItems.handleItemAddition(newItem);
+            Storage.makeListFile(FILE_PATH, listOfItems);
+            String comment = "'Tis a new sky for you to scale! Here! \n" + newItem + "\n";
+            String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
+            return comment + info;
+        }
+    }
+
+
+
     /**
      * Reads the user command, initiates completion of the appropriate action and prints response
      */
@@ -55,7 +73,6 @@ public class ParserDuke {
         try {
             if (command.isEmpty()) {
                 parseEmptyString();
-
             } else {
                 TaskList listOfItems = Storage.readFromFile(FILE_PATH);
                 String comment = "Here is what I think...";
@@ -69,7 +86,7 @@ public class ParserDuke {
                 if (instruction.equals(LIST_CMD)) {
                     comment = "These are the tasks on your list!";
                     String list = listOfItems.toString();
-                    reply = comment + list + BREAK_LINE;
+                    reply = comment + list + "\n";
                     return reply;
                 } else if (instruction.equals(MARK_CMD)) {
                     taskNo = command.replaceAll("\\D+", "");
@@ -98,21 +115,10 @@ public class ParserDuke {
                     String target = command.replaceAll("find ", "");
                     String list = listOfItems.findByKeyword(target);
                     comment = "Here is what you are looking for!";
-                    reply = comment + list + BREAK_LINE;
+                    reply = comment + list + "\n";
 
                 } else if (instruction.equals(TODO_CMD)) {
-                    String todo = command.replaceAll("todo ", "");
-                    if (todo.isEmpty()) {
-                        comment = "The folly of youth to want to do nothing! Write your task following 'todo'";
-                        reply = comment + BREAK_LINE;
-                    } else {
-                        ListObject newItem = new ToDo(todo, 0);
-                        listOfItems.handleItemAddition(newItem);
-                        Storage.makeListFile(FILE_PATH, listOfItems);
-                        comment = "'Tis a new sky for you to scale! Here! \n" + newItem;
-                        String info = "\nYou now have " + listOfItems.knowTaskCount() + " to do!";
-                        reply = comment + info + BREAK_LINE;
-                    }
+                    reply = parseTask(listOfItems);
                 } else if (instruction.equals(DEADLINE_CMD)) {
                     String deadline1 = command.replaceAll("deadline ", "");
                     String[] words = deadline1.split("/");
@@ -124,11 +130,11 @@ public class ParserDuke {
                         Storage.makeListFile(FILE_PATH, listOfItems);
                         comment = "Mark this on your calendar! \n" + newItem;
                         String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
-                        reply = comment + info + BREAK_LINE;
+                        reply = comment + info + "\n";
 
                     } else {
                         reply = "The folly of youth to cheat Time! Write your task following 'deadline'"
-                                + BREAK_LINE;
+                                + "\n";
                     }
                 } else if (instruction.equals(EVENT_CMD)) {
                     String event1 = command.replaceAll("event ", "");
@@ -142,11 +148,11 @@ public class ParserDuke {
                         Storage.makeListFile(FILE_PATH, listOfItems);
                         comment = "Another moment to mark... \n" + newItem;
                         String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
-                        reply = comment + info + BREAK_LINE;
+                        reply = comment + info + "\n";
 
                     } else {
                         comment = "Come Alive! Write an activity following 'event'";
-                        reply = comment + BREAK_LINE;
+                        reply = comment + "\n";
 
                     }
 
@@ -157,13 +163,15 @@ public class ParserDuke {
 
                 } else {
                     comment = "Why trouble me with the unrefined language of the youth! Speak plainly, my friend!";
-                    reply = comment + BREAK_LINE;
+                    reply = comment + "\n";
                 }
 
                 return reply;
             }
         } catch (EmptyCommandException e) {
-            reply = "The folly of youth to speak with no words! Speak again, my friend!\n";
+            reply = e.getMessage();
+        } catch (EmptyTaskException e) {
+            reply = e.getMessage();
         } catch (Exception e) {
             reply = "Aemon went back to his crypt for a nap. Please restart the program after deleteing the DukeList.txt file.";
         }
