@@ -28,6 +28,8 @@ public class DialogBox extends HBox {
     private final Circle clip = new Circle(50, 50, 50);
 
     private DialogBox(String text, Image img) {
+        //@@author j-lum-reused
+        //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -39,9 +41,12 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+        //@@author
         displayPicture.setClip(clip);
     }
 
+    //@@author j-lum-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
@@ -61,4 +66,5 @@ public class DialogBox extends HBox {
         db.flip();
         return db;
     }
+    //@@author
 }

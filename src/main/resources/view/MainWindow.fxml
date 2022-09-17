@@ -7,6 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<!-- @@author j-lum-reused
+     Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+     with minor modification -->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="800.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="mort.ui.MainWindow">
@@ -30,3 +33,4 @@
         </ScrollPane>
     </children>
 </AnchorPane>
+<!-- @@author -->

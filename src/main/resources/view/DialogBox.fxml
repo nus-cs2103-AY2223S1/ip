@@ -6,6 +6,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
+<!-- @@author j-lum-reused
+     Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+     with minor modification -->
 <fx:root alignment="TOP_RIGHT" minHeight="-Infinity" maxHeight="1.7976931348623157E308"
          maxWidth="1.7976931348623157E308" prefWidth="500.0" type="javafx.scene.layout.HBox"
          xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" >
@@ -24,3 +27,4 @@
         <Insets bottom="10.0" left="2.5" right="5.0" top="10.0" />
     </padding>
 </fx:root>
+<!-- @@author -->

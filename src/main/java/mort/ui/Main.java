@@ -17,6 +17,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        //@@author j-lum-reused
+        //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
@@ -28,5 +30,6 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //@@author
     }
 }

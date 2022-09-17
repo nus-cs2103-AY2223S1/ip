@@ -49,7 +49,10 @@ public class MainWindow extends AnchorPane {
         scrollPane.setBackground(new Background(background));
         dialogContainer.setBackground(new Background(background));
         sendButton.setStyle("-fx-background-color: #553939; -fx-background-radius: 5px; -fx-text-fill: #ffffff");
+        //@@author j-lum-reused
+        //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        //@@author
     }
 
     public void setMort(Mort m) {
@@ -63,6 +66,9 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        //@@author j-lum-reused
+        //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+        // with minor modifications
         String input = userInput.getText();
         String response = mort.getResponse(input);
         dialogContainer.getChildren().addAll(
@@ -70,15 +76,19 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getMortDialog(response, mortImage)
         );
         userInput.clear();
+        //@@author
 
+        //@@author syinyichen-reused
+        //Reused from https://github.com/syinyichen/duke/blob/master/src/main/java/duke/MainWindow.java
+        // with minor modification
         if (input.equals("bye")) {
-            //reused syinyichen
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(event -> {
                 System.exit(0);
             });
             pause.play();
         }
+        //@@author
     }
 
     private void showWelcomeMessage() {
