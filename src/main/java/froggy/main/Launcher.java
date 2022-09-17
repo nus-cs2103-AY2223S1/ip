@@ -1,4 +1,4 @@
-package froggy;
+package froggy.main;
 import javafx.application.Application;
 
 /**

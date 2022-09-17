@@ -1,5 +1,6 @@
-package froggy;
+package froggy.ui;
 
+import froggy.main.Froggy;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;

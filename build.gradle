@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClassName = "froggy.Launcher"
+    mainClassName = "froggy.main.Launcher"
 }
 
 shadowJar {

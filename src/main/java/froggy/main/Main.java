@@ -1,7 +1,8 @@
-package froggy;
+package froggy.main;
 
 import java.io.IOException;
 
+import froggy.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

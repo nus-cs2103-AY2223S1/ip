@@ -48,7 +48,7 @@ public class Parser {
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new FroggyException("The description or date time of a deadline cannot be empty.\n" +
                         "The format should be in deadline TASK_NAME /by yyyy-mm-dd");
-            } 
+            }
         } else if (Objects.equals(commands[0], "event")) {
             try {
                 String[] taskDetails = commands[1].split(" /at ");

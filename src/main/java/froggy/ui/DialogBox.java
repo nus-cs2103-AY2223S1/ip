@@ -1,4 +1,4 @@
-package froggy;
+package froggy.ui;
 
 import java.io.IOException;
 import java.util.Collections;
