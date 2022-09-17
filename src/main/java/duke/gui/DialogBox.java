@@ -26,7 +26,7 @@ public class DialogBox extends HBox {
     private static final Font UBUNTU_MONO_FONT =
             Font.loadFont(DialogBox.class.getResource("/fonts/UbuntuMono-Regular.ttf").toString(), 15);
 
-    private static final String WARNING_COLOR = "-fx-background-color: #F18C8E;"
+    private static final String WARNING_COLOR = "-fx-background-color: #EF3D59;"
             + "-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);" + "-fx-background-radius:10";
 
     @FXML
