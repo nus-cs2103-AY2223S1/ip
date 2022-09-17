@@ -37,4 +37,19 @@ public class Deadline extends Task {
         int markedStatus = getIsMarked() ? 1 : 0;
         return String.format("D,%d,%s,%s\n", markedStatus, getTaskItem(), deadline.encode());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof Deadline) {
+            Deadline other = (Deadline) o;
+            return super.equals(o) && other.deadline.equals(this.deadline);
+        }
+        return false;
+    }
 }

@@ -75,4 +75,19 @@ public class DeadlineDateTime extends Date {
         String formattedTime = time.format(DateTimeFormatter.ofPattern(timeColonPattern));
         return super.encode() + '|' + formattedTime;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof DeadlineDateTime) {
+            DeadlineDateTime other = (DeadlineDateTime) o;
+            return super.equals(o) && other.time.equals(this.time);
+        }
+        return false;
+    }
 }

@@ -82,4 +82,21 @@ public class EventDateTime extends Date {
         String formattedEndTime = endTime.format(DateTimeFormatter.ofPattern(timeColonPattern));
         return super.encode() + '|' + formattedStartTime + '|' + formattedEndTime;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof EventDateTime) {
+            EventDateTime other = (EventDateTime) o;
+            return super.equals(o)
+                    && other.startTime.equals(this.startTime)
+                    && other.endTime.equals(this.endTime);
+        }
+        return false;
+    }
 }
