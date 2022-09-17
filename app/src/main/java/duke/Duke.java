@@ -52,105 +52,149 @@ public class Duke implements InputAcceptor {
         }
     }
 
+    private String handleList() {
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < tasks.size(); ++i) {
+            if (i != 0) {
+                out.append("\n");
+            }
+            out.append(i + 1).append(". ").append(tasks.getTask(i));
+        }
+        if (out.toString().equals("")) {
+            return "No tasks left!";
+        }
+        return out.toString();
+    }
+
+    private String handleFind(String params) {
+        StringBuilder searchResults = new StringBuilder();
+        for (int i = 0; i < tasks.size(); ++i) {
+            if (!tasks.getTask(i).toString().contains(params)) {
+                continue;
+            }
+            if (searchResults.length() != 0) {
+                searchResults.append("\n");
+            }
+            searchResults.append(i + 1).append(". ").append(tasks.getTask(i));
+        }
+        if (searchResults.toString().equals("")) {
+            return "No search results!";
+        }
+        return searchResults.toString();
+    }
+
+    private String handleMark(String params) {
+        int markedTask = checkTask(params);
+        if (markedTask < 0) {
+            return "Invalid task number!";
+        }
+        tasks.getTask(markedTask - 1).markDone();
+        storage.save(tasks);
+        return "OK, this task is done:\n" + tasks.getTask(markedTask - 1);
+    }
+
+    private String handleUnmark(String params) {
+        int unmarkedTask = checkTask(params);
+        if (unmarkedTask < 0) {
+            return "Invalid task number!";
+        }
+        tasks.getTask(unmarkedTask - 1).markUndone();
+        storage.save(tasks);
+        return "OK, this task is undone:\n" + tasks.getTask(unmarkedTask - 1);
+    }
+
+    private String handleDelete(String params) {
+        int deleteTask = checkTask(params);
+        if (deleteTask < 0) {
+            return "Invalid task number!";
+        }
+        Task removedTask = tasks.deleteTask(deleteTask - 1);
+        storage.save(tasks);
+        return "OK, this task has been deleted:\n" + removedTask;
+    }
+
+    private String handleBye() {
+        ui.stopInputLoop();
+        return "Goodbye!";
+    }
+
+    private String handleTodo(String params) {
+        if (params.equals("")) {
+            return "Todo description can't be empty.";
+        }
+        tasks.add(new Todo(params));
+        storage.save(tasks);
+        return "Added new todo: " + tasks.getTask(tasks.size() - 1);
+    }
+
+    private String handleDeadline(String params) {
+        if (params.equals("")) {
+            return "Deadline description can't be empty.";
+        }
+        String[] splitDeadline = parser.splitOnFirst(params, " /by ");
+        try {
+            tasks.add(new Deadline(splitDeadline[0], splitDeadline[1]));
+        } catch (DateTimeParseException e) {
+            return "Invalid date! (yyyy-mm-dd)";
+        }
+        storage.save(tasks);
+        return "Added new deadline: " + tasks.getTask(tasks.size() - 1);
+    }
+
+    private String handleEvent(String params) {
+        if (params.equals("")) {
+            return "Event description can't be empty.";
+        }
+        String[] splitEvent = parser.splitOnFirst(params, " /at ");
+        try {
+            tasks.add(new Event(splitEvent[0], splitEvent[1]));
+        } catch (DateTimeParseException e) {
+            return "Invalid date! (yyyy-mm-dd)";
+        }
+        storage.save(tasks);
+        return "Added new event: " + tasks.getTask(tasks.size() - 1);
+    }
+
+    private String handleDefault(String command, String params) {
+        return "I don't know what '" + command + "' is!";
+    }
+
     private String handle(String command, String params) {
         switch (command) {
         case "l":
             // fallthrough
         case "list":
-            StringBuilder out = new StringBuilder();
-            for (int i = 0; i < tasks.size(); ++i) {
-                if (i != 0) {
-                    out.append("\n");
-                }
-                out.append(i + 1).append(". ").append(tasks.getTask(i));
-            }
-            if (out.toString().equals("")) {
-                return "No tasks left!";
-            }
-            return out.toString();
+            return handleList();
+        case "f":
+            // fallthrough
         case "find":
-            StringBuilder searchResults = new StringBuilder();
-            for (int i = 0; i < tasks.size(); ++i) {
-                if (!tasks.getTask(i).toString().contains(params)) {
-                    continue;
-                }
-                if (searchResults.length() != 0) {
-                    searchResults.append("\n");
-                }
-                searchResults.append(i + 1).append(". ").append(tasks.getTask(i));
-            }
-            if (searchResults.toString().equals("")) {
-                return "No search results!";
-            }
-            return searchResults.toString();
+            return handleFind(params);
         case "m":
             // fallthrough
         case "mark":
-            int markedTask = checkTask(params);
-            if (markedTask < 0) {
-                return "Invalid task number!";
-            }
-            tasks.getTask(markedTask - 1).markDone();
-            storage.save(tasks);
-            return "OK, this task is done:\n" + tasks.getTask(markedTask - 1);
+            return handleMark(params);
+        case "u":
+            // fallthrough
         case "unmark":
-            int unmarkedTask = checkTask(params);
-            if (unmarkedTask < 0) {
-                return "Invalid task number!";
-            }
-            tasks.getTask(unmarkedTask - 1).markUndone();
-            storage.save(tasks);
-            return "OK, this task is undone:\n" + tasks.getTask(unmarkedTask - 1);
+            return handleUnmark(params);
         case "delete":
-            int deleteTask = checkTask(params);
-            if (deleteTask < 0) {
-                return "Invalid task number!";
-            }
-            Task removedTask = tasks.deleteTask(deleteTask - 1);
-            storage.save(tasks);
-            return "OK, this task has been deleted:\n" + removedTask;
+            return handleDelete(params);
         case "bye":
-            ui.stopInputLoop();
-            return "Goodbye!";
+            return handleBye();
         case "t":
             // fallthrough
         case "todo":
-            if (params.equals("")) {
-                return "Todo description can't be empty.";
-            }
-            tasks.add(new Todo(params));
-            storage.save(tasks);
-            return "Added new todo: " + tasks.getTask(tasks.size() - 1);
+            return handleTodo(params);
         case "d":
             // fallthrough
         case "deadline":
-            if (params.equals("")) {
-                return "Deadline description can't be empty.";
-            }
-            String[] splitDeadline = parser.splitOnFirst(params, " /by ");
-            try {
-                tasks.add(new Deadline(splitDeadline[0], splitDeadline[1]));
-            } catch (DateTimeParseException e) {
-                return "Invalid date! (yyyy-mm-dd)";
-            }
-            storage.save(tasks);
-            return "Added new deadline: " + tasks.getTask(tasks.size() - 1);
+            return handleDeadline(params);
         case "e":
             // fallthrough
         case "event":
-            if (params.equals("")) {
-                return "Event description can't be empty.";
-            }
-            String[] splitEvent = parser.splitOnFirst(params, " /at ");
-            try {
-                tasks.add(new Event(splitEvent[0], splitEvent[1]));
-            } catch (DateTimeParseException e) {
-                return "Invalid date! (yyyy-mm-dd)";
-            }
-            storage.save(tasks);
-            return "Added new event: " + tasks.getTask(tasks.size() - 1);
+            return handleEvent(params);
         default:
-            return "I don't know what '" + command + "' is!";
+            return handleDefault(command, params);
         }
     }
 
