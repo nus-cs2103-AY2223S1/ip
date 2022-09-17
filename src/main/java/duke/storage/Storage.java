@@ -86,10 +86,21 @@ public class Storage {
      * @throws IOException if there are errors in opening or writing to the file.
      */
     public static void writeData(TaskList taskList, String path) throws IOException {
-        FileWriter clearFw = new FileWriter(path, false);
+        //Create directory and file to store data
+        String workingDirectory = System.getProperty("user.dir");
+        String absolutePath = workingDirectory + System.getProperty("file.separator") + path;
+        System.out.println(absolutePath);
+        File file = new File(absolutePath);
+        file.getParentFile().mkdir();
+        file.createNewFile();
+
+        //Clear data file
+        FileWriter clearFw = new FileWriter(absolutePath, false);
         clearFw.write("");
         clearFw.close();
-        FileWriter fw = new FileWriter(path, true);
+
+        //Write to data file
+        FileWriter fw = new FileWriter(absolutePath, true);
         List<String> writeList = taskList.produceWriteList();
         for (int i = 0; i < writeList.size(); i++) {
             fw.write(writeList.get(i));
