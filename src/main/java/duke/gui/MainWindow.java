@@ -80,8 +80,9 @@ public class MainWindow extends VBox {
                             i.set(i.get() + 1);
                             if (i.get() == 3) {
                                 Platform.exit();
+                            } else {
+                                dukeDialog.setText(response.substring(0, response.length() - 1) + (3 - i.get()));
                             }
-                            dukeDialog.setText(response.substring(0, response.length() - 1) + (3 - i.get()));
                         }
                     )
                 );
