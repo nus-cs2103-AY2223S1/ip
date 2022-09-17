@@ -6,9 +6,23 @@ import duke.Storage;
 import duke.UI;
 import duke.Task;
 
+/**
+ * UpdateTaskDescriptionCommand class to represent an instruction to update
+ * the description of a task.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
+
 public class UpdateTaskDescriptionCommand extends Command {
     private int taskNo;
     private String updatedField;
+
+    /**
+     * Constructor for UpdateTaskDescriptionCommand class
+     *
+     * @param taskNo int
+     * @param updatedField String
+     */
 
     public UpdateTaskDescriptionCommand(int taskNo, String updatedField) {
         this.taskNo = taskNo;

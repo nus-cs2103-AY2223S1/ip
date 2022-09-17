@@ -17,6 +17,13 @@ public class AddToDoCommand extends Command {
     private String description;
     private boolean isDone;
 
+    /**
+     * Constructor for AddToDoCommand class
+     *
+     * @param description String
+     * @param isDone boolean
+     */
+
     public AddToDoCommand(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;

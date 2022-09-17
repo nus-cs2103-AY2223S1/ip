@@ -14,6 +14,12 @@ import duke.Task;
 public class MarkAsDoneCommand extends Command {
     int[] taskNos;
 
+    /**
+     * Constructor for MarkAsDoneCommand class
+     *
+     * @param taskNos array of int
+     */
+
     public MarkAsDoneCommand(int ... taskNos) {
 
         this.taskNos = taskNos;

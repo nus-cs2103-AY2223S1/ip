@@ -1,24 +1,21 @@
 import duke.DukeException;
 import duke.Parser;
 import duke.UI;
-import duke.command.ByeCommand;
 import duke.command.Command;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.aopalliance.intercept.Invocation;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
+ *
+ * @author Sheryl Kong (A0240686Y)
  */
+
 public class MainWindow extends AnchorPane {
     @FXML
     private ScrollPane scrollPane;
@@ -34,6 +31,10 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/spongebob.jpeg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/captain.jpeg"));
 
+    /**
+     * Initializes the main window of the program
+     */
+
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -47,9 +48,12 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates a response according to user input
+     *
+     * @param input String
+     * @throws DukeException when input is invalid
      */
+
     public String getResponse(String input) throws DukeException {
         Command c = Parser.parse(input);
         c.execute(duke.getTaskList(), duke.getStorage());
@@ -57,9 +61,11 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Displays user input and generated Duke's output on main window.
+     *
+     * @throws DukeException when input is invalid
      */
+
     @FXML
     private void handleUserInput() throws DukeException{
         try {

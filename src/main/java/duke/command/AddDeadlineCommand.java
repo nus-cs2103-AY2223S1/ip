@@ -21,6 +21,14 @@ public class AddDeadlineCommand extends Command { //Creating a duke.Deadline duk
     private boolean isDone;
     private String date;
 
+    /**
+     * Constructor for AddDeadlineCommand class
+     *
+     * @param description String
+     * @param isDone boolean
+     * @param date String
+     */
+
     public AddDeadlineCommand(String description, boolean isDone, String date) {
         this.description = description;
         this.isDone = isDone;

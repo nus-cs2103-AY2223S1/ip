@@ -8,18 +8,27 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 
-import java.awt.*;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
+/**
+ * DialogBox class to create a frame for each user input and duke output.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
 
 public class DialogBox extends HBox {
 
     public Label dialog;
     public ImageView displayPicture;
+
+    /**
+     * Constructor for DialogBox class
+     *
+     * @param text String
+     * @param img Image
+     */
 
     public DialogBox(String text, Image img) {
 

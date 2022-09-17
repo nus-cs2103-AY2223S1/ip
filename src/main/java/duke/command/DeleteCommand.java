@@ -17,6 +17,12 @@ import java.util.Arrays;
 public class DeleteCommand extends Command {
     private final int[] taskNos;
 
+    /**
+     * Constructor for DeleteCommand class
+     *
+     * @param taskNos array of int
+     */
+
     public DeleteCommand(int ... taskNos) {
         this.taskNos = taskNos;
     }

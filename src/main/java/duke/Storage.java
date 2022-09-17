@@ -16,6 +16,10 @@ public class Storage {
     private final String filePath;
     private static boolean isLoadingFile = false;
 
+    /**
+     * Constructor for Storage class
+     */
+
     public Storage(String filePath) {
         this.filePath = filePath;
         try {
@@ -26,6 +30,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Checks if the program is loading from the file
+     *
+     * @return boolean
+     */
+
     public boolean checkIsLoadingFile() {
         return isLoadingFile;
     }
@@ -33,6 +43,13 @@ public class Storage {
     public String read() throws IOException {
         return Files.readString(Path.of(this.filePath));
     }
+
+    /**
+     * Loads the content from the file into a TaskList.
+     *
+     * @return TaskList
+     * @throws DukeException when input is invalid
+     */
 
     public TaskList load() throws DukeException {
         isLoadingFile = true;
@@ -53,6 +70,12 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the tasks in the TaskList into the file.
+     *
+     * @param taskList TaskList
+     * @throws DukeException when input is invalid
+     */
 
     public void saveData(TaskList taskList) throws DukeException {
         try {

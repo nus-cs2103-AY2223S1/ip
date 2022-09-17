@@ -1,5 +1,7 @@
 package duke;
 
+import java.time.LocalDate;
+
 /**
  * Event class to represent a new Event task.
  *
@@ -20,7 +22,7 @@ public class Event extends Task {
     public Event(String description, boolean isDone, String date) {
         super(description.trim());
         this.isDone = isDone;
-        this.date = date.trim();
+        this.date = date;
         Task.addTaskCount();
     }
 

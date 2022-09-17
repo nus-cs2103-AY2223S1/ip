@@ -10,6 +10,12 @@ import duke.*;
 public class MarkAsUndoneCommand extends Command {
     int[] taskNos;
 
+    /**
+     * Constructor for MarkAsUndoneCommand class
+     *
+     * @param taskNos array of int
+     */
+
     public MarkAsUndoneCommand(int ... taskNos) {
         this.taskNos = taskNos;
     }

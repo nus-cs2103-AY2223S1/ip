@@ -11,36 +11,82 @@ public class Task {
     protected boolean isDone;
     private static int taskCount = 0;
 
+    /**
+     * Constructor for Task class
+     *
+     */
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Increments the taskCount
+     */
+
     public static void addTaskCount() {
         taskCount++;
     }
+
+    /**
+     * Decrements the taskCount
+     *
+     */
 
     public static void minusTaskCount() {
         taskCount--;
     }
 
+    /**
+     * Retrieves the taskCount
+     *
+     * @return int taskCount
+     */
+
     public static int getTaskCount() { return Task.taskCount; }
 
+    /**
+     * Retrieves the status icon of the task: done or undone.
+     *
+     * @return String "X" or " "
+     */
+
     public String getStatusIcon() {
-        return (this.isDone ? "X" : " "); // mark done task with X
+        return (this.isDone ? "X" : " ");
     }
+
+    /**
+     * Marks the task as done
+     */
 
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the task as undone
+     */
+
     public void markAsUndone() {
         this.isDone = false;
     }
 
+    /**
+     * Updates the task description
+     *
+     * @param updatedField new description
+     */
+
     public void updateDescription(String updatedField) {
         this.description = updatedField;
     }
+
+    /**
+     * Returns a String for Duke output
+     *
+     * @return String
+     */
 
     public String added() {
         return String.format("New task added:\n" +

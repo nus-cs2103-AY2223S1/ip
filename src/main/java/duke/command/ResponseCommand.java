@@ -7,6 +7,12 @@ import duke.UI;
 
 public class ResponseCommand extends Command {
 
+    /**
+     * Constructor for ResponseCommand class
+     *
+     * @param response String
+     */
+
     public ResponseCommand(String response) {
         this.response = response;
     }

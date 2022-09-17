@@ -15,6 +15,13 @@ import duke.command.*;
 
 public class Parser {
 
+    /**
+     * Returns an AddToDoCommand.
+     *
+     * @param desc description
+     * @return Command
+     */
+
     public static Command parseTodo(String desc) {
         Scanner sc = new Scanner(desc);
         if (!sc.hasNext()) {
@@ -22,6 +29,13 @@ public class Parser {
         }
         return new AddToDoCommand(desc, false);
     }
+
+    /**
+     * Returns an AddDeadlineCommand.
+     *
+     * @param desc description
+     * @return Command
+     */
 
     public static Command parseDeadline(String desc) {
         Scanner scanner = new Scanner(desc);
@@ -36,10 +50,20 @@ public class Parser {
         while (!scanner.hasNext("/by")) {
             description += scanner.next();
         }
-        scanner.next(); //skips "/by"
+        scanner.next();
+        if (!scanner.hasNext()) {
+            return new ResponseCommand("OOPS!! Please enter a deadline for the task. ");
+        }
         date = scanner.nextLine();
         return new AddDeadlineCommand(description, false, date);
     }
+
+    /**
+     * Returns an AddEventCommand.
+     *
+     * @param desc description
+     * @return Command
+     */
 
     public static Command parseEvent(String desc) {
         Scanner scanner = new Scanner(desc);
@@ -55,9 +79,19 @@ public class Parser {
             description += " " + scanner.next();
         }
         scanner.next();
+        if (!scanner.hasNext()) {
+            return new ResponseCommand("OOPS!! Please enter a date for the event. ");
+        }
         date = scanner.nextLine();
         return new AddEventCommand(description, false, date);
     }
+
+    /**
+     * Returns a MarkAsDoneCommand.
+     *
+     * @param desc description
+     * @return Command
+     */
 
     public static Command parseMarkAsDone(String desc) {
         String[] taskNosString = desc.split("\\s*,\\s*");
@@ -82,6 +116,13 @@ public class Parser {
         }
         return new MarkAsDoneCommand(taskNosInt);
     }
+
+    /**
+     * Returns a MarkAsUndoneCommand.
+     *
+     * @param desc description
+     * @return Command
+     */
 
     public static Command parseMarkAsUndone(String desc) {
         String[] taskNosString = desc.split("\\s*,\\s*");
@@ -108,6 +149,13 @@ public class Parser {
 
     }
 
+    /**
+     * Returns a DeleteCommand.
+     *
+     * @param desc description
+     * @return Command
+     */
+
     public static Command parseDelete(String desc) {
         String[] taskNosString = desc.split(",");
         if (taskNosString[0].equals("")) {
@@ -133,14 +181,35 @@ public class Parser {
         return new DeleteCommand(taskNosInt);
     }
 
+    /**
+     * Returns a FindCommand.
+     *
+     * @param desc description
+     * @return Command
+     */
+
     public static Command parseFind(String desc) {
         return new FindCommand(desc);
     }
+
+    /**
+     * Returns a String containing the formatted date.
+     *
+     * @param date String
+     * @return Command
+     */
 
     public static String parseDate(String date) {
         LocalDate localDate = LocalDate.parse(date.trim());
         return localDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
+
+    /**
+     * Returns an Update*Command.
+     *
+     * @param desc description
+     * @return Command
+     */
 
     public static Command parseUpdate(String desc) {
         Scanner sc = new Scanner(desc);
@@ -160,6 +229,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the first word from user input and returns a command.
+     *
+     * @param rawCommand String
+     * @return Command
+     * @throws DukeException when input is invalid
+     * @throws AssertionError when input is invalid
+     */
 
     public static Command parse(String rawCommand) throws DukeException, AssertionError {
         UI.userInput(rawCommand);
@@ -217,6 +294,13 @@ public class Parser {
         }
 
     }
+
+    /**
+     * Parses the duke.txt file whenever Duke program is started
+     *
+     * @param desc String
+     * @return Command
+     */
 
     public static Command parseFileLine(String desc) {
         String[] words = desc.split("\\s\\|\\s");
