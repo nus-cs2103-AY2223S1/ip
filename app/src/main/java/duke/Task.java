@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * A generic task.
+ */
 public class Task {
     public static final String ICON_DONE = "X";
     public static final String ICON_UNDONE = " ";

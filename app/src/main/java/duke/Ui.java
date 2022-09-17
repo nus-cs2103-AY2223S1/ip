@@ -1,11 +1,15 @@
 package duke;
 
+/**
+ * A generic user interface handler.
+ */
 public abstract class Ui {
     private InputAcceptor inputAcceptor;
     /**
      * Creates a new UI handler.
      */
     public Ui(InputAcceptor ia) {
+        assert ia != null;
         inputAcceptor = ia;
     }
 

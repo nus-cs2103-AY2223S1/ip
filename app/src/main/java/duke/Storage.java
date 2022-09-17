@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * A Storage handler for file-based data saving.
+ */
 public class Storage {
     private final String fileName;
 
@@ -46,10 +49,12 @@ public class Storage {
                 try {
                     tasks.add(Task.fromEncoded(saved.nextLine()));
                 } catch (DateTimeParseException ignored) {
+                    // ignored
                 }
             }
             saved.close();
         } catch (FileNotFoundException ignored) {
+            // ignored
         }
 
         return tasks;
