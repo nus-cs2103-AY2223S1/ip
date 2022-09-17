@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.DukeException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +18,7 @@ public class Event extends Task {
      * @param description description of the event
      * @param dateStr date and time of the event
      */
-    public Event(String description, String dateStr) {
+    public Event(String description, String dateStr) throws DukeException {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         this.date = LocalDateTime.parse(dateStr, formatter);
@@ -74,5 +76,9 @@ public class Event extends Task {
         LocalDate date = LocalDate.parse(dateStr, formatter);
         LocalDate other = this.date.toLocalDate();
         return date.equals(other);
+    }
+
+    public boolean isAfter(LocalDateTime other) {
+        return this.date.isAfter(other);
     }
 }

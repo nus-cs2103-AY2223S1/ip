@@ -1,5 +1,6 @@
 package duke;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import duke.command.Command;
@@ -111,6 +112,25 @@ public class TaskList {
         for (Task t : this.tasks) {
             if (t.hasKeyword(keyword)) {
                 response += "\n" + t;
+            }
+        }
+        return response;
+    }
+
+    public String getReminder() {
+        String response = "Reminder! Tasks coming up:";
+        LocalDateTime currDateTime = LocalDateTime.now();
+        for (Task t : this.tasks) {
+            if (t instanceof Deadline) {
+                Deadline d = (Deadline) t;
+                if (d.isAfter(currDateTime)) {
+                    response += "\n" + t;
+                }
+            } else if (t instanceof Event) {
+                Event e = (Event) t;
+                if (e.isAfter(currDateTime)) {
+                    response += "\n" + t;
+                }
             }
         }
         return response;
