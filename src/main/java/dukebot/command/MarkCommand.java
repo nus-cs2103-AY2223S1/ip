@@ -35,7 +35,7 @@ public class MarkCommand extends Command {
             return toReturn.toString();
         case "unmark":
             tasks.get(indexOfTask - 1).markIncomplete();
-            toReturn.append("    OK, I've marked this task as not done yet");
+            toReturn.append("    OK, I've marked this task as not done yet\n");
             toReturn.append(String.format("      %s", tasks.get(indexOfTask - 1)));
             return toReturn.toString();
         default:
