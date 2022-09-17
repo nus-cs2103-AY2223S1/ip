@@ -98,12 +98,15 @@ public class Ui {
     public String readAndRespond(String userMsg) {
 
         while (true) {
-            assert userMsg != null;
             if (userMsg.equals(END_CMD)) {
                 return bidFarewell();
             } else {
-                ParserDuke parseCmd = new ParserDuke(userMsg);
-                return parseCmd.parseCommand();
+                try {
+                    ParserDuke parseCmd = new ParserDuke(userMsg);
+                    return parseCmd.parseCommand();
+                } catch (Exception e) {
+                    return e.toString();
+                }
             }
         }
     }
