@@ -46,7 +46,7 @@ public class Storage {
             FileWriter fw = new FileWriter(filePath, false);
             StringBuilder taskString = new StringBuilder();
             for (Task task : tasks.getTasks()) {
-                taskString.append(taskString + task.toSaveString() + "\n");
+                taskString.append(task.toSaveString() + "\n");
             }
             fw.write(taskString.toString());
             fw.close();

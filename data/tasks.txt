@@ -1,2 +1,2 @@
-E | 0 | adkfj  | sads | 2022-09-10
-D | 0 | aldfkja  |  | 2022-08-07
+T | 0 | sleep | 
+T | 0 | read book | 
