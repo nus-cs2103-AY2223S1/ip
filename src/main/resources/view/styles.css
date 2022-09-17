@@ -18,5 +18,6 @@
 }
 
 .dialogContainer {
-    -fx-background-image: url("../images/paw.jpg");
+    -fx-background-image: url("../images/paw.png");
+    -fx-background-size: contain;
 }
