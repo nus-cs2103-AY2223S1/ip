@@ -4,8 +4,11 @@ import java.util.Objects;
 
 import duke.Duke;
 import duke.DukeException;
-import javafx.animation.PauseTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -62,15 +65,28 @@ public class MainWindow extends VBox {
         String input = userInput.getText();
         try {
             String response = duke.getResponse(input);
+            DialogBox dukeDialog = DialogBox.getDukeDialog(response, dukeImage);
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(response, dukeImage)
+                    dukeDialog
             );
             if (duke.hasTasksEnd()) {
                 userInput.setDisable(true);
-                PauseTransition delay = new PauseTransition(Duration.seconds(3));
-                delay.setOnFinished(event -> Platform.exit());
-                delay.play();
+                final IntegerProperty i = new SimpleIntegerProperty(0);
+                Timeline timeline = new Timeline(
+                    new KeyFrame(
+                        Duration.seconds(1),
+                        event -> {
+                            i.set(i.get() + 1);
+                            if (i.get() == 3) {
+                                Platform.exit();
+                            }
+                            dukeDialog.setText(response.substring(0, response.length() - 1) + (3 - i.get()));
+                        }
+                    )
+                );
+                timeline.setCycleCount(3);
+                timeline.play();
             }
         } catch (DukeException e) {
             dialogContainer.getChildren().addAll(

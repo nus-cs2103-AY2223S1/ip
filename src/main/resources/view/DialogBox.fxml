@@ -12,13 +12,14 @@
         <Insets bottom="25.0" left="5.0" right="5.0" top="15.0"/>
     </padding>
     <Label fx:id="dialog" text="Label" wrapText="true"
-           style="-fx-text-fill: #FFFAF1; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-size: 14px; -fx-line-spacing: 6;">
+           style="-fx-text-fill: #FFFAF1; -fx-font-family: 'Trebuchet MS', sans-serif;">
         <padding>
             <Insets left="20.0" right="20.0"/>
         </padding>
         <font>
-            <Font size="13.0"/>
+            <Font size="14.0"/>
         </font>
+        <lineSpacing>6</lineSpacing>
     </Label>
     <Circle fx:id="circle" radius="60" stroke="seagreen" pickOnBounds="true"/>
 </fx:root>

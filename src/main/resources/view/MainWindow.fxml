@@ -9,16 +9,16 @@
 
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
-<GridPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+<GridPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="600.0"
           prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="duke.gui.MainWindow">
     <columnConstraints>
-        <ColumnConstraints hgrow="always"/>
-        <ColumnConstraints maxWidth="76.0"/>
+        <ColumnConstraints minWidth="450.0" hgrow="always"/>
+        <ColumnConstraints minWidth="50.0" maxWidth="76.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10.0" vgrow="always" />
-        <RowConstraints maxHeight="41.0"/>
+        <RowConstraints minHeight="50.0" vgrow="always" />
+        <RowConstraints minHeight="30.0" maxHeight="41.0"/>
     </rowConstraints>
     <ScrollPane fx:id="scrollPane" hvalue="1.0" prefHeight="557.0" prefWidth="500.0" vvalue="1.0"
                 GridPane.columnSpan="2" GridPane.hgrow="always" fitToHeight="true" fitToWidth="true"

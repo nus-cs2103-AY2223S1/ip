@@ -33,6 +33,8 @@ public class Main extends Application {
             GridPane gp = fxmlLoader.load();
             Scene scene = new Scene(gp);
             stage.setScene(scene);
+            stage.setMinHeight(258);
+            stage.setMinWidth(515);
             MainWindow controller = fxmlLoader.getController();
             controller.setDuke(duke);
             controller.showWelcome();
