@@ -17,7 +17,7 @@ public class Ui {
      * Prints intro interface.
      */
     public String printIntro() {
-        return "Wassup la I'm Duke\nWhat you want?";
+        return "Wassup la I'm Ah Duke\nWhat you want?";
     }
 
     /**
@@ -120,6 +120,22 @@ public class Ui {
             message.append("\n").append(j + 1).append(":").append(tl.get(j).toString());
         }
         return message.toString();
+    }
+
+    /**
+     * Prints the help page for Ah Duke.
+     * @return Help page.
+     */
+    public String printHelpPage() {
+        return "Ah Duke will help you come:" + "\nType 'list' to list all current lists on tasklist."
+                + "\nUse 'todo TaskName' to save taskName as a todo task."
+                + "\nUse 'deadline taskName /by DD/MM/YYYY HHmm' to save a deadline with a deadline in the "
+                + "format DD/MM/YYYY HHmm."
+                + "\nUse 'event taskName /at DD/MM/YYYY HHmm' to save an event task in the format"
+                + "with a date time format of DD/MM/YYYY HHmm."
+                + "\nUse 'mark INDEX' or 'unmark INDEX' to mark the task at that index as done or not done."
+                + "\nUse 'find WORD' to find the matching words of tasks."
+                + "\nUse 'clear' to clear all tasks.";
     }
 
     public String printIncompleteEvent() {
