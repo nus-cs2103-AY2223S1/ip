@@ -41,7 +41,7 @@ public class Task {
     /**
      * Checks the task description contains a substring of the keyword provided.
      *
-     * @param keyword
+     * @param keyword that is to be searched
      * @return boolean if the task has the keyword in its description
      */
     public boolean hasKeyword(String keyword) {

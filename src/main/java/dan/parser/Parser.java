@@ -28,7 +28,8 @@ public class Parser {
      * @return A boolean of the program exit status
      */
     public String parse(String input) {
-        String action = input.split(" ")[0];
+        String[] inputArr = input.split(" ");
+        String action = inputArr[0].strip();
         assert !isExit : "The program should have exited already";
         try {
             switch (action) {
@@ -38,23 +39,22 @@ public class Parser {
             case "list":
                 return tasks.showTasks();
             case "mark":
-                return tasks.markTask(Integer.parseInt(input.split(" ")[1]));
+                return tasks.markTask(Integer.parseInt(inputArr[1]));
             case "unmark":
-                return tasks.unmarkTask(Integer.parseInt(input.split(" ")[1]));
+                return tasks.unmarkTask(Integer.parseInt(inputArr[1]));
             case "delete":
-                return tasks.deleteTask(Integer.parseInt(input.split(" ")[1]));
+                return tasks.deleteTask(Integer.parseInt(inputArr[1]));
             case "find":
                 return tasks.findTask(input.split(" ", 2)[1]);
             case "todo":
-                //fall through
+                return tasks.addToDoTask(input);
             case "deadline":
-                //fall through
+                return tasks.addDeadlineTask(input);
             case "event":
-                return tasks.addTask(input);
+                return tasks.addEventTask(input);
             default:
                 throw DanException.userInputError();
             }
-
         } catch (DanException e) {
             return Ui.printIndent(e.getMessage());
         } catch (NumberFormatException nfe) {
@@ -64,9 +64,6 @@ public class Parser {
         }
     }
 
-    private static prepareAddToDoTask(String description) {
-         
-    }
 
     public boolean getIsExit() {
         return isExit;
