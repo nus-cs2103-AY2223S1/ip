@@ -6,7 +6,7 @@ with Dan 👻 👻 👻!
 
 ## First App View
 
-![img_1.png](greeting.png)
+![img_1.png](docs/greeting.png)
 
 ## General Command Format
 
