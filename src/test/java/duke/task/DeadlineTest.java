@@ -1,13 +1,15 @@
 package duke.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
+
 import duke.exceptions.CorruptedLineException;
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyDescriptionException;
 import duke.exceptions.EmptyTimeException;
 import duke.util.ParsedData;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class DeadlineTest {
     @Test
@@ -49,7 +51,7 @@ public class DeadlineTest {
             Deadline.createDeadline(data);
             fail();
         } catch (EmptyDescriptionException e) {
-
+            // pass test
         } catch (Exception e) {
             fail();
         }
@@ -62,7 +64,7 @@ public class DeadlineTest {
             Deadline.createDeadline(data);
             fail();
         } catch (EmptyTimeException e) {
-
+            // pass test
         } catch (Exception e) {
             fail();
         }

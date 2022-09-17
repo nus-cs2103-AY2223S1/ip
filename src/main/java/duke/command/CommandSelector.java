@@ -40,7 +40,7 @@ public class CommandSelector {
      */
     public void addAlias(String alias, String target) throws DukeException {
         if (!commands.containsKey(target)) {
-            throw new CommandDoesNotExistException(alias);
+            throw new CommandDoesNotExistException(target);
         }
         if (commands.containsKey(alias)) {
             throw new CommandAlreadyExistException(alias);

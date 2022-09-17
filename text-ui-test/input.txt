@@ -27,4 +27,29 @@ delete asdfasf
 delete 2
 delete 1
 list
+alias t->todo
+alias f->t
+t test1
+f test2
+list
+rmalias t
+f test3
+t test6
+list
+rmalias todo
+rmalias t
+alias todo -> deadline
+alias t -> left
+replaceUs
+find test
+find 1
+deadline task1234 /by 05-07-2022
+deadline task3333 /by 08/08/2022
+deadline task123123 /by Oct 10 2022
+by 06/07/2022
+by 08/08/2022 23:59
+mark 1
+list
+find .......
+list
 bye

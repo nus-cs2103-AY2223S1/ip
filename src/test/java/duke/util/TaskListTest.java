@@ -1,20 +1,26 @@
 package duke.util;
 
-import org.junit.jupiter.api.Test;
-import duke.exceptions.OutOfBoundException;
-import duke.task.Task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.Test;
+
+import duke.exceptions.OutOfBoundException;
+import duke.task.Task;
+
 public class TaskListTest {
     class TaskStud extends Task {
+
+        TaskStud() {
+            super("No time", Optional.empty());
+        }
 
         TaskStud(long time) {
             super(Long.toString(time), Optional.of(LocalDateTime.ofEpochSecond(time, 0, ZoneOffset.UTC)));
@@ -28,9 +34,6 @@ public class TaskListTest {
             return description;
         }
 
-        TaskStud() {
-            super("No time", Optional.empty());
-        }
 
 
         @Override
@@ -81,6 +84,7 @@ public class TaskListTest {
             tl.deleteEntry(1);
             fail();
         } catch (OutOfBoundException e) {
+            // pass test
         }
     }
 

@@ -2,7 +2,9 @@ package duke.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
+
 import duke.exceptions.CantDeleteDefaultException;
 import duke.exceptions.CommandAlreadyExistException;
 import duke.exceptions.CommandDoesNotExistException;
@@ -39,6 +41,7 @@ public class CommandSelectorTest {
             cs.addAlias("dummy", "lol");
             fail();
         } catch (CommandDoesNotExistException e) {
+            // pass test
         } catch (DukeException e) {
             fail();
         }
@@ -46,6 +49,7 @@ public class CommandSelectorTest {
             cs.addAlias("todo", "deadline");
             fail();
         } catch (CommandAlreadyExistException e) {
+            // pass test
         } catch (DukeException e) {
             fail();
         }
@@ -74,7 +78,7 @@ public class CommandSelectorTest {
             cs.deleteAlias("asdfasdfasdf");
             fail();
         } catch (CommandDoesNotExistException e) {
-
+            // pass test
         } catch (DukeException e) {
             fail();
         }
@@ -83,7 +87,7 @@ public class CommandSelectorTest {
             cs.deleteAlias("deadline");
             fail();
         } catch (CantDeleteDefaultException e) {
-
+            // pass test
         } catch (DukeException e) {
             fail();
         }

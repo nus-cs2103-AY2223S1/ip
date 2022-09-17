@@ -1,152 +1,330 @@
-	Welcome to
-	 ____        _        
-	|  _ \ _   _| | _____ 
-	| | | | | | | |/ / _ \
-	| |_| | |_| |   <  __/
-	|____/ \__,_|_|\_\___|
-	      Chatbot!
-	
-   ____________________________________________________________
-	Hello! I'm Duke
-	What can I do for you?
-   ____________________________________________________________
+   ______________________________
+    Welcome to
+     ____        _        
+    |  _ \ _   _| | _____ 
+    | | | | | | | |/ / _ \
+    | |_| | |_| |   <  __/
+    |____/ \__,_|_|\_\___|
+          Chatbot!
+    
+   ______________________________
 
-   ____________________________________________________________
-	Got it. I've added this task:
-	  [T][ ] Read article
-	Now you have 1 tasks in the list.
-   ____________________________________________________________
+    Hey hey hey! I'm Duke
+    What can I do for you?
+   ______________________________
+    More work? Too bad:
+      [T][ ] Read article
+    Now you have 1 tasks in the list.
+   ______________________________
 
-   ____________________________________________________________
-	Got it. I've added this task:
-	  [D][ ] Complete assignment (by: friday)
-	Now you have 2 tasks in the list.
-   ____________________________________________________________
+   ______________________________
+    I don't see any time stamps. 
+    Use MMM d yyyy, dd/MM/yyyy, dd-MM-yyyy if you need to include a time
+   ______________________________
 
-   ____________________________________________________________
-	Got it. I've added this task:
-	  [E][ ] Attend career fair (at: 27-28 Jun)
-	Now you have 3 tasks in the list.
-   ____________________________________________________________
+   ______________________________
+    More task for you:
+      [D][ ] Complete assignment (by: friday)
+    Now you have 2 tasks in the list.
+   ______________________________
 
-   ____________________________________________________________
-	1. [T][ ] Read article
-	2. [D][ ] Complete assignment (by: friday)
-	3. [E][ ] Attend career fair (at: 27-28 Jun)
-   ____________________________________________________________
-   ____________________________________________________________
-	Nice! I've marked this task as done:
-	  [T][X] Read article
-   ____________________________________________________________
+   ______________________________
+    I don't see any time stamps. 
+    Use formats like:
+     MMM d yyyy
+     dd/MM/yyyy
+     dd-MM-yyyy 
+    if you need to include a time
+   ______________________________
 
-   ____________________________________________________________
-	Nice! I've marked this task as done:
-	  [D][X] Complete assignment (by: friday)
-   ____________________________________________________________
+   ______________________________
+    Got it. I've added this:
+      [E][ ] Attend career fair (at: 27-28 Jun)
+    Now you have 3 tasks in the list.
+   ______________________________
 
-   ____________________________________________________________
-	1. [T][X] Read article
-	2. [D][X] Complete assignment (by: friday)
-	3. [E][ ] Attend career fair (at: 27-28 Jun)
-   ____________________________________________________________
-   ____________________________________________________________
-	OK, I've marked this task as not done yet:
-	  [D][ ] Complete assignment (by: friday)
-   ____________________________________________________________
+   ______________________________
+    1. [T][ ] Read article
+    2. [D][ ] Complete assignment (by: friday)
+    3. [E][ ] Attend career fair (at: 27-28 Jun)
+    
+   ______________________________
 
-   ____________________________________________________________
-	1. [T][X] Read article
-	2. [D][ ] Complete assignment (by: friday)
-	3. [E][ ] Attend career fair (at: 27-28 Jun)
-   ____________________________________________________________
-   ____________________________________________________________
-	🙄 OOPS!!! The provided index number is invalid!
-   ____________________________________________________________
+   ______________________________
+    Ooo, you actually did something!
+      [T][X] Read article
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! unmark takes in the index of the list as a integer!
-   ____________________________________________________________
+   ______________________________
+    Ooo, you actually did something!
+      [D][X] Complete assignment (by: friday)
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! The description of a todo cannot be empty
-   ____________________________________________________________
+   ______________________________
+    1. [T][X] Read article
+    2. [D][X] Complete assignment (by: friday)
+    3. [E][ ] Attend career fair (at: 27-28 Jun)
+    
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! The description of a deadline cannot be empty
-   ____________________________________________________________
+   ______________________________
+    Hey hey hey, this is as not done yet:
+      [D][ ] Complete assignment (by: friday)
+    don't be sneaky!
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! The description of a event cannot be empty
-   ____________________________________________________________
+   ______________________________
+    1. [T][X] Read article
+    2. [D][ ] Complete assignment (by: friday)
+    3. [E][ ] Attend career fair (at: 27-28 Jun)
+    
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! deadline requires a time/duration information, use <description> /by  <duration> to indicate
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! Bruh. Do you want more task?
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! deadline requires a time/duration information, use <description> /by  <duration> to indicate
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! Hey, unmark needs a number!
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! deadline requires a time/duration information, use <description> /by  <duration> to indicate
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! What's this task even about?? Description of todo cannot be empty
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! event requires a time/duration information, use <description> /at  <duration> to indicate
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! What's this task even about?? Description of deadline cannot be empty
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! event requires a time/duration information, use <description> /at  <duration> to indicate
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! What's this task even about?? Description of event cannot be empty
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! event requires a time/duration information, use <description> /at  <duration> to indicate
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! deadline needs a time/duration information, use <description> /by  <duration> to indicate
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! I'm sorry, but I don't know what that means :-(
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! deadline needs a time/duration information, use <description> /by  <duration> to indicate
+   ______________________________
 
-   ____________________________________________________________
-	1. [T][X] Read article
-	2. [D][ ] Complete assignment (by: friday)
-	3. [E][ ] Attend career fair (at: 27-28 Jun)
-   ____________________________________________________________
-   ____________________________________________________________
-	Noted. I've removed this task:
-	  [T][X] Read article
-	Now you have 2 tasks in the list.
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! deadline needs a time/duration information, use <description> /by  <duration> to indicate
+   ______________________________
 
-   ____________________________________________________________
-	1. [D][ ] Complete assignment (by: friday)
-	2. [E][ ] Attend career fair (at: 27-28 Jun)
-   ____________________________________________________________
-   ____________________________________________________________
-	🙄 OOPS!!! The provided index number is invalid!
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! event needs a time/duration information, use <description> /at  <duration> to indicate
+   ______________________________
 
-   ____________________________________________________________
-	🙄 OOPS!!! delete takes in the index of the list as a integer!
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! event needs a time/duration information, use <description> /at  <duration> to indicate
+   ______________________________
 
-   ____________________________________________________________
-	Noted. I've removed this task:
-	  [E][ ] Attend career fair (at: 27-28 Jun)
-	Now you have 1 tasks in the list.
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! event needs a time/duration information, use <description> /at  <duration> to indicate
+   ______________________________
 
-   ____________________________________________________________
-	Noted. I've removed this task:
-	  [D][ ] Complete assignment (by: friday)
-	Now you have 0 tasks in the list.
-   ____________________________________________________________
+   ______________________________
+    ? OOPS!!! What's that?
+   ______________________________
 
-   ____________________________________________________________
-	The current list is empty!
-   ____________________________________________________________
+   ______________________________
+    1. [T][X] Read article
+    2. [D][ ] Complete assignment (by: friday)
+    3. [E][ ] Attend career fair (at: 27-28 Jun)
+    
+   ______________________________
 
-   ____________________________________________________________
-	Bye. Hope to see you again soon!
-   ____________________________________________________________
+   ______________________________
+    I have erased this task from existance:
+      [T][X] Read article
+    Now you have 2 tasks in the list.
+   ______________________________
+
+   ______________________________
+    1. [D][ ] Complete assignment (by: friday)
+    2. [E][ ] Attend career fair (at: 27-28 Jun)
+    
+   ______________________________
+
+   ______________________________
+    ? OOPS!!! Bruh. Do you want more task?
+   ______________________________
+
+   ______________________________
+    ? OOPS!!! Hey, delete needs a number!
+   ______________________________
+
+   ______________________________
+    I have erased this task from existance:
+      [E][ ] Attend career fair (at: 27-28 Jun)
+    Now you have 1 tasks in the list.
+   ______________________________
+
+   ______________________________
+    I have erased this task from existance:
+      [D][ ] Complete assignment (by: friday)
+    Now you have 0 tasks in the list.
+   ______________________________
+
+   ______________________________
+    I didn't find anything!
+   ______________________________
+
+   ______________________________
+    I have added t -> todo!
+   ______________________________
+
+   ______________________________
+    I have added f -> todo!
+   ______________________________
+
+   ______________________________
+    More work? Too bad:
+      [T][ ] test1
+    Now you have 1 tasks in the list.
+   ______________________________
+
+   ______________________________
+    More work? Too bad:
+      [T][ ] test2
+    Now you have 2 tasks in the list.
+   ______________________________
+
+   ______________________________
+    1. [T][ ] test1
+    2. [T][ ] test2
+    
+   ______________________________
+
+   ______________________________
+    I have removed this shortcut, t!
+   ______________________________
+
+   ______________________________
+    More work? Too bad:
+      [T][ ] test3
+    Now you have 3 tasks in the list.
+   ______________________________
+
+   ______________________________
+    ? OOPS!!! What's that?
+   ______________________________
+
+   ______________________________
+    1. [T][ ] test1
+    2. [T][ ] test2
+    3. [T][ ] test3
+    
+   ______________________________
+
+   ______________________________
+    ? OOPS!!! You can't delete todo!
+   ______________________________
+
+   ______________________________
+    ? OOPS!!! You can't add shortcut to nothing, you can't delete nothing. t does't exist!
+   ______________________________
+
+   ______________________________
+    ? OOPS!!! Hey! todo already exist!
+   ______________________________
+
+   ______________________________
+    ? OOPS!!! You can't add shortcut to nothing, you can't delete nothing. left does't exist!
+   ______________________________
+
+   ______________________________
+    ? OOPS!!! This feature is only useable on the GUI version of duke!
+   ______________________________
+
+   ______________________________
+    I found these tasks: 
+    
+   ______________________________
+
+   ______________________________
+    1. [T][ ] [31mtest[0m1
+    2. [T][ ] [31mtest[0m2
+    3. [T][ ] [31mtest[0m3
+    
+   ______________________________
+
+   ______________________________
+    I found these tasks: 
+    
+   ______________________________
+
+   ______________________________
+    1. [T][ ] test[31m1[0m
+    
+   ______________________________
+
+   ______________________________
+    More task for you:
+      [D][ ] task1234 (by: 05-07-2022)
+    Now you have 4 tasks in the list.
+   ______________________________
+
+   ______________________________
+    More task for you:
+      [D][ ] task3333 (by: 08/08/2022)
+    Now you have 5 tasks in the list.
+   ______________________________
+
+   ______________________________
+    More task for you:
+      [D][ ] task123123 (by: Oct 10 2022)
+    Now you have 6 tasks in the list.
+   ______________________________
+
+   ______________________________
+     - [D][ ] task1234 (by: 05-07-2022)
+    
+   ______________________________
+
+   ______________________________
+     - [D][ ] task1234 (by: 05-07-2022)
+     - [D][ ] task3333 (by: 08/08/2022)
+    
+   ______________________________
+
+   ______________________________
+    Ooo, you actually did something!
+      [T][X] test1
+   ______________________________
+
+   ______________________________
+    1. [T][X] test1
+    2. [T][ ] test2
+    3. [T][ ] test3
+    4. [D][ ] task1234 (by: 05-07-2022)
+    5. [D][ ] task3333 (by: 08/08/2022)
+    6. [D][ ] task123123 (by: Oct 10 2022)
+    
+   ______________________________
+
+   ______________________________
+    I found these tasks: 
+    
+   ______________________________
+
+   ______________________________
+    Maybe you searched wrongly? 
+    
+   ______________________________
+
+   ______________________________
+    1. [T][X] test1
+    2. [T][ ] test2
+    3. [T][ ] test3
+    4. [D][ ] task1234 (by: 05-07-2022)
+    5. [D][ ] task3333 (by: 08/08/2022)
+    6. [D][ ] task123123 (by: Oct 10 2022)
+    
+   ______________________________
+
+   ______________________________
+    Pff.. Not like I want to see you again
+   ______________________________
 

@@ -1,6 +1,12 @@
 package duke.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
+
 import duke.command.AliasCommand;
 import duke.command.ByCommand;
 import duke.command.ByeCommand;
@@ -18,26 +24,25 @@ import duke.command.SwapFaceCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 import duke.exceptions.CorruptedLineException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-import java.time.LocalDateTime;
 
 public class DataParserTest {
     @Test
-    public void parseDataFromLine_Invalid1() {
+    public void parseDataFromLine_invalid1() {
         try {
             DataParser.parseDataFromLine("txt");
             fail();
         } catch (CorruptedLineException e) {
+            // pass test
         }
     }
 
     @Test
-    public void parseDataFromLine_Invalid2() {
+    public void parseDataFromLine_invalid2() {
         try {
             DataParser.parseDataFromLine("Tz <<<< nothing <<<< temperol");
             fail();
         } catch (CorruptedLineException e) {
+            // pass test
         }
     }
 

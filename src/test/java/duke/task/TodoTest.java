@@ -1,13 +1,14 @@
 package duke.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
 
 import duke.exceptions.CorruptedLineException;
 import duke.exceptions.EmptyDescriptionException;
 import duke.util.ParsedData;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class TodoTest {
     @Test
@@ -30,6 +31,7 @@ public class TodoTest {
             Todo.createTodo(data);
             fail();
         } catch (EmptyDescriptionException e) {
+            // pass test
         } catch (Exception e) {
             fail();
         }
