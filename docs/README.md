@@ -32,7 +32,7 @@ Duke is a desktop app for managing task optimized for both GUI and CLI usage! Pa
 
 4. Double click the file to start the app. (Or launch it via a terminal).
 
-   <img src="D:\NUS\CS2103T\Solo\ip\docs\img\launch.png" style="zoom: 67%;" />
+   <img src="./img/launch.png" style="zoom: 67%;" />
 
    5. Type the command in the command box for the GUI or via the terminal and click send on GUI or enter on CLI to execute them!
 
@@ -51,7 +51,7 @@ Duke is a desktop app for managing task optimized for both GUI and CLI usage! Pa
 
 Need speed? Launch Duke in CLI mode and enjoy blazing smooth user experience with CLI or enjoy a clean flat look with the GUI.
 
-<img src="D:\NUS\CS2103T\Solo\ip\docs\img\launchflag.png" style="zoom: 50%;" />
+<img src="./img/launchflag.png" style="zoom: 50%;" />
 
 Launch Duke using `java -jar duke.jar` as you can pass in the addition flag displayed above.
 
@@ -101,7 +101,7 @@ Duke supports creation of 3 different kind of tasks: todo, deadline, event.
 
 - `list` : Prints out all tasks
 
-<img src="D:\NUS\CS2103T\Solo\ip\docs\img\list.png" style="zoom:67%;" />
+<img src="./img/list.png" style="zoom:67%;" />
 
 ## Marking Tasks
 
@@ -117,7 +117,7 @@ To mark task as incomplete:
 
 - `unmark [task id]`: to unmark the task with the specified id from `list` as marked
 
-<img src="D:\NUS\CS2103T\Solo\ip\docs\img\mark_unmark.png" style="zoom:67%;" />
+<img src="./img/mark_unmark.png" style="zoom:67%;" />
 
 ## Searching For Tasks
 
@@ -127,7 +127,7 @@ To mark task as incomplete:
 
 - `find [search pattern]`: prints out all the tasks that have the specified pattern.
 
-## <img src="D:\NUS\CS2103T\Solo\ip\docs\img\find.png" style="zoom:67%;" />   
+## <img src="./img/find.png" style="zoom:67%;" />   
 
 ## Usage
 
