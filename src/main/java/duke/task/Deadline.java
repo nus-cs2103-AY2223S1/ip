@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.DukeException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +18,7 @@ public class Deadline extends Task {
      * @param description description of the task
      * @param deadlineStr deadline given by a date and time
      */
-    public Deadline(String description, String deadlineStr) {
+    public Deadline(String description, String deadlineStr) throws DukeException {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         this.deadline = LocalDateTime.parse(deadlineStr, formatter);
@@ -74,5 +76,9 @@ public class Deadline extends Task {
         LocalDate date = LocalDate.parse(dateStr, formatter);
         LocalDate other = this.deadline.toLocalDate();
         return date.equals(other);
+    }
+
+    public boolean isAfter(LocalDateTime date) {
+        return this.deadline.isAfter(date);
     }
 }
