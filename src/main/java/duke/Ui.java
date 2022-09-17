@@ -10,17 +10,20 @@ public class Ui {
             "\n\nType 'help' to view the available commands O_O";
     private static final String MESSAGE_FAREWELL = "Have a nice day ~ Duke out ~";
     private static final String MESSAGE_HELP = "Commands:"
-            + "\n\n\t-help (You are currently looking at the help page)"
+            + "\n\nKeyword Only Commands:"
+            + "\n\t-help (You are currently looking at the help page)"
             + "\n\t-list (Shows outstanding tasks)"
-            + "\n\t-find (Displays all tasks that contain a given search term)"
+            + "\n\t-bye (Close Duke application)"
+            + "\n\nKeyword + Numerical Label(According to 'list') Commands:"
             + "\n\n\t-mark (Declare an existing task as complete)"
             + "\n\t-unmark (Declare an existing task as incomplete)"
             + "\n\t-delete (Delete an existing task)"
+            + "\n\nKeyword + Body Commands:"
+            + "\n#Use spacing between keyword and body of command"
             + "\n\n\t-todo (Create a task todo)"
-            + "\n\t-deadline (Create a task to complete by a deadline)"
-            + "\n\t-event (Create a task to attend to on a specific timing)"
-            + "\n\n\t-bye (Close Duke application)"
-            + "\n#Use spacing between command and body of input";
+            + "\n\t-deadline (Create a task to complete by a deadline using '/YYYYMMDD' format after body)"
+            + "\n\t-event (Create a task to attend to on a specific timing using '/<timing>' after body)"
+            + "\n\t-find (Displays all tasks that contain a given search term)";
 
     protected String getGreetingMessage() {
         return MESSAGE_GREETING;

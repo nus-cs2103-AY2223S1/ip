@@ -10,7 +10,7 @@
     <children>
         <Label fx:id="dialog" text="Label" textFill="#fab23d" wrapText="true">
          <font>
-            <Font name="Segoe UI" size="14.0" />
+            <Font name="Century Gothic" size="14.0" />
          </font>
          <padding>
             <Insets left="15.0" right="15.0" />
