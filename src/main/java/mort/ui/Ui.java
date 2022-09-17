@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import mort.command.CommandWord;
+import mort.exception.MortException;
 import mort.task.Task;
 
 /**
@@ -22,8 +23,8 @@ public class Ui {
         return "With all due disrespect, leave me alone next time.";
     }
 
-    public String getError(String errorMessage) {
-        return errorMessage;
+    public String getError(MortException error) {
+        return error.getMessage();
     }
 
     public String getAddMessage(Task task, int size) {

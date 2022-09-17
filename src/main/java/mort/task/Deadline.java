@@ -51,7 +51,6 @@ public class Deadline extends Task {
         super(desc, isDone);
         this.byDate = byDate;
         this.hasTime = false;
-        this.isDone = isDone;
     }
 
     /**
@@ -66,7 +65,6 @@ public class Deadline extends Task {
         this.byDate = byDateTime.toLocalDate();
         this.byDateTime = byDateTime;
         this.hasTime = true;
-        this.isDone = isDone;
     }
 
     private String formatBy() {

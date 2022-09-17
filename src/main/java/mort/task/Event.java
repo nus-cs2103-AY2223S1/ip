@@ -50,7 +50,6 @@ public class Event extends Task {
         super(desc, isDone);
         this.atDate = atDate;
         this.hasTime = false;
-        this.isDone = isDone;
     }
 
     /**
@@ -64,7 +63,6 @@ public class Event extends Task {
         this.atDate = atDateTime.toLocalDate();
         this.atDateTime = atDateTime;
         this.hasTime = true;
-        this.isDone = isDone;
     }
 
     private String formatAt() {

@@ -29,18 +29,10 @@ public class TaskList {
     }
 
     /**
-     * Prints all tasks in the list.
+     * Gets a string of all tasks in the list.
      */
     public String list() {
         return convertTasksToString(tasks);
-        /*
-        StringBuilder sb = new StringBuilder();
-        this.tasks.forEach(t -> sb.append(this.tasks.indexOf(t) + 1)
-                .append(". ").append(t).append("\n"));
-
-        return sb.toString();
-
-         */
     }
 
     /**

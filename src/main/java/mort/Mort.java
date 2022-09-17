@@ -42,7 +42,7 @@ public class Mort {
             Command c = Parser.parse(input);
             response.append(c.execute(tasks, ui, storage));
         } catch (MortException e) {
-            response.append(ui.getError(e.getMessage()));
+            response.append(ui.getError(e));
         } finally {
             return response.toString();
         }
