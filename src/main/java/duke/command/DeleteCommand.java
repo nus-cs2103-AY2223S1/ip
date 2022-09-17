@@ -16,6 +16,7 @@ public class DeleteCommand extends Command{
     public String execute(TaskList taskList, Storage storage, Ui ui) {
         Task deleteClass = taskList.getTasks().get(indexToDelete);
         taskList.getTasks().remove(indexToDelete);
+        storage.update(taskList.getTasks());
         return "Haha! I've deleted this command as done:\n" + deleteClass.toString();
     }
 }

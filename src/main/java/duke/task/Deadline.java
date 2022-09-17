@@ -38,7 +38,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(" + exactTime.getMonth() + " "
+        return "[D]" + super.toString() + " (" + exactTime.getMonth() + " "
                 + exactTime.getDayOfMonth() + " " + exactTime.getYear() + ")";
     }
 }

@@ -14,7 +14,8 @@ public class UnMarkCommand extends Command{
 
     @Override
     public String execute(TaskList taskList, Storage storage, Ui ui) {
-        taskList.get(this.indexToUnMark).mark();
-        return "It's Okay boy. I've unmarked this task as undone:\n" + taskList.get(this.indexToUnMark).toString();
+        taskList.get(this.indexToUnMark).unMark();
+        storage.update((taskList.getTasks()));
+        return "Sure! I've unmarked this task as undone:\n" + taskList.get(this.indexToUnMark).toString();
     }
 }

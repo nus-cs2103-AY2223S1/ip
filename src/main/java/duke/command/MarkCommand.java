@@ -15,6 +15,7 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage, Ui ui) {
         taskList.get(this.indexToMark).mark();
+        storage.update((taskList.getTasks()));
         return "Good job! I've marked this task as done:\n" + taskList.get(indexToMark).toString();
     }
 }

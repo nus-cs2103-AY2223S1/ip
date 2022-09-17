@@ -39,7 +39,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(" + exactTime.getMonth() + " "
+        return "[E]" + super.toString() + " (" + exactTime.getMonth() + " "
                 + exactTime.getDayOfMonth() + " " + exactTime.getYear() + ")";
     }
 }

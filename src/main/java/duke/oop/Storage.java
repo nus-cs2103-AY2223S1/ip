@@ -86,11 +86,6 @@ public class Storage {
      */
     public void update(ArrayList<Task> tasks) {
         try {
-//            FileWriter fw = new FileWriter(filePath);
-//            fw.write(str);
-//            fw.close();
-            File file = new File(filePath);
-
             FileWriter fw = new FileWriter(filePath);
             for (Task task : tasks) {
                 fw.write(task.getOutput()+ "\n");
