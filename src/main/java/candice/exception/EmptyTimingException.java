@@ -14,5 +14,7 @@ public class EmptyTimingException extends Exception {
      */
     public EmptyTimingException(CommandType taskType) {
         super("You have not set a timing for your " + taskType + " buddy.");
+        assert taskType == CommandType.DEADLINE || taskType == CommandType.EVENT : "Invalid command type for " +
+                "EmptyTimingException";
     }
 }

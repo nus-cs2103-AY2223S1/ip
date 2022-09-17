@@ -66,14 +66,14 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = candice.run(input);
+        String response = candice.execute(input);
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getCandiceDialog(response, candiceImage)
         );
 
-        // closes the program if bye is inputted
+        // delays for 1 second to allow users to read exit message before termination of the program
         if (input.equals("bye")) {
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {

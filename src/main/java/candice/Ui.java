@@ -73,7 +73,7 @@ public class Ui {
     }
 
     /**
-     * Prints the current task list.
+     * Returns the current task list.
      *
      * @param taskList The task list to be printed.
      * @return The current task list.
@@ -83,7 +83,7 @@ public class Ui {
     }
 
     /**
-     * Prints out the tasks that have a name containing the task keyword.
+     * Returns the tasks that have a name containing the task keyword.
      *
      * @param taskList The task list that is being searched for the keyword.
      * @param taskKeyword The keyword that the name of the task should contain.

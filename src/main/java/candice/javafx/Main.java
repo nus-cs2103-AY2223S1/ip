@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * A GUI for Candice using FXML.
  */
 public class Main extends Application {
-
+    /** Instance of Candice associated to this GUI */
     private Candice candice;
 
     /**
