@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.data.Storage;
+import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
@@ -29,10 +30,11 @@ public class DeleteCommand extends Command {
      * @return String.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+        if (taskID <= 0 || taskID > taskList.getSize()) {
+            throw new DukeException("Invalid task ID. You have " + taskList.getSize() + " tasks now.");
+        }
         int size = taskList.getSize();
-        assert taskID > 0;
-        assert taskID <= size;
         Task t = taskList.getTask(taskID);
         taskList.deleteFromList(taskID);
         return ui.showRemovingTaskMessage(t, size - 1);

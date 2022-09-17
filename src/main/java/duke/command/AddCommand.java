@@ -5,6 +5,8 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+import java.io.IOException;
+
 /** Command that adds tasks into the list */
 public class AddCommand extends Command {
 
@@ -30,8 +32,9 @@ public class AddCommand extends Command {
      * @return String.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
         taskList.addToList(task);
+        storage.updateFile(taskList);
         return ui.showAddingTaskMessage(task, taskList.getSize());
     }
 

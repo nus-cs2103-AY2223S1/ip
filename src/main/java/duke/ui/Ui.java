@@ -15,38 +15,12 @@ public class Ui {
     }
 
     /**
-     * Displays welcome message to user.
-     */
-    public void showWelcome() {
-        showLine();
-        showToUser(" Hello! I'm Duke\n"
-                + " What can I do for you?");
-        showLine();
-    }
-
-    /**
-     * Reads the next input by user.
-     *
-     * @return String of the input.
-     */
-    public String readCommand() {
-        return sc.nextLine();
-    }
-
-    /**
      * Prints out a message to user.
      *
      * @param s String of message.
      */
     public void showToUser(String s) {
         System.out.println(s);
-    }
-
-    /**
-     * Shows divider line.
-     */
-    public void showLine() {
-        showToUser("____________________________________________________________");
     }
 
     /**

@@ -1,8 +1,11 @@
 package duke.command;
 
 import duke.data.Storage;
+import duke.exception.DukeException;
 import duke.task.TaskList;
 import duke.ui.Ui;
+
+import java.io.IOException;
 
 /** Command that helps to mark or unmark tasks in the list */
 public class MarkingCommand extends Command {
@@ -27,14 +30,17 @@ public class MarkingCommand extends Command {
      * @return String.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
-        assert taskID > 0;
-        assert taskID <= taskList.getSize();
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException, DukeException {
+        if (taskID <= 0 || taskID > taskList.getSize()) {
+            throw new DukeException("Invalid task ID. You have " + taskList.getSize() + " tasks now.");
+        }
         if (wantsToMark == true) {
             taskList.markTheTask(taskID);
+            storage.updateFile(taskList);
             return ui.showMarkTaskMessage(taskList.getTask(taskID));
         } else {
             taskList.unmarkTheTask(taskID);
+            storage.updateFile(taskList);
             return ui.showUnmarkTaskMessage(taskList.getTask(taskID));
         }
     }

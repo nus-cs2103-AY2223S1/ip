@@ -42,9 +42,6 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            if (c.isExit()) {
-               storage.updateFile(tasks);
-            }
             return c.execute(tasks,ui, storage);
         } catch (DukeException | IOException e) {
             return e.getMessage();

@@ -47,7 +47,7 @@ public class Parser {
         }else if (strInput.contains("count uncompleted") && strInput.substring(0, 17).equals("count uncompleted")) {
             return new CountCommand(false);
         } else {
-            throw new DukeException("Cannot recognise the command.");
+            throw new DukeException("Woof! I can't recognise the command.");
         }
     }
 
