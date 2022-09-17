@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 public class MainWindow extends AnchorPane {
     @FXML
@@ -27,6 +30,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
+        userInput.setFont(Font.font("Courier New", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         //Display Welcome Message
         dialogContainer.getChildren().add(

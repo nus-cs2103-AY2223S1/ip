@@ -59,17 +59,17 @@ Preview the save file as shown here
 ![SaveFile](./SaveScreenShot.png)
 
  For our more advanced users, you are able to `edit` the save file using the format specified by our save file. Each argument is deliminated by double backslashes `//`. 
-> Here's how to edit the save file yourself. The format for each task is specified by: `taskIndicator//0 or 1//description//date//`.
+> Here's how to edit the save file yourself. The format for each task is specified by: `taskIndicator//0 or 1//description//date (if necessary)//`.
 
 1. Notice that each line of the text file (located under `SavedData/Save.txt` from your current JAR file directory) corresponds to one task 
 
 - The number `0` & `1` represents under `markindicator` indicates whether the task is marked or not.
-- The date follows our standard date syntax: `YYYY-MM-DD`.
+- The date follows our standard date syntax: `YYYY-MM-DD`. There is no option to add time yet.
 - The `description` can be any description of the task 
 
 2. For todo tasks: the format is specified as `T//markIndicator//description`
-3. For deadline tasks: The format is specified as `D//markIndicator//description/date//`
-4. Similarly, for event tasks: The format is specified as `E//markIndicator//description/date//`
+3. For deadline tasks: The format is specified as `D//markIndicator//description//date`
+4. Similarly, for event tasks: The format is specified as `E//markIndicator//description//date`
 5. Finally, you can simply delete lines to delete the task, and it will be automatically re-ordered for you 
 
 #  Acknowledgements
