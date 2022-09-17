@@ -39,6 +39,8 @@ public class Duke  {
     }
 
     public void save() throws IOException {
+        assert this.storage != null;
+        assert this.tasks != null;
         this.storage.saveTasks(this.tasks.getList());
     }
 }

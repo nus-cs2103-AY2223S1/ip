@@ -12,7 +12,11 @@ public class MarkCommand extends Command {
     public MarkCommand(String indexStr, boolean isDone) throws DukeException {
         super();
         if (indexStr.length() == 0) {
-            throw new DukeException("Oops, no task given to mark as done.");
+            if (isDone) {
+                throw new DukeException("Oops, no task given to mark as done.");
+            } else {
+                throw new DukeException("Oops, no task given to mark as not done.");
+            }
         }
         this.index = Integer.parseInt(indexStr) - 1;
         this.isDone = isDone;
