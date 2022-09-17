@@ -38,7 +38,7 @@ public abstract class TaskCommand extends Command {
      * @return @inheritDoc
      */
     public String getMessage(TaskList tasklist, Task task) {
-        String str = "Got it. I've added this task: \n";
+        String str = "Understood Your Lordship, I've added this task: \n";
         str += task.toString();
         str += "\n Now you have " + tasklist.size() + " task(s) in the list";
         return str;

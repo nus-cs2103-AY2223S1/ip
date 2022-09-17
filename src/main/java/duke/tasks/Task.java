@@ -109,7 +109,8 @@ public abstract class Task {
      */
     public void addTag(Tag tag) throws DukeException {
         if (this.tag != null) {
-            throw new DukeException("There is already a tag! Consider untagging and adding a new one");
+            throw new DukeException(
+                    "There is already a tag...Perhaps you could consider untagging and adding a new " + "one?");
         }
         this.tag = tag;
 
@@ -122,7 +123,7 @@ public abstract class Task {
      */
     public void unTag() throws DukeException {
         if (this.tag == null) {
-            throw new DukeException("There is no tag!");
+            throw new DukeException("There is no tag to remove...");
         }
         this.tag = null;
     }

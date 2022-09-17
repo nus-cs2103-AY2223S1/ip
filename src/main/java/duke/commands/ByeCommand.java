@@ -18,6 +18,6 @@ public class ByeCommand extends Command {
     }
 
     public String getMessage() {
-        return "Bye. Hope to see you again soon!";
+        return "Bye Your Majesty. Forever in your service.";
     }
 }

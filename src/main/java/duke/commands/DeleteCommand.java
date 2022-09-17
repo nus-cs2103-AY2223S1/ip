@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exception.DukeException;
+import duke.exception.TaskNotFoundDukeException;
 import duke.main.Storage;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
@@ -39,7 +40,7 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
-            throw new DukeException("No such task found");
+            throw new TaskNotFoundDukeException();
         }
 
         Task task = tasks.remove(index - 1);
@@ -49,7 +50,7 @@ public class DeleteCommand extends Command {
     }
 
     public String getMessage(TaskList tasks, Task task) {
-        String str = "Noted. I've removed this task:\n";
+        String str = "Your grace. I've removed this task:\n";
         str += task.toString() + '\n';
         str += "Now you have " + tasks.size() + " task(s) in the list";
         return str;

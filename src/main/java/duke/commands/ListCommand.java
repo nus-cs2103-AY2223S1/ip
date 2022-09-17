@@ -21,9 +21,9 @@ public class ListCommand extends Command {
 
     public String getMessage(TaskList tasks) {
         if (tasks.size() == 0) {
-            return "No task found so far.";
+            return "Your excellency, no task found so far.";
         } else {
-            StringBuilder sb = new StringBuilder("Here are the tasks in your list: \n");
+            StringBuilder sb = new StringBuilder("Your excellency, here are the tasks in your list: \n");
             for (int i = 0; i < tasks.size(); i++) {
                 sb.append((i + 1) + ". " + tasks.get(i).toString() + '\n');
             }

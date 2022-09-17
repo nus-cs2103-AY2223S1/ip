@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exception.DukeException;
+import duke.exception.TaskNotFoundDukeException;
 import duke.main.Storage;
 import duke.tag.Tag;
 import duke.tasks.Task;
@@ -49,7 +50,7 @@ public class TagCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
-            throw new DukeException("No such tasks found");
+            throw new TaskNotFoundDukeException();
         } else {
             Task task = tasks.get(index - 1);
             Tag tag = new Tag(this.tagDescription);

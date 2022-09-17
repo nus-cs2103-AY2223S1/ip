@@ -11,6 +11,6 @@ public class DukeException extends Exception {
      * @param message message to be displayed to user when caught
      */
     public DukeException(String message) {
-        super(message);
+        super("Your highness! " + message);
     }
 }

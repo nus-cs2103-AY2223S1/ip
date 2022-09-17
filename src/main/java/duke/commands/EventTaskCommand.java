@@ -29,7 +29,7 @@ public class EventTaskCommand extends TaskCommand {
         String[] eventList = this.description.split("/at ", 2);
 
         if (eventList.length < 2 || eventList[1].equals("")) {
-            throw new DukeException("Alamak! Fill in when the event is at...");
+            throw new DukeException("Please tell me when the event is at...");
         }
 
         this.description = eventList[0];

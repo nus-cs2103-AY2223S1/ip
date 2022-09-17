@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exception.DukeException;
+import duke.exception.TaskNotFoundDukeException;
 import duke.main.Storage;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
@@ -24,9 +25,9 @@ public class UnmarkCommand extends Command {
             description = description.split(" ")[1];
             this.index = Integer.parseInt(description);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Fill in index of task to delete");
+            throw new DukeException("Please tell me the index of task to unmark");
         } catch (NumberFormatException e) {
-            throw new DukeException("Invalid tasks");
+            throw new DukeException("Unfortunately, that was an invalid task");
         }
     }
 
@@ -39,7 +40,7 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
-            throw new DukeException("No such tasks found");
+            throw new TaskNotFoundDukeException();
         } else {
             Task task = tasks.get(index - 1);
             task.setUndone();
@@ -49,7 +50,7 @@ public class UnmarkCommand extends Command {
     }
 
     public String getMessage(Task task) {
-        String str = "Aiyah! I've marked this task as not done yet: \n";
+        String str = "Oh dear, I've marked this task as not done yet: \n";
         str += task;
         return str;
     }

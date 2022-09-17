@@ -30,7 +30,7 @@ public class DeadlineTaskCommand extends TaskCommand {
         String[] deadlineList = this.description.split("/by ", 2);
 
         if (deadlineList.length < 2 || deadlineList[1].equals("")) {
-            throw new DukeException("Alamak! Fill in when the deadline is by...");
+            throw new DukeException("Please tell me when the deadline is by...");
         }
         this.description = deadlineList[0];
         try {
