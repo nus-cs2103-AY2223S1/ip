@@ -105,8 +105,8 @@ public class Parser {
             return e.getMessage();
         } catch (IOException e) {
             e.printStackTrace();
+            return e.getMessage();
         }
-        return "Error! Please try again.";
     }
 
 

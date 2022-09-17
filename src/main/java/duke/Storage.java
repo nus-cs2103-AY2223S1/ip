@@ -38,7 +38,7 @@ public class Storage {
             return strList;
 
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("Created a new text file for storage:  duke.txt");
         }
         return strList;
     }
@@ -50,7 +50,7 @@ public class Storage {
      * @param tasks the taskList to write in the text file
      */
     public static void writeToFile(TaskList tasks) throws IOException {
-        Writer newTextLine = new BufferedWriter(new FileWriter("./src/main/java/duke.txt", false));
+        Writer newTextLine = new BufferedWriter(new FileWriter("duke.txt", false));
         for (int i = 1; i <= tasks.size(); i++) {
             Task currTask = tasks.get(i - 1);
             if (currTask instanceof Todo) {
