@@ -9,13 +9,14 @@ import java.time.format.DateTimeFormatter;
  * Class to store list items with task and status of completion
  */
 public class ListObject implements Serializable, Comparable<ListObject> {
-    private String task;
     String time;
+    private final String task;
     private int status;
 
     /**
      * Constructs a ListObject with given task description and status
-     * @param task String representing task description
+     *
+     * @param task   String representing task description
      * @param status int with value 1 if task is complete and 0 otherwise
      */
     public ListObject(String task, int status) {
@@ -25,8 +26,9 @@ public class ListObject implements Serializable, Comparable<ListObject> {
 
     /**
      * Constructs a ListObject with given task description and status
-     * @param task String representing task description
-     * @param time String representing task deadline or start and end time
+     *
+     * @param task   String representing task description
+     * @param time   String representing task deadline or start and end time
      * @param status int with value 1 if task is complete and 0 otherwise
      */
     public ListObject(String task, String time, int status) {
@@ -38,46 +40,50 @@ public class ListObject implements Serializable, Comparable<ListObject> {
 
     /**
      * Returns task description
+     *
      * @return String representing task decription
      */
-    public String getTask(){
+    public String getTask() {
         return this.task;
     }
 
     /**
      * Returns task status
+     *
      * @return int with value 1 if task is complete and 0 otherwise
      */
-    public int getStatus(){
+    public int getStatus() {
         return this.status;
     }
 
     /**
      * Returns the task's completion status
+     *
      * @return String indicating status of completion of task
      */
-        public String showStatusIndicator() {
-            if (this.status==1) {
-                return "[X] ";
-            } else {
-                return "[ ] ";
-            }
+    public String showStatusIndicator() {
+        if (this.status == 1) {
+            return "[X] ";
+        } else {
+            return "[ ] ";
         }
+    }
 
 
     /**
      * Switches the status of completion of task
      */
     public void switchStatus() {
-        if (this.status==1) {
-            this.status=0;
+        if (this.status == 1) {
+            this.status = 0;
         } else {
-            this.status=1;
+            this.status = 1;
         }
     }
 
     /**
      * Checks if the task description contains the given keyword
+     *
      * @param keyword String representing the keyword to check for in task description
      * @return boolean true if the description contains the word and false otherwise
      */
@@ -87,6 +93,7 @@ public class ListObject implements Serializable, Comparable<ListObject> {
 
     /**
      * Reads String representing event time and returns it in alternate format
+     *
      * @return String representing event time in format MMM dd yyyy HH:mm HH:mm as date, start and end times
      */
 
@@ -94,7 +101,7 @@ public class ListObject implements Serializable, Comparable<ListObject> {
 
         String txt = this.time;
 
-        if(type.equals("e")) {
+        if (type.equals("e")) {
             String[] words = txt.split(" ");
             String date = words[0];
             String start = words[1];
@@ -115,7 +122,7 @@ public class ListObject implements Serializable, Comparable<ListObject> {
             return dateNew + " from: " + timeStart + " to: " + timeEnd;
         }
 
-        if(type.equals("d")){
+        if (type.equals("d")) {
             String[] words = txt.split(" ");
             String date = words[0];
             String time = words[1];
@@ -138,6 +145,7 @@ public class ListObject implements Serializable, Comparable<ListObject> {
 
     /**
      * Compares two ListObjects based on deadline, if present, and task otherwise
+     *
      * @param obj the object to be compared.
      * @return -1 if this has earlier deadline than object, 1 otherwise and 0 if equal
      */
@@ -145,12 +153,12 @@ public class ListObject implements Serializable, Comparable<ListObject> {
     public int compareTo(ListObject obj) {
         int compareDate = this.time.compareTo(obj.time);
         int compareTask = this.task.compareToIgnoreCase(obj.task);
-        int compareStatus = this.status-obj.status;
+        int compareStatus = this.status - obj.status;
 
-        if(compareDate != 0){
+        if (compareDate != 0) {
             return compareDate;
         } else {
-            if(compareTask != 0){
+            if (compareTask != 0) {
                 return compareTask;
             } else {
                 return compareStatus;
@@ -159,14 +167,14 @@ public class ListObject implements Serializable, Comparable<ListObject> {
     }
 
 
-
     /**
      * Returns String representation of the ListObject
+     *
      * @return String representing the ListObject
      */
     @Override
     public String toString() {
-        return this.showStatusIndicator()+ this.getTask();
+        return this.showStatusIndicator() + this.getTask();
     }
 
 }

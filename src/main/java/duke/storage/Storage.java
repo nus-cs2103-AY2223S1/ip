@@ -15,15 +15,15 @@ public class Storage {
 
     /**
      * Constructs a Storage object which reads from and writes to a file of given file path
+     *
      * @param filePath String representing file path
      */
 
     public Storage(String filePath) {
         try {
-            this.tasksStored = readFromFile(filePath);
+            tasksStored = readFromFile(filePath);
             File listFile = new File(filePath);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -31,6 +31,7 @@ public class Storage {
 
     /**
      * Reads from file with given file path containing saved user tasks, if one exists, or creates such a file
+     *
      * @param path String representing file path
      * @return TaskList saved in the file (if it exists) or a new one otherwise
      */
@@ -42,15 +43,14 @@ public class Storage {
             listFile.createNewFile();
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(listFile));
             @SuppressWarnings("unchecked")
-                ArrayList<ListObject> allIn = (ArrayList<ListObject>) in.readObject();
-                inList.setTasks(allIn);
-                in.close();
+            ArrayList<ListObject> allIn = (ArrayList<ListObject>) in.readObject();
+            inList.setTasks(allIn);
+            in.close();
         } catch (EOFException e) {
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        finally{
+        } finally {
             return inList;
         }
     }
@@ -58,8 +58,9 @@ public class Storage {
 
     /**
      * Updates the file with given path to store the new list of tasks the user wants to save
+     *
      * @param path String representing file path
-     * @param lst TaskList with a list of tasks the user wishes to save
+     * @param lst  TaskList with a list of tasks the user wishes to save
      */
 
     public static void makeListFile(String path, TaskList lst) {
@@ -71,7 +72,7 @@ public class Storage {
             out.writeObject(listOfItems);
             out.close();
         } catch (IOException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
 
     }

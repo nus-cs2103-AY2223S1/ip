@@ -8,7 +8,8 @@ public class ToDo extends ListObject {
 
     /**
      * Constructs a ToDo object with given task description and status
-     * @param task String representing task description
+     *
+     * @param task   String representing task description
      * @param status int with value 1 if task is complete and 0 otherwise
      */
     public ToDo(String task, int status) {
@@ -18,6 +19,7 @@ public class ToDo extends ListObject {
 
     /**
      * Returns String representing the ToDo object
+     *
      * @return String representing ToDo object
      */
     @Override

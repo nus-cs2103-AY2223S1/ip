@@ -15,10 +15,10 @@ import java.util.stream.Stream;
  */
 public class TaskList implements Serializable {
 
-    private ArrayList<ListObject> tasksList;
     private static int numberOfTodos;
     private static int numberOfDeadlines;
     private static int numberOfEvents;
+    private ArrayList<ListObject> tasksList;
 
     /**
      * Constructs a TaskList with an empty ArrayList of ListObjects
@@ -29,16 +29,18 @@ public class TaskList implements Serializable {
 
     /**
      * Sets the taskslist of the TaskList object to be input list
+     *
      * @param list ArrayList of ListObjects the user wished to store
      */
 
     public void setTasks(ArrayList<ListObject> list) {
-        assert list!= null;
+        assert list != null;
         this.tasksList = list;
     }
 
     /**
      * Returns the number of tasks stored
+     *
      * @return int representing number of tasks stored
      */
     public int getListLength() {
@@ -47,8 +49,9 @@ public class TaskList implements Serializable {
 
     /**
      * Handles instructions on modifying a specific item in the list
+     *
      * @param instruction String representing type of action to be performed
-     * @param itemNum int representing the item number to be modified
+     * @param itemNum     int representing the item number to be modified
      */
     public String handleItem(String instruction, int itemNum) {
 
@@ -71,6 +74,7 @@ public class TaskList implements Serializable {
 
     /**
      * Adds a ListObject (task) to the taskslist field
+     *
      * @param obj ListObject representing the task to be added
      */
 
@@ -80,7 +84,7 @@ public class TaskList implements Serializable {
     }
 
     /**
-     *Prints the list of tasks stored
+     * Prints the list of tasks stored
      */
     public void printList() {
         for (int i = 0; i < this.tasksList.size(); i++) {
@@ -88,7 +92,7 @@ public class TaskList implements Serializable {
         }
     }
 
-    public void sortList(){
+    public void sortList() {
         Collections.sort(tasksList, new Comparator<ListObject>() {
             @Override
             public int compare(ListObject o1, ListObject o2) {
@@ -100,14 +104,16 @@ public class TaskList implements Serializable {
 
     /**
      * Returns the number of tasks stored
+     *
      * @return String representing the number of tasks stored
      */
-    public String knowTaskCount(){
+    public String knowTaskCount() {
         return tasksList.size() + " tasks ";
     }
 
     /**
      * Returns the taskslist stored in the object
+     *
      * @return ArrayList representing the list of tasks stored
      */
     public ArrayList<ListObject> storeAllTasks() {
@@ -126,6 +132,7 @@ public class TaskList implements Serializable {
 
     /**
      * Returns the String representation of a TaskList object
+     *
      * @return String representation of TaskList object
      */
     @Override

@@ -7,8 +7,9 @@ public class Event extends ListObject {
 
     /**
      * Constructs an Event object with give task description, status and time
-     * @param task String representing task description
-     * @param status int with value 1 if event is completed and 0 otherwise
+     *
+     * @param task      String representing task description
+     * @param status    int with value 1 if event is completed and 0 otherwise
      * @param eventTime String representing date, start and end times of event
      */
     public Event(String task, int status, String eventTime) {
@@ -17,6 +18,7 @@ public class Event extends ListObject {
 
     /**
      * Returns String representation of Event object
+     *
      * @return String representing Event object
      */
     @Override

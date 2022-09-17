@@ -26,11 +26,11 @@ public class Gui extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/SherlockH.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/KingOfOld.png"));
+    private final Image user = new Image(this.getClass().getResourceAsStream("/images/SherlockH.png"));
+    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/KingOfOld.png"));
 
     @Override
-    public void start(Stage stage){
+    public void start(Stage stage) {
 
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
@@ -74,7 +74,7 @@ public class Gui extends Application {
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
 
-        AnchorPane.setLeftAnchor(userInput , 1.0);
+        AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
         sendButton.setOnMouseClicked((event) -> {
@@ -99,11 +99,32 @@ public class Gui extends Application {
 
     //adapted from https://se-education.org/guides/tutorials/javaFxPart3.html
 
+    private void handleUserInput() {
+        Label userText = new Label(userInput.getText());
+        Label dukeText = new Label(getResponse(userInput.getText()));
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userText, new ImageView(user)),
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+        );
+        userInput.clear();
+    }
+
+    private String getResponse(String input) {
+        Duke aemon = new Duke();
+        return aemon.interact(input);
+    }
+
+    private Label getDialogLabel(String text) {
+        // You will need to import `javafx.scene.control.Label`.
+        Label textToAdd = new Label(text);
+        textToAdd.setWrapText(true);
+        return textToAdd;
+    }
 
     public static class DialogBox extends HBox {
 
-        private Label text;
-        private ImageView displayPicture;
+        private final Label text;
+        private final ImageView displayPicture;
 
         public DialogBox(Label l, ImageView iv) {
             text = l;
@@ -117,13 +138,6 @@ public class Gui extends Application {
             this.getChildren().addAll(text, displayPicture);
         }
 
-        private void flip() {
-            this.setAlignment(Pos.CENTER);
-            ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-            FXCollections.reverse(tmp);
-            this.getChildren().setAll(tmp);
-        }
-
         public static DialogBox getDukeDialog(Label l, ImageView iv) {
             var db = new DialogBox(l, iv);
             db.flip();
@@ -131,36 +145,17 @@ public class Gui extends Application {
             return db;
         }
 
-
         public static DialogBox getUserDialog(Label l, ImageView iv) {
             return new DialogBox(l, iv);
         }
 
-    }
+        private void flip() {
+            this.setAlignment(Pos.CENTER);
+            ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+            FXCollections.reverse(tmp);
+            this.getChildren().setAll(tmp);
+        }
 
-
-
-    private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
-        );
-        userInput.clear();
-    }
-
-
-    private String getResponse(String input) {
-        Duke aemon = new Duke();
-        return aemon.interact(input);
-    }
-
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-        return textToAdd;
     }
 
 }
