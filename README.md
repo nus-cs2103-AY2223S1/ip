@@ -8,7 +8,7 @@
 * Completely **FREE**
 
 ### Try it right **now** by
-1. Downloading from here
+1. Downloading from [here](https://github.com/yunruu/ip/releases/tag/A-Jar)
 2. Double-click it
 3. Add your tasks
 4. Let it manage your tasks :metal:
