@@ -2,7 +2,13 @@
 ![](Ui.png)
 ## Features 
 
-### Adding a Todo task: `todo`
+### list
+
+Lists all the tasks.
+
+Format:  `list`
+
+### Adding a Todo task
 
 Adds a Todo task to the list.
 
@@ -12,24 +18,80 @@ Examples:
 
 - `todo Read book`
 
-### Feature-XYZ
+### Adding a Deadline
 
-Description of the feature.
+Format: `deadline DESCRIPTION /by DATE`
 
-## Usage
+Examples:
 
-### `Keyword` - Describe action
+-`deadline play basketball /by 2022-9-20`
 
-Describe the action and its outcome.
+### Adding an Event
 
-Example of usage: 
+Format: `event DESCRIPTION /at DATE`
 
-`keyword (optional arguments)`
+Examples:
 
-Expected outcome:
+-`event read books /at 2022-9-20`
 
-Description of the outcome.
+### Mark a task
 
-```
-expected output
-```
+Marks a task as done.
+
+Format:  `mark TASK_NUMBER`
+Examples:
+
+-`mark 1`
+
+### Unmark a task
+
+Marks a task as not done.
+
+Format:  `unmark TASK_NUMBER`
+Examples:
+
+-`unmark 1`
+
+### Delete a task
+
+Deletes a task according to the number
+
+Format:  `delete TASK_NUMBER`
+
+Examples:
+
+-`delete 1` Deletes the first task.
+
+### Find a task
+
+Finds a task according to the keyword
+
+Format:  `find KEYWORD`
+
+Examples:
+
+-`find play` Find the tasks containing keyword play
+
+### Reminder
+
+Lists the tasks and all the todos within a week
+
+Format:  `reminder`
+
+Examples:
+
+-`reminder` Find the tasks and todos within a week
+
+
+### Close the app
+
+Closes the duke chatbox.
+
+Format:  `bye`
+
+Examples:
+
+-`bye` 
+
+
+
