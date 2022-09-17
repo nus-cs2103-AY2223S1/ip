@@ -27,8 +27,8 @@ public class Duke extends Application {
   private TextField userInput;
   private Button sendButton;
   private Scene scene;
-  private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-  private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+  private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser2.png"));
+  private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke2.jpg"));
   private Storage storage;
   private TaskList taskList;
   private Ui ui;

@@ -93,7 +93,7 @@ public class TaskList {
     ls.get(index).setStatus(status);
     String s = "";
     if (status == true) {
-      s = "OK, I've marked this task as not done yet: \n";
+      s = "OK, I've marked this task as done : \n";
 
     } else {
       s = "OK, I've marked this task as not done yet: \n";
