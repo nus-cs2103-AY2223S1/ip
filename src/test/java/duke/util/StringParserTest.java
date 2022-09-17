@@ -25,9 +25,9 @@ public class StringParserTest {
 
     @Test
     public void addWrapperTest() {
-        String test = "123\nasdf   \n asdf";
-        assertEquals(StringParser.addWrapper(test),
-                "   ______________________________\n123\nasdf   \n asdf\n   ______________________________\n");
+        String test = "123asdf   asdf";
+        assertEquals(StringParser.addWrapper(test), String
+                .format("   ______________________________%n123asdf   asdf%n   ______________________________%n"));
     }
 
     @Test
