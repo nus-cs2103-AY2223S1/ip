@@ -1,4 +1,6 @@
-package Duke;
+package Duke.Handler;
+import Duke.Data.Storage;
+import Duke.Tasks.Task;
 import java.util.ArrayList;
 
 /**
@@ -115,6 +117,31 @@ public class Ui {
     }
 
 
+    /**
+     * Prints message when a task is marked done successfully
+     */
+    public void markDoneMes() {
+        System.out.println("Nice! I have marked this task as done:");
+    }
 
+    /**
+     * Prints message when a task is marked undone successfully
+     */
+    public void unmarkedMes() {
+        System.out.println("This task is marked as not done:");
+    }
 
+    /**
+     * Prints message to tell user that a task is successfully added to taskList
+     */
+    public void addTask() {
+        System.out.println("Got it, this task is added in your list:");
+    }
+
+    /**
+     * Prints message to tell user that the selected task is being deleted successfully
+     */
+    public void deleteTask() {
+        System.out.println("Noted. I've removed this task:");
+    }
 }

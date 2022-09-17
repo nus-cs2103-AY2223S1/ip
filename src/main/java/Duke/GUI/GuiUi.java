@@ -1,5 +1,10 @@
-package Duke;
-
+package Duke.GUI;
+import Duke.Tasks.Deadline;
+import Duke.Tasks.TaskList;
+import Duke.Tasks.Event;
+import Duke.Tasks.Todo;
+import Duke.Tasks.Task;
+import Duke.Handler.Ui;
 import java.util.ArrayList;
 
 /**
@@ -32,13 +37,14 @@ public class GuiUi {
     }
 
     /**
-     * prints list of tasks
-     *
-     * @param list that contains all tasks
+     * prints list of tasks that has been added
      */
     public String displayTask() {
         ArrayList<Task> list = taskList.listTasks();
-        String t = "Here are the tasks in your list:";
+        if (list.isEmpty()) {
+            return "There are no tasks in your taskList ~";
+        }
+        String t = "Here are the tasks in your taskList:";
         String s = "";
         for (int i = 0; i < list.size(); i++) {
             int index = i + 1;

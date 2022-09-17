@@ -1,5 +1,14 @@
-package Duke;
-import java.io.*;
+package Duke.Data;
+import Duke.Exception.DukeException;
+import Duke.Tasks.Deadline;
+import Duke.Tasks.TaskList;
+import Duke.Tasks.Event;
+import Duke.Tasks.Todo;
+import Duke.Tasks.Task;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,10 +22,9 @@ public class Storage {
     /**
      * Constructor for Storage
      *
-     * @param filePath when the path is located in disk
      */
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage() {
+        this.filePath = "/Users/yiye/Desktop/cs2103Projects/ip/Data/duke.txt";;
     }
 
     /**

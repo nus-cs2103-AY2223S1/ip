@@ -1,4 +1,5 @@
-package Duke;
+package Duke.Tasks;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -6,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Deadline with type Task
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     protected String by;
     protected String date;

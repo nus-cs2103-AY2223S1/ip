@@ -1,4 +1,9 @@
-package Duke;
+package Duke.Handler;
+import Duke.Tasks.Deadline;
+import Duke.Tasks.TaskList;
+import Duke.Tasks.Event;
+import Duke.Tasks.Todo;
+import Duke.Tasks.Task;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +34,7 @@ public class Commands {
      * @param input read task index
      */
     public void markDone(String input) {
-        System.out.println("Nice! I have marked this task as done:");
+        ui.markDoneMes();
         int j = Integer.parseInt(input.substring(5)) - 1;
         Task task = taskList.get(j);
         task.markAsDone();
@@ -41,8 +46,8 @@ public class Commands {
      *
      * @param input read task index
      */
-    public void unmark(String input) {
-        System.out.println("This task is marked as not done:");
+    public void unmark (String input) {
+        ui.unmarkedMes();
         int j = Integer.parseInt(input.substring(7)) - 1;
         Task task = taskList.get(j);
         task.markAsNotDone();
@@ -55,7 +60,7 @@ public class Commands {
      * @param input read name of task
      */
     public void todo(String input) {
-        System.out.println("Got it, this task is added in your list:");
+        ui.addTask();
         Task todo = new Todo(input.substring(5));
         taskList.add(todo);
         System.out.println(todo);
@@ -68,7 +73,7 @@ public class Commands {
      * @param input read name, time and date of task
      */
     public void deadline(String input) {
-        System.out.println("Got it, this task is added in your list:");
+        ui.addTask();
         String[] parts = input.split(" ");
         String date = parts[parts.length-2];
         String time = parts[parts.length-1];
@@ -84,7 +89,7 @@ public class Commands {
      * @param input read name, time and date of task
      */
     public void event(String input) {
-        System.out.println("Got it, this task is added in your list:");
+        ui.addTask();
         String[] parts = input.split(" ");
         String at = parts[parts.length-3];
         String date = parts[parts.length-2];
@@ -101,7 +106,7 @@ public class Commands {
      * @param input read task index
      */
     public void delete(String input) {
-        System.out.println("Noted. I've removed this task:");
+        ui.deleteTask();
         int index = Integer.parseInt(input.substring(7)) - 1;
         Task task = taskList.get(index);
         System.out.println(task);
@@ -115,10 +120,11 @@ public class Commands {
      * @param input read date
      */
     public void searchDate(String input) {
+        String[] parts = input.split(" ", 2);
         ArrayList<Task> matched = new ArrayList<>();
         for(Task t: taskList.listTasks()) {
             String str = t.toString();
-            if(str.contains(input)) {
+            if(str.contains(parts[1])) {
                 matched.add(t);
             }
         }
