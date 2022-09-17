@@ -21,14 +21,14 @@ public class Ui {
     /**
      * Prints greeting message.
      */
-    public void greet() {
+    public static String greet() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("Hello I'm Duke\n What can I do for you?");
+
+        return "Welcome to\n" + logo + "\n" + "I'm Duke!\nWhat can I do for you?";
     }
 
     /**

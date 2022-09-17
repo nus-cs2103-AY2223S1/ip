@@ -26,26 +26,8 @@ public class Duke {
     }
 
     /**
-     * Runs the program.
+     * Processes user input.
      */
-    public void run() {
-        this.ui.greet();
-        boolean terminate = false;
-
-        do {
-            try {
-                String userInput = this.ui.receiveInput();
-                Command c = Parser.parseCommand(userInput);
-                c.execute(taskList, ui, storage);
-                terminate = c.isEnd();
-            } catch (DukeException de) {
-                System.out.println(de.getMessage());
-            } catch (IndexOutOfBoundsException ioobe) {
-                System.out.println("Index input is greater than todolist length");
-            }
-        } while (!terminate);
-    }
-
     public String getResponse(String input) {
 
         try {
@@ -57,12 +39,17 @@ public class Duke {
         }
     }
 
+    /**
+     * Checks if user command is a terminatingcommand.
+     *
+     * @param input user input to process.
+     * @return boolean indicating whether Duke terminates.
+     */
     public boolean isEnd(String input) {
         try {
             Command c = Parser.parseCommand(input);
             return c.isEnd();
         } catch (DukeException de) {
-            System.out.println(de.getMessage());
             return false;
         }
     }

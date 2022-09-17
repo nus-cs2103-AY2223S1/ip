@@ -5,7 +5,7 @@ package duke.task;
  */
 public class Task {
     protected String name;
-    protected boolean done;
+    protected boolean isDone;
 
     /**
      * Constructor for a task.
@@ -14,7 +14,7 @@ public class Task {
      */
     public Task(String name) {
         this.name = name;
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
@@ -24,21 +24,21 @@ public class Task {
      */
     public Task(String name, boolean done) {
         this.name = name;
-        this.done = done;
+        this.isDone = done;
     }
 
     /**
      * Marks a task as complete.
      */
     public void completed() {
-        this.done = true;
+        this.isDone = true;
     }
 
     /**
      * Marks a task as incomplete.
      */
     public void uncompleted() {
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
@@ -47,7 +47,7 @@ public class Task {
      * @return String representing status icon.
      */
     public String getStatusIcon() {
-        return (this.done) ? "X" : " ";
+        return (this.isDone) ? "X" : " ";
     }
 
     /**
@@ -75,7 +75,7 @@ public class Task {
      * @return Save-friendly String representation of the task.
      */
     public String savedString() {
-        return String.format("%s,%s", (this.done) ? "Y" : "N", this.name);
+        return String.format("%s,%s", (this.isDone) ? "Y" : "N", this.name);
     }
 
 

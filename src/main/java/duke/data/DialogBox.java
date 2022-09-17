@@ -25,6 +25,25 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    private final String DUKESTYLE = "-fx-background-color: #33CC99;"
+            + "-fx-font: 12px Tahoma;"
+            + "-fx-text-fill: white;"
+            + "-fx-min-width: 240px;"
+            + "-fx-background-radius: 25.0;"
+            + "-fx-padding: 20.0";
+
+    private final String USERSTYLE =  "-fx-background-color: #FF88CC;"
+            + "-fx-font: 12px Tahoma;"
+            + "-fx-text-fill: white;"
+            + "-fx-min-width: 240px;"
+            + "-fx-background-radius: 25.0;"
+            + "-fx-padding: 20.0";
+
+    /**
+     * Constructor for a DialogBox.
+     * @param text Input to be printed on the DialogBox.
+     * @param img Image of the user.
+     */
     public DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -50,11 +69,14 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        DialogBox db = new DialogBox(text, img);
+        db.dialog.setStyle(db.USERSTYLE);
+        return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
+        db.dialog.setStyle(db.DUKESTYLE);
         db.flip();
         return db;
     }
