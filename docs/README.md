@@ -18,6 +18,8 @@ Knave of Hearts supports these three different types of task. **todo** is a norm
 
 **list** all your tasks or **find** the task by keyword, **delete** deletes the task, **bye** exits the application
 
+## Usage
+
 ### `todo` - Add todo task
 
 Example of usage:
@@ -105,8 +107,6 @@ Example of usage:
 
 Expected outcome:
 image.png
-
-## Command summary
 
 ## Command Summary
 
