@@ -193,7 +193,7 @@ public class TaskList {
             return "Hmm, there's nothing here!";
         }
         for (Task task : tasksArr) {
-            res += String.format("\n %d.%s", i + 1, task.toString());
+            res += String.format("\n %s", task.toString());
         }
         return res;
     }
