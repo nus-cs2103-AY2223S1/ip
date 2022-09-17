@@ -40,7 +40,7 @@ jobs:
         run: ./gradlew shadowJar
 
       - name: Make runtest executable
-        run: chmod 755 ./runtest.sh
+        run: chmod 755 ./text-ui-test/runtest.sh
 
       - name: Perform IO redirection test (*NIX)
         if: runner.os == 'Linux'
