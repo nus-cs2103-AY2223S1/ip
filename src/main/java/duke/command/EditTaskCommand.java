@@ -26,7 +26,7 @@ public class EditTaskCommand extends Command {
         int taskNumberEndIndex = extractTaskNumberEnd(userInput);
         String taskNumberString = userInput.substring(0, taskNumberEndIndex);
         taskNumber = Integer.parseInt(taskNumberString);
-        userEditInput = userInput.substring(taskNumberEndIndex);
+        userEditInput = userInput.substring(taskNumberEndIndex + 1);
     }
 
     private int extractTaskNumberEnd(String userInput) {

@@ -31,12 +31,15 @@ public class Deadline extends Task {
      *
      * @param description Description of the deadline task.
      * @param dueDate The due date of the deadlined task.
-     * @param completion Whether the Deadline task has been completed.
+     * @param isCompleted Whether the Deadline task has been completed.
      * @param completionDateTime The datetime when the task was marked completed.
      */
     public Deadline(String description, LocalDateTime dueDate,
-                    boolean completion, @Nullable LocalDateTime completionDateTime) {
-        super(description, completion, completionDateTime);
+                    boolean isCompleted, @Nullable LocalDateTime completionDateTime) {
+        super(description, isCompleted, completionDateTime);
+        assert ((!isCompleted && completionDateTime == null) || (isCompleted && completionDateTime != null))
+               : "Incompatible completion status and completion date time, incomplete tasks should not have"
+                       + " completion dates, while completed tasks should have completion dates.";
         this.dueDate = dueDate;
     }
 
@@ -55,7 +58,7 @@ public class Deadline extends Task {
             throw new DukeException(errorMessage);
         }
 
-        String[] sp = cmd.split("/(by)\\s", 2);
+        String[] sp = cmd.split("\\s/(by)\\s", 2);
         String description = sp[0];
         String dateTimeString = sp[1];
         LocalDateTime datetime = DateTimeParse.parseDateTime(dateTimeString);

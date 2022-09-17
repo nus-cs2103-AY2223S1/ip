@@ -22,9 +22,12 @@ public class Event extends Task {
      * @param description Description of the event task.
      * @param eventStartDatetime The start datetime of the event.
      * @param eventEndDatetime The end datetime of the event.
+     * @throws DukeException If the start-end datetime is invalid.
      */
-    public Event(String description, LocalDateTime eventStartDatetime, LocalDateTime eventEndDatetime) {
+    public Event(String description, LocalDateTime eventStartDatetime,
+                 LocalDateTime eventEndDatetime) throws DukeException {
         super(description);
+        isValidStartEndDateTime(eventStartDatetime, eventEndDatetime);
         this.eventStartDatetime = eventStartDatetime;
         this.eventEndDatetime = eventEndDatetime;
     }
@@ -37,11 +40,13 @@ public class Event extends Task {
      * @param eventEndDatetime The end datetime of the event.
      * @param isCompleted Whether the event task is done or not.
      * @param completionDateTime The datetime when the task was marked completed.
+     * @throws DukeException If the start-end datetime is invalid.
      */
     public Event(String description, LocalDateTime eventStartDatetime,
                  LocalDateTime eventEndDatetime, boolean isCompleted,
-                 @Nullable LocalDateTime completionDateTime) {
+                 @Nullable LocalDateTime completionDateTime) throws DukeException {
         super(description, isCompleted, completionDateTime);
+        isValidStartEndDateTime(eventStartDatetime, eventEndDatetime);
         this.eventStartDatetime = eventStartDatetime;
         this.eventEndDatetime = eventEndDatetime;
     }
@@ -68,13 +73,7 @@ public class Event extends Task {
         String endDate = sp[2];
         LocalDateTime startDatetime = DateTimeParse.parseDateTime(startDate);
         LocalDateTime endDatetime = DateTimeParse.parseDateTime(endDate);
-
-        // ensures that the start and end datetime is valid (start cannot be after end)
-        if (startDatetime.isAfter(endDatetime)) {
-            String errorMessage = String.format(END_BEFORE_START_ERROR_MESSAGE,
-                    startDatetime, endDatetime);
-            throw new DukeException(errorMessage);
-        }
+        isValidStartEndDateTime(startDatetime, endDatetime);
 
         return new Event(description, startDatetime, endDatetime);
     }
@@ -99,6 +98,26 @@ public class Event extends Task {
     public String getEndDatetimeString() {
         DateTimeFormatter dayDateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm");
         return eventEndDatetime.format(dayDateTimeFormatter);
+    }
+
+    /**
+     * Validates whether the start and end date time are valid event start-end date times.
+     *
+     * @param startDatetime The start date time of the event.
+     * @param endDatetime The end date time of the event.
+     * @return True if the start-end date time is valid (start is not after end date time).
+     * @throws DukeException If the start-end date time is invalid (start after end date time).
+     */
+    private static boolean isValidStartEndDateTime(LocalDateTime startDatetime,
+                                          LocalDateTime endDatetime) throws DukeException {
+        // ensures that the start and end datetime is valid (start cannot be after end)
+        if (startDatetime.isAfter(endDatetime)) {
+            String errorMessage = String.format(END_BEFORE_START_ERROR_MESSAGE,
+                    startDatetime, endDatetime);
+            throw new DukeException(errorMessage);
+        } else {
+            return true;
+        }
     }
 
     /**
