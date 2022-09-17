@@ -33,7 +33,7 @@ public class Parser {
                     break;
                 case "unmark":
                     duke.tasks.unMarkAll();
-                    output = duke.ui.printMarkAllTaskMessage("mark");
+                    output = duke.ui.printMarkAllTaskMessage("unmark");
                     break;
                 case "delete":
                     output = duke.ui.printRemoveAllTasksMessage(duke.tasks);
@@ -141,6 +141,9 @@ public class Parser {
             } catch (DukeException e) {
                 return duke.ui.printNoSuchTaskError();
             }
+            break;
+        case "bye":
+            System.exit(0);
             break;
         default:
             return duke.ui.printInvalidCommandError();
