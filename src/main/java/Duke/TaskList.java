@@ -2,6 +2,7 @@ package Duke;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import Duke.Task.IndexedTask;
 import Duke.Task.Task;
 
 /**
@@ -152,11 +153,12 @@ public class TaskList {
      * @return The list of tasks that has description containing the
      * keyword.
      */
-    public ArrayList<Task> findTasksContainingKeyword (String keyword) {
-        ArrayList<Task> result = new ArrayList<>();
-        for (Task t : this.tasks) {
+    public ArrayList<IndexedTask> findTasksContainingKeyword (String keyword) {
+        ArrayList<IndexedTask> result = new ArrayList<>();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            Task t = this.tasks.get(i);
             if (t.containsKeyword(keyword)) {
-                result.add(t);
+                result.add(new IndexedTask(i, t));
             }
         }
         return result;

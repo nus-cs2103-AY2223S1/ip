@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Duke.TaskList;
 import Duke.Ui;
 import Duke.FileStorage.Storage;
+import Duke.Task.IndexedTask;
 import Duke.Task.Task;
 
 /**
@@ -17,7 +18,7 @@ public class FindCommand extends Command {
     private String keyword;
 
     /** The list of tasks with description containing the keyword. */
-    private ArrayList<Task> foundTasks;
+    private ArrayList<IndexedTask> foundTasks;
 
     /** Constructs the find command. */
     public FindCommand(String keyword) {
@@ -37,7 +38,7 @@ public class FindCommand extends Command {
             return "Well, I can't find any task that matches your keyword :(";
         }
         String result = "Here is what I have found...";
-        for (Task t : this.foundTasks) {
+        for (IndexedTask t : this.foundTasks) {
             result += String.format("\n%s",t.toString());
         }
         return result;
