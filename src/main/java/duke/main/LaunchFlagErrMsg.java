@@ -1,6 +1,6 @@
 package duke.main;
 
-public enum LaunchFlagErrMsg {
+enum LaunchFlagErrMsg {
     FILE_NOT_FOUND_EXIT("Fatal Error! The system will exit abnormally!"),
     UNIMPLEMENTED_FLAG("Unimplemented flag %s.%n"),
     UNRECOGNISED_FLAG("Unrecognised flag %s.%n"),

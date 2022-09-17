@@ -11,10 +11,10 @@ enum LaunchFlagEnum {
     SAVE_FILE("Specifies a custom save path", "<path>", "--use-save", "-s"),
     HELP("Displays this message", "", "--help", "-h"),
     GUI("Lauches Duke without a GUI", "", "--gui", "-g"),
-    NULL_FLAG("","");
+    NULL_FLAG("", "");
     //@formatter:on
 
-    private final static String HELP_HEADER = "Duke\n\nUsage: duke.jar [options] [paths...]\n\nOptions\n";
+    private static final String HELP_HEADER = "Duke\n\nUsage: duke.jar [options] [paths...]\n\nOptions\n";
 
     private final Set<String> aliases;
     private final String paramSettings;
