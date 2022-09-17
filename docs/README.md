@@ -1,6 +1,12 @@
 <!-- Inspired by AB3 user guide https://se-education.org/addressbook-level3/UserGuide.html --->
 
 # User Guide
+Fred is a Chatbot that can help you to manage your ToDos, Events, and Deadlines.
+
+![Fred Screenshot](Ui.png)
+
+<br/>
+
 
 ## Features
 
@@ -14,6 +20,9 @@ Example of usage:
 - `todo homework`
 - `todo buy groceries`
 
+<br/>
+
+
 ### Adding an Event
 Adds an Event to the task list.
 
@@ -25,6 +34,9 @@ Example of usage:
 - `event Tom's birthday /at 2022-12-10`
 - `event party /at 2023-01-01`
 
+<br/>
+
+
 ### Adding a Deadline
 Adds a Deadline to the task list.
 
@@ -35,6 +47,9 @@ Example of usage:
 
 - `deadline assignment /by 2022-09-31`
 - `deadline demo submission /by 2022-11-15`
+
+<br/>
+
 
 ### List all tasks
 Shows a list of all tasks in task list.
@@ -51,6 +66,9 @@ Here are the tasks in your list:
 4.[D][] math assignment submission (by: Oct 10 2022)
 ```
 
+<br/>
+
+
 ### Mark task as done
 Marks a task as done.
 
@@ -61,6 +79,9 @@ Format: `mark INDEX`
 Example of usage:
 
 - `mark 7`
+
+<br/>
+
 
 ### Mark task as undone
 Unmark a task.
@@ -73,6 +94,9 @@ Example of usage:
 
 - `unmark 9`
 
+<br/>
+
+
 ### Delete task
 Delete a task from the task list.
 
@@ -84,10 +108,16 @@ Example of usage:
 
 - `delete 4`
 
+<br/>
+
+
 ### Save task list
 Save Fred's task list to the hard disk.
 
 Format: `save`
+
+<br/>
+
 
 ### Find task by name
 Find all tasks in task list which contain the given keyword.
@@ -107,6 +137,9 @@ Here are the matching tasks in your list:
 10.[D][] biology assignment submission (by: Oct 15 2022)
 ```
 
+<br/>
+
+
 ### Reschedule task
 Change the date of a given task.
 
@@ -119,7 +152,16 @@ Example of usage:
 
 - `snooze 5 /to 2023-06-20`
 
+<br/>
+
+
 ### Exit Fred
 Exits Fred.
 
 Format: `bye`
+
+<br/>
+
+
+# Acknowledgements
+Fred is heavily inspired by [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/)
