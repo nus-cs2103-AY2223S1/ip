@@ -1,8 +1,10 @@
 package duke.parser;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+import duke.Duke;
 import duke.DukeException;
 import duke.command.AddCommand;
 import duke.command.Command;
@@ -32,7 +34,7 @@ public class Parser {
 
     private static final String DEADLINE_SPLIT = "/by";
     private static final String EVENT_SPLIT = "/at";
-    private static final String TAG_SPLIT = "/tag ";
+    private static final String TAG_SPLIT = "/tag";
 
     /**
      * Parse an input string from user to a suitable command.
@@ -60,7 +62,7 @@ public class Parser {
         } else if (input.startsWith(FIND_PREFIX)) {
             return parseFindCommand(input);
         } else {
-            throw new DukeException("OOPS!!! I don't understand what you mean.");
+            throw new DukeException("Baa! I don't understand what you mean.");
         }
     }
 
@@ -73,16 +75,20 @@ public class Parser {
     public static Command parseTodoCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
         if (splitInput.length != 2) {
-            throw new DukeException("OOPS!!! Invalid todo command.");
+            throw new DukeException("Baa! I need a description for your todo task.");
         }
         if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Todo description cannot be empty.");
+            throw new DukeException("Baa! I need a description for your todo task.");
         }
-//        assert splitInput.length != 2 : "OOPS!!! Invalid todo command.";
-//        assert splitInput[1].trim().length() == 0: "OOPS!!! duke.task.Todo description cannot be empty.";
+        if (!splitInput[1].contains(TAG_SPLIT)) {
+            return new AddCommand(new Todo(splitInput[1].trim()));
+        }
         String[] contentTagsSplit = splitInput[1].split(TAG_SPLIT, 2);
-        if (!isValidSplit(contentTagsSplit, 2)) {
-            return new AddCommand(new Todo(contentTagsSplit[0].trim()));
+        if (contentTagsSplit[0].trim().length() == 0) {
+            throw new DukeException("Baa! I need a description for your todo task.");
+        }
+        if (contentTagsSplit[1].trim().length() == 0) {
+            throw new DukeException("Baa! I need a name for the tag.");
         }
         String tag = contentTagsSplit[1].trim();
         return new AddCommand(new Todo(contentTagsSplit[0].trim(), tag));
@@ -97,33 +103,36 @@ public class Parser {
     public static Command parseDeadlineCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
         if (splitInput.length != 2) {
-            throw new DukeException("OOPS!!! Invalid deadline command.");
+            throw new DukeException("Baa! I need a description for your deadline task.");
         }
         if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Deadline description cannot be empty.");
+            throw new DukeException("Baa! I need a description for your deadline task.");
         }
-//        assert splitInput.length != 2 : "OOPS!!! Invalid deadline command.";
-//        assert splitInput[1].trim().length() == 0: "OOPS!!! duke.task.Deadline description cannot be empty.";
-        String[] splitInputByDeadlineSplit = splitInput[1].split(DEADLINE_SPLIT, 2);
-        if (!isValidSplit(splitInputByDeadlineSplit, 2)) {
-            throw new DukeException("OOPS!!! Invalid deadline command.");
+        String[] splitByDeadline = splitInput[1].split(DEADLINE_SPLIT, 2);
+        if (splitByDeadline.length != 2) {
+            throw new DukeException("Baa! I need you to follow format 'deadline a deadline /at yyyy-MM-dd'.");
         }
-        if (splitInputByDeadlineSplit[0].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Deadline description cannot be empty.");
+        if (splitByDeadline[0].trim().length() == 0) {
+            throw new DukeException("Baa! I need a description for your deadline task.");
         }
-        if (splitInputByDeadlineSplit[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Deadline due date cannot be empty.");
+        if (splitByDeadline[1].trim().length() == 0) {
+            throw new DukeException("Baa! I need a due date for your deadline task.");
         }
         try {
-            LocalDate due = DateParser.convertToLocalDate(splitInputByDeadlineSplit[1].trim());
-            String[] splitByTag = splitInputByDeadlineSplit[0].split(TAG_SPLIT, 2);
-            if (!isValidSplit(splitByTag, 2)) {
-                return new AddCommand(new Deadline(splitByTag[0].trim(), due));
+            LocalDate due = DateParser.convertToLocalDate(splitByDeadline[1].trim());
+            if (!splitByDeadline[0].contains(TAG_SPLIT)) {
+                return new AddCommand(new Deadline(splitByDeadline[0].trim(), due));
+            }
+            String[] splitByTag = splitByDeadline[0].split(TAG_SPLIT, 2);
+            if (splitByTag[0].trim().length() == 0) {
+                throw new DukeException("Baa! I need a description for your deadline task.");
+            }
+            if (splitByTag[1].trim().length() == 0) {
+                throw new DukeException("Baa! I need a name for the tag.");
             }
             return new AddCommand(new Deadline(splitByTag[0].trim(), splitByTag[1].trim(), due));
         } catch (DateTimeParseException e) {
-            throw new DukeException("OOPS!!! duke.task.Deadline due date format is wrong. "
-                    + "Follow format yyyy-mm-dd for due date");
+            throw new DukeException("Baa! I need you to follow format 'yyyy-mm-dd' for the due date");
         }
     }
 
@@ -136,31 +145,36 @@ public class Parser {
     public static Command parseEventCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
         if (splitInput.length != 2) {
-            throw new DukeException("OOPS!!! Invalid deadline command.");
+            throw new DukeException("Baa! I need a description for your event task.");
         }
         if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Event description cannot be empty.");
+            throw new DukeException("Baa! I need a description for your event task.");
         }
-//        assert splitInput.length != 2 : "OOPS!!! Invalid event command.";
-//        assert splitInput[1].trim().length() == 0: "OOPS!!! duke.task.Event description cannot be empty.";
-        String[] splitInputByEventSplit = splitInput[1].split(EVENT_SPLIT, 2);
-        if (!isValidSplit(splitInputByEventSplit, 2)) {
-            throw new DukeException("OOPS!!! Invalid event command.");
+        String[] splitByEvent = splitInput[1].split(EVENT_SPLIT, 2);
+        if (splitByEvent.length != 2) {
+            throw new DukeException("Baa! I need you to follow format 'event an event /at yyyy-MM-dd HH:mm'.");
         }
-        if (splitInputByEventSplit[0].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Event description cannot be empty.");
+        if (splitByEvent[0].trim().length() == 0) {
+            throw new DukeException("Baa! I need a description for your event task.");
         }
-        if (splitInputByEventSplit[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Event date time cannot be empty.");
+        if (splitByEvent[1].trim().length() == 0) {
+            throw new DukeException("Baa! I need a time for your event task.");
         }
         try {
-            String[] splitByTag = splitInputByEventSplit[0].split(TAG_SPLIT, 2);
-            if (!isValidSplit(splitByTag, 2)) {
-                return new AddCommand(new Event(splitInputByEventSplit[0].trim(), splitInputByEventSplit[1].trim()));
+            LocalDateTime eventTime = DateParser.convertToLocalDateTime(splitByEvent[1].trim());
+            if (!splitByEvent[0].contains(TAG_SPLIT)) {
+                return new AddCommand(new Event(splitByEvent[0].trim(), eventTime));
             }
-            return new AddCommand(new Event(splitByTag[0].trim(), splitByTag[1].trim(), splitInputByEventSplit[1].trim()));
+            String[] splitByTag = splitByEvent[0].split(TAG_SPLIT, 2);
+            if (splitByTag[0].trim().length() == 0) {
+                throw new DukeException("Baa! I need a description for your event task.");
+            }
+            if (splitByTag[1].trim().length() == 0) {
+                throw new DukeException("Baa! I need a name for the tag.");
+            }
+            return new AddCommand(new Event(splitByTag[0].trim(), splitByTag[1].trim(), eventTime));
         } catch (DateTimeParseException e) {
-            throw new DukeException("OOPS!!! duke.task.Event date time format is wrong.");
+            throw new DukeException("Baa! I need you to follow format 'yyyy-mm-dd HH:mm' for the event time.");
         }
     }
 
@@ -172,14 +186,17 @@ public class Parser {
      */
     public static Command parseMarkDoneCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
+        if (splitInput.length != 2) {
+            throw new DukeException("Baa! I need a task number to mark as done.");
+        }
         if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! There is no task number to be marked as done.");
+            throw new DukeException("Baa! I need to know which task you want to mark as done.");
         }
         try {
             int index = Integer.parseInt(splitInput[1].trim()) - 1;
             return new MarkDoneCommand(index);
         } catch (NumberFormatException e) {
-            throw new DukeException("OOPS!!! The task number format is invalid.");
+            throw new DukeException("Baa! I need a valid task number.");
         }
     }
 
@@ -191,14 +208,17 @@ public class Parser {
      */
     public static Command parseUnmarkDoneCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
+        if (splitInput.length != 2) {
+            throw new DukeException("Baa! I need a task number to unmark.");
+        }
         if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! There is no task number to be marked as not done.");
+            throw new DukeException("Baa! I need to know which task you want to unmark.");
         }
         try {
             int index = Integer.parseInt(splitInput[1].trim()) - 1;
             return new UnmarkDoneCommand(index);
         } catch (NumberFormatException e) {
-            throw new DukeException("OOPS!!! The task number format is invalid.");
+            throw new DukeException("Baa! I need a valid task number.");
         }
     }
     /**
@@ -209,14 +229,17 @@ public class Parser {
      */
     public static Command parseDeleteCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
+        if (splitInput.length != 2) {
+            throw new DukeException("Baa! I need a task number to delete.");
+        }
         if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! There is no task number to be deleted.");
+            throw new DukeException("Baa! I need to know which task you want to delete.");
         }
         try {
             int index = Integer.parseInt(splitInput[1].trim()) - 1;
             return new DeleteCommand(index);
         } catch (NumberFormatException e) {
-            throw new DukeException("OOPS!!! The task number format is invalid.");
+            throw new DukeException("Baa! I need a valid task number.");
         }
     }
 
@@ -228,8 +251,12 @@ public class Parser {
      */
     public static Command parseFindCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
-        assert splitInput.length != 2 : "OOPS!!! Invalid deadline command.";
-        assert splitInput[1].trim().length() == 0: "OOPS!!! duke.task.Deadline description cannot be empty.";
+        if (splitInput.length != 2) {
+            throw new DukeException("Baa! I need a keyword to search.");
+        }
+        if (splitInput[1].trim().length() == 0) {
+            throw new DukeException("Baa! I need a keyword to search.");
+        }
         return new FindCommand(splitInput[1].trim());
     }
 

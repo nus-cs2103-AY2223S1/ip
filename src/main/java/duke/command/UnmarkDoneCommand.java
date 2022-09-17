@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
@@ -18,9 +19,9 @@ public class UnmarkDoneCommand extends Command {
     }
 
     @Override
-    public String getResponse(TaskList tasks, Storage storage) {
+    public String getResponse(TaskList tasks, Storage storage) throws DukeException {
         tasks.unmarkDone(index);
-        return "Oh no! I have marked this task as not done\n"
+        return "Baa! I have unmarked this task\n"
                 + tasks.getTask(index).toString();
     }
 

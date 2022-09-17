@@ -9,7 +9,7 @@ import duke.task.TaskList;
 public class ListCommand extends Command {
     @Override
     public String getResponse(TaskList tasks, Storage storage) {
-        return tasks.toString();
+        return "This is your task list:\n" + tasks.toString();
     }
 
     /**

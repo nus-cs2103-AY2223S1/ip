@@ -2,6 +2,8 @@ package duke.ui;
 
 import duke.Duke;
 import duke.ui.DialogBox;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -30,6 +32,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        String greet = "Hello. I'm Sheep. How can I help you?";
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(greet, dukeImage)
+        );
+        sendButton.disableProperty().bind(Bindings.isEmpty(userInput.textProperty()));
     }
 
     public void setDuke(Duke d) {
@@ -42,6 +49,9 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        if (userInput.getText().isEmpty()) {
+            return;
+        }
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(

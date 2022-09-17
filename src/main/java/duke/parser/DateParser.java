@@ -1,6 +1,7 @@
 package duke.parser;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -9,6 +10,7 @@ import java.time.format.DateTimeParseException;
  */
 public class DateParser {
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_DATE;
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Convert a String with format yyyy-mm-dd to Local Date.
@@ -19,6 +21,9 @@ public class DateParser {
         return LocalDate.parse(date, dateFormatter);
     }
 
+    public static LocalDateTime convertToLocalDateTime(String dateTime) {
+        return LocalDateTime.parse(dateTime, dateTimeFormatter);
+    }
     /**
      * Convert a Local Date to a String with format MMM dd yyyy.
      * @param date
@@ -28,8 +33,16 @@ public class DateParser {
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
+    public static String convertDateTimeToString(LocalDateTime dateTime) {
+        return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
+    }
+
     public static String convertDateToMemoryString(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    public static String convertDateTimeToMemoryString(LocalDateTime dateTime) {
+        return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     /**

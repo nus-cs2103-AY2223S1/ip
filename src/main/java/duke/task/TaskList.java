@@ -2,6 +2,8 @@ package duke.task;
 
 import java.util.ArrayList;
 
+import duke.DukeException;
+
 /**
  * A list to store tasks.
  */
@@ -44,16 +46,24 @@ public class TaskList {
      * Mark a task with the given index as done.
      * @param index
      */
-    public void markDone(int index) {
-        tasks.get(index).markDone();
+    public void markDone(int index) throws DukeException {
+        try {
+            tasks.get(index).markDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Baa! I need a valid task number.");
+        }
     }
 
     /**
      * Unmark a task with the given index.
      * @param index
      */
-    public void unmarkDone(int index) {
-        tasks.get(index).unmarkDone();
+    public void unmarkDone(int index) throws DukeException{
+        try {
+            tasks.get(index).unmarkDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Baa! I need a valid task number.");
+        }
     }
 
     /**
@@ -61,8 +71,12 @@ public class TaskList {
      * @param index
      * @return
      */
-    public Task removeTask(int index) {
-        return tasks.remove(index);
+    public Task removeTask(int index) throws DukeException{
+        try {
+            return tasks.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Baa! I need a valid task number.");
+        }
     }
 
     /**

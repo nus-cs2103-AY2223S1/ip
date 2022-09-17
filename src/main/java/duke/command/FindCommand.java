@@ -17,6 +17,9 @@ public class FindCommand extends Command {
     @Override
     public String getResponse(TaskList tasks, Storage storage) {
         TaskList matches = tasks.findTasks(keyword);
+        if (matches.getNumberOfTasks() == 0) {
+            return "Baa! You don't have any tasks containing this keyword";
+        }
         return matches.toString();
     }
 

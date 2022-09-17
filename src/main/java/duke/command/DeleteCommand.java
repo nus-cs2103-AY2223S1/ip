@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -19,9 +20,9 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String getResponse(TaskList tasks, Storage storage) {
+    public String getResponse(TaskList tasks, Storage storage) throws DukeException {
         Task removedTask = tasks.removeTask(index);
-        return "Done! I have removed this task from your todo list\n"
+        return "Yay! I have removed this task from your list \n"
                 + removedTask.toString();
     }
 

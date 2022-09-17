@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
@@ -18,9 +19,9 @@ public class MarkDoneCommand extends Command {
     }
 
     @Override
-    public String getResponse(TaskList tasks, Storage storage) {
+    public String getResponse(TaskList tasks, Storage storage) throws DukeException {
         tasks.markDone(index);
-        return "Nice! I have marked this task as done\n"
+        return "Yay! I have marked this task as done\n"
                 + tasks.getTask(index).toString();
     }
 

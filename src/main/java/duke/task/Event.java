@@ -1,22 +1,26 @@
 package duke.task;
 
+import java.time.LocalDateTime;
+
+import duke.parser.DateParser;
+
 /**
  * Event task.
  */
 public class Event extends Task {
-    private String at;
+    private LocalDateTime at;
 
     /**
      * Constructor for Event.
      * @param description
      * @param at
      */
-    public Event(String description, String at) {
+    public Event(String description, LocalDateTime at) {
         super(description);
         this.at = at;
     }
 
-    public Event(String description, String tag, String at) {
+    public Event(String description, String tag, LocalDateTime at) {
         super(description, tag);
         this.at = at;
     }
@@ -27,7 +31,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at + ")";
+        return "[E]" + super.toString() + " (at: " + DateParser.convertDateTimeToString(at) + ")";
     }
 
     /**
@@ -36,6 +40,6 @@ public class Event extends Task {
      */
     @Override
     public String toMemoryString() {
-        return "E" + super.toMemoryString() + at;
+        return "E" + super.toMemoryString() + DateParser.convertDateTimeToMemoryString(at);
     }
 }

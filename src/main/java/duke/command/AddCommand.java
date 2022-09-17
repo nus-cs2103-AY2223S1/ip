@@ -27,8 +27,8 @@ public class AddCommand extends Command {
     @Override
     public String getResponse(TaskList tasks, Storage storage) {
         tasks.addTask(task);
-        return "Added " + task.toString() + " to the list.\n"
-                + "There are " + tasks.getNumberOfTasks() + " tasks in the list.";
+        return "Yay! I added " + task.toString() + " to the list.\n"
+                + "You have " + tasks.getNumberOfTasks() + " tasks in the list.";
     }
 
     /**

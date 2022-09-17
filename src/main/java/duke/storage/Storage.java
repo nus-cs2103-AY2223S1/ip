@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -66,7 +67,7 @@ public class Storage {
                     }
                 } else {
                     String content = splitTask[2].trim();
-                    String time = splitTask[4].trim();
+                    LocalDateTime time = DateParser.convertToLocalDateTime(splitTask[4].trim());
                     if (splitTask[3].trim().length() > 0) {
                         String tag = splitTask[3].trim();
                         task = new Event(content, tag, time);

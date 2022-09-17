@@ -10,7 +10,7 @@ public class ExitCommand extends Command {
     @Override
     public String getResponse(TaskList tasks, Storage storage) {
         storage.storeTasks(tasks);
-        return "Ok bye, see you later.";
+        return "Baa! :( See you later.";
     }
 
     /**
