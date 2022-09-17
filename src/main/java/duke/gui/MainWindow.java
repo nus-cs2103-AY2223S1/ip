@@ -1,5 +1,6 @@
-package duke;
+package duke.gui;
 
+import duke.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -10,7 +11,7 @@ import javafx.scene.layout.VBox;
 /**
  * @author Jeffry Lum - reused
  * Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html
- * Controller for duke.MainWindow. Provides the layout for the other controls.
+ * Controller for duke.gui.MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
     @FXML
