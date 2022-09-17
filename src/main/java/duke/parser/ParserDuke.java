@@ -23,7 +23,7 @@ public class ParserDuke {
     private final String EVENT_CMD = "event";
     private final String DEADLINE_CMD = "deadline";
     private final String FIND_CMD = "find";
-
+    private final String HELP_CMD = "help";
     private final String SORT_CMD = "sort";
     private final String FILE_PATH = "src/main/java/duke/DukeTasks.txt";
     private final String command;
@@ -196,6 +196,26 @@ public class ParserDuke {
         }
     }
 
+    public String parseHelpCmd(){
+        String comment = "Aye, what good is a phantom were he not to share what he knows?\n";
+        String helpList = "You may use the following commands and arguments: \n" +
+                "`help` - view all commands and arguments\n" +
+                "`hello` - learn my name and story\n" +
+                "`list` - view the stored list\n" +
+                "`todo [TASK_NAME]` - add a task as a todo item\n" +
+                "`deadline [TASK_NAME]/[DATE] [TIME]` - add a task with a deadline with date in the " +
+                "format of yyyy-MM-dd and time in the format HH:mm\n" +
+                "`event [TASK_NAME]/[DATE] [START_TIME] [END_TIME]` - add an event with a date of occurance," +
+                " start and end timings where date is formatted as yyyy-MM-dd and time as HH:mm\n" +
+                "`mark [ITEM_ID]` - mark an item, as identified by its position on the list, as complete\n" +
+                "`unmark [ITEM_ID]` - mark an item, as identified by its position on the list, as incomplete\n" +
+                "`delete [ITEM_ID]` - delete an item, as identified by its position on the list, from the list\n" +
+                "`find [KEYWORD]` - find items containing a keyword in their task descriptions" +
+                "`sort` - sort all items on the list based on their deadlines and task descriptions\n" +
+                "`bye` - end the conversation with me. This automatically saves the current state of the list.\n";
+        return comment + helpList;
+    }
+
     /**
      * Prints Duke's self-introduction and helps to customise its personality.
      */
@@ -231,6 +251,8 @@ public class ParserDuke {
 
                 if (instruction.equals(LIST_CMD)) {
                     reply = parseListCmd(listOfItems);
+                } else if (instruction.equals(HELP_CMD)){
+                    reply = parseHelpCmd();
                 } else if (instruction.equals(HELLO_CMD)){
                     reply = introduceDuke();
                 } else if (instruction.equals(MARK_CMD)) {
