@@ -24,7 +24,7 @@ Format: `deadline DESCRIPTION /by DATE`
 
 Examples:
 
--`deadline play basketball /by 2022-9-20`
+-`deadline play basketball /by 2022-09-20`
 
 ### Adding an Event
 
@@ -32,7 +32,7 @@ Format: `event DESCRIPTION /at DATE`
 
 Examples:
 
--`event read books /at 2022-9-20`
+-`event read books /at 2022-09-20`
 
 ### Mark a task
 
