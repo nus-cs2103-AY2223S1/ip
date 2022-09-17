@@ -20,7 +20,7 @@ Duke is a **simple** and **easy-to-use** Java app to track your tasks on the go.
 
 ## Usage
 
-### <KeyWord>␣<Body> Commands
+### **KeyWord**␣**Body** Commands
 
 ### `todo`
 
@@ -86,7 +86,7 @@ Example outcome:
 1. [D][ ] get good/20220917
 ```
     
-### <KeyWord> Commands
+### **KeyWord** Commands
     
 ### `bye`
 Closes Duke Application
@@ -118,7 +118,7 @@ Example of usage:
 
 `bye`
     
-### <KeyWord>␣<Numerical Label> Commands — (Numerical Label obtained from 'list' command)
+### **KeyWord**␣**Numerical Label** Commands — (Numerical Label obtained from 'list' command)
     
 ### `mark`
 
