@@ -7,6 +7,7 @@ import froggy.parser.Parser;
 import froggy.storage.Storage;
 import froggy.task.TaskList;
 import froggy.ui.Ui;
+import javafx.application.Platform;
 
 
 /**
@@ -59,21 +60,23 @@ public class Froggy {
         }
     }
 
-
     /**
      * Returns the response generated from the bot.
      */
     public String getResponse(String input) {
-        String output = "";
         try {
             Command c = Parser.parse(input);
-            output = c.execute(tasks, ui, storage);
-        } catch (FroggyException e) {
-            ui.showError(e.getMessage());
+            String output = c.execute(tasks, ui, storage);
+            if (c.isExit()) {
+                Thread.sleep(500);
+                Platform.exit();
+            }
+            return output;
+        } catch (FroggyException | InterruptedException e) {
+            return ui.showError(e.getMessage());
         } finally {
             ui.showLine();
         }
-        return output;
     }
 
 }

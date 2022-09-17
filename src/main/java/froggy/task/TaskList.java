@@ -135,7 +135,7 @@ public class TaskList {
      */
     public Task updateTask(int index, String typeOfUpdate, String newValue) {
         assert(index > 0 && index < tasks.size());
-        if (Objects.equals(typeOfUpdate, "/dateTime")) {
+        if (Objects.equals(typeOfUpdate, "/date")) {
             getTask(index).setDateAndTime(LocalDate.parse(newValue));
         }
         if (Objects.equals(typeOfUpdate, "/description")) {

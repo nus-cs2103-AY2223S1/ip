@@ -1,5 +1,6 @@
 package froggy.parser;
 
+import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 import froggy.exception.FroggyException;
@@ -45,20 +46,23 @@ public class Parser {
                 String[] taskDetails = commands[1].split(" /by ");
                 return new AddCommand(commands[0], taskDetails[0], taskDetails[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new FroggyException("The description or date time of a deadline cannot be empty.");
-            }
+                throw new FroggyException("The description or date time of a deadline cannot be empty.\n" +
+                        "The format should be in deadline TASK_NAME /by yyyy-mm-dd");
+            } 
         } else if (Objects.equals(commands[0], "event")) {
             try {
                 String[] taskDetails = commands[1].split(" /at ");
                 return new AddCommand(commands[0], taskDetails[0], taskDetails[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new FroggyException("The description or date time of an event cannot be empty.");
+                throw new FroggyException("The description or date time of an event cannot be empty.\n" +
+                        "The format should be in event TASK_NAME /at yyyy-mm-dd");
             }
         } else if (Objects.equals(commands[0], "todo")) {
             try {
                 return new AddCommand(commands[0], commands[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new FroggyException("The description of a todo cannot be empty.");
+                throw new FroggyException("The description of a todo cannot be empty.\n" +
+                        "The format should be in todo TASK_NAME");
             }
         } else if (Objects.equals(commands[0], "find")) {
             try {
@@ -73,9 +77,9 @@ public class Parser {
                 String[] taskDetails = commands[1].split(" ", 2);
                 String[] updateDetails = new String[0];
 
-                if (taskDetails[1].contains("/dateTime")) {
-                    updateDetails = taskDetails[1].split("/dateTime ", 2);
-                    return new UpdateCommand(Integer.parseInt(taskDetails[0]), "/dateTime", updateDetails[1]);
+                if (taskDetails[1].contains("/date")) {
+                    updateDetails = taskDetails[1].split("/date ", 2);
+                    return new UpdateCommand(Integer.parseInt(taskDetails[0]), "/date", updateDetails[1]);
                 } else if (taskDetails[1].contains("/description")) {
                     updateDetails = taskDetails[1].split("/description ", 2);
                     return new UpdateCommand(Integer.parseInt(taskDetails[0]), "/description", updateDetails[1]);

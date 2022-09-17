@@ -3,6 +3,7 @@ package froggy.command;
 import froggy.ui.Ui;
 import froggy.storage.Storage;
 import froggy.task.TaskList;
+import javafx.application.Platform;
 
 /**
  * A class which extends from the Command abstract class.
