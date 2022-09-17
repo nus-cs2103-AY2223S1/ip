@@ -5,7 +5,7 @@ line, this app is meant for you!
 
 ## Getting Started
 
-1. Download the JAR file from the github release
+1. Download the JAR file from the GitHub release
 2. Run the app
 3. You're ready to use the chatbot to improve your productivity!
 
