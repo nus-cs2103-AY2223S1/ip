@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Utility functions for parsing user input.
+ */
 public class Parser {
     /**
      * Splits the string on the first occurrence of target.

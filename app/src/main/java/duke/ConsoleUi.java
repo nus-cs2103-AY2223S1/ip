@@ -3,12 +3,16 @@ package duke;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * A console-based user interface handler.
+ */
 public class ConsoleUi extends Ui {
     private Scanner sc;
     private boolean isAlive;
 
     /**
      * Creates a new console-based UI handler.
+     * @param ia The input acceptor where inputs are sent
      */
     public ConsoleUi(InputAcceptor ia) {
         super(ia);

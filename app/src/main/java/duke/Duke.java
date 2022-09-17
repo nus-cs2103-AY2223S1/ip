@@ -2,6 +2,9 @@ package duke;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * The Duke chatbot logic handler.
+ */
 public class Duke implements InputAcceptor {
     private Ui ui;
     private Storage storage;
@@ -10,6 +13,7 @@ public class Duke implements InputAcceptor {
 
     /**
      * Creates a new Duke chatbot.
+     * @param fileName The file to save the task list to.
      */
     public Duke(String fileName) {
         storage = new Storage(fileName);
@@ -150,6 +154,10 @@ public class Duke implements InputAcceptor {
         }
     }
 
+    /**
+     * The entry point for the console version of Duke.
+     * @param args Command-line parameters.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke("tasks.txt");
         duke.setUi(new ConsoleUi(duke));

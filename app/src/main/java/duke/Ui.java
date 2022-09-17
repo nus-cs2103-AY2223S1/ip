@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * A generic user interface handler.
+ */
 public abstract class Ui {
     private InputAcceptor inputAcceptor;
     /**

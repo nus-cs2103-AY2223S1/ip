@@ -3,6 +3,9 @@ package duke;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A container for tasks representing the user's list of tasks.
+ */
 public class TaskList {
     private List<Task> tasks;
 

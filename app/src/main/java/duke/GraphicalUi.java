@@ -12,6 +12,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * A graphical-based user interface handler.
+ */
 public class GraphicalUi extends Ui {
     private Stage stage;
     private ScrollPane scrollPane;
