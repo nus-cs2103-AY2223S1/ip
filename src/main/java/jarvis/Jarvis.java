@@ -32,8 +32,7 @@ public class Jarvis {
                 e.printStackTrace();
             }
             parser.farewell();
-        }
-        catch (JarvisException e) {
+        } catch (JarvisException e) {
             System.out.println((e));
         }
     }

@@ -6,7 +6,6 @@ package jarvis.task;
 public abstract class Task {
     public String description;
     public boolean isDone;
-
     public static int count = 0;
 
     /**
