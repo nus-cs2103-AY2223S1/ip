@@ -6,13 +6,13 @@ public class Duke {
     private static TaskList taskList;
     private static Ui ui;
 
-    private String workingDir = System.getProperty("user.dir");
-    private String pathToDuke = workingDir + "/src/main" + "/KiwiList.txt";
-
     public Duke() {
 
         ui = new Ui();
-        
+
+        String workingDir = System.getProperty("user.dir");
+        System.out.println(workingDir);
+        String pathToDuke = workingDir + "/out/KiwiList.txt";
         storage = new Storage(pathToDuke);
 
         taskList = storage.load();

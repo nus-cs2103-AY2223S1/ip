@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             stage.setTitle("Kiwi");
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/kiwi.png")));
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/kiwi.png")));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
