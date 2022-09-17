@@ -1,6 +1,6 @@
 # User Guide for `Zuke`
 `Zuke` is a task manager that helps you keep track of different types of tasks.
-It provides the flexibility to use the CLI :computer: or the GUI :sparkles:.<br><br>
+It provides the flexibility to use the CLI 💻 or the GUI ✨.<br><br>
 **Note: Release v0.2 will be be the GUI only!**
 
 ## CLI or GUI?
@@ -16,7 +16,7 @@ user-friendly to use though, since it looks like a chat bot's interface.
 * `deadline`: a task with a description and deadline
 * `event`: a task with a description and time of occurrence
 
-### Create and delete tasks :heavy_plus_sign: :heavy_minus_sign:
+### Create and delete tasks ➕ ➖
 Add each type of task using the `task`, `deadline` or `event` commands.<br>
 
 Delete a task with the `delete` command.
@@ -24,19 +24,19 @@ Delete a task with the `delete` command.
 ### List tasks 
 List your entire task list with the command `list`.
 
-### Mark a task as completed :white_check_mark:
+### Mark a task as completed ✅
 Mark a task as completed with the `mark` command. You can also unmark a task
 using the `unmark` command.
 
-### Tag a task :hash:
+### Tag a task #️⃣
 While adding tasks, you can specify a tag for the task (e.g. `todo homework #cs2103t`).
 
-### Search for tasks :microscope:
+### Search for tasks 🔍
 Search for tasks that contains matching words in their descriptions with the `find` command.
 
 ## Usage
 
-### `todo` - Create a todo task :heavy_plus_sign:
+### `todo` - Create a todo task ➕
 
 Creates a todo task and adds it to the task list.
 
@@ -59,7 +59,7 @@ Got it. I've added this task:
 ```
 
 
-### `deadline` - Create a deadline task :heavy_plus_sign:
+### `deadline` - Create a deadline task ➕
 
 Creates a task with a deadline and adds it to the task list.
 
@@ -83,7 +83,7 @@ Got it. I've added this task:
     [D][<tag>][ ] <description> (by: <dd MMM yyyy, HHmm)
 ```
 
-### `event` - Create an event task :heavy_plus_sign:
+### `event` - Create an event task ➕
 
 Creates an event and adds it to the task list.
 
@@ -107,7 +107,7 @@ Got it. I've added this task:
     [E][<tag>][ ] <description> (at: <dd MMM yyyy, HHmm)
 ```
 
-### `delete` - Delete a task :heavy_minus_sign:
+### `delete` - Delete a task ➖
 
 Delete a task from the task list.
 
@@ -142,7 +142,7 @@ Here are the tasks in your list:
 ```
 
 
-### `mark` - Mark a task as completed :white_check_mark:
+### `mark` - Mark a task as completed ✅
 
 Marks a task in the task list as completed.
 
@@ -178,7 +178,7 @@ OK, I've marked this task as not done yet:
   [T] [ ] Cut hair
 ```
 
-### `find` - Search for a task :microscope:
+### `find` - Search for a task 🔍
 
 Search for tasks in the task list that contains the given keyword in its description. 
 
@@ -196,7 +196,7 @@ Here are the matching tasks in your list:
 1. [T] [ ] Cut hair
 ```
 
-### `bye` - Exits program :wave:
+### `bye` - Exits program 👋
 
 Terminates the program, saving the task list for future use.
 
