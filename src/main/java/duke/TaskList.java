@@ -66,7 +66,7 @@ public class TaskList {
         sb.append(String.format("Gotcha. I have added this task:\n"));
 
         fo.addTaskToFile(task);
-        sb.append("\t" + task); // exploiting polymorphism
+        sb.append("\t" + task + "\n"); // exploiting polymorphism
         sb.append(getCountInWords());
         return sb.toString();
     }
@@ -80,7 +80,7 @@ public class TaskList {
     }
 
     public String getCountInWords() {
-        return String.format("\tNow you have %d task%s in the list",
+        return String.format("Now you have %d task%s in the list",
                 count(), count() > 1 ? "s" : "");
     }
 
@@ -104,7 +104,7 @@ public class TaskList {
         if (sb.toString().equals("")) {
             return "Sorry, I could not find any tasks with your keyword :(";
         } else {
-            sb.insert(0, "Here are your results: ");
+            sb.insert(0, "Here are your results: \n");
             return sb.toString();
         }
     }
