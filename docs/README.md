@@ -20,9 +20,13 @@ See the [Supported Natural Dates](#supported-natural-dates) section for more det
 
 Leverage statistics about the items managed by the App! Bobo breaks down
 your tasks for you and allows you to keep track of your progress with
-data visualisation.
+data visualisation using pie charts and bar charts.
 
-<img src="images/Stats.png" width="400"/>
+<div display="flex">
+  <img src="images/Stats.png" width="300"/>
+  <img src="images/BarChartDay.png" width="300"/>
+  <img src="images/BarChartWeek.png" width="300"/>
+</div>
 
 ### Schedule your day
 
