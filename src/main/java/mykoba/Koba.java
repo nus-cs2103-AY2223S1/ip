@@ -1,6 +1,7 @@
 package mykoba;
 
 import java.io.File;
+import java.io.IOException;
 
 import gui.Launcher;
 
@@ -29,6 +30,8 @@ public class Koba {
             ui = new Ui(tasklist, storage);
         } catch (KobaException e) {
             System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -43,7 +46,6 @@ public class Koba {
             Command c = Parser.parse(input);
             assert c instanceof Command;
             String response = c.execute(tasklist, ui, storage);
-            assert !response.equals("");
             return response;
         } catch (KobaException e) {
             return e.getMessage();

@@ -18,7 +18,8 @@ import task.ToDo;
  */
 public class Storage {
     //this is the physical file saving the items
-    private final File storageFile;
+    private File storageFile;
+    private final String FILE_NAME = "./src/main/data/storage.txt";
 
     /**
      * Constructs a storage object.
@@ -34,8 +35,11 @@ public class Storage {
      *
      * @param taskLists the taskList you want to store the data in.
      */
-    public void loadFromFile(TaskList taskLists) throws KobaException {
+    public void loadFromFile(TaskList taskLists) throws KobaException, IOException {
         try {
+            if (!storageFile.exists()) {
+                storageFile = createSaveFile();
+            }
             BufferedReader reader = new BufferedReader(new FileReader(storageFile));
             String currentLine;
             boolean isTaskCompleted;
@@ -83,5 +87,12 @@ public class Storage {
         } catch (IOException e) {
             System.out.print("Invalid Path for storage file");
         }
+    }
+
+    private File createSaveFile() throws IOException {
+        File newFile = new File(FILE_NAME);
+        boolean success = newFile.createNewFile();
+        assert success == true;
+        return newFile;
     }
 }

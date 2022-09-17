@@ -31,7 +31,10 @@ public class Ui {
      * @return a string saying hi.
      */
     public String welcome() {
-        return (wrapper("Hello, I'm Koba\nWelcome back!"));
+        String dragon = "";
+
+
+        return (wrapper(dragon + "Hello, I'm Koba\nWelcome back!"));
     }
 
     /**
