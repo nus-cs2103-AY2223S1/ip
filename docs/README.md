@@ -80,7 +80,7 @@ Now you have X tasks in the list.
 ```
 Note: X is the number of tasks in the current list.
 
-### `evetn` - Add event task
+### `event` - Add event task
 
 `event Task_Description /from Start_time /to End_time` 
 
@@ -126,7 +126,7 @@ You have X tasks in your list:
 ```
 Note: X is the number of tasks in the current list.
 
-### `delete` - delete event task
+### `delete` - Delete event task
 
 `delete [0, *, Task_Index]`
 
@@ -139,9 +139,9 @@ Note: Indexing follows that of the `list` command and starts at 1.
 **Example of usage:** 
 
 Given the current list:
-        1. | T |  | task-1
-        2. | T |  | task-2
-        3. | T |  | task-3
+* [T][ ]  task-1
+* [T][ ]  task-2
+* [T][ ]  task-3
 
 1. `delete 1`
 2. `delete 1 2`
@@ -173,7 +173,7 @@ Now you have 0 tasks in the list.
 
 Note: X is the number of tasks in the current list.
 
-### `mark` - mark event task
+### `mark` - Mark event task
 
 `mark [0, *, Task_Index]`
 
@@ -186,9 +186,9 @@ Note: Indexing follows that of the `list` command and starts at 1.
 **Example of usage:** 
 
 Given the current list:
-        1. | T |  | task-1
-        2. | T |  | task-2
-        3. | T |  | task-3
+* [T][ ]  task-1
+* [T][ ]  task-2
+* [T][ ]  task-3
 
 1. `mark 1`
 2. `mark 1 2`
@@ -220,7 +220,7 @@ Now you have 3 tasks in the list.
 
 Note: Y is the number of tasks in the current list.
 
-### `umark` - delete event task
+### `unmark` - unmark event task
 
 `unmark [0, *, Task_Index]`
 
@@ -233,10 +233,9 @@ Note: Indexing follows that of the `list` command and starts at 1.
 **Example of usage:** 
 
 Given the current list:
-        1. | T |  | task-1
-        2. | T |  | task-2
-        3. | T |  | task-3
- 
+* [T][X]  task-1
+* [T][X]  task-2
+* [T][X]  task-3
 
 1. `unmark 1`
 2. `unmark 1, 2`
@@ -278,9 +277,9 @@ Note: The index of the tasks returned is same as the one return by `list` comman
 **Example of usage:** 
 
 Given the current list:
-        1. | T |  | hello world
-        2. | T |  | hello hello
-        2. | T |  | helloworld
+* [T][ ]  hello world
+* [T][ ]  hellohello
+* [T][ ]  helloworld
 
 1. `find hello`
 2. `find hello world`
