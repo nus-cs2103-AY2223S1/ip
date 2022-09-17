@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-
 /**
  * A GUI for Duke using FXML.
  */
@@ -22,6 +21,8 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            stage.setTitle("Duke");
+            stage.setResizable(false);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().makeDuke();
             stage.show();
