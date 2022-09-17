@@ -1,7 +1,7 @@
 # Mort User Guide
-***
+
 ## Contents
-***
+
 - [Features](#features)
 
   - [Adding a to-do: `todo`](#adding-a-to-do-todo)
@@ -19,7 +19,7 @@
 - [Usage](#usage)
 
 ## Features
-***
+
 ### Create To-Dos
 
 Mort grudgingly creates simple to-dos for less important tasks.
@@ -33,7 +33,6 @@ Mort reluctantly keeps track of important deadlines and events.
 Mort unenthusiastically shows you the tasks you have scheduled for a particular day.
 
 ## Command Summary
-***
 
 | Action            | Format                                     |
 |-------------------|--------------------------------------------|
@@ -49,7 +48,7 @@ Mort unenthusiastically shows you the tasks you have scheduled for a particular 
 | **Exit**          | `bye`                                      |
 
 ## Usage
-***
+
 ### Adding a to-do: `todo`
 
 Adds a to-do to the task list.
