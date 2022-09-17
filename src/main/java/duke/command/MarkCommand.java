@@ -9,9 +9,12 @@ public class MarkCommand extends Command {
     private int index;
     private boolean isDone;
 
-    public MarkCommand(int index, boolean isDone) {
+    public MarkCommand(String indexStr, boolean isDone) throws DukeException {
         super();
-        this.index = index;
+        if (indexStr.length() == 0) {
+            throw new DukeException("Oops, no task given to mark as done.");
+        }
+        this.index = Integer.parseInt(indexStr) - 1;
         this.isDone = isDone;
     }
 
