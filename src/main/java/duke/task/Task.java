@@ -111,8 +111,8 @@ public abstract class Task {
             return day > 0 && day <= 31 && month <= 12 && month > 0
                     && year > 0 && hours <= 23 && hours >= 0 && minutes >= 0 && minutes <= 59;
         } else {
-            throw new DukeException("OOPS! Format must be <dd/mm/yyyy> <time> with time being 24hours. " +
-                    "\nExample: 12/02/2022 1800");
+            throw new DukeException("OOPS! Format must be <dd/mm/yyyy> <time> with time being 24hours. "
+                    + "\nExample: 12/02/2022 1800");
         }
     }
 
