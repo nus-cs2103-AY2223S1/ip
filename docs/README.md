@@ -21,19 +21,19 @@ To add a todo:
 todo description
 
 To add a deadline: 
-deadline description / by YYYY-MM-DD
+deadline description / YYYY-MM-DD
 
 To add an event: 
-event description / at YYYY-MM-DD
+event description / YYYY-MM-DD
 ```
 #### Examples:
 ```
 todo read book Assignment
-deadline finsih cs2103 assignment / by 2022-09-16
-event open house / at 2022-08-01
+deadline finsih cs2103 assignment / 2022-09-16
+event open house / 2022-08-01
 ```
 #### outcome:
-![picture alt](https://i.postimg.cc/0jyCBxjn/add.png)
+![picture alt](https://i.postimg.cc/vH7wRZkY/add.png)
 
 <br/><br/>
 ### 2.Listing all tasks

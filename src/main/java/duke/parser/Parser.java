@@ -132,10 +132,11 @@ public class Parser {
             throw new EmptyDateException();
         }
         String description = inputs[0];
-        String dateDescription = inputs[1];
+        String dateDescription = inputs[1].trim();
         LocalDate date;
         try {
-            date = LocalDate.parse(extractDateByKeyword("by", dateDescription));
+            date = LocalDate.parse(dateDescription);
+
         } catch (DateTimeParseException e) {
             throw new InvalidDateException();
         }
@@ -153,10 +154,10 @@ public class Parser {
             throw new EmptyDateException();
         }
         String description = inputs[0];
-        String dateDescription = inputs[1];
+        String dateDescription = inputs[1].trim();
         LocalDate date;
         try {
-            date = LocalDate.parse(extractDateByKeyword("at", dateDescription));
+            date = LocalDate.parse(dateDescription);
         } catch (DateTimeParseException e) {
             throw new InvalidDateException();
         }
