@@ -12,10 +12,19 @@ public class Parser {
             + "What can I do for you today?";
     private static String farewell = "Goodbye, have a good day.";
     private TaskList tasks;
+
+    /**
+     * Returns a new Parser object with the given list of tasks.
+     * @param tasks Current list of tasks.
+     */
     public Parser(TaskList tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Reads and executes commands given by user.
+     * @throws JarvisException if command entered is not recognised.
+     */
     public void readCommand() throws JarvisException {
         while (true) {
             //receive user input
@@ -113,10 +122,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Prints Introduction message.
+     */
     public void introduction() {
         System.out.println(introduction);
     }
 
+    /**
+     * Prints farewell message.
+     */
     public void farewell() {
         System.out.print(farewell);
     }
