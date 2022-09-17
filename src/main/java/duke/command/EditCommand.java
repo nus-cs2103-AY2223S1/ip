@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.exception.DukeException;
-import duke.exception.InvalidIndexException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -18,7 +17,7 @@ public class EditCommand extends Command {
             + "\nEdit a task, edit <index> <new task>"
             + "\nExample: edit 1 todo wash clothes";
     private static final int OFFSET = -1;
-    private int indexOfTaskToEdit;
+    private final int indexOfTaskToEdit;
 
     private final Task editedTask;
 
@@ -29,16 +28,17 @@ public class EditCommand extends Command {
      * @param editedTask task
      */
     public EditCommand(int indexOfTaskToEdit, Task editedTask) {
-        this.indexOfTaskToEdit = indexOfTaskToEdit;
+        this.indexOfTaskToEdit = indexOfTaskToEdit + OFFSET;
         this.editedTask = editedTask;
     }
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws DukeException {
 
-        indexOfTaskToEdit += OFFSET;
-
-        isValidIndex(tasks);
+        if (!isValidIndex(tasks)) {
+            ui.showIndexOutOfBound(tasks.getNumOfRemainingTasks());
+            return;
+        }
 
         Task taskNeedsEdit = tasks.getTasks().get(indexOfTaskToEdit);
         tasks.edit(indexOfTaskToEdit, editedTask);
@@ -46,9 +46,10 @@ public class EditCommand extends Command {
         ui.showEditedMessage(taskNeedsEdit, editedTask);
     }
 
-    private void isValidIndex(TaskList tasks) throws InvalidIndexException {
-        if (indexOfTaskToEdit <= 0 || indexOfTaskToEdit > tasks.getNumOfRemainingTasks()) {
-            throw new InvalidIndexException();
+    private boolean isValidIndex(TaskList tasks) {
+        if (indexOfTaskToEdit < 0 || indexOfTaskToEdit >= tasks.getNumOfRemainingTasks()) {
+            return false;
         }
+        return true;
     }
 }

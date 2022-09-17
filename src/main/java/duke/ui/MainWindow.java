@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
 public class MainWindow extends AnchorPane {
 
     private static final String TERMINATE = "Bye. See you next time.";
+
+    private static final String HELP = "Check the website for help";
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -62,8 +64,13 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
 
-        if (response.trim().equals(TERMINATE)) {
+        if (response.strip().equals(TERMINATE)) {
             Platform.exit();
         }
+
+        if (response.strip().equals(HELP)) {
+
+        }
+
     }
 }

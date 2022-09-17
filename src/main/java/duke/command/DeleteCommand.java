@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.exception.DukeException;
-import duke.exception.InvalidIndexException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -32,17 +31,21 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws DukeException {
 
-        isValidIndex(tasks);
+        if (!isValidIndex(tasks)) {
+            ui.showIndexOutOfBound(tasks.getNumOfRemainingTasks());
+            return;
+        }
 
         Task taskToDelete = tasks.deleteTask(indexOfTaskToDelete);
         storage.save(tasks);
         ui.showDeletedTask(taskToDelete, tasks.getNumOfRemainingTasks());
     }
 
-    private void isValidIndex(TaskList tasks) throws InvalidIndexException {
-        if (indexOfTaskToDelete < 0 || indexOfTaskToDelete > tasks.getNumOfRemainingTasks()) {
-            throw new InvalidIndexException();
+    private boolean isValidIndex(TaskList tasks) {
+        if (indexOfTaskToDelete < 0 || indexOfTaskToDelete >= tasks.getNumOfRemainingTasks()) {
+            return false;
         }
+        return true;
     }
 
 }

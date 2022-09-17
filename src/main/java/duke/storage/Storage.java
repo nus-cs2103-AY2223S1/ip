@@ -19,16 +19,15 @@ import duke.task.TaskList;
  */
 public class Storage {
 
-    private static final String DEFAULT_STORAGE_FILE = "tasklist.txt";
+    private static final String DEFAULT_STORAGE_FILE = "task.txt";
     private static final String CURRENT_DIRECTORY = "user.dir";
-
-    private Path path;
+    private static final String currentDir = System.getProperty(CURRENT_DIRECTORY);
+    private final Path path;
 
     /**
      * Constructs a Storage Object with specifying the current directory as the directory to put the storage file.
      */
     public Storage() {
-        String currentDir = System.getProperty(CURRENT_DIRECTORY);
         this.path = Paths.get(currentDir, DEFAULT_STORAGE_FILE);
     }
 
@@ -72,13 +71,10 @@ public class Storage {
      * @throws FileIoException throws an exception when encountering error in creating the file
      */
     public void create() throws FileIoException {
-        String currentDir = System.getProperty(CURRENT_DIRECTORY);
-        Path newPath = Paths.get(currentDir, DEFAULT_STORAGE_FILE);
-        File newFile = newPath.toFile();
+        File newFile = path.toFile();
         try {
             boolean hasCreated = newFile.createNewFile();
             simpleFileCreationCheck(hasCreated);
-            this.path = newPath;
         } catch (IOException e) {
             throw new FileIoException("Error creating file: " + path);
         }

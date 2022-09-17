@@ -45,6 +45,10 @@ public class Parser {
     private static final Pattern EDIT_FORMAT = Pattern.compile("(?<index>\\S++)(?<newTask>.*)");
     private static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<description>.*)/by(?<date>.*)");
     private static final Pattern EVENT_FORMAT = Pattern.compile("(?<description>.*)/at(?<date>.*)");
+
+    //@@author wweqg-reused
+    //Reused from https://github.com/RussellDash332/ip/blob/master/src/main/java/stashy/parser/Parser.java
+    //with minor modification, it is a pretty good way to organise and extend the acceptable date format.
     private static final String[] ACCEPTABLE_DATETIME_FORMATS =
         {
         "MMM dd yyyy HHmm", "MMM dd yyyy HH:mm",
@@ -55,6 +59,7 @@ public class Parser {
         "yyyy-MM-dd HH:mm", "dd MMM yyyy HHmm",
         "dd MMM yyyy HH:mm", "MMM dd, yyyy HHmm", "MMM dd, yyyy HH:mm"
         };
+    //@@author
 
     /***
      * Parses the user input to specific command
@@ -198,7 +203,7 @@ public class Parser {
      */
     private static Command parseToAddTodoCommand(String arguments) throws InvalidTodoTaskException {
         if (arguments.isEmpty()) {
-            throw new InvalidTodoTaskException("Please provide description for the task \n"
+            throw new InvalidTodoTaskException("Please provide description for the task \n" + "\n"
                     + AddTodoCommand.MESSAGE_USAGE);
         }
         return new AddTodoCommand(new Todo(arguments));
@@ -208,7 +213,7 @@ public class Parser {
             IllegalDateFormatException {
         final Matcher matcher = DEADLINE_FORMAT.matcher(arguments.strip());
         if (!matcher.matches()) {
-            throw new InvalidDeadlineTaskException("Check that you have entered with correct syntax \n"
+            throw new InvalidDeadlineTaskException("Check that you have entered with correct syntax \n" + "\n"
                     + AddDeadlineCommand.MESSAGE_USAGE);
         }
 

@@ -1,8 +1,0 @@
-Todo | 0 | run | null
-Deadline | 0 | run | 2018-10-10T10:30
-Event | 0 | dinner | 2019-10-15T10:20
-Todo | 0 | 1 | null
-Todo | 0 | 2 | null
-Todo | 0 | 3 | null
-Todo | 0 | 4 | null
-Todo | 0 | r | null

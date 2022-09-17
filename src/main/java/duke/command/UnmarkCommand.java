@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.exception.FileIoException;
-import duke.exception.InvalidIndexException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -32,9 +31,12 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) throws InvalidIndexException, FileIoException {
+    public void execute(TaskList tasks, Storage storage, Ui ui) throws FileIoException {
 
-        assertIsValidIndex(tasks);
+        if (!isValidIndex(tasks)) {
+            ui.showIndexOutOfBound(tasks.getNumOfRemainingTasks());
+            return;
+        }
 
         Task taskToMark = getTask(tasks);
         storage.save(tasks);
@@ -45,10 +47,11 @@ public class UnmarkCommand extends Command {
         return tasks.unmarkTask(indexOfTaskToUnmark);
     }
 
-    private void assertIsValidIndex(TaskList tasks) throws InvalidIndexException {
-        if (indexOfTaskToUnmark < 0 || indexOfTaskToUnmark > tasks.getNumOfRemainingTasks()) {
-            throw new InvalidIndexException();
+    private boolean isValidIndex(TaskList tasks) {
+        if (indexOfTaskToUnmark < 0 || indexOfTaskToUnmark >= tasks.getNumOfRemainingTasks()) {
+            return false;
         }
+        return true;
     }
 
 }

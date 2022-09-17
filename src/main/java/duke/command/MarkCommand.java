@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.exception.FileIoException;
-import duke.exception.InvalidIndexException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -31,9 +30,12 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) throws InvalidIndexException, FileIoException {
+    public void execute(TaskList tasks, Storage storage, Ui ui) throws FileIoException {
 
-        isValidIndex(tasks);
+        if (!isValidIndex(tasks)) {
+            ui.showIndexOutOfBound(tasks.getNumOfRemainingTasks());
+            return;
+        }
 
         Task taskToMark = getTask(tasks);
         storage.save(tasks);
@@ -44,10 +46,11 @@ public class MarkCommand extends Command {
         return tasks.markTask(indexOfTaskToMark);
     }
 
-    private void isValidIndex(TaskList tasks) throws InvalidIndexException {
-        if (indexOfTaskToMark < 0 || indexOfTaskToMark > tasks.getNumOfRemainingTasks()) {
-            throw new InvalidIndexException();
+    private boolean isValidIndex(TaskList tasks) {
+        if (indexOfTaskToMark < 0 || indexOfTaskToMark >= tasks.getNumOfRemainingTasks()) {
+            return false;
         }
+        return true;
     }
 
 }
