@@ -21,6 +21,9 @@ public class Duke {
     /** The ui which the user interact with. */
     private Ui ui;
 
+    /** The name of this application. */
+    public static final String APPLICATION_NAME = "Duke";
+
     /**
      * Constructs the Duke task list agent.
      * 
