@@ -2,7 +2,6 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * A TaskList class that encapsulates the information and actions that are performed by the task list.
@@ -39,7 +38,7 @@ public class TaskList {
     /**
      * Gets the number of tasks in the list.
      *
-     * @return the number of tasks.
+     * @return the number of tasks
      */
     public Integer getNumOfRemainingTasks() {
         return tasks.size();
@@ -58,7 +57,7 @@ public class TaskList {
     }
 
     /**
-     * Marks a task in the task list as not done
+     * Marks a task in the task list as not done.
      *
      * @param index the position of the task in the list
      * @return the selected Task object
@@ -70,7 +69,7 @@ public class TaskList {
     }
 
     /**
-     * Deletes a task in the task list
+     * Deletes a task in the task list.
      *
      * @param index the position of the task that needs to be deleted
      * @return the deleted task
@@ -82,7 +81,7 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the current task list
+     * Adds a task to the current task list.
      *
      * @param task the task that needs to be added.
      */
@@ -91,7 +90,7 @@ public class TaskList {
     }
 
     /**
-     * Finds all the tasks that contain a specific keyword
+     * Finds all the tasks that contain a specific keyword.
      * @param stringToFind the keyword
      * @return the matched tasks
      */
@@ -106,8 +105,8 @@ public class TaskList {
     }
 
     /**
-     * Reschedules the selected task to a new task
-     * @param indexOfTaskToEdit the index of the task to be rescheduled
+     * Edits the selected task to a new task.
+     * @param indexOfTaskToEdit the index of the task to be edited
      * @param editedTask the new task
      */
     public void edit(int indexOfTaskToEdit, Task editedTask) {

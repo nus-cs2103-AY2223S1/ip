@@ -2,10 +2,13 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.task.Task;
+import duke.task.Deadline;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * A command class that encapsulates the action of adding a deadline task into the task list.
+ */
 public class AddDeadlineCommand extends AddCommand {
 
     public static final String COMMAND = "DEADLINE";
@@ -15,12 +18,12 @@ public class AddDeadlineCommand extends AddCommand {
             + "\n   Example: deadline wash clothes /by Dec 21 2022 1030";
 
     /**
-     * Constructs an AddCommand instance
+     * Constructs an AddDeadlineCommand instance.
      *
-     * @param taskToAdd Task instance that needs to be added.
+     * @param task deadline task
      */
-    public AddDeadlineCommand(Task taskToAdd) {
-        super(taskToAdd);
+    public AddDeadlineCommand(Deadline task) {
+        super(task);
     }
 
     @Override

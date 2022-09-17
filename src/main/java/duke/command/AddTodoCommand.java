@@ -2,10 +2,13 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.task.TaskList;
+import duke.task.Todo;
 import duke.ui.Ui;
 
+/**
+ * A command class that encapsulates the action of adding a todo task into the task list.
+ */
 public class AddTodoCommand extends AddCommand {
 
     public static final String COMMAND = "TODO";
@@ -15,12 +18,12 @@ public class AddTodoCommand extends AddCommand {
                 + "\n   Example: todo wash clothes ";
 
     /**
-     * Constructs an AddCommand instance
+     * Constructs an AddCommand instance.
      *
-     * @param taskToAdd Task instance that needs to be added.
+     * @param task Todo task
      */
-    public AddTodoCommand(Task taskToAdd) {
-        super(taskToAdd);
+    public AddTodoCommand(Todo task) {
+        super(task);
     }
 
     @Override

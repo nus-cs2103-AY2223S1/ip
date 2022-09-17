@@ -16,8 +16,8 @@ public class StorageEncoder {
     /**
      * Encodes the given TaskList Object into a List of String.
      *
-     * @param taskList the TaskList object.
-     * @return the list of String.
+     * @param taskList the TaskList object
+     * @return the list of String
      */
     public static List<String> encode(TaskList taskList) {
         List<Task> tasks = taskList.getTasks();

@@ -2,7 +2,6 @@ package duke.parser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,12 +11,12 @@ import duke.command.AddEventCommand;
 import duke.command.AddTodoCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
+import duke.command.EditCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
-import duke.command.EditCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.exception.IllegalDateFormatException;
@@ -42,15 +41,29 @@ import duke.task.Todo;
  */
 public class Parser {
 
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S++)(?<arguments>.*)");
+    private static final Pattern EDIT_FORMAT = Pattern.compile("(?<index>\\S++)(?<newTask>.*)");
+    private static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<description>.*)/by(?<date>.*)");
+    private static final Pattern EVENT_FORMAT = Pattern.compile("(?<description>.*)/at(?<date>.*)");
+    private static final String[] ACCEPTABLE_DATETIME_FORMATS =
+        {
+        "MMM dd yyyy HHmm", "MMM dd yyyy HH:mm",
+        "yyyy-MM-dd'T'HH:mm", "dd/MM/yyyy HHmm",
+        "dd/MM/yyyy HH:mm", "yyyy/MM/dd HHmm",
+        "yyyy/MM/dd HH:mm", "yyyy/MM/dd'T'HHmm",
+        "yyyy/MM/dd'T'HH:mm", "yyyy-MM-dd HHmm",
+        "yyyy-MM-dd HH:mm", "dd MMM yyyy HHmm",
+        "dd MMM yyyy HH:mm", "MMM dd, yyyy HHmm", "MMM dd, yyyy HH:mm"
+        };
+
     /***
-     * Parses the user input to specific command.
+     * Parses the user input to specific command
      * @param fullCommand User input
-     * @return Command that needs to be executed.
-     * @throws DukeException throws an exception when there is unexpected input.
+     * @return Command that needs to be executed
+     * @throws DukeException throws an exception when there is unexpected input
      */
     public static Command parse(String fullCommand) throws DukeException {
 
-        final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S++)(?<arguments>.*)");
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(fullCommand.strip());
         if (!matcher.matches()) {
             throw new IllegalSyntaxException("Invalid Command Syntax");
@@ -119,7 +132,7 @@ public class Parser {
         }
     }
 
-    private static Command parseToMarkCommand(String arguments) throws InvalidMarkCommand{
+    private static Command parseToMarkCommand(String arguments) throws InvalidMarkCommand {
         try {
             int indexToMark = parseToTaskIndex(arguments);
             return new MarkCommand(indexToMark);
@@ -134,7 +147,7 @@ public class Parser {
      *
      * @param commandDescription command description
      * @return the index of a task
-     * @throws IllegalInputException When user did not include an index.
+     * @throws IllegalInputException When user did not include an index
      */
     public static int parseToTaskIndex(String commandDescription) throws IllegalInputException {
         if (commandDescription.matches("\\d++")) {
@@ -145,11 +158,10 @@ public class Parser {
     }
 
     private static Command parseToEditCommand(String arguments) throws DukeException {
-        final Pattern EDIT_FORMAT = Pattern.compile("(?<index>\\S++)(?<newTask>.*)");
         final Matcher matcher = EDIT_FORMAT.matcher(arguments.strip());
         if (!matcher.matches()) {
             throw new InvalidEditCommandException("Invalid syntax for edit command + \n"
-                        + EditCommand.MESSAGE_USAGE);
+                    + EditCommand.MESSAGE_USAGE);
         }
 
         final String index = matcher.group("index").strip();
@@ -168,7 +180,7 @@ public class Parser {
             throw new InvalidEditCommandException("Please enter a positive number for index + \n "
                     + EditCommand.MESSAGE_USAGE);
         } catch (IllegalSyntaxException syntaxError) {
-            throw new InvalidEditCommandException("Invalid syntax for edit command + \n"
+            throw new InvalidEditCommandException("Invalid syntax for edit command \n"
                     + EditCommand.MESSAGE_USAGE);
         } catch (ClassCastException classCastError) {
             throw new InvalidEditCommandException("Edit could only change the selected task to other task + \n"
@@ -193,9 +205,7 @@ public class Parser {
     }
 
     private static Command parseToAddDeadlineCommand(String arguments) throws InvalidDeadlineTaskException,
-                IllegalDateFormatException {
-
-        final Pattern DEADLINE_FORMAT = Pattern.compile("(?<description>.*)/by(?<date>.*)");
+            IllegalDateFormatException {
         final Matcher matcher = DEADLINE_FORMAT.matcher(arguments.strip());
         if (!matcher.matches()) {
             throw new InvalidDeadlineTaskException("Check that you have entered with correct syntax \n"
@@ -212,9 +222,7 @@ public class Parser {
 
 
     private static Command parseToAddEventCommand(String arguments) throws InvalidEventTaskException,
-                IllegalDateFormatException {
-
-        final Pattern EVENT_FORMAT = Pattern.compile("(?<description>.*)/at(?<date>.*)");
+            IllegalDateFormatException {
         final Matcher matcher = EVENT_FORMAT.matcher(arguments.strip());
         if (!matcher.matches()) {
             throw new InvalidEventTaskException("Check that you have entered with correct syntax \n"
@@ -230,21 +238,13 @@ public class Parser {
     }
 
     /**
-     * Parses the input String into LocalDate instance
+     * Parses the input String into LocalDate instance.
      *
-     * @param date the date that the user has entered.
+     * @param date the date that the user has entered
      * @return a local date object
-     * @throws IllegalDateFormatException throws an exception when the input date is not of correct format.
+     * @throws IllegalDateFormatException throws an exception when the input date is not of correct format
      */
     public static LocalDateTime parseToLocalDateTime(String date) throws IllegalDateFormatException {
-        final String[] ACCEPTABLE_DATETIME_FORMATS = {"MMM dd yyyy HHmm", "MMM dd yyyy HH:mm", "yyyy-MM-dd'T'HH:mm",
-                    "dd/MM/yyyy HHmm", "dd/MM/yyyy HH:mm",
-                    "yyyy/MM/dd HHmm", "yyyy/MM/dd HH:mm",
-                    "yyyy/MM/dd'T'HHmm", "yyyy/MM/dd'T'HH:mm",
-                    "yyyy-MM-dd HHmm", "yyyy-MM-dd HH:mm",
-                    "dd MMM yyyy HHmm", "dd MMM yyyy HH:mm",
-                    "MMM dd, yyyy HHmm", "MMM dd, yyyy HH:mm"};
-
         for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
             try {
                 return LocalDateTime.parse(date,

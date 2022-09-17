@@ -1,6 +1,5 @@
 package duke.task;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +13,7 @@ public abstract class Task {
     /**
      * Constructor for the child class to construct a Task Object.
      *
-     * @param description the description of the task.
+     * @param description the description of the task
      */
     public Task(String description) {
         this.description = description;
@@ -24,21 +23,21 @@ public abstract class Task {
     /**
      * Gets the type of the task.
      *
-     * @return the type of the task.
+     * @return the type of the task
      */
     public abstract String getTaskType();
 
     /**
      * Gets the date of the task.
      *
-     * @return the date of the task.
+     * @return the date of the task
      */
     public abstract LocalDateTime getDate();
 
     /**
      * Gets the status icon of the task.
      *
-     * @return "X" if the task is being done, " " otherwise.
+     * @return "X" if the task is being done, " " otherwise
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
@@ -61,7 +60,7 @@ public abstract class Task {
     /**
      * Checks if the task is done.
      *
-     * @return true if the task has been done.
+     * @return true if the task has been done
      */
     public boolean isDone() {
         return isDone;
@@ -70,7 +69,7 @@ public abstract class Task {
     /**
      * Gets the description of the task.
      *
-     * @return the description of the task.
+     * @return the description of the task
      */
     public String getDescription() {
         return description;

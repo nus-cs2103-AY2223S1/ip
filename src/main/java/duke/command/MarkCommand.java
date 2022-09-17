@@ -18,16 +18,16 @@ public class MarkCommand extends Command {
             + "\n   Marks a task, mark <index>"
             + "\n   Example: mark 1";
     private static final int OFFSET = -1;
-    private int indexOfTaskToMark;
+    private final int indexOfTaskToMark;
 
 
     /**
      * Constructs a MarkCommand instance.
      *
-     * @param indexOfTaskToMark Indicates the index of the task that needs to be marked.
+     * @param indexOfTaskToMark Indicates the index of the task that needs to be marked
      */
     public MarkCommand(int indexOfTaskToMark) {
-        this.indexOfTaskToMark = indexOfTaskToMark + OFFSET;;
+        this.indexOfTaskToMark = indexOfTaskToMark + OFFSET;
     }
 
     @Override

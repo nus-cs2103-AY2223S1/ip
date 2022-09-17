@@ -16,7 +16,7 @@ public class Ui {
     }
 
     /**
-     * To empty the response
+     * cleans the response
      */
     public void resetResponse() {
         response = new StringBuilder();

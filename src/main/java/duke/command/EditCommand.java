@@ -8,7 +8,7 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 /**
- * A editCommand that encapsulates the operation of editing a specified task;
+ * An editCommand that encapsulates the operation of editing a specified task;
  */
 public class EditCommand extends Command {
 

@@ -18,15 +18,15 @@ public class DeleteCommand extends Command {
                 + "\n   Delete a task with specific index, delete <index>"
                 + "\n   Example: delete 1";
     private static final int OFFSET = -1;
-    private int indexOfTaskToDelete;
+    private final int indexOfTaskToDelete;
 
     /**
-     * Constructs a DeleteCommand instance
+     * Constructs a DeleteCommand instance.
      *
-     * @param indexOfTaskToDelete index that specifies the position of the task that needs to be deleted.
+     * @param indexOfTaskToDelete index that specifies the position of the task that needs to be deleted
      */
     public DeleteCommand(int indexOfTaskToDelete) {
-        this.indexOfTaskToDelete = indexOfTaskToDelete + OFFSET;;
+        this.indexOfTaskToDelete = indexOfTaskToDelete + OFFSET;
     }
 
     @Override

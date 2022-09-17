@@ -21,7 +21,7 @@ public class FindCommand extends Command {
 
     /**
      * Constructs a FindCommand class.
-     * @param stringToFind the string that needs to be found.
+     * @param stringToFind the string that needs to be found
      */
     public FindCommand(String stringToFind) {
         this.stringToFind = stringToFind;

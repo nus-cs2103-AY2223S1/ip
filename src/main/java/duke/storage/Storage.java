@@ -37,7 +37,7 @@ public class Storage {
      * Saves the tasks in the current task list of Duke into the storage file
      *
      * @param taskList the current task list in Duke
-     * @throws FileDoesNotExistException Throws an exception when the storage file does not exist.
+     * @throws FileDoesNotExistException Throws an exception when the storage file does not exist
      */
     public void save(TaskList taskList) throws FileIoException {
         List<String> encodedTasks = StorageEncoder.encode(taskList);
@@ -58,7 +58,7 @@ public class Storage {
      * Loads the task list from the storage file when Duke initialised.
      *
      * @return the TaskList object
-     * @throws DukeException throws an exception when encountering unexpected behaviours.
+     * @throws DukeException throws an exception when encountering unexpected behaviours
      */
     public TaskList load() throws DukeException {
         if (!Files.exists(path)) {
@@ -68,7 +68,7 @@ public class Storage {
     }
 
     /**
-     * Creates a file
+     * Creates a file.
      * @throws FileIoException throws an exception when encountering error in creating the file
      */
     public void create() throws FileIoException {

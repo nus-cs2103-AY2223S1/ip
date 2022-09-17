@@ -19,8 +19,8 @@ public class Todo extends Task {
     /**
      * Constructs a Todo_Object.
      *
-     * @param description the description of the task.
-     * @param status      indicates whether the task has been done.
+     * @param description the description of the task
+     * @param status      indicates whether the task has been done
      */
     public Todo(String description, String status) {
         super(description);

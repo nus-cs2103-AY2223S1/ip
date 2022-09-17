@@ -42,7 +42,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Set the Duke object
+     * Sets the Duke object
      */
     public void setDuke(Duke duke) {
         this.duke = duke;

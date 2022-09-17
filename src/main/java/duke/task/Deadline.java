@@ -1,6 +1,5 @@
 package duke.task;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -9,13 +8,13 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    private LocalDateTime by;
+    private final LocalDateTime by;
 
     /**
      * Constructs a Deadline object.
      *
-     * @param description task description.
-     * @param by          the deadline of the task.
+     * @param description task description
+     * @param by          the deadline of the task
      */
     public Deadline(String description, LocalDateTime by) {
         super(description);
@@ -27,14 +26,13 @@ public class Deadline extends Task {
      *
      * @param description task description
      * @param by          the deadline of the task
-     * @param status      indicate whether the task has been done.
+     * @param status      indicate whether the task has been done
      */
     public Deadline(String description, LocalDateTime by, String status) {
         this(description, by);
 
-        final String DONE = "1";
-
-        if (status.equals(DONE)) {
+        String done = "1";
+        if (status.equals(done)) {
             super.markAsDone();
         }
     }

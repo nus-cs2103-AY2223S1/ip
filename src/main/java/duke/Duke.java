@@ -33,7 +33,7 @@ public class Duke {
     }
 
     /**
-     * To get the response from Duke
+     * Gets the response from Duke
      *
      * @param input User input
      * @return Response from Duke

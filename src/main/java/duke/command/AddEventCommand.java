@@ -2,10 +2,13 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.task.Task;
+import duke.task.Event;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * A command class that encapsulates the action of adding an event task into the task list.
+ */
 public class AddEventCommand extends AddCommand {
 
     public static final String COMMAND = "EVENT";
@@ -15,12 +18,12 @@ public class AddEventCommand extends AddCommand {
             + "\n   Example: event wash clothes /at Dec 21 2022 1030";
 
     /**
-     * Constructs an AddCommand instance
+     * Constructs an AddEventCommand instance.
      *
-     * @param taskToAdd Task instance that needs to be added.
+     * @param task Event task
      */
-    public AddEventCommand(Task taskToAdd) {
-        super(taskToAdd);
+    public AddEventCommand(Event task) {
+        super(task);
     }
 
     @Override

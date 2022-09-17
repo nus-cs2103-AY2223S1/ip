@@ -17,7 +17,7 @@ import duke.task.TaskList;
 import duke.task.Todo;
 
 /**
- * A StorageDecoder class that encapsulates that action of decoding storage file
+ * A StorageDecoder class that encapsulates that action of decoding storage file.
  */
 public class StorageDecoder {
 
@@ -29,11 +29,11 @@ public class StorageDecoder {
     private static final int TASK_DATE = 6;
 
     /**
-     * Decodes the storage file into a TaskList object
+     * Decodes the storage file into a TaskList object.
      *
      * @param path the place where the storage file is at
      * @return the TaskList object
-     * @throws DukeException throws an Exception when encountering unexpected behaviour.
+     * @throws DukeException throws an Exception when encountering unexpected behaviour
      */
     public static TaskList decode(Path path) throws DukeException {
         List<Task> taskList = new ArrayList<>();
@@ -51,11 +51,11 @@ public class StorageDecoder {
     }
 
     /**
-     * Decodes a String into a Task object
+     * Decodes a String into a Task object.
      *
      * @param decodedStringArr decoded string array from the storage file
      * @return a Task object
-     * @throws DukeException throws an Exception when encountering unexpected behaviour.
+     * @throws DukeException throws an Exception when encountering unexpected behaviour
      */
     public static Task decodeToTask(String[] decodedStringArr) throws DukeException {
         String taskType = decodedStringArr[TASK_TYPE];

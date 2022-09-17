@@ -19,13 +19,13 @@ public class UnmarkCommand extends Command {
             + "\n   Example: unmark 1";
 
     private static final int OFFSET = -1;
-    private int indexOfTaskToUnmark;
+    private final int indexOfTaskToUnmark;
 
 
     /**
      * Constructs a UnmarkCommand instance.
      *
-     * @param indexOfTaskToUnmark Indicates the index of the task that needs to be unmarked.
+     * @param indexOfTaskToUnmark Indicates the index of the task that needs to be unmarked
      */
     public UnmarkCommand(int indexOfTaskToUnmark) {
         this.indexOfTaskToUnmark = indexOfTaskToUnmark + OFFSET;

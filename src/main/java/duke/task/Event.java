@@ -8,13 +8,13 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
 
-    private LocalDateTime at;
+    private final LocalDateTime at;
 
     /**
      * Constructs an Event class.
      *
-     * @param description the description of the Event task.
-     * @param at          the date of the event.
+     * @param description the description of the Event task
+     * @param at          the date of the event
      */
     public Event(String description, LocalDateTime at) {
         super(description);
@@ -24,16 +24,14 @@ public class Event extends Task {
     /**
      * Constructs an Event class.
      *
-     * @param description the description of the Event task.
-     * @param at          the date of the event.
+     * @param description the description of the Event task
+     * @param at          the date of the event
      * @param status      to indicate whether the task has been done
      */
     public Event(String description, LocalDateTime at, String status) {
         this(description, at);
-
-        final String DONE = "1";
-
-        if (status.equals(DONE)) {
+        String done = "1";
+        if (status.equals(done)) {
             super.markAsDone();
         }
     }
