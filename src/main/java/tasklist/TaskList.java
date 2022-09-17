@@ -133,11 +133,10 @@ public class TaskList {
      * @throws FredException
      */
     public String find(String keyword) throws FredException {
-        int counter = 1;
         String list = "Here are matching tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.get(i).getDescription().contains(keyword)) {
-                list += counter++ + "." + taskList.get(i) + "\n";
+                list += (i + 1) + "." + taskList.get(i) + "\n";
             }
 
         }
