@@ -1,6 +1,8 @@
 package duke.parser;
 
+import duke.exceptions.ArgumentNumberException;
 import duke.exceptions.EmptyCommandException;
+import duke.exceptions.EmptyDateTimeException;
 import duke.exceptions.EmptyTaskException;
 import duke.listobjects.Deadline;
 import duke.listobjects.Event;
@@ -47,7 +49,6 @@ public class ParserDuke {
 
     public String parseTask(TaskList listOfItems) throws EmptyTaskException{
 
-        String preTask = this.command.replaceAll(" ", "");
         String task = this.command.replaceAll("todo", "");
         if(task.isEmpty()){
             throw new EmptyTaskException();
@@ -58,6 +59,71 @@ public class ParserDuke {
             String comment = "'Tis a new sky for you to scale! Here! \n" + newItem + "\n";
             String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
             return comment + info;
+        }
+    }
+
+    public String parseDeadline(TaskList listOfItems) throws EmptyTaskException,
+            EmptyDateTimeException, ArgumentNumberException{
+
+        String preTask = command.replaceAll("deadline", "");
+        String[] words = preTask.split("/");
+
+        if(words.length!=2){
+            throw new ArgumentNumberException();
+        }
+
+        String task = words[0];
+        String dateTime = words[1];
+
+        if(task.isEmpty()){
+            throw new EmptyTaskException();
+        } else {
+            String[] times = dateTime.split(" ");
+            if(times.length <= 1) {
+                throw new EmptyDateTimeException();
+            } else if (times.length == 2) {
+                ListObject newItem = new Deadline(task, 0, dateTime);
+                listOfItems.handleItemAddition(newItem);
+                Storage.makeListFile(FILE_PATH, listOfItems);
+                Storage.makeListFile(FILE_PATH, listOfItems);
+                String comment = "Mark this on your calendar! \n" + newItem + "\n";
+                String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
+                return comment + info + "\n";
+            } else {
+                throw new ArgumentNumberException();
+            }
+        }
+    }
+
+    public String parseEvent(TaskList listOfItems) throws EmptyTaskException,
+            EmptyDateTimeException, ArgumentNumberException{
+
+        String preTask = command.replaceAll("event", "");
+        String[] words = preTask.split("/");
+
+        if(words.length!=2){
+            throw new ArgumentNumberException();
+        }
+
+        String task = words[0];
+        String dateTime = words[1];
+
+        if(task.isEmpty()){
+            throw new EmptyTaskException();
+        } else {
+            String[] times = dateTime.split(" ");
+            if(times.length <= 2) {
+                throw new EmptyDateTimeException();
+            } else if (times.length == 3) {
+                ListObject newItem = new Event(task, 0, dateTime);
+                listOfItems.handleItemAddition(newItem);
+                Storage.makeListFile(FILE_PATH, listOfItems);
+                String comment = "Another moment to mark... \n" + newItem + "\n";
+                String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
+                return comment + info + "\n";
+            } else {
+                throw new ArgumentNumberException();
+            }
         }
     }
 
@@ -120,42 +186,9 @@ public class ParserDuke {
                 } else if (instruction.equals(TODO_CMD)) {
                     reply = parseTask(listOfItems);
                 } else if (instruction.equals(DEADLINE_CMD)) {
-                    String deadline1 = command.replaceAll("deadline ", "");
-                    String[] words = deadline1.split("/");
-                    item = words[0];
-                    String deadline = words[1];
-                    if (!item.isEmpty()) {
-                        ListObject newItem = new Deadline(item, 0, deadline);
-                        listOfItems.handleItemAddition(newItem);
-                        Storage.makeListFile(FILE_PATH, listOfItems);
-                        comment = "Mark this on your calendar! \n" + newItem;
-                        String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
-                        reply = comment + info + "\n";
-
-                    } else {
-                        reply = "The folly of youth to cheat Time! Write your task following 'deadline'"
-                                + "\n";
-                    }
+                    reply = parseDeadline(listOfItems);
                 } else if (instruction.equals(EVENT_CMD)) {
-                    String event1 = command.replaceAll("event ", "");
-                    String[] words2 = event1.split("/");
-                    item = words2[0];
-                    String event = words2[1];
-
-                    if (!item.isEmpty()) {
-                        ListObject newItem = new Event(item, 0, event);
-                        listOfItems.handleItemAddition(newItem);
-                        Storage.makeListFile(FILE_PATH, listOfItems);
-                        comment = "Another moment to mark... \n" + newItem;
-                        String info = "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!";
-                        reply = comment + info + "\n";
-
-                    } else {
-                        comment = "Come Alive! Write an activity following 'event'";
-                        reply = comment + "\n";
-
-                    }
-
+                    reply = parseEvent(listOfItems);
                 } else if (instruction.equals(SORT_CMD)) {
                     listOfItems.sortList();
                     comment = "Indeed I shall invoke the Eye of Agomotto to turn time ... \n";
@@ -171,6 +204,10 @@ public class ParserDuke {
         } catch (EmptyCommandException e) {
             reply = e.getMessage();
         } catch (EmptyTaskException e) {
+            reply = e.getMessage();
+        } catch (EmptyDateTimeException e) {
+            reply = e.getMessage();
+        } catch (ArgumentNumberException e) {
             reply = e.getMessage();
         } catch (Exception e) {
             reply = "Aemon went back to his crypt for a nap. Please restart the program after deleteing the DukeList.txt file.";
