@@ -45,8 +45,15 @@ public class Ui {
      */
     public Ui(InputStream in) {
         this.in = new Scanner(in);
-        System.out.println("Hello from\n" + logo);
-        System.out.println(initMessage);
+    }
+
+    /**
+     * Returns the welcome message
+     *
+     * @return String of welcome message
+     */
+    public String getWelcomeMessage() {
+        return "Hello from\n" + logo + "\n" + initMessage;
     }
 
     /**

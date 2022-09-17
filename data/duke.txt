@@ -1,3 +1,5 @@
 T | 1 | eat 
 T | 0 | eat 
 F | 1 | asd  | 
+D | 0 | assignment 1  | 2022-11-23 23:59
+F | 0 | asd  | 

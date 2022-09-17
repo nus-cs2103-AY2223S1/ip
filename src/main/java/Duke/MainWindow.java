@@ -2,6 +2,7 @@ package Duke;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -21,6 +22,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    private Parser parser = new Parser();
+    private Ui ui = new Ui();
     private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
@@ -29,6 +32,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        String welcomeMsg = ui.getWelcomeMessage();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(welcomeMsg, dukeImage)
+        );
     }
 
     public void setDuke(Duke d) {
@@ -42,9 +49,6 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String userText = userInput.getText();
-        Parser parser = new Parser();
-        Ui ui = new Ui();
-
         Duke.Commands command = parser.parseCommand(userText.trim());
         String dukeText;
         if (command == Duke.Commands.BYE) {
@@ -54,8 +58,7 @@ public class MainWindow extends AnchorPane {
         } else {
             dukeText = Duke.executeCommand(command, userInput.getText());
         }
-        assert userImage != null;
-        assert dukeImage != null;
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
                 DialogBox.getDukeDialog(dukeText, dukeImage)
