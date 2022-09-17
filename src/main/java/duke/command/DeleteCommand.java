@@ -12,6 +12,11 @@ import duke.ui.Ui;
  */
 public class DeleteCommand extends Command {
 
+    public static final String COMMAND = "DELETE";
+
+    public static final String MESSAGE_USAGE = COMMAND
+                + "\n   Delete a task with specific index, delete <index>"
+                + "\n   Example: delete 1";
     private static final int OFFSET = -1;
     private int indexOfTaskToDelete;
 
@@ -21,12 +26,11 @@ public class DeleteCommand extends Command {
      * @param indexOfTaskToDelete index that specifies the position of the task that needs to be deleted.
      */
     public DeleteCommand(int indexOfTaskToDelete) {
-        this.indexOfTaskToDelete = indexOfTaskToDelete;
+        this.indexOfTaskToDelete = indexOfTaskToDelete + OFFSET;;
     }
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws DukeException {
-        indexOfTaskToDelete += OFFSET;
 
         isValidIndex(tasks);
 
@@ -36,7 +40,7 @@ public class DeleteCommand extends Command {
     }
 
     private void isValidIndex(TaskList tasks) throws InvalidIndexException {
-        if (indexOfTaskToDelete <= 0 || indexOfTaskToDelete > tasks.getNumOfRemainingTasks()) {
+        if (indexOfTaskToDelete < 0 || indexOfTaskToDelete > tasks.getNumOfRemainingTasks()) {
             throw new InvalidIndexException();
         }
     }

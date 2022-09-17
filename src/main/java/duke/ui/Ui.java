@@ -140,8 +140,8 @@ public class Ui {
      * @param beingRescheduled task being rescheduled
      * @param rescheduledTask the new task
      */
-    public void showRescheduledMessage(Task beingRescheduled, Task rescheduledTask) {
-        appendToResponse("Nice! I've rescheduled this task",
+    public void showEditedMessage(Task beingRescheduled, Task rescheduledTask) {
+        appendToResponse("Nice! I've edited this task",
                     beingRescheduled.toString(),
                     "To",
                     rescheduledTask.toString());

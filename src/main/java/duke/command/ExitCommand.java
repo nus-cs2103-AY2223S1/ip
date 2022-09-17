@@ -9,6 +9,8 @@ import duke.ui.Ui;
  */
 public class ExitCommand extends Command {
 
+    public static final String COMMAND = "BYE";
+
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) {
         ui.showBye();

@@ -9,6 +9,8 @@ import duke.ui.Ui;
  */
 public class ListCommand extends Command {
 
+    public static final String COMMAND = "LIST";
+
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) {
         ui.showList(tasks.getTasks());

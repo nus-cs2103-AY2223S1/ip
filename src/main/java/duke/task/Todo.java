@@ -1,6 +1,6 @@
 package duke.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * A Todo_class that encapsulates the information of Todo_task.
@@ -35,7 +35,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return null;
     }
 

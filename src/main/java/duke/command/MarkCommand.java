@@ -8,29 +8,30 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 /**
- * A command class that encapsulates the action of mark or unmark a specific task in the task list.
+ * A command class that encapsulates the action of marks specific task as done in the task list.
  */
 public class MarkCommand extends Command {
 
+    public static final String COMMAND = "MARK";
+
+    public static final String MESSAGE_USAGE = COMMAND
+            + "\n   Marks a task, mark <index>"
+            + "\n   Example: mark 1";
     private static final int OFFSET = -1;
-    private final boolean toMark;
     private int indexOfTaskToMark;
 
 
     /**
      * Constructs a MarkCommand instance.
      *
-     * @param toMark              Indicates whether to mark or unmark the specific task.
-     * @param indexOfTaskToDelete Indicates the index of the task that needs to be marked or unmarked.
+     * @param indexOfTaskToMark Indicates the index of the task that needs to be marked.
      */
-    public MarkCommand(boolean toMark, int indexOfTaskToDelete) {
-        this.toMark = toMark;
-        this.indexOfTaskToMark = indexOfTaskToDelete;
+    public MarkCommand(int indexOfTaskToMark) {
+        this.indexOfTaskToMark = indexOfTaskToMark + OFFSET;;
     }
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws InvalidIndexException, FileIoException {
-        indexOfTaskToMark += OFFSET;
 
         isValidIndex(tasks);
 
@@ -40,17 +41,11 @@ public class MarkCommand extends Command {
     }
 
     private Task getTask(TaskList tasks) {
-        Task taskToMark;
-        if (toMark) {
-            taskToMark = tasks.markTask(indexOfTaskToMark);
-        } else {
-            taskToMark = tasks.unmarkTask(indexOfTaskToMark);
-        }
-        return taskToMark;
+        return tasks.markTask(indexOfTaskToMark);
     }
 
     private void isValidIndex(TaskList tasks) throws InvalidIndexException {
-        if (indexOfTaskToMark <= 0 || indexOfTaskToMark > tasks.getNumOfRemainingTasks()) {
+        if (indexOfTaskToMark < 0 || indexOfTaskToMark > tasks.getNumOfRemainingTasks()) {
             throw new InvalidIndexException();
         }
     }

@@ -40,7 +40,7 @@ public class StorageDecoder {
         try {
             List<String> decodedString = Files.readAllLines(path);
             for (String str : decodedString) {
-                String[] arr = str.trim().split(DIVIDER);
+                String[] arr = str.strip().split(DIVIDER);
                 Task task = decodeToTask(arr);
                 taskList.add(task);
             }

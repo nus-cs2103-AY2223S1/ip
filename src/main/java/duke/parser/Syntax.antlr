@@ -1,0 +1,31 @@
+Command :=
+         | ExitCommand
+         | ListCommand
+         | HelpCommand
+         | MarkCommand
+         | UnmarkCommand
+         | DeleteCommand
+         | AddTodoCommand
+         | AddDeadlineCommand
+         | AddEventCommand
+         | FindCommand
+         | RescheduleCommand
+
+ExitCommand := EXIT
+ListCommand := LIST
+HelpCommand := HELP
+MarkCommand := MARK index
+UnmarkCommand := UNMARK index
+DeleteCommand := DELETE index
+AddTodoCommand := TODO TodoTask
+AddDeadlineCommand := DEADLINE DeadlineTask
+AddEventCommand := EVENT EventTask
+FindCommand := FIND \w+
+RescheduleCommand := RESCHEDULE index [TodoTask|DeadlineTask|EventTask]
+
+TodoTask := TaskDescription
+DeadlineTask := TaskDescription /BY Date
+EventTask := TaskDescription /AT Date
+Date := (string that can be parsed to a date)
+TaskDescription := \w+
+index := \d+

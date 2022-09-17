@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * An abstract Task class that encapsulates the information of a task in Duke.
@@ -32,7 +33,7 @@ public abstract class Task {
      *
      * @return the date of the task.
      */
-    public abstract LocalDate getDate();
+    public abstract LocalDateTime getDate();
 
     /**
      * Gets the status icon of the task.

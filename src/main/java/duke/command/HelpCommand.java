@@ -9,6 +9,8 @@ import duke.ui.Ui;
  */
 public class HelpCommand extends Command {
 
+    public static final String COMMAND = "HELP";
+
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) {
         ui.showHelpMenu();

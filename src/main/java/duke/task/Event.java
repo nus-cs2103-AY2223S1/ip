@@ -1,6 +1,6 @@
 package duke.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
 
-    private final LocalDate at;
+    private LocalDateTime at;
 
     /**
      * Constructs an Event class.
@@ -16,7 +16,7 @@ public class Event extends Task {
      * @param description the description of the Event task.
      * @param at          the date of the event.
      */
-    public Event(String description, LocalDate at) {
+    public Event(String description, LocalDateTime at) {
         super(description);
         this.at = at;
     }
@@ -28,9 +28,12 @@ public class Event extends Task {
      * @param at          the date of the event.
      * @param status      to indicate whether the task has been done
      */
-    public Event(String description, LocalDate at, String status) {
+    public Event(String description, LocalDateTime at, String status) {
         this(description, at);
-        if (status.equals("1")) {
+
+        final String DONE = "1";
+
+        if (status.equals(DONE)) {
             super.markAsDone();
         }
     }
@@ -41,13 +44,13 @@ public class Event extends Task {
     }
 
     @Override
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return at;
     }
 
     @Override
     public String toString() {
-        String dateString = at.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String dateString = at.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
         return "[E]" + super.toString() + " (at: " + dateString + ")";
     }
 }

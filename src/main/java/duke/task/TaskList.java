@@ -106,19 +106,11 @@ public class TaskList {
     }
 
     /**
-     * Returns a stream representation of all the tasks.
-     * @return stream
-     */
-    public Stream getStream() {
-        return tasks.stream();
-    }
-
-    /**
      * Reschedules the selected task to a new task
-     * @param indexOfTaskToReschedule the index of the task to be rescheduled
-     * @param rescheduledTask the new task
+     * @param indexOfTaskToEdit the index of the task to be rescheduled
+     * @param editedTask the new task
      */
-    public void reschedule(int indexOfTaskToReschedule, Task rescheduledTask) {
-        tasks.set(indexOfTaskToReschedule, rescheduledTask);
+    public void edit(int indexOfTaskToEdit, Task editedTask) {
+        tasks.set(indexOfTaskToEdit, editedTask);
     }
 }

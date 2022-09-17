@@ -5,6 +5,8 @@ import static duke.parser.Parser.parseToTaskIndex;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +24,10 @@ public class ParserTest {
 
     @Test
     public void parseToLocalDateTimeTest() throws IllegalDateFormatException {
-        LocalDate expected = LocalDate.of(2018, 9, 9);
-        LocalDate actual = parseToLocalDateTime("at 2018-09-09");
-        assertEquals(4, 4);
+        String input = "2022-12-21T10:30";
+        LocalDateTime localDateTime = parseToLocalDateTime(input);
+        Month month = localDateTime.getMonth();
+        assertEquals(12,localDateTime.of);
     }
+
 }
