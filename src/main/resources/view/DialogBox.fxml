@@ -8,7 +8,7 @@
 
 <fx:root alignment="TOP_RIGHT" fillHeight="false" maxWidth="Infinity" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #4AB19D; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0); -fx-background-radius: 10;" text="label" textAlignment="RIGHT" textFill="#efeeee" wrapText="true" HBox.hgrow="ALWAYS">
+    <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #344E5C; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0); -fx-background-radius: 10;" text="label" textAlignment="RIGHT" textFill="#efeeee" wrapText="true" HBox.hgrow="ALWAYS">
          <font>
             <Font name="Ubuntu Mono" size="15.0" />
          </font>
