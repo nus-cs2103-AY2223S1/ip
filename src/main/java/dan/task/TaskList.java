@@ -85,49 +85,62 @@ public class TaskList {
     /**
      * Marks the indicated task as completed
      *
-     * @param index Task number (as displayed in `showTasks()`) of the task that is completed
+     * @param indexes Task number (as displayed in `showTasks()`) of the task that is completed
      * @throws DanException if the given task number does not exist in the list
      */
-    public String markTask(int index) throws DanException {
-        if (indexIsValid(index)) {
-            throw DanException.taskNotFoundError();
+    public String markTask(int... indexes) throws DanException {
+        StringBuilder result = new StringBuilder();
+        result.append("Good Job! Lets keep it going\n");
+        for (int index : indexes) {
+            if (indexIsValid(index)) {
+                throw DanException.taskNotFoundError();
+            }
+            Task task = tasks.get(index - 1);
+            task.setDone(true);
+            result.append(task).append("\n");
         }
-        Task task = tasks.get(index - 1);
-        task.setDone(true);
-        return Ui.printIndent(String.format("Hehe okay guess this is now done\n%s", task));
+        return Ui.printIndent(result.toString());
     }
 
     /**
      * Marks the indicated task as uncompleted
      *
-     * @param index Task number (as displayed in `showTasks()`) of the task that is completed
+     * @param indexes Task number (as displayed in `showTasks()`) of the task that is completed
      * @throws DanException if the given task number does not exist in the list
      */
-    public String unmarkTask(int index) throws DanException {
+    public String unmarkTask(int... indexes) throws DanException {
         StringBuilder result = new StringBuilder();
-        if (indexIsValid(index)) {
-            throw DanException.taskNotFoundError();
+        result.append("\"Ooops, did I mark them wrongly? Here ya go:\n");
+        for (int index : indexes) {
+            if (indexIsValid(index)) {
+                throw DanException.taskNotFoundError();
+            }
+            Task task = tasks.get(index - 1);
+            task.setDone(false);
+            result.append(task).append("\n");
         }
-        Task task = tasks.get(index - 1);
-        task.setDone(false);
-        result.append(String.format("Ooops, you haven't done this yet? Here ya go:\n%s", task));
         return Ui.printIndent(result.toString());
     }
 
     /**
      * Removes the indicated task from the list
      *
-     * @param index Task number (as displayed in `showTasks()`) of the task that is completed
+     * @param indexes Task number (as displayed in `showTasks()`) of the task that is completed
      * @throws DanException if the given task number does not exist in the list
      */
-    public String deleteTask(int index) throws DanException {
-        if (indexIsValid(index)) {
-            throw DanException.taskNotFoundError();
-        }
+    public String deleteTask(int... indexes) throws DanException {
         StringBuilder result = new StringBuilder();
         result.append("Alright then, I'll remove this task from your list:");
-        result.append(tasks.get(index - 1).toString());
-        tasks.remove(index - 1);
+        for (int index : indexes) {
+            if (indexIsValid(index)) {
+                throw DanException.taskNotFoundError();
+            }
+            Task task = tasks.get(index - 1);
+            task.setDone(false);
+            result.append(task);
+            result.append(tasks.get(index - 1).toString());
+            tasks.remove(index - 1);
+        }
         result.append(String.format("\nYou now have %d many tasks in your list", tasks.size()));
         return Ui.printIndent(result.toString());
     }
@@ -135,15 +148,15 @@ public class TaskList {
     /**
      * Searches the task list for all tasks' descriptions that contains the keyword
      *
-     * @param keyword String to be searched for among the tasks in the list
+     * @param keywords String to be searched for among the tasks in the list
      */
-    public String findTask(String keyword) {
+    public String findTask(String... keywords) {
         StringBuilder result = new StringBuilder();
         result.append("Alright! Here are the matching tasks in your list:\n");
         int count = 0;
         for (int i = 1; i <= tasks.size(); i++) {
             Task task = tasks.get(i - 1);
-            if (task.hasKeyword(keyword)) {
+            if (task.hasKeyword(keywords)) {
                 result.append(String.format("%d.%s\n", i, task));
                 count += 1;
             }
@@ -151,7 +164,7 @@ public class TaskList {
         result.append(
                 result.toString().length() == 0
                 ? "I couldn't find any task that matches your description"
-                : String.format("There are a total of %d tasks that matches your keyword %s", count, keyword));
+                : String.format("There are a total of %d tasks that matches your keywords", count));
         return Ui.printIndent(result.toString());
     }
 

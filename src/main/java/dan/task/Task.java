@@ -1,5 +1,7 @@
 package dan.task;
 
+import java.util.Arrays;
+
 /**
  * Represents a Task.
  */
@@ -39,13 +41,14 @@ public class Task {
     }
 
     /**
-     * Checks the task description contains a substring of the keyword provided.
+     * Checks the task description contains a substring of the keywords provided.
      *
-     * @param keyword that is to be searched
+     * @param keywords that are to be searched
      * @return boolean if the task has the keyword in its description
      */
-    public boolean hasKeyword(String keyword) {
-        return description.contains(keyword);
+    public boolean hasKeyword(String... keywords) {
+        return Arrays.stream(keywords).map(String::toUpperCase)
+                .anyMatch(description.toUpperCase()::contains);
     }
 
     /**

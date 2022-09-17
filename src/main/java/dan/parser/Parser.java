@@ -1,6 +1,7 @@
 package dan.parser;
 
 import java.time.format.DateTimeParseException;
+import java.util.stream.Stream;
 
 import dan.exceptions.DanException;
 import dan.task.TaskList;
@@ -11,7 +12,6 @@ import dan.ui.Ui;
 public class Parser {
     private TaskList tasks;
     private boolean isExit = false;
-
     /**
      * Constructor method. Associates the parser to its list of tasks to perform actions on.
      *
@@ -28,8 +28,9 @@ public class Parser {
      * @return A boolean of the program exit status
      */
     public String parse(String input) {
-        String[] inputArr = input.split(" ");
-        String action = inputArr[0].strip();
+        String[] inputArr = input.strip().split(" ");
+        String action = inputArr[0];
+        Stream<String> remainingInputs = Stream.of(inputArr).skip(1);
         assert !isExit : "The program should have exited already";
         try {
             switch (action) {
@@ -39,13 +40,13 @@ public class Parser {
             case "list":
                 return tasks.showTasks();
             case "mark":
-                return tasks.markTask(Integer.parseInt(inputArr[1]));
+                return tasks.markTask(convertToIntArray(remainingInputs));
             case "unmark":
-                return tasks.unmarkTask(Integer.parseInt(inputArr[1]));
+                return tasks.unmarkTask(convertToIntArray(remainingInputs));
             case "delete":
-                return tasks.deleteTask(Integer.parseInt(inputArr[1]));
+                return tasks.deleteTask(convertToIntArray(remainingInputs));
             case "find":
-                return tasks.findTask(input.split(" ", 2)[1]);
+                return tasks.findTask(convertToStringArray(remainingInputs));
             case "todo":
                 return tasks.addToDoTask(input);
             case "deadline":
@@ -64,9 +65,15 @@ public class Parser {
         }
     }
 
-
     public boolean getIsExit() {
         return isExit;
     }
 
+    private int[] convertToIntArray(Stream<String> stream) {
+        return stream.mapToInt(x -> Integer.parseInt(x))
+                .toArray();
+    }
+    private String[] convertToStringArray(Stream<String> stream) {
+        return stream.toArray(String[]::new);
+    }
 }
