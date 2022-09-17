@@ -39,13 +39,13 @@ public class AddToDoCommand extends Command {
         } catch (AssertionError e) {
             throw new DukeException(e.getMessage());
         }
-        String msg = ui.addMessage();
+        String msg = ui.getAddMessage() + ui.getSeparator();
         for (String des : description) {
             Task task = new ToDo(des, isDone);
             list.addTask(task);
             storage.save(list);
-            msg += task + ui.showLine();
+            msg += task + ui.getSeparator();
         }
-        return msg + ui.countMessage(list);
+        return msg + ui.getCountMessage(list);
     }
 }

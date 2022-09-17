@@ -1,6 +1,5 @@
 package justin.command;
 
-import justin.MainWindow;
 import justin.Storage;
 import justin.TaskList;
 import justin.Ui;
@@ -22,6 +21,6 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) {
-        return ui.listMessage(list);
+        return ui.getListMessage(list);
     }
 }

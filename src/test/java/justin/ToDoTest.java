@@ -7,14 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ToDoTest {
     @Test
-    public void dummyTest1() {
-        assertEquals("T | O | Homework", new ToDo("Homework", false).toString());
+    public void todoTest1() {
+        assertEquals("T | Undone | Homework", new ToDo("Homework", false).toString());
     }
 
     @Test
-    public void dummyTest2() {
+    public void todoTest2() {
         ToDo task = new ToDo("Coding Assignment", false);
         task.mark();
-        assertEquals("T | X | Coding Assignment", task.toString());
+        assertEquals("T | Done! | Coding Assignment", task.toString());
     }
 }

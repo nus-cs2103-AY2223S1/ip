@@ -26,8 +26,5 @@ public abstract class Command {
      * Returns the boolean value isExit in the Command object.
      * @return boolean isExit.
      */
-    public boolean isExit() {
-        return this.isExit;
-    }
 
 }

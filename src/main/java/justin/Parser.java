@@ -1,16 +1,6 @@
 package justin;
 
-import justin.command.AddDeadlineCommand;
-import justin.command.AddEventCommand;
-import justin.command.AddToDoCommand;
-import justin.command.Command;
-import justin.command.DeleteCommand;
-import justin.command.ExitCommand;
-import justin.command.FindCommand;
-import justin.command.ListCommand;
-import justin.command.MarkCommand;
-import justin.command.NewCommand;
-import justin.command.UnmarkCommand;
+import justin.command.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -30,8 +20,8 @@ public class Parser {
     /**
      * Returns an AddToDoCommand through scanning the description.
      * @param message The description of the command.
-     * @return an AddToDoCommand.
-     * @throws DukeException if the description of the ToDo is empty.
+     * @return An AddToDoCommand.
+     * @throws DukeException If the description of the ToDo is empty.
      */
     public static Command parseToDo(String message) throws DukeException{
         sc = new Scanner(message);
@@ -40,15 +30,15 @@ public class Parser {
             String[] strArr = splitArray(description);
             return new AddToDoCommand(false, strArr);
         } else {
-            throw new DukeException("OOPS! The description of the todo should not be empty!");
+            throw new DukeException("The description of the todo should not be empty!");
         }
     }
 
     /**
      * Returns an AddDeadlineCommand through scanning the description.
      * @param message The description of the command.
-     * @return an AddDeadlineCommand.
-     * @throws DukeException if the message given is invalid.
+     * @return An AddDeadlineCommand.
+     * @throws DukeException If the message given is invalid.
      */
     public static Command parseDeadline(String message) throws DukeException {
         sc = new Scanner(message);
@@ -58,20 +48,27 @@ public class Parser {
                 String next = sc.next();
                 description += next + " ";
             }
+            description = description.substring(0, description.length() - 1);
             sc.next();
             String next = sc.nextLine();
             String[] date = next.split(" ");
             return new AddDeadlineCommand(description, date);
-        } catch (Exception e) {
-            throw new DukeException("OOPS!! Please enter a valid message!");
+        } catch (NoSuchElementException e) {
+            throw new DukeException("Please enter a valid message!\n" +
+                    "Format of the message should be:\n\n" +
+                    "deadline <task> /by <YYYY-MM-DD> <HH:MM>");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Please enter a valid message!\n" +
+                    "Format of the message should be:\n\n" +
+                    "deadline <task> /by <YYYY-MM-DD> <HH:MM>");
         }
     }
 
     /**
      * Returns an AddEventCommand through scanning the description.
      * @param message The description of the command.
-     * @return an AddEventCommand.
-     * @throws DukeException if the message is invalid.
+     * @return An AddEventCommand.
+     * @throws DukeException If the message is invalid.
      */
     public static Command parseEvent(String message) throws DukeException {
         sc = new Scanner(message);
@@ -81,31 +78,48 @@ public class Parser {
                 String next = sc.next();
                 description += next + " ";
             }
+            description = description.substring(0, description.length() - 1);
             sc.next();
             String next = sc.nextLine();
             String[] date = next.split(" ");
             return new AddEventCommand(description, date);
-        } catch (Exception e) {
-            throw new DukeException("OOPS! Please enter a valid message!");
+        } catch (NoSuchElementException e) {
+            throw new DukeException("Please enter a valid message!\n" +
+                    "Format of the message should be:\n\n" +
+                    "event <task> /at <YYYY-MM-DD> <HH:MM>");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Please enter a valid message!\n" +
+                    "Format of the message should be:\n\n" +
+                    "event <task> /at <YYYY-MM-DD> <HH:MM>");
         }
     }
 
 
-    public static Command parseFind(String message) {
+    /**
+     * Returns a FindCommand through the scanning the keywords.
+     * @param message The keywords in String to find matching tasks.
+     * @return A FindCommand.
+     * @throws DukeException If the input is invalid.
+     */
+    public static Command parseFind(String message) throws DukeException {
         sc = new Scanner(message);
         String res = "";
-        while (sc.hasNext()) {
-            res += sc.next() + " ";
+        try {
+            while (sc.hasNext()) {
+                res += sc.next() + " ";
+            }
+            res = res.substring(0, res.length() - 1);
+        } catch (StringIndexOutOfBoundsException e){
+            throw new DukeException("Please type in something for me to find!");
         }
-        res = res.substring(0, res.length() - 1);
         return new FindCommand(res);
     }
 
     /**
      * Returns a command from scanning the inputs of users.
      * @param message The description of the command.
-     * @return a Command.
-     * @throws DukeException if the input is invalid.
+     * @return A Command.
+     * @throws DukeException If the input is invalid.
      */
     public static Command parse(String message) throws DukeException {
         sc = new Scanner(message);
@@ -146,6 +160,9 @@ public class Parser {
                     String description = sc.nextLine();
                     return parseFind(description);
                 }
+                case "help": {
+                    return new HelpCommand();
+                }
                 default: {
                     throw new DukeException("OOPS! Sorry I do not know what that means...");
                 }
@@ -159,7 +176,7 @@ public class Parser {
      * Returns a Command through scanning the text file in String format.
      * @param message The description of the command.
      * @return A Command.
-     * @throws DukeException if the file has been corrupted.
+     * @throws DukeException If the file has been corrupted.
      */
     public static Command parseCommand(String message) throws DukeException {
         String[] arr = message.split("\\s\\|\\s");
@@ -194,15 +211,24 @@ public class Parser {
         }
     }
 
-    public static String[] splitArray(String description) {
+    /**
+     * Splits the array by commas.
+     * @param description The array that comes with commas.
+     * @return An array split by commas.
+     */
+    public static String[] splitArray(String description) throws DukeException {
         String[] res = description.split(",");
-        for (int i = 0; i < res.length; i++) {
-            if (res[i].charAt(res[i].length() - 1) == ' ') { //if the last character is a space
-                res[i] = res[i].substring(0, res[i].length() - 1);
+        try {
+            for (int i = 0; i < res.length; i++) {
+                if (res[i].charAt(res[i].length() - 1) == ' ') { //if the last character is a space
+                    res[i] = res[i].substring(0, res[i].length() - 1);
+                }
+                if (res[i].charAt(0) == ' ') {
+                    res[i] = res[i].substring(1);
+                }
             }
-            if (res[i].charAt(0) == ' ') {
-                res[i] = res[i].substring(1, res[i].length());
-            }
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new DukeException("Please write in a proper format!");
         }
         return res;
     }

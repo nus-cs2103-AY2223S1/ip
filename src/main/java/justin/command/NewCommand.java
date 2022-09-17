@@ -21,6 +21,6 @@ public class NewCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) {
-        return ui.welcome();
+        return ui.getWelcomeMessage();
     }
 }

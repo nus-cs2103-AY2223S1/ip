@@ -10,7 +10,6 @@ import justin.task.Task;
  */
 public class UnmarkCommand extends Command {
     private String[] nums;
-    private Task unmarkedTask;
 
     /**
      * Constructor for the UnmarkCommand class.
@@ -28,6 +27,7 @@ public class UnmarkCommand extends Command {
      * @param ui The Ui to send outputs.
      * @param storage The Storage to save changes.
      * @return The String message from the Ui.
+     * @throws DukeException If the numbers are invalid.
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
@@ -36,15 +36,20 @@ public class UnmarkCommand extends Command {
         } catch (AssertionError e) {
             throw new DukeException(e.getMessage());
         }
-        String msg = ui.unmarkMessage();
+        String msg = ui.getUnmarkMessage() + ui.getSeparator();
+        int count = 1;
         for (String s: nums) {
             try {
                 int currNum = Integer.parseInt(s);
                 list.unmark(currNum);
                 Task task = list.getTask(currNum);
-                msg += task + ui.showLine();
+                msg += count + ". " + task + ui.getSeparator();
+                count++;
             } catch (NumberFormatException e) {
-                throw new DukeException("Please include numbers only or write in a proper format!");
+                throw new DukeException("Please include numbers only or write in a proper format!\n" +
+                        "To unmark multiple tasks, add commas between numbers");
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException("Task number " + Integer.parseInt(s) + " does not exist!");
             }
         }
         storage.save(list);

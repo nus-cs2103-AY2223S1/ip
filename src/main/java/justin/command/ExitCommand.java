@@ -1,6 +1,5 @@
 package justin.command;
 
-import justin.MainWindow;
 import justin.Storage;
 import justin.TaskList;
 import justin.Ui;
@@ -21,6 +20,6 @@ public class ExitCommand extends Command {
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) {
         super.isExit = true;
-        return ui.goodbye();
+        return ui.getGoodbyeMessage();
     }
 }

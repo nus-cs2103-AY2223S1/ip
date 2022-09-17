@@ -41,14 +41,31 @@ public class Event extends Task {
         return "E | " + this.getStatusIcon() + " | " + this.getDescription() + " | " + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + this.time.format(DateTimeFormatter.ofPattern("hhmma"));
     }
 
+    /**
+     * Sets the date and time of a particular Event.
+     * @param date The date of the Event.
+     * @param time The time of the Event.
+     */
     public void setDateAndTime(LocalDate date, LocalTime time) {
         dateAndTime = date.atTime(time);
     }
 
+    /**
+     * Returns the date and time of the Event in
+     * LocalDateTime.
+     * @return The LocalDateTime of the Event.
+     */
     public LocalDateTime getDateAndTime() {
         return dateAndTime;
     }
 
+    /**
+     * Checks whether the Event overlaps with any other
+     * Events in the TaskList.
+     * @param list The TaskList containing other tasks.
+     * @return Returns true if there are overlaps.
+     * Returns false if there are no overlaps.
+     */
     public boolean isOverlap(TaskList list) {
         ArrayList<Task> tasks = list.getTasks();
         boolean result = false;
@@ -61,6 +78,15 @@ public class Event extends Task {
         return result;
     }
 
+    /**
+     * Checks if two Event objects are of the same
+     * date and time.
+     * @param anotherEvent Another Event object that
+     *                     we are comparing against.
+     * @return Returns true if the two Events have
+     * the same date and time.
+     * Returns false otherwise.
+     */
     public boolean isEqualDateAndTime(Event anotherEvent) {
         if (getDateAndTime().equals(anotherEvent.getDateAndTime())) {
             return true;

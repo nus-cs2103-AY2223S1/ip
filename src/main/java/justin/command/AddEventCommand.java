@@ -65,13 +65,23 @@ public class AddEventCommand extends Command {
         } else {
             list.addTask(task);
             storage.save(list);
-            return ui.addMessage() + ui.showLine() + task + ui.showLine() + ui.countMessage(list);
+            return ui.getAddMessage() + ui.getSeparator() + task + ui.getSeparator() + ui.getCountMessage(list);
         }
     }
 
+    /**
+     * Adds all overlapped tasks with an Event object
+     * to an ArrayList.
+     * @param event The Event object to be compared against.
+     * @param tasks The TaskList to refer to for
+     *              overlapped tasks.
+     */
     public void setOverlappedTasks(Event event, TaskList tasks) {
         overlappedTasks = new ArrayList<>();
         for (Task t: tasks.getTasks()) {
+            if (!(t instanceof Event)) {
+                continue;
+            }
             Event curr = (Event) t;
             if (event.isEqualDateAndTime(curr)) {
                 overlappedTasks.add(curr);

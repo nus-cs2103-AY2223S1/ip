@@ -13,6 +13,10 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 /**
  * Represents the class that is a horizontal box
@@ -44,16 +48,19 @@ public class DialogBox extends HBox {
         dialog.setText(text);
         displayPicture.setImage(img);
         Tooltip.install(displayPicture, new Tooltip(title));
+        Circle circle = new Circle(40, 40, 40);
+        displayPicture.setImage(img);
+        displayPicture.setClip(circle);
     }
 
     /**
      * Flips the DialogBox object against the y-axis
      */
     private void flip() {
-        this.setAlignment(Pos.TOP_LEFT);
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         FXCollections.reverse(tmp);
-        this.getChildren().setAll(tmp);
+        getChildren().setAll(tmp);
+        setAlignment(Pos.TOP_LEFT);
     }
 
     /**
@@ -65,7 +72,6 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getUserDialog(String text, Image img, String title) {
         DialogBox db = new DialogBox(text, img, title);
-        db.changeGray();
         return db;
     }
 
@@ -79,15 +85,24 @@ public class DialogBox extends HBox {
     public static DialogBox getJustinDialog(String text, Image img, String title) {
         DialogBox db = new DialogBox(text, img, title);
         db.flip();
-        db.changeBeige();
+        db.changeGreen();
         return db;
     }
 
-    public void changeGray() {
-        this.setStyle("-fx-background-color: aliceblue");
+    /**
+     * Changes the format of the text for
+     * error messages.
+     */
+    public void changeFormat() {
+        dialog.setTextFill(Color.web("#FA8072"));
+        dialog.setFont(Font.font("System", FontWeight.BOLD, 14));
     }
 
-    public void changeBeige() {
-        this.setStyle("-fx-background-color: beige");
+    /**
+     * Changes the colour of the dialogBox
+     * to green.
+     */
+    public void changeGreen() {
+        dialog.setStyle("-fx-background-color: #045F5F; -fx-background-radius: 20");
     }
 }

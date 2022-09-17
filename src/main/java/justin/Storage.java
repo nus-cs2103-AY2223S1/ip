@@ -31,7 +31,7 @@ public class Storage {
             File file = new File(this.fileName);
             file.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new DukeException(e.getMessage());
         }
     }
 
@@ -43,7 +43,6 @@ public class Storage {
     public String read() throws IOException {
         return Files.readString(Path.of(this.fileName));
     }
-
 
 
     /**

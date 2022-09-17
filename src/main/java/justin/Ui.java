@@ -13,23 +13,27 @@ import java.util.Scanner;
  * @author Justin Cheng.
  */
 public class Ui {
-    private final static String DIVIDER = "--------------------------------------------------------";
-
     private final static String SEPARATOR = System.lineSeparator();
 
-    private final static String WELCOME_MESSAGE = "Hi, I'm Justin. What do you want me to do for you?";
+    private final static String WELCOME_MESSAGE = "Hi, I'm Justin. Type \"help\" for more info";
     private final static String GOODBYE_MESSAGE = "Bye! Hope to see you again soon.";
-    private final static String UNMARK_MESSAGE = "OK, I've marked the following task(s) as undone: ";
+    private final static String UNMARK_MESSAGE = "Sure, I've marked the following task(s) as undone: ";
     private final static String MARK_MESSAGE =  "Nice! I have marked the following task(s) as done: ";
     private final static String LIST_MESSAGE = "Here are the tasks in your list: ";
     private final static String DELETE_MESSAGE = "OK, I have removed the following task(s) from the list: ";
     private final static String ADD_MESSAGE = "Got it, I have added the following into the list: ";
     private final static String FIND_MESSAGE = "Here are the matching tasks in your list: ";
     private final static String OVERLAP_MESSAGE = "You have some tasks overlapping! ";
-    private final static String TODO_HELP = "Type in todo <task name> to add ToDo task";
-    private final static String DEADLINE_HELP = "Type in deadline <task name> /by YYYY-MM-DD HH:MM to add Deadline task";
-    private final static String EVENT_HELP = "Type in event <task name> /by YYYY-MM-DD HH:MM to add Event task";
-
+    private final static String HELP_MESSAGE = "Try typing down any of these commands: \n"
+            + "todo                       " + "\tadd a todo task\n"
+            + "deadline                 " + "\tadd a deadline task\n"
+            + "event                     " + "\tadd an event task\n"
+            + "find                          " + "\tfind a specific task\n"
+            + "delete <index>     " + "\tdelete a task\n"
+            + "mark <index>       " + "\tmark a task as done\n"
+            + "unmark <index> " + "\tmark a task as undone\n"
+            + "list                             " + "\tlist out all the tasks in the list\n"
+            + "bye                             " + "\tquit the app\n";
     private final Scanner in;
     private final PrintStream out;
 
@@ -54,7 +58,7 @@ public class Ui {
      * Returns the welcome message of the bot.
      * @return The welcome message in String.
      */
-    public String welcome() {
+    public String getWelcomeMessage() {
         return WELCOME_MESSAGE;
     }
 
@@ -62,7 +66,7 @@ public class Ui {
      * Returns the goodbye message of the bot.
      * @return The goodbye message in String.
      */
-    public String goodbye() {
+    public String getGoodbyeMessage() {
         return GOODBYE_MESSAGE;
     }
 
@@ -70,25 +74,23 @@ public class Ui {
      * Returns a line separator.
      * @return A line separator in String.
      */
-    public String showLine() {
+    public String getSeparator() {
         return SEPARATOR;
     }
 
     /**
      * Returns the message when a Task is being unmarked.
-     * @param task The Task that is to be unmarked.
      * @return The String message when a Task is unmarked.
      */
-    public String unmarkMessage() {
+    public String getUnmarkMessage() {
         return UNMARK_MESSAGE + SEPARATOR;
     }
 
     /**
      * Returns the message when a Task is being marked.
-     * @param task The Task that is to be marked.
      * @return The String message when a Task is marked.
      */
-    public String markMessage() {
+    public String getMarkMessage() {
         return MARK_MESSAGE + SEPARATOR;
     }
 
@@ -98,31 +100,31 @@ public class Ui {
      * @param list The TaskList that will be enumerated.
      * @return The String message when every Task is listed.
      */
-    public String listMessage(TaskList list) {
-        String res = LIST_MESSAGE;
+    public String getListMessage(TaskList list) {
+        int count = 1;
+        String res = LIST_MESSAGE + SEPARATOR;
         ArrayList<Task> tasks = list.getTasks();
         for (Task task: tasks) {
-           res += SEPARATOR + task.toString();
+           res += SEPARATOR + count + ". " + task.toString();
+           count++;
         }
         return res;
     }
 
     /**
      * Returns the message when a Task is being deleted.
-     * @param task The Task to be deleted.
      * @return The String message when a Task is deleted.
      */
-    public String deleteMessage() {
+    public String getDeleteMessage() {
         return DELETE_MESSAGE + SEPARATOR;
     }
 
     /**
      * Returns the message when a Task is being added
      * into the TaskList.
-     * @param task The Task to be added.
      * @return The String message when a Task is added.
      */
-    public String addMessage() {
+    public String getAddMessage() {
         return ADD_MESSAGE + SEPARATOR;
     }
 
@@ -133,15 +135,26 @@ public class Ui {
      * @return The String message when a user wants to find
      * out the number of Tasks in the TaskList.
      */
-    public String countMessage(TaskList list) {
+    public String getCountMessage(TaskList list) {
         int size = list.getTasks().size();
-        return "You now have " + size + " tasks in your list";
+        if (size == 1) {
+            return "You now have " + size + " task in your list.";
+        } else {
+            return "You now have " + size + " tasks in your list.";
+        }
     }
 
+    /**
+     * Returns the message that includes overlapping tasks.
+     * @param overlappedTasks An ArrayList of Tasks.
+     * @return The String output of overlapped Tasks.
+     */
     public String getOverlapMessage(ArrayList<Task> overlappedTasks) {
-        String msg = OVERLAP_MESSAGE;
+        String msg = OVERLAP_MESSAGE + SEPARATOR;
+        int count = 1;
         for (Task task: overlappedTasks) {
-            msg += SEPARATOR + task.toString();
+            msg += SEPARATOR + count + ". " + task.toString();
+            count++;
         }
         return msg;
     }
@@ -162,15 +175,21 @@ public class Ui {
      * @return The String message when users want to find
      * tasks.
      */
-    public String findMessage(TaskList list, String description) {
-        String res = FIND_MESSAGE;
+    public String getFindMessage(TaskList list, String description) {
+        String res = FIND_MESSAGE + SEPARATOR;
+        int count = 1;
         ArrayList<Task> tasks = list.getTasks();
         for (Task task: tasks) {
             if (task.getDescription().contains(description)) {
-                res += SEPARATOR+ task;
+                res += SEPARATOR + count + ". " + task;
+                count++;
             }
         }
         return res;
+    }
+
+    public String getHelpMessage() {
+        return HELP_MESSAGE;
     }
 
 }

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1000.0" maxWidth="400.0" minHeight="200.0" prefHeight="250.0" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefWidth="401.0" style="-fx-background-color: transparent;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" graphicTextGap="7.0" text="Label" wrapText="true">
+        <Label fx:id="dialog" alignment="CENTER" graphicTextGap="7.0" style="-fx-background-radius: 20; -fx-background-color: #0020C2#0020C2;" text="Label" textFill="#f8f8f8" wrapText="true">
          <opaqueInsets>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </opaqueInsets>
@@ -16,7 +17,10 @@
          </padding>
          <HBox.margin>
             <Insets />
-         </HBox.margin></Label>
+         </HBox.margin>
+         <cursor>
+            <Cursor fx:constant="W_RESIZE" />
+         </cursor></Label>
         <ImageView fx:id="displayPicture" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
             <Insets />

@@ -57,6 +57,6 @@ public class AddDeadlineCommand extends Command {
         this.task = new Deadline(description, isDone, by, time);
         list.addTask(task);
         storage.save(list);
-        return ui.addMessage() + ui.showLine() + task + ui.showLine() + ui.countMessage(list);
+        return ui.getAddMessage() + ui.getSeparator() + task + ui.getSeparator() + ui.getCountMessage(list);
     }
 }

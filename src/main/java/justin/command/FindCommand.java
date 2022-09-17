@@ -1,6 +1,5 @@
 package justin.command;
 
-import justin.MainWindow;
 import justin.Storage;
 import justin.TaskList;
 import justin.Ui;
@@ -32,6 +31,6 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) {
-        return ui.findMessage(list, description);
+        return ui.getFindMessage(list, description);
     }
 }
