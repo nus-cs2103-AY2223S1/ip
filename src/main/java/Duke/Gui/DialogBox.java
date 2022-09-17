@@ -7,10 +7,12 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-
+import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 
 /**
@@ -25,10 +27,25 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
     @FXML
     private HBox dialogHBox;
+    @FXML
+    private ScrollPane dialogScrollPane;
 
     private final double imgRadius = 40.0;
     private Circle circle = new Circle(imgRadius, imgRadius, imgRadius);
 
+    @FXML
+    public void initialize() {
+        if (dialogScrollPane == null) {
+            return;
+        }
+        dialogScrollPane.setFitToWidth(true);
+        dialogScrollPane.setOnMouseEntered(e -> {
+            dialogScrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+        });
+        dialogScrollPane.setOnMouseExited(e -> {
+            dialogScrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
+        });
+    }
 
     private DialogBox(String text, Image img, boolean isUser) {
         try {

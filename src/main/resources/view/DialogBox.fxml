@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- @@author lpohsien-reused -->
 <!-- Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html -->
 <!--  with minor changes. -->
-<?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>

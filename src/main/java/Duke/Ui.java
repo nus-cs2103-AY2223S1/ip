@@ -83,7 +83,7 @@ public class Ui {
     }
 
     /**
-     * Return the formattedgeneral error for user ouput.
+     * Returns the formattedgeneral error for user ouput.
      * 
      * @param errorMsg The error message to be displayed.
      */
@@ -102,7 +102,7 @@ public class Ui {
     }
 
     /**
-     * Return the formattedgeneral error for user ouput.
+     * Returns the formattedgeneral error for user ouput.
      * 
      * @param wrnMsg The warning message to be displayed.
      */

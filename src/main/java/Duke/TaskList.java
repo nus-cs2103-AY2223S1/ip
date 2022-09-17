@@ -163,7 +163,7 @@ public class TaskList {
     }
 
     /**
-     * Print the output in customised format.
+     * Prints the output in customised format.
      * 
      * @param list The list to print
      * @return String representation of the task-list

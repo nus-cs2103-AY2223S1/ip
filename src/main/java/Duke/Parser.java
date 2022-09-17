@@ -38,7 +38,7 @@ public class Parser {
             "☹ OOPS!!! Thats an invalid number!";
 
     /**
-     * Parse the user input into a command.
+     * Parses the user input into a command.
      * 
      * @param input The user input
      * @return
@@ -49,78 +49,50 @@ public class Parser {
         assert commandComponents.length <= 2 : "Input should only be broken into at most 2 halves";
         assert commandComponents.length > 0 : "Input should have at least 1 element";
         String commandKeyword = commandComponents[0];
-        String commandDetails = "";
-        if (commandComponents.length < 2 
-                && !(commandKeyword.equals("bye") || commandKeyword.equals("list"))) {
-            throw new InvalidCommandException("I need more details!");
-        } else if (commandComponents.length == 2) {
-            commandDetails = commandComponents[1];
-        } else {
-            assert (commandComponents.length >=2 
-                    || commandKeyword.equals("bye") 
-                    || commandKeyword.equals("list")) 
-                    : "Input should have at least 2 component unless it is list or bye";
+        String commandDetails = getCommandDetails(commandComponents, commandKeyword);
+
+        try {
+            int[] taskID;
+            switch (commandKeyword) {
+            case "bye":
+                return new ExitCommand();
+            case "list":
+                return new ListCommand();
+            case "mark":
+                taskID = parseTaskIds(commandDetails);
+                return new MarkCommand(taskID);
+            case "unmark":
+                taskID = parseTaskIds(commandDetails);
+                return new UnmarkCommand(taskID);
+            case "delete":
+                taskID = parseTaskIds(commandDetails);
+                return new DelCommand(taskID);
+            case "event":
+                try {
+                    EventTask eventTask = parseEvent(commandDetails);
+                    return new AddCommand(eventTask);
+                } catch (DateTimeParseException e) {
+                    throw new InvalidCommandException(INVALID_TIME_FORMAT_MSG);
+                }
+            case "deadline":
+                try {
+                    DeadlineTask deadlineTask = parseDeadline(commandDetails);
+                    return new AddCommand(deadlineTask);
+                } catch (DateTimeParseException e) {
+                    throw new InvalidCommandException(INVALID_TIME_FORMAT_MSG);
+                }
+            case "todo":
+                return new AddCommand(new ToDoTask(commandDetails));
+            case "find":
+                String keyword = commandDetails;
+                return new FindCommand(keyword);
+            default:
+                throw new InvalidCommandException("☹ OOPS!!! I dont recognise this command!");
+            }
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandException(INVALID_NUMBER_FORMAT_MSG);
         }
         
-
-        switch (commandKeyword) {
-        case "bye":
-            return new ExitCommand();
-        case "list":
-            return new ListCommand();
-        case "mark":
-            try {
-                int[] taskID = parseTaskIds(commandDetails);
-                return new MarkCommand(taskID);
-            } catch (NumberFormatException e) {
-                throw new InvalidCommandException(INVALID_NUMBER_FORMAT_MSG);
-            }
-        case "unmark":
-            try {
-                int[] taskID = parseTaskIds(commandDetails);
-                return new UnmarkCommand(taskID);
-            } catch (NumberFormatException e) {
-                throw new InvalidCommandException(INVALID_NUMBER_FORMAT_MSG);
-            }
-        case "delete":
-            try {
-                int[] taskID = parseTaskIds(commandDetails);
-                return new DelCommand(taskID);
-            } catch (NumberFormatException e) {
-                throw new InvalidCommandException(INVALID_NUMBER_FORMAT_MSG);
-            }
-        case "event":
-            try {
-                String errMsg = "☹ OOPS!!! I need more details on the event!\n"
-                        + "(Format: event _description_ /from _start_time_ /to _end_time_)";
-                String[] taskDetails = splitOnceWithFormat(commandDetails, "/from", errMsg);
-                String taskDesription = taskDetails[0];
-                String[] taskPeriod = splitOnceWithFormat(taskDetails[1], "/to", errMsg); 
-                LocalDateTime taskStart = LocalDateTime.parse(taskPeriod[0], DATETIME_FORMATTER);
-                LocalDateTime taskEnd =  LocalDateTime.parse(taskPeriod[1], DATETIME_FORMATTER);
-                return new AddCommand(new EventTask(taskDesription, taskStart, taskEnd));
-            } catch (DateTimeParseException e) {
-                throw new InvalidCommandException(INVALID_TIME_FORMAT_MSG);
-            }
-        case "deadline":
-            try {
-                String errMsg = "☹ OOPS!!! I need more details on the event!\n"
-                        + "(Format: deadline _description_ /by _time_)";
-                String[] taskDetails = splitOnceWithFormat(commandDetails, "/by", errMsg);
-                String taskDesription = taskDetails[0]; 
-                LocalDateTime deadline = LocalDateTime.parse(taskDetails[1], DATETIME_FORMATTER);
-                return new AddCommand(new DeadlineTask(taskDesription, deadline));
-            } catch (DateTimeParseException e) {
-                throw new InvalidCommandException(INVALID_TIME_FORMAT_MSG);
-            }
-        case "todo":
-            return new AddCommand(new ToDoTask(commandDetails));
-        case "find":
-            String keyword = commandDetails;
-            return new FindCommand(keyword);
-        default:
-            throw new InvalidCommandException("☹ OOPS!!! I dont recognise this command!");
-        }
     }
 
     /**
@@ -144,10 +116,28 @@ public class Parser {
         return processedInputs;
     }
 
-    private static int[] parseTaskIds(String command) {
+    private static String getCommandDetails(String[] commandComponents, String commandKeyword) 
+            throws InvalidCommandException {
+        if (commandComponents.length < 2 
+                && !(commandKeyword.equals("bye") || commandKeyword.equals("list"))) {
+            throw new InvalidCommandException("I need more details!");
+        } else if (commandComponents.length == 2) {
+            return commandComponents[1];
+        } else {
+            assert (commandComponents.length >=2 
+                    || commandKeyword.equals("bye") 
+                    || commandKeyword.equals("list")) 
+            : "Input should have at least 2 component unless it is list or bye";
+            return "";
+        } 
+    }
+
+    private static int[] parseTaskIds(String command) throws NumberFormatException {
         if (command.equals("*")) {
             int[] taskIds = {-1};
             return taskIds;
+        } else if (command.matches(".*[a-zA-Z]+.*")) {
+            throw new NumberFormatException();
         }
         String[] textIds = command.replaceAll("[^0-9]", " ").split("\\s+");
         int[] taskIds = new int[textIds.length];
@@ -156,4 +146,25 @@ public class Parser {
         }
         return taskIds;
     }
+
+    private static EventTask parseEvent(String commandDetails) throws InvalidCommandException {
+        String errMsg = "☹ OOPS!!! I need more details on the event!\n"
+                + "(Format: event _description_ /from _start_time_ /to _end_time_)";
+        String[] taskDetails = splitOnceWithFormat(commandDetails, "/from", errMsg);
+        String taskDesription = taskDetails[0];
+        String[] taskPeriod = splitOnceWithFormat(taskDetails[1], "/to", errMsg); 
+        LocalDateTime taskStart = LocalDateTime.parse(taskPeriod[0], DATETIME_FORMATTER);
+        LocalDateTime taskEnd =  LocalDateTime.parse(taskPeriod[1], DATETIME_FORMATTER);
+        return new EventTask(taskDesription, taskStart, taskEnd);
+    }
+
+    private static DeadlineTask parseDeadline(String commandDetails) throws InvalidCommandException {
+        String errMsg = "☹ OOPS!!! I need more details on the event!\n"
+                + "(Format: deadline _description_ /by _time_)";
+        String[] taskDetails = splitOnceWithFormat(commandDetails, "/by", errMsg);
+        String taskDesription = taskDetails[0]; 
+        LocalDateTime deadline = LocalDateTime.parse(taskDetails[1], DATETIME_FORMATTER);
+        return new DeadlineTask(taskDesription, deadline);
+    }
+
 }
