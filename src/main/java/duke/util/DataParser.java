@@ -21,6 +21,7 @@ import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.ResetAliasCommand;
 import duke.command.SwapFaceCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
@@ -95,6 +96,8 @@ public final class DataParser {
             return new DeleteAliasCommand(data);
         case SWAP:
             return new SwapFaceCommand();
+        case RESETALIAS:
+            return new ResetAliasCommand();
         case INVALID:
         default:
             return new InvalidCommand();

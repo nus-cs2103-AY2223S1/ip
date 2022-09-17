@@ -187,7 +187,7 @@ public class Duke {
             Launcher.main(saveFile.map(x -> new String[] {x}).orElse(new String[] {}));
             return;
         }
-        Duke duke = saveFile.map(x -> createApplication(x)).orElse(createApplication());
+        Duke duke = saveFile.map(x -> createApplication(x)).orElseGet(() -> createApplication());
         duke.run();
     }
 

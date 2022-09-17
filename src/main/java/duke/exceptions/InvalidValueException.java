@@ -5,7 +5,7 @@ package duke.exceptions;
  */
 public class InvalidValueException extends DukeException {
 
-    private static final String DESCRIPTION = "Hey, %s is not a number!";
+    private static final String DESCRIPTION = "Hey, %s needs a number!";
 
     public InvalidValueException(String commandName) {
         super(String.format(DESCRIPTION, commandName));

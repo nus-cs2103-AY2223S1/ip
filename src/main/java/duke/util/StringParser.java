@@ -32,19 +32,8 @@ public final class StringParser {
      * @param txt Text to be validated
      * @return
      */
-    public static boolean isAlphanumericVariableName(String txt) {
+    public static boolean isNotAlphanumericVariableName(String txt) {
         String tested = txt.trim();
         return !tested.matches("[a-zA-Z][a-zA-Z0-9]*");
-    }
-
-    /**
-     * Adds right padding to a text
-     *
-     * @param txt to be padded
-     * @param padding padding size
-     * @return formatted string
-     */
-    public static String rightPad(String txt, int padding) {
-        return String.format("%-" + padding + "s", txt);
     }
 }

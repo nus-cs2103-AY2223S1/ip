@@ -27,7 +27,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Factory method to create a Todo task from string.
+     * Factory method to create a Todo task from string. (when reading file)
      *
      * @param description
      * @return Todo
