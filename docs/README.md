@@ -25,7 +25,7 @@ Fred is a Chatbot that can help you to manage your ToDos, Events, and Deadlines.
 
 ## Usage
 
-### Adding a ToDo
+### Adding a ToDo [^](#features)
 Adds a ToDo to the task list.
 
 Format: `todo DESCRIPTION`
@@ -38,7 +38,7 @@ Example of usage:
 <br/>
 
 
-### Adding an Event
+### Adding an Event [^](#features)
 Adds an Event to the task list.
 
 Format: `event DESCRIPTION /at DATE`
@@ -52,7 +52,7 @@ Example of usage:
 <br/>
 
 
-### Adding a Deadline
+### Adding a Deadline [^](#features)
 Adds a Deadline to the task list.
 
 Format: `deadline DESCRIPTION /by DATE`
@@ -66,7 +66,7 @@ Example of usage:
 <br/>
 
 
-### List all tasks
+### List all tasks [^](#features)
 Shows a list of all tasks in task list.
 
 Format: `list`
@@ -84,7 +84,7 @@ Here are the tasks in your list:
 <br/>
 
 
-### Mark task as done
+### Mark task as done [^](#features)
 Marks a task as done.
 
 Format: `mark INDEX`
@@ -98,7 +98,7 @@ Example of usage:
 <br/>
 
 
-### Mark task as undone
+### Mark task as undone [^](#features)
 Unmark a task.
 
 Format: `unmark INDEX`
@@ -112,7 +112,7 @@ Example of usage:
 <br/>
 
 
-### Delete task
+### Delete task [^](#features)
 Delete a task from the task list.
 
 Format: `delete INDEX`
@@ -126,7 +126,7 @@ Example of usage:
 <br/>
 
 
-### Save task list
+### Save task list [^](#features)
 Save Fred's task list to the hard disk.
 
 Format: `save`
@@ -134,7 +134,7 @@ Format: `save`
 <br/>
 
 
-### Find task by name
+### Find task by name [^](#features)
 Find all tasks in task list which contain the given keyword.
 
 Format: `find KEYWORD`
@@ -155,7 +155,7 @@ Here are the matching tasks in your list:
 <br/>
 
 
-### Reschedule task
+### Reschedule task [^](#features)
 Change the date of a given task.
 
 Format: `snooze INDEX /to DATE`
@@ -170,7 +170,7 @@ Example of usage:
 <br/>
 
 
-### Exit Fred
+### Exit Fred [^](#features)
 Exits Fred.
 
 Format: `bye`
