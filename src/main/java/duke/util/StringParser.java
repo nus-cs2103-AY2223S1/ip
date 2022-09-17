@@ -27,12 +27,12 @@ public final class StringParser {
     }
 
     /**
-     * Checks if string contains whitespace in between characters
+     * Checks if string contains whitespace in between characters and start with letter
      *
      * @param txt Text to be validated
      * @return
      */
-    public static boolean containWhitespace(String txt) {
+    public static boolean isAlphanumericVariableName(String txt) {
         String tested = txt.trim();
         return !tested.matches("[a-zA-Z][a-zA-Z0-9]*");
     }

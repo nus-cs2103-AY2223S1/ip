@@ -5,7 +5,8 @@ package duke.exceptions;
  */
 public class InvalidTimeFormatException extends DukeException {
 
-    private static final String DESCRIPTION = "%s is not recognised as a time stamp";
+    private static final String DESCRIPTION =
+            "I don't recognise %s a time stamp. I only know MMM d yyyy, dd/MM/yyyy, dd-MM-yyyy ";
 
     public InvalidTimeFormatException(String commandName) {
         super(String.format(DESCRIPTION, commandName));

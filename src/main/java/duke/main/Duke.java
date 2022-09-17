@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 import duke.command.Command;
-import duke.command.CommandSelector;
 import duke.exceptions.DukeException;
 import duke.inputoutput.DukeCliIo;
 import duke.inputoutput.DukeIo;
@@ -20,20 +19,18 @@ public class Duke {
             "Welcome to\n" + " ____        _        \n" + "|  _ \\ _   _| | _____ \n" + "| | | | | | | |/ / _ \\\n"
                     + "| |_| | |_| |   <  __/\n" + "|____/ \\__,_|_|\\_\\___|\n" + "      Chatbot!\n";
 
-    private static final String INTRO = "Hello! I'm Duke\n" + "What can I do for you?";
+    private static final String INTRO = "Hey hey hey! I'm Duke\n" + "What can I do for you?";
 
     private static final String FATAL_EXIT = "Fatal Error! The system will exit abnormally!";
 
     private DukeIo userInputOutput;
     private TaskList tasks;
     private Storage dukeData;
-    private CommandSelector commandSelector;
 
     private Duke(TaskList tasks, Storage dukeData, DukeIo dukeIo) {
         this.dukeData = dukeData;
         this.tasks = tasks;
         this.userInputOutput = dukeIo;
-        commandSelector = new CommandSelector();
 
         dukeIo.printTask(LOGO);
         dukeIo.printTask(INTRO, 2);
@@ -46,9 +43,9 @@ public class Duke {
      * @return
      */
     public boolean handleInput(String txt) {
-        Command c = DataParser.parseCommand(txt, commandSelector);
+        Command c = DataParser.parseCommand(txt);
         try {
-            c.execute(tasks, userInputOutput, dukeData, commandSelector);
+            c.execute(tasks, userInputOutput, dukeData);
         } catch (DukeException e) {
             userInputOutput.printError(e);
         } catch (IOException e) {

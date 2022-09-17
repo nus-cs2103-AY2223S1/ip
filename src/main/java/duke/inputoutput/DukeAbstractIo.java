@@ -7,7 +7,7 @@ import java.util.List;
  * Abstract class of DukeIo interface to handle some basic functionalities
  */
 public abstract class DukeAbstractIo implements DukeIo {
-    private static final String EMPTY_LIST = "The current list is empty!";
+    private static final String EMPTY_LIST = "I didn't find anything!";
 
     /**
      * {@inheritDoc}
@@ -63,8 +63,9 @@ public abstract class DukeAbstractIo implements DukeIo {
             return;
         }
 
-        StringBuilder printableList = list.stream().collect(StringBuilder::new,
-                (sb, txt) -> sb.append(String.format(" - %s%n", txt.toString())), StringBuilder::append);
+        StringBuilder printableList = list.stream().collect(StringBuilder::new, (sb, txt) -> {
+            sb.append(String.format(" - %s%n", txt.toString()));
+        }, StringBuilder::append);
 
         printTask(printableList.toString());
     }
@@ -81,8 +82,9 @@ public abstract class DukeAbstractIo implements DukeIo {
             printTask(EMPTY_LIST);
             return;
         }
-        StringBuilder printableList = Arrays.stream(list).collect(StringBuilder::new,
-                (sb, txt) -> sb.append(String.format(" - %s%n", txt.toString())), StringBuilder::append);
+        StringBuilder printableList = Arrays.stream(list).collect(StringBuilder::new, (sb, txt) -> {
+            sb.append(String.format(" - %s%n", txt.toString()));
+        }, StringBuilder::append);
 
         printTask(printableList.toString());
     }
