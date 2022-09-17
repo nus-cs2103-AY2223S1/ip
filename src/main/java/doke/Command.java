@@ -131,6 +131,6 @@ public class Command {
     static Pair<Boolean, String> findCommand(TaskList taskList, Ui ui, String string) {
         String search = string.substring(5);
         String temp = taskList.searchString(search, ui);
-        return new Pair<>(true, "temp");
+        return new Pair<>(true, temp);
     }
 }
