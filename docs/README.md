@@ -3,6 +3,8 @@
 ## DukePro
 DukePro contains two managers - one for your tasks, and one for your expenses.
 
+Click [here](https://github.com/boredcoco/ip) to use DukePro
+
 ### Task Manager
 
 The Task Manager comes with the following features
