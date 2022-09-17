@@ -17,7 +17,7 @@ public final class ExceptionMessages {
     public static String UNSUPPORTED_ACTION = frowningFace
             + " OOPS!!! I'm sorry, but I don't know what that means :-(" + lineSep;
     public static String INVALID_INDEX_FORMAT = frowningFace
-            + " OOPS!!! Please indicate only an integer indices for the command." + lineSep;
+            + " OOPS!!! Please indicate integer indices for the command." + lineSep;
     public static String LOAD_ERROR = "Error loading data from storage." + lineSep;
     public static String INVALID_FIND_FORMAT = frowningFace
             +" OOPS!!! Please indicate the string to scan the task list for." + lineSep;

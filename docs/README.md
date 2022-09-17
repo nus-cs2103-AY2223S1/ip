@@ -107,7 +107,7 @@ All tasks are automatically saved at `/data/duke.txt` and loaded from the same f
 
 Advanced users may directly edit the savefile.
 
-**Caution!** If the edited data is of a different format, the file will be **overwritten** and data lost.
+**Caution!** If the edited data is of a different format, the file may be **overwritten** and data lost.
 
 ### Storage File Format
 Tasks are saved line by line in the following structure

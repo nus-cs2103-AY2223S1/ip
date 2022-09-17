@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -26,6 +27,19 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.setTitle("Duke");
+            // Waving Duke icon modified from https://en.wikipedia.org/wiki/File:Duke_(Java_mascot)_waving.svg
+            // Duke is Copyright Sun Microsystems and the image used under BSD license
+            stage.getIcons().add(new Image("/images/DukeMascot.png"));
+
+            // code snippet reused from @sikai00
+            stage.widthProperty().addListener((o, oldValue, newValue) -> {
+                if (newValue.intValue() < 400.0) {
+                    stage.setResizable(false);
+                    stage.setWidth(400);
+                    stage.setResizable(true);
+                }
+            });
+
             stage.show();
             fxmlLoader.<MainWindow>getController().displayStartupMessages();
         } catch (IOException e) {
