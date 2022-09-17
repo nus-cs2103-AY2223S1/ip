@@ -3,6 +3,7 @@ package duke.task;
 import org.junit.jupiter.api.Test;
 
 import duke.exceptions.CorruptedLineException;
+import duke.exceptions.EmptyDescriptionException;
 import duke.util.ParsedData;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,6 +20,17 @@ public class TodoTest {
             dummy.unmark();
             assertEquals("[T][ ] dummy test123 /by 12-3-1232", dummy.toString());
         } catch (CorruptedLineException e) {
+            fail();
+        }
+    }
+
+    public void emptyDescriptionExceptionTest() {
+        ParsedData data = new ParsedData("todo", "", "");
+        try {
+            Todo.createTodo(data);
+            fail();
+        } catch (EmptyDescriptionException e) {
+        } catch (Exception e) {
             fail();
         }
     }

@@ -43,7 +43,7 @@ public class AliasCommand extends DataCommand {
         String alias = commandMapping[0];
         String target = commandMapping[1];
 
-        if (StringParser.isAlphanumericVariableName(alias)) {
+        if (StringParser.isNotAlphanumericVariableName(alias)) {
             throw new InvalidAliasFormatException();
         }
 
