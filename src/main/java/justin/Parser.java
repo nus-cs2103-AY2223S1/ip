@@ -180,9 +180,7 @@ public class Parser {
      */
     public static Command parseCommand(String message) throws DukeException {
         String[] arr = message.split("\\s\\|\\s");
-        try {
-            assert arr.length > 1;
-        } catch (AssertionError e) {
+        if (arr.length == 1) {
             return new NewCommand();
         }
         String task = arr[0];

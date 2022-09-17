@@ -89,9 +89,10 @@ Expected outcome:
 
 ```
 Here are the tasks in your list:
-T | Undone | homework
-D | Undone | assignment | Oct 11 2022 1000PM
-E | Undone | meeting | Oct 12 2022 1000AM
+
+1. T | Undone | homework
+2. D | Undone | assignment | Oct 11 2022 1000PM
+3. E | Undone | meeting | Oct 12 2022 1000AM
 ```
 
 ### `mark <index>`
@@ -106,7 +107,8 @@ Expected outcome:
 
 ```
 Nice! I have marked the following task(s) as done:
-T | Done! | homework
+
+1. T | Done! | homework
 ```
 
 ### `unmark <index>`
@@ -121,7 +123,8 @@ Expected outcome:
 
 ```
 Sure, I've marked the following task(s) as undone:
-T | Undone | homework
+
+1. T | Undone | homework
 ```
 
 ### `delete <index>`
@@ -136,6 +139,7 @@ Expected outcome:
 
 ```
 OK, I have removed the following task(s) from the list:
+
 T | Undone | homework
 You now have 2 tasks in your list
 ```
@@ -152,5 +156,6 @@ Expected outcome:
 
 ```
 Here are the matching tasks in your list:
-D | Undone | assignment | Oct 11 2022 1000PM
+
+1. D | Undone | assignment | Oct 11 2022 1000PM
 ```
