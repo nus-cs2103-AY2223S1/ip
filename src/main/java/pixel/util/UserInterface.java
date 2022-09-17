@@ -13,8 +13,6 @@ public class UserInterface {
         + "| | | | | | | |/ / _ \\\n"
         + "| |_| | |_| |   <  __/\n"
         + "|____/ \\__,_|_|\\_\\___|\n";
-    // System.out.println("Hello from\n" + logo);
-    // System.out.println("Hello from\n");
 
     public static final String GREETING_MESSAGE = ("Hello! I'm Pixel! \r\n");
     public static final String PROMPT_MESSAGE = (

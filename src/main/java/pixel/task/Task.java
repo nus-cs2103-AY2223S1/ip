@@ -41,7 +41,7 @@ public class Task {
      */
     public Task(String description, String due, String commandWord) {
         this.description = description;
-        this.due = dateTimeProcessing(due);
+        this.due = processDateTime(due);
         this.commandWord = commandWord;
     }
 
@@ -51,7 +51,7 @@ public class Task {
      * @param due due date and time
      * @return date and time in MONTH dd yyyy hh:mm aa format
      */
-    private String dateTimeProcessing(String due) {
+    private String processDateTime(String due) {
         String[] tempStringArray = due.strip().split(" ", 2);
 
         try {
@@ -63,15 +63,12 @@ public class Task {
                 String year = String.valueOf(inputDue.getYear());
                 String month = String.valueOf(inputDue.getMonth());
                 String date = String.valueOf(inputDue.getDayOfMonth());
-                // System.out.println("date is working");
 
                 //time pattern of input date in 24 hour format -- HH for 24h, hh for 12h
                 DateFormat timeFormat = new SimpleDateFormat("HHmm");
-                // System.out.println("time input is working");
 
                 //Date/time pattern of desired output date
                 DateFormat outputFormat = new SimpleDateFormat("hh:mm aa"); // aa for AM/ PM
-                // System.out.println("time output is working");
                 Date oldTimeFormat = timeFormat.parse(dueTime);
                 String finalTimeFormat = outputFormat.format(oldTimeFormat);
 
@@ -83,27 +80,22 @@ public class Task {
             }
 
         } catch (DateTimeParseException e) {
-            // System.out.println(e);
             return ("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format \n"
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (IndexOutOfBoundsException e) {
-            // System.out.println(e);
             return ("Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format \n"
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (ParseException e) {
-           //  System.out.println(e);
             return ("Caught parse exception! \n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (Exception e) {
-            // System.out.println(e);
             return ("Some other error occurred \n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
-
         }
     }
 
@@ -141,7 +133,8 @@ public class Task {
             assert tag == "T" : "todo tag should be T";
         }
 
-        String taskToString = tag + " | " + isTaskDone + " | " + this.description + "| " + this.due;
+        String taskToString = tag + " ;; " + isTaskDone + " ;; "
+            + this.description + " ;; " + this.commandWord + " ;; " + this.due;
         return taskToString;
     }
 

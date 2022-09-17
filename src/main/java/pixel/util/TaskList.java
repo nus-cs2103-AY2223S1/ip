@@ -29,16 +29,17 @@ public class TaskList {
         return false;
     }
 
-    public String listTasks() {
+    public static String listTasks() {
         String output = "Here are the tasks in your list: \n";
-        for (int i = 0; i < Pixel.count; i++) {
+        for (int i = 0; i < Pixel.getTaskCount(); i++) {
             Task currentTask = Storage.INPUT_TASKS.get(i);
+            System.out.println("@2321eqwdasdadasddw");
             output += ((i + 1) + ". " + currentTask + "\n");
         }
         return output;
     }
 
-    public String listFindResults(ArrayList<Task> findResults) {
+    public static String listFindResults(ArrayList<Task> findResults) {
         String output ="Here are the matching tasks in your list: \n";
         for (int i = 0; i < findResults.size(); i++) {
             Task currentTask = findResults.get(i);
@@ -47,7 +48,7 @@ public class TaskList {
         return output;
     }
 
-    public String handleNewTask(String userInput, String type) throws IOException, DuplicateEntryException {
+    public String handleNewTask(String userInput, Parser.TaskType type) throws IOException, DuplicateEntryException {
 
         int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
         // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
@@ -68,19 +69,19 @@ public class TaskList {
         }
 
         switch (type) {
-        case "T": { // todo
+            case TODO: {
             String description = userInput.substring(5, indexOfEndOfDescription).strip();
             newTask = new ToDo(description, due, commandWord); // Stores user input
 
             break;
         }
-        case "D": { // deadline
+            case DEADLINE: { // deadline
             String description = userInput.substring(9, indexOfEndOfDescription).strip();
             newTask = new Deadline(description, due, commandWord); // Stores user input
 
             break;
         }
-        case "E": { // event
+            case EVENT: { // event
             String description = userInput.substring(6, indexOfEndOfDescription).strip();
             newTask = new Event(description, due, commandWord); // Stores user input
 
@@ -95,10 +96,10 @@ public class TaskList {
         if (findDuplicate(newTask)) {
             throw new DuplicateEntryException("Same task already exists in database!");
         }
-        Storage.INPUT_TASKS.add(Pixel.count, newTask);
+        Storage.INPUT_TASKS.add(Pixel.getTaskCount(), newTask);
 
         // index of last element in ArrayList is always smaller than size
-        assert Storage.INPUT_TASKS.size() == (Pixel.count + 1)
+        assert Storage.INPUT_TASKS.size() == (Pixel.getTaskCount() + 1)
             : "Size of ArrayList did not increase by 1 after adding new task";
 
         // Not so efficient method
@@ -108,10 +109,10 @@ public class TaskList {
         // run through all the files in the list and update pixel.txt accordingly
         Storage.appendAllTasksToFile(this.filePath);
 
-        Pixel.count += 1;
+        Pixel.addOneToTaskCount();
 
         return ("Got it. I've added this task: \n"
             + newTask + "\n"
-            + "Now you have " + Pixel.count + " tasks in the list.");
+            + "Now you have " + Pixel.getTaskCount() + " tasks in the list.");
     }
 }

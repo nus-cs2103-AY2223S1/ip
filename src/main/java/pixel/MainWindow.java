@@ -60,19 +60,6 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().add(
             DialogBox.getDukeDialog(initialMessage, pixelImage)
         );
-//        try {
-//            if (pixel.botJustInitialised()) {
-//                String initialMessage = UserInterface.GREETING_MESSAGE + "\n"
-//                    + UserInterface.PROMPT_MESSAGE;
-//                dialogContainer.getChildren().add(
-//                    DialogBox.getDukeDialog(initialMessage, pixelImage)
-//                );
-//            }
-//        } catch (RuntimeException exception) {
-//            System.out.println(exception);
-//        }
-
     }
-    // Unsuccessful attempt to make GUI display welcome message upon initialisation.
-    // Keeping code for future reference
+
 }

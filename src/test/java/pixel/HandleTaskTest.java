@@ -8,6 +8,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import pixel.util.IncorrectFormatException;
+import pixel.util.Parser;
 import pixel.util.Storage;
 import pixel.util.TaskList;
 
@@ -45,7 +46,7 @@ public class HandleTaskTest {
     @Test
     public void testInvalidDue() {
         try {
-            taskList.handleNewTask("deadline /as jjjj", "D");
+            taskList.handleNewTask("deadline /as jjjj", Parser.TaskType.DEADLINE);
         } catch (Exception exception) {
             // System.out.println(exception);
             assertTrue(exception instanceof IncorrectFormatException);
@@ -57,8 +58,8 @@ public class HandleTaskTest {
     @Test
     public void testDeleteTask() {
         try {
-            taskList.handleNewTask("deadline CS2103 assignment /by tomorrow", "D");
-            taskList.handleNewTask("todo meet Wayne for dinner /at 2022-26-08 1850", "D");
+            taskList.handleNewTask("deadline CS2103 assignment /by tomorrow", Parser.TaskType.DEADLINE);
+            taskList.handleNewTask("todo meet Wayne for dinner /at 2022-26-08 1850", Parser.TaskType.DEADLINE);
             assertEquals(2, Storage.INPUT_TASKS.size());
             Storage.deleteEntry("delete 2", this.filePath);
             assertEquals(1, Storage.INPUT_TASKS.size());

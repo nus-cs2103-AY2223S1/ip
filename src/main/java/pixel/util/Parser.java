@@ -5,13 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import pixel.Pixel;
 import pixel.task.Task;
 
 /**
  * Deals with making sense of the user command
  */
-public class Parser { // inner class
+public class Parser {
 
     private final TaskList taskList;
     private final String filePath;
@@ -21,9 +20,15 @@ public class Parser { // inner class
         this.taskList = new TaskList(filePath);
     }
 
-    enum Marking {
+    private enum Marking {
         MARK,
         UNMARK
+    }
+
+    public enum TaskType {
+        TODO,
+        DEADLINE,
+        EVENT
     }
 
     private int getMarkOrUnmarkIndex(String strippedInput, Marking instruction) throws IncorrectFormatException {
@@ -46,22 +51,23 @@ public class Parser { // inner class
     public String parse(String userInput) {
 
         String strippedInput = userInput.strip();
+        String lowerCaseStrippedInput = strippedInput.toLowerCase();
 
         try {
-            if (userInput.strip().startsWith("bye")) {
+            if (lowerCaseStrippedInput.startsWith("bye")) {
                 // return UserInterface.GOODBYE_MESSAGE;
                 System.exit(0);
 
-            } else if (userInput.strip().startsWith("todo ")) {
-                return taskList.handleNewTask(userInput, "T");
+            } else if (lowerCaseStrippedInput.startsWith("todo ")) {
+                return taskList.handleNewTask(strippedInput, TaskType.TODO);
 
-            } else if (userInput.strip().startsWith("deadline ")) {
-                return taskList.handleNewTask(userInput, "D");
+            } else if (lowerCaseStrippedInput.startsWith("deadline ")) {
+                return taskList.handleNewTask(strippedInput, TaskType.DEADLINE);
 
-            } else if (userInput.strip().startsWith("event ")) {
-                return taskList.handleNewTask(userInput, "E");
+            } else if (lowerCaseStrippedInput.startsWith("event ")) {
+                return taskList.handleNewTask(strippedInput, TaskType.TODO);
 
-            } else if (strippedInput.startsWith("mark ")) {
+            } else if (lowerCaseStrippedInput.startsWith("mark ")) {
                 int indexToChange = getMarkOrUnmarkIndex(strippedInput, Marking.MARK);
 
                 if ((indexToChange < 1) || (indexToChange > 100)) {
@@ -76,7 +82,7 @@ public class Parser { // inner class
                     + Storage.INPUT_TASKS.get(indexToChange - 1) + "\n"
                     + UserInterface.AFTER_VALID_INPUT);
 
-            } else if (strippedInput.startsWith("unmark ")) {
+            } else if (lowerCaseStrippedInput.startsWith("unmark ")) {
                 int indexToChange = getMarkOrUnmarkIndex(strippedInput, Marking.UNMARK);
 
                 if ((indexToChange < 1) || (indexToChange > 100)) {
@@ -91,17 +97,17 @@ public class Parser { // inner class
                     + Storage.INPUT_TASKS.get(indexToChange - 1) + "\n"
                     + UserInterface.AFTER_VALID_INPUT);
 
-            } else if (userInput.strip().equals("list")) {
-                String listOfTasks = this.taskList.listTasks();
+            } else if (lowerCaseStrippedInput.equals("list")) {
+                String listOfTasks = TaskList.listTasks();
                 return listOfTasks + UserInterface.AFTER_VALID_INPUT;
 
-            } else if (userInput.strip().startsWith("delete ")) {
-                String output = Storage.deleteEntry(userInput, filePath);
+            } else if (lowerCaseStrippedInput.startsWith("delete ")) {
+                String output = Storage.deleteEntry(strippedInput, filePath);
                 return output + "\n" + UserInterface.AFTER_VALID_INPUT;
 
-            } else if (userInput.strip().startsWith("find ")) {
-                ArrayList<Task> results = Storage.findEntry(userInput);
-                String findResults = this.taskList.listFindResults(results);
+            } else if (lowerCaseStrippedInput.startsWith("find ")) {
+                ArrayList<Task> results = Storage.findEntry(strippedInput);
+                String findResults = TaskList.listFindResults(results);
                 return findResults + UserInterface.AFTER_VALID_INPUT;
 
             } else {
@@ -125,9 +131,10 @@ public class Parser { // inner class
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (IncorrectFormatException e) {
-            return (e + "\n"
-                + "Incorrect format exception! \n"
-                + UserInterface.AFTER_INVALID_INPUT + "\n"
+            return (
+//                e + "\n"
+//                + "Incorrect format exception! \n"
+                UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (IOException e) {

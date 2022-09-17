@@ -1,13 +1,14 @@
 package pixel.util;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import pixel.Pixel;
+import pixel.task.Deadline;
+import pixel.task.Event;
 import pixel.task.Task;
+import pixel.task.ToDo;
 
 /**
  * Handles the storage functions
@@ -17,7 +18,7 @@ import pixel.task.Task;
  */
 public class Storage {
 
-    public static final ArrayList<Task> INPUT_TASKS = new ArrayList<>(100); // made public for testing
+    public static final ArrayList<Task> INPUT_TASKS = new ArrayList<>(100);
 
     /**
      * Constructor for a new Storage object
@@ -78,26 +79,21 @@ public class Storage {
         Task tempRecord;
         // truncate the front part
         String temp = userInput.substring(7).strip();
-        // System.out.println(temp);
         int indexToDelete = Character.getNumericValue(temp.charAt(0));
-        // System.out.println(indexToChange);
         if ((indexToDelete > 0) && (indexToDelete < 100)) {
             tempRecord = Storage.INPUT_TASKS.get(indexToDelete - 1);
             int originalInputListSize = Storage.INPUT_TASKS.size();
 
             output += ("Noted. I've removed this task: \n"
                 + tempRecord + "\n");
-            //+ originalInputListSize + " input task size");
 
             // shift everything forward by 1, starting at the element to be removed (which is replaced by next element)
             for (int i = (indexToDelete - 1); i < originalInputListSize; i++) {
                 // move everything up by 1
                 if (i == (originalInputListSize - 1)) {
-                    // System.out.println(i + " remove");
                     Storage.INPUT_TASKS.remove(i);
                     assert Storage.INPUT_TASKS.size() == (originalInputListSize - 1) : "Size of ArrayList of tasks did not decrease by 1 upon deletion";
                 } else {
-                    // System.out.println(i + " replace");
                     Storage.INPUT_TASKS.set(i, Storage.INPUT_TASKS.get(i + 1));
                 }
             }
@@ -105,8 +101,8 @@ public class Storage {
             resetFile(filePath);
             Storage.appendAllTasksToFile(filePath);
 
-            Pixel.count -= 1;
-            output += ("Now you have " + Pixel.count + " tasks in the list.");
+            Pixel.minusOneToTaskCount();
+            output += ("Now you have " + Pixel.getTaskCount() + " tasks in the list.");
             return output;
 
         } else {
@@ -129,9 +125,88 @@ public class Storage {
     public static void appendTaskToFile(Task task, String filePath) throws IOException {
         String textToAdd = task.formatTaskBeforeSave();
         Writer bufferedFileWriter = new BufferedWriter(new FileWriter(filePath, true));
-        // FileWriter(String fileName, boolean append)
         bufferedFileWriter.append(textToAdd).append("\n");
         bufferedFileWriter.close();
+    }
+
+    /**
+     * Adds all tasks from external file to the array list of tasks
+     *
+     * @param filePath filepath of file to refer to
+     * @throws IOException when the filePath is invalid
+     */
+    public static void readTasksFromFile(String filePath) {
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(filePath));
+            String line;
+            while ((line = reader.readLine()) != null) { // reader will continuously read the next line
+                Task savedTask = lineToTask(line);
+                INPUT_TASKS.add(savedTask);
+            }
+            reader.close();
+        } catch (IOException e) {
+            if (e instanceof FileNotFoundException) {
+                File tempFile = new File("./data/pixel", "pixel.txt");
+            } else {
+                //e.printStackTrace();
+            }
+        } catch (InvalidTextDataFormatException e) {
+            //e.printStackTrace();
+        }
+    }
+
+    /**
+     * Converts a task saved in the text file in string format into a Task object
+     *
+     * @param lineFromDocument every line from the text file, where
+     *                         the details of the task are saved
+     * @return a new Task converted from the String
+     * @throws InvalidTextDataFormatException when the text file to be read from
+     * has data in invalid format
+     */
+    private static Task lineToTask(String lineFromDocument) throws InvalidTextDataFormatException {
+        String[] componentsOfTask = lineFromDocument.strip().split(" ;; ");
+        String type = componentsOfTask[0];
+        String status = componentsOfTask[1];
+        String description = componentsOfTask[2];
+        String commandWord = componentsOfTask[3];
+        String due = componentsOfTask[4];
+
+        switch (type) {
+            case "T": {
+                Task formattedTask = new ToDo(description, due, commandWord);
+                if (status.equals("Done")) {
+                    formattedTask.markAsDone();
+                } else {
+                    formattedTask.markAsNotDone();
+                }
+                return formattedTask;
+            }
+            case "D": {
+                Task formattedTask = new Deadline(description, due, commandWord);
+                if (status.equals("Done")) {
+                    formattedTask.markAsDone();
+                } else {
+                    formattedTask.markAsNotDone();
+                }
+                return formattedTask;
+            }
+
+            case "E": {
+                Task formattedTask = new Event(description, due, commandWord);
+                if (status.equals("Done")) {
+                    formattedTask.markAsDone();
+                } else {
+                    formattedTask.markAsNotDone();
+                }
+                return formattedTask;
+            }
+
+            default: {
+                throw new InvalidTextDataFormatException("Type of task in database is invalid!");
+            }
+        }
     }
 
 }
