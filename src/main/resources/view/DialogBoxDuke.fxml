@@ -1,3 +1,6 @@
+<!-- @@author lpohsien-reused -->
+<!-- Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html -->
+<!--  with minor changes. -->
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
@@ -18,3 +21,4 @@
     <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
   </padding>
 </fx:root>
+<!-- @@author -->

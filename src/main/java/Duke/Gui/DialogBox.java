@@ -1,3 +1,6 @@
+//@@author lpohsien-reused
+//Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html
+// with minor changes.
 package Duke.Gui;
 import java.io.IOException;
 
@@ -56,3 +59,4 @@ public class DialogBox extends HBox {
         return new DialogBox(text, img, false);
     }
 }
+//@@author

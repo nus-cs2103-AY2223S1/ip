@@ -1,3 +1,6 @@
+//@@author lpohsien-reused
+//Resued from https://se-education.org/guides/tutorials/javaFxPart1.html
+// with minor changes.
 package Duke;
 import javafx.application.Application;
 
@@ -9,3 +12,4 @@ public class Launcher {
         Application.launch(Main.class, args);
     }
 }
+//@@author

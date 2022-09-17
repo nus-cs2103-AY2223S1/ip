@@ -1,3 +1,6 @@
+//@@author lpohsien-reused
+//Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html
+// with minor changes.
 package Duke.Gui;
 
 import Duke.Duke;
@@ -71,3 +74,4 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 }
+//@@author

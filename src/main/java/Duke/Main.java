@@ -1,3 +1,6 @@
+//@@author lpohsien-reused
+//Adapted from https://se-education.org/guides/tutorials/javaFxPart3.html
+// with minor changes.
 package Duke;
 
 import java.io.IOException;
@@ -31,3 +34,4 @@ public class Main extends Application {
         }
     }
 }
+//@@author
