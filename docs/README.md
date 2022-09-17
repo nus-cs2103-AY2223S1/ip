@@ -3,20 +3,36 @@
 Duke is a simpled command-based task list manager. 
 
 Using the chatbot interface, users can execute commands including:
-1. Add new tasks
-2. Marking or unmarking tasks as complete
-3. Delete tasks 
-4. Find tasks from the record.
+- Add new tasks
+- Marking or unmarking tasks as complete
+- Delete tasks 
+- Find tasks from the record.
 
 ## Features 
 
-### Feature-ABC
+### Add task
 
-Description of the feature.
+User can add tasks to their task list. There are currently 3 types of tasks supported:
+- `todo`: A time-insenstive task with only has a short description.
+- `deadline`: A time-senstive task that has both the description and an attached deadline.
+- `event`: A time-senstive task that has both the description and an attached period.
 
-### Feature-XYZ
+### Delete task
 
-Description of the feature.
+User can delete a task from the list using the index of the task.
+
+### Find task
+
+User can search for task in the list based on keywords.
+
+### List task
+
+User can list out all the tasks currently in the list. The task type and completion status
+will be shown as well.
+
+### Mark / Unmark task
+
+User can mark/unmark task as completed based on the index of the task.
 
 ## Usage
 
