@@ -1,6 +1,8 @@
 package dan.task;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a Task.
@@ -47,8 +49,9 @@ public class Task {
      * @return boolean if the task has the keyword in its description
      */
     public boolean hasKeyword(String... keywords) {
-        return Arrays.stream(keywords).map(String::toUpperCase)
-                .anyMatch(description.toUpperCase()::contains);
+        return Arrays.stream(keywords).map(Pattern::compile)
+                .map(p -> p.matcher(description))
+                .anyMatch(Matcher::find);
     }
 
     /**
