@@ -20,6 +20,7 @@ public class Iana {
         try {
             Storage.initialise();   
             tasks = Storage.load();
+            ui.sayHi();
         } catch (IanaException e) {
             ui.say(e.getMessage());
         }

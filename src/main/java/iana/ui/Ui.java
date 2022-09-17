@@ -83,7 +83,7 @@ public class Ui {
      * @return IANA's response, deleted task information, and number of tasks left.
      */
     public String sayTaskDeleted(Task task, int listSize) {
-        return say(String.format("> Nice! I've removed the task:\n\t   %s\n\tNow there's %d tasks left!! Good job! [:", 
+        return say(String.format("> Nice! I've removed the task:\n\t%s\n\tNow there's %d tasks left!! Good job! [:", 
         task.toString(), listSize));
     }
 
