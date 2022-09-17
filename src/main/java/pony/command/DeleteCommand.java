@@ -1,4 +1,10 @@
-public class DeleteCommand extends Command{
+package pony.command;
+
+import pony.*;
+import pony.task.Task;
+import pony.task.TaskList;
+
+public class DeleteCommand extends Command {
     private String commandDetails;
     public DeleteCommand(String commandDetails) {
         this.commandDetails = commandDetails;

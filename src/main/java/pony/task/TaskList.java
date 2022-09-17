@@ -1,3 +1,7 @@
+package pony.task;
+
+import pony.PonyException;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -25,7 +29,7 @@ public class TaskList {
     public Task getTask(int index) throws PonyException {
         // Check if index is valid
         if (index < 0 || index >= sizeOf()) {
-            throw new PonyException("Task index invalid!!");
+            throw new PonyException("pony.task.Task index invalid!!");
         }
         return tasks.get(index);
     }

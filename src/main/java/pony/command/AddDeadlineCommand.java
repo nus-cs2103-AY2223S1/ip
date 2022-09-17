@@ -1,21 +1,28 @@
+package pony.command;
+
+import pony.*;
+import pony.task.Deadline;
+import pony.task.Task;
+import pony.task.TaskList;
+
 import java.time.format.DateTimeParseException;
 
-public class AddEventCommand extends Command {
+public class AddDeadlineCommand extends Command {
 
     private String commandDetails;
-    private String format = "<task> /at <time>";
+    private String format = "<task> /by <time>";
 
-    public AddEventCommand(String commandDetails) {
+    public AddDeadlineCommand(String commandDetails) {
         this.commandDetails = commandDetails;
     }
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) {
         try {
-            String[] taskInfoArr = Parser.parseEventDetails(commandDetails, format);
+            String[] taskInfoArr = Parser.parseDeadlineDetails(commandDetails, format);
             String description = taskInfoArr[0];
             String timeInfo = taskInfoArr[1];
-            Task newTask = new Event(description, timeInfo);
+            Task newTask = new Deadline(description, timeInfo);
             tasks.addTask(newTask);
             ui.printAddedTask(newTask, tasks);
             storage.updateDisk(tasks);

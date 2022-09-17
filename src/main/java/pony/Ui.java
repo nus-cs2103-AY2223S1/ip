@@ -1,3 +1,8 @@
+package pony;
+
+import pony.task.Task;
+import pony.task.TaskList;
+
 import java.util.Scanner;
 public class Ui {
     Scanner sc;
@@ -6,7 +11,7 @@ public class Ui {
     };
 
     public void printWelcome() {
-        String message = "Hello! I'm Pony" + "\n" + "What can I do for you?";
+        String message = "Hello! I'm pony.Pony" + "\n" + "What can I do for you?";
         System.out.println(message);
     }
 

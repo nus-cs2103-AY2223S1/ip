@@ -1,3 +1,7 @@
+package pony;
+
+import pony.command.Command;
+import pony.task.TaskList;
 
 public class Pony {
 

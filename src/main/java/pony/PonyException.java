@@ -1,3 +1,5 @@
+package pony;
+
 import java.lang.RuntimeException;
 public class PonyException extends RuntimeException {
 
@@ -18,7 +20,7 @@ public class PonyException extends RuntimeException {
 
     }
 
-    //Task to mark not provided
+    //pony.task.Task to mark not provided
     public static class taskMissingError extends RuntimeException {
         public taskMissingError() {
             super(":( OOPS!!! Please provide the details!!");

@@ -1,5 +1,5 @@
 does the file exist?: true
-Hello! I'm Pony
+Hello! I'm pony.Pony
 What can I do for you?
 Got it. I've added this task: [T][ ] eat book
 Now you have 5 tasks in the list.

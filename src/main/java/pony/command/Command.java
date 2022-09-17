@@ -1,3 +1,9 @@
+package pony.command;
+
+import pony.Storage;
+import pony.task.TaskList;
+import pony.Ui;
+
 public abstract class Command {
 
     protected boolean isExit = false;

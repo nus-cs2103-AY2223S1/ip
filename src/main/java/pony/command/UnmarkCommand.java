@@ -1,6 +1,12 @@
-public class MarkCommand extends Command{
+package pony.command;
+
+import pony.*;
+import pony.task.Task;
+import pony.task.TaskList;
+
+public class UnmarkCommand extends Command {
     private String commandDetails;
-    public MarkCommand(String commandDetails) {
+    public UnmarkCommand(String commandDetails) {
         this.commandDetails = commandDetails;
     }
 
@@ -9,8 +15,8 @@ public class MarkCommand extends Command{
         try {
             int taskIndex = Parser.parseTaskIndex(commandDetails);
             Task task = tasks.getTask(taskIndex - 1);
-            task.markAsDone();
-            ui.printMarkedTask(task);
+            task.markAsNotDone();
+            ui.printUnmarkedTask(task);
             storage.updateDisk(tasks);
         } catch (PonyException e) {
             System.out.println(e.getMessage());

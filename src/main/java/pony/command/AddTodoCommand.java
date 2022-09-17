@@ -1,3 +1,10 @@
+package pony.command;
+
+import pony.*;
+import pony.task.Task;
+import pony.task.TaskList;
+import pony.task.ToDo;
+
 public class AddTodoCommand extends Command {
 
     private String commandDetails;

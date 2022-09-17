@@ -1,3 +1,7 @@
+package pony;
+
+import pony.task.*;
+
 import java.io.IOException;
 import java.io.FileWriter;
 import java.nio.file.Files;
@@ -76,7 +80,7 @@ public class Storage {
             fw.write(data);
             fw.close();
         } catch (IOException e) {
-            System.out.pringittln("Fail to write to file.");
+            System.out.println("Fail to write to file.");
         }
     }
 }

@@ -1,3 +1,7 @@
+package pony;
+
+import pony.command.*;
+
 public class Parser {
     public Parser() {};
 
